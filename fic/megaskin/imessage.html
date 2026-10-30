@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Megaskin, Chapter 4: iMessage | jockles.com</title>
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="stylesheet" href="megaskin.css" id="creator-style">
+</head>
+<body>
+<header>
+  <h1><a href="../../index.html">jockles.com</a></h1>
+  <p>fic, videos and fannish things</p>
+</header>
+<nav>
+  <ul>
+    <li><a href="../../index.html">Home</a></li>
+    <li><a href="../index.html">Fic</a></li>
+    <li><a href="../../videos/index.html">Videos</a></li>
+    <li><a href="../../blog/index.html">Blog</a></li>
+    <li><a href="../../links.html">Links</a></li>
+    <li><a href="../../about.html">About</a></li>
+  </ul>
+</nav>
+<main>
+      <!-- This page is made by tools/build-megaskin.py. Edit the chapter text in text/imessage.html instead. -->
+      <p class="work-title"><a href="index.html">Megaskin</a> by Jockles</p>
+      <p class="style-toggle"><button type="button" id="style-toggle">Hide Creator's Style</button></p>
+      <p class="chapter-nav"><a href="core-css.html">&larr; Previous Chapter</a> &middot; <a href="index.html">Chapter Index</a> &middot; <a href="imessage-css.html">Next Chapter &rarr;</a></p>
+
+      <div class="fic">
+        <h3 class="chapter-title">Chapter 4: iMessage</h3>
+        <div id="workskin">
+<h3>iMessage</h3>
+
+<p>Before we begin, here's the two kinds of chat you can build: a message between two people, or a group chat. The full HTML is underneath each, which you can copy and modify yourself. The rest of the chapter takes the HTML apart so that you can modify all the individual parts to say exactly what you want.</p>
+
+<h4>A One-to-One Chat</h4>
+
+<div class="mob imsg theme-auto">
+  <p class="mob-head">Ilya<span class="hide"> - </span><span>iMessage</span></p>
+  <div class="mob-body">
+    <p class="mob-sys">Today 11:48 PM</p>
+    <p class="msg in"><span class="hide"><em>Ilya:</em> </span>are you awake</p>
+    <p class="msg out"><span class="hide"><em>Shane:</em> </span>no</p>
+    <p class="msg in tapped"><span class="hide"><em>Ilya:</em> </span>liar<span class="imsg-tap me"><span class="hide"> [Shane reacted </span>😂<span class="hide">]</span></span></p>
+    <p class="msg out tapped"><span class="hide"><em>Shane:</em> </span>ok yes. go to sleep, you have a game tomorrow<span class="imsg-tap"><span class="hide"> [Ilya reacted </span>👎<span class="hide">]</span></span></p>
+    <p class="msg in"><span class="hide"><em>Ilya:</em> </span>cannot sleep. hotel is too quiet. but there is a cat</p>
+    <p class="msg in pic"><span class="hide"><em>Ilya:</em> </span><img src="https://64.media.tumblr.com/45b3b47d7c42b593f6242a40153a629c/ba033a52c8982cb0-d7/s2048x3072/4e71b117e87747d78dd3d95595cecc77eec48d38.jpg" alt="A cat curled up inside an open suitcase"></p>
+    <p class="msg in pic text"><span class="hide"><em>Ilya:</em> </span>[A blurry photo of the same cat, now asleep on Ilya's hotel bed]</p>
+    <p class="msg out"><span class="hide"><em>Shane:</em> </span>call me?</p>
+    <p class="imsg-status">Read 11:52 PM</p>
+    <p class="typing-indicator"><span></span><span></span><span></span></p>
+  </div>
+  <p class="imsg-input"><span class="imsg-plus">+</span><span class="hide"> </span><span class="imsg-field">iMessage<span class="hide"> </span><span class="imsg-mic">&#127908;</span></span></p>
+</div>
+
+<details>
+<summary>The full HTML for this chat</summary>
+
+<pre><code>&lt;div class="mob imsg theme-auto"&gt;
+  &lt;p class="mob-head"&gt;Ilya&lt;span class="hide"&gt; - &lt;/span&gt;&lt;span&gt;iMessage&lt;/span&gt;&lt;/p&gt;
+  &lt;div class="mob-body"&gt;
+    &lt;p class="mob-sys"&gt;Today 11:48 PM&lt;/p&gt;
+    &lt;p class="msg in"&gt;&lt;span class="hide"&gt;&lt;em&gt;Ilya:&lt;/em&gt; &lt;/span&gt;are you awake&lt;/p&gt;
+    &lt;p class="msg out"&gt;&lt;span class="hide"&gt;&lt;em&gt;Shane:&lt;/em&gt; &lt;/span&gt;no&lt;/p&gt;
+    &lt;p class="msg in tapped"&gt;&lt;span class="hide"&gt;&lt;em&gt;Ilya:&lt;/em&gt; &lt;/span&gt;liar&lt;span class="imsg-tap me"&gt;&lt;span class="hide"&gt; [Shane reacted &lt;/span&gt;😂&lt;span class="hide"&gt;]&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+    &lt;p class="msg out tapped"&gt;&lt;span class="hide"&gt;&lt;em&gt;Shane:&lt;/em&gt; &lt;/span&gt;ok yes. go to sleep, you have a game tomorrow&lt;span class="imsg-tap"&gt;&lt;span class="hide"&gt; [Ilya reacted &lt;/span&gt;👎&lt;span class="hide"&gt;]&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+    &lt;p class="msg in"&gt;&lt;span class="hide"&gt;&lt;em&gt;Ilya:&lt;/em&gt; &lt;/span&gt;cannot sleep. hotel is too quiet. but there is a cat&lt;/p&gt;
+    &lt;p class="msg in pic"&gt;&lt;span class="hide"&gt;&lt;em&gt;Ilya:&lt;/em&gt; &lt;/span&gt;&lt;img src="https://64.media.tumblr.com/45b3b47d7c42b593f6242a40153a629c/ba033a52c8982cb0-d7/s2048x3072/4e71b117e87747d78dd3d95595cecc77eec48d38.jpg" alt="A cat curled up inside an open suitcase"&gt;&lt;/p&gt;
+    &lt;p class="msg in pic text"&gt;&lt;span class="hide"&gt;&lt;em&gt;Ilya:&lt;/em&gt; &lt;/span&gt;[A blurry photo of the same cat, now asleep on Ilya's hotel bed]&lt;/p&gt;
+    &lt;p class="msg out"&gt;&lt;span class="hide"&gt;&lt;em&gt;Shane:&lt;/em&gt; &lt;/span&gt;call me?&lt;/p&gt;
+    &lt;p class="imsg-status"&gt;Read 11:52 PM&lt;/p&gt;
+    &lt;p class="typing-indicator"&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;p class="imsg-input"&gt;&lt;span class="imsg-plus"&gt;+&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="imsg-field"&gt;iMessage&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="imsg-mic"&gt;&amp;#127908;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+
+</details>
+
+<h4>A Group Chat</h4>
+
+<div class="mob imsg theme-auto">
+  <p class="mob-head">gays and europeans (and hayden)<span class="hide"> - </span><span>iMessage group</span></p>
+  <div class="mob-body">
+    <p class="mob-sys">Today 6:12 AM</p>
+    <p class="who">Hayden<span class="hide">:</span></p>
+    <p class="msg in">day two of camp. who's awake</p>
+    <p class="who">Scott<span class="hide">:</span></p>
+    <p class="msg in">unfortunately me</p>
+    <p class="msg out"><span class="hide"><em>Shane:</em> </span>been up since 5. the cones are in my car</p>
+    <p class="who">Max<span class="hide">:</span></p>
+    <p class="msg in">do we have enough pucks for the little ones or do I need to stop by the rink office</p>
+    <p class="msg in">also some kid left a mouthguard in my bag yesterday. gross</p>
+    <p class="msg out sms"><span class="hide"><em>Shane:</em> </span>can't check, the signal in this rink is terrible</p>
+    <p class="msg out sms"><span class="hide"><em>Shane:</em> </span>these are going as texts. it's like 2009 in here</p>
+    <p class="who">Ryan<span class="hide">:</span></p>
+    <p class="msg in">I've got the pucks. and the orange slices</p>
+    <p class="mob-sys">Ilya added Wyatt to the conversation</p>
+    <p class="who">Wyatt<span class="hide">:</span></p>
+    <p class="msg in">👋</p>
+    <p class="who">Scott<span class="hide">:</span></p>
+    <p class="msg in tapped">reminder that nobody is letting Ilya run the drills again<span class="imsg-tap me"><span class="hide"> [Shane reacted </span>😂<span class="hide">]</span></span><span class="imsg-tap"><span class="hide"> [Hayden reacted </span>‼️<span class="hide">]</span></span><span class="imsg-tap"><span class="hide"> [Ryan reacted </span>👍<span class="hide">]</span></span></p>
+    <p class="msg out tapped"><span class="hide"><em>Shane:</em> </span>the kids loved it though<span class="imsg-tap"><span class="hide"> [Ilya reacted </span>❤️<span class="hide">]</span></span><span class="imsg-tap"><span class="hide"> [Scott reacted </span>👎<span class="hide">]</span></span></p>
+    <p class="who">Ilya<span class="hide">:</span></p>
+    <p class="msg in">they loved me. I am the fun coach</p>
+    <p class="who">Max<span class="hide">:</span></p>
+    <p class="msg in">you made a nine year old cry</p>
+    <p class="who">Wyatt<span class="hide">:</span></p>
+    <p class="msg in tapped">I thought I was the fun coach.<span class="imsg-tap"><span class="hide"> [Ilya reacted </span>👎<span class="hide">]</span></span></p>
+  </div>
+  <p class="imsg-input"><span class="imsg-plus">+</span><span class="hide"> </span><span class="imsg-field">iMessage<span class="hide"> </span><span class="imsg-mic">&#127908;</span></span></p>
+</div>
+
+<details>
+<summary>The full HTML for this chat</summary>
+
+<pre><code>&lt;div class="mob imsg theme-auto"&gt;
+  &lt;p class="mob-head"&gt;gays and europeans (and hayden)&lt;span class="hide"&gt; - &lt;/span&gt;&lt;span&gt;iMessage group&lt;/span&gt;&lt;/p&gt;
+  &lt;div class="mob-body"&gt;
+    &lt;p class="mob-sys"&gt;Today 6:12 AM&lt;/p&gt;
+    &lt;p class="who"&gt;Hayden&lt;span class="hide"&gt;:&lt;/span&gt;&lt;/p&gt;
+    &lt;p class="msg in"&gt;day two of camp. who's awake&lt;/p&gt;
+    &lt;p class="who"&gt;Scott&lt;span class="hide"&gt;:&lt;/span&gt;&lt;/p&gt;
+    &lt;p class="msg in"&gt;unfortunately me&lt;/p&gt;
+    &lt;p class="msg out"&gt;&lt;span class="hide"&gt;&lt;em&gt;Shane:&lt;/em&gt; &lt;/span&gt;been up since 5. the cones are in my car&lt;/p&gt;
+    &lt;p class="who"&gt;Max&lt;span class="hide"&gt;:&lt;/span&gt;&lt;/p&gt;
+    &lt;p class="msg in"&gt;do we have enough pucks for the little ones or do I need to stop by the rink office&lt;/p&gt;
+    &lt;p class="msg in"&gt;also some kid left a mouthguard in my bag yesterday. gross&lt;/p&gt;
+    &lt;p class="msg out sms"&gt;&lt;span class="hide"&gt;&lt;em&gt;Shane:&lt;/em&gt; &lt;/span&gt;can't check, the signal in this rink is terrible&lt;/p&gt;
+    &lt;p class="msg out sms"&gt;&lt;span class="hide"&gt;&lt;em&gt;Shane:&lt;/em&gt; &lt;/span&gt;these are going as texts. it's like 2009 in here&lt;/p&gt;
+    &lt;p class="who"&gt;Ryan&lt;span class="hide"&gt;:&lt;/span&gt;&lt;/p&gt;
+    &lt;p class="msg in"&gt;I've got the pucks. and the orange slices&lt;/p&gt;
+    &lt;p class="mob-sys"&gt;Ilya added Wyatt to the conversation&lt;/p&gt;
+    &lt;p class="who"&gt;Wyatt&lt;span class="hide"&gt;:&lt;/span&gt;&lt;/p&gt;
+    &lt;p class="msg in"&gt;👋&lt;/p&gt;
+    &lt;p class="who"&gt;Scott&lt;span class="hide"&gt;:&lt;/span&gt;&lt;/p&gt;
+    &lt;p class="msg in tapped"&gt;reminder that nobody is letting Ilya run the drills again&lt;span class="imsg-tap me"&gt;&lt;span class="hide"&gt; [Shane reacted &lt;/span&gt;😂&lt;span class="hide"&gt;]&lt;/span&gt;&lt;/span&gt;&lt;span class="imsg-tap"&gt;&lt;span class="hide"&gt; [Hayden reacted &lt;/span&gt;‼️&lt;span class="hide"&gt;]&lt;/span&gt;&lt;/span&gt;&lt;span class="imsg-tap"&gt;&lt;span class="hide"&gt; [Ryan reacted &lt;/span&gt;👍&lt;span class="hide"&gt;]&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+    &lt;p class="msg out tapped"&gt;&lt;span class="hide"&gt;&lt;em&gt;Shane:&lt;/em&gt; &lt;/span&gt;the kids loved it though&lt;span class="imsg-tap"&gt;&lt;span class="hide"&gt; [Ilya reacted &lt;/span&gt;❤️&lt;span class="hide"&gt;]&lt;/span&gt;&lt;/span&gt;&lt;span class="imsg-tap"&gt;&lt;span class="hide"&gt; [Scott reacted &lt;/span&gt;👎&lt;span class="hide"&gt;]&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+    &lt;p class="who"&gt;Ilya&lt;span class="hide"&gt;:&lt;/span&gt;&lt;/p&gt;
+    &lt;p class="msg in"&gt;they loved me. I am the fun coach&lt;/p&gt;
+    &lt;p class="who"&gt;Max&lt;span class="hide"&gt;:&lt;/span&gt;&lt;/p&gt;
+    &lt;p class="msg in"&gt;you made a nine year old cry&lt;/p&gt;
+    &lt;p class="who"&gt;Wyatt&lt;span class="hide"&gt;:&lt;/span&gt;&lt;/p&gt;
+    &lt;p class="msg in tapped"&gt;I thought I was the fun coach.&lt;span class="imsg-tap"&gt;&lt;span class="hide"&gt; [Ilya reacted &lt;/span&gt;👎&lt;span class="hide"&gt;]&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;p class="imsg-input"&gt;&lt;span class="imsg-plus"&gt;+&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="imsg-field"&gt;iMessage&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="imsg-mic"&gt;&amp;#127908;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+
+</details>
+
+<h4>The iMessage Window</h4>
+
+<p>Every iMessage chat starts with the container, <code>&lt;div class=&quot;mob imsg theme-auto&quot;&gt;</code>, and everything else goes inside it. First comes the header, with the contact's name:</p>
+
+<div class="mob imsg theme-auto"><p class="mob-head">Ilya<span class="hide"> - </span><span>iMessage</span></p></div>
+
+<pre><code>&lt;p class="mob-head"&gt;Ilya&lt;span class="hide"&gt; - &lt;/span&gt;&lt;span&gt;iMessage&lt;/span&gt;&lt;/p&gt;</code></pre>
+
+<p><code>mob-head</code> is the header bar. The last <code>&lt;span&gt;</code> adds the smaller grey line under the name, like "iMessage" or "Mobile" - leave it out if you only want the name. After the header comes <code>&lt;div class=&quot;mob-body&quot;&gt;</code>, which holds all of the messages.</p>
+
+<h4>Simple Messages</h4>
+
+<p>Each message is a paragraph with the class <code>msg</code>, plus one more class that says who sent it. <code>in</code> is a message from the other person, which shows as a grey bubble on the left, and <code>out</code> is a message from your point-of-view character, which shows as a blue bubble on the right. Give every message its own <code>&lt;p&gt;</code>, one after another, inside <code>mob-body</code>:</p>
+
+<div class="mob imsg theme-auto"><div class="mob-body"><p class="msg in"><span class="hide"><em>Ilya:</em> </span>are you awake</p>
+<p class="msg out"><span class="hide"><em>Shane:</em> </span>no</p></div></div>
+
+<pre><code>&lt;p class="msg in"&gt;&lt;span class="hide"&gt;&lt;em&gt;Ilya:&lt;/em&gt; &lt;/span&gt;are you awake&lt;/p&gt;
+&lt;p class="msg out"&gt;&lt;span class="hide"&gt;&lt;em&gt;Shane:&lt;/em&gt; &lt;/span&gt;no&lt;/p&gt;</code></pre>
+
+<details>
+<summary>Each part of a message, piece by piece</summary>
+
+<ul>
+  <li><code>&lt;p class=&quot;msg in&quot;&gt;</code> - the bubble. <code>msg</code> makes it a bubble, and <code>in</code> or <code>out</code> says which side it sits on and what colour it is.</li>
+  <li><code>&lt;span class=&quot;hide&quot;&gt;&lt;em&gt;Ilya:&lt;/em&gt; &lt;/span&gt;</code> - <strong>only for readers with the workskin off.</strong> In a one-to-one chat no names are shown anywhere, so this label is how those readers know who sent what.</li>
+  <li><code>are you awake</code> - the message itself.</li>
+</ul>
+
+<p>With the workskin off, this reads:</p>
+
+<blockquote>
+  <p><em>Ilya:</em> are you awake</p>
+  <p><em>Shane:</em> no</p>
+</blockquote>
+
+</details>
+
+<h4>Date and Time Lines</h4>
+
+<p>For a centred line with the time or date, use <code>mob-sys</code>:</p>
+
+<div class="mob imsg theme-auto"><div class="mob-body"><p class="mob-sys">Today 11:48 PM</p></div></div>
+
+<pre><code>&lt;p class="mob-sys"&gt;Today 11:48 PM&lt;/p&gt;</code></pre>
+
+<p>It works for anything that isn't a message - a timestamp, "Yesterday", or a note partway through the chat, like when someone joins the group:</p>
+
+<div class="mob imsg theme-auto"><div class="mob-body"><p class="mob-sys">Ilya added Wyatt to the conversation</p></div></div>
+
+<pre><code>&lt;p class="mob-sys"&gt;Ilya added Wyatt to the conversation&lt;/p&gt;</code></pre>
+
+<h4>Tapback Reactions</h4>
+
+<p>When someone reacts to a message, iMessage shows a tapback - a little bubble on the top corner of the message, with a tail of two dots. Add <code>tapped</code> to the message to make room above it, then put a span with <code>imsg-tap</code> at the end of the message text, with the emoji inside. <code>imsg-tap</code> on its own is grey, for someone else's reaction, and <code>imsg-tap me</code> is blue, for your point-of-view character's:</p>
+
+<div class="mob imsg theme-auto"><div class="mob-body"><p class="msg in tapped"><span class="hide"><em>Ilya:</em> </span>liar<span class="imsg-tap me"><span class="hide"> [Shane reacted </span>😂<span class="hide">]</span></span></p>
+<p class="msg out tapped"><span class="hide"><em>Shane:</em> </span>ok yes. go to sleep, you have a game tomorrow<span class="imsg-tap"><span class="hide"> [Ilya reacted </span>👎<span class="hide">]</span></span></p></div></div>
+
+<pre><code>&lt;p class="msg in tapped"&gt;&lt;span class="hide"&gt;&lt;em&gt;Ilya:&lt;/em&gt; &lt;/span&gt;liar&lt;span class="imsg-tap me"&gt;&lt;span class="hide"&gt; [Shane reacted &lt;/span&gt;😂&lt;span class="hide"&gt;]&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p class="msg out tapped"&gt;&lt;span class="hide"&gt;&lt;em&gt;Shane:&lt;/em&gt; &lt;/span&gt;ok yes. go to sleep, you have a game tomorrow&lt;span class="imsg-tap"&gt;&lt;span class="hide"&gt; [Ilya reacted &lt;/span&gt;👎&lt;span class="hide"&gt;]&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;</code></pre>
+
+<details>
+<summary>More about tapbacks</summary>
+
+<ul>
+  <li>Any emoji works, but each person can only react once, so it's one emoji per tapback.</li>
+  <li>It sits on the right-hand corner of a message from someone else, and the left-hand corner of your own, so you don't need to do anything to place it.</li>
+  <li>The two <code>hide</code> spans say who reacted, for readers with the workskin off: <code>[Shane reacted</code> goes before the emoji and <code>]</code> goes after it. Copy them exactly, spaces included, so the bracket doesn't run into the message. With the workskin off, the second message reads <em>Shane:</em> ok yes. go to sleep, you have a game tomorrow [Ilya reacted &#128078;].</li>
+</ul>
+
+</details>
+
+<h4>Pictures</h4>
+
+<p>To send a picture, add <code>pic</code> to a message and put a picture tag inside it. The corners are rounded for you. The picture has to be hosted somewhere else (see Pictures and Alt Text, in the Core, Themes, and Extras chapter), and your link goes in <code>src</code>, with your description in <code>alt</code>:</p>
+
+<div class="mob imsg theme-auto"><div class="mob-body"><p class="msg in pic"><span class="hide"><em>Ilya:</em> </span><img src="https://64.media.tumblr.com/45b3b47d7c42b593f6242a40153a629c/ba033a52c8982cb0-d7/s2048x3072/4e71b117e87747d78dd3d95595cecc77eec48d38.jpg" alt="A cat curled up inside an open suitcase"></p></div></div>
+
+<pre><code>&lt;p class="msg in pic"&gt;&lt;span class="hide"&gt;&lt;em&gt;Ilya:&lt;/em&gt; &lt;/span&gt;&lt;img src="https://64.media.tumblr.com/45b3b47d7c42b593f6242a40153a629c/ba033a52c8982cb0-d7/s2048x3072/4e71b117e87747d78dd3d95595cecc77eec48d38.jpg" alt="A cat curled up inside an open suitcase"&gt;&lt;/p&gt;</code></pre>
+
+<p>If you'd rather describe the picture than show it, add <code>text</code> as well and write the description in square brackets:</p>
+
+<div class="mob imsg theme-auto"><div class="mob-body"><p class="msg in pic text"><span class="hide"><em>Ilya:</em> </span>[A blurry photo of the same cat, now asleep on Ilya's hotel bed]</p></div></div>
+
+<pre><code>&lt;p class="msg in pic text"&gt;&lt;span class="hide"&gt;&lt;em&gt;Ilya:&lt;/em&gt; &lt;/span&gt;[A blurry photo of the same cat, now asleep on Ilya's hotel bed]&lt;/p&gt;</code></pre>
+
+<h4>Delivered and Read</h4>
+
+<p>iMessage shows a little status line under your last message. Add it with <code>imsg-status</code>, straight after the message it belongs to, and write "Delivered", "Read 11:52 PM" or whatever you like:</p>
+
+<div class="mob imsg theme-auto"><div class="mob-body"><p class="msg out"><span class="hide"><em>Shane:</em> </span>call me?</p>
+<p class="imsg-status">Read 11:52 PM</p></div></div>
+
+<pre><code>&lt;p class="msg out"&gt;&lt;span class="hide"&gt;&lt;em&gt;Shane:&lt;/em&gt; &lt;/span&gt;call me?&lt;/p&gt;
+&lt;p class="imsg-status"&gt;Read 11:52 PM&lt;/p&gt;</code></pre>
+
+<h4>Typing Dots</h4>
+
+<p>For the three dots that show someone is typing, add a <code>typing-indicator</code> paragraph with three empty spans at the very end of the chat:</p>
+
+<div class="mob imsg theme-auto"><div class="mob-body"><p class="typing-indicator"><span></span><span></span><span></span></p></div></div>
+
+<pre><code>&lt;p class="typing-indicator"&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/p&gt;</code></pre>
+
+<h4>Message Bar</h4>
+
+<p>To finish off the screen with the "iMessage" box along the bottom, add an <code>imsg-input</code> paragraph after the <code>mob-body</code>, still inside the chat. The + button is <code>imsg-plus</code>, the box is <code>imsg-field</code>, and the microphone is <code>imsg-mic</code>. The <code>hide</code> spans keep a space between them for readers with the workskin off, so it reads "+ iMessage &#127908;" rather than running together. Keep it all on one line:</p>
+
+<div class="mob imsg theme-auto"><p class="imsg-input"><span class="imsg-plus">+</span><span class="hide"> </span><span class="imsg-field">iMessage<span class="hide"> </span><span class="imsg-mic">&#127908;</span></span></p></div>
+
+<pre><code>&lt;p class="imsg-input"&gt;&lt;span class="imsg-plus"&gt;+&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="imsg-field"&gt;iMessage&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="imsg-mic"&gt;&amp;#127908;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;</code></pre>
+
+<h4>Group Chats</h4>
+
+<p>In a group, put a <code>who</code> line above a message to show who sent it. Your own messages don't get one, the same as on a real phone, so they keep the hidden label instead. Change the header to the name of the group chat, and use the span for the members or "iMessage group":</p>
+
+<div class="mob imsg theme-auto"><div class="mob-body"><p class="who">Hayden<span class="hide">:</span></p>
+<p class="msg in">day two of camp. who's awake</p>
+<p class="who">Scott<span class="hide">:</span></p>
+<p class="msg in">unfortunately me</p>
+<p class="msg out"><span class="hide"><em>Shane:</em> </span>been up since 5. the cones are in my car</p></div></div>
+
+<pre><code>&lt;p class="who"&gt;Hayden&lt;span class="hide"&gt;:&lt;/span&gt;&lt;/p&gt;
+&lt;p class="msg in"&gt;day two of camp. who's awake&lt;/p&gt;
+&lt;p class="who"&gt;Scott&lt;span class="hide"&gt;:&lt;/span&gt;&lt;/p&gt;
+&lt;p class="msg in"&gt;unfortunately me&lt;/p&gt;
+&lt;p class="msg out"&gt;&lt;span class="hide"&gt;&lt;em&gt;Shane:&lt;/em&gt; &lt;/span&gt;been up since 5. the cones are in my car&lt;/p&gt;</code></pre>
+
+<p>The <code>who</code> line shows whether the workskin is on or off, so it only needs a hidden colon after the name, to read "Hayden:" followed by the message.</p>
+
+<h4>Green Text Messages</h4>
+
+<p>When your point-of-view character's message goes as a normal text instead of an iMessage, it turns green - like Shane's, because the signal in the rink is too bad for iMessage. The same thing happens when they're messaging someone without an iPhone. Add <code>sms</code> to an <code>out</code> message to make it green:</p>
+
+<div class="mob imsg theme-auto"><div class="mob-body"><p class="msg out sms"><span class="hide"><em>Shane:</em> </span>can't check, the signal in this rink is terrible</p>
+<p class="msg out sms"><span class="hide"><em>Shane:</em> </span>these are going as texts. it's like 2009 in here</p></div></div>
+
+<pre><code>&lt;p class="msg out sms"&gt;&lt;span class="hide"&gt;&lt;em&gt;Shane:&lt;/em&gt; &lt;/span&gt;can't check, the signal in this rink is terrible&lt;/p&gt;
+&lt;p class="msg out sms"&gt;&lt;span class="hide"&gt;&lt;em&gt;Shane:&lt;/em&gt; &lt;/span&gt;these are going as texts. it's like 2009 in here&lt;/p&gt;</code></pre>
+
+<p>Only sent messages turn green, the same as on a real phone. Messages from someone without an iPhone are grey like everyone else's, so they don't need anything extra.</p>
+
+<h4>Tapbacks in a Group Chat</h4>
+
+<p>When more than one person reacts to the same message, iMessage stacks the tapbacks on the corner, overlapping, with the first one at the front. Put the <code>imsg-tap</code> spans one after another at the end of the message. The first one gets the tail, and each one after it tucks in behind, a bit further along the bubble:</p>
+
+<div class="mob imsg theme-auto"><div class="mob-body"><p class="who">Scott<span class="hide">:</span></p>
+<p class="msg in tapped">reminder that nobody is letting Ilya run the drills again<span class="imsg-tap me"><span class="hide"> [Shane reacted </span>😂<span class="hide">]</span></span><span class="imsg-tap"><span class="hide"> [Hayden reacted </span>‼️<span class="hide">]</span></span><span class="imsg-tap"><span class="hide"> [Ryan reacted </span>👍<span class="hide">]</span></span></p>
+<p class="msg out tapped"><span class="hide"><em>Shane:</em> </span>the kids loved it though<span class="imsg-tap"><span class="hide"> [Ilya reacted </span>❤️<span class="hide">]</span></span><span class="imsg-tap"><span class="hide"> [Scott reacted </span>👎<span class="hide">]</span></span></p></div></div>
+
+<pre><code>&lt;p class="who"&gt;Scott&lt;span class="hide"&gt;:&lt;/span&gt;&lt;/p&gt;
+&lt;p class="msg in tapped"&gt;reminder that nobody is letting Ilya run the drills again&lt;span class="imsg-tap me"&gt;&lt;span class="hide"&gt; [Shane reacted &lt;/span&gt;😂&lt;span class="hide"&gt;]&lt;/span&gt;&lt;/span&gt;&lt;span class="imsg-tap"&gt;&lt;span class="hide"&gt; [Hayden reacted &lt;/span&gt;‼️&lt;span class="hide"&gt;]&lt;/span&gt;&lt;/span&gt;&lt;span class="imsg-tap"&gt;&lt;span class="hide"&gt; [Ryan reacted &lt;/span&gt;👍&lt;span class="hide"&gt;]&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p class="msg out tapped"&gt;&lt;span class="hide"&gt;&lt;em&gt;Shane:&lt;/em&gt; &lt;/span&gt;the kids loved it though&lt;span class="imsg-tap"&gt;&lt;span class="hide"&gt; [Ilya reacted &lt;/span&gt;❤️&lt;span class="hide"&gt;]&lt;/span&gt;&lt;/span&gt;&lt;span class="imsg-tap"&gt;&lt;span class="hide"&gt; [Scott reacted &lt;/span&gt;👎&lt;span class="hide"&gt;]&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;</code></pre>
+
+<details>
+<summary>More about stacked tapbacks</summary>
+
+<ul>
+  <li>Each person gets their own <code>imsg-tap</code> span, with their own emoji and their own <code>hide</code> text saying who reacted. Up to four stack neatly.</li>
+  <li>If your point-of-view character reacted, put their <code>imsg-tap me</code> first, so the blue one is at the front, like it is on a real phone.</li>
+</ul>
+
+<p>With the workskin off, it reads:</p>
+
+<blockquote>
+  <p>Scott:</p>
+  <p>reminder that nobody is letting Ilya run the drills again [Shane reacted &#128514;] [Hayden reacted &#8252;&#65039;] [Ryan reacted &#128077;]</p>
+  <p><em>Shane:</em> the kids loved it though [Ilya reacted &#10084;&#65039;] [Scott reacted &#128078;]</p>
+</blockquote>
+
+</details>
+        </div>
+      </div>
+
+      <p class="chapter-nav"><a href="core-css.html">&larr; Previous Chapter</a> &middot; <a href="index.html">Chapter Index</a> &middot; <a href="imessage-css.html">Next Chapter &rarr;</a></p>
+</main>
+<footer>
+  Made by hand in HTML &amp; CSS. No trackers, no cookies, no ads.
+</footer>
+<script>
+  // Works like AO3's "Hide Creator's Style" button: switches the work skin off and on.
+  (function () {
+    var skin = document.getElementById("creator-style");
+    var button = document.getElementById("style-toggle");
+    function show(off) {
+      skin.disabled = off;
+      button.textContent = off ? "Show Creator's Style" : "Hide Creator's Style";
+    }
+    try { show(localStorage.getItem("hide-creator-style") === "yes"); } catch (e) { show(false); }
+    button.addEventListener("click", function () {
+      var off = !skin.disabled;
+      show(off);
+      try { localStorage.setItem("hide-creator-style", off ? "yes" : "no"); } catch (e) {}
+    });
+  })();
+</script>
+</body>
+</html>

@@ -1,0 +1,952 @@
+/* >>>>>>>>>> MODULE: Twitter/X (posts, replies, DMs) (start) >>>>>>>>>> */
+
+/* ==========================================================
+   MODULE: TWITTER/X (POSTS, REPLIES, DMS)   (classes: tw, tw-reply, tw-thread, twdm)
+   Twitter/X posts, replies, quotes, polls, picture and video tweets, scrollable threads (tw, tw-reply, tw-thread)
+   and Twitter/X DMs (twdm).
+   Needs the CORE block.
+   ========================================================== */
+
+#workskin .tw-thread.wide {
+  width: auto;
+  max-width: none;
+}
+
+/* AO3 turns line breaks in your code into <br> tags; inside a grid they would push photos down */
+#workskin .tw .tw-media br,
+#workskin .tw-reply .tw-media br {
+  display: none;
+}
+
+#workskin .tw {
+  background: #ffffff;
+  color: #0f1419;
+  border: 1px solid #cfd9de;
+  border-radius: 14px;
+  padding: 0.8em 1em;
+}
+
+#workskin .tw .tw-top { margin-bottom: 0.3em; }
+
+#workskin .tw .tw-name { font-weight: bold; color: #0f1419; }
+
+/* verified tick: add as <span class="tw-tick">✔</span> */
+#workskin .tw .tw-tick { color: #1d9bf0; font-size: 0.85em; }
+
+/* profile picture: the first thing in the tw-top line.
+   Initials: <span class="tw-pfp colour1">JD</span>
+   A picture: <span class="tw-pfp"><span class="pfp"><img src="..." alt="..."></span></span>
+   A profile (set in the core section): <span class="tw-pfp"><span class="pfp pfp-shane"></span></span>
+   The handle moves under the name when there's a picture. colour1-colour10 are the colours. */
+#workskin .tw .tw-top,
+#workskin .tw-reply .tw-top { display: block; overflow: hidden; }
+
+#workskin .tw .tw-pfp,
+#workskin .tw-reply .tw-pfp {
+  display: block;
+  float: left;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  margin: 0 0.65em 0 0;
+  border-radius: 50%;
+  overflow: hidden;
+  text-align: center;
+  background-color: #8b98a5;
+  color: #ffffff;
+  font-size: 0.85em;
+  font-weight: bold;
+}
+
+#workskin .tw .tw-pfp ~ .tw-handle,
+#workskin .tw-reply .tw-pfp ~ .tw-handle { display: block; }
+
+#workskin .tw .tw-pfp.colour1, #workskin .tw-reply .tw-pfp.colour1 { background-color: #b5733a; }
+
+#workskin .tw .tw-pfp.colour2, #workskin .tw-reply .tw-pfp.colour2 { background-color: #3a3a3c; }
+
+#workskin .tw .tw-pfp.colour3, #workskin .tw-reply .tw-pfp.colour3 { background-color: #7a2b4e; }
+
+#workskin .tw .tw-pfp.colour4, #workskin .tw-reply .tw-pfp.colour4 { background-color: #2f7d6b; }
+
+#workskin .tw .tw-pfp.colour5, #workskin .tw-reply .tw-pfp.colour5 { background-color: #3b5ea8; }
+
+#workskin .tw .tw-pfp.colour6, #workskin .tw-reply .tw-pfp.colour6 { background-color: #6b4fa0; }
+
+#workskin .tw .tw-pfp.colour7, #workskin .tw-reply .tw-pfp.colour7 { background-color: #a8383b; }
+
+#workskin .tw .tw-pfp.colour8, #workskin .tw-reply .tw-pfp.colour8 { background-color: #4e7a2c; }
+
+#workskin .tw .tw-pfp.colour9, #workskin .tw-reply .tw-pfp.colour9 { background-color: #8c6d1f; }
+
+#workskin .tw .tw-pfp.colour10, #workskin .tw-reply .tw-pfp.colour10 { background-color: #2a7390; }
+
+#workskin .tw .tw-handle {
+  color: #536471;
+  font-weight: normal;
+}
+
+#workskin .tw .tw-text { display: block; font-size: 1.02em; margin: 0.2em 0 0.4em 0; }
+
+/* #hashtags, @mentions, links */
+#workskin .tw .tw-link { color: #1d9bf0; }
+
+#workskin .tw .tw-stats {
+  display: block;
+  color: #536471;
+  font-size: 0.82em;
+  padding-top: 0.45em;
+  border-top: 1px solid #eff3f4;
+  margin-top: 0.4em;
+}
+
+#workskin .tw .tw-stats b { color: #0f1419; }
+
+/* "Replying to @someone" */
+#workskin .tw .tw-replying {
+  display: block;
+  color: #536471;
+  font-size: 0.85em;
+  margin-bottom: 0.2em;
+}
+
+/* quote-tweet box */
+#workskin .tw .tw-quote {
+  display: block;
+  border: 1px solid #cfd9de;
+  border-radius: 12px;
+  padding: 0.5em 0.8em;
+  margin: 0.4em 0;
+  font-size: 0.92em;
+}
+
+/* replies / comments stacked under a tweet: use .tw-reply as its own block */
+#workskin .tw-reply {
+  background: #ffffff;
+  color: #0f1419;
+  border: 1px solid #cfd9de;
+  border-top: none;
+  padding: 0.7em 1em;
+}
+
+#workskin .tw-reply .tw-name { font-weight: bold; }
+
+#workskin .tw-reply .tw-handle { color: #536471; font-weight: normal; }
+
+#workskin .tw-reply .tw-link { color: #1d9bf0; }
+
+/* Community Note / "Readers added context" */
+#workskin .tw .tw-note {
+  display: block;
+  border: 1px solid #cfd9de;
+  border-radius: 10px;
+  padding: 0.5em 0.8em;
+  margin-top: 0.5em;
+  font-size: 0.85em;
+  background: #f7f9f9;
+}
+
+/* full timestamp line above the counts: <p class="tw-date">8:23 AM · 11 May 23</p> */
+#workskin .tw .tw-date,
+#workskin .tw-reply .tw-date {
+  display: block;
+  color: #536471;
+  font-size: 0.82em;
+  margin: 0.3em 0;
+}
+
+/* small grey line, e.g. "Promoted" or "Only people in the Circle can see this Tweet." */
+#workskin .tw .tw-label,
+#workskin .tw-reply .tw-label {
+  display: block;
+  color: #536471;
+  font-size: 0.8em;
+  margin: 0.3em 0;
+}
+
+/* sensitive-content cover: <p class="tw-warn"><b>Content warning: Sensitive content</b><br>...</p> */
+#workskin .tw .tw-warn,
+#workskin .tw-reply .tw-warn {
+  display: block;
+  text-align: center;
+  background: #f7f9f9;
+  border: 1px solid #cfd9de;
+  border-radius: 12px;
+  padding: 1.2em 1em;
+  margin: 0.4em 0;
+  font-size: 0.85em;
+}
+
+/* counts that the account has used: <span class="tw-liked"> for a like, <span class="tw-rt"> for a repost */
+#workskin .tw .tw-stats .tw-liked,
+#workskin .tw-reply .tw-stats .tw-liked {
+  color: #f91880;
+}
+
+#workskin .tw .tw-stats .tw-rt,
+#workskin .tw-reply .tw-stats .tw-rt {
+  color: #00ba7c;
+}
+
+/* polls: each option is <p class="tw-opt">Option<span class="tw-pct">50%</span></p>
+   an OPEN poll: just tw-opt (a blue outline).
+   FINISHED poll: add "res" and a bar size p0 to p100 (p25 p75 p33 p67 also exist); add "win" for the winner */
+#workskin .tw .tw-opt,
+#workskin .tw-reply .tw-opt {
+  display: block;
+  border: 1px solid #1d9bf0;
+  border-radius: 6px;
+  padding: 0.4em 0.7em;
+  margin: 0.35em 0;
+  color: #0f1419;
+}
+
+#workskin .tw .tw-opt.res,
+#workskin .tw-reply .tw-opt.res {
+  border-color: transparent;
+  background-color: #eff3f4;
+  background-image: linear-gradient(#cfd9de, #cfd9de);
+  background-repeat: no-repeat;
+  background-size: 0% 100%;
+}
+
+#workskin .tw .tw-opt.res.win,
+#workskin .tw-reply .tw-opt.res.win {
+  background-image: linear-gradient(#8ecdf7, #8ecdf7);
+  font-weight: bold;
+}
+
+#workskin .tw .tw-opt .tw-pct,
+#workskin .tw-reply .tw-opt .tw-pct {
+  float: right;
+}
+
+#workskin .tw .tw-opt.p0,
+#workskin .tw-reply .tw-opt.p0 {
+  background-size: 0% 100%;
+}
+
+#workskin .tw .tw-opt.p10,
+#workskin .tw-reply .tw-opt.p10 {
+  background-size: 10% 100%;
+}
+
+#workskin .tw .tw-opt.p20,
+#workskin .tw-reply .tw-opt.p20 {
+  background-size: 20% 100%;
+}
+
+#workskin .tw .tw-opt.p25,
+#workskin .tw-reply .tw-opt.p25 {
+  background-size: 25% 100%;
+}
+
+#workskin .tw .tw-opt.p30,
+#workskin .tw-reply .tw-opt.p30 {
+  background-size: 30% 100%;
+}
+
+#workskin .tw .tw-opt.p33,
+#workskin .tw-reply .tw-opt.p33 {
+  background-size: 33% 100%;
+}
+
+#workskin .tw .tw-opt.p40,
+#workskin .tw-reply .tw-opt.p40 {
+  background-size: 40% 100%;
+}
+
+#workskin .tw .tw-opt.p50,
+#workskin .tw-reply .tw-opt.p50 {
+  background-size: 50% 100%;
+}
+
+#workskin .tw .tw-opt.p60,
+#workskin .tw-reply .tw-opt.p60 {
+  background-size: 60% 100%;
+}
+
+#workskin .tw .tw-opt.p67,
+#workskin .tw-reply .tw-opt.p67 {
+  background-size: 67% 100%;
+}
+
+#workskin .tw .tw-opt.p70,
+#workskin .tw-reply .tw-opt.p70 {
+  background-size: 70% 100%;
+}
+
+#workskin .tw .tw-opt.p75,
+#workskin .tw-reply .tw-opt.p75 {
+  background-size: 75% 100%;
+}
+
+#workskin .tw .tw-opt.p80,
+#workskin .tw-reply .tw-opt.p80 {
+  background-size: 80% 100%;
+}
+
+#workskin .tw .tw-opt.p90,
+#workskin .tw-reply .tw-opt.p90 {
+  background-size: 90% 100%;
+}
+
+#workskin .tw .tw-opt.p100,
+#workskin .tw-reply .tw-opt.p100 {
+  background-size: 100% 100%;
+}
+
+#workskin .tw .tw-pollinfo,
+#workskin .tw-reply .tw-pollinfo {
+  display: block;
+  color: #536471;
+  font-size: 0.8em;
+  margin: 0.3em 0;
+}
+
+/* pictures and videos in a tweet: <div class="tw-media"> with one <img>, an embedded video, or a [description].
+   For several pictures see the "tw-photo" rules further down. */
+#workskin .tw .tw-media,
+#workskin .tw-reply .tw-media {
+  display: block;
+  overflow: hidden;
+  border: 1px solid #cfd9de;
+  border-radius: 14px;
+  margin: 0.5em 0;
+  background: #eff3f4;
+  color: #536471;
+  font-style: italic;
+  text-align: center;
+  line-height: 1.3;
+}
+
+#workskin .tw .tw-media img,
+#workskin .tw .tw-media video,
+#workskin .tw-reply .tw-media img,
+#workskin .tw-reply .tw-media video {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0;
+  border-radius: 0;
+}
+
+/* an embedded video player (such as Vimeo or YouTube): add "video" to the box,
+   <div class="tw-media video"><iframe src="..."></iframe></div> */
+#workskin .tw .tw-media.video iframe,
+#workskin .tw-reply .tw-media.video iframe {
+  display: block;
+  width: 100%;
+  height: 200px;
+  margin: 0;
+  border: 0;
+}
+
+/* a description standing in for a picture */
+#workskin .tw .tw-media span,
+#workskin .tw-reply .tw-media span {
+  display: block;
+  padding: 3em 1.2em;
+}
+
+/* several pictures: <div class="tw-media two|three|four"> with one <span class="tw-photo"> for each.
+   Each photo is a square (or two squares high, for the tall ones) and the picture fills it, cropped
+   to fit, never stretched. The widths add up to 99.6%, not 100%, so rounding can't push a photo down. */
+#workskin .tw .tw-media .tw-photo,
+#workskin .tw-reply .tw-media .tw-photo {
+  display: block;
+  position: relative;
+  float: left;
+  width: 49.2%;
+  height: 0;
+  padding: 49.2% 0 0 0;
+  margin: 0 1.2% 1.2% 0;
+  overflow: hidden;
+  background: #e1e8ec;
+}
+
+#workskin .tw .tw-media .tw-photo:nth-of-type(2n),
+#workskin .tw-reply .tw-media .tw-photo:nth-of-type(2n) {
+  margin-right: 0;
+}
+
+#workskin .tw .tw-media .tw-photo:nth-of-type(n+3),
+#workskin .tw-reply .tw-media .tw-photo:nth-of-type(n+3) {
+  margin-bottom: 0;
+}
+
+/* the picture: normal pictures are made as wide as the box and cropped top and bottom; add class="land"
+   to a picture that is wider than tall to make it as tall as the box and crop the sides instead.
+   The tall boxes (two pictures; the left one of three) always use the second way. */
+#workskin .tw .tw-media .tw-photo img,
+#workskin .tw-reply .tw-media .tw-photo img {
+  position: absolute;
+  top: -9999px;
+  bottom: -9999px;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: auto;
+  min-width: 0;
+  min-height: 0;
+  max-width: none;
+  max-height: none;
+  margin: auto 0;
+}
+
+#workskin .tw .tw-media .tw-photo img.land,
+#workskin .tw-reply .tw-media .tw-photo img.land,
+#workskin .tw .tw-media.two .tw-photo img,
+#workskin .tw-reply .tw-media.two .tw-photo img,
+#workskin .tw .tw-media.three .tw-photo:first-of-type img,
+#workskin .tw-reply .tw-media.three .tw-photo:first-of-type img {
+  top: 0;
+  bottom: auto;
+  right: -9999px;
+  left: -9999px;
+  width: auto;
+  height: 100%;
+  margin: 0 auto;
+}
+
+/* a description standing in for a picture: <span class="tw-photo"><span class="tw-desc">[...]</span></span> */
+#workskin .tw .tw-media .tw-photo .tw-desc,
+#workskin .tw-reply .tw-media .tw-photo .tw-desc {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 1em 0.5em;
+  font-size: 0.85em;
+}
+
+/* two pictures: side by side, each one tall */
+#workskin .tw .tw-media.two .tw-photo,
+#workskin .tw-reply .tw-media.two .tw-photo {
+  padding-top: 99.6%;
+  margin-bottom: 0;
+}
+
+/* three pictures: one tall on the left, two stacked on the right */
+#workskin .tw .tw-media.three .tw-photo:first-of-type,
+#workskin .tw-reply .tw-media.three .tw-photo:first-of-type {
+  padding-top: 99.6%;
+  margin-bottom: 0;
+}
+
+#workskin .tw .tw-media.three .tw-photo:nth-of-type(2),
+#workskin .tw-reply .tw-media.three .tw-photo:nth-of-type(2) {
+  margin-bottom: 1.2%;
+}
+
+#workskin .tw .tw-media.three .tw-photo:nth-of-type(3),
+#workskin .tw-reply .tw-media.three .tw-photo:nth-of-type(3) {
+  margin-right: 0;
+}
+
+/* clear the floats after a group of pictures */
+#workskin .tw .tw-media.two::after,
+#workskin .tw .tw-media.three::after,
+#workskin .tw .tw-media.four::after,
+#workskin .tw-reply .tw-media.two::after,
+#workskin .tw-reply .tw-media.three::after,
+#workskin .tw-reply .tw-media.four::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+/* a thread that scrolls, with a "Tweet your reply" bar that stays at the bottom:
+   <div class="tw-thread theme-auto">
+     <div class="tw-scroll"> tweet + replies </div>
+     <div class="tw-foot">...</div>
+   </div> */
+#workskin .tw-thread {
+  width: 380px;
+  max-width: 100%;
+  margin: 1.2em auto;
+  box-sizing: border-box;
+  border: 1px solid #cfd9de;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #ffffff;
+  color: #0f1419;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 0.92em;
+  line-height: 1.35;
+}
+
+#workskin .tw-thread .mob {
+  width: auto;
+  max-width: none;
+  margin: 0;
+  border-width: 0 0 1px 0;
+  border-radius: 0;
+  max-height: none;
+  overflow: visible;
+  background: transparent;
+  color: inherit;
+}
+
+#workskin .tw-thread .tw-foot {
+  display: block;
+  padding: 0.7em 1em;
+  border-top: 1px solid #eff3f4;
+  color: #536471;
+}
+
+/* the paragraph AO3 wraps around the bar's text */
+#workskin .tw-thread .tw-foot > p { margin: 0; padding: 0; }
+
+#workskin .tw-thread .tw-foot span {
+  float: right;
+  padding: 0.25em 0.9em;
+  border-radius: 1em;
+  background: #1d9bf0;
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 0.9em;
+}
+
+#workskin .twdm {
+  background: #ffffff;
+  color: #0f1419;
+  border: 1px solid #cfd9de;
+  border-radius: 14px;
+}
+
+#workskin .twdm .mob-head {
+  background: #ffffff;
+  color: #0f1419;
+  border-bottom: 1px solid #eff3f4;
+  font-size: 0.9em;
+}
+
+#workskin .twdm .mob-head span {
+  display: block;
+  font-weight: normal;
+  color: #536471;
+  font-size: 0.85em;
+}
+
+#workskin .twdm .msg {
+  display: table;
+  max-width: 72%;
+  margin: 0.2em 0;
+  padding: 0.55em 0.9em;
+  border-radius: 20px;
+}
+
+#workskin .twdm .out {
+  margin-left: auto;
+  background: #1d9bf0;
+  color: #ffffff;
+  border-bottom-right-radius: 4px;
+}
+
+#workskin .twdm .in {
+  margin-right: auto;
+  background: #eff3f4;
+  color: #0f1419;
+  border-bottom-left-radius: 4px;
+}
+
+#workskin .twdm .twdm-time {
+  display: block;
+  font-size: 0.7em;
+  color: #536471;
+  margin: 0.1em 0.5em 0.5em 0.5em;
+}
+
+#workskin .twdm .time-out { text-align: right; }
+
+/* reaction pill under a DM: <p class="twdm-reacts">&#128562; 1</p>  (add "out" under one of your own) */
+#workskin .twdm .twdm-reacts {
+  display: table;
+  margin: -0.45em 0.6em 0.4em 0.6em;
+  padding: 0.05em 0.55em;
+  border: 1px solid #cfd9de;
+  border-radius: 1em;
+  background: #ffffff;
+  font-size: 0.8em;
+}
+
+#workskin .twdm .twdm-reacts.out { margin-left: auto; border-radius: 1em; color: #0f1419; }
+
+/* group DMs: the sender's name above their messages: <p class="who">Name</p> */
+#workskin .twdm .who {
+  display: block;
+  margin: 0.5em 0.5em 0.1em 0.5em;
+  color: #536471;
+  font-size: 0.72em;
+}
+
+/* a picture in a DM: <p class="msg in pic"><img src="..."></p> or a [description] */
+#workskin .twdm .msg.pic {
+  padding: 0.25em;
+  min-width: 55%;
+  font-style: italic;
+  text-align: center;
+}
+
+#workskin .twdm .msg.pic img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border-radius: 16px;
+}
+
+#workskin .twdm .msg.pic.text { padding: 2.5em 1.5em; }
+
+/* a voice message:
+   <p class="msg out voice"><span class="twdm-play">&#9654;</span><span class="twdm-wave"></span><span class="twdm-dur">0:02</span></p> */
+#workskin .twdm .msg.voice { min-width: 55%; }
+
+#workskin .twdm .voice .twdm-play,
+#workskin .twdm .voice .twdm-wave,
+#workskin .twdm .voice .twdm-dur {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+#workskin .twdm .voice .twdm-play { margin-right: 0.5em; }
+
+#workskin .twdm .voice .twdm-wave {
+  width: 90px;
+  overflow: hidden;
+  white-space: nowrap;
+  opacity: 0.7;
+}
+
+/* the sound bars are drawn with text characters (AO3 won't accept a repeating gradient) */
+#workskin .twdm .voice .twdm-wave::before {
+  content: "\2583\2585\2587\2586\2584\2582\2583\2586\2587\2585\2583\2582\2584\2586\2585\2583\2582\2584\2583\2582";
+  font-size: 0.8em;
+  letter-spacing: 1px;
+}
+
+#workskin .twdm .voice .twdm-dur { margin-left: 0.5em; font-size: 0.85em; }
+
+/* the "Start a message" bar at the bottom: <div class="twdm-foot"><span>Start a message</span></div> */
+#workskin .twdm .twdm-foot { display: block; padding: 0.6em 0.7em; border-top: 1px solid #eff3f4; }
+
+#workskin .twdm .twdm-foot span {
+  display: block;
+  padding: 0.5em 0.9em;
+  border-radius: 2em;
+  background: #eff3f4;
+  color: #536471;
+}
+
+/* ---------- Twitter/X: Links ---------- */
+
+#workskin .tw .fake-link, #workskin .tw a:not(.tl),
+#workskin .tw-reply .fake-link, #workskin .tw-reply a:not(.tl) { color: #1d9bf0; }
+
+#workskin .twdm .in .fake-link, #workskin .twdm .in a:not(.tl) { color: #1d9bf0; }
+
+#workskin .twdm .out .fake-link, #workskin .twdm .out a:not(.tl) { color: #ffffff; }
+
+/* ---------- Twitter/X: Scrolling ---------- */
+
+#workskin .tw-thread .tw-scroll {
+  display: block;
+  max-height: 580px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+#workskin .tw {
+  max-height: 700px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+#workskin .tw::-webkit-scrollbar,
+#workskin .tw-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+
+#workskin .tw::-webkit-scrollbar-thumb,
+#workskin .tw-scroll::-webkit-scrollbar-thumb {
+  background: rgba(128, 128, 128, 0.5);
+  border-radius: 6px;
+}
+
+/* ---------- Twitter/X: Dark theme (theme-dark) ---------- */
+
+#workskin .tw-thread.theme-dark .mob { border-color: #2f3336; }
+
+#workskin .tw-thread.theme-dark .tw-name,
+#workskin .tw-thread.theme-dark .tw-stats b,
+#workskin .tw-thread.theme-dark b {
+  color: #e7e9ea;
+}
+
+#workskin .tw-thread.theme-dark .tw-media { background: #16181c; border-color: #2f3336; color: #71767b; }
+
+#workskin .tw-thread.theme-dark .tw-media span { background: #202327; }
+
+#workskin .tw-thread.theme-dark .tw-handle,
+#workskin .tw-thread.theme-dark .tw-stats {
+  color: #71767b;
+}
+
+#workskin .tw.theme-dark { background: #000000; color: #e7e9ea; border-color: #2f3336; }
+
+#workskin .tw.theme-dark .tw-name { color: #e7e9ea; }
+
+#workskin .tw.theme-dark .tw-handle,
+#workskin .tw.theme-dark .tw-replying {
+  color: #71767b;
+}
+
+#workskin .tw.theme-dark .tw-stats { color: #71767b; border-top-color: #2f3336; }
+
+#workskin .tw.theme-dark .tw-stats b { color: #e7e9ea; }
+
+#workskin .tw.theme-dark .tw-quote { border-color: #2f3336; }
+
+#workskin .tw.theme-dark .tw-note { background: #16181c; border-color: #2f3336; }
+
+#workskin .tw.theme-dark .tw-date,
+#workskin .tw.theme-dark .tw-label,
+#workskin .tw.theme-dark .tw-pollinfo {
+  color: #71767b;
+}
+
+#workskin .tw.theme-dark .tw-warn { background: #16181c; border-color: #2f3336; }
+
+#workskin .tw.theme-dark .tw-opt { color: #e7e9ea; }
+
+#workskin .tw.theme-dark .tw-opt.res {
+  background-color: #16181c;
+  background-image: linear-gradient(#2f3336, #2f3336);
+}
+
+#workskin .tw.theme-dark .tw-opt.res.win { background-image: linear-gradient(#1a5a8a, #1a5a8a); }
+
+#workskin .tw-reply.theme-dark .tw-date,
+#workskin .tw-reply.theme-dark .tw-label,
+#workskin .tw-reply.theme-dark .tw-pollinfo {
+  color: #71767b;
+}
+
+#workskin .tw-reply.theme-dark .tw-warn { background: #16181c; border-color: #2f3336; }
+
+#workskin .tw-reply.theme-dark .tw-opt { color: #e7e9ea; }
+
+#workskin .tw-reply.theme-dark .tw-opt.res {
+  background-color: #16181c;
+  background-image: linear-gradient(#2f3336, #2f3336);
+}
+
+#workskin .tw-reply.theme-dark .tw-opt.res.win { background-image: linear-gradient(#1a5a8a, #1a5a8a); }
+
+#workskin .twdm.theme-dark .twdm-reacts { background: #16181c; border-color: #2f3336; color: #e7e9ea; }
+
+#workskin .tw.theme-dark .tw-media,
+#workskin .tw-reply.theme-dark .tw-media {
+  background: #16181c;
+  border-color: #2f3336;
+  color: #71767b;
+}
+
+#workskin .tw.theme-dark .tw-media span,
+#workskin .tw-reply.theme-dark .tw-media span {
+  background: #202327;
+}
+
+#workskin .tw-thread.theme-dark { background: #000000; color: #e7e9ea; border-color: #2f3336; }
+
+#workskin .tw-thread.theme-dark .tw-foot { border-top-color: #2f3336; color: #71767b; }
+
+/* the tweets inside a thread take the thread's theme */
+#workskin .tw-thread.theme-dark .tw-replying,
+#workskin .tw-thread.theme-dark .tw-date,
+#workskin .tw-thread.theme-dark .tw-label,
+#workskin .tw-thread.theme-dark .tw-pollinfo {
+  color: #71767b;
+}
+
+#workskin .tw-thread.theme-dark .tw-quote { border-color: #2f3336; }
+
+#workskin .tw-thread.theme-dark .tw-note,
+#workskin .tw-thread.theme-dark .tw-warn { background: #16181c; border-color: #2f3336; }
+
+#workskin .tw-thread.theme-dark .tw-opt { color: #e7e9ea; }
+
+#workskin .tw-thread.theme-dark .tw-opt.res {
+  background-color: #16181c;
+  background-image: linear-gradient(#2f3336, #2f3336);
+}
+
+#workskin .tw-thread.theme-dark .tw-opt.res.win { background-image: linear-gradient(#1a5a8a, #1a5a8a); }
+
+#workskin .twdm.theme-dark .who { color: #71767b; }
+
+#workskin .twdm.theme-dark .twdm-foot { border-top-color: #2f3336; }
+
+#workskin .twdm.theme-dark .twdm-foot span { background: #202327; color: #71767b; }
+
+#workskin .tw-reply.theme-dark { background: #000000; color: #e7e9ea; border-color: #2f3336; }
+
+#workskin .tw-reply.theme-dark .tw-name { color: #e7e9ea; }
+
+#workskin .tw-reply.theme-dark .tw-handle,
+#workskin .tw-reply.theme-dark .tw-replying {
+  color: #71767b;
+}
+
+#workskin .twdm.theme-dark { background: #000000; color: #e7e9ea; border-color: #2f3336; }
+
+#workskin .twdm.theme-dark .mob-head { background: #000000; color: #e7e9ea; border-bottom-color: #2f3336; }
+
+#workskin .twdm.theme-dark .mob-head span,
+#workskin .twdm.theme-dark .twdm-time {
+  color: #71767b;
+}
+
+#workskin .twdm.theme-dark .in { background: #2f3336; color: #e7e9ea; }
+
+/* ---------- Twitter/X: Auto theme (theme-auto): light, switching to dark when the reader's device is in dark mode ---------- */
+
+@media (prefers-color-scheme: dark) {
+  #workskin .tw.theme-auto { background: #000000; color: #e7e9ea; border-color: #2f3336; }
+
+  #workskin .tw.theme-auto .tw-name { color: #e7e9ea; }
+
+  #workskin .tw.theme-auto .tw-handle,
+    #workskin .tw.theme-auto .tw-replying {
+      color: #71767b;
+    }
+
+  #workskin .tw.theme-auto .tw-stats { color: #71767b; border-top-color: #2f3336; }
+
+  #workskin .tw.theme-auto .tw-stats b { color: #e7e9ea; }
+
+  #workskin .tw.theme-auto .tw-quote { border-color: #2f3336; }
+
+  #workskin .tw.theme-auto .tw-note { background: #16181c; border-color: #2f3336; }
+
+  #workskin .tw.theme-auto .tw-date,
+    #workskin .tw.theme-auto .tw-label,
+    #workskin .tw.theme-auto .tw-pollinfo {
+      color: #71767b;
+    }
+
+  #workskin .tw.theme-auto .tw-warn { background: #16181c; border-color: #2f3336; }
+
+  #workskin .tw.theme-auto .tw-opt { color: #e7e9ea; }
+
+  #workskin .tw.theme-auto .tw-opt.res {
+      background-color: #16181c;
+      background-image: linear-gradient(#2f3336, #2f3336);
+    }
+
+  #workskin .tw.theme-auto .tw-opt.res.win { background-image: linear-gradient(#1a5a8a, #1a5a8a); }
+
+  #workskin .tw-reply.theme-auto .tw-date,
+    #workskin .tw-reply.theme-auto .tw-label,
+    #workskin .tw-reply.theme-auto .tw-pollinfo {
+      color: #71767b;
+    }
+
+  #workskin .tw-reply.theme-auto .tw-warn { background: #16181c; border-color: #2f3336; }
+
+  #workskin .tw-reply.theme-auto .tw-opt { color: #e7e9ea; }
+
+  #workskin .tw-reply.theme-auto .tw-opt.res {
+      background-color: #16181c;
+      background-image: linear-gradient(#2f3336, #2f3336);
+    }
+
+  #workskin .tw-reply.theme-auto .tw-opt.res.win { background-image: linear-gradient(#1a5a8a, #1a5a8a); }
+
+  #workskin .twdm.theme-auto .twdm-reacts { background: #16181c; border-color: #2f3336; color: #e7e9ea; }
+
+  #workskin .tw.theme-auto .tw-media,
+    #workskin .tw-reply.theme-auto .tw-media {
+      background: #16181c;
+      border-color: #2f3336;
+      color: #71767b;
+    }
+
+  #workskin .tw.theme-auto .tw-media span,
+    #workskin .tw-reply.theme-auto .tw-media span {
+      background: #202327;
+    }
+
+  #workskin .tw-thread.theme-auto { background: #000000; color: #e7e9ea; border-color: #2f3336; }
+
+  #workskin .tw-thread.theme-auto .tw-foot { border-top-color: #2f3336; color: #71767b; }
+
+  /* the tweets inside a thread take the thread's theme */
+  #workskin .tw-thread.theme-auto .tw-replying,
+    #workskin .tw-thread.theme-auto .tw-date,
+    #workskin .tw-thread.theme-auto .tw-label,
+    #workskin .tw-thread.theme-auto .tw-pollinfo {
+      color: #71767b;
+    }
+
+  #workskin .tw-thread.theme-auto .tw-quote { border-color: #2f3336; }
+
+  #workskin .tw-thread.theme-auto .tw-note,
+    #workskin .tw-thread.theme-auto .tw-warn { background: #16181c; border-color: #2f3336; }
+
+  #workskin .tw-thread.theme-auto .tw-opt { color: #e7e9ea; }
+
+  #workskin .tw-thread.theme-auto .tw-opt.res {
+      background-color: #16181c;
+      background-image: linear-gradient(#2f3336, #2f3336);
+    }
+
+  #workskin .tw-thread.theme-auto .tw-opt.res.win { background-image: linear-gradient(#1a5a8a, #1a5a8a); }
+
+  #workskin .tw-thread.theme-auto .mob { border-color: #2f3336; }
+
+  #workskin .tw-thread.theme-auto .tw-name,
+    #workskin .tw-thread.theme-auto .tw-stats b,
+    #workskin .tw-thread.theme-auto b {
+      color: #e7e9ea;
+    }
+
+  #workskin .tw-thread.theme-auto .tw-media { background: #16181c; border-color: #2f3336; color: #71767b; }
+
+  #workskin .tw-thread.theme-auto .tw-media span { background: #202327; }
+
+  #workskin .tw-thread.theme-auto .tw-handle,
+    #workskin .tw-thread.theme-auto .tw-stats {
+      color: #71767b;
+    }
+
+  #workskin .twdm.theme-auto .who { color: #71767b; }
+
+  #workskin .twdm.theme-auto .twdm-foot { border-top-color: #2f3336; }
+
+  #workskin .twdm.theme-auto .twdm-foot span { background: #202327; color: #71767b; }
+
+  #workskin .tw-reply.theme-auto { background: #000000; color: #e7e9ea; border-color: #2f3336; }
+
+  #workskin .tw-reply.theme-auto .tw-name { color: #e7e9ea; }
+
+  #workskin .tw-reply.theme-auto .tw-handle,
+    #workskin .tw-reply.theme-auto .tw-replying {
+      color: #71767b;
+    }
+
+  #workskin .twdm.theme-auto { background: #000000; color: #e7e9ea; border-color: #2f3336; }
+
+  #workskin .twdm.theme-auto .mob-head { background: #000000; color: #e7e9ea; border-bottom-color: #2f3336; }
+
+  #workskin .twdm.theme-auto .mob-head span,
+    #workskin .twdm.theme-auto .twdm-time {
+      color: #71767b;
+    }
+
+  #workskin .twdm.theme-auto .in { background: #2f3336; color: #e7e9ea; }
+}
+
+/* <<<<<<<<<< MODULE: Twitter/X (posts, replies, DMs) (end) <<<<<<<<<< */

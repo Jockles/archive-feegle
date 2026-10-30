@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Megaskin, Chapter 5: iMessage CSS | jockles.com</title>
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="stylesheet" href="megaskin.css" id="creator-style">
+</head>
+<body>
+<header>
+  <h1><a href="../../index.html">jockles.com</a></h1>
+  <p>fic, videos and fannish things</p>
+</header>
+<nav>
+  <ul>
+    <li><a href="../../index.html">Home</a></li>
+    <li><a href="../index.html">Fic</a></li>
+    <li><a href="../../videos/index.html">Videos</a></li>
+    <li><a href="../../blog/index.html">Blog</a></li>
+    <li><a href="../../links.html">Links</a></li>
+    <li><a href="../../about.html">About</a></li>
+  </ul>
+</nav>
+<main>
+      <!-- This page is made by tools/build-megaskin.py. Edit the chapter text in text/imessage-css.html instead. -->
+      <p class="work-title"><a href="index.html">Megaskin</a> by Jockles</p>
+      <p class="style-toggle"><button type="button" id="style-toggle">Hide Creator's Style</button></p>
+      <p class="chapter-nav"><a href="imessage.html">&larr; Previous Chapter</a> &middot; <a href="index.html">Chapter Index</a> &middot; <a href="whatsapp.html">Next Chapter &rarr;</a></p>
+
+      <div class="fic">
+        <h3 class="chapter-title">Chapter 5: iMessage CSS</h3>
+        <div id="workskin">
+<h3>iMessage CSS</h3>
+
+<p>This chapter goes through the CSS for the iMessage chats in the last chapter. It's the simplest of the modules, so it's a good one to learn from: every other module is built the same way, just with more parts.</p>
+
+<h4>Getting the CSS</h4>
+
+<p>The iMessage CSS is here: <a href="css/imessage.css">jockles.com/fic/megaskin/css/imessage.css</a>. It needs the core CSS too (<a href="css/core.css">jockles.com/fic/megaskin/css/core.css</a>), so paste the core into your work skin first and this underneath it.</p>
+
+<h4>How the Module is Laid Out</h4>
+
+<p>Every module is in the same order, so once you know your way around this one, you know your way around all of them:</p>
+
+<ol>
+  <li><strong>The main rules</strong>, which are the light theme: the window, the bubbles, and every other part.</li>
+  <li><strong>Links</strong>: the colour of links and <code>fake-link</code>s.</li>
+  <li><strong>Dark theme</strong>: the colours that change for <code>theme-dark</code>.</li>
+  <li><strong>Auto theme</strong>: the same dark colours again, for <code>theme-auto</code> on a device in dark mode.</li>
+</ol>
+
+<p>Every rule in it has <code>.imsg</code> in it, so it can only ever touch iMessage chats.</p>
+
+<h4>The Window</h4>
+
+<pre><code>#workskin .imsg {
+  background: #ffffff;
+  color: #000000;
+  border: 1px solid #d8d8dc;
+  border-radius: 14px;
+}
+
+#workskin .imsg .mob-head {
+  background: #f6f6f8;
+  color: #000000;
+  border-bottom: 1px solid #d8d8dc;
+  font-size: 0.85em;
+}
+
+#workskin .imsg .mob-head span {
+  display: block;
+  font-weight: normal;
+  color: #8e8e93;
+  font-size: 0.85em;
+}</code></pre>
+
+<p>The core has already made the box phone-sized, so all this adds is the look: white, with a thin grey edge and rounded corners. The header is a slightly greyer white with a line under it. <code>display: block</code> on the span in the header is what puts "iMessage" on its own line under the name - a span normally sits on the same line as the text before it.</p>
+
+<h4>Bubbles</h4>
+
+<pre><code>#workskin .imsg .msg {
+  display: table;
+  max-width: 75%;
+  margin: 0.18em 0;
+  padding: 0.45em 0.8em;
+  border-radius: 18px;
+}
+
+#workskin .imsg .out {
+  margin-left: auto;
+  background: #0a84ff;
+  color: #ffffff;
+  border-bottom-right-radius: 5px;
+}
+
+#workskin .imsg .in {
+  margin-right: auto;
+  background: #e9e9eb;
+  color: #000000;
+  border-bottom-left-radius: 5px;
+}</code></pre>
+
+<ul>
+  <li><code>display: table</code> makes a paragraph only as wide as its words. A normal paragraph stretches across the whole chat, which would make every bubble the same width. (It's an old trick, from before there was a proper way to do it, but it works in every browser and on AO3.)</li>
+  <li><code>max-width: 75%</code> stops a long message going all the way across, so there's always a gap on the other side, like on a phone.</li>
+  <li><code>margin-left: auto</code> pushes a sent bubble over to the right: <code>auto</code> takes up all of the spare room on that side. Received bubbles do the same on the right, which keeps them on the left.</li>
+  <li><code>border-radius: 18px</code> rounds every corner, and the smaller <code>5px</code> corner at the bottom makes the little point on the side the bubble came from.</li>
+</ul>
+
+<details>
+<summary>Changing the bubble colours</summary>
+
+<ul>
+  <li><strong>Sent bubbles:</strong> <code>#0a84ff</code> is iMessage blue. It's also used for your own tapbacks, and it appears in the dark and auto themes too, so change all of them - your text editor's find and replace is the easiest way.</li>
+  <li><strong>Received bubbles:</strong> <code>#e9e9eb</code> in light mode, and <code>#262628</code> in the dark and auto themes.</li>
+  <li>If you make a bubble lighter, change its <code>color</code> (the text) to something dark, so it's still easy to read.</li>
+</ul>
+
+</details>
+
+<h4>Green Bubbles</h4>
+
+<pre><code>#workskin .imsg .out.sms { background: #30d158; color: #ffffff; }</code></pre>
+
+<p><code>.out.sms</code> means a bubble that has both <code>out</code> and <code>sms</code>. Received messages are never green on a real iPhone, so the rule only works on sent ones - <code>in sms</code> does nothing.</p>
+
+<h4>Names, Status and System Lines</h4>
+
+<pre><code>#workskin .imsg .who {
+  display: block;
+  font-size: 0.72em;
+  color: #8e8e93;
+  margin: 0.5em 0 0 0.9em;
+}
+
+#workskin .imsg .imsg-status {
+  display: block;
+  text-align: right;
+  font-size: 0.7em;
+  color: #8e8e93;
+  margin: 0.1em 0.4em 0.4em 0;
+}
+
+#workskin .imsg .mob-sys { color: #8e8e93; opacity: 1; }</code></pre>
+
+<p><code>#8e8e93</code> is Apple's grey, and it's used for all the small print. The <code>who</code> line is nudged in from the left (<code>0.9em</code>) so the name lines up with the text inside the bubble, not the edge of it. The core fades system lines with <code>opacity</code>, and iMessage puts it back to <code>1</code> because its grey is already faded enough.</p>
+
+<h4>Tapbacks</h4>
+
+<p>Tapbacks are the fiddliest part, because they sit half outside the bubble. They work by taking the reaction out of the normal flow of the text and pinning it to the bubble's corner:</p>
+
+<pre><code>#workskin .imsg .msg.tapped {
+  position: relative;
+  margin-top: 1.7em;
+}
+
+#workskin .imsg .imsg-tap {
+  position: absolute;
+  top: -1.75em;
+  right: -0.95em;
+  min-width: 2.15em;
+  height: 2.15em;
+  padding: 0 0.35em;
+  box-sizing: border-box;
+  border: 2px solid #ffffff;
+  border-radius: 1.075em;
+  background: #e9e9eb;
+  color: #8e8e93;
+  font-size: 1em;
+  line-height: 1.9em;
+  text-align: center;
+  white-space: nowrap;
+}</code></pre>
+
+<ul>
+  <li><code>position: relative</code> on the bubble and <code>position: absolute</code> on the tapback go together. The tapback is placed using the bubble's edges, and <code>top: -1.75em</code> and <code>right: -0.95em</code> move it up and out past the top right corner.</li>
+  <li>Because it's been taken out of the flow, the tapback doesn't push anything out of the way, so <code>tapped</code> adds space above the bubble (<code>margin-top: 1.7em</code>) for it to sit in. That's the only thing <code>tapped</code> does.</li>
+  <li>The white border is the same colour as the chat, so it looks like a little gap between the tapback and the bubble behind it.</li>
+  <li><code>border-radius</code> is half the height, which makes a circle, or a pill shape if the emoji is wide.</li>
+</ul>
+
+<p>The two tail dots are made from nothing at all:</p>
+
+<pre><code>#workskin .imsg .imsg-tap::before,
+#workskin .imsg .imsg-tap::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  background: #e9e9eb;
+}
+
+#workskin .imsg .imsg-tap::before {
+  right: -0.2em;
+  bottom: -0.2em;
+  width: 0.5em;
+  height: 0.5em;
+  border: 2px solid #ffffff;
+}
+
+#workskin .imsg .imsg-tap::after {
+  right: -0.55em;
+  bottom: -0.5em;
+  width: 0.25em;
+  height: 0.25em;
+}</code></pre>
+
+<p><code>::before</code> and <code>::after</code> add two extra boxes to every tapback, with <code>content: ""</code> meaning there's no text in them. Each one is rounded into a circle and placed off the bottom corner, a big one and then a small one, trailing away.</p>
+
+<pre><code>#workskin .imsg .out .imsg-tap { right: auto; left: -0.95em; }
+
+#workskin .imsg .out .imsg-tap::before { right: auto; left: -0.2em; }
+
+#workskin .imsg .out .imsg-tap::after { right: auto; left: -0.55em; }
+
+#workskin .imsg .imsg-tap.me { background: #0a84ff; color: #ffffff; }
+
+#workskin .imsg .imsg-tap.me::before,
+#workskin .imsg .imsg-tap.me::after { background: #0a84ff; }</code></pre>
+
+<p>On your own messages, everything is flipped to the left: <code>right: auto</code> cancels the right-hand position, and <code>left</code> takes over. <code>me</code> turns the tapback and both its dots blue.</p>
+
+<details>
+<summary>Stacked tapbacks in group chats</summary>
+
+<pre><code>#workskin .imsg .imsg-tap { z-index: 4; }
+
+#workskin .imsg .imsg-tap + .imsg-tap { z-index: 3; }
+
+#workskin .imsg .imsg-tap + .imsg-tap + .imsg-tap { z-index: 2; }
+
+#workskin .imsg .imsg-tap + .imsg-tap + .imsg-tap + .imsg-tap { z-index: 1; }
+
+#workskin .imsg .imsg-tap + .imsg-tap { right: 0.5em; }
+
+#workskin .imsg .imsg-tap + .imsg-tap + .imsg-tap { right: 1.95em; }
+
+#workskin .imsg .imsg-tap + .imsg-tap + .imsg-tap + .imsg-tap { right: 3.4em; }
+
+#workskin .imsg .imsg-tap + .imsg-tap::before,
+#workskin .imsg .imsg-tap + .imsg-tap::after { display: none; }</code></pre>
+
+<ul>
+  <li><code>+</code> means "straight after". So <code>.imsg-tap + .imsg-tap</code> is the second tapback, and adding another <code>+ .imsg-tap</code> each time gets the third and fourth.</li>
+  <li>Each one is moved a step further along the bubble (<code>0.5em</code>, <code>1.95em</code>, <code>3.4em</code>), so they overlap like a fan.</li>
+  <li><code>z-index</code> decides which is in front. The first has the highest number, so it's on top.</li>
+  <li>Only the first keeps its tail dots.</li>
+  <li>Sent messages have the same three lines with <code>left</code> instead of <code>right</code>. A fifth tapback would sit on top of the fourth - add another line with <code>4.85em</code> if you ever need one.</li>
+</ul>
+
+</details>
+
+<details>
+<summary>Keeping a sender's name next to their tapped message</summary>
+
+<pre><code>#workskin .imsg .who + .msg.tapped { margin-top: 0.18em; }
+
+#workskin .imsg .who:has(+ .msg.tapped) { margin-top: 1.5em; }</code></pre>
+
+<p>In a group chat, the space <code>tapped</code> adds would go between the name and the message, which looks wrong. The first line takes the space away from a tapped message that comes straight after a name. The second puts it above the name instead: <code>:has(+ .msg.tapped)</code> means "a name line that has a tapped message straight after it". <code>:has</code> is quite new, so in an older browser the name just sits a bit closer to the message above - nothing breaks.</p>
+
+</details>
+
+<h4>Pictures</h4>
+
+<pre><code>#workskin .imsg .msg.pic { width: 55%; padding: 0.2em; overflow: hidden; }
+
+#workskin .imsg .msg.pic img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 15px;
+}
+
+#workskin .imsg .msg.pic.text { padding: 2.5em 1em; font-style: italic; text-align: center; }</code></pre>
+
+<p>A picture bubble is a fixed <code>55%</code> of the chat wide, whatever size the picture is, and the picture fills it. <code>height: auto</code> keeps the picture's shape, so nothing gets squashed. With <code>text</code>, the description gets lots of padding so it's about the size of a photo.</p>
+
+<h4>Typing Dots</h4>
+
+<pre><code>#workskin .imsg .typing-indicator {
+  display: table;
+  margin: 0.3em 0;
+  padding: 0.6em 0.8em;
+  border-radius: 18px;
+  border-bottom-left-radius: 5px;
+  background: #e9e9eb;
+}
+
+#workskin .imsg .typing-indicator span {
+  display: inline-block;
+  width: 0.6em;
+  height: 0.6em;
+  margin-right: 0.25em;
+  border-radius: 50%;
+  background: #8e8e93;
+  opacity: 0.5;
+}
+
+#workskin .imsg .typing-indicator span:nth-child(2) { opacity: 0.7; }
+
+#workskin .imsg .typing-indicator span:nth-child(3) { opacity: 1; margin-right: 0; }</code></pre>
+
+<p>The bubble is built like a received message. Each empty span becomes a small grey circle, and <code>:nth-child(2)</code> and <code>:nth-child(3)</code> - the second and third dot - get darker, so it looks like the dots are mid-bounce.</p>
+
+<h4>Message Bar</h4>
+
+<pre><code>#workskin .imsg .imsg-input {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 0.45em 0.7em 0.65em 0.7em;
+}
+
+#workskin .imsg .imsg-plus {
+  flex: none;
+  width: 1.55em;
+  height: 1.55em;
+  margin-right: 0.35em;
+  border-radius: 50%;
+  box-sizing: border-box;
+  border: 1px solid #8e8e93;
+  background: #ffffff;
+  color: #000000;
+  font-size: 1.3em;
+  font-weight: 300;
+  line-height: 1.45em;
+  text-align: center;
+}
+
+#workskin .imsg .imsg-field {
+  flex: 1;
+  position: relative;
+  padding: 0.45em 2.4em 0.45em 0.9em;
+  border: 1px solid #8e8e93;
+  border-radius: 1.3em;
+  background: #f0f0f2;
+  color: #6c6c70;
+}
+
+#workskin .imsg .imsg-mic {
+  position: absolute;
+  right: 0.7em;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.95em;
+}</code></pre>
+
+<ul>
+  <li><code>display: flex</code> lines the + button and the box up in a row, and <code>align-items: center</code> centres them against each other.</li>
+  <li><code>flex: none</code> keeps the + button the same size, and <code>flex: 1</code> lets the box take up all the room that's left.</li>
+  <li>The microphone is pinned inside the right end of the box, the same way as a tapback. <code>top: 50%</code> with <code>translateY(-50%)</code> is the usual way to centre something from top to bottom: move its top edge halfway down, then move it back up by half its own height.</li>
+  <li>The extra padding on the right of the box (<code>2.4em</code>) leaves room for the microphone, so the word never runs under it.</li>
+</ul>
+
+<h4>Links</h4>
+
+<pre><code>#workskin .imsg .in .fake-link, #workskin .imsg .in a:not(.tl) { color: #0a84ff; }
+
+#workskin .imsg .out .fake-link, #workskin .imsg .out a:not(.tl) { color: #ffffff; }</code></pre>
+
+<p>Links are blue in grey bubbles and white in blue ones, so they show up on both.</p>
+
+<h4>Dark and Auto Themes</h4>
+
+<p>The dark theme is the light rules again, with only the colours that change:</p>
+
+<pre><code>#workskin .imsg.theme-dark { background: #000000; color: #ffffff; border-color: #2c2c2e; }
+
+#workskin .imsg.theme-dark .mob-head { background: #1c1c1e; color: #ffffff; border-bottom-color: #2c2c2e; }
+
+#workskin .imsg.theme-dark .in,
+#workskin .imsg.theme-dark .typing-indicator {
+  background: #262628;
+  color: #ffffff;
+}</code></pre>
+
+<p>...and so on for the tapbacks and the message bar. Sent bubbles don't appear, because iMessage blue is the same in both.</p>
+
+<p>The auto theme is exactly the same block, with <code>theme-auto</code> in place of <code>theme-dark</code>, inside this:</p>
+
+<pre><code>@media (prefers-color-scheme: dark) {
+  #workskin .imsg.theme-auto { background: #000000; color: #ffffff; border-color: #2c2c2e; }
+  ...
+}</code></pre>
+
+<p>Everything inside <code>@media (prefers-color-scheme: dark) { ... }</code> only counts when the reader's device is in dark mode. Otherwise <code>theme-auto</code> doesn't match anything, and the chat uses the light rules.</p>
+
+<details>
+<summary>Changing a dark colour</summary>
+
+<p>Because AO3 doesn't allow variables, a dark colour is written in both the dark block and the auto block. Change it in both, or <code>theme-dark</code> and <code>theme-auto</code> chats won't match. Find and replace in a text editor catches every copy at once.</p>
+
+</details>
+
+<h4>Taking Parts Out</h4>
+
+<p>If you never use a part, you can delete its rules to make your skin shorter. Each part has a comment above it saying what it is. The ones that come out cleanly are:</p>
+
+<ul>
+  <li><strong>Tapbacks:</strong> everything with <code>tapped</code> or <code>imsg-tap</code> in it, including the lines in the dark and auto blocks.</li>
+  <li><strong>Green bubbles:</strong> the <code>.out.sms</code> line.</li>
+  <li><strong>Pictures:</strong> the three <code>.msg.pic</code> rules.</li>
+  <li><strong>Typing dots:</strong> the four <code>typing-indicator</code> rules, and <code>.typing-indicator</code> in the dark and auto blocks.</li>
+  <li><strong>Message bar:</strong> everything with <code>imsg-input</code>, <code>imsg-plus</code>, <code>imsg-field</code> or <code>imsg-mic</code> in it.</li>
+</ul>
+
+<p>Leave the window, the bubbles and the theme blocks, which everything else depends on.</p>
+        </div>
+      </div>
+
+      <p class="chapter-nav"><a href="imessage.html">&larr; Previous Chapter</a> &middot; <a href="index.html">Chapter Index</a> &middot; <a href="whatsapp.html">Next Chapter &rarr;</a></p>
+</main>
+<footer>
+  Made by hand in HTML &amp; CSS. No trackers, no cookies, no ads.
+</footer>
+<script>
+  // Works like AO3's "Hide Creator's Style" button: switches the work skin off and on.
+  (function () {
+    var skin = document.getElementById("creator-style");
+    var button = document.getElementById("style-toggle");
+    function show(off) {
+      skin.disabled = off;
+      button.textContent = off ? "Show Creator's Style" : "Hide Creator's Style";
+    }
+    try { show(localStorage.getItem("hide-creator-style") === "yes"); } catch (e) { show(false); }
+    button.addEventListener("click", function () {
+      var off = !skin.disabled;
+      show(off);
+      try { localStorage.setItem("hide-creator-style", off ? "yes" : "no"); } catch (e) {}
+    });
+  })();
+</script>
+</body>
+</html>

@@ -1,0 +1,472 @@
+<h3>Tumblr posts, reblogs and asks</h3>
+
+<p>The Tumblr module is styled after the Tumblr mobile app: each post is a rounded card, and a reblog chain is a list of comments with a thin line between each one.</p>
+
+<p>Before we begin, here's the two kinds of thing you can build: a single post (here, a reblog chain), or several posts together on the feed background, like scrolling the app (here, an ask, a quote post and a chat post). The full HTML is underneath each, which you can copy and modify yourself. The rest of the chapter takes the HTML apart so that you can modify all the individual parts to say exactly what you want.</p>
+
+<h4>A Reblog Chain</h4>
+
+<div class="mob tb theme-auto">
+  <p class="tb-header">
+    <span class="tb-pfp rb colour4">CB</span>
+    <span class="tb-menu">&#8226;&#8226;&#8226;</span>
+    <span class="tb-name"><b>cutebrini</b>
+      <span class="tb-subline">Reblogged <b>formulahs</b> &middot; 18m ago</span></span>
+  </p>
+  <div class="tb-body">
+    <div class="tb-reblog">
+      <p class="tb-blog">
+        <span class="tb-pfp"><span class="pfp"><img src="https://64.media.tumblr.com/a14cfd79a77e6fe95ba16426e1aa5659/188bbfab996df056-f7/s400x600/617010ef3747484faf4ef9b7d1459b72aeeef952.pnj" alt="Profile picture of two-seventyone"></span></span>
+        <span class="tb-menu">&#8226;&#8226;&#8226;</span>
+        <span class="tb-follow"><span>Follow</span></span>
+        <span class="tb-name"><b>two-seventyone
+          <span class="tb-check">&#10003;</span><span class="tb-check">&#10003;</span></b>
+          <span class="tb-subline">6h ago</span></span>
+      </p>
+      <p>wennberg baby at the halloween party...... there will be no drunk wm there will be no wm handsy makeout in the downstairs half bath</p>
+    </div>
+    <div class="tb-reblog">
+      <p class="tb-blog">
+        <span class="tb-pfp rb colour1">MO</span>
+        <span class="tb-menu">&#8226;&#8226;&#8226;</span>
+        <span class="tb-name"><b>moonywithatrafficcone</b>
+          <span class="tb-subline">5h ago</span></span>
+      </p>
+      <p>remembering when reavo said that will and mack got upset when he put his elementary school aged children to bed before 12am</p>
+    </div>
+  </div>
+  <p class="tb-tags">#hockey rpf &nbsp;#wennberg &nbsp;#he is so normal about it</p>
+  <p class="tb-footer">
+    <span class="tb-notes"><b>171</b> notes</span>
+    <span class="tb-icon save"></span>
+    <span class="tb-icon">&#8679;</span>
+    <span class="tb-icon">&#9993;</span>
+    <span class="tb-icon">&#8644;</span>
+    <span class="tb-icon">&#9825;</span>
+  </p>
+</div>
+
+<details>
+<summary>The full HTML for this post</summary>
+
+<pre><code>&lt;div class="mob tb theme-auto"&gt;
+  &lt;p class="tb-header"&gt;
+    &lt;span class="tb-pfp rb colour4"&gt;CB&lt;/span&gt;
+    &lt;span class="tb-menu"&gt;&amp;#8226;&amp;#8226;&amp;#8226;&lt;/span&gt;
+    &lt;span class="tb-name"&gt;&lt;b&gt;cutebrini&lt;/b&gt;
+      &lt;span class="tb-subline"&gt;Reblogged &lt;b&gt;formulahs&lt;/b&gt; &amp;middot; 18m ago&lt;/span&gt;&lt;/span&gt;
+  &lt;/p&gt;
+  &lt;div class="tb-body"&gt;
+    &lt;div class="tb-reblog"&gt;
+      &lt;p class="tb-blog"&gt;
+        &lt;span class="tb-pfp"&gt;&lt;span class="pfp"&gt;&lt;img src="https://64.media.tumblr.com/a14cfd79a77e6fe95ba16426e1aa5659/188bbfab996df056-f7/s400x600/617010ef3747484faf4ef9b7d1459b72aeeef952.pnj" alt="Profile picture of two-seventyone"&gt;&lt;/span&gt;&lt;/span&gt;
+        &lt;span class="tb-menu"&gt;&amp;#8226;&amp;#8226;&amp;#8226;&lt;/span&gt;
+        &lt;span class="tb-follow"&gt;&lt;span&gt;Follow&lt;/span&gt;&lt;/span&gt;
+        &lt;span class="tb-name"&gt;&lt;b&gt;two-seventyone
+          &lt;span class="tb-check"&gt;&amp;#10003;&lt;/span&gt;&lt;span class="tb-check"&gt;&amp;#10003;&lt;/span&gt;&lt;/b&gt;
+          &lt;span class="tb-subline"&gt;6h ago&lt;/span&gt;&lt;/span&gt;
+      &lt;/p&gt;
+      &lt;p&gt;wennberg baby at the halloween party...... there will be no drunk wm there will be no wm handsy makeout in the downstairs half bath&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class="tb-reblog"&gt;
+      &lt;p class="tb-blog"&gt;
+        &lt;span class="tb-pfp rb colour1"&gt;MO&lt;/span&gt;
+        &lt;span class="tb-menu"&gt;&amp;#8226;&amp;#8226;&amp;#8226;&lt;/span&gt;
+        &lt;span class="tb-name"&gt;&lt;b&gt;moonywithatrafficcone&lt;/b&gt;
+          &lt;span class="tb-subline"&gt;5h ago&lt;/span&gt;&lt;/span&gt;
+      &lt;/p&gt;
+      &lt;p&gt;remembering when reavo said that will and mack got upset when he put his elementary school aged children to bed before 12am&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;p class="tb-tags"&gt;#hockey rpf &amp;nbsp;#wennberg &amp;nbsp;#he is so normal about it&lt;/p&gt;
+  &lt;p class="tb-footer"&gt;
+    &lt;span class="tb-notes"&gt;&lt;b&gt;171&lt;/b&gt; notes&lt;/span&gt;
+    &lt;span class="tb-icon save"&gt;&lt;/span&gt;
+    &lt;span class="tb-icon"&gt;&amp;#8679;&lt;/span&gt;
+    &lt;span class="tb-icon"&gt;&amp;#9993;&lt;/span&gt;
+    &lt;span class="tb-icon"&gt;&amp;#8644;&lt;/span&gt;
+    &lt;span class="tb-icon"&gt;&amp;#9825;&lt;/span&gt;
+  &lt;/p&gt;
+&lt;/div&gt;</code></pre>
+
+</details>
+
+<h4>Posts on the Feed</h4>
+
+<div class="tb-feed">
+  <div class="mob tb theme-auto">
+    <p class="tb-header">
+      <span class="tb-pfp rb colour6">FS</span>
+      <span class="tb-menu">&#8226;&#8226;&#8226;</span>
+      <span class="tb-name"><b>fuckyeahsnackables
+        <span class="tb-check">&#10003;</span><span class="tb-check">&#10003;</span><span class="tb-check">&#10003;</span><span class="tb-check">&#10003;</span><span class="tb-check">&#10003;</span><span class="tb-check">&#10003;</span></b>
+        <span class="tb-subline">Reblogged &middot; 37m ago</span></span>
+    </p>
+    <div class="tb-body">
+      <div class="tb-ask">
+        <p class="tb-asker"><span class="tb-ask-pfp colour3">P</span><span class="hide"> </span><b>perch0leap</b> asked:</p>
+        <p>If you were an animal, what species would it be? Love your pod btw :b</p>
+      </div>
+      <div class="tb-ask tb-answer">
+        <p class="tb-asker"><span class="tb-ask-pfp colour5">JO</span><span class="hide"> </span><b>jonkspwatsonbloggingitup</b> answered:</p>
+        <p>Uh again I'll say pigeon... I don't really know why, they're just chill!</p>
+        <p>And thank you!</p>
+      </div>
+    </div>
+    <p class="tb-tags">#answered</p>
+  </div>
+  <div class="mob tb theme-auto">
+    <p class="tb-header">
+      <span class="tb-pfp"><span class="pfp pfp-rose"></span></span>
+      <span class="tb-menu">&#8226;&#8226;&#8226;</span>
+      <span class="tb-name"><b><span class="handle pfp-rose"><span class="hide">PoseyRosey</span></span></b>
+        <span class="tb-subline">1h ago</span></span>
+    </p>
+    <div class="tb-body">
+      <p class="tb-quote">I go where I want.</p>
+      <p class="tb-source">&mdash; Scott Hunter, to a very brave reporter</p>
+    </div>
+    <p class="tb-tags">#iconic &nbsp;#no further questions</p>
+  </div>
+  <div class="mob tb theme-auto">
+    <p class="tb-header">
+      <span class="tb-pfp colour2">RR</span>
+      <span class="tb-menu">&#8226;&#8226;&#8226;</span>
+      <span class="tb-name"><b>rinkrat</b>
+        <span class="tb-subline">2h ago</span></span>
+    </p>
+    <div class="tb-body">
+      <div class="tb-chat">
+        <p><b>Shane:</b> why are you awake</p>
+        <p><b>Ilya:</b> thinking</p>
+        <p><b>Shane:</b> that's never good</p>
+      </div>
+    </div>
+    <p class="tb-tags">#hollanov &nbsp;#this is how I imagine every night</p>
+    <p class="tb-footer">
+      <span class="tb-notes"><b>2,904</b> notes</span>
+      <span class="tb-icon save"></span>
+      <span class="tb-icon">&#8679;</span>
+      <span class="tb-icon">&#9993;</span>
+      <span class="tb-icon">&#8644;</span>
+      <span class="tb-icon">&#9825;</span>
+    </p>
+  </div>
+</div>
+
+<details>
+<summary>The full HTML for these posts</summary>
+
+<pre><code>&lt;div class="tb-feed"&gt;
+  &lt;div class="mob tb theme-auto"&gt;
+    &lt;p class="tb-header"&gt;
+      &lt;span class="tb-pfp rb colour6"&gt;FS&lt;/span&gt;
+      &lt;span class="tb-menu"&gt;&amp;#8226;&amp;#8226;&amp;#8226;&lt;/span&gt;
+      &lt;span class="tb-name"&gt;&lt;b&gt;fuckyeahsnackables
+        &lt;span class="tb-check"&gt;&amp;#10003;&lt;/span&gt;&lt;span class="tb-check"&gt;&amp;#10003;&lt;/span&gt;&lt;span class="tb-check"&gt;&amp;#10003;&lt;/span&gt;&lt;span class="tb-check"&gt;&amp;#10003;&lt;/span&gt;&lt;span class="tb-check"&gt;&amp;#10003;&lt;/span&gt;&lt;span class="tb-check"&gt;&amp;#10003;&lt;/span&gt;&lt;/b&gt;
+        &lt;span class="tb-subline"&gt;Reblogged &amp;middot; 37m ago&lt;/span&gt;&lt;/span&gt;
+    &lt;/p&gt;
+    &lt;div class="tb-body"&gt;
+      &lt;div class="tb-ask"&gt;
+        &lt;p class="tb-asker"&gt;&lt;span class="tb-ask-pfp colour3"&gt;P&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;b&gt;perch0leap&lt;/b&gt; asked:&lt;/p&gt;
+        &lt;p&gt;If you were an animal, what species would it be? Love your pod btw :b&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class="tb-ask tb-answer"&gt;
+        &lt;p class="tb-asker"&gt;&lt;span class="tb-ask-pfp colour5"&gt;JO&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;b&gt;jonkspwatsonbloggingitup&lt;/b&gt; answered:&lt;/p&gt;
+        &lt;p&gt;Uh again I'll say pigeon... I don't really know why, they're just chill!&lt;/p&gt;
+        &lt;p&gt;And thank you!&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;p class="tb-tags"&gt;#answered&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="mob tb theme-auto"&gt;
+    &lt;p class="tb-header"&gt;
+      &lt;span class="tb-pfp"&gt;&lt;span class="pfp pfp-rose"&gt;&lt;/span&gt;&lt;/span&gt;
+      &lt;span class="tb-menu"&gt;&amp;#8226;&amp;#8226;&amp;#8226;&lt;/span&gt;
+      &lt;span class="tb-name"&gt;&lt;b&gt;&lt;span class="handle pfp-rose"&gt;&lt;span class="hide"&gt;PoseyRosey&lt;/span&gt;&lt;/span&gt;&lt;/b&gt;
+        &lt;span class="tb-subline"&gt;1h ago&lt;/span&gt;&lt;/span&gt;
+    &lt;/p&gt;
+    &lt;div class="tb-body"&gt;
+      &lt;p class="tb-quote"&gt;I go where I want.&lt;/p&gt;
+      &lt;p class="tb-source"&gt;&amp;mdash; Scott Hunter, to a very brave reporter&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;p class="tb-tags"&gt;#iconic &amp;nbsp;#no further questions&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="mob tb theme-auto"&gt;
+    &lt;p class="tb-header"&gt;
+      &lt;span class="tb-pfp colour2"&gt;RR&lt;/span&gt;
+      &lt;span class="tb-menu"&gt;&amp;#8226;&amp;#8226;&amp;#8226;&lt;/span&gt;
+      &lt;span class="tb-name"&gt;&lt;b&gt;rinkrat&lt;/b&gt;
+        &lt;span class="tb-subline"&gt;2h ago&lt;/span&gt;&lt;/span&gt;
+    &lt;/p&gt;
+    &lt;div class="tb-body"&gt;
+      &lt;div class="tb-chat"&gt;
+        &lt;p&gt;&lt;b&gt;Shane:&lt;/b&gt; why are you awake&lt;/p&gt;
+        &lt;p&gt;&lt;b&gt;Ilya:&lt;/b&gt; thinking&lt;/p&gt;
+        &lt;p&gt;&lt;b&gt;Shane:&lt;/b&gt; that's never good&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;p class="tb-tags"&gt;#hollanov &amp;nbsp;#this is how I imagine every night&lt;/p&gt;
+    &lt;p class="tb-footer"&gt;
+      &lt;span class="tb-notes"&gt;&lt;b&gt;2,904&lt;/b&gt; notes&lt;/span&gt;
+      &lt;span class="tb-icon save"&gt;&lt;/span&gt;
+      &lt;span class="tb-icon"&gt;&amp;#8679;&lt;/span&gt;
+      &lt;span class="tb-icon"&gt;&amp;#9993;&lt;/span&gt;
+      &lt;span class="tb-icon"&gt;&amp;#8644;&lt;/span&gt;
+      &lt;span class="tb-icon"&gt;&amp;#9825;&lt;/span&gt;
+    &lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+</details>
+
+<h4>Tumblr Post Container</h4>
+
+<p>A Tumblr post has a header with the blog's picture and name, a body, and then the tags and notes along the bottom. The module class is <code>tb</code>. Here's the outline of a post, with the parts filled in with placeholders:</p>
+
+<div class="mob tb theme-auto">
+  <p class="tb-header">[the header goes here]</p>
+  <div class="tb-body">
+    <p>[the post goes here]</p>
+  </div>
+  <p class="tb-tags">#hockey rpf</p>
+  <p class="tb-footer"><span class="tb-notes"><b>12,481</b> notes</span></p>
+</div>
+
+<pre><code>&lt;div class="mob tb theme-auto"&gt;
+  &lt;p class="tb-header"&gt;[the header goes here]&lt;/p&gt;
+  &lt;div class="tb-body"&gt;
+    &lt;p&gt;[the post goes here]&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;p class="tb-tags"&gt;#hockey rpf&lt;/p&gt;
+  &lt;p class="tb-footer"&gt;&lt;span class="tb-notes"&gt;&lt;b&gt;12,481&lt;/b&gt; notes&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+
+<ul>
+  <li><code>tb-header</code> is the header row at the top of the post.</li>
+  <li><code>tb-body</code> holds the post itself, written as ordinary paragraphs. You can put a normal <code>&lt;img&gt;</code> picture in here too, and it'll fit the width of the card.</li>
+  <li><code>tb-tags</code> is the grey row of tags. Type the <code>#</code> in yourself, and use <code>&amp;nbsp;</code> to space the tags out.</li>
+  <li><code>tb-footer</code> is the row along the bottom, with the note count in it. You can leave it out, or add the buttons too (see Notes and Buttons Along the Bottom, further down).</li>
+</ul>
+
+<p>Here are the tags from the reblog chain:</p>
+
+<div class="mob tb theme-auto"><p class="tb-tags">#hockey rpf &nbsp;#wennberg &nbsp;#he is so normal about it</p></div>
+
+<pre><code>&lt;p class="tb-tags"&gt;#hockey rpf &amp;nbsp;#wennberg &amp;nbsp;#he is so normal about it&lt;/p&gt;</code></pre>
+
+<h4>The Header: Picture, Name and Time</h4>
+
+<p>The header has a round picture, then the name with a small grey line under it, and the three dots at the end. The picture is <code>tb-pfp</code> - with no image it shows initials on a grey circle, and <code>colour1</code> to <code>colour10</code> give it a colour:</p>
+
+<div class="tb-feed"><div class="mob tb theme-auto"><p class="tb-header">
+  <span class="tb-pfp colour2">RR</span>
+  <span class="tb-menu">&#8226;&#8226;&#8226;</span>
+  <span class="tb-name"><b>rinkrat</b>
+    <span class="tb-subline">2h ago</span></span>
+</p></div></div>
+
+<pre><code>&lt;p class="tb-header"&gt;
+  &lt;span class="tb-pfp colour2"&gt;RR&lt;/span&gt;
+  &lt;span class="tb-menu"&gt;&amp;#8226;&amp;#8226;&amp;#8226;&lt;/span&gt;
+  &lt;span class="tb-name"&gt;&lt;b&gt;rinkrat&lt;/b&gt;
+    &lt;span class="tb-subline"&gt;2h ago&lt;/span&gt;&lt;/span&gt;
+&lt;/p&gt;</code></pre>
+
+<p><code>tb-name</code> holds the name, in <code>&lt;b&gt;</code>, and <code>tb-subline</code> is the small grey line under it. <code>tb-menu</code> is the three dots on the right. The order matters here: picture, dots, then name. Anything that sits on the right-hand side, like the dots or a Follow button, has to come <em>before</em> the name in the code, so the name fits in beside it.</p>
+
+<p>For a real picture, put the picture tag inside a <code>pfp</code> span inside the <code>tb-pfp</code>. The green reblog badge (next section) works with it too:</p>
+
+<div class="mob tb theme-auto"><div class="tb-body"><div class="tb-reblog"><p class="tb-blog"><span class="tb-pfp"><span class="pfp"><img src="https://64.media.tumblr.com/a14cfd79a77e6fe95ba16426e1aa5659/188bbfab996df056-f7/s400x600/617010ef3747484faf4ef9b7d1459b72aeeef952.pnj" alt="Profile picture of two-seventyone"></span></span></p></div></div></div>
+
+<pre><code>&lt;span class="tb-pfp"&gt;&lt;span class="pfp"&gt;&lt;img src="https://64.media.tumblr.com/a14cfd79a77e6fe95ba16426e1aa5659/188bbfab996df056-f7/s400x600/617010ef3747484faf4ef9b7d1459b72aeeef952.pnj" alt="Profile picture of two-seventyone"&gt;&lt;/span&gt;&lt;/span&gt;</code></pre>
+
+<p>Or use a profile, so the same person has the same picture everywhere, like Rose's quote post on the feed. The blog name can come from the profile too, with the name typed inside in a <code>hide</code> span. That's for readers with the workskin switched off - the blog name comes from the CSS, so without it they wouldn't know who posted (see Profile Pictures and Accessibility, in the Core, Themes, and Extras chapter):</p>
+
+<div class="tb-feed"><div class="mob tb theme-auto"><p class="tb-header">
+  <span class="tb-pfp"><span class="pfp pfp-rose"></span></span>
+  <span class="tb-menu">&#8226;&#8226;&#8226;</span>
+  <span class="tb-name"><b><span class="handle pfp-rose"><span class="hide">PoseyRosey</span></span></b>
+    <span class="tb-subline">1h ago</span></span>
+</p></div></div>
+
+<pre><code>&lt;p class="tb-header"&gt;
+  &lt;span class="tb-pfp"&gt;&lt;span class="pfp pfp-rose"&gt;&lt;/span&gt;&lt;/span&gt;
+  &lt;span class="tb-menu"&gt;&amp;#8226;&amp;#8226;&amp;#8226;&lt;/span&gt;
+  &lt;span class="tb-name"&gt;&lt;b&gt;&lt;span class="handle pfp-rose"&gt;&lt;span class="hide"&gt;PoseyRosey&lt;/span&gt;&lt;/span&gt;&lt;/b&gt;
+    &lt;span class="tb-subline"&gt;1h ago&lt;/span&gt;&lt;/span&gt;
+&lt;/p&gt;</code></pre>
+
+<p>The colours for <code>colour1</code> to <code>colour10</code> are set in the Tumblr CSS, so you can change them there.</p>
+
+<h4>The Green Reblog Badge</h4>
+
+<p>When a header belongs to a reblog, Tumblr puts a little green reblog symbol on the corner of the picture. To add it, put <code>rb</code> after <code>tb-pfp</code>. The grey line then usually says who it was reblogged from - write that name in <code>&lt;b&gt;</code> so it stands out:</p>
+
+<div class="mob tb theme-auto"><p class="tb-header">
+  <span class="tb-pfp rb colour4">CB</span>
+  <span class="tb-menu">&#8226;&#8226;&#8226;</span>
+  <span class="tb-name"><b>cutebrini</b>
+    <span class="tb-subline">Reblogged <b>formulahs</b> &middot; 18m ago</span></span>
+</p></div>
+
+<pre><code>&lt;p class="tb-header"&gt;
+  &lt;span class="tb-pfp rb colour4"&gt;CB&lt;/span&gt;
+  &lt;span class="tb-menu"&gt;&amp;#8226;&amp;#8226;&amp;#8226;&lt;/span&gt;
+  &lt;span class="tb-name"&gt;&lt;b&gt;cutebrini&lt;/b&gt;
+    &lt;span class="tb-subline"&gt;Reblogged &lt;b&gt;formulahs&lt;/b&gt; &amp;middot; 18m ago&lt;/span&gt;&lt;/span&gt;
+&lt;/p&gt;</code></pre>
+
+<h4>Verified Ticks and the Follow Button</h4>
+
+<p>Some blogs have coloured checkmarks after their names. On Tumblr these are bought for fun - lots of people have them as a joke - so they don't mean a blog is verified, and you can give them to any blog you like. They come in twos, fours or sixes, and always in the same colour order: blue and green, then lime and yellow, then amber and orange. So two checkmarks are always blue and green, and the other colours only show up on blogs with four or six. Add a <code>tb-check</code> span for each one, straight after the name, like <code>&lt;span class=&quot;tb-check&quot;&gt;&#10003;&lt;/span&gt;&lt;span class=&quot;tb-check&quot;&gt;&#10003;&lt;/span&gt;</code>, and the colours are added for you in the right order. Tumblr has lots of other badges too, but the skin only does the checkmarks.</p>
+
+<p>A Follow button is <code>&lt;span class=&quot;tb-follow&quot;&gt;&lt;span&gt;Follow&lt;/span&gt;&lt;/span&gt;</code>. It goes after the three dots and before the name, which is why everything on the right-hand side comes first in the code below:</p>
+
+<div class="mob tb theme-auto"><div class="tb-body"><div class="tb-reblog"><p class="tb-blog">
+  <span class="tb-pfp"><span class="pfp"><img src="https://64.media.tumblr.com/a14cfd79a77e6fe95ba16426e1aa5659/188bbfab996df056-f7/s400x600/617010ef3747484faf4ef9b7d1459b72aeeef952.pnj" alt="Profile picture of two-seventyone"></span></span>
+  <span class="tb-menu">&#8226;&#8226;&#8226;</span>
+  <span class="tb-follow"><span>Follow</span></span>
+  <span class="tb-name"><b>two-seventyone
+    <span class="tb-check">&#10003;</span><span class="tb-check">&#10003;</span></b>
+    <span class="tb-subline">6h ago</span></span>
+</p></div></div></div>
+
+<pre><code>&lt;p class="tb-blog"&gt;
+  &lt;span class="tb-pfp"&gt;&lt;span class="pfp"&gt;&lt;img src="https://64.media.tumblr.com/a14cfd79a77e6fe95ba16426e1aa5659/188bbfab996df056-f7/s400x600/617010ef3747484faf4ef9b7d1459b72aeeef952.pnj" alt="Profile picture of two-seventyone"&gt;&lt;/span&gt;&lt;/span&gt;
+  &lt;span class="tb-menu"&gt;&amp;#8226;&amp;#8226;&amp;#8226;&lt;/span&gt;
+  &lt;span class="tb-follow"&gt;&lt;span&gt;Follow&lt;/span&gt;&lt;/span&gt;
+  &lt;span class="tb-name"&gt;&lt;b&gt;two-seventyone
+    &lt;span class="tb-check"&gt;&amp;#10003;&lt;/span&gt;&lt;span class="tb-check"&gt;&amp;#10003;&lt;/span&gt;&lt;/b&gt;
+    &lt;span class="tb-subline"&gt;6h ago&lt;/span&gt;&lt;/span&gt;
+&lt;/p&gt;</code></pre>
+
+<h4>Reblog Chains</h4>
+
+<p>When a post has been reblogged with comments, each comment is its own <code>tb-reblog</code> block inside <code>tb-body</code>. Each block starts with a <code>tb-blog</code> header, built just like <code>tb-header</code>, and the comment goes underneath it. Put them one after another, oldest first, and the workskin draws the thin line between them:</p>
+
+<div class="mob tb theme-auto"><div class="tb-body"><div class="tb-reblog">
+  <p class="tb-blog">
+    <span class="tb-pfp"><span class="pfp"><img src="https://64.media.tumblr.com/a14cfd79a77e6fe95ba16426e1aa5659/188bbfab996df056-f7/s400x600/617010ef3747484faf4ef9b7d1459b72aeeef952.pnj" alt="Profile picture of two-seventyone"></span></span>
+    <span class="tb-menu">&#8226;&#8226;&#8226;</span>
+    <span class="tb-follow"><span>Follow</span></span>
+    <span class="tb-name"><b>two-seventyone
+      <span class="tb-check">&#10003;</span><span class="tb-check">&#10003;</span></b>
+      <span class="tb-subline">6h ago</span></span>
+  </p>
+  <p>wennberg baby at the halloween party...... there will be no drunk wm there will be no wm handsy makeout in the downstairs half bath</p>
+</div>
+<div class="tb-reblog">
+  <p class="tb-blog">
+    <span class="tb-pfp rb colour1">MO</span>
+    <span class="tb-menu">&#8226;&#8226;&#8226;</span>
+    <span class="tb-name"><b>moonywithatrafficcone</b>
+      <span class="tb-subline">5h ago</span></span>
+  </p>
+  <p>remembering when reavo said that will and mack got upset when he put his elementary school aged children to bed before 12am</p>
+</div></div></div>
+
+<pre><code>&lt;div class="tb-reblog"&gt;
+  &lt;p class="tb-blog"&gt;
+    &lt;span class="tb-pfp"&gt;&lt;span class="pfp"&gt;&lt;img src="https://64.media.tumblr.com/a14cfd79a77e6fe95ba16426e1aa5659/188bbfab996df056-f7/s400x600/617010ef3747484faf4ef9b7d1459b72aeeef952.pnj" alt="Profile picture of two-seventyone"&gt;&lt;/span&gt;&lt;/span&gt;
+    &lt;span class="tb-menu"&gt;&amp;#8226;&amp;#8226;&amp;#8226;&lt;/span&gt;
+    &lt;span class="tb-follow"&gt;&lt;span&gt;Follow&lt;/span&gt;&lt;/span&gt;
+    &lt;span class="tb-name"&gt;&lt;b&gt;two-seventyone
+      &lt;span class="tb-check"&gt;&amp;#10003;&lt;/span&gt;&lt;span class="tb-check"&gt;&amp;#10003;&lt;/span&gt;&lt;/b&gt;
+      &lt;span class="tb-subline"&gt;6h ago&lt;/span&gt;&lt;/span&gt;
+  &lt;/p&gt;
+  &lt;p&gt;wennberg baby at the halloween party...... there will be no drunk wm there will be no wm handsy makeout in the downstairs half bath&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="tb-reblog"&gt;
+  &lt;p class="tb-blog"&gt;
+    &lt;span class="tb-pfp rb colour1"&gt;MO&lt;/span&gt;
+    &lt;span class="tb-menu"&gt;&amp;#8226;&amp;#8226;&amp;#8226;&lt;/span&gt;
+    &lt;span class="tb-name"&gt;&lt;b&gt;moonywithatrafficcone&lt;/b&gt;
+      &lt;span class="tb-subline"&gt;5h ago&lt;/span&gt;&lt;/span&gt;
+  &lt;/p&gt;
+  &lt;p&gt;remembering when reavo said that will and mack got upset when he put his elementary school aged children to bed before 12am&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+
+<p>Use the same picture colour for the same blog every time, so the reader can keep track of who's talking.</p>
+
+<h4>Asks</h4>
+
+<p>An ask and its answer are two boxes, one after the other. The question box is <code>tb-ask</code>, and the answer box is <code>tb-ask</code> with <code>tb-answer</code> added. Each one starts with a <code>tb-asker</code> line, with the blog's name in <code>&lt;b&gt;</code> and then "asked:" or "answered:". The small square picture on the right is <code>tb-ask-pfp</code>:</p>
+
+<div class="tb-feed"><div class="mob tb theme-auto"><div class="tb-body"><div class="tb-ask">
+  <p class="tb-asker"><span class="tb-ask-pfp colour3">P</span><span class="hide"> </span><b>perch0leap</b> asked:</p>
+  <p>If you were an animal, what species would it be? Love your pod btw :b</p>
+</div>
+<div class="tb-ask tb-answer">
+  <p class="tb-asker"><span class="tb-ask-pfp colour5">JO</span><span class="hide"> </span><b>jonkspwatsonbloggingitup</b> answered:</p>
+  <p>Uh again I'll say pigeon... I don't really know why, they're just chill!</p>
+  <p>And thank you!</p>
+</div></div></div></div>
+
+<pre><code>&lt;div class="tb-ask"&gt;
+  &lt;p class="tb-asker"&gt;&lt;span class="tb-ask-pfp colour3"&gt;P&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;b&gt;perch0leap&lt;/b&gt; asked:&lt;/p&gt;
+  &lt;p&gt;If you were an animal, what species would it be? Love your pod btw :b&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="tb-ask tb-answer"&gt;
+  &lt;p class="tb-asker"&gt;&lt;span class="tb-ask-pfp colour5"&gt;JO&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;b&gt;jonkspwatsonbloggingitup&lt;/b&gt; answered:&lt;/p&gt;
+  &lt;p&gt;Uh again I'll say pigeon... I don't really know why, they're just chill!&lt;/p&gt;
+  &lt;p&gt;And thank you!&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+
+<p>For an anon ask, leave out the picture and write <code>Anonymous</code> as the name. Both boxes go inside <code>tb-body</code>, and you can put an <code>&lt;img&gt;</code> picture in the answer box after the text.</p>
+
+<h4>Quote Posts</h4>
+
+<p>A quote post is a big line of text in a serif font, with whoever said it underneath. The quotation marks are added for you. Put it in <code>tb-body</code>:</p>
+
+<div class="tb-feed"><div class="mob tb theme-auto"><div class="tb-body"><p class="tb-quote">I go where I want.</p>
+<p class="tb-source">&mdash; Scott Hunter, to a very brave reporter</p></div></div></div>
+
+<pre><code>&lt;p class="tb-quote"&gt;I go where I want.&lt;/p&gt;
+&lt;p class="tb-source"&gt;&amp;mdash; Scott Hunter, to a very brave reporter&lt;/p&gt;</code></pre>
+
+<p><code>tb-quote</code> is the big quoted line, and <code>tb-source</code> is the smaller line with the source.</p>
+
+<h4>Chat Posts</h4>
+
+<p>A chat post is a block of dialogue in a typewriter font. Each line is its own paragraph, with the speaker's name in <code>&lt;b&gt;</code>:</p>
+
+<div class="tb-feed"><div class="mob tb theme-auto"><div class="tb-body"><div class="tb-chat">
+  <p><b>Shane:</b> why are you awake</p>
+  <p><b>Ilya:</b> thinking</p>
+  <p><b>Shane:</b> that's never good</p>
+</div></div></div></div>
+
+<pre><code>&lt;div class="tb-chat"&gt;
+  &lt;p&gt;&lt;b&gt;Shane:&lt;/b&gt; why are you awake&lt;/p&gt;
+  &lt;p&gt;&lt;b&gt;Ilya:&lt;/b&gt; thinking&lt;/p&gt;
+  &lt;p&gt;&lt;b&gt;Shane:&lt;/b&gt; that's never good&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+
+<h4>Notes and Buttons Along the Bottom</h4>
+
+<p>Like the real app, Tumblr shows one note count rather than a count for every button - notes are all the likes, reblogs and replies added together. The bottom row is <code>tb-footer</code>, and it goes after <code>tb-body</code> and the tags. The note count is a <code>tb-notes</code> span with the number in <code>&lt;b&gt;</code>, and it sits in a rounded box on the left. After it come the buttons, each a <code>tb-icon</code> span: save (<code>tb-icon save</code>, a bookmark drawn for you), share, reply, reblog and like, which line up on the right. Leave out any button you don't want:</p>
+
+<div class="mob tb theme-auto"><p class="tb-footer">
+  <span class="tb-notes"><b>171</b> notes</span>
+  <span class="tb-icon save"></span>
+  <span class="tb-icon">&#8679;</span>
+  <span class="tb-icon">&#9993;</span>
+  <span class="tb-icon">&#8644;</span>
+  <span class="tb-icon">&#9825;</span>
+</p></div>
+
+<pre><code>&lt;p class="tb-footer"&gt;
+  &lt;span class="tb-notes"&gt;&lt;b&gt;171&lt;/b&gt; notes&lt;/span&gt;
+  &lt;span class="tb-icon save"&gt;&lt;/span&gt;
+  &lt;span class="tb-icon"&gt;&amp;#8679;&lt;/span&gt;
+  &lt;span class="tb-icon"&gt;&amp;#9993;&lt;/span&gt;
+  &lt;span class="tb-icon"&gt;&amp;#8644;&lt;/span&gt;
+  &lt;span class="tb-icon"&gt;&amp;#9825;&lt;/span&gt;
+&lt;/p&gt;</code></pre>
+
+<h4>The Feed Background</h4>
+
+<p>In the Tumblr app, the white cards sit on a dark navy background (or black in dark mode). To get that, wrap one or more posts in a <code>tb-feed</code>, like the posts on the feed at the top of the chapter, and the cards sit on it with a gap between each one: <code>&lt;div class=&quot;tb-feed&quot;&gt;</code>, then your posts, then <code>&lt;/div&gt;</code>. Add <code>black</code> for the black version: <code>&lt;div class=&quot;tb-feed black&quot;&gt;</code>.</p>
+
+<p>This is completely optional - without it, each post is just a card on its own, like the reblog chain.</p>

@@ -1,0 +1,924 @@
+/* >>>>>>>>>> MODULE: Discord (start) >>>>>>>>>> */
+
+/* ==========================================================
+   MODULE: DISCORD   (classes: dc)
+   Discord (dc). Adapted from "Discord Work Skin & Tutorial" by BookKeep
+   (https://archiveofourown.org/works/42027846). Please credit them in your author's
+   notes if you post with this module.
+   Differences from the original: every rule is scoped under #workskin .dc (the original
+   used .window), and the parts are renamed to match the other apps: every part starts
+   with dc- (dc-message, dc-name, dc-time, dc-text...). Themes: theme-auto (follows the
+   reader's device), theme-dark, theme-light. Add colour1-colour10 to a dc-name for its
+   name and circle colour, or a profile from the CORE for a picture and name colour.
+   Discord doesn't use the mob box: it is its own wide window, but it does use the
+   CORE hidden text and translations.
+   Needs the CORE block.
+   ========================================================== */
+
+#workskin .dc.narrow {
+  width: 380px;
+  max-width: 100%;
+  margin: 1.2em auto;
+}
+
+#workskin .dc {
+  margin: 1.2em 0;
+  position: relative;
+  padding: 0 0 1rem 0;
+  font-family: Whitney, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+  overflow: hidden;
+  vertical-align: baseline;
+  border: 1px solid rgb(54, 57, 63);
+  border-radius: 0.25rem;
+  text-align: left;
+  color: rgb(46, 51, 56);
+  background-color: rgb(255, 255, 255);
+  border-color: rgb(227, 229, 232);
+}
+
+#workskin .dc p,
+#workskin .dc a:not(.tl) {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+#workskin .dc h3 {
+  font-family: "ABC Ginto Normal", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 1.0625rem;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  color: rgb(6, 6, 7);
+}
+
+#workskin .dc .dc-header {
+  z-index: 100;
+  min-width: 0;
+  width: 100%;
+  height: 48px;
+  padding: 0 8px;
+  font-size: 16px;
+  line-height: 20px;
+  display: inline;
+  position: relative;
+}
+
+#workskin .dc .dc-header::before {
+  content: '';
+  background-repeat: no-repeat;
+  background-size: contain;
+  position: absolute;
+  left: 1rem;
+  top: 1rem;
+  height: 1.5rem;
+  width: 1.5rem;
+}
+
+#workskin .dc .dc-header::after {
+  content: "";
+  position: relative;
+  display: block;
+  top: 18px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  box-shadow:
+    rgba(4, 4, 5, 0.2) 0px 1px 0px 0px,
+    rgba(6, 6, 7, 0.05) 0px 1.5px 0px 0px,
+    rgba(4, 4, 5, 0.05) 0px 2px 0px 0px;
+  z-index: 1;
+}
+
+#workskin .dc .dc-header > h3 {
+  padding-left: 3rem !important;
+  padding-right: 3rem !important;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+#workskin .dc .dc-description {
+  display: inline;
+  margin-left: 0.5rem;
+  font-size: 0.875rem;
+  line-height: 1.125rem;
+}
+
+#workskin .dc .dc-header-divider {
+  border-left: 1px solid;
+  display: inline;
+  margin: 0 0.5rem 0 1rem;
+  height: 24px;
+  border-color: rgb(46, 51, 56);
+}
+
+#workskin .dc .dc-input {
+  margin: 1.5rem 1rem 0;
+  padding: 1rem 3.5rem;
+  border-radius: 0.5rem;
+  position: relative;
+  min-height: 1.5rem;
+  background-color: rgb(235, 237, 239);
+}
+
+#workskin .dc .dc-input-text {
+  display: contents;
+  position: absolute;
+  top: 50%;
+  transform: translate(0%, -50%);
+}
+
+#workskin .dc .dc-input-text::before {
+  content: '';
+  background-repeat: no-repeat;
+  background-size: contain;
+  position: absolute;
+  left: 1rem;
+  height: 1.5rem;
+  width: 1.5rem;
+  background-image: url(https://i.imgur.com/JB3HgBA.png);
+}
+
+#workskin .dc .dc-message { min-height: 2.75rem; margin-top: 1.0625rem; padding: 0.125rem 3rem 0.125rem 4.5rem; }
+
+#workskin .dc .dc-name {
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.375rem;
+  white-space: break-spaces;
+  word-wrap: break-word;
+  margin-right: 0.25rem;
+}
+
+/* avatar circle; background-color shows until you add an image */
+#workskin .dc .dc-name::before {
+  content: '';
+  background-color: rgb(88, 101, 242);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  position: absolute;
+  border-radius: 50%;
+  margin-top: 0.125rem;
+  left: 1.25rem;
+  height: 2.5rem;
+  width: 2.5rem;
+}
+
+#workskin .dc .dc-time,
+#workskin .dc .dc-edited {
+  margin-left: 0.25rem;
+  font-size: 0.75rem;
+  line-height: 1.375rem;
+  white-space: nowrap;
+}
+
+#workskin .dc .dc-text {
+  font-size: 1rem;
+  line-height: 1.375rem;
+  white-space: break-spaces;
+  word-wrap: break-word;
+  padding: 0.125rem 0 0.125rem 0;
+}
+
+/* --- colours: add colour1 to colour10 to the dc-name, like <b class="dc-name colour3">Name</b> ---
+   One class colours both the name and the round picture. The circles use the same ten colours as
+   the picture circles in the other apps; the names have their own light and dark shades, so they
+   are easy to read in both. With no colour class, the name is plain and the circle is Discord blue.
+   colour1-colour10 also work on any other text in a message, like a name in a welcome line. */
+#workskin .dc .colour1 { color: #b8651f; }
+
+#workskin .dc .colour2 { color: #5f6368; }
+
+#workskin .dc .colour3 { color: #b03a6f; }
+
+#workskin .dc .colour4 { color: #1f8a72; }
+
+#workskin .dc .colour5 { color: #2f68c8; }
+
+#workskin .dc .colour6 { color: #7b52c4; }
+
+#workskin .dc .colour7 { color: #c0392b; }
+
+#workskin .dc .colour8 { color: #4a8a25; }
+
+#workskin .dc .colour9 { color: #9a7412; }
+
+#workskin .dc .colour10 { color: #1f7fa3; }
+
+#workskin .dc .dc-name.colour1::before { background-color: #b5733a; }
+
+#workskin .dc .dc-name.colour2::before { background-color: #3a3a3c; }
+
+#workskin .dc .dc-name.colour3::before { background-color: #7a2b4e; }
+
+#workskin .dc .dc-name.colour4::before { background-color: #2f7d6b; }
+
+#workskin .dc .dc-name.colour5::before { background-color: #3b5ea8; }
+
+#workskin .dc .dc-name.colour6::before { background-color: #6b4fa0; }
+
+#workskin .dc .dc-name.colour7::before { background-color: #a8383b; }
+
+#workskin .dc .dc-name.colour8::before { background-color: #4e7a2c; }
+
+#workskin .dc .dc-name.colour9::before { background-color: #8c6d1f; }
+
+#workskin .dc .dc-name.colour10::before { background-color: #2a7390; }
+
+/* --- profile pictures, the same way as every other module ---
+   Put a dc-pfp span first inside the username, with a profile or a picture tag in it:
+   <b class="dc-name pfp-shane"><span class="dc-pfp"><span class="pfp pfp-shane"></span></span>Shane</b>
+   It sits exactly where the coloured circle is, in messages and in replies. */
+#workskin .dc .dc-pfp {
+  display: inline-block; /* inline, like the plain circle, so Firefox keeps it level with the name */
+  position: absolute;
+  left: 1.25rem;
+  margin-top: 0.125rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+#workskin .dc .dc-reply .dc-pfp {
+  left: -1.25rem;
+  margin-top: 0.3125rem;
+  width: 1rem;
+  height: 1rem;
+}
+
+#workskin .dc .dc-name:has(.dc-pfp)::before { content: none; }
+
+#workskin .dc .dc-image { border-radius: 0.1875rem; max-width: 360px; width: 100%; }
+
+#workskin .dc .dc-emoji {
+  width: 3rem;
+  height: 3rem;
+  min-height: 3rem;
+  padding-right: 0.25rem;
+}
+
+#workskin .dc .dc-inline-emoji {
+  width: 1.375rem;
+  height: 1.375rem;
+  min-height: 1.375rem;
+  vertical-align: middle;
+  display: inline;
+}
+
+#workskin .dc .dc-reaction {
+  display: inline-block;
+  vertical-align: middle;
+  padding: 0.125rem 0.375rem;
+  border-radius: 0.5rem;
+  box-sizing: border-box;
+  margin-right: 0.25rem;
+  margin-bottom: 0.25rem;
+  border: 1px solid transparent;
+  height: 1.625rem;
+}
+
+#workskin .dc .dc-reaction-count {
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 1.25rem;
+  font-size: 0.875rem;
+  min-width: 0.5625rem;
+  padding-left: 0.375rem;
+}
+
+#workskin .dc .dc-reply { margin-bottom: 0.25rem; line-height: 1.125rem; position: relative; }
+
+#workskin .dc .dc-reply .dc-name {
+  position: relative;
+  left: 1.25rem;
+  font-size: 0.875rem;
+  line-height: 1.125rem;
+  height: 1.125rem;
+}
+
+#workskin .dc .dc-reply .dc-name::before {
+  content: '';
+  background-repeat: no-repeat;
+  background-size: contain;
+  position: absolute;
+  left: -1.25rem;
+  border-radius: 50%;
+  margin-right: 0.25rem;
+  margin-top: 0.3125rem;
+  height: 1rem;
+  width: 1rem;
+}
+
+#workskin .dc .dc-reply .dc-text {
+  position: relative;
+  left: 1rem;
+  font-size: 0.875rem;
+  height: 1.125rem;
+  padding: 0;
+  line-height: 1.125rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: inline-block;
+  max-width: 80%;
+  transform: translate(0%, 25%);
+}
+
+/* the curved line linking a reply to its parent */
+#workskin .dc .dc-reply::before {
+  content: '';
+  display: block;
+  position: absolute;
+  box-sizing: border-box;
+  top: 0.625rem;
+  right: 100%;
+  bottom: 0;
+  left: -2.25rem;
+  margin: -0.0625rem 0.25rem -0.125rem -0.0625rem;
+  border-style: solid;
+  border-width: 0.125rem 0 0 0.125rem;
+  border-top-left-radius: 0.375rem;
+  border-color: rgb(199, 204, 209);
+}
+
+#workskin .dc .dc-embed {
+  display: block;
+  margin: 0.25rem 0;
+  padding: 0.5rem 1rem 1rem 0.75rem;
+  border-left: 0.25rem solid rgb(255, 0, 0);
+  border-radius: 0.25rem;
+  max-width: 432px;
+}
+
+#workskin .dc .dc-embed-title { margin-top: 0.5rem; font-weight: 600; }
+
+#workskin .dc .dc-embed-text { margin-top: 0.5rem; font-size: 0.875rem; }
+
+#workskin .dc .dc-embed-image { margin-top: 1rem; border-radius: 0.25rem; max-width: 100%; }
+
+#workskin .dc .dc-quote { display: table; }
+
+#workskin .dc .dc-quote-line {
+  display: table-cell;
+  width: 0.25rem;
+  border-radius: 0.25rem;
+  background-color: rgb(199, 204, 209);
+}
+
+#workskin .dc .dc-quote-text {
+  display: table-cell;
+  padding: 0 0.5rem 0 0.75rem;
+  box-sizing: border-box;
+  text-indent: 0;
+}
+
+#workskin .dc .dc-code {
+  font-family:
+    Consolas,
+    "Andale Mono WT",
+    "Andale Mono",
+    "Lucida Console",
+    "Lucida Sans Typewriter",
+    "DejaVu Sans Mono",
+    "Bitstream Vera Sans Mono",
+    "Liberation Mono",
+    "Nimbus Mono L",
+    Monaco,
+    "Courier New",
+    Courier,
+    monospace;
+  padding: 0.2em;
+  margin: -0.2em 0;
+  border-radius: 0.1875rem;
+  font-size: 0.85rem !important;
+  text-indent: 0;
+  border: none;
+  white-space: pre-wrap;
+}
+
+#workskin .dc .dc-spoiler-text {
+  border-radius: 0.1875rem;
+  display: inline-block;
+  cursor: pointer;
+  color: rgb(185, 187, 190);
+  background-color: rgb(185, 187, 190);
+  transition: all 0s 2147483647s;
+}
+
+#workskin .dc .dc-spoiler {
+  display: inline-block;
+  position: relative;
+  border-radius: 3px;
+  background-color: rgba(185, 187, 190, 0.95);
+}
+
+#workskin .dc .dc-spoiler > img {
+  opacity: 0;
+  position: relative;
+  vertical-align: bottom;
+  z-index: 10;
+  background-color: rgb(255, 255, 255);
+  transition: all 0s 2147483647s;
+}
+
+#workskin .dc .dc-spoiler:before {
+  content: 'SPOILER';
+  font-size: 0.9375rem;
+  font-weight: 600;
+  z-index: 5;
+  padding: 0.5rem 0.75rem;
+  border-radius: 1.25rem;
+  letter-spacing: .5px;
+  color: rgb(220, 221, 222);
+  background-color: rgba(0, 0, 0, 0.6);
+  position: absolute;
+  top: 50%;
+  right: 50%;
+  transform: translate(50%, -50%);
+  cursor: pointer;
+}
+
+#workskin .dc .dc-mention {
+  border-radius: 3px;
+  padding: 0 2px;
+  color: rgb(80, 92, 220);
+  background-color: rgba(88, 101, 242, 0.15);
+}
+
+/* role mention: copy this rule and rename for more roles */
+#workskin .dc .dc-role-mention {
+  color: rgb(166, 135, 245);
+  background-color: rgba(166, 135, 245, 0.1);
+  border-radius: 3px;
+  padding: 0 2px;
+}
+
+#workskin .dc .dc-divider {
+  z-index: 1;
+  height: 0;
+  border-top: thin solid rgba(79, 84, 92, 0.48);
+  position: relative;
+  box-sizing: border-box;
+  margin: 1.5rem 0.875rem 0.5rem 1rem;
+}
+
+#workskin .dc .dc-divider-label {
+  padding: 0.125rem 0.25rem;
+  line-height: 0.8125rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: 0.5rem;
+  display: block;
+  position: absolute;
+  right: 50%;
+  top: 50%;
+  transform: translate(50%, -50%);
+  z-index: 5;
+  background-color: rgb(255, 255, 255);
+}
+
+#workskin .dc .dc-new-divider {
+  z-index: 1;
+  height: 0;
+  position: relative;
+  border-top-width: thin;
+  border-top-style: solid;
+  margin: 0.5rem 0.875rem 0.5rem 1rem;
+  border-top-color: rgb(216, 60, 62);
+}
+
+#workskin .dc .dc-new-tag {
+  padding: 0 0.25rem 0 0.25rem;
+  line-height: 0.75rem;
+  height: 0.75rem;
+  font-size: 0.625rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  border-radius: 0.1rem 0.25rem 0.25rem 0.1rem;
+  display: block;
+  position: absolute;
+  right: 0.875rem;
+  top: 50%;
+  transform: translate(50%, -50%);
+  z-index: 5;
+  background-color: rgb(216, 60, 62);
+  color: rgb(255, 255, 255);
+}
+
+#workskin .dc .dc-new-tag::before {
+  content: '';
+  left: -0.3rem;
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-top: 0.375rem solid;
+  border-bottom: 0.375rem solid;
+  border-right: 0.5rem solid;
+  border-right-color: rgb(216, 60, 62);
+  border-top-color: rgb(255, 255, 255);
+  border-bottom-color: rgb(255, 255, 255);
+}
+
+#workskin .dc .dc-new-user::before {
+  content: '';
+  background-image: url(https://i.imgur.com/AATotHy.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  position: absolute;
+  border-radius: 50%;
+  margin-top: 0.125rem;
+  left: 2rem;
+  height: 1rem;
+  width: 1rem;
+}
+
+#workskin .dc .dc-bot { position: relative; margin-right: 3rem; }
+
+#workskin .dc .dc-bot::before {
+  content: '\00a0\00a0\00a0\00a0 BOT';
+  color: rgb(255, 255, 255);
+  background-color: rgb(88, 101, 242);
+  background-image: url(https://i.imgur.com/3Ox94zk.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  position: absolute;
+  padding: 0 0.25rem;
+  border-radius: 0.1875rem;
+  font-size: 0.625rem;
+  line-height: 1rem;
+  height: 1rem;
+  width: 2rem;
+  top: 50%;
+  transform: translate(0%, -50%);
+}
+
+#workskin .dc .dc-typing { margin: 0 1.5rem; }
+
+#workskin .dc .typing-indicator {
+  width: auto;
+  border-radius: 1em;
+  padding-right: 0.75em;
+  display: inline;
+  position: relative;
+  overflow: hidden;
+  text-align: left;
+  clear: both;
+}
+
+#workskin .dc .typing-indicator span {
+  height: .65rem;
+  width: .65rem;
+  float: left;
+  margin: .425rem 0 .425rem 0.1rem;
+  display: inline-block;
+  border-radius: 50%;
+  background-color: rgb(46, 51, 56);
+}
+
+#workskin .dc .typing-indicator span:nth-child(1) { opacity: 0.4; transform: scale(0.6, 0.6); }
+
+#workskin .dc .typing-indicator span:nth-child(2) { opacity: 0.6; transform: scale(0.8, 0.8); }
+
+#workskin .dc .typing-indicator span:nth-child(3) { opacity: 0.9; transform: scale(1, 1); }
+
+#workskin .dc .dc-typing-text { font-size: 0.875rem; }
+
+#workskin .dc .dc-code,
+#workskin .dc .dc-embed {
+  background-color: rgb(242, 243, 245);
+}
+
+#workskin .dc .dc-time, #workskin .dc .dc-edited, #workskin .dc .dc-divider-label { color: rgb(94, 103, 114); }
+
+#workskin .dc a:not(.tl),
+#workskin .dc .dc-link,
+#workskin .dc .fake-link {
+  color: rgb(0, 104, 224);
+}
+
+#workskin .dc .dc-reply,
+#workskin .dc .dc-description {
+  color: rgb(79, 86, 96);
+}
+
+#workskin .dc .dc-reaction:not(.me) {
+  background-color: rgb(242, 243, 245);
+  border-color: transparent;
+  color: rgb(79, 86, 96);
+}
+
+#workskin .dc .dc-reaction.me {
+  background-color: rgb(231, 233, 253);
+  border-color: rgb(88, 101, 242);
+  color: rgb(71, 82, 196);
+}
+
+#workskin .dc .dc-message:has(.dc-mention.me) {
+  background-color: rgba(250, 168, 26, 0.1);
+  border-left: 2px solid rgb(170, 114, 18);
+}
+
+#workskin .dc .dc-new-divider .dc-divider-label { color: rgb(216, 60, 62); }
+
+#workskin .dc .hashtag::before { background-image: url(https://i.imgur.com/XbvXZWD.png); }
+
+#workskin .dc .locked::before { background-image: url(https://i.imgur.com/MwjtrTT.png); }
+
+#workskin .dc .at-symbol::before { background-image: url(https://i.imgur.com/0w9EkYY.png); }
+
+#workskin .dc .dc-spoiler-text:active {
+  color: rgb(46, 51, 56);
+  background-color: rgb(229, 229, 229);
+  transition: all 0.1s;
+}
+
+#workskin .dc .dc-spoiler:active > img { opacity: 1; z-index: 10; transition: all 0.1s; }
+
+/* ---------- Discord: Links ---------- */
+
+#workskin .dc a:not(.tl):hover { color: rgb(0, 104, 224); text-decoration: underline; }
+
+/* ---------- Discord: Scrolling ---------- */
+
+#workskin .dc { max-height: 640px; overflow-y: auto; overflow-x: hidden; }
+
+#workskin .dc.no-scroll {
+  max-height: none;
+  overflow-y: visible;
+}
+
+#workskin .dc::-webkit-scrollbar {
+  width: 6px;
+}
+
+#workskin .dc::-webkit-scrollbar-thumb {
+  background: rgba(128, 128, 128, 0.5);
+  border-radius: 6px;
+}
+
+/* ---------- Discord: Dark theme (theme-dark) ---------- */
+
+#workskin .dc.theme-dark {
+  color: rgb(220, 221, 222);
+  background-color: rgb(54, 57, 63);
+  border-color: rgb(54, 57, 63);
+}
+
+#workskin .dc.theme-dark h3 { color: rgb(255, 255, 255); }
+
+#workskin .dc.theme-dark .dc-header-divider { border-color: rgb(220, 221, 222); }
+
+#workskin .dc.theme-dark .dc-code,
+#workskin .dc.theme-dark .dc-embed {
+  background-color: rgb(47, 49, 54);
+}
+
+#workskin .dc.theme-dark .dc-time, #workskin .dc.theme-dark .dc-edited, #workskin .dc.theme-dark .dc-divider-label { color: rgb(163, 166, 170); }
+
+#workskin .dc.theme-dark .dc-divider-label { background-color: rgb(54, 57, 63); }
+
+#workskin .dc.theme-dark .dc-quote-line { background-color: rgb(79, 84, 92); }
+
+#workskin .dc.theme-dark a:not(.tl),
+#workskin .dc.theme-dark .dc-link,
+#workskin .dc.theme-dark .fake-link {
+  color: rgb(0, 175, 244);
+}
+
+#workskin .dc.theme-dark a:not(.tl):hover { color: rgb(0, 175, 244); text-decoration: underline; }
+
+#workskin .dc.theme-dark .dc-reply,
+#workskin .dc.theme-dark .dc-description {
+  color: rgb(185, 187, 190);
+}
+
+#workskin .dc.theme-dark .dc-reply::before { border-color: rgb(79, 84, 92); }
+
+#workskin .dc.theme-dark .dc-reaction:not(.me) {
+  background-color: rgb(47, 49, 54);
+  border-color: transparent;
+  color: rgb(185, 187, 190);
+}
+
+#workskin .dc.theme-dark .dc-reaction.me {
+  background-color: rgb(59, 64, 90);
+  border-color: rgb(88, 101, 242);
+  color: rgb(222, 224, 252);
+}
+
+#workskin .dc.theme-dark .dc-mention { color: rgb(222, 224, 252); background-color: rgba(88, 101, 242, 0.3); }
+
+/* message where the POV character is @mentioned */
+#workskin .dc.theme-dark .dc-message:has(.dc-mention.me) {
+  background-color: rgba(250, 168, 26, 0.1);
+  border-left: 2px solid rgb(250, 168, 26);
+}
+
+#workskin .dc.theme-dark .dc-new-divider { border-top-color: rgb(237, 66, 67); }
+
+#workskin .dc.theme-dark .dc-new-divider .dc-divider-label { color: rgb(237, 66, 67); }
+
+#workskin .dc.theme-dark .dc-new-tag { background-color: rgb(237, 66, 67); color: rgb(255, 255, 255); }
+
+#workskin .dc.theme-dark .dc-new-tag::before {
+  border-right-color: rgb(237, 66, 67);
+  border-top-color: rgb(54, 57, 63);
+  border-bottom-color: rgb(54, 57, 63);
+}
+
+#workskin .dc.theme-dark .colour1 { color: #f0a25c; }
+
+#workskin .dc.theme-dark .colour2 { color: #aeb3b8; }
+
+#workskin .dc.theme-dark .colour3 { color: #ff7aa2; }
+
+#workskin .dc.theme-dark .colour4 { color: #06cf9c; }
+
+#workskin .dc.theme-dark .colour5 { color: #6fa3ff; }
+
+#workskin .dc.theme-dark .colour6 { color: #c4a3ff; }
+
+#workskin .dc.theme-dark .colour7 { color: #ff7b72; }
+
+#workskin .dc.theme-dark .colour8 { color: #8fd16a; }
+
+#workskin .dc.theme-dark .colour9 { color: #e6c35c; }
+
+#workskin .dc.theme-dark .colour10 { color: #53bdeb; }
+
+#workskin .dc.theme-dark .dc-name.colour2::before { background-color: #5c5c60; }
+
+#workskin .dc.theme-dark .typing-indicator span { background-color: rgb(220, 221, 222); }
+
+#workskin .dc.theme-dark .dc-input { background-color: rgb(64, 68, 75); }
+
+#workskin .dc.theme-dark .hashtag::before { background-image: url(https://i.imgur.com/y0r7k71.png); }
+
+#workskin .dc.theme-dark .locked::before { background-image: url(https://i.imgur.com/TUuqT0R.png); }
+
+#workskin .dc.theme-dark .at-symbol::before { background-image: url(https://i.imgur.com/Pd0cDve.png); }
+
+#workskin .dc.theme-dark .dc-input-text::before { background-image: url(https://i.imgur.com/LjARlpe.png); }
+
+/* spoilers, dark: hidden until clicked and held */
+#workskin .dc.theme-dark .dc-spoiler-text {
+  color: rgb(32, 34, 37);
+  background-color: rgb(32, 34, 37);
+  transition: all 0s 2147483647s;
+}
+
+#workskin .dc.theme-dark .dc-spoiler-text:active {
+  color: rgb(220, 221, 222);
+  background-color: rgb(74, 77, 83);
+  transition: all 0.1s;
+}
+
+#workskin .dc.theme-dark .dc-spoiler { background-color: rgba(10, 10, 10, 0.95); }
+
+#workskin .dc.theme-dark .dc-spoiler > img {
+  opacity: 0;
+  z-index: 10;
+  background-color: rgb(54, 57, 63);
+  transition: all 0s 2147483647s;
+}
+
+#workskin .dc.theme-dark .dc-spoiler:active > img { opacity: 1; z-index: 10; transition: all 0.1s; }
+
+/* ---------- Discord: Auto theme (theme-auto): light, switching to dark when the reader's device is in dark mode ---------- */
+
+@media (prefers-color-scheme: dark) {
+  #workskin .dc.theme-auto {
+      color: rgb(220, 221, 222);
+      background-color: rgb(54, 57, 63);
+      border-color: rgb(54, 57, 63);
+    }
+
+  #workskin .dc.theme-auto h3 { color: rgb(255, 255, 255); }
+
+  #workskin .dc.theme-auto .dc-header-divider { border-color: rgb(220, 221, 222); }
+
+  #workskin .dc.theme-auto .dc-code,
+    #workskin .dc.theme-auto .dc-embed {
+      background-color: rgb(47, 49, 54);
+    }
+
+  #workskin .dc.theme-auto .dc-time, #workskin .dc.theme-auto .dc-edited, #workskin .dc.theme-auto .dc-divider-label { color: rgb(163, 166, 170); }
+
+  #workskin .dc.theme-auto .dc-divider-label { background-color: rgb(54, 57, 63); }
+
+  #workskin .dc.theme-auto .dc-quote-line { background-color: rgb(79, 84, 92); }
+
+  #workskin .dc.theme-auto a:not(.tl),
+    #workskin .dc.theme-auto .dc-link,
+    #workskin .dc.theme-auto .fake-link {
+      color: rgb(0, 175, 244);
+    }
+
+  #workskin .dc.theme-auto a:not(.tl):hover { color: rgb(0, 175, 244); text-decoration: underline; }
+
+  #workskin .dc.theme-auto .dc-reply,
+    #workskin .dc.theme-auto .dc-description {
+      color: rgb(185, 187, 190);
+    }
+
+  #workskin .dc.theme-auto .dc-reply::before { border-color: rgb(79, 84, 92); }
+
+  #workskin .dc.theme-auto .dc-reaction:not(.me) {
+      background-color: rgb(47, 49, 54);
+      border-color: transparent;
+      color: rgb(185, 187, 190);
+    }
+
+  #workskin .dc.theme-auto .dc-reaction.me {
+      background-color: rgb(59, 64, 90);
+      border-color: rgb(88, 101, 242);
+      color: rgb(222, 224, 252);
+    }
+
+  #workskin .dc.theme-auto .dc-mention { color: rgb(222, 224, 252); background-color: rgba(88, 101, 242, 0.3); }
+
+  /* message where the POV character is @mentioned */
+  #workskin .dc.theme-auto .dc-message:has(.dc-mention.me) {
+      background-color: rgba(250, 168, 26, 0.1);
+      border-left: 2px solid rgb(250, 168, 26);
+    }
+
+  #workskin .dc.theme-auto .dc-new-divider { border-top-color: rgb(237, 66, 67); }
+
+  #workskin .dc.theme-auto .dc-new-divider .dc-divider-label { color: rgb(237, 66, 67); }
+
+  #workskin .dc.theme-auto .dc-new-tag { background-color: rgb(237, 66, 67); color: rgb(255, 255, 255); }
+
+  #workskin .dc.theme-auto .dc-new-tag::before {
+      border-right-color: rgb(237, 66, 67);
+      border-top-color: rgb(54, 57, 63);
+      border-bottom-color: rgb(54, 57, 63);
+    }
+
+  #workskin .dc.theme-auto .colour1 { color: #f0a25c; }
+
+  #workskin .dc.theme-auto .colour2 { color: #aeb3b8; }
+
+  #workskin .dc.theme-auto .colour3 { color: #ff7aa2; }
+
+  #workskin .dc.theme-auto .colour4 { color: #06cf9c; }
+
+  #workskin .dc.theme-auto .colour5 { color: #6fa3ff; }
+
+  #workskin .dc.theme-auto .colour6 { color: #c4a3ff; }
+
+  #workskin .dc.theme-auto .colour7 { color: #ff7b72; }
+
+  #workskin .dc.theme-auto .colour8 { color: #8fd16a; }
+
+  #workskin .dc.theme-auto .colour9 { color: #e6c35c; }
+
+  #workskin .dc.theme-auto .colour10 { color: #53bdeb; }
+
+  #workskin .dc.theme-auto .dc-name.colour2::before { background-color: #5c5c60; }
+
+  #workskin .dc.theme-auto .typing-indicator span { background-color: rgb(220, 221, 222); }
+
+  #workskin .dc.theme-auto .dc-input { background-color: rgb(64, 68, 75); }
+
+  #workskin .dc.theme-auto .hashtag::before { background-image: url(https://i.imgur.com/y0r7k71.png); }
+
+  #workskin .dc.theme-auto .locked::before { background-image: url(https://i.imgur.com/TUuqT0R.png); }
+
+  #workskin .dc.theme-auto .at-symbol::before { background-image: url(https://i.imgur.com/Pd0cDve.png); }
+
+  #workskin .dc.theme-auto .dc-input-text::before { background-image: url(https://i.imgur.com/LjARlpe.png); }
+
+  /* spoilers, dark: hidden until clicked and held */
+  #workskin .dc.theme-auto .dc-spoiler-text {
+      color: rgb(32, 34, 37);
+      background-color: rgb(32, 34, 37);
+      transition: all 0s 2147483647s;
+    }
+
+  #workskin .dc.theme-auto .dc-spoiler-text:active {
+      color: rgb(220, 221, 222);
+      background-color: rgb(74, 77, 83);
+      transition: all 0.1s;
+    }
+
+  #workskin .dc.theme-auto .dc-spoiler { background-color: rgba(10, 10, 10, 0.95); }
+
+  #workskin .dc.theme-auto .dc-spoiler > img {
+      opacity: 0;
+      z-index: 10;
+      background-color: rgb(54, 57, 63);
+      transition: all 0s 2147483647s;
+    }
+
+  #workskin .dc.theme-auto .dc-spoiler:active > img { opacity: 1; z-index: 10; transition: all 0.1s; }
+}
+
+/* <<<<<<<<<< MODULE: Discord (end) <<<<<<<<<< */
