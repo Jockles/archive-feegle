@@ -29,6 +29,7 @@ CHAPTERS = [
     ("whatsapp", "WhatsApp"),
     ("whatsapp-css", "WhatsApp CSS"),
     ("twitter-x", "Twitter/X"),
+    ("twitter-x-css", "Twitter/X CSS"),
     ("instagram", "Instagram"),
     ("tumblr", "Tumblr"),
     ("email", "Email"),
