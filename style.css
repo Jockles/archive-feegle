@@ -19,6 +19,44 @@
   --rule: #dddddd;
 }
 
+/* Dark mode. It follows the reader's device setting until they use the
+   toggle in the header, which sets data-theme on <html> (see theme.js). */
+:root { color-scheme: light; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --header: #0a4651;
+    --header-dark: #052a31;
+    --header-text: #f2fbf8;
+    --page: #121b1d;
+    --ink: #e2ebe8;
+    --muted: #a6b6b2;
+    --link: #6fd0c6;
+    --visited: #8fd3a6;
+    --hover: #a8f5c4;
+    --box-edge: #3b4c4f;
+    --box-fill: #1a2629;
+    --tag-fill: #1e3832;
+    --rule: #2f3d40;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --header: #0a4651;
+  --header-dark: #052a31;
+  --header-text: #f2fbf8;
+  --page: #121b1d;
+  --ink: #e2ebe8;
+  --muted: #a6b6b2;
+  --link: #6fd0c6;
+  --visited: #8fd3a6;
+  --hover: #a8f5c4;
+  --box-edge: #3b4c4f;
+  --box-fill: #1a2629;
+  --tag-fill: #1e3832;
+  --rule: #2f3d40;
+  color-scheme: dark;
+}
+
 body {
   margin: 0;
   background: var(--page);
@@ -34,6 +72,7 @@ a:hover, a:focus { color: var(--hover); }
 
 /* Header band */
 header {
+  position: relative;
   background: var(--header);
   color: var(--header-text);
   padding: 14px 20px;
@@ -47,6 +86,22 @@ header h1 {
 }
 header h1 a, header h1 a:visited { color: var(--header-text); text-decoration: none; }
 header p { margin: 2px 0 0; font-size: 0.9em; opacity: 0.85; }
+
+/* Light / dark mode button, added to the header by theme.js */
+.theme-toggle {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  font: inherit;
+  font-size: 0.8em;
+  padding: 4px 10px;
+  color: var(--header-text);
+  background: transparent;
+  border: 1px solid var(--header-text);
+  border-radius: 3px;
+  cursor: pointer;
+}
+.theme-toggle:hover, .theme-toggle:focus-visible { background: var(--header-dark); }
 
 /* Menu bar */
 nav {
@@ -156,6 +211,7 @@ footer {
 @media (max-width: 600px) {
   header { padding: 12px 16px; }
   header h1 { font-size: 1.6em; }
+  .theme-toggle { top: 12px; right: 12px; }
   nav a { padding: 8px 9px; }
   .work-meta { grid-template-columns: 1fr; }
   .work-meta dt { text-align: left; }
