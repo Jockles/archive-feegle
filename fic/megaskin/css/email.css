@@ -1,0 +1,354 @@
+/* >>>>>>>>>> MODULE: Email (Gmail and generic email window) (start) >>>>>>>>>> */
+
+/* ==========================================================
+   MODULE: EMAIL (GMAIL AND GENERIC EMAIL WINDOW)   (classes: gm, mail)
+   Gmail emails (gm): subject line, one block per email in the thread, reply buttons.
+   The header rows are real <table>s, which AO3 handles reliably.
+   Generic email window (mail): a plain email program window with a title bar, From/To/Subject
+   fields, a body, and a Reply / Forward / Delete bar.
+   Needs the CORE block.
+   ========================================================== */
+
+#workskin .gm {
+  background: #ffffff;
+  color: #202124;
+  border: 1px solid #dadce0;
+  border-radius: 14px;
+  font-family: Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+#workskin .gm table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  margin: 0;
+}
+
+#workskin .gm td {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  vertical-align: top;
+}
+
+/* subject line: title, label chip and star */
+#workskin .gm .gm-title { padding: 0.8em 0.4em 0.4em 0.9em; font-size: 1.35em; line-height: 1.25; }
+
+#workskin .gm .gm-label {
+  display: inline-block;
+  margin-left: 0.4em;
+  padding: 0.1em 0.5em;
+  border-radius: 4px;
+  background: #e8eaed;
+  color: #5f6368;
+  font-size: 0.55em;
+  vertical-align: middle;
+}
+
+#workskin .gm .gm-star {
+  width: 38px;
+  padding-top: 1em;
+  text-align: center;
+  color: #5f6368;
+  font-size: 1.2em;
+}
+
+/* one email */
+#workskin .gm .gm-msg { padding: 0.7em 0.9em 0.6em 0.9em; border-top: 1px solid #e8eaed; }
+
+#workskin .gm .gm-pfp-cell { width: 46px; }
+
+/* initials by default; colour1-colour10 are the colours (change them below if you like), or put a picture
+   or a profile inside it with a pfp span */
+#workskin .gm .gm-pfp {
+  display: block;
+  width: 36px;
+  height: 36px;
+  line-height: 36px;
+  text-align: center;
+  border-radius: 50%;
+  background-color: #5f6368;
+  background-size: cover;
+  background-position: center;
+  color: #ffffff;
+  font-size: 0.85em;
+  font-weight: bold;
+}
+
+#workskin .gm .gm-pfp.colour1 { background-color: #b5733a; }
+
+#workskin .gm .gm-pfp.colour2 { background-color: #3a3a3c; }
+
+#workskin .gm .gm-pfp.colour3 { background-color: #7a2b4e; }
+
+#workskin .gm .gm-pfp.colour4 { background-color: #2f7d6b; }
+
+#workskin .gm .gm-pfp.colour5 { background-color: #3b5ea8; }
+
+#workskin .gm .gm-pfp.colour6 { background-color: #6b4fa0; }
+
+#workskin .gm .gm-pfp.colour7 { background-color: #a8383b; }
+
+#workskin .gm .gm-pfp.colour8 { background-color: #4e7a2c; }
+
+#workskin .gm .gm-pfp.colour9 { background-color: #8c6d1f; }
+
+#workskin .gm .gm-pfp.colour10 { background-color: #2a7390; }
+
+#workskin .gm .gm-from { font-weight: bold; line-height: 1.3; padding-top: 1px; }
+
+#workskin .gm .gm-address { font-weight: normal; color: #5f6368; font-size: 0.82em; }
+
+#workskin .gm .gm-date {
+  width: 1%;
+  white-space: nowrap;
+  padding-top: 3px;
+  text-align: right;
+  color: #5f6368;
+  font-size: 0.75em;
+  line-height: 1.3;
+}
+
+#workskin .gm .gm-to { color: #5f6368; font-size: 0.82em; line-height: 1.3; }
+
+#workskin .gm .gm-tools {
+  text-align: right;
+  color: #5f6368;
+  letter-spacing: 0.3em;
+  white-space: nowrap;
+}
+
+#workskin .gm .gm-body { display: block; padding: 0.6em 0 0.4em 0; line-height: 1.5; }
+
+#workskin .gm .gm-body p { margin: 0.5em 0; }
+
+/* Reply / Reply all / Forward buttons */
+#workskin .gm .gm-footer { display: block; padding: 0.7em 0.9em 0.9em 0.9em; border-top: 1px solid #e8eaed; }
+
+#workskin .gm table.gm-actions {
+  border-collapse: separate;
+  border-spacing: 0.4em 0;
+  margin: 0 -0.4em;
+  width: 100%;
+}
+
+#workskin .gm table.gm-actions td {
+  border: 1px solid #dadce0;
+  border-radius: 18px;
+  padding: 0.55em 0.2em;
+  text-align: center;
+  color: #5f6368;
+  font-size: 0.9em;
+}
+
+#workskin .mail {
+  border: 1px solid #cfcfcf;
+  background: #ffffff;
+  color: #000000;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* title bar: put the window controls first, so they sit at the right */
+#workskin .mail .mail-titlebar {
+  display: block;
+  overflow: hidden;
+  margin: 0;
+  padding: 0.3em 0.7em;
+  background: #404040;
+  color: #ffffff;
+  font-weight: bold;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+#workskin .mail .mail-titlebar span {
+  float: right;
+  margin-left: 0.8em;
+  color: #cfcfcf;
+  letter-spacing: 0.4em;
+}
+
+/* From: / To: / Cc: / Subject: lines. Use <br> to put To and Cc in one box */
+#workskin .mail .mail-field {
+  display: block;
+  margin: 0;
+  padding: 0.3em 0.7em;
+  border-bottom: 1px solid #e3e3e3;
+  background: #ffffff;
+  color: #000000;
+}
+
+#workskin .mail .mail-field b {
+  display: inline-block;
+  min-width: 4.2em;
+  color: #666666;
+  font-weight: bold;
+}
+
+#workskin .mail .mail-body p { margin: 0.6em 0; }
+
+/* a signature line: <p class="mail-signature">name, job title</p> */
+#workskin .mail .mail-signature {
+  margin-top: 1.2em;
+  padding-top: 0.5em;
+  border-top: 1px solid #e3e3e3;
+  color: #666666;
+  font-size: 0.9em;
+}
+
+/* attachments: <span class="mail-attachment doc">name.doc (9 KB)</span>  (doc, img, or nothing for a paperclip) */
+#workskin .mail .mail-attachment {
+  display: inline-block;
+  margin: 0.15em 0.2em 0.15em 0;
+  padding: 0.15em 0.5em;
+  border: 1px solid #cfcfcf;
+  border-radius: 3px;
+  background: #ffffff;
+  color: #0b57d0;
+  text-decoration: underline;
+}
+
+#workskin .mail .mail-attachment::before { content: "\1F4CE"; margin-right: 0.3em; }
+
+#workskin .mail .mail-attachment.doc::before { content: "\1F5BA"; }
+
+#workskin .mail .mail-attachment.img::before { content: "\1F5BC"; }
+
+/* the button bar at the bottom */
+#workskin .mail .mail-buttons {
+  display: block;
+  margin: 0;
+  padding: 0.4em 0.7em;
+  border-top: 1px solid #cfcfcf;
+  background: #f5f5f5;
+  color: #000000;
+}
+
+#workskin .mail .mail-buttons span { display: inline-block; margin-right: 0.9em; }
+
+/* ---------- Email: Links ---------- */
+
+#workskin .gm .fake-link, #workskin .gm a:not(.tl) { color: #1a0dab; }
+
+#workskin .mail .fake-link, #workskin .mail a:not(.tl) { color: #0b57d0; }
+
+/* ---------- Email: Scrolling ---------- */
+
+/* the message itself */
+#workskin .mail .mail-body {
+  display: block;
+  max-height: 480px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 0.5em 0.7em;
+  background: #ffffff;
+  color: #000000;
+}
+
+#workskin .gm {
+  max-height: 700px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+#workskin .gm::-webkit-scrollbar {
+  width: 6px;
+}
+
+#workskin .gm::-webkit-scrollbar-thumb {
+  background: rgba(128, 128, 128, 0.5);
+  border-radius: 6px;
+}
+
+/* ---------- Email: Dark theme (theme-dark) ---------- */
+
+#workskin .gm.theme-dark .fake-link, #workskin .gm.theme-dark a:not(.tl) { color: #8ab4f8; }
+
+#workskin .mail.theme-dark .fake-link, #workskin .mail.theme-dark a:not(.tl) { color: #8ab4f8; }
+
+#workskin .mail.theme-dark { border-color: #3c4043; background: #202124; color: #e8eaed; }
+
+#workskin .mail.theme-dark .mail-titlebar { background: #131314; color: #e8eaed; }
+
+#workskin .mail.theme-dark .mail-titlebar span { color: #9aa0a6; }
+
+#workskin .mail.theme-dark .mail-field { background: #202124; color: #e8eaed; border-bottom-color: #3c4043; }
+
+#workskin .mail.theme-dark .mail-field b { color: #9aa0a6; }
+
+#workskin .mail.theme-dark .mail-body { background: #202124; color: #e8eaed; }
+
+#workskin .mail.theme-dark .mail-signature { border-top-color: #3c4043; color: #9aa0a6; }
+
+#workskin .mail.theme-dark .mail-attachment { background: #2a2b2e; border-color: #3c4043; color: #8ab4f8; }
+
+#workskin .mail.theme-dark .mail-buttons { background: #2a2b2e; border-top-color: #3c4043; color: #e8eaed; }
+
+#workskin .gm.theme-dark { background: #202124; color: #e8eaed; border-color: #3c4043; }
+
+#workskin .gm.theme-dark .gm-label { background: #3c4043; color: #bdc1c6; }
+
+#workskin .gm.theme-dark .gm-star,
+#workskin .gm.theme-dark .gm-address,
+#workskin .gm.theme-dark .gm-date,
+#workskin .gm.theme-dark .gm-to,
+#workskin .gm.theme-dark .gm-tools {
+  color: #9aa0a6;
+}
+
+#workskin .gm.theme-dark .gm-msg,
+#workskin .gm.theme-dark .gm-footer {
+  border-top-color: #3c4043;
+}
+
+#workskin .gm.theme-dark table.gm-actions td { border-color: #5f6368; color: #bdc1c6; }
+
+/* ---------- Email: Auto theme (theme-auto): light, switching to dark when the reader's device is in dark mode ---------- */
+
+@media (prefers-color-scheme: dark) {
+  #workskin .gm.theme-auto .fake-link, #workskin .gm.theme-auto a:not(.tl) { color: #8ab4f8; }
+
+  #workskin .mail.theme-auto .fake-link, #workskin .mail.theme-auto a:not(.tl) { color: #8ab4f8; }
+
+  #workskin .mail.theme-auto { border-color: #3c4043; background: #202124; color: #e8eaed; }
+
+  #workskin .mail.theme-auto .mail-titlebar { background: #131314; color: #e8eaed; }
+
+  #workskin .mail.theme-auto .mail-titlebar span { color: #9aa0a6; }
+
+  #workskin .mail.theme-auto .mail-field { background: #202124; color: #e8eaed; border-bottom-color: #3c4043; }
+
+  #workskin .mail.theme-auto .mail-field b { color: #9aa0a6; }
+
+  #workskin .mail.theme-auto .mail-body { background: #202124; color: #e8eaed; }
+
+  #workskin .mail.theme-auto .mail-signature { border-top-color: #3c4043; color: #9aa0a6; }
+
+  #workskin .mail.theme-auto .mail-attachment { background: #2a2b2e; border-color: #3c4043; color: #8ab4f8; }
+
+  #workskin .mail.theme-auto .mail-buttons { background: #2a2b2e; border-top-color: #3c4043; color: #e8eaed; }
+
+  #workskin .gm.theme-auto { background: #202124; color: #e8eaed; border-color: #3c4043; }
+
+  #workskin .gm.theme-auto .gm-label { background: #3c4043; color: #bdc1c6; }
+
+  #workskin .gm.theme-auto .gm-star,
+    #workskin .gm.theme-auto .gm-address,
+    #workskin .gm.theme-auto .gm-date,
+    #workskin .gm.theme-auto .gm-to,
+    #workskin .gm.theme-auto .gm-tools {
+      color: #9aa0a6;
+    }
+
+  #workskin .gm.theme-auto .gm-msg,
+    #workskin .gm.theme-auto .gm-footer {
+      border-top-color: #3c4043;
+    }
+
+  #workskin .gm.theme-auto table.gm-actions td { border-color: #5f6368; color: #bdc1c6; }
+}
+
+/* <<<<<<<<<< MODULE: Email (Gmail and generic email window) (end) <<<<<<<<<< */

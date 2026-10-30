@@ -1,0 +1,1150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Megaskin, Chapter 6: WhatsApp | jockles.com</title>
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="stylesheet" href="megaskin.css" id="creator-style">
+</head>
+<body>
+<header>
+  <h1><a href="../../index.html">jockles.com</a></h1>
+  <p>fic, videos and fannish things</p>
+</header>
+<nav>
+  <ul>
+    <li><a href="../../index.html">Home</a></li>
+    <li><a href="../index.html">Fic</a></li>
+    <li><a href="../../videos/index.html">Videos</a></li>
+    <li><a href="../../blog/index.html">Blog</a></li>
+    <li><a href="../../links.html">Links</a></li>
+    <li><a href="../../about.html">About</a></li>
+  </ul>
+</nav>
+<main>
+      <!-- This page is made by tools/build-megaskin.py. Edit the chapter text in text/whatsapp.html instead. -->
+      <p class="work-title"><a href="index.html">Megaskin</a> by Jockles</p>
+      <p class="style-toggle"><button type="button" id="style-toggle">Hide Creator's Style</button></p>
+      <p class="chapter-nav"><a href="imessage-css.html">&larr; Previous Chapter</a> &middot; <a href="index.html">Chapter Index</a> &middot; <a href="twitter-x.html">Next Chapter &rarr;</a></p>
+
+      <div class="fic">
+        <h3 class="chapter-title">Chapter 6: WhatsApp</h3>
+        <div id="workskin">
+<h3>WhatsApp</h3>
+
+<p>The WhatsApp module is built on a few existing AO3 skins, which are credited in full in Credits and sources at the end of the first chapter.</p>
+
+<p>Before we begin, here's the two kinds of chat you can build: a chat between two people, or a group chat. The full HTML is underneath each, which you can copy and modify yourself. The rest of the chapter takes the HTML apart so that you can modify all the individual parts to say exactly what you want.</p>
+
+<h4>A One-to-One Chat</h4>
+
+<div class="mob wa theme-auto">
+  <p class="mob-head">Lily<span class="hide"> - </span><span>online</span></p>
+  <div class="mob-body">
+    <p class="mob-sys">YESTERDAY</p>
+    <div class="msg in tail">
+      <p><span class="hide"><em>Lily:</em> </span>are you still up?</p>
+      <p class="wa-time">23:41</p>
+    </div>
+    <div class="msg out tail">
+      <p><span class="hide"><em>Shane:</em> </span>unfortunately</p>
+      <p class="wa-time">23:42 <span class="wa-read">✓✓</span></p>
+    </div>
+    <div class="msg out">
+      <p><span class="hide"><em>Shane:</em> </span>can't stop thinking about tomorrow</p>
+      <p class="wa-time">23:42 <span class="wa-read">✓✓</span></p>
+    </div>
+    <div class="msg in tail">
+      <p><span class="hide"><em>Lily:</em> </span>you'll be great. you always are</p>
+      <p class="wa-time">23:43</p>
+    </div>
+    <p class="wa-reacts"><span class="hide">[Reactions: </span>❤️<span class="hide">]</span></p>
+    <p class="mob-sys">TODAY</p>
+    <div class="msg out tail">
+      <p><span class="hide"><em>Shane:</em> </span>it's done. I'm alive</p>
+      <p class="wa-time">14:05 <span class="wa-read">✓✓</span></p>
+    </div>
+    <div class="msg in tail">
+      <p><span class="hide"><em>Lily:</em> </span>TELL ME EVERYTHING</p>
+      <p class="wa-time">14:05</p>
+    </div>
+    <div class="msg out tail">
+      <p class="wa-quote"><span class="hide">[Replying to </span><b>Lily</b><span class="hide">:</span><br>TELL ME EVERYTHING<span class="hide">]</span></p>
+      <p><span class="hide"><em>Shane:</em> </span>after snacks. I'm starving</p>
+      <p class="wa-time">14:06 <span class="wa-read">✓✓</span></p>
+    </div>
+    <div class="msg in tail">
+      <p class="wa-quote colour8"><span class="hide">[Replying to </span><b>You</b><span class="hide">:</span><br>it's done. I'm alive<span class="hide">]</span></p>
+      <p><span class="hide"><em>Lily:</em> </span>so proud of you</p>
+      <p class="wa-time">14:07</p>
+    </div>
+    <div class="msg in share"><p class="hide"><em>Lily:</em></p>
+      <div class="wa-link">
+        <p class="wa-link-img"><img src="https://64.media.tumblr.com/c3c4ecb5bfed8fa9f0590c54206ddb30/cff2318529321620-44/s1280x1920/42befcc40a517e1f202dda40783be2ffb95c1d92.pnj" alt="Macklin Celebrini at the IHF Worlds, dressed in his red jersey and black helmet. He's surrounded by sparkles, a red vignette, and hearts containing the Canadian flag"></p>
+        <p class="wa-link-title">Captain Mack</p>
+        <p class="wa-link-desc">All the reasons Mack deserves the C</p>
+        <p class="wa-link-url">fakehockeynews.com</p>
+      </div>
+      <p class="wa-time">14:12</p>
+    </div>
+    <div class="msg in share"><p class="hide"><em>Lily:</em></p>
+      <div class="wa-link">
+        <div class="wa-link-img video"><iframe src="https://player.vimeo.com/video/1169167060?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" title="Ilya Rozanov | Come Home"></iframe><p class="vid-desc">[Video: a tribute edit of Ilya Rozanov, made from Heated Rivalry footage and set to "Would You Come Home" by Tyler Blackburn]</p></div>
+        <p class="wa-link-title">Ilya Rozanov | Come Home</p>
+        <p class="wa-link-url">vimeo.com</p>
+      </div>
+      <p class="wa-caption">also someone made me a fan video. I am very handsome in it</p>
+      <p class="wa-time">14:13</p>
+    </div>
+    <div class="msg out tail">
+      <p class="wa-big"><span class="hide"><em>Shane:</em> </span>🙄</p>
+      <p class="wa-time">14:15 <span class="wa-read">✓✓</span></p>
+    </div>
+    <div class="msg out share"><p class="hide"><em>Shane:</em></p>
+      <p><span class="wa-ln">https://recipes.example.com/pierogi</span></p>
+      <div class="wa-link">
+        <p class="wa-link-img text">[The page's picture: a plate of golden fried pierogi with sour cream]</p>
+        <p class="wa-link-title">Pierogi from Scratch</p>
+        <p class="wa-link-desc">Easier than you think</p>
+        <p class="wa-link-url">recipes.example.com</p>
+      </div>
+      <p class="wa-time">14:20 <span class="wa-read">✓✓</span></p>
+    </div>
+    <div class="msg out">
+      <p><span class="hide"><em>Shane:</em> </span>making these tonight if you're coming over</p>
+      <p class="wa-time">14:20 <span class="wa-read">✓✓</span></p>
+    </div>
+    <div class="msg out gallery"><p class="hide"><em>Shane:</em></p>
+      <p class="wa-photos two">
+        <span class="wa-photo"><img class="land" src="https://64.media.tumblr.com/a99a60f0293cf7df3604b4a6dd4705f6/ba033a52c8982cb0-cc/s1280x1920/cb4c277845d0c3ef666d16b86b75509266b795b3.jpg" alt="Black and white cat holding out a paw daintily, on a beige and green cat tree. The cat looks to be stepping into the frame from the left"></span>
+        <span class="wa-photo"><img src="https://64.media.tumblr.com/45b3b47d7c42b593f6242a40153a629c/ba033a52c8982cb0-d7/s2048x3072/4e71b117e87747d78dd3d95595cecc77eec48d38.jpg" alt="Black and white cat sitting in an opened red suitcase, carry on size, on the floor behind a white door, and on a red patterned rug"></span>
+      </p>
+      <p class="wa-time">14:22 <span class="wa-read">✓✓</span></p>
+    </div>
+    <p class="wa-reacts out"><span class="hide">[Reactions: </span>😍<span class="hide">]</span></p>
+    <div class="msg in tail gallery"><p class="hide"><em>Lily:</em></p>
+      <p class="wa-photos one"><span class="wa-photo"><img src="https://64.media.tumblr.com/6898dc3a42cc6c7ab9729360b71366e4/ba033a52c8982cb0-bf/s2048x3072/b548d2fe61b02e530c0edd2ee6a6bd56ab73ad2c.jpg" alt="Black and white cat screaming at the camera, on a red patterned rug"></span></p>
+      <p class="wa-caption">she says she wants pierogi too</p>
+      <p class="wa-time">14:24</p>
+    </div>
+    <p class="typing">Lily is typing...</p>
+  </div>
+  <p class="wa-input">
+    <span class="wa-field">
+      <span>&#9786;</span>
+      <span class="wa-ph">Message</span>
+      <span class="wa-ic">&#128206;</span>
+      <span class="wa-ic">&#128247;</span>
+    </span>
+    <span class="wa-mic">&#127908;</span>
+  </p>
+</div>
+
+<details>
+<summary>The full HTML for this chat</summary>
+
+<pre><code>&lt;div class="mob wa theme-auto"&gt;
+  &lt;p class="mob-head"&gt;Lily&lt;span class="hide"&gt; - &lt;/span&gt;&lt;span&gt;online&lt;/span&gt;&lt;/p&gt;
+  &lt;div class="mob-body"&gt;
+    &lt;p class="mob-sys"&gt;YESTERDAY&lt;/p&gt;
+    &lt;div class="msg in tail"&gt;
+      &lt;p&gt;&lt;span class="hide"&gt;&lt;em&gt;Lily:&lt;/em&gt; &lt;/span&gt;are you still up?&lt;/p&gt;
+      &lt;p class="wa-time"&gt;23:41&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class="msg out tail"&gt;
+      &lt;p&gt;&lt;span class="hide"&gt;&lt;em&gt;Shane:&lt;/em&gt; &lt;/span&gt;unfortunately&lt;/p&gt;
+      &lt;p class="wa-time"&gt;23:42 &lt;span class="wa-read"&gt;✓✓&lt;/span&gt;&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class="msg out"&gt;
+      &lt;p&gt;&lt;span class="hide"&gt;&lt;em&gt;Shane:&lt;/em&gt; &lt;/span&gt;can't stop thinking about tomorrow&lt;/p&gt;
+      &lt;p class="wa-time"&gt;23:42 &lt;span class="wa-read"&gt;✓✓&lt;/span&gt;&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class="msg in tail"&gt;
+      &lt;p&gt;&lt;span class="hide"&gt;&lt;em&gt;Lily:&lt;/em&gt; &lt;/span&gt;you'll be great. you always are&lt;/p&gt;
+      &lt;p class="wa-time"&gt;23:43&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;p class="wa-reacts"&gt;&lt;span class="hide"&gt;[Reactions: &lt;/span&gt;❤️&lt;span class="hide"&gt;]&lt;/span&gt;&lt;/p&gt;
+    &lt;p class="mob-sys"&gt;TODAY&lt;/p&gt;
+    &lt;div class="msg out tail"&gt;
+      &lt;p&gt;&lt;span class="hide"&gt;&lt;em&gt;Shane:&lt;/em&gt; &lt;/span&gt;it's done. I'm alive&lt;/p&gt;
+      &lt;p class="wa-time"&gt;14:05 &lt;span class="wa-read"&gt;✓✓&lt;/span&gt;&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class="msg in tail"&gt;
+      &lt;p&gt;&lt;span class="hide"&gt;&lt;em&gt;Lily:&lt;/em&gt; &lt;/span&gt;TELL ME EVERYTHING&lt;/p&gt;
+      &lt;p class="wa-time"&gt;14:05&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class="msg out tail"&gt;
+      &lt;p class="wa-quote"&gt;&lt;span class="hide"&gt;[Replying to &lt;/span&gt;&lt;b&gt;Lily&lt;/b&gt;&lt;span class="hide"&gt;:&lt;/span&gt;&lt;br&gt;TELL ME EVERYTHING&lt;span class="hide"&gt;]&lt;/span&gt;&lt;/p&gt;
+      &lt;p&gt;&lt;span class="hide"&gt;&lt;em&gt;Shane:&lt;/em&gt; &lt;/span&gt;after snacks. I'm starving&lt;/p&gt;
+      &lt;p class="wa-time"&gt;14:06 &lt;span class="wa-read"&gt;✓✓&lt;/span&gt;&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class="msg in tail"&gt;
+      &lt;p class="wa-quote colour8"&gt;&lt;span class="hide"&gt;[Replying to &lt;/span&gt;&lt;b&gt;You&lt;/b&gt;&lt;span class="hide"&gt;:&lt;/span&gt;&lt;br&gt;it's done. I'm alive&lt;span class="hide"&gt;]&lt;/span&gt;&lt;/p&gt;
+      &lt;p&gt;&lt;span class="hide"&gt;&lt;em&gt;Lily:&lt;/em&gt; &lt;/span&gt;so proud of you&lt;/p&gt;
+      &lt;p class="wa-time"&gt;14:07&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class="msg in share"&gt;&lt;p class="hide"&gt;&lt;em&gt;Lily:&lt;/em&gt;&lt;/p&gt;
+      &lt;div class="wa-link"&gt;
+        &lt;p class="wa-link-img"&gt;&lt;img src="https://64.media.tumblr.com/c3c4ecb5bfed8fa9f0590c54206ddb30/cff2318529321620-44/s1280x1920/42befcc40a517e1f202dda40783be2ffb95c1d92.pnj" alt="Macklin Celebrini at the IHF Worlds, dressed in his red jersey and black helmet. He's surrounded by sparkles, a red vignette, and hearts containing the Canadian flag"&gt;&lt;/p&gt;
+        &lt;p class="wa-link-title"&gt;Captain Mack&lt;/p&gt;
+        &lt;p class="wa-link-desc"&gt;All the reasons Mack deserves the C&lt;/p&gt;
+        &lt;p class="wa-link-url"&gt;fakehockeynews.com&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;p class="wa-time"&gt;14:12&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class="msg in share"&gt;&lt;p class="hide"&gt;&lt;em&gt;Lily:&lt;/em&gt;&lt;/p&gt;
+      &lt;div class="wa-link"&gt;
+        &lt;div class="wa-link-img video"&gt;&lt;iframe src="https://player.vimeo.com/video/1169167060?badge=0&amp;amp;autopause=0&amp;amp;player_id=0&amp;amp;app_id=58479" frameborder="0" title="Ilya Rozanov | Come Home"&gt;&lt;/iframe&gt;&lt;p class="vid-desc"&gt;[Video: a tribute edit of Ilya Rozanov, made from Heated Rivalry footage and set to "Would You Come Home" by Tyler Blackburn]&lt;/p&gt;&lt;/div&gt;
+        &lt;p class="wa-link-title"&gt;Ilya Rozanov | Come Home&lt;/p&gt;
+        &lt;p class="wa-link-url"&gt;vimeo.com&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;p class="wa-caption"&gt;also someone made me a fan video. I am very handsome in it&lt;/p&gt;
+      &lt;p class="wa-time"&gt;14:13&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class="msg out tail"&gt;
+      &lt;p class="wa-big"&gt;&lt;span class="hide"&gt;&lt;em&gt;Shane:&lt;/em&gt; &lt;/span&gt;🙄&lt;/p&gt;
+      &lt;p class="wa-time"&gt;14:15 &lt;span class="wa-read"&gt;✓✓&lt;/span&gt;&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class="msg out share"&gt;&lt;p class="hide"&gt;&lt;em&gt;Shane:&lt;/em&gt;&lt;/p&gt;
+      &lt;p&gt;&lt;span class="wa-ln"&gt;https://recipes.example.com/pierogi&lt;/span&gt;&lt;/p&gt;
+      &lt;div class="wa-link"&gt;
+        &lt;p class="wa-link-img text"&gt;[The page's picture: a plate of golden fried pierogi with sour cream]&lt;/p&gt;
+        &lt;p class="wa-link-title"&gt;Pierogi from Scratch&lt;/p&gt;
+        &lt;p class="wa-link-desc"&gt;Easier than you think&lt;/p&gt;
+        &lt;p class="wa-link-url"&gt;recipes.example.com&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;p class="wa-time"&gt;14:20 &lt;span class="wa-read"&gt;✓✓&lt;/span&gt;&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class="msg out"&gt;
+      &lt;p&gt;&lt;span class="hide"&gt;&lt;em&gt;Shane:&lt;/em&gt; &lt;/span&gt;making these tonight if you're coming over&lt;/p&gt;
+      &lt;p class="wa-time"&gt;14:20 &lt;span class="wa-read"&gt;✓✓&lt;/span&gt;&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class="msg out gallery"&gt;&lt;p class="hide"&gt;&lt;em&gt;Shane:&lt;/em&gt;&lt;/p&gt;
+      &lt;p class="wa-photos two"&gt;
+        &lt;span class="wa-photo"&gt;&lt;img class="land" src="https://64.media.tumblr.com/a99a60f0293cf7df3604b4a6dd4705f6/ba033a52c8982cb0-cc/s1280x1920/cb4c277845d0c3ef666d16b86b75509266b795b3.jpg" alt="Black and white cat holding out a paw daintily, on a beige and green cat tree. The cat looks to be stepping into the frame from the left"&gt;&lt;/span&gt;
+        &lt;span class="wa-photo"&gt;&lt;img src="https://64.media.tumblr.com/45b3b47d7c42b593f6242a40153a629c/ba033a52c8982cb0-d7/s2048x3072/4e71b117e87747d78dd3d95595cecc77eec48d38.jpg" alt="Black and white cat sitting in an opened red suitcase, carry on size, on the floor behind a white door, and on a red patterned rug"&gt;&lt;/span&gt;
+      &lt;/p&gt;
+      &lt;p class="wa-time"&gt;14:22 &lt;span class="wa-read"&gt;✓✓&lt;/span&gt;&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;p class="wa-reacts out"&gt;&lt;span class="hide"&gt;[Reactions: &lt;/span&gt;😍&lt;span class="hide"&gt;]&lt;/span&gt;&lt;/p&gt;
+    &lt;div class="msg in tail gallery"&gt;&lt;p class="hide"&gt;&lt;em&gt;Lily:&lt;/em&gt;&lt;/p&gt;
+      &lt;p class="wa-photos one"&gt;&lt;span class="wa-photo"&gt;&lt;img src="https://64.media.tumblr.com/6898dc3a42cc6c7ab9729360b71366e4/ba033a52c8982cb0-bf/s2048x3072/b548d2fe61b02e530c0edd2ee6a6bd56ab73ad2c.jpg" alt="Black and white cat screaming at the camera, on a red patterned rug"&gt;&lt;/span&gt;&lt;/p&gt;
+      &lt;p class="wa-caption"&gt;she says she wants pierogi too&lt;/p&gt;
+      &lt;p class="wa-time"&gt;14:24&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;p class="typing"&gt;Lily is typing...&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;p class="wa-input"&gt;
+    &lt;span class="wa-field"&gt;
+      &lt;span&gt;&amp;#9786;&lt;/span&gt;
+      &lt;span class="wa-ph"&gt;Message&lt;/span&gt;
+      &lt;span class="wa-ic"&gt;&amp;#128206;&lt;/span&gt;
+      &lt;span class="wa-ic"&gt;&amp;#128247;&lt;/span&gt;
+    &lt;/span&gt;
+    &lt;span class="wa-mic"&gt;&amp;#127908;&lt;/span&gt;
+  &lt;/p&gt;
+&lt;/div&gt;</code></pre>
+
+</details>
+
+<h4>A Group Chat</h4>
+
+<div class="mob wa theme-auto">
+  <table class="wa-bar">
+    <tbody>
+      <tr>
+        <td rowspan="2" class="wa-back">&#8592;</td>
+        <td rowspan="2" class="wa-pfp-cell"><p class="wa-pfp colour5">D</p></td>
+        <td class="wa-title">dinner</td>
+        <td rowspan="2" class="wa-actions">&#127909; &#8942;</td>
+      </tr>
+      <tr>
+        <td class="wa-sub">Rose, Jane, Hayden, You</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="mob-body">
+    <p class="mob-sys">TODAY</p>
+    <p class="mob-sys">Rose changed this group's icon</p>
+    <div class="wa-row">
+      <p class="wa-pfp colour1"><span class="pfp"><img src="https://media.istockphoto.com/id/1298570775/photo/rose.jpg?s=1024x1024&w=is&k=20&c=UFPisYCT3g2Vm04F2E5zrhtUWqDtLRLDXZisKb6Xf5s=" alt="Profile picture of Rose, a close-up photo of a rose"></span></p>
+      <div class="msg in tail">
+        <p class="who colour1">~ Rose<span class="hide"> </span><span class="wa-num">+353 85 123 4567</span><span class="hide">:</span></p>
+        <p>DINNER PARTY. my place, saturday at 7 🥂</p>
+        <p class="wa-time">09:12</p>
+      </div>
+    </div>
+    <div class="wa-row cont">
+      <div class="msg in">
+        <p><span class="hide"><em>~ Rose:</em> </span>I'm doing the lamb!!! everyone has to come</p>
+        <p class="wa-time">09:12</p>
+      </div>
+    </div>
+    <p class="wa-reacts pad"><span class="hide">[Reactions: </span>🎉 <span class="wa-count">2</span><span class="hide">]</span></p>
+    <div class="wa-row">
+      <p class="wa-pfp colour4">HP</p>
+      <div class="msg in tail">
+        <p class="who colour4">Hayden<span class="hide">:</span></p>
+        <p>should I bring the kids?</p>
+        <p class="wa-time">09:13</p>
+      </div>
+    </div>
+    <div class="msg out tail">
+      <p class="wa-quote colour4"><span class="hide">[Replying to </span><b>Hayden</b><span class="hide">:</span><br>should I bring the kids?<span class="hide">]</span></p>
+      <p><span class="hide"><em>Ilya:</em> </span>yes. they are better company than you</p>
+      <p class="wa-time">09:14 <span class="wa-read">✓✓</span></p>
+    </div>
+    <p class="wa-reacts out"><span class="hide">[Reactions: </span>❤️ 😂 <span class="wa-count">3</span><span class="hide">]</span></p>
+    <div class="wa-row">
+      <p class="wa-pfp colour3"><span class="pfp"><img class="land" src="https://www.shutterstock.com/shutterstock/photos/1100283806/display_1500/stock-photo-beautiful-lavender-flower-in-the-dalat-flower-park-selective-focus-1100283806.jpg" alt="Profile picture of Jane, a lavender flower"></span></p>
+      <div class="msg in tail">
+        <p class="who colour3">Jane<span class="hide">:</span></p>
+        <p class="wa-quote colour8"><span class="hide">[Replying to </span><b>You</b><span class="hide">:</span><br>yes. they are better company than you<span class="hide">]</span></p>
+        <p>be nice</p>
+        <p class="wa-time">09:15</p>
+      </div>
+    </div>
+    <div class="msg out tail">
+      <p class="wa-quote colour1"><span class="hide">[Replying to </span><b>~ Rose<span class="hide"> </span><span class="wa-num">+353 85 123 4567</span></b><span class="hide">:</span><br>DINNER PARTY. my place, saturday at 7 🥂<span class="hide">]</span></p>
+      <p><span class="hide"><em>Ilya:</em> </span>what do we bring?</p>
+      <p class="wa-time">09:16 <span class="wa-read">✓✓</span></p>
+    </div>
+    <div class="wa-row">
+      <p class="wa-pfp colour1"><span class="pfp"><img src="https://media.istockphoto.com/id/1298570775/photo/rose.jpg?s=1024x1024&w=is&k=20&c=UFPisYCT3g2Vm04F2E5zrhtUWqDtLRLDXZisKb6Xf5s=" alt="Profile picture of Rose, a close-up photo of a rose"></span></p>
+      <div class="msg in tail gallery">
+        <p class="who colour1">~ Rose<span class="hide"> </span><span class="wa-num">+353 85 123 4567</span><span class="hide">:</span></p>
+        <p class="wa-photos two"><span class="wa-photo"><span class="wa-desc">[Photo of a bottle of red wine with a gold label and a very long French name]</span></span><span class="wa-photo"><span class="wa-desc">[Photo of the same bottle, held up next to Rose's very pleased face]</span></span></p>
+        <p class="wa-time">09:18</p>
+      </div>
+    </div>
+    <div class="wa-row cont">
+      <div class="msg in gallery"><p class="hide"><em>~ Rose:</em></p>
+        <p class="wa-photos four">
+          <span class="wa-photo"><img class="land" src="https://64.media.tumblr.com/694221426fb8229480fb3fb87b528ca7/ba033a52c8982cb0-01/s1280x1920/636653581e07a970475075f480c1717b23a72c0a.jpg" alt="Black and white cat staring through a gap between a screen and a desk, with blurred cables hanging down around and blue sky behind"></span>
+          <span class="wa-photo"><img src="https://64.media.tumblr.com/6898dc3a42cc6c7ab9729360b71366e4/ba033a52c8982cb0-bf/s2048x3072/b548d2fe61b02e530c0edd2ee6a6bd56ab73ad2c.jpg" alt="Black and white cat screaming at the camera, on a red patterned rug"></span>
+          <span class="wa-photo"><img class="land" src="https://64.media.tumblr.com/a99a60f0293cf7df3604b4a6dd4705f6/ba033a52c8982cb0-cc/s1280x1920/cb4c277845d0c3ef666d16b86b75509266b795b3.jpg" alt="Black and white cat holding out a paw daintily, on a beige and green cat tree. The cat looks to be stepping into the frame from the left"></span>
+          <span class="wa-photo"><img src="https://64.media.tumblr.com/45b3b47d7c42b593f6242a40153a629c/ba033a52c8982cb0-d7/s2048x3072/4e71b117e87747d78dd3d95595cecc77eec48d38.jpg" alt="Black and white cat sitting in an opened red suitcase, carry on size, on the floor behind a white door, and on a red patterned rug"></span>
+        </p>
+        <p class="wa-time">09:19</p>
+      </div>
+    </div>
+    <div class="wa-row cont">
+      <div class="msg in">
+        <p><span class="hide"><em>~ Rose:</em> </span>the girls are devastated they're not invited 😿</p>
+        <p class="wa-time">09:19</p>
+      </div>
+    </div>
+    <div class="msg out tail">
+      <p><span class="hide"><em>Ilya:</em> </span>Shane will not drink this. more for me</p>
+      <p class="wa-time">09:20 <span class="wa-read">✓✓</span></p>
+    </div>
+  </div>
+  <p class="wa-input">
+    <span class="wa-field">
+      <span>&#9786;</span>
+      <span class="wa-ph">Message</span>
+      <span class="wa-ic">&#128206;</span>
+      <span class="wa-ic">&#128247;</span>
+    </span>
+    <span class="wa-mic">&#127908;</span>
+  </p>
+</div>
+
+<details>
+<summary>The full HTML for this chat</summary>
+
+<pre><code>&lt;div class="mob wa theme-auto"&gt;
+  &lt;table class="wa-bar"&gt;
+    &lt;tbody&gt;
+      &lt;tr&gt;
+        &lt;td rowspan="2" class="wa-back"&gt;&amp;#8592;&lt;/td&gt;
+        &lt;td rowspan="2" class="wa-pfp-cell"&gt;&lt;p class="wa-pfp colour5"&gt;D&lt;/p&gt;&lt;/td&gt;
+        &lt;td class="wa-title"&gt;dinner&lt;/td&gt;
+        &lt;td rowspan="2" class="wa-actions"&gt;&amp;#127909; &amp;#8942;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td class="wa-sub"&gt;Rose, Jane, Hayden, You&lt;/td&gt;
+      &lt;/tr&gt;
+    &lt;/tbody&gt;
+  &lt;/table&gt;
+  &lt;div class="mob-body"&gt;
+    &lt;p class="mob-sys"&gt;TODAY&lt;/p&gt;
+    &lt;p class="mob-sys"&gt;Rose changed this group's icon&lt;/p&gt;
+    &lt;div class="wa-row"&gt;
+      &lt;p class="wa-pfp colour1"&gt;&lt;span class="pfp"&gt;&lt;img src="https://media.istockphoto.com/id/1298570775/photo/rose.jpg?s=1024x1024&amp;w=is&amp;k=20&amp;c=UFPisYCT3g2Vm04F2E5zrhtUWqDtLRLDXZisKb6Xf5s=" alt="Profile picture of Rose, a close-up photo of a rose"&gt;&lt;/span&gt;&lt;/p&gt;
+      &lt;div class="msg in tail"&gt;
+        &lt;p class="who colour1"&gt;~ Rose&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="wa-num"&gt;+353 85 123 4567&lt;/span&gt;&lt;span class="hide"&gt;:&lt;/span&gt;&lt;/p&gt;
+        &lt;p&gt;DINNER PARTY. my place, saturday at 7 🥂&lt;/p&gt;
+        &lt;p class="wa-time"&gt;09:12&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="wa-row cont"&gt;
+      &lt;div class="msg in"&gt;
+        &lt;p&gt;&lt;span class="hide"&gt;&lt;em&gt;~ Rose:&lt;/em&gt; &lt;/span&gt;I'm doing the lamb!!! everyone has to come&lt;/p&gt;
+        &lt;p class="wa-time"&gt;09:12&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;p class="wa-reacts pad"&gt;&lt;span class="hide"&gt;[Reactions: &lt;/span&gt;🎉 &lt;span class="wa-count"&gt;2&lt;/span&gt;&lt;span class="hide"&gt;]&lt;/span&gt;&lt;/p&gt;
+    &lt;div class="wa-row"&gt;
+      &lt;p class="wa-pfp colour4"&gt;HP&lt;/p&gt;
+      &lt;div class="msg in tail"&gt;
+        &lt;p class="who colour4"&gt;Hayden&lt;span class="hide"&gt;:&lt;/span&gt;&lt;/p&gt;
+        &lt;p&gt;should I bring the kids?&lt;/p&gt;
+        &lt;p class="wa-time"&gt;09:13&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="msg out tail"&gt;
+      &lt;p class="wa-quote colour4"&gt;&lt;span class="hide"&gt;[Replying to &lt;/span&gt;&lt;b&gt;Hayden&lt;/b&gt;&lt;span class="hide"&gt;:&lt;/span&gt;&lt;br&gt;should I bring the kids?&lt;span class="hide"&gt;]&lt;/span&gt;&lt;/p&gt;
+      &lt;p&gt;&lt;span class="hide"&gt;&lt;em&gt;Ilya:&lt;/em&gt; &lt;/span&gt;yes. they are better company than you&lt;/p&gt;
+      &lt;p class="wa-time"&gt;09:14 &lt;span class="wa-read"&gt;✓✓&lt;/span&gt;&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;p class="wa-reacts out"&gt;&lt;span class="hide"&gt;[Reactions: &lt;/span&gt;❤️ 😂 &lt;span class="wa-count"&gt;3&lt;/span&gt;&lt;span class="hide"&gt;]&lt;/span&gt;&lt;/p&gt;
+    &lt;div class="wa-row"&gt;
+      &lt;p class="wa-pfp colour3"&gt;&lt;span class="pfp"&gt;&lt;img class="land" src="https://www.shutterstock.com/shutterstock/photos/1100283806/display_1500/stock-photo-beautiful-lavender-flower-in-the-dalat-flower-park-selective-focus-1100283806.jpg" alt="Profile picture of Jane, a lavender flower"&gt;&lt;/span&gt;&lt;/p&gt;
+      &lt;div class="msg in tail"&gt;
+        &lt;p class="who colour3"&gt;Jane&lt;span class="hide"&gt;:&lt;/span&gt;&lt;/p&gt;
+        &lt;p class="wa-quote colour8"&gt;&lt;span class="hide"&gt;[Replying to &lt;/span&gt;&lt;b&gt;You&lt;/b&gt;&lt;span class="hide"&gt;:&lt;/span&gt;&lt;br&gt;yes. they are better company than you&lt;span class="hide"&gt;]&lt;/span&gt;&lt;/p&gt;
+        &lt;p&gt;be nice&lt;/p&gt;
+        &lt;p class="wa-time"&gt;09:15&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="msg out tail"&gt;
+      &lt;p class="wa-quote colour1"&gt;&lt;span class="hide"&gt;[Replying to &lt;/span&gt;&lt;b&gt;~ Rose&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="wa-num"&gt;+353 85 123 4567&lt;/span&gt;&lt;/b&gt;&lt;span class="hide"&gt;:&lt;/span&gt;&lt;br&gt;DINNER PARTY. my place, saturday at 7 🥂&lt;span class="hide"&gt;]&lt;/span&gt;&lt;/p&gt;
+      &lt;p&gt;&lt;span class="hide"&gt;&lt;em&gt;Ilya:&lt;/em&gt; &lt;/span&gt;what do we bring?&lt;/p&gt;
+      &lt;p class="wa-time"&gt;09:16 &lt;span class="wa-read"&gt;✓✓&lt;/span&gt;&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class="wa-row"&gt;
+      &lt;p class="wa-pfp colour1"&gt;&lt;span class="pfp"&gt;&lt;img src="https://media.istockphoto.com/id/1298570775/photo/rose.jpg?s=1024x1024&amp;w=is&amp;k=20&amp;c=UFPisYCT3g2Vm04F2E5zrhtUWqDtLRLDXZisKb6Xf5s=" alt="Profile picture of Rose, a close-up photo of a rose"&gt;&lt;/span&gt;&lt;/p&gt;
+      &lt;div class="msg in tail gallery"&gt;
+        &lt;p class="who colour1"&gt;~ Rose&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="wa-num"&gt;+353 85 123 4567&lt;/span&gt;&lt;span class="hide"&gt;:&lt;/span&gt;&lt;/p&gt;
+        &lt;p class="wa-photos two"&gt;&lt;span class="wa-photo"&gt;&lt;span class="wa-desc"&gt;[Photo of a bottle of red wine with a gold label and a very long French name]&lt;/span&gt;&lt;/span&gt;&lt;span class="wa-photo"&gt;&lt;span class="wa-desc"&gt;[Photo of the same bottle, held up next to Rose's very pleased face]&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+        &lt;p class="wa-time"&gt;09:18&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="wa-row cont"&gt;
+      &lt;div class="msg in gallery"&gt;&lt;p class="hide"&gt;&lt;em&gt;~ Rose:&lt;/em&gt;&lt;/p&gt;
+        &lt;p class="wa-photos four"&gt;
+          &lt;span class="wa-photo"&gt;&lt;img class="land" src="https://64.media.tumblr.com/694221426fb8229480fb3fb87b528ca7/ba033a52c8982cb0-01/s1280x1920/636653581e07a970475075f480c1717b23a72c0a.jpg" alt="Black and white cat staring through a gap between a screen and a desk, with blurred cables hanging down around and blue sky behind"&gt;&lt;/span&gt;
+          &lt;span class="wa-photo"&gt;&lt;img src="https://64.media.tumblr.com/6898dc3a42cc6c7ab9729360b71366e4/ba033a52c8982cb0-bf/s2048x3072/b548d2fe61b02e530c0edd2ee6a6bd56ab73ad2c.jpg" alt="Black and white cat screaming at the camera, on a red patterned rug"&gt;&lt;/span&gt;
+          &lt;span class="wa-photo"&gt;&lt;img class="land" src="https://64.media.tumblr.com/a99a60f0293cf7df3604b4a6dd4705f6/ba033a52c8982cb0-cc/s1280x1920/cb4c277845d0c3ef666d16b86b75509266b795b3.jpg" alt="Black and white cat holding out a paw daintily, on a beige and green cat tree. The cat looks to be stepping into the frame from the left"&gt;&lt;/span&gt;
+          &lt;span class="wa-photo"&gt;&lt;img src="https://64.media.tumblr.com/45b3b47d7c42b593f6242a40153a629c/ba033a52c8982cb0-d7/s2048x3072/4e71b117e87747d78dd3d95595cecc77eec48d38.jpg" alt="Black and white cat sitting in an opened red suitcase, carry on size, on the floor behind a white door, and on a red patterned rug"&gt;&lt;/span&gt;
+        &lt;/p&gt;
+        &lt;p class="wa-time"&gt;09:19&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="wa-row cont"&gt;
+      &lt;div class="msg in"&gt;
+        &lt;p&gt;&lt;span class="hide"&gt;&lt;em&gt;~ Rose:&lt;/em&gt; &lt;/span&gt;the girls are devastated they're not invited 😿&lt;/p&gt;
+        &lt;p class="wa-time"&gt;09:19&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="msg out tail"&gt;
+      &lt;p&gt;&lt;span class="hide"&gt;&lt;em&gt;Ilya:&lt;/em&gt; &lt;/span&gt;Shane will not drink this. more for me&lt;/p&gt;
+      &lt;p class="wa-time"&gt;09:20 &lt;span class="wa-read"&gt;✓✓&lt;/span&gt;&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;p class="wa-input"&gt;
+    &lt;span class="wa-field"&gt;
+      &lt;span&gt;&amp;#9786;&lt;/span&gt;
+      &lt;span class="wa-ph"&gt;Message&lt;/span&gt;
+      &lt;span class="wa-ic"&gt;&amp;#128206;&lt;/span&gt;
+      &lt;span class="wa-ic"&gt;&amp;#128247;&lt;/span&gt;
+    &lt;/span&gt;
+    &lt;span class="wa-mic"&gt;&amp;#127908;&lt;/span&gt;
+  &lt;/p&gt;
+&lt;/div&gt;</code></pre>
+
+</details>
+
+<h4>WhatsApp Window</h4>
+
+<p>A WhatsApp chat has the same three parts as iMessage - a container, a header and a body. The only difference is the module class, <code>wa</code>, so the container is <code>&lt;div class=&quot;mob wa theme-auto&quot;&gt;</code> and everything else goes inside it. First comes the header, with the contact's name:</p>
+
+<div class="mob wa theme-auto"><p class="mob-head">Lily<span class="hide"> - </span><span>online</span></p></div>
+
+<pre><code>&lt;p class="mob-head"&gt;Lily&lt;span class="hide"&gt; - &lt;/span&gt;&lt;span&gt;online&lt;/span&gt;&lt;/p&gt;</code></pre>
+
+<p>The header is the green bar. The span underneath is the status line, like "online", "last seen today at 9:41" or "typing...", or the list of people in a group. After the header comes <code>&lt;div class=&quot;mob-body&quot;&gt;</code>, which holds all of the messages. There's a fancier header with a picture and icons too, which is in the group chat - see Group Header with Picture and Icons, further down.</p>
+
+<h4>Simple Messages</h4>
+
+<p>WhatsApp bubbles hold more than one line of text - each one can have a time, ticks and a quoted reply in it. So instead of a single <code>&lt;p&gt;</code>, each message is a <code>&lt;div&gt;</code> with paragraphs inside:</p>
+
+<div class="mob wa theme-auto"><div class="mob-body"><div class="msg in tail">
+  <p><span class="hide"><em>Lily:</em> </span>are you still up?</p>
+  <p class="wa-time">23:41</p>
+</div></div></div>
+
+<pre><code>&lt;div class="msg in tail"&gt;
+  &lt;p&gt;&lt;span class="hide"&gt;&lt;em&gt;Lily:&lt;/em&gt; &lt;/span&gt;are you still up?&lt;/p&gt;
+  &lt;p class="wa-time"&gt;23:41&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+
+<p>Same as iMessage, <code>msg in</code> is a white bubble on the left and <code>msg out</code> is a green bubble on the right. The first paragraph is the message itself, and <code>wa-time</code> is the little grey time in the bottom right of the bubble. <code>tail</code> is optional - it adds the little pointy corner to the bubble, and it's meant for the first bubble in a run from one person.</p>
+
+<details>
+<summary>Each part of a message, piece by piece</summary>
+
+<ul>
+  <li><code>&lt;div class=&quot;msg in tail&quot;&gt;</code> - the bubble, with everything inside it.</li>
+  <li><code>&lt;span class=&quot;hide&quot;&gt;&lt;em&gt;Lily:&lt;/em&gt; &lt;/span&gt;</code> - <strong>only for readers with the workskin off.</strong> It goes at the start of the first paragraph, straight before the message. With the workskin on, the colour and side of the bubble show who's talking. With it off, they don't - and in a one-to-one chat there's no name shown anywhere else - so this label is how those readers know who sent it.</li>
+  <li><code>are you still up?</code> - the message itself.</li>
+  <li><code>&lt;p class=&quot;wa-time&quot;&gt;23:41&lt;/p&gt;</code> - the time, which shows either way.</li>
+</ul>
+
+<p>With the workskin off, this reads:</p>
+
+<blockquote>
+  <p><em>Lily:</em> are you still up?</p>
+  <p>23:41</p>
+</blockquote>
+
+<p>Swap the name for whoever is talking. There's more on this in Accessibility, in the Core, Themes, and Extras chapter.</p>
+
+</details>
+
+<h4>Date Pills</h4>
+
+<p>The little grey pill with the date on it uses the same <code>mob-sys</code> line as iMessage - in WhatsApp, the workskin turns it into a pill for you:</p>
+
+<div class="mob wa theme-auto"><div class="mob-body"><p class="mob-sys">YESTERDAY</p></div></div>
+
+<pre><code>&lt;p class="mob-sys"&gt;YESTERDAY&lt;/p&gt;</code></pre>
+
+<h4>Read Ticks</h4>
+
+<p>To show that a message has been read, add a double tick after the time and wrap it in <code>wa-read</code>:</p>
+
+<div class="mob wa theme-auto"><div class="mob-body"><div class="msg out tail">
+  <p><span class="hide"><em>Shane:</em> </span>unfortunately</p>
+  <p class="wa-time">23:42 <span class="wa-read">✓✓</span></p>
+</div></div></div>
+
+<pre><code>&lt;div class="msg out tail"&gt;
+  &lt;p&gt;&lt;span class="hide"&gt;&lt;em&gt;Shane:&lt;/em&gt; &lt;/span&gt;unfortunately&lt;/p&gt;
+  &lt;p class="wa-time"&gt;23:42 &lt;span class="wa-read"&gt;✓✓&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+
+<p>The ticks turn blue. For a message that hasn't been read yet, leave off the <code>wa-read</code> span and type the ticks as plain text, and they stay grey. One tick means the message was sent but hasn't reached the other person's phone, two grey ticks mean it got there but hasn't been read, and two blue ticks mean it's been read. Here are all three side by side:</p>
+
+<div class="mob wa theme-auto">
+  <p class="mob-head">Mom<span class="hide"> - </span><span>last seen today at 10:01</span></p>
+  <div class="mob-body">
+    <div class="msg out">
+      <p><span class="hide"><em>Shane:</em> </span>Sent, but not delivered yet</p>
+      <p class="wa-time">10:03 ✓</p>
+    </div>
+    <div class="msg out">
+      <p><span class="hide"><em>Shane:</em> </span>Delivered, but unread</p>
+      <p class="wa-time">10:03 ✓✓</p>
+    </div>
+    <div class="msg out">
+      <p><span class="hide"><em>Shane:</em> </span>Read</p>
+      <p class="wa-time">10:03 <span class="wa-read">✓✓</span></p>
+    </div>
+  </div>
+</div>
+
+<p><em>The HTML for the three versions:</em></p>
+
+<pre><code>&lt;div class="mob wa theme-auto"&gt;
+  &lt;p class="mob-head"&gt;Mom&lt;span class="hide"&gt; - &lt;/span&gt;&lt;span&gt;last seen today at 10:01&lt;/span&gt;&lt;/p&gt;
+  &lt;div class="mob-body"&gt;
+    &lt;div class="msg out"&gt;
+      &lt;p&gt;&lt;span class="hide"&gt;&lt;em&gt;Shane:&lt;/em&gt; &lt;/span&gt;Sent, but not delivered yet&lt;/p&gt;
+      &lt;p class="wa-time"&gt;10:03 ✓&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class="msg out"&gt;
+      &lt;p&gt;&lt;span class="hide"&gt;&lt;em&gt;Shane:&lt;/em&gt; &lt;/span&gt;Delivered, but unread&lt;/p&gt;
+      &lt;p class="wa-time"&gt;10:03 ✓✓&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class="msg out"&gt;
+      &lt;p&gt;&lt;span class="hide"&gt;&lt;em&gt;Shane:&lt;/em&gt; &lt;/span&gt;Read&lt;/p&gt;
+      &lt;p class="wa-time"&gt;10:03 &lt;span class="wa-read"&gt;✓✓&lt;/span&gt;&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+<h4>Replying to a Message</h4>
+
+<p>To quote the message someone is replying to, add a paragraph with <code>wa-quote</code> at the top of the bubble, before the reply:</p>
+
+<div class="mob wa theme-auto"><div class="mob-body"><div class="msg out tail">
+  <p class="wa-quote"><span class="hide">[Replying to </span><b>Lily</b><span class="hide">:</span><br>TELL ME EVERYTHING<span class="hide">]</span></p>
+  <p><span class="hide"><em>Shane:</em> </span>after snacks. I'm starving</p>
+  <p class="wa-time">14:06 <span class="wa-read">✓✓</span></p>
+</div></div></div>
+
+<pre><code>&lt;div class="msg out tail"&gt;
+  &lt;p class="wa-quote"&gt;&lt;span class="hide"&gt;[Replying to &lt;/span&gt;&lt;b&gt;Lily&lt;/b&gt;&lt;span class="hide"&gt;:&lt;/span&gt;&lt;br&gt;TELL ME EVERYTHING&lt;span class="hide"&gt;]&lt;/span&gt;&lt;/p&gt;
+  &lt;p&gt;&lt;span class="hide"&gt;&lt;em&gt;Shane:&lt;/em&gt; &lt;/span&gt;after snacks. I'm starving&lt;/p&gt;
+  &lt;p class="wa-time"&gt;14:06 &lt;span class="wa-read"&gt;✓✓&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+
+<p>Put the name of the person being quoted in <code>&lt;b&gt;</code>, then a line break, then the words of the original message. The three <code>hide</code> spans are for readers with the workskin off: <code>[Replying to </code> before the name, a colon after it, and <code>]</code> at the end, so the quote reads "[Replying to Lily: TELL ME EVERYTHING]" and nobody thinks Lily has just sent it again.</p>
+
+<p>When someone replies to a message <em>you</em> sent, their bubble quotes your message, and WhatsApp labels it "You" in green. So the bubble is a received one (<code>in</code>), the name in the quote is <code>You</code>, and it takes the green colour class, <code>colour8</code>:</p>
+
+<div class="mob wa theme-auto"><div class="mob-body"><div class="msg in tail">
+  <p class="wa-quote colour8"><span class="hide">[Replying to </span><b>You</b><span class="hide">:</span><br>it's done. I'm alive<span class="hide">]</span></p>
+  <p><span class="hide"><em>Lily:</em> </span>so proud of you</p>
+  <p class="wa-time">14:07</p>
+</div></div></div>
+
+<pre><code>&lt;div class="msg in tail"&gt;
+  &lt;p class="wa-quote colour8"&gt;&lt;span class="hide"&gt;[Replying to &lt;/span&gt;&lt;b&gt;You&lt;/b&gt;&lt;span class="hide"&gt;:&lt;/span&gt;&lt;br&gt;it's done. I'm alive&lt;span class="hide"&gt;]&lt;/span&gt;&lt;/p&gt;
+  &lt;p&gt;&lt;span class="hide"&gt;&lt;em&gt;Lily:&lt;/em&gt; &lt;/span&gt;so proud of you&lt;/p&gt;
+  &lt;p class="wa-time"&gt;14:07&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+
+<h4>Emoji Reactions</h4>
+
+<p>When someone reacts to a message, WhatsApp shows a little pill sitting on the bottom edge of the bubble. Add a <code>wa-reacts</code> paragraph straight after the bubble, with the emoji inside:</p>
+
+<div class="mob wa theme-auto"><div class="mob-body"><div class="msg in tail">
+  <p><span class="hide"><em>Lily:</em> </span>you'll be great. you always are</p>
+  <p class="wa-time">23:43</p>
+</div>
+<p class="wa-reacts"><span class="hide">[Reactions: </span>❤️<span class="hide">]</span></p></div></div>
+
+<pre><code>&lt;div class="msg in tail"&gt;
+  &lt;p&gt;&lt;span class="hide"&gt;&lt;em&gt;Lily:&lt;/em&gt; &lt;/span&gt;you'll be great. you always are&lt;/p&gt;
+  &lt;p class="wa-time"&gt;23:43&lt;/p&gt;
+&lt;/div&gt;
+&lt;p class="wa-reacts"&gt;&lt;span class="hide"&gt;[Reactions: &lt;/span&gt;❤️&lt;span class="hide"&gt;]&lt;/span&gt;&lt;/p&gt;</code></pre>
+
+<p>The two <code>hide</code> spans - <code>[Reactions: </code> before the emoji and <code>]</code> after it - are <strong>only for readers with the workskin off</strong>. Without them, those readers would get a stray emoji under the message. With them, it reads "[Reactions: &#10084;&#65039;]".</p>
+
+<p>When more than one person has reacted, put all of their emojis in, then the number of people in a <code>wa-count</code> span. For a reaction under one of your own messages, add <code>out</code> so it sits on the right:</p>
+
+<div class="mob wa theme-auto"><div class="mob-body"><div class="msg out tail">
+  <p class="wa-quote colour4"><span class="hide">[Replying to </span><b>Hayden</b><span class="hide">:</span><br>should I bring the kids?<span class="hide">]</span></p>
+  <p><span class="hide"><em>Ilya:</em> </span>yes. they are better company than you</p>
+  <p class="wa-time">09:14 <span class="wa-read">✓✓</span></p>
+</div>
+<p class="wa-reacts out"><span class="hide">[Reactions: </span>❤️ 😂 <span class="wa-count">3</span><span class="hide">]</span></p></div></div>
+
+<pre><code>&lt;div class="msg out tail"&gt;
+  &lt;p class="wa-quote colour4"&gt;&lt;span class="hide"&gt;[Replying to &lt;/span&gt;&lt;b&gt;Hayden&lt;/b&gt;&lt;span class="hide"&gt;:&lt;/span&gt;&lt;br&gt;should I bring the kids?&lt;span class="hide"&gt;]&lt;/span&gt;&lt;/p&gt;
+  &lt;p&gt;&lt;span class="hide"&gt;&lt;em&gt;Ilya:&lt;/em&gt; &lt;/span&gt;yes. they are better company than you&lt;/p&gt;
+  &lt;p class="wa-time"&gt;09:14 &lt;span class="wa-read"&gt;✓✓&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;p class="wa-reacts out"&gt;&lt;span class="hide"&gt;[Reactions: &lt;/span&gt;❤️ 😂 &lt;span class="wa-count"&gt;3&lt;/span&gt;&lt;span class="hide"&gt;]&lt;/span&gt;&lt;/p&gt;</code></pre>
+
+<p>That one reads "[Reactions: &#10084;&#65039; &#128514; 3]" with the workskin off. Under a group message with a profile picture next to it, add <code>pad</code> so the pill lines up with the bubble:</p>
+
+<div class="mob wa theme-auto"><div class="mob-body"><div class="wa-row cont">
+  <div class="msg in">
+    <p><span class="hide"><em>~ Rose:</em> </span>I'm doing the lamb!!! everyone has to come</p>
+    <p class="wa-time">09:12</p>
+  </div>
+</div>
+<p class="wa-reacts pad"><span class="hide">[Reactions: </span>🎉 <span class="wa-count">2</span><span class="hide">]</span></p></div></div>
+
+<pre><code>&lt;div class="wa-row cont"&gt;
+  &lt;div class="msg in"&gt;
+    &lt;p&gt;&lt;span class="hide"&gt;&lt;em&gt;~ Rose:&lt;/em&gt; &lt;/span&gt;I'm doing the lamb!!! everyone has to come&lt;/p&gt;
+    &lt;p class="wa-time"&gt;09:12&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;p class="wa-reacts pad"&gt;&lt;span class="hide"&gt;[Reactions: &lt;/span&gt;🎉 &lt;span class="wa-count"&gt;2&lt;/span&gt;&lt;span class="hide"&gt;]&lt;/span&gt;&lt;/p&gt;</code></pre>
+
+<h4>Large Emoji</h4>
+
+<p>A message that's only an emoji can have the emoji on a line of its own. Put it in its own paragraph above the time, and make it big with the <code>wa-big</code> class:</p>
+
+<div class="mob wa theme-auto"><div class="mob-body"><div class="msg out tail">
+  <p class="wa-big"><span class="hide"><em>Shane:</em> </span>🙄</p>
+  <p class="wa-time">14:15 <span class="wa-read">✓✓</span></p>
+</div></div></div>
+
+<pre><code>&lt;div class="msg out tail"&gt;
+  &lt;p class="wa-big"&gt;&lt;span class="hide"&gt;&lt;em&gt;Shane:&lt;/em&gt; &lt;/span&gt;🙄&lt;/p&gt;
+  &lt;p class="wa-time"&gt;14:15 &lt;span class="wa-read"&gt;✓✓&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+
+<h4>Shared Links</h4>
+
+<p>To show a link the way WhatsApp previews it, add <code>share</code> to the message and put a <code>wa-link</code> card inside it, above the time. The card holds a picture (<code>wa-link-img</code>), the title (<code>wa-link-title</code>), an optional short description (<code>wa-link-desc</code>) and the web address (<code>wa-link-url</code>), which gets a little link symbol in front of it automatically. The <code>hide</code> paragraph at the start holds the hidden label, as there's no message text to put it in. Don't forget the alt text on the picture:</p>
+
+<div class="mob wa theme-auto"><div class="mob-body"><div class="msg in share"><p class="hide"><em>Lily:</em></p>
+  <div class="wa-link">
+    <p class="wa-link-img"><img src="https://64.media.tumblr.com/c3c4ecb5bfed8fa9f0590c54206ddb30/cff2318529321620-44/s1280x1920/42befcc40a517e1f202dda40783be2ffb95c1d92.pnj" alt="Macklin Celebrini at the IHF Worlds, dressed in his red jersey and black helmet. He's surrounded by sparkles, a red vignette, and hearts containing the Canadian flag"></p>
+    <p class="wa-link-title">Captain Mack</p>
+    <p class="wa-link-desc">All the reasons Mack deserves the C</p>
+    <p class="wa-link-url">fakehockeynews.com</p>
+  </div>
+  <p class="wa-time">14:12</p>
+</div></div></div>
+
+<pre><code>&lt;div class="msg in share"&gt;&lt;p class="hide"&gt;&lt;em&gt;Lily:&lt;/em&gt;&lt;/p&gt;
+  &lt;div class="wa-link"&gt;
+    &lt;p class="wa-link-img"&gt;&lt;img src="https://64.media.tumblr.com/c3c4ecb5bfed8fa9f0590c54206ddb30/cff2318529321620-44/s1280x1920/42befcc40a517e1f202dda40783be2ffb95c1d92.pnj" alt="Macklin Celebrini at the IHF Worlds, dressed in his red jersey and black helmet. He's surrounded by sparkles, a red vignette, and hearts containing the Canadian flag"&gt;&lt;/p&gt;
+    &lt;p class="wa-link-title"&gt;Captain Mack&lt;/p&gt;
+    &lt;p class="wa-link-desc"&gt;All the reasons Mack deserves the C&lt;/p&gt;
+    &lt;p class="wa-link-url"&gt;fakehockeynews.com&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;p class="wa-time"&gt;14:12&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+
+<p>To share a video link with the video actually playing in the card, put the embed code from the video site in the picture box, and add <code>video</code> to it. Keep the whole <code>src</code> link, including everything after the <code>?</code>:</p>
+
+<div class="mob wa theme-auto"><div class="mob-body"><div class="msg in share"><p class="hide"><em>Lily:</em></p>
+  <div class="wa-link">
+    <div class="wa-link-img video"><iframe src="https://player.vimeo.com/video/1169167060?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" title="Ilya Rozanov | Come Home"></iframe><p class="vid-desc">[Video: a tribute edit of Ilya Rozanov, made from Heated Rivalry footage and set to "Would You Come Home" by Tyler Blackburn]</p></div>
+    <p class="wa-link-title">Ilya Rozanov | Come Home</p>
+    <p class="wa-link-url">vimeo.com</p>
+  </div>
+  <p class="wa-caption">also someone made me a fan video. I am very handsome in it</p>
+  <p class="wa-time">14:13</p>
+</div></div></div>
+
+<pre><code>&lt;div class="msg in share"&gt;&lt;p class="hide"&gt;&lt;em&gt;Lily:&lt;/em&gt;&lt;/p&gt;
+  &lt;div class="wa-link"&gt;
+    &lt;div class="wa-link-img video"&gt;&lt;iframe src="https://player.vimeo.com/video/1169167060?badge=0&amp;amp;autopause=0&amp;amp;player_id=0&amp;amp;app_id=58479" frameborder="0" title="Ilya Rozanov | Come Home"&gt;&lt;/iframe&gt;&lt;p class="vid-desc"&gt;[Video: a tribute edit of Ilya Rozanov, made from Heated Rivalry footage and set to "Would You Come Home" by Tyler Blackburn]&lt;/p&gt;&lt;/div&gt;
+    &lt;p class="wa-link-title"&gt;Ilya Rozanov | Come Home&lt;/p&gt;
+    &lt;p class="wa-link-url"&gt;vimeo.com&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;p class="wa-caption"&gt;also someone made me a fan video. I am very handsome in it&lt;/p&gt;
+  &lt;p class="wa-time"&gt;14:13&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+
+<p>The <code>vid-desc</code> paragraph after the video is its description, for screen readers and for anyone reading with the workskin off - see Video Descriptions, under Accessibility, in the Core, Themes, and Extras chapter.</p>
+
+<p>To write a message under the card in the same bubble, like Lily's here, add a <code>wa-caption</code> paragraph after the card, before the time. It works under any link card, with or without a video.</p>
+
+<p>The description is optional, so leave out the <code>wa-link-desc</code> line if you only want a title and an address. If you don't want a picture at all, add <code>text</code> to the picture box and write a description in square brackets. In this one, Shane has also pasted the link into his message, so WhatsApp shows the address in blue above the card. Put that in a span with <code>wa-ln</code> (or <code>fake-link</code>, which looks the same), above the card. The address in the card is just text, so you can make up any address you like there too:</p>
+
+<div class="mob wa theme-auto"><div class="mob-body"><div class="msg out share"><p class="hide"><em>Shane:</em></p>
+  <p><span class="wa-ln">https://recipes.example.com/pierogi</span></p>
+  <div class="wa-link">
+    <p class="wa-link-img text">[The page's picture: a plate of golden fried pierogi with sour cream]</p>
+    <p class="wa-link-title">Pierogi from Scratch</p>
+    <p class="wa-link-desc">Easier than you think</p>
+    <p class="wa-link-url">recipes.example.com</p>
+  </div>
+  <p class="wa-time">14:20 <span class="wa-read">✓✓</span></p>
+</div></div></div>
+
+<pre><code>&lt;div class="msg out share"&gt;&lt;p class="hide"&gt;&lt;em&gt;Shane:&lt;/em&gt;&lt;/p&gt;
+  &lt;p&gt;&lt;span class="wa-ln"&gt;https://recipes.example.com/pierogi&lt;/span&gt;&lt;/p&gt;
+  &lt;div class="wa-link"&gt;
+    &lt;p class="wa-link-img text"&gt;[The page's picture: a plate of golden fried pierogi with sour cream]&lt;/p&gt;
+    &lt;p class="wa-link-title"&gt;Pierogi from Scratch&lt;/p&gt;
+    &lt;p class="wa-link-desc"&gt;Easier than you think&lt;/p&gt;
+    &lt;p class="wa-link-url"&gt;recipes.example.com&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;p class="wa-time"&gt;14:20 &lt;span class="wa-read"&gt;✓✓&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+
+<h4>Photos and Captions</h4>
+
+<p>For one photo on its own, add <code>gallery</code> to the message and use a <code>wa-photos one</code> box with a single <code>wa-photo</code> inside, with the picture tag in it. A single photo isn't cropped into a square, so it keeps its own shape, whether it's tall or wide - a really tall one gets trimmed at the bottom, so it doesn't take over the chat. Don't forget the alt text.</p>
+
+<p>To write a message under the photo, the way WhatsApp shows a caption, add a <code>wa-caption</code> paragraph after the photo box, before the time:</p>
+
+<div class="mob wa theme-auto"><div class="mob-body"><div class="msg in tail gallery"><p class="hide"><em>Lily:</em></p>
+  <p class="wa-photos one"><span class="wa-photo"><img src="https://64.media.tumblr.com/6898dc3a42cc6c7ab9729360b71366e4/ba033a52c8982cb0-bf/s2048x3072/b548d2fe61b02e530c0edd2ee6a6bd56ab73ad2c.jpg" alt="Black and white cat screaming at the camera, on a red patterned rug"></span></p>
+  <p class="wa-caption">she says she wants pierogi too</p>
+  <p class="wa-time">14:24</p>
+</div></div></div>
+
+<pre><code>&lt;div class="msg in tail gallery"&gt;&lt;p class="hide"&gt;&lt;em&gt;Lily:&lt;/em&gt;&lt;/p&gt;
+  &lt;p class="wa-photos one"&gt;&lt;span class="wa-photo"&gt;&lt;img src="https://64.media.tumblr.com/6898dc3a42cc6c7ab9729360b71366e4/ba033a52c8982cb0-bf/s2048x3072/b548d2fe61b02e530c0edd2ee6a6bd56ab73ad2c.jpg" alt="Black and white cat screaming at the camera, on a red patterned rug"&gt;&lt;/span&gt;&lt;/p&gt;
+  &lt;p class="wa-caption"&gt;she says she wants pierogi too&lt;/p&gt;
+  &lt;p class="wa-time"&gt;14:24&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+
+<p>The <code>hide</code> paragraph at the start holds the hidden label, the same as for a link card. A caption works the same way under a gallery of two, three or four photos, and <code>wa-desc</code> works in a single photo too, if you'd rather describe it than show it.</p>
+
+<h4>Photo Galleries</h4>
+
+<p>When several photos are sent together, WhatsApp shows them in one bubble as a grid. Add <code>gallery</code> to the message, put a <code>wa-photos</code> box inside it, and add a <code>wa-photo</code> span for each picture, with the picture tag inside. The box takes <code>two</code>, <code>three</code> or <code>four</code> to match the number of pictures, and every picture needs its alt text:</p>
+
+<p><strong>Two photos</strong> sit side by side, both tall:</p>
+
+<div class="mob wa theme-auto"><div class="mob-body"><div class="msg out gallery"><p class="hide"><em>Shane:</em></p>
+  <p class="wa-photos two">
+    <span class="wa-photo"><img class="land" src="https://64.media.tumblr.com/a99a60f0293cf7df3604b4a6dd4705f6/ba033a52c8982cb0-cc/s1280x1920/cb4c277845d0c3ef666d16b86b75509266b795b3.jpg" alt="Black and white cat holding out a paw daintily, on a beige and green cat tree. The cat looks to be stepping into the frame from the left"></span>
+    <span class="wa-photo"><img src="https://64.media.tumblr.com/45b3b47d7c42b593f6242a40153a629c/ba033a52c8982cb0-d7/s2048x3072/4e71b117e87747d78dd3d95595cecc77eec48d38.jpg" alt="Black and white cat sitting in an opened red suitcase, carry on size, on the floor behind a white door, and on a red patterned rug"></span>
+  </p>
+  <p class="wa-time">14:22 <span class="wa-read">✓✓</span></p>
+</div></div></div>
+
+<pre><code>&lt;div class="msg out gallery"&gt;&lt;p class="hide"&gt;&lt;em&gt;Shane:&lt;/em&gt;&lt;/p&gt;
+  &lt;p class="wa-photos two"&gt;
+    &lt;span class="wa-photo"&gt;&lt;img class="land" src="https://64.media.tumblr.com/a99a60f0293cf7df3604b4a6dd4705f6/ba033a52c8982cb0-cc/s1280x1920/cb4c277845d0c3ef666d16b86b75509266b795b3.jpg" alt="Black and white cat holding out a paw daintily, on a beige and green cat tree. The cat looks to be stepping into the frame from the left"&gt;&lt;/span&gt;
+    &lt;span class="wa-photo"&gt;&lt;img src="https://64.media.tumblr.com/45b3b47d7c42b593f6242a40153a629c/ba033a52c8982cb0-d7/s2048x3072/4e71b117e87747d78dd3d95595cecc77eec48d38.jpg" alt="Black and white cat sitting in an opened red suitcase, carry on size, on the floor behind a white door, and on a red patterned rug"&gt;&lt;/span&gt;
+  &lt;/p&gt;
+  &lt;p class="wa-time"&gt;14:22 &lt;span class="wa-read"&gt;✓✓&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+
+<p><strong>Three photos</strong> have one tall photo on the left, with the other two stacked on the right:</p>
+
+<div class="mob wa theme-auto"><div class="mob-body"><div class="msg out gallery"><p class="hide"><em>Ilya:</em></p>
+  <p class="wa-photos three">
+    <span class="wa-photo"><img src="https://64.media.tumblr.com/694221426fb8229480fb3fb87b528ca7/ba033a52c8982cb0-01/s1280x1920/636653581e07a970475075f480c1717b23a72c0a.jpg" alt="Black and white cat staring through a gap between a screen and a desk, with blurred cables hanging down around and blue sky behind"></span>
+    <span class="wa-photo"><img src="https://64.media.tumblr.com/6898dc3a42cc6c7ab9729360b71366e4/ba033a52c8982cb0-bf/s2048x3072/b548d2fe61b02e530c0edd2ee6a6bd56ab73ad2c.jpg" alt="Black and white cat screaming at the camera, on a red patterned rug"></span>
+    <span class="wa-photo"><img class="land" src="https://64.media.tumblr.com/a99a60f0293cf7df3604b4a6dd4705f6/ba033a52c8982cb0-cc/s1280x1920/cb4c277845d0c3ef666d16b86b75509266b795b3.jpg" alt="Black and white cat holding out a paw daintily, on a beige and green cat tree. The cat looks to be stepping into the frame from the left"></span>
+  </p>
+  <p class="wa-time">12:26 <span class="wa-read">✓✓</span></p>
+</div></div></div>
+
+<pre><code>&lt;div class="msg out gallery"&gt;&lt;p class="hide"&gt;&lt;em&gt;Ilya:&lt;/em&gt;&lt;/p&gt;
+  &lt;p class="wa-photos three"&gt;
+    &lt;span class="wa-photo"&gt;&lt;img src="https://64.media.tumblr.com/694221426fb8229480fb3fb87b528ca7/ba033a52c8982cb0-01/s1280x1920/636653581e07a970475075f480c1717b23a72c0a.jpg" alt="Black and white cat staring through a gap between a screen and a desk, with blurred cables hanging down around and blue sky behind"&gt;&lt;/span&gt;
+    &lt;span class="wa-photo"&gt;&lt;img src="https://64.media.tumblr.com/6898dc3a42cc6c7ab9729360b71366e4/ba033a52c8982cb0-bf/s2048x3072/b548d2fe61b02e530c0edd2ee6a6bd56ab73ad2c.jpg" alt="Black and white cat screaming at the camera, on a red patterned rug"&gt;&lt;/span&gt;
+    &lt;span class="wa-photo"&gt;&lt;img class="land" src="https://64.media.tumblr.com/a99a60f0293cf7df3604b4a6dd4705f6/ba033a52c8982cb0-cc/s1280x1920/cb4c277845d0c3ef666d16b86b75509266b795b3.jpg" alt="Black and white cat holding out a paw daintily, on a beige and green cat tree. The cat looks to be stepping into the frame from the left"&gt;&lt;/span&gt;
+  &lt;/p&gt;
+  &lt;p class="wa-time"&gt;12:26 &lt;span class="wa-read"&gt;✓✓&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+
+<p><strong>Four photos</strong> make a square grid of two rows:</p>
+
+<div class="mob wa theme-auto"><div class="mob-body"><div class="wa-row cont">
+  <div class="msg in gallery"><p class="hide"><em>~ Rose:</em></p>
+    <p class="wa-photos four">
+      <span class="wa-photo"><img class="land" src="https://64.media.tumblr.com/694221426fb8229480fb3fb87b528ca7/ba033a52c8982cb0-01/s1280x1920/636653581e07a970475075f480c1717b23a72c0a.jpg" alt="Black and white cat staring through a gap between a screen and a desk, with blurred cables hanging down around and blue sky behind"></span>
+      <span class="wa-photo"><img src="https://64.media.tumblr.com/6898dc3a42cc6c7ab9729360b71366e4/ba033a52c8982cb0-bf/s2048x3072/b548d2fe61b02e530c0edd2ee6a6bd56ab73ad2c.jpg" alt="Black and white cat screaming at the camera, on a red patterned rug"></span>
+      <span class="wa-photo"><img class="land" src="https://64.media.tumblr.com/a99a60f0293cf7df3604b4a6dd4705f6/ba033a52c8982cb0-cc/s1280x1920/cb4c277845d0c3ef666d16b86b75509266b795b3.jpg" alt="Black and white cat holding out a paw daintily, on a beige and green cat tree. The cat looks to be stepping into the frame from the left"></span>
+      <span class="wa-photo"><img src="https://64.media.tumblr.com/45b3b47d7c42b593f6242a40153a629c/ba033a52c8982cb0-d7/s2048x3072/4e71b117e87747d78dd3d95595cecc77eec48d38.jpg" alt="Black and white cat sitting in an opened red suitcase, carry on size, on the floor behind a white door, and on a red patterned rug"></span>
+    </p>
+    <p class="wa-time">09:19</p>
+  </div>
+</div></div></div>
+
+<pre><code>&lt;div class="wa-row cont"&gt;
+  &lt;div class="msg in gallery"&gt;&lt;p class="hide"&gt;&lt;em&gt;~ Rose:&lt;/em&gt;&lt;/p&gt;
+    &lt;p class="wa-photos four"&gt;
+      &lt;span class="wa-photo"&gt;&lt;img class="land" src="https://64.media.tumblr.com/694221426fb8229480fb3fb87b528ca7/ba033a52c8982cb0-01/s1280x1920/636653581e07a970475075f480c1717b23a72c0a.jpg" alt="Black and white cat staring through a gap between a screen and a desk, with blurred cables hanging down around and blue sky behind"&gt;&lt;/span&gt;
+      &lt;span class="wa-photo"&gt;&lt;img src="https://64.media.tumblr.com/6898dc3a42cc6c7ab9729360b71366e4/ba033a52c8982cb0-bf/s2048x3072/b548d2fe61b02e530c0edd2ee6a6bd56ab73ad2c.jpg" alt="Black and white cat screaming at the camera, on a red patterned rug"&gt;&lt;/span&gt;
+      &lt;span class="wa-photo"&gt;&lt;img class="land" src="https://64.media.tumblr.com/a99a60f0293cf7df3604b4a6dd4705f6/ba033a52c8982cb0-cc/s1280x1920/cb4c277845d0c3ef666d16b86b75509266b795b3.jpg" alt="Black and white cat holding out a paw daintily, on a beige and green cat tree. The cat looks to be stepping into the frame from the left"&gt;&lt;/span&gt;
+      &lt;span class="wa-photo"&gt;&lt;img src="https://64.media.tumblr.com/45b3b47d7c42b593f6242a40153a629c/ba033a52c8982cb0-d7/s2048x3072/4e71b117e87747d78dd3d95595cecc77eec48d38.jpg" alt="Black and white cat sitting in an opened red suitcase, carry on size, on the floor behind a white door, and on a red patterned rug"&gt;&lt;/span&gt;
+    &lt;/p&gt;
+    &lt;p class="wa-time"&gt;09:19&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+<p>Each photo is cropped to fit its space without getting squashed. In the four-photo layout, and for the two small photos in the three-photo layout, add <code>class=&quot;land&quot;</code> to the picture tag of any photo that's wider than it is tall (see Pictures in Boxes and Circles, in the Core, Themes, and Extras chapter). WhatsApp only has these layouts, so if you want more than four photos, send a second gallery.</p>
+
+<p>To describe a picture instead of showing it, put a span with <code>wa-desc</code> inside the <code>wa-photo</code>, with the description in square brackets. Galleries work in group messages too, with the <code>who</code> line at the top:</p>
+
+<div class="mob wa theme-auto"><div class="mob-body"><div class="wa-row"><div class="msg in tail gallery">
+  <p class="who colour1">~ Rose<span class="hide"> </span><span class="wa-num">+353 85 123 4567</span><span class="hide">:</span></p>
+  <p class="wa-photos two"><span class="wa-photo"><span class="wa-desc">[Photo of a bottle of red wine with a gold label and a very long French name]</span></span><span class="wa-photo"><span class="wa-desc">[Photo of the same bottle, held up next to Rose's very pleased face]</span></span></p>
+  <p class="wa-time">09:18</p>
+</div></div></div></div>
+
+<pre><code>&lt;div class="msg in tail gallery"&gt;
+  &lt;p class="who colour1"&gt;~ Rose&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="wa-num"&gt;+353 85 123 4567&lt;/span&gt;&lt;span class="hide"&gt;:&lt;/span&gt;&lt;/p&gt;
+  &lt;p class="wa-photos two"&gt;&lt;span class="wa-photo"&gt;&lt;span class="wa-desc"&gt;[Photo of a bottle of red wine with a gold label and a very long French name]&lt;/span&gt;&lt;/span&gt;&lt;span class="wa-photo"&gt;&lt;span class="wa-desc"&gt;[Photo of the same bottle, held up next to Rose's very pleased face]&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+  &lt;p class="wa-time"&gt;09:18&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+
+<h4>Typing Line</h4>
+
+<p>To show the other person is typing, add a <code>typing</code> line at the end of the messages (see Typing Line, in the Core, Themes, and Extras chapter):</p>
+
+<div class="mob wa theme-auto"><div class="mob-body"><p class="typing">Lily is typing...</p></div></div>
+
+<pre><code>&lt;p class="typing"&gt;Lily is typing...&lt;/p&gt;</code></pre>
+
+<h4>The Message Bar</h4>
+
+<p>To finish off a screenshot-style chat, add the message bar at the bottom of the container, <em>after</em> the <code>mob-body</code>. It has the emoji button, the "Message" placeholder, the paperclip and camera, and the round green microphone:</p>
+
+<div class="mob wa theme-auto"><p class="wa-input">
+  <span class="wa-field">
+    <span>&#9786;</span>
+    <span class="wa-ph">Message</span>
+    <span class="wa-ic">&#128206;</span>
+    <span class="wa-ic">&#128247;</span>
+  </span>
+  <span class="wa-mic">&#127908;</span>
+</p></div>
+
+<pre><code>&lt;p class="wa-input"&gt;
+  &lt;span class="wa-field"&gt;
+    &lt;span&gt;&amp;#9786;&lt;/span&gt;
+    &lt;span class="wa-ph"&gt;Message&lt;/span&gt;
+    &lt;span class="wa-ic"&gt;&amp;#128206;&lt;/span&gt;
+    &lt;span class="wa-ic"&gt;&amp;#128247;&lt;/span&gt;
+  &lt;/span&gt;
+  &lt;span class="wa-mic"&gt;&amp;#127908;&lt;/span&gt;
+&lt;/p&gt;</code></pre>
+
+<h4>Group Chats</h4>
+
+<p>In a group, add a <code>who</code> paragraph as the first line of a bubble to show who sent it. WhatsApp gives everyone their own name colour, so add one of <code>colour1</code> to <code>colour10</code> as well. Use the same number as the person's picture circle, so their name and picture match:</p>
+
+<div class="mob wa theme-auto"><div class="mob-body"><div class="wa-row"><div class="msg in tail">
+  <p class="who colour4">Hayden<span class="hide">:</span></p>
+  <p>should I bring the kids?</p>
+  <p class="wa-time">09:13</p>
+</div></div></div></div>
+
+<pre><code>&lt;div class="msg in tail"&gt;
+  &lt;p class="who colour4"&gt;Hayden&lt;span class="hide"&gt;:&lt;/span&gt;&lt;/p&gt;
+  &lt;p&gt;should I bring the kids?&lt;/p&gt;
+  &lt;p class="wa-time"&gt;09:13&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+
+<p>Give each person the same colour class every time, so their name stays the same colour all the way through the chat.</p>
+
+<p>Or add the person's profile name to the <code>who</code> line instead of a colour class, like <code>&lt;p class=&quot;who pfp-shane&quot;&gt;</code>, and their name colour comes from their profile, the same in every chat (see Character Profiles, in the Core, Themes, and Extras chapter).</p>
+
+<p>The <code>who</code> name shows at the top of the bubble whether the workskin is on or off, so it doesn't need a hidden label - just the hidden colon after it (<code>&lt;span class=&quot;hide&quot;&gt;:&lt;/span&gt;</code>), so it reads "Hayden:" followed by the message. Your own messages have no <code>who</code> line, so they keep the full hidden label.</p>
+
+<h4>Phone Numbers and Nicknames</h4>
+
+<p>In a group, anyone who isn't saved in your contacts shows up as a phone number, or as the nickname they've given themselves, which starts with a <code>~</code>. WhatsApp puts the number at the right-hand end of the name line. To do that, put a <code>wa-num</code> span inside the <code>who</code> paragraph:</p>
+
+<div class="mob wa theme-auto"><div class="mob-body"><div class="wa-row"><div class="msg in tail">
+  <p class="who colour1">~ Rose<span class="hide"> </span><span class="wa-num">+353 85 123 4567</span><span class="hide">:</span></p>
+  <p>DINNER PARTY. my place, saturday at 7 🥂</p>
+  <p class="wa-time">09:12</p>
+</div></div></div></div>
+
+<pre><code>&lt;div class="msg in tail"&gt;
+  &lt;p class="who colour1"&gt;~ Rose&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="wa-num"&gt;+353 85 123 4567&lt;/span&gt;&lt;span class="hide"&gt;:&lt;/span&gt;&lt;/p&gt;
+  &lt;p&gt;DINNER PARTY. my place, saturday at 7 🥂&lt;/p&gt;
+  &lt;p class="wa-time"&gt;09:12&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+
+<p>For someone who is saved in your contacts, just write their name and leave the number out. If you want a name in the normal text colour (for yourself, for example), leave the colour class off.</p>
+
+<h4>Profile Pictures in Groups</h4>
+
+<p>In a group, the first message in a run from one person has their round profile picture next to it. To add one, wrap the message in a <code>wa-row</code> and put a <code>wa-pfp</code> before the bubble. With no picture, <code>wa-pfp</code> shows the person's initials on a grey circle. To give the circle a colour, add one of <code>colour1</code> to <code>colour10</code>, like <code>wa-pfp colour4</code>:</p>
+
+<div class="mob wa theme-auto"><div class="mob-body"><div class="wa-row">
+  <p class="wa-pfp colour4">HP</p>
+  <div class="msg in tail">
+    <p class="who colour4">Hayden<span class="hide">:</span></p>
+    <p>should I bring the kids?</p>
+    <p class="wa-time">09:13</p>
+  </div>
+</div></div></div>
+
+<pre><code>&lt;div class="wa-row"&gt;
+  &lt;p class="wa-pfp colour4"&gt;HP&lt;/p&gt;
+  &lt;div class="msg in tail"&gt;
+    &lt;p class="who colour4"&gt;Hayden&lt;span class="hide"&gt;:&lt;/span&gt;&lt;/p&gt;
+    &lt;p&gt;should I bring the kids?&lt;/p&gt;
+    &lt;p class="wa-time"&gt;09:13&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+<p>For the next messages from the same person, WhatsApp doesn't repeat the picture, but they stay lined up with the first one. Use <code>wa-row cont</code> and leave the <code>wa-pfp</code> out. There's no <code>who</code> line on these, so they need the hidden label:</p>
+
+<div class="mob wa theme-auto"><div class="mob-body"><div class="wa-row cont">
+  <div class="msg in">
+    <p><span class="hide"><em>~ Rose:</em> </span>I'm doing the lamb!!! everyone has to come</p>
+    <p class="wa-time">09:12</p>
+  </div>
+</div></div></div>
+
+<pre><code>&lt;div class="wa-row cont"&gt;
+  &lt;div class="msg in"&gt;
+    &lt;p&gt;&lt;span class="hide"&gt;&lt;em&gt;~ Rose:&lt;/em&gt; &lt;/span&gt;I'm doing the lamb!!! everyone has to come&lt;/p&gt;
+    &lt;p class="wa-time"&gt;09:12&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+<p>To use a real picture instead of initials, put the picture tag inside a <code>pfp</code> span, inside the <code>wa-pfp</code> paragraph. The picture is hosted somewhere else, and its alt text describes it. The same thing works for the picture in the header:</p>
+
+<div class="mob wa theme-auto"><div class="mob-body"><div class="wa-row">
+  <p class="wa-pfp colour1"><span class="pfp"><img src="https://media.istockphoto.com/id/1298570775/photo/rose.jpg?s=1024x1024&w=is&k=20&c=UFPisYCT3g2Vm04F2E5zrhtUWqDtLRLDXZisKb6Xf5s=" alt="Profile picture of Rose, a close-up photo of a rose"></span></p>
+  <div class="msg in tail">
+    <p class="who colour1">~ Rose<span class="hide"> </span><span class="wa-num">+353 85 123 4567</span><span class="hide">:</span></p>
+    <p>DINNER PARTY. my place, saturday at 7 🥂</p>
+    <p class="wa-time">09:12</p>
+  </div>
+</div></div></div>
+
+<pre><code>&lt;div class="wa-row"&gt;
+  &lt;p class="wa-pfp colour1"&gt;&lt;span class="pfp"&gt;&lt;img src="https://media.istockphoto.com/id/1298570775/photo/rose.jpg?s=1024x1024&amp;w=is&amp;k=20&amp;c=UFPisYCT3g2Vm04F2E5zrhtUWqDtLRLDXZisKb6Xf5s=" alt="Profile picture of Rose, a close-up photo of a rose"&gt;&lt;/span&gt;&lt;/p&gt;
+  &lt;div class="msg in tail"&gt;
+    &lt;p class="who colour1"&gt;~ Rose&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="wa-num"&gt;+353 85 123 4567&lt;/span&gt;&lt;span class="hide"&gt;:&lt;/span&gt;&lt;/p&gt;
+    &lt;p&gt;DINNER PARTY. my place, saturday at 7 🥂&lt;/p&gt;
+    &lt;p class="wa-time"&gt;09:12&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+<p>If the same person turns up again and again, or in other apps too, a profile saves you adding the picture every time: <code>&lt;p class=&quot;wa-pfp&quot;&gt;&lt;span class=&quot;pfp pfp-shane&quot;&gt;&lt;/span&gt;&lt;/p&gt;</code> (see Profile Pictures, in the Core, Themes, and Extras chapter). The colours for <code>colour1</code> to <code>colour10</code> are set in the WhatsApp CSS, so you can change them there.</p>
+
+<h4>Quoting a Message in a Group</h4>
+
+<p>Quotes in a group work the same as in a one-to-one chat, except the coloured bar on the left takes the colour of the person being quoted. Add the same colour class to the <code>wa-quote</code>:</p>
+
+<div class="mob wa theme-auto"><div class="mob-body"><div class="msg out tail">
+  <p class="wa-quote colour4"><span class="hide">[Replying to </span><b>Hayden</b><span class="hide">:</span><br>should I bring the kids?<span class="hide">]</span></p>
+  <p><span class="hide"><em>Ilya:</em> </span>yes. they are better company than you</p>
+  <p class="wa-time">09:14 <span class="wa-read">✓✓</span></p>
+</div></div></div>
+
+<pre><code>&lt;div class="msg out tail"&gt;
+  &lt;p class="wa-quote colour4"&gt;&lt;span class="hide"&gt;[Replying to &lt;/span&gt;&lt;b&gt;Hayden&lt;/b&gt;&lt;span class="hide"&gt;:&lt;/span&gt;&lt;br&gt;should I bring the kids?&lt;span class="hide"&gt;]&lt;/span&gt;&lt;/p&gt;
+  &lt;p&gt;&lt;span class="hide"&gt;&lt;em&gt;Ilya:&lt;/em&gt; &lt;/span&gt;yes. they are better company than you&lt;/p&gt;
+  &lt;p class="wa-time"&gt;09:14 &lt;span class="wa-read"&gt;✓✓&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+
+<p>Replying to a message <em>you</em> sent works the same as in a one-to-one chat, with <code>You</code> in the quote and <code>colour8</code>:</p>
+
+<div class="mob wa theme-auto"><div class="mob-body"><div class="wa-row"><div class="msg in tail">
+  <p class="who colour3">Jane<span class="hide">:</span></p>
+  <p class="wa-quote colour8"><span class="hide">[Replying to </span><b>You</b><span class="hide">:</span><br>yes. they are better company than you<span class="hide">]</span></p>
+  <p>be nice</p>
+  <p class="wa-time">09:15</p>
+</div></div></div></div>
+
+<pre><code>&lt;div class="msg in tail"&gt;
+  &lt;p class="who colour3"&gt;Jane&lt;span class="hide"&gt;:&lt;/span&gt;&lt;/p&gt;
+  &lt;p class="wa-quote colour8"&gt;&lt;span class="hide"&gt;[Replying to &lt;/span&gt;&lt;b&gt;You&lt;/b&gt;&lt;span class="hide"&gt;:&lt;/span&gt;&lt;br&gt;yes. they are better company than you&lt;span class="hide"&gt;]&lt;/span&gt;&lt;/p&gt;
+  &lt;p&gt;be nice&lt;/p&gt;
+  &lt;p class="wa-time"&gt;09:15&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+
+<p>WhatsApp can also show the phone number of someone who isn't in your contacts at the right of their name in a quote. Put it in a span with <code>wa-num</code>, inside the <code>&lt;b&gt;</code>:</p>
+
+<div class="mob wa theme-auto"><div class="mob-body"><div class="msg out tail">
+  <p class="wa-quote colour1"><span class="hide">[Replying to </span><b>~ Rose<span class="hide"> </span><span class="wa-num">+353 85 123 4567</span></b><span class="hide">:</span><br>DINNER PARTY. my place, saturday at 7 🥂<span class="hide">]</span></p>
+  <p><span class="hide"><em>Ilya:</em> </span>what do we bring?</p>
+  <p class="wa-time">09:16 <span class="wa-read">✓✓</span></p>
+</div></div></div>
+
+<pre><code>&lt;div class="msg out tail"&gt;
+  &lt;p class="wa-quote colour1"&gt;&lt;span class="hide"&gt;[Replying to &lt;/span&gt;&lt;b&gt;~ Rose&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="wa-num"&gt;+353 85 123 4567&lt;/span&gt;&lt;/b&gt;&lt;span class="hide"&gt;:&lt;/span&gt;&lt;br&gt;DINNER PARTY. my place, saturday at 7 🥂&lt;span class="hide"&gt;]&lt;/span&gt;&lt;/p&gt;
+  &lt;p&gt;&lt;span class="hide"&gt;&lt;em&gt;Ilya:&lt;/em&gt; &lt;/span&gt;what do we bring?&lt;/p&gt;
+  &lt;p class="wa-time"&gt;09:16 &lt;span class="wa-read"&gt;✓✓&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+
+<h4>System Notices</h4>
+
+<p>Notices like "Rose changed this group's icon" or "You were added" use the same <code>mob-sys</code> line as the date pill:</p>
+
+<div class="mob wa theme-auto"><div class="mob-body"><p class="mob-sys">Rose changed this group's icon</p></div></div>
+
+<pre><code>&lt;p class="mob-sys"&gt;Rose changed this group's icon&lt;/p&gt;</code></pre>
+
+<h4>Group Header with Picture and Icons</h4>
+
+<p>For the full group header - back arrow, picture, group name, list of members, and the call and menu icons - use a <code>&lt;table&gt;</code> with the class <code>wa-bar</code> instead of the usual header paragraph. A table is the most reliable way to keep all of that in one neat row on AO3:</p>
+
+<div class="mob wa theme-auto"><table class="wa-bar">
+  <tbody>
+    <tr>
+      <td rowspan="2" class="wa-back">&#8592;</td>
+      <td rowspan="2" class="wa-pfp-cell"><p class="wa-pfp colour5">D</p></td>
+      <td class="wa-title">dinner</td>
+      <td rowspan="2" class="wa-actions">&#127909; &#8942;</td>
+    </tr>
+    <tr>
+      <td class="wa-sub">Rose, Jane, Hayden, You</td>
+    </tr>
+  </tbody>
+</table></div>
+
+<pre><code>&lt;table class="wa-bar"&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td rowspan="2" class="wa-back"&gt;&amp;#8592;&lt;/td&gt;
+      &lt;td rowspan="2" class="wa-pfp-cell"&gt;&lt;p class="wa-pfp colour5"&gt;D&lt;/p&gt;&lt;/td&gt;
+      &lt;td class="wa-title"&gt;dinner&lt;/td&gt;
+      &lt;td rowspan="2" class="wa-actions"&gt;&amp;#127909; &amp;#8942;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="wa-sub"&gt;Rose, Jane, Hayden, You&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+
+<p>The table has two rows. The first row has the back arrow (<code>wa-back</code>), the picture (<code>wa-pfp-cell</code>), the group name (<code>wa-title</code>) and the icons (<code>wa-actions</code>). The back arrow, picture and icons have <code>rowspan=&quot;2&quot;</code>, which stretches them down across both rows. The second row only has the member list (<code>wa-sub</code>), which sits under the name. If the name or the member list is too long, the workskin cuts it short with "..." for you.</p>
+
+<p>The picture is the same <code>wa-pfp</code> circle as in the group messages, so <code>colour1</code> to <code>colour10</code> work here too. You can use this header for a one-to-one chat as well - put "online" or "last seen..." where the member list goes, or "typing..." to show the other person is typing.</p>
+
+<h4>Choosing a Background</h4>
+
+<p>Every WhatsApp chat can have its own background, picked with a class on the container next to the theme class. Here's the same chat on four different backgrounds. The first one has no background class, so it has the normal background:</p>
+
+<div class="mob wa theme-auto">
+  <p class="mob-head">Mom<span class="hide"> - </span><span>online</span></p>
+  <div class="mob-body">
+    <div class="msg in"><p><span class="hide"><em>Mom:</em> </span>Are you coming Sunday?</p><p class="wa-time">10:02</p></div>
+    <div class="msg out"><p><span class="hide"><em>Shane:</em> </span>Yes!</p><p class="wa-time">10:03 <span class="wa-read">✓✓</span></p></div>
+  </div>
+</div>
+
+<div class="mob wa theme-auto bg-sage">
+  <p class="mob-head">Mom<span class="hide"> - </span><span>online</span></p>
+  <div class="mob-body">
+    <div class="msg in"><p><span class="hide"><em>Mom:</em> </span>Are you coming Sunday?</p><p class="wa-time">10:02</p></div>
+    <div class="msg out"><p><span class="hide"><em>Shane:</em> </span>Yes!</p><p class="wa-time">10:03 <span class="wa-read">✓✓</span></p></div>
+  </div>
+</div>
+
+<div class="mob wa theme-auto bg-blush">
+  <p class="mob-head">Mom<span class="hide"> - </span><span>online</span></p>
+  <div class="mob-body">
+    <div class="msg in"><p><span class="hide"><em>Mom:</em> </span>Are you coming Sunday?</p><p class="wa-time">10:02</p></div>
+    <div class="msg out"><p><span class="hide"><em>Shane:</em> </span>Yes!</p><p class="wa-time">10:03 <span class="wa-read">✓✓</span></p></div>
+  </div>
+</div>
+
+<div class="mob wa theme-auto bg-dusk">
+  <p class="mob-head">Mom<span class="hide"> - </span><span>online</span></p>
+  <div class="mob-body">
+    <div class="msg in"><p><span class="hide"><em>Mom:</em> </span>Are you coming Sunday?</p><p class="wa-time">10:02</p></div>
+    <div class="msg out"><p><span class="hide"><em>Shane:</em> </span>Yes!</p><p class="wa-time">10:03 <span class="wa-read">✓✓</span></p></div>
+  </div>
+</div>
+
+<p><em>The HTML for the second one - only the last class changes:</em></p>
+
+<pre><code>&lt;div class="mob wa theme-auto bg-sage"&gt;
+  &lt;p class="mob-head"&gt;Mom&lt;span class="hide"&gt; - &lt;/span&gt;&lt;span&gt;online&lt;/span&gt;&lt;/p&gt;
+  &lt;div class="mob-body"&gt;
+    &lt;div class="msg in"&gt;&lt;p&gt;&lt;span class="hide"&gt;&lt;em&gt;Mom:&lt;/em&gt; &lt;/span&gt;Are you coming Sunday?&lt;/p&gt;&lt;p class="wa-time"&gt;10:02&lt;/p&gt;&lt;/div&gt;
+    &lt;div class="msg out"&gt;&lt;p&gt;&lt;span class="hide"&gt;&lt;em&gt;Shane:&lt;/em&gt; &lt;/span&gt;Yes!&lt;/p&gt;&lt;p class="wa-time"&gt;10:03 &lt;span class="wa-read"&gt;✓✓&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+<p>The backgrounds that come with the workskin are:</p>
+
+<ul>
+  <li>Plain colours: <code>bg-beige</code>, <code>bg-white</code>, <code>bg-sage</code>, <code>bg-sky</code>, <code>bg-blush</code>, <code>bg-lilac</code>, <code>bg-slate</code>, <code>bg-navy</code>, <code>bg-forest</code>, <code>bg-plum</code>, <code>bg-black</code></li>
+  <li>Gradients: <code>bg-sunset</code>, <code>bg-ocean</code>, <code>bg-night</code>, <code>bg-dusk</code></li>
+  <li>Your own picture: <code>bg-image1</code>. A picture has to be linked from the web, so it's set up in the CSS, and the WhatsApp CSS chapter explains how. Once it's set up, you use it like any of the others: <code>&lt;div class=&quot;mob wa theme-auto bg-image1&quot;&gt;</code></li>
+</ul>
+
+<p><strong>Note:</strong> a background class overrides the light and dark theme background, so pick a light or dark one to suit the theme you're using. The bubbles, ticks and text keep their theme colours on top of it.</p>
+
+<p>If a chat is on one particular character's phone, you can use their profile instead: add <code>pov-</code> and their name to the container, like <code>pov-shane</code>, and the chat gets the wallpaper set in their profile, so all of their chats look the same (see Their Phone, in the Core, Themes, and Extras chapter).</p>
+        </div>
+      </div>
+
+      <p class="chapter-nav"><a href="imessage-css.html">&larr; Previous Chapter</a> &middot; <a href="index.html">Chapter Index</a> &middot; <a href="twitter-x.html">Next Chapter &rarr;</a></p>
+</main>
+<footer>
+  Made by hand in HTML &amp; CSS. No trackers, no cookies, no ads.
+</footer>
+<script>
+  // Works like AO3's "Hide Creator's Style" button: switches the work skin off and on.
+  (function () {
+    var skin = document.getElementById("creator-style");
+    var button = document.getElementById("style-toggle");
+    function show(off) {
+      skin.disabled = off;
+      button.textContent = off ? "Show Creator's Style" : "Hide Creator's Style";
+    }
+    try { show(localStorage.getItem("hide-creator-style") === "yes"); } catch (e) { show(false); }
+    button.addEventListener("click", function () {
+      var off = !skin.disabled;
+      show(off);
+      try { localStorage.setItem("hide-creator-style", off ? "yes" : "no"); } catch (e) {}
+    });
+  })();
+</script>
+</body>
+</html>
