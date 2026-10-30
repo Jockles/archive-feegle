@@ -59,7 +59,7 @@
 #workskin .tb .tb-subline b { color: #555555; }
 
 /* round profile picture (initials), colour1-colour10 for colours; add "rb" for the green reblog badge */
-/* initials by default; colour1-colour10 are the colours (change them below if you like), or put a picture
+/* initials by default; colour1-colour10 are the colours (set in the CORE), or put a picture
    or a profile inside it with a pfp span */
 #workskin .tb .tb-pfp {
   display: flex;
@@ -80,26 +80,6 @@
   font-size: 0.85em;
   font-weight: bold;
 }
-
-#workskin .tb .tb-pfp.colour1 { background-color: #b5733a; }
-
-#workskin .tb .tb-pfp.colour2 { background-color: #3a3a3c; }
-
-#workskin .tb .tb-pfp.colour3 { background-color: #7a2b4e; }
-
-#workskin .tb .tb-pfp.colour4 { background-color: #2f7d6b; }
-
-#workskin .tb .tb-pfp.colour5 { background-color: #3b5ea8; }
-
-#workskin .tb .tb-pfp.colour6 { background-color: #6b4fa0; }
-
-#workskin .tb .tb-pfp.colour7 { background-color: #a8383b; }
-
-#workskin .tb .tb-pfp.colour8 { background-color: #4e7a2c; }
-
-#workskin .tb .tb-pfp.colour9 { background-color: #8c6d1f; }
-
-#workskin .tb .tb-pfp.colour10 { background-color: #2a7390; }
 
 #workskin .tb .tb-pfp.rb::after {
   content: '\21C4';
@@ -252,26 +232,6 @@
   font-size: 0.75em;
   font-weight: bold;
 }
-
-#workskin .tb .tb-ask-pfp.colour1 { background-color: #b5733a; }
-
-#workskin .tb .tb-ask-pfp.colour2 { background-color: #3a3a3c; }
-
-#workskin .tb .tb-ask-pfp.colour3 { background-color: #7a2b4e; }
-
-#workskin .tb .tb-ask-pfp.colour4 { background-color: #2f7d6b; }
-
-#workskin .tb .tb-ask-pfp.colour5 { background-color: #3b5ea8; }
-
-#workskin .tb .tb-ask-pfp.colour6 { background-color: #6b4fa0; }
-
-#workskin .tb .tb-ask-pfp.colour7 { background-color: #a8383b; }
-
-#workskin .tb .tb-ask-pfp.colour8 { background-color: #4e7a2c; }
-
-#workskin .tb .tb-ask-pfp.colour9 { background-color: #8c6d1f; }
-
-#workskin .tb .tb-ask-pfp.colour10 { background-color: #2a7390; }
 
 #workskin .tb .tb-tags {
   display: block;

@@ -187,49 +187,10 @@
 }
 
 /* --- colours: add colour1 to colour10 to the dc-name, like <b class="dc-name colour3">Name</b> ---
-   One class colours both the name and the round picture. The circles use the same ten colours as
-   the picture circles in the other apps; the names have their own light and dark shades, so they
-   are easy to read in both. With no colour class, the name is plain and the circle is Discord blue.
-   colour1-colour10 also work on any other text in a message, like a name in a welcome line. */
-#workskin .dc .colour1 { color: #b8651f; }
-
-#workskin .dc .colour2 { color: #5f6368; }
-
-#workskin .dc .colour3 { color: #b03a6f; }
-
-#workskin .dc .colour4 { color: #1f8a72; }
-
-#workskin .dc .colour5 { color: #2f68c8; }
-
-#workskin .dc .colour6 { color: #7b52c4; }
-
-#workskin .dc .colour7 { color: #c0392b; }
-
-#workskin .dc .colour8 { color: #4a8a25; }
-
-#workskin .dc .colour9 { color: #9a7412; }
-
-#workskin .dc .colour10 { color: #1f7fa3; }
-
-#workskin .dc .dc-name.colour1::before { background-color: #b5733a; }
-
-#workskin .dc .dc-name.colour2::before { background-color: #3a3a3c; }
-
-#workskin .dc .dc-name.colour3::before { background-color: #7a2b4e; }
-
-#workskin .dc .dc-name.colour4::before { background-color: #2f7d6b; }
-
-#workskin .dc .dc-name.colour5::before { background-color: #3b5ea8; }
-
-#workskin .dc .dc-name.colour6::before { background-color: #6b4fa0; }
-
-#workskin .dc .dc-name.colour7::before { background-color: #a8383b; }
-
-#workskin .dc .dc-name.colour8::before { background-color: #4e7a2c; }
-
-#workskin .dc .dc-name.colour9::before { background-color: #8c6d1f; }
-
-#workskin .dc .dc-name.colour10::before { background-color: #2a7390; }
+   One class colours both the name and the round picture. The colours themselves are in the
+   COLOURS section of the CORE, shared with every other app. With no colour class, the name is
+   plain and the circle is Discord blue. colour1-colour10 also work on any other text in a
+   message, like a name in a welcome line. */
 
 /* --- profile pictures, the same way as every other module ---
    Put a dc-pfp span first inside the username, with a profile or a picture tag in it:
@@ -733,28 +694,6 @@
   border-bottom-color: rgb(54, 57, 63);
 }
 
-#workskin .dc.theme-dark .colour1 { color: #f0a25c; }
-
-#workskin .dc.theme-dark .colour2 { color: #aeb3b8; }
-
-#workskin .dc.theme-dark .colour3 { color: #ff7aa2; }
-
-#workskin .dc.theme-dark .colour4 { color: #06cf9c; }
-
-#workskin .dc.theme-dark .colour5 { color: #6fa3ff; }
-
-#workskin .dc.theme-dark .colour6 { color: #c4a3ff; }
-
-#workskin .dc.theme-dark .colour7 { color: #ff7b72; }
-
-#workskin .dc.theme-dark .colour8 { color: #8fd16a; }
-
-#workskin .dc.theme-dark .colour9 { color: #e6c35c; }
-
-#workskin .dc.theme-dark .colour10 { color: #53bdeb; }
-
-#workskin .dc.theme-dark .dc-name.colour2::before { background-color: #5c5c60; }
-
 #workskin .dc.theme-dark .typing-indicator span { background-color: rgb(220, 221, 222); }
 
 #workskin .dc.theme-dark .dc-input { background-color: rgb(64, 68, 75); }
@@ -862,28 +801,17 @@
       border-bottom-color: rgb(54, 57, 63);
     }
 
-  #workskin .dc.theme-auto .colour1 { color: #f0a25c; }
-
-  #workskin .dc.theme-auto .colour2 { color: #aeb3b8; }
-
-  #workskin .dc.theme-auto .colour3 { color: #ff7aa2; }
-
-  #workskin .dc.theme-auto .colour4 { color: #06cf9c; }
-
-  #workskin .dc.theme-auto .colour5 { color: #6fa3ff; }
-
-  #workskin .dc.theme-auto .colour6 { color: #c4a3ff; }
-
-  #workskin .dc.theme-auto .colour7 { color: #ff7b72; }
-
-  #workskin .dc.theme-auto .colour8 { color: #8fd16a; }
-
-  #workskin .dc.theme-auto .colour9 { color: #e6c35c; }
-
-  #workskin .dc.theme-auto .colour10 { color: #53bdeb; }
-
-  #workskin .dc.theme-auto .dc-name.colour2::before { background-color: #5c5c60; }
-
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   #workskin .dc.theme-auto .typing-indicator span { background-color: rgb(220, 221, 222); }
 
   #workskin .dc.theme-auto .dc-input { background-color: rgb(64, 68, 75); }

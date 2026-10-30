@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Megaskin, Chapter 17: Discord CSS | jockles.com</title>
   <link rel="stylesheet" href="../../style.css">
-  <link rel="stylesheet" href="megaskin.css?v=248775d7" id="creator-style">
+  <link rel="stylesheet" href="megaskin.css?v=647f04db" id="creator-style">
 </head>
 <body>
 <header>
@@ -208,11 +208,7 @@
   <li><code>min-height</code> makes each message at least as tall as the circle, so short messages don't overlap the next one.</li>
 </ul>
 
-<pre><code>#workskin .dc .colour1 { color: #b8651f; }
-
-#workskin .dc .dc-name.colour1::before { background-color: #b5733a; }</code></pre>
-
-<p>One colour class does two jobs: it colours the name, and (because it's on the name) the circle too. The names have their own shades, picked to be easy to read as text. The dark theme has lighter shades again for the names. With no colour class, the circle is Discord blue.</p>
+<p>Adding <code>colour1</code> to <code>colour10</code> to a name does two jobs: it colours the name, and (because it's on the name) the circle too. The colours are in the core, shared with every app, with brighter shades for names and lighter ones again in the dark theme - see The Ten Colours in the core CSS chapter. With no colour class, the circle is Discord blue.</p>
 
 <pre><code>#workskin .dc .dc-pfp {
   display: inline-block; /* inline, like the plain circle, so Firefox keeps it level with the name */
@@ -438,7 +434,7 @@
   <li><strong>Extras:</strong> <code>dc-new-user</code>, <code>dc-bot</code>, and the typing dots (<code>dc-typing</code>, <code>typing-indicator</code> and <code>dc-typing-text</code>).</li>
 </ul>
 
-<p>Keep the window, <code>dc-message</code>, <code>dc-name</code>, <code>dc-time</code>, <code>dc-text</code> and the colours, which every message uses.</p>
+<p>Keep the window, <code>dc-message</code>, <code>dc-name</code>, <code>dc-time</code> and <code>dc-text</code>, which every message uses.</p>
         </div>
       </div>
 

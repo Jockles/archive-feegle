@@ -144,8 +144,8 @@
   white-space: nowrap;
 }
 
-/* round profile picture: initials by default; add a number class colour1-colour10 for a colour (change the
-   colours below if you like), or put a picture or a profile inside it with a pfp span */
+/* round profile picture: initials by default; add a number class colour1-colour10 for a colour (the colours are
+   in the COLOURS section of the CORE), or put a picture or a profile inside it with a pfp span */
 #workskin .wa .wa-pfp {
   display: block;
   width: 30px;
@@ -161,26 +161,6 @@
   font-weight: bold;
   overflow: hidden;
 }
-
-#workskin .wa .wa-pfp.colour1 { background-color: #b5733a; }
-
-#workskin .wa .wa-pfp.colour2 { background-color: #3a3a3c; }
-
-#workskin .wa .wa-pfp.colour3 { background-color: #7a2b4e; }
-
-#workskin .wa .wa-pfp.colour4 { background-color: #2f7d6b; }
-
-#workskin .wa .wa-pfp.colour5 { background-color: #3b5ea8; }
-
-#workskin .wa .wa-pfp.colour6 { background-color: #6b4fa0; }
-
-#workskin .wa .wa-pfp.colour7 { background-color: #a8383b; }
-
-#workskin .wa .wa-pfp.colour8 { background-color: #4e7a2c; }
-
-#workskin .wa .wa-pfp.colour9 { background-color: #8c6d1f; }
-
-#workskin .wa .wa-pfp.colour10 { background-color: #2a7390; }
 
 #workskin .wa table.wa-bar .wa-pfp {
   width: 38px;
@@ -208,67 +188,6 @@
   font-weight: normal;
   color: #667781;
 }
-
-/* name colour: colour1 to colour10, or none for the normal text colour */
-#workskin .wa .who.colour1 { color: #b8651f; }
-
-#workskin .wa .who.colour2 { color: #5f6368; }
-
-#workskin .wa .who.colour3 { color: #b03a6f; }
-
-#workskin .wa .who.colour4 { color: #1f8a72; }
-
-#workskin .wa .who.colour5 { color: #2f68c8; }
-
-#workskin .wa .who.colour6 { color: #7b52c4; }
-
-#workskin .wa .who.colour7 { color: #c0392b; }
-
-#workskin .wa .who.colour8 { color: #4a8a25; }
-
-#workskin .wa .who.colour9 { color: #9a7412; }
-
-#workskin .wa .who.colour10 { color: #1f7fa3; }
-
-#workskin .wa .wa-quote.colour1 { border-left-color: #b8651f; color: #54656f; }
-
-#workskin .wa .wa-quote.colour1 b { color: #b8651f; }
-
-#workskin .wa .wa-quote.colour2 { border-left-color: #5f6368; color: #54656f; }
-
-#workskin .wa .wa-quote.colour2 b { color: #5f6368; }
-
-#workskin .wa .wa-quote.colour3 { border-left-color: #b03a6f; color: #54656f; }
-
-#workskin .wa .wa-quote.colour3 b { color: #b03a6f; }
-
-#workskin .wa .wa-quote.colour4 { border-left-color: #1f8a72; color: #54656f; }
-
-#workskin .wa .wa-quote.colour4 b { color: #1f8a72; }
-
-#workskin .wa .wa-quote.colour5 { border-left-color: #2f68c8; color: #54656f; }
-
-#workskin .wa .wa-quote.colour5 b { color: #2f68c8; }
-
-#workskin .wa .wa-quote.colour6 { border-left-color: #7b52c4; color: #54656f; }
-
-#workskin .wa .wa-quote.colour6 b { color: #7b52c4; }
-
-#workskin .wa .wa-quote.colour7 { border-left-color: #c0392b; color: #54656f; }
-
-#workskin .wa .wa-quote.colour7 b { color: #c0392b; }
-
-#workskin .wa .wa-quote.colour8 { border-left-color: #4a8a25; color: #54656f; }
-
-#workskin .wa .wa-quote.colour8 b { color: #4a8a25; }
-
-#workskin .wa .wa-quote.colour9 { border-left-color: #9a7412; color: #54656f; }
-
-#workskin .wa .wa-quote.colour9 b { color: #9a7412; }
-
-#workskin .wa .wa-quote.colour10 { border-left-color: #1f7fa3; color: #54656f; }
-
-#workskin .wa .wa-quote.colour10 b { color: #1f7fa3; }
 
 /* the little pointed corner on the first bubble of a run: add "tail" next to in or out */
 #workskin .wa .msg.tail { position: relative; }
@@ -605,66 +524,6 @@
 
 #workskin .wa.theme-dark .wa-num { color: #8696a0; }
 
-#workskin .wa.theme-dark .who.colour1 { color: #f0a25c; }
-
-#workskin .wa.theme-dark .who.colour2 { color: #aeb3b8; }
-
-#workskin .wa.theme-dark .who.colour3 { color: #ff7aa2; }
-
-#workskin .wa.theme-dark .who.colour4 { color: #06cf9c; }
-
-#workskin .wa.theme-dark .who.colour5 { color: #6fa3ff; }
-
-#workskin .wa.theme-dark .who.colour6 { color: #c4a3ff; }
-
-#workskin .wa.theme-dark .who.colour7 { color: #ff7b72; }
-
-#workskin .wa.theme-dark .who.colour8 { color: #8fd16a; }
-
-#workskin .wa.theme-dark .who.colour9 { color: #e6c35c; }
-
-#workskin .wa.theme-dark .who.colour10 { color: #53bdeb; }
-
-#workskin .wa.theme-dark .wa-quote.colour1 { border-left-color: #f0a25c; color: #8696a0; }
-
-#workskin .wa.theme-dark .wa-quote.colour1 b { color: #f0a25c; }
-
-#workskin .wa.theme-dark .wa-quote.colour2 { border-left-color: #aeb3b8; color: #8696a0; }
-
-#workskin .wa.theme-dark .wa-quote.colour2 b { color: #aeb3b8; }
-
-#workskin .wa.theme-dark .wa-quote.colour3 { border-left-color: #ff7aa2; color: #8696a0; }
-
-#workskin .wa.theme-dark .wa-quote.colour3 b { color: #ff7aa2; }
-
-#workskin .wa.theme-dark .wa-quote.colour4 { border-left-color: #06cf9c; color: #8696a0; }
-
-#workskin .wa.theme-dark .wa-quote.colour4 b { color: #06cf9c; }
-
-#workskin .wa.theme-dark .wa-quote.colour5 { border-left-color: #6fa3ff; color: #8696a0; }
-
-#workskin .wa.theme-dark .wa-quote.colour5 b { color: #6fa3ff; }
-
-#workskin .wa.theme-dark .wa-quote.colour6 { border-left-color: #c4a3ff; color: #8696a0; }
-
-#workskin .wa.theme-dark .wa-quote.colour6 b { color: #c4a3ff; }
-
-#workskin .wa.theme-dark .wa-quote.colour7 { border-left-color: #ff7b72; color: #8696a0; }
-
-#workskin .wa.theme-dark .wa-quote.colour7 b { color: #ff7b72; }
-
-#workskin .wa.theme-dark .wa-quote.colour8 { border-left-color: #8fd16a; color: #8696a0; }
-
-#workskin .wa.theme-dark .wa-quote.colour8 b { color: #8fd16a; }
-
-#workskin .wa.theme-dark .wa-quote.colour9 { border-left-color: #e6c35c; color: #8696a0; }
-
-#workskin .wa.theme-dark .wa-quote.colour9 b { color: #e6c35c; }
-
-#workskin .wa.theme-dark .wa-quote.colour10 { border-left-color: #53bdeb; color: #8696a0; }
-
-#workskin .wa.theme-dark .wa-quote.colour10 b { color: #53bdeb; }
-
 #workskin .wa.theme-dark .in.tail::before { border-color: transparent #202c33 transparent transparent; }
 
 #workskin .wa.theme-dark .out.tail::before { border-color: transparent transparent transparent #005c4b; }
@@ -715,66 +574,36 @@
 
   #workskin .wa.theme-auto .wa-num { color: #8696a0; }
 
-  #workskin .wa.theme-auto .who.colour1 { color: #f0a25c; }
-
-  #workskin .wa.theme-auto .who.colour2 { color: #aeb3b8; }
-
-  #workskin .wa.theme-auto .who.colour3 { color: #ff7aa2; }
-
-  #workskin .wa.theme-auto .who.colour4 { color: #06cf9c; }
-
-  #workskin .wa.theme-auto .who.colour5 { color: #6fa3ff; }
-
-  #workskin .wa.theme-auto .who.colour6 { color: #c4a3ff; }
-
-  #workskin .wa.theme-auto .who.colour7 { color: #ff7b72; }
-
-  #workskin .wa.theme-auto .who.colour8 { color: #8fd16a; }
-
-  #workskin .wa.theme-auto .who.colour9 { color: #e6c35c; }
-
-  #workskin .wa.theme-auto .who.colour10 { color: #53bdeb; }
-
-  #workskin .wa.theme-auto .wa-quote.colour1 { border-left-color: #f0a25c; color: #8696a0; }
-
-  #workskin .wa.theme-auto .wa-quote.colour1 b { color: #f0a25c; }
-
-  #workskin .wa.theme-auto .wa-quote.colour2 { border-left-color: #aeb3b8; color: #8696a0; }
-
-  #workskin .wa.theme-auto .wa-quote.colour2 b { color: #aeb3b8; }
-
-  #workskin .wa.theme-auto .wa-quote.colour3 { border-left-color: #ff7aa2; color: #8696a0; }
-
-  #workskin .wa.theme-auto .wa-quote.colour3 b { color: #ff7aa2; }
-
-  #workskin .wa.theme-auto .wa-quote.colour4 { border-left-color: #06cf9c; color: #8696a0; }
-
-  #workskin .wa.theme-auto .wa-quote.colour4 b { color: #06cf9c; }
-
-  #workskin .wa.theme-auto .wa-quote.colour5 { border-left-color: #6fa3ff; color: #8696a0; }
-
-  #workskin .wa.theme-auto .wa-quote.colour5 b { color: #6fa3ff; }
-
-  #workskin .wa.theme-auto .wa-quote.colour6 { border-left-color: #c4a3ff; color: #8696a0; }
-
-  #workskin .wa.theme-auto .wa-quote.colour6 b { color: #c4a3ff; }
-
-  #workskin .wa.theme-auto .wa-quote.colour7 { border-left-color: #ff7b72; color: #8696a0; }
-
-  #workskin .wa.theme-auto .wa-quote.colour7 b { color: #ff7b72; }
-
-  #workskin .wa.theme-auto .wa-quote.colour8 { border-left-color: #8fd16a; color: #8696a0; }
-
-  #workskin .wa.theme-auto .wa-quote.colour8 b { color: #8fd16a; }
-
-  #workskin .wa.theme-auto .wa-quote.colour9 { border-left-color: #e6c35c; color: #8696a0; }
-
-  #workskin .wa.theme-auto .wa-quote.colour9 b { color: #e6c35c; }
-
-  #workskin .wa.theme-auto .wa-quote.colour10 { border-left-color: #53bdeb; color: #8696a0; }
-
-  #workskin .wa.theme-auto .wa-quote.colour10 b { color: #53bdeb; }
-
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   #workskin .wa.theme-auto .in.tail::before { border-color: transparent #202c33 transparent transparent; }
 
   #workskin .wa.theme-auto .out.tail::before { border-color: transparent transparent transparent #005c4b; }

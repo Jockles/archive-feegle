@@ -61,26 +61,6 @@
 #workskin .tw .tw-pfp ~ .tw-handle,
 #workskin .tw-reply .tw-pfp ~ .tw-handle { display: block; }
 
-#workskin .tw .tw-pfp.colour1, #workskin .tw-reply .tw-pfp.colour1 { background-color: #b5733a; }
-
-#workskin .tw .tw-pfp.colour2, #workskin .tw-reply .tw-pfp.colour2 { background-color: #3a3a3c; }
-
-#workskin .tw .tw-pfp.colour3, #workskin .tw-reply .tw-pfp.colour3 { background-color: #7a2b4e; }
-
-#workskin .tw .tw-pfp.colour4, #workskin .tw-reply .tw-pfp.colour4 { background-color: #2f7d6b; }
-
-#workskin .tw .tw-pfp.colour5, #workskin .tw-reply .tw-pfp.colour5 { background-color: #3b5ea8; }
-
-#workskin .tw .tw-pfp.colour6, #workskin .tw-reply .tw-pfp.colour6 { background-color: #6b4fa0; }
-
-#workskin .tw .tw-pfp.colour7, #workskin .tw-reply .tw-pfp.colour7 { background-color: #a8383b; }
-
-#workskin .tw .tw-pfp.colour8, #workskin .tw-reply .tw-pfp.colour8 { background-color: #4e7a2c; }
-
-#workskin .tw .tw-pfp.colour9, #workskin .tw-reply .tw-pfp.colour9 { background-color: #8c6d1f; }
-
-#workskin .tw .tw-pfp.colour10, #workskin .tw-reply .tw-pfp.colour10 { background-color: #2a7390; }
-
 #workskin .tw .tw-handle {
   color: #536471;
   font-weight: normal;
