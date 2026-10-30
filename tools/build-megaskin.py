@@ -178,8 +178,9 @@ def update_stats():
     words = word_count()
     for path in (os.path.join(ROOT, "index.html"), os.path.join(ROOT, "..", "index.html")):
         page = open(path, encoding="utf-8").read()
-        page = re.sub(r"Words: [\d,]+ &middot; Chapters: \d+/\?",
-                      "Words: %s &middot; Chapters: %d/?" % (words, len(CHAPTERS)), page)
+        # "ish" because this is our own rough count, not AO3's
+        page = re.sub(r"Words: [\d,]+(?:ish)? &middot; Chapters: \d+/\?",
+                      "Words: %sish &middot; Chapters: %d/?" % (words, len(CHAPTERS)), page)
         open(path, "w", encoding="utf-8").write(page)
 
 
