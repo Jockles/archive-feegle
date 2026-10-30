@@ -15,7 +15,7 @@ What it does:
 To add a chapter: write its text in fic/megaskin/text/, add it to CHAPTERS
 below, and run this again.
 """
-import html, os, re
+import hashlib, html, os, re
 
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "fic", "megaskin")
 
@@ -71,7 +71,7 @@ PAGE = """<!DOCTYPE html>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{title} | jockles.com</title>
   <link rel="stylesheet" href="../../style.css">
-  <link rel="stylesheet" href="megaskin.css" id="creator-style">
+  <link rel="stylesheet" href="megaskin.css?v={skinver}" id="creator-style">
 </head>
 <body>
 <header>
@@ -130,11 +130,14 @@ def chapnav(i):
 
 
 def build_chapters():
+    # the ?v= changes whenever the skin does, so browsers fetch the new one straight away
+    skin = open(os.path.join(ROOT, "megaskin.css"), "rb").read()
+    skinver = hashlib.sha1(skin).hexdigest()[:8]
     for i, (slug, ctitle) in enumerate(CHAPTERS):
         text = open(os.path.join(ROOT, "text", slug + ".html"), encoding="utf-8").read().strip()
         page = PAGE.format(title="Megaskin, Chapter %d: %s" % (i + 1, html.escape(ctitle, quote=False)),
                            nav=NAV, slug=slug, chapnav=chapnav(i), n=i + 1,
-                           ctitle=html.escape(ctitle, quote=False), text=text)
+                           ctitle=html.escape(ctitle, quote=False), text=text, skinver=skinver)
         open(os.path.join(ROOT, slug + ".html"), "w", encoding="utf-8").write(page)
 
 
