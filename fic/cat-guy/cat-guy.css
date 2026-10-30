@@ -1,0 +1,26 @@
+/* ==========================================================
+   CAT GUY - extra profile for this fic only
+   Add this to the end of the Megaskin when you make the work
+   skin for this fic. It only adds Mathis; nothing in the
+   Megaskin itself is changed.
+   ========================================================== */
+
+/* PROFILE: Mathis */
+#workskin .pfp.pfp-mathis { background-image: linear-gradient(135deg, #f2a65a, #3a9e8f); }
+#workskin .wa .who.pfp-mathis, #workskin .dc .dc-name.pfp-mathis { color: #2a9d8f; }
+#workskin .name.pfp-mathis::before { content: "Mathis"; }
+#workskin .ig .name.pfp-mathis::before, #workskin .igdm .name.pfp-mathis::before { content: "Mathis B."; }
+
+/* Saved as: on Luca's phone, and on Ilya's */
+#workskin .mob.pov-luca .name.pfp-mathis::before { content: "Mathis (Rösti's person)"; }
+#workskin .mob.pov-ilya .name.pfp-mathis::before { content: "Cat Guy's Guy"; }
+
+/* Handles */
+#workskin .handle.pfp-mathis::after { content: "mathisbelanger"; }
+#workskin .tw .handle.pfp-mathis::after, #workskin .tw-reply .handle.pfp-mathis::after, #workskin .twdm .handle.pfp-mathis::after { content: "mathis_b"; }
+#workskin .ig .handle.pfp-mathis::after, #workskin .igdm .handle.pfp-mathis::after { content: "mathis.fosters"; }
+#workskin .dc .handle.pfp-mathis::after { content: "mathis_b"; }
+
+/* Email */
+#workskin .email.pfp-mathis::after { content: "mathis@example.org"; }
+#workskin .mail .email.pfp-mathis::after { content: "fostering@shelter.example.org"; }
