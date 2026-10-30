@@ -77,7 +77,7 @@ PAGE = """<!DOCTYPE html>
 <body>
 <header>
   <h1><a href="../../index.html">jockles.com</a></h1>
-  <p>fic, videos and fannish things</p>
+  <p>All the Fannish things I do.</p>
 </header>
 {nav}
 <main>
