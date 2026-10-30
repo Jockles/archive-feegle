@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Megaskin, Chapter 15: Email CSS | jockles.com</title>
+  <link rel="stylesheet" href="../../style.css">
+  <script src="../../theme.js"></script>
+  <link rel="stylesheet" href="megaskin.css?v=cdd14f1a" id="creator-style">
+</head>
+<body>
+<header>
+  <h1><a href="../../index.html">jockles.com</a></h1>
+  <p>All the Fannish things I do.</p>
+</header>
+<nav>
+  <ul>
+    <li><a href="../../index.html">Home</a></li>
+    <li><a href="../index.html">Fic</a></li>
+    <li><a href="../../videos/index.html">Videos</a></li>
+    <li><a href="../../blog/index.html">Blog</a></li>
+    <li><a href="../../links.html">Links</a></li>
+    <li><a href="../../about.html">About</a></li>
+  </ul>
+</nav>
+<main>
+      <!-- This page is made by tools/build-megaskin.py. Edit the chapter text in text/email-css.html instead. -->
+      <p class="work-title"><a href="index.html">Megaskin</a> by Jockles</p>
+      <p class="style-toggle"><button type="button" id="style-toggle">Hide Creator's Style</button></p>
+      <p class="chapter-nav"><a href="email.html">&larr; Previous Chapter</a> &middot; <a href="index.html">Chapter Index</a> &middot; <a href="discord.html">Next Chapter &rarr;</a></p>
+
+      <div class="fic">
+        <h3 class="chapter-title">Chapter 15: Email CSS</h3>
+        <div id="workskin">
+<h3>Email CSS</h3>
+
+<p>This chapter goes through the CSS for the emails in the last chapter: the Gmail thread with its tables, and the plain email window with its title bar, fields, attachments and buttons.</p>
+
+<h4>Credits</h4>
+
+<p>The Email module is built on the work below. They're also listed in <a href="getting-started.html#credits">Credits and sources</a> in the first chapter, with all the other credits. Please go and leave them some kudos!</p>
+
+<ul>
+  <li><strong>Gmail:</strong> <em>How to insert Gmail emails in your fic</em> by DemigodOfAgni, <a href="https://archiveofourown.org/works/53302357">archiveofourown.org/works/53302357</a>. The Gmail email layout, with its table headers and Reply buttons, is based on this.</li>
+  <li><strong>Generic email:</strong> <em>How to Mimic Email Windows</em> by La_Temperanza, <a href="https://archiveofourown.org/works/7953412">archiveofourown.org/works/7953412</a>. The title bar, header lines, scrolling message body, attachments and Reply / Forward / Delete bar are based on this.</li>
+</ul>
+
+<h4>Getting the CSS</h4>
+
+<p>The Email CSS is here: <a href="css/email.css">jockles.com/fic/megaskin/css/email.css</a>. It needs the core CSS too (<a href="css/core.css">jockles.com/fic/megaskin/css/core.css</a>), so paste the core into your work skin first and this underneath it.</p>
+
+<h4>How the Module is Laid Out</h4>
+
+<p>Gmail first (everything starting <code>.gm</code>), then the email window (everything starting <code>.mail</code>), then Links, Scrolling, Dark theme and Auto theme. Both kinds of email sit inside a <code>mob</code> box, so they get the core's phone width and can use <code>no-scroll</code>.</p>
+
+<h4>The Gmail Card</h4>
+
+<pre><code>#workskin .gm {
+  background: #ffffff;
+  color: #202124;
+  border: 1px solid #dadce0;
+  border-radius: 14px;
+  font-family: Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif;
+}</code></pre>
+
+<p>A white card with Gmail's pale grey edge and rounded corners. Roboto is Google's font - readers who don't have it get Helvetica or Arial instead.</p>
+
+<h4>Why Gmail Uses Tables</h4>
+
+<p>The top of a Gmail email has a lot going on in one row: a picture on the left, the name and address in the middle, the date on the right, then a "to me" line under the name. Floats can do it, but they fall apart easily when names are long. A table keeps everything in its own column whatever the text is, and AO3 handles tables reliably, so the headers are real <code>&lt;table&gt;</code>s.</p>
+
+<pre><code>#workskin .gm table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  margin: 0;
+}
+
+#workskin .gm td {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  vertical-align: top;
+}</code></pre>
+
+<p>AO3's own site skin gives tables borders, padding and its own colours, which would make the email look like a spreadsheet. These two rules wipe all of that, so the table is just an invisible grid. <code>vertical-align: top</code> lines every cell up along the top, so the date sits level with the name.</p>
+
+<details>
+<summary>More about the reset</summary>
+<p><code>color: inherit</code> and <code>font: inherit</code> make the cells take the email's colours and font, instead of whatever the reader's AO3 skin says tables should look like. Without them, a reader with a dark site skin could end up with light text on the white card.</p>
+</details>
+
+<h4>The Subject Line</h4>
+
+<pre><code>#workskin .gm .gm-title { padding: 0.8em 0.4em 0.4em 0.9em; font-size: 1.35em; line-height: 1.25; }
+
+#workskin .gm .gm-label {
+  display: inline-block;
+  margin-left: 0.4em;
+  padding: 0.1em 0.5em;
+  border-radius: 4px;
+  background: #e8eaed;
+  color: #5f6368;
+  font-size: 0.55em;
+  vertical-align: middle;
+}
+
+#workskin .gm .gm-star {
+  width: 38px;
+  padding-top: 1em;
+  text-align: center;
+  color: #5f6368;
+  font-size: 1.2em;
+}</code></pre>
+
+<ul>
+  <li>The subject is big, like it is in Gmail.</li>
+  <li>The label ("Inbox") is a small grey chip. It sits inside the title, so its <code>0.55em</code> is a little over half of the already big title text, which brings it back down to a bit smaller than normal text. <code>vertical-align: middle</code> lines it up with the middle of the subject.</li>
+  <li>The star gets its own narrow column (<code>38px</code>) on the right.</li>
+</ul>
+
+<h4>One Email</h4>
+
+<pre><code>#workskin .gm .gm-msg { padding: 0.7em 0.9em 0.6em 0.9em; border-top: 1px solid #e8eaed; }
+
+#workskin .gm .gm-pfp-cell { width: 46px; }</code></pre>
+
+<p>Each email in the thread has a thin line above it. The picture column is <code>46px</code> wide - the picture's <code>36px</code> and a gap - and in the HTML it has <code>rowspan="2"</code>, so it stretches down beside both the name row and the "to me" row.</p>
+
+<pre><code>#workskin .gm .gm-pfp {
+  display: block;
+  width: 36px;
+  height: 36px;
+  line-height: 36px;
+  text-align: center;
+  border-radius: 50%;
+  background-color: #5f6368;
+  background-size: cover;
+  background-position: center;
+  color: #ffffff;
+  font-size: 0.85em;
+  font-weight: bold;
+}</code></pre>
+
+<ul>
+  <li>A round picture. With no picture in it, it shows initials in white: <code>line-height</code> the same as the height, plus <code>text-align: center</code>, puts the letters in the middle.</li>
+  <li><code>colour1</code> to <code>colour10</code> change the circle's colour. The colours are in the core, shared with every app (see The Ten Colours in the core CSS chapter).</li>
+  <li>You can put a <code>pfp</code> span inside instead of initials, for a picture or one of the profiles from the core.</li>
+</ul>
+
+<pre><code>#workskin .gm .gm-from { font-weight: bold; line-height: 1.3; padding-top: 1px; }
+
+#workskin .gm .gm-address { font-weight: normal; color: #5f6368; font-size: 0.82em; }
+
+#workskin .gm .gm-date {
+  width: 1%;
+  white-space: nowrap;
+  padding-top: 3px;
+  text-align: right;
+  color: #5f6368;
+  font-size: 0.75em;
+  line-height: 1.3;
+}</code></pre>
+
+<p>The name is bold and the address after it is smaller and grey. The date is the clever one:</p>
+
+<ul>
+  <li><code>width: 1%</code> asks for a column almost no width at all, and <code>white-space: nowrap</code> stops the date from wrapping. Together they make the column exactly as wide as the date and no wider, so the name gets all the space that's left.</li>
+  <li>The little <code>padding-top</code> nudges the smaller date text down so it lines up with the name.</li>
+</ul>
+
+<pre><code>#workskin .gm .gm-to { color: #5f6368; font-size: 0.82em; line-height: 1.3; }
+
+#workskin .gm .gm-tools {
+  text-align: right;
+  color: #5f6368;
+  letter-spacing: 0.3em;
+  white-space: nowrap;
+}
+
+#workskin .gm .gm-body { display: block; padding: 0.6em 0 0.4em 0; line-height: 1.5; }
+
+#workskin .gm .gm-body p { margin: 0.5em 0; }</code></pre>
+
+<p>The "to me" line is small and grey. The icons under the date (<code>gm-tools</code>) are spaced out with <code>letter-spacing</code> and kept on one line. The message itself has taller lines and gaps between paragraphs, so it reads like an email rather than a chat.</p>
+
+<h4>The Reply Buttons</h4>
+
+<pre><code>#workskin .gm .gm-footer { display: block; padding: 0.7em 0.9em 0.9em 0.9em; border-top: 1px solid #e8eaed; }
+
+#workskin .gm table.gm-actions {
+  border-collapse: separate;
+  border-spacing: 0.4em 0;
+  margin: 0 -0.4em;
+  width: 100%;
+}
+
+#workskin .gm table.gm-actions td {
+  border: 1px solid #dadce0;
+  border-radius: 18px;
+  padding: 0.55em 0.2em;
+  text-align: center;
+  color: #5f6368;
+  font-size: 0.9em;
+}</code></pre>
+
+<p>Reply, Reply all and Forward are another table, one cell each, so they share the width evenly and never wrap onto two lines.</p>
+
+<ul>
+  <li><code>border-collapse: separate</code> undoes the reset above for this table only, so each cell keeps its own border, and <code>border-radius: 18px</code> rounds each one into a pill.</li>
+  <li><code>border-spacing: 0.4em 0</code> puts a gap between the pills side to side, but none above or below.</li>
+  <li>Border spacing also adds a gap at the outside edges, so the pills wouldn't line up with the email above. <code>margin: 0 -0.4em</code> pulls the table out by the same amount on both sides, which cancels it.</li>
+</ul>
+
+<h4>The Email Window</h4>
+
+<pre><code>#workskin .mail {
+  border: 1px solid #cfcfcf;
+  background: #ffffff;
+  color: #000000;
+  font-family: Arial, Helvetica, sans-serif;
+}</code></pre>
+
+<p>A plain square window with no rounded corners, so it looks like an old desktop email program rather than any particular app.</p>
+
+<pre><code>#workskin .mail .mail-titlebar {
+  display: block;
+  overflow: hidden;
+  margin: 0;
+  padding: 0.3em 0.7em;
+  background: #404040;
+  color: #ffffff;
+  font-weight: bold;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+#workskin .mail .mail-titlebar span {
+  float: right;
+  margin-left: 0.8em;
+  color: #cfcfcf;
+  letter-spacing: 0.4em;
+}</code></pre>
+
+<ul>
+  <li>The title bar is dark grey and stays on one line. If the title is too long, <code>text-overflow: ellipsis</code> cuts it off with "..." instead of spilling out (it needs <code>overflow: hidden</code> and <code>nowrap</code> to work).</li>
+  <li>The window controls ("_ X") go in a span that floats to the right. That's why the span goes first in the HTML - a float only moves things that come after it, so it has to be before the title.</li>
+</ul>
+
+<pre><code>#workskin .mail .mail-field {
+  display: block;
+  margin: 0;
+  padding: 0.3em 0.7em;
+  border-bottom: 1px solid #e3e3e3;
+  background: #ffffff;
+  color: #000000;
+}
+
+#workskin .mail .mail-field b {
+  display: inline-block;
+  min-width: 4.2em;
+  color: #666666;
+  font-weight: bold;
+}</code></pre>
+
+<p>Each From, To and Subject line is its own strip with a line under it. The label in bold is given a <code>min-width</code>, so "To:" takes up as much room as "Subject:" and everything after the labels lines up in a neat column.</p>
+
+<pre><code>#workskin .mail .mail-body p { margin: 0.6em 0; }
+
+#workskin .mail .mail-signature {
+  margin-top: 1.2em;
+  padding-top: 0.5em;
+  border-top: 1px solid #e3e3e3;
+  color: #666666;
+  font-size: 0.9em;
+}</code></pre>
+
+<p>Paragraphs get their gaps back, and the signature gets a line above it and goes smaller and grey.</p>
+
+<h4>Attachments</h4>
+
+<pre><code>#workskin .mail .mail-attachment {
+  display: inline-block;
+  margin: 0.15em 0.2em 0.15em 0;
+  padding: 0.15em 0.5em;
+  border: 1px solid #cfcfcf;
+  border-radius: 3px;
+  background: #ffffff;
+  color: #0b57d0;
+  text-decoration: underline;
+}
+
+#workskin .mail .mail-attachment::before { content: "\1F4CE"; margin-right: 0.3em; }
+
+#workskin .mail .mail-attachment.doc::before { content: "\1F5BA"; }
+
+#workskin .mail .mail-attachment.img::before { content: "\1F5BC"; }</code></pre>
+
+<p>Each attachment is a small box with a blue underlined name, so it looks clickable. The icon in front comes from the CSS, not the HTML: <code>::before</code> adds an emoji before the name. <code>\1F4CE</code> is the code for the paperclip &#128206;, <code>\1F5BA</code> is a document &#128442; and <code>\1F5BC</code> is a framed picture &#128444;. Adding <code>doc</code> or <code>img</code> to the class swaps the paperclip for the other two.</p>
+
+<details>
+<summary>Using a different emoji</summary>
+<p>The megaskin uses the emoji's code with a <code>\</code> in front, rather than the emoji itself, which keeps the CSS plain text. To find a code, search for the emoji on <a href="https://emojipedia.org/">Emojipedia</a> and look for "Codepoints" - it'll say something like U+1F4CE. Drop the "U+" and put <code>\</code> in front.</p>
+<p>The emoji will look different depending on the reader's device, because each phone and computer draws its own.</p>
+</details>
+
+<h4>The Button Bar</h4>
+
+<pre><code>#workskin .mail .mail-buttons {
+  display: block;
+  margin: 0;
+  padding: 0.4em 0.7em;
+  border-top: 1px solid #cfcfcf;
+  background: #f5f5f5;
+  color: #000000;
+}
+
+#workskin .mail .mail-buttons span { display: inline-block; margin-right: 0.9em; }</code></pre>
+
+<p>A light grey strip at the bottom, with a gap after each button.</p>
+
+<h4>Links</h4>
+
+<pre><code>#workskin .gm .fake-link, #workskin .gm a:not(.tl) { color: #1a0dab; }
+
+#workskin .mail .fake-link, #workskin .mail a:not(.tl) { color: #0b57d0; }</code></pre>
+
+<p>Gmail's links are Google's dark blue, and the email window uses a brighter blue to match the attachments.</p>
+
+<h4>Scrolling</h4>
+
+<pre><code>#workskin .mail .mail-body {
+  display: block;
+  max-height: 480px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 0.5em 0.7em;
+  background: #ffffff;
+  color: #000000;
+}
+
+#workskin .gm {
+  max-height: 700px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}</code></pre>
+
+<ul>
+  <li>In the email window, only the message scrolls, once it's taller than <code>480px</code>. The title bar, the fields and the buttons stay where they are, like a real window. (The body's padding and colours live here too, so this is the rule to change if you want more space round the message.)</li>
+  <li>A Gmail thread scrolls as a whole once it's taller than <code>700px</code>, with the same thin grey scrollbar as the rest of the megaskin.</li>
+  <li>Adding <code>no-scroll</code> to the email's box switches the scrolling off for either kind.</li>
+</ul>
+
+<h4>Themes</h4>
+
+<p>The dark theme follows Gmail's own dark mode for both kinds of email: a dark grey card (<code>#202124</code>) with light text, darker lines and chips, grey small print and a lighter blue for links (<code>#8ab4f8</code>). The email window's title bar goes almost black. The auto theme is the same again inside <code>@media (prefers-color-scheme: dark)</code>.</p>
+
+<h4>Taking Parts Out</h4>
+
+<p>If you only use one kind of email, you can delete the other:</p>
+
+<ul>
+  <li><strong>Only Gmail:</strong> delete every rule starting <code>#workskin .mail</code>, including in Links, Scrolling and the dark and auto blocks.</li>
+  <li><strong>Only the email window:</strong> delete every rule starting <code>#workskin .gm</code>, the same way.</li>
+</ul>
+
+<p>Within Gmail, you can also take out the subject line (<code>gm-title</code>, <code>gm-label</code> and <code>gm-star</code>) or the reply buttons (<code>gm-footer</code> and <code>gm-actions</code>) if you never use them. In the email window, attachments (<code>mail-attachment</code>), the signature (<code>mail-signature</code>) and the buttons (<code>mail-buttons</code>) can all go on their own. Keep the table reset - every Gmail header needs it.</p>
+        </div>
+      </div>
+
+      <p class="chapter-nav"><a href="email.html">&larr; Previous Chapter</a> &middot; <a href="index.html">Chapter Index</a> &middot; <a href="discord.html">Next Chapter &rarr;</a></p>
+</main>
+<footer>
+  Made by hand in HTML &amp; CSS. No trackers, no cookies, no ads.
+</footer>
+<script>
+  // Works like AO3's "Hide Creator's Style" button: switches the work skin off and on.
+  (function () {
+    var skin = document.getElementById("creator-style");
+    var button = document.getElementById("style-toggle");
+    function show(off) {
+      skin.disabled = off;
+      button.textContent = off ? "Show Creator's Style" : "Hide Creator's Style";
+    }
+    try { show(localStorage.getItem("hide-creator-style") === "yes"); } catch (e) { show(false); }
+    button.addEventListener("click", function () {
+      var off = !skin.disabled;
+      show(off);
+      try { localStorage.setItem("hide-creator-style", off ? "yes" : "no"); } catch (e) {}
+    });
+  })();
+</script>
+</body>
+</html>
