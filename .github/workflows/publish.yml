@@ -1,0 +1,29 @@
+# Publishes the live site. Every time something is merged into main,
+# the site files are copied to the gh-pages branch, which GitHub Pages serves.
+# Draft previews in gh-pages/pr-preview/ are left alone.
+name: Publish site
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: gh-pages
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Gather the site files
+        run: rsync -a --exclude .git --exclude .github --exclude tools ./ _site/
+      - uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: _site
+          branch: gh-pages
+          clean-exclude: pr-preview/

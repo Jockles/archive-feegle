@@ -7,6 +7,8 @@ Hand-made HTML and CSS. No build step, no frameworks.
 - Each page has the menu written into it. If you add a new section, add its link to the `<nav>` in every page.
 - `fic/sample-fic.html` has instructions in a comment for copying a fic over from an AO3 HTML download.
 - `fic/megaskin/` is a multi-chapter work. Each chapter's text lives in `fic/megaskin/text/`, exactly as pasted into AO3, and `megaskin.css` is the work skin. After changing either, run `python3 tools/build-megaskin.py` to rebuild the chapter pages, the per-module CSS files in `fic/megaskin/css/` and the chapter list. The chapter order is at the top of that script.
+- Drafts: every pull request gets a preview copy of the site at `jockles.com/pr-preview/pr-<number>/`, with a yellow "Draft preview" banner, linked from a comment on the pull request (`.github/workflows/preview.yml`). It's removed when the pull request is merged or closed. Previews aren't linked anywhere and `robots.txt` keeps search engines out, but they aren't password protected.
+- Publishing: merging into `main` copies the site to the `gh-pages` branch, which GitHub Pages serves (`.github/workflows/publish.yml`).
 - `CNAME` tells GitHub Pages to serve the site at jockles.com. `.nojekyll` tells it to publish the files exactly as they are.
 
 To preview, open `index.html` in your browser.

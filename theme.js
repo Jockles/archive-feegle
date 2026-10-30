@@ -13,7 +13,23 @@
     return window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
   }
 
+  // Draft previews live under /pr-preview/. Keep them out of search
+  // engines and label them so a draft is never mistaken for the real site.
+  var draft = location.pathname.indexOf("/pr-preview/") !== -1;
+  if (draft) {
+    var robots = document.createElement("meta");
+    robots.name = "robots";
+    robots.content = "noindex, nofollow";
+    document.head.appendChild(robots);
+  }
+
   document.addEventListener("DOMContentLoaded", function () {
+    if (draft) {
+      var banner = document.createElement("p");
+      banner.className = "draft-banner";
+      banner.textContent = "Draft preview \u2013 not published yet";
+      document.body.insertBefore(banner, document.body.firstChild);
+    }
     var header = document.querySelector("header");
     if (!header) return;
     var button = document.createElement("button");

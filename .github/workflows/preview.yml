@@ -1,0 +1,32 @@
+# Draft previews. Every pull request gets its own copy of the site at
+# jockles.com/pr-preview/pr-<number>/, updated on each push and removed
+# when the pull request is merged or closed. A comment on the pull
+# request links to it.
+name: Draft preview
+
+on:
+  pull_request:
+    types: [opened, reopened, synchronize, closed]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: gh-pages
+  cancel-in-progress: false
+
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Gather the site files
+        run: rsync -a --exclude .git --exclude .github --exclude tools --exclude CNAME ./ _site/
+      - uses: rossjrw/pr-preview-action@v1
+        with:
+          source-dir: _site
+          preview-branch: gh-pages
+          umbrella-dir: pr-preview
+          action: auto
+          pages-base-url: jockles.com
