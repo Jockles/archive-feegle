@@ -51,6 +51,26 @@ REWRITES = [
     ("greeti**ng, tamettu from a K**abyle", "greeting, tamettu from a Kabyle"),
 ]
 
+# The language is not tied to one fic, so "SRD" (The Small Rain Down) is shown
+# as Jockles everywhere on the site, except where a note is about that story.
+SITE_WORDING = [
+    (r"Provisional SRD layer \(Jockles \\?- SRD\)", "Provisional layer by Jockles"),
+    (r"Jockles \\?- SRD", "Jockles"),
+    (r"SRD/Jockles", "Jockles"),
+    (r"The Small Rain Down's", "Jockles's"),
+    (r"A teaching booklet for The Small Rain Down\.", "A teaching booklet by Jockles."),
+    (r"SRD usage:", "In The Small Rain Down:"),
+    (r"its SRD usage", "its usage in The Small Rain Down"),
+    (r"\bSRD\b", "Jockles"),
+]
+
+
+def site_wording(text):
+    for pattern, repl in SITE_WORDING:
+        text = re.sub(pattern, repl, text)
+    return text
+
+
 # Booklet sections that are notes for Jockles rather than for readers
 SKIP_SECTIONS = {"Decisions for you"}
 
@@ -232,7 +252,8 @@ def load_words():
             wid, n = f"{base}-{n}", n + 1
         used.add(wid)
         # a note made only of working notes gets this instead (Jockles's choice)
-        w["notes"] = clean_note(w["notes"]) or ("Jockles vibes addition" if w["notes"] else "")
+        w["notes"] = site_wording(clean_note(w["notes"]) or ("Jockles vibes addition" if w["notes"] else ""))
+        w["meaning"] = site_wording(w["meaning"])
         w["id"] = wid
         w["letter"] = next((c.upper() for c in w["word"] if c.isalpha()), "#")
         words.append(w)
@@ -246,7 +267,7 @@ def entry(w):
     if w["gender"]:
         tags.append(f'<span class="pos">{e(w["gender"])}</span>')
     t = tier(w["source"])
-    label = "JOCKLES" if t == "SRD" else t
+    label = site_wording(t).upper()
     tags.append(f'<span class="tier tier-{t.lower()}" title="Source tier">{label}</span>')
     out = [f'<div class="entry" id="{w["id"]}" data-pos="{e(w["pos"])}">',
            f'  <h4><a href="#{w["id"]}">{e(w["word"])}</a> {" ".join(tags)}</h4>',
@@ -257,7 +278,7 @@ def entry(w):
         out.append(f'  <p class="gesture"><b>Gesture variants:</b> {e(w["dialect"])}</p>')
     meta = []
     if w["source"]:
-        source = re.sub(r"^Jockles\s*-\s*SRD$", "Jockles", w["source"])
+        source = site_wording(w["source"])
         meta.append(f'<b>Source:</b> {e(source)}')
     if w["notes"]:
         meta.append(f'<b>Notes:</b> {e(w["notes"])}')
@@ -451,7 +472,7 @@ def wordlinks_for(words):
 
 def booklet_sections():
     with open(os.path.join(SOURCE, "booklet.md"), encoding="utf-8") as f:
-        text = f.read()
+        text = site_wording(f.read())
     head, *rest = re.split(r"^## ", text, flags=re.M)
     sections = []
     for chunk in rest:
@@ -503,7 +524,7 @@ def build_grammar(words):
     write("grammar/index.html", page("Amatakka grammar", body, 1))
 
     with open(os.path.join(SOURCE, "specification.md"), encoding="utf-8") as f:
-        spec = f.read()
+        spec = site_wording(f.read())
     spec = "\n".join(l for l in spec.split("\n") if not l.startswith("# "))
     body = "\n".join([
         '      <p class="work-title"><a href="index.html">Amatakka grammar</a></p>',
