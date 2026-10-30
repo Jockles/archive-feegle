@@ -33,6 +33,7 @@ CHAPTERS = [
     ("instagram", "Instagram"),
     ("instagram-css", "Instagram CSS"),
     ("tumblr", "Tumblr"),
+    ("tumblr-css", "Tumblr CSS"),
     ("email", "Email"),
     ("discord", "Discord"),
 ]
