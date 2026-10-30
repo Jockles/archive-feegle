@@ -37,6 +37,7 @@ CHAPTERS = [
     ("email", "Email"),
     ("email-css", "Email CSS"),
     ("discord", "Discord"),
+    ("discord-css", "Discord CSS"),
 ]
 
 # module name in the skin's start/end lines -> file name in css/
