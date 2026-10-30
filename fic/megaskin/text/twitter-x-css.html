@@ -1,0 +1,332 @@
+<h3>Twitter/X CSS</h3>
+
+<p>This chapter goes through the CSS for the tweets, threads and DMs in the last chapter. The module has three parts: tweets and replies (<code>tw</code> and <code>tw-reply</code>), the scrolling thread they can sit in (<code>tw-thread</code>), and DMs (<code>twdm</code>). DMs are built just like iMessage, so if you've read that chapter, they'll be quick.</p>
+
+<h4>Getting the CSS</h4>
+
+<p>The Twitter/X CSS is here: <a href="css/twitter-x.css">jockles.com/fic/megaskin/css/twitter-x.css</a>. It needs the core CSS too (<a href="css/core.css">jockles.com/fic/megaskin/css/core.css</a>), so paste the core into your work skin first and this underneath it.</p>
+
+<h4>How the Module is Laid Out</h4>
+
+<p>The usual order - the main rules, Links, Dark theme and Auto theme - with a <strong>Scrolling</strong> section before the themes, because tweets and threads scroll differently from the phone-style chats. You'll notice that most rules name both <code>.tw</code> and <code>.tw-reply</code>. A reply is its own box rather than something inside a tweet, so every part that can turn up in both has to be given to both.</p>
+
+<h4>The Tweet</h4>
+
+<pre><code>#workskin .tw {
+  background: #ffffff;
+  color: #0f1419;
+  border: 1px solid #cfd9de;
+  border-radius: 14px;
+  padding: 0.8em 1em;
+}
+
+#workskin .tw-reply {
+  background: #ffffff;
+  color: #0f1419;
+  border: 1px solid #cfd9de;
+  border-top: none;
+  padding: 0.7em 1em;
+}</code></pre>
+
+<p>A tweet is a rounded white card. A reply is a square one with no top edge, so a stack of replies under a tweet joins up into one long card, with a single line between each one.</p>
+
+<p>The text colours are Twitter/X's own: <code>#0f1419</code> is its near-black, <code>#536471</code> the grey for handles and small print, and <code>#1d9bf0</code> its blue, which is used for links, hashtags, the verified tick and poll outlines.</p>
+
+<h4>Name Line and Profile Picture</h4>
+
+<pre><code>#workskin .tw .tw-top,
+#workskin .tw-reply .tw-top { display: block; overflow: hidden; }
+
+#workskin .tw .tw-pfp,
+#workskin .tw-reply .tw-pfp {
+  display: block;
+  float: left;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  margin: 0 0.65em 0 0;
+  border-radius: 50%;
+  overflow: hidden;
+  text-align: center;
+  background-color: #8b98a5;
+  color: #ffffff;
+  font-size: 0.85em;
+  font-weight: bold;
+}
+
+#workskin .tw .tw-pfp ~ .tw-handle,
+#workskin .tw-reply .tw-pfp ~ .tw-handle { display: block; }</code></pre>
+
+<ul>
+  <li>The picture floats to the left, and the name and handle sit beside it.</li>
+  <li><code>overflow: hidden</code> on the name line makes it grow tall enough to hold the floating picture. Without it, the tweet text would start beside the picture instead of under it.</li>
+  <li><code>~</code> means "anywhere after, in the same line". So the last rule says: if there's a picture in the name line, put the handle on its own line under the name, the way Twitter/X does. With no picture, the handle stays beside the name.</li>
+  <li>The ten colours for initials circles follow, <code>colour1</code> to <code>colour10</code>, the same shades as the other modules.</li>
+</ul>
+
+<h4>Text, Stats, Quotes and Notes</h4>
+
+<pre><code>#workskin .tw .tw-text { display: block; font-size: 1.02em; margin: 0.2em 0 0.4em 0; }
+
+#workskin .tw .tw-stats {
+  display: block;
+  color: #536471;
+  font-size: 0.82em;
+  padding-top: 0.45em;
+  border-top: 1px solid #eff3f4;
+  margin-top: 0.4em;
+}
+
+#workskin .tw .tw-stats b { color: #0f1419; }
+
+#workskin .tw .tw-quote {
+  display: block;
+  border: 1px solid #cfd9de;
+  border-radius: 12px;
+  padding: 0.5em 0.8em;
+  margin: 0.4em 0;
+  font-size: 0.92em;
+}</code></pre>
+
+<p>Most of the parts of a tweet are simple: a line with its own size, colour and spacing. The stats line has a pale line above it, and its numbers (in <code>&lt;b&gt;</code>) are dark while the words are grey. A quote tweet is a smaller rounded box inside the tweet. The Community Note (<code>tw-note</code>) and the sensitive content cover (<code>tw-warn</code>) are boxes the same way, with a pale grey background.</p>
+
+<pre><code>#workskin .tw .tw-stats .tw-liked,
+#workskin .tw-reply .tw-stats .tw-liked {
+  color: #f91880;
+}
+
+#workskin .tw .tw-stats .tw-rt,
+#workskin .tw-reply .tw-stats .tw-rt {
+  color: #00ba7c;
+}</code></pre>
+
+<p>A count the account has used turns pink for a like or green for a repost, like the real buttons.</p>
+
+<h4>Polls</h4>
+
+<pre><code>#workskin .tw .tw-opt,
+#workskin .tw-reply .tw-opt {
+  display: block;
+  border: 1px solid #1d9bf0;
+  border-radius: 6px;
+  padding: 0.4em 0.7em;
+  margin: 0.35em 0;
+  color: #0f1419;
+}
+
+#workskin .tw .tw-opt.res,
+#workskin .tw-reply .tw-opt.res {
+  border-color: transparent;
+  background-color: #eff3f4;
+  background-image: linear-gradient(#cfd9de, #cfd9de);
+  background-repeat: no-repeat;
+  background-size: 0% 100%;
+}
+
+#workskin .tw .tw-opt.p50,
+#workskin .tw-reply .tw-opt.p50 {
+  background-size: 50% 100%;
+}</code></pre>
+
+<p>An open poll is just a blue outline. A finished one (<code>res</code>) is cleverer: the bar is a <em>background picture</em>. <code>linear-gradient(#cfd9de, #cfd9de)</code> is a "gradient" from one colour to the same colour, which is a trick for making a solid block of colour that can be sized. <code>background-size</code> then sets how wide the block is, from <code>0%</code> to <code>100%</code> of the option, and <code>no-repeat</code> stops it filling the rest. Each <code>p</code> class just sets a different width. <code>win</code> swaps the grey block for a blue one and makes the text bold.</p>
+
+<details>
+<summary>Adding a poll percentage that isn't there</summary>
+
+<p>The skin has <code>p0</code> to <code>p100</code> in tens, plus <code>p25</code>, <code>p33</code>, <code>p67</code> and <code>p75</code>. To add another, copy one of the rules and change both numbers:</p>
+
+<pre><code>#workskin .tw .tw-opt.p45,
+#workskin .tw-reply .tw-opt.p45 {
+  background-size: 45% 100%;
+}</code></pre>
+
+<p>The percentage the reader sees is just the text in <code>tw-pct</code>, so it doesn't have to match the bar exactly - the nearest bar is usually close enough.</p>
+
+</details>
+
+<h4>Pictures and Videos</h4>
+
+<pre><code>#workskin .tw .tw-media,
+#workskin .tw-reply .tw-media {
+  display: block;
+  overflow: hidden;
+  border: 1px solid #cfd9de;
+  border-radius: 14px;
+  margin: 0.5em 0;
+  background: #eff3f4;
+  color: #536471;
+  font-style: italic;
+  text-align: center;
+  line-height: 1.3;
+}</code></pre>
+
+<p>One picture fills the rounded box at its own shape, and <code>overflow: hidden</code> rounds off its corners with the box. An embedded video (<code>video</code>) is <code>200px</code> tall, and a description gets padding to make it about the size of a picture.</p>
+
+<p>Two, three and four pictures work exactly like WhatsApp's photo galleries - squares made with <code>padding-top</code>, floated into a grid, with <code>land</code> for wide pictures - so see Photo Galleries in the WhatsApp CSS chapter for how. The only differences are the sizes (<code>49.2%</code> squares with a <code>1.2%</code> gap, adding up to <code>99.6%</code>), and this at the end:</p>
+
+<pre><code>#workskin .tw .tw-media.two::after,
+#workskin .tw .tw-media.three::after,
+#workskin .tw .tw-media.four::after {
+  content: "";
+  display: block;
+  clear: both;
+}</code></pre>
+
+<p>Floating things don't take up any height, so a box of floated pictures would shrink to nothing, and the stats line would slide up behind the pictures. This adds an invisible empty line after them with <code>clear: both</code>, which means "go below anything floating", so the box stretches down to hold them.</p>
+
+<h4>The Scrolling Thread</h4>
+
+<pre><code>#workskin .tw-thread {
+  width: 380px;
+  max-width: 100%;
+  margin: 1.2em auto;
+  box-sizing: border-box;
+  border: 1px solid #cfd9de;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #ffffff;
+  color: #0f1419;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 0.92em;
+  line-height: 1.35;
+}
+
+#workskin .tw-thread .mob {
+  width: auto;
+  max-width: none;
+  margin: 0;
+  border-width: 0 0 1px 0;
+  border-radius: 0;
+  max-height: none;
+  overflow: visible;
+  background: transparent;
+  color: inherit;
+}</code></pre>
+
+<p>A thread is its own phone-sized box, built like the core's <code>mob</code>. The second rule takes the tweets inside it apart: no width of their own, no gap around them, no rounded corners, no scrolling, and only a bottom edge, so they stack into one feed with a line between each one. <code>background: transparent</code> and <code>color: inherit</code> make every tweet take the thread's colours, which is how a whole thread follows one theme.</p>
+
+<pre><code>#workskin .tw-thread .tw-foot {
+  display: block;
+  padding: 0.7em 1em;
+  border-top: 1px solid #eff3f4;
+  color: #536471;
+}
+
+#workskin .tw-thread .tw-foot &gt; p { margin: 0; padding: 0; }
+
+#workskin .tw-thread .tw-foot span {
+  float: right;
+  padding: 0.25em 0.9em;
+  border-radius: 1em;
+  background: #1d9bf0;
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 0.9em;
+}</code></pre>
+
+<p>The "Tweet your reply" bar sits under the scrolling part, so it stays in place. AO3 wraps its text in a paragraph, which the middle rule flattens, and the Reply button floats to the right.</p>
+
+<h4>Scrolling</h4>
+
+<pre><code>#workskin .tw-thread .tw-scroll {
+  display: block;
+  max-height: 580px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+#workskin .tw {
+  max-height: 700px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}</code></pre>
+
+<p>In a thread, only the <code>tw-scroll</code> part scrolls, at the same height as every other chat. A tweet on its own scrolls as a whole, and it's allowed to be taller (<code>700px</code>), because a tweet with a picture is usually taller than a chat window and you'd rather not scroll it if you can help it. Adding <code>no-scroll</code> to a tweet switches its scrolling off, as usual.</p>
+
+<h4>DMs</h4>
+
+<pre><code>#workskin .twdm .msg {
+  display: table;
+  max-width: 72%;
+  margin: 0.2em 0;
+  padding: 0.55em 0.9em;
+  border-radius: 20px;
+}
+
+#workskin .twdm .out {
+  margin-left: auto;
+  background: #1d9bf0;
+  color: #ffffff;
+  border-bottom-right-radius: 4px;
+}
+
+#workskin .twdm .in {
+  margin-right: auto;
+  background: #eff3f4;
+  color: #0f1419;
+  border-bottom-left-radius: 4px;
+}</code></pre>
+
+<p>These are iMessage's bubbles in Twitter/X colours, with slightly rounder corners. The header, timestamps (<code>twdm-time</code>, with <code>time-out</code> on the right), sender names and pictures all work the way they do in iMessage. Reactions are a pill pulled up under the bubble with a negative margin, like WhatsApp's.</p>
+
+<details>
+<summary>Voice messages</summary>
+
+<pre><code>#workskin .twdm .voice .twdm-wave {
+  width: 90px;
+  overflow: hidden;
+  white-space: nowrap;
+  opacity: 0.7;
+}
+
+#workskin .twdm .voice .twdm-wave::before {
+  content: "\2583\2585\2587\2586\2584\2582\2583\2586\2587\2585\2583\2582\2584\2586\2585\2583\2582\2584\2583\2582";
+  font-size: 0.8em;
+  letter-spacing: 1px;
+}</code></pre>
+
+<p>The sound wave is made of text. Each <code>\258x</code> is a block character - ▃▅▇▆▄▂ - of a different height, and twenty of them in a row look like a wave. (The usual way to draw stripes in CSS is a repeating gradient, but AO3 won't accept one.) To change the shape, change the order of the codes: <code>\2581</code> is the shortest block and <code>\2588</code> the tallest.</p>
+
+</details>
+
+<h4>Links</h4>
+
+<pre><code>#workskin .tw .fake-link, #workskin .tw a:not(.tl),
+#workskin .tw-reply .fake-link, #workskin .tw-reply a:not(.tl) { color: #1d9bf0; }
+
+#workskin .twdm .in .fake-link, #workskin .twdm .in a:not(.tl) { color: #1d9bf0; }
+
+#workskin .twdm .out .fake-link, #workskin .twdm .out a:not(.tl) { color: #ffffff; }</code></pre>
+
+<p>Blue everywhere, except in your own blue DM bubbles, where links are white so they show up. <code>tw-link</code>, for hashtags and @mentions, is the same blue.</p>
+
+<h4>Dark and Auto Themes</h4>
+
+<pre><code>#workskin .tw.theme-dark { background: #000000; color: #e7e9ea; border-color: #2f3336; }
+
+#workskin .tw-thread.theme-dark { background: #000000; color: #e7e9ea; border-color: #2f3336; }
+
+#workskin .tw-thread.theme-dark .tw-replying,
+#workskin .tw-thread.theme-dark .tw-date,
+#workskin .tw-thread.theme-dark .tw-label,
+#workskin .tw-thread.theme-dark .tw-pollinfo {
+  color: #71767b;
+}</code></pre>
+
+<p>Twitter/X's dark mode is black, with <code>#e7e9ea</code> for text and <code>#71767b</code> for grey. Tweets, replies and DMs each have their own dark rules, as you'd expect. Threads have a second set: every part of a tweet again, but starting <code>.tw-thread.theme-dark</code>. That's what lets you put <code>theme-dark</code> on the thread once instead of on every tweet inside it - the tweets don't have a theme of their own, so they need to be told by the thread.</p>
+
+<p>The auto theme is the whole lot again inside <code>@media (prefers-color-scheme: dark)</code>, so change a dark colour in both places.</p>
+
+<h4>Taking Parts Out</h4>
+
+<p>Search for the class names and delete every rule with them in, including in the dark and auto blocks:</p>
+
+<ul>
+  <li><strong>DMs:</strong> everything starting <code>.twdm</code>, and anything with <code>twdm-</code> in it.</li>
+  <li><strong>Threads:</strong> everything starting <code>.tw-thread</code>, and <code>tw-scroll</code> and <code>tw-foot</code>.</li>
+  <li><strong>Polls:</strong> <code>tw-opt</code>, <code>tw-pct</code> and <code>tw-pollinfo</code>, which is also the biggest saving, since there are 15 bar sizes.</li>
+  <li><strong>Picture galleries:</strong> <code>tw-photo</code> and <code>tw-desc</code>, and the <code>two</code>, <code>three</code> and <code>four</code> rules. Keep <code>tw-media</code> for single pictures.</li>
+  <li><strong>Extras:</strong> <code>tw-note</code>, <code>tw-warn</code>, <code>tw-label</code>, <code>tw-liked</code> and <code>tw-rt</code> each come out on their own.</li>
+</ul>
+
+<p>Keep the tweet, name line, text and stats, and <code>tw-reply</code> if you use replies anywhere.</p>
