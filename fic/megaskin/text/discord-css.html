@@ -281,12 +281,14 @@
 #workskin .dc .dc-spoiler-text:active {
   color: rgb(46, 51, 56);
   background-color: rgb(229, 229, 229);
-  transition: all 0.1s;
+  transition: all 0s;
 }</code></pre>
 
 <p>This is one of the cleverest tricks in the megaskin, and it's BookKeep's. The spoiler text starts the same colour as its background, so you can't read it. <code>:active</code> means "while it's being clicked", and then the text turns dark and readable.</p>
 
 <p>On its own, that would hide the text again as soon as you let go. But the first rule has <code>transition: all 0s 2147483647s</code> - "wait 2,147,483,647 seconds before changing back". That's about 68 years, so once it's revealed it stays revealed.</p>
+
+<p>The <code>:active</code> rule has <code>transition: all 0s</code>, so the reveal happens instantly. That matters: if the reveal took even a tenth of a second, a quick click would let go halfway through, and the 68-year wait would freeze the spoiler half-revealed, so the reader would have to click again and again.</p>
 
 <pre><code>#workskin .dc .dc-spoiler &gt; img {
   opacity: 0;
@@ -302,9 +304,9 @@
   ...
 }
 
-#workskin .dc .dc-spoiler:active &gt; img { opacity: 1; z-index: 10; transition: all 0.1s; }</code></pre>
+#workskin .dc .dc-spoiler:active &gt; img { opacity: 1; z-index: 10; transition: all 0s; }</code></pre>
 
-<p>Spoiler pictures work the same way: the picture starts see-through (<code>opacity: 0</code>) over a grey box with "SPOILER" on it, and clicking it fades the picture in for good. (I've cut the middle of the SPOILER label rule here - it's just its size, colours, and centring.)</p>
+<p>Spoiler pictures work the same way: the picture starts see-through (<code>opacity: 0</code>) over a grey box with "SPOILER" on it, and clicking it shows the picture for good. (I've cut the middle of the SPOILER label rule here - it's just its size, colours, and centring.)</p>
 
 <h4>Dividers</h4>
 
