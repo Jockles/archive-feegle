@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Megaskin, Chapter 11: Instagram CSS | jockles.com</title>
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="stylesheet" href="megaskin.css" id="creator-style">
+</head>
+<body>
+<header>
+  <h1><a href="../../index.html">jockles.com</a></h1>
+  <p>fic, videos and fannish things</p>
+</header>
+<nav>
+  <ul>
+    <li><a href="../../index.html">Home</a></li>
+    <li><a href="../index.html">Fic</a></li>
+    <li><a href="../../videos/index.html">Videos</a></li>
+    <li><a href="../../blog/index.html">Blog</a></li>
+    <li><a href="../../links.html">Links</a></li>
+    <li><a href="../../about.html">About</a></li>
+  </ul>
+</nav>
+<main>
+      <!-- This page is made by tools/build-megaskin.py. Edit the chapter text in text/instagram-css.html instead. -->
+      <p class="work-title"><a href="index.html">Megaskin</a> by Jockles</p>
+      <p class="style-toggle"><button type="button" id="style-toggle">Hide Creator's Style</button></p>
+      <p class="chapter-nav"><a href="instagram.html">&larr; Previous Chapter</a> &middot; <a href="index.html">Chapter Index</a> &middot; <a href="tumblr.html">Next Chapter &rarr;</a></p>
+
+      <div class="fic">
+        <h3 class="chapter-title">Chapter 11: Instagram CSS</h3>
+        <div id="workskin">
+<h3>Instagram CSS</h3>
+
+<p>This chapter goes through the CSS for the Instagram posts and DMs in the last chapter. Posts (<code>ig</code>) are the interesting part, with the clickable like and save buttons and the icons drawn in CSS. DMs (<code>igdm</code>) are built like iMessage, so they're quick. At the end there's a section on switching parts of every post off for your whole fic, without editing each one.</p>
+
+<h4>Getting the CSS</h4>
+
+<p>The Instagram CSS is here: <a href="css/instagram.css">jockles.com/fic/megaskin/css/instagram.css</a>. It needs the core CSS too (<a href="css/core.css">jockles.com/fic/megaskin/css/core.css</a>), so paste the core into your work skin first and this underneath it.</p>
+
+<h4>How the Module is Laid Out</h4>
+
+<p>The usual order - the main rules, Links, Dark theme and Auto theme - with a <strong>Scrolling</strong> section before the themes, like Twitter/X. A post has no <code>mob-body</code>, so the core's scrolling doesn't reach it, and it gets its own.</p>
+
+<h4>The Post</h4>
+
+<pre><code>#workskin .ig {
+  background: #ffffff;
+  color: #262626;
+  border: 1px solid #dbdbdb;
+  border-radius: 4px;
+}
+
+#workskin .ig .ig-top {
+  display: block;
+  overflow: hidden;
+  padding: 0.7em 0.9em;
+  font-weight: bold;
+  border-bottom: 1px solid #efefef;
+}
+
+#workskin .ig .ig-top span {
+  display: block;
+  font-weight: normal;
+  font-size: 0.8em;
+  color: #737373;
+}</code></pre>
+
+<p>A post is a white card with nearly square corners, and every line in it is a block with the same <code>0.9em</code> of padding on each side, so they all line up down the left. The last span in the account line drops onto its own line in small grey, for the song or the place. The other lines - <code>ig-likes</code>, <code>ig-caption</code>, <code>ig-comment</code>, <code>ig-viewall</code> and <code>ig-time</code> - are just the same thing with different sizes and greys. <code>ig-time</code> has <code>text-transform: uppercase</code>, which is what puts it in capitals for you.</p>
+
+<h4>The Photo</h4>
+
+<pre><code>#workskin .ig .ig-photo {
+  display: block;
+  background: #efefef;
+  color: #737373;
+  font-style: italic;
+  text-align: center;
+  padding: 3em 1.5em;
+  border-bottom: 1px solid #efefef;
+}
+
+#workskin .ig .ig-photo.real { padding: 0; }
+
+#workskin .ig .ig-photo img { display: block; width: 100%; height: auto; }</code></pre>
+
+<p>Without <code>real</code>, it's a grey box with lots of padding, for a description. <code>real</code> takes the padding away so the picture goes right to the edges, at its own shape.</p>
+
+<h4>The Account Line Extras</h4>
+
+<pre><code>#workskin .ig .ig-top .ig-menu {
+  display: block;
+  float: right;
+  margin: 0 0 0 0.6em;
+  color: inherit;
+  font-size: 1.3em;
+  font-weight: bold;
+  line-height: 1;
+}
+
+#workskin .ig .ig-top .ig-pfp {
+  float: left;
+  width: 32px;
+  height: 32px;
+  margin: 0 0.6em 0 0;
+  border-radius: 50%;
+  overflow: hidden;
+}</code></pre>
+
+<p>The three dots float right and the picture floats left. A floating thing only moves things that come <em>after</em> it in the code, which is why the menu has to go first in the line: if it came after the name, the name would already be in place and the dots would drop below it.</p>
+
+<pre><code>#workskin .ig .ig-top .ig-tick {
+  display: inline-block;
+  width: 1.25em;
+  height: 1.25em;
+  margin-left: 0.3em;
+  border-radius: 50%;
+  background: #0095f6;
+  color: #ffffff;
+  font-size: 0.7em;
+  font-weight: bold;
+  line-height: 1.25em;
+  text-align: center;
+  vertical-align: middle;
+}
+
+#workskin .ig .ig-top .ig-follow::before {
+  content: "\2022\00a0";
+  color: #8e8e8e;
+  font-weight: normal;
+}</code></pre>
+
+<p>The verified tick is a ✓ in a small blue circle. The "Follow" link gets its dot added in front with <code>::before</code>: <code>\2022</code> is the bullet •, and <code>\00a0</code> is a space that can't be squashed, so the dot never ends up on a different line from the word.</p>
+
+<pre><code>#workskin .ig .ig-top .ig-pfp.story {
+  box-sizing: content-box;
+  padding: 2px;
+  background-color: #d62976;
+  background-image: linear-gradient(45deg, #fcaf45 0%, #fd1d1d 45%, #c13584 70%, #833ab4 100%);
+}
+
+#workskin .ig .ig-top .ig-pfp.story .pfp {
+  box-sizing: border-box;
+  border: 2px solid #ffffff;
+}</code></pre>
+
+<p>The stories ring is three layers. The circle gets <code>2px</code> of padding with Instagram's rainbow gradient behind it, so the gradient shows as a ring around the edge. Then the picture inside gets a <code>2px</code> white border, which makes the gap between the ring and the photo. <code>45deg</code> sets the direction of the gradient, corner to corner, and the percentages say where each colour sits. In the dark theme, the white gap turns black.</p>
+
+<h4>The Buttons</h4>
+
+<pre><code>#workskin .ig .ig-actions {
+  display: block;
+  overflow: hidden;
+  padding: 0.6em 0.9em 0.1em 0.9em;
+  font-size: 1.1em;
+  letter-spacing: 0.4em;
+}
+
+#workskin .ig .ig-actions br { display: none; }
+
+#workskin .ig .ig-actions p:not(.ig-btn) {
+  display: inline;
+  margin: 0;
+  padding: 0;
+}
+
+#workskin .ig .ig-btn,
+#workskin .ig .ig-tog {
+  display: inline-block;
+  margin: 0 0.9em 0 0;
+  letter-spacing: 0;
+  vertical-align: middle;
+}</code></pre>
+
+<p>Each button is a small block sitting in a row, with a gap to its right. AO3 likes to add line breaks and stray paragraphs between them, so the middle two rules flatten those, the same way the WhatsApp message bar does.</p>
+
+<h4>Clickable Buttons</h4>
+
+<p>This is the part that's inspired by shysonata's Instagram skin (see the credits). There's no way to run a script on AO3, so nothing can react to a click - except the <code>&lt;details&gt;</code> tag. A details tag is a box that opens and closes when you click its <code>&lt;summary&gt;</code>, and when it's open, the browser gives it an <code>open</code> attribute. CSS can see that, so it can show one thing when it's closed and another when it's open:</p>
+
+<pre><code>#workskin .ig .ig-tog summary {
+  display: inline-block;
+  list-style: none;
+}
+
+#workskin .ig .ig-tog summary::-webkit-details-marker { display: none; }
+
+#workskin .ig .ig-tog summary::marker { content: ""; }
+
+#workskin .ig .ig-tog .on { display: none; }
+
+#workskin .ig .ig-tog[open] .on { display: inline; }
+
+#workskin .ig .ig-tog[open] .bm.on { display: inline-block; }
+
+#workskin .ig .ig-tog[open] .off { display: none; }</code></pre>
+
+<ul>
+  <li>The first three rules hide the little triangle that every details tag has, in every browser - Chrome and Safari call it one thing, Firefox another, so it takes three goes.</li>
+  <li>Then: <code>on</code> parts are hidden. <code>[open]</code> means "when it's been clicked open", so once it's clicked, the <code>on</code> parts show and the <code>off</code> parts hide. Click again, the box closes, and it swaps back.</li>
+  <li>Everything lives inside the <code>summary</code>, which is the part that's always visible, so nothing ever actually opens - it just swaps.</li>
+</ul>
+
+<pre><code>#workskin .ig .ig-tog.save {
+  float: right;
+  margin-right: 0;
+}
+
+#workskin .ig .ig-tog.like .on.ig-icon { color: #ed4956; }</code></pre>
+
+<p>The save button floats to the far right, and a liked heart is Instagram's red.</p>
+
+<h4>Icons Drawn With CSS</h4>
+
+<p>There's no good comment bubble or bookmark among the emoji and symbols, so these two are drawn from boxes:</p>
+
+<pre><code>#workskin .ig .cm {
+  display: inline-block;
+  box-sizing: border-box;
+  width: 18px;
+  height: 18px;
+  border: 2px solid currentColor;
+  border-radius: 50%;
+  border-bottom-left-radius: 0;
+  vertical-align: middle;
+}</code></pre>
+
+<p>The comment bubble is a circle outline with one corner left square, which makes the little tail. <code>currentColor</code> means "the same colour as the text", so it's dark in light mode and light in dark mode without needing a rule for each.</p>
+
+<pre><code>#workskin .ig .bm {
+  display: inline-block;
+  position: relative;
+  box-sizing: border-box;
+  width: 14px;
+  height: 18px;
+  border: 2px solid currentColor;
+  border-bottom: 0;
+  vertical-align: middle;
+}
+
+#workskin .ig .bm::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  box-sizing: border-box;
+  width: 7px;
+  height: 7px;
+  margin: 0 0 -3px -3px;
+  border-top: 2px solid currentColor;
+  border-left: 2px solid currentColor;
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+#workskin .ig .bm.on { background: currentColor; }
+
+#workskin .ig .bm.on::after {
+  border: 0;
+  background: #ffffff;
+}</code></pre>
+
+<p>The bookmark is a tall box with no bottom edge. The notch at the bottom is a small square with only two edges, turned 45 degrees so they make a V, and pinned in the middle of the open bottom. Saved, the box is filled in, and the notch becomes a solid square the colour of the post, turned on its point, which cuts the V out of the fill.</p>
+
+<h4>Liked By, With Faces</h4>
+
+<pre><code>#workskin .ig .ig-like-pfp {
+  display: inline-block;
+  box-sizing: content-box;
+  width: 18px;
+  height: 18px;
+  margin-left: -8px;
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+  overflow: hidden;
+  vertical-align: middle;
+}
+
+#workskin .ig .ig-like-pfp:first-child { margin-left: 0; }</code></pre>
+
+<p>Each face is a tiny circle with a white edge, and the <em>negative</em> left margin pulls each one <code>8px</code> back over the one before, so they overlap. The first one doesn't need pulling back. This is why the faces have to be on one line of code with no gaps: a space between two inline things takes up room, and would push them apart again.</p>
+
+<h4>DMs</h4>
+
+<pre><code>#workskin .igdm .out {
+  margin-left: auto;
+  background-color: #7b3ff2;
+  background-image: linear-gradient(#8a3ffc, #5b4df5);
+  color: #ffffff;
+}
+
+#workskin .igdm .in { margin-right: auto; background: #efefef; color: #262626; }</code></pre>
+
+<p>DM bubbles work like iMessage's, with rounder corners and no point. Your own messages are Instagram's purple, fading slightly from top to bottom, with a plain purple underneath in case the gradient doesn't show. <code>igdm-status</code> is the same as iMessage's status line, and <code>igdm-shared</code> is a bubble with an outline instead of a fill.</p>
+
+<h4>Links, Scrolling and Themes</h4>
+
+<pre><code>#workskin .ig .fake-link, #workskin .ig a:not(.tl) { color: #00376b; }
+
+#workskin .ig {
+  max-height: 700px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}</code></pre>
+
+<p>Links and hashtags in posts are Instagram's dark blue. A post scrolls as a whole once it's taller than <code>700px</code>, which is why the example post with a real photo has <code>no-scroll</code>.</p>
+
+<p>The dark theme is black, with <code>#f5f5f5</code> text and <code>#a8a8a8</code> grey. It also turns the white edges black - the gap in the story ring, the edges of the liked-by faces and the notch in a saved bookmark - because a white edge on a black post would show. The auto theme is the same rules again inside <code>@media (prefers-color-scheme: dark)</code>.</p>
+
+<h4>Switching Parts Off for the Whole Fic</h4>
+
+<p>You can leave anything out of a single post's HTML. But if you never want something on <em>any</em> post, it's quicker to switch it off once in the CSS. Paste any of these at the very bottom of your work skin - below everything else, so they win:</p>
+
+<pre><code>/* no numbers beside the buttons */
+#workskin .ig .ig-actions .ig-count.ig-count.ig-count { display: none; }
+
+/* no Follow links */
+#workskin .ig .ig-top .ig-follow { display: none; }
+
+/* no three dots menu */
+#workskin .ig .ig-top .ig-menu { display: none; }
+
+/* no verified ticks */
+#workskin .ig .ig-top .ig-tick { display: none; }
+
+/* no stories rings */
+#workskin .ig .ig-top .ig-pfp.story { padding: 0; background: none; }
+#workskin .ig .ig-top .ig-pfp.story .pfp { border: 0; }
+
+/* no "View all comments" lines */
+#workskin .ig .ig-viewall { display: none; }
+
+/* the time in normal letters instead of capitals */
+#workskin .ig .ig-time { text-transform: none; }</code></pre>
+
+<details>
+<summary>Why the counts line has the class three times</summary>
+
+<p>The clickable heart has its own rule that shows its <code>on</code> count once it's clicked, and that rule is quite specific. Repeating the class makes this rule more specific still, so the count stays hidden after a click too - the same trick as <code>hide</code> in the core.</p>
+
+</details>
+
+<p>Readers with the workskin switched off will still see anything you've switched off this way, because it's still in your HTML. That's usually what you want - a "Follow" or a count doesn't hurt anyone - but if it isn't, leave it out of the HTML instead.</p>
+
+<h4>Taking Parts Out</h4>
+
+<p>To make your skin shorter, search for the class names and delete every rule with them in, including in the dark and auto blocks:</p>
+
+<ul>
+  <li><strong>DMs:</strong> everything starting <code>.igdm</code>.</li>
+  <li><strong>Clickable buttons:</strong> <code>ig-tog</code>, <code>bm</code>, and the <code>.on</code> and <code>.off</code> rules. Keep <code>ig-btn</code> for plain buttons.</li>
+  <li><strong>Liked-by faces:</strong> <code>liked-by</code>, <code>ig-like-pfps</code> and <code>ig-like-pfp</code>.</li>
+  <li><strong>Stories ring:</strong> the two <code>.story</code> rules.</li>
+  <li><strong>Account line extras:</strong> <code>ig-menu</code>, <code>ig-tick</code> and <code>ig-follow</code> each come out on their own.</li>
+</ul>
+        </div>
+      </div>
+
+      <p class="chapter-nav"><a href="instagram.html">&larr; Previous Chapter</a> &middot; <a href="index.html">Chapter Index</a> &middot; <a href="tumblr.html">Next Chapter &rarr;</a></p>
+</main>
+<footer>
+  Made by hand in HTML &amp; CSS. No trackers, no cookies, no ads.
+</footer>
+<script>
+  // Works like AO3's "Hide Creator's Style" button: switches the work skin off and on.
+  (function () {
+    var skin = document.getElementById("creator-style");
+    var button = document.getElementById("style-toggle");
+    function show(off) {
+      skin.disabled = off;
+      button.textContent = off ? "Show Creator's Style" : "Hide Creator's Style";
+    }
+    try { show(localStorage.getItem("hide-creator-style") === "yes"); } catch (e) { show(false); }
+    button.addEventListener("click", function () {
+      var off = !skin.disabled;
+      show(off);
+      try { localStorage.setItem("hide-creator-style", off ? "yes" : "no"); } catch (e) {}
+    });
+  })();
+</script>
+</body>
+</html>
