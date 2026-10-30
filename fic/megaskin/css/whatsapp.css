@@ -200,7 +200,7 @@
 /* later messages from the same person: no picture, but still indented */
 #workskin .wa .wa-row.cont { padding-left: 38px; }
 
-/* sender name with the phone number at the right: <p class="who c1">~ Name<span class="wa-num">+353...</span></p>
+/* sender name with the phone number at the right: <p class="who colour1">~ Name<span class="wa-num">+353...</span></p>
    also works inside a quote's <b> */
 #workskin .wa .wa-num {
   float: right;
@@ -209,7 +209,7 @@
   color: #667781;
 }
 
-/* name colour: c1 to c5, or c6 for the normal text colour */
+/* name colour: colour1 to colour10, or none for the normal text colour */
 #workskin .wa .who.colour1 { color: #b8651f; }
 
 #workskin .wa .who.colour2 { color: #5f6368; }
