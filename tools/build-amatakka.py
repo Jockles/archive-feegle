@@ -246,7 +246,8 @@ def entry(w):
     if w["gender"]:
         tags.append(f'<span class="pos">{e(w["gender"])}</span>')
     t = tier(w["source"])
-    tags.append(f'<span class="tier tier-{t.lower()}" title="Source tier">{t}</span>')
+    label = "JOCKLES" if t == "SRD" else t
+    tags.append(f'<span class="tier tier-{t.lower()}" title="Source tier">{label}</span>')
     out = [f'<div class="entry" id="{w["id"]}" data-pos="{e(w["pos"])}">',
            f'  <h4><a href="#{w["id"]}">{e(w["word"])}</a> {" ".join(tags)}</h4>',
            f'  <p class="meaning">{e(w["meaning"])}</p>']
