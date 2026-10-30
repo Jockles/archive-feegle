@@ -4523,10 +4523,10 @@
 #workskin .dc .dc-spoiler-text:active {
   color: rgb(46, 51, 56);
   background-color: rgb(229, 229, 229);
-  transition: all 0.1s;
+  transition: all 0s;
 }
 
-#workskin .dc .dc-spoiler:active > img { opacity: 1; z-index: 10; transition: all 0.1s; }
+#workskin .dc .dc-spoiler:active > img { opacity: 1; z-index: 10; transition: all 0s; }
 
 /* ---------- Discord: Links ---------- */
 
@@ -4654,7 +4654,7 @@
 
 #workskin .dc.theme-dark .dc-input-text::before { background-image: url(https://i.imgur.com/LjARlpe.png); }
 
-/* spoilers, dark: hidden until clicked and held */
+/* spoilers, dark: hidden until clicked */
 #workskin .dc.theme-dark .dc-spoiler-text {
   color: rgb(32, 34, 37);
   background-color: rgb(32, 34, 37);
@@ -4664,7 +4664,7 @@
 #workskin .dc.theme-dark .dc-spoiler-text:active {
   color: rgb(220, 221, 222);
   background-color: rgb(74, 77, 83);
-  transition: all 0.1s;
+  transition: all 0s;
 }
 
 #workskin .dc.theme-dark .dc-spoiler { background-color: rgba(10, 10, 10, 0.95); }
@@ -4676,7 +4676,7 @@
   transition: all 0s 2147483647s;
 }
 
-#workskin .dc.theme-dark .dc-spoiler:active > img { opacity: 1; z-index: 10; transition: all 0.1s; }
+#workskin .dc.theme-dark .dc-spoiler:active > img { opacity: 1; z-index: 10; transition: all 0s; }
 
 /* ---------- Discord: Auto theme (theme-auto): light, switching to dark when the reader's device is in dark mode ---------- */
 
@@ -4783,7 +4783,7 @@
 
   #workskin .dc.theme-auto .dc-input-text::before { background-image: url(https://i.imgur.com/LjARlpe.png); }
 
-  /* spoilers, dark: hidden until clicked and held */
+  /* spoilers, dark: hidden until clicked */
   #workskin .dc.theme-auto .dc-spoiler-text {
       color: rgb(32, 34, 37);
       background-color: rgb(32, 34, 37);
@@ -4793,7 +4793,7 @@
   #workskin .dc.theme-auto .dc-spoiler-text:active {
       color: rgb(220, 221, 222);
       background-color: rgb(74, 77, 83);
-      transition: all 0.1s;
+      transition: all 0s;
     }
 
   #workskin .dc.theme-auto .dc-spoiler { background-color: rgba(10, 10, 10, 0.95); }
@@ -4805,7 +4805,7 @@
       transition: all 0s 2147483647s;
     }
 
-  #workskin .dc.theme-auto .dc-spoiler:active > img { opacity: 1; z-index: 10; transition: all 0.1s; }
+  #workskin .dc.theme-auto .dc-spoiler:active > img { opacity: 1; z-index: 10; transition: all 0s; }
 }
 
 /* <<<<<<<<<< MODULE: Discord (end) <<<<<<<<<< */
