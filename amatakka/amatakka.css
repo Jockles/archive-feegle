@@ -1,0 +1,71 @@
+/* Extra styles for the Amatakka section only. Colours come from style.css. */
+
+/* Section menu under the main menu */
+.subnav {
+  list-style: none;
+  margin: 0 0 16px;
+  padding: 0 0 6px;
+  border-bottom: 1px solid var(--rule);
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 0.95em;
+}
+.subnav li + li::before { content: "\00b7"; margin: 0 8px; color: var(--muted); }
+
+.alphabet { font-size: 1.05em; word-spacing: 4px; }
+.alphabet a { text-decoration: none; }
+
+/* Search box */
+.dict-search { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; }
+.dict-search input, .dict-search select { font: inherit; padding: 3px 6px; }
+.dict-search input { flex: 1 1 12em; }
+#dict-count { color: var(--muted); font-size: 0.9em; }
+
+/* One dictionary word, like a small work blurb */
+.letter h3 { border-bottom: 1px solid var(--rule); }
+.entry {
+  border: 1px solid var(--box-edge);
+  padding: 6px 12px;
+  margin: 0 0 10px;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.12);
+  scroll-margin-top: 10px;
+}
+.entry:target { background: var(--box-fill); border-color: var(--header); }
+.entry h4 { margin: 2px 0; font-size: 1.1em; }
+.entry h4 a { text-decoration: none; }
+.entry p { margin: 3px 0; }
+.entry .gesture { font-size: 0.9em; }
+.entry-notes { font-size: 0.85em; color: var(--muted); overflow-wrap: anywhere; }
+
+.pos, .tier {
+  display: inline-block;
+  font-size: 0.7em;
+  font-weight: normal;
+  padding: 1px 6px;
+  margin-left: 4px;
+  border-radius: 3px;
+  vertical-align: middle;
+  background: var(--tag-fill);
+  color: var(--ink);
+}
+.tier { font-family: Verdana, sans-serif; letter-spacing: 0.04em; }
+.tier-canon { background: var(--header); color: var(--header-text); }
+.tier-established { background: #d6e6f2; }
+.tier-srd { background: #cfe9d9; }
+.tier-key { list-style: none; padding: 0; }
+.tier-key li { margin: 4px 0; }
+.tier-key .tier { margin: 0 6px 0 0; }
+
+.english-index { columns: 2 16em; padding-left: 1.2em; }
+.english-index li { break-inside: avoid; }
+
+/* Grammar pages */
+.grammar { max-width: 46em; }
+.grammar h3 { font-size: 1.25em; }
+.grammar a.word { color: inherit; text-decoration: underline dotted var(--link); }
+.gloss { border-collapse: collapse; margin: 10px 0 16px; font-size: 0.95em; display: block; overflow-x: auto; }
+.gloss th, .gloss td { border: 1px solid var(--box-edge); padding: 4px 8px; text-align: left; vertical-align: top; }
+.gloss th { background: var(--tag-fill); font-weight: bold; }
+.gloss tbody tr:nth-child(even) { background: var(--box-fill); }
+.pager { display: flex; justify-content: space-between; gap: 10px; font-size: 0.9em; }
+.pager span:last-child { text-align: right; }

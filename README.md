@@ -6,6 +6,7 @@ Hand-made HTML and CSS. No build step, no frameworks.
 - Each page has the menu written into it. If you add a new section, add its link to the `<nav>` in every page.
 - `fic/sample-fic.html` has instructions in a comment for copying a fic over from an AO3 HTML download.
 - `fic/megaskin/` is a multi-chapter work. Each chapter's text lives in `fic/megaskin/text/`, exactly as pasted into AO3, and `megaskin.css` is the work skin. After changing either, run `python3 tools/build-megaskin.py` to rebuild the chapter pages, the per-module CSS files in `fic/megaskin/css/` and the chapter list. The chapter order is at the top of that script.
+- `amatakka/` is the Amatakka dictionary and grammar (not linked from the menu yet). Its words, booklet and spec live in `amatakka/source/`. To refresh them from new exports, run `python3 tools/build-amatakka.py --import <folder with the exports>`; after editing the source files by hand, run `python3 tools/build-amatakka.py`. Only `amatakka/index.html` and `amatakka/amatakka.css` are written by hand.
 - `CNAME` tells GitHub Pages to serve the site at jockles.com. `.nojekyll` tells it to publish the files exactly as they are.
 
 To preview, open `index.html` in your browser.
