@@ -9,7 +9,8 @@ What it does:
 - Splits fic/megaskin/megaskin.css into one file per module in
   fic/megaskin/css/, using the ">>>>>>>>>> ... (start)" and
   "<<<<<<<<<< ... (end)" lines in the skin.
-- Rewrites the chapter list on fic/megaskin/index.html.
+- Rewrites the chapter list on fic/megaskin/index.html, and the word and
+  chapter counts there and on fic/index.html.
 
 To add a chapter: write its text in fic/megaskin/text/, add it to CHAPTERS
 below, and run this again.
@@ -26,6 +27,7 @@ CHAPTERS = [
     ("imessage", "iMessage"),
     ("imessage-css", "iMessage CSS"),
     ("whatsapp", "WhatsApp"),
+    ("whatsapp-css", "WhatsApp CSS"),
     ("twitter-x", "Twitter/X"),
     ("instagram", "Instagram"),
     ("tumblr", "Tumblr"),
@@ -148,11 +150,31 @@ def build_index():
     page = re.sub(r'(<ol class="chapter-index">\n).*?(\n        </ol>)',
                   lambda m: m.group(1) + items + m.group(2), page, flags=re.S)
     page = re.sub(r'<a href="[^"]*">Start reading', '<a href="%s.html">Start reading' % CHAPTERS[0][0], page)
-    page = re.sub(r"Chapters: \d+/\?", "Chapters: %d/?" % len(CHAPTERS), page)
     open(path, "w", encoding="utf-8").write(page)
+
+
+def word_count():
+    """Words in the chapters, not counting code, rounded to the nearest thousand."""
+    total = 0
+    for slug, _ in CHAPTERS:
+        text = open(os.path.join(ROOT, "text", slug + ".html"), encoding="utf-8").read()
+        text = re.sub(r"<pre>.*?</pre>", " ", text, flags=re.S)
+        total += len(html.unescape(re.sub(r"<[^>]+>", " ", text)).split())
+    return "{:,}".format(round(total, -3))
+
+
+def update_stats():
+    """Keeps the word and chapter counts on the work page and the fic list up to date."""
+    words = word_count()
+    for path in (os.path.join(ROOT, "index.html"), os.path.join(ROOT, "..", "index.html")):
+        page = open(path, encoding="utf-8").read()
+        page = re.sub(r"Words: [\d,]+ &middot; Chapters: \d+/\?",
+                      "Words: %s &middot; Chapters: %d/?" % (words, len(CHAPTERS)), page)
+        open(path, "w", encoding="utf-8").write(page)
 
 
 build_chapters()
 build_css()
 build_index()
+update_stats()
 print("Built %d chapters." % len(CHAPTERS))
