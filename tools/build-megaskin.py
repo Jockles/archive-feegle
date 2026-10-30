@@ -38,6 +38,7 @@ CHAPTERS = [
     ("email-css", "Email CSS"),
     ("discord", "Discord"),
     ("discord-css", "Discord CSS"),
+    ("full-megaskin", "The Full Megaskin"),
 ]
 
 # module name in the skin's start/end lines -> file name in css/
