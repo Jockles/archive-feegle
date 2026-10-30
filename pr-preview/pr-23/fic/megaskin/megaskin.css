@@ -1,0 +1,4773 @@
+/* ==========================================================
+   SOCIAL MEDIA WORK SKIN FOR AO3 (the "megaskin")
+   Chats and posts for: iMessage, WhatsApp, Twitter/X (posts,
+   replies, DMs), Instagram (posts, comments, DMs), Tumblr,
+   Gmail, a generic email window, and Discord.
+
+   HOW TO USE
+   Paste this whole file into: Dashboard > Skins > Create Work
+   Skin > CSS. Then pick the skin under "Associations" when you
+   post, and use the HTML from the tutorial in the chapter text.
+
+   HOW IT IS ORGANISED
+   - Every rule starts with #workskin, as AO3 requires.
+   - No variables or @import (AO3 doesn't support them).
+   - CORE comes first. Every module needs it (the chat box, the
+     width, scrolling, hidden text, round pictures, translations,
+     profiles and the ten shared colours).
+   - Then one MODULE per platform, in the same order as the
+     tutorial: iMessage, WhatsApp, Twitter/X, Instagram, Tumblr,
+     Email (Gmail + generic), Discord.
+   - Each module is complete in itself apart from CORE. It holds
+     its own layout and colours, link colours, scrolling, dark
+     theme and auto theme (and WhatsApp's wallpapers). Each one
+     runs from its ">>>>>>>>>> MODULE" line to its "<<<<<<<<<< MODULE"
+     line, so you can keep CORE plus only the modules you use.
+   - Every chat takes a module class (imsg, wa, tw, ...) and a
+     theme class (theme-auto, theme-light or theme-dark). Add
+     "wide" for full width at any size; Discord is wide by
+     default and takes "narrow".
+   - Long chats stop at about the height of a phone screen and
+     scroll. Add "no-scroll" to a chat to switch that off.
+   - NAMES: a part that belongs to one app starts with that
+     app's class, like tw-name, tb-header or dc-time, so two
+     apps can never clash. The shared pieces have the same
+     name in every app: msg, in, out, who, pfp, hide, me,
+     colour1-colour10, the theme classes, wide and no-scroll.
+     Small extra words that change a part (like tapped, cont,
+     save or green, added next to the part's own class) stay
+     plain words, because they only work alongside that part.
+   - ADDING AN APP: give it a short class (like tw), start its
+     parts with that class, build it light by default, and
+     follow the same order as the others: main rules, Links,
+     Scrolling, Dark theme, Auto theme. Then it slots in
+     between the other modules and needs nothing but the CORE.
+   ========================================================== */
+
+/* >>>>>>>>>> CORE (start) >>>>>>>>>> */
+
+/* ==========================================================
+   >>> CORE: needed by every module <<<
+   The chat box and its parts, the width classes, scrolling,
+   hidden text, video descriptions, round pictures, the typing and deleted-text
+   touches, link basics, hover/tap translations, character profiles and the ten
+   shared colours (colour1 to colour10). Keep this block whichever modules you use.
+   ========================================================== */
+
+/* ==========================================================
+   THEMES: AUTO / LIGHT / DARK
+   Every module has its own dark theme and auto theme, near the end of its block.
+   Add ONE theme class to each chat's container:
+     theme-auto   follows the READER's device or browser setting:
+                  dark if they use dark mode, light if not
+     theme-light  always light
+     theme-dark   always dark
+   e.g. <div class="mob imsg theme-auto">
+   With no theme class a chat is light, the same as theme-light, so the
+   normal rules of each module are its light theme.
+   AO3 doesn't let a work skin read the reader's AO3 site skin, so
+   "auto" uses their device/browser light-dark setting instead.
+   ========================================================== */
+
+/* ---------- The box every chat sits in, and its parts ---------- */
+
+#workskin .mob {
+  width: 380px;
+  max-width: 100%;
+  margin: 1.2em auto;
+  padding: 0;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 0.92em;
+  line-height: 1.35;
+  text-align: left;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+#workskin .mob p { margin: 0; padding: 0; text-indent: 0; }
+
+#workskin .mob-head { padding: 0.6em 0.9em; text-align: center; font-weight: bold; }
+
+#workskin .mob-body { padding: 0.7em 0.7em 0.5em 0.7em; }
+
+/* centred system line: "Today 9:41", "X joined the group", "Message deleted" */
+#workskin .mob-sys {
+  display: block;
+  text-align: center;
+  font-size: 0.78em;
+  margin: 0.6em 0;
+  opacity: 0.75;
+}
+
+/* ==========================================================
+   Width: phone (the default) or full width
+   Phone width is what every chat is designed for, and is recommended.
+   Add "wide" to a chat's container to let it fill the page instead,
+   e.g. <div class="mob imsg theme-auto wide">. The Twitter and Tumblr
+   modules add the same for their thread and feed boxes.
+   Discord is already wide; its module adds "narrow" for phone width.
+   ========================================================== */
+
+#workskin .mob.wide {
+  width: auto;
+  max-width: none;
+}
+
+/* ==========================================================
+   Scrolling
+   Every chat is held to about the height of a phone screen (the width is 380px).
+   Chats with a header and a footer keep those in place and scroll the messages;
+   the rest scroll as a whole. Shorter chats are not affected.
+   To switch it off for one chat, add the class no-scroll to its container.
+   (Each module adds the scrolling for its own posts.)
+   ========================================================== */
+
+#workskin .mob-body { max-height: 580px; overflow-y: auto; overflow-x: hidden; }
+
+#workskin .mob.no-scroll {
+  max-height: none;
+  overflow-y: visible;
+}
+
+#workskin .mob.no-scroll .mail-body,
+#workskin .mob.no-scroll .mob-body {
+  max-height: none;
+  overflow-y: visible;
+}
+
+#workskin .mob-body::-webkit-scrollbar {
+  width: 6px;
+}
+
+#workskin .mob-body::-webkit-scrollbar-thumb {
+  background: rgba(128, 128, 128, 0.5);
+  border-radius: 6px;
+}
+
+/* ---------- Small helpers: hidden text, video descriptions, round pictures, typing line, deleted text ---------- */
+
+/* a real profile picture inside any round picture circle (WhatsApp wa-pfp, Tumblr tb-pfp,
+   Gmail gm-pfp, Instagram ig-pfp, Discord dc-pfp): wrap the picture tag in a span with pfp, e.g.
+   <span class="wa-pfp colour1"><span class="pfp"><img src="..." alt="..."></span></span>
+   A normal picture (taller than wide, or square) is made as wide as the circle and the top of the
+   photo is kept in view, so faces aren't cut off. If the picture is wider than tall, add class="land"
+   to it: it is made as tall as the circle and centred from side to side instead. */
+#workskin .pfp {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 50%;
+  background-size: cover;
+  background-position: center;
+}
+
+#workskin .pfp img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+}
+
+#workskin .pfp img.land {
+  right: -9999px;
+  left: -9999px;
+  width: auto;
+  height: 100%;
+  margin: 0 auto;
+}
+
+/* text that only shows when the reader has "Hide Creator's Style" on, or in a download.
+   Use it to spell out who is speaking, or to describe an emoji or picture (see the tutorial).
+   The class is repeated so that nothing else in the workskin can make it show by mistake. */
+#workskin .hide.hide.hide.hide { display: none; }
+
+/* video descriptions: <span class="vid-desc">[Video: what happens in the video]</span>
+   Put it straight after a video. It's moved off-screen rather than hidden, so screen
+   readers still read it out, and it shows as normal text when the workskin is off. */
+#workskin .vid-desc {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+/* typing indicator line */
+#workskin .mob .typing {
+  display: block;
+  font-size: 0.75em;
+  font-style: italic;
+  opacity: 0.7;
+  margin: 0.3em 0.9em;
+}
+
+/* strikethrough / deleted text */
+#workskin .mob .del { text-decoration: line-through; opacity: 0.6; }
+
+/* ---------- Links that go nowhere (the colours are in each module) ---------- */
+
+/* links that look clickable but go nowhere: <span class="fake-link">example.com/page</span>
+   A real <a href="..."> inside a chat gets the same look. Each app has its own link colour. */
+#workskin .mob .fake-link,
+#workskin .mob a:not(.tl) {
+  text-decoration: underline;
+}
+
+#workskin .mob .fake-link,
+#workskin .mob a:not(.tl) { cursor: pointer; }
+
+/* ---------- Hover and tap translations ---------- */
+
+/* ---- hover / tap translations ----
+   <a class="tl" href="#t1"><span class="orig">Croeso</span><span class="tltn"><span class="hide"> (</span>Welcome<span class="hide">)</span></span></a>
+   The reader sees "orig" with a dotted line under it. Hovering (computer) or tapping (phone) swaps in "tltn".
+   It works in ordinary text and inside any chat or post: the text takes on the colour of whatever it sits in,
+   including the light, dark and auto themes, and it is not styled like the chat links above.
+   (The selectors are a little long on purpose, so that no chat rule can override them.)
+   If the skin is off, the two "hide" spans show, so the reader gets: Croeso (Welcome) */
+#workskin a.tl,
+#workskin a.tl:link,
+#workskin a.tl:visited,
+#workskin a.tl:hover,
+#workskin a.tl:focus,
+#workskin a.tl:active {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px dotted; /* delete this line to hide the dotted line on every translation (for just one, use the egg class below) */
+}
+
+#workskin a.tl,
+#workskin a.tl:link,
+#workskin a.tl:visited,
+#workskin a.tl:hover,
+#workskin a.tl:focus,
+#workskin a.tl:active { cursor: help; }
+
+#workskin a.tl span.orig {
+  display: inline;
+  margin: 0;
+  padding: 0;
+}
+
+/* the translation and the brackets are hidden until needed */
+#workskin a.tl span.tltn {
+  display: none;
+  margin: 0;
+  padding: 0;
+}
+
+#workskin a.tl span.hide { display: none; }
+
+/* on hover (computer) or focus (a tap on a phone): swap them over.
+   The original stays in place, invisible and with no height, so the link never gets narrower than it was.
+   (If it did, the pointer would fall off the end of a short translation, and the words would flicker.) */
+#workskin a.tl:hover,
+#workskin a.tl:focus {
+  display: inline-block;
+}
+
+#workskin a.tl:hover span.orig,
+#workskin a.tl:focus span.orig {
+  display: block;
+  height: 0;
+  overflow: hidden;
+  visibility: hidden;
+}
+
+#workskin a.tl:hover span.tltn,
+#workskin a.tl:focus span.tltn {
+  display: block;
+}
+
+/* ---- easter eggs: <a class="tl egg" href="#t4"> ----
+   Works exactly like a translation, but with no dotted line, so the words look like the
+   text around them (colour, bold, italics and all) until someone hovers over or taps them. */
+#workskin a.tl.egg,
+#workskin a.tl.egg:link,
+#workskin a.tl.egg:visited,
+#workskin a.tl.egg:hover,
+#workskin a.tl.egg:focus,
+#workskin a.tl.egg:active {
+  border-bottom: 0;
+  outline: 0;
+}
+
+#workskin a.tl.egg,
+#workskin a.tl.egg:link,
+#workskin a.tl.egg:visited,
+#workskin a.tl.egg:hover,
+#workskin a.tl.egg:focus,
+#workskin a.tl.egg:active { cursor: text; }
+
+/* ==========================================================
+   PROFILES: one character, set once, used in every module
+   A profile holds everything about one character: their picture, a different
+   picture for any app if you like, their name colour, their name (and what other
+   characters have them saved as), their handle, their email address, and the
+   WhatsApp wallpaper for chats on their phone. One line each is enough; add extra
+   lines only where someone uses a different picture, name or handle on one app.
+   Luca's profile (the first one) shows every option, explained. The others are the
+   profiles used in the tutorial's examples, simplest first. Copy any block for
+   each of your characters, change the name after pfp- (and pov-) everywhere in it,
+   and fill in or delete the parts you want.
+   In your HTML:
+     picture       <span class="pfp pfp-stan"></span> inside any profile circle
+                   (wa-pfp, tw-pfp, ig-pfp, ig-like-pfp, tb-pfp, gm-pfp, dc-pfp)
+     name colour   add pfp-stan to a WhatsApp who line or a Discord username
+     handle        <span class="handle pfp-stan"></span> wherever the handle goes;
+                   it shows the one for the app it's in, and Twitter/X adds the @.
+                   Handles come from the CSS, so they aren't there when the style
+                   is switched off.
+     email         <span class="email pfp-stan"></span> wherever the address goes
+     name          <span class="name pfp-shane"></span> wherever their name goes.
+                   In a chat with pov-ilya on the container, it shows what Ilya
+                   has him saved as. Put <span class="hide">Jane</span> inside it
+                   for readers with the style switched off.
+     their phone   add pov-shane to the container of any chat on Shane's phone
+   Profiles grew out of the one-class-per-character Discord users in BookKeep's
+   Discord Work Skin & Tutorial (https://archiveofourown.org/works/42027846).
+   ========================================================== */
+
+/* a handle, name or email address looks like the text around it, whatever it sits inside */
+#workskin .mob span.handle.handle.handle.handle,
+#workskin .dc span.handle.handle.handle.handle,
+#workskin .mob span.name.name.name.name,
+#workskin .dc span.name.name.name.name,
+#workskin .mob span.email.email.email.email {
+  display: inline;
+  float: none;
+  margin: 0;
+  padding: 0;
+  font-size: 1em;
+  font-weight: inherit;
+  color: inherit;
+  opacity: 1;
+}
+
+/* Twitter/X puts an @ in front of every handle, so profiles don't need one */
+#workskin .tw span.handle::before,
+#workskin .tw-reply span.handle::before,
+#workskin .twdm span.handle::before { content: "@"; }
+
+/* PROFILE: Luca - every option a profile can have, explained line by line.
+   Only the lines with "every profile" need to be in yours; the rest are extras. */
+
+/* 1. Picture (every profile) */
+#workskin .pfp.pfp-luca { background-image: url(https://64.media.tumblr.com/a99a60f0293cf7df3604b4a6dd4705f6/ba033a52c8982cb0-cc/s1280x1920/cb4c277845d0c3ef666d16b86b75509266b795b3.jpg); }
+
+/* 2. A different picture for one app. Each line replaces the picture on that app only. */
+#workskin .tw .pfp.pfp-luca, #workskin .tw-reply .pfp.pfp-luca { background-image: url(https://64.media.tumblr.com/6898dc3a42cc6c7ab9729360b71366e4/ba033a52c8982cb0-bf/s2048x3072/b548d2fe61b02e530c0edd2ee6a6bd56ab73ad2c.jpg); }
+#workskin .ig .pfp.pfp-luca, #workskin .igdm .pfp.pfp-luca { background-image: url(https://64.media.tumblr.com/45b3b47d7c42b593f6242a40153a629c/ba033a52c8982cb0-d7/s2048x3072/4e71b117e87747d78dd3d95595cecc77eec48d38.jpg); }
+#workskin .tb .pfp.pfp-luca { background-image: url(https://64.media.tumblr.com/694221426fb8229480fb3fb87b528ca7/ba033a52c8982cb0-01/s1280x1920/636653581e07a970475075f480c1717b23a72c0a.jpg); }
+#workskin .gm .pfp.pfp-luca { background-image: linear-gradient(135deg, #f6b26b, #e06666); }
+#workskin .dc .pfp.pfp-luca { background-image: linear-gradient(135deg, #8e7cc3, #6fa8dc); }
+
+/* 3. Name colour (every profile): for WhatsApp group names and Discord usernames */
+#workskin .wa .who.pfp-luca, #workskin .dc .dc-name.pfp-luca { color: #1f9e89; }
+
+/* 4. A different name colour for one app */
+#workskin .dc .dc-name.pfp-luca { color: #e8734a; }
+
+/* 5. Name (every profile) */
+#workskin .name.pfp-luca::before { content: "Luca"; }
+
+/* 6. A different name for one app */
+#workskin .tw .name.pfp-luca::before, #workskin .tw-reply .name.pfp-luca::before, #workskin .twdm .name.pfp-luca::before { content: "Luca | cat dad"; }
+#workskin .ig .name.pfp-luca::before, #workskin .igdm .name.pfp-luca::before { content: "Luca and the Cats"; }
+#workskin .dc .name.pfp-luca::before { content: "lucaaa"; }
+
+/* 7. Saved as: what he's called on another character's phone, in any chat with
+   that character's pov- class on the container. One line per phone. */
+#workskin .mob.pov-shane .name.pfp-luca::before { content: "Luca (cat pictures)"; }
+#workskin .mob.pov-ilya .name.pfp-luca::before { content: "Cat Guy"; }
+#workskin .mob.pov-rose .name.pfp-luca::before { content: "Cat Luca"; }
+
+/* 8. Handle (every profile): used on every app. Leave off the @ - Twitter/X adds it. */
+#workskin .handle.pfp-luca::after { content: "luca"; }
+
+/* 9. A different handle for one app */
+#workskin .tw .handle.pfp-luca::after, #workskin .tw-reply .handle.pfp-luca::after, #workskin .twdm .handle.pfp-luca::after { content: "luca_tweets"; }
+#workskin .ig .handle.pfp-luca::after, #workskin .igdm .handle.pfp-luca::after { content: "luca.grams"; }
+#workskin .tb .handle.pfp-luca::after { content: "luca-blogs-things"; }
+
+/* 10. Email address, for Gmail and the email window */
+#workskin .email.pfp-luca::after { content: "luca@example.com"; }
+
+/* 11. A different email address in the email window (.mail) or Gmail (.gm) */
+#workskin .mail .email.pfp-luca::after { content: "luca@work.example.com"; }
+
+/* 12. His phone: WhatsApp chats with pov-luca on the container. A colour, a gradient
+   or a picture all work here. He uses theme-light. */
+#workskin .mob.wa.pov-luca { background: linear-gradient(#fdf1d6, #f6d5c2); }
+
+/* PROFILE: Stan */
+#workskin .pfp.pfp-stan { background-color: #c06a1f; }
+#workskin .wa .who.pfp-stan, #workskin .dc .dc-name.pfp-stan { color: #d2782a; }
+#workskin .name.pfp-stan::before { content: "Stan"; }
+#workskin .handle.pfp-stan::after { content: "PuckStan"; }
+#workskin .email.pfp-stan::after { content: "Puckstan@gmail.com"; }
+
+/* PROFILE: Yuna */
+#workskin .pfp.pfp-yuna { background-color: #7d4fb0; }
+#workskin .wa .who.pfp-yuna, #workskin .dc .dc-name.pfp-yuna { color: #9a62d0; }
+#workskin .name.pfp-yuna::before { content: "Yuna"; }
+#workskin .mob.pov-shane .name.pfp-yuna::before { content: "Mom"; }
+#workskin .handle.pfp-yuna::after { content: "MetrosMomager"; }
+#workskin .email.pfp-yuna::after { content: "YunaHollander@gmail.com"; }
+#workskin .mail .email.pfp-yuna::after { content: "Yuna@HollanderHockey.com"; }
+
+/* PROFILE: Zim */
+#workskin .pfp.pfp-zim { background-color: #4a6a8f; }
+#workskin .wa .who.pfp-zim, #workskin .dc .dc-name.pfp-zim { color: #5d84b3; }
+#workskin .name.pfp-zim::before { content: "Jack Zimmerman"; }
+#workskin .tw .name.pfp-zim::before, #workskin .tw-reply .name.pfp-zim::before, #workskin .twdm .name.pfp-zim::before { content: "Zim"; }
+#workskin .handle.pfp-zim::after { content: "JackZim"; }
+#workskin .tw .handle.pfp-zim::after, #workskin .tw-reply .handle.pfp-zim::after, #workskin .twdm .handle.pfp-zim::after { content: "ZimBits"; }
+#workskin .email.pfp-zim::after { content: "Jack@zimmerman.com"; }
+
+/* PROFILE: Holster - a different picture on each app (colours for now) */
+#workskin .pfp.pfp-holster { background-color: #138a72; }
+#workskin .tw .pfp.pfp-holster, #workskin .tw-reply .pfp.pfp-holster { background-color: #1d6fa5; }
+#workskin .ig .pfp.pfp-holster, #workskin .igdm .pfp.pfp-holster { background-color: #c13584; }
+#workskin .tb .pfp.pfp-holster { background-color: #35465c; }
+#workskin .dc .pfp.pfp-holster { background-color: #5865f2; }
+#workskin .wa .who.pfp-holster, #workskin .dc .dc-name.pfp-holster { color: #1aa386; }
+#workskin .name.pfp-holster::before { content: "Holster"; }
+#workskin .handle.pfp-holster::after { content: "HolsterInLaw"; }
+
+/* PROFILE: Rose */
+#workskin .pfp.pfp-rose { background-color: #c2416b; }
+#workskin .wa .who.pfp-rose, #workskin .dc .dc-name.pfp-rose { color: #d6336c; }
+#workskin .name.pfp-rose::before { content: "Rose"; }
+#workskin .tw .name.pfp-rose::before, #workskin .tw-reply .name.pfp-rose::before, #workskin .twdm .name.pfp-rose::before, #workskin .ig .name.pfp-rose::before, #workskin .igdm .name.pfp-rose::before { content: "Rose Landry"; }
+#workskin .handle.pfp-rose::after { content: "PoseyRosey"; }
+#workskin .tw .handle.pfp-rose::after, #workskin .tw-reply .handle.pfp-rose::after, #workskin .twdm .handle.pfp-rose::after, #workskin .ig .handle.pfp-rose::after, #workskin .igdm .handle.pfp-rose::after { content: "RoseLandry"; }
+
+/* PROFILE: Shane */
+#workskin .pfp.pfp-shane { background-image: url(https://www.shutterstock.com/shutterstock/photos/1100283806/display_1500/stock-photo-beautiful-lavender-flower-in-the-dalat-flower-park-selective-focus-1100283806.jpg); }
+#workskin .wa .who.pfp-shane, #workskin .dc .dc-name.pfp-shane { color: #3a7bd5; }
+#workskin .name.pfp-shane::before { content: "Shane"; }
+#workskin .mob.pov-ilya .name.pfp-shane::before { content: "Jane"; }
+#workskin .handle.pfp-shane::after { content: "ShaneHollanderHockeyPlayer"; }
+#workskin .ig .handle.pfp-shane::after, #workskin .igdm .handle.pfp-shane::after { content: "shanehollanderhockeyplayer"; }
+#workskin .tb .handle.pfp-shane::after { content: "hollanderhockey"; }
+#workskin .dc .handle.pfp-shane::after { content: "shanehollander"; }
+#workskin .email.pfp-shane::after { content: "shane@example.com"; }
+#workskin .mob.wa.pov-shane { background: #dfeaf6; }
+
+/* PROFILE: Ilya - no picture yet: swap background-color for background-image: url(LINK) */
+#workskin .pfp.pfp-ilya { background-color: #b5433a; }
+#workskin .wa .who.pfp-ilya, #workskin .dc .dc-name.pfp-ilya { color: #d65548; }
+#workskin .name.pfp-ilya::before { content: "Ilya"; }
+#workskin .mob.pov-shane .name.pfp-ilya::before { content: "Lily"; }
+#workskin .handle.pfp-ilya::after { content: "irozanov"; }
+#workskin .ig .handle.pfp-ilya::after, #workskin .igdm .handle.pfp-ilya::after { content: "ilya.r"; }
+#workskin .mob.wa.pov-ilya { background: #1b1f2b; }
+
+/* ==========================================================
+   COLOURS: colour1 to colour10
+   One set of ten colours for every app. Add colour1 to colour10 to a picture
+   circle (wa-pfp, tw-pfp, tb-pfp, tb-ask-pfp, gm-pfp) or a name (WhatsApp who,
+   Discord dc-name) to colour it. Use the same number for a person everywhere.
+   Change a colour here and it changes in every app.
+   Each rule lists the class names for all the apps. If you've left some apps
+   out, keep the whole list anyway: a name for an app you don't use just
+   doesn't match anything, so it does no harm.
+   ========================================================== */
+
+/* picture circles (the same in light and dark) */
+#workskin .wa .wa-pfp.colour1,
+#workskin .tw .tw-pfp.colour1,
+#workskin .tw-reply .tw-pfp.colour1,
+#workskin .tb .tb-pfp.colour1,
+#workskin .tb .tb-ask-pfp.colour1,
+#workskin .gm .gm-pfp.colour1,
+#workskin .dc .dc-name.colour1::before { background-color: #b5733a; }
+
+#workskin .wa .wa-pfp.colour2,
+#workskin .tw .tw-pfp.colour2,
+#workskin .tw-reply .tw-pfp.colour2,
+#workskin .tb .tb-pfp.colour2,
+#workskin .tb .tb-ask-pfp.colour2,
+#workskin .gm .gm-pfp.colour2,
+#workskin .dc .dc-name.colour2::before { background-color: #3a3a3c; }
+
+#workskin .wa .wa-pfp.colour3,
+#workskin .tw .tw-pfp.colour3,
+#workskin .tw-reply .tw-pfp.colour3,
+#workskin .tb .tb-pfp.colour3,
+#workskin .tb .tb-ask-pfp.colour3,
+#workskin .gm .gm-pfp.colour3,
+#workskin .dc .dc-name.colour3::before { background-color: #7a2b4e; }
+
+#workskin .wa .wa-pfp.colour4,
+#workskin .tw .tw-pfp.colour4,
+#workskin .tw-reply .tw-pfp.colour4,
+#workskin .tb .tb-pfp.colour4,
+#workskin .tb .tb-ask-pfp.colour4,
+#workskin .gm .gm-pfp.colour4,
+#workskin .dc .dc-name.colour4::before { background-color: #2f7d6b; }
+
+#workskin .wa .wa-pfp.colour5,
+#workskin .tw .tw-pfp.colour5,
+#workskin .tw-reply .tw-pfp.colour5,
+#workskin .tb .tb-pfp.colour5,
+#workskin .tb .tb-ask-pfp.colour5,
+#workskin .gm .gm-pfp.colour5,
+#workskin .dc .dc-name.colour5::before { background-color: #3b5ea8; }
+
+#workskin .wa .wa-pfp.colour6,
+#workskin .tw .tw-pfp.colour6,
+#workskin .tw-reply .tw-pfp.colour6,
+#workskin .tb .tb-pfp.colour6,
+#workskin .tb .tb-ask-pfp.colour6,
+#workskin .gm .gm-pfp.colour6,
+#workskin .dc .dc-name.colour6::before { background-color: #6b4fa0; }
+
+#workskin .wa .wa-pfp.colour7,
+#workskin .tw .tw-pfp.colour7,
+#workskin .tw-reply .tw-pfp.colour7,
+#workskin .tb .tb-pfp.colour7,
+#workskin .tb .tb-ask-pfp.colour7,
+#workskin .gm .gm-pfp.colour7,
+#workskin .dc .dc-name.colour7::before { background-color: #a8383b; }
+
+#workskin .wa .wa-pfp.colour8,
+#workskin .tw .tw-pfp.colour8,
+#workskin .tw-reply .tw-pfp.colour8,
+#workskin .tb .tb-pfp.colour8,
+#workskin .tb .tb-ask-pfp.colour8,
+#workskin .gm .gm-pfp.colour8,
+#workskin .dc .dc-name.colour8::before { background-color: #4e7a2c; }
+
+#workskin .wa .wa-pfp.colour9,
+#workskin .tw .tw-pfp.colour9,
+#workskin .tw-reply .tw-pfp.colour9,
+#workskin .tb .tb-pfp.colour9,
+#workskin .tb .tb-ask-pfp.colour9,
+#workskin .gm .gm-pfp.colour9,
+#workskin .dc .dc-name.colour9::before { background-color: #8c6d1f; }
+
+#workskin .wa .wa-pfp.colour10,
+#workskin .tw .tw-pfp.colour10,
+#workskin .tw-reply .tw-pfp.colour10,
+#workskin .tb .tb-pfp.colour10,
+#workskin .tb .tb-ask-pfp.colour10,
+#workskin .gm .gm-pfp.colour10,
+#workskin .dc .dc-name.colour10::before { background-color: #2a7390; }
+
+/* names: a bit brighter than the circles, so they are easy to read as text.
+   In a WhatsApp quoted reply, the colour goes on the line down the side and the name. */
+#workskin .wa .who.colour1,
+#workskin .wa .wa-quote.colour1 b,
+#workskin .dc .colour1 { color: #b8651f; }
+
+#workskin .wa .wa-quote.colour1 { border-left-color: #b8651f; }
+
+#workskin .wa .who.colour2,
+#workskin .wa .wa-quote.colour2 b,
+#workskin .dc .colour2 { color: #5f6368; }
+
+#workskin .wa .wa-quote.colour2 { border-left-color: #5f6368; }
+
+#workskin .wa .who.colour3,
+#workskin .wa .wa-quote.colour3 b,
+#workskin .dc .colour3 { color: #b03a6f; }
+
+#workskin .wa .wa-quote.colour3 { border-left-color: #b03a6f; }
+
+#workskin .wa .who.colour4,
+#workskin .wa .wa-quote.colour4 b,
+#workskin .dc .colour4 { color: #1f8a72; }
+
+#workskin .wa .wa-quote.colour4 { border-left-color: #1f8a72; }
+
+#workskin .wa .who.colour5,
+#workskin .wa .wa-quote.colour5 b,
+#workskin .dc .colour5 { color: #2f68c8; }
+
+#workskin .wa .wa-quote.colour5 { border-left-color: #2f68c8; }
+
+#workskin .wa .who.colour6,
+#workskin .wa .wa-quote.colour6 b,
+#workskin .dc .colour6 { color: #7b52c4; }
+
+#workskin .wa .wa-quote.colour6 { border-left-color: #7b52c4; }
+
+#workskin .wa .who.colour7,
+#workskin .wa .wa-quote.colour7 b,
+#workskin .dc .colour7 { color: #c0392b; }
+
+#workskin .wa .wa-quote.colour7 { border-left-color: #c0392b; }
+
+#workskin .wa .who.colour8,
+#workskin .wa .wa-quote.colour8 b,
+#workskin .dc .colour8 { color: #4a8a25; }
+
+#workskin .wa .wa-quote.colour8 { border-left-color: #4a8a25; }
+
+#workskin .wa .who.colour9,
+#workskin .wa .wa-quote.colour9 b,
+#workskin .dc .colour9 { color: #9a7412; }
+
+#workskin .wa .wa-quote.colour9 { border-left-color: #9a7412; }
+
+#workskin .wa .who.colour10,
+#workskin .wa .wa-quote.colour10 b,
+#workskin .dc .colour10 { color: #1f7fa3; }
+
+#workskin .wa .wa-quote.colour10 { border-left-color: #1f7fa3; }
+
+/* names in the dark theme: lighter shades, so they show up on a dark background */
+#workskin .wa.theme-dark .who.colour1,
+#workskin .wa.theme-dark .wa-quote.colour1 b,
+#workskin .dc.theme-dark .colour1 { color: #f0a25c; }
+
+#workskin .wa.theme-dark .wa-quote.colour1 { border-left-color: #f0a25c; }
+
+#workskin .wa.theme-dark .who.colour2,
+#workskin .wa.theme-dark .wa-quote.colour2 b,
+#workskin .dc.theme-dark .colour2 { color: #aeb3b8; }
+
+#workskin .wa.theme-dark .wa-quote.colour2 { border-left-color: #aeb3b8; }
+
+#workskin .wa.theme-dark .who.colour3,
+#workskin .wa.theme-dark .wa-quote.colour3 b,
+#workskin .dc.theme-dark .colour3 { color: #ff7aa2; }
+
+#workskin .wa.theme-dark .wa-quote.colour3 { border-left-color: #ff7aa2; }
+
+#workskin .wa.theme-dark .who.colour4,
+#workskin .wa.theme-dark .wa-quote.colour4 b,
+#workskin .dc.theme-dark .colour4 { color: #06cf9c; }
+
+#workskin .wa.theme-dark .wa-quote.colour4 { border-left-color: #06cf9c; }
+
+#workskin .wa.theme-dark .who.colour5,
+#workskin .wa.theme-dark .wa-quote.colour5 b,
+#workskin .dc.theme-dark .colour5 { color: #6fa3ff; }
+
+#workskin .wa.theme-dark .wa-quote.colour5 { border-left-color: #6fa3ff; }
+
+#workskin .wa.theme-dark .who.colour6,
+#workskin .wa.theme-dark .wa-quote.colour6 b,
+#workskin .dc.theme-dark .colour6 { color: #c4a3ff; }
+
+#workskin .wa.theme-dark .wa-quote.colour6 { border-left-color: #c4a3ff; }
+
+#workskin .wa.theme-dark .who.colour7,
+#workskin .wa.theme-dark .wa-quote.colour7 b,
+#workskin .dc.theme-dark .colour7 { color: #ff7b72; }
+
+#workskin .wa.theme-dark .wa-quote.colour7 { border-left-color: #ff7b72; }
+
+#workskin .wa.theme-dark .who.colour8,
+#workskin .wa.theme-dark .wa-quote.colour8 b,
+#workskin .dc.theme-dark .colour8 { color: #8fd16a; }
+
+#workskin .wa.theme-dark .wa-quote.colour8 { border-left-color: #8fd16a; }
+
+#workskin .wa.theme-dark .who.colour9,
+#workskin .wa.theme-dark .wa-quote.colour9 b,
+#workskin .dc.theme-dark .colour9 { color: #e6c35c; }
+
+#workskin .wa.theme-dark .wa-quote.colour9 { border-left-color: #e6c35c; }
+
+#workskin .wa.theme-dark .who.colour10,
+#workskin .wa.theme-dark .wa-quote.colour10 b,
+#workskin .dc.theme-dark .colour10 { color: #53bdeb; }
+
+#workskin .wa.theme-dark .wa-quote.colour10 { border-left-color: #53bdeb; }
+
+/* Discord's dark grey would hide the colour2 circle, so it is a little lighter there */
+#workskin .dc.theme-dark .dc-name.colour2::before { background-color: #5c5c60; }
+
+/* names in the auto theme: the dark shades when the reader's device is in dark mode */
+@media (prefers-color-scheme: dark) {
+  #workskin .wa.theme-auto .who.colour1,
+  #workskin .wa.theme-auto .wa-quote.colour1 b,
+  #workskin .dc.theme-auto .colour1 { color: #f0a25c; }
+
+  #workskin .wa.theme-auto .wa-quote.colour1 { border-left-color: #f0a25c; }
+
+  #workskin .wa.theme-auto .who.colour2,
+  #workskin .wa.theme-auto .wa-quote.colour2 b,
+  #workskin .dc.theme-auto .colour2 { color: #aeb3b8; }
+
+  #workskin .wa.theme-auto .wa-quote.colour2 { border-left-color: #aeb3b8; }
+
+  #workskin .wa.theme-auto .who.colour3,
+  #workskin .wa.theme-auto .wa-quote.colour3 b,
+  #workskin .dc.theme-auto .colour3 { color: #ff7aa2; }
+
+  #workskin .wa.theme-auto .wa-quote.colour3 { border-left-color: #ff7aa2; }
+
+  #workskin .wa.theme-auto .who.colour4,
+  #workskin .wa.theme-auto .wa-quote.colour4 b,
+  #workskin .dc.theme-auto .colour4 { color: #06cf9c; }
+
+  #workskin .wa.theme-auto .wa-quote.colour4 { border-left-color: #06cf9c; }
+
+  #workskin .wa.theme-auto .who.colour5,
+  #workskin .wa.theme-auto .wa-quote.colour5 b,
+  #workskin .dc.theme-auto .colour5 { color: #6fa3ff; }
+
+  #workskin .wa.theme-auto .wa-quote.colour5 { border-left-color: #6fa3ff; }
+
+  #workskin .wa.theme-auto .who.colour6,
+  #workskin .wa.theme-auto .wa-quote.colour6 b,
+  #workskin .dc.theme-auto .colour6 { color: #c4a3ff; }
+
+  #workskin .wa.theme-auto .wa-quote.colour6 { border-left-color: #c4a3ff; }
+
+  #workskin .wa.theme-auto .who.colour7,
+  #workskin .wa.theme-auto .wa-quote.colour7 b,
+  #workskin .dc.theme-auto .colour7 { color: #ff7b72; }
+
+  #workskin .wa.theme-auto .wa-quote.colour7 { border-left-color: #ff7b72; }
+
+  #workskin .wa.theme-auto .who.colour8,
+  #workskin .wa.theme-auto .wa-quote.colour8 b,
+  #workskin .dc.theme-auto .colour8 { color: #8fd16a; }
+
+  #workskin .wa.theme-auto .wa-quote.colour8 { border-left-color: #8fd16a; }
+
+  #workskin .wa.theme-auto .who.colour9,
+  #workskin .wa.theme-auto .wa-quote.colour9 b,
+  #workskin .dc.theme-auto .colour9 { color: #e6c35c; }
+
+  #workskin .wa.theme-auto .wa-quote.colour9 { border-left-color: #e6c35c; }
+
+  #workskin .wa.theme-auto .who.colour10,
+  #workskin .wa.theme-auto .wa-quote.colour10 b,
+  #workskin .dc.theme-auto .colour10 { color: #53bdeb; }
+
+  #workskin .wa.theme-auto .wa-quote.colour10 { border-left-color: #53bdeb; }
+
+  /* Discord's dark grey would hide the colour2 circle, so it is a little lighter there */
+  #workskin .dc.theme-auto .dc-name.colour2::before { background-color: #5c5c60; }
+}
+
+/* <<<<<<<<<< CORE (end) <<<<<<<<<< */
+
+/* >>>>>>>>>> MODULE: iMessage (start) >>>>>>>>>> */
+
+/* ==========================================================
+   MODULE: IMESSAGE   (classes: imsg)
+   iMessage: <div class="mob imsg theme-auto">
+   Needs the CORE block.
+   ========================================================== */
+
+#workskin .imsg {
+  background: #ffffff;
+  color: #000000;
+  border: 1px solid #d8d8dc;
+  border-radius: 14px;
+}
+
+#workskin .imsg .mob-head {
+  background: #f6f6f8;
+  color: #000000;
+  border-bottom: 1px solid #d8d8dc;
+  font-size: 0.85em;
+}
+
+#workskin .imsg .mob-head span {
+  display: block;
+  font-weight: normal;
+  color: #8e8e93;
+  font-size: 0.85em;
+}
+
+#workskin .imsg .msg {
+  display: table;
+  max-width: 75%;
+  margin: 0.18em 0;
+  padding: 0.45em 0.8em;
+  border-radius: 18px;
+}
+
+#workskin .imsg .out {
+  margin-left: auto;
+  background: #0a84ff;
+  color: #ffffff;
+  border-bottom-right-radius: 5px;
+}
+
+#workskin .imsg .in {
+  margin-right: auto;
+  background: #e9e9eb;
+  color: #000000;
+  border-bottom-left-radius: 5px;
+}
+
+/* green bubble: a sent message that went as a text instead of an iMessage (only sent messages turn green) */
+#workskin .imsg .out.sms { background: #30d158; color: #ffffff; }
+
+/* sender name above a bubble in group chats */
+#workskin .imsg .who {
+  display: block;
+  font-size: 0.72em;
+  color: #8e8e93;
+  margin: 0.5em 0 0 0.9em;
+}
+
+/* "Delivered" / "Read 9:42" */
+#workskin .imsg .imsg-status {
+  display: block;
+  text-align: right;
+  font-size: 0.7em;
+  color: #8e8e93;
+  margin: 0.1em 0.4em 0.4em 0;
+}
+
+/* tapbacks: a reaction bubble on the top corner of a message.
+   <p class="msg in tapped">message<span class="imsg-tap me">&#128077;</span></p>
+   "tapped" makes room above the message; "me" makes it blue (your own reaction),
+   without "me" it's grey (someone else's). Any emoji works - one per person. */
+#workskin .imsg .msg.tapped {
+  position: relative;
+  margin-top: 1.7em;
+}
+
+/* in a group, keep the sender's name right above a message with a tapback:
+   the room for the tapback goes above the name instead of between the name and the message */
+#workskin .imsg .who + .msg.tapped { margin-top: 0.18em; }
+
+#workskin .imsg .who:has(+ .msg.tapped) { margin-top: 1.5em; }
+
+#workskin .imsg .imsg-tap {
+  position: absolute;
+  top: -1.75em;
+  right: -0.95em;
+  min-width: 2.15em;
+  height: 2.15em;
+  padding: 0 0.35em;
+  box-sizing: border-box;
+  border: 2px solid #ffffff;
+  border-radius: 1.075em;
+  background: #e9e9eb;
+  color: #8e8e93;
+  font-size: 1em;
+  line-height: 1.9em;
+  text-align: center;
+  white-space: nowrap;
+}
+
+/* the two little tail dots, trailing off the outside corner */
+#workskin .imsg .imsg-tap::before,
+#workskin .imsg .imsg-tap::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  background: #e9e9eb;
+}
+
+#workskin .imsg .imsg-tap::before {
+  right: -0.2em;
+  bottom: -0.2em;
+  width: 0.5em;
+  height: 0.5em;
+  border: 2px solid #ffffff;
+}
+
+#workskin .imsg .imsg-tap::after {
+  right: -0.55em;
+  bottom: -0.5em;
+  width: 0.25em;
+  height: 0.25em;
+}
+
+/* on your own messages it sits on the left corner instead, with the tail on the left */
+#workskin .imsg .out .imsg-tap { right: auto; left: -0.95em; }
+
+#workskin .imsg .out .imsg-tap::before { right: auto; left: -0.2em; }
+
+#workskin .imsg .out .imsg-tap::after { right: auto; left: -0.55em; }
+
+/* your own reaction is blue */
+#workskin .imsg .imsg-tap.me { background: #0a84ff; color: #ffffff; }
+
+#workskin .imsg .imsg-tap.me::before,
+#workskin .imsg .imsg-tap.me::after { background: #0a84ff; }
+
+/* several people reacting: put the imsg-tap spans one after another and they stack,
+   each one stepping in from the corner, with the tail only on the first */
+#workskin .imsg .imsg-tap { z-index: 4; }
+
+#workskin .imsg .imsg-tap + .imsg-tap { z-index: 3; }
+
+#workskin .imsg .imsg-tap + .imsg-tap + .imsg-tap { z-index: 2; }
+
+#workskin .imsg .imsg-tap + .imsg-tap + .imsg-tap + .imsg-tap { z-index: 1; }
+
+#workskin .imsg .imsg-tap + .imsg-tap { right: 0.5em; }
+
+#workskin .imsg .imsg-tap + .imsg-tap + .imsg-tap { right: 1.95em; }
+
+#workskin .imsg .imsg-tap + .imsg-tap + .imsg-tap + .imsg-tap { right: 3.4em; }
+
+#workskin .imsg .out .imsg-tap + .imsg-tap { right: auto; left: 0.5em; }
+
+#workskin .imsg .out .imsg-tap + .imsg-tap + .imsg-tap { right: auto; left: 1.95em; }
+
+#workskin .imsg .out .imsg-tap + .imsg-tap + .imsg-tap + .imsg-tap { right: auto; left: 3.4em; }
+
+#workskin .imsg .imsg-tap + .imsg-tap::before,
+#workskin .imsg .imsg-tap + .imsg-tap::after { display: none; }
+
+#workskin .imsg .mob-sys { color: #8e8e93; opacity: 1; }
+
+/* a picture sent in a message: <p class="msg out pic"><img src="..."></p>
+   or, for a description instead: <p class="msg out pic text">[A photo of the rink]</p> */
+#workskin .imsg .msg.pic { width: 55%; padding: 0.2em; overflow: hidden; }
+
+#workskin .imsg .msg.pic img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 15px;
+}
+
+#workskin .imsg .msg.pic.text { padding: 2.5em 1em; font-style: italic; text-align: center; }
+
+/* the three typing dots: <p class="typing-indicator"><span></span><span></span><span></span></p> */
+#workskin .imsg .typing-indicator {
+  display: table;
+  margin: 0.3em 0;
+  padding: 0.6em 0.8em;
+  border-radius: 18px;
+  border-bottom-left-radius: 5px;
+  background: #e9e9eb;
+}
+
+#workskin .imsg .typing-indicator span {
+  display: inline-block;
+  width: 0.6em;
+  height: 0.6em;
+  margin-right: 0.25em;
+  border-radius: 50%;
+  background: #8e8e93;
+  opacity: 0.5;
+}
+
+#workskin .imsg .typing-indicator span:nth-child(2) { opacity: 0.7; }
+
+#workskin .imsg .typing-indicator span:nth-child(3) { opacity: 1; margin-right: 0; }
+
+/* the message bar at the bottom: goes after the mob-body, inside the chat, all on one line
+   <p class="imsg-input"><span class="imsg-plus">+</span><span class="hide"> </span><span class="imsg-field">iMessage<span class="hide"> </span><span class="imsg-mic">&#127908;</span></span></p>
+   The hide spans keep a space between the parts for readers with the workskin off. */
+#workskin .imsg .imsg-input {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 0.45em 0.7em 0.65em 0.7em;
+}
+
+/* the round + button on the left, with a grey outline */
+#workskin .imsg .imsg-plus {
+  flex: none;
+  width: 1.55em;
+  height: 1.55em;
+  margin-right: 0.35em;
+  border-radius: 50%;
+  box-sizing: border-box;
+  border: 1px solid #8e8e93;
+  background: #ffffff;
+  color: #000000;
+  font-size: 1.3em;
+  font-weight: 300;
+  line-height: 1.45em;
+  text-align: center;
+}
+
+/* the grey box with the word in it */
+#workskin .imsg .imsg-field {
+  flex: 1;
+  position: relative;
+  padding: 0.45em 2.4em 0.45em 0.9em;
+  border: 1px solid #8e8e93;
+  border-radius: 1.3em;
+  background: #f0f0f2;
+  color: #6c6c70;
+}
+
+/* the microphone on the right of the box */
+#workskin .imsg .imsg-mic {
+  position: absolute;
+  right: 0.7em;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.95em;
+}
+
+/* ---------- iMessage: Links ---------- */
+
+#workskin .imsg .in .fake-link, #workskin .imsg .in a:not(.tl) { color: #0a84ff; }
+
+#workskin .imsg .out .fake-link, #workskin .imsg .out a:not(.tl) { color: #ffffff; }
+
+/* ---------- iMessage: Dark theme (theme-dark) ---------- */
+
+#workskin .imsg.theme-dark { background: #000000; color: #ffffff; border-color: #2c2c2e; }
+
+#workskin .imsg.theme-dark .mob-head { background: #1c1c1e; color: #ffffff; border-bottom-color: #2c2c2e; }
+
+#workskin .imsg.theme-dark .in,
+#workskin .imsg.theme-dark .typing-indicator {
+  background: #262628;
+  color: #ffffff;
+}
+
+#workskin .imsg.theme-dark .imsg-tap,
+#workskin .imsg.theme-dark .imsg-tap::before,
+#workskin .imsg.theme-dark .imsg-tap::after { border-color: #000000; background: #3a3a3c; color: #aeaeb2; }
+
+#workskin .imsg.theme-dark .imsg-tap.me,
+#workskin .imsg.theme-dark .imsg-tap.me::before,
+#workskin .imsg.theme-dark .imsg-tap.me::after { background: #0a84ff; color: #ffffff; }
+
+#workskin .imsg.theme-dark .imsg-plus { border-color: #757579; background: #2c2c2e; color: #ffffff; }
+
+#workskin .imsg.theme-dark .imsg-field { border-color: #757579; background: #1c1c1e; color: #8e8e93; }
+
+/* ---------- iMessage: Auto theme (theme-auto): light, switching to dark when the reader's device is in dark mode ---------- */
+
+@media (prefers-color-scheme: dark) {
+  #workskin .imsg.theme-auto { background: #000000; color: #ffffff; border-color: #2c2c2e; }
+
+  #workskin .imsg.theme-auto .mob-head { background: #1c1c1e; color: #ffffff; border-bottom-color: #2c2c2e; }
+
+  #workskin .imsg.theme-auto .in,
+    #workskin .imsg.theme-auto .typing-indicator {
+      background: #262628;
+      color: #ffffff;
+    }
+
+  #workskin .imsg.theme-auto .imsg-tap,
+    #workskin .imsg.theme-auto .imsg-tap::before,
+    #workskin .imsg.theme-auto .imsg-tap::after { border-color: #000000; background: #3a3a3c; color: #aeaeb2; }
+
+  #workskin .imsg.theme-auto .imsg-tap.me,
+    #workskin .imsg.theme-auto .imsg-tap.me::before,
+    #workskin .imsg.theme-auto .imsg-tap.me::after { background: #0a84ff; color: #ffffff; }
+
+  #workskin .imsg.theme-auto .imsg-plus { border-color: #757579; background: #2c2c2e; color: #ffffff; }
+
+  #workskin .imsg.theme-auto .imsg-field { border-color: #757579; background: #1c1c1e; color: #8e8e93; }
+}
+
+/* <<<<<<<<<< MODULE: iMessage (end) <<<<<<<<<< */
+
+/* >>>>>>>>>> MODULE: WhatsApp (start) >>>>>>>>>> */
+
+/* ==========================================================
+   MODULE: WHATSAPP   (classes: wa)
+   WhatsApp: <div class="mob wa theme-auto">
+   Includes the wallpapers (bg classes) at the end of the block.
+   Needs the CORE block.
+   ========================================================== */
+
+#workskin .wa {
+  background: #efeae2;
+  color: #111b21;
+  border: 1px solid #d1d7db;
+  border-radius: 10px;
+}
+
+#workskin .wa .mob-head {
+  background: #008069;
+  color: #ffffff;
+  text-align: left;
+  padding: 0.7em 1em;
+}
+
+#workskin .wa .mob-head span {
+  display: block;
+  font-weight: normal;
+  font-size: 0.8em;
+  opacity: 0.85;
+}
+
+#workskin .wa .msg {
+  display: table;
+  max-width: 80%;
+  min-width: 90px;
+  margin: 0.2em 0;
+  padding: 0.35em 0.6em 0.3em 0.6em;
+  border-radius: 8px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.13);
+}
+
+#workskin .wa .out { margin-left: auto; background: #d9fdd3; }
+
+#workskin .wa .in { margin-right: auto; background: #ffffff; }
+
+/* sender name in group chats; add colour1 to colour10 for a colour, the same number as their picture */
+#workskin .wa .who {
+  display: block;
+  font-size: 0.8em;
+  font-weight: bold;
+  color: inherit;
+}
+
+/* time + ticks sit at the end of the bubble */
+#workskin .wa .wa-time {
+  display: block;
+  text-align: right;
+  font-size: 0.68em;
+  color: #667781;
+  margin-top: 0.1em;
+}
+
+#workskin .wa .wa-read { color: #53bdeb; font-weight: bold; }
+
+/* quoted/replied-to message inside a bubble */
+#workskin .wa .wa-quote {
+  display: block;
+  background: rgba(0, 0, 0, 0.06);
+  border-left: 4px solid #06cf9c;
+  border-radius: 5px;
+  padding: 0.25em 0.5em;
+  margin-bottom: 0.3em;
+  font-size: 0.85em;
+  color: #54656f;
+}
+
+#workskin .wa .mob-sys {
+  display: table;
+  margin: 0.7em auto;
+  padding: 0.25em 0.7em;
+  background: #ffffff;
+  border-radius: 7px;
+  color: #54656f;
+  opacity: 1;
+}
+
+/* full header: back arrow, picture, title + subtitle, icons.
+   Use a <table class="wa-bar"> instead of <p class="mob-head"> (see the tutorial for the cells) */
+#workskin .wa table.wa-bar {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+  border-spacing: 0;
+  margin: 0;
+  background: #008069;
+  color: #ffffff;
+  text-align: left;
+}
+
+#workskin .wa table.wa-bar td {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  vertical-align: middle;
+}
+
+#workskin .wa table.wa-bar .wa-back {
+  width: 34px;
+  padding-left: 0.8em;
+  font-size: 1.3em;
+  line-height: 1;
+}
+
+#workskin .wa table.wa-bar .wa-pfp-cell { width: 48px; padding: 0.55em 0; text-align: center; }
+
+#workskin .wa table.wa-bar .wa-pfp-cell .wa-pfp { margin: 0 auto; }
+
+#workskin .wa table.wa-bar .wa-title {
+  padding: 0.55em 0.4em 0 0.4em;
+  font-weight: bold;
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#workskin .wa table.wa-bar .wa-sub {
+  padding: 0 0.4em 0.55em 0.4em;
+  font-size: 0.8em;
+  line-height: 1.2;
+  opacity: 0.85;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#workskin .wa table.wa-bar .wa-actions {
+  width: 64px;
+  padding-right: 0.8em;
+  letter-spacing: 0.4em;
+  text-align: right;
+  white-space: nowrap;
+}
+
+/* round profile picture: initials by default; add a number class colour1-colour10 for a colour (the colours are
+   in the COLOURS section of the CORE), or put a picture or a profile inside it with a pfp span */
+#workskin .wa .wa-pfp {
+  display: block;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  border-radius: 50%;
+  background-color: #8696a0;
+  background-size: cover;
+  background-position: center;
+  color: #ffffff;
+  font-size: 0.72em;
+  font-weight: bold;
+  overflow: hidden;
+}
+
+#workskin .wa table.wa-bar .wa-pfp {
+  width: 38px;
+  height: 38px;
+  line-height: 38px;
+  font-size: 0.85em;
+  font-weight: bold;
+}
+
+/* a message with a profile picture beside it (group chats) */
+#workskin .wa .wa-row { position: relative; padding-left: 38px; margin: 0.2em 0; }
+
+#workskin .wa .wa-row .wa-pfp { position: absolute; left: 0; top: 0; }
+
+#workskin .wa .wa-row .msg { margin: 0; }
+
+/* later messages from the same person: no picture, but still indented */
+#workskin .wa .wa-row.cont { padding-left: 38px; }
+
+/* sender name with the phone number at the right: <p class="who colour1">~ Name<span class="wa-num">+353...</span></p>
+   also works inside a quote's <b> */
+#workskin .wa .wa-num {
+  float: right;
+  margin-left: 1em;
+  font-weight: normal;
+  color: #667781;
+}
+
+/* the little pointed corner on the first bubble of a run: add "tail" next to in or out */
+#workskin .wa .msg.tail { position: relative; }
+
+#workskin .wa .in.tail { border-top-left-radius: 0; }
+
+#workskin .wa .out.tail { border-top-right-radius: 0; }
+
+#workskin .wa .in.tail::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -8px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 8px 10px 0;
+  border-color: transparent #ffffff transparent transparent;
+}
+
+#workskin .wa .out.tail::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: -8px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 0 10px 8px;
+  border-color: transparent transparent transparent #d9fdd3;
+}
+
+/* a message that is only an emoji: <p class="wa-big">&#128514;</p>
+   (AO3 removes style="" attributes, so this is a class) */
+#workskin .wa .wa-big { font-size: 2.2em; line-height: 1.2; }
+
+/* emoji reactions under a bubble: <p class="wa-reacts">❤️ 😂 <span class="wa-count">2</span></p>
+   add "out" to put it under one of your own messages; add "pad" under a bubble that has a picture beside it */
+#workskin .wa .wa-reacts {
+  display: table;
+  position: relative;
+  margin: -0.55em 0 0.3em 0.7em;
+  padding: 0.1em 0.5em;
+  border-radius: 1em;
+  background: #ffffff;
+  color: #111b21;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+  font-size: 0.85em;
+}
+
+#workskin .wa .wa-reacts .wa-count { margin-left: 0.35em; font-size: 0.9em; color: #667781; }
+
+#workskin .wa .wa-reacts.out { margin-left: auto; margin-right: 0.7em; }
+
+#workskin .wa .wa-reacts.pad { margin-left: 46px; }
+
+/* the message bar at the bottom */
+#workskin .wa .wa-input { position: relative; padding: 0.5em 3.4em 0.5em 0.6em; }
+
+/* AO3 turns line breaks in your HTML into <br /> tags: keep them out of the message bar */
+#workskin .wa .wa-input br { display: none; }
+
+#workskin .wa .wa-field {
+  display: table;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.45em 0.8em;
+  border-radius: 2em;
+  background: #ffffff;
+  color: #667781;
+}
+
+#workskin .wa .wa-field span {
+  display: table-cell;
+  vertical-align: middle;
+  white-space: nowrap;
+  width: 1%;
+  padding-left: 0.5em;
+}
+
+#workskin .wa .wa-field span:first-child { padding-left: 0; }
+
+#workskin .wa .wa-field .wa-ph { width: auto; padding-left: 0.5em; }
+
+#workskin .wa .wa-mic {
+  position: absolute;
+  right: 0.6em;
+  top: 50%;
+  margin-top: -1.2em;
+  width: 2.4em;
+  height: 2.4em;
+  line-height: 2.4em;
+  text-align: center;
+  border-radius: 50%;
+  background: #00a884;
+  color: #ffffff;
+}
+
+/* a bubble holding a link card or a photo gallery is wider than a normal one */
+#workskin .wa .msg.share,
+#workskin .wa .msg.gallery {
+  width: 80%;
+  padding: 0.25em 0.25em 0.3em 0.25em;
+}
+
+#workskin .wa .msg.share .wa-time,
+#workskin .wa .msg.gallery .wa-time {
+  padding-right: 0.35em;
+}
+
+/* link card: <div class="wa-link"> picture, title, description, address </div> */
+#workskin .wa .wa-link {
+  display: block;
+  overflow: hidden;
+  border-radius: 6px;
+  background: rgba(0, 0, 0, 0.06);
+}
+
+#workskin .wa .wa-link-img {
+  display: block;
+  max-height: 190px;
+  overflow: hidden;
+}
+
+#workskin .wa .wa-link-img img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* an embedded video player in place of the picture: <div class="wa-link-img video"><iframe src="..."></iframe></div> */
+#workskin .wa .wa-link-img.video {
+  max-height: none;
+}
+
+#workskin .wa .wa-link-img.video iframe {
+  display: block;
+  width: 100%;
+  height: 190px;
+  margin: 0;
+  border: 0;
+}
+
+/* a description standing in for the picture: <div class="wa-link-img text">[...]</div> */
+#workskin .wa .wa-link-img.text {
+  padding: 2.5em 1em;
+  background: rgba(0, 0, 0, 0.08);
+  color: #667781;
+  font-style: italic;
+  text-align: center;
+}
+
+#workskin .wa .wa-link-title {
+  display: block;
+  padding: 0.5em 0.6em 0 0.6em;
+  font-weight: bold;
+}
+
+#workskin .wa .wa-link-desc {
+  display: block;
+  padding: 0.15em 0.6em 0 0.6em;
+  color: #667781;
+  font-size: 0.85em;
+}
+
+#workskin .wa .wa-link-url {
+  display: block;
+  padding: 0.4em 0.6em 0.5em 0.6em;
+  color: #667781;
+  font-size: 0.85em;
+}
+
+#workskin .wa .wa-link-url::before {
+  content: "\1F517";
+  margin-right: 0.4em;
+}
+
+/* the link written out in the message text itself: <span class="wa-ln">example.com</span> */
+#workskin .wa .wa-ln {
+  color: #027eb5;
+  text-decoration: underline;
+}
+
+/* photos: <p class="wa-photos one|two|three|four"> then one <span class="wa-photo"> per picture.
+   Each photo is a square (or, for the tall ones, two squares high) and the picture fills it, cropped
+   to fit, never stretched. The widths add up to 99%, not 100%, so rounding can't push a photo down. */
+#workskin .wa .wa-photos {
+  display: block;
+  overflow: hidden;
+  border-radius: 6px;
+}
+
+/* AO3 turns line breaks in your code into <br> tags; inside a grid they would push photos down */
+#workskin .wa .wa-photos br {
+  display: none;
+}
+
+#workskin .wa .wa-photos::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+#workskin .wa .wa-photo {
+  display: block;
+  position: relative;
+  float: left;
+  width: 49%;
+  height: 0;
+  padding: 49% 0 0 0;
+  margin: 0 1% 1% 0;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.12);
+}
+
+#workskin .wa .wa-photo:nth-of-type(2n) { margin-right: 0; }
+
+#workskin .wa .wa-photo:nth-of-type(n+3) { margin-bottom: 0; }
+
+/* the picture. AO3 can't crop pictures automatically, so the skin needs to know which way the picture runs:
+   - normal (taller than wide, or square): it is made as wide as the box, and the top and bottom are cropped evenly
+   - add class="land" to the img if it is wider than tall: it is made as tall as the box, and the sides are cropped evenly
+   The tall boxes (two pictures; the left one of three) always use the second way, as nearly any photo fits them that way.
+   (The huge offsets plus auto margins do the centring, so no transform is needed.) */
+#workskin .wa .wa-photo img {
+  position: absolute;
+  top: -9999px;
+  bottom: -9999px;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: auto;
+  min-width: 0;
+  min-height: 0;
+  max-width: none;
+  max-height: none;
+  margin: auto 0;
+}
+
+#workskin .wa .wa-photo img.land,
+#workskin .wa .wa-photos.two .wa-photo img,
+#workskin .wa .wa-photos.three .wa-photo:first-of-type img {
+  top: 0;
+  bottom: auto;
+  right: -9999px;
+  left: -9999px;
+  width: auto;
+  height: 100%;
+  margin: 0 auto;
+}
+
+/* a description standing in for a picture: <span class="wa-photo"><span class="wa-desc">[...]</span></span> */
+#workskin .wa .wa-photo .wa-desc {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 1em 0.5em;
+  color: #667781;
+  font-size: 0.8em;
+  font-style: italic;
+  text-align: center;
+}
+
+/* two pictures: side by side, each one tall */
+#workskin .wa .wa-photos.two .wa-photo {
+  padding-top: 99%;
+  margin-bottom: 0;
+}
+
+/* three pictures: one tall on the left, two small ones stacked on the right */
+#workskin .wa .wa-photos.three .wa-photo:first-of-type {
+  padding-top: 99%;
+  margin-bottom: 0;
+}
+
+#workskin .wa .wa-photos.three .wa-photo:nth-of-type(2) { margin-bottom: 1%; }
+
+#workskin .wa .wa-photos.three .wa-photo:nth-of-type(3) { margin-right: 0; }
+
+/* one picture on its own: <p class="wa-photos one"><span class="wa-photo"><img ...></span></p>
+   It isn't cropped into a square, so it keeps its own shape. A very tall one is trimmed at the bottom. */
+#workskin .wa .wa-photos.one .wa-photo {
+  float: none;
+  width: 100%;
+  height: auto;
+  max-height: 26em;
+  padding: 0;
+  margin: 0;
+}
+
+#workskin .wa .wa-photos.one .wa-photo img {
+  position: static;
+  width: 100%;
+  height: auto;
+  margin: 0;
+}
+
+#workskin .wa .wa-photos.one .wa-photo .wa-desc {
+  position: static;
+  padding: 4em 1em;
+}
+
+/* text under a picture, a gallery or a link card: <p class="wa-caption">...</p>, after the photos or the card and before the time */
+#workskin .wa .wa-caption {
+  display: block;
+  padding: 0.3em 0.35em 0 0.35em;
+}
+
+/* ---------- WhatsApp: Links ---------- */
+
+#workskin .wa .fake-link, #workskin .wa a:not(.tl) { color: #027eb5; }
+
+/* ---------- WhatsApp: Dark theme (theme-dark) ---------- */
+
+#workskin .wa.theme-dark { background: #0b141a; color: #e9edef; border-color: #222d34; }
+
+#workskin .wa.theme-dark .mob-head,
+#workskin .wa.theme-dark table.wa-bar {
+  background: #202c33;
+}
+
+#workskin .wa.theme-dark .out { background: #005c4b; color: #e9edef; }
+
+#workskin .wa.theme-dark .in { background: #202c33; color: #e9edef; }
+
+#workskin .wa.theme-dark .wa-time { color: #8696a0; }
+
+#workskin .wa.theme-dark .wa-quote { background: rgba(255, 255, 255, 0.06); color: #8696a0; }
+
+#workskin .wa.theme-dark .mob-sys { background: #182229; color: #8696a0; }
+
+#workskin .wa.theme-dark .wa-num { color: #8696a0; }
+
+#workskin .wa.theme-dark .in.tail::before { border-color: transparent #202c33 transparent transparent; }
+
+#workskin .wa.theme-dark .out.tail::before { border-color: transparent transparent transparent #005c4b; }
+
+#workskin .wa.theme-dark .wa-reacts {
+  background: #202c33;
+  color: #e9edef;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+#workskin .wa.theme-dark .wa-reacts .wa-count { color: #8696a0; }
+
+#workskin .wa.theme-dark .wa-field { background: #202c33; color: #8696a0; }
+
+#workskin .wa.theme-dark .wa-link { background: rgba(0, 0, 0, 0.22); }
+
+#workskin .wa.theme-dark .wa-link-img.text { background: rgba(0, 0, 0, 0.2); color: #8696a0; }
+
+#workskin .wa.theme-dark .wa-link-desc,
+#workskin .wa.theme-dark .wa-link-url,
+#workskin .wa.theme-dark .wa-photo .wa-desc { color: #8696a0; }
+
+#workskin .wa.theme-dark .wa-photo { background: rgba(0, 0, 0, 0.3); }
+
+#workskin .wa.theme-dark .wa-ln { color: #53bdeb; }
+
+#workskin .wa.theme-dark .fake-link, #workskin .wa.theme-dark a:not(.tl) { color: #53bdeb; }
+
+/* ---------- WhatsApp: Auto theme (theme-auto): light, switching to dark when the reader's device is in dark mode ---------- */
+
+@media (prefers-color-scheme: dark) {
+  #workskin .wa.theme-auto { background: #0b141a; color: #e9edef; border-color: #222d34; }
+
+  #workskin .wa.theme-auto .mob-head,
+    #workskin .wa.theme-auto table.wa-bar {
+      background: #202c33;
+    }
+
+  #workskin .wa.theme-auto .out { background: #005c4b; color: #e9edef; }
+
+  #workskin .wa.theme-auto .in { background: #202c33; color: #e9edef; }
+
+  #workskin .wa.theme-auto .wa-time { color: #8696a0; }
+
+  #workskin .wa.theme-auto .wa-quote { background: rgba(255, 255, 255, 0.06); color: #8696a0; }
+
+  #workskin .wa.theme-auto .mob-sys { background: #182229; color: #8696a0; }
+
+  #workskin .wa.theme-auto .wa-num { color: #8696a0; }
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  #workskin .wa.theme-auto .in.tail::before { border-color: transparent #202c33 transparent transparent; }
+
+  #workskin .wa.theme-auto .out.tail::before { border-color: transparent transparent transparent #005c4b; }
+
+  #workskin .wa.theme-auto .wa-reacts {
+      background: #202c33;
+      color: #e9edef;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+    }
+
+  #workskin .wa.theme-auto .wa-reacts .wa-count { color: #8696a0; }
+
+  #workskin .wa.theme-auto .wa-field { background: #202c33; color: #8696a0; }
+
+  #workskin .wa.theme-auto .wa-link { background: rgba(0, 0, 0, 0.22); }
+
+  #workskin .wa.theme-auto .wa-link-img.text { background: rgba(0, 0, 0, 0.2); color: #8696a0; }
+
+  #workskin .wa.theme-auto .wa-link-desc,
+    #workskin .wa.theme-auto .wa-link-url,
+    #workskin .wa.theme-auto .wa-photo .wa-desc { color: #8696a0; }
+
+  #workskin .wa.theme-auto .wa-photo { background: rgba(0, 0, 0, 0.3); }
+
+  #workskin .wa.theme-auto .wa-ln { color: #53bdeb; }
+
+  #workskin .wa.theme-auto .fake-link, #workskin .wa.theme-auto a:not(.tl) { color: #53bdeb; }
+}
+
+/* ---------- WhatsApp: Wallpapers ---------- */
+
+/* plain colours */
+#workskin .wa.bg-beige { background: #efeae2; }
+
+#workskin .wa.bg-white { background: #ffffff; }
+
+#workskin .wa.bg-sage { background: #d5e6d0; }
+
+#workskin .wa.bg-sky { background: #d3e7f3; }
+
+#workskin .wa.bg-blush { background: #f3dfe2; }
+
+#workskin .wa.bg-lilac { background: #e4dcf1; }
+
+#workskin .wa.bg-slate { background: #2b3238; }
+
+#workskin .wa.bg-navy { background: #0d1b2a; }
+
+#workskin .wa.bg-forest { background: #10281c; }
+
+#workskin .wa.bg-plum { background: #2a1631; }
+
+#workskin .wa.bg-black { background: #000000; }
+
+/* gradients */
+#workskin .wa.bg-sunset { background-color: #f6a56d; background-image: linear-gradient(#f6d365, #fda085); }
+
+#workskin .wa.bg-ocean { background-color: #4a90c2; background-image: linear-gradient(#a1c4fd, #4a90c2); }
+
+#workskin .wa.bg-night { background-color: #232526; background-image: linear-gradient(#414345, #232526); }
+
+#workskin .wa.bg-dusk { background-color: #4b3a6e; background-image: linear-gradient(#7b5ea7, #2c2145); }
+
+/* YOUR OWN WALLPAPER (a photo or pattern from the web)
+   1. Upload the picture somewhere that gives a direct link (an image host such as Imgur).
+   2. Replace the example link in the rule below with yours (the colour shows if the picture fails).
+   3. Use the class on any chat: <div class="mob wa theme-auto bg-image1">
+   4. For another wallpaper, copy the rule again and rename bg-image1 to bg-image2, etc. */
+#workskin .wa.bg-image1 {
+  background-color: #1c1c1c;
+  background-image: url(https://example.com/my-wallpaper.jpg);
+  background-size: cover;
+  background-position: center;
+}
+
+/* <<<<<<<<<< MODULE: WhatsApp (end) <<<<<<<<<< */
+
+/* >>>>>>>>>> MODULE: Twitter/X (posts, replies, DMs) (start) >>>>>>>>>> */
+
+/* ==========================================================
+   MODULE: TWITTER/X (POSTS, REPLIES, DMS)   (classes: tw, tw-reply, tw-thread, twdm)
+   Twitter/X posts, replies, quotes, polls, picture and video tweets, scrollable threads (tw, tw-reply, tw-thread)
+   and Twitter/X DMs (twdm).
+   Needs the CORE block.
+   ========================================================== */
+
+#workskin .tw-thread.wide {
+  width: auto;
+  max-width: none;
+}
+
+/* AO3 turns line breaks in your code into <br> tags; inside a grid they would push photos down */
+#workskin .tw .tw-media br,
+#workskin .tw-reply .tw-media br {
+  display: none;
+}
+
+#workskin .tw {
+  background: #ffffff;
+  color: #0f1419;
+  border: 1px solid #cfd9de;
+  border-radius: 14px;
+  padding: 0.8em 1em;
+}
+
+#workskin .tw .tw-top { margin-bottom: 0.3em; }
+
+#workskin .tw .tw-name { font-weight: bold; color: #0f1419; }
+
+/* verified tick: add as <span class="tw-tick">✔</span> */
+#workskin .tw .tw-tick { color: #1d9bf0; font-size: 0.85em; }
+
+/* profile picture: the first thing in the tw-top line.
+   Initials: <span class="tw-pfp colour1">JD</span>
+   A picture: <span class="tw-pfp"><span class="pfp"><img src="..." alt="..."></span></span>
+   A profile (set in the core section): <span class="tw-pfp"><span class="pfp pfp-shane"></span></span>
+   The handle moves under the name when there's a picture. colour1-colour10 are the colours. */
+#workskin .tw .tw-top,
+#workskin .tw-reply .tw-top { display: block; overflow: hidden; }
+
+#workskin .tw .tw-pfp,
+#workskin .tw-reply .tw-pfp {
+  display: block;
+  float: left;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  margin: 0 0.65em 0 0;
+  border-radius: 50%;
+  overflow: hidden;
+  text-align: center;
+  background-color: #8b98a5;
+  color: #ffffff;
+  font-size: 0.85em;
+  font-weight: bold;
+}
+
+#workskin .tw .tw-pfp ~ .tw-handle,
+#workskin .tw-reply .tw-pfp ~ .tw-handle { display: block; }
+
+#workskin .tw .tw-handle {
+  color: #536471;
+  font-weight: normal;
+}
+
+#workskin .tw .tw-text { display: block; font-size: 1.02em; margin: 0.2em 0 0.4em 0; }
+
+/* #hashtags, @mentions, links */
+#workskin .tw .tw-link { color: #1d9bf0; }
+
+#workskin .tw .tw-stats {
+  display: block;
+  color: #536471;
+  font-size: 0.82em;
+  padding-top: 0.45em;
+  border-top: 1px solid #eff3f4;
+  margin-top: 0.4em;
+}
+
+#workskin .tw .tw-stats b { color: #0f1419; }
+
+/* "Replying to @someone" */
+#workskin .tw .tw-replying {
+  display: block;
+  color: #536471;
+  font-size: 0.85em;
+  margin-bottom: 0.2em;
+}
+
+/* quote-tweet box */
+#workskin .tw .tw-quote {
+  display: block;
+  border: 1px solid #cfd9de;
+  border-radius: 12px;
+  padding: 0.5em 0.8em;
+  margin: 0.4em 0;
+  font-size: 0.92em;
+}
+
+/* replies / comments stacked under a tweet: use .tw-reply as its own block */
+#workskin .tw-reply {
+  background: #ffffff;
+  color: #0f1419;
+  border: 1px solid #cfd9de;
+  border-top: none;
+  padding: 0.7em 1em;
+}
+
+#workskin .tw-reply .tw-name { font-weight: bold; }
+
+#workskin .tw-reply .tw-handle { color: #536471; font-weight: normal; }
+
+#workskin .tw-reply .tw-link { color: #1d9bf0; }
+
+/* Community Note / "Readers added context" */
+#workskin .tw .tw-note {
+  display: block;
+  border: 1px solid #cfd9de;
+  border-radius: 10px;
+  padding: 0.5em 0.8em;
+  margin-top: 0.5em;
+  font-size: 0.85em;
+  background: #f7f9f9;
+}
+
+/* full timestamp line above the counts: <p class="tw-date">8:23 AM · 11 May 23</p> */
+#workskin .tw .tw-date,
+#workskin .tw-reply .tw-date {
+  display: block;
+  color: #536471;
+  font-size: 0.82em;
+  margin: 0.3em 0;
+}
+
+/* small grey line, e.g. "Promoted" or "Only people in the Circle can see this Tweet." */
+#workskin .tw .tw-label,
+#workskin .tw-reply .tw-label {
+  display: block;
+  color: #536471;
+  font-size: 0.8em;
+  margin: 0.3em 0;
+}
+
+/* sensitive-content cover: <p class="tw-warn"><b>Content warning: Sensitive content</b><br>...</p> */
+#workskin .tw .tw-warn,
+#workskin .tw-reply .tw-warn {
+  display: block;
+  text-align: center;
+  background: #f7f9f9;
+  border: 1px solid #cfd9de;
+  border-radius: 12px;
+  padding: 1.2em 1em;
+  margin: 0.4em 0;
+  font-size: 0.85em;
+}
+
+/* counts that the account has used: <span class="tw-liked"> for a like, <span class="tw-rt"> for a repost */
+#workskin .tw .tw-stats .tw-liked,
+#workskin .tw-reply .tw-stats .tw-liked {
+  color: #f91880;
+}
+
+#workskin .tw .tw-stats .tw-rt,
+#workskin .tw-reply .tw-stats .tw-rt {
+  color: #00ba7c;
+}
+
+/* polls: each option is <p class="tw-opt">Option<span class="tw-pct">50%</span></p>
+   an OPEN poll: just tw-opt (a blue outline).
+   FINISHED poll: add "res" and a bar size p0 to p100 (p25 p75 p33 p67 also exist); add "win" for the winner */
+#workskin .tw .tw-opt,
+#workskin .tw-reply .tw-opt {
+  display: block;
+  border: 1px solid #1d9bf0;
+  border-radius: 6px;
+  padding: 0.4em 0.7em;
+  margin: 0.35em 0;
+  color: #0f1419;
+}
+
+#workskin .tw .tw-opt.res,
+#workskin .tw-reply .tw-opt.res {
+  border-color: transparent;
+  background-color: #eff3f4;
+  background-image: linear-gradient(#cfd9de, #cfd9de);
+  background-repeat: no-repeat;
+  background-size: 0% 100%;
+}
+
+#workskin .tw .tw-opt.res.win,
+#workskin .tw-reply .tw-opt.res.win {
+  background-image: linear-gradient(#8ecdf7, #8ecdf7);
+  font-weight: bold;
+}
+
+#workskin .tw .tw-opt .tw-pct,
+#workskin .tw-reply .tw-opt .tw-pct {
+  float: right;
+}
+
+#workskin .tw .tw-opt.p0,
+#workskin .tw-reply .tw-opt.p0 {
+  background-size: 0% 100%;
+}
+
+#workskin .tw .tw-opt.p10,
+#workskin .tw-reply .tw-opt.p10 {
+  background-size: 10% 100%;
+}
+
+#workskin .tw .tw-opt.p20,
+#workskin .tw-reply .tw-opt.p20 {
+  background-size: 20% 100%;
+}
+
+#workskin .tw .tw-opt.p25,
+#workskin .tw-reply .tw-opt.p25 {
+  background-size: 25% 100%;
+}
+
+#workskin .tw .tw-opt.p30,
+#workskin .tw-reply .tw-opt.p30 {
+  background-size: 30% 100%;
+}
+
+#workskin .tw .tw-opt.p33,
+#workskin .tw-reply .tw-opt.p33 {
+  background-size: 33% 100%;
+}
+
+#workskin .tw .tw-opt.p40,
+#workskin .tw-reply .tw-opt.p40 {
+  background-size: 40% 100%;
+}
+
+#workskin .tw .tw-opt.p50,
+#workskin .tw-reply .tw-opt.p50 {
+  background-size: 50% 100%;
+}
+
+#workskin .tw .tw-opt.p60,
+#workskin .tw-reply .tw-opt.p60 {
+  background-size: 60% 100%;
+}
+
+#workskin .tw .tw-opt.p67,
+#workskin .tw-reply .tw-opt.p67 {
+  background-size: 67% 100%;
+}
+
+#workskin .tw .tw-opt.p70,
+#workskin .tw-reply .tw-opt.p70 {
+  background-size: 70% 100%;
+}
+
+#workskin .tw .tw-opt.p75,
+#workskin .tw-reply .tw-opt.p75 {
+  background-size: 75% 100%;
+}
+
+#workskin .tw .tw-opt.p80,
+#workskin .tw-reply .tw-opt.p80 {
+  background-size: 80% 100%;
+}
+
+#workskin .tw .tw-opt.p90,
+#workskin .tw-reply .tw-opt.p90 {
+  background-size: 90% 100%;
+}
+
+#workskin .tw .tw-opt.p100,
+#workskin .tw-reply .tw-opt.p100 {
+  background-size: 100% 100%;
+}
+
+#workskin .tw .tw-pollinfo,
+#workskin .tw-reply .tw-pollinfo {
+  display: block;
+  color: #536471;
+  font-size: 0.8em;
+  margin: 0.3em 0;
+}
+
+/* pictures and videos in a tweet: <div class="tw-media"> with one <img>, an embedded video, or a [description].
+   For several pictures see the "tw-photo" rules further down. */
+#workskin .tw .tw-media,
+#workskin .tw-reply .tw-media {
+  display: block;
+  overflow: hidden;
+  border: 1px solid #cfd9de;
+  border-radius: 14px;
+  margin: 0.5em 0;
+  background: #eff3f4;
+  color: #536471;
+  font-style: italic;
+  text-align: center;
+  line-height: 1.3;
+}
+
+#workskin .tw .tw-media img,
+#workskin .tw .tw-media video,
+#workskin .tw-reply .tw-media img,
+#workskin .tw-reply .tw-media video {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0;
+  border-radius: 0;
+}
+
+/* an embedded video player (such as Vimeo or YouTube): add "video" to the box,
+   <div class="tw-media video"><iframe src="..."></iframe></div> */
+#workskin .tw .tw-media.video iframe,
+#workskin .tw-reply .tw-media.video iframe {
+  display: block;
+  width: 100%;
+  height: 200px;
+  margin: 0;
+  border: 0;
+}
+
+/* a description standing in for a picture */
+#workskin .tw .tw-media span,
+#workskin .tw-reply .tw-media span {
+  display: block;
+  padding: 3em 1.2em;
+}
+
+/* several pictures: <div class="tw-media two|three|four"> with one <span class="tw-photo"> for each.
+   Each photo is a square (or two squares high, for the tall ones) and the picture fills it, cropped
+   to fit, never stretched. The widths add up to 99.6%, not 100%, so rounding can't push a photo down. */
+#workskin .tw .tw-media .tw-photo,
+#workskin .tw-reply .tw-media .tw-photo {
+  display: block;
+  position: relative;
+  float: left;
+  width: 49.2%;
+  height: 0;
+  padding: 49.2% 0 0 0;
+  margin: 0 1.2% 1.2% 0;
+  overflow: hidden;
+  background: #e1e8ec;
+}
+
+#workskin .tw .tw-media .tw-photo:nth-of-type(2n),
+#workskin .tw-reply .tw-media .tw-photo:nth-of-type(2n) {
+  margin-right: 0;
+}
+
+#workskin .tw .tw-media .tw-photo:nth-of-type(n+3),
+#workskin .tw-reply .tw-media .tw-photo:nth-of-type(n+3) {
+  margin-bottom: 0;
+}
+
+/* the picture: normal pictures are made as wide as the box and cropped top and bottom; add class="land"
+   to a picture that is wider than tall to make it as tall as the box and crop the sides instead.
+   The tall boxes (two pictures; the left one of three) always use the second way. */
+#workskin .tw .tw-media .tw-photo img,
+#workskin .tw-reply .tw-media .tw-photo img {
+  position: absolute;
+  top: -9999px;
+  bottom: -9999px;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: auto;
+  min-width: 0;
+  min-height: 0;
+  max-width: none;
+  max-height: none;
+  margin: auto 0;
+}
+
+#workskin .tw .tw-media .tw-photo img.land,
+#workskin .tw-reply .tw-media .tw-photo img.land,
+#workskin .tw .tw-media.two .tw-photo img,
+#workskin .tw-reply .tw-media.two .tw-photo img,
+#workskin .tw .tw-media.three .tw-photo:first-of-type img,
+#workskin .tw-reply .tw-media.three .tw-photo:first-of-type img {
+  top: 0;
+  bottom: auto;
+  right: -9999px;
+  left: -9999px;
+  width: auto;
+  height: 100%;
+  margin: 0 auto;
+}
+
+/* a description standing in for a picture: <span class="tw-photo"><span class="tw-desc">[...]</span></span> */
+#workskin .tw .tw-media .tw-photo .tw-desc,
+#workskin .tw-reply .tw-media .tw-photo .tw-desc {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 1em 0.5em;
+  font-size: 0.85em;
+}
+
+/* two pictures: side by side, each one tall */
+#workskin .tw .tw-media.two .tw-photo,
+#workskin .tw-reply .tw-media.two .tw-photo {
+  padding-top: 99.6%;
+  margin-bottom: 0;
+}
+
+/* three pictures: one tall on the left, two stacked on the right */
+#workskin .tw .tw-media.three .tw-photo:first-of-type,
+#workskin .tw-reply .tw-media.three .tw-photo:first-of-type {
+  padding-top: 99.6%;
+  margin-bottom: 0;
+}
+
+#workskin .tw .tw-media.three .tw-photo:nth-of-type(2),
+#workskin .tw-reply .tw-media.three .tw-photo:nth-of-type(2) {
+  margin-bottom: 1.2%;
+}
+
+#workskin .tw .tw-media.three .tw-photo:nth-of-type(3),
+#workskin .tw-reply .tw-media.three .tw-photo:nth-of-type(3) {
+  margin-right: 0;
+}
+
+/* clear the floats after a group of pictures */
+#workskin .tw .tw-media.two::after,
+#workskin .tw .tw-media.three::after,
+#workskin .tw .tw-media.four::after,
+#workskin .tw-reply .tw-media.two::after,
+#workskin .tw-reply .tw-media.three::after,
+#workskin .tw-reply .tw-media.four::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+/* a thread that scrolls, with a "Tweet your reply" bar that stays at the bottom:
+   <div class="tw-thread theme-auto">
+     <div class="tw-scroll"> tweet + replies </div>
+     <div class="tw-foot">...</div>
+   </div> */
+#workskin .tw-thread {
+  width: 380px;
+  max-width: 100%;
+  margin: 1.2em auto;
+  box-sizing: border-box;
+  border: 1px solid #cfd9de;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #ffffff;
+  color: #0f1419;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 0.92em;
+  line-height: 1.35;
+}
+
+#workskin .tw-thread .mob {
+  width: auto;
+  max-width: none;
+  margin: 0;
+  border-width: 0 0 1px 0;
+  border-radius: 0;
+  max-height: none;
+  overflow: visible;
+  background: transparent;
+  color: inherit;
+}
+
+#workskin .tw-thread .tw-foot {
+  display: block;
+  padding: 0.7em 1em;
+  border-top: 1px solid #eff3f4;
+  color: #536471;
+}
+
+/* the paragraph AO3 wraps around the bar's text */
+#workskin .tw-thread .tw-foot > p { margin: 0; padding: 0; }
+
+#workskin .tw-thread .tw-foot span {
+  float: right;
+  padding: 0.25em 0.9em;
+  border-radius: 1em;
+  background: #1d9bf0;
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 0.9em;
+}
+
+#workskin .twdm {
+  background: #ffffff;
+  color: #0f1419;
+  border: 1px solid #cfd9de;
+  border-radius: 14px;
+}
+
+#workskin .twdm .mob-head {
+  background: #ffffff;
+  color: #0f1419;
+  border-bottom: 1px solid #eff3f4;
+  font-size: 0.9em;
+}
+
+#workskin .twdm .mob-head span {
+  display: block;
+  font-weight: normal;
+  color: #536471;
+  font-size: 0.85em;
+}
+
+#workskin .twdm .msg {
+  display: table;
+  max-width: 72%;
+  margin: 0.2em 0;
+  padding: 0.55em 0.9em;
+  border-radius: 20px;
+}
+
+#workskin .twdm .out {
+  margin-left: auto;
+  background: #1d9bf0;
+  color: #ffffff;
+  border-bottom-right-radius: 4px;
+}
+
+#workskin .twdm .in {
+  margin-right: auto;
+  background: #eff3f4;
+  color: #0f1419;
+  border-bottom-left-radius: 4px;
+}
+
+#workskin .twdm .twdm-time {
+  display: block;
+  font-size: 0.7em;
+  color: #536471;
+  margin: 0.1em 0.5em 0.5em 0.5em;
+}
+
+#workskin .twdm .time-out { text-align: right; }
+
+/* reaction pill under a DM: <p class="twdm-reacts">&#128562; 1</p>  (add "out" under one of your own) */
+#workskin .twdm .twdm-reacts {
+  display: table;
+  margin: -0.45em 0.6em 0.4em 0.6em;
+  padding: 0.05em 0.55em;
+  border: 1px solid #cfd9de;
+  border-radius: 1em;
+  background: #ffffff;
+  font-size: 0.8em;
+}
+
+#workskin .twdm .twdm-reacts.out { margin-left: auto; border-radius: 1em; color: #0f1419; }
+
+/* group DMs: the sender's name above their messages: <p class="who">Name</p> */
+#workskin .twdm .who {
+  display: block;
+  margin: 0.5em 0.5em 0.1em 0.5em;
+  color: #536471;
+  font-size: 0.72em;
+}
+
+/* a picture in a DM: <p class="msg in pic"><img src="..."></p> or a [description] */
+#workskin .twdm .msg.pic {
+  padding: 0.25em;
+  min-width: 55%;
+  font-style: italic;
+  text-align: center;
+}
+
+#workskin .twdm .msg.pic img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border-radius: 16px;
+}
+
+#workskin .twdm .msg.pic.text { padding: 2.5em 1.5em; }
+
+/* a voice message:
+   <p class="msg out voice"><span class="twdm-play">&#9654;</span><span class="twdm-wave"></span><span class="twdm-dur">0:02</span></p> */
+#workskin .twdm .msg.voice { min-width: 55%; }
+
+#workskin .twdm .voice .twdm-play,
+#workskin .twdm .voice .twdm-wave,
+#workskin .twdm .voice .twdm-dur {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+#workskin .twdm .voice .twdm-play { margin-right: 0.5em; }
+
+#workskin .twdm .voice .twdm-wave {
+  width: 90px;
+  overflow: hidden;
+  white-space: nowrap;
+  opacity: 0.7;
+}
+
+/* the sound bars are drawn with text characters (AO3 won't accept a repeating gradient) */
+#workskin .twdm .voice .twdm-wave::before {
+  content: "\2583\2585\2587\2586\2584\2582\2583\2586\2587\2585\2583\2582\2584\2586\2585\2583\2582\2584\2583\2582";
+  font-size: 0.8em;
+  letter-spacing: 1px;
+}
+
+#workskin .twdm .voice .twdm-dur { margin-left: 0.5em; font-size: 0.85em; }
+
+/* the "Start a message" bar at the bottom: <div class="twdm-foot"><span>Start a message</span></div> */
+#workskin .twdm .twdm-foot { display: block; padding: 0.6em 0.7em; border-top: 1px solid #eff3f4; }
+
+#workskin .twdm .twdm-foot span {
+  display: block;
+  padding: 0.5em 0.9em;
+  border-radius: 2em;
+  background: #eff3f4;
+  color: #536471;
+}
+
+/* ---------- Twitter/X: Links ---------- */
+
+#workskin .tw .fake-link, #workskin .tw a:not(.tl),
+#workskin .tw-reply .fake-link, #workskin .tw-reply a:not(.tl) { color: #1d9bf0; }
+
+#workskin .twdm .in .fake-link, #workskin .twdm .in a:not(.tl) { color: #1d9bf0; }
+
+#workskin .twdm .out .fake-link, #workskin .twdm .out a:not(.tl) { color: #ffffff; }
+
+/* ---------- Twitter/X: Scrolling ---------- */
+
+#workskin .tw-thread .tw-scroll {
+  display: block;
+  max-height: 580px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+#workskin .tw {
+  max-height: 700px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+#workskin .tw::-webkit-scrollbar,
+#workskin .tw-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+
+#workskin .tw::-webkit-scrollbar-thumb,
+#workskin .tw-scroll::-webkit-scrollbar-thumb {
+  background: rgba(128, 128, 128, 0.5);
+  border-radius: 6px;
+}
+
+/* ---------- Twitter/X: Dark theme (theme-dark) ---------- */
+
+#workskin .tw-thread.theme-dark .mob { border-color: #2f3336; }
+
+#workskin .tw-thread.theme-dark .tw-name,
+#workskin .tw-thread.theme-dark .tw-stats b,
+#workskin .tw-thread.theme-dark b {
+  color: #e7e9ea;
+}
+
+#workskin .tw-thread.theme-dark .tw-media { background: #16181c; border-color: #2f3336; color: #71767b; }
+
+#workskin .tw-thread.theme-dark .tw-media span { background: #202327; }
+
+#workskin .tw-thread.theme-dark .tw-handle,
+#workskin .tw-thread.theme-dark .tw-stats {
+  color: #71767b;
+}
+
+#workskin .tw.theme-dark { background: #000000; color: #e7e9ea; border-color: #2f3336; }
+
+#workskin .tw.theme-dark .tw-name { color: #e7e9ea; }
+
+#workskin .tw.theme-dark .tw-handle,
+#workskin .tw.theme-dark .tw-replying {
+  color: #71767b;
+}
+
+#workskin .tw.theme-dark .tw-stats { color: #71767b; border-top-color: #2f3336; }
+
+#workskin .tw.theme-dark .tw-stats b { color: #e7e9ea; }
+
+#workskin .tw.theme-dark .tw-quote { border-color: #2f3336; }
+
+#workskin .tw.theme-dark .tw-note { background: #16181c; border-color: #2f3336; }
+
+#workskin .tw.theme-dark .tw-date,
+#workskin .tw.theme-dark .tw-label,
+#workskin .tw.theme-dark .tw-pollinfo {
+  color: #71767b;
+}
+
+#workskin .tw.theme-dark .tw-warn { background: #16181c; border-color: #2f3336; }
+
+#workskin .tw.theme-dark .tw-opt { color: #e7e9ea; }
+
+#workskin .tw.theme-dark .tw-opt.res {
+  background-color: #16181c;
+  background-image: linear-gradient(#2f3336, #2f3336);
+}
+
+#workskin .tw.theme-dark .tw-opt.res.win { background-image: linear-gradient(#1a5a8a, #1a5a8a); }
+
+#workskin .tw-reply.theme-dark .tw-date,
+#workskin .tw-reply.theme-dark .tw-label,
+#workskin .tw-reply.theme-dark .tw-pollinfo {
+  color: #71767b;
+}
+
+#workskin .tw-reply.theme-dark .tw-warn { background: #16181c; border-color: #2f3336; }
+
+#workskin .tw-reply.theme-dark .tw-opt { color: #e7e9ea; }
+
+#workskin .tw-reply.theme-dark .tw-opt.res {
+  background-color: #16181c;
+  background-image: linear-gradient(#2f3336, #2f3336);
+}
+
+#workskin .tw-reply.theme-dark .tw-opt.res.win { background-image: linear-gradient(#1a5a8a, #1a5a8a); }
+
+#workskin .twdm.theme-dark .twdm-reacts { background: #16181c; border-color: #2f3336; color: #e7e9ea; }
+
+#workskin .tw.theme-dark .tw-media,
+#workskin .tw-reply.theme-dark .tw-media {
+  background: #16181c;
+  border-color: #2f3336;
+  color: #71767b;
+}
+
+#workskin .tw.theme-dark .tw-media span,
+#workskin .tw-reply.theme-dark .tw-media span {
+  background: #202327;
+}
+
+#workskin .tw-thread.theme-dark { background: #000000; color: #e7e9ea; border-color: #2f3336; }
+
+#workskin .tw-thread.theme-dark .tw-foot { border-top-color: #2f3336; color: #71767b; }
+
+/* the tweets inside a thread take the thread's theme */
+#workskin .tw-thread.theme-dark .tw-replying,
+#workskin .tw-thread.theme-dark .tw-date,
+#workskin .tw-thread.theme-dark .tw-label,
+#workskin .tw-thread.theme-dark .tw-pollinfo {
+  color: #71767b;
+}
+
+#workskin .tw-thread.theme-dark .tw-quote { border-color: #2f3336; }
+
+#workskin .tw-thread.theme-dark .tw-note,
+#workskin .tw-thread.theme-dark .tw-warn { background: #16181c; border-color: #2f3336; }
+
+#workskin .tw-thread.theme-dark .tw-opt { color: #e7e9ea; }
+
+#workskin .tw-thread.theme-dark .tw-opt.res {
+  background-color: #16181c;
+  background-image: linear-gradient(#2f3336, #2f3336);
+}
+
+#workskin .tw-thread.theme-dark .tw-opt.res.win { background-image: linear-gradient(#1a5a8a, #1a5a8a); }
+
+#workskin .twdm.theme-dark .who { color: #71767b; }
+
+#workskin .twdm.theme-dark .twdm-foot { border-top-color: #2f3336; }
+
+#workskin .twdm.theme-dark .twdm-foot span { background: #202327; color: #71767b; }
+
+#workskin .tw-reply.theme-dark { background: #000000; color: #e7e9ea; border-color: #2f3336; }
+
+#workskin .tw-reply.theme-dark .tw-name { color: #e7e9ea; }
+
+#workskin .tw-reply.theme-dark .tw-handle,
+#workskin .tw-reply.theme-dark .tw-replying {
+  color: #71767b;
+}
+
+#workskin .twdm.theme-dark { background: #000000; color: #e7e9ea; border-color: #2f3336; }
+
+#workskin .twdm.theme-dark .mob-head { background: #000000; color: #e7e9ea; border-bottom-color: #2f3336; }
+
+#workskin .twdm.theme-dark .mob-head span,
+#workskin .twdm.theme-dark .twdm-time {
+  color: #71767b;
+}
+
+#workskin .twdm.theme-dark .in { background: #2f3336; color: #e7e9ea; }
+
+/* ---------- Twitter/X: Auto theme (theme-auto): light, switching to dark when the reader's device is in dark mode ---------- */
+
+@media (prefers-color-scheme: dark) {
+  #workskin .tw.theme-auto { background: #000000; color: #e7e9ea; border-color: #2f3336; }
+
+  #workskin .tw.theme-auto .tw-name { color: #e7e9ea; }
+
+  #workskin .tw.theme-auto .tw-handle,
+    #workskin .tw.theme-auto .tw-replying {
+      color: #71767b;
+    }
+
+  #workskin .tw.theme-auto .tw-stats { color: #71767b; border-top-color: #2f3336; }
+
+  #workskin .tw.theme-auto .tw-stats b { color: #e7e9ea; }
+
+  #workskin .tw.theme-auto .tw-quote { border-color: #2f3336; }
+
+  #workskin .tw.theme-auto .tw-note { background: #16181c; border-color: #2f3336; }
+
+  #workskin .tw.theme-auto .tw-date,
+    #workskin .tw.theme-auto .tw-label,
+    #workskin .tw.theme-auto .tw-pollinfo {
+      color: #71767b;
+    }
+
+  #workskin .tw.theme-auto .tw-warn { background: #16181c; border-color: #2f3336; }
+
+  #workskin .tw.theme-auto .tw-opt { color: #e7e9ea; }
+
+  #workskin .tw.theme-auto .tw-opt.res {
+      background-color: #16181c;
+      background-image: linear-gradient(#2f3336, #2f3336);
+    }
+
+  #workskin .tw.theme-auto .tw-opt.res.win { background-image: linear-gradient(#1a5a8a, #1a5a8a); }
+
+  #workskin .tw-reply.theme-auto .tw-date,
+    #workskin .tw-reply.theme-auto .tw-label,
+    #workskin .tw-reply.theme-auto .tw-pollinfo {
+      color: #71767b;
+    }
+
+  #workskin .tw-reply.theme-auto .tw-warn { background: #16181c; border-color: #2f3336; }
+
+  #workskin .tw-reply.theme-auto .tw-opt { color: #e7e9ea; }
+
+  #workskin .tw-reply.theme-auto .tw-opt.res {
+      background-color: #16181c;
+      background-image: linear-gradient(#2f3336, #2f3336);
+    }
+
+  #workskin .tw-reply.theme-auto .tw-opt.res.win { background-image: linear-gradient(#1a5a8a, #1a5a8a); }
+
+  #workskin .twdm.theme-auto .twdm-reacts { background: #16181c; border-color: #2f3336; color: #e7e9ea; }
+
+  #workskin .tw.theme-auto .tw-media,
+    #workskin .tw-reply.theme-auto .tw-media {
+      background: #16181c;
+      border-color: #2f3336;
+      color: #71767b;
+    }
+
+  #workskin .tw.theme-auto .tw-media span,
+    #workskin .tw-reply.theme-auto .tw-media span {
+      background: #202327;
+    }
+
+  #workskin .tw-thread.theme-auto { background: #000000; color: #e7e9ea; border-color: #2f3336; }
+
+  #workskin .tw-thread.theme-auto .tw-foot { border-top-color: #2f3336; color: #71767b; }
+
+  /* the tweets inside a thread take the thread's theme */
+  #workskin .tw-thread.theme-auto .tw-replying,
+    #workskin .tw-thread.theme-auto .tw-date,
+    #workskin .tw-thread.theme-auto .tw-label,
+    #workskin .tw-thread.theme-auto .tw-pollinfo {
+      color: #71767b;
+    }
+
+  #workskin .tw-thread.theme-auto .tw-quote { border-color: #2f3336; }
+
+  #workskin .tw-thread.theme-auto .tw-note,
+    #workskin .tw-thread.theme-auto .tw-warn { background: #16181c; border-color: #2f3336; }
+
+  #workskin .tw-thread.theme-auto .tw-opt { color: #e7e9ea; }
+
+  #workskin .tw-thread.theme-auto .tw-opt.res {
+      background-color: #16181c;
+      background-image: linear-gradient(#2f3336, #2f3336);
+    }
+
+  #workskin .tw-thread.theme-auto .tw-opt.res.win { background-image: linear-gradient(#1a5a8a, #1a5a8a); }
+
+  #workskin .tw-thread.theme-auto .mob { border-color: #2f3336; }
+
+  #workskin .tw-thread.theme-auto .tw-name,
+    #workskin .tw-thread.theme-auto .tw-stats b,
+    #workskin .tw-thread.theme-auto b {
+      color: #e7e9ea;
+    }
+
+  #workskin .tw-thread.theme-auto .tw-media { background: #16181c; border-color: #2f3336; color: #71767b; }
+
+  #workskin .tw-thread.theme-auto .tw-media span { background: #202327; }
+
+  #workskin .tw-thread.theme-auto .tw-handle,
+    #workskin .tw-thread.theme-auto .tw-stats {
+      color: #71767b;
+    }
+
+  #workskin .twdm.theme-auto .who { color: #71767b; }
+
+  #workskin .twdm.theme-auto .twdm-foot { border-top-color: #2f3336; }
+
+  #workskin .twdm.theme-auto .twdm-foot span { background: #202327; color: #71767b; }
+
+  #workskin .tw-reply.theme-auto { background: #000000; color: #e7e9ea; border-color: #2f3336; }
+
+  #workskin .tw-reply.theme-auto .tw-name { color: #e7e9ea; }
+
+  #workskin .tw-reply.theme-auto .tw-handle,
+    #workskin .tw-reply.theme-auto .tw-replying {
+      color: #71767b;
+    }
+
+  #workskin .twdm.theme-auto { background: #000000; color: #e7e9ea; border-color: #2f3336; }
+
+  #workskin .twdm.theme-auto .mob-head { background: #000000; color: #e7e9ea; border-bottom-color: #2f3336; }
+
+  #workskin .twdm.theme-auto .mob-head span,
+    #workskin .twdm.theme-auto .twdm-time {
+      color: #71767b;
+    }
+
+  #workskin .twdm.theme-auto .in { background: #2f3336; color: #e7e9ea; }
+}
+
+/* <<<<<<<<<< MODULE: Twitter/X (posts, replies, DMs) (end) <<<<<<<<<< */
+
+/* >>>>>>>>>> MODULE: Instagram (posts, comments, DMs) (start) >>>>>>>>>> */
+
+/* ==========================================================
+   MODULE: INSTAGRAM (POSTS, COMMENTS, DMS)   (classes: ig, igdm)
+   Instagram posts and comments (ig), including the clickable like and save buttons,
+   and Instagram DMs (igdm).
+   Needs the CORE block.
+   ========================================================== */
+
+#workskin .ig {
+  background: #ffffff;
+  color: #262626;
+  border: 1px solid #dbdbdb;
+  border-radius: 4px;
+}
+
+#workskin .ig .ig-top {
+  display: block;
+  overflow: hidden;
+  padding: 0.7em 0.9em;
+  font-weight: bold;
+  border-bottom: 1px solid #efefef;
+}
+
+#workskin .ig .ig-top span {
+  display: block;
+  font-weight: normal;
+  font-size: 0.8em;
+  color: #737373;
+}
+
+/* stands in for the photo: describe the image in here */
+#workskin .ig .ig-photo {
+  display: block;
+  background: #efefef;
+  color: #737373;
+  font-style: italic;
+  text-align: center;
+  padding: 3em 1.5em;
+  border-bottom: 1px solid #efefef;
+}
+
+/* a real photo instead: <div class="ig-photo real"><img src="..."></div> */
+#workskin .ig .ig-photo.real { padding: 0; }
+
+#workskin .ig .ig-photo img { display: block; width: 100%; height: auto; }
+
+/* a profile picture beside the account name:
+   <span class="ig-pfp"><span class="pfp"><img src="..." alt="..."></span></span>
+   as the first thing in ig-top (pfp is explained in the CORE) */
+#workskin .ig .ig-top .ig-pfp {
+  float: left;
+  width: 32px;
+  height: 32px;
+  margin: 0 0.6em 0 0;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+#workskin .ig .ig-actions {
+  display: block;
+  overflow: hidden;
+  padding: 0.6em 0.9em 0.1em 0.9em;
+  font-size: 1.1em;
+  letter-spacing: 0.4em;
+}
+
+#workskin .ig .ig-likes { display: block; padding: 0.1em 0.9em; font-weight: bold; }
+
+#workskin .ig .ig-caption { display: block; padding: 0.15em 0.9em; }
+
+#workskin .ig .ig-caption b,
+#workskin .ig .ig-comment b {
+  font-weight: bold;
+}
+
+#workskin .ig .ig-comment { display: block; padding: 0.1em 0.9em; }
+
+#workskin .ig .ig-tag { color: #00376b; }
+
+#workskin .ig .ig-viewall {
+  display: block;
+  padding: 0.15em 0.9em;
+  color: #737373;
+  font-size: 0.9em;
+}
+
+#workskin .ig .ig-time {
+  display: block;
+  padding: 0.3em 0.9em 0.8em 0.9em;
+  color: #737373;
+  font-size: 0.7em;
+  text-transform: uppercase;
+}
+
+/* ---- more for the top line (put these inside ig-top) ----
+   ig-menu is the three dots at the far right, so it goes FIRST in the line.
+   ig-tick is the blue verified tick, ig-follow is the "• Follow" link, both go straight after the name.
+   Put a song (♫ Artist - Song) or a place in the usual location span underneath. */
+#workskin .ig .ig-top .ig-menu {
+  display: block;
+  float: right;
+  margin: 0 0 0 0.6em;
+  color: inherit;
+  font-size: 1.3em;
+  font-weight: bold;
+  line-height: 1;
+}
+
+#workskin .ig .ig-top .ig-tick {
+  display: inline-block;
+  width: 1.25em;
+  height: 1.25em;
+  margin-left: 0.3em;
+  border-radius: 50%;
+  background: #0095f6;
+  color: #ffffff;
+  font-size: 0.7em;
+  font-weight: bold;
+  line-height: 1.25em;
+  text-align: center;
+  vertical-align: middle;
+}
+
+#workskin .ig .ig-top .ig-follow {
+  display: inline;
+  color: #0095f6;
+  font-size: 1em;
+  font-weight: bold;
+}
+
+#workskin .ig .ig-top .ig-follow::before {
+  content: "\2022\00a0";
+  color: #8e8e8e;
+  font-weight: normal;
+}
+
+/* the colourful stories ring: add "story" to the ig-pfp span: <span class="ig-pfp story"> */
+#workskin .ig .ig-top .ig-pfp.story {
+  box-sizing: content-box;
+  padding: 2px;
+  background-color: #d62976;
+  background-image: linear-gradient(45deg, #fcaf45 0%, #fd1d1d 45%, #c13584 70%, #833ab4 100%);
+}
+
+#workskin .ig .ig-top .ig-pfp.story .pfp {
+  box-sizing: border-box;
+  border: 2px solid #ffffff;
+}
+
+/* ---- the row of buttons with counts: <div class="ig-actions"> holding any of these ----
+   ig-btn   a button that just sits there: <div class="ig-btn"><span class="ig-icon cm"></span><span class="ig-count">93</span></div>
+   ig-tog  a button you can click (see below) */
+#workskin .ig .ig-actions br { display: none; }
+
+/* AO3 sometimes wraps loose bits in a <p>; keep those from breaking the row */
+#workskin .ig .ig-actions p:not(.ig-btn) {
+  display: inline;
+  margin: 0;
+  padding: 0;
+}
+
+#workskin .ig .ig-btn,
+#workskin .ig .ig-tog {
+  display: inline-block;
+  margin: 0 0.9em 0 0;
+  letter-spacing: 0;
+  vertical-align: middle;
+}
+
+#workskin .ig .ig-actions .ig-icon {
+  font-size: 1.25em;
+  vertical-align: middle;
+}
+
+#workskin .ig .ig-actions .ig-count {
+  margin-left: 0.35em;
+  font-size: 0.8em;
+  font-weight: bold;
+  vertical-align: middle;
+}
+
+/* ---- clickable buttons: <details class="ig-tog like"> or "ig-tog save" ----
+   Inside is a <summary> holding two versions of the same thing: "off" parts (shown at first)
+   and "on" parts (shown once clicked). Click again and it goes back. */
+#workskin .ig .ig-tog summary {
+  display: inline-block;
+  list-style: none;
+}
+
+#workskin .ig .ig-tog summary { cursor: pointer; }
+
+#workskin .ig .ig-tog summary::-webkit-details-marker { display: none; }
+
+#workskin .ig .ig-tog summary::marker { content: ""; }
+
+#workskin .ig .ig-tog .on { display: none; }
+
+#workskin .ig .ig-tog[open] .on { display: inline; }
+
+#workskin .ig .ig-tog[open] .bm.on { display: inline-block; }
+
+#workskin .ig .ig-tog[open] .off { display: none; }
+
+/* the save button sits at the far right */
+#workskin .ig .ig-tog.save {
+  float: right;
+  margin-right: 0;
+}
+
+/* a liked heart is red */
+#workskin .ig .ig-tog.like .on.ig-icon { color: #ed4956; }
+
+/* a bookmark drawn with CSS: <span class="ig-icon bm off"></span> (outline) and <span class="ig-icon bm on"></span> (filled) */
+#workskin .ig .bm {
+  display: inline-block;
+  position: relative;
+  box-sizing: border-box;
+  width: 14px;
+  height: 18px;
+  border: 2px solid currentColor;
+  border-bottom: 0;
+  vertical-align: middle;
+}
+
+#workskin .ig .bm::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  box-sizing: border-box;
+  width: 7px;
+  height: 7px;
+  margin: 0 0 -3px -3px;
+  border-top: 2px solid currentColor;
+  border-left: 2px solid currentColor;
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+#workskin .ig .bm.on { background: currentColor; }
+
+/* a comment bubble drawn with CSS: <span class="ig-icon cm"></span> */
+#workskin .ig .cm {
+  display: inline-block;
+  box-sizing: border-box;
+  width: 18px;
+  height: 18px;
+  border: 2px solid currentColor;
+  border-radius: 50%;
+  border-bottom-left-radius: 0;
+  vertical-align: middle;
+}
+
+#workskin .ig .bm.on::after {
+  border: 0;
+  background: #ffffff;
+}
+
+/* ---- "Liked by" with little overlapping faces ----
+   <p class="ig-likes liked-by"><span class="ig-like-pfps"><span class="ig-like-pfp"><span class="pfp"><img ...></span></span> ...</span>
+   Liked by <b>name</b> and <b>others</b></p>   (keep the faces on one line of code, with no gaps) */
+#workskin .ig .ig-likes.liked-by { font-weight: normal; }
+
+#workskin .ig .ig-like-pfps {
+  display: inline-block;
+  margin-right: 0.4em;
+  vertical-align: middle;
+}
+
+#workskin .ig .ig-like-pfp {
+  display: inline-block;
+  box-sizing: content-box;
+  width: 18px;
+  height: 18px;
+  margin-left: -8px;
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+  overflow: hidden;
+  vertical-align: middle;
+}
+
+#workskin .ig .ig-like-pfp:first-child { margin-left: 0; }
+
+#workskin .igdm {
+  background: #ffffff;
+  color: #262626;
+  border: 1px solid #dbdbdb;
+  border-radius: 14px;
+}
+
+#workskin .igdm .mob-head {
+  background: #ffffff;
+  color: #262626;
+  border-bottom: 1px solid #efefef;
+  font-size: 0.9em;
+}
+
+#workskin .igdm .mob-head span {
+  display: block;
+  font-weight: normal;
+  color: #737373;
+  font-size: 0.85em;
+}
+
+#workskin .igdm .msg {
+  display: table;
+  max-width: 72%;
+  margin: 0.2em 0;
+  padding: 0.55em 0.9em;
+  border-radius: 22px;
+}
+
+/* solid colour first; the gradient replaces it where AO3 allows it */
+#workskin .igdm .out {
+  margin-left: auto;
+  background-color: #7b3ff2;
+  background-image: linear-gradient(#8a3ffc, #5b4df5);
+  color: #ffffff;
+}
+
+#workskin .igdm .in { margin-right: auto; background: #efefef; color: #262626; }
+
+#workskin .igdm .who {
+  display: block;
+  font-size: 0.72em;
+  color: #737373;
+  margin: 0.5em 0 0 1em;
+}
+
+#workskin .igdm .igdm-status {
+  display: block;
+  text-align: right;
+  font-size: 0.7em;
+  color: #737373;
+  margin: 0.1em 0.5em 0.4em 0;
+}
+
+/* shared post / reel / story reply inside a DM */
+#workskin .igdm .igdm-shared {
+  display: table;
+  max-width: 72%;
+  margin: 0.2em auto 0.2em 0;
+  padding: 0.5em 0.9em;
+  border: 1px solid #dbdbdb;
+  border-radius: 14px;
+  font-size: 0.88em;
+  color: #737373;
+}
+
+/* ---------- Instagram: Links ---------- */
+
+#workskin .ig .fake-link, #workskin .ig a:not(.tl) { color: #00376b; }
+
+#workskin .igdm .in .fake-link, #workskin .igdm .in a:not(.tl) { color: #0095f6; }
+
+#workskin .igdm .out .fake-link, #workskin .igdm .out a:not(.tl) { color: #ffffff; }
+
+/* ---------- Instagram: Scrolling ---------- */
+
+#workskin .ig {
+  max-height: 700px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+#workskin .ig::-webkit-scrollbar {
+  width: 6px;
+}
+
+#workskin .ig::-webkit-scrollbar-thumb {
+  background: rgba(128, 128, 128, 0.5);
+  border-radius: 6px;
+}
+
+/* ---------- Instagram: Dark theme (theme-dark) ---------- */
+
+#workskin .ig.theme-dark .fake-link, #workskin .ig.theme-dark a:not(.tl) { color: #e0f1ff; }
+
+#workskin .ig.theme-dark { background: #000000; color: #f5f5f5; border-color: #262626; }
+
+#workskin .ig.theme-dark .ig-top { border-bottom-color: #262626; }
+
+#workskin .ig.theme-dark .ig-top span,
+#workskin .ig.theme-dark .ig-viewall,
+#workskin .ig.theme-dark .ig-time {
+  color: #a8a8a8;
+}
+
+#workskin .ig.theme-dark .ig-photo { background: #1c1c1c; color: #a8a8a8; border-bottom-color: #262626; }
+
+#workskin .ig.theme-dark .ig-tag { color: #e0f1ff; }
+
+#workskin .ig.theme-dark .ig-top .ig-pfp.story .pfp { border-color: #000000; }
+
+#workskin .ig.theme-dark .ig-like-pfp { border-color: #000000; }
+
+#workskin .ig.theme-dark .ig-tog.like .on.ig-icon { color: #ff3040; }
+
+#workskin .ig.theme-dark .bm.on::after { background: #000000; }
+
+#workskin .igdm.theme-dark { background: #000000; color: #f5f5f5; border-color: #262626; }
+
+#workskin .igdm.theme-dark .mob-head { background: #000000; color: #f5f5f5; border-bottom-color: #262626; }
+
+#workskin .igdm.theme-dark .mob-head span,
+#workskin .igdm.theme-dark .who,
+#workskin .igdm.theme-dark .igdm-status {
+  color: #a8a8a8;
+}
+
+#workskin .igdm.theme-dark .in { background: #262626; color: #f5f5f5; }
+
+#workskin .igdm.theme-dark .igdm-shared { border-color: #363636; color: #a8a8a8; }
+
+/* ---------- Instagram: Auto theme (theme-auto): light, switching to dark when the reader's device is in dark mode ---------- */
+
+@media (prefers-color-scheme: dark) {
+  #workskin .ig.theme-auto .fake-link, #workskin .ig.theme-auto a:not(.tl) { color: #e0f1ff; }
+
+  #workskin .ig.theme-auto { background: #000000; color: #f5f5f5; border-color: #262626; }
+
+  #workskin .ig.theme-auto .ig-top { border-bottom-color: #262626; }
+
+  #workskin .ig.theme-auto .ig-top span,
+    #workskin .ig.theme-auto .ig-viewall,
+    #workskin .ig.theme-auto .ig-time {
+      color: #a8a8a8;
+    }
+
+  #workskin .ig.theme-auto .ig-photo { background: #1c1c1c; color: #a8a8a8; border-bottom-color: #262626; }
+
+  #workskin .ig.theme-auto .ig-tag { color: #e0f1ff; }
+
+  #workskin .ig.theme-auto .ig-top .ig-pfp.story .pfp { border-color: #000000; }
+
+  #workskin .ig.theme-auto .ig-like-pfp { border-color: #000000; }
+
+  #workskin .ig.theme-auto .ig-tog.like .on.ig-icon { color: #ff3040; }
+
+  #workskin .ig.theme-auto .bm.on::after { background: #000000; }
+
+  #workskin .igdm.theme-auto { background: #000000; color: #f5f5f5; border-color: #262626; }
+
+  #workskin .igdm.theme-auto .mob-head { background: #000000; color: #f5f5f5; border-bottom-color: #262626; }
+
+  #workskin .igdm.theme-auto .mob-head span,
+    #workskin .igdm.theme-auto .who,
+    #workskin .igdm.theme-auto .igdm-status {
+      color: #a8a8a8;
+    }
+
+  #workskin .igdm.theme-auto .in { background: #262626; color: #f5f5f5; }
+
+  #workskin .igdm.theme-auto .igdm-shared { border-color: #363636; color: #a8a8a8; }
+}
+
+/* <<<<<<<<<< MODULE: Instagram (posts, comments, DMs) (end) <<<<<<<<<< */
+
+/* >>>>>>>>>> MODULE: Tumblr (start) >>>>>>>>>> */
+
+/* ==========================================================
+   MODULE: TUMBLR   (classes: tb, tb-feed)
+   Tumblr posts, reblog chains, asks, quote and chat posts, and the feed background (tb, tb-feed).
+   Needs the CORE block.
+   ========================================================== */
+
+#workskin .tb-feed.wide {
+  width: auto;
+  max-width: none;
+}
+
+#workskin .tb {
+  background: #ffffff;
+  color: #000000;
+  border: 1px solid #e3e3e3;
+  border-radius: 14px;
+  overflow: hidden;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+}
+
+/* Header row of a post or of one reblog: picture, name + small grey line, optional Follow, dots.
+   Use <div class="tb-header"> for the post, <div class="tb-blog"> inside each reblog. */
+#workskin .tb .tb-header,
+#workskin .tb .tb-blog {
+  display: block;
+  overflow: hidden;
+  padding: 0.8em 0.9em 0.3em 0.9em;
+  font-weight: normal;
+}
+
+/* thin line under a post's header (the reblog headers sit inside the body and don't get one) */
+#workskin .tb .tb-header { padding-bottom: 0.8em; border-bottom: 1px solid #eeeeee; }
+
+/* a reblog header is a paragraph inside the post body, so undo the body's paragraph spacing */
+#workskin .tb .tb-body .tb-blog { margin: 0; padding: 0.8em 0.9em 0.3em 0.9em; }
+
+/* AO3 turns line breaks in your HTML into <br /> tags: keep them out of the header rows and the counts row */
+#workskin .tb .tb-header br,
+#workskin .tb .tb-blog br,
+#workskin .tb .tb-footer br { display: none; }
+
+/* ...and the paragraph AO3 wraps around a header row's pieces */
+#workskin .tb .tb-header > p,
+#workskin .tb .tb-body .tb-blog > p,
+#workskin .tb .tb-footer > p { margin: 0; padding: 0; }
+
+#workskin .tb .tb-name { display: block; min-height: 38px; margin-left: 48px; }
+
+#workskin .tb .tb-name > b { display: block; font-weight: bold; line-height: 1.3; }
+
+/* a name with no line under it sits level with the middle of the picture */
+#workskin .tb .tb-name > b:only-child { line-height: 38px; }
+
+#workskin .tb .tb-subline { display: block; font-size: 0.85em; color: #6c7a8b; }
+
+#workskin .tb .tb-subline b { color: #555555; }
+
+/* round profile picture (initials), colour1-colour10 for colours; add "rb" for the green reblog badge */
+/* initials by default; colour1-colour10 are the colours (set in the CORE), or put a picture
+   or a profile inside it with a pfp span */
+#workskin .tb .tb-pfp {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  float: left;
+  position: relative;
+  width: 38px;
+  height: 38px;
+  line-height: 1;
+  text-align: center;
+  border-radius: 50%;
+  background-color: #8a8a8a;
+  font-family: Arial, Helvetica, sans-serif;
+  background-size: cover;
+  background-position: center;
+  color: #ffffff;
+  font-size: 0.85em;
+  font-weight: bold;
+}
+
+#workskin .tb .tb-pfp.rb::after {
+  content: '\21C4';
+  position: absolute;
+  right: -6px;
+  bottom: -5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 14px;
+  line-height: 1;
+  text-align: center;
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+  background: #0ccc3c;
+  color: #ffffff;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 9px;
+  font-weight: bold;
+}
+
+/* checkmarks beside a name, in twos, fours or sixes: <span class="tb-check">&#10003;</span><span class="tb-check">&#10003;</span>
+   They always run in the same order, and the colours are added for you: blue, green, then lime, yellow, then amber, orange.
+   On Tumblr these are bought for fun, so they don't mean a blog is verified. */
+#workskin .tb .tb-check {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.15em;
+  height: 1.15em;
+  line-height: 1;
+  margin-left: 0.25em;
+  border-radius: 50%;
+  background: #42aaf5;
+  color: #111111;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.75em;
+  font-weight: bold;
+  vertical-align: 0.1em;
+}
+
+#workskin .tb .tb-check + .tb-check { margin-left: 0.12em; }
+
+#workskin .tb .tb-check + .tb-check { background: #4ccd4a; }
+
+#workskin .tb .tb-check + .tb-check + .tb-check { background: #a6d03f; }
+
+#workskin .tb .tb-check + .tb-check + .tb-check + .tb-check { background: #e3cf3c; }
+
+#workskin .tb .tb-check + .tb-check + .tb-check + .tb-check + .tb-check { background: #efb238; }
+
+#workskin .tb .tb-check + .tb-check + .tb-check + .tb-check + .tb-check + .tb-check { background: #f08b37; }
+
+#workskin .tb .tb-follow { display: block; float: right; margin: 2px 0 0 0.5em; }
+
+#workskin .tb .tb-follow span {
+  display: inline-block;
+  padding: 0 1.1em;
+  line-height: 34px;
+  border-radius: 2em;
+  background: #ececec;
+  font-weight: bold;
+  font-size: 0.9em;
+}
+
+#workskin .tb .tb-menu {
+  display: block;
+  float: right;
+  height: 38px;
+  line-height: 38px;
+  margin: 0 0 0 0.6em;
+  color: #777777;
+  letter-spacing: 0.05em;
+  font-size: 0.8em;
+}
+
+#workskin .tb .tb-body { display: block; padding: 0.3em 0 0.8em 0; }
+
+#workskin .tb .tb-body p { margin: 0.5em 0; padding: 0 0.9em; }
+
+#workskin .tb :not(.pfp) > img {
+  display: block;
+  max-width: 92%;
+  height: auto;
+  margin: 0.6em auto;
+  border-radius: 4px;
+}
+
+/* each reblog in the chain: one after another, with a thin line between, edge to edge */
+#workskin .tb .tb-reblog {
+  display: block;
+  margin: 0;
+  padding: 0 0 0.3em 0;
+  border-top: 1px solid #eeeeee;
+}
+
+#workskin .tb .tb-body > .tb-reblog:first-child { border-top: 0; }
+
+/* the ask and answer boxes: <div class="tb-ask"> or <div class="tb-ask tb-answer"> */
+#workskin .tb .tb-ask {
+  display: block;
+  position: relative;
+  background: #f5f5f5;
+  border-radius: 8px;
+  padding: 0.8em 0.9em 0.4em 0.9em;
+  margin: 0.6em 36px 0.6em 0.9em;
+}
+
+/* little pointer on the right edge of an ask box, towards the square picture */
+#workskin .tb .tb-ask::after {
+  content: '';
+  position: absolute;
+  top: 1.2em;
+  right: -6px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 6px 0 6px 7px;
+  border-color: transparent transparent transparent #f5f5f5;
+}
+
+#workskin .tb .tb-asker {
+  display: block;
+  margin: 0 0 0.6em 0;
+  padding-right: 2.8em;
+  color: #6b6b6b;
+}
+
+#workskin .tb .tb-asker b { font-weight: bold; color: #6b6b6b; }
+
+#workskin .tb .tb-ask p { margin: 0.5em 0; padding: 0; }
+
+/* small square picture at the top right of an ask box */
+#workskin .tb .tb-ask-pfp {
+  display: block;
+  position: absolute;
+  top: 0.8em;
+  right: -36px;
+  width: 28px;
+  height: 28px;
+  line-height: 28px;
+  text-align: center;
+  border-radius: 5px;
+  background-color: #8a8a8a;
+  font-family: Arial, Helvetica, sans-serif;
+  background-size: cover;
+  background-position: center;
+  color: #ffffff;
+  font-size: 0.75em;
+  font-weight: bold;
+}
+
+#workskin .tb .tb-tags {
+  display: block;
+  margin: 0;
+  padding: 0.2em 0.9em 0.6em 0.9em;
+  color: #777777;
+  font-size: 0.88em;
+}
+
+/* the bottom row: the note count on the left, the buttons on the right
+   <p class="tb-footer"><span class="tb-notes"><b>149</b> notes</span> <span class="tb-icon save"></span> ... </p> */
+#workskin .tb .tb-footer {
+  display: flex;
+  align-items: center;
+  padding: 0.5em 0.9em 0.8em 0.9em;
+  color: #555555;
+}
+
+/* the buttons: save, share, reply, reblog and like, in that order */
+#workskin .tb .tb-icon {
+  display: inline-block;
+  margin-left: 1em;
+  font-size: 1.15em;
+  line-height: 1;
+}
+
+/* the save button's bookmark, drawn with CSS: <span class="tb-icon save"></span> */
+#workskin .tb .tb-icon.save {
+  position: relative;
+  box-sizing: border-box;
+  width: 13px;
+  height: 16px;
+  border: 2px solid currentColor;
+  border-bottom: 0;
+}
+
+#workskin .tb .tb-icon.save::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  box-sizing: border-box;
+  width: 7px;
+  height: 7px;
+  margin: 0 0 -3px -3px;
+  border-top: 2px solid currentColor;
+  border-left: 2px solid currentColor;
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+/* quote post: <p class="tb-quote">text</p><p class="tb-source">&mdash; someone</p> */
+#workskin .tb .tb-quote { font-family: Georgia, serif; font-size: 1.9em; line-height: 1.25; }
+
+#workskin .tb .tb-quote::before { content: "\201C"; }
+
+#workskin .tb .tb-quote::after { content: "\201D"; }
+
+#workskin .tb .tb-source { font-size: 0.9em; }
+
+/* chat post: <div class="tb-chat"><p><b>Name:</b> line</p>...</div> */
+#workskin .tb .tb-chat {
+  display: block;
+  margin: 0.6em 0.9em;
+  font-family: Courier, monospace;
+  line-height: 1.4;
+}
+
+#workskin .tb .tb-chat p { margin: 0; padding: 0.35em 0; }
+
+#workskin .tb .tb-chat b { font-weight: bold; }
+
+/* the note count, in a rounded box at the left of the bottom row */
+#workskin .tb .tb-notes {
+  display: inline-block;
+  margin: 0 auto 0 0;
+  padding: 0.35em 0.9em;
+  border: 1px solid #e3e3e3;
+  border-radius: 2em;
+  color: #777777;
+  font-size: 0.85em;
+}
+
+#workskin .tb .tb-notes b { color: #222222; }
+
+/* THE FEED BEHIND THE CARDS (optional): put one or more .tb posts inside <div class="tb-feed">
+   navy by default (Tumblr's light mode); add "black" for the dark-mode look */
+#workskin .tb-feed {
+  width: 380px;
+  max-width: 100%;
+  margin: 1.2em auto;
+  padding: 0.5em 0;
+  background: #001935;
+  box-sizing: border-box;
+  border-radius: 14px;
+}
+
+#workskin .tb-feed.black { background: #000000; }
+
+#workskin .tb-feed .mob {
+  width: auto;
+  max-width: none;
+  margin: 0.5em 0;
+  border-color: transparent;
+  border-radius: 14px;
+}
+
+/* ---------- Tumblr: Links ---------- */
+
+#workskin .tb .fake-link, #workskin .tb a:not(.tl) { color: #0070b8; }
+
+/* ---------- Tumblr: Scrolling ---------- */
+
+#workskin .tb {
+  max-height: 700px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+#workskin .tb::-webkit-scrollbar {
+  width: 6px;
+}
+
+#workskin .tb::-webkit-scrollbar-thumb {
+  background: rgba(128, 128, 128, 0.5);
+  border-radius: 6px;
+}
+
+/* ---------- Tumblr: Dark theme (theme-dark) ---------- */
+
+#workskin .tb.theme-dark .fake-link, #workskin .tb.theme-dark a:not(.tl) { color: #00b8ff; }
+
+#workskin .tb.theme-dark { background: #1f1f1f; color: #e8e8e8; border-color: #1f1f1f; }
+
+#workskin .tb.theme-dark .tb-subline,
+#workskin .tb.theme-dark .tb-menu,
+#workskin .tb.theme-dark .tb-tags,
+#workskin .tb.theme-dark .tb-notes {
+  color: #9a9a9a;
+}
+
+#workskin .tb.theme-dark .tb-subline b { color: #cfcfcf; }
+
+#workskin .tb.theme-dark .tb-footer { color: #bdbdbd; }
+
+#workskin .tb.theme-dark .tb-follow span { background: #2e2e2e; }
+
+#workskin .tb.theme-dark .tb-pfp.rb::after { border-color: #1f1f1f; }
+
+#workskin .tb.theme-dark .tb-reblog { border-top-color: #2c2c2c; }
+
+#workskin .tb.theme-dark .tb-ask { background: #272727; }
+
+#workskin .tb.theme-dark .tb-asker,
+#workskin .tb.theme-dark .tb-asker b {
+  color: #a8a8a8;
+}
+
+#workskin .tb.theme-dark .tb-notes { border-color: #3a3a3a; }
+
+#workskin .tb.theme-dark .tb-notes b { color: #e8e8e8; }
+
+#workskin .tb.theme-dark .tb-header { border-bottom-color: #2c2c2c; }
+
+#workskin .tb.theme-dark .tb-ask::after { border-left-color: #272727; }
+
+/* ---------- Tumblr: Auto theme (theme-auto): light, switching to dark when the reader's device is in dark mode ---------- */
+
+@media (prefers-color-scheme: dark) {
+  #workskin .tb.theme-auto .fake-link, #workskin .tb.theme-auto a:not(.tl) { color: #00b8ff; }
+
+  #workskin .tb.theme-auto { background: #1f1f1f; color: #e8e8e8; border-color: #1f1f1f; }
+
+  #workskin .tb.theme-auto .tb-subline,
+    #workskin .tb.theme-auto .tb-menu,
+    #workskin .tb.theme-auto .tb-tags,
+    #workskin .tb.theme-auto .tb-notes {
+      color: #9a9a9a;
+    }
+
+  #workskin .tb.theme-auto .tb-subline b { color: #cfcfcf; }
+
+  #workskin .tb.theme-auto .tb-footer { color: #bdbdbd; }
+
+  #workskin .tb.theme-auto .tb-follow span { background: #2e2e2e; }
+
+  #workskin .tb.theme-auto .tb-pfp.rb::after { border-color: #1f1f1f; }
+
+  #workskin .tb.theme-auto .tb-reblog { border-top-color: #2c2c2c; }
+
+  #workskin .tb.theme-auto .tb-ask { background: #272727; }
+
+  #workskin .tb.theme-auto .tb-asker,
+    #workskin .tb.theme-auto .tb-asker b {
+      color: #a8a8a8;
+    }
+
+  #workskin .tb.theme-auto .tb-notes { border-color: #3a3a3a; }
+
+  #workskin .tb.theme-auto .tb-notes b { color: #e8e8e8; }
+
+  #workskin .tb.theme-auto .tb-header { border-bottom-color: #2c2c2c; }
+
+  #workskin .tb.theme-auto .tb-ask::after { border-left-color: #272727; }
+}
+
+/* <<<<<<<<<< MODULE: Tumblr (end) <<<<<<<<<< */
+
+/* >>>>>>>>>> MODULE: Email (Gmail and generic email window) (start) >>>>>>>>>> */
+
+/* ==========================================================
+   MODULE: EMAIL (GMAIL AND GENERIC EMAIL WINDOW)   (classes: gm, mail)
+   Gmail emails (gm): subject line, one block per email in the thread, reply buttons.
+   The header rows are real <table>s, which AO3 handles reliably.
+   Generic email window (mail): a plain email program window with a title bar, From/To/Subject
+   fields, a body, and a Reply / Forward / Delete bar.
+   Needs the CORE block.
+   ========================================================== */
+
+#workskin .gm {
+  background: #ffffff;
+  color: #202124;
+  border: 1px solid #dadce0;
+  border-radius: 14px;
+  font-family: Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+#workskin .gm table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  margin: 0;
+}
+
+#workskin .gm td {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  vertical-align: top;
+}
+
+/* subject line: title, label chip and star */
+#workskin .gm .gm-title { padding: 0.8em 0.4em 0.4em 0.9em; font-size: 1.35em; line-height: 1.25; }
+
+#workskin .gm .gm-label {
+  display: inline-block;
+  margin-left: 0.4em;
+  padding: 0.1em 0.5em;
+  border-radius: 4px;
+  background: #e8eaed;
+  color: #5f6368;
+  font-size: 0.55em;
+  vertical-align: middle;
+}
+
+#workskin .gm .gm-star {
+  width: 38px;
+  padding-top: 1em;
+  text-align: center;
+  color: #5f6368;
+  font-size: 1.2em;
+}
+
+/* one email */
+#workskin .gm .gm-msg { padding: 0.7em 0.9em 0.6em 0.9em; border-top: 1px solid #e8eaed; }
+
+#workskin .gm .gm-pfp-cell { width: 46px; }
+
+/* initials by default; colour1-colour10 are the colours (set in the CORE), or put a picture
+   or a profile inside it with a pfp span */
+#workskin .gm .gm-pfp {
+  display: block;
+  width: 36px;
+  height: 36px;
+  line-height: 36px;
+  text-align: center;
+  border-radius: 50%;
+  background-color: #5f6368;
+  background-size: cover;
+  background-position: center;
+  color: #ffffff;
+  font-size: 0.85em;
+  font-weight: bold;
+}
+
+#workskin .gm .gm-from { font-weight: bold; line-height: 1.3; padding-top: 1px; }
+
+#workskin .gm .gm-address { font-weight: normal; color: #5f6368; font-size: 0.82em; }
+
+#workskin .gm .gm-date {
+  width: 1%;
+  white-space: nowrap;
+  padding-top: 3px;
+  text-align: right;
+  color: #5f6368;
+  font-size: 0.75em;
+  line-height: 1.3;
+}
+
+#workskin .gm .gm-to { color: #5f6368; font-size: 0.82em; line-height: 1.3; }
+
+#workskin .gm .gm-tools {
+  text-align: right;
+  color: #5f6368;
+  letter-spacing: 0.3em;
+  white-space: nowrap;
+}
+
+#workskin .gm .gm-body { display: block; padding: 0.6em 0 0.4em 0; line-height: 1.5; }
+
+#workskin .gm .gm-body p { margin: 0.5em 0; }
+
+/* Reply / Reply all / Forward buttons */
+#workskin .gm .gm-footer { display: block; padding: 0.7em 0.9em 0.9em 0.9em; border-top: 1px solid #e8eaed; }
+
+#workskin .gm table.gm-actions {
+  border-collapse: separate;
+  border-spacing: 0.4em 0;
+  margin: 0 -0.4em;
+  width: 100%;
+}
+
+#workskin .gm table.gm-actions td {
+  border: 1px solid #dadce0;
+  border-radius: 18px;
+  padding: 0.55em 0.2em;
+  text-align: center;
+  color: #5f6368;
+  font-size: 0.9em;
+}
+
+#workskin .mail {
+  border: 1px solid #cfcfcf;
+  background: #ffffff;
+  color: #000000;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* title bar: put the window controls first, so they sit at the right */
+#workskin .mail .mail-titlebar {
+  display: block;
+  overflow: hidden;
+  margin: 0;
+  padding: 0.3em 0.7em;
+  background: #404040;
+  color: #ffffff;
+  font-weight: bold;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+#workskin .mail .mail-titlebar span {
+  float: right;
+  margin-left: 0.8em;
+  color: #cfcfcf;
+  letter-spacing: 0.4em;
+}
+
+/* From: / To: / Cc: / Subject: lines. Use <br> to put To and Cc in one box */
+#workskin .mail .mail-field {
+  display: block;
+  margin: 0;
+  padding: 0.3em 0.7em;
+  border-bottom: 1px solid #e3e3e3;
+  background: #ffffff;
+  color: #000000;
+}
+
+#workskin .mail .mail-field b {
+  display: inline-block;
+  min-width: 4.2em;
+  color: #666666;
+  font-weight: bold;
+}
+
+#workskin .mail .mail-body p { margin: 0.6em 0; }
+
+/* a signature line: <p class="mail-signature">name, job title</p> */
+#workskin .mail .mail-signature {
+  margin-top: 1.2em;
+  padding-top: 0.5em;
+  border-top: 1px solid #e3e3e3;
+  color: #666666;
+  font-size: 0.9em;
+}
+
+/* attachments: <span class="mail-attachment doc">name.doc (9 KB)</span>  (doc, img, or nothing for a paperclip) */
+#workskin .mail .mail-attachment {
+  display: inline-block;
+  margin: 0.15em 0.2em 0.15em 0;
+  padding: 0.15em 0.5em;
+  border: 1px solid #cfcfcf;
+  border-radius: 3px;
+  background: #ffffff;
+  color: #0b57d0;
+  text-decoration: underline;
+}
+
+#workskin .mail .mail-attachment::before { content: "\1F4CE"; margin-right: 0.3em; }
+
+#workskin .mail .mail-attachment.doc::before { content: "\1F5BA"; }
+
+#workskin .mail .mail-attachment.img::before { content: "\1F5BC"; }
+
+/* the button bar at the bottom */
+#workskin .mail .mail-buttons {
+  display: block;
+  margin: 0;
+  padding: 0.4em 0.7em;
+  border-top: 1px solid #cfcfcf;
+  background: #f5f5f5;
+  color: #000000;
+}
+
+#workskin .mail .mail-buttons span { display: inline-block; margin-right: 0.9em; }
+
+/* ---------- Email: Links ---------- */
+
+#workskin .gm .fake-link, #workskin .gm a:not(.tl) { color: #1a0dab; }
+
+#workskin .mail .fake-link, #workskin .mail a:not(.tl) { color: #0b57d0; }
+
+/* ---------- Email: Scrolling ---------- */
+
+/* the message itself */
+#workskin .mail .mail-body {
+  display: block;
+  max-height: 480px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 0.5em 0.7em;
+  background: #ffffff;
+  color: #000000;
+}
+
+#workskin .gm {
+  max-height: 700px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+#workskin .gm::-webkit-scrollbar {
+  width: 6px;
+}
+
+#workskin .gm::-webkit-scrollbar-thumb {
+  background: rgba(128, 128, 128, 0.5);
+  border-radius: 6px;
+}
+
+/* ---------- Email: Dark theme (theme-dark) ---------- */
+
+#workskin .gm.theme-dark .fake-link, #workskin .gm.theme-dark a:not(.tl) { color: #8ab4f8; }
+
+#workskin .mail.theme-dark .fake-link, #workskin .mail.theme-dark a:not(.tl) { color: #8ab4f8; }
+
+#workskin .mail.theme-dark { border-color: #3c4043; background: #202124; color: #e8eaed; }
+
+#workskin .mail.theme-dark .mail-titlebar { background: #131314; color: #e8eaed; }
+
+#workskin .mail.theme-dark .mail-titlebar span { color: #9aa0a6; }
+
+#workskin .mail.theme-dark .mail-field { background: #202124; color: #e8eaed; border-bottom-color: #3c4043; }
+
+#workskin .mail.theme-dark .mail-field b { color: #9aa0a6; }
+
+#workskin .mail.theme-dark .mail-body { background: #202124; color: #e8eaed; }
+
+#workskin .mail.theme-dark .mail-signature { border-top-color: #3c4043; color: #9aa0a6; }
+
+#workskin .mail.theme-dark .mail-attachment { background: #2a2b2e; border-color: #3c4043; color: #8ab4f8; }
+
+#workskin .mail.theme-dark .mail-buttons { background: #2a2b2e; border-top-color: #3c4043; color: #e8eaed; }
+
+#workskin .gm.theme-dark { background: #202124; color: #e8eaed; border-color: #3c4043; }
+
+#workskin .gm.theme-dark .gm-label { background: #3c4043; color: #bdc1c6; }
+
+#workskin .gm.theme-dark .gm-star,
+#workskin .gm.theme-dark .gm-address,
+#workskin .gm.theme-dark .gm-date,
+#workskin .gm.theme-dark .gm-to,
+#workskin .gm.theme-dark .gm-tools {
+  color: #9aa0a6;
+}
+
+#workskin .gm.theme-dark .gm-msg,
+#workskin .gm.theme-dark .gm-footer {
+  border-top-color: #3c4043;
+}
+
+#workskin .gm.theme-dark table.gm-actions td { border-color: #5f6368; color: #bdc1c6; }
+
+/* ---------- Email: Auto theme (theme-auto): light, switching to dark when the reader's device is in dark mode ---------- */
+
+@media (prefers-color-scheme: dark) {
+  #workskin .gm.theme-auto .fake-link, #workskin .gm.theme-auto a:not(.tl) { color: #8ab4f8; }
+
+  #workskin .mail.theme-auto .fake-link, #workskin .mail.theme-auto a:not(.tl) { color: #8ab4f8; }
+
+  #workskin .mail.theme-auto { border-color: #3c4043; background: #202124; color: #e8eaed; }
+
+  #workskin .mail.theme-auto .mail-titlebar { background: #131314; color: #e8eaed; }
+
+  #workskin .mail.theme-auto .mail-titlebar span { color: #9aa0a6; }
+
+  #workskin .mail.theme-auto .mail-field { background: #202124; color: #e8eaed; border-bottom-color: #3c4043; }
+
+  #workskin .mail.theme-auto .mail-field b { color: #9aa0a6; }
+
+  #workskin .mail.theme-auto .mail-body { background: #202124; color: #e8eaed; }
+
+  #workskin .mail.theme-auto .mail-signature { border-top-color: #3c4043; color: #9aa0a6; }
+
+  #workskin .mail.theme-auto .mail-attachment { background: #2a2b2e; border-color: #3c4043; color: #8ab4f8; }
+
+  #workskin .mail.theme-auto .mail-buttons { background: #2a2b2e; border-top-color: #3c4043; color: #e8eaed; }
+
+  #workskin .gm.theme-auto { background: #202124; color: #e8eaed; border-color: #3c4043; }
+
+  #workskin .gm.theme-auto .gm-label { background: #3c4043; color: #bdc1c6; }
+
+  #workskin .gm.theme-auto .gm-star,
+    #workskin .gm.theme-auto .gm-address,
+    #workskin .gm.theme-auto .gm-date,
+    #workskin .gm.theme-auto .gm-to,
+    #workskin .gm.theme-auto .gm-tools {
+      color: #9aa0a6;
+    }
+
+  #workskin .gm.theme-auto .gm-msg,
+    #workskin .gm.theme-auto .gm-footer {
+      border-top-color: #3c4043;
+    }
+
+  #workskin .gm.theme-auto table.gm-actions td { border-color: #5f6368; color: #bdc1c6; }
+}
+
+/* <<<<<<<<<< MODULE: Email (Gmail and generic email window) (end) <<<<<<<<<< */
+
+/* >>>>>>>>>> MODULE: Discord (start) >>>>>>>>>> */
+
+/* ==========================================================
+   MODULE: DISCORD   (classes: dc)
+   Discord (dc). Adapted from "Discord Work Skin & Tutorial" by BookKeep
+   (https://archiveofourown.org/works/42027846). Please credit them in your author's
+   notes if you post with this module.
+   Differences from the original: every rule is scoped under #workskin .dc (the original
+   used .window), and the parts are renamed to match the other apps: every part starts
+   with dc- (dc-message, dc-name, dc-time, dc-text...). Themes: theme-auto (follows the
+   reader's device), theme-dark, theme-light. Add colour1-colour10 to a dc-name for its
+   name and circle colour, or a profile from the CORE for a picture and name colour.
+   Discord doesn't use the mob box: it is its own wide window, but it does use the
+   CORE hidden text and translations.
+   Needs the CORE block.
+   ========================================================== */
+
+#workskin .dc.narrow {
+  width: 380px;
+  max-width: 100%;
+  margin: 1.2em auto;
+}
+
+#workskin .dc {
+  margin: 1.2em 0;
+  position: relative;
+  padding: 0 0 1rem 0;
+  font-family: Whitney, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+  overflow: hidden;
+  vertical-align: baseline;
+  border: 1px solid rgb(54, 57, 63);
+  border-radius: 0.25rem;
+  text-align: left;
+  color: rgb(46, 51, 56);
+  background-color: rgb(255, 255, 255);
+  border-color: rgb(227, 229, 232);
+}
+
+#workskin .dc p,
+#workskin .dc a:not(.tl) {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+#workskin .dc h3 {
+  font-family: "ABC Ginto Normal", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 1.0625rem;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  color: rgb(6, 6, 7);
+}
+
+#workskin .dc .dc-header {
+  z-index: 100;
+  min-width: 0;
+  width: 100%;
+  height: 48px;
+  padding: 0 8px;
+  font-size: 16px;
+  line-height: 20px;
+  display: inline;
+  position: relative;
+}
+
+#workskin .dc .dc-header::before {
+  content: '';
+  background-repeat: no-repeat;
+  background-size: contain;
+  position: absolute;
+  left: 1rem;
+  top: 1rem;
+  height: 1.5rem;
+  width: 1.5rem;
+}
+
+#workskin .dc .dc-header::after {
+  content: "";
+  position: relative;
+  display: block;
+  top: 18px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  box-shadow:
+    rgba(4, 4, 5, 0.2) 0px 1px 0px 0px,
+    rgba(6, 6, 7, 0.05) 0px 1.5px 0px 0px,
+    rgba(4, 4, 5, 0.05) 0px 2px 0px 0px;
+  z-index: 1;
+}
+
+#workskin .dc .dc-header > h3 {
+  padding-left: 3rem !important;
+  padding-right: 3rem !important;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+#workskin .dc .dc-description {
+  display: inline;
+  margin-left: 0.5rem;
+  font-size: 0.875rem;
+  line-height: 1.125rem;
+}
+
+#workskin .dc .dc-header-divider {
+  border-left: 1px solid;
+  display: inline;
+  margin: 0 0.5rem 0 1rem;
+  height: 24px;
+  border-color: rgb(46, 51, 56);
+}
+
+#workskin .dc .dc-input {
+  margin: 1.5rem 1rem 0;
+  padding: 1rem 3.5rem;
+  border-radius: 0.5rem;
+  position: relative;
+  min-height: 1.5rem;
+  background-color: rgb(235, 237, 239);
+}
+
+#workskin .dc .dc-input-text {
+  display: contents;
+  position: absolute;
+  top: 50%;
+  transform: translate(0%, -50%);
+}
+
+#workskin .dc .dc-input-text::before {
+  content: '';
+  background-repeat: no-repeat;
+  background-size: contain;
+  position: absolute;
+  left: 1rem;
+  height: 1.5rem;
+  width: 1.5rem;
+  background-image: url(https://i.imgur.com/JB3HgBA.png);
+}
+
+#workskin .dc .dc-message { min-height: 2.75rem; margin-top: 1.0625rem; padding: 0.125rem 3rem 0.125rem 4.5rem; }
+
+#workskin .dc .dc-name {
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.375rem;
+  white-space: break-spaces;
+  word-wrap: break-word;
+  margin-right: 0.25rem;
+}
+
+/* avatar circle; background-color shows until you add an image */
+#workskin .dc .dc-name::before {
+  content: '';
+  background-color: rgb(88, 101, 242);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  position: absolute;
+  border-radius: 50%;
+  margin-top: 0.125rem;
+  left: 1.25rem;
+  height: 2.5rem;
+  width: 2.5rem;
+}
+
+#workskin .dc .dc-time,
+#workskin .dc .dc-edited {
+  margin-left: 0.25rem;
+  font-size: 0.75rem;
+  line-height: 1.375rem;
+  white-space: nowrap;
+}
+
+#workskin .dc .dc-text {
+  font-size: 1rem;
+  line-height: 1.375rem;
+  white-space: break-spaces;
+  word-wrap: break-word;
+  padding: 0.125rem 0 0.125rem 0;
+}
+
+/* --- colours: add colour1 to colour10 to the dc-name, like <b class="dc-name colour3">Name</b> ---
+   One class colours both the name and the round picture. The colours themselves are in the
+   COLOURS section of the CORE, shared with every other app. With no colour class, the name is
+   plain and the circle is Discord blue. colour1-colour10 also work on any other text in a
+   message, like a name in a welcome line. */
+
+/* --- profile pictures, the same way as every other module ---
+   Put a dc-pfp span first inside the username, with a profile or a picture tag in it:
+   <b class="dc-name pfp-shane"><span class="dc-pfp"><span class="pfp pfp-shane"></span></span>Shane</b>
+   It sits exactly where the coloured circle is, in messages and in replies. */
+#workskin .dc .dc-pfp {
+  display: inline-block; /* inline, like the plain circle, so Firefox keeps it level with the name */
+  position: absolute;
+  left: 1.25rem;
+  margin-top: 0.125rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+#workskin .dc .dc-reply .dc-pfp {
+  left: -1.25rem;
+  margin-top: 0.3125rem;
+  width: 1rem;
+  height: 1rem;
+}
+
+#workskin .dc .dc-name:has(.dc-pfp)::before { content: none; }
+
+#workskin .dc .dc-image { border-radius: 0.1875rem; max-width: 360px; width: 100%; }
+
+#workskin .dc .dc-emoji {
+  width: 3rem;
+  height: 3rem;
+  min-height: 3rem;
+  padding-right: 0.25rem;
+}
+
+#workskin .dc .dc-inline-emoji {
+  width: 1.375rem;
+  height: 1.375rem;
+  min-height: 1.375rem;
+  vertical-align: middle;
+  display: inline;
+}
+
+#workskin .dc .dc-reaction {
+  display: inline-block;
+  vertical-align: middle;
+  padding: 0.125rem 0.375rem;
+  border-radius: 0.5rem;
+  box-sizing: border-box;
+  margin-right: 0.25rem;
+  margin-bottom: 0.25rem;
+  border: 1px solid transparent;
+  height: 1.625rem;
+}
+
+#workskin .dc .dc-reaction-count {
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 1.25rem;
+  font-size: 0.875rem;
+  min-width: 0.5625rem;
+  padding-left: 0.375rem;
+}
+
+#workskin .dc .dc-reply { margin-bottom: 0.25rem; line-height: 1.125rem; position: relative; }
+
+#workskin .dc .dc-reply .dc-name {
+  position: relative;
+  left: 1.25rem;
+  font-size: 0.875rem;
+  line-height: 1.125rem;
+  height: 1.125rem;
+}
+
+#workskin .dc .dc-reply .dc-name::before {
+  content: '';
+  background-repeat: no-repeat;
+  background-size: contain;
+  position: absolute;
+  left: -1.25rem;
+  border-radius: 50%;
+  margin-right: 0.25rem;
+  margin-top: 0.3125rem;
+  height: 1rem;
+  width: 1rem;
+}
+
+#workskin .dc .dc-reply .dc-text {
+  position: relative;
+  left: 1rem;
+  font-size: 0.875rem;
+  height: 1.125rem;
+  padding: 0;
+  line-height: 1.125rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: inline-block;
+  max-width: 80%;
+  transform: translate(0%, 25%);
+}
+
+/* the curved line linking a reply to its parent */
+#workskin .dc .dc-reply::before {
+  content: '';
+  display: block;
+  position: absolute;
+  box-sizing: border-box;
+  top: 0.625rem;
+  right: 100%;
+  bottom: 0;
+  left: -2.25rem;
+  margin: -0.0625rem 0.25rem -0.125rem -0.0625rem;
+  border-style: solid;
+  border-width: 0.125rem 0 0 0.125rem;
+  border-top-left-radius: 0.375rem;
+  border-color: rgb(199, 204, 209);
+}
+
+#workskin .dc .dc-embed {
+  display: block;
+  margin: 0.25rem 0;
+  padding: 0.5rem 1rem 1rem 0.75rem;
+  border-left: 0.25rem solid rgb(255, 0, 0);
+  border-radius: 0.25rem;
+  max-width: 432px;
+}
+
+#workskin .dc .dc-embed-title { margin-top: 0.5rem; font-weight: 600; }
+
+#workskin .dc .dc-embed-text { margin-top: 0.5rem; font-size: 0.875rem; }
+
+#workskin .dc .dc-embed-image { margin-top: 1rem; border-radius: 0.25rem; max-width: 100%; }
+
+#workskin .dc .dc-quote { display: table; }
+
+#workskin .dc .dc-quote-line {
+  display: table-cell;
+  width: 0.25rem;
+  border-radius: 0.25rem;
+  background-color: rgb(199, 204, 209);
+}
+
+#workskin .dc .dc-quote-text {
+  display: table-cell;
+  padding: 0 0.5rem 0 0.75rem;
+  box-sizing: border-box;
+  text-indent: 0;
+}
+
+#workskin .dc .dc-code {
+  font-family:
+    Consolas,
+    "Andale Mono WT",
+    "Andale Mono",
+    "Lucida Console",
+    "Lucida Sans Typewriter",
+    "DejaVu Sans Mono",
+    "Bitstream Vera Sans Mono",
+    "Liberation Mono",
+    "Nimbus Mono L",
+    Monaco,
+    "Courier New",
+    Courier,
+    monospace;
+  padding: 0.2em;
+  margin: -0.2em 0;
+  border-radius: 0.1875rem;
+  font-size: 0.85rem !important;
+  text-indent: 0;
+  border: none;
+  white-space: pre-wrap;
+}
+
+#workskin .dc .dc-spoiler-text {
+  border-radius: 0.1875rem;
+  display: inline-block;
+  cursor: pointer;
+  color: rgb(185, 187, 190);
+  background-color: rgb(185, 187, 190);
+  transition: all 0s 2147483647s;
+}
+
+#workskin .dc .dc-spoiler {
+  display: inline-block;
+  position: relative;
+  border-radius: 3px;
+  background-color: rgba(185, 187, 190, 0.95);
+}
+
+#workskin .dc .dc-spoiler > img {
+  opacity: 0;
+  position: relative;
+  vertical-align: bottom;
+  z-index: 10;
+  background-color: rgb(255, 255, 255);
+  transition: all 0s 2147483647s;
+}
+
+#workskin .dc .dc-spoiler:before {
+  content: 'SPOILER';
+  font-size: 0.9375rem;
+  font-weight: 600;
+  z-index: 5;
+  padding: 0.5rem 0.75rem;
+  border-radius: 1.25rem;
+  letter-spacing: .5px;
+  color: rgb(220, 221, 222);
+  background-color: rgba(0, 0, 0, 0.6);
+  position: absolute;
+  top: 50%;
+  right: 50%;
+  transform: translate(50%, -50%);
+  cursor: pointer;
+}
+
+#workskin .dc .dc-mention {
+  border-radius: 3px;
+  padding: 0 2px;
+  color: rgb(80, 92, 220);
+  background-color: rgba(88, 101, 242, 0.15);
+}
+
+/* role mention: copy this rule and rename for more roles */
+#workskin .dc .dc-role-mention {
+  color: rgb(166, 135, 245);
+  background-color: rgba(166, 135, 245, 0.1);
+  border-radius: 3px;
+  padding: 0 2px;
+}
+
+#workskin .dc .dc-divider {
+  z-index: 1;
+  height: 0;
+  border-top: thin solid rgba(79, 84, 92, 0.48);
+  position: relative;
+  box-sizing: border-box;
+  margin: 1.5rem 0.875rem 0.5rem 1rem;
+}
+
+#workskin .dc .dc-divider-label {
+  padding: 0.125rem 0.25rem;
+  line-height: 0.8125rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: 0.5rem;
+  display: block;
+  position: absolute;
+  right: 50%;
+  top: 50%;
+  transform: translate(50%, -50%);
+  z-index: 5;
+  background-color: rgb(255, 255, 255);
+}
+
+#workskin .dc .dc-new-divider {
+  z-index: 1;
+  height: 0;
+  position: relative;
+  border-top-width: thin;
+  border-top-style: solid;
+  margin: 0.5rem 0.875rem 0.5rem 1rem;
+  border-top-color: rgb(216, 60, 62);
+}
+
+#workskin .dc .dc-new-tag {
+  padding: 0 0.25rem 0 0.25rem;
+  line-height: 0.75rem;
+  height: 0.75rem;
+  font-size: 0.625rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  border-radius: 0.1rem 0.25rem 0.25rem 0.1rem;
+  display: block;
+  position: absolute;
+  right: 0.875rem;
+  top: 50%;
+  transform: translate(50%, -50%);
+  z-index: 5;
+  background-color: rgb(216, 60, 62);
+  color: rgb(255, 255, 255);
+}
+
+#workskin .dc .dc-new-tag::before {
+  content: '';
+  left: -0.3rem;
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-top: 0.375rem solid;
+  border-bottom: 0.375rem solid;
+  border-right: 0.5rem solid;
+  border-right-color: rgb(216, 60, 62);
+  border-top-color: rgb(255, 255, 255);
+  border-bottom-color: rgb(255, 255, 255);
+}
+
+#workskin .dc .dc-new-user::before {
+  content: '';
+  background-image: url(https://i.imgur.com/AATotHy.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  position: absolute;
+  border-radius: 50%;
+  margin-top: 0.125rem;
+  left: 2rem;
+  height: 1rem;
+  width: 1rem;
+}
+
+#workskin .dc .dc-bot { position: relative; margin-right: 3rem; }
+
+#workskin .dc .dc-bot::before {
+  content: '\00a0\00a0\00a0\00a0 BOT';
+  color: rgb(255, 255, 255);
+  background-color: rgb(88, 101, 242);
+  background-image: url(https://i.imgur.com/3Ox94zk.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  position: absolute;
+  padding: 0 0.25rem;
+  border-radius: 0.1875rem;
+  font-size: 0.625rem;
+  line-height: 1rem;
+  height: 1rem;
+  width: 2rem;
+  top: 50%;
+  transform: translate(0%, -50%);
+}
+
+#workskin .dc .dc-typing { margin: 0 1.5rem; }
+
+#workskin .dc .typing-indicator {
+  width: auto;
+  border-radius: 1em;
+  padding-right: 0.75em;
+  display: inline;
+  position: relative;
+  overflow: hidden;
+  text-align: left;
+  clear: both;
+}
+
+#workskin .dc .typing-indicator span {
+  height: .65rem;
+  width: .65rem;
+  float: left;
+  margin: .425rem 0 .425rem 0.1rem;
+  display: inline-block;
+  border-radius: 50%;
+  background-color: rgb(46, 51, 56);
+}
+
+#workskin .dc .typing-indicator span:nth-child(1) { opacity: 0.4; transform: scale(0.6, 0.6); }
+
+#workskin .dc .typing-indicator span:nth-child(2) { opacity: 0.6; transform: scale(0.8, 0.8); }
+
+#workskin .dc .typing-indicator span:nth-child(3) { opacity: 0.9; transform: scale(1, 1); }
+
+#workskin .dc .dc-typing-text { font-size: 0.875rem; }
+
+#workskin .dc .dc-code,
+#workskin .dc .dc-embed {
+  background-color: rgb(242, 243, 245);
+}
+
+#workskin .dc .dc-time, #workskin .dc .dc-edited, #workskin .dc .dc-divider-label { color: rgb(94, 103, 114); }
+
+#workskin .dc a:not(.tl),
+#workskin .dc .dc-link,
+#workskin .dc .fake-link {
+  color: rgb(0, 104, 224);
+}
+
+#workskin .dc .dc-reply,
+#workskin .dc .dc-description {
+  color: rgb(79, 86, 96);
+}
+
+#workskin .dc .dc-reaction:not(.me) {
+  background-color: rgb(242, 243, 245);
+  border-color: transparent;
+  color: rgb(79, 86, 96);
+}
+
+#workskin .dc .dc-reaction.me {
+  background-color: rgb(231, 233, 253);
+  border-color: rgb(88, 101, 242);
+  color: rgb(71, 82, 196);
+}
+
+#workskin .dc .dc-message:has(.dc-mention.me) {
+  background-color: rgba(250, 168, 26, 0.1);
+  border-left: 2px solid rgb(170, 114, 18);
+}
+
+#workskin .dc .dc-new-divider .dc-divider-label { color: rgb(216, 60, 62); }
+
+#workskin .dc .hashtag::before { background-image: url(https://i.imgur.com/XbvXZWD.png); }
+
+#workskin .dc .locked::before { background-image: url(https://i.imgur.com/MwjtrTT.png); }
+
+#workskin .dc .at-symbol::before { background-image: url(https://i.imgur.com/0w9EkYY.png); }
+
+#workskin .dc .dc-spoiler-text:active {
+  color: rgb(46, 51, 56);
+  background-color: rgb(229, 229, 229);
+  transition: all 0s;
+}
+
+#workskin .dc .dc-spoiler:active > img { opacity: 1; z-index: 10; transition: all 0s; }
+
+/* ---------- Discord: Links ---------- */
+
+#workskin .dc a:not(.tl):hover { color: rgb(0, 104, 224); text-decoration: underline; }
+
+/* ---------- Discord: Scrolling ---------- */
+
+#workskin .dc { max-height: 640px; overflow-y: auto; overflow-x: hidden; }
+
+#workskin .dc.no-scroll {
+  max-height: none;
+  overflow-y: visible;
+}
+
+#workskin .dc::-webkit-scrollbar {
+  width: 6px;
+}
+
+#workskin .dc::-webkit-scrollbar-thumb {
+  background: rgba(128, 128, 128, 0.5);
+  border-radius: 6px;
+}
+
+/* ---------- Discord: Dark theme (theme-dark) ---------- */
+
+#workskin .dc.theme-dark {
+  color: rgb(220, 221, 222);
+  background-color: rgb(54, 57, 63);
+  border-color: rgb(54, 57, 63);
+}
+
+#workskin .dc.theme-dark h3 { color: rgb(255, 255, 255); }
+
+#workskin .dc.theme-dark .dc-header-divider { border-color: rgb(220, 221, 222); }
+
+#workskin .dc.theme-dark .dc-code,
+#workskin .dc.theme-dark .dc-embed {
+  background-color: rgb(47, 49, 54);
+}
+
+#workskin .dc.theme-dark .dc-time, #workskin .dc.theme-dark .dc-edited, #workskin .dc.theme-dark .dc-divider-label { color: rgb(163, 166, 170); }
+
+#workskin .dc.theme-dark .dc-divider-label { background-color: rgb(54, 57, 63); }
+
+#workskin .dc.theme-dark .dc-quote-line { background-color: rgb(79, 84, 92); }
+
+#workskin .dc.theme-dark a:not(.tl),
+#workskin .dc.theme-dark .dc-link,
+#workskin .dc.theme-dark .fake-link {
+  color: rgb(0, 175, 244);
+}
+
+#workskin .dc.theme-dark a:not(.tl):hover { color: rgb(0, 175, 244); text-decoration: underline; }
+
+#workskin .dc.theme-dark .dc-reply,
+#workskin .dc.theme-dark .dc-description {
+  color: rgb(185, 187, 190);
+}
+
+#workskin .dc.theme-dark .dc-reply::before { border-color: rgb(79, 84, 92); }
+
+#workskin .dc.theme-dark .dc-reaction:not(.me) {
+  background-color: rgb(47, 49, 54);
+  border-color: transparent;
+  color: rgb(185, 187, 190);
+}
+
+#workskin .dc.theme-dark .dc-reaction.me {
+  background-color: rgb(59, 64, 90);
+  border-color: rgb(88, 101, 242);
+  color: rgb(222, 224, 252);
+}
+
+#workskin .dc.theme-dark .dc-mention { color: rgb(222, 224, 252); background-color: rgba(88, 101, 242, 0.3); }
+
+/* message where the POV character is @mentioned */
+#workskin .dc.theme-dark .dc-message:has(.dc-mention.me) {
+  background-color: rgba(250, 168, 26, 0.1);
+  border-left: 2px solid rgb(250, 168, 26);
+}
+
+#workskin .dc.theme-dark .dc-new-divider { border-top-color: rgb(237, 66, 67); }
+
+#workskin .dc.theme-dark .dc-new-divider .dc-divider-label { color: rgb(237, 66, 67); }
+
+#workskin .dc.theme-dark .dc-new-tag { background-color: rgb(237, 66, 67); color: rgb(255, 255, 255); }
+
+#workskin .dc.theme-dark .dc-new-tag::before {
+  border-right-color: rgb(237, 66, 67);
+  border-top-color: rgb(54, 57, 63);
+  border-bottom-color: rgb(54, 57, 63);
+}
+
+#workskin .dc.theme-dark .typing-indicator span { background-color: rgb(220, 221, 222); }
+
+#workskin .dc.theme-dark .dc-input { background-color: rgb(64, 68, 75); }
+
+#workskin .dc.theme-dark .hashtag::before { background-image: url(https://i.imgur.com/y0r7k71.png); }
+
+#workskin .dc.theme-dark .locked::before { background-image: url(https://i.imgur.com/TUuqT0R.png); }
+
+#workskin .dc.theme-dark .at-symbol::before { background-image: url(https://i.imgur.com/Pd0cDve.png); }
+
+#workskin .dc.theme-dark .dc-input-text::before { background-image: url(https://i.imgur.com/LjARlpe.png); }
+
+/* spoilers, dark: hidden until clicked */
+#workskin .dc.theme-dark .dc-spoiler-text {
+  color: rgb(32, 34, 37);
+  background-color: rgb(32, 34, 37);
+  transition: all 0s 2147483647s;
+}
+
+#workskin .dc.theme-dark .dc-spoiler-text:active {
+  color: rgb(220, 221, 222);
+  background-color: rgb(74, 77, 83);
+  transition: all 0s;
+}
+
+#workskin .dc.theme-dark .dc-spoiler { background-color: rgba(10, 10, 10, 0.95); }
+
+#workskin .dc.theme-dark .dc-spoiler > img {
+  opacity: 0;
+  z-index: 10;
+  background-color: rgb(54, 57, 63);
+  transition: all 0s 2147483647s;
+}
+
+#workskin .dc.theme-dark .dc-spoiler:active > img { opacity: 1; z-index: 10; transition: all 0s; }
+
+/* ---------- Discord: Auto theme (theme-auto): light, switching to dark when the reader's device is in dark mode ---------- */
+
+@media (prefers-color-scheme: dark) {
+  #workskin .dc.theme-auto {
+      color: rgb(220, 221, 222);
+      background-color: rgb(54, 57, 63);
+      border-color: rgb(54, 57, 63);
+    }
+
+  #workskin .dc.theme-auto h3 { color: rgb(255, 255, 255); }
+
+  #workskin .dc.theme-auto .dc-header-divider { border-color: rgb(220, 221, 222); }
+
+  #workskin .dc.theme-auto .dc-code,
+    #workskin .dc.theme-auto .dc-embed {
+      background-color: rgb(47, 49, 54);
+    }
+
+  #workskin .dc.theme-auto .dc-time, #workskin .dc.theme-auto .dc-edited, #workskin .dc.theme-auto .dc-divider-label { color: rgb(163, 166, 170); }
+
+  #workskin .dc.theme-auto .dc-divider-label { background-color: rgb(54, 57, 63); }
+
+  #workskin .dc.theme-auto .dc-quote-line { background-color: rgb(79, 84, 92); }
+
+  #workskin .dc.theme-auto a:not(.tl),
+    #workskin .dc.theme-auto .dc-link,
+    #workskin .dc.theme-auto .fake-link {
+      color: rgb(0, 175, 244);
+    }
+
+  #workskin .dc.theme-auto a:not(.tl):hover { color: rgb(0, 175, 244); text-decoration: underline; }
+
+  #workskin .dc.theme-auto .dc-reply,
+    #workskin .dc.theme-auto .dc-description {
+      color: rgb(185, 187, 190);
+    }
+
+  #workskin .dc.theme-auto .dc-reply::before { border-color: rgb(79, 84, 92); }
+
+  #workskin .dc.theme-auto .dc-reaction:not(.me) {
+      background-color: rgb(47, 49, 54);
+      border-color: transparent;
+      color: rgb(185, 187, 190);
+    }
+
+  #workskin .dc.theme-auto .dc-reaction.me {
+      background-color: rgb(59, 64, 90);
+      border-color: rgb(88, 101, 242);
+      color: rgb(222, 224, 252);
+    }
+
+  #workskin .dc.theme-auto .dc-mention { color: rgb(222, 224, 252); background-color: rgba(88, 101, 242, 0.3); }
+
+  /* message where the POV character is @mentioned */
+  #workskin .dc.theme-auto .dc-message:has(.dc-mention.me) {
+      background-color: rgba(250, 168, 26, 0.1);
+      border-left: 2px solid rgb(250, 168, 26);
+    }
+
+  #workskin .dc.theme-auto .dc-new-divider { border-top-color: rgb(237, 66, 67); }
+
+  #workskin .dc.theme-auto .dc-new-divider .dc-divider-label { color: rgb(237, 66, 67); }
+
+  #workskin .dc.theme-auto .dc-new-tag { background-color: rgb(237, 66, 67); color: rgb(255, 255, 255); }
+
+  #workskin .dc.theme-auto .dc-new-tag::before {
+      border-right-color: rgb(237, 66, 67);
+      border-top-color: rgb(54, 57, 63);
+      border-bottom-color: rgb(54, 57, 63);
+    }
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  #workskin .dc.theme-auto .typing-indicator span { background-color: rgb(220, 221, 222); }
+
+  #workskin .dc.theme-auto .dc-input { background-color: rgb(64, 68, 75); }
+
+  #workskin .dc.theme-auto .hashtag::before { background-image: url(https://i.imgur.com/y0r7k71.png); }
+
+  #workskin .dc.theme-auto .locked::before { background-image: url(https://i.imgur.com/TUuqT0R.png); }
+
+  #workskin .dc.theme-auto .at-symbol::before { background-image: url(https://i.imgur.com/Pd0cDve.png); }
+
+  #workskin .dc.theme-auto .dc-input-text::before { background-image: url(https://i.imgur.com/LjARlpe.png); }
+
+  /* spoilers, dark: hidden until clicked */
+  #workskin .dc.theme-auto .dc-spoiler-text {
+      color: rgb(32, 34, 37);
+      background-color: rgb(32, 34, 37);
+      transition: all 0s 2147483647s;
+    }
+
+  #workskin .dc.theme-auto .dc-spoiler-text:active {
+      color: rgb(220, 221, 222);
+      background-color: rgb(74, 77, 83);
+      transition: all 0s;
+    }
+
+  #workskin .dc.theme-auto .dc-spoiler { background-color: rgba(10, 10, 10, 0.95); }
+
+  #workskin .dc.theme-auto .dc-spoiler > img {
+      opacity: 0;
+      z-index: 10;
+      background-color: rgb(54, 57, 63);
+      transition: all 0s 2147483647s;
+    }
+
+  #workskin .dc.theme-auto .dc-spoiler:active > img { opacity: 1; z-index: 10; transition: all 0s; }
+}
+
+/* <<<<<<<<<< MODULE: Discord (end) <<<<<<<<<< */

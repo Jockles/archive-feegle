@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Megaskin, Chapter 18: The Full Megaskin | jockles.com</title>
+  <link rel="stylesheet" href="../../style.css">
+  <script src="../../theme.js"></script>
+  <link rel="stylesheet" href="megaskin.css?v=cdd14f1a" id="creator-style">
+</head>
+<body>
+<header>
+  <h1><a href="../../index.html">jockles.com</a></h1>
+  <p>All the Fannish things I do.</p>
+</header>
+<nav>
+  <ul>
+    <li><a href="../../index.html">Home</a></li>
+    <li><a href="../index.html">Fic</a></li>
+    <li><a href="../../videos/index.html">Videos</a></li>
+    <li><a href="../../blog/index.html">Blog</a></li>
+    <li><a href="../../links.html">Links</a></li>
+    <li><a href="../../about.html">About</a></li>
+  </ul>
+</nav>
+<main>
+      <!-- This page is made by tools/build-megaskin.py. Edit the chapter text in text/full-megaskin.html instead. -->
+      <p class="work-title"><a href="index.html">Megaskin</a> by Jockles</p>
+      <p class="style-toggle"><button type="button" id="style-toggle">Hide Creator's Style</button></p>
+      <p class="chapter-nav"><a href="discord-css.html">&larr; Previous Chapter</a> &middot; <a href="index.html">Chapter Index</a></p>
+
+      <div class="fic">
+        <h3 class="chapter-title">Chapter 18: The Full Megaskin</h3>
+        <div id="workskin">
+<h3>The Full Megaskin</h3>
+
+<p>This is the whole thing: the core and every module in one work skin. If you'd rather not pick and choose, this is the one to use.</p>
+
+<h4>Getting the CSS</h4>
+
+<p>The full megaskin is here: <a href="megaskin.css">jockles.com/fic/megaskin/megaskin.css</a>. It's the core plus every app, in the same order as this tutorial: iMessage, WhatsApp, Twitter/X, Instagram, Tumblr, Email and Discord.</p>
+
+<h4>Putting it on AO3</h4>
+
+<ol>
+  <li>Open the link above, select everything, and copy it.</li>
+  <li>On AO3, go to <strong>Dashboard</strong> &gt; <strong>Skins</strong> &gt; <strong>Create Work Skin</strong>.</li>
+  <li>Give it a title, paste everything into the <strong>CSS</strong> box, and submit.</li>
+  <li>When you post or edit a fic, pick the skin under <strong>Associations</strong> &gt; <strong>Select Work Skin</strong>.</li>
+  <li>Use the HTML from the app chapters in your chapter text, in the HTML editor rather than the Rich Text one.</li>
+</ol>
+
+<details>
+<summary>If AO3 won't save it</summary>
+<p>Check you copied the whole file - from the very first <code>/*</code> at the top to the very last <code>*/</code> at the bottom. A missing bracket anywhere can stop the rest from working.</p>
+<p>If you'd rather keep the skin smaller, use the core and only the apps you need instead - the link is at the top of each CSS chapter.</p>
+</details>
+
+<h4>What's in it</h4>
+
+<p>The top of the file has notes on how it's organised. The short version:</p>
+
+<ul>
+  <li>The core comes first, and every app needs it.</li>
+  <li>Each app runs from its <code>&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; MODULE</code> line to its <code>&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt; MODULE</code> line, so you can delete any app you don't use by cutting everything between those two lines (and the lines themselves).</li>
+  <li>Every app is built the same way - main rules, Links, Scrolling, Dark theme, Auto theme - so once you know one, you can find your way round all of them.</li>
+</ul>
+
+<h4>Credits</h4>
+
+<p>The megaskin is built on a lot of other people's work. Every source is listed in the first chapter, <a href="getting-started.html">Getting Started, Sources and Credits</a> - please have a look at their tutorials too, and credit them if you use their parts. The Discord module in particular asks for BookKeep to be credited in your author's notes.</p>
+        </div>
+      </div>
+
+      <p class="chapter-nav"><a href="discord-css.html">&larr; Previous Chapter</a> &middot; <a href="index.html">Chapter Index</a></p>
+</main>
+<footer>
+  Made by hand in HTML &amp; CSS. No trackers, no cookies, no ads.
+</footer>
+<script>
+  // Works like AO3's "Hide Creator's Style" button: switches the work skin off and on.
+  (function () {
+    var skin = document.getElementById("creator-style");
+    var button = document.getElementById("style-toggle");
+    function show(off) {
+      skin.disabled = off;
+      button.textContent = off ? "Show Creator's Style" : "Hide Creator's Style";
+    }
+    try { show(localStorage.getItem("hide-creator-style") === "yes"); } catch (e) { show(false); }
+    button.addEventListener("click", function () {
+      var off = !skin.disabled;
+      show(off);
+      try { localStorage.setItem("hide-creator-style", off ? "yes" : "no"); } catch (e) {}
+    });
+  })();
+</script>
+</body>
+</html>

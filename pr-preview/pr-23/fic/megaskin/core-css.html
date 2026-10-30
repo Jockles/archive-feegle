@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Megaskin, Chapter 3: The Core CSS | jockles.com</title>
+  <link rel="stylesheet" href="../../style.css">
+  <script src="../../theme.js"></script>
+  <link rel="stylesheet" href="megaskin.css?v=cdd14f1a" id="creator-style">
+</head>
+<body>
+<header>
+  <h1><a href="../../index.html">jockles.com</a></h1>
+  <p>All the Fannish things I do.</p>
+</header>
+<nav>
+  <ul>
+    <li><a href="../../index.html">Home</a></li>
+    <li><a href="../index.html">Fic</a></li>
+    <li><a href="../../videos/index.html">Videos</a></li>
+    <li><a href="../../blog/index.html">Blog</a></li>
+    <li><a href="../../links.html">Links</a></li>
+    <li><a href="../../about.html">About</a></li>
+  </ul>
+</nav>
+<main>
+      <!-- This page is made by tools/build-megaskin.py. Edit the chapter text in text/core-css.html instead. -->
+      <p class="work-title"><a href="index.html">Megaskin</a> by Jockles</p>
+      <p class="style-toggle"><button type="button" id="style-toggle">Hide Creator's Style</button></p>
+      <p class="chapter-nav"><a href="core.html">&larr; Previous Chapter</a> &middot; <a href="index.html">Chapter Index</a> &middot; <a href="imessage.html">Next Chapter &rarr;</a></p>
+
+      <div class="fic">
+        <h3 class="chapter-title">Chapter 3: The Core CSS</h3>
+        <div id="workskin">
+<h3>The Core CSS</h3>
+
+<p>This chapter goes through the CSS behind the last one: the chat box, scrolling, round pictures, hidden text, translations, character profiles and the ten colours every app shares. It's the part of the skin that every module needs, so whichever apps you use, the core goes in first.</p>
+
+<p>You don't need to understand any of this to use the skin. It's here for when you want to change something - a size, a colour, a profile - and want to know which bit to touch without breaking anything else.</p>
+
+<h4>Getting the CSS</h4>
+
+<p>The core CSS is here: <a href="css/core.css">jockles.com/fic/megaskin/css/core.css</a>. Open it, select everything, and copy it into your work skin <em>before</em> any of the modules. Each module chapter has its own link like this one, and the very last chapter has the whole megaskin in one file.</p>
+
+<details>
+<summary>Where to paste it on AO3</summary>
+
+<p>Go to your Dashboard, then <em>Skins</em>, then <em>My Work Skins</em>, then <em>Create Work Skin</em>. Give it a title, paste the CSS into the <em>CSS</em> box and press <em>Submit</em>. If AO3 complains about a line, it'll tell you which one - check you've copied the whole file, from the first <code>/*</code> to the last <code>*/</code>.</p>
+
+<p>To add a module later, edit the skin and paste the module's CSS underneath what's already there.</p>
+
+</details>
+
+<h4>How the CSS is Laid Out</h4>
+
+<p>Every rule in the skin starts with <code>#workskin</code>. AO3 insists on it: it's how AO3 keeps a work skin inside your fic, so it can't touch the rest of the page. If you write your own rules, start them with <code>#workskin</code> too, or AO3 will throw them out.</p>
+
+<p>AO3 also doesn't allow CSS variables or <code>@import</code>, so every colour is written out in full wherever it's used. The exception is the ten colours for pictures and names, which every app shares - they're all together in the core, so there's only one place to change them (see The Ten Colours, below).</p>
+
+<p>The skin is split into blocks, and each block starts and ends with a line like this:</p>
+
+<pre><code>/* &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; CORE (start) &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; */
+...
+/* &lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt; CORE (end) &lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt; */</code></pre>
+
+<p>The core comes first, then one block per app, in the same order as the chapters. Each app's block only needs the core, so you can keep the core plus the apps you use and delete the rest, from its start line to its end line.</p>
+
+<h4>The Chat Box</h4>
+
+<p>Every chat apart from Discord sits in a <code>mob</code> box, and this is where it gets its size:</p>
+
+<pre><code>#workskin .mob {
+  width: 380px;
+  max-width: 100%;
+  margin: 1.2em auto;
+  padding: 0;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 0.92em;
+  line-height: 1.35;
+  text-align: left;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+#workskin .mob p { margin: 0; padding: 0; text-indent: 0; }</code></pre>
+
+<ul>
+  <li><code>width: 380px</code> is the width of a phone, and <code>max-width: 100%</code> lets it shrink on a screen narrower than that, so it never runs off the side.</li>
+  <li><code>margin: 1.2em auto</code> leaves a gap above and below, and <code>auto</code> centres it on the page.</li>
+  <li>The font is the plain sans-serif that phones use, rather than whatever the reader has AO3 set to.</li>
+  <li>The second rule takes away the gaps AO3 puts around every paragraph, and the indent some site skins add to the first line. Every message is a <code>&lt;p&gt;</code>, so without it the chats would be full of holes.</li>
+</ul>
+
+<p>The header, the body and the centred system lines come next:</p>
+
+<pre><code>#workskin .mob-head { padding: 0.6em 0.9em; text-align: center; font-weight: bold; }
+
+#workskin .mob-body { padding: 0.7em 0.7em 0.5em 0.7em; }
+
+#workskin .mob-sys {
+  display: block;
+  text-align: center;
+  font-size: 0.78em;
+  margin: 0.6em 0;
+  opacity: 0.75;
+}</code></pre>
+
+<p>These only set the shape. The colours are in each app's module, which is how the same <code>mob-head</code> can be grey in iMessage and green in WhatsApp.</p>
+
+<details>
+<summary>Changing the size of every chat</summary>
+
+<ul>
+  <li><strong>Wider or narrower:</strong> change <code>380px</code>. Every module is designed for 380, so anything much over 420 starts to look less like a phone.</li>
+  <li><strong>Bigger or smaller text:</strong> change <code>font-size: 0.92em</code>. Everything inside a chat is sized in <code>em</code>, so bubbles, pictures and gaps all grow and shrink with it.</li>
+  <li><strong>A different font:</strong> change <code>font-family</code>. Put the font you want first, and keep the others after it for readers who don't have it.</li>
+</ul>
+
+</details>
+
+<h4>Using the Reader's Own Font</h4>
+
+<p>Each app sets its own font, so the chats look like the real thing - the core's is the plain phone font above, and some apps have their own (Gmail uses Roboto, Discord uses Whitney, Tumblr's quote posts use Georgia, and so on). That's the default, and it's what the skin does as it comes.</p>
+
+<p>Some readers set their own font on their device or in their AO3 site skin, often for accessibility - a dyslexia-friendly font, for example. The app fonts override theirs inside the chats. If you'd rather your chats used the reader's font instead, this isn't in the main CSS, but you can add it yourself. Paste it at the very end of your work skin:</p>
+
+<pre><code>#workskin *,
+#workskin *::before,
+#workskin *::after {
+  font-family: inherit !important;
+}</code></pre>
+
+<ul>
+  <li><code>*</code> means "everything", so this catches every part of every app, plus the bits the CSS adds itself with <code>::before</code> and <code>::after</code>.</li>
+  <li><code>inherit</code> means "use whatever font the thing around you has", so everything ends up in the reader's font, all the way down.</li>
+  <li><code>!important</code> makes it win over every app's own font, wherever they are in the skin.</li>
+</ul>
+
+<p><strong>The catch:</strong> the skin is spaced and sized for the default fonts. With some fonts - especially wide ones, or ones with tall or deep letters - names might not fit on one line, text can get cut off with "..." sooner, initials can sit off-centre in their circles, and some gaps and boxes might look a bit wonky. Check your chats with a couple of different fonts before you post.</p>
+
+<details>
+<summary>Keeping code and chat posts in a typewriter font</summary>
+
+<p>The rule above also changes the typewriter-style font in Discord code blocks and Tumblr chat posts. To keep those, add this underneath it:</p>
+
+<pre><code>#workskin .dc .dc-code,
+#workskin .tb .tb-chat {
+  font-family: monospace !important;
+}</code></pre>
+
+<p>Because it comes after the first rule and is more specific, it wins for just those two.</p>
+
+</details>
+
+<h4>Phone Width or Full Width</h4>
+
+<pre><code>#workskin .mob.wide {
+  width: auto;
+  max-width: none;
+}</code></pre>
+
+<p><code>wide</code> undoes the phone width, so the chat fills whatever it's sitting in. <code>.mob.wide</code> with no space means "a box that has <em>both</em> <code>mob</code> and <code>wide</code>", so it only touches chats you've added <code>wide</code> to.</p>
+
+<h4>Scrolling</h4>
+
+<pre><code>#workskin .mob-body { max-height: 580px; overflow-y: auto; overflow-x: hidden; }
+
+#workskin .mob.no-scroll {
+  max-height: none;
+  overflow-y: visible;
+}
+
+#workskin .mob.no-scroll .mail-body,
+#workskin .mob.no-scroll .mob-body {
+  max-height: none;
+  overflow-y: visible;
+}</code></pre>
+
+<ul>
+  <li><code>max-height: 580px</code> is about the height of a phone screen. A chat shorter than that isn't affected at all.</li>
+  <li><code>overflow-y: auto</code> adds a scroll bar only when it's needed, and <code>overflow-x: hidden</code> stops a sideways one appearing.</li>
+  <li>Because it's the <code>mob-body</code> that scrolls and not the whole box, the header and message bar stay where they are. Posts with no <code>mob-body</code>, like tweets, get their scrolling in their own module.</li>
+  <li><code>no-scroll</code> puts it all back to normal, so the chat grows as tall as it needs to.</li>
+</ul>
+
+<p>To make every chat taller or shorter before it scrolls, change <code>580px</code>.</p>
+
+<details>
+<summary>The slim scroll bar</summary>
+
+<pre><code>#workskin .mob-body::-webkit-scrollbar {
+  width: 6px;
+}
+
+#workskin .mob-body::-webkit-scrollbar-thumb {
+  background: rgba(128, 128, 128, 0.5);
+  border-radius: 6px;
+}</code></pre>
+
+<p>This makes the scroll bar thin and grey, like a phone's. It only works in Chrome, Edge and Safari - Firefox keeps its own scroll bar, which is fine, it just looks a little chunkier. The grey is see-through (the <code>0.5</code>), so it works on light and dark chats alike.</p>
+
+</details>
+
+<h4>Round Pictures</h4>
+
+<p>Every profile picture, in every app, is a <code>pfp</code> span inside that app's circle. The circle decides the size, and <code>pfp</code> does the cropping:</p>
+
+<pre><code>#workskin .pfp {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 50%;
+  background-size: cover;
+  background-position: center;
+}
+
+#workskin .pfp img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+}
+
+#workskin .pfp img.land {
+  right: -9999px;
+  left: -9999px;
+  width: auto;
+  height: 100%;
+  margin: 0 auto;
+}</code></pre>
+
+<ul>
+  <li><code>pfp</code> fills its circle (<code>100%</code> each way), rounds itself off (<code>border-radius: 50%</code>) and hides anything that pokes out (<code>overflow: hidden</code>). That's the crop.</li>
+  <li>The picture inside is pinned to the top left and made as wide as the circle. A tall picture then pokes out of the bottom and gets cut off, so the top of the photo - usually the face - stays in view.</li>
+  <li>A wide picture made as wide as the circle wouldn't be tall enough to fill it, which is what <code>land</code> is for. It makes the picture as tall as the circle instead. The <code>-9999px</code> on both sides with <code>margin: 0 auto</code> is an old trick for centring something wider than its box: it gives the picture an enormous space to sit in, and <code>auto</code> puts it in the middle.</li>
+  <li><code>background-size: cover</code> is for profiles, which set their picture as a background instead of a picture tag. <code>cover</code> crops a background to fill the circle by itself, whatever its shape, which is why profile pictures never need <code>land</code>.</li>
+</ul>
+
+<p>A circle with no picture in it shows initials on a plain colour instead. The colours for that, <code>colour1</code> to <code>colour10</code>, are near the end of the core - see The Ten Colours, below.</p>
+
+<h4>Hidden Text</h4>
+
+<pre><code>#workskin .hide.hide.hide.hide { display: none; }</code></pre>
+
+<p>That's the whole thing. <code>display: none</code> takes the text away while the skin is on, and when a reader turns Creator's Style off, the rule goes with the rest of the skin, so the text comes back.</p>
+
+<p>The class is written four times on purpose. When two rules disagree, the browser goes with the more specific one, and every extra class makes a rule more specific. Lots of rules in the modules set <code>display</code> on spans and paragraphs, and some of them could otherwise win and make hidden text show up in the middle of a chat. Four times beats all of them.</p>
+
+<h4>Video Descriptions</h4>
+
+<pre><code>#workskin .vid-desc {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}</code></pre>
+
+<p>This doesn't hide the description, it just moves it a long way off the left edge of the screen and shrinks it to a single dot. Sighted readers never see it, but screen readers still read it out, because as far as they're concerned it's still on the page. <code>display: none</code>, like <code>hide</code> uses, would hide it from screen readers too.</p>
+
+<h4>Typing Line and Deleted Text</h4>
+
+<pre><code>#workskin .mob .typing {
+  display: block;
+  font-size: 0.75em;
+  font-style: italic;
+  opacity: 0.7;
+  margin: 0.3em 0.9em;
+}
+
+#workskin .mob .del { text-decoration: line-through; opacity: 0.6; }</code></pre>
+
+<p><code>opacity</code> fades the text, so it's lighter than the messages on a light chat and darker on a dark one, without needing a colour for each. Lower the number to fade it more.</p>
+
+<h4>Links That Go Nowhere</h4>
+
+<pre><code>#workskin .mob .fake-link,
+#workskin .mob a:not(.tl) {
+  text-decoration: underline;
+}
+
+#workskin .mob .fake-link,
+#workskin .mob a:not(.tl) { cursor: pointer; }</code></pre>
+
+<p>A <code>fake-link</code> and a real link get the same underline and the same pointing-hand cursor, so readers can't tell them apart. <code>a:not(.tl)</code> means "any link that isn't a translation", because translations are links too and need to look different. The colours are in each module, under its <em>Links</em> heading.</p>
+
+<h4>Hover and Tap Translations</h4>
+
+<h5>Credits</h5>
+
+<p>The translations are built on the work below. They're also listed in <a href="getting-started.html#credits">Credits and sources</a> in the first chapter, with all the other credits. Please go and leave them some kudos!</p>
+
+<ul>
+  <li><em>How To Change Text on AO3 When the Cursor is Hovering Over It (Or Clicked on Mobile)</em> by La_Temperanza, <a href="https://archiveofourown.org/works/10957056">archiveofourown.org/works/10957056</a>. Swapping the text when the reader hovers or taps, the brackets that show when Creator's Style is off, and using a link so that tapping works on a phone are all based on this. In this skin every translation is written in the HTML, so no new CSS is needed for each one.</li>
+</ul>
+
+<p>This is the cleverest bit of the core, and it's based on La_Temperanza's tutorial (see the credits in chapter 1). Here's the HTML again, to have it in front of you:</p>
+
+<pre><code>&lt;a class="tl" href="#t1"&gt;&lt;span class="orig"&gt;Diolch yn fawr&lt;/span&gt;&lt;span class="tltn"&gt;&lt;span class="hide"&gt; (&lt;/span&gt;Thank you very much&lt;span class="hide"&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/a&gt;</code></pre>
+
+<p>First, the translation link stops looking like a link:</p>
+
+<pre><code>#workskin a.tl,
+#workskin a.tl:link,
+#workskin a.tl:visited,
+#workskin a.tl:hover,
+#workskin a.tl:focus,
+#workskin a.tl:active {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px dotted; /* delete this line to hide the dotted line on every translation (for just one, use the egg class below) */
+}</code></pre>
+
+<p><code>color: inherit</code> makes it the same colour as the text around it, so it fits into any bubble in any theme, and the dotted line underneath is the only clue it's there. The rule lists the link in every state - visited, hovered and so on - because browsers have their own colours for each, and they all need switching off.</p>
+
+<p><strong>The one line to delete:</strong> if you want every translation in your fic to have no dotted line, like an easter egg, delete <code>border-bottom: 1px dotted;</code>, comment and all. Nothing else needs changing.</p>
+
+<p>Next, the translation is hidden until it's needed:</p>
+
+<pre><code>#workskin a.tl span.tltn {
+  display: none;
+  margin: 0;
+  padding: 0;
+}
+
+#workskin a.tl span.hide { display: none; }</code></pre>
+
+<p>Then, on hover or tap, the two swap over:</p>
+
+<pre><code>#workskin a.tl:hover,
+#workskin a.tl:focus {
+  display: inline-block;
+}
+
+#workskin a.tl:hover span.orig,
+#workskin a.tl:focus span.orig {
+  display: block;
+  height: 0;
+  overflow: hidden;
+  visibility: hidden;
+}
+
+#workskin a.tl:hover span.tltn,
+#workskin a.tl:focus span.tltn {
+  display: block;
+}</code></pre>
+
+<ul>
+  <li><code>:hover</code> is the mouse being over the words, and <code>:focus</code> is a tap on a phone. Tapping a link gives it focus, which is why translations are links, and the <code>#t1</code> means the tap doesn't take the reader anywhere.</li>
+  <li>The original isn't removed, just made invisible and flattened to no height. It still takes up its full width, so the link never gets narrower than it was. If it did, a short translation could slide out from under the mouse, the original would come back, slide under the mouse again, and the words would flicker.</li>
+  <li><code>inline-block</code> lets the link hold the two pieces stacked on top of each other while still sitting in the middle of a sentence.</li>
+</ul>
+
+<p>The cursor is set to <code>help</code> - the arrow with a question mark - so computer readers get a hint that there's something there.</p>
+
+<details>
+<summary>Easter eggs</summary>
+
+<pre><code>#workskin a.tl.egg,
+#workskin a.tl.egg:link,
+#workskin a.tl.egg:visited,
+#workskin a.tl.egg:hover,
+#workskin a.tl.egg:focus,
+#workskin a.tl.egg:active {
+  border-bottom: 0;
+  outline: 0;
+}
+
+#workskin a.tl.egg,
+#workskin a.tl.egg:link,
+#workskin a.tl.egg:visited,
+#workskin a.tl.egg:hover,
+#workskin a.tl.egg:focus,
+#workskin a.tl.egg:active { cursor: text; }</code></pre>
+
+<p><code>egg</code> takes away the dotted line, and the box browsers draw around a tapped link (<code>outline: 0</code>). The cursor becomes the ordinary text cursor, so not even the mouse gives it away.</p>
+
+</details>
+
+<h4>Character Profiles, Line by Line</h4>
+
+<p>A profile is a block of CSS for one character. The trick behind it is that CSS can't put text on a page by itself, but it <em>can</em> add text before or after something with <code>::before</code> and <code>::after</code>. So <code>&lt;span class=&quot;handle pfp-luca&quot;&gt;&lt;/span&gt;</code> is an empty span, and the profile fills it in. Because the words come from the CSS, they disappear when the skin is off, which is why every example has a <code>hide</code> copy typed inside.</p>
+
+<h5>A Simple Profile: Stan</h5>
+
+<p>Stan's is the simplest profile in the skin. It only has the five lines every profile needs:</p>
+
+<pre><code>/* PROFILE: Stan */
+#workskin .pfp.pfp-stan { background-color: #c06a1f; }
+#workskin .wa .who.pfp-stan, #workskin .dc .dc-name.pfp-stan { color: #d2782a; }
+#workskin .name.pfp-stan::before { content: "Stan"; }
+#workskin .handle.pfp-stan::after { content: "PuckStan"; }
+#workskin .email.pfp-stan::after { content: "Puckstan@gmail.com"; }</code></pre>
+
+<p>Here's what each line does:</p>
+
+<ol>
+  <li><strong>The picture.</strong> Any <code>pfp</code> span that also has <code>pfp-stan</code> gets this. Stan doesn't have a photo, so his is just a plain orange circle (<code>background-color</code>). For a real picture, swap it for <code>background-image: url(https://example.com/stan.jpg);</code>, like Luca's below.</li>
+  <li><strong>The name colour.</strong> WhatsApp group names and Discord usernames are coloured, so this is Stan's colour in both. It does the same job as <code>colour1</code> to <code>colour10</code>, just for one character, so you don't need a colour class as well. Pick a colour you can read on white and on black, because readers will see it in both themes.</li>
+  <li><strong>The name.</strong> <code>&lt;span class=&quot;name pfp-stan&quot;&gt;&lt;/span&gt;</code> is an empty span, and <code>::before</code> with <code>content</code> fills it in with "Stan".</li>
+  <li><strong>The handle.</strong> The same idea for <code>&lt;span class=&quot;handle pfp-stan&quot;&gt;&lt;/span&gt;</code>, but with <code>::after</code>. Leave the @ off - Twitter/X adds it for you (there's more on why in line 8 of Luca's, below).</li>
+  <li><strong>The email address.</strong> The same again, for <code>&lt;span class=&quot;email pfp-stan&quot;&gt;&lt;/span&gt;</code>.</li>
+</ol>
+
+<p>That's a whole profile. The comment line at the top (<code>/* PROFILE: Stan */</code>) doesn't do anything - it's just a label, so you can find each character's block.</p>
+
+<h5>Every Option: Luca</h5>
+
+<p>Luca's profile uses every option, so here it is a line at a time. Only the lines marked <em>every profile</em> need to be in yours - they're the same five as Stan's.</p>
+
+<p><strong>1. Picture (every profile)</strong></p>
+
+<pre><code>#workskin .pfp.pfp-luca { background-image: url(https://example.com/luca.jpg); }</code></pre>
+
+<p>Any <code>pfp</code> span that also has <code>pfp-luca</code> gets this picture as its background. <code>background-size: cover</code>, from Round Pictures above, crops it to the circle. For a plain colour instead, use <code>background-color: #c06a1f;</code>, like Stan's.</p>
+
+<p><strong>2. A different picture on one app</strong></p>
+
+<pre><code>#workskin .tw .pfp.pfp-luca, #workskin .tw-reply .pfp.pfp-luca { background-image: url(https://example.com/luca-cat.jpg); }</code></pre>
+
+<p>The space before <code>.pfp</code> means "inside". So this is "Luca's picture, inside a tweet or a reply". It's more specific than line 1, so it wins on Twitter/X, and line 1 still covers every other app. Each app has its own module classes - <code>tw</code> and <code>tw-reply</code> for tweets, <code>ig</code> and <code>igdm</code> for Instagram - so give it all of them.</p>
+
+<p><strong>3. Name colour (every profile)</strong></p>
+
+<pre><code>#workskin .wa .who.pfp-luca, #workskin .dc .dc-name.pfp-luca { color: #1f9e89; }</code></pre>
+
+<p>WhatsApp group names and Discord usernames are coloured, so this sets Luca's colour in both. Pick one that you can read on white and on black, because readers will see it in both themes.</p>
+
+<p><strong>4. A different name colour for one app</strong></p>
+
+<pre><code>#workskin .dc .dc-name.pfp-luca { color: #e8734a; }</code></pre>
+
+<p>Like line 2, a line for one app comes after the general line and wins there.</p>
+
+<p><strong>5. Name (every profile)</strong></p>
+
+<pre><code>#workskin .name.pfp-luca::before { content: "Luca"; }</code></pre>
+
+<p><code>content</code> is the text that gets added, in quotes.</p>
+
+<p><strong>6. A different name for one app</strong></p>
+
+<pre><code>#workskin .tw .name.pfp-luca::before, #workskin .tw-reply .name.pfp-luca::before, #workskin .twdm .name.pfp-luca::before { content: "Luca | cat dad"; }</code></pre>
+
+<p><strong>7. Saved as</strong></p>
+
+<pre><code>#workskin .mob.pov-shane .name.pfp-luca::before { content: "Luca (cat pictures)"; }
+#workskin .mob.pov-ilya .name.pfp-luca::before { content: "Cat Guy"; }</code></pre>
+
+<p>This is "Luca's name, inside a chat on Shane's phone". <code>pov-shane</code> goes on the chat's container, so every name in that chat changes to what Shane has saved. One line per phone, and it goes in the profile of the person being named, so everything about how Luca shows up is in Luca's block.</p>
+
+<p><strong>8. Handle (every profile)</strong></p>
+
+<pre><code>#workskin .handle.pfp-luca::after { content: "luca"; }</code></pre>
+
+<p>Handles use <code>::after</code> instead of <code>::before</code>, because Twitter/X needs the <code>::before</code> for its @:</p>
+
+<pre><code>#workskin .tw span.handle::before,
+#workskin .tw-reply span.handle::before,
+#workskin .twdm span.handle::before { content: "@"; }</code></pre>
+
+<p>So on Twitter/X, a handle gets an @ in front and the name after it, and everywhere else it's just the name. That's why you leave the @ off.</p>
+
+<p><strong>9. A different handle for one app</strong></p>
+
+<pre><code>#workskin .ig .handle.pfp-luca::after, #workskin .igdm .handle.pfp-luca::after { content: "luca.grams"; }</code></pre>
+
+<p><strong>10. Email address</strong></p>
+
+<pre><code>#workskin .email.pfp-luca::after { content: "luca@example.com"; }</code></pre>
+
+<p><strong>11. A different email address in Gmail or the email window</strong></p>
+
+<pre><code>#workskin .mail .email.pfp-luca::after { content: "luca@work.example.com"; }</code></pre>
+
+<p><code>.mail</code> is the generic email window, and <code>.gm</code> is Gmail.</p>
+
+<p><strong>12. Their phone's wallpaper</strong></p>
+
+<pre><code>#workskin .mob.wa.pov-luca { background: linear-gradient(#fdf1d6, #f6d5c2); }</code></pre>
+
+<p>A WhatsApp chat with <code>pov-luca</code> on it gets this background. A colour, a gradient (one colour fading into another, like this) or <code>url(...)</code> with a picture all work.</p>
+
+<details>
+<summary>Why names, handles and emails look like the text around them</summary>
+
+<pre><code>#workskin .mob span.handle.handle.handle.handle,
+#workskin .dc span.handle.handle.handle.handle,
+#workskin .mob span.name.name.name.name,
+#workskin .dc span.name.name.name.name,
+#workskin .mob span.email.email.email.email {
+  display: inline;
+  float: none;
+  margin: 0;
+  padding: 0;
+  font-size: 1em;
+  font-weight: inherit;
+  color: inherit;
+  opacity: 1;
+}</code></pre>
+
+<p>A profile span can end up inside almost anything - a bold name line, a grey subline, a link - and some of those parts have rules for every span inside them. This rule wipes all of that off, so a handle takes on the look of wherever it's sitting. The classes are repeated for the same reason as <code>hide</code>: so this rule beats everything else.</p>
+
+</details>
+
+<h4>Making Your Own Profile</h4>
+
+<p>Copy Stan's block from above and change <code>stan</code> to your character's name everywhere in it:</p>
+
+<pre><code>/* PROFILE: Stan */
+#workskin .pfp.pfp-stan { background-color: #c06a1f; }
+#workskin .wa .who.pfp-stan, #workskin .dc .dc-name.pfp-stan { color: #d2782a; }
+#workskin .name.pfp-stan::before { content: "Stan"; }
+#workskin .handle.pfp-stan::after { content: "PuckStan"; }
+#workskin .email.pfp-stan::after { content: "Puckstan@gmail.com"; }</code></pre>
+
+<details>
+<summary>Things that trip people up</summary>
+
+<ul>
+  <li>A profile name can't have spaces in it. Use a hyphen: <code>pfp-shane-work</code>.</li>
+  <li>Keep the quotes around names, handles and emails, and keep the semicolon before the <code>}</code>. A missing quote is the most common reason AO3 rejects a skin.</li>
+  <li>If a name has a quote mark or apostrophe in it, like <code>Cat Guy's Cat</code>, that's fine inside double quotes. A double quote inside needs a backslash in front: <code>"The \"Captain\""</code>.</li>
+  <li>Picture links need to end in <code>.jpg</code>, <code>.png</code> or <code>.gif</code>. AO3 won't accept some links in CSS, even if they work in your HTML.</li>
+  <li>The profiles that come with the skin are only examples. Delete the ones you don't need - they don't do anything unless you use them, but they make the skin longer.</li>
+</ul>
+
+</details>
+
+<h4>The Ten Colours</h4>
+
+<p>Every app uses the same ten colours, <code>colour1</code> to <code>colour10</code>, for its round picture circles and for people's names. They all live at the end of the core, so if you change a colour there, it changes in every app at once. Here's everything for <code>colour1</code>:</p>
+
+<pre><code>/* picture circles (the same in light and dark) */
+#workskin .wa .wa-pfp.colour1,
+#workskin .tw .tw-pfp.colour1,
+#workskin .tw-reply .tw-pfp.colour1,
+#workskin .tb .tb-pfp.colour1,
+#workskin .tb .tb-ask-pfp.colour1,
+#workskin .gm .gm-pfp.colour1,
+#workskin .dc .dc-name.colour1::before { background-color: #b5733a; }
+
+/* names */
+#workskin .wa .who.colour1,
+#workskin .wa .wa-quote.colour1 b,
+#workskin .dc .colour1 { color: #b8651f; }
+
+#workskin .wa .wa-quote.colour1 { border-left-color: #b8651f; }
+
+/* names in the dark theme */
+#workskin .wa.theme-dark .who.colour1,
+#workskin .wa.theme-dark .wa-quote.colour1 b,
+#workskin .dc.theme-dark .colour1 { color: #f0a25c; }
+
+#workskin .wa.theme-dark .wa-quote.colour1 { border-left-color: #f0a25c; }</code></pre>
+
+<ul>
+  <li>The first rule is the picture circles. They're the same in light and dark, so there's only one version.</li>
+  <li>The second is names - WhatsApp's group names, the name in a WhatsApp quoted reply, and Discord names. A name colour is a little lighter or brighter than the circle with the same number, because coloured text needs more contrast than a coloured circle to be easy to read. In a WhatsApp quoted reply, the line down the side is the name colour too.</li>
+  <li>The dark theme has a third set, lighter again, for reading on a dark background. The same dark rules are copied for <code>theme-auto</code> inside <code>@media (prefers-color-scheme: dark)</code>, like every other theme rule.</li>
+  <li>One extra rule lightens Discord's <code>colour2</code> circle in the dark theme, because the original dark grey disappears into Discord's dark background.</li>
+</ul>
+
+<p><strong>Every app's class names are already in these rules.</strong> Each one lists the circle or name class for every app (<code>wa-pfp</code> for WhatsApp, <code>tw-pfp</code> for Twitter/X, <code>dc-name</code> for Discord, and so on), so the colours work whichever apps you use. If you've only kept some of the apps, leave the lists as they are: a class name for an app you're not using just doesn't match anything in your fic, so it doesn't change or break anything.</p>
+
+<details>
+<summary>Changing one of the ten colours</summary>
+
+<p>Search the core for <code>colour1</code> (or whichever number). You'll find the circle rule, the name rule and the quote line rule, then the same name and quote line rules again under the dark theme and the auto theme, with the lighter shade. Change the colour codes in each.</p>
+
+<p>Pick a light-mode name colour you can read on white, and a dark-mode one you can read on near-black. If you've used profiles instead, the name colour is in each character's profile, and none of this applies.</p>
+
+<p>If you ever add your own app, add its circle and name classes to these lists, and it'll get the same ten colours.</p>
+
+</details>
+
+<h4>Themes</h4>
+
+<p>Apart from the ten colours above, the core doesn't hold any colours, so there's nothing else about themes in it. Each module has its own dark theme and auto theme at the bottom of its block, and they work the same way everywhere:</p>
+
+<ul>
+  <li>The module's normal rules are its light theme, so a chat with <code>theme-light</code>, or with no theme class at all, is light.</li>
+  <li><code>theme-dark</code> has its own rules, which swap the colours over.</li>
+  <li><code>theme-auto</code> has a copy of the dark rules wrapped in <code>@media (prefers-color-scheme: dark)</code>. That asks the reader's device whether it's in dark mode, and only uses the dark colours if it is.</li>
+</ul>
+
+<p>AO3 doesn't let a work skin see which AO3 site skin the reader has picked, so <code>theme-auto</code> goes by their device instead. The next chapter shows what that looks like in practice, with the iMessage CSS.</p>
+        </div>
+      </div>
+
+      <p class="chapter-nav"><a href="core.html">&larr; Previous Chapter</a> &middot; <a href="index.html">Chapter Index</a> &middot; <a href="imessage.html">Next Chapter &rarr;</a></p>
+</main>
+<footer>
+  Made by hand in HTML &amp; CSS. No trackers, no cookies, no ads.
+</footer>
+<script>
+  // Works like AO3's "Hide Creator's Style" button: switches the work skin off and on.
+  (function () {
+    var skin = document.getElementById("creator-style");
+    var button = document.getElementById("style-toggle");
+    function show(off) {
+      skin.disabled = off;
+      button.textContent = off ? "Show Creator's Style" : "Hide Creator's Style";
+    }
+    try { show(localStorage.getItem("hide-creator-style") === "yes"); } catch (e) { show(false); }
+    button.addEventListener("click", function () {
+      var off = !skin.disabled;
+      show(off);
+      try { localStorage.setItem("hide-creator-style", off ? "yes" : "no"); } catch (e) {}
+    });
+  })();
+</script>
+</body>
+</html>
