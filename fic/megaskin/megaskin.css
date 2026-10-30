@@ -13,7 +13,8 @@
    - Every rule starts with #workskin, as AO3 requires.
    - No variables or @import (AO3 doesn't support them).
    - CORE comes first. Every module needs it (the chat box, the
-     width, scrolling, hidden text, round pictures, translations).
+     width, scrolling, hidden text, round pictures, translations,
+     profiles and the ten shared colours).
    - Then one MODULE per platform, in the same order as the
      tutorial: iMessage, WhatsApp, Twitter/X, Instagram, Tumblr,
      Email (Gmail + generic), Discord.
@@ -49,8 +50,8 @@
    >>> CORE: needed by every module <<<
    The chat box and its parts, the width classes, scrolling,
    hidden text, video descriptions, round pictures, the typing and deleted-text
-   touches, link basics, hover/tap translations and character profiles. Keep this
-   block whichever modules you use.
+   touches, link basics, hover/tap translations, character profiles and the ten
+   shared colours (colour1 to colour10). Keep this block whichever modules you use.
    ========================================================== */
 
 /* ==========================================================
