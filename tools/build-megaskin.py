@@ -71,6 +71,7 @@ PAGE = """<!DOCTYPE html>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{title} | jockles.com</title>
   <link rel="stylesheet" href="../../style.css">
+  <script src="../../theme.js"></script>
   <link rel="stylesheet" href="megaskin.css?v={skinver}" id="creator-style">
 </head>
 <body>

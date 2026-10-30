@@ -3,6 +3,7 @@
 Hand-made HTML and CSS. No build step, no frameworks.
 
 - `style.css` holds every colour and font. Change it once and every page follows.
+- Light and dark mode: the dark colours are in the second block at the top of `style.css`. `theme.js` adds the toggle button to the header and remembers the reader's choice. Every page loads it with `<script src=".../theme.js"></script>` under the stylesheet link, so new pages need that line too.
 - Each page has the menu written into it. If you add a new section, add its link to the `<nav>` in every page.
 - `fic/sample-fic.html` has instructions in a comment for copying a fic over from an AO3 HTML download.
 - `fic/megaskin/` is a multi-chapter work. Each chapter's text lives in `fic/megaskin/text/`, exactly as pasted into AO3, and `megaskin.css` is the work skin. After changing either, run `python3 tools/build-megaskin.py` to rebuild the chapter pages, the per-module CSS files in `fic/megaskin/css/` and the chapter list. The chapter order is at the top of that script.
