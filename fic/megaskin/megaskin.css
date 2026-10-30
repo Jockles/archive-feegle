@@ -470,6 +470,290 @@
 #workskin .ig .handle.pfp-ilya::after, #workskin .igdm .handle.pfp-ilya::after { content: "ilya.r"; }
 #workskin .mob.wa.pov-ilya { background: #1b1f2b; }
 
+/* ==========================================================
+   COLOURS: colour1 to colour10
+   One set of ten colours for every app. Add colour1 to colour10 to a picture
+   circle (wa-pfp, tw-pfp, tb-pfp, tb-ask-pfp, gm-pfp) or a name (WhatsApp who,
+   Discord dc-name) to colour it. Use the same number for a person everywhere.
+   Change a colour here and it changes in every app.
+   Each rule lists the class names for all the apps. If you've left some apps
+   out, keep the whole list anyway: a name for an app you don't use just
+   doesn't match anything, so it does no harm.
+   ========================================================== */
+
+/* picture circles (the same in light and dark) */
+#workskin .wa .wa-pfp.colour1,
+#workskin .tw .tw-pfp.colour1,
+#workskin .tw-reply .tw-pfp.colour1,
+#workskin .tb .tb-pfp.colour1,
+#workskin .tb .tb-ask-pfp.colour1,
+#workskin .gm .gm-pfp.colour1,
+#workskin .dc .dc-name.colour1::before { background-color: #b5733a; }
+
+#workskin .wa .wa-pfp.colour2,
+#workskin .tw .tw-pfp.colour2,
+#workskin .tw-reply .tw-pfp.colour2,
+#workskin .tb .tb-pfp.colour2,
+#workskin .tb .tb-ask-pfp.colour2,
+#workskin .gm .gm-pfp.colour2,
+#workskin .dc .dc-name.colour2::before { background-color: #3a3a3c; }
+
+#workskin .wa .wa-pfp.colour3,
+#workskin .tw .tw-pfp.colour3,
+#workskin .tw-reply .tw-pfp.colour3,
+#workskin .tb .tb-pfp.colour3,
+#workskin .tb .tb-ask-pfp.colour3,
+#workskin .gm .gm-pfp.colour3,
+#workskin .dc .dc-name.colour3::before { background-color: #7a2b4e; }
+
+#workskin .wa .wa-pfp.colour4,
+#workskin .tw .tw-pfp.colour4,
+#workskin .tw-reply .tw-pfp.colour4,
+#workskin .tb .tb-pfp.colour4,
+#workskin .tb .tb-ask-pfp.colour4,
+#workskin .gm .gm-pfp.colour4,
+#workskin .dc .dc-name.colour4::before { background-color: #2f7d6b; }
+
+#workskin .wa .wa-pfp.colour5,
+#workskin .tw .tw-pfp.colour5,
+#workskin .tw-reply .tw-pfp.colour5,
+#workskin .tb .tb-pfp.colour5,
+#workskin .tb .tb-ask-pfp.colour5,
+#workskin .gm .gm-pfp.colour5,
+#workskin .dc .dc-name.colour5::before { background-color: #3b5ea8; }
+
+#workskin .wa .wa-pfp.colour6,
+#workskin .tw .tw-pfp.colour6,
+#workskin .tw-reply .tw-pfp.colour6,
+#workskin .tb .tb-pfp.colour6,
+#workskin .tb .tb-ask-pfp.colour6,
+#workskin .gm .gm-pfp.colour6,
+#workskin .dc .dc-name.colour6::before { background-color: #6b4fa0; }
+
+#workskin .wa .wa-pfp.colour7,
+#workskin .tw .tw-pfp.colour7,
+#workskin .tw-reply .tw-pfp.colour7,
+#workskin .tb .tb-pfp.colour7,
+#workskin .tb .tb-ask-pfp.colour7,
+#workskin .gm .gm-pfp.colour7,
+#workskin .dc .dc-name.colour7::before { background-color: #a8383b; }
+
+#workskin .wa .wa-pfp.colour8,
+#workskin .tw .tw-pfp.colour8,
+#workskin .tw-reply .tw-pfp.colour8,
+#workskin .tb .tb-pfp.colour8,
+#workskin .tb .tb-ask-pfp.colour8,
+#workskin .gm .gm-pfp.colour8,
+#workskin .dc .dc-name.colour8::before { background-color: #4e7a2c; }
+
+#workskin .wa .wa-pfp.colour9,
+#workskin .tw .tw-pfp.colour9,
+#workskin .tw-reply .tw-pfp.colour9,
+#workskin .tb .tb-pfp.colour9,
+#workskin .tb .tb-ask-pfp.colour9,
+#workskin .gm .gm-pfp.colour9,
+#workskin .dc .dc-name.colour9::before { background-color: #8c6d1f; }
+
+#workskin .wa .wa-pfp.colour10,
+#workskin .tw .tw-pfp.colour10,
+#workskin .tw-reply .tw-pfp.colour10,
+#workskin .tb .tb-pfp.colour10,
+#workskin .tb .tb-ask-pfp.colour10,
+#workskin .gm .gm-pfp.colour10,
+#workskin .dc .dc-name.colour10::before { background-color: #2a7390; }
+
+/* names: a bit brighter than the circles, so they are easy to read as text.
+   In a WhatsApp quoted reply, the colour goes on the line down the side and the name. */
+#workskin .wa .who.colour1,
+#workskin .wa .wa-quote.colour1 b,
+#workskin .dc .colour1 { color: #b8651f; }
+
+#workskin .wa .wa-quote.colour1 { border-left-color: #b8651f; }
+
+#workskin .wa .who.colour2,
+#workskin .wa .wa-quote.colour2 b,
+#workskin .dc .colour2 { color: #5f6368; }
+
+#workskin .wa .wa-quote.colour2 { border-left-color: #5f6368; }
+
+#workskin .wa .who.colour3,
+#workskin .wa .wa-quote.colour3 b,
+#workskin .dc .colour3 { color: #b03a6f; }
+
+#workskin .wa .wa-quote.colour3 { border-left-color: #b03a6f; }
+
+#workskin .wa .who.colour4,
+#workskin .wa .wa-quote.colour4 b,
+#workskin .dc .colour4 { color: #1f8a72; }
+
+#workskin .wa .wa-quote.colour4 { border-left-color: #1f8a72; }
+
+#workskin .wa .who.colour5,
+#workskin .wa .wa-quote.colour5 b,
+#workskin .dc .colour5 { color: #2f68c8; }
+
+#workskin .wa .wa-quote.colour5 { border-left-color: #2f68c8; }
+
+#workskin .wa .who.colour6,
+#workskin .wa .wa-quote.colour6 b,
+#workskin .dc .colour6 { color: #7b52c4; }
+
+#workskin .wa .wa-quote.colour6 { border-left-color: #7b52c4; }
+
+#workskin .wa .who.colour7,
+#workskin .wa .wa-quote.colour7 b,
+#workskin .dc .colour7 { color: #c0392b; }
+
+#workskin .wa .wa-quote.colour7 { border-left-color: #c0392b; }
+
+#workskin .wa .who.colour8,
+#workskin .wa .wa-quote.colour8 b,
+#workskin .dc .colour8 { color: #4a8a25; }
+
+#workskin .wa .wa-quote.colour8 { border-left-color: #4a8a25; }
+
+#workskin .wa .who.colour9,
+#workskin .wa .wa-quote.colour9 b,
+#workskin .dc .colour9 { color: #9a7412; }
+
+#workskin .wa .wa-quote.colour9 { border-left-color: #9a7412; }
+
+#workskin .wa .who.colour10,
+#workskin .wa .wa-quote.colour10 b,
+#workskin .dc .colour10 { color: #1f7fa3; }
+
+#workskin .wa .wa-quote.colour10 { border-left-color: #1f7fa3; }
+
+/* names in the dark theme: lighter shades, so they show up on a dark background */
+#workskin .wa.theme-dark .who.colour1,
+#workskin .wa.theme-dark .wa-quote.colour1 b,
+#workskin .dc.theme-dark .colour1 { color: #f0a25c; }
+
+#workskin .wa.theme-dark .wa-quote.colour1 { border-left-color: #f0a25c; }
+
+#workskin .wa.theme-dark .who.colour2,
+#workskin .wa.theme-dark .wa-quote.colour2 b,
+#workskin .dc.theme-dark .colour2 { color: #aeb3b8; }
+
+#workskin .wa.theme-dark .wa-quote.colour2 { border-left-color: #aeb3b8; }
+
+#workskin .wa.theme-dark .who.colour3,
+#workskin .wa.theme-dark .wa-quote.colour3 b,
+#workskin .dc.theme-dark .colour3 { color: #ff7aa2; }
+
+#workskin .wa.theme-dark .wa-quote.colour3 { border-left-color: #ff7aa2; }
+
+#workskin .wa.theme-dark .who.colour4,
+#workskin .wa.theme-dark .wa-quote.colour4 b,
+#workskin .dc.theme-dark .colour4 { color: #06cf9c; }
+
+#workskin .wa.theme-dark .wa-quote.colour4 { border-left-color: #06cf9c; }
+
+#workskin .wa.theme-dark .who.colour5,
+#workskin .wa.theme-dark .wa-quote.colour5 b,
+#workskin .dc.theme-dark .colour5 { color: #6fa3ff; }
+
+#workskin .wa.theme-dark .wa-quote.colour5 { border-left-color: #6fa3ff; }
+
+#workskin .wa.theme-dark .who.colour6,
+#workskin .wa.theme-dark .wa-quote.colour6 b,
+#workskin .dc.theme-dark .colour6 { color: #c4a3ff; }
+
+#workskin .wa.theme-dark .wa-quote.colour6 { border-left-color: #c4a3ff; }
+
+#workskin .wa.theme-dark .who.colour7,
+#workskin .wa.theme-dark .wa-quote.colour7 b,
+#workskin .dc.theme-dark .colour7 { color: #ff7b72; }
+
+#workskin .wa.theme-dark .wa-quote.colour7 { border-left-color: #ff7b72; }
+
+#workskin .wa.theme-dark .who.colour8,
+#workskin .wa.theme-dark .wa-quote.colour8 b,
+#workskin .dc.theme-dark .colour8 { color: #8fd16a; }
+
+#workskin .wa.theme-dark .wa-quote.colour8 { border-left-color: #8fd16a; }
+
+#workskin .wa.theme-dark .who.colour9,
+#workskin .wa.theme-dark .wa-quote.colour9 b,
+#workskin .dc.theme-dark .colour9 { color: #e6c35c; }
+
+#workskin .wa.theme-dark .wa-quote.colour9 { border-left-color: #e6c35c; }
+
+#workskin .wa.theme-dark .who.colour10,
+#workskin .wa.theme-dark .wa-quote.colour10 b,
+#workskin .dc.theme-dark .colour10 { color: #53bdeb; }
+
+#workskin .wa.theme-dark .wa-quote.colour10 { border-left-color: #53bdeb; }
+
+/* Discord's dark grey would hide the colour2 circle, so it is a little lighter there */
+#workskin .dc.theme-dark .dc-name.colour2::before { background-color: #5c5c60; }
+
+/* names in the auto theme: the dark shades when the reader's device is in dark mode */
+@media (prefers-color-scheme: dark) {
+  #workskin .wa.theme-auto .who.colour1,
+  #workskin .wa.theme-auto .wa-quote.colour1 b,
+  #workskin .dc.theme-auto .colour1 { color: #f0a25c; }
+
+  #workskin .wa.theme-auto .wa-quote.colour1 { border-left-color: #f0a25c; }
+
+  #workskin .wa.theme-auto .who.colour2,
+  #workskin .wa.theme-auto .wa-quote.colour2 b,
+  #workskin .dc.theme-auto .colour2 { color: #aeb3b8; }
+
+  #workskin .wa.theme-auto .wa-quote.colour2 { border-left-color: #aeb3b8; }
+
+  #workskin .wa.theme-auto .who.colour3,
+  #workskin .wa.theme-auto .wa-quote.colour3 b,
+  #workskin .dc.theme-auto .colour3 { color: #ff7aa2; }
+
+  #workskin .wa.theme-auto .wa-quote.colour3 { border-left-color: #ff7aa2; }
+
+  #workskin .wa.theme-auto .who.colour4,
+  #workskin .wa.theme-auto .wa-quote.colour4 b,
+  #workskin .dc.theme-auto .colour4 { color: #06cf9c; }
+
+  #workskin .wa.theme-auto .wa-quote.colour4 { border-left-color: #06cf9c; }
+
+  #workskin .wa.theme-auto .who.colour5,
+  #workskin .wa.theme-auto .wa-quote.colour5 b,
+  #workskin .dc.theme-auto .colour5 { color: #6fa3ff; }
+
+  #workskin .wa.theme-auto .wa-quote.colour5 { border-left-color: #6fa3ff; }
+
+  #workskin .wa.theme-auto .who.colour6,
+  #workskin .wa.theme-auto .wa-quote.colour6 b,
+  #workskin .dc.theme-auto .colour6 { color: #c4a3ff; }
+
+  #workskin .wa.theme-auto .wa-quote.colour6 { border-left-color: #c4a3ff; }
+
+  #workskin .wa.theme-auto .who.colour7,
+  #workskin .wa.theme-auto .wa-quote.colour7 b,
+  #workskin .dc.theme-auto .colour7 { color: #ff7b72; }
+
+  #workskin .wa.theme-auto .wa-quote.colour7 { border-left-color: #ff7b72; }
+
+  #workskin .wa.theme-auto .who.colour8,
+  #workskin .wa.theme-auto .wa-quote.colour8 b,
+  #workskin .dc.theme-auto .colour8 { color: #8fd16a; }
+
+  #workskin .wa.theme-auto .wa-quote.colour8 { border-left-color: #8fd16a; }
+
+  #workskin .wa.theme-auto .who.colour9,
+  #workskin .wa.theme-auto .wa-quote.colour9 b,
+  #workskin .dc.theme-auto .colour9 { color: #e6c35c; }
+
+  #workskin .wa.theme-auto .wa-quote.colour9 { border-left-color: #e6c35c; }
+
+  #workskin .wa.theme-auto .who.colour10,
+  #workskin .wa.theme-auto .wa-quote.colour10 b,
+  #workskin .dc.theme-auto .colour10 { color: #53bdeb; }
+
+  #workskin .wa.theme-auto .wa-quote.colour10 { border-left-color: #53bdeb; }
+
+  /* Discord's dark grey would hide the colour2 circle, so it is a little lighter there */
+  #workskin .dc.theme-auto .dc-name.colour2::before { background-color: #5c5c60; }
+}
+
 /* <<<<<<<<<< CORE (end) <<<<<<<<<< */
 
 /* >>>>>>>>>> MODULE: iMessage (start) >>>>>>>>>> */
@@ -928,8 +1212,8 @@
   white-space: nowrap;
 }
 
-/* round profile picture: initials by default; add a number class colour1-colour10 for a colour (change the
-   colours below if you like), or put a picture or a profile inside it with a pfp span */
+/* round profile picture: initials by default; add a number class colour1-colour10 for a colour (the colours are
+   in the COLOURS section of the CORE), or put a picture or a profile inside it with a pfp span */
 #workskin .wa .wa-pfp {
   display: block;
   width: 30px;
@@ -945,26 +1229,6 @@
   font-weight: bold;
   overflow: hidden;
 }
-
-#workskin .wa .wa-pfp.colour1 { background-color: #b5733a; }
-
-#workskin .wa .wa-pfp.colour2 { background-color: #3a3a3c; }
-
-#workskin .wa .wa-pfp.colour3 { background-color: #7a2b4e; }
-
-#workskin .wa .wa-pfp.colour4 { background-color: #2f7d6b; }
-
-#workskin .wa .wa-pfp.colour5 { background-color: #3b5ea8; }
-
-#workskin .wa .wa-pfp.colour6 { background-color: #6b4fa0; }
-
-#workskin .wa .wa-pfp.colour7 { background-color: #a8383b; }
-
-#workskin .wa .wa-pfp.colour8 { background-color: #4e7a2c; }
-
-#workskin .wa .wa-pfp.colour9 { background-color: #8c6d1f; }
-
-#workskin .wa .wa-pfp.colour10 { background-color: #2a7390; }
 
 #workskin .wa table.wa-bar .wa-pfp {
   width: 38px;
@@ -992,67 +1256,6 @@
   font-weight: normal;
   color: #667781;
 }
-
-/* name colour: colour1 to colour10, or none for the normal text colour */
-#workskin .wa .who.colour1 { color: #b8651f; }
-
-#workskin .wa .who.colour2 { color: #5f6368; }
-
-#workskin .wa .who.colour3 { color: #b03a6f; }
-
-#workskin .wa .who.colour4 { color: #1f8a72; }
-
-#workskin .wa .who.colour5 { color: #2f68c8; }
-
-#workskin .wa .who.colour6 { color: #7b52c4; }
-
-#workskin .wa .who.colour7 { color: #c0392b; }
-
-#workskin .wa .who.colour8 { color: #4a8a25; }
-
-#workskin .wa .who.colour9 { color: #9a7412; }
-
-#workskin .wa .who.colour10 { color: #1f7fa3; }
-
-#workskin .wa .wa-quote.colour1 { border-left-color: #b8651f; color: #54656f; }
-
-#workskin .wa .wa-quote.colour1 b { color: #b8651f; }
-
-#workskin .wa .wa-quote.colour2 { border-left-color: #5f6368; color: #54656f; }
-
-#workskin .wa .wa-quote.colour2 b { color: #5f6368; }
-
-#workskin .wa .wa-quote.colour3 { border-left-color: #b03a6f; color: #54656f; }
-
-#workskin .wa .wa-quote.colour3 b { color: #b03a6f; }
-
-#workskin .wa .wa-quote.colour4 { border-left-color: #1f8a72; color: #54656f; }
-
-#workskin .wa .wa-quote.colour4 b { color: #1f8a72; }
-
-#workskin .wa .wa-quote.colour5 { border-left-color: #2f68c8; color: #54656f; }
-
-#workskin .wa .wa-quote.colour5 b { color: #2f68c8; }
-
-#workskin .wa .wa-quote.colour6 { border-left-color: #7b52c4; color: #54656f; }
-
-#workskin .wa .wa-quote.colour6 b { color: #7b52c4; }
-
-#workskin .wa .wa-quote.colour7 { border-left-color: #c0392b; color: #54656f; }
-
-#workskin .wa .wa-quote.colour7 b { color: #c0392b; }
-
-#workskin .wa .wa-quote.colour8 { border-left-color: #4a8a25; color: #54656f; }
-
-#workskin .wa .wa-quote.colour8 b { color: #4a8a25; }
-
-#workskin .wa .wa-quote.colour9 { border-left-color: #9a7412; color: #54656f; }
-
-#workskin .wa .wa-quote.colour9 b { color: #9a7412; }
-
-#workskin .wa .wa-quote.colour10 { border-left-color: #1f7fa3; color: #54656f; }
-
-#workskin .wa .wa-quote.colour10 b { color: #1f7fa3; }
 
 /* the little pointed corner on the first bubble of a run: add "tail" next to in or out */
 #workskin .wa .msg.tail { position: relative; }
@@ -1389,66 +1592,6 @@
 
 #workskin .wa.theme-dark .wa-num { color: #8696a0; }
 
-#workskin .wa.theme-dark .who.colour1 { color: #f0a25c; }
-
-#workskin .wa.theme-dark .who.colour2 { color: #aeb3b8; }
-
-#workskin .wa.theme-dark .who.colour3 { color: #ff7aa2; }
-
-#workskin .wa.theme-dark .who.colour4 { color: #06cf9c; }
-
-#workskin .wa.theme-dark .who.colour5 { color: #6fa3ff; }
-
-#workskin .wa.theme-dark .who.colour6 { color: #c4a3ff; }
-
-#workskin .wa.theme-dark .who.colour7 { color: #ff7b72; }
-
-#workskin .wa.theme-dark .who.colour8 { color: #8fd16a; }
-
-#workskin .wa.theme-dark .who.colour9 { color: #e6c35c; }
-
-#workskin .wa.theme-dark .who.colour10 { color: #53bdeb; }
-
-#workskin .wa.theme-dark .wa-quote.colour1 { border-left-color: #f0a25c; color: #8696a0; }
-
-#workskin .wa.theme-dark .wa-quote.colour1 b { color: #f0a25c; }
-
-#workskin .wa.theme-dark .wa-quote.colour2 { border-left-color: #aeb3b8; color: #8696a0; }
-
-#workskin .wa.theme-dark .wa-quote.colour2 b { color: #aeb3b8; }
-
-#workskin .wa.theme-dark .wa-quote.colour3 { border-left-color: #ff7aa2; color: #8696a0; }
-
-#workskin .wa.theme-dark .wa-quote.colour3 b { color: #ff7aa2; }
-
-#workskin .wa.theme-dark .wa-quote.colour4 { border-left-color: #06cf9c; color: #8696a0; }
-
-#workskin .wa.theme-dark .wa-quote.colour4 b { color: #06cf9c; }
-
-#workskin .wa.theme-dark .wa-quote.colour5 { border-left-color: #6fa3ff; color: #8696a0; }
-
-#workskin .wa.theme-dark .wa-quote.colour5 b { color: #6fa3ff; }
-
-#workskin .wa.theme-dark .wa-quote.colour6 { border-left-color: #c4a3ff; color: #8696a0; }
-
-#workskin .wa.theme-dark .wa-quote.colour6 b { color: #c4a3ff; }
-
-#workskin .wa.theme-dark .wa-quote.colour7 { border-left-color: #ff7b72; color: #8696a0; }
-
-#workskin .wa.theme-dark .wa-quote.colour7 b { color: #ff7b72; }
-
-#workskin .wa.theme-dark .wa-quote.colour8 { border-left-color: #8fd16a; color: #8696a0; }
-
-#workskin .wa.theme-dark .wa-quote.colour8 b { color: #8fd16a; }
-
-#workskin .wa.theme-dark .wa-quote.colour9 { border-left-color: #e6c35c; color: #8696a0; }
-
-#workskin .wa.theme-dark .wa-quote.colour9 b { color: #e6c35c; }
-
-#workskin .wa.theme-dark .wa-quote.colour10 { border-left-color: #53bdeb; color: #8696a0; }
-
-#workskin .wa.theme-dark .wa-quote.colour10 b { color: #53bdeb; }
-
 #workskin .wa.theme-dark .in.tail::before { border-color: transparent #202c33 transparent transparent; }
 
 #workskin .wa.theme-dark .out.tail::before { border-color: transparent transparent transparent #005c4b; }
@@ -1499,66 +1642,36 @@
 
   #workskin .wa.theme-auto .wa-num { color: #8696a0; }
 
-  #workskin .wa.theme-auto .who.colour1 { color: #f0a25c; }
-
-  #workskin .wa.theme-auto .who.colour2 { color: #aeb3b8; }
-
-  #workskin .wa.theme-auto .who.colour3 { color: #ff7aa2; }
-
-  #workskin .wa.theme-auto .who.colour4 { color: #06cf9c; }
-
-  #workskin .wa.theme-auto .who.colour5 { color: #6fa3ff; }
-
-  #workskin .wa.theme-auto .who.colour6 { color: #c4a3ff; }
-
-  #workskin .wa.theme-auto .who.colour7 { color: #ff7b72; }
-
-  #workskin .wa.theme-auto .who.colour8 { color: #8fd16a; }
-
-  #workskin .wa.theme-auto .who.colour9 { color: #e6c35c; }
-
-  #workskin .wa.theme-auto .who.colour10 { color: #53bdeb; }
-
-  #workskin .wa.theme-auto .wa-quote.colour1 { border-left-color: #f0a25c; color: #8696a0; }
-
-  #workskin .wa.theme-auto .wa-quote.colour1 b { color: #f0a25c; }
-
-  #workskin .wa.theme-auto .wa-quote.colour2 { border-left-color: #aeb3b8; color: #8696a0; }
-
-  #workskin .wa.theme-auto .wa-quote.colour2 b { color: #aeb3b8; }
-
-  #workskin .wa.theme-auto .wa-quote.colour3 { border-left-color: #ff7aa2; color: #8696a0; }
-
-  #workskin .wa.theme-auto .wa-quote.colour3 b { color: #ff7aa2; }
-
-  #workskin .wa.theme-auto .wa-quote.colour4 { border-left-color: #06cf9c; color: #8696a0; }
-
-  #workskin .wa.theme-auto .wa-quote.colour4 b { color: #06cf9c; }
-
-  #workskin .wa.theme-auto .wa-quote.colour5 { border-left-color: #6fa3ff; color: #8696a0; }
-
-  #workskin .wa.theme-auto .wa-quote.colour5 b { color: #6fa3ff; }
-
-  #workskin .wa.theme-auto .wa-quote.colour6 { border-left-color: #c4a3ff; color: #8696a0; }
-
-  #workskin .wa.theme-auto .wa-quote.colour6 b { color: #c4a3ff; }
-
-  #workskin .wa.theme-auto .wa-quote.colour7 { border-left-color: #ff7b72; color: #8696a0; }
-
-  #workskin .wa.theme-auto .wa-quote.colour7 b { color: #ff7b72; }
-
-  #workskin .wa.theme-auto .wa-quote.colour8 { border-left-color: #8fd16a; color: #8696a0; }
-
-  #workskin .wa.theme-auto .wa-quote.colour8 b { color: #8fd16a; }
-
-  #workskin .wa.theme-auto .wa-quote.colour9 { border-left-color: #e6c35c; color: #8696a0; }
-
-  #workskin .wa.theme-auto .wa-quote.colour9 b { color: #e6c35c; }
-
-  #workskin .wa.theme-auto .wa-quote.colour10 { border-left-color: #53bdeb; color: #8696a0; }
-
-  #workskin .wa.theme-auto .wa-quote.colour10 b { color: #53bdeb; }
-
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   #workskin .wa.theme-auto .in.tail::before { border-color: transparent #202c33 transparent transparent; }
 
   #workskin .wa.theme-auto .out.tail::before { border-color: transparent transparent transparent #005c4b; }
@@ -1698,26 +1811,6 @@
 
 #workskin .tw .tw-pfp ~ .tw-handle,
 #workskin .tw-reply .tw-pfp ~ .tw-handle { display: block; }
-
-#workskin .tw .tw-pfp.colour1, #workskin .tw-reply .tw-pfp.colour1 { background-color: #b5733a; }
-
-#workskin .tw .tw-pfp.colour2, #workskin .tw-reply .tw-pfp.colour2 { background-color: #3a3a3c; }
-
-#workskin .tw .tw-pfp.colour3, #workskin .tw-reply .tw-pfp.colour3 { background-color: #7a2b4e; }
-
-#workskin .tw .tw-pfp.colour4, #workskin .tw-reply .tw-pfp.colour4 { background-color: #2f7d6b; }
-
-#workskin .tw .tw-pfp.colour5, #workskin .tw-reply .tw-pfp.colour5 { background-color: #3b5ea8; }
-
-#workskin .tw .tw-pfp.colour6, #workskin .tw-reply .tw-pfp.colour6 { background-color: #6b4fa0; }
-
-#workskin .tw .tw-pfp.colour7, #workskin .tw-reply .tw-pfp.colour7 { background-color: #a8383b; }
-
-#workskin .tw .tw-pfp.colour8, #workskin .tw-reply .tw-pfp.colour8 { background-color: #4e7a2c; }
-
-#workskin .tw .tw-pfp.colour9, #workskin .tw-reply .tw-pfp.colour9 { background-color: #8c6d1f; }
-
-#workskin .tw .tw-pfp.colour10, #workskin .tw-reply .tw-pfp.colour10 { background-color: #2a7390; }
 
 #workskin .tw .tw-handle {
   color: #536471;
@@ -3109,7 +3202,7 @@
 #workskin .tb .tb-subline b { color: #555555; }
 
 /* round profile picture (initials), colour1-colour10 for colours; add "rb" for the green reblog badge */
-/* initials by default; colour1-colour10 are the colours (change them below if you like), or put a picture
+/* initials by default; colour1-colour10 are the colours (set in the CORE), or put a picture
    or a profile inside it with a pfp span */
 #workskin .tb .tb-pfp {
   display: flex;
@@ -3130,26 +3223,6 @@
   font-size: 0.85em;
   font-weight: bold;
 }
-
-#workskin .tb .tb-pfp.colour1 { background-color: #b5733a; }
-
-#workskin .tb .tb-pfp.colour2 { background-color: #3a3a3c; }
-
-#workskin .tb .tb-pfp.colour3 { background-color: #7a2b4e; }
-
-#workskin .tb .tb-pfp.colour4 { background-color: #2f7d6b; }
-
-#workskin .tb .tb-pfp.colour5 { background-color: #3b5ea8; }
-
-#workskin .tb .tb-pfp.colour6 { background-color: #6b4fa0; }
-
-#workskin .tb .tb-pfp.colour7 { background-color: #a8383b; }
-
-#workskin .tb .tb-pfp.colour8 { background-color: #4e7a2c; }
-
-#workskin .tb .tb-pfp.colour9 { background-color: #8c6d1f; }
-
-#workskin .tb .tb-pfp.colour10 { background-color: #2a7390; }
 
 #workskin .tb .tb-pfp.rb::after {
   content: '\21C4';
@@ -3302,26 +3375,6 @@
   font-size: 0.75em;
   font-weight: bold;
 }
-
-#workskin .tb .tb-ask-pfp.colour1 { background-color: #b5733a; }
-
-#workskin .tb .tb-ask-pfp.colour2 { background-color: #3a3a3c; }
-
-#workskin .tb .tb-ask-pfp.colour3 { background-color: #7a2b4e; }
-
-#workskin .tb .tb-ask-pfp.colour4 { background-color: #2f7d6b; }
-
-#workskin .tb .tb-ask-pfp.colour5 { background-color: #3b5ea8; }
-
-#workskin .tb .tb-ask-pfp.colour6 { background-color: #6b4fa0; }
-
-#workskin .tb .tb-ask-pfp.colour7 { background-color: #a8383b; }
-
-#workskin .tb .tb-ask-pfp.colour8 { background-color: #4e7a2c; }
-
-#workskin .tb .tb-ask-pfp.colour9 { background-color: #8c6d1f; }
-
-#workskin .tb .tb-ask-pfp.colour10 { background-color: #2a7390; }
 
 #workskin .tb .tb-tags {
   display: block;
@@ -3593,7 +3646,7 @@
 
 #workskin .gm .gm-pfp-cell { width: 46px; }
 
-/* initials by default; colour1-colour10 are the colours (change them below if you like), or put a picture
+/* initials by default; colour1-colour10 are the colours (set in the CORE), or put a picture
    or a profile inside it with a pfp span */
 #workskin .gm .gm-pfp {
   display: block;
@@ -3609,26 +3662,6 @@
   font-size: 0.85em;
   font-weight: bold;
 }
-
-#workskin .gm .gm-pfp.colour1 { background-color: #b5733a; }
-
-#workskin .gm .gm-pfp.colour2 { background-color: #3a3a3c; }
-
-#workskin .gm .gm-pfp.colour3 { background-color: #7a2b4e; }
-
-#workskin .gm .gm-pfp.colour4 { background-color: #2f7d6b; }
-
-#workskin .gm .gm-pfp.colour5 { background-color: #3b5ea8; }
-
-#workskin .gm .gm-pfp.colour6 { background-color: #6b4fa0; }
-
-#workskin .gm .gm-pfp.colour7 { background-color: #a8383b; }
-
-#workskin .gm .gm-pfp.colour8 { background-color: #4e7a2c; }
-
-#workskin .gm .gm-pfp.colour9 { background-color: #8c6d1f; }
-
-#workskin .gm .gm-pfp.colour10 { background-color: #2a7390; }
 
 #workskin .gm .gm-from { font-weight: bold; line-height: 1.3; padding-top: 1px; }
 
@@ -4074,49 +4107,10 @@
 }
 
 /* --- colours: add colour1 to colour10 to the dc-name, like <b class="dc-name colour3">Name</b> ---
-   One class colours both the name and the round picture. The circles use the same ten colours as
-   the picture circles in the other apps; the names have their own light and dark shades, so they
-   are easy to read in both. With no colour class, the name is plain and the circle is Discord blue.
-   colour1-colour10 also work on any other text in a message, like a name in a welcome line. */
-#workskin .dc .colour1 { color: #b8651f; }
-
-#workskin .dc .colour2 { color: #5f6368; }
-
-#workskin .dc .colour3 { color: #b03a6f; }
-
-#workskin .dc .colour4 { color: #1f8a72; }
-
-#workskin .dc .colour5 { color: #2f68c8; }
-
-#workskin .dc .colour6 { color: #7b52c4; }
-
-#workskin .dc .colour7 { color: #c0392b; }
-
-#workskin .dc .colour8 { color: #4a8a25; }
-
-#workskin .dc .colour9 { color: #9a7412; }
-
-#workskin .dc .colour10 { color: #1f7fa3; }
-
-#workskin .dc .dc-name.colour1::before { background-color: #b5733a; }
-
-#workskin .dc .dc-name.colour2::before { background-color: #3a3a3c; }
-
-#workskin .dc .dc-name.colour3::before { background-color: #7a2b4e; }
-
-#workskin .dc .dc-name.colour4::before { background-color: #2f7d6b; }
-
-#workskin .dc .dc-name.colour5::before { background-color: #3b5ea8; }
-
-#workskin .dc .dc-name.colour6::before { background-color: #6b4fa0; }
-
-#workskin .dc .dc-name.colour7::before { background-color: #a8383b; }
-
-#workskin .dc .dc-name.colour8::before { background-color: #4e7a2c; }
-
-#workskin .dc .dc-name.colour9::before { background-color: #8c6d1f; }
-
-#workskin .dc .dc-name.colour10::before { background-color: #2a7390; }
+   One class colours both the name and the round picture. The colours themselves are in the
+   COLOURS section of the CORE, shared with every other app. With no colour class, the name is
+   plain and the circle is Discord blue. colour1-colour10 also work on any other text in a
+   message, like a name in a welcome line. */
 
 /* --- profile pictures, the same way as every other module ---
    Put a dc-pfp span first inside the username, with a profile or a picture tag in it:
@@ -4620,28 +4614,6 @@
   border-bottom-color: rgb(54, 57, 63);
 }
 
-#workskin .dc.theme-dark .colour1 { color: #f0a25c; }
-
-#workskin .dc.theme-dark .colour2 { color: #aeb3b8; }
-
-#workskin .dc.theme-dark .colour3 { color: #ff7aa2; }
-
-#workskin .dc.theme-dark .colour4 { color: #06cf9c; }
-
-#workskin .dc.theme-dark .colour5 { color: #6fa3ff; }
-
-#workskin .dc.theme-dark .colour6 { color: #c4a3ff; }
-
-#workskin .dc.theme-dark .colour7 { color: #ff7b72; }
-
-#workskin .dc.theme-dark .colour8 { color: #8fd16a; }
-
-#workskin .dc.theme-dark .colour9 { color: #e6c35c; }
-
-#workskin .dc.theme-dark .colour10 { color: #53bdeb; }
-
-#workskin .dc.theme-dark .dc-name.colour2::before { background-color: #5c5c60; }
-
 #workskin .dc.theme-dark .typing-indicator span { background-color: rgb(220, 221, 222); }
 
 #workskin .dc.theme-dark .dc-input { background-color: rgb(64, 68, 75); }
@@ -4749,28 +4721,17 @@
       border-bottom-color: rgb(54, 57, 63);
     }
 
-  #workskin .dc.theme-auto .colour1 { color: #f0a25c; }
-
-  #workskin .dc.theme-auto .colour2 { color: #aeb3b8; }
-
-  #workskin .dc.theme-auto .colour3 { color: #ff7aa2; }
-
-  #workskin .dc.theme-auto .colour4 { color: #06cf9c; }
-
-  #workskin .dc.theme-auto .colour5 { color: #6fa3ff; }
-
-  #workskin .dc.theme-auto .colour6 { color: #c4a3ff; }
-
-  #workskin .dc.theme-auto .colour7 { color: #ff7b72; }
-
-  #workskin .dc.theme-auto .colour8 { color: #8fd16a; }
-
-  #workskin .dc.theme-auto .colour9 { color: #e6c35c; }
-
-  #workskin .dc.theme-auto .colour10 { color: #53bdeb; }
-
-  #workskin .dc.theme-auto .dc-name.colour2::before { background-color: #5c5c60; }
-
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   #workskin .dc.theme-auto .typing-indicator span { background-color: rgb(220, 221, 222); }
 
   #workskin .dc.theme-auto .dc-input { background-color: rgb(64, 68, 75); }

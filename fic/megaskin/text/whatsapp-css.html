@@ -176,37 +176,11 @@
   font-size: 0.72em;
   font-weight: bold;
   overflow: hidden;
-}
+}</code></pre>
 
-#workskin .wa .wa-pfp.colour1 { background-color: #b5733a; }
+<p>A circle with no picture shows initials, and <code>line-height</code> the same as the height is what centres them from top to bottom. A picture or a profile goes inside with a <code>pfp</code> span, which the core crops into the circle. The circle in the header is the same, just bigger (<code>38px</code>).</p>
 
-#workskin .wa .wa-pfp.colour2 { background-color: #3a3a3c; }</code></pre>
-
-<p>...and so on up to <code>colour10</code>. A circle with no picture shows initials, and <code>line-height</code> the same as the height is what centres them from top to bottom. A picture or a profile goes inside with a <code>pfp</code> span, which the core crops into the circle. The circle in the header is the same, just bigger (<code>38px</code>).</p>
-
-<p>Names in groups get their own set of ten colours:</p>
-
-<pre><code>#workskin .wa .who.colour1 { color: #b8651f; }
-
-#workskin .wa .who.colour2 { color: #5f6368; }</code></pre>
-
-<p>A name colour is a little lighter or brighter than the picture colour with the same number, because coloured text needs more contrast than a coloured circle to be easy to read. And the dark theme has a third set, lighter again, for reading on a dark background. So if you change <code>colour1</code>, there are four places to change it: the picture, the name, the quote, and the dark versions of the name and quote.</p>
-
-<details>
-<summary>Changing one of the ten colours</summary>
-
-<p>Search the WhatsApp CSS for <code>colour1</code> (or whichever number) and you'll find every line that uses it:</p>
-
-<ul>
-  <li><code>.wa-pfp.colour1</code> - the picture circle.</li>
-  <li><code>.who.colour1</code> - the name above a message.</li>
-  <li><code>.wa-quote.colour1</code> and <code>.wa-quote.colour1 b</code> - the bar and the name in a quote.</li>
-  <li>The same <code>.who</code> and <code>.wa-quote</code> lines again under Dark theme and Auto theme, with the lighter shade.</li>
-</ul>
-
-<p>Pick a light-mode name colour you can read on white, and a dark-mode one you can read on near-black. If you've used profiles instead, the name colour is in each character's profile in the core CSS, and none of this applies.</p>
-
-</details>
+<p>Add <code>colour1</code> to <code>colour10</code> to a circle for its colour, and the same number to a name (<code>who</code>) or a quoted reply (<code>wa-quote</code>) to colour the name and the line down the side. The ten colours are in the core, shared with every app - see The Ten Colours in the core CSS chapter for how to change them.</p>
 
 <h4>Group Messages With Pictures</h4>
 

@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Megaskin, Chapter 3: The Core CSS | jockles.com</title>
   <link rel="stylesheet" href="../../style.css">
-  <link rel="stylesheet" href="megaskin.css?v=248775d7" id="creator-style">
+  <link rel="stylesheet" href="megaskin.css?v=647f04db" id="creator-style">
 </head>
 <body>
 <header>
@@ -54,7 +54,7 @@
 
 <p>Every rule in the skin starts with <code>#workskin</code>. AO3 insists on it: it's how AO3 keeps a work skin inside your fic, so it can't touch the rest of the page. If you write your own rules, start them with <code>#workskin</code> too, or AO3 will throw them out.</p>
 
-<p>AO3 also doesn't allow CSS variables or <code>@import</code>, so every colour is written out in full wherever it's used. That's why changing a colour sometimes means changing it in two or three places - there's more on that in each module's chapter.</p>
+<p>AO3 also doesn't allow CSS variables or <code>@import</code>, so every colour is written out in full wherever it's used. The exception is the ten colours for pictures and names, which every app shares - they're all together in the core, so there's only one place to change them (see The Ten Colours, below).</p>
 
 <p>The skin is split into blocks, and each block starts and ends with a line like this:</p>
 
@@ -472,9 +472,56 @@
 
 </details>
 
+<h4>The Ten Colours</h4>
+
+<p>Every app uses the same ten colours, <code>colour1</code> to <code>colour10</code>, for its round picture circles and for people's names. They all live at the end of the core, so if you change a colour there, it changes in every app at once. Here's everything for <code>colour1</code>:</p>
+
+<pre><code>/* picture circles (the same in light and dark) */
+#workskin .wa .wa-pfp.colour1,
+#workskin .tw .tw-pfp.colour1,
+#workskin .tw-reply .tw-pfp.colour1,
+#workskin .tb .tb-pfp.colour1,
+#workskin .tb .tb-ask-pfp.colour1,
+#workskin .gm .gm-pfp.colour1,
+#workskin .dc .dc-name.colour1::before { background-color: #b5733a; }
+
+/* names */
+#workskin .wa .who.colour1,
+#workskin .wa .wa-quote.colour1 b,
+#workskin .dc .colour1 { color: #b8651f; }
+
+#workskin .wa .wa-quote.colour1 { border-left-color: #b8651f; }
+
+/* names in the dark theme */
+#workskin .wa.theme-dark .who.colour1,
+#workskin .wa.theme-dark .wa-quote.colour1 b,
+#workskin .dc.theme-dark .colour1 { color: #f0a25c; }
+
+#workskin .wa.theme-dark .wa-quote.colour1 { border-left-color: #f0a25c; }</code></pre>
+
+<ul>
+  <li>The first rule is the picture circles. They're the same in light and dark, so there's only one version.</li>
+  <li>The second is names - WhatsApp's group names, the name in a WhatsApp quoted reply, and Discord names. A name colour is a little lighter or brighter than the circle with the same number, because coloured text needs more contrast than a coloured circle to be easy to read. In a WhatsApp quoted reply, the line down the side is the name colour too.</li>
+  <li>The dark theme has a third set, lighter again, for reading on a dark background. The same dark rules are copied for <code>theme-auto</code> inside <code>@media (prefers-color-scheme: dark)</code>, like every other theme rule.</li>
+  <li>One extra rule lightens Discord's <code>colour2</code> circle in the dark theme, because the original dark grey disappears into Discord's dark background.</li>
+</ul>
+
+<p><strong>Every app's class names are already in these rules.</strong> Each one lists the circle or name class for every app (<code>wa-pfp</code> for WhatsApp, <code>tw-pfp</code> for Twitter/X, <code>dc-name</code> for Discord, and so on), so the colours work whichever apps you use. If you've only kept some of the apps, leave the lists as they are: a class name for an app you're not using just doesn't match anything in your fic, so it doesn't change or break anything.</p>
+
+<details>
+<summary>Changing one of the ten colours</summary>
+
+<p>Search the core for <code>colour1</code> (or whichever number). You'll find the circle rule, the name rule and the quote line rule, then the same name and quote line rules again under the dark theme and the auto theme, with the lighter shade. Change the colour codes in each.</p>
+
+<p>Pick a light-mode name colour you can read on white, and a dark-mode one you can read on near-black. If you've used profiles instead, the name colour is in each character's profile, and none of this applies.</p>
+
+<p>If you ever add your own app, add its circle and name classes to these lists, and it'll get the same ten colours.</p>
+
+</details>
+
 <h4>Themes</h4>
 
-<p>The core doesn't hold any colours, so there's nothing about themes in it. Each module has its own dark theme and auto theme at the bottom of its block, and they work the same way everywhere:</p>
+<p>Apart from the ten colours above, the core doesn't hold any colours, so there's nothing else about themes in it. Each module has its own dark theme and auto theme at the bottom of its block, and they work the same way everywhere:</p>
 
 <ul>
   <li>The module's normal rules are its light theme, so a chat with <code>theme-light</code>, or with no theme class at all, is light.</li>
