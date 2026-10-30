@@ -47,7 +47,7 @@
 
 /* a profile picture beside the account name:
    <span class="ig-pfp"><span class="pfp"><img src="..." alt="..."></span></span>
-   as the first thing in ig-top (pfp is explained in section 11) */
+   as the first thing in ig-top (pfp is explained in the CORE) */
 #workskin .ig .ig-top .ig-pfp {
   float: left;
   width: 32px;
