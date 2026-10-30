@@ -84,6 +84,40 @@
 
 </details>
 
+<h4>Using the Reader's Own Font</h4>
+
+<p>Each app sets its own font, so the chats look like the real thing - the core's is the plain phone font above, and some apps have their own (Gmail uses Roboto, Discord uses Whitney, Tumblr's quote posts use Georgia, and so on). That's the default, and it's what the skin does as it comes.</p>
+
+<p>Some readers set their own font on their device or in their AO3 site skin, often for accessibility - a dyslexia-friendly font, for example. The app fonts override theirs inside the chats. If you'd rather your chats used the reader's font instead, this isn't in the main CSS, but you can add it yourself. Paste it at the very end of your work skin:</p>
+
+<pre><code>#workskin *,
+#workskin *::before,
+#workskin *::after {
+  font-family: inherit !important;
+}</code></pre>
+
+<ul>
+  <li><code>*</code> means "everything", so this catches every part of every app, plus the bits the CSS adds itself with <code>::before</code> and <code>::after</code>.</li>
+  <li><code>inherit</code> means "use whatever font the thing around you has", so everything ends up in the reader's font, all the way down.</li>
+  <li><code>!important</code> makes it win over every app's own font, wherever they are in the skin.</li>
+</ul>
+
+<p><strong>The catch:</strong> the skin is spaced and sized for the default fonts. With some fonts - especially wide ones, or ones with tall or deep letters - names might not fit on one line, text can get cut off with "..." sooner, initials can sit off-centre in their circles, and some gaps and boxes might look a bit wonky. Check your chats with a couple of different fonts before you post.</p>
+
+<details>
+<summary>Keeping code and chat posts in a typewriter font</summary>
+
+<p>The rule above also changes the typewriter-style font in Discord code blocks and Tumblr chat posts. To keep those, add this underneath it:</p>
+
+<pre><code>#workskin .dc .dc-code,
+#workskin .tb .tb-chat {
+  font-family: monospace !important;
+}</code></pre>
+
+<p>Because it comes after the first rule and is more specific, it wins for just those two.</p>
+
+</details>
+
 <h4>Phone Width or Full Width</h4>
 
 <pre><code>#workskin .mob.wide {
