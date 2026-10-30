@@ -256,7 +256,8 @@ def entry(w):
         out.append(f'  <p class="gesture"><b>Gesture variants:</b> {e(w["dialect"])}</p>')
     meta = []
     if w["source"]:
-        meta.append(f'<b>Source:</b> {e(w["source"])}')
+        source = re.sub(r"^Jockles\s*-\s*SRD$", "Jockles", w["source"])
+        meta.append(f'<b>Source:</b> {e(source)}')
     if w["notes"]:
         meta.append(f'<b>Notes:</b> {e(w["notes"])}')
     if meta:
