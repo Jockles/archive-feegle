@@ -231,7 +231,8 @@ def load_words():
         while wid in used:
             wid, n = f"{base}-{n}", n + 1
         used.add(wid)
-        w["notes"] = clean_note(w["notes"])
+        # a note made only of working notes gets this instead (Jockles's choice)
+        w["notes"] = clean_note(w["notes"]) or ("Jockles vibes addition" if w["notes"] else "")
         w["id"] = wid
         w["letter"] = next((c.upper() for c in w["word"] if c.isalpha()), "#")
         words.append(w)
