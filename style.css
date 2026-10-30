@@ -115,8 +115,29 @@ h2 { font-size: 1.6em; border-bottom: 1px solid var(--rule); padding-bottom: 4px
 
 /* Fic text */
 .fic { max-width: 42em; margin: 0 auto; }
-.fic h2 { text-align: center; border: none; }
+.fic .title { text-align: center; border: none; }
 .fic .byline { text-align: center; margin-top: -10px; }
+
+/* Multi-chapter works: chapter links, headings and the style switch */
+.work-title { text-align: center; margin: 0 0 6px; }
+.chapter-nav { text-align: center; font-size: 0.95em; }
+.chapter-title { text-align: center; font-size: 1.4em; }
+.style-toggle { text-align: center; margin: 0 0 6px; }
+.style-toggle button { font: inherit; font-size: 0.85em; padding: 3px 10px; cursor: pointer; }
+.chapter-index { padding-left: 1.6em; }
+
+/* Code in tutorials, wrapped so long lines never push the page sideways */
+.fic pre {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  background: var(--box-fill);
+  border: 1px solid var(--rule);
+  padding: 8px 10px;
+  font-size: 0.85em;
+}
+.fic code { font-family: Consolas, Monaco, "Courier New", monospace; }
+.fic details { margin: 10px 0; }
+.fic summary { cursor: pointer; color: var(--link); }
 
 img, video { max-width: 100%; height: auto; }
 
