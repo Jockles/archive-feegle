@@ -1,6 +1,6 @@
 <h3>The Core CSS</h3>
 
-<p>This chapter goes through the CSS behind the last one: the chat box, scrolling, round pictures, hidden text, translations and character profiles. It's the part of the skin that every module needs, so whichever apps you use, the core goes in first.</p>
+<p>This chapter goes through the CSS behind the last one: the chat box, scrolling, round pictures, hidden text, translations, character profiles and the ten colours every app shares. It's the part of the skin that every module needs, so whichever apps you use, the core goes in first.</p>
 
 <p>You don't need to understand any of this to use the skin. It's here for when you want to change something - a size, a colour, a profile - and want to know which bit to touch without breaking anything else.</p>
 
@@ -209,6 +209,8 @@
   <li><code>background-size: cover</code> is for profiles, which set their picture as a background instead of a picture tag. <code>cover</code> crops a background to fill the circle by itself, whatever its shape, which is why profile pictures never need <code>land</code>.</li>
 </ul>
 
+<p>A circle with no picture in it shows initials on a plain colour instead. The colours for that, <code>colour1</code> to <code>colour10</code>, are near the end of the core - see The Ten Colours, below.</p>
+
 <h4>Hidden Text</h4>
 
 <pre><code>#workskin .hide.hide.hide.hide { display: none; }</code></pre>
@@ -352,7 +354,32 @@
 
 <p>A profile is a block of CSS for one character. The trick behind it is that CSS can't put text on a page by itself, but it <em>can</em> add text before or after something with <code>::before</code> and <code>::after</code>. So <code>&lt;span class=&quot;handle pfp-luca&quot;&gt;&lt;/span&gt;</code> is an empty span, and the profile fills it in. Because the words come from the CSS, they disappear when the skin is off, which is why every example has a <code>hide</code> copy typed inside.</p>
 
-<p>Luca's profile uses every option, so here it is a line at a time. Only the lines marked <em>every profile</em> need to be in yours.</p>
+<h5>A Simple Profile: Stan</h5>
+
+<p>Stan's is the simplest profile in the skin. It only has the five lines every profile needs:</p>
+
+<pre><code>/* PROFILE: Stan */
+#workskin .pfp.pfp-stan { background-color: #c06a1f; }
+#workskin .wa .who.pfp-stan, #workskin .dc .dc-name.pfp-stan { color: #d2782a; }
+#workskin .name.pfp-stan::before { content: "Stan"; }
+#workskin .handle.pfp-stan::after { content: "PuckStan"; }
+#workskin .email.pfp-stan::after { content: "Puckstan@gmail.com"; }</code></pre>
+
+<p>Here's what each line does:</p>
+
+<ol>
+  <li><strong>The picture.</strong> Any <code>pfp</code> span that also has <code>pfp-stan</code> gets this. Stan doesn't have a photo, so his is just a plain orange circle (<code>background-color</code>). For a real picture, swap it for <code>background-image: url(https://example.com/stan.jpg);</code>, like Luca's below.</li>
+  <li><strong>The name colour.</strong> WhatsApp group names and Discord usernames are coloured, so this is Stan's colour in both. It does the same job as <code>colour1</code> to <code>colour10</code>, just for one character, so you don't need a colour class as well. Pick a colour you can read on white and on black, because readers will see it in both themes.</li>
+  <li><strong>The name.</strong> <code>&lt;span class=&quot;name pfp-stan&quot;&gt;&lt;/span&gt;</code> is an empty span, and <code>::before</code> with <code>content</code> fills it in with "Stan".</li>
+  <li><strong>The handle.</strong> The same idea for <code>&lt;span class=&quot;handle pfp-stan&quot;&gt;&lt;/span&gt;</code>, but with <code>::after</code>. Leave the @ off - Twitter/X adds it for you (there's more on why in line 8 of Luca's, below).</li>
+  <li><strong>The email address.</strong> The same again, for <code>&lt;span class=&quot;email pfp-stan&quot;&gt;&lt;/span&gt;</code>.</li>
+</ol>
+
+<p>That's a whole profile. The comment line at the top (<code>/* PROFILE: Stan */</code>) doesn't do anything - it's just a label, so you can find each character's block.</p>
+
+<h5>Every Option: Luca</h5>
+
+<p>Luca's profile uses every option, so here it is a line at a time. Only the lines marked <em>every profile</em> need to be in yours - they're the same five as Stan's.</p>
 
 <p><strong>1. Picture (every profile)</strong></p>
 
@@ -451,7 +478,7 @@
 
 <h4>Making Your Own Profile</h4>
 
-<p>Copy Stan's block - it's the simplest one - and change <code>stan</code> to your character's name everywhere in it:</p>
+<p>Copy Stan's block from above and change <code>stan</code> to your character's name everywhere in it:</p>
 
 <pre><code>/* PROFILE: Stan */
 #workskin .pfp.pfp-stan { background-color: #c06a1f; }
