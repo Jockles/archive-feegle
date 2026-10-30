@@ -153,6 +153,60 @@ def check_sources():
 
 # ---------------------------------------------------------------- dictionary
 
+# Working notes in the Notes column that are about how a word was chosen or
+# changed (decision dates, the word picker, reviews, replaced forms) rather
+# than where it comes from. They are left out of the site.
+NOTE_PREFIXES = [
+    r"SRD (?:decision |revision )?\d+ \w+ 20\d\d"
+    r"(?:, (?:chosen in the [\w ]+ word picker|accepted from the Candidates review))?"
+    r"(?: \([^)]*\))?\s*[.:;]?\s*",
+    r"Swadesh completion\s*[;:,]?\s*",
+]
+NOTE_REWORD = [
+    (r"\s*\([^()]*\b20\d\d\b[^()]*\)", ""),  # dated asides, e.g. "(SRD decision 30 Sep 2026)"
+    (r",? confirmed \d+ \w+ 20\d\d", ""),
+    (r"the review-tab candidate ", ""),
+    (r"the earlier (Tuareg-informed \S+), which it replaces", r"the \1"),
+    (r"Tuareg Swadesh source", "Tuareg source"),
+    (r"^Legacy BLW (\S+) regularised to \S+ in PGD reconciliation per conflict-review decision", r"From BLW \1"),
+]
+NOTE_DROP = re.compile(
+    r"\b(?:picker|review|PGD|CHECK|replac\w*|earlier|retired|candidate|reconciliation"
+    r"|regularised to -uu on|regularised to rutuu|confirm\w*|decision|not recorded yet"
+    r"|Keep the row|Gloss revised|Earlier gloss|master)\b|^So ", re.I)
+NOTE_KEEP = re.compile(r"provisional", re.I)
+# English words that start a note sentence once a dated prefix is taken off
+NOTE_CAPS = {"also", "see", "from", "now", "literally", "by", "old", "native", "internally",
+             "interrogative", "derived", "pluralised", "back-formed", "wider", "pan-berber", "thirds"}
+
+
+def clean_note(note):
+    pieces = []
+    for piece in note.split(" | "):
+        out = []
+        for sentence in re.split(r"(?<=\.)\s+", piece.strip()):
+            before = sentence
+            for prefix in NOTE_PREFIXES:
+                sentence = re.sub("^" + prefix, "", sentence, flags=re.I)
+            for pattern, repl in NOTE_REWORD:
+                sentence = re.sub(pattern, repl, sentence)
+            clauses = [c.strip() for c in re.split(r";\s*", sentence)
+                       if c.strip(" .") and (not NOTE_DROP.search(c) or NOTE_KEEP.search(c))]
+            if not clauses:
+                continue
+            text = "; ".join(clauses)
+            if sentence.rstrip().endswith(".") and not text.endswith("."):
+                text += "."
+            if sentence != before and text.split()[0].lower() in NOTE_CAPS:
+                text = text[0].upper() + text[1:]
+            out.append(text)
+        if out:
+            pieces.append(" ".join(out))
+    if len(pieces) > 1:
+        pieces = [p if p[-1] in ".!?" else p + "." for p in pieces]
+    return " ".join(pieces)
+
+
 def tier(source):
     s = source.lower()
     if "fialleril" in s:
@@ -177,6 +231,7 @@ def load_words():
         while wid in used:
             wid, n = f"{base}-{n}", n + 1
         used.add(wid)
+        w["notes"] = clean_note(w["notes"])
         w["id"] = wid
         w["letter"] = next((c.upper() for c in w["word"] if c.isalpha()), "#")
         words.append(w)
