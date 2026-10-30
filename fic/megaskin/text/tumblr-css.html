@@ -1,0 +1,311 @@
+<h3>Tumblr CSS</h3>
+
+<p>This chapter goes through the CSS for the Tumblr posts in the last chapter: the card, the header with its picture and checkmarks, reblog chains, asks, quote and chat posts, the bottom row, and the feed behind the cards.</p>
+
+<h4>Getting the CSS</h4>
+
+<p>The Tumblr CSS is here: <a href="css/tumblr.css">jockles.com/fic/megaskin/css/tumblr.css</a>. It needs the core CSS too (<a href="css/core.css">jockles.com/fic/megaskin/css/core.css</a>), so paste the core into your work skin first and this underneath it.</p>
+
+<h4>How the Module is Laid Out</h4>
+
+<p>The usual order - the main rules, Links, Scrolling, Dark theme and Auto theme. Like a tweet or an Instagram post, a Tumblr post has no <code>mob-body</code>, so it scrolls as a whole once it's taller than <code>700px</code>.</p>
+
+<h4>The Card</h4>
+
+<pre><code>#workskin .tb {
+  background: #ffffff;
+  color: #000000;
+  border: 1px solid #e3e3e3;
+  border-radius: 14px;
+  overflow: hidden;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+}
+
+#workskin .tb .tb-body { display: block; padding: 0.3em 0 0.8em 0; }
+
+#workskin .tb .tb-body p { margin: 0.5em 0; padding: 0 0.9em; }</code></pre>
+
+<p>A white card with rounded corners, like the mobile app. Tumblr posts are more spaced out than chats, so the lines are taller (<code>1.5</code>), and paragraphs in the body get their gaps back - the core takes them away from every chat, but a post needs them.</p>
+
+<pre><code>#workskin .tb :not(.pfp) &gt; img {
+  display: block;
+  max-width: 92%;
+  height: auto;
+  margin: 0.6em auto;
+  border-radius: 4px;
+}</code></pre>
+
+<p>This one catches every picture in a post, but not profile pictures: <code>:not(.pfp) &gt; img</code> means "a picture whose box isn't a <code>pfp</code>". The picture is centred, with a little space either side, and never wider than the card.</p>
+
+<h4>The Header</h4>
+
+<pre><code>#workskin .tb .tb-header,
+#workskin .tb .tb-blog {
+  display: block;
+  overflow: hidden;
+  padding: 0.8em 0.9em 0.3em 0.9em;
+  font-weight: normal;
+}
+
+#workskin .tb .tb-header { padding-bottom: 0.8em; border-bottom: 1px solid #eeeeee; }
+
+#workskin .tb .tb-name { display: block; min-height: 38px; margin-left: 48px; }
+
+#workskin .tb .tb-name &gt; b { display: block; font-weight: bold; line-height: 1.3; }
+
+#workskin .tb .tb-name &gt; b:only-child { line-height: 38px; }
+
+#workskin .tb .tb-subline { display: block; font-size: 0.85em; color: #6c7a8b; }</code></pre>
+
+<ul>
+  <li>The post's header (<code>tb-header</code>) and each reblog's header (<code>tb-blog</code>) are built the same, except the post's header has a line under it.</li>
+  <li>The picture floats left, and the name is pushed <code>48px</code> in from the left to clear it - the picture's <code>38px</code> and a gap. <code>min-height</code> makes the name block at least as tall as the picture, so the next thing always starts below both.</li>
+  <li><code>:only-child</code> catches a name with no grey line under it, and makes its line as tall as the picture, which centres it from top to bottom beside the picture.</li>
+</ul>
+
+<p>The header code is written over several lines, and AO3 turns line breaks into <code>&lt;br /&gt;</code> tags, so a couple of rules hide those and flatten the paragraph AO3 wraps around it, as in WhatsApp's message bar.</p>
+
+<details>
+<summary>The right-hand side: Follow and the three dots</summary>
+
+<pre><code>#workskin .tb .tb-follow { display: block; float: right; margin: 2px 0 0 0.5em; }
+
+#workskin .tb .tb-menu {
+  display: block;
+  float: right;
+  height: 38px;
+  line-height: 38px;
+  margin: 0 0 0 0.6em;
+  color: #777777;
+  letter-spacing: 0.05em;
+  font-size: 0.8em;
+}</code></pre>
+
+<p>Both float right, which is why they come before the name in the code (see Account Line Extras in the Instagram CSS chapter). The first one in the code goes furthest right, so the dots go first and the Follow button second, to end up in the right order.</p>
+
+</details>
+
+<h4>Pictures and the Reblog Badge</h4>
+
+<pre><code>#workskin .tb .tb-pfp {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  float: left;
+  position: relative;
+  width: 38px;
+  height: 38px;
+  line-height: 1;
+  text-align: center;
+  border-radius: 50%;
+  background-color: #8a8a8a;
+  font-family: Arial, Helvetica, sans-serif;
+  background-size: cover;
+  background-position: center;
+  color: #ffffff;
+  font-size: 0.85em;
+  font-weight: bold;
+}</code></pre>
+
+<p>The circle works like the other modules', with initials or a picture inside and <code>colour1</code> to <code>colour10</code> for the colours. It uses <code>display: flex</code> to centre the initials, which is a newer and more exact way than the line-height trick: <code>align-items</code> centres them top to bottom, and <code>justify-content</code> side to side.</p>
+
+<pre><code>#workskin .tb .tb-pfp.rb::after {
+  content: '\21C4';
+  position: absolute;
+  right: -6px;
+  bottom: -5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 14px;
+  line-height: 1;
+  text-align: center;
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+  background: #0ccc3c;
+  color: #ffffff;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 9px;
+  font-weight: bold;
+}</code></pre>
+
+<p>The reblog badge is added with <code>::after</code> and pinned off the bottom right of the circle. <code>\21C4</code> is the ⇄ arrows, in white on Tumblr's green, with a white edge to separate it from the picture.</p>
+
+<h4>Checkmarks</h4>
+
+<pre><code>#workskin .tb .tb-check {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.15em;
+  height: 1.15em;
+  line-height: 1;
+  margin-left: 0.25em;
+  border-radius: 50%;
+  background: #42aaf5;
+  color: #111111;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.75em;
+  font-weight: bold;
+  vertical-align: 0.1em;
+}
+
+#workskin .tb .tb-check + .tb-check { margin-left: 0.12em; }
+
+#workskin .tb .tb-check + .tb-check { background: #4ccd4a; }
+
+#workskin .tb .tb-check + .tb-check + .tb-check { background: #a6d03f; }
+
+#workskin .tb .tb-check + .tb-check + .tb-check + .tb-check { background: #e3cf3c; }
+
+#workskin .tb .tb-check + .tb-check + .tb-check + .tb-check + .tb-check { background: #efb238; }
+
+#workskin .tb .tb-check + .tb-check + .tb-check + .tb-check + .tb-check + .tb-check { background: #f08b37; }</code></pre>
+
+<p>Every checkmark starts blue. Then the same <code>+</code> trick as iMessage's stacked tapbacks counts them: <code>.tb-check + .tb-check</code> is the second, and each extra <code>+ .tb-check</code> is one further along, so the second is green, the third lime, and so on to orange. That's how the colours always come out in the right order, without you having to say which is which.</p>
+
+<h4>Reblog Chains</h4>
+
+<pre><code>#workskin .tb .tb-reblog {
+  display: block;
+  margin: 0;
+  padding: 0 0 0.3em 0;
+  border-top: 1px solid #eeeeee;
+}
+
+#workskin .tb .tb-body &gt; .tb-reblog:first-child { border-top: 0; }</code></pre>
+
+<p>Each reblog has a thin line along its top, and the first one in the chain doesn't, because the post's header already has a line under it.</p>
+
+<h4>Asks</h4>
+
+<pre><code>#workskin .tb .tb-ask {
+  display: block;
+  position: relative;
+  background: #f5f5f5;
+  border-radius: 8px;
+  padding: 0.8em 0.9em 0.4em 0.9em;
+  margin: 0.6em 36px 0.6em 0.9em;
+}
+
+#workskin .tb .tb-ask::after {
+  content: '';
+  position: absolute;
+  top: 1.2em;
+  right: -6px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 6px 0 6px 7px;
+  border-color: transparent transparent transparent #f5f5f5;
+}
+
+#workskin .tb .tb-ask-pfp {
+  display: block;
+  position: absolute;
+  top: 0.8em;
+  right: -36px;
+  width: 28px;
+  height: 28px;
+  line-height: 28px;
+  text-align: center;
+  border-radius: 5px;
+  background-color: #8a8a8a;
+  font-family: Arial, Helvetica, sans-serif;
+  background-size: cover;
+  background-position: center;
+  color: #ffffff;
+  font-size: 0.75em;
+  font-weight: bold;
+}</code></pre>
+
+<ul>
+  <li>The ask box is grey with a <code>36px</code> margin on its right, leaving room for the picture outside it.</li>
+  <li>The pointer is a CSS triangle - the same border trick as WhatsApp's bubble tails - pinned to the right edge, pointing at the picture.</li>
+  <li>The picture is pinned outside the box with <code>right: -36px</code>. It's a square with rounded corners (<code>5px</code>) rather than a circle, like Tumblr's, and it has its own <code>colour1</code> to <code>colour10</code>.</li>
+</ul>
+
+<h4>Quote and Chat Posts</h4>
+
+<pre><code>#workskin .tb .tb-quote { font-family: Georgia, serif; font-size: 1.9em; line-height: 1.25; }
+
+#workskin .tb .tb-quote::before { content: "\201C"; }
+
+#workskin .tb .tb-quote::after { content: "\201D"; }
+
+#workskin .tb .tb-chat {
+  display: block;
+  margin: 0.6em 0.9em;
+  font-family: Courier, monospace;
+  line-height: 1.4;
+}</code></pre>
+
+<p>The quote is big and in a serif font, and the curly quotation marks are added before and after it - <code>\201C</code> is “ and <code>\201D</code> is ”. The chat post is in a typewriter font.</p>
+
+<h4>Tags and the Bottom Row</h4>
+
+<pre><code>#workskin .tb .tb-footer {
+  display: flex;
+  align-items: center;
+  padding: 0.5em 0.9em 0.8em 0.9em;
+  color: #555555;
+}
+
+#workskin .tb .tb-notes {
+  display: inline-block;
+  margin: 0 auto 0 0;
+  padding: 0.35em 0.9em;
+  border: 1px solid #e3e3e3;
+  border-radius: 2em;
+  color: #777777;
+  font-size: 0.85em;
+}</code></pre>
+
+<p><code>display: flex</code> lines the bottom row up. The note count has <code>margin-right: auto</code> (the second of the four numbers), which takes up all the spare room on its right, pushing every button after it over to the right-hand end. The save button is the same CSS bookmark as Instagram's (see Icons Drawn With CSS, in the Instagram CSS chapter), just a little smaller.</p>
+
+<h4>The Feed</h4>
+
+<pre><code>#workskin .tb-feed {
+  width: 380px;
+  max-width: 100%;
+  margin: 1.2em auto;
+  padding: 0.5em 0;
+  background: #001935;
+  box-sizing: border-box;
+  border-radius: 14px;
+}
+
+#workskin .tb-feed.black { background: #000000; }
+
+#workskin .tb-feed .mob {
+  width: auto;
+  max-width: none;
+  margin: 0.5em 0;
+  border-color: transparent;
+  border-radius: 14px;
+}</code></pre>
+
+<p>The feed is a phone-sized navy box, Tumblr's own colour. The posts inside it lose their own width and fill the feed instead, with a small gap between each one and no visible edge, so they look like cards laid on the background. <code>black</code> swaps the navy for black. The feed has no theme of its own, so pick <code>black</code> or navy to go with your posts.</p>
+
+<h4>Links and Themes</h4>
+
+<pre><code>#workskin .tb .fake-link, #workskin .tb a:not(.tl) { color: #0070b8; }</code></pre>
+
+<p>Links are Tumblr's blue. The dark theme makes the card dark grey (<code>#1f1f1f</code>) with light text, turns all the small print and the ask boxes darker, and gives links a brighter blue (<code>#00b8ff</code>) so they show up. The white edges round the reblog badge become the card colour. As always, the auto theme is the same again inside <code>@media (prefers-color-scheme: dark)</code>.</p>
+
+<h4>Taking Parts Out</h4>
+
+<p>Search for the class names and delete every rule with them in, including in the dark and auto blocks:</p>
+
+<ul>
+  <li><strong>Asks:</strong> <code>tb-ask</code>, <code>tb-answer</code>, <code>tb-asker</code> and <code>tb-ask-pfp</code>, with its ten colours.</li>
+  <li><strong>Quote posts:</strong> <code>tb-quote</code> and <code>tb-source</code>.</li>
+  <li><strong>Chat posts:</strong> <code>tb-chat</code>.</li>
+  <li><strong>Checkmarks:</strong> <code>tb-check</code>.</li>
+  <li><strong>Bottom row:</strong> <code>tb-footer</code>, <code>tb-notes</code> and <code>tb-icon</code>.</li>
+  <li><strong>The feed:</strong> everything starting <code>.tb-feed</code>.</li>
+</ul>
+
+<p>Keep the card, the header, the name, the picture and the body, which every post uses.</p>
