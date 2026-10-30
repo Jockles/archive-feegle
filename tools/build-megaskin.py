@@ -31,6 +31,7 @@ CHAPTERS = [
     ("twitter-x", "Twitter/X"),
     ("twitter-x-css", "Twitter/X CSS"),
     ("instagram", "Instagram"),
+    ("instagram-css", "Instagram CSS"),
     ("tumblr", "Tumblr"),
     ("email", "Email"),
     ("discord", "Discord"),
