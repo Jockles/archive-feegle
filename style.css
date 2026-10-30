@@ -1,0 +1,137 @@
+/* jockles.com — one stylesheet for the whole site.
+   Layout is inspired by fanfic archive sites: a coloured header band,
+   a menu bar, plain white pages and grey-edged boxes.
+   Change the colours here and every page follows. */
+
+:root {
+  --header: #0b5563;      /* deep teal header band */
+  --header-dark: #063b45; /* menu bar and footer */
+  --header-text: #ffffff;
+  --page: #ffffff;
+  --ink: #2a2a2a;
+  --muted: #555555;
+  --link: #0b5563;
+  --visited: #2e7d5b;
+  --hover: #1a8f6a;       /* green on hover */
+  --box-edge: #bbbbbb;
+  --box-fill: #f4f8f7;
+  --tag-fill: #e3f1ec;
+  --rule: #dddddd;
+}
+
+body {
+  margin: 0;
+  background: var(--page);
+  color: var(--ink);
+  font-family: "Lucida Grande", "Lucida Sans Unicode", Verdana, Helvetica, sans-serif;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+a { color: var(--link); }
+a:visited { color: var(--visited); }
+a:hover, a:focus { color: var(--hover); }
+
+/* Header band */
+header {
+  background: var(--header);
+  color: var(--header-text);
+  padding: 14px 20px;
+  border-bottom: 1px solid var(--header-dark);
+}
+header h1 {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: normal;
+  font-size: 2em;
+}
+header h1 a, header h1 a:visited { color: var(--header-text); text-decoration: none; }
+header p { margin: 2px 0 0; font-size: 0.9em; opacity: 0.85; }
+
+/* Menu bar */
+nav {
+  background: var(--header-dark);
+  padding: 0 12px;
+}
+nav ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; }
+nav a, nav a:visited {
+  display: block;
+  padding: 8px 12px;
+  color: var(--header-text);
+  text-decoration: none;
+  font-size: 0.95em;
+}
+nav a:hover, nav a:focus { background: var(--header); color: var(--header-text); }
+
+main {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 16px 32px;
+}
+
+h2, h3 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: normal;
+}
+h2 { font-size: 1.6em; border-bottom: 1px solid var(--rule); padding-bottom: 4px; }
+
+.box {
+  border: 1px solid var(--box-edge);
+  background: var(--box-fill);
+  padding: 10px 14px;
+  margin: 14px 0;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.12);
+}
+
+/* A listing of one work, like a search result on a fic archive */
+.blurb {
+  border: 1px solid var(--box-edge);
+  padding: 10px 14px;
+  margin: 0 0 14px;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.12);
+}
+.blurb h3 { margin: 0; font-size: 1.15em; }
+.blurb .fandom { margin: 0 0 6px; color: var(--muted); font-size: 0.9em; }
+.blurb .summary { margin: 8px 0 8px 1.5em; }
+.stats { font-size: 0.85em; color: var(--muted); margin: 0; }
+
+.tags { list-style: none; padding: 0; margin: 6px 0; font-size: 0.9em; display: flex; flex-wrap: wrap; }
+.tags li + li::before { content: ",\00a0"; }
+.tags .warning a { font-weight: bold; }
+
+/* Details box at the top of a fic page */
+.work-meta {
+  border: 1px solid var(--box-edge);
+  background: var(--box-fill);
+  padding: 10px 14px;
+  margin: 0 0 20px;
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 4px 12px;
+  font-size: 0.9em;
+}
+.work-meta dt { font-weight: bold; text-align: right; }
+.work-meta dd { margin: 0; }
+
+/* Fic text */
+.fic { max-width: 42em; margin: 0 auto; }
+.fic h2 { text-align: center; border: none; }
+.fic .byline { text-align: center; margin-top: -10px; }
+
+img, video { max-width: 100%; height: auto; }
+
+footer {
+  background: var(--header-dark);
+  color: var(--header-text);
+  text-align: center;
+  font-size: 0.8em;
+  padding: 14px;
+}
+
+@media (max-width: 600px) {
+  header { padding: 12px 16px; }
+  header h1 { font-size: 1.6em; }
+  nav a { padding: 8px 9px; }
+  .work-meta { grid-template-columns: 1fr; }
+  .work-meta dt { text-align: left; }
+}
