@@ -1,0 +1,510 @@
+<h2>Email</h2>
+
+<h3>Credits</h3>
+
+<p>The Email module is built on the work below. They're also listed in <a href="getting-started.html#credits">Credits and sources</a> in the first chapter, with all the other credits. Please go and leave them some kudos!</p>
+
+<ul>
+  <li><strong>Gmail:</strong> <em>How to insert Gmail emails in your fic</em> by DemigodOfAgni, <a href="https://archiveofourown.org/works/53302357">archiveofourown.org/works/53302357</a>. The Gmail email layout, with its table headers and Reply buttons, is based on this.</li>
+  <li><strong>Generic email:</strong> <em>How to Mimic Email Windows</em> by La_Temperanza, <a href="https://archiveofourown.org/works/7953412">archiveofourown.org/works/7953412</a>. The title bar, header lines, scrolling message body, attachments and Reply / Forward / Delete bar are based on this.</li>
+</ul>
+
+<h3>Gmail emails</h3>
+
+<p>This is for emails in the style of the Gmail app: a subject line, then each email in the thread with the sender, the date, who it was sent to and the message, with Reply buttons at the bottom. The email headers are made with <code>&lt;table&gt;</code> tags, because tables keep everything lined up neatly on AO3.</p>
+
+<p>Before we begin, here's a whole thread. The full HTML is underneath, which you can copy and modify yourself. The rest of this section takes the HTML apart so that you can modify all the individual parts to say exactly what you want.</p>
+
+<h4>A Gmail Thread</h4>
+
+<div class="mob gm theme-auto">
+  <table class="gm-subject">
+    <tbody>
+      <tr>
+        <td class="gm-title">Sunday dinner <span class="gm-label">Inbox</span></td>
+        <td class="gm-star">&#9734;</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="gm-msg">
+    <table class="gm-head">
+      <tbody>
+        <tr>
+          <td rowspan="2" class="gm-pfp-cell"><span class="gm-pfp"><span class="pfp pfp-yuna"></span></span></td>
+          <td class="gm-from">Yuna Hollander <span class="gm-address">&lt;<span class="email pfp-yuna"><span class="hide">YunaHollander@gmail.com</span></span>&gt;</span></td>
+          <td class="gm-date">Jan 25, 5:38 AM</td>
+        </tr>
+        <tr>
+          <td class="gm-to">to me, Ilya &#9662;</td>
+          <td class="gm-tools">&#8617; &#8943;</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="gm-body">
+      <p>Hi both,</p>
+      <p>Dinner is at 6 on Sunday. Ilya, please don't bring dessert again. We still have <i>half</i> of the last one.</p>
+      <p>Love, Mom</p>
+    </div>
+  </div>
+  <div class="gm-msg">
+    <table class="gm-head">
+      <tbody>
+        <tr>
+          <td rowspan="2" class="gm-pfp-cell"><span class="gm-pfp"><span class="pfp"><img src="https://64.media.tumblr.com/2f5204e07f5dc3467a42508584f56c7d/188bbfab996df056-77/s400x600/e139f3e69f9be02470797bbd3505a69cc26def70.pnj" alt="Profile picture of Ilya Rozanov"></span></span></td>
+          <td class="gm-from">Ilya Rozanov <span class="gm-address">&lt;ilya@example.com&gt;</span></td>
+          <td class="gm-date">Jan 25, 9:12 AM</td>
+        </tr>
+        <tr>
+          <td class="gm-to">to Yuna, me &#9662;</td>
+          <td class="gm-tools">&#8617; &#8943;</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="gm-body">
+      <p>Yuna, the cake was a gift.</p>
+      <p>I will bring a smaller one.</p>
+    </div>
+  </div>
+  <div class="gm-msg">
+    <table class="gm-head">
+      <tbody>
+        <tr>
+          <td rowspan="2" class="gm-pfp-cell"><span class="gm-pfp colour5">SH</span></td>
+          <td class="gm-from">Shane Hollander <span class="gm-address">&lt;shane@example.com&gt;</span></td>
+          <td class="gm-date">Jan 25, 9:20 AM</td>
+        </tr>
+        <tr>
+          <td class="gm-to">to Mom, Ilya &#9662;</td>
+          <td class="gm-tools">&#8617; &#8943;</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="gm-body">
+      <p>Please do not bring a cake.</p>
+      <p>We'll see you at 6. I'm bringing the <b>salad</b>.</p>
+    </div>
+  </div>
+  <div class="gm-footer">
+    <table class="gm-actions">
+      <tbody>
+        <tr>
+          <td>&#8617; Reply</td>
+          <td>&#8617;&#8617; Reply all</td>
+          <td>&#8618; Forward</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<details>
+<summary>The full HTML for this thread</summary>
+
+<pre><code>&lt;div class="mob gm theme-auto"&gt;
+  &lt;table class="gm-subject"&gt;
+    &lt;tbody&gt;
+      &lt;tr&gt;
+        &lt;td class="gm-title"&gt;Sunday dinner &lt;span class="gm-label"&gt;Inbox&lt;/span&gt;&lt;/td&gt;
+        &lt;td class="gm-star"&gt;&amp;#9734;&lt;/td&gt;
+      &lt;/tr&gt;
+    &lt;/tbody&gt;
+  &lt;/table&gt;
+  &lt;div class="gm-msg"&gt;
+    &lt;table class="gm-head"&gt;
+      &lt;tbody&gt;
+        &lt;tr&gt;
+          &lt;td rowspan="2" class="gm-pfp-cell"&gt;&lt;span class="gm-pfp"&gt;&lt;span class="pfp pfp-yuna"&gt;&lt;/span&gt;&lt;/span&gt;&lt;/td&gt;
+          &lt;td class="gm-from"&gt;Yuna Hollander &lt;span class="gm-address"&gt;&amp;lt;&lt;span class="email pfp-yuna"&gt;&lt;span class="hide"&gt;YunaHollander@gmail.com&lt;/span&gt;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/td&gt;
+          &lt;td class="gm-date"&gt;Jan 25, 5:38 AM&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td class="gm-to"&gt;to me, Ilya &amp;#9662;&lt;/td&gt;
+          &lt;td class="gm-tools"&gt;&amp;#8617; &amp;#8943;&lt;/td&gt;
+        &lt;/tr&gt;
+      &lt;/tbody&gt;
+    &lt;/table&gt;
+    &lt;div class="gm-body"&gt;
+      &lt;p&gt;Hi both,&lt;/p&gt;
+      &lt;p&gt;Dinner is at 6 on Sunday. Ilya, please don't bring dessert again. We still have &lt;i&gt;half&lt;/i&gt; of the last one.&lt;/p&gt;
+      &lt;p&gt;Love, Mom&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="gm-msg"&gt;
+    &lt;table class="gm-head"&gt;
+      &lt;tbody&gt;
+        &lt;tr&gt;
+          &lt;td rowspan="2" class="gm-pfp-cell"&gt;&lt;span class="gm-pfp"&gt;&lt;span class="pfp"&gt;&lt;img src="https://64.media.tumblr.com/2f5204e07f5dc3467a42508584f56c7d/188bbfab996df056-77/s400x600/e139f3e69f9be02470797bbd3505a69cc26def70.pnj" alt="Profile picture of Ilya Rozanov"&gt;&lt;/span&gt;&lt;/span&gt;&lt;/td&gt;
+          &lt;td class="gm-from"&gt;Ilya Rozanov &lt;span class="gm-address"&gt;&amp;lt;ilya@example.com&amp;gt;&lt;/span&gt;&lt;/td&gt;
+          &lt;td class="gm-date"&gt;Jan 25, 9:12 AM&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td class="gm-to"&gt;to Yuna, me &amp;#9662;&lt;/td&gt;
+          &lt;td class="gm-tools"&gt;&amp;#8617; &amp;#8943;&lt;/td&gt;
+        &lt;/tr&gt;
+      &lt;/tbody&gt;
+    &lt;/table&gt;
+    &lt;div class="gm-body"&gt;
+      &lt;p&gt;Yuna, the cake was a gift.&lt;/p&gt;
+      &lt;p&gt;I will bring a smaller one.&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="gm-msg"&gt;
+    &lt;table class="gm-head"&gt;
+      &lt;tbody&gt;
+        &lt;tr&gt;
+          &lt;td rowspan="2" class="gm-pfp-cell"&gt;&lt;span class="gm-pfp colour5"&gt;SH&lt;/span&gt;&lt;/td&gt;
+          &lt;td class="gm-from"&gt;Shane Hollander &lt;span class="gm-address"&gt;&amp;lt;shane@example.com&amp;gt;&lt;/span&gt;&lt;/td&gt;
+          &lt;td class="gm-date"&gt;Jan 25, 9:20 AM&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td class="gm-to"&gt;to Mom, Ilya &amp;#9662;&lt;/td&gt;
+          &lt;td class="gm-tools"&gt;&amp;#8617; &amp;#8943;&lt;/td&gt;
+        &lt;/tr&gt;
+      &lt;/tbody&gt;
+    &lt;/table&gt;
+    &lt;div class="gm-body"&gt;
+      &lt;p&gt;Please do not bring a cake.&lt;/p&gt;
+      &lt;p&gt;We'll see you at 6. I'm bringing the &lt;b&gt;salad&lt;/b&gt;.&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="gm-footer"&gt;
+    &lt;table class="gm-actions"&gt;
+      &lt;tbody&gt;
+        &lt;tr&gt;
+          &lt;td&gt;&amp;#8617; Reply&lt;/td&gt;
+          &lt;td&gt;&amp;#8617;&amp;#8617; Reply all&lt;/td&gt;
+          &lt;td&gt;&amp;#8618; Forward&lt;/td&gt;
+        &lt;/tr&gt;
+      &lt;/tbody&gt;
+    &lt;/table&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+</details>
+
+<h4>Email Container</h4>
+
+<p>An email thread is a container with the module class <code>gm</code>. The subject line, the emails and the buttons all go inside it:</p>
+
+<div class="mob gm theme-auto">
+  <p>[the subject line, emails and buttons go here]</p>
+</div>
+
+<pre><code>&lt;div class="mob gm theme-auto"&gt;
+  &lt;p&gt;[the subject line, emails and buttons go here]&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+
+<h4>Subject Line</h4>
+
+<p>The subject line at the top is a table with a <code>gm-title</code> cell for the subject and a <code>gm-star</code> cell for the star. A <code>gm-label</code> span after the subject adds the little grey label, like "Inbox" - you can leave it out if you like:</p>
+
+<div class="mob gm theme-auto"><table class="gm-subject">
+  <tbody>
+    <tr>
+      <td class="gm-title">Sunday dinner <span class="gm-label">Inbox</span></td>
+      <td class="gm-star">&#9734;</td>
+    </tr>
+  </tbody>
+</table></div>
+
+<pre><code>&lt;table class="gm-subject"&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td class="gm-title"&gt;Sunday dinner &lt;span class="gm-label"&gt;Inbox&lt;/span&gt;&lt;/td&gt;
+      &lt;td class="gm-star"&gt;&amp;#9734;&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+
+<p>If you're only showing the replies further down a thread, you can leave the subject line out completely.</p>
+
+<h4>Sender Header</h4>
+
+<p>Each email starts with a header, which has two rows. The first row has the sender and the date, and the second row has the "to" line and the little reply and menu symbols. The round picture on the left stretches down across both rows with <code>rowspan=&quot;2&quot;</code>:</p>
+
+<div class="mob gm theme-auto"><div class="gm-msg"><table class="gm-head">
+  <tbody>
+    <tr>
+      <td rowspan="2" class="gm-pfp-cell"><span class="gm-pfp colour5">SH</span></td>
+      <td class="gm-from">Shane Hollander <span class="gm-address">&lt;shane@example.com&gt;</span></td>
+      <td class="gm-date">Jan 25, 9:20 AM</td>
+    </tr>
+    <tr>
+      <td class="gm-to">to Mom, Ilya &#9662;</td>
+      <td class="gm-tools">&#8617; &#8943;</td>
+    </tr>
+  </tbody>
+</table></div></div>
+
+<pre><code>&lt;table class="gm-head"&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td rowspan="2" class="gm-pfp-cell"&gt;&lt;span class="gm-pfp colour5"&gt;SH&lt;/span&gt;&lt;/td&gt;
+      &lt;td class="gm-from"&gt;Shane Hollander &lt;span class="gm-address"&gt;&amp;lt;shane@example.com&amp;gt;&lt;/span&gt;&lt;/td&gt;
+      &lt;td class="gm-date"&gt;Jan 25, 9:20 AM&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="gm-to"&gt;to Mom, Ilya &amp;#9662;&lt;/td&gt;
+      &lt;td class="gm-tools"&gt;&amp;#8617; &amp;#8943;&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+
+<ul>
+  <li><code>gm-pfp</code> is the round picture. Without an image it shows initials, and <code>colour1</code> to <code>colour10</code> give it a colour. Give each person the same colour every time.</li>
+  <li><code>gm-from</code> is the sender's name, in bold. The <code>gm-address</code> span after it adds their email address in smaller grey text.</li>
+  <li><code>gm-date</code> is the date and time, on the right.</li>
+  <li><code>gm-to</code> is the "to Mom, Ilya" line. Write the names of everyone it went to, with "me" for your point-of-view character - Shane sent this one, so he isn't in it.</li>
+  <li><code>gm-tools</code> holds the reply arrow and the three dots on the right.</li>
+</ul>
+
+<p>For a real picture, put the picture tag inside a <code>pfp</code> span inside the <code>gm-pfp</code>:</p>
+
+<div class="mob gm theme-auto"><div class="gm-msg"><table class="gm-head">
+  <tbody>
+    <tr>
+      <td rowspan="2" class="gm-pfp-cell"><span class="gm-pfp"><span class="pfp"><img src="https://64.media.tumblr.com/2f5204e07f5dc3467a42508584f56c7d/188bbfab996df056-77/s400x600/e139f3e69f9be02470797bbd3505a69cc26def70.pnj" alt="Profile picture of Ilya Rozanov"></span></span></td>
+      <td class="gm-from">Ilya Rozanov <span class="gm-address">&lt;ilya@example.com&gt;</span></td>
+      <td class="gm-date">Jan 25, 9:12 AM</td>
+    </tr>
+    <tr>
+      <td class="gm-to">to Yuna, me &#9662;</td>
+      <td class="gm-tools">&#8617; &#8943;</td>
+    </tr>
+  </tbody>
+</table></div></div>
+
+<pre><code>&lt;table class="gm-head"&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td rowspan="2" class="gm-pfp-cell"&gt;&lt;span class="gm-pfp"&gt;&lt;span class="pfp"&gt;&lt;img src="https://64.media.tumblr.com/2f5204e07f5dc3467a42508584f56c7d/188bbfab996df056-77/s400x600/e139f3e69f9be02470797bbd3505a69cc26def70.pnj" alt="Profile picture of Ilya Rozanov"&gt;&lt;/span&gt;&lt;/span&gt;&lt;/td&gt;
+      &lt;td class="gm-from"&gt;Ilya Rozanov &lt;span class="gm-address"&gt;&amp;lt;ilya@example.com&amp;gt;&lt;/span&gt;&lt;/td&gt;
+      &lt;td class="gm-date"&gt;Jan 25, 9:12 AM&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="gm-to"&gt;to Yuna, me &amp;#9662;&lt;/td&gt;
+      &lt;td class="gm-tools"&gt;&amp;#8617; &amp;#8943;&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+
+<p>Or use a profile, so the same person has the same picture everywhere, like Yuna's. The email address can come from her profile too, with the address typed inside in a <code>hide</code> span for readers with the workskin off (see Profile Pictures and Character Profiles, in the Core, Themes, and Extras chapter):</p>
+
+<div class="mob gm theme-auto"><div class="gm-msg"><table class="gm-head">
+  <tbody>
+    <tr>
+      <td rowspan="2" class="gm-pfp-cell"><span class="gm-pfp"><span class="pfp pfp-yuna"></span></span></td>
+      <td class="gm-from">Yuna Hollander <span class="gm-address">&lt;<span class="email pfp-yuna"><span class="hide">YunaHollander@gmail.com</span></span>&gt;</span></td>
+      <td class="gm-date">Jan 25, 5:38 AM</td>
+    </tr>
+    <tr>
+      <td class="gm-to">to me, Ilya &#9662;</td>
+      <td class="gm-tools">&#8617; &#8943;</td>
+    </tr>
+  </tbody>
+</table></div></div>
+
+<pre><code>&lt;table class="gm-head"&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td rowspan="2" class="gm-pfp-cell"&gt;&lt;span class="gm-pfp"&gt;&lt;span class="pfp pfp-yuna"&gt;&lt;/span&gt;&lt;/span&gt;&lt;/td&gt;
+      &lt;td class="gm-from"&gt;Yuna Hollander &lt;span class="gm-address"&gt;&amp;lt;&lt;span class="email pfp-yuna"&gt;&lt;span class="hide"&gt;YunaHollander@gmail.com&lt;/span&gt;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/td&gt;
+      &lt;td class="gm-date"&gt;Jan 25, 5:38 AM&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="gm-to"&gt;to me, Ilya &amp;#9662;&lt;/td&gt;
+      &lt;td class="gm-tools"&gt;&amp;#8617; &amp;#8943;&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+
+<p>The colours for <code>colour1</code> to <code>colour10</code> are set in the core CSS and shared with every app, so you can change them there.</p>
+
+<h4>Message Body</h4>
+
+<p>The text of the email goes in a <code>gm-body</code>, as ordinary paragraphs, and you can use bold, italics, links and line breaks as normal. The header and the body together make one email, wrapped in <code>gm-msg</code>, which also draws the thin line between one email and the next:</p>
+
+<div class="mob gm theme-auto"><div class="gm-msg">
+  <table class="gm-head">
+    <tbody>
+      <tr>
+        <td rowspan="2" class="gm-pfp-cell"><span class="gm-pfp colour5">SH</span></td>
+        <td class="gm-from">Shane Hollander <span class="gm-address">&lt;shane@example.com&gt;</span></td>
+        <td class="gm-date">Jan 25, 9:20 AM</td>
+      </tr>
+      <tr>
+        <td class="gm-to">to Mom, Ilya &#9662;</td>
+        <td class="gm-tools">&#8617; &#8943;</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="gm-body">
+    <p>Please do not bring a cake.</p>
+    <p>We'll see you at 6. I'm bringing the <b>salad</b>.</p>
+  </div>
+</div></div>
+
+<pre><code>&lt;div class="gm-msg"&gt;
+  &lt;table class="gm-head"&gt;
+    &lt;tbody&gt;
+      &lt;tr&gt;
+        &lt;td rowspan="2" class="gm-pfp-cell"&gt;&lt;span class="gm-pfp colour5"&gt;SH&lt;/span&gt;&lt;/td&gt;
+        &lt;td class="gm-from"&gt;Shane Hollander &lt;span class="gm-address"&gt;&amp;lt;shane@example.com&amp;gt;&lt;/span&gt;&lt;/td&gt;
+        &lt;td class="gm-date"&gt;Jan 25, 9:20 AM&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td class="gm-to"&gt;to Mom, Ilya &amp;#9662;&lt;/td&gt;
+        &lt;td class="gm-tools"&gt;&amp;#8617; &amp;#8943;&lt;/td&gt;
+      &lt;/tr&gt;
+    &lt;/tbody&gt;
+  &lt;/table&gt;
+  &lt;div class="gm-body"&gt;
+    &lt;p&gt;Please do not bring a cake.&lt;/p&gt;
+    &lt;p&gt;We'll see you at 6. I'm bringing the &lt;b&gt;salad&lt;/b&gt;.&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+<h4>Reply Buttons</h4>
+
+<p>For the Reply, Reply all and Forward buttons, use a <code>gm-footer</code> around a table with the class <code>gm-actions</code>. If the email only went to one person, leave out the "Reply all" button in the middle:</p>
+
+<div class="mob gm theme-auto"><div class="gm-footer">
+  <table class="gm-actions">
+    <tbody>
+      <tr>
+        <td>&#8617; Reply</td>
+        <td>&#8617;&#8617; Reply all</td>
+        <td>&#8618; Forward</td>
+      </tr>
+    </tbody>
+  </table>
+</div></div>
+
+<pre><code>&lt;div class="gm-footer"&gt;
+  &lt;table class="gm-actions"&gt;
+    &lt;tbody&gt;
+      &lt;tr&gt;
+        &lt;td&gt;&amp;#8617; Reply&lt;/td&gt;
+        &lt;td&gt;&amp;#8617;&amp;#8617; Reply all&lt;/td&gt;
+        &lt;td&gt;&amp;#8618; Forward&lt;/td&gt;
+      &lt;/tr&gt;
+    &lt;/tbody&gt;
+  &lt;/table&gt;
+&lt;/div&gt;</code></pre>
+
+<p>The buttons go at the very end, after the last email in the thread.</p>
+
+<h3>Generic emails</h3>
+
+<p>For emails that aren't from Gmail - a work account, a school inbox, or just a plain email program - there's a simple email window. It has a dark title bar, the From, To and Subject lines, the message, and a Reply, Forward and Delete bar at the bottom. It's a good one to use if you don't want it to look like any particular brand. Here's one with everything in it:</p>
+
+<h4>A Work Email</h4>
+
+<div class="mob mail theme-auto">
+  <p class="mail-titlebar"><span>_ X</span><span class="hide"> - </span>Charity gala - forms to sign</p>
+  <p class="mail-field"><b>From:</b> <span class="email pfp-yuna"><span class="hide">Yuna@HollanderHockey.com</span></span></p>
+  <p class="mail-field"><b>Subject:</b> Charity gala - forms to sign</p>
+  <p class="mail-field"><b>To:</b> shane@example.com<br><b>Cc:</b> ilya@example.com</p>
+  <p class="mail-field"><b>Attached:</b> <span class="mail-attachment doc">gala-forms.doc (9 KB)</span> <span class="mail-attachment img">headshot.gif (70 KB)</span> <span class="mail-attachment">last-year.zip (5 MB)</span></p>
+  <div class="mail-body">
+    <p>Hi Shane,</p>
+    <p>Please sign the forms before Friday, and send me a headshot that isn't the one where you're asleep on the plane.</p>
+    <p class="mail-signature">Yuna Hollander<br>Hollander Hockey Management</p>
+  </div>
+  <p class="mail-buttons"><span>Reply</span><span class="hide"> - </span><span>Forward</span><span class="hide"> - </span><span>Delete</span></p>
+</div>
+
+<details>
+<summary>The full HTML for this email</summary>
+
+<pre><code>&lt;div class="mob mail theme-auto"&gt;
+  &lt;p class="mail-titlebar"&gt;&lt;span&gt;_ X&lt;/span&gt;&lt;span class="hide"&gt; - &lt;/span&gt;Charity gala - forms to sign&lt;/p&gt;
+  &lt;p class="mail-field"&gt;&lt;b&gt;From:&lt;/b&gt; &lt;span class="email pfp-yuna"&gt;&lt;span class="hide"&gt;Yuna@HollanderHockey.com&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+  &lt;p class="mail-field"&gt;&lt;b&gt;Subject:&lt;/b&gt; Charity gala - forms to sign&lt;/p&gt;
+  &lt;p class="mail-field"&gt;&lt;b&gt;To:&lt;/b&gt; shane@example.com&lt;br&gt;&lt;b&gt;Cc:&lt;/b&gt; ilya@example.com&lt;/p&gt;
+  &lt;p class="mail-field"&gt;&lt;b&gt;Attached:&lt;/b&gt; &lt;span class="mail-attachment doc"&gt;gala-forms.doc (9 KB)&lt;/span&gt; &lt;span class="mail-attachment img"&gt;headshot.gif (70 KB)&lt;/span&gt; &lt;span class="mail-attachment"&gt;last-year.zip (5 MB)&lt;/span&gt;&lt;/p&gt;
+  &lt;div class="mail-body"&gt;
+    &lt;p&gt;Hi Shane,&lt;/p&gt;
+    &lt;p&gt;Please sign the forms before Friday, and send me a headshot that isn't the one where you're asleep on the plane.&lt;/p&gt;
+    &lt;p class="mail-signature"&gt;Yuna Hollander&lt;br&gt;Hollander Hockey Management&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;p class="mail-buttons"&gt;&lt;span&gt;Reply&lt;/span&gt;&lt;span class="hide"&gt; - &lt;/span&gt;&lt;span&gt;Forward&lt;/span&gt;&lt;span class="hide"&gt; - &lt;/span&gt;&lt;span&gt;Delete&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+
+</details>
+
+<h4>Email Window</h4>
+
+<p>The window is a container with the module class <code>mail</code>. The title bar, the header lines, the body and the button bar all go inside it:</p>
+
+<pre><code>&lt;div class="mob mail theme-auto"&gt;
+  [title bar, header lines, body and button bar go here]
+&lt;/div&gt;</code></pre>
+
+<h4>Title Bar</h4>
+
+<p>The dark title bar is a paragraph with <code>mail-titlebar</code>. The little minimise and close marks go in a span <em>first</em>, so they sit on the right, and then the title:</p>
+
+<div class="mob mail theme-auto"><p class="mail-titlebar"><span>_ X</span><span class="hide"> - </span>Charity gala - forms to sign</p></div>
+
+<pre><code>&lt;p class="mail-titlebar"&gt;&lt;span&gt;_ X&lt;/span&gt;&lt;span class="hide"&gt; - &lt;/span&gt;Charity gala - forms to sign&lt;/p&gt;</code></pre>
+
+<p>You can change the title to anything, like the subject line. If it's too long for the window, it gets cut off rather than wrapping onto a second line.</p>
+
+<h4>Header Lines</h4>
+
+<p>For the From, To, Cc and Subject lines, use a paragraph for each one with <code>mail-field</code>, and put the label in <code>&lt;b&gt;</code> so all the labels line up. The From address here comes from Yuna's profile, with the address typed inside in a <code>hide</code> span for readers with the workskin off - or just type the address in:</p>
+
+<div class="mob mail theme-auto"><p class="mail-field"><b>From:</b> <span class="email pfp-yuna"><span class="hide">Yuna@HollanderHockey.com</span></span></p>
+<p class="mail-field"><b>Subject:</b> Charity gala - forms to sign</p></div>
+
+<pre><code>&lt;p class="mail-field"&gt;&lt;b&gt;From:&lt;/b&gt; &lt;span class="email pfp-yuna"&gt;&lt;span class="hide"&gt;Yuna@HollanderHockey.com&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p class="mail-field"&gt;&lt;b&gt;Subject:&lt;/b&gt; Charity gala - forms to sign&lt;/p&gt;</code></pre>
+
+<p>To put To and Cc in the same box, separate them with a line break:</p>
+
+<div class="mob mail theme-auto"><p class="mail-field"><b>To:</b> shane@example.com<br><b>Cc:</b> ilya@example.com</p></div>
+
+<pre><code>&lt;p class="mail-field"&gt;&lt;b&gt;To:&lt;/b&gt; shane@example.com&lt;br&gt;&lt;b&gt;Cc:&lt;/b&gt; ilya@example.com&lt;/p&gt;</code></pre>
+
+<h4>Attachments</h4>
+
+<p>Attachments go in a header line, as spans with <code>mail-attachment</code>. Add <code>doc</code> for a document icon or <code>img</code> for a picture icon - with neither, you get a paperclip:</p>
+
+<div class="mob mail theme-auto"><p class="mail-field"><b>Attached:</b> <span class="mail-attachment doc">gala-forms.doc (9 KB)</span> <span class="mail-attachment img">headshot.gif (70 KB)</span> <span class="mail-attachment">last-year.zip (5 MB)</span></p></div>
+
+<pre><code>&lt;p class="mail-field"&gt;&lt;b&gt;Attached:&lt;/b&gt; &lt;span class="mail-attachment doc"&gt;gala-forms.doc (9 KB)&lt;/span&gt; &lt;span class="mail-attachment img"&gt;headshot.gif (70 KB)&lt;/span&gt; &lt;span class="mail-attachment"&gt;last-year.zip (5 MB)&lt;/span&gt;&lt;/p&gt;</code></pre>
+
+<h4>The Message</h4>
+
+<p>The message itself is your paragraphs inside a <code>div</code> with <code>mail-body</code>:</p>
+
+<div class="mob mail theme-auto"><div class="mail-body">
+  <p>Hi Shane,</p>
+  <p>Please sign the forms before Friday, and send me a headshot that isn't the one where you're asleep on the plane.</p>
+  <p class="mail-signature">Yuna Hollander<br>Hollander Hockey Management</p>
+</div></div>
+
+<pre><code>&lt;div class="mail-body"&gt;
+  &lt;p&gt;Hi Shane,&lt;/p&gt;
+  &lt;p&gt;Please sign the forms before Friday, and send me a headshot that isn't the one where you're asleep on the plane.&lt;/p&gt;
+  &lt;p class="mail-signature"&gt;Yuna Hollander&lt;br&gt;Hollander Hockey Management&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+
+<p>If the email is really long, the body stops growing and scrolls, so the window stays about the height of a phone.</p>
+
+<h4>Signature</h4>
+
+<p>For a signature under the message, use <code>mail-signature</code> as the last paragraph in the body. It's smaller and grey, with a thin line above it:</p>
+
+<div class="mob mail theme-auto"><div class="mail-body"><p class="mail-signature">Yuna Hollander<br>Hollander Hockey Management</p></div></div>
+
+<pre><code>&lt;p class="mail-signature"&gt;Yuna Hollander&lt;br&gt;Hollander Hockey Management&lt;/p&gt;</code></pre>
+
+<h4>Button Bar</h4>
+
+<p>To finish off the window, add the bar of buttons with <code>mail-buttons</code>. Each button is a span:</p>
+
+<div class="mob mail theme-auto"><p class="mail-buttons"><span>Reply</span><span class="hide"> - </span><span>Forward</span><span class="hide"> - </span><span>Delete</span></p></div>
+
+<pre><code>&lt;p class="mail-buttons"&gt;&lt;span&gt;Reply&lt;/span&gt;&lt;span class="hide"&gt; - &lt;/span&gt;&lt;span&gt;Forward&lt;/span&gt;&lt;span class="hide"&gt; - &lt;/span&gt;&lt;span&gt;Delete&lt;/span&gt;&lt;/p&gt;</code></pre>
