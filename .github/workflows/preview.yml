@@ -21,8 +21,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Build the WIP pages
+        run: |
+          pip install markdown
+          python3 tools/build-wips.py
       - name: Gather the site files
-        run: rsync -a --exclude .git --exclude .github --exclude tools --exclude CNAME ./ _site/
+        run: rsync -a --exclude .git --exclude .github --exclude tools --exclude _wips --exclude CNAME ./ _site/
       - uses: rossjrw/pr-preview-action@v1
         with:
           source-dir: _site

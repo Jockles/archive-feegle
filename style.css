@@ -113,6 +113,9 @@ header p { margin: 2px 0 0; font-size: 0.9em; opacity: 0.85; }
   background: #ffd75e;
 }
 
+/* Note at the top of an unlisted work-in-progress page (see tools/build-wips.py) */
+.wip-note { margin: 0 0 10px; font-size: 0.85em; color: var(--muted); text-align: center; }
+
 /* Menu bar */
 nav {
   background: var(--header-dark);
