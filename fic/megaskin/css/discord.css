@@ -214,7 +214,7 @@
   height: 1rem;
 }
 
-#workskin .dc .dc-name:has(.dc-pfp)::before { content: none; }
+#workskin .dc .dc-name:has(.dc-pfp)::before { display: none; }
 
 #workskin .dc .dc-image { border-radius: 0.1875rem; max-width: 360px; width: 100%; }
 
