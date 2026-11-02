@@ -1,0 +1,682 @@
+/* >>>>>>>>>> MODULE: WhatsApp (start) >>>>>>>>>> */
+
+/* ==========================================================
+   MODULE: WHATSAPP   (classes: wa)
+   WhatsApp: <div class="mob wa theme-auto">
+   Includes the wallpapers (bg classes) at the end of the block.
+   Needs the CORE block.
+   ========================================================== */
+
+#workskin .wa {
+  background: #efeae2;
+  color: #111b21;
+  border: 1px solid #d1d7db;
+  border-radius: 10px;
+}
+
+#workskin .wa .mob-head {
+  background: #008069;
+  color: #ffffff;
+  text-align: left;
+  padding: 0.7em 1em;
+}
+
+#workskin .wa .mob-head span {
+  display: block;
+  font-weight: normal;
+  font-size: 0.8em;
+  opacity: 0.85;
+}
+
+#workskin .wa .msg {
+  display: table;
+  max-width: 80%;
+  min-width: 90px;
+  margin: 0.2em 0;
+  padding: 0.35em 0.6em 0.3em 0.6em;
+  border-radius: 8px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.13);
+}
+
+#workskin .wa .out { margin-left: auto; background: #d9fdd3; }
+
+#workskin .wa .in { margin-right: auto; background: #ffffff; }
+
+/* sender name in group chats; add colour1 to colour10 for a colour, the same number as their picture */
+#workskin .wa .who {
+  display: block;
+  font-size: 0.8em;
+  font-weight: bold;
+  color: inherit;
+}
+
+/* time + ticks sit at the end of the bubble */
+#workskin .wa .wa-time {
+  display: block;
+  text-align: right;
+  font-size: 0.68em;
+  color: #667781;
+  margin-top: 0.1em;
+}
+
+#workskin .wa .wa-read { color: #53bdeb; font-weight: bold; }
+
+/* quoted/replied-to message inside a bubble */
+#workskin .wa .wa-quote {
+  display: block;
+  background: rgba(0, 0, 0, 0.06);
+  border-left: 4px solid #06cf9c;
+  border-radius: 5px;
+  padding: 0.25em 0.5em;
+  margin-bottom: 0.3em;
+  font-size: 0.85em;
+  color: #54656f;
+}
+
+#workskin .wa .mob-sys {
+  display: table;
+  margin: 0.7em auto;
+  padding: 0.25em 0.7em;
+  background: #ffffff;
+  border-radius: 7px;
+  color: #54656f;
+  opacity: 1;
+}
+
+/* full header: back arrow, picture, title + subtitle, icons.
+   Use a <table class="wa-bar"> instead of <p class="mob-head"> (see the tutorial for the cells) */
+#workskin .wa table.wa-bar {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+  border-spacing: 0;
+  margin: 0;
+  background: #008069;
+  color: #ffffff;
+  text-align: left;
+}
+
+#workskin .wa table.wa-bar td {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  vertical-align: middle;
+}
+
+#workskin .wa table.wa-bar .wa-back {
+  width: 34px;
+  padding-left: 0.8em;
+  font-size: 1.3em;
+  line-height: 1;
+}
+
+#workskin .wa table.wa-bar .wa-pfp-cell { width: 48px; padding: 0.55em 0; text-align: center; }
+
+#workskin .wa table.wa-bar .wa-pfp-cell .wa-pfp { margin: 0 auto; }
+
+#workskin .wa table.wa-bar .wa-title {
+  padding: 0.55em 0.4em 0 0.4em;
+  font-weight: bold;
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#workskin .wa table.wa-bar .wa-sub {
+  padding: 0 0.4em 0.55em 0.4em;
+  font-size: 0.8em;
+  line-height: 1.2;
+  opacity: 0.85;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#workskin .wa table.wa-bar .wa-actions {
+  width: 64px;
+  padding-right: 0.8em;
+  letter-spacing: 0.4em;
+  text-align: right;
+  white-space: nowrap;
+}
+
+/* round profile picture: initials by default; add a number class colour1-colour10 for a colour (the colours are
+   in the COLOURS section of the CORE), or put a picture or a profile inside it with a pfp span */
+#workskin .wa .wa-pfp {
+  display: block;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  border-radius: 50%;
+  background-color: #8696a0;
+  background-size: cover;
+  background-position: center;
+  color: #ffffff;
+  font-size: 0.72em;
+  font-weight: bold;
+  overflow: hidden;
+}
+
+#workskin .wa table.wa-bar .wa-pfp {
+  width: 38px;
+  height: 38px;
+  line-height: 38px;
+  font-size: 0.85em;
+  font-weight: bold;
+}
+
+/* a message with a profile picture beside it (group chats) */
+#workskin .wa .wa-row { position: relative; padding-left: 38px; margin: 0.2em 0; }
+
+#workskin .wa .wa-row .wa-pfp { position: absolute; left: 0; top: 0; }
+
+#workskin .wa .wa-row .msg { margin: 0; }
+
+/* later messages from the same person: no picture, but still indented */
+#workskin .wa .wa-row.cont { padding-left: 38px; }
+
+/* sender name with the phone number at the right: <p class="who colour1">~ Name<span class="wa-num">+353...</span></p>
+   also works inside a quote's <b> */
+#workskin .wa .wa-num {
+  float: right;
+  margin-left: 1em;
+  font-weight: normal;
+  color: #667781;
+}
+
+/* the little pointed corner on the first bubble of a run: add "tail" next to in or out */
+#workskin .wa .msg.tail { position: relative; }
+
+#workskin .wa .in.tail { border-top-left-radius: 0; }
+
+#workskin .wa .out.tail { border-top-right-radius: 0; }
+
+#workskin .wa .in.tail::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -8px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 8px 10px 0;
+  border-color: transparent #ffffff transparent transparent;
+}
+
+#workskin .wa .out.tail::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: -8px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 0 10px 8px;
+  border-color: transparent transparent transparent #d9fdd3;
+}
+
+/* a message that is only an emoji: <p class="wa-big">&#128514;</p>
+   (AO3 removes style="" attributes, so this is a class) */
+#workskin .wa .wa-big { font-size: 2.2em; line-height: 1.2; }
+
+/* emoji reactions under a bubble: <p class="wa-reacts">❤️ 😂 <span class="wa-count">2</span></p>
+   add "out" to put it under one of your own messages; add "pad" under a bubble that has a picture beside it */
+#workskin .wa .wa-reacts {
+  display: table;
+  position: relative;
+  margin: -0.55em 0 0.3em 0.7em;
+  padding: 0.1em 0.5em;
+  border-radius: 1em;
+  background: #ffffff;
+  color: #111b21;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+  font-size: 0.85em;
+}
+
+#workskin .wa .wa-reacts .wa-count { margin-left: 0.35em; font-size: 0.9em; color: #667781; }
+
+#workskin .wa .wa-reacts.out { margin-left: auto; margin-right: 0.7em; }
+
+#workskin .wa .wa-reacts.pad { margin-left: 46px; }
+
+/* the message bar at the bottom */
+#workskin .wa .wa-input { position: relative; padding: 0.5em 3.4em 0.5em 0.6em; }
+
+/* AO3 turns line breaks in your HTML into <br /> tags: keep them out of the message bar */
+#workskin .wa .wa-input br { display: none; }
+
+#workskin .wa .wa-field {
+  display: table;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.45em 0.8em;
+  border-radius: 2em;
+  background: #ffffff;
+  color: #667781;
+}
+
+#workskin .wa .wa-field span {
+  display: table-cell;
+  vertical-align: middle;
+  white-space: nowrap;
+  width: 1%;
+  padding-left: 0.5em;
+}
+
+#workskin .wa .wa-field span:first-child { padding-left: 0; }
+
+#workskin .wa .wa-field .wa-ph { width: auto; padding-left: 0.5em; }
+
+#workskin .wa .wa-mic {
+  position: absolute;
+  right: 0.6em;
+  top: 50%;
+  margin-top: -1.2em;
+  width: 2.4em;
+  height: 2.4em;
+  line-height: 2.4em;
+  text-align: center;
+  border-radius: 50%;
+  background: #00a884;
+  color: #ffffff;
+}
+
+/* a bubble holding a link card or a photo gallery is wider than a normal one */
+#workskin .wa .msg.share,
+#workskin .wa .msg.gallery {
+  width: 80%;
+  padding: 0.25em 0.25em 0.3em 0.25em;
+}
+
+#workskin .wa .msg.share .wa-time,
+#workskin .wa .msg.gallery .wa-time {
+  padding-right: 0.35em;
+}
+
+/* link card: <div class="wa-link"> picture, title, description, address </div> */
+#workskin .wa .wa-link {
+  display: block;
+  overflow: hidden;
+  border-radius: 6px;
+  background: rgba(0, 0, 0, 0.06);
+}
+
+#workskin .wa .wa-link-img {
+  display: block;
+  max-height: 190px;
+  overflow: hidden;
+}
+
+#workskin .wa .wa-link-img img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* an embedded video player in place of the picture: <div class="wa-link-img video"><iframe src="..."></iframe></div> */
+#workskin .wa .wa-link-img.video {
+  max-height: none;
+}
+
+#workskin .wa .wa-link-img.video iframe {
+  display: block;
+  width: 100%;
+  height: 190px;
+  margin: 0;
+  border: 0;
+}
+
+/* a description standing in for the picture: <div class="wa-link-img text">[...]</div> */
+#workskin .wa .wa-link-img.text {
+  padding: 2.5em 1em;
+  background: rgba(0, 0, 0, 0.08);
+  color: #667781;
+  font-style: italic;
+  text-align: center;
+}
+
+#workskin .wa .wa-link-title {
+  display: block;
+  padding: 0.5em 0.6em 0 0.6em;
+  font-weight: bold;
+}
+
+#workskin .wa .wa-link-desc {
+  display: block;
+  padding: 0.15em 0.6em 0 0.6em;
+  color: #667781;
+  font-size: 0.85em;
+}
+
+#workskin .wa .wa-link-url {
+  display: block;
+  padding: 0.4em 0.6em 0.5em 0.6em;
+  color: #667781;
+  font-size: 0.85em;
+}
+
+#workskin .wa .wa-link-url::before {
+  content: "\1F517";
+  margin-right: 0.4em;
+}
+
+/* the link written out in the message text itself: <span class="wa-ln">example.com</span> */
+#workskin .wa .wa-ln {
+  color: #027eb5;
+  text-decoration: underline;
+}
+
+/* photos: <p class="wa-photos one|two|three|four"> then one <span class="wa-photo"> per picture.
+   Each photo is a square (or, for the tall ones, two squares high) and the picture fills it, cropped
+   to fit, never stretched. The widths add up to 99%, not 100%, so rounding can't push a photo down. */
+#workskin .wa .wa-photos {
+  display: block;
+  overflow: hidden;
+  border-radius: 6px;
+}
+
+/* AO3 turns line breaks in your code into <br> tags; inside a grid they would push photos down */
+#workskin .wa .wa-photos br {
+  display: none;
+}
+
+#workskin .wa .wa-photos::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+#workskin .wa .wa-photo {
+  display: block;
+  position: relative;
+  float: left;
+  width: 49%;
+  height: 0;
+  padding: 49% 0 0 0;
+  margin: 0 1% 1% 0;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.12);
+}
+
+#workskin .wa .wa-photo:nth-of-type(2n) { margin-right: 0; }
+
+#workskin .wa .wa-photo:nth-of-type(n+3) { margin-bottom: 0; }
+
+/* the picture. AO3 can't crop pictures automatically, so the skin needs to know which way the picture runs:
+   - normal (taller than wide, or square): it is made as wide as the box, and the top and bottom are cropped evenly
+   - add class="land" to the img if it is wider than tall: it is made as tall as the box, and the sides are cropped evenly
+   The tall boxes (two pictures; the left one of three) always use the second way, as nearly any photo fits them that way.
+   (The huge offsets plus auto margins do the centring, so no transform is needed.) */
+#workskin .wa .wa-photo img {
+  position: absolute;
+  top: -9999px;
+  bottom: -9999px;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: auto;
+  min-width: 0;
+  min-height: 0;
+  max-width: none;
+  max-height: none;
+  margin: auto 0;
+}
+
+#workskin .wa .wa-photo img.land,
+#workskin .wa .wa-photos.two .wa-photo img,
+#workskin .wa .wa-photos.three .wa-photo:first-of-type img {
+  top: 0;
+  bottom: auto;
+  right: -9999px;
+  left: -9999px;
+  width: auto;
+  height: 100%;
+  margin: 0 auto;
+}
+
+/* a description standing in for a picture: <span class="wa-photo"><span class="wa-desc">[...]</span></span> */
+#workskin .wa .wa-photo .wa-desc {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 1em 0.5em;
+  color: #667781;
+  font-size: 0.8em;
+  font-style: italic;
+  text-align: center;
+}
+
+/* two pictures: side by side, each one tall */
+#workskin .wa .wa-photos.two .wa-photo {
+  padding-top: 99%;
+  margin-bottom: 0;
+}
+
+/* three pictures: one tall on the left, two small ones stacked on the right */
+#workskin .wa .wa-photos.three .wa-photo:first-of-type {
+  padding-top: 99%;
+  margin-bottom: 0;
+}
+
+#workskin .wa .wa-photos.three .wa-photo:nth-of-type(2) { margin-bottom: 1%; }
+
+#workskin .wa .wa-photos.three .wa-photo:nth-of-type(3) { margin-right: 0; }
+
+/* one picture on its own: <p class="wa-photos one"><span class="wa-photo"><img ...></span></p>
+   It isn't cropped into a square, so it keeps its own shape. A very tall one is trimmed at the bottom. */
+#workskin .wa .wa-photos.one .wa-photo {
+  float: none;
+  width: 100%;
+  height: auto;
+  max-height: 26em;
+  padding: 0;
+  margin: 0;
+}
+
+#workskin .wa .wa-photos.one .wa-photo img {
+  position: static;
+  width: 100%;
+  height: auto;
+  margin: 0;
+}
+
+#workskin .wa .wa-photos.one .wa-photo .wa-desc {
+  position: static;
+  padding: 4em 1em;
+}
+
+/* text under a picture, a gallery or a link card: <p class="wa-caption">...</p>, after the photos or the card and before the time */
+#workskin .wa .wa-caption {
+  display: block;
+  padding: 0.3em 0.35em 0 0.35em;
+}
+
+/* ---------- WhatsApp: Links ---------- */
+
+#workskin .wa .fake-link, #workskin .wa a:not(.tl) { color: #027eb5; }
+
+/* ---------- WhatsApp: Dark theme (theme-dark) ---------- */
+
+#workskin .wa.theme-dark { background: #0b141a; color: #e9edef; border-color: #222d34; }
+
+#workskin .wa.theme-dark .mob-head,
+#workskin .wa.theme-dark table.wa-bar {
+  background: #202c33;
+}
+
+#workskin .wa.theme-dark .out { background: #005c4b; color: #e9edef; }
+
+#workskin .wa.theme-dark .in { background: #202c33; color: #e9edef; }
+
+#workskin .wa.theme-dark .wa-time { color: #8696a0; }
+
+#workskin .wa.theme-dark .wa-quote { background: rgba(255, 255, 255, 0.06); color: #8696a0; }
+
+#workskin .wa.theme-dark .mob-sys { background: #182229; color: #8696a0; }
+
+#workskin .wa.theme-dark .wa-num { color: #8696a0; }
+
+#workskin .wa.theme-dark .in.tail::before { border-color: transparent #202c33 transparent transparent; }
+
+#workskin .wa.theme-dark .out.tail::before { border-color: transparent transparent transparent #005c4b; }
+
+#workskin .wa.theme-dark .wa-reacts {
+  background: #202c33;
+  color: #e9edef;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+#workskin .wa.theme-dark .wa-reacts .wa-count { color: #8696a0; }
+
+#workskin .wa.theme-dark .wa-field { background: #202c33; color: #8696a0; }
+
+#workskin .wa.theme-dark .wa-link { background: rgba(0, 0, 0, 0.22); }
+
+#workskin .wa.theme-dark .wa-link-img.text { background: rgba(0, 0, 0, 0.2); color: #8696a0; }
+
+#workskin .wa.theme-dark .wa-link-desc,
+#workskin .wa.theme-dark .wa-link-url,
+#workskin .wa.theme-dark .wa-photo .wa-desc { color: #8696a0; }
+
+#workskin .wa.theme-dark .wa-photo { background: rgba(0, 0, 0, 0.3); }
+
+#workskin .wa.theme-dark .wa-ln { color: #53bdeb; }
+
+#workskin .wa.theme-dark .fake-link, #workskin .wa.theme-dark a:not(.tl) { color: #53bdeb; }
+
+/* ---------- WhatsApp: Auto theme (theme-auto): light, switching to dark when the reader's device is in dark mode ---------- */
+
+@media (prefers-color-scheme: dark) {
+  #workskin .wa.theme-auto { background: #0b141a; color: #e9edef; border-color: #222d34; }
+
+  #workskin .wa.theme-auto .mob-head,
+    #workskin .wa.theme-auto table.wa-bar {
+      background: #202c33;
+    }
+
+  #workskin .wa.theme-auto .out { background: #005c4b; color: #e9edef; }
+
+  #workskin .wa.theme-auto .in { background: #202c33; color: #e9edef; }
+
+  #workskin .wa.theme-auto .wa-time { color: #8696a0; }
+
+  #workskin .wa.theme-auto .wa-quote { background: rgba(255, 255, 255, 0.06); color: #8696a0; }
+
+  #workskin .wa.theme-auto .mob-sys { background: #182229; color: #8696a0; }
+
+  #workskin .wa.theme-auto .wa-num { color: #8696a0; }
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  #workskin .wa.theme-auto .in.tail::before { border-color: transparent #202c33 transparent transparent; }
+
+  #workskin .wa.theme-auto .out.tail::before { border-color: transparent transparent transparent #005c4b; }
+
+  #workskin .wa.theme-auto .wa-reacts {
+      background: #202c33;
+      color: #e9edef;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+    }
+
+  #workskin .wa.theme-auto .wa-reacts .wa-count { color: #8696a0; }
+
+  #workskin .wa.theme-auto .wa-field { background: #202c33; color: #8696a0; }
+
+  #workskin .wa.theme-auto .wa-link { background: rgba(0, 0, 0, 0.22); }
+
+  #workskin .wa.theme-auto .wa-link-img.text { background: rgba(0, 0, 0, 0.2); color: #8696a0; }
+
+  #workskin .wa.theme-auto .wa-link-desc,
+    #workskin .wa.theme-auto .wa-link-url,
+    #workskin .wa.theme-auto .wa-photo .wa-desc { color: #8696a0; }
+
+  #workskin .wa.theme-auto .wa-photo { background: rgba(0, 0, 0, 0.3); }
+
+  #workskin .wa.theme-auto .wa-ln { color: #53bdeb; }
+
+  #workskin .wa.theme-auto .fake-link, #workskin .wa.theme-auto a:not(.tl) { color: #53bdeb; }
+}
+
+/* ---------- WhatsApp: Wallpapers ---------- */
+
+/* plain colours */
+#workskin .wa.bg-beige { background: #efeae2; }
+
+#workskin .wa.bg-white { background: #ffffff; }
+
+#workskin .wa.bg-sage { background: #d5e6d0; }
+
+#workskin .wa.bg-sky { background: #d3e7f3; }
+
+#workskin .wa.bg-blush { background: #f3dfe2; }
+
+#workskin .wa.bg-lilac { background: #e4dcf1; }
+
+#workskin .wa.bg-slate { background: #2b3238; }
+
+#workskin .wa.bg-navy { background: #0d1b2a; }
+
+#workskin .wa.bg-forest { background: #10281c; }
+
+#workskin .wa.bg-plum { background: #2a1631; }
+
+#workskin .wa.bg-black { background: #000000; }
+
+/* gradients */
+#workskin .wa.bg-sunset { background-color: #f6a56d; background-image: linear-gradient(#f6d365, #fda085); }
+
+#workskin .wa.bg-ocean { background-color: #4a90c2; background-image: linear-gradient(#a1c4fd, #4a90c2); }
+
+#workskin .wa.bg-night { background-color: #232526; background-image: linear-gradient(#414345, #232526); }
+
+#workskin .wa.bg-dusk { background-color: #4b3a6e; background-image: linear-gradient(#7b5ea7, #2c2145); }
+
+/* YOUR OWN WALLPAPER (a photo or pattern from the web)
+   1. Upload the picture somewhere that gives a direct link (an image host such as Imgur).
+   2. Replace the example link in the rule below with yours (the colour shows if the picture fails).
+   3. Use the class on any chat: <div class="mob wa theme-auto bg-image1">
+   4. For another wallpaper, copy the rule again and rename bg-image1 to bg-image2, etc. */
+#workskin .wa.bg-image1 {
+  background-color: #1c1c1c;
+  background-image: url(https://example.com/my-wallpaper.jpg);
+  background-size: cover;
+  background-position: center;
+}
+
+/* <<<<<<<<<< MODULE: WhatsApp (end) <<<<<<<<<< */

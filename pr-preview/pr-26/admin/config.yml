@@ -1,0 +1,91 @@
+# Settings for the WIP back-end at jockles.com/admin/ (Sveltia CMS).
+# Each work in progress is saved as one file in _wips/, and
+# tools/build-wips.py turns it into a page at jockles.com/wip/<file name>/
+# when the site is published. Those pages are not linked from the site.
+
+backend:
+  name: github
+  repo: Jockles/archive-feegle
+  branch: main
+  commit_messages:
+    create: "Add WIP: {{slug}}"
+    update: "Update WIP: {{slug}}"
+    delete: "Remove WIP: {{slug}}"
+    uploadMedia: "Upload image: {{path}}"
+    deleteMedia: "Remove image: {{path}}"
+
+site_url: https://jockles.com
+display_url: https://jockles.com
+
+# Images added in the editor are stored here and served from /wip/media/.
+media_folder: _wips/media
+public_folder: /wip/media
+
+collections:
+  - name: wips
+    label: Works in progress
+    label_singular: Work in progress
+    folder: _wips
+    create: true
+    format: json
+    extension: json
+    # The random ending keeps the page address hard to guess.
+    slug: "{{slug}}-{{uuid_shorter}}"
+    identifier_field: title
+    summary: "{{title}} ({{fields.rating}})"
+    sortable_fields: [title, updated]
+    preview_path: "wip/{{filename}}/"
+    fields:
+      - { name: title, label: Work Title, widget: string }
+      - name: show
+        label: Show on the site
+        hint: Untick to keep this saved in the back-end without making a page for it.
+        widget: boolean
+        default: true
+      - name: rating
+        label: Rating
+        widget: select
+        default: Not Rated
+        options: [Not Rated, General Audiences, Teen And Up Audiences, Mature, Explicit]
+      - name: warnings
+        label: Archive Warnings
+        widget: select
+        multiple: true
+        default: [Creator Chose Not To Use Archive Warnings]
+        options:
+          - Creator Chose Not To Use Archive Warnings
+          - Graphic Depictions Of Violence
+          - Major Character Death
+          - No Archive Warnings Apply
+          - Rape/Non-Con
+          - Underage Sex
+      - { name: fandoms, label: Fandoms, widget: list, hint: "Separate with commas." }
+      - name: categories
+        label: Categories
+        widget: select
+        multiple: true
+        required: false
+        options: [F/F, F/M, Gen, M/M, Multi, Other]
+      - { name: relationships, label: Relationships, widget: list, required: false, hint: "Separate with commas." }
+      - { name: characters, label: Characters, widget: list, required: false, hint: "Separate with commas." }
+      - { name: tags, label: Additional Tags, widget: list, required: false, hint: "Separate with commas." }
+      - { name: summary, label: Summary, widget: markdown, required: false, minimal: true }
+      - { name: notes, label: Notes, widget: markdown, required: false, minimal: true, hint: "Shown at the beginning of the work." }
+      - { name: end_notes, label: End Notes, widget: markdown, required: false, minimal: true, hint: "Shown at the end of the work." }
+      - name: total_chapters
+        label: Total chapters planned
+        widget: number
+        value_type: int
+        required: false
+        hint: Leave empty if you don't know yet. It shows as "?".
+      - { name: updated, label: Last updated, widget: datetime, time_format: false, format: "YYYY-MM-DD" }
+      - name: chapters
+        label: Chapters
+        label_singular: Chapter
+        widget: list
+        summary: "{{fields.title}}"
+        fields:
+          - { name: title, label: Chapter Title, widget: string, required: false }
+          - { name: notes, label: Chapter Notes, widget: markdown, required: false, minimal: true }
+          - { name: body, label: Chapter Text, widget: markdown }
+          - { name: end_notes, label: Chapter End Notes, widget: markdown, required: false, minimal: true }
