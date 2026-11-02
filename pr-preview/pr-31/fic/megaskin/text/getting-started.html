@@ -1,0 +1,139 @@
+<h2>Welcome to the megaskin, my complete socmed fic workskin of doom.</h2>
+
+<p>This workskin aims to make it as easy as possible to have multiple types of digital media stuff in one fic - different kinds of chats, different kinds of social media posts, and inline translations that work in all of them.</p>
+
+<div class="mob imsg theme-auto">
+  <p class="mob-head">Ilya<span class="hide"> - </span><span>iMessage</span></p>
+  <div class="mob-body">
+    <p class="mob-sys">Today 9:41 PM</p>
+    <p class="msg in"><span class="hide"><em>Ilya:</em> </span>hey are you up</p>
+    <p class="msg out"><span class="hide"><em>Shane:</em> </span>no, I'm sleeping</p>
+    <p class="msg in"><span class="hide"><em>Ilya:</em> </span>I need pictures gimme gimme</p>
+    <p class="imsg-status">Read 9:43 PM</p>
+  </div>
+</div>
+
+<p>The whole system is designed to be modular - you can add or remove whatever sections of the skin that are relevant to you, up to and including using the whole thing in a single fic that incorporates many types of digital content from around the internet.</p>
+
+<p>Each chapter explains how to use the HTML of that particular module, how to create the various kinds of posts/containers/whatever for that platform, and what each bit of the code is doing so that you can make your own edits where required. It will then be followed by a chapter that explains the CSS belonging to that module, including a link to the CSS that has everything you need to stick in your own skin.</p>
+
+<p>At the very end, there is a link to the full megaskin (used by this fic) so that you can choose to just shove the whole lot in if you don't want to be picky.</p>
+
+<p><strong>About the pictures.</strong> The pictures in the examples are a mix of stock photos and photos from my own collection, which are hosted on my tumblr. All of the cat pictures are of my own cat. If a stock photo is broken, it's probably been taken down from wherever it was hosted.</p>
+
+<p><strong>Why this exists.</strong> I made this after several work skin newbies asked me how to combine multiple work skins in a complex fic with lots of different social media formats, since AO3 only lets a work use one skin at a time. I wanted something I could simply hand to them, so that it all just works: one skin that covers every format, with one tutorial to go with it.</p>
+
+<h2>Contents</h2>
+
+<p>This tutorial is split into chapters, one for each kind of social media, so you can jump straight to the one you need. Start with the Core, which also has extra bits that can be used in every chat, and info on dark mode/light mode themes for every skin element. After that, the chapters can be read in any order:</p>
+
+<ol>
+  <li>Getting Started, Sources and Credits (this chapter)</li>
+  <li>The Core, Themes, and Extras</li>
+  <li>The Core CSS</li>
+  <li>iMessage</li>
+  <li>iMessage CSS</li>
+  <li>WhatsApp</li>
+  <li>WhatsApp CSS</li>
+  <li>Twitter/X: posts, replies and quote tweets, and DMs</li>
+  <li>Twitter/X CSS</li>
+  <li>Instagram: posts and comments, and DMs</li>
+  <li>Instagram CSS</li>
+  <li>Tumblr: posts, reblogs and asks</li>
+  <li>Tumblr CSS</li>
+  <li>Email: Gmail emails and generic email windows</li>
+  <li>Email CSS</li>
+  <li>Discord</li>
+  <li>Discord CSS</li>
+  <li>The full megaskin: every module in one skin, at the very end</li>
+</ol>
+
+<h2>Getting started</h2>
+
+<h3>Setting up your work</h3>
+
+<p>First you will have to create the workskin for yourself in your own workskin lists. I have a megaskin for myself that has every module, and if you pick only a few modules I'd recommend reminding yourself which ones you've added in the description.</p>
+
+<p>When you create the fic itself, open the HTML editor in AO3 (the <em>HTML</em> tab, not <em>Rich Text</em>) and paste the code in. Then select the work skin under <em>Select Work Skin</em> on the posting form.</p>
+
+<blockquote>
+  <p>My advice: keep hold of your HTML in a code editor (there are plenty of free ones out there) rather than in the document you write your fic in. Code editors colour in the tags and keep everything lined up, which makes your HTML much easier to read and fix. Or, if you'd rather keep it all together, add the HTML in at the end, separately from your regular rich-text prose - blocks of HTML sitting between normal rich-text prose won't paste into the HTML editor the way you want.</p>
+</blockquote>
+
+<p>Do the pasting in the HTML tab and switch to Rich Text only at your own risk: Rich Text can quietly strip or rearrange the classes the skin depends on and then it breaks and you're sad.</p>
+
+<p>Whenever a snippet says to put something "inside" another part, it goes between that part's opening and closing tags. (the words inside the <code>&lt;xx&gt;</code> and <code>&lt;/xx&gt;</code>) Every chapter ends with a complete finished chat you can copy and edit, so you don't have to assemble the pieces yourself, but you should know enough at the end of each section to deconstruct it if you wish without breaking anything important.</p>
+
+<details>
+<summary>One skin for everything, or one for each fic?</summary>
+
+<p>Some parts of the CSS contain places to put things like profile pictures and backgrounds that are likely to be fic specific, so you can choose if you want to have one skin and lots and lots of images defined, or have a different skin for each fic.</p>
+
+</details>
+
+<details>
+<summary>Some quirks of the code that you'll notice</summary>
+
+<p>One thing AO3 does when you paste HTML: if it finds words, spans or pictures sitting loose inside a <code>&lt;div&gt;</code>, it wraps them in a paragraph and turns the line breaks between them into <code>&lt;br /&gt;</code> tags, which can knock a chat out of shape. All of the code in the html examples is written so that never happens - anything that holds text or pictures directly is a <code>&lt;p&gt;</code> - so what you see when you inspect an example on the page should be exactly the code shown under it. If you write your own pieces, do the same. (AO3 also adds <code>rel=&quot;nofollow&quot;</code> to every link, which is normal and doesn't change anything.)</p>
+
+<p>The class names all follow the same pattern too, so once you've learnt one app the rest feel familiar. Anything that only belongs to one app starts with that app's class - <code>tw-name</code> for a Twitter/X name, <code>tb-header</code> for the top of a Tumblr post, <code>dc-time</code> for a Discord timestamp - and the pieces every app shares have the same name everywhere: <code>msg</code>, <code>in</code>, <code>out</code>, <code>who</code>, <code>pfp</code>, <code>hide</code>, <code>me</code>, <code>colour1</code> to <code>colour10</code>, the theme classes, <code>wide</code> and <code>no-scroll</code>.</p>
+
+</details>
+
+<h3 id="credits">Credits and sources</h3>
+
+<p>This work skin stands on the shoulders of the work skins and tutorials below, which I used as references and in many places adapted. Please visit them, leave kudos and comment to thank their creators, truly I could not have done it without their guidance and much greater css fuckery skills than mine:</p>
+
+<h4>Hover and Tap Translations</h4>
+
+<ul>
+  <li><em>How To Change Text on AO3 When the Cursor is Hovering Over It (Or Clicked on Mobile)</em> by La_Temperanza, <a href="https://archiveofourown.org/works/10957056">archiveofourown.org/works/10957056</a>. Swapping the text when the reader hovers or taps, the brackets that show when Creator's Style is off, and using a link so that tapping works on a phone are all based on this. In this skin every translation is written in the HTML, so no new CSS is needed for each one.</li>
+</ul>
+
+<h4>iMessage</h4>
+
+<ul>
+  <li><em>How to Make iOS Text Messages on AO3</em> by CodenameCarrot and La_Temperanza, <a href="https://archiveofourown.org/works/6434845">archiveofourown.org/works/6434845</a>. The picture messages, typing dots and the hidden text for readers with the style switched off are based on this.</li>
+</ul>
+
+<h4>WhatsApp</h4>
+
+<ul>
+  <li><em>WhatsApp group chat skin</em> by orphan_account, <a href="https://archiveofourown.org/works/34229317">archiveofourown.org/works/34229317</a>. The table layout of the group header, the member list under the group name and the sender-name ideas come from this.</li>
+  <li><em>Whatsapp Work Skin Template /Revamped</em> by worlds_end_valentine, <a href="https://archiveofourown.org/works/46531021">archiveofourown.org/works/46531021</a>. The group chat, reactions, header and per-chat background ideas come from this.</li>
+  <li>Those two WhatsApp skins are themselves inspired by <em>Social Media Work Skin Template: Whatsapp</em> by worlds_end_valentine (credited as etc_e_tal in the group chat skin), <a href="https://archiveofourown.org/works/31313318">archiveofourown.org/works/31313318</a>, and <em>WhatsApp Skin</em> by Azdaema Codes (Azdaema), <a href="https://archiveofourown.org/works/24273361">archiveofourown.org/works/24273361</a>, which are also worth a look.</li>
+</ul>
+
+<h4>Twitter/X</h4>
+
+<ul>
+  <li><em>Twitter Work Skin Template</em> by worlds_end_valentine, <a href="https://archiveofourown.org/works/47803507">archiveofourown.org/works/47803507</a>. The timestamp line, liked and reposted counts, labels, sensitive content warning, polls, picture and video tweets, scrollable thread, DM reactions, group DMs, voice messages and the scrollable DM window are based on this.</li>
+</ul>
+
+<h4>Instagram</h4>
+
+<ul>
+  <li><em>Repository: Work Skins</em> by gadaursan, <a href="https://archiveofourown.org/works/8631214">archiveofourown.org/works/8631214</a>. The Instagram post layout and the use of hidden text for emojis are based on this (it also has Twitter and non-iOS messaging skins).</li>
+  <li><em>Work Skin - Instagram Image Post</em> by shysonata, <a href="https://archiveofourown.org/works/79674881">archiveofourown.org/works/79674881</a>. The Follow link, verified tick, stories ring, counts beside the buttons, overlapping &#8220;liked by&#8221; faces and clickable like and save buttons are inspired by this. The idea of using the details and summary tags to make clickable buttons is credited there to mystyrust's fic <em>chat, is this real?</em>.</li>
+</ul>
+
+<h4>Tumblr</h4>
+
+<ul>
+  <li><em>How to Make Tumblr posts on AO3</em> by phyripo (orphan_account), <a href="https://archiveofourown.org/works/11474979">archiveofourown.org/works/11474979</a>. The approach to reblog chains, ask boxes with the pointer, quote posts and chat posts comes from this.</li>
+  <li><em>Tumblr-style CSS Tweaks</em> by Aposiopesis, <a href="https://archiveofourown.org/works/21099596">archiveofourown.org/works/21099596</a>. Improvements to reblogs and photosets, based on phyripo's guide.</li>
+</ul>
+
+<h4>Email</h4>
+
+<ul>
+  <li><strong>Gmail:</strong> <em>How to insert Gmail emails in your fic</em> by DemigodOfAgni, <a href="https://archiveofourown.org/works/53302357">archiveofourown.org/works/53302357</a>. The Gmail email layout, with its table headers and Reply buttons, is based on this.</li>
+  <li><strong>Generic email:</strong> <em>How to Mimic Email Windows</em> by La_Temperanza, <a href="https://archiveofourown.org/works/7953412">archiveofourown.org/works/7953412</a>. The title bar, header lines, scrolling message body, attachments and Reply / Forward / Delete bar are based on this.</li>
+</ul>
+
+<h4>Discord</h4>
+
+<ul>
+  <li><em>Discord Work Skin &amp; Tutorial</em> by BookKeep, <a href="https://archiveofourown.org/works/42027846">archiveofourown.org/works/42027846</a>. The Discord skin is mainly adapted from this. BookKeep's Discord user system - one class per character, carrying their picture through every message - was also a big part of what inspired me to make the character profiles in this skin, so a special thank you to them, both for the inspiration and for the framework that made it happen.</li>
+  <li><em>2023 Discord Theme Workskin</em> by TrojanTeapot, <a href="https://archiveofourown.org/works/46815217">archiveofourown.org/works/46815217</a>. A second Discord skin consulted alongside BookKeep's; it is itself inspired by <em>Discord (Dark Theme) Work Skin Guide/Preview</em> by Heterochromia_Mars.</li>
+</ul>
