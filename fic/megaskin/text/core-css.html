@@ -205,7 +205,7 @@
 <ul>
   <li><code>pfp</code> fills its circle (<code>100%</code> each way), rounds itself off (<code>border-radius: 50%</code>) and hides anything that pokes out (<code>overflow: hidden</code>). That's the crop.</li>
   <li>The picture inside is pinned to the top left and made as wide as the circle. A tall picture then pokes out of the bottom and gets cut off, so the top of the photo - usually the face - stays in view.</li>
-  <li>A wide picture made as wide as the circle wouldn't be tall enough to fill it, which is what <code>land</code> is for. It makes the picture as tall as the circle instead. The <code>-9999px</code> on both sides with <code>margin: 0 auto</code> is an old trick for centring something wider than its box: it gives the picture an enormous space to sit in, and <code>auto</code> puts it in the middle.</li>
+  <li>A wide picture made as wide as the circle wouldn't be tall enough to fill it, which is what <code>land</code> is for. It makes the picture as tall as the circle instead. The <code>-9999px</code> on both sides with <code>margin: 0 auto</code> is a trick for centring something wider than its box: it gives the picture an enormous space to sit in, and <code>auto</code> puts it in the middle.</li>
   <li><code>background-size: cover</code> is for profiles, which set their picture as a background instead of a picture tag. <code>cover</code> crops a background to fill the circle by itself, whatever its shape, which is why profile pictures never need <code>land</code>.</li>
 </ul>
 

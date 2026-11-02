@@ -111,7 +111,7 @@
 }</code></pre>
 
 <ul>
-  <li><code>display: table</code> makes a paragraph only as wide as its words. A normal paragraph stretches across the whole chat, which would make every bubble the same width. (It's an old trick, from before there was a proper way to do it, but it works in every browser and on AO3.)</li>
+  <li><code>display: table</code> makes a paragraph only as wide as its words. A normal paragraph stretches across the whole chat, which would make every bubble the same width.</li>
   <li><code>max-width: 75%</code> stops a long message going all the way across, so there's always a gap on the other side, like on a phone.</li>
   <li><code>margin-left: auto</code> pushes a sent bubble over to the right: <code>auto</code> takes up all of the spare room on that side. Received bubbles do the same on the right, which keeps them on the left.</li>
   <li><code>border-radius: 18px</code> rounds every corner, and the smaller <code>5px</code> corner at the bottom makes the little point on the side the bubble came from.</li>
@@ -266,7 +266,7 @@
 
 #workskin .imsg .who:has(+ .msg.tapped) { margin-top: 1.5em; }</code></pre>
 
-<p>In a group chat, the space <code>tapped</code> adds would go between the name and the message, which looks wrong. The first line takes the space away from a tapped message that comes straight after a name. The second puts it above the name instead: <code>:has(+ .msg.tapped)</code> means "a name line that has a tapped message straight after it". <code>:has</code> is quite new, so in an older browser the name just sits a bit closer to the message above - nothing breaks.</p>
+<p>In a group chat, the space <code>tapped</code> adds would go between the name and the message, which looks wrong. The first line takes the space away from a tapped message that comes straight after a name. The second puts it above the name instead: <code>:has(+ .msg.tapped)</code> means "a name line that has a tapped message straight after it". If a reader's browser doesn't understand <code>:has</code>, the name just sits a bit closer to the message above - nothing breaks.</p>
 
 </details>
 
