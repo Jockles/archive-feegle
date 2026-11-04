@@ -543,6 +543,22 @@
   &lt;/div&gt;
 &lt;/div&gt;</code></pre>
 
+<h3 id="edited">Edited Messages</h3>
+
+<p>To show that a message was edited, type <code>Edited</code> before the time, inside the <code>wa-time</code> line:</p>
+
+<div class="mob wa theme-auto"><div class="mob-body"><div class="msg out tail">
+  <p><span class="hide"><em>Shane:</em> </span>see you at 8</p>
+  <p class="wa-time">Edited 23:44 <span class="wa-read">✓✓</span></p>
+</div></div></div>
+
+<pre><code>&lt;div class="msg out tail"&gt;
+  &lt;p&gt;&lt;span class="hide"&gt;&lt;em&gt;Shane:&lt;/em&gt; &lt;/span&gt;see you at 8&lt;/p&gt;
+  &lt;p class="wa-time"&gt;Edited 23:44 &lt;span class="wa-read"&gt;✓✓&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+
+<p>It picks up the same small grey text as the time, so there's no extra class to remember.</p>
+
 <h3>Replying to a Message</h3>
 
 <p>To quote the message someone is replying to, add a paragraph with <code>wa-quote</code> at the top of the bubble, before the reply:</p>
