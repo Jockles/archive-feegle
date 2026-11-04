@@ -1,6 +1,4 @@
-<h3>WhatsApp</h3>
-
-<h4>Credits</h4>
+<h3>Credits</h3>
 
 <p>The WhatsApp module is built on the work below. They're also listed in <a href="getting-started.html#credits">Credits and sources</a> in the first chapter, with all the other credits. Please go and leave them some kudos!</p>
 
@@ -12,7 +10,7 @@
 
 <p>Before we begin, here's the two kinds of chat you can build: a chat between two people, or a group chat. The full HTML is underneath each, which you can copy and modify yourself. The rest of the chapter takes the HTML apart so that you can modify all the individual parts to say exactly what you want.</p>
 
-<h4>A One-to-One Chat</h4>
+<h3>A One-to-One Chat</h3>
 
 <div class="mob wa theme-auto">
   <p class="mob-head">Lily<span class="hide"> - </span><span>online</span></p>
@@ -223,7 +221,7 @@
 
 </details>
 
-<h4>A Group Chat</h4>
+<h3>A Group Chat</h3>
 
 <div class="mob wa theme-auto">
   <table class="wa-bar">
@@ -432,7 +430,7 @@
 
 </details>
 
-<h4>WhatsApp Window</h4>
+<h3>WhatsApp Window</h3>
 
 <p>A WhatsApp chat has the same three parts as iMessage - a container, a header and a body. The only difference is the module class, <code>wa</code>, so the container is <code>&lt;div class=&quot;mob wa theme-auto&quot;&gt;</code> and everything else goes inside it. First comes the header, with the contact's name:</p>
 
@@ -442,7 +440,7 @@
 
 <p>The header is the green bar. The span underneath is the status line, like "online", "last seen today at 9:41" or "typing...", or the list of people in a group. After the header comes <code>&lt;div class=&quot;mob-body&quot;&gt;</code>, which holds all of the messages. There's a fancier header with a picture and icons too, which is in the group chat - see Group Header with Picture and Icons, further down.</p>
 
-<h4>Simple Messages</h4>
+<h3>Simple Messages</h3>
 
 <p>WhatsApp bubbles hold more than one line of text - each one can have a time, ticks and a quoted reply in it. So instead of a single <code>&lt;p&gt;</code>, each message is a <code>&lt;div&gt;</code> with paragraphs inside:</p>
 
@@ -479,7 +477,7 @@
 
 </details>
 
-<h4>Date Pills</h4>
+<h3>Date Pills</h3>
 
 <p>The little grey pill with the date on it uses the same <code>mob-sys</code> line as iMessage - in WhatsApp, the workskin turns it into a pill for you:</p>
 
@@ -487,7 +485,7 @@
 
 <pre><code>&lt;p class="mob-sys"&gt;YESTERDAY&lt;/p&gt;</code></pre>
 
-<h4>Read Ticks</h4>
+<h3>Read Ticks</h3>
 
 <p>To show that a message has been read, add a double tick after the time and wrap it in <code>wa-read</code>:</p>
 
@@ -541,7 +539,7 @@
   &lt;/div&gt;
 &lt;/div&gt;</code></pre>
 
-<h4>Replying to a Message</h4>
+<h3>Replying to a Message</h3>
 
 <p>To quote the message someone is replying to, add a paragraph with <code>wa-quote</code> at the top of the bubble, before the reply:</p>
 
@@ -573,7 +571,7 @@
   &lt;p class="wa-time"&gt;14:07&lt;/p&gt;
 &lt;/div&gt;</code></pre>
 
-<h4>Emoji Reactions</h4>
+<h3>Emoji Reactions</h3>
 
 <p>When someone reacts to a message, WhatsApp shows a little pill sitting on the bottom edge of the bubble. Add a <code>wa-reacts</code> paragraph straight after the bubble, with the emoji inside:</p>
 
@@ -625,7 +623,7 @@
 &lt;/div&gt;
 &lt;p class="wa-reacts pad"&gt;&lt;span class="hide"&gt;[Reactions: &lt;/span&gt;🎉 &lt;span class="wa-count"&gt;2&lt;/span&gt;&lt;span class="hide"&gt;]&lt;/span&gt;&lt;/p&gt;</code></pre>
 
-<h4>Large Emoji</h4>
+<h3>Large Emoji</h3>
 
 <p>A message that's only an emoji can have the emoji on a line of its own. Put it in its own paragraph above the time, and make it big with the <code>wa-big</code> class:</p>
 
@@ -639,7 +637,7 @@
   &lt;p class="wa-time"&gt;14:15 &lt;span class="wa-read"&gt;✓✓&lt;/span&gt;&lt;/p&gt;
 &lt;/div&gt;</code></pre>
 
-<h4>Shared Links</h4>
+<h3>Shared Links</h3>
 
 <p>To show a link the way WhatsApp previews it, add <code>share</code> to the message and put a <code>wa-link</code> card inside it, above the time. The card holds a picture (<code>wa-link-img</code>), the title (<code>wa-link-title</code>), an optional short description (<code>wa-link-desc</code>) and the web address (<code>wa-link-url</code>), which gets a little link symbol in front of it automatically. The <code>hide</code> paragraph at the start holds the hidden label, as there's no message text to put it in. Don't forget the alt text on the picture:</p>
 
@@ -713,7 +711,7 @@
   &lt;p class="wa-time"&gt;14:20 &lt;span class="wa-read"&gt;✓✓&lt;/span&gt;&lt;/p&gt;
 &lt;/div&gt;</code></pre>
 
-<h4>Photos and Captions</h4>
+<h3>Photos and Captions</h3>
 
 <p>For one photo on its own, add <code>gallery</code> to the message and use a <code>wa-photos one</code> box with a single <code>wa-photo</code> inside, with the picture tag in it. A single photo isn't cropped into a square, so it keeps its own shape, whether it's tall or wide - a really tall one gets trimmed at the bottom, so it doesn't take over the chat. Don't forget the alt text.</p>
 
@@ -733,7 +731,7 @@
 
 <p>The <code>hide</code> paragraph at the start holds the hidden label, the same as for a link card. A caption works the same way under a gallery of two, three or four photos, and <code>wa-desc</code> works in a single photo too, if you'd rather describe it than show it.</p>
 
-<h4>Photo Galleries</h4>
+<h3>Photo Galleries</h3>
 
 <p>When several photos are sent together, WhatsApp shows them in one bubble as a grid. Add <code>gallery</code> to the message, put a <code>wa-photos</code> box inside it, and add a <code>wa-photo</code> span for each picture, with the picture tag inside. The box takes <code>two</code>, <code>three</code> or <code>four</code> to match the number of pictures, and every picture needs its alt text:</p>
 
@@ -817,7 +815,7 @@
   &lt;p class="wa-time"&gt;09:18&lt;/p&gt;
 &lt;/div&gt;</code></pre>
 
-<h4>Typing Line</h4>
+<h3>Typing Line</h3>
 
 <p>To show the other person is typing, add a <code>typing</code> line at the end of the messages (see Typing Line, in the Core, Themes, and Extras chapter):</p>
 
@@ -825,7 +823,7 @@
 
 <pre><code>&lt;p class="typing"&gt;Lily is typing...&lt;/p&gt;</code></pre>
 
-<h4>The Message Bar</h4>
+<h3>The Message Bar</h3>
 
 <p>To finish off a screenshot-style chat, add the message bar at the bottom of the container, <em>after</em> the <code>mob-body</code>. It has the emoji button, the "Message" placeholder, the paperclip and camera, and the round green microphone:</p>
 
@@ -849,7 +847,7 @@
   &lt;span class="wa-mic"&gt;&amp;#127908;&lt;/span&gt;
 &lt;/p&gt;</code></pre>
 
-<h4>Group Chats</h4>
+<h3>Group Chats</h3>
 
 <p>In a group, add a <code>who</code> paragraph as the first line of a bubble to show who sent it. WhatsApp gives everyone their own name colour, so add one of <code>colour1</code> to <code>colour10</code> as well. Use the same number as the person's picture circle, so their name and picture match:</p>
 
@@ -871,7 +869,7 @@
 
 <p>The <code>who</code> name shows at the top of the bubble whether the workskin is on or off, so it doesn't need a hidden label - just the hidden colon after it (<code>&lt;span class=&quot;hide&quot;&gt;:&lt;/span&gt;</code>), so it reads "Hayden:" followed by the message. Your own messages have no <code>who</code> line, so they keep the full hidden label.</p>
 
-<h4>Phone Numbers and Nicknames</h4>
+<h3>Phone Numbers and Nicknames</h3>
 
 <p>In a group, anyone who isn't saved in your contacts shows up as a phone number, or as the nickname they've given themselves, which starts with a <code>~</code>. WhatsApp puts the number at the right-hand end of the name line. To do that, put a <code>wa-num</code> span inside the <code>who</code> paragraph:</p>
 
@@ -889,7 +887,7 @@
 
 <p>For someone who is saved in your contacts, just write their name and leave the number out. If you want a name in the normal text colour (for yourself, for example), leave the colour class off.</p>
 
-<h4>Profile Pictures in Groups</h4>
+<h3>Profile Pictures in Groups</h3>
 
 <p>In a group, the first message in a run from one person has their round profile picture next to it. To add one, wrap the message in a <code>wa-row</code> and put a <code>wa-pfp</code> before the bubble. With no picture, <code>wa-pfp</code> shows the person's initials on a grey circle. To give the circle a colour, add one of <code>colour1</code> to <code>colour10</code>, like <code>wa-pfp colour4</code>:</p>
 
@@ -949,7 +947,7 @@
 
 <p>If the same person turns up again and again, or in other apps too, a profile saves you adding the picture every time: <code>&lt;p class=&quot;wa-pfp&quot;&gt;&lt;span class=&quot;pfp pfp-shane&quot;&gt;&lt;/span&gt;&lt;/p&gt;</code> (see Profile Pictures, in the Core, Themes, and Extras chapter). The colours for <code>colour1</code> to <code>colour10</code> are set in the WhatsApp CSS, so you can change them there.</p>
 
-<h4>Quoting a Message in a Group</h4>
+<h3>Quoting a Message in a Group</h3>
 
 <p>Quotes in a group work the same as in a one-to-one chat, except the coloured bar on the left takes the colour of the person being quoted. Add the same colour class to the <code>wa-quote</code>:</p>
 
@@ -995,7 +993,7 @@
   &lt;p class="wa-time"&gt;09:16 &lt;span class="wa-read"&gt;✓✓&lt;/span&gt;&lt;/p&gt;
 &lt;/div&gt;</code></pre>
 
-<h4>System Notices</h4>
+<h3>System Notices</h3>
 
 <p>Notices like "Rose changed this group's icon" or "You were added" use the same <code>mob-sys</code> line as the date pill:</p>
 
@@ -1003,7 +1001,7 @@
 
 <pre><code>&lt;p class="mob-sys"&gt;Rose changed this group's icon&lt;/p&gt;</code></pre>
 
-<h4>Group Header with Picture and Icons</h4>
+<h3>Group Header with Picture and Icons</h3>
 
 <p>For the full group header - back arrow, picture, group name, list of members, and the call and menu icons - use a <code>&lt;table&gt;</code> with the class <code>wa-bar</code> instead of the usual header paragraph. A table is the most reliable way to keep all of that in one neat row on AO3:</p>
 
@@ -1039,7 +1037,7 @@
 
 <p>The picture is the same <code>wa-pfp</code> circle as in the group messages, so <code>colour1</code> to <code>colour10</code> work here too. You can use this header for a one-to-one chat as well - put "online" or "last seen..." where the member list goes, or "typing..." to show the other person is typing.</p>
 
-<h4>Choosing a Background</h4>
+<h3>Choosing a Background</h3>
 
 <p>Every WhatsApp chat can have its own background, picked with a class on the container next to the theme class. Here's the same chat on four different backgrounds. The first one has no background class, so it has the normal background:</p>
 

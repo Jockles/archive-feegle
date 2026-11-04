@@ -1,8 +1,6 @@
-<h3>Discord CSS</h3>
-
 <p>This chapter goes through the CSS for the Discord chats in the last chapter: the window, the channel header, messages and their pictures, replies, reactions, spoilers, dividers, and the dark theme.</p>
 
-<h4>Credits</h4>
+<h3>Credits</h3>
 
 <p>The Discord module is built on the work below. They're also listed in <a href="getting-started.html#credits">Credits and sources</a> in the first chapter, with all the other credits. Please go and leave them some kudos! BookKeep asks to be credited in your author's notes if you post with the Discord module.</p>
 
@@ -11,11 +9,11 @@
   <li><em>2023 Discord Theme Workskin</em> by TrojanTeapot, <a href="https://archiveofourown.org/works/46815217">archiveofourown.org/works/46815217</a>. A second Discord skin consulted alongside BookKeep's; it is itself inspired by <em>Discord (Dark Theme) Work Skin Guide/Preview</em> by Heterochromia_Mars.</li>
 </ul>
 
-<h4>Getting the CSS</h4>
+<h3>Getting the CSS</h3>
 
 <p>The Discord CSS is here: <a href="css/discord.css">jockles.com/fic/megaskin/css/discord.css</a>. It needs the core CSS too (<a href="css/core.css">jockles.com/fic/megaskin/css/core.css</a>), so paste the core into your work skin first and this underneath it.</p>
 
-<h4>How the Module is Laid Out</h4>
+<h3>How the Module is Laid Out</h3>
 
 <p>The usual order - the main rules, Links, Scrolling, Dark theme and Auto theme - but Discord is the odd one out in a few ways:</p>
 
@@ -26,7 +24,7 @@
   <li>It uses <code>rem</code> for most sizes, where the other modules use <code>em</code>. A <code>rem</code> is the size of the page's normal text, so the sizes stay the same wherever the chat sits.</li>
 </ul>
 
-<h4>The Window</h4>
+<h3>The Window</h3>
 
 <pre><code>#workskin .dc {
   margin: 1.2em 0;
@@ -68,7 +66,7 @@
 
 <p>This takes away AO3's gaps between paragraphs, so the message lines sit tight together like they do in Discord.</p>
 
-<h4>The Channel Header</h4>
+<h3>The Channel Header</h3>
 
 <pre><code>#workskin .dc .dc-header::before {
   content: '';
@@ -127,7 +125,7 @@
 
 <p>The little upright line between the channel name and its description is an empty span with only a left border.</p>
 
-<h4>The Message Box</h4>
+<h3>The Message Box</h3>
 
 <pre><code>#workskin .dc .dc-input {
   margin: 1.5rem 1rem 0;
@@ -151,7 +149,7 @@
 
 <p>The grey "Message #general" box at the bottom, with a round button on its left - another Imgur picture in a <code>::before</code>.</p>
 
-<h4>Messages and Names</h4>
+<h3>Messages and Names</h3>
 
 <pre><code>#workskin .dc .dc-message { min-height: 2.75rem; margin-top: 1.0625rem; padding: 0.125rem 3rem 0.125rem 4.5rem; }
 
@@ -215,7 +213,7 @@
 
 <p>The time and "(edited)" are small and grey and never split across lines. <code>break-spaces</code> keeps any extra spaces you type in a message, and <code>break-word</code> breaks up very long words (like a keysmash) so they don't run off the edge.</p>
 
-<h4>Replies</h4>
+<h3>Replies</h3>
 
 <pre><code>#workskin .dc .dc-reply::before {
   content: '';
@@ -252,7 +250,7 @@
 
 <p>The quoted message is small, on one line, and cut off with "..." if it's long. The name in a reply gets a smaller circle (<code>1rem</code>), set up the same way as the big one.</p>
 
-<h4>Reactions and Mentions</h4>
+<h3>Reactions and Mentions</h3>
 
 <pre><code>#workskin .dc .dc-reaction.me {
   background-color: rgb(231, 233, 253);
@@ -270,7 +268,7 @@
   <li>Adding <code>me</code> to a mention lights up the whole message in yellow, with a line down its left side - what Discord does when someone @s you. This is <code>:has()</code> again: "a message that has a <code>dc-mention me</code> inside it".</li>
 </ul>
 
-<h4>Spoilers</h4>
+<h3>Spoilers</h3>
 
 <pre><code>#workskin .dc .dc-spoiler-text {
   border-radius: 0.1875rem;
@@ -311,7 +309,7 @@
 
 <p>Spoiler pictures work the same way: the picture starts see-through (<code>opacity: 0</code>) over a grey box with "SPOILER" on it, and clicking it shows the picture for good. (I've cut the middle of the SPOILER label rule here - it's just its size, colours, and centring.)</p>
 
-<h4>Dividers</h4>
+<h3>Dividers</h3>
 
 <pre><code>#workskin .dc .dc-divider-label {
   padding: 0.125rem 0.25rem;
@@ -346,7 +344,7 @@
 
 <p>The red "NEW" tag has a pointed end, made with a CSS triangle: a box with no size and three thick borders. The right border is red and the top and bottom ones are the window colour, so all you see is a red arrow point.</p>
 
-<h4>Bots and Typing</h4>
+<h3>Bots and Typing</h3>
 
 <pre><code>#workskin .dc .dc-bot::before {
   content: '\00a0\00a0\00a0\00a0 BOT';
@@ -366,7 +364,7 @@
 
 <p>The three typing dots get bigger and darker from left to right, which gives a frozen version of Discord's bouncing dots.</p>
 
-<h4>Links and Scrolling</h4>
+<h3>Links and Scrolling</h3>
 
 <pre><code>#workskin .dc a:not(.tl):hover { color: rgb(0, 104, 224); text-decoration: underline; }
 
@@ -379,11 +377,11 @@
 
 <p>Links are Discord's blue, and get underlined when you hover. The whole window scrolls once it's taller than <code>640px</code> - the header and the message box scroll with it. Add <code>no-scroll</code> to the <code>dc</code> box to switch it off.</p>
 
-<h4>Themes</h4>
+<h3>Themes</h3>
 
 <p>The dark theme is Discord's classic dark grey (<code>rgb(54, 57, 63)</code>) with light text. Code blocks, embeds and reactions go a shade darker, links go brighter, the names get their lighter colours, and the header icons and the message box button swap to their light Imgur versions. The spoilers get their own dark colours, with the same 68-year trick. The auto theme is the same again inside <code>@media (prefers-color-scheme: dark)</code>, and plain <code>dc</code> or <code>theme-light</code> is the light theme.</p>
 
-<h4>Taking Parts Out</h4>
+<h3>Taking Parts Out</h3>
 
 <p>Search for the class names and delete every rule with them in, including in the dark and auto blocks:</p>
 
