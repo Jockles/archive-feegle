@@ -1,12 +1,16 @@
 <h3>Credits</h3>
 
-<p>The WhatsApp module is built on the work below. They're also listed in <a href="getting-started.html#credits">Credits and sources</a> in the first chapter, with all the other credits. Please go and leave them some kudos!</p>
+<p>The WhatsApp module is built on the work below, also listed in <a href="getting-started.html#credits">Credits and sources</a> in Chapter 1. Please go and leave them some kudos!</p>
+
+<p><strong>Based on:</strong></p>
 
 <ul>
-  <li><em>WhatsApp group chat skin</em> by orphan_account, <a href="https://archiveofourown.org/works/34229317">archiveofourown.org/works/34229317</a>. The table layout of the group header, the member list under the group name and the sender-name ideas come from this.</li>
-  <li><em>Whatsapp Work Skin Template /Revamped</em> by worlds_end_valentine, <a href="https://archiveofourown.org/works/46531021">archiveofourown.org/works/46531021</a>. The group chat, reactions, header and per-chat background ideas come from this.</li>
-  <li>Those two WhatsApp skins are themselves inspired by <em>Social Media Work Skin Template: Whatsapp</em> by worlds_end_valentine (credited as etc_e_tal in the group chat skin), <a href="https://archiveofourown.org/works/31313318">archiveofourown.org/works/31313318</a>, and <em>WhatsApp Skin</em> by Azdaema Codes (Azdaema), <a href="https://archiveofourown.org/works/24273361">archiveofourown.org/works/24273361</a>, which are also worth a look.</li>
+  <li><a href="https://archiveofourown.org/works/34229317"><em>WhatsApp group chat skin</em></a> by orphan_account - the group header layout, the member list and sender names.</li>
+  <li><a href="https://archiveofourown.org/works/46531021"><em>Whatsapp Work Skin Template /Revamped</em></a> by worlds_end_valentine - group chats, reactions, the header and per-chat backgrounds.</li>
+  <li>Both of those are inspired by <a href="https://archiveofourown.org/works/31313318"><em>Social Media Work Skin Template: Whatsapp</em></a> by worlds_end_valentine (etc_e_tal) and <a href="https://archiveofourown.org/works/24273361"><em>WhatsApp Skin</em></a> by Azdaema Codes (Azdaema), which are worth a look too.</li>
 </ul>
+
+<p><strong>Added by me:</strong> read ticks, replies and quotes, large emoji, shared links, photo galleries, phone numbers and nicknames, and system notices.</p>
 
 <p>Before we begin, here's the two kinds of chat you can build: a chat between two people, or a group chat. The full HTML is underneath each, which you can copy and modify yourself. The rest of the chapter takes the HTML apart so that you can modify all the individual parts to say exactly what you want.</p>
 
@@ -539,6 +543,22 @@
   &lt;/div&gt;
 &lt;/div&gt;</code></pre>
 
+<h3 id="edited">Edited Messages</h3>
+
+<p>To show that a message was edited, type <code>Edited</code> before the time, inside the <code>wa-time</code> line:</p>
+
+<div class="mob wa theme-auto"><div class="mob-body"><div class="msg out tail">
+  <p><span class="hide"><em>Shane:</em> </span>see you at 8</p>
+  <p class="wa-time">Edited 23:44 <span class="wa-read">✓✓</span></p>
+</div></div></div>
+
+<pre><code>&lt;div class="msg out tail"&gt;
+  &lt;p&gt;&lt;span class="hide"&gt;&lt;em&gt;Shane:&lt;/em&gt; &lt;/span&gt;see you at 8&lt;/p&gt;
+  &lt;p class="wa-time"&gt;Edited 23:44 &lt;span class="wa-read"&gt;✓✓&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+
+<p>It picks up the same small grey text as the time, so there's no extra class to remember.</p>
+
 <h3>Replying to a Message</h3>
 
 <p>To quote the message someone is replying to, add a paragraph with <code>wa-quote</code> at the top of the bubble, before the reply:</p>
@@ -823,6 +843,16 @@
 
 <pre><code>&lt;p class="typing"&gt;Lily is typing...&lt;/p&gt;</code></pre>
 
+<h3 id="typing-dots">Typing Dots</h3>
+
+<p>For the three dots in a bubble instead, add a <code>typing-indicator</code> paragraph with three empty spans at the very end of the chat, the same as in iMessage:</p>
+
+<div class="mob wa theme-auto"><div class="mob-body"><p class="typing-indicator"><span></span><span></span><span></span></p></div></div>
+
+<pre><code>&lt;p class="typing-indicator"&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/p&gt;</code></pre>
+
+<p>Readers with the workskin off won't see the dots at all, so if it matters that someone's typing, use the typing line, or add <code>&lt;span class="hide"&gt;Lily is typing...&lt;/span&gt;</code> at the end of the paragraph, after the three dots.</p>
+
 <h3>The Message Bar</h3>
 
 <p>To finish off a screenshot-style chat, add the message bar at the bottom of the container, <em>after</em> the <code>mob-body</code>. It has the emoji button, the "Message" placeholder, the paperclip and camera, and the round green microphone:</p>
@@ -845,6 +875,26 @@
     &lt;span class="wa-ic"&gt;&amp;#128247;&lt;/span&gt;
   &lt;/span&gt;
   &lt;span class="wa-mic"&gt;&amp;#127908;&lt;/span&gt;
+&lt;/p&gt;</code></pre>
+
+<p>For a message someone is halfway through writing, add <code>typed</code> to <code>wa-ph</code> so the words go dark and wrap onto more lines, and swap "Message" for what they're typing. WhatsApp hides the camera while you type and turns the microphone into a send arrow, so take out the camera and put <code>&amp;#10148;</code> in the green circle instead:</p>
+
+<div class="mob wa theme-auto"><p class="wa-input">
+  <span class="wa-field">
+    <span>&#9786;</span>
+    <span class="wa-ph typed">ok so about last night, I think we need to talk about what happened before your mum</span>
+    <span class="wa-ic">&#128206;</span>
+  </span>
+  <span class="wa-mic">&#10148;</span>
+</p></div>
+
+<pre><code>&lt;p class="wa-input"&gt;
+  &lt;span class="wa-field"&gt;
+    &lt;span&gt;&amp;#9786;&lt;/span&gt;
+    &lt;span class="wa-ph typed"&gt;ok so about last night, I think we need to talk about what happened before your mum&lt;/span&gt;
+    &lt;span class="wa-ic"&gt;&amp;#128206;&lt;/span&gt;
+  &lt;/span&gt;
+  &lt;span class="wa-mic"&gt;&amp;#10148;&lt;/span&gt;
 &lt;/p&gt;</code></pre>
 
 <h3>Group Chats</h3>

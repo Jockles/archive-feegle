@@ -6,7 +6,7 @@
   <title>Megaskin, Chapter 16: Discord | jockles.com</title>
   <link rel="stylesheet" href="../../style.css">
   <script src="../../theme.js"></script>
-  <link rel="stylesheet" href="megaskin.css?v=0797b6df" id="creator-style">
+  <link rel="stylesheet" href="megaskin.css?v=ba5f7fcb" id="creator-style">
 </head>
 <body>
 <header>
@@ -34,12 +34,16 @@
         <div id="workskin">
 <h3 id="s16-1">16.1 Credits</h3>
 
-<p>The Discord module is built on the work below. They're also listed in <a href="getting-started.html#credits">Credits and sources</a> in the first chapter, with all the other credits. Please go and leave them some kudos! BookKeep asks to be credited in your author's notes if you post with the Discord module.</p>
+<p>The Discord module is built on the work below, also listed in <a href="getting-started.html#credits">Credits and sources</a> in Chapter 1. Please go and leave them some kudos! BookKeep asks to be credited in your author's notes if you post with the Discord module.</p>
+
+<p><strong>Based on:</strong></p>
 
 <ul>
-  <li><em>Discord Work Skin &amp; Tutorial</em> by BookKeep, <a href="https://archiveofourown.org/works/42027846">archiveofourown.org/works/42027846</a>. The Discord skin is mainly adapted from this. BookKeep's Discord user system - one class per character, carrying their picture through every message - was also a big part of what inspired me to make the character profiles in this skin, so a special thank you to them, both for the inspiration and for the framework that made it happen.</li>
-  <li><em>2023 Discord Theme Workskin</em> by TrojanTeapot, <a href="https://archiveofourown.org/works/46815217">archiveofourown.org/works/46815217</a>. A second Discord skin consulted alongside BookKeep's; it is itself inspired by <em>Discord (Dark Theme) Work Skin Guide/Preview</em> by Heterochromia_Mars.</li>
+  <li><a href="https://archiveofourown.org/works/42027846"><em>Discord Work Skin &amp; Tutorial</em></a> by BookKeep - most of the Discord module. BookKeep's one-class-per-character user system also inspired the character profiles, so a special thank you to them.</li>
+  <li><a href="https://archiveofourown.org/works/46815217"><em>2023 Discord Theme Workskin</em></a> by TrojanTeapot - consulted alongside BookKeep's (itself inspired by <em>Discord (Dark Theme) Work Skin Guide/Preview</em> by Heterochromia_Mars).</li>
 </ul>
+
+<p><strong>Added by me:</strong> spoiler images, and the Discord DM window.</p>
 
 <p>Before we begin, here's the two kinds of chat you can build: a server channel, or a direct message. The full HTML is underneath each, which you can copy and modify yourself. The rest of the chapter takes the HTML apart so that you can modify all the individual parts to say exactly what you want.</p>
 
@@ -544,7 +548,7 @@
 
 <p>It draws the curved line and the little preview of the message being replied to. Use the same colour class as the original sender's name, so the tiny profile picture matches - or, if they have a profile, the same <code>dc-pfp</code> span and profile name. Long previews get cut short with "..." automatically.</p>
 
-<h3 id="s16-11">16.11 Edited Message</h3>
+<h3 id="edited"><span id="s16-11"></span>16.11 Edited Message</h3>
 
 <p>For the little "(edited)" tag at the end of a message, add a <code>dc-edited</code> span inside the <code>dc-text</code>:</p>
 

@@ -1,10 +1,10 @@
 <h3>Credits</h3>
 
-<p>The iMessage module is built on the work below. They're also listed in <a href="getting-started.html#credits">Credits and sources</a> in the first chapter, with all the other credits. Please go and leave them some kudos!</p>
+<p>The iMessage module is built on the work below, also listed in <a href="getting-started.html#credits">Credits and sources</a> in Chapter 1. Please go and leave them some kudos!</p>
 
-<ul>
-  <li><em>How to Make iOS Text Messages on AO3</em> by CodenameCarrot and La_Temperanza, <a href="https://archiveofourown.org/works/6434845">archiveofourown.org/works/6434845</a>. The picture messages, typing dots and the hidden text for readers with the style switched off are based on this.</li>
-</ul>
+<p><strong>Based on:</strong> <a href="https://archiveofourown.org/works/6434845"><em>How to Make iOS Text Messages on AO3</em></a> by CodenameCarrot and La_Temperanza - picture messages, typing dots, and hidden text for readers with the style off.</p>
+
+<p><strong>Added by me:</strong> tapback reactions, delivered and read, date and time lines, group chats, green text messages and the message bar.</p>
 
 <p>Before we begin, here's the two kinds of chat you can build: a message between two people, or a group chat. The full HTML is underneath each, which you can copy and modify yourself. The rest of the chapter takes the HTML apart so that you can modify all the individual parts to say exactly what you want.</p>
 
@@ -219,6 +219,20 @@
 <pre><code>&lt;p class="msg out"&gt;&lt;span class="hide"&gt;&lt;em&gt;Shane:&lt;/em&gt; &lt;/span&gt;call me?&lt;/p&gt;
 &lt;p class="imsg-status"&gt;Read 11:52 PM&lt;/p&gt;</code></pre>
 
+<h3 id="edited">Edited Messages</h3>
+
+<p>iMessage puts a small blue "Edited" under a message that's been edited. Add it with <code>imsg-edited</code>, straight after the message, just like the status line. For a message from the other person, use <code>imsg-edited-in</code> instead, so it sits on the left:</p>
+
+<div class="mob imsg theme-auto"><div class="mob-body"><p class="msg in"><span class="hide"><em>Ilya:</em> </span>see you at 8</p>
+<p class="imsg-edited-in">Edited</p>
+<p class="msg out"><span class="hide"><em>Shane:</em> </span>see you at 7</p>
+<p class="imsg-edited">Edited</p></div></div>
+
+<pre><code>&lt;p class="msg in"&gt;&lt;span class="hide"&gt;&lt;em&gt;Ilya:&lt;/em&gt; &lt;/span&gt;see you at 8&lt;/p&gt;
+&lt;p class="imsg-edited-in"&gt;Edited&lt;/p&gt;
+&lt;p class="msg out"&gt;&lt;span class="hide"&gt;&lt;em&gt;Shane:&lt;/em&gt; &lt;/span&gt;see you at 7&lt;/p&gt;
+&lt;p class="imsg-edited"&gt;Edited&lt;/p&gt;</code></pre>
+
 <h3>Typing Dots</h3>
 
 <p>For the three dots that show someone is typing, add a <code>typing-indicator</code> paragraph with three empty spans at the very end of the chat:</p>
@@ -234,6 +248,12 @@
 <div class="mob imsg theme-auto"><p class="imsg-input"><span class="imsg-plus">+</span><span class="hide"> </span><span class="imsg-field">iMessage<span class="hide"> </span><span class="imsg-mic">&#127908;</span></span></p></div>
 
 <pre><code>&lt;p class="imsg-input"&gt;&lt;span class="imsg-plus"&gt;+&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="imsg-field"&gt;iMessage&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="imsg-mic"&gt;&amp;#127908;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;</code></pre>
+
+<p>For a message someone is halfway through writing, add <code>typed</code> to the box so the words go black, swap "iMessage" for what they're typing, and swap the microphone for the blue send arrow, <code>imsg-send</code>. Long messages wrap onto more lines, the same as on the phone:</p>
+
+<div class="mob imsg theme-auto"><p class="imsg-input"><span class="imsg-plus">+</span><span class="hide"> </span><span class="imsg-field typed">ok so about last night, I think we need to talk about what happened before your mum<span class="hide"> </span><span class="imsg-send">&#8593;</span></span></p></div>
+
+<pre><code>&lt;p class="imsg-input"&gt;&lt;span class="imsg-plus"&gt;+&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="imsg-field typed"&gt;ok so about last night, I think we need to talk about what happened before your mum&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="imsg-send"&gt;&amp;#8593;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;</code></pre>
 
 <h3>Group Chats</h3>
 
