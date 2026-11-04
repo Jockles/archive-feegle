@@ -239,7 +239,9 @@
   margin: 0.3em 0.9em;
 }
 
-#workskin .mob .del { text-decoration: line-through; opacity: 0.6; }</code></pre>
+#workskin .mob .del, #workskin .dc .del { text-decoration: line-through; opacity: 0.6; }</code></pre>
+
+<p>The typing line is only for phone chats (<code>mob</code>), because Discord has its own typing indicator. Deleted text works in Discord too, so its rule names <code>dc</code> as well.</p>
 
 <p><code>opacity</code> fades the text, so it's lighter than the messages on a light chat and darker on a dark one, without needing a colour for each. Lower the number to fade it more.</p>
 

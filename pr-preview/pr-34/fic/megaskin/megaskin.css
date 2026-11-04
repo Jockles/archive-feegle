@@ -209,7 +209,7 @@
 }
 
 /* strikethrough / deleted text */
-#workskin .mob .del { text-decoration: line-through; opacity: 0.6; }
+#workskin .mob .del, #workskin .dc .del { text-decoration: line-through; opacity: 0.6; }
 
 /* ---------- Links that go nowhere (the colours are in each module) ---------- */
 
