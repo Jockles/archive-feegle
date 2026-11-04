@@ -6,7 +6,7 @@
   <title>Megaskin, Chapter 4: iMessage | jockles.com</title>
   <link rel="stylesheet" href="../../style.css">
   <script src="../../theme.js"></script>
-  <link rel="stylesheet" href="megaskin.css?v=99fee08b" id="creator-style">
+  <link rel="stylesheet" href="megaskin.css?v=1318fe45" id="creator-style">
 </head>
 <body>
 <header>
@@ -253,7 +253,21 @@
 <pre><code>&lt;p class="msg out"&gt;&lt;span class="hide"&gt;&lt;em&gt;Shane:&lt;/em&gt; &lt;/span&gt;call me?&lt;/p&gt;
 &lt;p class="imsg-status"&gt;Read 11:52 PM&lt;/p&gt;</code></pre>
 
-<h3 id="s4-10">4.10 Typing Dots</h3>
+<h3 id="edited"><span id="s4-10"></span>4.10 Edited Messages</h3>
+
+<p>iMessage puts a small blue "Edited" under a message that's been edited. Add it with <code>imsg-edited</code>, straight after the message, just like the status line. For a message from the other person, use <code>imsg-edited-in</code> instead, so it sits on the left:</p>
+
+<div class="mob imsg theme-auto"><div class="mob-body"><p class="msg in"><span class="hide"><em>Ilya:</em> </span>see you at 8</p>
+<p class="imsg-edited-in">Edited</p>
+<p class="msg out"><span class="hide"><em>Shane:</em> </span>see you at 7</p>
+<p class="imsg-edited">Edited</p></div></div>
+
+<pre><code>&lt;p class="msg in"&gt;&lt;span class="hide"&gt;&lt;em&gt;Ilya:&lt;/em&gt; &lt;/span&gt;see you at 8&lt;/p&gt;
+&lt;p class="imsg-edited-in"&gt;Edited&lt;/p&gt;
+&lt;p class="msg out"&gt;&lt;span class="hide"&gt;&lt;em&gt;Shane:&lt;/em&gt; &lt;/span&gt;see you at 7&lt;/p&gt;
+&lt;p class="imsg-edited"&gt;Edited&lt;/p&gt;</code></pre>
+
+<h3 id="s4-11">4.11 Typing Dots</h3>
 
 <p>For the three dots that show someone is typing, add a <code>typing-indicator</code> paragraph with three empty spans at the very end of the chat:</p>
 
@@ -261,7 +275,7 @@
 
 <pre><code>&lt;p class="typing-indicator"&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/p&gt;</code></pre>
 
-<h3 id="s4-11">4.11 Message Bar</h3>
+<h3 id="s4-12">4.12 Message Bar</h3>
 
 <p>To finish off the screen with the "iMessage" box along the bottom, add an <code>imsg-input</code> paragraph after the <code>mob-body</code>, still inside the chat. The + button is <code>imsg-plus</code>, the box is <code>imsg-field</code>, and the microphone is <code>imsg-mic</code>. The <code>hide</code> spans keep a space between them for readers with the workskin off, so it reads "+ iMessage &#127908;" rather than running together. Keep it all on one line:</p>
 
@@ -269,7 +283,7 @@
 
 <pre><code>&lt;p class="imsg-input"&gt;&lt;span class="imsg-plus"&gt;+&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="imsg-field"&gt;iMessage&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="imsg-mic"&gt;&amp;#127908;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;</code></pre>
 
-<h3 id="s4-12">4.12 Group Chats</h3>
+<h3 id="s4-13">4.13 Group Chats</h3>
 
 <p>In a group, put a <code>who</code> line above a message to show who sent it. Your own messages don't get one, the same as on a real phone, so they keep the hidden label instead. Change the header to the name of the group chat, and use the span for the members or "iMessage group":</p>
 
@@ -287,7 +301,7 @@
 
 <p>The <code>who</code> line shows whether the workskin is on or off, so it only needs a hidden colon after the name, to read "Hayden:" followed by the message.</p>
 
-<h3 id="s4-13">4.13 Green Text Messages</h3>
+<h3 id="s4-14">4.14 Green Text Messages</h3>
 
 <p>When your point-of-view character's message goes as a normal text instead of an iMessage, it turns green - like Shane's, because the signal in the rink is too bad for iMessage. The same thing happens when they're messaging someone without an iPhone. Add <code>sms</code> to an <code>out</code> message to make it green:</p>
 
@@ -299,7 +313,7 @@
 
 <p>Only sent messages turn green, the same as on a real phone. Messages from someone without an iPhone are grey like everyone else's, so they don't need anything extra.</p>
 
-<h3 id="s4-14">4.14 Tapbacks in a Group Chat</h3>
+<h3 id="s4-15">4.15 Tapbacks in a Group Chat</h3>
 
 <p>When more than one person reacts to the same message, iMessage stacks the tapbacks on the corner, overlapping, with the first one at the front. Put the <code>imsg-tap</code> spans one after another at the end of the message. The first one gets the tail, and each one after it tucks in behind, a bit further along the bubble:</p>
 

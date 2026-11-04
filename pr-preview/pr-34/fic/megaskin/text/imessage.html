@@ -219,6 +219,20 @@
 <pre><code>&lt;p class="msg out"&gt;&lt;span class="hide"&gt;&lt;em&gt;Shane:&lt;/em&gt; &lt;/span&gt;call me?&lt;/p&gt;
 &lt;p class="imsg-status"&gt;Read 11:52 PM&lt;/p&gt;</code></pre>
 
+<h3 id="edited">Edited Messages</h3>
+
+<p>iMessage puts a small blue "Edited" under a message that's been edited. Add it with <code>imsg-edited</code>, straight after the message, just like the status line. For a message from the other person, use <code>imsg-edited-in</code> instead, so it sits on the left:</p>
+
+<div class="mob imsg theme-auto"><div class="mob-body"><p class="msg in"><span class="hide"><em>Ilya:</em> </span>see you at 8</p>
+<p class="imsg-edited-in">Edited</p>
+<p class="msg out"><span class="hide"><em>Shane:</em> </span>see you at 7</p>
+<p class="imsg-edited">Edited</p></div></div>
+
+<pre><code>&lt;p class="msg in"&gt;&lt;span class="hide"&gt;&lt;em&gt;Ilya:&lt;/em&gt; &lt;/span&gt;see you at 8&lt;/p&gt;
+&lt;p class="imsg-edited-in"&gt;Edited&lt;/p&gt;
+&lt;p class="msg out"&gt;&lt;span class="hide"&gt;&lt;em&gt;Shane:&lt;/em&gt; &lt;/span&gt;see you at 7&lt;/p&gt;
+&lt;p class="imsg-edited"&gt;Edited&lt;/p&gt;</code></pre>
+
 <h3>Typing Dots</h3>
 
 <p>For the three dots that show someone is typing, add a <code>typing-indicator</code> paragraph with three empty spans at the very end of the chat:</p>
