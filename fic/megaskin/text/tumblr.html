@@ -1,6 +1,4 @@
-<h3>Tumblr posts, reblogs and asks</h3>
-
-<h4>Credits</h4>
+<h3>Credits</h3>
 
 <p>The Tumblr module is built on the work below. They're also listed in <a href="getting-started.html#credits">Credits and sources</a> in the first chapter, with all the other credits. Please go and leave them some kudos!</p>
 
@@ -13,7 +11,7 @@
 
 <p>Before we begin, here's the two kinds of thing you can build: a single post (here, a reblog chain), or several posts together on the feed background, like scrolling the app (here, an ask, a quote post and a chat post). The full HTML is underneath each, which you can copy and modify yourself. The rest of the chapter takes the HTML apart so that you can modify all the individual parts to say exactly what you want.</p>
 
-<h4>A Reblog Chain</h4>
+<h3>A Reblog Chain</h3>
 
 <div class="mob tb theme-auto">
   <p class="tb-header">
@@ -100,7 +98,7 @@
 
 </details>
 
-<h4>Posts on the Feed</h4>
+<h3>Posts on the Feed</h3>
 
 <div class="tb-feed">
   <div class="mob tb theme-auto">
@@ -229,7 +227,7 @@
 
 </details>
 
-<h4>Tumblr Post Container</h4>
+<h3>Tumblr Post Container</h3>
 
 <p>A Tumblr post has a header with the blog's picture and name, a body, and then the tags and notes along the bottom. The module class is <code>tb</code>. Here's the outline of a post, with the parts filled in with placeholders:</p>
 
@@ -264,7 +262,7 @@
 
 <pre><code>&lt;p class="tb-tags"&gt;#hockey rpf &amp;nbsp;#wennberg &amp;nbsp;#he is so normal about it&lt;/p&gt;</code></pre>
 
-<h4>The Header: Picture, Name and Time</h4>
+<h3>The Header: Picture, Name and Time</h3>
 
 <p>The header has a round picture, then the name with a small grey line under it, and the three dots at the end. The picture is <code>tb-pfp</code> - with no image it shows initials on a grey circle, and <code>colour1</code> to <code>colour10</code> give it a colour:</p>
 
@@ -308,7 +306,7 @@
 
 <p>The colours for <code>colour1</code> to <code>colour10</code> are set in the core CSS and shared with every app, so you can change them there.</p>
 
-<h4>The Green Reblog Badge</h4>
+<h3>The Green Reblog Badge</h3>
 
 <p>When a header belongs to a reblog, Tumblr puts a little green reblog symbol on the corner of the picture. To add it, put <code>rb</code> after <code>tb-pfp</code>. The grey line then usually says who it was reblogged from - write that name in <code>&lt;b&gt;</code> so it stands out:</p>
 
@@ -326,7 +324,7 @@
     &lt;span class="tb-subline"&gt;Reblogged &lt;b&gt;formulahs&lt;/b&gt; &amp;middot; 18m ago&lt;/span&gt;&lt;/span&gt;
 &lt;/p&gt;</code></pre>
 
-<h4>Verified Ticks and the Follow Button</h4>
+<h3>Verified Ticks and the Follow Button</h3>
 
 <p>Some blogs have coloured checkmarks after their names. On Tumblr these are bought for fun - lots of people have them as a joke - so they don't mean a blog is verified, and you can give them to any blog you like. They come in twos, fours or sixes, and always in the same colour order: blue and green, then lime and yellow, then amber and orange. So two checkmarks are always blue and green, and the other colours only show up on blogs with four or six. Add a <code>tb-check</code> span for each one, straight after the name, like <code>&lt;span class=&quot;tb-check&quot;&gt;&#10003;&lt;/span&gt;&lt;span class=&quot;tb-check&quot;&gt;&#10003;&lt;/span&gt;</code>, and the colours are added for you in the right order. Tumblr has lots of other badges too, but the skin only does the checkmarks.</p>
 
@@ -350,7 +348,7 @@
     &lt;span class="tb-subline"&gt;6h ago&lt;/span&gt;&lt;/span&gt;
 &lt;/p&gt;</code></pre>
 
-<h4>Reblog Chains</h4>
+<h3>Reblog Chains</h3>
 
 <p>When a post has been reblogged with comments, each comment is its own <code>tb-reblog</code> block inside <code>tb-body</code>. Each block starts with a <code>tb-blog</code> header, built just like <code>tb-header</code>, and the comment goes underneath it. Put them one after another, oldest first, and the workskin draws the thin line between them:</p>
 
@@ -398,7 +396,7 @@
 
 <p>Use the same picture colour for the same blog every time, so the reader can keep track of who's talking.</p>
 
-<h4>Asks</h4>
+<h3>Asks</h3>
 
 <p>An ask and its answer are two boxes, one after the other. The question box is <code>tb-ask</code>, and the answer box is <code>tb-ask</code> with <code>tb-answer</code> added. Each one starts with a <code>tb-asker</code> line, with the blog's name in <code>&lt;b&gt;</code> and then "asked:" or "answered:". The small square picture on the right is <code>tb-ask-pfp</code>:</p>
 
@@ -424,7 +422,7 @@
 
 <p>For an anon ask, leave out the picture and write <code>Anonymous</code> as the name. Both boxes go inside <code>tb-body</code>, and you can put an <code>&lt;img&gt;</code> picture in the answer box after the text.</p>
 
-<h4>Quote Posts</h4>
+<h3>Quote Posts</h3>
 
 <p>A quote post is a big line of text in a serif font, with whoever said it underneath. The quotation marks are added for you. Put it in <code>tb-body</code>:</p>
 
@@ -436,7 +434,7 @@
 
 <p><code>tb-quote</code> is the big quoted line, and <code>tb-source</code> is the smaller line with the source.</p>
 
-<h4>Chat Posts</h4>
+<h3>Chat Posts</h3>
 
 <p>A chat post is a block of dialogue in a typewriter font. Each line is its own paragraph, with the speaker's name in <code>&lt;b&gt;</code>:</p>
 
@@ -452,7 +450,7 @@
   &lt;p&gt;&lt;b&gt;Shane:&lt;/b&gt; that's never good&lt;/p&gt;
 &lt;/div&gt;</code></pre>
 
-<h4>Notes and Buttons Along the Bottom</h4>
+<h3>Notes and Buttons Along the Bottom</h3>
 
 <p>Like the real app, Tumblr shows one note count rather than a count for every button - notes are all the likes, reblogs and replies added together. The bottom row is <code>tb-footer</code>, and it goes after <code>tb-body</code> and the tags. The note count is a <code>tb-notes</code> span with the number in <code>&lt;b&gt;</code>, and it sits in a rounded box on the left. After it come the buttons, each a <code>tb-icon</code> span: save (<code>tb-icon save</code>, a bookmark drawn for you), share, reply, reblog and like, which line up on the right. Leave out any button you don't want:</p>
 
@@ -474,7 +472,7 @@
   &lt;span class="tb-icon"&gt;&amp;#9825;&lt;/span&gt;
 &lt;/p&gt;</code></pre>
 
-<h4>The Feed Background</h4>
+<h3>The Feed Background</h3>
 
 <p>In the Tumblr app, the white cards sit on a dark navy background (or black in dark mode). To get that, wrap one or more posts in a <code>tb-feed</code>, like the posts on the feed at the top of the chapter, and the cards sit on it with a gap between each one: <code>&lt;div class=&quot;tb-feed&quot;&gt;</code>, then your posts, then <code>&lt;/div&gt;</code>. Add <code>black</code> for the black version: <code>&lt;div class=&quot;tb-feed black&quot;&gt;</code>.</p>
 

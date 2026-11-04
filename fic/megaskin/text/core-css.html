@@ -1,10 +1,8 @@
-<h3>The Core CSS</h3>
-
 <p>This chapter goes through the CSS behind the last one: the chat box, scrolling, round pictures, hidden text, translations, character profiles and the ten colours every app shares. It's the part of the skin that every module needs, so whichever apps you use, the core goes in first.</p>
 
 <p>You don't need to understand any of this to use the skin. It's here for when you want to change something - a size, a colour, a profile - and want to know which bit to touch without breaking anything else.</p>
 
-<h4>Getting the CSS</h4>
+<h3>Getting the CSS</h3>
 
 <p>The core CSS is here: <a href="css/core.css">jockles.com/fic/megaskin/css/core.css</a>. Open it, select everything, and copy it into your work skin <em>before</em> any of the modules. Each module chapter has its own link like this one, and the very last chapter has the whole megaskin in one file.</p>
 
@@ -17,7 +15,7 @@
 
 </details>
 
-<h4>How the CSS is Laid Out</h4>
+<h3>How the CSS is Laid Out</h3>
 
 <p>Every rule in the skin starts with <code>#workskin</code>. AO3 insists on it: it's how AO3 keeps a work skin inside your fic, so it can't touch the rest of the page. If you write your own rules, start them with <code>#workskin</code> too, or AO3 will throw them out.</p>
 
@@ -31,7 +29,7 @@
 
 <p>The core comes first, then one block per app, in the same order as the chapters. Each app's block only needs the core, so you can keep the core plus the apps you use and delete the rest, from its start line to its end line.</p>
 
-<h4>The Chat Box</h4>
+<h3>The Chat Box</h3>
 
 <p>Every chat apart from Discord sits in a <code>mob</code> box, and this is where it gets its size:</p>
 
@@ -84,7 +82,7 @@
 
 </details>
 
-<h4>Using the Reader's Own Font</h4>
+<h3>Using the Reader's Own Font</h3>
 
 <p>Each app sets its own font, so the chats look like the real thing - the core's is the plain phone font above, and some apps have their own (Gmail uses Roboto, Discord uses Whitney, Tumblr's quote posts use Georgia, and so on). That's the default, and it's what the skin does as it comes.</p>
 
@@ -118,7 +116,7 @@
 
 </details>
 
-<h4>Phone Width or Full Width</h4>
+<h3>Phone Width or Full Width</h3>
 
 <pre><code>#workskin .mob.wide {
   width: auto;
@@ -127,7 +125,7 @@
 
 <p><code>wide</code> undoes the phone width, so the chat fills whatever it's sitting in. <code>.mob.wide</code> with no space means "a box that has <em>both</em> <code>mob</code> and <code>wide</code>", so it only touches chats you've added <code>wide</code> to.</p>
 
-<h4>Scrolling</h4>
+<h3>Scrolling</h3>
 
 <pre><code>#workskin .mob-body { max-height: 580px; overflow-y: auto; overflow-x: hidden; }
 
@@ -167,7 +165,7 @@
 
 </details>
 
-<h4>Round Pictures</h4>
+<h3>Round Pictures</h3>
 
 <p>Every profile picture, in every app, is a <code>pfp</code> span inside that app's circle. The circle decides the size, and <code>pfp</code> does the cropping:</p>
 
@@ -211,7 +209,7 @@
 
 <p>A circle with no picture in it shows initials on a plain colour instead. The colours for that, <code>colour1</code> to <code>colour10</code>, are near the end of the core - see The Ten Colours, below.</p>
 
-<h4>Hidden Text</h4>
+<h3>Hidden Text</h3>
 
 <pre><code>#workskin .hide.hide.hide.hide { display: none; }</code></pre>
 
@@ -219,7 +217,7 @@
 
 <p>The class is written four times on purpose. When two rules disagree, the browser goes with the more specific one, and every extra class makes a rule more specific. Lots of rules in the modules set <code>display</code> on spans and paragraphs, and some of them could otherwise win and make hidden text show up in the middle of a chat. Four times beats all of them.</p>
 
-<h4>Video Descriptions</h4>
+<h3>Video Descriptions</h3>
 
 <pre><code>#workskin .vid-desc {
   position: absolute;
@@ -231,7 +229,7 @@
 
 <p>This doesn't hide the description, it just moves it a long way off the left edge of the screen and shrinks it to a single dot. Sighted readers never see it, but screen readers still read it out, because as far as they're concerned it's still on the page. <code>display: none</code>, like <code>hide</code> uses, would hide it from screen readers too.</p>
 
-<h4>Typing Line and Deleted Text</h4>
+<h3>Typing Line and Deleted Text</h3>
 
 <pre><code>#workskin .mob .typing {
   display: block;
@@ -245,7 +243,7 @@
 
 <p><code>opacity</code> fades the text, so it's lighter than the messages on a light chat and darker on a dark one, without needing a colour for each. Lower the number to fade it more.</p>
 
-<h4>Links That Go Nowhere</h4>
+<h3>Links That Go Nowhere</h3>
 
 <pre><code>#workskin .mob .fake-link,
 #workskin .mob a:not(.tl) {
@@ -257,9 +255,9 @@
 
 <p>A <code>fake-link</code> and a real link get the same underline and the same pointing-hand cursor, so readers can't tell them apart. <code>a:not(.tl)</code> means "any link that isn't a translation", because translations are links too and need to look different. The colours are in each module, under its <em>Links</em> heading.</p>
 
-<h4>Hover and Tap Translations</h4>
+<h3>Hover and Tap Translations</h3>
 
-<h5>Credits</h5>
+<h4>Credits</h4>
 
 <p>The translations are built on the work below. They're also listed in <a href="getting-started.html#credits">Credits and sources</a> in the first chapter, with all the other credits. Please go and leave them some kudos!</p>
 
@@ -350,11 +348,11 @@
 
 </details>
 
-<h4>Character Profiles, Line by Line</h4>
+<h3>Character Profiles, Line by Line</h3>
 
 <p>A profile is a block of CSS for one character. The trick behind it is that CSS can't put text on a page by itself, but it <em>can</em> add text before or after something with <code>::before</code> and <code>::after</code>. So <code>&lt;span class=&quot;handle pfp-luca&quot;&gt;&lt;/span&gt;</code> is an empty span, and the profile fills it in. Because the words come from the CSS, they disappear when the skin is off, which is why every example has a <code>hide</code> copy typed inside.</p>
 
-<h5>A Simple Profile: Stan</h5>
+<h4>A Simple Profile: Stan</h4>
 
 <p>Stan's is the simplest profile in the skin. It only has the five lines every profile needs:</p>
 
@@ -377,7 +375,7 @@
 
 <p>That's a whole profile. The comment line at the top (<code>/* PROFILE: Stan */</code>) doesn't do anything - it's just a label, so you can find each character's block.</p>
 
-<h5>Every Option: Luca</h5>
+<h4>Every Option: Luca</h4>
 
 <p>Luca's profile uses every option, so here it is a line at a time. Only the lines marked <em>every profile</em> need to be in yours - they're the same five as Stan's.</p>
 
@@ -476,7 +474,7 @@
 
 </details>
 
-<h4>Making Your Own Profile</h4>
+<h3>Making Your Own Profile</h3>
 
 <p>Copy Stan's block from above and change <code>stan</code> to your character's name everywhere in it:</p>
 
@@ -500,7 +498,7 @@
 
 </details>
 
-<h4>The Ten Colours</h4>
+<h3>The Ten Colours</h3>
 
 <p>Every app uses the same ten colours, <code>colour1</code> to <code>colour10</code>, for its round picture circles and for people's names. They all live at the end of the core, so if you change a colour there, it changes in every app at once. Here's everything for <code>colour1</code>:</p>
 
@@ -547,7 +545,7 @@
 
 </details>
 
-<h4>Themes</h4>
+<h3>Themes</h3>
 
 <p>Apart from the ten colours above, the core doesn't hold any colours, so there's nothing else about themes in it. Each module has its own dark theme and auto theme at the bottom of its block, and they work the same way everywhere:</p>
 
