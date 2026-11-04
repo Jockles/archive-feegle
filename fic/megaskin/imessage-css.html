@@ -6,7 +6,7 @@
   <title>Megaskin, Chapter 5: iMessage CSS | jockles.com</title>
   <link rel="stylesheet" href="../../style.css">
   <script src="../../theme.js"></script>
-  <link rel="stylesheet" href="megaskin.css?v=99fee08b" id="creator-style">
+  <link rel="stylesheet" href="megaskin.css?v=1318fe45" id="creator-style">
 </head>
 <body>
 <header>
@@ -153,7 +153,21 @@
 
 <p><code>#8e8e93</code> is Apple's grey, and it's used for all the small print. The <code>who</code> line is nudged in from the left (<code>0.9em</code>) so the name lines up with the text inside the bubble, not the edge of it. The core fades system lines with <code>opacity</code>, and iMessage puts it back to <code>1</code> because its grey is already faded enough.</p>
 
-<h3 id="s5-8">5.8 Tapbacks</h3>
+<h3 id="s5-8">5.8 Edited Messages</h3>
+
+<pre><code>#workskin .imsg .imsg-edited, #workskin .imsg .imsg-edited-in {
+  display: block;
+  text-align: right;
+  font-size: 0.7em;
+  color: #0a84ff;
+  margin: 0.1em 0.4em 0.4em 0;
+}
+
+#workskin .imsg .imsg-edited-in { text-align: left; margin: 0.1em 0 0.4em 0.4em; }</code></pre>
+
+<p>It's the same small print as the status line, but in Apple's blue (<code>#0a84ff</code>), which shows up on both light and dark chats. <code>imsg-edited-in</code> is the left-hand version, under a message from the other person.</p>
+
+<h3 id="s5-9">5.9 Tapbacks</h3>
 
 <p>Tapbacks are the fiddliest part, because they sit half outside the bubble. They work by taking the reaction out of the normal flow of the text and pinning it to the bubble's corner:</p>
 
@@ -268,7 +282,7 @@
 
 </details>
 
-<h3 id="s5-9">5.9 Pictures</h3>
+<h3 id="s5-10">5.10 Pictures</h3>
 
 <pre><code>#workskin .imsg .msg.pic { width: 55%; padding: 0.2em; overflow: hidden; }
 
@@ -283,7 +297,7 @@
 
 <p>A picture bubble is a fixed <code>55%</code> of the chat wide, whatever size the picture is, and the picture fills it. <code>height: auto</code> keeps the picture's shape, so nothing gets squashed. With <code>text</code>, the description gets lots of padding so it's about the size of a photo.</p>
 
-<h3 id="s5-10">5.10 Typing Dots</h3>
+<h3 id="s5-11">5.11 Typing Dots</h3>
 
 <pre><code>#workskin .imsg .typing-indicator {
   display: table;
@@ -310,7 +324,7 @@
 
 <p>The bubble is built like a received message. Each empty span becomes a small grey circle, and <code>:nth-child(2)</code> and <code>:nth-child(3)</code> - the second and third dot - get darker, so it looks like the dots are mid-bounce.</p>
 
-<h3 id="s5-11">5.11 Message Bar</h3>
+<h3 id="s5-12">5.12 Message Bar</h3>
 
 <pre><code>#workskin .imsg .imsg-input {
   display: flex;
@@ -360,7 +374,7 @@
   <li>The extra padding on the right of the box (<code>2.4em</code>) leaves room for the microphone, so the word never runs under it.</li>
 </ul>
 
-<h3 id="s5-12">5.12 Links</h3>
+<h3 id="s5-13">5.13 Links</h3>
 
 <pre><code>#workskin .imsg .in .fake-link, #workskin .imsg .in a:not(.tl) { color: #0a84ff; }
 
@@ -368,7 +382,7 @@
 
 <p>Links are blue in grey bubbles and white in blue ones, so they show up on both.</p>
 
-<h3 id="s5-13">5.13 Dark and Auto Themes</h3>
+<h3 id="s5-14">5.14 Dark and Auto Themes</h3>
 
 <p>The dark theme is the light rules again, with only the colours that change:</p>
 
@@ -400,7 +414,7 @@
 
 </details>
 
-<h3 id="s5-14">5.14 Taking Parts Out</h3>
+<h3 id="s5-15">5.15 Taking Parts Out</h3>
 
 <p>If you never use a part, you can delete its rules to make your skin shorter. Each part has a comment above it saying what it is. The ones that come out cleanly are:</p>
 
