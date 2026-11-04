@@ -32,9 +32,7 @@
       <div class="fic">
         <h3 class="chapter-title">Chapter 16: Discord</h3>
         <div id="workskin">
-<h3 id="s16-1">16.1 Discord</h3>
-
-<h4 id="s16-1-1">16.1.1 Credits</h4>
+<h3 id="s16-1">16.1 Credits</h3>
 
 <p>The Discord module is built on the work below. They're also listed in <a href="getting-started.html#credits">Credits and sources</a> in the first chapter, with all the other credits. Please go and leave them some kudos! BookKeep asks to be credited in your author's notes if you post with the Discord module.</p>
 
@@ -45,7 +43,7 @@
 
 <p>Before we begin, here's the two kinds of chat you can build: a server channel, or a direct message. The full HTML is underneath each, which you can copy and modify yourself. The rest of the chapter takes the HTML apart so that you can modify all the individual parts to say exactly what you want.</p>
 
-<h4 id="s16-1-2">16.1.2 A Server Channel</h4>
+<h3 id="s16-2">16.2 A Server Channel</h3>
 
 <div class="dc theme-auto">
   <div class="dc-header hashtag">
@@ -348,7 +346,7 @@
 
 </details>
 
-<h4 id="s16-1-3">16.1.3 A Direct Message</h4>
+<h3 id="s16-3">16.3 A Direct Message</h3>
 
 <div class="dc theme-auto">
   <div class="dc-header at-symbol">
@@ -395,7 +393,7 @@
 
 </details>
 
-<h4 id="s16-1-4">16.1.4 Discord Window</h4>
+<h3 id="s16-4">16.4 Discord Window</h3>
 
 <p>The first step is a container for the Discord window:</p>
 
@@ -407,7 +405,7 @@
 
 <p><code>dc</code> is the module class for Discord. It's the odd one out - it doesn't use <code>mob</code>, and it's full width instead of phone width. <code>theme-auto</code> shows it in Discord's dark or light mode to match the reader. Everything else in this chapter goes inside this container.</p>
 
-<h4 id="s16-1-5">16.1.5 Channel Header</h4>
+<h3 id="s16-5">16.5 Channel Header</h3>
 
 <p>For a channel header, use this:</p>
 
@@ -423,7 +421,7 @@
 
 <p>Inside the header, <code>dc-header-divider</code> is the thin line between the channel name and its description, and <code>dc-description</code> is the grey description. The spans with <code>hide</code> hold text that only shows if a reader has the workskin switched off, like the <code>#</code> and the colon, so the header still makes sense without the styling. You can leave the description out if you don't need it.</p>
 
-<h4 id="s16-1-6">16.1.6 Simple Message</h4>
+<h3 id="s16-6">16.6 Simple Message</h3>
 
 <p>A Discord message needs three things: a name, a timestamp and the message itself. They all go inside a <code>div</code> with the class <code>dc-message</code>:</p>
 
@@ -443,7 +441,7 @@
   &lt;p&gt;&lt;span class="dc-text"&gt;Hello, world! Testing ordinary text.&lt;/span&gt;&lt;/p&gt;
 &lt;/div&gt;</code></pre>
 
-<h4 id="s16-1-7">16.1.7 Username</h4>
+<h3 id="s16-7">16.7 Username</h3>
 
 <p>The name goes in a bold tag with the class <code>dc-name</code>. Add one of <code>colour1</code> to <code>colour10</code> as well - it colours both the name and the round profile picture. In the example, that's <code>colour1</code>:</p>
 
@@ -472,11 +470,11 @@
 
 <p>A picture tag works in <code>dc-pfp</code> too, inside a <code>pfp</code> span with alt text. The colours for <code>colour1</code> to <code>colour10</code> are set in the core CSS and shared with every app, so you can change them there.</p>
 
-<h4 id="s16-1-8">16.1.8 Message Timestamp</h4>
+<h3 id="s16-8">16.8 Message Timestamp</h3>
 
 <p>Each message has a timestamp next to the name, in a span with <code>dc-time</code>. You can write anything in it: "10/01/2022", "Today at 12:00 PM" or "Yesterday at 1:12 AM".</p>
 
-<h4 id="s16-1-9">16.1.9 Message Text</h4>
+<h3 id="s16-9">16.9 Message Text</h3>
 
 <p>The message itself goes in <code>dc-text</code>. To write a message over several lines, give each line its own <code>dc-text</code> and put a line break between them:</p>
 
@@ -498,7 +496,7 @@
 
 <p>You can use bold, italics and strikethrough inside the text as normal.</p>
 
-<h4 id="s16-1-10">16.1.10 Reply to Message</h4>
+<h3 id="s16-10">16.10 Reply to Message</h3>
 
 <p>To reply to a message, add a <code>dc-reply</code> paragraph inside the message container, <em>before</em> the name line:</p>
 
@@ -546,7 +544,7 @@
 
 <p>It draws the curved line and the little preview of the message being replied to. Use the same colour class as the original sender's name, so the tiny profile picture matches - or, if they have a profile, the same <code>dc-pfp</code> span and profile name. Long previews get cut short with "..." automatically.</p>
 
-<h4 id="s16-1-11">16.1.11 Edited Message</h4>
+<h3 id="s16-11">16.11 Edited Message</h3>
 
 <p>For the little "(edited)" tag at the end of a message, add a <code>dc-edited</code> span inside the <code>dc-text</code>:</p>
 
@@ -560,7 +558,7 @@
   &lt;p&gt;&lt;span class="dc-text"&gt;ok that was dramatic of me&lt;span class="dc-edited"&gt; (edited)&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
 &lt;/div&gt;</code></pre>
 
-<h4 id="s16-1-12">16.1.12 Emoji Reactions</h4>
+<h3 id="s16-12">16.12 Emoji Reactions</h3>
 
 <p>For reactions under a message, put each one in a span with <code>dc-reaction</code>, with the emoji first and the count in <code>dc-reaction-count</code>:</p>
 
@@ -584,7 +582,7 @@
 
 <p>To add more than one reaction to a message, put them all in the same <code>&lt;p&gt;</code>. Add the class <code>me</code> to a reaction if you want it to look like your point-of-view character reacted too, which gives it a blue outline. The <code>hide</code> span keeps a space between the reactions for anyone reading with the workskin switched off. Standard emojis are read out by screen readers, so they don't need a description.</p>
 
-<h4 id="s16-1-13">16.1.13 Spoiler Text</h4>
+<h3 id="s16-13">16.13 Spoiler Text</h3>
 
 <p>To hide a word until the reader clicks it, wrap it in <code>dc-spoiler-text</code>:</p>
 
@@ -598,7 +596,7 @@
   &lt;p&gt;&lt;span class="dc-text"&gt;also the robot is &lt;span class="dc-spoiler-text"&gt;my cat on the keyboard&lt;/span&gt;, you know&lt;/span&gt;&lt;/p&gt;
 &lt;/div&gt;</code></pre>
 
-<h4 id="s16-1-14">16.1.14 Spoiler Image</h4>
+<h3 id="s16-14">16.14 Spoiler Image</h3>
 
 <p>You can hide an image the same way. Wrap it in a span with the class <code>dc-spoiler</code>, and the word SPOILER is added on top for you:</p>
 
@@ -612,7 +610,7 @@
   &lt;p&gt;&lt;span class="dc-spoiler"&gt;&lt;img class="dc-image" src="https://64.media.tumblr.com/6898dc3a42cc6c7ab9729360b71366e4/ba033a52c8982cb0-bf/s2048x3072/b548d2fe61b02e530c0edd2ee6a6bd56ab73ad2c.jpg" alt="Black and white cat screaming at the camera, on a red patterned rug"&gt;&lt;/span&gt;&lt;/p&gt;
 &lt;/div&gt;</code></pre>
 
-<h4 id="s16-1-15">16.1.15 User Mentions</h4>
+<h3 id="s16-15">16.15 User Mentions</h3>
 
 <p>For an @mention, wrap it in a span with <code>dc-mention</code>, inside a <code>dc-text</code>:</p>
 
@@ -650,7 +648,7 @@
   &lt;p&gt;&lt;span class="dc-text"&gt;hey &lt;span class="dc-role-mention"&gt;@losers&lt;/span&gt; look at this&lt;/span&gt;&lt;/p&gt;
 &lt;/div&gt;</code></pre>
 
-<h4 id="s16-1-16">16.1.16 Dividers</h4>
+<h3 id="s16-16">16.16 Dividers</h3>
 
 <p>To show time passing, add a date divider between messages:</p>
 
@@ -682,7 +680,7 @@
   &lt;p&gt;&lt;span class="dc-divider-label"&gt;October 3, 2022&lt;/span&gt;&lt;span class="hide"&gt; - &lt;/span&gt;&lt;span class="dc-new-tag"&gt;New&lt;/span&gt;&lt;/p&gt;
 &lt;/div&gt;</code></pre>
 
-<h4 id="s16-1-17">16.1.17 New Member Announcement</h4>
+<h3 id="s16-17">16.17 New Member Announcement</h3>
 
 <p>To show that someone has joined the server, use a message with <code>dc-new-user</code> instead of the name and text:</p>
 
@@ -700,7 +698,7 @@
   &lt;/p&gt;
 &lt;/div&gt;</code></pre>
 
-<h4 id="s16-1-18">16.1.18 Bots</h4>
+<h3 id="s16-18">16.18 Bots</h3>
 
 <p>To give a user the BOT tag, add an empty span with the class <code>dc-bot</code> after their name:</p>
 
@@ -722,7 +720,7 @@
   &lt;p&gt;&lt;span class="dc-text"&gt;beep boop. ALL HAIL OUR ROBOT OVERLORDS&lt;/span&gt;&lt;/p&gt;
 &lt;/div&gt;</code></pre>
 
-<h4 id="s16-1-19">16.1.19 Images and Emoji</h4>
+<h3 id="s16-19">16.19 Images and Emoji</h3>
 
 <p>To send a picture, use an image tag with <code>dc-image</code> inside a message, with the web address of the image in <code>src</code>. Always fill in the <code>alt</code> text, so anyone using a screen reader knows what's in the picture:</p>
 
@@ -740,7 +738,7 @@
 
 <p>Custom emoji work the same way, with the emoji's picture hosted somewhere else. <code>dc-emoji</code> is a big emoji sent on its own, like <code>&lt;p&gt;&lt;img class=&quot;dc-emoji&quot; src=&quot;...&quot; alt=&quot;emoji name&quot;&gt;&lt;/p&gt;</code>, and <code>dc-inline-emoji</code> is a small one that sits in a line of text.</p>
 
-<h4 id="s16-1-20">16.1.20 Link Embeds</h4>
+<h3 id="s16-20">16.20 Link Embeds</h3>
 
 <p>For the preview box Discord makes when someone posts a link, add a <code>dc-embed</code> after the line with the link in it:</p>
 
@@ -772,7 +770,7 @@
 
 <p><code>fake-link</code> from the Core, Themes, and Extras chapter works here too, and looks exactly the same as <code>dc-link</code>, so you can use whichever you like.</p>
 
-<h4 id="s16-1-21">16.1.21 Blockquotes and Code Blocks</h4>
+<h3 id="s16-21">16.21 Blockquotes and Code Blocks</h3>
 
 <p>To make it look like a character has quoted someone, or sent some code, use these:</p>
 
@@ -798,7 +796,7 @@
   &lt;p&gt;&lt;span class="dc-text dc-code"&gt;print("you need to go outside")&lt;/span&gt;&lt;/p&gt;
 &lt;/div&gt;</code></pre>
 
-<h4 id="s16-1-22">16.1.22 Chat Box</h4>
+<h3 id="s16-22">16.22 Chat Box</h3>
 
 <p>For the "Message #general" box at the bottom of the window, use this, with your own channel name in place of the text. It goes after all of the messages:</p>
 
@@ -810,7 +808,7 @@
   &lt;p&gt;&lt;span class="dc-input-text"&gt;Message #general&lt;/span&gt;&lt;/p&gt;
 &lt;/div&gt;</code></pre>
 
-<h4 id="s16-1-23">16.1.23 Typing Indicator</h4>
+<h3 id="s16-23">16.23 Typing Indicator</h3>
 
 <p>To show that one or more people are typing, add this <em>after</em> the chat box:</p>
 
@@ -830,7 +828,7 @@
 
 <p>Put the names of everyone who's typing in <code>dc-typing-text</code>.</p>
 
-<h4 id="s16-1-24">16.1.24 Direct Messages</h4>
+<h3 id="s16-24">16.24 Direct Messages</h3>
 
 <p>For a DM, use <code>at-symbol</code> on the channel header, with the person's name, and put their name in the chat box too, like the direct message at the top of the chapter:</p>
 
@@ -842,7 +840,7 @@
   &lt;h3&gt;&lt;span class="hide"&gt;@ &lt;/span&gt;DropSomeKnowledge&lt;/h3&gt;
 &lt;/div&gt;</code></pre>
 
-<h4 id="s16-1-25">16.1.25 Long Chats</h4>
+<h3 id="s16-25">16.25 Long Chats</h3>
 
 <p>Once a Discord chat gets long, the window stops growing at about the height of a phone screen and scrolls instead, so one long conversation doesn't take over the page - like the server channel at the top of the chapter. There's nothing to add - it just happens. Unlike the phone-style chats, the whole window scrolls, so the channel header and the chat box move with the messages rather than staying put.</p>
 
