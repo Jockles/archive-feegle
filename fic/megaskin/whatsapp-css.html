@@ -6,7 +6,7 @@
   <title>Megaskin, Chapter 7: WhatsApp CSS | jockles.com</title>
   <link rel="stylesheet" href="../../style.css">
   <script src="../../theme.js"></script>
-  <link rel="stylesheet" href="megaskin.css?v=d7b73487" id="creator-style">
+  <link rel="stylesheet" href="megaskin.css?v=ba5f7fcb" id="creator-style">
 </head>
 <body>
 <header>
@@ -333,6 +333,10 @@
   <li>The white box is another table, and each icon is a cell. <code>width: 1%</code> on the icons is a trick: a table cell can't be narrower than what's inside it, so asking for 1% makes it exactly as wide as its icon. The placeholder (<code>wa-ph</code>) is set back to <code>auto</code>, so it takes all the room that's left.</li>
   <li>The green microphone circle is pinned in the space on the right, which the bar's <code>3.4em</code> of right padding keeps clear. It's centred top to bottom with <code>top: 50%</code> and a negative margin of half its height.</li>
 </ul>
+
+<p>For a half-typed message, <code>typed</code> undoes the <code>nowrap</code> so long messages wrap, and makes the words dark (light in dark mode):</p>
+
+<pre><code>#workskin .wa .wa-field .wa-ph.typed { white-space: normal; color: #111b21; }</code></pre>
 
 <h3 id="s7-14">7.14 Link Cards</h3>
 

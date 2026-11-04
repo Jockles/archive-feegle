@@ -300,6 +300,10 @@
   <li>The green microphone circle is pinned in the space on the right, which the bar's <code>3.4em</code> of right padding keeps clear. It's centred top to bottom with <code>top: 50%</code> and a negative margin of half its height.</li>
 </ul>
 
+<p>For a half-typed message, <code>typed</code> undoes the <code>nowrap</code> so long messages wrap, and makes the words dark (light in dark mode):</p>
+
+<pre><code>#workskin .wa .wa-field .wa-ph.typed { white-space: normal; color: #111b21; }</code></pre>
+
 <h3>Link Cards</h3>
 
 <pre><code>#workskin .wa .msg.share,
