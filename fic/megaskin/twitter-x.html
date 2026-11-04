@@ -34,7 +34,7 @@
         <div id="workskin">
 <h2>Twitter/X</h2>
 
-<h3>Credits</h3>
+<h3 id="s8-1">8.1 Credits</h3>
 
 <p>The Twitter/X module is built on the work below. They're also listed in <a href="getting-started.html#credits">Credits and sources</a> in the first chapter, with all the other credits. Please go and leave them some kudos!</p>
 
@@ -42,11 +42,11 @@
   <li><em>Twitter Work Skin Template</em> by worlds_end_valentine, <a href="https://archiveofourown.org/works/47803507">archiveofourown.org/works/47803507</a>. The timestamp line, liked and reposted counts, labels, sensitive content warning, polls, picture and video tweets, scrollable thread, DM reactions, group DMs, voice messages and the scrollable DM window are based on this.</li>
 </ul>
 
-<h3>Twitter/X posts, replies and quote tweets</h3>
+<h3 id="s8-2">8.2 Twitter/X posts, replies and quote tweets</h3>
 
 <p>Before we begin, here's the two kinds of post you can build: a tweet with its replies, in a scrolling thread, or tweets on their own, like a timeline. The full HTML is underneath each, which you can copy and modify yourself. The rest of this section takes the HTML apart so that you can modify all the individual parts to say exactly what you want.</p>
 
-<h4>A Tweet and Its Replies</h4>
+<h4 id="s8-2-1">8.2.1 A Tweet and Its Replies</h4>
 
 <div class="tw-thread theme-auto">
   <div class="tw-scroll">
@@ -141,7 +141,7 @@
 
 </details>
 
-<h4>A Timeline of Tweets</h4>
+<h4 id="s8-2-2">8.2.2 A Timeline of Tweets</h4>
 
 <div class="mob tw theme-auto">
   <p class="tw-top"><span class="tw-pfp colour5">HF</span><span class="hide"> </span><span class="tw-name">Hockey Fan</span> <span class="tw-handle">@hockeyfan · 2h</span></p>
@@ -266,7 +266,7 @@
 
 </details>
 
-<h4>Tweet Container</h4>
+<h4 id="s8-2-3">8.2.3 Tweet Container</h4>
 
 <p>A tweet is a single container, <code>&lt;div class=&quot;mob tw theme-auto&quot;&gt;</code>, with a few lines inside it. There's no header or body here - the lines go straight in:</p>
 
@@ -284,7 +284,7 @@
 
 <p>The next few sections go through each of those three lines.</p>
 
-<h4>Name and Handle</h4>
+<h4 id="s8-2-4">8.2.4 Name and Handle</h4>
 
 <p>The first line, <code>tw-top</code>, has the account's picture, name, handle and the time:</p>
 
@@ -298,7 +298,7 @@
   <li><code>tw-handle</code> is the grey @handle, with the time after it. To take the handle from a character's profile, put a handle span in place of the @handle, with the handle typed inside it in a <code>hide</code> span for readers with the workskin off: <code>&lt;span class=&quot;tw-handle&quot;&gt;&lt;span class=&quot;handle pfp-shane&quot;&gt;&lt;span class=&quot;hide&quot;&gt;@ShaneHollanderHockeyPlayer&lt;/span&gt;&lt;/span&gt; &#183; 2h&lt;/span&gt;</code> (see Character Profiles, in the Core, Themes, and Extras chapter).</li>
 </ul>
 
-<h4>Profile Picture</h4>
+<h4 id="s8-2-5">8.2.5 Profile Picture</h4>
 
 <p>Every tweet has the account's round profile picture at the start of the name line. Put a <code>tw-pfp</code> span first in the <code>tw-top</code> line, with the initials inside it, and add <code>colour1</code> to <code>colour10</code> for a colour. When there's a picture, the handle moves under the name, like it does in the app:</p>
 
@@ -314,7 +314,7 @@
 
 <p>Or use a profile, so the same person has the same picture everywhere: <code>&lt;span class=&quot;tw-pfp&quot;&gt;&lt;span class=&quot;pfp pfp-shane&quot;&gt;&lt;/span&gt;&lt;/span&gt;</code> (see Profile Pictures, in the Core, Themes, and Extras chapter). It works the same way in replies - just give the reply's name line the <code>tw-top</code> class, like the replies in the thread. The colours for <code>colour1</code> to <code>colour10</code> are set in the Twitter/X CSS, so you can change them there.</p>
 
-<h4>Tweet Text</h4>
+<h4 id="s8-2-6">8.2.6 Tweet Text</h4>
 
 <p>The text of the tweet goes in <code>tw-text</code>. To make a hashtag, an @mention or a link blue, wrap it in a span with <code>tw-link</code>:</p>
 
@@ -322,7 +322,7 @@
 
 <pre><code>&lt;p class="tw-text"&gt;Reminder to everyone that there could be (and likely are) queer players on many of the teams that didn't pledge. Thoughts go out to them. &lt;span class="tw-link"&gt;#HunterShortlist&lt;/span&gt; &lt;span class="tw-link"&gt;@SHunter&lt;/span&gt;&lt;/p&gt;</code></pre>
 
-<h4>Stats Line</h4>
+<h4 id="s8-2-7">8.2.7 Stats Line</h4>
 
 <p>The row of reposts, likes and replies is <code>tw-stats</code>. Put each number in <code>&lt;b&gt;</code> to make it bold, and use <code>&amp;nbsp;</code> to space them out:</p>
 
@@ -330,7 +330,7 @@
 
 <pre><code>&lt;p class="tw-stats"&gt;&lt;b&gt;3&lt;/b&gt; Reposts &amp;nbsp; &lt;b&gt;13&lt;/b&gt; Likes &amp;nbsp; &lt;b&gt;1&lt;/b&gt; Reply&lt;/p&gt;</code></pre>
 
-<h4>Replies</h4>
+<h4 id="s8-2-8">8.2.8 Replies</h4>
 
 <p>A reply is its own container, with the class <code>tw-reply</code> instead of <code>tw</code>. Put it straight underneath the tweet and the two join up into a thread:</p>
 
@@ -348,7 +348,7 @@
 
 <p><code>tw-replying</code> is the little grey "Replying to" line at the top. For a longer comment section, add as many <code>tw-reply</code> containers as you like, one after another.</p>
 
-<h4>Quote Tweets</h4>
+<h4 id="s8-2-9">8.2.9 Quote Tweets</h4>
 
 <p>To quote another tweet inside a tweet, add a paragraph with <code>tw-quote</code> after the text:</p>
 
@@ -358,7 +358,7 @@
 
 <p>Put the quoted account's name in <code>&lt;b&gt;</code> and their handle in <code>tw-handle</code>, then a line break and their words. The rounded box around it is drawn for you.</p>
 
-<h4>Community Notes</h4>
+<h4 id="s8-2-10">8.2.10 Community Notes</h4>
 
 <p>For the grey "Readers added context" box at the bottom of a tweet, use <code>tw-note</code>:</p>
 
@@ -366,7 +366,7 @@
 
 <pre><code>&lt;p class="tw-note"&gt;Readers added context: the trade has not been confirmed.&lt;/p&gt;</code></pre>
 
-<h4>Timestamp Line</h4>
+<h4 id="s8-2-11">8.2.11 Timestamp Line</h4>
 
 <p>A tweet opened on its own page also shows the exact time and date above the counts. Add it with <code>tw-date</code>, just before the stats line:</p>
 
@@ -374,7 +374,7 @@
 
 <pre><code>&lt;p class="tw-date"&gt;8:23 AM · 11 May 23&lt;/p&gt;</code></pre>
 
-<h4>Liked and Reposted Counts</h4>
+<h4 id="s8-2-12">8.2.12 Liked and Reposted Counts</h4>
 
 <p>When the account has liked or reposted the tweet, Twitter colours that count. To get that, wrap the number and its word in a span - <code>tw-liked</code> for a pink like, <code>tw-rt</code> for a green repost:</p>
 
@@ -384,7 +384,7 @@
 <pre><code>&lt;p class="tw-date"&gt;8:23 AM · 11 May 23&lt;/p&gt;
 &lt;p class="tw-stats"&gt;&lt;span class="tw-rt"&gt;&lt;b&gt;580&lt;/b&gt; Reposts&lt;/span&gt; &amp;nbsp; &lt;span class="tw-liked"&gt;&lt;b&gt;2.6k&lt;/b&gt; Likes&lt;/span&gt; &amp;nbsp; &lt;b&gt;10&lt;/b&gt; Replies&lt;/p&gt;</code></pre>
 
-<h4>Labels: Promoted and Circle Tweets</h4>
+<h4 id="s8-2-13">8.2.13 Labels: Promoted and Circle Tweets</h4>
 
 <p>For a little grey line like "Promoted", or the notice on a Twitter Circle tweet, use <code>tw-label</code>:</p>
 
@@ -392,7 +392,7 @@
 
 <pre><code>&lt;p class="tw-label"&gt;Only people in @MetrosMomager's Twitter Circle can see this Tweet.&lt;/p&gt;</code></pre>
 
-<h4>Sensitive Content Warning</h4>
+<h4 id="s8-2-14">8.2.14 Sensitive Content Warning</h4>
 
 <p>To cover a tweet's picture with the sensitive content warning, use <code>tw-warn</code>, with the heading in <code>&lt;b&gt;</code>:</p>
 
@@ -400,7 +400,7 @@
 
 <pre><code>&lt;p class="tw-warn"&gt;&lt;b&gt;Content warning: Sensitive content&lt;/b&gt;&lt;br&gt;The Tweet author flagged this Tweet as showing sensitive content.&lt;/p&gt;</code></pre>
 
-<h4>Polls</h4>
+<h4 id="s8-2-15">8.2.15 Polls</h4>
 
 <p>A poll is a set of <code>tw-opt</code> options, with a <code>tw-pollinfo</code> line for the number of votes and the time left. While a poll is still open, each option is just an outlined box. Polls work in a <code>tw-reply</code> as well as a tweet, like Stan's:</p>
 
@@ -422,7 +422,7 @@
 &lt;p class="tw-opt res p25"&gt;Boston&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="tw-pct"&gt;25%&lt;/span&gt;&lt;/p&gt;
 &lt;p class="tw-pollinfo"&gt;97 votes · Final results&lt;/p&gt;</code></pre>
 
-<h4>Pictures and Videos</h4>
+<h4 id="s8-2-16">8.2.16 Pictures and Videos</h4>
 
 <p>To add a picture or a video to a tweet, put it in a <code>tw-media</code> box, with a normal picture or video tag inside. Your own link goes in <code>src</code>, and a description of the picture goes in <code>alt</code>:</p>
 
@@ -494,7 +494,7 @@
 
 <p>All of this works in a <code>tw-reply</code> too.</p>
 
-<h4>A Scrollable Thread</h4>
+<h4 id="s8-2-17">8.2.17 A Scrollable Thread</h4>
 
 <p>A tweet with lots of replies can go in a scrolling window, with a "Tweet your reply" bar that stays at the bottom, like the thread at the top of this chapter. Wrap everything in <code>tw-thread</code> (with a theme class), put the tweet and the replies in a <code>tw-scroll</code> box, and finish with a <code>tw-foot</code> bar after it:</p>
 
@@ -504,11 +504,11 @@
 
 <p>The tweet and the replies keep their normal classes, but leave the theme class off them, because the <code>tw-thread</code> already has it. Only the box with the replies scrolls, once there's more than about a phone screen's worth. You don't need this for a short thread - ordinary tweets already scroll if they get too tall (see Scrolling Long Chats in the Core, Themes, and Extras chapter).</p>
 
-<h3>Twitter/X DMs</h3>
+<h3 id="s8-3">8.3 Twitter/X DMs</h3>
 
 <p>Here's the two kinds of DM you can build: a message between two people, or a group chat. As before, the full HTML is underneath each, and the rest of this section takes it apart.</p>
 
-<h4>A One-to-One DM</h4>
+<h4 id="s8-3-1">8.3.1 A One-to-One DM</h4>
 
 <div class="mob twdm theme-auto">
   <p class="mob-head">Shane Hollander<span class="hide"> - </span><span>@ShaneHollanderHockeyPlayer</span></p>
@@ -557,7 +557,7 @@
 
 </details>
 
-<h4>A Group DM</h4>
+<h4 id="s8-3-2">8.3.2 A Group DM</h4>
 
 <div class="mob twdm theme-auto">
   <p class="mob-head">Rookie Dinner<span class="hide"> - </span><span>4 people</span></p>
@@ -596,7 +596,7 @@
 
 </details>
 
-<h4>Twitter/X DM Window</h4>
+<h4 id="s8-3-3">8.3.3 Twitter/X DM Window</h4>
 
 <p>DMs are built like iMessage - a container, a header and a body - with the module class <code>twdm</code>, so the container is <code>&lt;div class=&quot;mob twdm theme-auto&quot;&gt;</code>. First comes the header:</p>
 
@@ -606,7 +606,7 @@
 
 <p>The span in the header is the person's @handle. After the header comes <code>&lt;div class=&quot;mob-body&quot;&gt;</code>, which holds all of the messages.</p>
 
-<h4>Simple Messages</h4>
+<h4 id="s8-3-4">8.3.4 Simple Messages</h4>
 
 <p>Messages are paragraphs with <code>msg</code> and either <code>in</code> or <code>out</code>. Sent messages are blue and received ones are grey:</p>
 
@@ -636,7 +636,7 @@
 
 </details>
 
-<h4>Timestamps</h4>
+<h4 id="s8-3-5">8.3.5 Timestamps</h4>
 
 <p>Twitter/X shows a small time under each message. Add it with <code>twdm-time</code>, straight after the message it belongs to:</p>
 
@@ -652,7 +652,7 @@
 
 <p>The second time has two classes - <code>time-out</code> lines it up on the right, under one of <em>your</em> messages. Leave it off for the other person's messages, and the time sits on the left.</p>
 
-<h4>Reactions</h4>
+<h4 id="s8-3-6">8.3.6 Reactions</h4>
 
 <p>To show a reaction under a message, add a <code>twdm-reacts</code> paragraph straight after it. Add <code>out</code> to put it on the right, under one of your own messages. The two <code>hide</code> spans are <strong>only for readers with the workskin off</strong>, so the reaction reads "[Reactions: &#128527; 1]" instead of a stray emoji:</p>
 
@@ -666,7 +666,7 @@
 &lt;p class="msg out"&gt;&lt;span class="hide"&gt;&lt;em&gt;Ilya:&lt;/em&gt; &lt;/span&gt;I am always funny&lt;/p&gt;
 &lt;p class="twdm-reacts out"&gt;&lt;span class="hide"&gt;[Reactions: &lt;/span&gt;&amp;#128580; 1&lt;span class="hide"&gt;]&lt;/span&gt;&lt;/p&gt;</code></pre>
 
-<h4>Pictures in DMs</h4>
+<h4 id="s8-3-7">8.3.7 Pictures in DMs</h4>
 
 <p>A picture in a DM is a message with <code>pic</code> added. Put a picture tag inside it, or add <code>text</code> as well and describe the picture in words:</p>
 
@@ -676,7 +676,7 @@
 <pre><code>&lt;p class="msg in pic"&gt;&lt;span class="hide"&gt;&lt;em&gt;Shane:&lt;/em&gt; &lt;/span&gt;&lt;img src="https://64.media.tumblr.com/c3c4ecb5bfed8fa9f0590c54206ddb30/cff2318529321620-44/s1280x1920/42befcc40a517e1f202dda40783be2ffb95c1d92.pnj" alt="Macklin Celebrini at the IHF Worlds, dressed in his red jersey and black helmet. He's surrounded by sparkles, a red vignette, and hearts containing the Canadian flag"&gt;&lt;/p&gt;
 &lt;p class="msg out pic text"&gt;&lt;span class="hide"&gt;&lt;em&gt;Ilya:&lt;/em&gt; &lt;/span&gt;[A photo of Ilya pulling a face at the camera]&lt;/p&gt;</code></pre>
 
-<h4>Voice Messages</h4>
+<h4 id="s8-3-8">8.3.8 Voice Messages</h4>
 
 <p>A voice message is a message with <code>voice</code>, holding a play button in <code>twdm-play</code>, an empty <code>twdm-wave</code> span (the CSS draws the sound bars) and the length in <code>twdm-dur</code>:</p>
 
@@ -684,7 +684,7 @@
 
 <pre><code>&lt;p class="msg out voice"&gt;&lt;span class="hide"&gt;&lt;em&gt;Ilya:&lt;/em&gt; &lt;/span&gt;&lt;span class="twdm-play"&gt;&amp;#9654;&lt;/span&gt;&lt;span class="twdm-wave"&gt;&lt;/span&gt;&lt;span class="twdm-dur"&gt;0:02&lt;/span&gt;&lt;/p&gt;</code></pre>
 
-<h4>Start a Message Bar</h4>
+<h4 id="s8-3-9">8.3.9 Start a Message Bar</h4>
 
 <p>To finish off the window with the "Start a message" bar, add a <code>twdm-foot</code> after the body, inside the container:</p>
 
@@ -694,7 +694,7 @@
 
 <p>The header and this bar stay where they are, and once the chat gets long, the messages in between scroll.</p>
 
-<h4>Group Chats</h4>
+<h4 id="s8-3-10">8.3.10 Group Chats</h4>
 
 <p>For a group DM, put the group's name in the header (and the number of people in the span). Above each person's messages, add their name with <code>who</code>. The name shows either way, so it only needs a hidden colon after it, not the full label - your own messages, with no name above them, still need that. A reaction can have more than one emoji in it:</p>
 
