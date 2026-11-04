@@ -16,6 +16,7 @@ To add a chapter: write its text in fic/megaskin/text/, add it to CHAPTERS
 below, and run this again.
 """
 import hashlib, html, os, re
+from html.parser import HTMLParser
 
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "fic", "megaskin")
 
@@ -130,12 +131,61 @@ def chapnav(i):
     return '      <p class="chapter-nav">' + " &middot; ".join(links) + "</p>"
 
 
+class _Headings(HTMLParser):
+    """Finds the tutorial's own h3/h4/h5 headings, skipping ones inside example chats
+    (anything with a classed ancestor, e.g. a Discord channel header)."""
+    VOID = {"br", "img", "hr", "input", "meta", "link", "wbr", "source"}
+
+    def __init__(self):
+        super().__init__(convert_charrefs=False)
+        self.stack, self.found = [], []
+
+    def handle_starttag(self, tag, attrs):
+        if tag in self.VOID:
+            return
+        if tag in ("h3", "h4", "h5") and not any(c for _, c in self.stack):
+            self.found.append((self.getpos(), self.get_starttag_text(), int(tag[1]), dict(attrs).get("id")))
+        self.stack.append((tag, dict(attrs).get("class")))
+
+    def handle_endtag(self, tag):
+        if tag in self.VOID:
+            return
+        while self.stack and self.stack.pop()[0] != tag:
+            pass
+
+
+def number_headings(text, n):
+    """Numbers headings chapter.section.subsection (h3 = n.1, h4 = n.1.1, h5 = n.1.1.1)
+    and gives each an id so it can be linked to."""
+    p = _Headings()
+    p.feed(text)
+    starts = [0]
+    for line in text.split("\n"):
+        starts.append(starts[-1] + len(line) + 1)
+    counts = [0, 0, 0]
+    out, last = [], 0
+    for (line, col), tagtext, level, hid in p.found:
+        i = level - 3
+        counts[i] += 1
+        counts[i + 1:] = [0] * (2 - i)
+        num = ".".join(str(x) for x in [n] + counts[:i + 1])
+        pos = starts[line - 1] + col
+        new = tagtext
+        if not hid:
+            new = new[:-1] + ' id="s%s">' % num.replace(".", "-")
+        out.append(text[last:pos] + new + num + " ")
+        last = pos + len(tagtext)
+    out.append(text[last:])
+    return "".join(out)
+
+
 def build_chapters():
     # the ?v= changes whenever the skin does, so browsers fetch the new one straight away
     skin = open(os.path.join(ROOT, "megaskin.css"), "rb").read()
     skinver = hashlib.sha1(skin).hexdigest()[:8]
     for i, (slug, ctitle) in enumerate(CHAPTERS):
         text = open(os.path.join(ROOT, "text", slug + ".html"), encoding="utf-8").read().strip()
+        text = number_headings(text, i + 1)
         page = PAGE.format(title="Megaskin, Chapter %d: %s" % (i + 1, html.escape(ctitle, quote=False)),
                            nav=NAV, slug=slug, chapnav=chapnav(i), n=i + 1,
                            ctitle=html.escape(ctitle, quote=False), text=text, skinver=skinver)

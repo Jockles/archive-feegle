@@ -32,9 +32,9 @@
       <div class="fic">
         <h3 class="chapter-title">Chapter 4: iMessage</h3>
         <div id="workskin">
-<h3>iMessage</h3>
+<h3 id="s4-1">4.1 iMessage</h3>
 
-<h4>Credits</h4>
+<h4 id="s4-1-1">4.1.1 Credits</h4>
 
 <p>The iMessage module is built on the work below. They're also listed in <a href="getting-started.html#credits">Credits and sources</a> in the first chapter, with all the other credits. Please go and leave them some kudos!</p>
 
@@ -44,7 +44,7 @@
 
 <p>Before we begin, here's the two kinds of chat you can build: a message between two people, or a group chat. The full HTML is underneath each, which you can copy and modify yourself. The rest of the chapter takes the HTML apart so that you can modify all the individual parts to say exactly what you want.</p>
 
-<h4>A One-to-One Chat</h4>
+<h4 id="s4-1-2">4.1.2 A One-to-One Chat</h4>
 
 <div class="mob imsg theme-auto">
   <p class="mob-head">Ilya<span class="hide"> - </span><span>iMessage</span></p>
@@ -87,7 +87,7 @@
 
 </details>
 
-<h4>A Group Chat</h4>
+<h4 id="s4-1-3">4.1.3 A Group Chat</h4>
 
 <div class="mob imsg theme-auto">
   <p class="mob-head">gays and europeans (and hayden)<span class="hide"> - </span><span>iMessage group</span></p>
@@ -158,7 +158,7 @@
 
 </details>
 
-<h4>The iMessage Window</h4>
+<h4 id="s4-1-4">4.1.4 The iMessage Window</h4>
 
 <p>Every iMessage chat starts with the container, <code>&lt;div class=&quot;mob imsg theme-auto&quot;&gt;</code>, and everything else goes inside it. First comes the header, with the contact's name:</p>
 
@@ -168,7 +168,7 @@
 
 <p><code>mob-head</code> is the header bar. The last <code>&lt;span&gt;</code> adds the smaller grey line under the name, like "iMessage" or "Mobile" - leave it out if you only want the name. After the header comes <code>&lt;div class=&quot;mob-body&quot;&gt;</code>, which holds all of the messages.</p>
 
-<h4>Simple Messages</h4>
+<h4 id="s4-1-5">4.1.5 Simple Messages</h4>
 
 <p>Each message is a paragraph with the class <code>msg</code>, plus one more class that says who sent it. <code>in</code> is a message from the other person, which shows as a grey bubble on the left, and <code>out</code> is a message from your point-of-view character, which shows as a blue bubble on the right. Give every message its own <code>&lt;p&gt;</code>, one after another, inside <code>mob-body</code>:</p>
 
@@ -196,7 +196,7 @@
 
 </details>
 
-<h4>Date and Time Lines</h4>
+<h4 id="s4-1-6">4.1.6 Date and Time Lines</h4>
 
 <p>For a centred line with the time or date, use <code>mob-sys</code>:</p>
 
@@ -210,7 +210,7 @@
 
 <pre><code>&lt;p class="mob-sys"&gt;Ilya added Wyatt to the conversation&lt;/p&gt;</code></pre>
 
-<h4>Tapback Reactions</h4>
+<h4 id="s4-1-7">4.1.7 Tapback Reactions</h4>
 
 <p>When someone reacts to a message, iMessage shows a tapback - a little bubble on the top corner of the message, with a tail of two dots. Add <code>tapped</code> to the message to make room above it, then put a span with <code>imsg-tap</code> at the end of the message text, with the emoji inside. <code>imsg-tap</code> on its own is grey, for someone else's reaction, and <code>imsg-tap me</code> is blue, for your point-of-view character's:</p>
 
@@ -231,7 +231,7 @@
 
 </details>
 
-<h4>Pictures</h4>
+<h4 id="s4-1-8">4.1.8 Pictures</h4>
 
 <p>To send a picture, add <code>pic</code> to a message and put a picture tag inside it. The corners are rounded for you. The picture has to be hosted somewhere else (see Pictures and Alt Text, in the Core, Themes, and Extras chapter), and your link goes in <code>src</code>, with your description in <code>alt</code>:</p>
 
@@ -245,7 +245,7 @@
 
 <pre><code>&lt;p class="msg in pic text"&gt;&lt;span class="hide"&gt;&lt;em&gt;Ilya:&lt;/em&gt; &lt;/span&gt;[A blurry photo of the same cat, now asleep on Ilya's hotel bed]&lt;/p&gt;</code></pre>
 
-<h4>Delivered and Read</h4>
+<h4 id="s4-1-9">4.1.9 Delivered and Read</h4>
 
 <p>iMessage shows a little status line under your last message. Add it with <code>imsg-status</code>, straight after the message it belongs to, and write "Delivered", "Read 11:52 PM" or whatever you like:</p>
 
@@ -255,7 +255,7 @@
 <pre><code>&lt;p class="msg out"&gt;&lt;span class="hide"&gt;&lt;em&gt;Shane:&lt;/em&gt; &lt;/span&gt;call me?&lt;/p&gt;
 &lt;p class="imsg-status"&gt;Read 11:52 PM&lt;/p&gt;</code></pre>
 
-<h4>Typing Dots</h4>
+<h4 id="s4-1-10">4.1.10 Typing Dots</h4>
 
 <p>For the three dots that show someone is typing, add a <code>typing-indicator</code> paragraph with three empty spans at the very end of the chat:</p>
 
@@ -263,7 +263,7 @@
 
 <pre><code>&lt;p class="typing-indicator"&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/p&gt;</code></pre>
 
-<h4>Message Bar</h4>
+<h4 id="s4-1-11">4.1.11 Message Bar</h4>
 
 <p>To finish off the screen with the "iMessage" box along the bottom, add an <code>imsg-input</code> paragraph after the <code>mob-body</code>, still inside the chat. The + button is <code>imsg-plus</code>, the box is <code>imsg-field</code>, and the microphone is <code>imsg-mic</code>. The <code>hide</code> spans keep a space between them for readers with the workskin off, so it reads "+ iMessage &#127908;" rather than running together. Keep it all on one line:</p>
 
@@ -271,7 +271,7 @@
 
 <pre><code>&lt;p class="imsg-input"&gt;&lt;span class="imsg-plus"&gt;+&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="imsg-field"&gt;iMessage&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="imsg-mic"&gt;&amp;#127908;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;</code></pre>
 
-<h4>Group Chats</h4>
+<h4 id="s4-1-12">4.1.12 Group Chats</h4>
 
 <p>In a group, put a <code>who</code> line above a message to show who sent it. Your own messages don't get one, the same as on a real phone, so they keep the hidden label instead. Change the header to the name of the group chat, and use the span for the members or "iMessage group":</p>
 
@@ -289,7 +289,7 @@
 
 <p>The <code>who</code> line shows whether the workskin is on or off, so it only needs a hidden colon after the name, to read "Hayden:" followed by the message.</p>
 
-<h4>Green Text Messages</h4>
+<h4 id="s4-1-13">4.1.13 Green Text Messages</h4>
 
 <p>When your point-of-view character's message goes as a normal text instead of an iMessage, it turns green - like Shane's, because the signal in the rink is too bad for iMessage. The same thing happens when they're messaging someone without an iPhone. Add <code>sms</code> to an <code>out</code> message to make it green:</p>
 
@@ -301,7 +301,7 @@
 
 <p>Only sent messages turn green, the same as on a real phone. Messages from someone without an iPhone are grey like everyone else's, so they don't need anything extra.</p>
 
-<h4>Tapbacks in a Group Chat</h4>
+<h4 id="s4-1-14">4.1.14 Tapbacks in a Group Chat</h4>
 
 <p>When more than one person reacts to the same message, iMessage stacks the tapbacks on the corner, overlapping, with the first one at the front. Put the <code>imsg-tap</code> spans one after another at the end of the message. The first one gets the tail, and each one after it tucks in behind, a bit further along the bubble:</p>
 

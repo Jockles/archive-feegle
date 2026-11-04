@@ -34,7 +34,7 @@
         <div id="workskin">
 <h2>Email</h2>
 
-<h3>Credits</h3>
+<h3 id="s14-1">14.1 Credits</h3>
 
 <p>The Email module is built on the work below. They're also listed in <a href="getting-started.html#credits">Credits and sources</a> in the first chapter, with all the other credits. Please go and leave them some kudos!</p>
 
@@ -43,13 +43,13 @@
   <li><strong>Generic email:</strong> <em>How to Mimic Email Windows</em> by La_Temperanza, <a href="https://archiveofourown.org/works/7953412">archiveofourown.org/works/7953412</a>. The title bar, header lines, scrolling message body, attachments and Reply / Forward / Delete bar are based on this.</li>
 </ul>
 
-<h3>Gmail emails</h3>
+<h3 id="s14-2">14.2 Gmail emails</h3>
 
 <p>This is for emails in the style of the Gmail app: a subject line, then each email in the thread with the sender, the date, who it was sent to and the message, with Reply buttons at the bottom. The email headers are made with <code>&lt;table&gt;</code> tags, because tables keep everything lined up neatly on AO3.</p>
 
 <p>Before we begin, here's a whole thread. The full HTML is underneath, which you can copy and modify yourself. The rest of this section takes the HTML apart so that you can modify all the individual parts to say exactly what you want.</p>
 
-<h4>A Gmail Thread</h4>
+<h4 id="s14-2-1">14.2.1 A Gmail Thread</h4>
 
 <div class="mob gm theme-auto">
   <table class="gm-subject">
@@ -216,7 +216,7 @@
 
 </details>
 
-<h4>Email Container</h4>
+<h4 id="s14-2-2">14.2.2 Email Container</h4>
 
 <p>An email thread is a container with the module class <code>gm</code>. The subject line, the emails and the buttons all go inside it:</p>
 
@@ -228,7 +228,7 @@
   &lt;p&gt;[the subject line, emails and buttons go here]&lt;/p&gt;
 &lt;/div&gt;</code></pre>
 
-<h4>Subject Line</h4>
+<h4 id="s14-2-3">14.2.3 Subject Line</h4>
 
 <p>The subject line at the top is a table with a <code>gm-title</code> cell for the subject and a <code>gm-star</code> cell for the star. A <code>gm-label</code> span after the subject adds the little grey label, like "Inbox" - you can leave it out if you like:</p>
 
@@ -252,7 +252,7 @@
 
 <p>If you're only showing the replies further down a thread, you can leave the subject line out completely.</p>
 
-<h4>Sender Header</h4>
+<h4 id="s14-2-4">14.2.4 Sender Header</h4>
 
 <p>Each email starts with a header, which has two rows. The first row has the sender and the date, and the second row has the "to" line and the little reply and menu symbols. The round picture on the left stretches down across both rows with <code>rowspan=&quot;2&quot;</code>:</p>
 
@@ -354,7 +354,7 @@
 
 <p>The colours for <code>colour1</code> to <code>colour10</code> are set in the core CSS and shared with every app, so you can change them there.</p>
 
-<h4>Message Body</h4>
+<h4 id="s14-2-5">14.2.5 Message Body</h4>
 
 <p>The text of the email goes in a <code>gm-body</code>, as ordinary paragraphs, and you can use bold, italics, links and line breaks as normal. The header and the body together make one email, wrapped in <code>gm-msg</code>, which also draws the thin line between one email and the next:</p>
 
@@ -398,7 +398,7 @@
   &lt;/div&gt;
 &lt;/div&gt;</code></pre>
 
-<h4>Reply Buttons</h4>
+<h4 id="s14-2-6">14.2.6 Reply Buttons</h4>
 
 <p>For the Reply, Reply all and Forward buttons, use a <code>gm-footer</code> around a table with the class <code>gm-actions</code>. If the email only went to one person, leave out the "Reply all" button in the middle:</p>
 
@@ -428,11 +428,11 @@
 
 <p>The buttons go at the very end, after the last email in the thread.</p>
 
-<h3>Generic emails</h3>
+<h3 id="s14-3">14.3 Generic emails</h3>
 
 <p>For emails that aren't from Gmail - a work account, a school inbox, or just a plain email program - there's a simple email window. It has a dark title bar, the From, To and Subject lines, the message, and a Reply, Forward and Delete bar at the bottom. It's a good one to use if you don't want it to look like any particular brand. Here's one with everything in it:</p>
 
-<h4>A Work Email</h4>
+<h4 id="s14-3-1">14.3.1 A Work Email</h4>
 
 <div class="mob mail theme-auto">
   <p class="mail-titlebar"><span>_ X</span><span class="hide"> - </span>Charity gala - forms to sign</p>
@@ -467,7 +467,7 @@
 
 </details>
 
-<h4>Email Window</h4>
+<h4 id="s14-3-2">14.3.2 Email Window</h4>
 
 <p>The window is a container with the module class <code>mail</code>. The title bar, the header lines, the body and the button bar all go inside it:</p>
 
@@ -475,7 +475,7 @@
   [title bar, header lines, body and button bar go here]
 &lt;/div&gt;</code></pre>
 
-<h4>Title Bar</h4>
+<h4 id="s14-3-3">14.3.3 Title Bar</h4>
 
 <p>The dark title bar is a paragraph with <code>mail-titlebar</code>. The little minimise and close marks go in a span <em>first</em>, so they sit on the right, and then the title:</p>
 
@@ -485,7 +485,7 @@
 
 <p>You can change the title to anything, like the subject line. If it's too long for the window, it gets cut off rather than wrapping onto a second line.</p>
 
-<h4>Header Lines</h4>
+<h4 id="s14-3-4">14.3.4 Header Lines</h4>
 
 <p>For the From, To, Cc and Subject lines, use a paragraph for each one with <code>mail-field</code>, and put the label in <code>&lt;b&gt;</code> so all the labels line up. The From address here comes from Yuna's profile, with the address typed inside in a <code>hide</code> span for readers with the workskin off - or just type the address in:</p>
 
@@ -501,7 +501,7 @@
 
 <pre><code>&lt;p class="mail-field"&gt;&lt;b&gt;To:&lt;/b&gt; shane@example.com&lt;br&gt;&lt;b&gt;Cc:&lt;/b&gt; ilya@example.com&lt;/p&gt;</code></pre>
 
-<h4>Attachments</h4>
+<h4 id="s14-3-5">14.3.5 Attachments</h4>
 
 <p>Attachments go in a header line, as spans with <code>mail-attachment</code>. Add <code>doc</code> for a document icon or <code>img</code> for a picture icon - with neither, you get a paperclip:</p>
 
@@ -509,7 +509,7 @@
 
 <pre><code>&lt;p class="mail-field"&gt;&lt;b&gt;Attached:&lt;/b&gt; &lt;span class="mail-attachment doc"&gt;gala-forms.doc (9 KB)&lt;/span&gt; &lt;span class="mail-attachment img"&gt;headshot.gif (70 KB)&lt;/span&gt; &lt;span class="mail-attachment"&gt;last-year.zip (5 MB)&lt;/span&gt;&lt;/p&gt;</code></pre>
 
-<h4>The Message</h4>
+<h4 id="s14-3-6">14.3.6 The Message</h4>
 
 <p>The message itself is your paragraphs inside a <code>div</code> with <code>mail-body</code>:</p>
 
@@ -527,7 +527,7 @@
 
 <p>If the email is really long, the body stops growing and scrolls, so the window stays about the height of a phone.</p>
 
-<h4>Signature</h4>
+<h4 id="s14-3-7">14.3.7 Signature</h4>
 
 <p>For a signature under the message, use <code>mail-signature</code> as the last paragraph in the body. It's smaller and grey, with a thin line above it:</p>
 
@@ -535,7 +535,7 @@
 
 <pre><code>&lt;p class="mail-signature"&gt;Yuna Hollander&lt;br&gt;Hollander Hockey Management&lt;/p&gt;</code></pre>
 
-<h4>Button Bar</h4>
+<h4 id="s14-3-8">14.3.8 Button Bar</h4>
 
 <p>To finish off the window, add the bar of buttons with <code>mail-buttons</code>. Each button is a span:</p>
 
