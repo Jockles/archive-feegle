@@ -296,6 +296,9 @@
 
 #workskin .wa .wa-field .wa-ph { width: auto; padding-left: 0.5em; }
 
+/* a half-typed message: dark text that wraps onto more lines */
+#workskin .wa .wa-field .wa-ph.typed { white-space: normal; color: #111b21; }
+
 #workskin .wa .wa-mic {
   position: absolute;
   right: 0.6em;
@@ -564,6 +567,8 @@
 
 #workskin .wa.theme-dark .wa-field { background: #202c33; color: #8696a0; }
 
+#workskin .wa.theme-dark .wa-field .wa-ph.typed { color: #e9edef; }
+
 #workskin .wa.theme-dark .wa-link { background: rgba(0, 0, 0, 0.22); }
 
 #workskin .wa.theme-dark .wa-link-img.text { background: rgba(0, 0, 0, 0.2); color: #8696a0; }
@@ -645,6 +650,8 @@
   #workskin .wa.theme-auto .wa-reacts .wa-count { color: #8696a0; }
 
   #workskin .wa.theme-auto .wa-field { background: #202c33; color: #8696a0; }
+
+  #workskin .wa.theme-auto .wa-field .wa-ph.typed { color: #e9edef; }
 
   #workskin .wa.theme-auto .wa-link { background: rgba(0, 0, 0, 0.22); }
 

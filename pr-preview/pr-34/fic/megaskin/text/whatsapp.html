@@ -877,6 +877,26 @@
   &lt;span class="wa-mic"&gt;&amp;#127908;&lt;/span&gt;
 &lt;/p&gt;</code></pre>
 
+<p>For a message someone is halfway through writing, add <code>typed</code> to <code>wa-ph</code> so the words go dark and wrap onto more lines, and swap "Message" for what they're typing. WhatsApp hides the camera while you type and turns the microphone into a send arrow, so take out the camera and put <code>&amp;#10148;</code> in the green circle instead:</p>
+
+<div class="mob wa theme-auto"><p class="wa-input">
+  <span class="wa-field">
+    <span>&#9786;</span>
+    <span class="wa-ph typed">ok so about last night, I think we need to talk about what happened before your mum</span>
+    <span class="wa-ic">&#128206;</span>
+  </span>
+  <span class="wa-mic">&#10148;</span>
+</p></div>
+
+<pre><code>&lt;p class="wa-input"&gt;
+  &lt;span class="wa-field"&gt;
+    &lt;span&gt;&amp;#9786;&lt;/span&gt;
+    &lt;span class="wa-ph typed"&gt;ok so about last night, I think we need to talk about what happened before your mum&lt;/span&gt;
+    &lt;span class="wa-ic"&gt;&amp;#128206;&lt;/span&gt;
+  &lt;/span&gt;
+  &lt;span class="wa-mic"&gt;&amp;#10148;&lt;/span&gt;
+&lt;/p&gt;</code></pre>
+
 <h3>Group Chats</h3>
 
 <p>In a group, add a <code>who</code> paragraph as the first line of a bubble to show who sent it. WhatsApp gives everyone their own name colour, so add one of <code>colour1</code> to <code>colour10</code> as well. Use the same number as the person's picture circle, so their name and picture match:</p>

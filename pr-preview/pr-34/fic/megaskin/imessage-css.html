@@ -6,7 +6,7 @@
   <title>Megaskin, Chapter 5: iMessage CSS | jockles.com</title>
   <link rel="stylesheet" href="../../style.css">
   <script src="../../theme.js"></script>
-  <link rel="stylesheet" href="megaskin.css?v=d7b73487" id="creator-style">
+  <link rel="stylesheet" href="megaskin.css?v=ba5f7fcb" id="creator-style">
 </head>
 <body>
 <header>
@@ -373,6 +373,25 @@
   <li>The microphone is pinned inside the right end of the box, the same way as a tapback. <code>top: 50%</code> with <code>translateY(-50%)</code> is the usual way to centre something from top to bottom: move its top edge halfway down, then move it back up by half its own height.</li>
   <li>The extra padding on the right of the box (<code>2.4em</code>) leaves room for the microphone, so the word never runs under it.</li>
 </ul>
+
+<p>For a half-typed message, <code>typed</code> turns the words black (white in dark mode), and the send arrow takes the microphone's place:</p>
+
+<pre><code>#workskin .imsg .imsg-field.typed { color: #000000; }
+#workskin .imsg .imsg-send {
+  position: absolute;
+  right: 0.3em;
+  bottom: 0.3em;
+  width: 1.7em;
+  height: 1.7em;
+  line-height: 1.7em;
+  border-radius: 50%;
+  background: #0a84ff;
+  color: #ffffff;
+  font-weight: bold;
+  text-align: center;
+}</code></pre>
+
+<p>The arrow is pinned to the bottom corner rather than the middle, so on a long message it sits by the last line, like the real one.</p>
 
 <h3 id="s5-13">5.13 Links</h3>
 
