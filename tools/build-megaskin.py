@@ -170,9 +170,11 @@ def number_headings(text, n):
         counts[i + 1:] = [0] * (2 - i)
         num = ".".join(str(x) for x in [n] + counts[:i + 1])
         pos = starts[line - 1] + col
-        new = tagtext
-        if not hid:
-            new = new[:-1] + ' id="s%s">' % num.replace(".", "-")
+        sid = "s" + num.replace(".", "-")
+        if hid:
+            new = tagtext + '<span id="%s"></span>' % sid
+        else:
+            new = tagtext[:-1] + ' id="%s">' % sid
         out.append(text[last:pos] + new + num + " ")
         last = pos + len(tagtext)
     out.append(text[last:])

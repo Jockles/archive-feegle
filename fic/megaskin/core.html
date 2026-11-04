@@ -32,7 +32,22 @@
       <div class="fic">
         <h3 class="chapter-title">Chapter 2: The Core, Themes, and Extras</h3>
         <div id="workskin">
-<h3 id="s2-1">2.1 The Chat Container, and the anatomy of a Module.</h3>
+<h3 id="what-works-where"><span id="s2-1"></span>2.1 What works where</h3>
+
+<p>Everything in this chapter lives in the core CSS - the bit of the skin that every module needs - so you get all of it whichever modules you've picked. It all works in Discord too, apart from the last two.</p>
+
+<ul>
+  <li><a href="#accessibility">Accessibility</a>: <code>hide</code>, alt text and video descriptions (<code>vid-desc</code>), for screen readers and for readers with the workskin switched off</li>
+  <li>Container settings: <a href="#width">phone or full width</a> (<code>wide</code> - Discord is wide by default, and uses <code>narrow</code> for phone width instead), <a href="#scrolling">scrolling</a> for long chats (<code>no-scroll</code> to switch it off), and <a href="#themes">light, dark and auto themes</a></li>
+  <li><a href="#profiles">Character profiles</a> (<code>pfp-</code>), and <code>pov-</code> for a character's phone</li>
+  <li><a href="#pictures">Pictures and formatting</a>: pictures, and cropping them to fit boxes and circles (<code>land</code>)</li>
+  <li><a href="#fake-links">Links that go nowhere</a> (<code>fake-link</code>)</li>
+  <li><a href="#translations">Hover and tap translations</a>, and hidden easter eggs (<code>egg</code>), which also work in ordinary text outside a chat</li>
+  <li><a href="#typing">The typing line</a> (<code>typing</code>) - not in Discord</li>
+  <li><a href="#deleted">Deleted or corrected text</a> (<code>del</code>) - not in Discord, which has its own <a href="discord.html#edited">(edited) tag</a> instead</li>
+</ul>
+
+<h3 id="s2-2">2.2 The Chat Container, and the anatomy of a Module.</h3>
 
 <p>The first step for every chat is to create a container for it:</p>
 
@@ -50,7 +65,7 @@
   <li><code>theme-auto</code> is the <strong>theme class</strong>. It makes the chat light or dark to match the reader's device. Fixing a Chat to Light or Dark, further down this chapter, explains how to lock a chat to light or dark instead.</li>
 </ul>
 
-<h4 id="s2-1-1">2.1.1 Platform Classes/Modules</h4>
+<h4 id="s2-2-1">2.2.1 Platform Classes/Modules</h4>
 
 <p>To change which app the chat looks like, swap the platform class. Here is the full list:</p>
 
@@ -68,7 +83,7 @@
 
 <p>On a wide screen every chat except Discord is held to the width of a phone, and on a small screen it fills the width of the screen.</p>
 
-<h4 id="s2-1-2">2.1.2 Phone Width or Full Width</h4>
+<h4 id="width"><span id="s2-2-2"></span>2.2.2 Phone Width or Full Width</h4>
 
 <p>Every chat is built to be the width of a phone, and I recommend leaving it that way. That's the size all of the designs are made for (except Discord, which is designed wide), so the layouts look their best at it. Anything that doesn't contain large images should scale wider just fine, but I've not optimised anything to work wide so you can use it at your own risk. This is mostly for anyone that wants full width texting-type chats for themselves. There is no desktop version of any of the apps in this, though I'd be open to adding them.</p>
 
@@ -115,9 +130,9 @@
 
 <p>Each chat container's size is separate, so you can mix phone-width and full-width chats in one fic if that takes your fancy.</p>
 
-<h3 id="s2-2">2.2 Cross-Platform Profiles</h3>
+<h3 id="profiles"><span id="s2-3"></span>2.3 Cross-Platform Profiles</h3>
 
-<h4 id="s2-2-1">2.2.1 Profile Pictures</h4>
+<h4 id="s2-3-1">2.3.1 Profile Pictures</h4>
 
 <p>Most of the modules have round profile pictures next to people's names. There are three ways to fill one:</p>
 
@@ -145,7 +160,7 @@
 
 </details>
 
-<h4 id="s2-2-2">2.2.2 Character Profiles</h4>
+<h4 id="s2-3-2">2.3.2 Character Profiles</h4>
 
 <p>A profile is one character's online identity - their picture, name, handle and email address - set once in the core CSS. You can use it in any chat, in any app, and if something changes, like a new picture or a new handle, you change it in one place and it changes everywhere.</p>
 
@@ -189,7 +204,7 @@
 
 </details>
 
-<h4 id="s2-2-3">2.2.3 Using a Profile</h4>
+<h4 id="s2-3-3">2.3.3 Using a Profile</h4>
 
 <p>In your HTML, add the profile name wherever that character turns up:</p>
 
@@ -280,7 +295,7 @@
 
 </details>
 
-<h4 id="s2-2-4">2.2.4 Their Phone</h4>
+<h4 id="s2-3-4">2.3.4 Their Phone</h4>
 
 <p>When a chat is on one character's phone, add <code>pov-</code> and their profile name to the chat's container, like <code>pov-shane</code>. In WhatsApp, the chat gets their wallpaper, and in every app, people show up under whatever that character has them saved as. Here's the same chat on Shane's phone, where Ilya is saved as Lily, and on Ilya's, where Shane is Jane:</p>
 
@@ -343,10 +358,12 @@
 
 </details>
 
-<details>
-<summary><h4 id="s2-2-5">2.2.5 Accessibility (Click to expand)</h4></summary>
+<h4 id="accessibility"><span id="s2-3-5"></span>2.3.5 Accessibility</h4>
 
 <p>This section explains every part of the workskin that's there for accessibility, but you don't need to add any of it yourself to get started - every example in this tutorial already has all of it built in, so if you copy them as they are, you're covered. It's here so you know what each bit does, and what to keep when you write your own.</p>
+
+<details>
+<summary>All the accessibility tools (click to expand)</summary>
 
 <p>A workskin only shows on AO3 itself. Anyone who switches off Creator's Style, or downloads your fic to read on an e-reader, sees your chats as plain text: no bubbles, no colours, and no way to tell which side a message was on. Screen readers can't see the pictures either.</p>
 
@@ -358,7 +375,7 @@
   <li>Video descriptions, for videos.</li>
 </ul>
 
-<h4 id="s2-2-6">2.2.6 Who's Talking</h4>
+<h4 id="s2-3-6">2.3.6 Who's Talking</h4>
 
 <p>In a one-to-one chat, no names are shown at all, so every message starts with the speaker's name in a <code>hide</code> span:</p>
 
@@ -391,7 +408,7 @@
 
 <p>In a group chat, the name above someone's bubble (the <code>who</code> line) shows whether the workskin is on or off, so it only needs a hidden colon after it: <code>&lt;span class=&quot;hide&quot;&gt;:&lt;/span&gt;</code>. Your own messages have no name above them, so they still need the full label.</p>
 
-<h4 id="s2-2-7">2.2.7 Profiles</h4>
+<h4 id="s2-3-7">2.3.7 Profiles</h4>
 
 <p>Names, handles and email addresses from a profile come from the CSS, so with the workskin off they're empty. Type a hidden copy inside the span:</p>
 
@@ -399,11 +416,11 @@
 
 <p>Readers with the workskin on see the profile's version, and readers with it off see what you typed. On Twitter/X, put the @ in your copy, because the workskin only adds it when it's on. It matters most where it's the only name on the screen: chat headers, WhatsApp <code>who</code> lines, Instagram and Tumblr posts, and Discord usernames.</p>
 
-<h4 id="s2-2-8">2.2.8 Separators</h4>
+<h4 id="s2-3-8">2.3.8 Separators</h4>
 
 <p>Some bits of a chat sit apart on screen but come straight after each other in the code, like a name and the "online" underneath it. With the workskin off, they squish together into "Momonline". A hidden dash keeps them apart - <code>&lt;span class=&quot;hide&quot;&gt; - &lt;/span&gt;</code> - so it reads "Mom - online". Where a space reads better, like between a name and a &#10003;, use <code>&lt;span class=&quot;hide&quot;&gt; &lt;/span&gt;</code>.</p>
 
-<h4 id="s2-2-9">2.2.9 Alt Text</h4>
+<h4 id="s2-3-9">2.3.9 Alt Text</h4>
 
 <p>Every picture needs alt text: a short description of what's in it. Screen readers read it out, and it shows in place of the picture if the picture doesn't load, whether the workskin is on or off. It goes on the picture tag itself, in <code>alt</code>. Describe the picture in a sentence or two, the way you'd describe it to someone over the phone:</p>
 
@@ -424,7 +441,7 @@
 
 </details>
 
-<h4 id="s2-2-10">2.2.10 Video Descriptions</h4>
+<h4 id="s2-3-10">2.3.10 Video Descriptions</h4>
 
 <p>AO3 doesn't give videos an alt text option, so the workskin has a class for it instead. Put a paragraph with <code>vid-desc</code> straight after the video, with a description of what happens in it in square brackets:</p>
 
@@ -463,31 +480,7 @@
 
 </details>
 
-<h3 id="s2-3">2.3 What works where</h3>
-
-<p>Everything in this chapter lives in the core CSS - the bit of the skin that every module needs - so you get all of it whichever modules you've picked. There are a couple of parts that don't work in Discord, but they're here because they work everywhere else.</p>
-
-<p><strong>Works in every module, Discord included</strong></p>
-
-<ul>
-  <li>Character profiles (<code>pfp-</code>), and <code>pov-</code> for a character's phone</li>
-  <li>Accessibility: <code>hide</code>, alt text and video descriptions (<code>vid-desc</code>), for screen readers and for readers with the workskin switched off</li>
-  <li>Light, dark and auto themes</li>
-  <li>Pictures, and cropping them to fit boxes and circles (<code>land</code>)</li>
-  <li>Scrolling for long chats, and <code>no-scroll</code> to switch it off</li>
-  <li>Links that go nowhere (<code>fake-link</code>)</li>
-  <li>Width: phone width by default, and <code>wide</code> for full width (Discord is wide by default, and uses <code>narrow</code> for phone width instead)</li>
-  <li>Hover and tap translations, and hidden easter eggs (<code>egg</code>), which also work in ordinary text outside a chat</li>
-</ul>
-
-<p><strong>Works in every module except Discord</strong></p>
-
-<ul>
-  <li>The typing line (<code>typing</code>)</li>
-  <li>Deleted or corrected text (<code>del</code>)</li>
-</ul>
-
-<h3 id="s2-4">2.4 Light, dark and auto themes</h3>
+<h3 id="themes"><span id="s2-4"></span>2.4 Light, dark and auto themes</h3>
 
 <p>Every chat in this tutorial uses <code>theme-auto</code>. It shows the chat in light colours, and switches to dark colours if the reader's phone or browser is set to dark mode. That way everyone gets the version that suits them, and you don't have to do anything extra.</p>
 
@@ -789,15 +782,15 @@
 
 </details>
 
-<h3 id="s2-5">2.5 Hover and Tap Translations</h3>
+<h3 id="translations"><span id="s2-5"></span>2.5 Hover and Tap Translations</h3>
 
 <h4 id="s2-5-1">2.5.1 Credits</h4>
 
-<p>The translations are built on the work below. They're also listed in <a href="getting-started.html#credits">Credits and sources</a> in the first chapter, with all the other credits. Please go and leave them some kudos!</p>
+<p>The translations are built on the work below, also listed in <a href="getting-started.html#credits">Credits and sources</a> in Chapter 1. Please go and leave them some kudos!</p>
 
-<ul>
-  <li><em>How To Change Text on AO3 When the Cursor is Hovering Over It (Or Clicked on Mobile)</em> by La_Temperanza, <a href="https://archiveofourown.org/works/10957056">archiveofourown.org/works/10957056</a>. Swapping the text when the reader hovers or taps, the brackets that show when Creator's Style is off, and using a link so that tapping works on a phone are all based on this. In this skin every translation is written in the HTML, so no new CSS is needed for each one.</li>
-</ul>
+<p><strong>Based on:</strong> <a href="https://archiveofourown.org/works/10957056"><em>How To Change Text on AO3 When the Cursor is Hovering Over It (Or Clicked on Mobile)</em></a> by La_Temperanza - the hover and tap swap, the brackets when Creator's Style is off, and the link trick that makes tapping work on phones.</p>
+
+<p><strong>Added by me:</strong> every translation is written in the HTML, so there's no new CSS for each one, plus hidden easter eggs.</p>
 
 <p>If your characters switch languages every now and then, you can show the original words with the translation tucked away behind them. The reader sees the original with a dotted line under it, and when they hover over it on a computer, or tap it on a phone, the translation swaps in. It works in ordinary text as well as inside every chat and post in the skin, and the words take on the colour of whatever they're sitting in (dark mode included), so they never get mixed up with a chat link:</p>
 
@@ -891,7 +884,7 @@
 
 <p>These are the small touches that go inside a chat.</p>
 
-<h4 id="s2-6-1">2.6.1 Pictures and Alt Text</h4>
+<h4 id="pictures"><span id="s2-6-1"></span>2.6.1 Pictures and Alt Text</h4>
 
 <p>Wherever a chat can show a picture (iMessage and DM pictures, tweet pictures, Instagram photos and profile pictures, Discord images), you add it with a normal picture tag. The picture has to be hosted somewhere else, and its link goes in <code>src</code>. Squidge.org is a great hosting platform that also lets you upload explicit images, and AO3 has a guide to some image hosting sites if you want more options.</p>
 
@@ -996,7 +989,7 @@
 
 <p>If you forget <code>land</code>, nothing is squashed or stretched, but a wide picture won't fill its box, so a strip of the box's colour shows above and below it. The tall boxes in two-photo and three-photo galleries always crop the sides, so they never need <code>land</code>.</p>
 
-<h4 id="s2-6-3">2.6.3 Scrolling Long Chats</h4>
+<h4 id="scrolling"><span id="s2-6-3"></span>2.6.3 Scrolling Long Chats</h4>
 
 <p>Every chat, Discord included, stops growing at about the height of a phone screen. A short chat won't notice. A long one gets a slim scroll bar instead, so one long conversation doesn't take over the whole page.</p>
 
@@ -1050,7 +1043,7 @@
   [a very long chat goes here]
 &lt;/div&gt;</code></pre>
 
-<h4 id="s2-6-4">2.6.4 Links That Go Nowhere</h4>
+<h4 id="fake-links"><span id="s2-6-4"></span>2.6.4 Links That Go Nowhere</h4>
 
 <p>Chats are full of links, but most of the time you don't want a real one - it could take the reader away from your fic, or point at a page that doesn't exist. For a link that looks clickable but doesn't go anywhere, put the address in a span with <code>fake-link</code>. It's coloured like a link in whichever app the chat is (and underlined too, apart from in Discord, which doesn't underline its links), so it works in every chat, Discord included:</p>
 
@@ -1064,7 +1057,7 @@
 
 <p>These two are for any chat built on the <code>mob</code> container, which is every module apart from Discord. Discord is its own kind of window, so these don't apply there.</p>
 
-<h4 id="s2-6-5">2.6.5 Typing Line</h4>
+<h4 id="typing"><span id="s2-6-5"></span>2.6.5 Typing Line</h4>
 
 <p>To show that someone is typing, add a paragraph with <code>typing</code> at the end of the messages. It shows up as a small, slanted line of text:</p>
 
@@ -1072,7 +1065,7 @@
 
 <pre><code>&lt;p class="typing"&gt;Scott is typing...&lt;/p&gt;</code></pre>
 
-<h4 id="s2-6-6">2.6.6 Deleted or Corrected Text</h4>
+<h4 id="deleted"><span id="s2-6-6"></span>2.6.6 Deleted or Corrected Text</h4>
 
 <p>To strike a message through, as if the sender deleted or corrected it, wrap the words in a span with the class <code>del</code>:</p>
 
