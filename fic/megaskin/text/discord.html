@@ -1,11 +1,6 @@
-<h3>Credits</h3>
+<p>Thanks to BookKeep, whose <a href="https://archiveofourown.org/works/42027846"><em>Discord Work Skin &amp; Tutorial</em></a> this module is mostly adapted from (BookKeep asks to be credited in your author's notes if you use it), and to TrojanTeapot for <a href="https://archiveofourown.org/works/46815217"><em>2023 Discord Theme Workskin</em></a>. Copied and adapted from them: the window and channel header, message layout, replies, reactions, spoilers, mentions, embeds, bots, and code blocks.</p>
 
-<p>The Discord module is built on the work below. They're also listed in <a href="getting-started.html#credits">Credits and sources</a> in the first chapter, with all the other credits. Please go and leave them some kudos! BookKeep asks to be credited in your author's notes if you post with the Discord module.</p>
-
-<ul>
-  <li><em>Discord Work Skin &amp; Tutorial</em> by BookKeep, <a href="https://archiveofourown.org/works/42027846">archiveofourown.org/works/42027846</a>. The Discord skin is mainly adapted from this. BookKeep's Discord user system - one class per character, carrying their picture through every message - was also a big part of what inspired me to make the character profiles in this skin, so a special thank you to them, both for the inspiration and for the framework that made it happen.</li>
-  <li><em>2023 Discord Theme Workskin</em> by TrojanTeapot, <a href="https://archiveofourown.org/works/46815217">archiveofourown.org/works/46815217</a>. A second Discord skin consulted alongside BookKeep's; it is itself inspired by <em>Discord (Dark Theme) Work Skin Guide/Preview</em> by Heterochromia_Mars.</li>
-</ul>
+<!-- contents -->
 
 <p>Before we begin, here's the two kinds of chat you can build: a server channel, or a direct message. The full HTML is underneath each, which you can copy and modify yourself. The rest of the chapter takes the HTML apart so that you can modify all the individual parts to say exactly what you want.</p>
 
@@ -510,7 +505,7 @@
 
 <p>It draws the curved line and the little preview of the message being replied to. Use the same colour class as the original sender's name, so the tiny profile picture matches - or, if they have a profile, the same <code>dc-pfp</code> span and profile name. Long previews get cut short with "..." automatically.</p>
 
-<h3>Edited Message</h3>
+<h3 id="edited">Edited Message</h3>
 
 <p>For the little "(edited)" tag at the end of a message, add a <code>dc-edited</code> span inside the <code>dc-text</code>:</p>
 

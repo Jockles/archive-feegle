@@ -1,12 +1,6 @@
-<h3>Credits</h3>
+<p>Thanks to orphan_account and worlds_end_valentine, whose <a href="https://archiveofourown.org/works/34229317"><em>WhatsApp group chat skin</em></a> and <a href="https://archiveofourown.org/works/46531021"><em>Whatsapp Work Skin Template /Revamped</em></a> this module is built on. Copied and adapted from them: the group header and member list, sender names, reactions, and per-chat backgrounds.</p>
 
-<p>The WhatsApp module is built on the work below. They're also listed in <a href="getting-started.html#credits">Credits and sources</a> in the first chapter, with all the other credits. Please go and leave them some kudos!</p>
-
-<ul>
-  <li><em>WhatsApp group chat skin</em> by orphan_account, <a href="https://archiveofourown.org/works/34229317">archiveofourown.org/works/34229317</a>. The table layout of the group header, the member list under the group name and the sender-name ideas come from this.</li>
-  <li><em>Whatsapp Work Skin Template /Revamped</em> by worlds_end_valentine, <a href="https://archiveofourown.org/works/46531021">archiveofourown.org/works/46531021</a>. The group chat, reactions, header and per-chat background ideas come from this.</li>
-  <li>Those two WhatsApp skins are themselves inspired by <em>Social Media Work Skin Template: Whatsapp</em> by worlds_end_valentine (credited as etc_e_tal in the group chat skin), <a href="https://archiveofourown.org/works/31313318">archiveofourown.org/works/31313318</a>, and <em>WhatsApp Skin</em> by Azdaema Codes (Azdaema), <a href="https://archiveofourown.org/works/24273361">archiveofourown.org/works/24273361</a>, which are also worth a look.</li>
-</ul>
+<!-- contents -->
 
 <p>Before we begin, here's the two kinds of chat you can build: a chat between two people, or a group chat. The full HTML is underneath each, which you can copy and modify yourself. The rest of the chapter takes the HTML apart so that you can modify all the individual parts to say exactly what you want.</p>
 
@@ -539,6 +533,22 @@
   &lt;/div&gt;
 &lt;/div&gt;</code></pre>
 
+<h3 id="edited">Edited Messages</h3>
+
+<p>To show that a message was edited, type <code>Edited</code> before the time, inside the <code>wa-time</code> line:</p>
+
+<div class="mob wa theme-auto"><div class="mob-body"><div class="msg out tail">
+  <p><span class="hide"><em>Shane:</em> </span>see you at 8</p>
+  <p class="wa-time">Edited 23:44 <span class="wa-read">✓✓</span></p>
+</div></div></div>
+
+<pre><code>&lt;div class="msg out tail"&gt;
+  &lt;p&gt;&lt;span class="hide"&gt;&lt;em&gt;Shane:&lt;/em&gt; &lt;/span&gt;see you at 8&lt;/p&gt;
+  &lt;p class="wa-time"&gt;Edited 23:44 &lt;span class="wa-read"&gt;✓✓&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+
+<p>It picks up the same small grey text as the time, so there's no extra class to remember.</p>
+
 <h3>Replying to a Message</h3>
 
 <p>To quote the message someone is replying to, add a paragraph with <code>wa-quote</code> at the top of the bubble, before the reply:</p>
@@ -847,6 +857,26 @@
   &lt;span class="wa-mic"&gt;&amp;#127908;&lt;/span&gt;
 &lt;/p&gt;</code></pre>
 
+<p>For a message someone is halfway through writing, add <code>typed</code> to <code>wa-ph</code> so the words go dark and wrap onto more lines, and swap "Message" for what they're typing. WhatsApp hides the camera while you type and turns the microphone into a send arrow, so take out the camera and put <code>&amp;#10148;</code> in the green circle instead:</p>
+
+<div class="mob wa theme-auto"><p class="wa-input">
+  <span class="wa-field">
+    <span>&#9786;</span>
+    <span class="wa-ph typed">ok so about last night, I think we need to talk about what happened before your mum</span>
+    <span class="wa-ic">&#128206;</span>
+  </span>
+  <span class="wa-mic">&#10148;</span>
+</p></div>
+
+<pre><code>&lt;p class="wa-input"&gt;
+  &lt;span class="wa-field"&gt;
+    &lt;span&gt;&amp;#9786;&lt;/span&gt;
+    &lt;span class="wa-ph typed"&gt;ok so about last night, I think we need to talk about what happened before your mum&lt;/span&gt;
+    &lt;span class="wa-ic"&gt;&amp;#128206;&lt;/span&gt;
+  &lt;/span&gt;
+  &lt;span class="wa-mic"&gt;&amp;#10148;&lt;/span&gt;
+&lt;/p&gt;</code></pre>
+
 <h3>Group Chats</h3>
 
 <p>In a group, add a <code>who</code> paragraph as the first line of a bubble to show who sent it. WhatsApp gives everyone their own name colour, so add one of <code>colour1</code> to <code>colour10</code> as well. Use the same number as the person's picture circle, so their name and picture match:</p>
@@ -1094,3 +1124,25 @@
 <p><strong>Note:</strong> a background class overrides the light and dark theme background, so pick a light or dark one to suit the theme you're using. The bubbles, ticks and text keep their theme colours on top of it.</p>
 
 <p>If a chat is on one particular character's phone, you can use their profile instead: add <code>pov-</code> and their name to the container, like <code>pov-shane</code>, and the chat gets the wallpaper set in their profile, so all of their chats look the same (see Their Phone, in the Core, Themes, and Extras chapter).</p>
+
+<p>A profile wallpaper can be a picture, too. Here's the same chat from Yuna's side, on her phone, with her own photo as the background:</p>
+
+<div class="mob wa theme-auto pov-yuna">
+  <p class="mob-head">Shane<span class="hide"> - </span><span>online</span></p>
+  <div class="mob-body">
+    <div class="msg out"><p><span class="hide"><em>Yuna:</em> </span>Are you coming Sunday?</p><p class="wa-time">10:02 <span class="wa-read">✓✓</span></p></div>
+    <div class="msg in"><p><span class="hide"><em>Shane:</em> </span>Yes!</p><p class="wa-time">10:03</p></div>
+  </div>
+</div>
+
+<pre><code>&lt;div class="mob wa theme-auto pov-yuna"&gt;
+  &lt;p class="mob-head"&gt;Shane&lt;span class="hide"&gt; - &lt;/span&gt;&lt;span&gt;online&lt;/span&gt;&lt;/p&gt;
+  &lt;div class="mob-body"&gt;
+    &lt;div class="msg out"&gt;&lt;p&gt;&lt;span class="hide"&gt;&lt;em&gt;Yuna:&lt;/em&gt; &lt;/span&gt;Are you coming Sunday?&lt;/p&gt;&lt;p class="wa-time"&gt;10:02 &lt;span class="wa-read"&gt;✓✓&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+    &lt;div class="msg in"&gt;&lt;p&gt;&lt;span class="hide"&gt;&lt;em&gt;Shane:&lt;/em&gt; &lt;/span&gt;Yes!&lt;/p&gt;&lt;p class="wa-time"&gt;10:03&lt;/p&gt;&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+<p>And the line in Yuna's profile that sets it. The colour shows if the picture doesn't load, <code>background-size: cover</code> fills the whole chat without stretching the picture, and <code>background-position: center</code> keeps the middle of it in view:</p>
+
+<pre><code>#workskin .mob.wa.pov-yuna { background-color: #e8e8e8; background-image: url(https://64.media.tumblr.com/a1c0162c5542c5890e5fd9c13341513e/3b53694384f48caf-98/s1280x1920/8b2fcaaf7deb2b05c418f46c62ee729acb8ff8e4.jpg); background-size: cover; background-position: center; }</code></pre>

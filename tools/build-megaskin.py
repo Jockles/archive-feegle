@@ -157,6 +157,9 @@ class _Headings(HTMLParser):
 def number_headings(text, n):
     """Numbers headings chapter.section.subsection (h3 = n.1, h4 = n.1.1, h5 = n.1.1.1)
     and gives each an id so it can be linked to."""
+    has_contents = CONTENTS_MARK in text
+    if has_contents:
+        text = text.replace(CONTENTS_MARK, '<h3 id="contents">Chapter Contents</h3>\n\n' + CONTENTS_LIST, 1)
     p = _Headings()
     p.feed(text)
     starts = [0]
@@ -170,13 +173,65 @@ def number_headings(text, n):
         counts[i + 1:] = [0] * (2 - i)
         num = ".".join(str(x) for x in [n] + counts[:i + 1])
         pos = starts[line - 1] + col
-        new = tagtext
-        if not hid:
-            new = new[:-1] + ' id="s%s">' % num.replace(".", "-")
+        sid = "s" + num.replace(".", "-")
+        if hid:
+            new = tagtext + '<span id="%s"></span>' % sid
+        else:
+            new = tagtext[:-1] + ' id="%s">' % sid
         out.append(text[last:pos] + new + num + " ")
         last = pos + len(tagtext)
     out.append(text[last:])
-    return "".join(out)
+    text = "".join(out)
+    if has_contents:
+        text = text.replace(CONTENTS_LIST, contents_list(text), 1)
+    return text
+
+
+# Put <!-- contents --> in a chapter's text where its contents list should go (straight
+# after the chapter's credits). The build adds a "Chapter Contents" heading there, with
+# links to every h3 and h4 heading in the chapter.
+CONTENTS_MARK = "<!-- contents -->"
+CONTENTS_LIST = "<!-- contents list -->"
+
+
+def contents_list(text):
+    p = _Headings()
+    p.feed(text)
+    starts = [0]
+    for line in text.split("\n"):
+        starts.append(starts[-1] + len(line) + 1)
+    items = []
+    for (line, col), tagtext, level, hid in p.found:
+        if level > 4 or hid == "contents":
+            continue
+        pos = starts[line - 1] + col + len(tagtext)
+        inner = text[pos:text.index("</h%d>" % level, pos)]
+        m = re.search(r'id="([^"]+)"', inner)
+        target = hid or (m and m.group(1)) or ""
+        if not hid:
+            target = re.search(r'id="([^"]+)"', tagtext).group(1)
+        title = re.sub(r"<[^>]+>", "", inner).strip()
+        items.append((level, target, title))
+    out = ["<ul class=\"contents\">"]
+    open_sub = False
+    for i, (level, target, title) in enumerate(items):
+        link = '<a href="#%s">%s</a>' % (target, title)
+        if level == 3:
+            if open_sub:
+                out.append("    </ul>\n  </li>")
+                open_sub = False
+            nxt = items[i + 1][0] if i + 1 < len(items) else 3
+            if nxt == 4:
+                out.append("  <li>%s\n    <ul>" % link)
+                open_sub = True
+            else:
+                out.append("  <li>%s</li>" % link)
+        else:
+            out.append("      <li>%s</li>" % link)
+    if open_sub:
+        out.append("    </ul>\n  </li>")
+    out.append("</ul>")
+    return "\n".join(out)
 
 
 def build_chapters():
