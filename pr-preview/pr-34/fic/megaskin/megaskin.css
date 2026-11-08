@@ -422,6 +422,7 @@
 #workskin .handle.pfp-yuna::after { content: "MetrosMomager"; }
 #workskin .email.pfp-yuna::after { content: "YunaHollander@gmail.com"; }
 #workskin .mail .email.pfp-yuna::after { content: "Yuna@HollanderHockey.com"; }
+#workskin .mob.wa.pov-yuna { background-color: #4a4a4a; background-image: url(https://64.media.tumblr.com/a1c0162c5542c5890e5fd9c13341513e/3b53694384f48caf-98/s1280x1920/8b2fcaaf7deb2b05c418f46c62ee729acb8ff8e4.jpg); background-size: cover; background-position: center; }
 
 /* PROFILE: Zim */
 #workskin .pfp.pfp-zim { background-color: #4a6a8f; }
