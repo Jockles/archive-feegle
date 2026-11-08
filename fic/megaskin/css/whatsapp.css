@@ -196,30 +196,6 @@
 
 #workskin .wa .out.tail { border-top-right-radius: 0; }
 
-/* typing dots: three grey dots in a small white bubble */
-#workskin .wa .typing-indicator {
-  display: table;
-  margin: 0.3em 0;
-  padding: 0.55em 0.75em;
-  border-radius: 8px;
-  background: #ffffff;
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.13);
-}
-
-#workskin .wa .typing-indicator span {
-  display: inline-block;
-  width: 0.5em;
-  height: 0.5em;
-  margin-right: 0.25em;
-  border-radius: 50%;
-  background: #8696a0;
-  opacity: 0.5;
-}
-
-#workskin .wa .typing-indicator span:nth-child(2) { opacity: 0.75; }
-
-#workskin .wa .typing-indicator span:nth-child(3) { opacity: 1; margin-right: 0; }
-
 #workskin .wa .in.tail::before {
   content: '';
   position: absolute;
@@ -543,8 +519,6 @@
 
 #workskin .wa.theme-dark .in { background: #202c33; color: #e9edef; }
 
-#workskin .wa.theme-dark .typing-indicator { background: #202c33; }
-
 #workskin .wa.theme-dark .wa-time { color: #8696a0; }
 
 #workskin .wa.theme-dark .wa-quote { background: rgba(255, 255, 255, 0.06); color: #8696a0; }
@@ -596,8 +570,6 @@
   #workskin .wa.theme-auto .out { background: #005c4b; color: #e9edef; }
 
   #workskin .wa.theme-auto .in { background: #202c33; color: #e9edef; }
-
-  #workskin .wa.theme-auto .typing-indicator { background: #202c33; }
 
   #workskin .wa.theme-auto .wa-time { color: #8696a0; }
 
