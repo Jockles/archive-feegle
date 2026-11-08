@@ -6,7 +6,7 @@
   <title>Megaskin, Chapter 17: Discord CSS | jockles.com</title>
   <link rel="stylesheet" href="../../style.css">
   <script src="../../theme.js"></script>
-  <link rel="stylesheet" href="megaskin.css?v=0797b6df" id="creator-style">
+  <link rel="stylesheet" href="megaskin.css?v=bb2a8e42" id="creator-style">
 </head>
 <body>
 <header>
@@ -32,16 +32,28 @@
       <div class="fic">
         <h3 class="chapter-title">Chapter 17: Discord CSS</h3>
         <div id="workskin">
-<p>This chapter goes through the CSS for the Discord chats in the last chapter: the window, the channel header, messages and their pictures, replies, reactions, spoilers, dividers, and the dark theme.</p>
+<p>Thanks to BookKeep, whose <a href="https://archiveofourown.org/works/42027846"><em>Discord Work Skin &amp; Tutorial</em></a> this module is mostly adapted from (BookKeep asks to be credited in your author's notes if you use it), and to TrojanTeapot for <a href="https://archiveofourown.org/works/46815217"><em>2023 Discord Theme Workskin</em></a>. Copied and adapted from them: the window and channel header, message layout, replies, reactions, spoilers, mentions, embeds, bots, and code blocks.</p>
 
-<h3 id="s17-1">17.1 Credits</h3>
+<h3 id="contents"><span id="s17-1"></span>17.1 Chapter Contents</h3>
 
-<p>The Discord module is built on the work below. They're also listed in <a href="getting-started.html#credits">Credits and sources</a> in the first chapter, with all the other credits. Please go and leave them some kudos! BookKeep asks to be credited in your author's notes if you post with the Discord module.</p>
-
-<ul>
-  <li><em>Discord Work Skin &amp; Tutorial</em> by BookKeep, <a href="https://archiveofourown.org/works/42027846">archiveofourown.org/works/42027846</a>. The Discord skin is mainly adapted from this. BookKeep's Discord user system - one class per character, carrying their picture through every message - was also a big part of what inspired me to make the character profiles in this skin, so a special thank you to them, both for the inspiration and for the framework that made it happen.</li>
-  <li><em>2023 Discord Theme Workskin</em> by TrojanTeapot, <a href="https://archiveofourown.org/works/46815217">archiveofourown.org/works/46815217</a>. A second Discord skin consulted alongside BookKeep's; it is itself inspired by <em>Discord (Dark Theme) Work Skin Guide/Preview</em> by Heterochromia_Mars.</li>
+<ul class="contents">
+  <li><a href="#s17-2">17.2 Getting the CSS</a></li>
+  <li><a href="#s17-3">17.3 How the Module is Laid Out</a></li>
+  <li><a href="#s17-4">17.4 The Window</a></li>
+  <li><a href="#s17-5">17.5 The Channel Header</a></li>
+  <li><a href="#s17-6">17.6 The Message Box</a></li>
+  <li><a href="#s17-7">17.7 Messages and Names</a></li>
+  <li><a href="#s17-8">17.8 Replies</a></li>
+  <li><a href="#s17-9">17.9 Reactions and Mentions</a></li>
+  <li><a href="#s17-10">17.10 Spoilers</a></li>
+  <li><a href="#s17-11">17.11 Dividers</a></li>
+  <li><a href="#s17-12">17.12 Bots and Typing</a></li>
+  <li><a href="#s17-13">17.13 Links and Scrolling</a></li>
+  <li><a href="#s17-14">17.14 Themes</a></li>
+  <li><a href="#s17-15">17.15 Taking Parts Out</a></li>
 </ul>
+
+<p>This chapter goes through the CSS for the Discord chats in the last chapter: the window, the channel header, messages and their pictures, replies, reactions, spoilers, dividers, and the dark theme.</p>
 
 <h3 id="s17-2">17.2 Getting the CSS</h3>
 

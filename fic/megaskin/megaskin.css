@@ -209,7 +209,7 @@
 }
 
 /* strikethrough / deleted text */
-#workskin .mob .del { text-decoration: line-through; opacity: 0.6; }
+#workskin .mob .del, #workskin .dc .del { text-decoration: line-through; opacity: 0.6; }
 
 /* ---------- Links that go nowhere (the colours are in each module) ---------- */
 
@@ -422,6 +422,7 @@
 #workskin .handle.pfp-yuna::after { content: "MetrosMomager"; }
 #workskin .email.pfp-yuna::after { content: "YunaHollander@gmail.com"; }
 #workskin .mail .email.pfp-yuna::after { content: "Yuna@HollanderHockey.com"; }
+#workskin .mob.wa.pov-yuna { background-color: #e8e8e8; background-image: url(https://64.media.tumblr.com/a1c0162c5542c5890e5fd9c13341513e/3b53694384f48caf-98/s1280x1920/8b2fcaaf7deb2b05c418f46c62ee729acb8ff8e4.jpg); background-size: cover; background-position: center; }
 
 /* PROFILE: Zim */
 #workskin .pfp.pfp-zim { background-color: #4a6a8f; }
@@ -828,6 +829,17 @@
   margin: 0.1em 0.4em 0.4em 0;
 }
 
+/* "Edited" under an edited message: blue, on the same side as the bubble */
+#workskin .imsg .imsg-edited, #workskin .imsg .imsg-edited-in {
+  display: block;
+  text-align: right;
+  font-size: 0.7em;
+  color: #0a84ff;
+  margin: 0.1em 0.4em 0.4em 0;
+}
+
+#workskin .imsg .imsg-edited-in { text-align: left; margin: 0.1em 0 0.4em 0.4em; }
+
 /* tapbacks: a reaction bubble on the top corner of a message.
    <p class="msg in tapped">message<span class="imsg-tap me">&#128077;</span></p>
    "tapped" makes room above the message; "me" makes it blue (your own reaction),
@@ -1009,6 +1021,24 @@
   font-size: 0.95em;
 }
 
+/* a half-typed message in the box: black text instead of grey */
+#workskin .imsg .imsg-field.typed { color: #000000; }
+
+/* the blue send arrow that replaces the microphone while typing */
+#workskin .imsg .imsg-send {
+  position: absolute;
+  right: 0.3em;
+  bottom: 0.3em;
+  width: 1.7em;
+  height: 1.7em;
+  line-height: 1.7em;
+  border-radius: 50%;
+  background: #0a84ff;
+  color: #ffffff;
+  font-weight: bold;
+  text-align: center;
+}
+
 /* ---------- iMessage: Links ---------- */
 
 #workskin .imsg .in .fake-link, #workskin .imsg .in a:not(.tl) { color: #0a84ff; }
@@ -1039,6 +1069,8 @@
 
 #workskin .imsg.theme-dark .imsg-field { border-color: #757579; background: #1c1c1e; color: #8e8e93; }
 
+#workskin .imsg.theme-dark .imsg-field.typed { color: #ffffff; }
+
 /* ---------- iMessage: Auto theme (theme-auto): light, switching to dark when the reader's device is in dark mode ---------- */
 
 @media (prefers-color-scheme: dark) {
@@ -1063,6 +1095,8 @@
   #workskin .imsg.theme-auto .imsg-plus { border-color: #757579; background: #2c2c2e; color: #ffffff; }
 
   #workskin .imsg.theme-auto .imsg-field { border-color: #757579; background: #1c1c1e; color: #8e8e93; }
+
+  #workskin .imsg.theme-auto .imsg-field.typed { color: #ffffff; }
 }
 
 /* <<<<<<<<<< MODULE: iMessage (end) <<<<<<<<<< */
@@ -1341,6 +1375,9 @@
 
 #workskin .wa .wa-field .wa-ph { width: auto; padding-left: 0.5em; }
 
+/* a half-typed message: dark text that wraps onto more lines */
+#workskin .wa .wa-field .wa-ph.typed { white-space: normal; color: #111b21; }
+
 #workskin .wa .wa-mic {
   position: absolute;
   right: 0.6em;
@@ -1607,6 +1644,8 @@
 
 #workskin .wa.theme-dark .wa-field { background: #202c33; color: #8696a0; }
 
+#workskin .wa.theme-dark .wa-field .wa-ph.typed { color: #e9edef; }
+
 #workskin .wa.theme-dark .wa-link { background: rgba(0, 0, 0, 0.22); }
 
 #workskin .wa.theme-dark .wa-link-img.text { background: rgba(0, 0, 0, 0.2); color: #8696a0; }
@@ -1686,6 +1725,8 @@
   #workskin .wa.theme-auto .wa-reacts .wa-count { color: #8696a0; }
 
   #workskin .wa.theme-auto .wa-field { background: #202c33; color: #8696a0; }
+
+  #workskin .wa.theme-auto .wa-field .wa-ph.typed { color: #e9edef; }
 
   #workskin .wa.theme-auto .wa-link { background: rgba(0, 0, 0, 0.22); }
 

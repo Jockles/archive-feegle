@@ -1,14 +1,8 @@
+<p>Thanks to orphan_account and worlds_end_valentine, whose <a href="https://archiveofourown.org/works/34229317"><em>WhatsApp group chat skin</em></a> and <a href="https://archiveofourown.org/works/46531021"><em>Whatsapp Work Skin Template /Revamped</em></a> this module is built on. Copied and adapted from them: the group header and member list, sender names, reactions, and per-chat backgrounds.</p>
+
+<!-- contents -->
+
 <p>This chapter goes through the CSS for the WhatsApp chats in the last chapter. WhatsApp is a much bigger module than iMessage - it has headers, galleries, link cards and wallpapers - but it's built the same way, so if you've read the iMessage CSS chapter, a lot of this will look familiar. Where something works exactly like it does in iMessage, I'll point you back there rather than explain it twice.</p>
-
-<h3>Credits</h3>
-
-<p>The WhatsApp module is built on the work below. They're also listed in <a href="getting-started.html#credits">Credits and sources</a> in the first chapter, with all the other credits. Please go and leave them some kudos!</p>
-
-<ul>
-  <li><em>WhatsApp group chat skin</em> by orphan_account, <a href="https://archiveofourown.org/works/34229317">archiveofourown.org/works/34229317</a>. The table layout of the group header, the member list under the group name and the sender-name ideas come from this.</li>
-  <li><em>Whatsapp Work Skin Template /Revamped</em> by worlds_end_valentine, <a href="https://archiveofourown.org/works/46531021">archiveofourown.org/works/46531021</a>. The group chat, reactions, header and per-chat background ideas come from this.</li>
-  <li>Those two WhatsApp skins are themselves inspired by <em>Social Media Work Skin Template: Whatsapp</em> by worlds_end_valentine (credited as etc_e_tal in the group chat skin), <a href="https://archiveofourown.org/works/31313318">archiveofourown.org/works/31313318</a>, and <em>WhatsApp Skin</em> by Azdaema Codes (Azdaema), <a href="https://archiveofourown.org/works/24273361">archiveofourown.org/works/24273361</a>, which are also worth a look.</li>
-</ul>
 
 <h3>Getting the CSS</h3>
 
@@ -268,6 +262,10 @@
   <li>The white box is another table, and each icon is a cell. <code>width: 1%</code> on the icons is a trick: a table cell can't be narrower than what's inside it, so asking for 1% makes it exactly as wide as its icon. The placeholder (<code>wa-ph</code>) is set back to <code>auto</code>, so it takes all the room that's left.</li>
   <li>The green microphone circle is pinned in the space on the right, which the bar's <code>3.4em</code> of right padding keeps clear. It's centred top to bottom with <code>top: 50%</code> and a negative margin of half its height.</li>
 </ul>
+
+<p>For a half-typed message, <code>typed</code> undoes the <code>nowrap</code> so long messages wrap, and makes the words dark (light in dark mode):</p>
+
+<pre><code>#workskin .wa .wa-field .wa-ph.typed { white-space: normal; color: #111b21; }</code></pre>
 
 <h3>Link Cards</h3>
 
