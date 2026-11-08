@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Megaskin Profile Maker | jockles.com</title>
+  <link rel="stylesheet" href="../../style.css">
+  <script src="../../theme.js"></script>
+  <link rel="stylesheet" href="megaskin.css">
+  <style id="live-profile"></style>
+  <style>
+    .pm { display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-start; }
+    .pm-form, .pm-out { flex: 1 1 380px; min-width: 0; }
+    .pm fieldset { border: 1px solid var(--rule, #ccc); border-radius: 6px; margin: 0 0 16px; padding: 10px 14px 12px; }
+    .pm legend { font-weight: bold; padding: 0 4px; }
+    .pm label { display: block; margin: 8px 0 2px; font-size: 0.9em; }
+    .pm input[type=text], .pm input[type=url] { width: 100%; box-sizing: border-box; padding: 5px 7px; font: inherit; }
+    .pm input[type=color] { width: 3em; height: 2em; padding: 0; vertical-align: middle; }
+    .pm .hint { font-size: 0.8em; opacity: 0.75; margin: 2px 0 0; }
+    .pm .row { display: flex; gap: 8px; align-items: center; }
+    .pm .row input[type=text], .pm .row input[type=url] { flex: 1; }
+    .pm table { width: 100%; border-collapse: collapse; font-size: 0.9em; }
+    .pm th, .pm td { text-align: left; padding: 3px 4px; vertical-align: middle; }
+    .pm td input { width: 100%; box-sizing: border-box; padding: 4px 5px; font: inherit; }
+    .pm button { font: inherit; padding: 4px 10px; cursor: pointer; }
+    .pm textarea { width: 100%; box-sizing: border-box; height: 18em; font-family: monospace; font-size: 0.8em; }
+    .pm-preview #workskin > div { margin-bottom: 14px; }
+    .pm .theme-pick { margin: 0 0 10px; }
+  </style>
+</head>
+<body>
+<header>
+  <h1><a href="../../index.html">jockles.com</a></h1>
+  <p>All the Fannish things I do.</p>
+</header>
+<nav>
+  <ul>
+    <li><a href="../../index.html">Home</a></li>
+    <li><a href="../index.html">Fic</a></li>
+    <li><a href="../../videos/index.html">Videos</a></li>
+    <li><a href="../../blog/index.html">Blog</a></li>
+    <li><a href="../../links.html">Links</a></li>
+    <li><a href="../../about.html">About</a></li>
+  </ul>
+</nav>
+<main>
+  <p class="work-title"><a href="index.html">Megaskin</a> by Jockles</p>
+  <h2>Profile Maker</h2>
+
+  <p>Fill in the boxes and the chats on the right update as you type, using the real megaskin. When you're happy, copy the CSS at the bottom and paste it into the PROFILES section of your work skin, next to the other profiles. Nothing you type leaves your browser.</p>
+  <p>Only the first box is essential. Leave anything you don't need empty and it won't go in the CSS. Pictures need a direct link to the image file, usually ending in .jpg or .png, from somewhere like Imgur or Tumblr.</p>
+
+  <div class="pm">
+    <form class="pm-form" id="pm" autocomplete="off" onsubmit="return false">
+      <fieldset>
+        <legend>The basics</legend>
+        <label for="name">Name</label>
+        <input type="text" id="name" value="Stan">
+        <label for="slug">Profile class</label>
+        <div class="row"><span>pfp-</span><input type="text" id="slug" value="stan"></div>
+        <p class="hint">Small letters, numbers and hyphens only. It's filled in from the name until you change it.</p>
+        <label for="pic">Picture link</label>
+        <input type="url" id="pic" placeholder="https://...">
+        <label for="piccol">Circle colour (shows when there's no picture, or while it loads)</label>
+        <input type="color" id="piccol" value="#c06a1f">
+        <label for="namecol">Name colour (WhatsApp group names and Discord usernames)</label>
+        <input type="color" id="namecol" value="#d2782a">
+        <label for="handle">Handle (leave off the @)</label>
+        <input type="text" id="handle" value="PuckStan">
+        <label for="email">Email address</label>
+        <input type="text" id="email" value="Puckstan@gmail.com">
+      </fieldset>
+
+      <fieldset>
+        <legend>Different on one app</legend>
+        <p class="hint">Only fill in the ones that are different from the basics.</p>
+        <table>
+          <thead><tr><th>App</th><th>Picture link</th><th>Name</th><th>Handle</th></tr></thead>
+          <tbody id="apps"></tbody>
+        </table>
+        <label for="dccol">Different name colour on Discord</label>
+        <div class="row"><input type="checkbox" id="dccolon"> <input type="color" id="dccol" value="#e8734a"></div>
+        <label for="workemail">Different email address in the email window (a work email, say)</label>
+        <input type="text" id="workemail">
+      </fieldset>
+
+      <fieldset>
+        <legend>Saved as</legend>
+        <p class="hint">What other characters have them saved as on their phones. The phone owner is the other character's profile class, without pfp-.</p>
+        <table>
+          <thead><tr><th>Phone owner</th><th>Saved as</th><th></th></tr></thead>
+          <tbody id="saved"></tbody>
+        </table>
+        <button type="button" id="addsaved">+ Add a phone</button>
+      </fieldset>
+
+      <fieldset>
+        <legend>Their phone</legend>
+        <p class="hint">The WhatsApp wallpaper for chats on their phone (add pov-<span class="slugtxt">stan</span> to the chat container). Leave both empty for the normal background.</p>
+        <label for="wallcol">Colour</label>
+        <div class="row"><input type="checkbox" id="wallcolon"> <input type="color" id="wallcol" value="#dfeaf6"></div>
+        <label for="wallpic">Or a picture link</label>
+        <input type="url" id="wallpic" placeholder="https://...">
+      </fieldset>
+    </form>
+
+    <div class="pm-out">
+      <h3>Preview</h3>
+      <p class="theme-pick">
+        <label><input type="radio" name="theme" value="theme-light" checked> Light</label>
+        <label><input type="radio" name="theme" value="theme-dark"> Dark</label>
+      </p>
+      <div class="pm-preview"><div id="workskin"></div></div>
+
+      <h3>Your CSS</h3>
+      <p><button type="button" id="copy">Copy the CSS</button> <span id="copied"></span></p>
+      <textarea id="css" readonly></textarea>
+    </div>
+  </div>
+</main>
+<footer>
+  Made by hand in HTML &amp; CSS. No trackers, no cookies, no ads.
+</footer>
+
+<script>
+(function () {
+  var APPS = [
+    { key: "tw", label: "Twitter/X", sel: ["tw", "tw-reply"], namesel: ["tw", "tw-reply", "twdm"] },
+    { key: "ig", label: "Instagram", sel: ["ig", "igdm"] },
+    { key: "tb", label: "Tumblr", sel: ["tb"] },
+    { key: "gm", label: "Gmail", sel: ["gm"] },
+    { key: "dc", label: "Discord", sel: ["dc"] }
+  ];
+  var $ = function (id) { return document.getElementById(id); };
+  var slugTouched = false;
+
+  // build the per-app rows
+  var apps = $("apps");
+  APPS.forEach(function (a) {
+    var tr = document.createElement("tr");
+    tr.innerHTML = "<td>" + a.label + "</td>" +
+      '<td><input type="url" id="pic-' + a.key + '" placeholder="https://..."></td>' +
+      '<td><input type="text" id="name-' + a.key + '"></td>' +
+      '<td><input type="text" id="handle-' + a.key + '"></td>';
+    apps.appendChild(tr);
+  });
+
+  function addSaved(owner, as) {
+    var tr = document.createElement("tr");
+    tr.innerHTML = '<td><input type="text" class="sv-owner"></td><td><input type="text" class="sv-as"></td>' +
+      '<td><button type="button" title="Remove">&times;</button></td>';
+    tr.querySelector(".sv-owner").value = owner || "";
+    tr.querySelector(".sv-as").value = as || "";
+    tr.querySelector("button").onclick = function () { tr.remove(); update(); };
+    $("saved").appendChild(tr);
+  }
+  $("addsaved").onclick = function () { addSaved(); update(); };
+  addSaved("shane", "Stan from the bar");
+
+  // keep values safe inside CSS
+  function str(v) { return '"' + v.replace(/\\/g, "\\\\").replace(/"/g, '\\"').replace(/[\r\n]+/g, " ") + '"'; }
+  function url(v) {
+    v = v.trim();
+    if (!/^https?:\/\/[^\s"'()<>\\]+$/i.test(v)) return null;
+    return "url(" + v + ")";
+  }
+  function slugify(v) { return v.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^[^a-z]+/, "").replace(/-+$/, ""); }
+  function list(classes, tail) {
+    return classes.map(function (c) { return "#workskin ." + c + " " + tail; }).join(", ");
+  }
+  function esc(v) { return v.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
+
+  function build() {
+    var name = $("name").value.trim();
+    var slug = slugify($("slug").value) || "character";
+    var p = "pfp-" + slug;
+    var L = [];
+    L.push("/* PROFILE: " + (name || slug).replace(/\*\//g, "") + " */");
+    var pic = url($("pic").value);
+    L.push("#workskin .pfp." + p + " { background-color: " + $("piccol").value + ";" + (pic ? " background-image: " + pic + ";" : "") + " }");
+    APPS.forEach(function (a) {
+      var u = url($("pic-" + a.key).value);
+      if (u) L.push(list(a.sel, ".pfp." + p) + " { background-image: " + u + "; }");
+    });
+    L.push("#workskin .wa .who." + p + ", #workskin .dc .dc-name." + p + " { color: " + $("namecol").value + "; }");
+    if ($("dccolon").checked) L.push("#workskin .dc .dc-name." + p + " { color: " + $("dccol").value + "; }");
+    if (name) L.push("#workskin .name." + p + "::before { content: " + str(name) + "; }");
+    APPS.forEach(function (a) {
+      var n = $("name-" + a.key).value.trim();
+      if (n) L.push(list(a.namesel || a.sel, ".name." + p + "::before") + " { content: " + str(n) + "; }");
+    });
+    Array.prototype.forEach.call($("saved").children, function (tr) {
+      var o = slugify(tr.querySelector(".sv-owner").value), as = tr.querySelector(".sv-as").value.trim();
+      if (o && as) L.push("#workskin .mob.pov-" + o + " .name." + p + "::before { content: " + str(as) + "; }");
+    });
+    var h = $("handle").value.trim().replace(/^@/, "");
+    if (h) L.push("#workskin .handle." + p + "::after { content: " + str(h) + "; }");
+    APPS.forEach(function (a) {
+      var hh = $("handle-" + a.key).value.trim().replace(/^@/, "");
+      if (hh) L.push(list(a.namesel || a.sel, ".handle." + p + "::after") + " { content: " + str(hh) + "; }");
+    });
+    var e = $("email").value.trim();
+    if (e) L.push("#workskin .email." + p + "::after { content: " + str(e) + "; }");
+    var we = $("workemail").value.trim();
+    if (we) L.push("#workskin .mail .email." + p + "::after { content: " + str(we) + "; }");
+    var wp = url($("wallpic").value);
+    if (wp) L.push("#workskin .mob.wa.pov-" + slug + " { background-color: " + $("wallcol").value + "; background-image: " + wp + "; background-size: cover; background-position: center; }");
+    else if ($("wallcolon").checked) L.push("#workskin .mob.wa.pov-" + slug + " { background: " + $("wallcol").value + "; }");
+    return { css: L.join("\n"), slug: slug, p: p, name: name || slug };
+  }
+
+  function preview(r) {
+    var t = document.querySelector("input[name=theme]:checked").value;
+    var p = r.p, nm = esc(r.name);
+    var owner = "";
+    var first = $("saved").querySelector(".sv-owner");
+    if (first && slugify(first.value)) owner = slugify(first.value);
+    var html =
+      '<div class="mob wa ' + t + '"><div class="mob-body"><div class="wa-row">' +
+        '<p class="wa-pfp"><span class="pfp ' + p + '"></span></p>' +
+        '<div class="msg in tail"><p class="who ' + p + '"><span class="name ' + p + '"></span><span class="hide">:</span></p>' +
+        '<p>this is what my messages look like in a group</p><p class="wa-time">09:15</p></div></div></div></div>' +
+      '<div class="mob tw ' + t + '"><p class="tw-top"><span class="tw-pfp"><span class="pfp ' + p + '"></span></span>' +
+        '<span class="tw-name"><span class="name ' + p + '"></span></span> <span class="tw-handle"><span class="handle ' + p + '"></span> · 2h</span></p>' +
+        '<p class="tw-text">and this is me on Twitter/X</p></div>' +
+      '<div class="mob ig ' + t + '"><p class="ig-top"><span class="ig-pfp"><span class="pfp ' + p + '"></span></span>' +
+        '<span class="handle ' + p + '"></span></p></div>' +
+      '<div class="mob tb ' + t + '"><p class="tb-header"><span class="tb-pfp"><span class="pfp ' + p + '"></span></span>' +
+        '<span class="tb-name"><b><span class="handle ' + p + '"></span></b><span class="tb-subline">18m ago</span></span></p>' +
+        '<div class="tb-body"><p>and on Tumblr</p></div></div>' +
+      '<div class="mob gm ' + t + '"><div class="gm-msg"><table class="gm-head"><tbody><tr>' +
+        '<td rowspan="2" class="gm-pfp-cell"><span class="gm-pfp"><span class="pfp ' + p + '"></span></span></td>' +
+        '<td class="gm-from"><span class="name ' + p + '"></span> <span class="gm-address">&lt;<span class="email ' + p + '"></span>&gt;</span></td>' +
+        '<td class="gm-date">9:15 AM</td></tr><tr><td class="gm-to">to me &#9662;</td><td class="gm-tools">&#8617; &#8943;</td></tr></tbody></table></div></div>' +
+      '<div class="dc ' + t + '"><div class="dc-message"><p><b class="dc-name ' + p + '"><span class="dc-pfp"><span class="pfp ' + p + '"></span></span>' +
+        '<span class="name ' + p + '"></span></b> <span class="dc-time">Today at 9:15 AM</span></p>' +
+        '<p><span class="dc-text">and on Discord</span></p></div></div>' +
+      (owner ? '<p><em>On ' + esc(owner) + "'s phone (pov-" + esc(owner) + '):</em></p>' +
+        '<div class="mob wa ' + t + ' pov-' + owner + '"><p class="mob-head"><span class="name ' + p + '"></span><span class="hide"> - </span><span>online</span></p>' +
+        '<div class="mob-body"><div class="msg in"><p>hey it\'s me</p><p class="wa-time">10:02</p></div></div></div>' : '') +
+      '<p><em>On ' + nm + "'s own phone (pov-" + esc(r.slug) + '):</em></p>' +
+      '<div class="mob wa ' + t + ' pov-' + r.slug + '"><p class="mob-head">Someone<span class="hide"> - </span><span>online</span></p>' +
+        '<div class="mob-body"><div class="msg out"><p>my wallpaper</p><p class="wa-time">10:03 <span class="wa-read">✓✓</span></p></div></div></div>';
+    $("workskin").innerHTML = html;
+  }
+
+  function update() {
+    if (!slugTouched) $("slug").value = slugify($("name").value);
+    var r = build();
+    $("live-profile").textContent = r.css;
+    $("css").value = r.css;
+    Array.prototype.forEach.call(document.querySelectorAll(".slugtxt"), function (s) { s.textContent = r.slug; });
+    preview(r);
+  }
+
+  $("slug").addEventListener("input", function () { slugTouched = true; });
+  document.addEventListener("input", update);
+  document.addEventListener("change", update);
+  $("copy").onclick = function () {
+    var ta = $("css");
+    ta.select();
+    var done = function () { $("copied").textContent = "Copied!"; setTimeout(function () { $("copied").textContent = ""; }, 2000); };
+    if (navigator.clipboard) navigator.clipboard.writeText(ta.value).then(done, function () { document.execCommand("copy"); done(); });
+    else { document.execCommand("copy"); done(); }
+  };
+  update();
+})();
+</script>
+</body>
+</html>
