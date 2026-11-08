@@ -32,6 +32,8 @@
       <div class="fic">
         <h3 class="chapter-title">Chapter 2: The Core, Themes, and Extras</h3>
         <div id="workskin">
+<p>Thanks to La_Temperanza, whose <a href="https://archiveofourown.org/works/10957056"><em>How To Change Text on AO3 When the Cursor is Hovering Over It (Or Clicked on Mobile)</em></a> the translations are built on. Copied and adapted from it: swapping the text on hover or tap, the brackets for readers with Creator's Style off, and the link that makes tapping work on phones.</p>
+
 <h3 id="contents"><span id="s2-1"></span>2.1 Chapter Contents</h3>
 
 <p>Everything in this chapter lives in the core CSS - the bit of the skin that every module needs - so you get all of it whichever modules you've picked. It all works in Discord too, apart from the typing line.</p>
@@ -971,14 +973,6 @@
 
 <h3 id="translations"><span id="s2-8"></span>2.8 Hover and Tap Translations</h3>
 
-<h4 id="s2-8-1">2.8.1 Credits</h4>
-
-<p>The translations are built on the work below, also listed in <a href="getting-started.html#credits">Credits and sources</a> in Chapter 1. Please go and leave them some kudos!</p>
-
-<p><strong>Based on:</strong> <a href="https://archiveofourown.org/works/10957056"><em>How To Change Text on AO3 When the Cursor is Hovering Over It (Or Clicked on Mobile)</em></a> by La_Temperanza - the hover and tap swap, the brackets when Creator's Style is off, and the link trick that makes tapping work on phones.</p>
-
-<p><strong>Added by me:</strong> every translation is written in the HTML, so there's no new CSS for each one, plus hidden easter eggs.</p>
-
 <p>If your characters switch languages every now and then, you can show the original words with the translation tucked away behind them. The reader sees the original with a dotted line under it, and when they hover over it on a computer, or tap it on a phone, the translation swaps in. It works in ordinary text as well as inside every chat and post in the skin, and the words take on the colour of whatever they're sitting in (dark mode included), so they never get mixed up with a chat link:</p>
 
 <pre><code>&lt;a class="tl" href="#t1"&gt;&lt;span class="orig"&gt;Diolch yn fawr&lt;/span&gt;&lt;span class="tltn"&gt;&lt;span class="hide"&gt; (&lt;/span&gt;Thank you very much&lt;span class="hide"&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/a&gt;</code></pre>
@@ -1049,7 +1043,7 @@
   <li>I'd recommend a line in your author's note telling readers they can hover over or tap the dotted words, so they know to try.</li>
 </ul>
 
-<h4 id="s2-8-2">2.8.2 Hidden Text and Easter Eggs</h4>
+<h4 id="s2-8-1">2.8.1 Hidden Text and Easter Eggs</h4>
 
 <p>A translation doesn't actually have to be a translation. The text that swaps in can be anything at all, so the same trick works for hidden text and easter eggs - a character's private thought, a joke, a hint about a later chapter, or a clue for anyone who goes looking. Put the visible words in <code>orig</code> and the surprise in <code>tltn</code>.</p>
 

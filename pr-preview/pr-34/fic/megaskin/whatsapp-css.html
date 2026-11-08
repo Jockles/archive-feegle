@@ -32,21 +32,32 @@
       <div class="fic">
         <h3 class="chapter-title">Chapter 7: WhatsApp CSS</h3>
         <div id="workskin">
-<p>This chapter goes through the CSS for the WhatsApp chats in the last chapter. WhatsApp is a much bigger module than iMessage - it has headers, galleries, link cards and wallpapers - but it's built the same way, so if you've read the iMessage CSS chapter, a lot of this will look familiar. Where something works exactly like it does in iMessage, I'll point you back there rather than explain it twice.</p>
+<p>Thanks to orphan_account and worlds_end_valentine, whose <a href="https://archiveofourown.org/works/34229317"><em>WhatsApp group chat skin</em></a> and <a href="https://archiveofourown.org/works/46531021"><em>Whatsapp Work Skin Template /Revamped</em></a> this module is built on. Copied and adapted from them: the group header and member list, sender names, reactions, and per-chat backgrounds.</p>
 
-<h3 id="s7-1">7.1 Credits</h3>
+<h3 id="contents"><span id="s7-1"></span>7.1 Chapter Contents</h3>
 
-<p>The WhatsApp module is built on the work below, also listed in <a href="getting-started.html#credits">Credits and sources</a> in Chapter 1. Please go and leave them some kudos!</p>
-
-<p><strong>Based on:</strong></p>
-
-<ul>
-  <li><a href="https://archiveofourown.org/works/34229317"><em>WhatsApp group chat skin</em></a> by orphan_account - the group header layout, the member list and sender names.</li>
-  <li><a href="https://archiveofourown.org/works/46531021"><em>Whatsapp Work Skin Template /Revamped</em></a> by worlds_end_valentine - group chats, reactions, the header and per-chat backgrounds.</li>
-  <li>Both of those are inspired by <a href="https://archiveofourown.org/works/31313318"><em>Social Media Work Skin Template: Whatsapp</em></a> by worlds_end_valentine (etc_e_tal) and <a href="https://archiveofourown.org/works/24273361"><em>WhatsApp Skin</em></a> by Azdaema Codes (Azdaema), which are worth a look too.</li>
+<ul class="contents">
+  <li><a href="#s7-2">7.2 Getting the CSS</a></li>
+  <li><a href="#s7-3">7.3 How the Module is Laid Out</a></li>
+  <li><a href="#s7-4">7.4 The Window and Bubbles</a></li>
+  <li><a href="#s7-5">7.5 Bubble Tails</a></li>
+  <li><a href="#s7-6">7.6 Time, Ticks and Quotes</a></li>
+  <li><a href="#s7-7">7.7 Typing Dots</a></li>
+  <li><a href="#s7-8">7.8 Date Pills and System Notices</a></li>
+  <li><a href="#s7-9">7.9 The Group Header</a></li>
+  <li><a href="#s7-10">7.10 Profile Pictures and the Ten Colours</a></li>
+  <li><a href="#s7-11">7.11 Group Messages With Pictures</a></li>
+  <li><a href="#s7-12">7.12 Reactions and Large Emoji</a></li>
+  <li><a href="#s7-13">7.13 The Message Bar</a></li>
+  <li><a href="#s7-14">7.14 Link Cards</a></li>
+  <li><a href="#s7-15">7.15 Photo Galleries</a></li>
+  <li><a href="#s7-16">7.16 Captions and Links</a></li>
+  <li><a href="#s7-17">7.17 Dark and Auto Themes</a></li>
+  <li><a href="#s7-18">7.18 Wallpapers</a></li>
+  <li><a href="#s7-19">7.19 Taking Parts Out</a></li>
 </ul>
 
-<p><strong>Added by me:</strong> read ticks, replies and quotes, large emoji, shared links, photo galleries, phone numbers and nicknames, and system notices.</p>
+<p>This chapter goes through the CSS for the WhatsApp chats in the last chapter. WhatsApp is a much bigger module than iMessage - it has headers, galleries, link cards and wallpapers - but it's built the same way, so if you've read the iMessage CSS chapter, a lot of this will look familiar. Where something works exactly like it does in iMessage, I'll point you back there rather than explain it twice.</p>
 
 <h3 id="s7-2">7.2 Getting the CSS</h3>
 

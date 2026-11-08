@@ -1,3 +1,7 @@
+<p>Thanks to La_Temperanza, whose <a href="https://archiveofourown.org/works/10957056"><em>How To Change Text on AO3 When the Cursor is Hovering Over It (Or Clicked on Mobile)</em></a> the translations are built on. Copied and adapted from it: swapping the text on hover or tap, the brackets for readers with Creator's Style off, and the link that makes tapping work on phones.</p>
+
+<!-- contents -->
+
 <p>This chapter goes through the CSS behind the last one: the chat box, scrolling, round pictures, hidden text, translations, character profiles and the ten colours every app shares. It's the part of the skin that every module needs, so whichever apps you use, the core goes in first.</p>
 
 <p>You don't need to understand any of this to use the skin. It's here for when you want to change something - a size, a colour, a profile - and want to know which bit to touch without breaking anything else.</p>
@@ -258,14 +262,6 @@
 <p>A <code>fake-link</code> and a real link get the same underline and the same pointing-hand cursor, so readers can't tell them apart. <code>a:not(.tl)</code> means "any link that isn't a translation", because translations are links too and need to look different. The colours are in each module, under its <em>Links</em> heading.</p>
 
 <h3>Hover and Tap Translations</h3>
-
-<h4>Credits</h4>
-
-<p>The translations are built on the work below, also listed in <a href="getting-started.html#credits">Credits and sources</a> in Chapter 1. Please go and leave them some kudos!</p>
-
-<p><strong>Based on:</strong> <a href="https://archiveofourown.org/works/10957056"><em>How To Change Text on AO3 When the Cursor is Hovering Over It (Or Clicked on Mobile)</em></a> by La_Temperanza - the hover and tap swap, the brackets when Creator's Style is off, and the link trick that makes tapping work on phones.</p>
-
-<p><strong>Added by me:</strong> every translation is written in the HTML, so there's no new CSS for each one, plus hidden easter eggs.</p>
 
 <p>This is the cleverest bit of the core, and it's based on La_Temperanza's tutorial (see the credits in chapter 1). Here's the HTML again, to have it in front of you:</p>
 
