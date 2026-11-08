@@ -6,7 +6,7 @@
   <title>Megaskin, Chapter 7: WhatsApp CSS | jockles.com</title>
   <link rel="stylesheet" href="../../style.css">
   <script src="../../theme.js"></script>
-  <link rel="stylesheet" href="megaskin.css?v=ba5f7fcb" id="creator-style">
+  <link rel="stylesheet" href="megaskin.css?v=4d58a8f0" id="creator-style">
 </head>
 <body>
 <header>
@@ -42,19 +42,18 @@
   <li><a href="#s7-4">7.4 The Window and Bubbles</a></li>
   <li><a href="#s7-5">7.5 Bubble Tails</a></li>
   <li><a href="#s7-6">7.6 Time, Ticks and Quotes</a></li>
-  <li><a href="#s7-7">7.7 Typing Dots</a></li>
-  <li><a href="#s7-8">7.8 Date Pills and System Notices</a></li>
-  <li><a href="#s7-9">7.9 The Group Header</a></li>
-  <li><a href="#s7-10">7.10 Profile Pictures and the Ten Colours</a></li>
-  <li><a href="#s7-11">7.11 Group Messages With Pictures</a></li>
-  <li><a href="#s7-12">7.12 Reactions and Large Emoji</a></li>
-  <li><a href="#s7-13">7.13 The Message Bar</a></li>
-  <li><a href="#s7-14">7.14 Link Cards</a></li>
-  <li><a href="#s7-15">7.15 Photo Galleries</a></li>
-  <li><a href="#s7-16">7.16 Captions and Links</a></li>
-  <li><a href="#s7-17">7.17 Dark and Auto Themes</a></li>
-  <li><a href="#s7-18">7.18 Wallpapers</a></li>
-  <li><a href="#s7-19">7.19 Taking Parts Out</a></li>
+  <li><a href="#s7-7">7.7 Date Pills and System Notices</a></li>
+  <li><a href="#s7-8">7.8 The Group Header</a></li>
+  <li><a href="#s7-9">7.9 Profile Pictures and the Ten Colours</a></li>
+  <li><a href="#s7-10">7.10 Group Messages With Pictures</a></li>
+  <li><a href="#s7-11">7.11 Reactions and Large Emoji</a></li>
+  <li><a href="#s7-12">7.12 The Message Bar</a></li>
+  <li><a href="#s7-13">7.13 Link Cards</a></li>
+  <li><a href="#s7-14">7.14 Photo Galleries</a></li>
+  <li><a href="#s7-15">7.15 Captions and Links</a></li>
+  <li><a href="#s7-16">7.16 Dark and Auto Themes</a></li>
+  <li><a href="#s7-17">7.17 Wallpapers</a></li>
+  <li><a href="#s7-18">7.18 Taking Parts Out</a></li>
 </ul>
 
 <p>This chapter goes through the CSS for the WhatsApp chats in the last chapter. WhatsApp is a much bigger module than iMessage - it has headers, galleries, link cards and wallpapers - but it's built the same way, so if you've read the iMessage CSS chapter, a lot of this will look familiar. Where something works exactly like it does in iMessage, I'll point you back there rather than explain it twice.</p>
@@ -152,34 +151,7 @@
 
 <p>The time sits on its own line at the bottom right of the bubble, and <code>wa-read</code> turns the ticks blue. The quote box has a see-through grey background, <code>rgba(0, 0, 0, 0.06)</code> - black at 6% - so it shows up a shade darker on a white bubble and on a green one, without needing a colour for each.</p>
 
-<h3 id="s7-7">7.7 Typing Dots</h3>
-
-<pre><code>#workskin .wa .typing-indicator {
-  display: table;
-  margin: 0.3em 0;
-  padding: 0.55em 0.75em;
-  border-radius: 8px;
-  background: #ffffff;
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.13);
-}
-
-#workskin .wa .typing-indicator span {
-  display: inline-block;
-  width: 0.5em;
-  height: 0.5em;
-  margin-right: 0.25em;
-  border-radius: 50%;
-  background: #8696a0;
-  opacity: 0.5;
-}
-
-#workskin .wa .typing-indicator span:nth-child(2) { opacity: 0.75; }
-
-#workskin .wa .typing-indicator span:nth-child(3) { opacity: 1; margin-right: 0; }</code></pre>
-
-<p>The bubble is a small white message bubble, and each empty span becomes a round grey dot. Each dot is a little darker than the one before, so they look like they're mid-bounce. The dark theme only needs to change the bubble colour, to <code>#202c33</code>.</p>
-
-<h3 id="s7-8">7.8 Date Pills and System Notices</h3>
+<h3 id="s7-7">7.7 Date Pills and System Notices</h3>
 
 <pre><code>#workskin .wa .mob-sys {
   display: table;
@@ -193,7 +165,7 @@
 
 <p>The core's <code>mob-sys</code> is a full-width centred line. WhatsApp shrinks it to fit its words with <code>display: table</code>, centres it with <code>auto</code> on both sides, and gives it a white background, which turns it into a pill.</p>
 
-<h3 id="s7-9">7.9 The Group Header</h3>
+<h3 id="s7-8">7.8 The Group Header</h3>
 
 <p>The header with the back arrow, picture and icons is a table, because tables are one of the few layouts AO3 never rearranges. (It's the approach from the WhatsApp group chat skin in the credits.)</p>
 
@@ -234,7 +206,7 @@
 
 <p>These three lines are how a long name gets cut off with "..." like on a phone: <code>nowrap</code> keeps it on one line, <code>overflow: hidden</code> hides what doesn't fit, and <code>text-overflow: ellipsis</code> adds the dots. The member list (<code>wa-sub</code>) does the same. The back arrow, picture and icons cells have set widths in pixels, and the title takes whatever room is left.</p>
 
-<h3 id="s7-10">7.10 Profile Pictures and the Ten Colours</h3>
+<h3 id="s7-9">7.9 Profile Pictures and the Ten Colours</h3>
 
 <pre><code>#workskin .wa .wa-pfp {
   display: block;
@@ -256,7 +228,7 @@
 
 <p>Add <code>colour1</code> to <code>colour10</code> to a circle for its colour, and the same number to a name (<code>who</code>) or a quoted reply (<code>wa-quote</code>) to colour the name and the line down the side. The ten colours are in the core, shared with every app - see The Ten Colours in the core CSS chapter for how to change them.</p>
 
-<h3 id="s7-11">7.11 Group Messages With Pictures</h3>
+<h3 id="s7-10">7.10 Group Messages With Pictures</h3>
 
 <pre><code>#workskin .wa .wa-row { position: relative; padding-left: 38px; margin: 0.2em 0; }
 
@@ -277,7 +249,7 @@
 
 <p><code>float: right</code> sends the phone number to the far right of the name line, and the name stays on the left.</p>
 
-<h3 id="s7-12">7.12 Reactions and Large Emoji</h3>
+<h3 id="s7-11">7.11 Reactions and Large Emoji</h3>
 
 <pre><code>#workskin .wa .wa-reacts {
   display: table;
@@ -299,7 +271,7 @@
 
 <p>The reactions are a separate paragraph after the bubble, but the <em>negative</em> top margin (<code>-0.55em</code>) pulls them up so they overlap its bottom edge. <code>position: relative</code> makes sure they sit on top of the bubble instead of behind it. <code>out</code> moves them to the right, and <code>pad</code> moves them past a profile picture.</p>
 
-<h3 id="s7-13">7.13 The Message Bar</h3>
+<h3 id="s7-12">7.12 The Message Bar</h3>
 
 <pre><code>#workskin .wa .wa-input { position: relative; padding: 0.5em 3.4em 0.5em 0.6em; }
 
@@ -349,7 +321,7 @@
 
 <pre><code>#workskin .wa .wa-field .wa-ph.typed { white-space: normal; color: #111b21; }</code></pre>
 
-<h3 id="s7-14">7.14 Link Cards</h3>
+<h3 id="s7-13">7.13 Link Cards</h3>
 
 <pre><code>#workskin .wa .msg.share,
 #workskin .wa .msg.gallery {
@@ -381,7 +353,7 @@
   <li><code>\1F517</code> is the code for the 🔗 emoji, added before the address with <code>::before</code>, so you don't have to type it.</li>
 </ul>
 
-<h3 id="s7-15">7.15 Photo Galleries</h3>
+<h3 id="s7-14">7.14 Photo Galleries</h3>
 
 <p>Galleries are the trickiest part of the module, because every photo has to be a perfect square, whatever shape the picture is.</p>
 
@@ -462,7 +434,7 @@
 
 </details>
 
-<h3 id="s7-16">7.16 Captions and Links</h3>
+<h3 id="s7-15">7.15 Captions and Links</h3>
 
 <pre><code>#workskin .wa .wa-caption {
   display: block;
@@ -478,7 +450,7 @@
 
 <p>A caption only needs a little padding, to line its text up with the edge of the photo above. Links in the text, <code>wa-ln</code> and <code>fake-link</code> are all WhatsApp's link blue.</p>
 
-<h3 id="s7-17">7.17 Dark and Auto Themes</h3>
+<h3 id="s7-16">7.16 Dark and Auto Themes</h3>
 
 <p>The dark theme swaps the beige for WhatsApp's near-black, the bubbles for dark grey and dark green, and every bit of grey text for a lighter grey. It also has the lighter set of name colours, and the tails again in the new bubble colours. As in iMessage, the auto theme is the same rules again inside <code>@media (prefers-color-scheme: dark)</code>, so change a dark colour in both places.</p>
 
@@ -488,13 +460,11 @@
 
 #workskin .wa.theme-dark .in { background: #202c33; color: #e9edef; }
 
-#workskin .wa.theme-dark .typing-indicator { background: #202c33; }
-
 #workskin .wa.theme-dark .in.tail::before { border-color: transparent #202c33 transparent transparent; }
 
 #workskin .wa.theme-dark .out.tail::before { border-color: transparent transparent transparent #005c4b; }</code></pre>
 
-<h3 id="s7-18">7.18 Wallpapers</h3>
+<h3 id="s7-17">7.17 Wallpapers</h3>
 
 <pre><code>#workskin .wa.bg-sage { background: #d5e6d0; }
 
@@ -527,7 +497,7 @@
 
 </details>
 
-<h3 id="s7-19">7.19 Taking Parts Out</h3>
+<h3 id="s7-18">7.18 Taking Parts Out</h3>
 
 <p>WhatsApp is a long module, so it's worth trimming if you only use a few parts. These come out cleanly - search for the class names and delete every rule with them in, including in the dark and auto blocks:</p>
 

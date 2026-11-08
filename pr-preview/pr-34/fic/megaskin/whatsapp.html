@@ -6,7 +6,7 @@
   <title>Megaskin, Chapter 6: WhatsApp | jockles.com</title>
   <link rel="stylesheet" href="../../style.css">
   <script src="../../theme.js"></script>
-  <link rel="stylesheet" href="megaskin.css?v=ba5f7fcb" id="creator-style">
+  <link rel="stylesheet" href="megaskin.css?v=4d58a8f0" id="creator-style">
 </head>
 <body>
 <header>
@@ -51,15 +51,14 @@
   <li><a href="#s6-13">6.13 Photos and Captions</a></li>
   <li><a href="#s6-14">6.14 Photo Galleries</a></li>
   <li><a href="#s6-15">6.15 Typing Line</a></li>
-  <li><a href="#typing-dots">6.16 Typing Dots</a></li>
-  <li><a href="#s6-17">6.17 The Message Bar</a></li>
-  <li><a href="#s6-18">6.18 Group Chats</a></li>
-  <li><a href="#s6-19">6.19 Phone Numbers and Nicknames</a></li>
-  <li><a href="#s6-20">6.20 Profile Pictures in Groups</a></li>
-  <li><a href="#s6-21">6.21 Quoting a Message in a Group</a></li>
-  <li><a href="#s6-22">6.22 System Notices</a></li>
-  <li><a href="#s6-23">6.23 Group Header with Picture and Icons</a></li>
-  <li><a href="#s6-24">6.24 Choosing a Background</a></li>
+  <li><a href="#s6-16">6.16 The Message Bar</a></li>
+  <li><a href="#s6-17">6.17 Group Chats</a></li>
+  <li><a href="#s6-18">6.18 Phone Numbers and Nicknames</a></li>
+  <li><a href="#s6-19">6.19 Profile Pictures in Groups</a></li>
+  <li><a href="#s6-20">6.20 Quoting a Message in a Group</a></li>
+  <li><a href="#s6-21">6.21 System Notices</a></li>
+  <li><a href="#s6-22">6.22 Group Header with Picture and Icons</a></li>
+  <li><a href="#s6-23">6.23 Choosing a Background</a></li>
 </ul>
 
 <p>Before we begin, here's the two kinds of chat you can build: a chat between two people, or a group chat. The full HTML is underneath each, which you can copy and modify yourself. The rest of the chapter takes the HTML apart so that you can modify all the individual parts to say exactly what you want.</p>
@@ -893,17 +892,7 @@
 
 <pre><code>&lt;p class="typing"&gt;Lily is typing...&lt;/p&gt;</code></pre>
 
-<h3 id="typing-dots"><span id="s6-16"></span>6.16 Typing Dots</h3>
-
-<p>For the three dots in a bubble instead, add a <code>typing-indicator</code> paragraph with three empty spans at the very end of the chat, the same as in iMessage:</p>
-
-<div class="mob wa theme-auto"><div class="mob-body"><p class="typing-indicator"><span></span><span></span><span></span></p></div></div>
-
-<pre><code>&lt;p class="typing-indicator"&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/p&gt;</code></pre>
-
-<p>Readers with the workskin off won't see the dots at all, so if it matters that someone's typing, use the typing line, or add <code>&lt;span class="hide"&gt;Lily is typing...&lt;/span&gt;</code> at the end of the paragraph, after the three dots.</p>
-
-<h3 id="s6-17">6.17 The Message Bar</h3>
+<h3 id="s6-16">6.16 The Message Bar</h3>
 
 <p>To finish off a screenshot-style chat, add the message bar at the bottom of the container, <em>after</em> the <code>mob-body</code>. It has the emoji button, the "Message" placeholder, the paperclip and camera, and the round green microphone:</p>
 
@@ -947,7 +936,7 @@
   &lt;span class="wa-mic"&gt;&amp;#10148;&lt;/span&gt;
 &lt;/p&gt;</code></pre>
 
-<h3 id="s6-18">6.18 Group Chats</h3>
+<h3 id="s6-17">6.17 Group Chats</h3>
 
 <p>In a group, add a <code>who</code> paragraph as the first line of a bubble to show who sent it. WhatsApp gives everyone their own name colour, so add one of <code>colour1</code> to <code>colour10</code> as well. Use the same number as the person's picture circle, so their name and picture match:</p>
 
@@ -969,7 +958,7 @@
 
 <p>The <code>who</code> name shows at the top of the bubble whether the workskin is on or off, so it doesn't need a hidden label - just the hidden colon after it (<code>&lt;span class=&quot;hide&quot;&gt;:&lt;/span&gt;</code>), so it reads "Hayden:" followed by the message. Your own messages have no <code>who</code> line, so they keep the full hidden label.</p>
 
-<h3 id="s6-19">6.19 Phone Numbers and Nicknames</h3>
+<h3 id="s6-18">6.18 Phone Numbers and Nicknames</h3>
 
 <p>In a group, anyone who isn't saved in your contacts shows up as a phone number, or as the nickname they've given themselves, which starts with a <code>~</code>. WhatsApp puts the number at the right-hand end of the name line. To do that, put a <code>wa-num</code> span inside the <code>who</code> paragraph:</p>
 
@@ -987,7 +976,7 @@
 
 <p>For someone who is saved in your contacts, just write their name and leave the number out. If you want a name in the normal text colour (for yourself, for example), leave the colour class off.</p>
 
-<h3 id="s6-20">6.20 Profile Pictures in Groups</h3>
+<h3 id="s6-19">6.19 Profile Pictures in Groups</h3>
 
 <p>In a group, the first message in a run from one person has their round profile picture next to it. To add one, wrap the message in a <code>wa-row</code> and put a <code>wa-pfp</code> before the bubble. With no picture, <code>wa-pfp</code> shows the person's initials on a grey circle. To give the circle a colour, add one of <code>colour1</code> to <code>colour10</code>, like <code>wa-pfp colour4</code>:</p>
 
@@ -1047,7 +1036,7 @@
 
 <p>If the same person turns up again and again, or in other apps too, a profile saves you adding the picture every time: <code>&lt;p class=&quot;wa-pfp&quot;&gt;&lt;span class=&quot;pfp pfp-shane&quot;&gt;&lt;/span&gt;&lt;/p&gt;</code> (see Profile Pictures, in the Core, Themes, and Extras chapter). The colours for <code>colour1</code> to <code>colour10</code> are set in the WhatsApp CSS, so you can change them there.</p>
 
-<h3 id="s6-21">6.21 Quoting a Message in a Group</h3>
+<h3 id="s6-20">6.20 Quoting a Message in a Group</h3>
 
 <p>Quotes in a group work the same as in a one-to-one chat, except the coloured bar on the left takes the colour of the person being quoted. Add the same colour class to the <code>wa-quote</code>:</p>
 
@@ -1093,7 +1082,7 @@
   &lt;p class="wa-time"&gt;09:16 &lt;span class="wa-read"&gt;✓✓&lt;/span&gt;&lt;/p&gt;
 &lt;/div&gt;</code></pre>
 
-<h3 id="s6-22">6.22 System Notices</h3>
+<h3 id="s6-21">6.21 System Notices</h3>
 
 <p>Notices like "Rose changed this group's icon" or "You were added" use the same <code>mob-sys</code> line as the date pill:</p>
 
@@ -1101,7 +1090,7 @@
 
 <pre><code>&lt;p class="mob-sys"&gt;Rose changed this group's icon&lt;/p&gt;</code></pre>
 
-<h3 id="s6-23">6.23 Group Header with Picture and Icons</h3>
+<h3 id="s6-22">6.22 Group Header with Picture and Icons</h3>
 
 <p>For the full group header - back arrow, picture, group name, list of members, and the call and menu icons - use a <code>&lt;table&gt;</code> with the class <code>wa-bar</code> instead of the usual header paragraph. A table is the most reliable way to keep all of that in one neat row on AO3:</p>
 
@@ -1137,7 +1126,7 @@
 
 <p>The picture is the same <code>wa-pfp</code> circle as in the group messages, so <code>colour1</code> to <code>colour10</code> work here too. You can use this header for a one-to-one chat as well - put "online" or "last seen..." where the member list goes, or "typing..." to show the other person is typing.</p>
 
-<h3 id="s6-24">6.24 Choosing a Background</h3>
+<h3 id="s6-23">6.23 Choosing a Background</h3>
 
 <p>Every WhatsApp chat can have its own background, picked with a class on the container next to the theme class. Here's the same chat on four different backgrounds. The first one has no background class, so it has the normal background:</p>
 

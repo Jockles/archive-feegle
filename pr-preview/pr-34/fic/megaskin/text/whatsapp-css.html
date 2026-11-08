@@ -97,33 +97,6 @@
 
 <p>The time sits on its own line at the bottom right of the bubble, and <code>wa-read</code> turns the ticks blue. The quote box has a see-through grey background, <code>rgba(0, 0, 0, 0.06)</code> - black at 6% - so it shows up a shade darker on a white bubble and on a green one, without needing a colour for each.</p>
 
-<h3>Typing Dots</h3>
-
-<pre><code>#workskin .wa .typing-indicator {
-  display: table;
-  margin: 0.3em 0;
-  padding: 0.55em 0.75em;
-  border-radius: 8px;
-  background: #ffffff;
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.13);
-}
-
-#workskin .wa .typing-indicator span {
-  display: inline-block;
-  width: 0.5em;
-  height: 0.5em;
-  margin-right: 0.25em;
-  border-radius: 50%;
-  background: #8696a0;
-  opacity: 0.5;
-}
-
-#workskin .wa .typing-indicator span:nth-child(2) { opacity: 0.75; }
-
-#workskin .wa .typing-indicator span:nth-child(3) { opacity: 1; margin-right: 0; }</code></pre>
-
-<p>The bubble is a small white message bubble, and each empty span becomes a round grey dot. Each dot is a little darker than the one before, so they look like they're mid-bounce. The dark theme only needs to change the bubble colour, to <code>#202c33</code>.</p>
-
 <h3>Date Pills and System Notices</h3>
 
 <pre><code>#workskin .wa .mob-sys {
@@ -432,8 +405,6 @@
 #workskin .wa.theme-dark .out { background: #005c4b; color: #e9edef; }
 
 #workskin .wa.theme-dark .in { background: #202c33; color: #e9edef; }
-
-#workskin .wa.theme-dark .typing-indicator { background: #202c33; }
 
 #workskin .wa.theme-dark .in.tail::before { border-color: transparent #202c33 transparent transparent; }
 
