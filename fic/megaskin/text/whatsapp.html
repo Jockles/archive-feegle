@@ -1124,3 +1124,25 @@
 <p><strong>Note:</strong> a background class overrides the light and dark theme background, so pick a light or dark one to suit the theme you're using. The bubbles, ticks and text keep their theme colours on top of it.</p>
 
 <p>If a chat is on one particular character's phone, you can use their profile instead: add <code>pov-</code> and their name to the container, like <code>pov-shane</code>, and the chat gets the wallpaper set in their profile, so all of their chats look the same (see Their Phone, in the Core, Themes, and Extras chapter).</p>
+
+<p>A profile wallpaper can be a picture, too. Here's the same chat from Yuna's side, on her phone, with her own photo as the background:</p>
+
+<div class="mob wa theme-auto pov-yuna">
+  <p class="mob-head">Shane<span class="hide"> - </span><span>online</span></p>
+  <div class="mob-body">
+    <div class="msg out"><p><span class="hide"><em>Yuna:</em> </span>Are you coming Sunday?</p><p class="wa-time">10:02 <span class="wa-read">✓✓</span></p></div>
+    <div class="msg in"><p><span class="hide"><em>Shane:</em> </span>Yes!</p><p class="wa-time">10:03</p></div>
+  </div>
+</div>
+
+<pre><code>&lt;div class="mob wa theme-auto pov-yuna"&gt;
+  &lt;p class="mob-head"&gt;Shane&lt;span class="hide"&gt; - &lt;/span&gt;&lt;span&gt;online&lt;/span&gt;&lt;/p&gt;
+  &lt;div class="mob-body"&gt;
+    &lt;div class="msg out"&gt;&lt;p&gt;&lt;span class="hide"&gt;&lt;em&gt;Yuna:&lt;/em&gt; &lt;/span&gt;Are you coming Sunday?&lt;/p&gt;&lt;p class="wa-time"&gt;10:02 &lt;span class="wa-read"&gt;✓✓&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+    &lt;div class="msg in"&gt;&lt;p&gt;&lt;span class="hide"&gt;&lt;em&gt;Shane:&lt;/em&gt; &lt;/span&gt;Yes!&lt;/p&gt;&lt;p class="wa-time"&gt;10:03&lt;/p&gt;&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+<p>And the line in Yuna's profile that sets it. The colour shows if the picture doesn't load, <code>background-size: cover</code> fills the whole chat without stretching the picture, and <code>background-position: center</code> keeps the middle of it in view:</p>
+
+<pre><code>#workskin .mob.wa.pov-yuna { background-color: #4a4a4a; background-image: url(https://64.media.tumblr.com/a1c0162c5542c5890e5fd9c13341513e/3b53694384f48caf-98/s1280x1920/8b2fcaaf7deb2b05c418f46c62ee729acb8ff8e4.jpg); background-size: cover; background-position: center; }</code></pre>
