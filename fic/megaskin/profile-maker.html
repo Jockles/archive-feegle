@@ -88,9 +88,9 @@
 
       <fieldset>
         <legend>Saved as</legend>
-        <p class="hint">What other characters have them saved as on their phones. The phone owner is the other character's profile class, without pfp-.</p>
+        <p class="hint">What other characters have them saved as on their phones, and a different picture on that phone if you want one. The phone owner is the other character's profile class, without pfp-.</p>
         <table>
-          <thead><tr><th>Phone owner</th><th>Saved as</th><th></th></tr></thead>
+          <thead><tr><th>Phone owner</th><th>Saved as</th><th>Picture on their phone (optional)</th><th></th></tr></thead>
           <tbody id="saved"></tbody>
         </table>
         <button type="button" id="addsaved">+ Add a phone</button>
@@ -152,6 +152,7 @@
   function addSaved(owner, as) {
     var tr = document.createElement("tr");
     tr.innerHTML = '<td><input type="text" class="sv-owner"></td><td><input type="text" class="sv-as"></td>' +
+      '<td><input type="url" class="sv-pic" placeholder="https://..."></td>' +
       '<td><button type="button" title="Remove">&times;</button></td>';
     tr.querySelector(".sv-owner").value = owner || "";
     tr.querySelector(".sv-as").value = as || "";
@@ -206,7 +207,7 @@
       handle: $("handle").value, email: $("email").value, apps: apps,
       dccol: $("dccolon").checked ? $("dccol").value : "", tbsq: $("tbsq").checked,
       saved: Array.prototype.map.call($("saved").children, function (tr) {
-        return { owner: tr.querySelector(".sv-owner").value, as: tr.querySelector(".sv-as").value };
+        return { owner: tr.querySelector(".sv-owner").value, as: tr.querySelector(".sv-as").value, pic: tr.querySelector(".sv-pic").value };
       }),
       accounts: Array.prototype.map.call($("accts").children, function (d) {
         return { acc: d.querySelector(".ac-name").value, app: d.querySelector(".ac-app").value,
