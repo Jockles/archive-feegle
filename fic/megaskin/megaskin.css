@@ -437,12 +437,13 @@
 #workskin .tb .handle.pfp-luca.acc-art::after { content: "gremlin-sketches"; }
 #workskin .tb .pfp.pfp-luca.acc-rpf { background-image: url(https://images.squidge.org/images/2026/11/16/Hollanov1.png); }
 #workskin .tb .handle.pfp-luca.acc-rpf::after { content: "rink-rivals-rpf"; }
-/* 14. Tumblr checkmarks after the blog's name. Pick the picture with 2, 4 or 6 checkmarks and the
-   padding that goes with it: tb-checks-2.png 2.15em, tb-checks-4.png 4.2em, tb-checks-6.png 6.2em.
+/* 14. Tumblr checkmarks after the blog's name. Pick the picture with 2, 4, 6, 8, 10 or 12 checkmarks and the
+   padding that goes with it: tb-checks-2.png 2.15em, tb-checks-4.png 3.95em, tb-checks-6.png 5.75em,
+   tb-checks-8.png 7.55em, tb-checks-10.png 9.35em, tb-checks-12.png 11.15em.
    An acc- account has its own line, or it gets the main blog's checkmarks. */
-#workskin .tb .handle.pfp-luca::after { background-image: url(https://images.squidge.org/images/2026/11/15/tb-checks-2.png); padding-right: 2.15em; }
-#workskin .tb .handle.pfp-luca.acc-art::after { background-image: url(https://images.squidge.org/images/2026/11/15/tb-checks-6.png); padding-right: 6.2em; }
-#workskin .tb .handle.pfp-luca.acc-rpf::after { background-image: url(https://images.squidge.org/images/2026/11/15/tb-checks-4.png); padding-right: 4.2em; }
+#workskin .tb .handle.pfp-luca::after { background-image: url(https://images.squidge.org/images/2026/11/16/tb-checks-2.png); padding-right: 2.15em; }
+#workskin .tb .handle.pfp-luca.acc-art::after { background-image: url(https://images.squidge.org/images/2026/11/16/tb-checks-6.png); padding-right: 5.75em; }
+#workskin .tb .handle.pfp-luca.acc-rpf::after { background-image: url(https://images.squidge.org/images/2026/11/16/tb-checks-4.png); padding-right: 3.95em; }
 /* 15. A rounded square picture on Tumblr instead of a circle, everywhere this blog shows up */
 #workskin .tb .pfp.pfp-luca.acc-art { border-radius: 15%; }
 
@@ -3599,8 +3600,9 @@
   font-weight: bold;
 }
 
-/* checkmarks beside a name, in twos, fours or sixes: <span class="tb-check">&#10003;</span><span class="tb-check">&#10003;</span>
-   They always run in the same order, and the colours are added for you: blue, green, then lime, yellow, then amber, orange.
+/* checkmarks beside a name, in pairs, up to twelve: <span class="tb-check">&#10003;</span><span class="tb-check">&#10003;</span>
+   They always run in the same order, and the colours are added for you: blue, green, lime, yellow, amber, orange,
+   then dark orange, red, pink, magenta, purple and violet.
    On Tumblr these are bought for fun, so they don't mean a blog is verified. */
 #workskin .tb .tb-check {
   display: inline-flex;
@@ -3611,7 +3613,7 @@
   line-height: 1;
   margin-left: 0.25em;
   border-radius: 50%;
-  background: #42aaf5;
+  background: #52b5f9;
   color: #111111;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 0.75em;
@@ -3621,21 +3623,33 @@
 
 #workskin .tb .tb-check + .tb-check { margin-left: 0.12em; }
 
-#workskin .tb .tb-check + .tb-check { background: #4ccd4a; }
+#workskin .tb .tb-check + .tb-check { background: #5ecc4f; }
 
-#workskin .tb .tb-check + .tb-check + .tb-check { background: #a6d03f; }
+#workskin .tb .tb-check + .tb-check + .tb-check { background: #b4d456; }
 
-#workskin .tb .tb-check + .tb-check + .tb-check + .tb-check { background: #e3cf3c; }
+#workskin .tb .tb-check + .tb-check + .tb-check + .tb-check { background: #e5d85a; }
 
-#workskin .tb .tb-check + .tb-check + .tb-check + .tb-check + .tb-check { background: #efb238; }
+#workskin .tb .tb-check + .tb-check + .tb-check + .tb-check + .tb-check { background: #e9b545; }
 
-#workskin .tb .tb-check + .tb-check + .tb-check + .tb-check + .tb-check + .tb-check { background: #f08b37; }
+#workskin .tb .tb-check + .tb-check + .tb-check + .tb-check + .tb-check + .tb-check { background: #f09035; }
+
+#workskin .tb .tb-check + .tb-check + .tb-check + .tb-check + .tb-check + .tb-check + .tb-check { background: #ed7335; }
+
+#workskin .tb .tb-check + .tb-check + .tb-check + .tb-check + .tb-check + .tb-check + .tb-check + .tb-check { background: #eb583e; }
+
+#workskin .tb .tb-check + .tb-check + .tb-check + .tb-check + .tb-check + .tb-check + .tb-check + .tb-check + .tb-check { background: #ec6284; }
+
+#workskin .tb .tb-check + .tb-check + .tb-check + .tb-check + .tb-check + .tb-check + .tb-check + .tb-check + .tb-check + .tb-check { background: #ed6cc9; }
+
+#workskin .tb .tb-check + .tb-check + .tb-check + .tb-check + .tb-check + .tb-check + .tb-check + .tb-check + .tb-check + .tb-check + .tb-check { background: #b464de; }
+
+#workskin .tb .tb-check + .tb-check + .tb-check + .tb-check + .tb-check + .tb-check + .tb-check + .tb-check + .tb-check + .tb-check + .tb-check + .tb-check { background: #775df6; }
 
 /* checkmarks from a profile: the profile adds the picture and the padding to make room for it */
 /* checkmarks as one picture, for a blog without a profile: <span class="tb-checks ic ic-checks-2">&#10003;&#10003;</span>
-   straight after the name, with ic-checks-2, ic-checks-4 or ic-checks-6. The picture is in the Icons section;
+   straight after the name, with ic-checks-2, -4, -6, -8, -10 or -12. The picture is in the Icons section;
    without it, the typed checkmarks show in blue. */
-#workskin .tb .tb-checks { margin-left: 0.25em; color: #42aaf5; font-size: 0.85em; }
+#workskin .tb .tb-checks { margin-left: 0.25em; color: #52b5f9; font-size: 0.85em; }
 
 #workskin .tb .handle::after { background-repeat: no-repeat; background-position: right center; background-size: auto 0.9em; }
 
@@ -4131,9 +4145,12 @@
   background-position: right center;
   background-size: auto 100%;
 }
-#workskin .tb .ic.ic-checks-2 { width: 2.15em; background-image: url(https://images.squidge.org/images/2026/11/15/tb-checks-2.png); }
-#workskin .tb .ic.ic-checks-4 { width: 4.2em; background-image: url(https://images.squidge.org/images/2026/11/15/tb-checks-4.png); }
-#workskin .tb .ic.ic-checks-6 { width: 6.2em; background-image: url(https://images.squidge.org/images/2026/11/15/tb-checks-6.png); }
+#workskin .tb .ic.ic-checks-2 { width: 2.15em; background-image: url(https://images.squidge.org/images/2026/11/16/tb-checks-2.png); }
+#workskin .tb .ic.ic-checks-4 { width: 3.95em; background-image: url(https://images.squidge.org/images/2026/11/16/tb-checks-4.png); }
+#workskin .tb .ic.ic-checks-6 { width: 5.75em; background-image: url(https://images.squidge.org/images/2026/11/16/tb-checks-6.png); }
+#workskin .tb .ic.ic-checks-8 { width: 7.55em; background-image: url(https://images.squidge.org/images/2026/11/16/tb-checks-8.png); }
+#workskin .tb .ic.ic-checks-10 { width: 9.35em; background-image: url(https://images.squidge.org/images/2026/11/16/tb-checks-10.png); }
+#workskin .tb .ic.ic-checks-12 { width: 11.15em; background-image: url(https://images.squidge.org/images/2026/11/16/tb-checks-12.png); }
 
 /* the green reblog badge on a picture: the white reblog picture instead of the typed arrows */
 #workskin .tb .tb-pfp.rb::after {
