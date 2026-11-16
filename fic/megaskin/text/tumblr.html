@@ -883,6 +883,81 @@
   &lt;p&gt;&lt;b&gt;Shane:&lt;/b&gt; that's never good&lt;/p&gt;
 &lt;/div&gt;</code></pre>
 
+<h3>Polls</h3>
+
+<p>A poll goes in <code>tb-body</code>: the question as an ordinary paragraph, then each option as a <code>tb-opt</code> paragraph, then a <code>tb-pollinfo</code> line for the votes and the time left. Before anyone's voted, the options are just grey boxes:</p>
+
+<div class="mob tb theme-auto"><div class="tb-body">
+  <p>how do you watch the games</p>
+  <p class="tb-opt">On the couch, screaming</p>
+  <p class="tb-opt">At the rink, screaming</p>
+  <p class="tb-opt">Through my fingers</p>
+  <p class="tb-opt">See Results</p>
+  <p class="tb-pollinfo">Remaining time: 6 days 23 hours</p>
+</div></div>
+
+<pre><code>&lt;p&gt;how do you watch the games&lt;/p&gt;
+&lt;p class="tb-opt"&gt;On the couch, screaming&lt;/p&gt;
+&lt;p class="tb-opt"&gt;At the rink, screaming&lt;/p&gt;
+&lt;p class="tb-opt"&gt;Through my fingers&lt;/p&gt;
+&lt;p class="tb-opt"&gt;See Results&lt;/p&gt;
+&lt;p class="tb-pollinfo"&gt;Remaining time: 6 days 23 hours&lt;/p&gt;</code></pre>
+
+<p>To show the results, add <code>res</code> to each option, a bar size from <code>p0</code> to <code>p100</code>, and the percentage in a <code>tb-pct</code> span at the end, with a <code>hide</code> span before it for readers with the workskin switched off:</p>
+
+<div class="mob tb theme-auto"><p class="tb-header">
+  <span class="tb-pfp colour2">RR</span>
+  <span class="tb-menu">&#8226;&#8226;&#8226;</span>
+  <span class="tb-name"><b>rinkrat</b>
+    <span class="tb-subline">1h ago</span></span>
+</p>
+<div class="tb-body">
+  <p>how do you watch the games</p>
+  <p class="tb-opt res p50">On the couch, screaming<span class="hide"> - </span><span class="tb-pct">52%</span></p>
+  <p class="tb-opt res p30">At the rink, screaming<span class="hide"> - </span><span class="tb-pct">31%</span></p>
+  <p class="tb-opt res p10">Through my fingers<span class="hide"> - </span><span class="tb-pct">12%</span></p>
+  <p class="tb-opt res p5">See Results<span class="hide"> - </span><span class="tb-pct">5%</span></p>
+  <p class="tb-pollinfo">4,812 votes &middot; Remaining time: 2 days 4 hours</p>
+</div>
+<p class="tb-tags">#polls &nbsp;#the neighbours have complained</p>
+<p class="tb-footer">
+  <span class="tb-stat"><span class="tb-icon ic ic-comment">&#9993;</span> 41<span class="hide"> replies</span></span>
+  <span class="tb-stat"><span class="tb-icon ic ic-reblog">&#8644;</span> 612<span class="hide"> reblogs</span></span>
+  <span class="tb-stat"><span class="tb-icon ic ic-heart">&#9825;</span> 1,077<span class="hide"> likes</span></span>
+  <span class="tb-icon ic ic-share-up">&#8679;</span>
+</p>
+</div>
+
+<pre><code>&lt;div class="mob tb theme-auto"&gt;&lt;p class="tb-header"&gt;
+  &lt;span class="tb-pfp colour2"&gt;RR&lt;/span&gt;
+  &lt;span class="tb-menu"&gt;&amp;#8226;&amp;#8226;&amp;#8226;&lt;/span&gt;
+  &lt;span class="tb-name"&gt;&lt;b&gt;rinkrat&lt;/b&gt;
+    &lt;span class="tb-subline"&gt;1h ago&lt;/span&gt;&lt;/span&gt;
+&lt;/p&gt;
+&lt;div class="tb-body"&gt;
+  &lt;p&gt;how do you watch the games&lt;/p&gt;
+  &lt;p class="tb-opt res p50"&gt;On the couch, screaming&lt;span class="hide"&gt; - &lt;/span&gt;&lt;span class="tb-pct"&gt;52%&lt;/span&gt;&lt;/p&gt;
+  &lt;p class="tb-opt res p30"&gt;At the rink, screaming&lt;span class="hide"&gt; - &lt;/span&gt;&lt;span class="tb-pct"&gt;31%&lt;/span&gt;&lt;/p&gt;
+  &lt;p class="tb-opt res p10"&gt;Through my fingers&lt;span class="hide"&gt; - &lt;/span&gt;&lt;span class="tb-pct"&gt;12%&lt;/span&gt;&lt;/p&gt;
+  &lt;p class="tb-opt res p5"&gt;See Results&lt;span class="hide"&gt; - &lt;/span&gt;&lt;span class="tb-pct"&gt;5%&lt;/span&gt;&lt;/p&gt;
+  &lt;p class="tb-pollinfo"&gt;4,812 votes &amp;middot; Remaining time: 2 days 4 hours&lt;/p&gt;
+&lt;/div&gt;
+&lt;p class="tb-tags"&gt;#polls &amp;nbsp;#the neighbours have complained&lt;/p&gt;
+&lt;p class="tb-footer"&gt;
+  &lt;span class="tb-stat"&gt;&lt;span class="tb-icon ic ic-comment"&gt;&amp;#9993;&lt;/span&gt; 41&lt;span class="hide"&gt; replies&lt;/span&gt;&lt;/span&gt;
+  &lt;span class="tb-stat"&gt;&lt;span class="tb-icon ic ic-reblog"&gt;&amp;#8644;&lt;/span&gt; 612&lt;span class="hide"&gt; reblogs&lt;/span&gt;&lt;/span&gt;
+  &lt;span class="tb-stat"&gt;&lt;span class="tb-icon ic ic-heart"&gt;&amp;#9825;&lt;/span&gt; 1,077&lt;span class="hide"&gt; likes&lt;/span&gt;&lt;/span&gt;
+  &lt;span class="tb-icon ic ic-share-up"&gt;&amp;#8679;&lt;/span&gt;
+&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+
+<details>
+<summary>More about polls</summary>
+
+<p>The bar sizes go up in tens, with <code>p5</code>, <code>p25</code>, <code>p33</code>, <code>p67</code> and <code>p75</code> as well - pick the nearest one to your percentage. The bars don't have to add up, so nobody will check your maths. "See Results" is an option on Tumblr too, for people who just want to see the answers without voting.</p>
+
+</details>
+
 <h3>Pictures and Gifs</h3>
 
 <p>Pictures and gifs go in a <code>tb-photos</code> box inside <code>tb-body</code>. Each row is a <code>tb-row</code>, and each picture goes in a <code>tb-photo</code> span. Don't forget the alt text (see <a href="core.html#heading">Accessibility</a>).</p>
