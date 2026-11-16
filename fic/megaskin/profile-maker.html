@@ -134,7 +134,7 @@
     { key: "tw", label: "Twitter/X", sel: ["tw", "tw-reply"], namesel: ["tw", "tw-reply", "twdm"] },
     { key: "ig", label: "Instagram", sel: ["ig", "igdm"] },
     { key: "tb", label: "Tumblr", sel: ["tb"] },
-    { key: "gm", label: "Gmail", sel: ["gm"] },
+    { key: "gm", label: "Email", sel: ["gm"] },
     { key: "dc", label: "Discord", sel: ["dc"] }
   ];
   var $ = function (id) { return document.getElementById(id); };
@@ -147,7 +147,7 @@
     tr.innerHTML = "<td>" + a.label + "</td>" +
       '<td><input type="url" id="pic-' + a.key + '" placeholder="https://..."></td>' +
       '<td><input type="text" id="name-' + a.key + '"></td>' +
-      '<td><input type="text" id="handle-' + a.key + '"></td>';
+      (a.key === "gm" ? "<td></td>" : '<td><input type="text" id="handle-' + a.key + '"></td>');
     apps.appendChild(tr);
   });
 
@@ -166,7 +166,7 @@
     var d = document.createElement("div");
     d.className = "acct";
     d.innerHTML = '<label>Account name</label><div class="row"><span>acc-</span><input type="text" class="ac-name"></div>' +
-      '<label>App</label><select class="ac-app">' + APPS.map(function (a) { return '<option value="' + a.key + '">' + (a.key === "gm" ? "Email" : a.label) + '</option>'; }).join("") + '</select>' +
+      '<label>App</label><select class="ac-app">' + APPS.map(function (a) { return '<option value="' + a.key + '">' + a.label + '</option>'; }).join("") + '</select>' +
       '<label>Picture link</label><input type="url" class="ac-pic" placeholder="https://...">' +
       '<label>Name</label><input type="text" class="ac-dname">' +
       '<label>Handle (or email address, for Email)</label><input type="text" class="ac-handle">' +
@@ -230,7 +230,7 @@
     var h = $("handle").value.trim().replace(/^@/, "");
     if (h) L.push("#workskin .handle." + p + "::after { content: " + str(h) + "; }");
     APPS.forEach(function (a) {
-      var hh = $("handle-" + a.key).value.trim().replace(/^@/, "");
+      var hh = $("handle-" + a.key) ? $("handle-" + a.key).value.trim().replace(/^@/, "") : "";
       if (hh) L.push(list(a.namesel || a.sel, ".handle." + p + "::after") + " { content: " + str(hh) + "; }");
     });
     var e = $("email").value.trim();
