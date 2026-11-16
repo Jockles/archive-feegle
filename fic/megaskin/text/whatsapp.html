@@ -467,7 +467,7 @@
   <p>23:41</p>
 </blockquote>
 
-<p>Swap the name for whoever is talking. There's more on this in Accessibility, in the Core, Themes, and Extras chapter.</p>
+<p>Swap the name for whoever is talking. There's more on this in <a href="core.html#heading">Accessibility</a>.</p>
 
 </details>
 
@@ -693,7 +693,7 @@
   &lt;p class="wa-time"&gt;14:13&lt;/p&gt;
 &lt;/div&gt;</code></pre>
 
-<p>The <code>vid-desc</code> paragraph after the video is its description, for screen readers and for anyone reading with the workskin off - see Video Descriptions, under Accessibility, in the Core, Themes, and Extras chapter.</p>
+<p>The <code>vid-desc</code> paragraph after the video is its description, for screen readers and for anyone reading with the workskin off - see <a href="core.html#heading">Video Descriptions</a>.</p>
 
 <p>To write a message under the card in the same bubble, like Lily's here, add a <code>wa-caption</code> paragraph after the card, before the time. It works under any link card, with or without a video.</p>
 
@@ -809,7 +809,7 @@
   &lt;/div&gt;
 &lt;/div&gt;</code></pre>
 
-<p>Each photo is cropped to fit its space without getting squashed. In the four-photo layout, and for the two small photos in the three-photo layout, add <code>class=&quot;land&quot;</code> to the picture tag of any photo that's wider than it is tall (see Pictures in Boxes and Circles, in the Core, Themes, and Extras chapter). WhatsApp only has these layouts, so if you want more than four photos, send a second gallery.</p>
+<p>Each photo is cropped to fit its space without getting squashed. In the four-photo layout, and for the two small photos in the three-photo layout, add <code>class=&quot;land&quot;</code> to the picture tag of any photo that's wider than it is tall (see <a href="core.html#heading">Pictures in Boxes and Circles</a>). WhatsApp only has these layouts, so if you want more than four photos, send a second gallery.</p>
 
 <p>To describe a picture instead of showing it, put a span with <code>wa-desc</code> inside the <code>wa-photo</code>, with the description in square brackets. Galleries work in group messages too, with the <code>who</code> line at the top:</p>
 
@@ -827,7 +827,7 @@
 
 <h3>Typing Line</h3>
 
-<p>To show the other person is typing, add a <code>typing</code> line at the end of the messages (see Typing Line, in the Core, Themes, and Extras chapter):</p>
+<p>To show the other person is typing, add a <code>typing</code> line at the end of the messages (see <a href="core.html#heading">Typing Line</a>):</p>
 
 <div class="mob wa theme-auto"><div class="mob-body"><p class="typing">Lily is typing...</p></div></div>
 
@@ -895,7 +895,7 @@
 
 <p>Give each person the same colour class every time, so their name stays the same colour all the way through the chat.</p>
 
-<p>Or add the person's profile name to the <code>who</code> line instead of a colour class, like <code>&lt;p class=&quot;who pfp-shane&quot;&gt;</code>, and their name colour comes from their profile, the same in every chat (see Character Profiles, in the Core, Themes, and Extras chapter).</p>
+<p>Or add the person's profile name to the <code>who</code> line instead of a colour class, like <code>&lt;p class=&quot;who pfp-shane&quot;&gt;</code>, and their name colour comes from their profile, the same in every chat (see <a href="core.html#heading">Character Profiles</a>).</p>
 
 <p>The <code>who</code> name shows at the top of the bubble whether the workskin is on or off, so it doesn't need a hidden label - just the hidden colon after it (<code>&lt;span class=&quot;hide&quot;&gt;:&lt;/span&gt;</code>), so it reads "Hayden:" followed by the message. Your own messages have no <code>who</code> line, so they keep the full hidden label.</p>
 
@@ -975,7 +975,7 @@
   &lt;/div&gt;
 &lt;/div&gt;</code></pre>
 
-<p>If the same person turns up again and again, or in other apps too, a profile saves you adding the picture every time: <code>&lt;p class=&quot;wa-pfp&quot;&gt;&lt;span class=&quot;pfp pfp-shane&quot;&gt;&lt;/span&gt;&lt;/p&gt;</code> (see Character Appearances and Profiles, in the Core, Themes, and Extras chapter). The colours for <code>colour1</code> to <code>colour10</code> are set in the WhatsApp CSS, so you can change them there.</p>
+<p>If the same person turns up again and again, or in other apps too, a profile saves you adding the picture every time: <code>&lt;p class=&quot;wa-pfp&quot;&gt;&lt;span class=&quot;pfp pfp-shane&quot;&gt;&lt;/span&gt;&lt;/p&gt;</code> (see <a href="core.html#heading">Character Appearances and Profiles</a>). The colours for <code>colour1</code> to <code>colour10</code> are set in the WhatsApp CSS, so you can change them there.</p>
 
 <h3>Uploading a Profile Pic</h3>
 
@@ -1190,12 +1190,12 @@
 <ul>
   <li>Plain colours: <code>bg-beige</code>, <code>bg-white</code>, <code>bg-sage</code>, <code>bg-sky</code>, <code>bg-blush</code>, <code>bg-lilac</code>, <code>bg-slate</code>, <code>bg-navy</code>, <code>bg-forest</code>, <code>bg-plum</code>, <code>bg-black</code></li>
   <li>Gradients: <code>bg-sunset</code>, <code>bg-ocean</code>, <code>bg-night</code>, <code>bg-dusk</code></li>
-  <li>Your own picture: <code>bg-image1</code>. A picture has to be linked from the web, so it's set up in the CSS, and the WhatsApp CSS chapter explains how. Once it's set up, you use it like any of the others: <code>&lt;div class=&quot;mob wa theme-auto bg-image1&quot;&gt;</code></li>
+  <li>Your own picture: <code>bg-image1</code>. A picture has to be linked from the web, so it's set up in the CSS, and <a href="whatsapp-css.html#heading">Wallpapers</a> explains how. Once it's set up, you use it like any of the others: <code>&lt;div class=&quot;mob wa theme-auto bg-image1&quot;&gt;</code></li>
 </ul>
 
 <p><strong>Note:</strong> a background class overrides the light and dark theme background, so pick a light or dark one to suit the theme you're using. The bubbles, ticks and text keep their theme colours on top of it.</p>
 
-<p>If a chat is on one particular character's phone, you can use their profile instead: add <code>pov-</code> and their name to the container, like <code>pov-shane</code>, and the chat gets the wallpaper set in their profile, so all of their chats look the same (see Their Phone, in the Core, Themes, and Extras chapter).</p>
+<p>If a chat is on one particular character's phone, you can use their profile instead: add <code>pov-</code> and their name to the container, like <code>pov-shane</code>, and the chat gets the wallpaper set in their profile, so all of their chats look the same (see <a href="core.html#heading">Their Phone</a>).</p>
 
 <p>A profile wallpaper can be a picture, too. Here's the same chat from Yuna's side, on her phone, with her own photo as the background:</p>
 

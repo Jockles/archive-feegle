@@ -235,16 +235,57 @@ def contents_list(text):
     return "\n".join(out)
 
 
+def heading_ids(text):
+    """Maps each numbered heading's title (without its number) to its id."""
+    p = _Headings()
+    p.feed(text)
+    starts = [0]
+    for line in text.split("\n"):
+        starts.append(starts[-1] + len(line) + 1)
+    found = {}
+    for (line, col), tagtext, level, hid in p.found:
+        pos = starts[line - 1] + col + len(tagtext)
+        inner = text[pos:text.index("</h%d>" % level, pos)]
+        title = re.sub(r"<[^>]+>", "", inner).strip()
+        title = re.sub(r"^[\d.]+ ", "", title)
+        target = hid or re.search(r'id="([^"]+)"', tagtext).group(1)
+        found.setdefault(title.lower(), []).append(target)
+    return found
+
+
+# To link to a heading in another chapter, write <a href="core.html#heading">Pictures and
+# Alt Text</a> - the link's text must be the heading's own title, and the build swaps
+# "#heading" for that heading's id.
+XREF = re.compile(r'<a href="([a-z0-9-]+)\.html#heading">(.*?)</a>', re.S)
+
+
+def link_headings(texts):
+    ids = {slug: heading_ids(text) for slug, text in texts.items()}
+
+    def fix(m):
+        slug, label = m.group(1), m.group(2)
+        key = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", "", label)).strip().lower()
+        hits = ids.get(slug, {}).get(key)
+        if not hits or len(hits) > 1:
+            raise SystemExit("Can't link %r in %s.html (%s)" % (label, slug, "no such heading" if not hits else "more than one"))
+        return '<a href="%s.html#%s">%s</a>' % (slug, hits[0], label)
+
+    return {slug: XREF.sub(fix, text) for slug, text in texts.items()}
+
+
 def build_chapters():
     # the ?v= changes whenever the skin does, so browsers fetch the new one straight away
     skin = open(os.path.join(ROOT, "megaskin.css"), "rb").read()
     skinver = hashlib.sha1(skin).hexdigest()[:8]
+    texts = {}
     for i, (slug, ctitle) in enumerate(CHAPTERS):
         text = open(os.path.join(ROOT, "text", slug + ".html"), encoding="utf-8").read().strip()
-        text = number_headings(text, i + 1)
+        texts[slug] = number_headings(text, i + 1)
+    texts = link_headings(texts)
+    for i, (slug, ctitle) in enumerate(CHAPTERS):
         page = PAGE.format(title="Megaskin, Chapter %d: %s" % (i + 1, html.escape(ctitle, quote=False)),
                            nav=NAV, slug=slug, chapnav=chapnav(i), n=i + 1,
-                           ctitle=html.escape(ctitle, quote=False), text=text, skinver=skinver)
+                           ctitle=html.escape(ctitle, quote=False), text=texts[slug], skinver=skinver)
         open(os.path.join(ROOT, slug + ".html"), "w", encoding="utf-8").write(page)
 
 
