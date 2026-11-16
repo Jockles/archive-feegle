@@ -352,7 +352,7 @@
 
 <h4>A Simple Profile: Stan</h4>
 
-<p>Stan's is the simplest profile in the skin. It only has the five lines every profile needs:</p>
+<p>To make a profile for one of your characters, you only need five lines. Here they are for Stan, the simplest profile in the skin. Copy his block into the core CSS, then change <code>stan</code> to your character's name everywhere in it, and swap in their colour, name, handle and email address:</p>
 
 <pre><code>/* PROFILE: Stan */
 #workskin .pfp.pfp-stan { background-color: #c06a1f; }
@@ -371,11 +371,24 @@
   <li><strong>The email address.</strong> The same again, for <code>&lt;span class=&quot;email pfp-stan&quot;&gt;&lt;/span&gt;</code>.</li>
 </ol>
 
-<p>That's a whole profile. The comment line at the top (<code>/* PROFILE: Stan */</code>) doesn't do anything - it's just a label, so you can find each character's block.</p>
+<p>That's a whole profile. The comment line at the top (<code>/* PROFILE: Stan */</code>) doesn't do anything - it's just a label, so you can find each character's block. Change it to your character's name too.</p>
+
+<details>
+<summary>Things that trip people up</summary>
+
+<ul>
+  <li>A profile name can't have spaces in it. Use a hyphen: <code>pfp-shane-work</code>.</li>
+  <li>Keep the quotes around names, handles and emails, and keep the semicolon before the <code>}</code>. A missing quote is the most common reason AO3 rejects a skin.</li>
+  <li>If a name has a quote mark or apostrophe in it, like <code>Cat Guy's Cat</code>, that's fine inside double quotes. A double quote inside needs a backslash in front: <code>"The \"Captain\""</code>.</li>
+  <li>Picture links need to end in <code>.jpg</code>, <code>.png</code> or <code>.gif</code>. AO3 won't accept some links in CSS, even if they work in your HTML. This does mean that you can have a gif profile picture anywhere you want, even in apps that don't allow it. Use this power responsibly (or not I'm not your dad).</li>
+  <li>The profiles that come with the skin are only examples. Delete the ones you don't need - they don't do anything unless you use them, but they make the skin longer.</li>
+</ul>
+
+</details>
 
 <h4>The Profile Maker Tool</h4>
 
-<p>If you'd like to see your profile as you build it, my <a href="profile-maker.html">Profile Maker</a> is a WYSIWYG (what you see is what you get) helper tool: fill in the boxes and it shows the character in every app as you go, then gives you the CSS to copy. It's only a shortcut, though. Everything in this section, and the steps in Making Your Own Profile below, do the same job by hand, so you don't have to use it at all if you don't want to, or if it ever breaks.</p>
+<p>If you'd like to see your profile as you build it, my <a href="profile-maker.html">Profile Maker</a> is a WYSIWYG (what you see is what you get) helper tool: fill in the boxes and it shows the character in every app as you go, then gives you the CSS to copy. It's only a shortcut, though. Everything in this section does the same job by hand, so you don't have to use it at all if you don't want to, or if it ever breaks.</p>
 
 <h4>Every Option: Luca</h4>
 
@@ -473,30 +486,6 @@
 }</code></pre>
 
 <p>A profile span can end up inside almost anything - a bold name line, a grey subline, a link - and some of those parts have rules for every span inside them. This rule wipes all of that off, so a handle takes on the look of wherever it's sitting. The classes are repeated for the same reason as <code>hide</code>: so this rule beats everything else.</p>
-
-</details>
-
-<h3>Making Your Own Profile</h3>
-
-<p>Copy Stan's block from above and change <code>stan</code> to your character's name everywhere in it:</p>
-
-<pre><code>/* PROFILE: Stan */
-#workskin .pfp.pfp-stan { background-color: #c06a1f; }
-#workskin .wa .who.pfp-stan, #workskin .dc .dc-name.pfp-stan { color: #d2782a; }
-#workskin .name.pfp-stan::before { content: "Stan"; }
-#workskin .handle.pfp-stan::after { content: "PuckStan"; }
-#workskin .email.pfp-stan::after { content: "Puckstan@gmail.com"; }</code></pre>
-
-<details>
-<summary>Things that trip people up</summary>
-
-<ul>
-  <li>A profile name can't have spaces in it. Use a hyphen: <code>pfp-shane-work</code>.</li>
-  <li>Keep the quotes around names, handles and emails, and keep the semicolon before the <code>}</code>. A missing quote is the most common reason AO3 rejects a skin.</li>
-  <li>If a name has a quote mark or apostrophe in it, like <code>Cat Guy's Cat</code>, that's fine inside double quotes. A double quote inside needs a backslash in front: <code>"The \"Captain\""</code>.</li>
-  <li>Picture links need to end in <code>.jpg</code>, <code>.png</code> or <code>.gif</code>. AO3 won't accept some links in CSS, even if they work in your HTML. This does mean that you can have a gif profile picture anywhere you want, even in apps that don't allow it. Use this power responsibly (or not I'm not your dad).</li>
-  <li>The profiles that come with the skin are only examples. Delete the ones you don't need - they don't do anything unless you use them, but they make the skin longer.</li>
-</ul>
 
 </details>
 
