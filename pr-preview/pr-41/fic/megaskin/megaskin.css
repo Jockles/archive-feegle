@@ -3983,6 +3983,15 @@
 #workskin .tb .ic.ic-heart { background-image: url(https://images.squidge.org/images/2026/11/15/heart-black.png); }
 #workskin .tb .tb-icon.save { background-image: url(https://images.squidge.org/images/2026/11/15/bookmark-black.png); }
 
+/* the green reblog badge on a picture: the white reblog picture instead of the typed arrows */
+#workskin .tb .tb-pfp.rb::after {
+  content: '';
+  background-image: url(https://images.squidge.org/images/2026/11/15/reblog-white.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 8px 8px;
+}
+
 /* Tumblr icons, dark */
 #workskin .tb.theme-dark .ic.ic-share-up { background-image: url(https://images.squidge.org/images/2026/11/15/share-up-white.png); }
 #workskin .tb.theme-dark .ic.ic-comment { background-image: url(https://images.squidge.org/images/2026/11/15/comment-white.png); }
