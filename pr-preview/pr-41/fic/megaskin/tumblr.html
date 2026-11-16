@@ -6,7 +6,7 @@
   <title>Megaskin, Chapter 12: Tumblr | jockles.com</title>
   <link rel="stylesheet" href="../../style.css">
   <script src="../../theme.js"></script>
-  <link rel="stylesheet" href="megaskin.css?v=f3329c4d" id="creator-style">
+  <link rel="stylesheet" href="megaskin.css?v=a35f2250" id="creator-style">
 </head>
 <body>
 <header>
@@ -197,7 +197,7 @@
 
 <h3 id="s12-3">12.3 Posts on the Feed</h3>
 
-<div class="tb-feed app">
+<div class="tb-feed app theme-auto">
   <div class="tb-screen">
     <p class="tb-top"><span class="tb-logo">t</span> <span class="tb-topicon ic ic-tb-shop">&#127978;</span></p>
     <p class="tb-tabs"><span class="tb-tab on">Following</span> <span class="tb-tab">For you</span> <span class="tb-tab">Your tags</span> <span class="tb-topicon ic ic-tb-filter">&#8801;</span></p>
@@ -295,7 +295,7 @@
 <details>
 <summary>The full HTML for these posts</summary>
 
-<pre><code>&lt;div class="tb-feed app"&gt;
+<pre><code>&lt;div class="tb-feed app theme-auto"&gt;
   &lt;div class="tb-screen"&gt;
     &lt;p class="tb-top"&gt;&lt;span class="tb-logo"&gt;t&lt;/span&gt; &lt;span class="tb-topicon ic ic-tb-shop"&gt;&amp;#127978;&lt;/span&gt;&lt;/p&gt;
     &lt;p class="tb-tabs"&gt;&lt;span class="tb-tab on"&gt;Following&lt;/span&gt; &lt;span class="tb-tab"&gt;For you&lt;/span&gt; &lt;span class="tb-tab"&gt;Your tags&lt;/span&gt; &lt;span class="tb-topicon ic ic-tb-filter"&gt;&amp;#8801;&lt;/span&gt;&lt;/p&gt;
@@ -441,12 +441,12 @@
 
 <p>The header has a round picture, then the name with a small grey line under it, and the three dots at the end. The picture is <code>tb-pfp</code> - with no image it shows initials on a grey circle, and <code>colour1</code> to <code>colour10</code> give it a colour:</p>
 
-<div class="tb-feed"><div class="mob tb theme-auto"><p class="tb-header">
+<div class="mob tb theme-auto"><p class="tb-header">
   <span class="tb-pfp colour2">RR</span>
   <span class="tb-menu">&#8226;&#8226;&#8226;</span>
   <span class="tb-name"><b>rinkrat</b>
     <span class="tb-subline">2h ago</span></span>
-</p></div></div>
+</p></div>
 
 <pre><code>&lt;p class="tb-header"&gt;
   &lt;span class="tb-pfp colour2"&gt;RR&lt;/span&gt;
@@ -465,12 +465,12 @@
 
 <p>Or use a profile, so the same person has the same picture everywhere, like Rose's quote post on the feed. The blog name can come from the profile too, with the name typed inside in a <code>hide</code> span. That's for readers with the workskin switched off - the blog name comes from the CSS, so without it they wouldn't know who posted (see <a href="core.html#profiles">Character Appearances and Profiles</a> and <a href="core.html#accessibility">Accessibility</a>):</p>
 
-<div class="tb-feed"><div class="mob tb theme-auto"><p class="tb-header">
+<div class="mob tb theme-auto"><p class="tb-header">
   <span class="tb-pfp"><span class="pfp pfp-rose"></span></span>
   <span class="tb-menu">&#8226;&#8226;&#8226;</span>
   <span class="tb-name"><b><span class="handle pfp-rose"><span class="hide">PoseyRosey</span></span></b>
     <span class="tb-subline">1h ago</span></span>
-</p></div></div>
+</p></div>
 
 <pre><code>&lt;p class="tb-header"&gt;
   &lt;span class="tb-pfp"&gt;&lt;span class="pfp pfp-rose"&gt;&lt;/span&gt;&lt;/span&gt;
@@ -487,14 +487,14 @@
 
 <p>For a blog without a profile, add <code>sq</code> to its picture, and do it every time that blog appears so it stays the same. It works on <code>tb-pfp</code> and <code>tb-ask-pfp</code>, with initials, a colour or an uploaded picture:</p>
 
-<div class="tb-feed"><div class="mob tb theme-auto"><p class="tb-header">
+<div class="mob tb theme-auto"><p class="tb-header">
   <span class="tb-pfp sq colour6">PB</span>
   <span class="tb-menu">&#8226;&#8226;&#8226;</span>
   <span class="tb-name"><b>penalty-box-art</b>
     <span class="tb-subline">37m ago</span></span>
 </p>
 <div class="tb-body"><div class="tb-ask tb-answer"><p class="tb-asker"><span class="tb-ask-pfp sq colour6">PB</span><span class="hide"> </span><b>penalty-box-art</b> answered:</p>
-<p>Anything you can eat with your gloves on.</p></div></div></div></div>
+<p>Anything you can eat with your gloves on.</p></div></div></div>
 
 <pre><code>&lt;p class="tb-header"&gt;
   &lt;span class="tb-pfp sq colour6"&gt;PB&lt;/span&gt;
@@ -771,7 +771,7 @@
 
 <p>How the answer looks depends on who posts it. When the blog that answered it posts it, only the question is in a box, and the answer is just the text of the post underneath it, with no picture. Put the <code>tb-ask</code> box first in <code>tb-body</code>, then the answer as ordinary paragraphs:</p>
 
-<div class="tb-feed"><div class="mob tb theme-auto">
+<div class="mob tb theme-auto">
   <p class="tb-header">
     <span class="tb-pfp sq colour6">PB</span>
     <span class="tb-menu">&#8226;&#8226;&#8226;</span>
@@ -793,7 +793,7 @@
     <span class="tb-stat"><span class="tb-icon ic ic-heart">&#9825;</span> 187<span class="hide"> likes</span></span>
     <span class="tb-icon ic ic-share-up">&#8679;</span>
   </p>
-</div></div>
+</div>
 
 <pre><code>&lt;div class="mob tb theme-auto"&gt;
   &lt;p class="tb-header"&gt;
@@ -821,7 +821,7 @@
 
 <p>When someone else reblogs it, the header says who reblogged it and who from, and the answer gets a box of its own too, with the picture of the blog that answered. The answer box is <code>tb-ask</code> with <code>tb-answer</code> added, and its <code>tb-asker</code> line says "answered:" instead:</p>
 
-<div class="tb-feed"><div class="mob tb theme-auto">
+<div class="mob tb theme-auto">
   <p class="tb-header">
     <span class="tb-pfp rb colour2">RR</span>
     <span class="tb-menu">&#8226;&#8226;&#8226;</span>
@@ -845,7 +845,7 @@
     <span class="tb-stat"><span class="tb-icon ic ic-heart">&#9825;</span> 3,021<span class="hide"> likes</span></span>
     <span class="tb-icon ic ic-share-up">&#8679;</span>
   </p>
-</div></div>
+</div>
 
 <pre><code>&lt;div class="mob tb theme-auto"&gt;
   &lt;p class="tb-header"&gt;
@@ -881,8 +881,8 @@
 
 <p>A quote post is a big line of text in a serif font, with whoever said it underneath. The quotation marks are added for you. Put it in <code>tb-body</code>:</p>
 
-<div class="tb-feed"><div class="mob tb theme-auto"><div class="tb-body"><p class="tb-quote">I go where I want.</p>
-<p class="tb-source">&mdash; Scott Hunter, to a very brave reporter</p></div></div></div>
+<div class="mob tb theme-auto"><div class="tb-body"><p class="tb-quote">I go where I want.</p>
+<p class="tb-source">&mdash; Scott Hunter, to a very brave reporter</p></div></div>
 
 <pre><code>&lt;p class="tb-quote"&gt;I go where I want.&lt;/p&gt;
 &lt;p class="tb-source"&gt;&amp;mdash; Scott Hunter, to a very brave reporter&lt;/p&gt;</code></pre>
@@ -893,11 +893,11 @@
 
 <p>A chat post is a block of dialogue in a typewriter font. Each line is its own paragraph, with the speaker's name in <code>&lt;b&gt;</code>:</p>
 
-<div class="tb-feed"><div class="mob tb theme-auto"><div class="tb-body"><div class="tb-chat">
+<div class="mob tb theme-auto"><div class="tb-body"><div class="tb-chat">
   <p><b>Shane:</b> why are you awake</p>
   <p><b>Ilya:</b> thinking</p>
   <p><b>Shane:</b> that's never good</p>
-</div></div></div></div>
+</div></div></div>
 
 <pre><code>&lt;div class="tb-chat"&gt;
   &lt;p&gt;&lt;b&gt;Shane:&lt;/b&gt; why are you awake&lt;/p&gt;
@@ -973,7 +973,7 @@
 
 <p>The feed at the top of the chapter is a whole phone screen, like the app: Tumblr's bar along the top with the Following, For you and Your tags tabs, the posts, and the buttons along the bottom. The bar at the top scrolls away with the posts, and the buttons at the bottom stay put. Add <code>app</code> to the feed, put a <code>tb-screen</code> box inside it holding the top bar and your posts, and put the <code>tb-nav</code> buttons after it:</p>
 
-<pre><code>&lt;div class="tb-feed app"&gt;
+<pre><code>&lt;div class="tb-feed app theme-auto"&gt;
   &lt;div class="tb-screen"&gt;
     &lt;p class="tb-top"&gt;&lt;span class="tb-logo"&gt;t&lt;/span&gt; &lt;span class="tb-topicon ic ic-tb-shop"&gt;&amp;#127978;&lt;/span&gt;&lt;/p&gt;
     &lt;p class="tb-tabs"&gt;&lt;span class="tb-tab on"&gt;Following&lt;/span&gt; &lt;span class="tb-tab"&gt;For you&lt;/span&gt; &lt;span class="tb-tab"&gt;Your tags&lt;/span&gt; &lt;span class="tb-topicon ic ic-tb-filter"&gt;&amp;#8801;&lt;/span&gt;&lt;/p&gt;
@@ -985,7 +985,7 @@
 
 <p>Tumblr Premium is dead and I have killed it, so it's not in the skin. Move <code>on</code> to a different tab to show a different one picked. The posts inside the screen don't scroll on their own - the whole screen scrolls instead.</p>
 
-<p>In the Tumblr app, the white cards sit on a dark navy background (or black in dark mode). To get that, wrap one or more posts in a <code>tb-feed</code>, like the posts on the feed at the top of the chapter, and the cards sit on it with a gap between each one: <code>&lt;div class=&quot;tb-feed&quot;&gt;</code>, then your posts, then <code>&lt;/div&gt;</code>. Add <code>black</code> for the black version, <code>&lt;div class=&quot;tb-feed black&quot;&gt;</code>, or <code>classic</code> for the old Tumblr blue, <code>&lt;div class=&quot;tb-feed classic&quot;&gt;</code>. The feed colour is separate from the posts' own light, dark or auto theme, so you can mix them however you like, and you can change it to any colour in the CSS (see <a href="tumblr-css.html#s13-13">The Feed</a>).</p>
+<p>In the Tumblr app, the white cards sit on a dark navy background (or black in dark mode). To get that, wrap your posts in a <code>tb-feed</code>, like the posts on the feed at the top of the chapter, and the cards sit on it with a gap between each one: <code>&lt;div class=&quot;tb-feed&quot;&gt;</code>, then your posts, then <code>&lt;/div&gt;</code>. The feed takes the same themes as the posts, so give it the same one as the posts inside it: <code>&lt;div class=&quot;tb-feed theme-auto&quot;&gt;</code> is navy, and turns black when the reader's device is in dark mode, and <code>theme-dark</code> is always black. Or add <code>black</code> for black all the time, <code>&lt;div class=&quot;tb-feed black&quot;&gt;</code>, or <code>classic</code> for the old Tumblr blue, <code>&lt;div class=&quot;tb-feed classic&quot;&gt;</code>. You can change the navy to any colour in the CSS (see <a href="tumblr-css.html#s13-13">The Feed</a>).</p>
 
 <p>This is completely optional - without it, each post is just a card on its own, like the reblog chain.</p>
         </div>
