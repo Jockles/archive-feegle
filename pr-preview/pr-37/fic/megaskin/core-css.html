@@ -6,7 +6,7 @@
   <title>Megaskin, Chapter 3: The Core CSS | jockles.com</title>
   <link rel="stylesheet" href="../../style.css">
   <script src="../../theme.js"></script>
-  <link rel="stylesheet" href="megaskin.css?v=bb2a8e42" id="creator-style">
+  <link rel="stylesheet" href="megaskin.css?v=3393a83f" id="creator-style">
 </head>
 <body>
 <header>
@@ -271,6 +271,25 @@
 
 <p>A circle with no picture in it shows initials on a plain colour instead. The colours for that, <code>colour1</code> to <code>colour10</code>, are near the end of the core - see The Ten Colours, below.</p>
 
+<p>A profile can have initials too, set in the CSS instead of typed into each circle. This rule centres them in the circle in white, and the second one makes them smaller in the tiny circles in Discord replies and Instagram's "Liked by" line:</p>
+
+<pre><code>#workskin .pfp::before {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 0.8em;
+  line-height: 1;
+}
+
+#workskin .dc .dc-reply .pfp::before,
+#workskin .ig .ig-like-pfp .pfp::before { font-size: 0.4em; }</code></pre>
+
+<p>It doesn't do anything until a profile gives it some text, like Holster's does (see Character Profiles, Line by Line, below).</p>
+
 <h3 id="s3-9">3.9 Hidden Text</h3>
 
 <pre><code>#workskin .hide.hide.hide.hide { display: none; }</code></pre>
@@ -422,7 +441,7 @@
 <p>Here's what each line does:</p>
 
 <ol>
-  <li><strong>The picture.</strong> Any <code>pfp</code> span that also has <code>pfp-stan</code> gets this. Stan doesn't have a photo, so his is just a plain orange circle (<code>background-color</code>). For a real picture, swap it for <code>background-image: url(https://example.com/stan.jpg);</code>, like Luca's below.</li>
+  <li><strong>The picture.</strong> Any <code>pfp</code> span that also has <code>pfp-stan</code> gets this. Stan doesn't have a photo, so his is just a plain orange circle (<code>background-color</code>). For a real picture, swap it for <code>background-image: url(https://example.com/stan.jpg);</code>, like Luca's below. To put initials in the circle, add a line like <code>#workskin .pfp.pfp-stan::before { content: &quot;S&quot;; }</code>, like Holster's.</li>
   <li><strong>The name colour.</strong> WhatsApp group names and Discord usernames are coloured, so this is Stan's colour in both. It does the same job as <code>colour1</code> to <code>colour10</code>, just for one character, so you don't need a colour class as well. Pick a colour you can read on white and on black, because readers will see it in both themes.</li>
   <li><strong>The name.</strong> <code>&lt;span class=&quot;name pfp-stan&quot;&gt;&lt;/span&gt;</code> is an empty span, and <code>::before</code> with <code>content</code> fills it in with "Stan".</li>
   <li><strong>The handle.</strong> The same idea for <code>&lt;span class=&quot;handle pfp-stan&quot;&gt;&lt;/span&gt;</code>, but with <code>::after</code>. Leave the @ off - Twitter/X adds it for you (there's more on why in line 8 of Luca's, below).</li>
@@ -452,7 +471,7 @@
   <li><strong>Stan</strong> (<code>pfp-stan</code>): the simplest one, with just the five lines every profile needs. A plain orange circle instead of a picture.</li>
   <li><strong>Yuna</strong> (<code>pfp-yuna</code>): a plain purple circle. She's saved as "Mom" on Shane's phone, has a separate work address in the email window (her Gmail address is used everywhere else), and has her own WhatsApp wallpaper - a snowy garden photo - for chats on her phone.</li>
   <li><strong>Zim</strong> (<code>pfp-zim</code>): "Jack Zimmerman" everywhere except Twitter/X, where he's "Zim" with the handle ZimBits. A different name and handle on one app.</li>
-  <li><strong>Holster</strong> (<code>pfp-holster</code>): a different picture on every app - Twitter/X, Instagram, Tumblr and Discord each have their own. They're coloured circles for now, so swap each colour for a picture link. No email address.</li>
+  <li><strong>Holster</strong> (<code>pfp-holster</code>): no pictures at all - instead, his circle is a different colour on Twitter/X, Instagram, Tumblr and Discord, so you can change how someone looks on each app without changing their picture. His circle has his initials, RH, everywhere except Twitter/X and Instagram, where it's plain. No email address.</li>
   <li><strong>Rose</strong> (<code>pfp-rose</code>): "Rose" in chats, but "Rose Landry" with the handle RoseLandry on Twitter/X and Instagram, and PoseyRosey everywhere else. One set of names for her public accounts and another for her friends. No email address.</li>
   <li><strong>Shane</strong> (<code>pfp-shane</code>): a real picture. He's saved as "Jane" on Ilya's phone, has a different handle on Instagram, Tumblr and Discord, and has a pale blue WhatsApp wallpaper for chats on his phone.</li>
   <li><strong>Ilya</strong> (<code>pfp-ilya</code>): a plain red circle, ready for a picture. He's saved as "Lily" on Shane's phone, is ilya.r on Instagram, and has a dark navy WhatsApp wallpaper for chats on his phone. No email address.</li>
