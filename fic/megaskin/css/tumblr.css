@@ -186,6 +186,13 @@
    In a two row, add class="land" to a picture that's wider than tall, so the sides get cropped instead of the top and bottom. */
 #workskin .tb .tb-photos { display: block; margin: 0.6em 0; }
 
+/* pictures at the very start of a post sit right up against the header */
+#workskin .tb .tb-body > .tb-photos:first-child,
+#workskin .tb .tb-reblog > .tb-blog + .tb-photos { margin-top: -0.3em; }
+
+/* a mention of another blog in the text of a post: <span class="tb-at">@rinkrat</span> */
+#workskin .tb .tb-at { color: #3a5f86; }
+
 #workskin .tb .tb-body .tb-row {
   display: flex;
   margin: 0 0 4px 0;
@@ -430,6 +437,8 @@
 
 #workskin .tb.theme-dark .tb-photo { background: #2e2e2e; }
 
+#workskin .tb.theme-dark .tb-at { color: #c3d4e8; }
+
 #workskin .tb.theme-dark .tb-pfp.rb::after { border-color: #1f1f1f; }
 
 #workskin .tb.theme-dark .tb-reblog { border-top-color: #2c2c2c; }
@@ -467,6 +476,8 @@
   #workskin .tb.theme-auto .tb-follow span { background: #2e2e2e; }
 
   #workskin .tb.theme-auto .tb-photo { background: #2e2e2e; }
+
+  #workskin .tb.theme-auto .tb-at { color: #c3d4e8; }
 
   #workskin .tb.theme-auto .tb-pfp.rb::after { border-color: #1f1f1f; }
 

@@ -6,7 +6,7 @@
   <title>Megaskin, Chapter 12: Tumblr | jockles.com</title>
   <link rel="stylesheet" href="../../style.css">
   <script src="../../theme.js"></script>
-  <link rel="stylesheet" href="megaskin.css?v=32f181bc" id="creator-style">
+  <link rel="stylesheet" href="megaskin.css?v=92c36e5e" id="creator-style">
 </head>
 <body>
 <header>
@@ -51,8 +51,9 @@
   <li><a href="#s12-13">12.13 Quote Posts</a></li>
   <li><a href="#s12-14">12.14 Chat Posts</a></li>
   <li><a href="#s12-15">12.15 Pictures and Gifs</a></li>
-  <li><a href="#s12-16">12.16 Notes Along the Bottom</a></li>
-  <li><a href="#s12-17">12.17 The Feed Background</a></li>
+  <li><a href="#s12-16">12.16 Mentioning a Blog</a></li>
+  <li><a href="#s12-17">12.17 Notes Along the Bottom</a></li>
+  <li><a href="#s12-18">12.18 The Feed Background</a></li>
 </ul>
 
 <p>The Tumblr module is styled after the Tumblr mobile app: each post is a rounded card, and a reblog chain is a list of comments with a thin line between each one.</p>
@@ -228,11 +229,12 @@
         <span class="tb-subline">1h ago</span></span>
     </p>
     <div class="tb-body">
+      <p>the fridge saga continues</p>
       <div class="tb-photos">
         <p class="tb-row"><span class="tb-photo"><img src="https://images.squidge.org/images/2026/11/16/Cat1.jpg" alt="Black and white cat staring through a gap between a screen and a desk, with blurred cables hanging down around and blue sky behind"></span></p>
         <p class="tb-row two"><span class="tb-photo"><img class="land" src="https://images.squidge.org/images/2026/11/16/Cat3.jpg" alt="Black and white cat holding out a paw daintily, on a beige and green cat tree"></span><span class="tb-photo"><img src="https://images.squidge.org/images/2026/11/16/Cat4.jpg" alt="Black and white cat sitting in an opened red suitcase, on a red patterned rug"></span></p>
       </div>
-      <p>update: he has not learned to close the fridge</p>
+      <p>update: he has not learned to close the fridge. <span class="tb-at">@oghollanovtruther</span> he still does not have a job</p>
     </div>
     <p class="tb-tags">#cats &nbsp;#the fridge saga</p>
     <p class="tb-footer">
@@ -320,11 +322,12 @@
         &lt;span class="tb-subline"&gt;1h ago&lt;/span&gt;&lt;/span&gt;
     &lt;/p&gt;
     &lt;div class="tb-body"&gt;
+      &lt;p&gt;the fridge saga continues&lt;/p&gt;
       &lt;div class="tb-photos"&gt;
         &lt;p class="tb-row"&gt;&lt;span class="tb-photo"&gt;&lt;img src="https://images.squidge.org/images/2026/11/16/Cat1.jpg" alt="Black and white cat staring through a gap between a screen and a desk, with blurred cables hanging down around and blue sky behind"&gt;&lt;/span&gt;&lt;/p&gt;
         &lt;p class="tb-row two"&gt;&lt;span class="tb-photo"&gt;&lt;img class="land" src="https://images.squidge.org/images/2026/11/16/Cat3.jpg" alt="Black and white cat holding out a paw daintily, on a beige and green cat tree"&gt;&lt;/span&gt;&lt;span class="tb-photo"&gt;&lt;img src="https://images.squidge.org/images/2026/11/16/Cat4.jpg" alt="Black and white cat sitting in an opened red suitcase, on a red patterned rug"&gt;&lt;/span&gt;&lt;/p&gt;
       &lt;/div&gt;
-      &lt;p&gt;update: he has not learned to close the fridge&lt;/p&gt;
+      &lt;p&gt;update: he has not learned to close the fridge. &lt;span class="tb-at"&gt;@oghollanovtruther&lt;/span&gt; he still does not have a job&lt;/p&gt;
     &lt;/div&gt;
     &lt;p class="tb-tags"&gt;#cats &amp;nbsp;#the fridge saga&lt;/p&gt;
     &lt;p class="tb-footer"&gt;
@@ -415,7 +418,7 @@
   <li><code>tb-header</code> is the header row at the top of the post.</li>
   <li><code>tb-body</code> holds the post itself, written as ordinary paragraphs. You can put a normal <code>&lt;img&gt;</code> picture in here too, and it'll fit the width of the card.</li>
   <li><code>tb-tags</code> is the grey row of tags. Type the <code>#</code> in yourself, and use <code>&amp;nbsp;</code> to space the tags out.</li>
-  <li><code>tb-footer</code> is the row along the bottom, with the replies, reblogs and likes. You can leave it out (see <a href="tumblr.html#s12-16">Notes Along the Bottom</a>).</li>
+  <li><code>tb-footer</code> is the row along the bottom, with the replies, reblogs and likes. You can leave it out (see <a href="tumblr.html#s12-17">Notes Along the Bottom</a>).</li>
 </ul>
 
 <p>Here are the tags from the reblog chain:</p>
@@ -863,9 +866,13 @@
   &lt;p class="tb-row two"&gt;&lt;span class="tb-photo"&gt;&lt;img src="https://images.squidge.org/images/2026/11/16/Cat2.jpg" alt="Black and white cat screaming at the camera, on a red patterned rug"&gt;&lt;/span&gt;&lt;span class="tb-photo"&gt;&lt;img class="land" src="https://images.squidge.org/images/2026/11/16/Cat3.jpg" alt="Black and white cat holding out a paw daintily, on a beige and green cat tree"&gt;&lt;/span&gt;&lt;/p&gt;
 &lt;/div&gt;</code></pre>
 
-<p>Text goes before or after the <code>tb-photos</code> box, as ordinary paragraphs, like Luca's post on the feed at the top of the chapter. A picture can go in a reblog too: put the <code>tb-photos</code> box in that <code>tb-reblog</code>, after its <code>tb-blog</code> header. A plain <code>&lt;img&gt;</code> straight in the body, without the <code>tb-photos</code> box, still works too - it sits inside the card with a small gap round it instead of going edge to edge.</p>
+<p>Text and pictures can go in any order, as many times as you like: a paragraph, a <code>tb-photos</code> box, more paragraphs, another <code>tb-photos</code> box, and so on, like Luca's post on the feed at the top of the chapter. Pictures at the very start of a post sit right up against the header, the same as the app. A picture can go in a reblog too: put the <code>tb-photos</code> box in that <code>tb-reblog</code>, after its <code>tb-blog</code> header. A plain <code>&lt;img&gt;</code> straight in the body, without the <code>tb-photos</code> box, still works too - it sits inside the card with a small gap round it instead of going edge to edge.</p>
 
-<h3 id="s12-16">12.16 Notes Along the Bottom</h3>
+<h3 id="s12-16">12.16 Mentioning a Blog</h3>
+
+<p>When a post mentions another blog by name, Tumblr turns the name a slightly different colour to show it links to their blog. Put the name, with its <code>@</code>, in a <code>tb-at</code> span: <code>&lt;span class=&quot;tb-at&quot;&gt;@oghollanovtruther&lt;/span&gt;</code>. It works anywhere in the text of a post, a reblog or an ask, and in light and dark posts.</p>
+
+<h3 id="s12-17">12.17 Notes Along the Bottom</h3>
 
 <p>The bottom row is <code>tb-footer</code>, and it goes after <code>tb-body</code> and the tags. Like the mobile app, it shows the replies, reblogs and likes separately, each with its own count, and the share button on the far right. Each button and its count is a <code>tb-stat</code> span: the button first, then the number, then a <code>hide</code> span saying what the number is, for readers with the workskin switched off:</p>
 
@@ -885,7 +892,7 @@
 
 <p>The replies, reblogs and likes always take a third of the row each, so they line up from post to post whatever the numbers are. If a post has no replies, Tumblr just shows the button, so leave out the number and its <code>hide</code> span: <code>&lt;span class=&quot;tb-stat&quot;&gt;&lt;span class=&quot;tb-icon ic ic-comment&quot;&gt;&amp;#9993;&lt;/span&gt;&lt;/span&gt;</code>. You can leave the share button out too, or the whole row.</p>
 
-<h3 id="s12-17">12.17 The Feed Background</h3>
+<h3 id="s12-18">12.18 The Feed Background</h3>
 
 <p>In the Tumblr app, the white cards sit on a dark navy background (or black in dark mode). To get that, wrap one or more posts in a <code>tb-feed</code>, like the posts on the feed at the top of the chapter, and the cards sit on it with a gap between each one: <code>&lt;div class=&quot;tb-feed&quot;&gt;</code>, then your posts, then <code>&lt;/div&gt;</code>. Add <code>black</code> for the black version: <code>&lt;div class=&quot;tb-feed black&quot;&gt;</code>.</p>
 
