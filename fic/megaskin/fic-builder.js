@@ -111,6 +111,20 @@
       S.cast.push(c);
     });
   }
+  // fill in the profile boxes from an existing profile, pasted or from the skin
+  var SKIN = "";
+  function loadProfile(c) {
+    var pasted = pastedProfiles().some(function (p) { return p[0] === c.example; });
+    var source = pasted ? S.pasted : SKIN;
+    if (!source) return; // the skin hasn't loaded yet
+    var d = MP.parse(source, c.example), hex = /^#[0-9a-f]{6}$/i;
+    c.name = d.name || c.name;
+    c.prof = { slug: c.example, pic: d.pic, piccol: hex.test(d.piccol) ? d.piccol : "#888888", namecol: hex.test(d.namecol) ? d.namecol : "#666666",
+      handle: d.handle, email: d.email, apps: d.apps, dccolon: !!d.dccol, dccol: d.dccol || "#e8734a", tbsq: d.tbsq,
+      saved: d.saved, accounts: d.accounts, wallcolon: !!d.wallcol, wallcol: d.wallcol || "#dfeaf6", wallpic: d.wallpic };
+    c.loadedFrom = c.example;
+    c.orig = JSON.stringify(profileData(c));
+  }
   function isProfile(c) { return c && (c.kind === "new" || c.kind === "example"); }
   function slugOf(c) {
     if (!c) return "";
@@ -368,8 +382,10 @@
       email: p.email, apps: p.apps, dccol: p.dccolon ? p.dccol : "", tbsq: p.tbsq, saved: p.saved, accounts: p.accounts,
       wallcol: p.wallcolon ? p.wallcol : "", wallcolDefault: p.wallcol, wallpic: p.wallpic };
   }
+  // an existing profile is only copied out if it's been changed
+  function changed(c) { return c.kind === "example" && !!c.orig && c.orig !== JSON.stringify(profileData(c)); }
   function profilesCSS() {
-    return S.cast.filter(function (c) { return c.kind === "new"; }).map(function (c) { return MP.css(profileData(c)).css; }).join("\n\n");
+    return S.cast.filter(function (c) { return c.kind === "new" || changed(c); }).map(function (c) { return MP.css(profileData(c)).css; }).join("\n\n");
   }
 
   // ---------- editor ----------
@@ -403,10 +419,8 @@
     h.push('<div class="fb-card" data-i="' + i + '">');
     h.push('<div class="fb-row">' + field(P + ".name", "", { ph: "Name", re: true }) +
       btn("cast-del:" + i, "&times;", "Remove " + nameOf(c)) + "</div>");
-    h.push(field(P + ".kind", "", { type: "select", re: true, options: [["oneoff", "One-off: no profile"], ["new", "New profile"], ["example", "Profile you already have, or an example"]] }));
-    if (c.kind === "example") {
-      h.push(field(P + ".example", "Which one", { type: "select", re: true, options: existing() }));
-    } else if (c.kind === "oneoff") {
+    h.push(field(P + ".kind", "", { type: "select", re: true, options: [["oneoff", "One-off: no profile"], ["new", "New profile"], ["example", "Edit an existing profile"]] }));
+    if (c.kind === "oneoff") {
       // picture circle: a colour, initials yes or no, then an optional picture
       h.push('<div class="fb-row">' + field(P + ".colour", "", { type: "select", re: true, options: Object.keys(COLOURS).map(function (k) { return [k, "Colour " + k]; }) }) +
         '<span class="fb-swatch" style="background:' + COLOURS[c.colour] + '"></span>' + "</div>");
@@ -417,7 +431,11 @@
       h.push(field(P + ".num", "WhatsApp phone number (for someone not saved in the phone)", { ph: "+44 7700 900123" }));
     } else {
       var Q = P + ".prof";
-      h.push('<div class="fb-row"><span>pfp-</span>' + field(Q + ".slug", "", { ph: MP.slugify(c.name) || "name" }) + "</div>");
+      if (c.kind === "example") {
+        h.push(field(P + ".example", "Which one", { type: "select", re: true, options: existing() }));
+        h.push('<p class="hint">' + (changed(c) ? "<b>Changed.</b> The new version is in the profile CSS to copy: swap it for the old one in your work skin." :
+          "Change anything below and the updated profile goes in the profile CSS to copy. Leave it as it is to just use it.") + "</p>");
+      } else h.push('<div class="fb-row"><span>pfp-</span>' + field(Q + ".slug", "", { ph: MP.slugify(c.name) || "name" }) + "</div>");
       h.push(field(Q + ".pic", "Picture link", { type: "url", ph: "https://..." }));
       h.push('<div class="fb-grid"><div>' + field(Q + ".piccol", "Circle colour", { type: "color" }) + "</div><div>" +
         field(Q + ".namecol", "Name colour", { type: "color" }) + "</div></div>");
@@ -547,6 +565,7 @@
   }
 
   function renderEditor() {
+    S.cast.forEach(function (c) { if (c.kind === "example" && c.loadedFrom !== c.example) loadProfile(c); });
     $("fb-pasted").value = S.pasted || "";
     $("fb-cast").innerHTML = S.cast.map(castCard).join("");
     $("fb-blocks").innerHTML = S.blocks.map(blockCard).join("") || '<p class="hint">Nothing here yet. Add a chat below.</p>';
@@ -714,4 +733,6 @@
 
   load();
   rerender();
+  // the skin's example profiles are read from megaskin.css
+  fetch("megaskin.css").then(function (r) { return r.text(); }).then(function (t) { SKIN = t; rerender(); }, function () {});
 })();
