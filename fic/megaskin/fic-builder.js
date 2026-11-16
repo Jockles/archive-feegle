@@ -61,17 +61,33 @@
     b.bg = ""; b.pics = true; b.header = "simple"; b.script = ""; b.msgs = []; b.open = true;
     return b;
   }
-  function starter() {
+  // load one of the tutorial's example chats (from fic-builder-examples.js)
+  function loadExample(n) {
+    var ex = window.FB_EXAMPLES[n], ids = {};
     S = { v: 1, pasted: "", cast: [], blocks: [] };
-    var a = newChar("Shane", "example"); a.example = "shane";
-    var b = newChar("Ilya", "example"); b.example = "ilya";
-    S.cast.push(a, b);
-    var c = newBlock("imsg");
-    c.pov = a.id;
-    c.msgs.push(newMsg("sys", "Today 11:48 PM"), newMsg(b.id, "are you awake"), newMsg(a.id, "no"));
-    c.msgs[2].status = "Read 11:52 PM";
-    S.blocks.push(c);
+    ex.cast.forEach(function (p) {
+      var c = newChar(p.name);
+      ["colour", "initials", "pic", "alt", "num", "land"].forEach(function (k) { if (p[k]) c[k] = p[k]; });
+      S.cast.push(c);
+      ids[p.name] = c.id;
+    });
+    var b = newBlock(ex.chat.type);
+    Object.keys(ex.chat).forEach(function (k) { if (k !== "type") b[k] = ex.chat[k]; });
+    b.pov = ids[ex.chat.pov];
+    b.msgs = ex.msgs.map(function (line) {
+      var x = line[2] || {};
+      var m = newMsg(ids[line[0]] || line[0], line[1], x.time);
+      ["tick", "waReacts", "waCount", "sms", "big", "edited", "status"].forEach(function (k) { if (x[k] !== undefined) m[k] = x[k]; });
+      m.reacts = (x.reacts || []).map(function (r) { return { by: ids[r[0]], emoji: r[1] }; });
+      m.photos = (x.photos || []).map(function (p) { return { url: p.url || "", alt: p.alt || "", desc: p.desc || "", land: !!p.land }; });
+      if (x.link) m.link = { url: x.link.url || "", showUrl: !!x.link.showUrl, title: x.link.title || "", desc: x.link.desc || "",
+        img: x.link.img || "", alt: x.link.alt || "", video: x.link.video || "", imgdesc: x.link.imgdesc || "" };
+      return m;
+    });
+    ex.msgs.forEach(function (line, i) { if (line[2] && line[2].reply !== undefined) b.msgs[i].replyTo = b.msgs[line[2].reply].id; });
+    S.blocks.push(b);
   }
+  function starter() { loadExample(0); }
 
   function save() { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) {} }
   function load() {
@@ -264,7 +280,7 @@
   function waPfp(c) {
     if (isProfile(c)) return '<p class="wa-pfp"><span class="pfp pfp-' + slugOf(c) + '"></span></p>';
     var u = picUrl(c.pic);
-    if (u) return '<p class="wa-pfp ' + colourClass(c) + '"><span class="pfp"><img src="' + esc(u) + '" alt="' + esc(c.alt.trim() || ("Profile picture of " + nameOf(c))) + '"></span></p>';
+    if (u) return '<p class="wa-pfp ' + colourClass(c) + '"><span class="pfp"><img ' + (c.land ? 'class="land" ' : "") + 'src="' + esc(u) + '" alt="' + esc(c.alt.trim() || ("Profile picture of " + nameOf(c))) + '"></span></p>';
     return '<p class="wa-pfp ' + colourClass(c) + '">' + (c.showInitials !== false ? esc(initials(c)) : "") + "</p>";
   }
   function waQuote(b, m) {
@@ -328,8 +344,10 @@
       } else if (link) {
         if (link.url.trim() && link.showUrl) inner.push('<p><span class="wa-ln">' + esc(link.url.trim()) + "</span></p>");
         var lk = ['<div class="wa-link">'];
-        var li = picUrl(link.img);
-        if (li) lk.push('  <p class="wa-link-img"><img src="' + esc(li) + '" alt="' + esc(link.alt) + '"></p>');
+        var li = picUrl(link.img), vid = picUrl(link.video || "");
+        if (vid) lk.push('  <div class="wa-link-img video"><iframe src="' + esc(vid) + '" frameborder="0" title="' + esc(link.title.trim()) + '"></iframe>' +
+          (link.imgdesc.trim() ? '<p class="vid-desc">[' + esc(link.imgdesc.trim()) + "]</p>" : "") + "</div>");
+        else if (li) lk.push('  <p class="wa-link-img"><img src="' + esc(li) + '" alt="' + esc(link.alt) + '"></p>');
         else if (link.imgdesc.trim()) lk.push('  <p class="wa-link-img text">[' + esc(link.imgdesc.trim()) + "]</p>");
         if (link.title.trim()) lk.push('  <p class="wa-link-title">' + esc(link.title.trim()) + "</p>");
         if (link.desc.trim()) lk.push('  <p class="wa-link-desc">' + esc(link.desc.trim()) + "</p>");
@@ -428,6 +446,7 @@
         (c.showInitials !== false ? field(P + ".initials", "", { ph: initials(c) }) : "") + "</div>");
       h.push(field(P + ".pic", "Picture link (optional)", { type: "url", ph: "https://..." }));
       h.push(field(P + ".alt", "Picture description (optional)", { ph: "Profile picture of " + nameOf(c) }));
+      h.push(field(P + ".land", "Landscape picture", { type: "check" }));
       h.push(field(P + ".num", "WhatsApp phone number (for someone not saved in the phone)", { ph: "+44 7700 900123" }));
     } else {
       var Q = P + ".prof";
@@ -514,7 +533,8 @@
             field(K + ".url", "", { ph: "Web address" }) + field(K + ".showUrl", "Show the address above the preview too", { type: "check" }) +
             field(K + ".title", "", { ph: "Title" }) + field(K + ".desc", "", { ph: "Description" }) +
             field(K + ".img", "", { type: "url", ph: "Picture link" }) + field(K + ".alt", "", { ph: "Describe the picture" }) +
-            field(K + ".imgdesc", "", { ph: "Or, with no picture, describe it in words" }) + "</div>");
+            field(K + ".video", "", { type: "url", ph: "Or a video embed link (Vimeo, YouTube or the Internet Archive)" }) +
+            field(K + ".imgdesc", "", { ph: "Describe the video, or with no picture, describe the picture" }) + "</div>");
         }
       }
       h.push(field(P + ".edited", "Edited", { type: "check" }));
@@ -663,14 +683,14 @@
       case "tap-del": m.reacts.splice(n[2], 1); break;
       case "photo-add": m.photos.push({ url: "", alt: "", desc: "", land: false }); break;
       case "photo-del": m.photos.splice(n[2], 1); break;
-      case "link-add": m.link = { url: "", showUrl: false, title: "", desc: "", img: "", alt: "", imgdesc: "" }; break;
+      case "link-add": m.link = { url: "", showUrl: false, title: "", desc: "", img: "", alt: "", video: "", imgdesc: "" }; break;
       case "link-del": m.link = null; break;
       case "copy-html": copy("fb-html", t); return;
       case "copy-css": copy("fb-css", t); return;
       case "save-html": saveHTML(); return;
       case "save-css": download("megaskin-profiles.css", allProfilesCSS(), "text/css"); return;
       case "new": if (!confirm("Start again? Everything here will be cleared, so download your HTML and CSS first if you want to keep them.")) return; S = { v: 1, pasted: "", cast: [], blocks: [] }; break;
-      case "example": if (!confirm("Load the example? Everything here will be replaced.")) return; starter(); break;
+      case "example": if (!confirm("Load this example? Everything here will be replaced, so download your HTML and CSS first if you want to keep them.")) return; loadExample(+$("fb-example").value); break;
       case "fmt": wrap(a[1]); return;
       default: return;
     }
@@ -759,6 +779,7 @@
     });
   });
 
+  $("fb-example").innerHTML = window.FB_EXAMPLES.map(function (e, i) { return '<option value="' + i + '">' + esc(e.label) + "</option>"; }).join("");
   load();
   rerender();
   // the skin's example profiles are read from megaskin.css
