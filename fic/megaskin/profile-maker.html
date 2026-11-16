@@ -166,7 +166,7 @@
     var d = document.createElement("div");
     d.className = "acct";
     d.innerHTML = '<label>Account name</label><div class="row"><span>acc-</span><input type="text" class="ac-name"></div>' +
-      '<label>App</label><select class="ac-app">' + APPS.map(function (a) { return '<option value="' + a.key + '">' + (a.key === "gm" ? "Email (Gmail and the email window)" : a.label) + '</option>'; }).join("") + '</select>' +
+      '<label>App</label><select class="ac-app">' + APPS.map(function (a) { return '<option value="' + a.key + '">' + (a.key === "gm" ? "Email" : a.label) + '</option>'; }).join("") + '</select>' +
       '<label>Picture link</label><input type="url" class="ac-pic" placeholder="https://...">' +
       '<label>Name</label><input type="text" class="ac-dname">' +
       '<label>Handle (or email address, for Email)</label><input type="text" class="ac-handle">' +
