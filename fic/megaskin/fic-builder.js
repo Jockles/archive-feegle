@@ -472,7 +472,7 @@
       h.push('<div class="fb-grid"><div>' + field(Q + ".handle", "Handle", { ph: "no @" }) + "</div><div>" +
         field(Q + ".email", "Email address") + "</div></div>");
       h.push("<details" + (c.more ? " open" : "") + ' data-open="' + P + '.more"><summary>More profile options</summary>');
-      h.push('<p class="hint">Saved as: what other characters have them saved as on their phones, and a different picture on that phone if you want one.</p>');
+      h.push('<p class="hint">Saved as: what other characters have them saved as on their phones, and a different picture on that phone if you want one. This only works in iMessage and WhatsApp messages, and only the name works in Discord DMs. Everywhere else they show the account\'s default.</p>');
       c.prof.saved.forEach(function (s, k) {
         h.push('<div class="fb-acct"><div class="fb-row">' + field(Q + ".saved." + k + ".owner", "", { type: "select", options: [["", "On whose phone?"]].concat(S.cast.filter(isProfile).filter(function (x) { return x !== c; }).map(function (x) { return [slugOf(x), nameOf(x)]; })) }) +
           field(Q + ".saved." + k + ".as", "", { ph: "Saved as" }) + btn("saved-del:" + i + ":" + k, "&times;", "Remove") + "</div>" +
