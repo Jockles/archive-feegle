@@ -1,0 +1,87 @@
+<p>The Icons module is an optional extra. It swaps the little symbols in the other modules - the mic in the message box, the hearts and reblog arrows, the blue ticks and so on - for proper icons. Leave it out and every chat still works, with the symbols as text.</p>
+
+<!-- contents -->
+
+<h3>What It Does</h3>
+
+<p>Most of the buttons in the skin are typed symbols, like &#9825; for a like or &#8644; for a reblog. They're fine, but they change from device to device, and some of them (like &#127908; for the mic) show up as colourful emoji when the real apps use plain outlines. The Icons module puts a picture over each one, so they look the same everywhere.</p>
+
+<p>Light chats get black icons and dark chats get white ones, and they follow your <code>theme-</code> class like everything else. A few icons are always the same colour, whatever the theme:</p>
+
+<ul>
+  <li>WhatsApp's blue read ticks</li>
+  <li>the blue verified badges on Twitter/X and Instagram</li>
+  <li>Instagram's red liked heart</li>
+  <li>the round send and mic buttons in iMessage and WhatsApp</li>
+</ul>
+
+<p>The pictures are hosted on squidge.org. If squidge is ever down, the icons won't show, and because the module hides the symbols underneath, those buttons will just be blank until it's back.</p>
+
+<h3>Getting the CSS</h3>
+
+<p>The Icons CSS is here: <a href="css/icons.css">jockles.com/fic/megaskin/css/icons.css</a>. It goes at the very end of your work skin, after the core and every app module you're using. It's already at the end of the full megaskin, so if you use that, you have it - cut it out (everything between its two MODULE lines) if you don't want it.</p>
+
+<h3>Which Symbols Change</h3>
+
+<p>Every example in this tutorial already has the right classes in it, so if you copied your HTML from here, there's nothing else to do. This is what changes in each app:</p>
+
+<ul>
+  <li><strong>iMessage:</strong> the mic in the message box, and the blue send arrow.</li>
+  <li><strong>WhatsApp:</strong> the back arrow, video and menu buttons at the top; the emoji, paperclip and camera in the message box; the green mic and send buttons; the blue read ticks; and the link symbol on link previews.</li>
+  <li><strong>Twitter/X:</strong> the verified badge, and the play button on voice notes.</li>
+  <li><strong>Instagram:</strong> the three dots, the verified badge, and the like, comment, repost, share and save buttons.</li>
+  <li><strong>Tumblr:</strong> the save, share, reply, reblog and like buttons along the bottom.</li>
+  <li><strong>Email:</strong> Gmail's star, reply, three dots and the little arrow by "to me", the Reply, Reply all and Forward buttons, and the paperclip, document and picture symbols on email window attachments.</li>
+</ul>
+
+<p>The Tumblr checkmarks and Discord have their own pictures already, so the Icons module doesn't touch them.</p>
+
+<h3>Adding an Icon Yourself</h3>
+
+<p>An icon is a span with <code>ic</code> and the icon's name, with the symbol still inside it for readers who have the style turned off:</p>
+
+<pre><code>&lt;span class="tb-icon ic ic-heart"&gt;&amp;#9825;&lt;/span&gt;</code></pre>
+
+<p>Keep the app's own class (<code>tb-icon</code> here) as well - that's what sizes and spaces it. The names are:</p>
+
+<ul>
+  <li><strong>Black or white, depending on the theme:</strong> <code>ic-back</code>, <code>ic-camera</code>, <code>ic-comment</code>, <code>ic-dropdown</code>, <code>ic-emoji</code>, <code>ic-forward</code>, <code>ic-heart</code>, <code>ic-menu</code> (three dots up and down), <code>ic-mic</code>, <code>ic-more</code> (three dots across), <code>ic-paperclip</code>, <code>ic-play</code>, <code>ic-reblog</code>, <code>ic-reply</code>, <code>ic-reply-all</code>, <code>ic-repost</code>, <code>ic-share</code>, <code>ic-share-up</code>, <code>ic-star</code>, <code>ic-video</code></li>
+  <li><strong>Always the same colour:</strong> <code>ic-read</code> (blue double ticks), <code>ic-verified</code> (blue badge), <code>ic-heart-red</code>, <code>ic-imsg-send</code>, <code>ic-wa-send</code>, <code>ic-wa-mic</code></li>
+</ul>
+
+<h3>How the CSS Works</h3>
+
+<pre><code>#workskin .ic {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  overflow: hidden;
+  text-indent: -100em;
+  text-align: left;
+  white-space: nowrap;
+  vertical-align: -0.15em;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}</code></pre>
+
+<p>Every icon is a square the size of the text around it. <code>text-indent: -100em</code> pushes the symbol a long way off to the left, and <code>overflow: hidden</code> cuts it off, so all that's left is the picture, which <code>background-size: contain</code> fits into the square.</p>
+
+<pre><code>#workskin .ic.ic-heart { background-image: url(https://images.squidge.org/images/2026/11/15/heart-black.png); }
+#workskin .theme-dark .ic.ic-heart { background-image: url(https://images.squidge.org/images/2026/11/15/heart-white.png); }</code></pre>
+
+<p>Each icon has a black line, then a white line for <code>theme-dark</code>, and the white line again inside <code>@media (prefers-color-scheme: dark)</code> for <code>theme-auto</code>. The coloured icons only have one line each.</p>
+
+<p>The rest of the module is small fixes for particular spots:</p>
+
+<ul>
+  <li><strong>WhatsApp's message box:</strong> the icons sit in table cells, so they get a set width.</li>
+  <li><strong>WhatsApp's top bar:</strong> it's coloured in every theme, so its icons are always white.</li>
+  <li><strong>Twitter/X voice notes:</strong> one you sent sits in a blue bubble, so its play button is white.</li>
+  <li><strong>Instagram and Tumblr bookmarks:</strong> these are drawn with CSS in their own modules, so the Icons module rubs out the drawing before adding the picture.</li>
+  <li><strong>Link previews and attachments:</strong> these symbols come from the CSS rather than the HTML, so the Icons module swaps them in the same place.</li>
+</ul>
+
+<h3>Taking Parts Out</h3>
+
+<p>Don't want one of the icons? Delete its lines (the black one, the dark one, and the one inside the <code>@media</code> block) and that symbol goes back to being text. To drop the whole thing, delete the module.</p>
