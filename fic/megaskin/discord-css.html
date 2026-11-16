@@ -6,7 +6,7 @@
   <title>Megaskin, Chapter 17: Discord CSS | jockles.com</title>
   <link rel="stylesheet" href="../../style.css">
   <script src="../../theme.js"></script>
-  <link rel="stylesheet" href="megaskin.css?v=9be118a1" id="creator-style">
+  <link rel="stylesheet" href="megaskin.css?v=f4a9d6dc" id="creator-style">
 </head>
 <body>
 <header>
@@ -66,7 +66,7 @@
 <ul>
   <li>It doesn't use the <code>mob</code> box. Discord is mostly used on a computer, so it's a wide window that fills the page, unless you add <code>narrow</code>.</li>
   <li>It does its own scrolling, and has its own <code>no-scroll</code> rule.</li>
-  <li>The little icons in the header and the message box are pictures hosted on Imgur, not text.</li>
+  <li>The little icons in the header and the message box are pictures hosted on squidge.org, not text.</li>
   <li>It uses <code>rem</code> for most sizes, where the other modules use <code>em</code>. A <code>rem</code> is the size of the page's normal text, so the sizes stay the same wherever the chat sits.</li>
 </ul>
 
@@ -125,11 +125,11 @@
   width: 1.5rem;
 }
 
-#workskin .dc .hashtag::before { background-image: url(https://i.imgur.com/XbvXZWD.png); }
+#workskin .dc .hashtag::before { background-image: url(https://images.squidge.org/images/2026/11/15/dc-hashtag-light.png); }
 
-#workskin .dc .locked::before { background-image: url(https://i.imgur.com/MwjtrTT.png); }
+#workskin .dc .locked::before { background-image: url(https://images.squidge.org/images/2026/11/15/dc-lock-light.png); }
 
-#workskin .dc .at-symbol::before { background-image: url(https://i.imgur.com/0w9EkYY.png); }</code></pre>
+#workskin .dc .at-symbol::before { background-image: url(https://images.squidge.org/images/2026/11/15/dc-at-light.png); }</code></pre>
 
 <p>The symbol before the channel name is an empty box made with <code>::before</code>, with a picture as its background. Adding <code>hashtag</code>, <code>locked</code> or <code>at-symbol</code> to the header picks which picture: # for a channel, a padlock for a private channel, or @ for a DM. The dark theme swaps each one for a lighter version, so they show up on the dark background.</p>
 
@@ -190,10 +190,10 @@
   left: 1rem;
   height: 1.5rem;
   width: 1.5rem;
-  background-image: url(https://i.imgur.com/JB3HgBA.png);
+  background-image: url(https://images.squidge.org/images/2026/11/15/dc-plus-light.png);
 }</code></pre>
 
-<p>The grey "Message #general" box at the bottom, with a round button on its left - another Imgur picture in a <code>::before</code>.</p>
+<p>The grey "Message #general" box at the bottom, with a round button on its left - another squidge.org picture in a <code>::before</code>.</p>
 
 <h3 id="s17-7">17.7 Messages and Names</h3>
 
@@ -396,7 +396,7 @@
   content: '\00a0\00a0\00a0\00a0 BOT';
   color: rgb(255, 255, 255);
   background-color: rgb(88, 101, 242);
-  background-image: url(https://i.imgur.com/3Ox94zk.png);
+  background-image: url(https://images.squidge.org/images/2026/11/15/dc-bot-tick.png);
   ...
 }</code></pre>
 
@@ -425,7 +425,7 @@
 
 <h3 id="s17-14">17.14 Themes</h3>
 
-<p>The dark theme is Discord's classic dark grey (<code>rgb(54, 57, 63)</code>) with light text. Code blocks, embeds and reactions go a shade darker, links go brighter, the names get their lighter colours, and the header icons and the message box button swap to their light Imgur versions. The spoilers get their own dark colours, with the same 68-year trick. The auto theme is the same again inside <code>@media (prefers-color-scheme: dark)</code>, and plain <code>dc</code> or <code>theme-light</code> is the light theme.</p>
+<p>The dark theme is Discord's classic dark grey (<code>rgb(54, 57, 63)</code>) with light text. Code blocks, embeds and reactions go a shade darker, links go brighter, the names get their lighter colours, and the header icons and the message box button swap to their light versions. The spoilers get their own dark colours, with the same 68-year trick. The auto theme is the same again inside <code>@media (prefers-color-scheme: dark)</code>, and plain <code>dc</code> or <code>theme-light</code> is the light theme.</p>
 
 <h3 id="s17-15">17.15 Taking Parts Out</h3>
 
