@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Megaskin Fic Builder | jockles.com</title>
+  <link rel="stylesheet" href="../../style.css">
+  <script src="../../theme.js"></script>
+  <link rel="stylesheet" href="megaskin.css">
+  <style id="fb-live"></style>
+  <style>
+    main { max-width: 1400px; }
+    .fb { display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-start; }
+    .fb-edit { flex: 1 1 460px; min-width: 0; }
+    .fb-out { flex: 1 1 380px; min-width: 0; position: sticky; top: 8px; max-height: calc(100vh - 16px); overflow: auto; }
+    .fb fieldset { border: 1px solid var(--rule, #ccc); border-radius: 6px; margin: 0 0 16px; padding: 10px 14px 12px; min-width: 0; }
+    .fb legend { font-weight: bold; padding: 0 4px; }
+    .fb label { display: block; margin: 6px 0 2px; font-size: 0.9em; }
+    .fb label.ck { display: inline-block; margin-right: 10px; }
+    .fb input[type=text], .fb input[type=url], .fb select, .fb textarea { width: 100%; box-sizing: border-box; padding: 5px 7px; font: inherit; }
+    .fb input[type=color] { width: 3em; height: 2em; padding: 0; vertical-align: middle; }
+    .fb textarea { font-size: 0.95em; }
+    .fb .hint { font-size: 0.8em; opacity: 0.75; margin: 6px 0 2px; }
+    .fb button { font: inherit; padding: 3px 9px; cursor: pointer; }
+    .fb-row { display: flex; gap: 6px; align-items: center; }
+    .fb-row > input, .fb-row > select { flex: 1; min-width: 0; }
+    .fb-row label { margin: 0; }
+    .fb-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 0 12px; }
+    .fb-card { border: 1px solid var(--rule, #ccc); border-radius: 6px; padding: 8px 10px; margin: 0 0 10px; background: var(--box-fill, #f4f8f7); }
+    .fb-card details, .fb-block details { margin-top: 6px; }
+    .fb summary { cursor: pointer; font-size: 0.9em; }
+    .fb-swatch { display: inline-block; width: 1.2em; height: 1.2em; border-radius: 50%; vertical-align: middle; margin-left: 4px; }
+    .fb-app { display: grid; grid-template-columns: 6em 1fr 1fr 1fr; gap: 4px; align-items: center; font-size: 0.85em; margin: 3px 0; }
+    .fb-acct { border-left: 3px solid var(--rule, #ccc); padding: 2px 0 4px 8px; margin: 6px 0; }
+    .fb-acct > input, .fb-acct > label { margin-top: 3px; }
+    .fb-block { border: 1px solid var(--box-edge, #bbb); border-radius: 6px; padding: 8px 10px; margin: 0 0 14px; }
+    .fb-bhead { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; }
+    .fb-tools { display: inline-flex; gap: 3px; flex: none; }
+    .fb-msgs { list-style: none; padding: 0; margin: 10px 0; }
+    .fb-msg { margin: 0 0 5px; padding: 4px 6px; border-radius: 6px; background: var(--box-fill, #f4f8f7); border-left: 4px solid #8a9a9a; }
+    .fb-msg.out { border-left-color: #2f68c8; margin-left: 1.5em; }
+    .fb-msg.sys { border-left-color: transparent; opacity: 0.85; }
+    .fb-msg > .fb-row { flex-wrap: wrap; }
+    .fb-msg select { flex: 0 1 9em; }
+    .fb-msg .fb-text { flex: 1 1 12em; }
+    .fb-msg .fb-time { flex: 0 0 4.5em; }
+    .fb-emoji { flex: 0 0 5em !important; }
+    .fb-extras { padding: 4px 2px 2px; }
+    .fb-script { border-top: 1px dashed var(--rule, #ccc); padding-top: 6px; }
+    .fb-add { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+    .fb-fmt { position: sticky; bottom: 0; background: var(--page, #fff); border-top: 1px solid var(--rule, #ccc); padding: 6px 0; z-index: 2; }
+    .fb-out textarea { width: 100%; box-sizing: border-box; height: 14em; font-family: monospace; font-size: 0.8em; }
+    .fb-file { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+    .fb-preview { border: 1px dashed var(--rule, #ccc); padding: 10px; border-radius: 6px; }
+    @media (max-width: 860px) { .fb-out { position: static; max-height: none; } .fb-app { grid-template-columns: 1fr 1fr; } }
+  </style>
+</head>
+<body>
+<header>
+  <h1><a href="../../index.html">jockles.com</a></h1>
+  <p>All the Fannish things I do.</p>
+</header>
+<nav>
+  <ul>
+    <li><a href="../../index.html">Home</a></li>
+    <li><a href="../index.html">Fic</a></li>
+    <li><a href="../../videos/index.html">Videos</a></li>
+    <li><a href="../../blog/index.html">Blog</a></li>
+    <li><a href="../../links.html">Links</a></li>
+    <li><a href="../../about.html">About</a></li>
+  </ul>
+</nav>
+<main>
+  <p class="work-title"><a href="index.html">Megaskin</a> by Jockles</p>
+  <h2>Fic Builder</h2>
+
+  <p>This is a WYSIWYG (what you see is what you get) helper for putting a whole chapter together: add your characters, type your story and your chats, and pick the extras you want. The preview shows it with the real megaskin as you go, and when you're done you can copy all the HTML, in order, ready to paste into AO3. It's only a shortcut. Everything it makes is the same HTML the tutorial teaches, so you can still change any of it by hand afterwards, and you don't have to use it at all if you don't want to, or if it ever breaks.</p>
+  <p>Nothing you type leaves your browser. Your chapter is kept in this browser until you clear it, and you can save it to a file to carry on somewhere else.</p>
+
+  <div class="fb">
+    <form class="fb-edit" autocomplete="off" onsubmit="return false">
+      <fieldset>
+        <legend>Your chapter</legend>
+        <div class="fb-file">
+          <button type="button" data-act="save-file">Save to a file</button>
+          <label class="ck" style="margin:0">Open a saved file <input type="file" id="fb-open" accept=".json,application/json"></label>
+          <button type="button" data-act="new">Start a new one</button>
+          <button type="button" data-act="example">Load the example</button>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>1. Cast</legend>
+        <p class="hint">Everyone who sends a message. One-offs are typed straight into the chat. Profiles keep a character the same in every chat and every app, and the profile CSS goes into your work skin (see <a href="core.html#heading">Character Profiles</a>). The example profiles are already in the skin.</p>
+        <div id="fb-cast"></div>
+        <button type="button" data-act="cast-add">+ Add a character</button>
+      </fieldset>
+
+      <fieldset>
+        <legend>2. The chapter</legend>
+        <p class="hint">Add the parts in the order they happen. Each chat has its own settings, a list of messages, and a box to type or paste lots of messages at once.</p>
+        <div id="fb-blocks"></div>
+        <div class="fb-add">Add:
+          <button type="button" data-act="add:prose">Story text</button>
+          <button type="button" data-act="add:imsg">iMessage chat</button>
+          <button type="button" data-act="add:wa">WhatsApp chat</button>
+        </div>
+      </fieldset>
+
+      <div class="fb-fmt" id="fb-fmt" hidden>
+        <span class="hint">Select some words, then:</span>
+        <button type="button" data-act="fmt:tl">Translation</button>
+        <button type="button" data-act="fmt:egg">Easter egg</button>
+        <button type="button" data-act="fmt:del">Cross out</button>
+        <button type="button" data-act="fmt:link">Fake link</button>
+      </div>
+    </form>
+
+    <div class="fb-out">
+      <h3>Preview</h3>
+      <div class="fb-preview"><div id="workskin"></div></div>
+
+      <h3>3. Copy</h3>
+      <p><button type="button" data-act="copy-html">Copy the chapter HTML</button></p>
+      <p class="hint">Paste it into the chapter text box on AO3, with the HTML button selected.</p>
+      <textarea id="fb-html" readonly aria-label="Chapter HTML"></textarea>
+      <div id="fb-css-wrap">
+        <p><button type="button" data-act="copy-css">Copy the profile CSS</button></p>
+        <p class="hint">Paste this into the PROFILES section of your work skin, next to the other profiles.</p>
+        <textarea id="fb-css" readonly aria-label="Profile CSS"></textarea>
+      </div>
+    </div>
+  </div>
+</main>
+<footer>
+  Made by hand in HTML &amp; CSS. No trackers, no cookies, no ads.
+</footer>
+<script src="profile-css.js"></script>
+<script src="fic-builder.js"></script>
+</body>
+</html>
