@@ -511,6 +511,8 @@
       btn("msg-ins:" + bi + ":" + mi, "+", "Add a message under this one") + btn("msg-del:" + bi + ":" + mi, "&times;", "Delete this message") + "</span></div>");
     if (m.open && m.from !== "sys" && m.from !== "typing") {
       h.push('<div class="fb-extras">');
+      h.push('<p class="hint">Select some words in the message, then: ' + btn("fmt:tl", "Translation") + " " + btn("fmt:egg", "Easter egg") + " " +
+        btn("fmt:del", "Cross out") + " " + btn("fmt:link", "Fake link") + "</p>");
       if (!wa) {
         h.push(field(P + ".sms", "Green text message (SMS)", { type: "check" }));
         h.push('<p class="hint">Tapbacks (one emoji per person):</p>');
@@ -711,13 +713,11 @@
     var el = e.target;
     if (el.getAttribute && el.getAttribute("data-bind") && (el.tagName === "TEXTAREA" || el.type === "text")) {
       lastText = el;
-      var bar = $("fb-fmt");
-      bar.hidden = false;
     }
   });
   function wrap(kind) {
     var el = lastText;
-    if (!el || !document.body.contains(el)) { alert("Click in a message box first, and select the words you want."); return; }
+    if (!el || !document.body.contains(el)) { alert("Click in the message first, and select the words you want."); return; }
     var s = el.selectionStart, e = el.selectionEnd, v = el.value, sel = v.slice(s, e);
     if (!sel) { alert("Select the words first, then press the button."); return; }
     var out;
