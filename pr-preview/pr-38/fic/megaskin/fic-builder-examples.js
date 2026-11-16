@@ -1,6 +1,7 @@
 // The tutorial's example chats, for "Load an example" in the Fic Builder.
 // Each one is plain data:
-//   cast:  the people in it (name, plus colour, initials, pic, alt, num for one-offs)
+//   cast:  the people in it: profile (a profile from the skin, like "shane"), or name plus
+//          colour, initials, pic, alt, num for one-offs
 //   chat:  the chat settings (type is "imsg" or "wa"; pov is whose phone it is)
 //   msgs:  one line per message: [who, text, extras]. who is a cast name, "sys" for a
 //          date or notice line, or "typing". extras can have time, tick, reacts (iMessage
@@ -19,7 +20,7 @@ var ALT4 = "Black and white cat sitting in an opened red suitcase, carry on size
 window.FB_EXAMPLES = [
   {
     label: "iMessage: a one-to-one chat",
-    cast: [{ name: "Shane" }, { name: "Ilya" }],
+    cast: [{ name: "Shane", profile: "shane" }, { name: "Ilya", profile: "ilya" }],
     chat: { type: "imsg", pov: "Shane", title: "Ilya", sub: "iMessage", bar: "empty" },
     msgs: [
       ["sys", "Today 11:48 PM"],
@@ -36,7 +37,7 @@ window.FB_EXAMPLES = [
   },
   {
     label: "iMessage: a group chat",
-    cast: [{ name: "Shane" }, { name: "Hayden" }, { name: "Scott" }, { name: "Max" }, { name: "Ryan" }, { name: "Wyatt" }, { name: "Ilya" }],
+    cast: [{ name: "Shane", profile: "shane" }, { name: "Hayden" }, { name: "Scott" }, { name: "Max" }, { name: "Ryan" }, { name: "Wyatt" }, { name: "Ilya", profile: "ilya" }],
     chat: { type: "imsg", pov: "Shane", group: true, title: "gays and europeans (and hayden)", sub: "iMessage group", bar: "empty" },
     msgs: [
       ["sys", "Today 6:12 AM"],
@@ -59,23 +60,23 @@ window.FB_EXAMPLES = [
   },
   {
     label: "WhatsApp: a one-to-one chat",
-    cast: [{ name: "Shane" }, { name: "Lily" }],
+    cast: [{ name: "Shane", profile: "shane" }, { name: "Ilya", profile: "ilya" }], // Ilya is saved as Lily on Shane's phone
     chat: { type: "wa", pov: "Shane", title: "Lily", sub: "online", bar: "empty" },
     msgs: [
       ["sys", "YESTERDAY"],
-      ["Lily", "are you still up?", { time: "23:41" }],
+      ["Ilya", "are you still up?", { time: "23:41" }],
       ["Shane", "unfortunately", { time: "23:42" }],
       ["Shane", "can't stop thinking about tomorrow", { time: "23:42" }],
-      ["Lily", "you'll be great. you always are", { time: "23:43", waReacts: "❤️" }],
+      ["Ilya", "you'll be great. you always are", { time: "23:43", waReacts: "❤️" }],
       ["sys", "TODAY"],
       ["Shane", "it's done. I'm alive", { time: "14:05" }],
-      ["Lily", "TELL ME EVERYTHING", { time: "14:05" }],
+      ["Ilya", "TELL ME EVERYTHING", { time: "14:05" }],
       ["Shane", "after snacks. I'm starving", { time: "14:06", reply: 7 }],
-      ["Lily", "so proud of you", { time: "14:07", reply: 6 }],
-      ["Lily", "", { time: "14:12", link: { url: "https://fakehockeynews.com", title: "Captain Mack", desc: "All the reasons Mack deserves the C",
+      ["Ilya", "so proud of you", { time: "14:07", reply: 6 }],
+      ["Ilya", "", { time: "14:12", link: { url: "https://fakehockeynews.com", title: "Captain Mack", desc: "All the reasons Mack deserves the C",
         img: "https://64.media.tumblr.com/c3c4ecb5bfed8fa9f0590c54206ddb30/cff2318529321620-44/s1280x1920/42befcc40a517e1f202dda40783be2ffb95c1d92.pnj",
         alt: "Macklin Celebrini at the IHF Worlds, dressed in his red jersey and black helmet. He's surrounded by sparkles, a red vignette, and hearts containing the Canadian flag" } }],
-      ["Lily", "also someone made me a fan video. I am very handsome in it", { time: "14:13", link: { url: "https://vimeo.com", title: "Ilya Rozanov | Come Home",
+      ["Ilya", "also someone made me a fan video. I am very handsome in it", { time: "14:13", link: { url: "https://vimeo.com", title: "Ilya Rozanov | Come Home",
         video: "https://player.vimeo.com/video/1169167060?badge=0&autopause=0&player_id=0&app_id=58479",
         imgdesc: "Video: a tribute edit of Ilya Rozanov, made from Heated Rivalry footage and set to \"Would You Come Home\" by Tyler Blackburn" } }],
       ["Shane", "🙄", { time: "14:15", big: true }],
@@ -83,19 +84,17 @@ window.FB_EXAMPLES = [
         imgdesc: "The page's picture: a plate of golden fried pierogi with sour cream" } }],
       ["Shane", "making these tonight if you're coming over", { time: "14:20" }],
       ["Shane", "", { time: "14:22", waReacts: "😍", photos: [{ url: CAT3, alt: ALT3, land: true }, { url: CAT4, alt: ALT4 }] }],
-      ["Lily", "she says she wants pierogi too", { time: "14:24", photos: [{ url: CAT2, alt: ALT2 }] }],
+      ["Ilya", "she says she wants pierogi too", { time: "14:24", photos: [{ url: CAT2, alt: ALT2 }] }],
       ["typing", "Lily is typing..."]
     ]
   },
   {
     label: "WhatsApp: a group chat",
     cast: [
-      { name: "Ilya" },
-      { name: "Rose", colour: "1", num: "+353 85 123 4567", alt: "Profile picture of Rose, a close-up photo of a rose",
-        pic: "https://media.istockphoto.com/id/1298570775/photo/rose.jpg?s=1024x1024&w=is&k=20&c=UFPisYCT3g2Vm04F2E5zrhtUWqDtLRLDXZisKb6Xf5s=" },
+      { name: "Ilya", profile: "ilya" },
+      { name: "Rose", profile: "rose" },
       { name: "Hayden", colour: "4", initials: "HP" },
-      { name: "Jane", colour: "3", land: true, alt: "Profile picture of Jane, a lavender flower",
-        pic: "https://www.shutterstock.com/shutterstock/photos/1100283806/display_1500/stock-photo-beautiful-lavender-flower-in-the-dalat-flower-park-selective-focus-1100283806.jpg" }
+      { name: "Shane", profile: "shane" } // saved as Jane on Ilya's phone
     ],
     chat: { type: "wa", pov: "Ilya", group: true, header: "bar", title: "dinner", sub: "Rose, Jane, Hayden, You", bar: "empty" },
     msgs: [
@@ -105,7 +104,7 @@ window.FB_EXAMPLES = [
       ["Rose", "I'm doing the lamb!!! everyone has to come", { time: "09:12", waReacts: "🎉", waCount: "2" }],
       ["Hayden", "should I bring the kids?", { time: "09:13" }],
       ["Ilya", "yes. they are better company than you", { time: "09:14", reply: 4, waReacts: "❤️ 😂", waCount: "3" }],
-      ["Jane", "be nice", { time: "09:15", reply: 5 }],
+      ["Shane", "be nice", { time: "09:15", reply: 5 }],
       ["Ilya", "what do we bring?", { time: "09:16", reply: 2 }],
       ["Rose", "", { time: "09:18", photos: [{ desc: "Photo of a bottle of red wine with a gold label and a very long French name" },
         { desc: "Photo of the same bottle, held up next to Rose's very pleased face" }] }],
