@@ -667,8 +667,9 @@
       case "link-del": m.link = null; break;
       case "copy-html": copy("fb-html", t); return;
       case "copy-css": copy("fb-css", t); return;
-      case "save-file": saveFile(); return;
-      case "new": if (!confirm("Start again? Everything here will be cleared, so save it to a file first if you want to keep it.")) return; S = { v: 1, pasted: "", cast: [], blocks: [] }; break;
+      case "save-html": saveHTML(); return;
+      case "save-css": download("megaskin-profiles.css", allProfilesCSS(), "text/css"); return;
+      case "new": if (!confirm("Start again? Everything here will be cleared, so download your HTML and CSS first if you want to keep them.")) return; S = { v: 1, pasted: "", cast: [], blocks: [] }; break;
       case "example": if (!confirm("Load the example? Everything here will be replaced.")) return; starter(); break;
       case "fmt": wrap(a[1]); return;
       default: return;
@@ -712,23 +713,50 @@
     if (navigator.clipboard) navigator.clipboard.writeText(ta.value).then(done, function () { document.execCommand("copy"); done(); });
     else { document.execCommand("copy"); done(); }
   }
-  function saveFile() {
-    var blob = new Blob([JSON.stringify(S, null, 1)], { type: "application/json" });
+  // ---------- files ----------
+
+  function download(name, text, type) {
     var a = document.createElement("a");
-    a.href = URL.createObjectURL(blob);
-    a.download = "megaskin-chats.json";
+    a.href = URL.createObjectURL(new Blob([text], { type: type }));
+    a.download = name;
     document.body.appendChild(a); a.click(); a.remove();
     setTimeout(function () { URL.revokeObjectURL(a.href); }, 1000);
   }
-  $("fb-open").addEventListener("change", function () {
-    var f = this.files[0]; if (!f) return;
+  // the HTML file has everything typed in hidden in a comment at the end, so it can be opened again here
+  var MARK = "megaskin-fic-builder ";
+  function saveHTML() {
+    var data = JSON.stringify(S).replace(/--/g, "-\\u002d"); // "--" can't go inside a comment
+    download("megaskin-chats.html", allHTML() + "\n\n<!-- " + MARK + data + " -->\n", "text/html");
+  }
+  // the CSS file has every profile: the ones pasted in (minus any that were changed) and the new or changed ones
+  function allProfilesCSS() {
+    var redone = S.cast.filter(function (c) { return c.kind === "new" || changed(c); }).map(slugOf);
+    var kept = (S.pasted || "").split(/(?=\/\* PROFILE:)/).filter(function (chunk) {
+      var m = chunk.match(/\.pfp\.pfp-([a-z0-9-]+)/);
+      return chunk.trim() && !(m && redone.indexOf(m[1]) >= 0);
+    }).map(function (x) { return x.trim(); });
+    return kept.concat([profilesCSS()]).filter(Boolean).join("\n\n") + "\n";
+  }
+  function openFile(input, read) {
+    var f = input.files[0]; if (!f) return;
     var r = new FileReader();
-    r.onload = function () {
-      try { var d = JSON.parse(r.result); if (!d.cast || !d.blocks) throw 0; S = d; rerender(); }
-      catch (err) { alert("That file doesn't look like a saved Fic Builder file."); }
-    };
+    r.onload = function () { read(r.result); };
     r.readAsText(f);
-    this.value = "";
+    input.value = "";
+  }
+  $("fb-open-html").addEventListener("change", function () {
+    openFile(this, function (text) {
+      var i = text.lastIndexOf("<!-- " + MARK);
+      try { var d = JSON.parse(text.slice(i + 5 + MARK.length, text.lastIndexOf("-->")).trim()); if (i < 0 || !d.cast || !d.blocks) throw 0; S = d; rerender(); }
+      catch (err) { alert("That file wasn't saved from the Fic Builder, so it can't be opened here."); }
+    });
+  });
+  $("fb-open-css").addEventListener("change", function () {
+    openFile(this, function (text) {
+      S.pasted = ((S.pasted || "").trim() + "\n\n" + text.trim()).trim();
+      addPasted();
+      rerender();
+    });
   });
 
   load();
