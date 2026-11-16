@@ -14,7 +14,13 @@
       <li><a href="#themes">Light, dark and auto themes</a></li>
     </ul>
   </li>
-  <li><a href="#profiles">Profile pictures and names</a>: one-off pictures and names, optional cross-platform profiles (<code>pfp-</code>), and <code>pov-</code> for a character's phone</li>
+  <li><a href="#profiles">Character appearances</a>
+    <ul>
+      <li><a href="#initials">Initials in a coloured circle</a></li>
+      <li><a href="#no-profile">Uploading a profile pic</a></li>
+      <li><a href="#character-profiles">Character profiles</a> (<code>pfp-</code>), and <code>pov-</code> for a character's phone</li>
+    </ul>
+  </li>
   <li><a href="#pictures">Pictures and formatting</a>: pictures, and cropping them to fit boxes and circles (<code>land</code>)</li>
   <li><a href="#fake-links">Links that go nowhere</a> (<code>fake-link</code>)</li>
   <li><a href="#translations">Hover and tap translations</a>, and hidden easter eggs (<code>egg</code>), which also work in ordinary text outside a chat</li>
@@ -588,21 +594,41 @@
 
 </details>
 
-<h3 id="profiles">Cross-Platform Profiles</h3>
+<h3 id="profiles">Character Appearances</h3>
 
-<p>Profiles are optional. They save time for characters who keep turning up - your main cast, in chat after chat and app after app - but you never have to make one. For anyone who only appears once or twice, like a Twitter/X thread full of strangers, a big group chat where most people only say a line or two, or one email from a landlord, it's quicker to type their name into the HTML and put their picture straight into the circle. That works on every message, in every app, without touching the CSS (see <a href="#no-profile">Pictures and Names Without a Profile</a>, below).</p>
-
-<h4>Profile Pictures</h4>
-
-<p>Most of the modules have round profile pictures next to people's names. There are three ways to fill one:</p>
+<p>The thing about social media and chat fics is that they're full of people. Some of them are people that are going to turn up again and again (your main characters) and some of them are going to turn up once. How much effort you want to go to for each will depend on you. To make it as easy as possible to have your fic look good without taking you 1000 years, there are three ways to display a person:</p>
 
 <ol>
-  <li><strong>Initials.</strong> Type them inside the circle, and add <code>colour1</code> to <code>colour10</code> for a colour.</li>
-  <li><strong>A picture.</strong> Put a picture tag, with alt text, inside a <code>pfp</code> span. Each module chapter shows you how.</li>
-  <li><strong>A profile.</strong> Set a character's picture once in the core CSS, and use it in every app. I'd recommend this for anyone who turns up in more than one chat.</li>
+  <li><a href="#initials"><strong>Initials in a coloured circle.</strong></a> Sometimes you just need a character to show up and you don't have time to get them a profile picture.</li>
+  <li><a href="#no-profile"><strong>A profile pic.</strong></a> A one-time upload of an image in the HTML itself. Useful for characters that appear once or a handful of times, where it's not worth making a profile.</li>
+  <li><a href="#character-profiles"><strong>A full character profile</strong></a>, that you can refer back to every time they appear, meaning you don't have to upload the same profile pic 1000 times.</li>
 </ol>
 
-<p>iMessage, Twitter/X DMs and Instagram DMs don't show profile pictures.</p>
+<p>You can mix all three in the same chat. iMessage, Twitter/X DMs and Instagram DMs don't show profile pictures at all, so there you only need the name.</p>
+
+<h4 id="initials">Initials in a Coloured Circle</h4>
+
+<p>The quickest way: type the person's initials inside the app's circle, and add one of <code>colour1</code> to <code>colour10</code> for a colour. Type their name where it goes in that app, the same as any other text:</p>
+
+<div class="mob wa theme-auto"><div class="mob-body"><div class="wa-row">
+  <p class="wa-pfp colour4">HP</p>
+  <div class="msg in tail">
+    <p class="who colour4">Hayden<span class="hide">:</span></p>
+    <p>should I bring the kids?</p>
+    <p class="wa-time">09:13</p>
+  </div>
+</div></div></div>
+
+<pre><code>&lt;div class="wa-row"&gt;
+  &lt;p class="wa-pfp colour4"&gt;HP&lt;/p&gt;
+  &lt;div class="msg in tail"&gt;
+    &lt;p class="who colour4"&gt;Hayden&lt;span class="hide"&gt;:&lt;/span&gt;&lt;/p&gt;
+    &lt;p&gt;should I bring the kids?&lt;/p&gt;
+    &lt;p class="wa-time"&gt;09:13&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+<p>Give each person the same colour every time, so readers can keep track of who's who. Each module chapter shows you where its circle goes:</p>
 
 <details>
 <summary>Where the circle goes in each module</summary>
@@ -620,7 +646,7 @@
 
 </details>
 
-<h4 id="no-profile">Pictures and Names Without a Profile</h4>
+<h4 id="no-profile">Uploading a Profile Pic</h4>
 
 <p>To give someone a picture and a name without making a profile:</p>
 
@@ -667,9 +693,9 @@
   &lt;/div&gt;
 &lt;/div&gt;</code></pre>
 
-<p>Every module chapter with pictures has its own section on this, showing exactly where the picture and name go in that app. And if someone ends up in more chats than you planned, you can always give them a profile later.</p>
+<p>Every module chapter with pictures has its own section on this, showing exactly where the picture and name go in that app. And if someone ends up in more chats than you planned, you can always give them a full character profile later.</p>
 
-<h4>Character Profiles</h4>
+<h4 id="character-profiles">Character Profiles</h4>
 
 <p>A profile is one character's online identity - their picture, name, handle and email address - set once in the core CSS. You can use it in any chat, in any app, and if something changes, like a new picture or a new handle, you change it in one place and it changes everywhere.</p>
 
@@ -715,7 +741,7 @@
 
 </details>
 
-<h4>Using a Profile</h4>
+<h5>Using a Profile</h5>
 
 <p>In your HTML, add the profile name wherever that character turns up:</p>
 
@@ -806,7 +832,7 @@
 
 </details>
 
-<h4>Their Phone</h4>
+<h5>Their Phone</h5>
 
 <p>When a chat is on one character's phone, add <code>pov-</code> and their profile name to the chat's container, like <code>pov-shane</code>. In WhatsApp, the chat gets their wallpaper, and in every app, people show up under whatever that character has them saved as. Here's the same chat on Shane's phone, where Ilya is saved as Lily, and on Ilya's, where Shane is Jane:</p>
 
