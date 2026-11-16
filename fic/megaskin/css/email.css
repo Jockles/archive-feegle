@@ -331,4 +331,67 @@
   #workskin .gm.theme-auto table.gm-actions td { border-color: #5f6368; color: #bdc1c6; }
 }
 
+/* ---------- Email: Icons ----------
+   The buttons and ticks are pictures: black in light chats, white in dark ones.
+   Each one is a span with "ic" and its name, with the typed symbol inside, which
+   this hides. Delete this whole section to get the typed symbols back. */
+#workskin .gm .ic, #workskin .mail .ic {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  overflow: hidden;
+  text-indent: -100em;
+  text-align: left;
+  white-space: nowrap;
+  vertical-align: -0.15em;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+#workskin .gm .mail-attachment::before, #workskin .gm .mail-attachment.doc::before, #workskin .gm .mail-attachment.img::before {
+  content: "";
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.15em;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+#workskin .gm .ic.ic-star, #workskin .mail .ic.ic-star { background-image: url(https://images.squidge.org/images/2026/11/15/star-black.png); }
+#workskin .gm .ic.ic-reply, #workskin .mail .ic.ic-reply { background-image: url(https://images.squidge.org/images/2026/11/15/reply-black.png); }
+#workskin .gm .ic.ic-reply-all, #workskin .mail .ic.ic-reply-all { background-image: url(https://images.squidge.org/images/2026/11/15/reply-all-black.png); }
+#workskin .gm .ic.ic-more, #workskin .mail .ic.ic-more { background-image: url(https://images.squidge.org/images/2026/11/15/menu-horizontal-black.png); }
+#workskin .gm .ic.ic-dropdown, #workskin .mail .ic.ic-dropdown { background-image: url(https://images.squidge.org/images/2026/11/15/dropdown-black.png); }
+#workskin .gm .ic.ic-forward, #workskin .mail .ic.ic-forward { background-image: url(https://images.squidge.org/images/2026/11/15/forward-black.png); }
+#workskin .gm .mail-attachment::before { background-image: url(https://images.squidge.org/images/2026/11/15/paperclip-black.png); }
+#workskin .gm .mail-attachment.doc::before { background-image: url(https://images.squidge.org/images/2026/11/15/document-black.png); }
+#workskin .gm .mail-attachment.img::before { background-image: url(https://images.squidge.org/images/2026/11/15/image-black.png); }
+
+/* Email icons, dark */
+#workskin .gm.theme-dark .ic.ic-star, #workskin .mail.theme-dark .ic.ic-star { background-image: url(https://images.squidge.org/images/2026/11/15/star-white.png); }
+#workskin .gm.theme-dark .ic.ic-reply, #workskin .mail.theme-dark .ic.ic-reply { background-image: url(https://images.squidge.org/images/2026/11/15/reply-white.png); }
+#workskin .gm.theme-dark .ic.ic-reply-all, #workskin .mail.theme-dark .ic.ic-reply-all { background-image: url(https://images.squidge.org/images/2026/11/15/reply-all-white.png); }
+#workskin .gm.theme-dark .ic.ic-more, #workskin .mail.theme-dark .ic.ic-more { background-image: url(https://images.squidge.org/images/2026/11/15/menu-horizontal-white.png); }
+#workskin .gm.theme-dark .ic.ic-dropdown, #workskin .mail.theme-dark .ic.ic-dropdown { background-image: url(https://images.squidge.org/images/2026/11/15/dropdown-white.png); }
+#workskin .gm.theme-dark .ic.ic-forward, #workskin .mail.theme-dark .ic.ic-forward { background-image: url(https://images.squidge.org/images/2026/11/15/forward-white.png); }
+#workskin .gm.theme-dark .mail-attachment::before { background-image: url(https://images.squidge.org/images/2026/11/15/paperclip-white.png); }
+#workskin .gm.theme-dark .mail-attachment.doc::before { background-image: url(https://images.squidge.org/images/2026/11/15/document-white.png); }
+#workskin .gm.theme-dark .mail-attachment.img::before { background-image: url(https://images.squidge.org/images/2026/11/15/image-white.png); }
+
+/* Email icons, auto: dark when the reader's device is in dark mode */
+@media (prefers-color-scheme: dark) {
+  #workskin .gm.theme-auto .ic.ic-star, #workskin .mail.theme-auto .ic.ic-star { background-image: url(https://images.squidge.org/images/2026/11/15/star-white.png); }
+  #workskin .gm.theme-auto .ic.ic-reply, #workskin .mail.theme-auto .ic.ic-reply { background-image: url(https://images.squidge.org/images/2026/11/15/reply-white.png); }
+  #workskin .gm.theme-auto .ic.ic-reply-all, #workskin .mail.theme-auto .ic.ic-reply-all { background-image: url(https://images.squidge.org/images/2026/11/15/reply-all-white.png); }
+  #workskin .gm.theme-auto .ic.ic-more, #workskin .mail.theme-auto .ic.ic-more { background-image: url(https://images.squidge.org/images/2026/11/15/menu-horizontal-white.png); }
+  #workskin .gm.theme-auto .ic.ic-dropdown, #workskin .mail.theme-auto .ic.ic-dropdown { background-image: url(https://images.squidge.org/images/2026/11/15/dropdown-white.png); }
+  #workskin .gm.theme-auto .ic.ic-forward, #workskin .mail.theme-auto .ic.ic-forward { background-image: url(https://images.squidge.org/images/2026/11/15/forward-white.png); }
+  #workskin .gm.theme-auto .mail-attachment::before { background-image: url(https://images.squidge.org/images/2026/11/15/paperclip-white.png); }
+  #workskin .gm.theme-auto .mail-attachment.doc::before { background-image: url(https://images.squidge.org/images/2026/11/15/document-white.png); }
+  #workskin .gm.theme-auto .mail-attachment.img::before { background-image: url(https://images.squidge.org/images/2026/11/15/image-white.png); }
+}
+
 /* <<<<<<<<<< MODULE: Email (Gmail and generic email window) (end) <<<<<<<<<< */

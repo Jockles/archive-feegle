@@ -39,7 +39,7 @@ CHAPTERS = [
     ("email-css", "Email CSS"),
     ("discord", "Discord"),
     ("discord-css", "Discord CSS"),
-    ("icons", "Icons (Optional)"),
+    ("icons", "Icons"),
     ("full-megaskin", "The Full Megaskin"),
 ]
 
@@ -53,7 +53,6 @@ CSS_FILES = {
     "MODULE: Tumblr": "tumblr.css",
     "MODULE: Email (Gmail and generic email window)": "email.css",
     "MODULE: Discord": "discord.css",
-    "MODULE: Icons": "icons.css",
 }
 
 NAV = """<nav>
