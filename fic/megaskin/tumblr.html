@@ -754,51 +754,115 @@
 
 <h3 id="s12-12">12.12 Asks</h3>
 
-<p>How an ask looks depends on who posts it. When the blog that answered it posts it, only the question is in a box, and the answer is just the text of the post underneath it, with no picture - like gremlin-sketches' post on the feed at the top of the chapter. Put the <code>tb-ask</code> box first in <code>tb-body</code>, then the answer as ordinary paragraphs.</p>
+<p>An ask is a question in a grey box, with a <code>tb-asker</code> line at the top: the blog's name in <code>&lt;b&gt;</code>, then "asked:". The box is <code>tb-ask</code>, and it goes inside <code>tb-body</code>. The small picture on the right is <code>tb-ask-pfp</code>. It's a circle, or a rounded square if that blog's picture is square (see <a href="tumblr.html#s12-6">Round or Square Pictures</a>).</p>
 
-<p>When someone else reblogs it, the answer gets a box of its own too, with the picture of the blog that answered. Then an ask and its answer are two boxes, one after the other. The question box is <code>tb-ask</code>, and the answer box is <code>tb-ask</code> with <code>tb-answer</code> added. Each one starts with a <code>tb-asker</code> line, with the blog's name in <code>&lt;b&gt;</code> and then "asked:" or "answered:". The small picture on the right is <code>tb-ask-pfp</code>. It's a circle, or a rounded square if that blog's picture is square (see <a href="tumblr.html#s12-6">Round or Square Pictures</a>):</p>
+<p>How the answer looks depends on who posts it. When the blog that answered it posts it, only the question is in a box, and the answer is just the text of the post underneath it, with no picture. Put the <code>tb-ask</code> box first in <code>tb-body</code>, then the answer as ordinary paragraphs:</p>
 
-<div class="tb-feed"><div class="mob tb theme-auto"><div class="tb-body"><div class="tb-ask">
-  <p class="tb-asker"><span class="tb-ask-pfp colour3">B</span><span class="hide"> </span><b>benchwarmer88</b> asked:</p>
-  <p>what's the best snack to bring to a game</p>
-</div>
-<div class="tb-ask tb-answer">
-  <p class="tb-asker"><span class="tb-ask-pfp sq colour6">PB</span><span class="hide"> </span><b>penalty-box-art</b> answered:</p>
-  <p>Anything you can eat with your gloves on.</p>
-  <p>So not nachos. Learn from my mistakes.</p>
-</div></div></div></div>
+<div class="tb-feed"><div class="mob tb theme-auto">
+  <p class="tb-header">
+    <span class="tb-pfp sq colour6">PB</span>
+    <span class="tb-menu">&#8226;&#8226;&#8226;</span>
+    <span class="tb-name"><b>penalty-box-art<span class="tb-checks ic ic-checks-4">&#10003;&#10003;&#10003;&#10003;</span></b>
+      <span class="tb-subline">5h ago</span></span>
+  </p>
+  <div class="tb-body">
+    <div class="tb-ask">
+      <p class="tb-asker"><span class="tb-ask-pfp colour3">B</span><span class="hide"> </span><b>benchwarmer88</b> asked:</p>
+      <p>what's the best snack to bring to a game</p>
+    </div>
+    <p>Anything you can eat with your gloves on.</p>
+    <p>So not nachos. Learn from my mistakes.</p>
+  </div>
+  <p class="tb-tags">#asks &nbsp;#snack tier list</p>
+  <p class="tb-footer">
+    <span class="tb-stat"><span class="tb-icon ic ic-comment">&#9993;</span></span>
+    <span class="tb-stat"><span class="tb-icon ic ic-reblog">&#8644;</span> 23<span class="hide"> reblogs</span></span>
+    <span class="tb-stat"><span class="tb-icon ic ic-heart">&#9825;</span> 187<span class="hide"> likes</span></span>
+    <span class="tb-icon ic ic-share-up">&#8679;</span>
+  </p>
+</div></div>
 
-<pre><code>&lt;div class="tb-ask"&gt;
-  &lt;p class="tb-asker"&gt;&lt;span class="tb-ask-pfp colour3"&gt;B&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;b&gt;benchwarmer88&lt;/b&gt; asked:&lt;/p&gt;
-  &lt;p&gt;what's the best snack to bring to a game&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="tb-ask tb-answer"&gt;
-  &lt;p class="tb-asker"&gt;&lt;span class="tb-ask-pfp sq colour6"&gt;PB&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;b&gt;penalty-box-art&lt;/b&gt; answered:&lt;/p&gt;
-  &lt;p&gt;Anything you can eat with your gloves on.&lt;/p&gt;
-  &lt;p&gt;So not nachos. Learn from my mistakes.&lt;/p&gt;
+<pre><code>&lt;div class="mob tb theme-auto"&gt;
+  &lt;p class="tb-header"&gt;
+    &lt;span class="tb-pfp sq colour6"&gt;PB&lt;/span&gt;
+    &lt;span class="tb-menu"&gt;&amp;#8226;&amp;#8226;&amp;#8226;&lt;/span&gt;
+    &lt;span class="tb-name"&gt;&lt;b&gt;penalty-box-art&lt;span class="tb-checks ic ic-checks-4"&gt;&amp;#10003;&amp;#10003;&amp;#10003;&amp;#10003;&lt;/span&gt;&lt;/b&gt;
+      &lt;span class="tb-subline"&gt;5h ago&lt;/span&gt;&lt;/span&gt;
+  &lt;/p&gt;
+  &lt;div class="tb-body"&gt;
+    &lt;div class="tb-ask"&gt;
+      &lt;p class="tb-asker"&gt;&lt;span class="tb-ask-pfp colour3"&gt;B&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;b&gt;benchwarmer88&lt;/b&gt; asked:&lt;/p&gt;
+      &lt;p&gt;what's the best snack to bring to a game&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;p&gt;Anything you can eat with your gloves on.&lt;/p&gt;
+    &lt;p&gt;So not nachos. Learn from my mistakes.&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;p class="tb-tags"&gt;#asks &amp;nbsp;#snack tier list&lt;/p&gt;
+  &lt;p class="tb-footer"&gt;
+    &lt;span class="tb-stat"&gt;&lt;span class="tb-icon ic ic-comment"&gt;&amp;#9993;&lt;/span&gt;&lt;/span&gt;
+    &lt;span class="tb-stat"&gt;&lt;span class="tb-icon ic ic-reblog"&gt;&amp;#8644;&lt;/span&gt; 23&lt;span class="hide"&gt; reblogs&lt;/span&gt;&lt;/span&gt;
+    &lt;span class="tb-stat"&gt;&lt;span class="tb-icon ic ic-heart"&gt;&amp;#9825;&lt;/span&gt; 187&lt;span class="hide"&gt; likes&lt;/span&gt;&lt;/span&gt;
+    &lt;span class="tb-icon ic ic-share-up"&gt;&amp;#8679;&lt;/span&gt;
+  &lt;/p&gt;
 &lt;/div&gt;</code></pre>
 
-<p>Those two use initials, with a colour class for the colour. It can also hold an uploaded picture, in a <code>pfp</code> span with alt text, or a picture from a profile, in an empty <code>pfp</code> span with the profile name. With a profile, the blog name can come from it too, in a handle span with the name typed inside it in a <code>hide</code> span:</p>
+<p>When someone else reblogs it, the header says who reblogged it and who from, and the answer gets a box of its own too, with the picture of the blog that answered. The answer box is <code>tb-ask</code> with <code>tb-answer</code> added, and its <code>tb-asker</code> line says "answered:" instead:</p>
 
-<div class="tb-feed"><div class="mob tb theme-auto"><div class="tb-body"><div class="tb-ask">
-  <p class="tb-asker"><span class="tb-ask-pfp"><span class="pfp"><img src="https://images.squidge.org/images/2026/11/16/Cat2.jpg" alt="Profile picture of samthecat, a black and white cat screaming at the camera"></span></span><span class="hide"> </span><b>samthecat</b> asked:</p>
-  <p>what's your hockey hot take</p>
-</div>
-<div class="tb-ask tb-answer">
-  <p class="tb-asker"><span class="tb-ask-pfp"><span class="pfp pfp-shane"></span></span><span class="hide"> </span><b><span class="handle pfp-shane"><span class="hide">alliknowishockey</span></span></b> answered:</p>
-  <p>Bag skates are character building, actually.</p>
-</div></div></div></div>
+<div class="tb-feed"><div class="mob tb theme-auto">
+  <p class="tb-header">
+    <span class="tb-pfp rb colour2">RR</span>
+    <span class="tb-menu">&#8226;&#8226;&#8226;</span>
+    <span class="tb-name"><b>rinkrat</b>
+      <span class="tb-subline">Reblogged <b>alliknowishockey</b> &middot; 3h ago</span></span>
+  </p>
+  <div class="tb-body">
+    <div class="tb-ask">
+      <p class="tb-asker"><span class="tb-ask-pfp"><span class="pfp"><img src="https://images.squidge.org/images/2026/11/16/Cat2.jpg" alt="Profile picture of samthecat, a black and white cat screaming at the camera"></span></span><span class="hide"> </span><b>samthecat</b> asked:</p>
+      <p>what's your hockey hot take</p>
+    </div>
+    <div class="tb-ask tb-answer">
+      <p class="tb-asker"><span class="tb-ask-pfp"><span class="pfp pfp-shane"></span></span><span class="hide"> </span><b><span class="handle pfp-shane"><span class="hide">alliknowishockey</span></span></b> answered:</p>
+      <p>Bag skates are character building, actually.</p>
+    </div>
+  </div>
+  <p class="tb-tags">#this is a cry for help &nbsp;#someone check on him</p>
+  <p class="tb-footer">
+    <span class="tb-stat"><span class="tb-icon ic ic-comment">&#9993;</span> 57<span class="hide"> replies</span></span>
+    <span class="tb-stat"><span class="tb-icon ic ic-reblog">&#8644;</span> 1,388<span class="hide"> reblogs</span></span>
+    <span class="tb-stat"><span class="tb-icon ic ic-heart">&#9825;</span> 3,021<span class="hide"> likes</span></span>
+    <span class="tb-icon ic ic-share-up">&#8679;</span>
+  </p>
+</div></div>
 
-<pre><code>&lt;div class="tb-ask"&gt;
-  &lt;p class="tb-asker"&gt;&lt;span class="tb-ask-pfp"&gt;&lt;span class="pfp"&gt;&lt;img src="https://images.squidge.org/images/2026/11/16/Cat2.jpg" alt="Profile picture of samthecat, a black and white cat screaming at the camera"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;b&gt;samthecat&lt;/b&gt; asked:&lt;/p&gt;
-  &lt;p&gt;what's your hockey hot take&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="tb-ask tb-answer"&gt;
-  &lt;p class="tb-asker"&gt;&lt;span class="tb-ask-pfp"&gt;&lt;span class="pfp pfp-shane"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;b&gt;&lt;span class="handle pfp-shane"&gt;&lt;span class="hide"&gt;alliknowishockey&lt;/span&gt;&lt;/span&gt;&lt;/b&gt; answered:&lt;/p&gt;
-  &lt;p&gt;Bag skates are character building, actually.&lt;/p&gt;
+<pre><code>&lt;div class="mob tb theme-auto"&gt;
+  &lt;p class="tb-header"&gt;
+    &lt;span class="tb-pfp rb colour2"&gt;RR&lt;/span&gt;
+    &lt;span class="tb-menu"&gt;&amp;#8226;&amp;#8226;&amp;#8226;&lt;/span&gt;
+    &lt;span class="tb-name"&gt;&lt;b&gt;rinkrat&lt;/b&gt;
+      &lt;span class="tb-subline"&gt;Reblogged &lt;b&gt;alliknowishockey&lt;/b&gt; &amp;middot; 3h ago&lt;/span&gt;&lt;/span&gt;
+  &lt;/p&gt;
+  &lt;div class="tb-body"&gt;
+    &lt;div class="tb-ask"&gt;
+      &lt;p class="tb-asker"&gt;&lt;span class="tb-ask-pfp"&gt;&lt;span class="pfp"&gt;&lt;img src="https://images.squidge.org/images/2026/11/16/Cat2.jpg" alt="Profile picture of samthecat, a black and white cat screaming at the camera"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;b&gt;samthecat&lt;/b&gt; asked:&lt;/p&gt;
+      &lt;p&gt;what's your hockey hot take&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class="tb-ask tb-answer"&gt;
+      &lt;p class="tb-asker"&gt;&lt;span class="tb-ask-pfp"&gt;&lt;span class="pfp pfp-shane"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;b&gt;&lt;span class="handle pfp-shane"&gt;&lt;span class="hide"&gt;alliknowishockey&lt;/span&gt;&lt;/span&gt;&lt;/b&gt; answered:&lt;/p&gt;
+      &lt;p&gt;Bag skates are character building, actually.&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;p class="tb-tags"&gt;#this is a cry for help &amp;nbsp;#someone check on him&lt;/p&gt;
+  &lt;p class="tb-footer"&gt;
+    &lt;span class="tb-stat"&gt;&lt;span class="tb-icon ic ic-comment"&gt;&amp;#9993;&lt;/span&gt; 57&lt;span class="hide"&gt; replies&lt;/span&gt;&lt;/span&gt;
+    &lt;span class="tb-stat"&gt;&lt;span class="tb-icon ic ic-reblog"&gt;&amp;#8644;&lt;/span&gt; 1,388&lt;span class="hide"&gt; reblogs&lt;/span&gt;&lt;/span&gt;
+    &lt;span class="tb-stat"&gt;&lt;span class="tb-icon ic ic-heart"&gt;&amp;#9825;&lt;/span&gt; 3,021&lt;span class="hide"&gt; likes&lt;/span&gt;&lt;/span&gt;
+    &lt;span class="tb-icon ic ic-share-up"&gt;&amp;#8679;&lt;/span&gt;
+  &lt;/p&gt;
 &lt;/div&gt;</code></pre>
 
-<p>For an anon ask, leave out the picture and write <code>Anonymous</code> as the name. Both boxes go inside <code>tb-body</code>, and you can put an <code>&lt;img&gt;</code> picture in the answer box after the text.</p>
+<p>The pictures work the same way as everywhere else. benchwarmer88 has initials, with a colour class for the colour. samthecat has an uploaded picture, in a <code>pfp</code> span with alt text, and Shane has a picture from his profile, in an empty <code>pfp</code> span with the profile name. With a profile, the blog name can come from it too, in a handle span with the name typed inside it in a <code>hide</code> span.</p>
+
+<p>For an anon ask, leave out the picture and write <code>Anonymous</code> as the name. Pictures can go in an answer too, after the text, in a <code>tb-photos</code> box (see <a href="tumblr.html#s12-15">Pictures and Gifs</a>).</p>
 
 <h3 id="s12-13">12.13 Quote Posts</h3>
 
