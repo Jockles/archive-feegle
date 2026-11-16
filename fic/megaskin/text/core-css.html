@@ -416,9 +416,9 @@
   <li><strong>Yuna</strong> (<code>pfp-yuna</code>): Yuna has a work life and a family life, and a plain coloured circle instead of a picture. She has a separate work email, a nickname line for how she's saved on her son's phone, and a wallpaper line for her own phone.</li>
   <li><strong>Zim</strong> (<code>pfp-zim</code>): Jack only has a different appearance on one app, so he only has those lines added - a different name and handle on Twitter/X.</li>
   <li><strong>Holster</strong> (<code>pfp-holster</code>): Holster only has a picture on one app, so that's the only picture line. Everywhere else he has initials, with a different circle colour on some apps.</li>
-  <li><strong>Rose</strong> (<code>pfp-rose</code>): Rose keeps her public and private accounts separate, so she has a second Instagram account, <code>pfp-rose-private</code>, with its own picture and handle (see More Than One Account on the Same App, below).</li>
+  <li><strong>Rose</strong> (<code>pfp-rose</code>): Rose keeps her public and private accounts separate, so she has a second Instagram account, <code>acc-private</code>, with its own picture and handle (see More Than One Account on the Same App, below).</li>
   <li><strong>Shane</strong> (<code>pfp-shane</code>): Shane is a main character who shows up everywhere, so he has a bit of everything - a real picture, a nickname on his partner's phone, a slightly different handle on each app, and a wallpaper for his own phone.</li>
-  <li><strong>Ilya</strong> (<code>pfp-ilya</code>): Ilya is the other main character, and he has two secret Twitter/X accounts alongside his main one - a burner (<code>pfp-ilya-burner</code>) and a Shane fan account (<code>pfp-ilya-shanewife</code>). He also has a nickname line for how he's saved on Shane's phone and a wallpaper line for his own phone.</li>
+  <li><strong>Ilya</strong> (<code>pfp-ilya</code>): Ilya is the other main character, and he has two secret Twitter/X accounts alongside his main one - a burner (<code>acc-burner</code>) and a Shane fan account (<code>acc-shanewife</code>). He also has a nickname line for how he's saved on Shane's phone and a wallpaper line for his own phone.</li>
   <li><strong>Luca</strong> (<code>pfp-luca</code>): Luca has every option at once, so you can see them all working together - he's explained line by line in Every Option: Luca, below.</li>
 </ul>
 
@@ -507,12 +507,12 @@
 
 <p><strong>13. More than one account on the same app</strong></p>
 
-<pre><code>#workskin .tb .pfp.pfp-luca.pfp-luca-art { background-image: linear-gradient(135deg, #ffd966, #e06666); }
-#workskin .tb .handle.pfp-luca.pfp-luca-art::after { content: "gremlin-sketches"; }
-#workskin .tb .pfp.pfp-luca.pfp-luca-rpf { background-image: linear-gradient(135deg, #3d85c6, #cc0000); }
-#workskin .tb .handle.pfp-luca.pfp-luca-rpf::after { content: "rink-rivals-rpf"; }</code></pre>
+<pre><code>#workskin .tb .pfp.pfp-luca.acc-art { background-image: linear-gradient(135deg, #ffd966, #e06666); }
+#workskin .tb .handle.pfp-luca.acc-art::after { content: "gremlin-sketches"; }
+#workskin .tb .pfp.pfp-luca.acc-rpf { background-image: linear-gradient(135deg, #3d85c6, #cc0000); }
+#workskin .tb .handle.pfp-luca.acc-rpf::after { content: "rink-rivals-rpf"; }</code></pre>
 
-<p>As well as his main Tumblr, Luca has an art blog and a hockey RPF blog, each with its own picture and URL. In your HTML, put the account's name next to his main one: <code>&lt;span class=&quot;handle pfp-luca pfp-luca-art&quot;&gt;&lt;/span&gt;</code>. There's more on how this works in More Than One Account on the Same App, below.</p>
+<p>As well as his main Tumblr, Luca has an art blog and a hockey RPF blog, each with its own picture and URL. In your HTML, add the account's <code>acc-</code> name: <code>&lt;span class=&quot;handle pfp-luca acc-art&quot;&gt;&lt;/span&gt;</code>. There's more on how this works in More Than One Account on the Same App, below.</p>
 
 <details>
 <summary>Why names, handles and emails look like the text around them</summary>
@@ -538,20 +538,21 @@
 
 <h4>More Than One Account on the Same App</h4>
 
-<p>Sometimes a character has more than one account on an app - a public one and a private one, their real account and a burner, or a fan account nobody can know about. Each extra account gets its own name, made from the profile name plus whatever you like: <code>pfp-ilya-burner</code>, <code>pfp-ilya-shanewife</code>, <code>pfp-rose-private</code>. Its lines go at the end of the main profile. Here's Ilya's burner on Twitter/X:</p>
+<p>Sometimes a character has more than one account on an app - a public one and a private one, their real account and a burner, or a fan account nobody can know about. Each extra account gets a name starting with <code>acc-</code>, the same way a phone gets <code>pov-</code>: <code>acc-burner</code>, <code>acc-shanewife</code>, <code>acc-private</code>, or whatever you like. Its lines go at the end of that character's profile. Here's Ilya's burner on Twitter/X:</p>
 
-<pre><code>#workskin .tw .pfp.pfp-ilya.pfp-ilya-burner, #workskin .tw-reply .pfp.pfp-ilya.pfp-ilya-burner, #workskin .twdm .pfp.pfp-ilya.pfp-ilya-burner { background-color: #8899a6; }
-#workskin .tw .name.pfp-ilya.pfp-ilya-burner::before, #workskin .tw-reply .name.pfp-ilya.pfp-ilya-burner::before, #workskin .twdm .name.pfp-ilya.pfp-ilya-burner::before { content: "hockey fan"; }
-#workskin .tw .handle.pfp-ilya.pfp-ilya-burner::after, #workskin .tw-reply .handle.pfp-ilya.pfp-ilya-burner::after, #workskin .twdm .handle.pfp-ilya.pfp-ilya-burner::after { content: "definitely_not_ilya"; }</code></pre>
+<pre><code>#workskin .tw .pfp.pfp-ilya.acc-burner, #workskin .tw-reply .pfp.pfp-ilya.acc-burner, #workskin .twdm .pfp.pfp-ilya.acc-burner { background-color: #8899a6; }
+#workskin .tw .name.pfp-ilya.acc-burner::before, #workskin .tw-reply .name.pfp-ilya.acc-burner::before, #workskin .twdm .name.pfp-ilya.acc-burner::before { content: "hockey fan"; }
+#workskin .tw .handle.pfp-ilya.acc-burner::after, #workskin .tw-reply .handle.pfp-ilya.acc-burner::after, #workskin .twdm .handle.pfp-ilya.acc-burner::after { content: "definitely_not_ilya"; }</code></pre>
 
-<p>They're the same as the lines for a different picture, name or handle on one app, with the account's name added after the profile name. In your HTML, put the account's name next to the main one whenever that account is the one posting, and leave it off for his main account:</p>
+<p>They're the same as the lines for a different picture, name or handle on one app, with the <code>acc-</code> name added after the profile name. In your HTML, add the <code>acc-</code> name whenever that account is the one posting, and leave it off for his main account:</p>
 
-<pre><code>&lt;span class="handle pfp-ilya pfp-ilya-burner"&gt;&lt;/span&gt;</code></pre>
+<pre><code>&lt;span class="handle pfp-ilya acc-burner"&gt;&lt;/span&gt;</code></pre>
 
 <ul>
-  <li>Keep the main profile name in the HTML too. Anything you don't give the extra account - a name colour, an email address - comes from the main profile, so you only need lines for what's different.</li>
+  <li>Keep the profile name in the HTML too - the <code>acc-</code> name only works alongside it. Anything you don't give the extra account - a name colour, an email address - comes from the main profile, so you only need lines for what's different.</li>
   <li>Put the extra account's lines at the end of the profile, so they win over everything above them, including saved-as names.</li>
-  <li>Make as many as you like. Ilya has a second one, <code>pfp-ilya-shanewife</code>, built the same way, and Rose's private Instagram, <code>pfp-rose-private</code>, uses <code>.ig</code> and <code>.igdm</code> instead of the Twitter/X classes.</li>
+  <li>Because the <code>acc-</code> name always goes with a profile, different characters can use the same one - Shane could have an <code>acc-burner</code> too, with his own lines.</li>
+  <li>Make as many as you like. Ilya has a second one, <code>acc-shanewife</code>, built the same way, and Rose's private Instagram, <code>acc-private</code>, uses <code>.ig</code> and <code>.igdm</code> instead of the Twitter/X classes.</li>
 </ul>
 
 <h3>The Ten Colours</h3>
