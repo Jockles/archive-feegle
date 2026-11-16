@@ -406,10 +406,12 @@
 #workskin .dc .name.pfp-luca::before { content: "lucaaa"; }
 
 /* 7. Saved as: what he's called on another character's phone, in any chat with
-   that character's pov- class on the container. One line per phone. */
-#workskin .mob.pov-shane .name.pfp-luca::before { content: "Luca (cat pictures)"; }
-#workskin .mob.pov-ilya .name.pfp-luca::before { content: "Cat Guy"; }
-#workskin .mob.pov-rose .name.pfp-luca::before { content: "Cat Luca"; }
+   that character's pov- class on the container. One line per phone. It works on any
+   container with pov-, but real apps only let you rename people in iMessage,
+   WhatsApp and Discord DMs (and change their picture in iMessage and WhatsApp). */
+#workskin .pov-shane .name.pfp-luca::before { content: "Luca (cat pictures)"; }
+#workskin .pov-ilya .name.pfp-luca::before { content: "Cat Guy"; }
+#workskin .pov-rose .name.pfp-luca::before { content: "Cat Luca"; }
 
 /* 8. Handle (every profile): used on every app. Leave off the @ - Twitter/X adds it. */
 #workskin .handle.pfp-luca::after { content: "luca"; }
@@ -456,7 +458,7 @@
 #workskin .pfp.pfp-yuna { background-color: #7d4fb0; }
 #workskin .wa .who.pfp-yuna, #workskin .dc .dc-name.pfp-yuna { color: #9a62d0; }
 #workskin .name.pfp-yuna::before { content: "Yuna"; }
-#workskin .mob.pov-shane .name.pfp-yuna::before { content: "Mom"; }
+#workskin .pov-shane .name.pfp-yuna::before { content: "Mom"; }
 #workskin .handle.pfp-yuna::after { content: "MetrosMomager"; }
 #workskin .email.pfp-yuna::after { content: "YunaHollander@gmail.com"; }
 #workskin .mob.wa.pov-yuna { background-color: #e8e8e8; background-image: url(https://64.media.tumblr.com/a1c0162c5542c5890e5fd9c13341513e/3b53694384f48caf-98/s1280x1920/8b2fcaaf7deb2b05c418f46c62ee729acb8ff8e4.jpg); background-size: cover; background-position: center; }
@@ -501,12 +503,14 @@
 #workskin .ig .handle.pfp-rose.acc-private::after, #workskin .igdm .handle.pfp-rose.acc-private::after { content: "rosie.after.dark"; }
 /* her Tumblr uses her private picture too */
 #workskin .tb .pfp.pfp-rose { background-image: url(https://images.squidge.org/images/2026/11/16/RosePriv.jpg); }
+/* and on Shane's phone she has her private picture */
+#workskin .pov-shane .pfp.pfp-rose { background-image: url(https://images.squidge.org/images/2026/11/16/RosePriv.jpg); }
 
 /* PROFILE: Shane */
 #workskin .pfp.pfp-shane { background-image: url(https://images.squidge.org/images/2026/11/16/ShaneHockey.png); }
 #workskin .wa .who.pfp-shane, #workskin .dc .dc-name.pfp-shane { color: #3a7bd5; }
 #workskin .name.pfp-shane::before { content: "Shane"; }
-#workskin .mob.pov-ilya .name.pfp-shane::before { content: "Jane"; }
+#workskin .pov-ilya .name.pfp-shane::before { content: "Jane"; }
 #workskin .handle.pfp-shane::after { content: "ShaneHollanderHockeyPlayer"; }
 #workskin .ig .handle.pfp-shane::after, #workskin .igdm .handle.pfp-shane::after { content: "shanehollanderhockeyplayer"; }
 #workskin .tb .handle.pfp-shane::after { content: "alliknowishockey"; }
@@ -519,7 +523,7 @@
 #workskin .pfp.pfp-ilya { background-color: #b5433a; background-image: url(https://images.squidge.org/images/2026/11/16/IlyaHelmet.png); }
 #workskin .wa .who.pfp-ilya, #workskin .dc .dc-name.pfp-ilya { color: #d65548; }
 #workskin .name.pfp-ilya::before { content: "Ilya"; }
-#workskin .mob.pov-shane .name.pfp-ilya::before { content: "Lily"; }
+#workskin .pov-shane .name.pfp-ilya::before { content: "Lily"; }
 #workskin .handle.pfp-ilya::after { content: "irozanov"; }
 #workskin .ig .handle.pfp-ilya::after, #workskin .igdm .handle.pfp-ilya::after { content: "ilya.r"; }
 #workskin .tb .handle.pfp-ilya::after { content: "oghollanovtruther"; }
@@ -1027,6 +1031,7 @@
 /* a picture sent in a message: <p class="msg out pic"><img src="..."></p>
    or, for a description instead: <p class="msg out pic text">[A photo of the rink]</p> */
 #workskin .imsg .msg.pic { width: 55%; padding: 0.2em; overflow: hidden; }
+#workskin .imsg .msg.pic.tapped { overflow: visible; }
 
 #workskin .imsg .msg.pic img {
   display: block;

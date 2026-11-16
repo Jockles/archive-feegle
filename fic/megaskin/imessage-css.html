@@ -6,7 +6,7 @@
   <title>Megaskin, Chapter 5: iMessage CSS | jockles.com</title>
   <link rel="stylesheet" href="../../style.css">
   <script src="../../theme.js"></script>
-  <link rel="stylesheet" href="megaskin.css?v=40437fc0" id="creator-style">
+  <link rel="stylesheet" href="megaskin.css?v=f039f849" id="creator-style">
 </head>
 <body>
 <header>
@@ -299,6 +299,7 @@
 <h3 id="s5-10">5.10 Pictures</h3>
 
 <pre><code>#workskin .imsg .msg.pic { width: 55%; padding: 0.2em; overflow: hidden; }
+#workskin .imsg .msg.pic.tapped { overflow: visible; }
 
 #workskin .imsg .msg.pic img {
   display: block;
@@ -309,7 +310,7 @@
 
 #workskin .imsg .msg.pic.text { padding: 2.5em 1em; font-style: italic; text-align: center; }</code></pre>
 
-<p>A picture bubble is a fixed <code>55%</code> of the chat wide, whatever size the picture is, and the picture fills it. <code>height: auto</code> keeps the picture's shape, so nothing gets squashed. With <code>text</code>, the description gets lots of padding so it's about the size of a photo.</p>
+<p>A picture bubble is a fixed <code>55%</code> of the chat wide, whatever size the picture is, and the picture fills it. <code>height: auto</code> keeps the picture's shape, so nothing gets squashed. With <code>text</code>, the description gets lots of padding so it's about the size of a photo. <code>overflow: hidden</code> keeps the bubble neat, but it would cut off a tapback sitting above the picture, so a <code>tapped</code> picture bubble lets it show.</p>
 
 <h3 id="s5-11">5.11 Typing Dots</h3>
 
