@@ -53,12 +53,14 @@
       reacts: [], waReacts: "", waCount: "", tick: "read", edited: false, status: "", sms: false, big: false,
       replyTo: "", photos: [], link: null };
   }
+  // the group's picture in the WhatsApp header: a one-off circle, set up the same way
+  function newGroupPic() { return { colour: "5", showInitials: true, initials: "", pic: "", alt: "", land: false }; }
   function newBlock(type) {
     var b = { id: nid("b"), type: type };
     var pov = S.cast[0] ? S.cast[0].id : "";
     b.pov = pov; b.group = false; b.title = ""; b.sub = type === "imsg" ? "iMessage" : "online";
     b.theme = "theme-auto"; b.width = ""; b.scroll = ""; b.bar = "empty"; b.barText = "";
-    b.bg = ""; b.pics = true; b.header = "simple"; b.script = ""; b.msgs = []; b.open = true;
+    b.bg = ""; b.pics = true; b.header = "simple"; b.gp = newGroupPic(); b.script = ""; b.msgs = []; b.open = true;
     return b;
   }
   // load one of the tutorial's example chats (from fic-builder-examples.js)
@@ -285,6 +287,11 @@
     if (u) return '<p class="wa-pfp ' + colourClass(c) + '"><span class="pfp"><img ' + (c.land ? 'class="land" ' : "") + 'src="' + esc(u) + '" alt="' + esc(c.alt.trim() || ("Profile picture of " + nameOf(c))) + '"></span></p>';
     return '<p class="wa-pfp ' + colourClass(c) + '">' + (c.showInitials !== false ? esc(initials(c)) : "") + "</p>";
   }
+  function groupPic(b) {
+    var g = b.gp || newGroupPic();
+    return { kind: "oneoff", name: b.title.trim() || "Group", colour: g.colour, showInitials: g.showInitials,
+      initials: g.initials || (b.title.trim() || "G").charAt(0).toUpperCase(), pic: g.pic, alt: g.alt, land: g.land };
+  }
   function waQuote(b, m) {
     var q = b.msgs.filter(function (x) { return x.id === m.replyTo; })[0];
     if (!q) return "";
@@ -301,7 +308,7 @@
     L.push('<div class="' + containerClass(b, "wa") + '">');
     if (b.header === "bar") {
       var o = others(b), pc;
-      if (b.group) pc = '<p class="wa-pfp colour5">' + esc((b.title.trim() || "G").charAt(0).toUpperCase()) + "</p>";
+      if (b.group) pc = waPfp(groupPic(b));
       else pc = o[0] ? waPfp(o[0]) : '<p class="wa-pfp colour5">?</p>';
       var sub = b.sub.trim();
       if (b.group && !sub) sub = o.map(nameOf).concat(["You"]).join(", ");
@@ -465,10 +472,11 @@
       h.push('<div class="fb-grid"><div>' + field(Q + ".handle", "Handle", { ph: "no @" }) + "</div><div>" +
         field(Q + ".email", "Email address") + "</div></div>");
       h.push("<details" + (c.more ? " open" : "") + ' data-open="' + P + '.more"><summary>More profile options</summary>');
-      h.push('<p class="hint">Saved as: what other characters have them saved as on their phones.</p>');
+      h.push('<p class="hint">Saved as: what other characters have them saved as on their phones, and a different picture on that phone if you want one.</p>');
       c.prof.saved.forEach(function (s, k) {
-        h.push('<div class="fb-row">' + field(Q + ".saved." + k + ".owner", "", { type: "select", options: [["", "On whose phone?"]].concat(S.cast.filter(isProfile).filter(function (x) { return x !== c; }).map(function (x) { return [slugOf(x), nameOf(x)]; })) }) +
-          field(Q + ".saved." + k + ".as", "", { ph: "Saved as" }) + btn("saved-del:" + i + ":" + k, "&times;", "Remove") + "</div>");
+        h.push('<div class="fb-acct"><div class="fb-row">' + field(Q + ".saved." + k + ".owner", "", { type: "select", options: [["", "On whose phone?"]].concat(S.cast.filter(isProfile).filter(function (x) { return x !== c; }).map(function (x) { return [slugOf(x), nameOf(x)]; })) }) +
+          field(Q + ".saved." + k + ".as", "", { ph: "Saved as" }) + btn("saved-del:" + i + ":" + k, "&times;", "Remove") + "</div>" +
+          field(Q + ".saved." + k + ".pic", "", { type: "url", ph: "Picture on their phone (optional): https://..." }) + "</div>");
       });
       h.push(btn("saved-add:" + i, "+ Saved as"));
       h.push('<p class="hint">Different on one app (only fill in what\'s different):</p>');
@@ -574,12 +582,26 @@
       h.push("<div>" + field(P + ".width", "Width", { type: "select", options: [["", "Phone width"], ["wide", "Full width"]] }) + "</div>");
       h.push("<div>" + field(P + ".scroll", "Long chats", { type: "select", options: [["", "Scroll inside the phone"], ["no-scroll", "Show it all"]] }) + "</div>");
       if (wa) {
-        h.push("<div>" + field(P + ".header", "Header", { type: "select", options: [["simple", "Simple"], ["bar", "With picture and icons"]] }) + "</div>");
+        h.push("<div>" + field(P + ".header", "Header", { type: "select", re: true, options: [["simple", "Simple"], ["bar", "With picture and icons"]] }) + "</div>");
         h.push("<div>" + field(P + ".bg", "Background", { type: "select", options: BACKGROUNDS.map(function (x) { return [x, x ? x.charAt(0).toUpperCase() + x.slice(1) : "Normal"]; }) }) + "</div>");
       }
       h.push("<div>" + field(P + ".bar", "Message bar at the bottom", { type: "select", re: true, options: [["none", "None"], ["empty", "Empty"], ["typed", "Something half-typed"]] }) + "</div>");
       if (b.bar === "typed") h.push("<div>" + field(P + ".barText", "Half-typed message", {}) + "</div>");
-      h.push("</div></details>");
+      h.push("</div>");
+      if (wa && b.group && b.header === "bar") {
+        // the group's picture in the header
+        if (!b.gp) b.gp = newGroupPic();
+        var G = P + ".gp";
+        h.push('<div class="fb-acct"><p class="hint">The group\'s picture in the header</p>');
+        h.push('<div class="fb-row">' + field(G + ".colour", "", { type: "select", re: true, options: Object.keys(COLOURS).map(function (k) { return [k, "Colour " + k]; }) }) +
+          '<span class="fb-swatch" style="background:' + COLOURS[b.gp.colour] + '"></span>' + "</div>");
+        h.push('<div class="fb-row">' + field(G + ".showInitials", "Initials in the circle", { type: "check", re: true }) +
+          (b.gp.showInitials !== false ? field(G + ".initials", "", { ph: (b.title.trim() || "G").charAt(0).toUpperCase() }) : "") + "</div>");
+        h.push(field(G + ".pic", "Picture link (optional)", { type: "url", ph: "https://..." }));
+        h.push(field(G + ".alt", "Picture description (optional)", { ph: "Profile picture of " + (b.title.trim() || "the group") }));
+        h.push(field(G + ".land", "Landscape picture", { type: "check" }) + "</div>");
+      }
+      h.push("</details>");
       h.push('<ol class="fb-msgs">' + b.msgs.map(function (m, mi) { return msgRow(b, i, m, mi); }).join("") + "</ol>");
       h.push('<div class="fb-script">' + field(P + ".script", "Type or paste messages", { type: "area", rows: 4,
         ph: "Ilya: are you awake\nShane: no\n-- Today 11:48 PM" }) +
@@ -676,7 +698,7 @@
       case "cast-del":
         if (!confirm("Remove " + nameOf(S.cast[n[0]]) + " from the cast? Their messages will disappear too.")) return;
         S.cast.splice(n[0], 1); break;
-      case "saved-add": S.cast[n[0]].prof.saved.push({ owner: "", as: "" }); break;
+      case "saved-add": S.cast[n[0]].prof.saved.push({ owner: "", as: "", pic: "" }); break;
       case "saved-del": S.cast[n[0]].prof.saved.splice(n[1], 1); break;
       case "acct-add": S.cast[n[0]].prof.accounts.push({ acc: "", app: "ig", pic: "", name: "", handle: "", sq: false }); break;
       case "acct-del": S.cast[n[0]].prof.accounts.splice(n[1], 1); break;

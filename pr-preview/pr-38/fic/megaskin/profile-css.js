@@ -5,7 +5,7 @@
 //   name, slug, pic, piccol, namecol, handle, email,
 //   apps: { tw: {pic, name, handle}, ig: {...}, tb: {...}, gm: {pic, name}, dc: {...} },
 //   dccol (a colour, or empty for none), tbsq (true/false),
-//   saved: [{owner, as}], accounts: [{acc, app, pic, name, handle, sq}],
+//   saved: [{owner, as, pic}] (what they're saved as, and an optional picture, on someone's phone), accounts: [{acc, app, pic, name, handle, sq}],
 //   wallcol (a colour, or empty for none), wallpic
 // and returns { css, slug, p, name }.
 (function () {
@@ -54,8 +54,9 @@
       if (n) L.push(list(a.namesel || a.sel, ".name." + p + "::before") + " { content: " + str(n) + "; }");
     });
     (d.saved || []).forEach(function (s) {
-      var o = slugify(s.owner), as = t(s.as);
+      var o = slugify(s.owner), as = t(s.as), u = url(s.pic);
       if (o && as) L.push("#workskin .mob.pov-" + o + " .name." + p + "::before { content: " + str(as) + "; }");
+      if (o && u) L.push("#workskin .mob.pov-" + o + " .pfp." + p + " { background-image: " + u + "; }");
     });
     var hd = h(d.handle);
     if (hd) L.push("#workskin .handle." + p + "::after { content: " + str(hd) + "; }");
@@ -115,8 +116,13 @@
       var apps = [];
       sels.forEach(function (x) { var m = x.match(/^#workskin \.([a-z-]+) /); if (m && appOf[m[1]] && apps.indexOf(appOf[m[1]]) < 0) apps.push(appOf[m[1]]); });
       var acc = (first.match(/\.acc-([a-z0-9-]+)/) || [])[1];
-      var pov = (first.match(/\.mob\.pov-([a-z0-9-]+) \.name/) || [])[1];
-      if (pov) { d.saved.push({ owner: pov, as: content(body) }); return; }
+      var pov = (first.match(/\.mob\.pov-([a-z0-9-]+) \.(name|pfp)\./) || []);
+      if (pov[1]) {
+        var sv = d.saved.filter(function (x) { return x.owner === pov[1]; })[0];
+        if (!sv) { sv = { owner: pov[1], as: "", pic: "" }; d.saved.push(sv); }
+        if (pov[2] === "name") sv.as = content(body); else sv.pic = link(body);
+        return;
+      }
       if (/\.who\.|\.dc-name\./.test(first) && prop(body, "color")) {
         if (/\.wa \.who\./.test(first)) d.namecol = prop(body, "color"); else d.dccol = prop(body, "color");
         return;
