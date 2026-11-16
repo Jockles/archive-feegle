@@ -277,21 +277,27 @@
 <pre><code>#workskin .tb .tb-footer {
   display: flex;
   align-items: center;
-  padding: 0.5em 0.9em 0.8em 0.9em;
+  padding: 0.6em 0.9em 0.9em 0.9em;
   color: #555555;
 }
 
-#workskin .tb .tb-notes {
-  display: inline-block;
-  margin: 0 auto 0 0;
-  padding: 0.35em 0.9em;
-  border: 1px solid #e3e3e3;
-  border-radius: 2em;
-  color: #777777;
-  font-size: 0.85em;
-}</code></pre>
+#workskin .tb .tb-stat {
+  display: block;
+  flex: 1 1 0;
+  white-space: nowrap;
+}
 
-<p><code>display: flex</code> lines the bottom row up. The note count has <code>margin-right: auto</code> (the second of the four numbers), which takes up all the spare room on its right, pushing every button after it over to the right-hand end. The save button is the same CSS bookmark as Instagram's (see <a href="instagram-css.html#heading">Icons Drawn With CSS</a>), just a little smaller.</p>
+#workskin .tb .tb-icon {
+  display: inline-block;
+  margin-right: 0.3em;
+  font-size: 1.3em;
+  line-height: 1;
+  vertical-align: -0.15em;
+}
+
+#workskin .tb .tb-footer &gt; .tb-icon { margin-right: 0; }</code></pre>
+
+<p><code>display: flex</code> lines the bottom row up. Each <code>tb-stat</code> has <code>flex: 1 1 0</code>, which means "start from nothing and take an equal share of the spare room", so replies, reblogs and likes get a third each, however long their numbers are. The share button has no <code>flex</code>, so it only takes the room it needs, and that leaves it at the right-hand end. <code>white-space: nowrap</code> keeps a button and its count on the same line. The buttons are a little bigger than the counts, with a small gap before the number, and the share button doesn't need the gap because nothing comes after it.</p>
 
 <h3>The Feed</h3>
 
@@ -332,7 +338,7 @@
   <li><strong>Quote posts:</strong> <code>tb-quote</code> and <code>tb-source</code>.</li>
   <li><strong>Chat posts:</strong> <code>tb-chat</code>.</li>
   <li><strong>Checkmarks:</strong> <code>tb-check</code>, <code>tb-checks</code> and the <code>ic-checks</code> lines in the Icons section.</li>
-  <li><strong>Bottom row:</strong> <code>tb-footer</code>, <code>tb-notes</code> and <code>tb-icon</code>.</li>
+  <li><strong>Bottom row:</strong> <code>tb-footer</code>, <code>tb-stat</code> and <code>tb-icon</code>.</li>
   <li><strong>The feed:</strong> everything starting <code>.tb-feed</code>.</li>
 </ul>
 
