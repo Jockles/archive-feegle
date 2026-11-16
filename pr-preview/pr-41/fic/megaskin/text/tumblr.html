@@ -4,7 +4,7 @@
 
 <p>The Tumblr module is styled after the Tumblr mobile app: each post is a rounded card, and a reblog chain is a list of comments with a thin line between each one.</p>
 
-<p>Before we begin, here's the two kinds of thing you can build: a single post (here, a reblog chain), or several posts together on the feed background, like scrolling the app (here, an ask, a quote post and a chat post). The full HTML is underneath each, which you can copy and modify yourself. The rest of the chapter takes the HTML apart so that you can modify all the individual parts to say exactly what you want.</p>
+<p>There are two kinds of thing you can build: a single post (here, a reblog chain), or several posts together on the feed, like scrolling the app. The full HTML is under each one, and the rest of the chapter takes it apart piece by piece.</p>
 
 <h3>A Reblog Chain</h3>
 
@@ -372,7 +372,7 @@
 
 <ul>
   <li><code>tb-header</code> is the header row at the top of the post.</li>
-  <li><code>tb-body</code> holds the post itself, written as ordinary paragraphs. You can put a normal <code>&lt;img&gt;</code> picture in here too, and it'll fit the width of the card.</li>
+  <li><code>tb-body</code> holds the post itself, written as ordinary paragraphs.</li>
   <li><code>tb-tags</code> is the grey row of tags. Type the <code>#</code> in yourself, and use <code>&amp;nbsp;</code> to space the tags out.</li>
   <li><code>tb-footer</code> is the row along the bottom, with the replies, reblogs and likes. You can leave it out (see <a href="tumblr.html#heading">Notes Along the Bottom</a>).</li>
 </ul>
@@ -385,7 +385,7 @@
 
 <h3>The Header: Picture, Name and Time</h3>
 
-<p>The header has a round picture, then the name with a small grey line under it, and the three dots at the end. The picture is <code>tb-pfp</code> - with no image it shows initials on a grey circle, and <code>colour1</code> to <code>colour10</code> give it a colour:</p>
+<p>The header has the blog's picture, the name with a small grey line under it, and the three dots. The picture is <code>tb-pfp</code>: with no image it shows initials, and <code>colour1</code> to <code>colour10</code> give it a colour:</p>
 
 <div class="mob tb theme-auto"><p class="tb-header">
   <span class="tb-pfp colour2">RR</span>
@@ -401,7 +401,14 @@
     &lt;span class="tb-subline"&gt;2h ago&lt;/span&gt;&lt;/span&gt;
 &lt;/p&gt;</code></pre>
 
-<p><code>tb-name</code> holds the name, in <code>&lt;b&gt;</code>, and <code>tb-subline</code> is the small grey line under it. <code>tb-menu</code> is the three dots on the right. The order matters here: picture, dots, then name. Anything that sits on the right-hand side, like the dots or a Follow button, has to come <em>before</em> the name in the code, so the name fits in beside it.</p>
+<p><code>tb-name</code> holds the name in <code>&lt;b&gt;</code>, <code>tb-subline</code> is the grey line under it, and <code>tb-menu</code> is the three dots. Keep them in this order: picture, dots, then name.</p>
+
+<details>
+<summary>Why the dots come before the name</summary>
+
+<p>Anything on the right-hand side, like the dots or a Follow button, has to come <em>before</em> the name in the code, so the name fits in beside it.</p>
+
+</details>
 
 <p>For a real picture, put the picture tag inside a <code>pfp</code> span inside the <code>tb-pfp</code>. The green reblog badge (next section) works with it too:</p>
 
@@ -409,7 +416,7 @@
 
 <pre><code>&lt;span class="tb-pfp"&gt;&lt;span class="pfp"&gt;&lt;img src="https://images.squidge.org/images/2026/11/16/Puck.png" alt="Profile picture of zamboni-zone, a hockey puck"&gt;&lt;/span&gt;&lt;/span&gt;</code></pre>
 
-<p>Or use a profile, so the same person has the same picture everywhere, like Rose's quote post on the feed. The blog name can come from the profile too, with the name typed inside in a <code>hide</code> span. That's for readers with the workskin switched off - the blog name comes from the CSS, so without it they wouldn't know who posted (see <a href="core.html#heading">Character Appearances and Profiles</a> and <a href="core.html#heading">Accessibility</a>):</p>
+<p>Or use a profile, so the same person has the same picture everywhere, like Rose's quote post on the feed. The blog name can come from the profile too - type it inside a <code>hide</code> span as well:</p>
 
 <div class="mob tb theme-auto"><p class="tb-header">
   <span class="tb-pfp"><span class="pfp pfp-rose"></span></span>
@@ -425,13 +432,20 @@
     &lt;span class="tb-subline"&gt;1h ago&lt;/span&gt;&lt;/span&gt;
 &lt;/p&gt;</code></pre>
 
+<details>
+<summary>More about profiles and colours</summary>
+
+<p>That's for readers with the workskin switched off. The blog name comes from the CSS, so without it they wouldn't know who posted (see <a href="core.html#heading">Character Appearances and Profiles</a> and <a href="core.html#heading">Accessibility</a>).</p>
+
 <p>The colours for <code>colour1</code> to <code>colour10</code> are set in the core CSS and shared with every app, so you can change them there.</p>
+
+</details>
 
 <h3>Round or Square Pictures</h3>
 
-<p>On Tumblr, everyone picks whether their picture shows as a circle or a square with rounded corners, and it's the same everywhere their blog turns up: the header, a reblog chain and next to their asks. The pictures in the skin are circles unless you say otherwise.</p>
+<p>Pictures are circles unless you say otherwise. On Tumblr, everyone picks a circle or a rounded square, and it's the same everywhere their blog turns up.</p>
 
-<p>For a blog without a profile, add <code>sq</code> to its picture, and do it every time that blog appears so it stays the same. It works on <code>tb-pfp</code> and <code>tb-ask-pfp</code>, with initials, a colour or an uploaded picture:</p>
+<p>For a blog without a profile, add <code>sq</code> to its picture every time that blog appears. It works on <code>tb-pfp</code> and <code>tb-ask-pfp</code>:</p>
 
 <div class="mob tb theme-auto"><p class="tb-header">
   <span class="tb-pfp sq colour6">PB</span>
@@ -451,7 +465,7 @@
 
 &lt;p class="tb-asker"&gt;&lt;span class="tb-ask-pfp sq colour6"&gt;PB&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;b&gt;penalty-box-art&lt;/b&gt; answered:&lt;/p&gt;</code></pre>
 
-<p>For a character with a profile, add one line to their profile instead, and their picture is square everywhere on Tumblr without adding anything to your HTML. Luca's art blog has one:</p>
+<p>For a character with a profile, add one line to their profile instead, and their picture is square everywhere. Luca's art blog has one:</p>
 
 <pre><code>#workskin .tb .pfp.pfp-luca.acc-art { border-radius: 15%; }</code></pre>
 
@@ -467,7 +481,7 @@
 
 <h3>The Green Reblog Badge</h3>
 
-<p>When a header belongs to a reblog, Tumblr puts a little green reblog symbol on the corner of the picture. To add it, put <code>rb</code> after <code>tb-pfp</code>. The grey line then usually says who it was reblogged from - write that name in <code>&lt;b&gt;</code> so it stands out:</p>
+<p>For a reblog, put <code>rb</code> after <code>tb-pfp</code> for the little green badge on the picture. The grey line usually says who it was reblogged from, with the name in <code>&lt;b&gt;</code>:</p>
 
 <div class="mob tb theme-auto"><p class="tb-header">
   <span class="tb-pfp rb sq colour6">PB</span>
@@ -485,13 +499,25 @@
 
 <h3>Verified Ticks and the Follow Button</h3>
 
-<p>Some blogs have coloured checkmarks after their names. On Tumblr these are bought for fun - lots of people have them as a joke - so they don't mean a blog is verified, and you can give them to any blog you like. They come in pairs, up to twelve, and always in the same colour order, round the rainbow: blue and green, lime and yellow, amber and orange, dark orange and red, pink and magenta, then purple and violet. So two checkmarks are always blue and green, and the other colours only show up on blogs with more. A blog with lots of checkmarks gets them cut off where the Follow button or the three dots start, like in the app, so on a narrow screen you won't see all twelve. Tumblr has lots of other badges too, but the skin only does the checkmarks.</p>
+<p>Some blogs have coloured checkmarks after their names. On Tumblr these are bought for fun, so they don't mean a blog is verified - give them to any blog you like. Put a <code>tb-checks</code> span straight after the name, with no space, and <code>ic-checks-2</code>, <code>ic-checks-4</code>, <code>ic-checks-6</code>, <code>ic-checks-8</code>, <code>ic-checks-10</code> or <code>ic-checks-12</code> for how many, or <code>ic-checks-blue</code> for two blue ones. Type the checkmarks inside it too, for readers with the workskin switched off: <code>&lt;span class=&quot;tb-checks ic ic-checks-6&quot;&gt;&amp;#10003;&amp;#10003;&amp;#10003;&amp;#10003;&amp;#10003;&amp;#10003;&lt;/span&gt;</code>.</p>
 
-<p>The checkmarks are pictures of the whole set together, drawn to look like Tumblr's. For any blog, put a <code>tb-checks</code> span straight after the name, with no space in between, and <code>ic-checks-2</code>, <code>ic-checks-4</code>, <code>ic-checks-6</code>, <code>ic-checks-8</code>, <code>ic-checks-10</code> or <code>ic-checks-12</code> for how many, or <code>ic-checks-blue</code> for two blue ones. Type the checkmarks inside it too, for readers with the workskin switched off: <code>&lt;span class=&quot;tb-checks ic ic-checks-6&quot;&gt;&amp;#10003;&amp;#10003;&amp;#10003;&amp;#10003;&amp;#10003;&amp;#10003;&lt;/span&gt;</code>. There's one in the Follow button example below, and samthecat has the two blue ones in <a href="tumblr.html#heading">Uploading a Profile Pic</a>.</p>
+<p>There's one in the Follow button example below, and samthecat has the two blue ones in <a href="tumblr.html#heading">Uploading a Profile Pic</a>.</p>
 
-<p>There's also a version drawn with CSS instead of pictures. It looks a little simpler than Tumblr's, but it doesn't need any pictures: add a <code>tb-check</code> span for each checkmark, like <code>&lt;span class=&quot;tb-check&quot;&gt;&#10003;&lt;/span&gt;&lt;span class=&quot;tb-check&quot;&gt;&#10003;&lt;/span&gt;</code>, and the colours are added for you in the right order. For two blue ones, add <code>blue</code> to the second: <code>&lt;span class=&quot;tb-check blue&quot;&gt;</code>.</p>
+<details>
+<summary>More about the checkmarks</summary>
 
-<p>If a blog belongs to a character with a profile, the checkmarks can go in the profile instead. They're the same pictures, and they show up every time you use that blog without adding any spans. Luca's main blog has two this way, and his art blog has six:</p>
+<p>They come in pairs, up to twelve, and always in the same colour order, round the rainbow: blue and green, lime and yellow, amber and orange, dark orange and red, pink and magenta, then purple and violet. A blog with lots of checkmarks gets them cut off where the Follow button or the three dots start, like in the app, so on a narrow screen you won't see all twelve. Tumblr has lots of other badges too, but the skin only does the checkmarks.</p>
+
+</details>
+
+<details>
+<summary>Checkmarks drawn with CSS instead of pictures</summary>
+
+<p>There's also a version drawn with CSS. It looks a little simpler than Tumblr's, but it doesn't need any pictures: add a <code>tb-check</code> span for each checkmark, like <code>&lt;span class=&quot;tb-check&quot;&gt;&#10003;&lt;/span&gt;&lt;span class=&quot;tb-check&quot;&gt;&#10003;&lt;/span&gt;</code>, and the colours are added for you in the right order. For two blue ones, add <code>blue</code> to the second: <code>&lt;span class=&quot;tb-check blue&quot;&gt;</code>.</p>
+
+</details>
+
+<p>For a character with a profile, put the checkmarks in the profile instead, and they show up every time you use that blog. Luca's main blog has two and his art blog has six:</p>
 
 <div class="mob tb theme-auto"><div class="tb-body"><div class="tb-reblog"><p class="tb-blog">
   <span class="tb-pfp"><span class="pfp pfp-luca acc-art"></span></span>
@@ -502,7 +528,10 @@
 
 <pre><code>#workskin .tb .handle.pfp-luca.acc-art::after { background-image: url(https://images.squidge.org/images/2026/11/16/tb-checks-6.png); padding-right: 5.75em; }</code></pre>
 
-<p>Swap <code>pfp-luca.acc-art</code> for your character's profile (and their <code>acc-</code> name, if it's for another of their blogs). There are seven pictures, one for each number of checkmarks and one for the two blue ones, and each has its own padding:</p>
+<p>Swap <code>pfp-luca.acc-art</code> for your character's profile (and their <code>acc-</code> name, if it's for another of their blogs), and put the line at the end of their profile. An extra account without its own line gets the main blog's checkmarks.</p>
+
+<details>
+<summary>All the checkmark pictures and their padding</summary>
 
 <ul>
   <li>Two: <code>https://images.squidge.org/images/2026/11/16/tb-checks-2.png</code> with <code>padding-right: 2.15em;</code></li>
@@ -514,9 +543,9 @@
   <li>Two blue: <code>https://images.squidge.org/images/2026/11/16/tb-checks-blue.png</code> with <code>padding-right: 2.15em;</code></li>
 </ul>
 
-<p>The line goes at the end of their profile. An extra account without its own line gets the main blog's checkmarks.</p>
+</details>
 
-<p>A Follow button is <code>&lt;span class=&quot;tb-follow&quot;&gt;&lt;span&gt;Follow&lt;/span&gt;&lt;/span&gt;</code>. It's optional on every header in a reblog chain, so you can decide for each blog whether you're following it or not: put it in for a blog you don't follow, and leave it out for one you do. It never goes in the post's top header, because you're already following the blog whose post is on your dash. It goes after the three dots and before the name, which is why everything on the right-hand side comes first in the code below. sharksorswim doesn't have a profile, so its two checkmarks are a <code>tb-checks</code> span:</p>
+<p>A Follow button is <code>&lt;span class=&quot;tb-follow&quot;&gt;&lt;span&gt;Follow&lt;/span&gt;&lt;/span&gt;</code>, and it goes after the three dots. It's optional on every header in a reblog chain: put it in for a blog you don't follow. Leave it off the post's top header - you already follow the blog whose post is on your dash.</p>
 
 <div class="mob tb theme-auto"><div class="tb-body"><div class="tb-reblog"><p class="tb-blog">
   <span class="tb-pfp"><span class="pfp"><img src="https://images.squidge.org/images/2026/11/16/Goalie.png" alt="Profile picture of sharksorswim, a hockey goalie"></span></span>
@@ -536,7 +565,7 @@
 
 <h3>Reblog Chains</h3>
 
-<p>When a post has been reblogged with comments, each comment is its own <code>tb-reblog</code> block inside <code>tb-body</code>. Each block starts with a <code>tb-blog</code> header, built just like <code>tb-header</code>, and the comment goes underneath it. Put them one after another, oldest first, and the workskin draws the thin line between them:</p>
+<p>Each comment in a reblog chain is its own <code>tb-reblog</code> block inside <code>tb-body</code>, starting with a <code>tb-blog</code> header built like <code>tb-header</code>. Put them one after another, oldest first, and the lines between them are added for you:</p>
 
 <div class="mob tb theme-auto"><div class="tb-body"><div class="tb-reblog">
   <p class="tb-blog">
@@ -616,7 +645,7 @@
 
 <h3>Uploading a Profile Pic</h3>
 
-<p>Profiles are optional, and most of the blogs in a reblog chain will be strangers. For each one, put the picture tag in the <code>tb-pfp</code> and type the blog name in the <code>&lt;b&gt;</code> inside <code>tb-name</code>. Every reblog has its own header, so copy the picture and name into each one - here sharksorswim turns up twice:</p>
+<p>Most blogs in a reblog chain will be strangers without a profile. For each one, put the picture tag in the <code>tb-pfp</code> and type the name in the <code>&lt;b&gt;</code>, in every header that blog has - here sharksorswim turns up twice:</p>
 
 <div class="mob tb theme-auto"><div class="tb-body"><div class="tb-reblog">
   <p class="tb-blog">
@@ -676,14 +705,11 @@
   &lt;p&gt;thank you. the wedding will be held at centre ice&lt;/p&gt;
 &lt;/div&gt;</code></pre>
 
-<ul>
-  <li>The blog name is typed, so it shows whether the workskin is on or off, with no hidden copy needed.</li>
-  <li>The header of a post on the feed, <code>tb-header</code>, works exactly the same way.</li>
-</ul>
+<p>The name is typed, so there's no hidden copy needed. A post's top header, <code>tb-header</code>, works the same way.</p>
 
 <h3>Tumblr's Default Pictures</h3>
 
-<p>When someone makes a new Tumblr blog and doesn't pick a picture, they get one of Tumblr's default picture icons. I've put some on squidge for people to use, and they're see-through, so you can give them whatever colour background you like. It's not exactly how Tumblr does it, but anyone who's spent time on Tumblr will recognise them. Put a colour class on the <code>tb-pfp</code> and the picture tag inside it, the same as any other uploaded picture:</p>
+<p>New Tumblr blogs get a default picture. I've put some on squidge for people to use. They're see-through, so put a colour class on the <code>tb-pfp</code> for the background, and the picture tag inside it as usual. It's not exactly how Tumblr does it, but anyone who's spent time on Tumblr will recognise them:</p>
 
 <div class="mob tb theme-auto"><div class="tb-body"><div class="tb-reblog"><p class="tb-blog">
   <span class="tb-pfp colour5"><span class="pfp"><img src="https://images.squidge.org/images/2026/11/16/tumblrcube.png" alt="Profile picture of sleepy-teapot-82, Tumblr's default cube on blue"></span></span>
@@ -714,9 +740,9 @@
 
 <h3>Asks</h3>
 
-<p>An ask is a question in a grey box, with a <code>tb-asker</code> line at the top: the blog's name in <code>&lt;b&gt;</code>, then "asked:". The box is <code>tb-ask</code>, and it goes inside <code>tb-body</code>. The small picture on the right is <code>tb-ask-pfp</code>. It's a circle, or a rounded square if that blog's picture is square (see <a href="tumblr.html#heading">Round or Square Pictures</a>).</p>
+<p>An ask is a question in a grey box, <code>tb-ask</code>, inside <code>tb-body</code>. Its <code>tb-asker</code> line has the blog's name in <code>&lt;b&gt;</code> and "asked:", and <code>tb-ask-pfp</code> is the small picture on the right.</p>
 
-<p>How the answer looks depends on who posts it. When the blog that answered it posts it, only the question is in a box, and the answer is just the text of the post underneath it, with no picture. Put the <code>tb-ask</code> box first in <code>tb-body</code>, then the answer as ordinary paragraphs:</p>
+<p>When the blog that answered posts it, only the question is in a box, and the answer is ordinary paragraphs after it:</p>
 
 <div class="mob tb theme-auto">
   <p class="tb-header">
@@ -766,7 +792,7 @@
   &lt;/p&gt;
 &lt;/div&gt;</code></pre>
 
-<p>When someone else reblogs it, the header says who reblogged it and who from, and the answer gets a box of its own too, with the picture of the blog that answered. The answer box is <code>tb-ask</code> with <code>tb-answer</code> added, and its <code>tb-asker</code> line says "answered:" instead:</p>
+<p>When someone else reblogs it, the answer gets a box too: <code>tb-ask</code> with <code>tb-answer</code> added, and "answered:" in its <code>tb-asker</code> line:</p>
 
 <div class="mob tb theme-auto">
   <p class="tb-header">
@@ -820,13 +846,18 @@
   &lt;/p&gt;
 &lt;/div&gt;</code></pre>
 
+<details>
+<summary>How the pictures in these asks work</summary>
+
 <p>The pictures work the same way as everywhere else. benchwarmer88 has initials, with a colour class for the colour. The anonymous asker has an uploaded picture, in a <code>pfp</code> span with alt text, and Shane has a picture from his profile, in an empty <code>pfp</code> span with the profile name. With a profile, the blog name can come from it too, in a handle span with the name typed inside it in a <code>hide</code> span.</p>
 
-<p>For an anon ask, like the one rinkrat reblogged, write <code>Anonymous</code> as the name and use Tumblr's anon picture, which I've put on squidge: <code>https://images.squidge.org/images/2026/11/16/tumblr-anon.png</code>. Pictures can go in an answer too, after the text, in a <code>tb-photos</code> box (see <a href="tumblr.html#heading">Pictures and Gifs</a>).</p>
+</details>
+
+<p>For an anon ask, write <code>Anonymous</code> as the name and use Tumblr's anon picture, which I've put on squidge: <code>https://images.squidge.org/images/2026/11/16/tumblr-anon.png</code>. Pictures can go in an answer too, after the text, in a <code>tb-photos</code> box (see <a href="tumblr.html#heading">Pictures and Gifs</a>).</p>
 
 <h3>Quote Posts</h3>
 
-<p>A quote post is a big line of text in a serif font, with whoever said it underneath. The quotation marks are added for you. Put it in <code>tb-body</code>:</p>
+<p>A quote post is a big line of text with the source underneath, and the quotation marks are added for you. Put it in <code>tb-body</code>:</p>
 
 <div class="mob tb theme-auto"><div class="tb-body"><p class="tb-quote">I go where I want.</p>
 <p class="tb-source">&mdash; Scott Hunter, to a very brave reporter</p></div></div>
@@ -854,7 +885,7 @@
 
 <h3>Pictures and Gifs</h3>
 
-<p>Pictures and gifs in a post go edge to edge across the card, the same as the app. They go in a <code>tb-photos</code> box inside <code>tb-body</code>, and each row of pictures is a <code>tb-row</code>, with each picture in a <code>tb-photo</code> span. A gif is just a picture that moves, so it works exactly the same way. Don't forget the alt text (see <a href="core.html#heading">Accessibility</a>).</p>
+<p>Pictures and gifs go in a <code>tb-photos</code> box inside <code>tb-body</code>. Each row is a <code>tb-row</code>, and each picture goes in a <code>tb-photo</code> span. Don't forget the alt text (see <a href="core.html#heading">Accessibility</a>).</p>
 
 <p>One picture on its own fills the width and keeps its own shape:</p>
 
@@ -866,7 +897,7 @@
   &lt;p class="tb-row"&gt;&lt;span class="tb-photo"&gt;&lt;img src="https://images.squidge.org/images/2026/11/16/Cat2.jpg" alt="Black and white cat screaming at the camera, on a red patterned rug"&gt;&lt;/span&gt;&lt;/p&gt;
 &lt;/div&gt;</code></pre>
 
-<p>Add <code>two</code> to the row for two pictures side by side. They're cropped to two squares the same size, so they always line up, whatever shape the pictures are. A picture that's wider than tall needs <code>class=&quot;land&quot;</code> on its <code>&lt;img&gt;</code> too, so the sides get cropped instead of the top and bottom:</p>
+<p>Add <code>two</code> to the row for two pictures side by side. If a picture is wider than it is tall, add <code>class=&quot;land&quot;</code> to its <code>&lt;img&gt;</code>:</p>
 
 <div class="mob tb theme-auto"><div class="tb-body"><div class="tb-photos">
   <p class="tb-row two"><span class="tb-photo"><img class="land" src="https://images.squidge.org/images/2026/11/16/Cat3.jpg" alt="Black and white cat holding out a paw daintily, on a beige and green cat tree"></span><span class="tb-photo"><img src="https://images.squidge.org/images/2026/11/16/Cat4.jpg" alt="Black and white cat sitting in an opened red suitcase, on a red patterned rug"></span></p>
@@ -876,7 +907,7 @@
   &lt;p class="tb-row two"&gt;&lt;span class="tb-photo"&gt;&lt;img class="land" src="https://images.squidge.org/images/2026/11/16/Cat3.jpg" alt="Black and white cat holding out a paw daintily, on a beige and green cat tree"&gt;&lt;/span&gt;&lt;span class="tb-photo"&gt;&lt;img src="https://images.squidge.org/images/2026/11/16/Cat4.jpg" alt="Black and white cat sitting in an opened red suitcase, on a red patterned rug"&gt;&lt;/span&gt;&lt;/p&gt;
 &lt;/div&gt;</code></pre>
 
-<p>Real photosets come in loads of layouts, and the skin doesn't try to copy them all. Instead, stack rows on top of each other in the same <code>tb-photos</code> box, in any order, and you can make up whatever layout you like:</p>
+<p>Stack rows in the same <code>tb-photos</code> box, in any order, to make up your own photoset:</p>
 
 <div class="mob tb theme-auto"><div class="tb-body"><div class="tb-photos">
   <p class="tb-row two"><span class="tb-photo"><img class="land" src="https://images.squidge.org/images/2026/11/16/Cat3.jpg" alt="Black and white cat holding out a paw daintily, on a beige and green cat tree"></span><span class="tb-photo"><img src="https://images.squidge.org/images/2026/11/16/Cat4.jpg" alt="Black and white cat sitting in an opened red suitcase, on a red patterned rug"></span></p>
@@ -890,15 +921,24 @@
   &lt;p class="tb-row two"&gt;&lt;span class="tb-photo"&gt;&lt;img src="https://images.squidge.org/images/2026/11/16/Cat2.jpg" alt="Black and white cat screaming at the camera, on a red patterned rug"&gt;&lt;/span&gt;&lt;span class="tb-photo"&gt;&lt;img class="land" src="https://images.squidge.org/images/2026/11/16/Cat3.jpg" alt="Black and white cat holding out a paw daintily, on a beige and green cat tree"&gt;&lt;/span&gt;&lt;/p&gt;
 &lt;/div&gt;</code></pre>
 
-<p>Text and pictures can go in any order, as many times as you like: a paragraph, a <code>tb-photos</code> box, more paragraphs, another <code>tb-photos</code> box, and so on, like Luca's post on the feed at the top of the chapter. Pictures at the very start of a post sit right up against the header, the same as the app. A picture can go in a reblog too: put the <code>tb-photos</code> box in that <code>tb-reblog</code>, after its <code>tb-blog</code> header. A plain <code>&lt;img&gt;</code> straight in the body, without the <code>tb-photos</code> box, still works too - it sits inside the card with a small gap round it instead of going edge to edge.</p>
+<p>Text and pictures can go in any order, as many times as you like, like Luca's post on the feed. A picture can go in a reblog too: put the <code>tb-photos</code> box in its <code>tb-reblog</code>, after the <code>tb-blog</code> header.</p>
+
+<details>
+<summary>More about pictures</summary>
+
+<p>Pictures go edge to edge across the card, the same as the app, and a gif works exactly the same way as a picture. Two side by side are cropped to two squares the same size, so they always line up - <code>land</code> crops the sides of a wide picture instead of the top and bottom. Real photosets come in loads of layouts, and the skin doesn't try to copy them all.</p>
+
+<p>Pictures at the very start of a post sit right up against the header, like the app. A plain <code>&lt;img&gt;</code> straight in the body, without the <code>tb-photos</code> box, still works too - it sits inside the card with a small gap round it instead of going edge to edge.</p>
+
+</details>
 
 <h3>Mentioning a Blog</h3>
 
-<p>When a post mentions another blog by name, Tumblr turns the name a slightly different colour to show it links to their blog. Put the name, with its <code>@</code>, in a <code>tb-at</code> span: <code>&lt;span class=&quot;tb-at&quot;&gt;@oghollanovtruther&lt;/span&gt;</code>. It works anywhere in the text of a post, a reblog or an ask, and in light and dark posts.</p>
+<p>Put a mentioned blog's name, with its <code>@</code>, in a <code>tb-at</code> span: <code>&lt;span class=&quot;tb-at&quot;&gt;@oghollanovtruther&lt;/span&gt;</code>. It turns a slightly different colour, like Tumblr, and works anywhere in a post, a reblog or an ask.</p>
 
 <h3>Notes Along the Bottom</h3>
 
-<p>The bottom row is <code>tb-footer</code>, and it goes after <code>tb-body</code> and the tags. Like the mobile app, it shows the replies, reblogs and likes separately, each with its own count, and the share button on the far right. Each button and its count is a <code>tb-stat</code> span: the button first, then the number, then a <code>hide</code> span saying what the number is, for readers with the workskin switched off:</p>
+<p>The bottom row is <code>tb-footer</code>, after <code>tb-body</code> and the tags. Each button and its count is a <code>tb-stat</code> span: the button, the number, then a <code>hide</code> span saying what the number is, for readers with the workskin switched off:</p>
 
 <div class="mob tb theme-auto"><p class="tb-footer">
   <span class="tb-stat"><span class="tb-icon ic ic-comment">&#9993;</span> 31<span class="hide"> replies</span></span>
@@ -914,11 +954,11 @@
   &lt;span class="tb-icon ic ic-share-up"&gt;&amp;#8679;&lt;/span&gt;
 &lt;/p&gt;</code></pre>
 
-<p>The replies, reblogs and likes always take a third of the row each, so they line up from post to post whatever the numbers are. If a post has no replies, Tumblr just shows the button, so leave out the number and its <code>hide</code> span: <code>&lt;span class=&quot;tb-stat&quot;&gt;&lt;span class=&quot;tb-icon ic ic-comment&quot;&gt;&amp;#9993;&lt;/span&gt;&lt;/span&gt;</code>. You can leave the share button out too, or the whole row.</p>
+<p>If a post has no replies, Tumblr just shows the button, so leave out the number and its <code>hide</code> span: <code>&lt;span class=&quot;tb-stat&quot;&gt;&lt;span class=&quot;tb-icon ic ic-comment&quot;&gt;&amp;#9993;&lt;/span&gt;&lt;/span&gt;</code>. You can leave out the share button too, or the whole row.</p>
 
 <h3>The Feed Background</h3>
 
-<p>The feed at the top of the chapter is a whole phone screen, like the app: Tumblr's bar along the top with the Following, For you and Your tags tabs, the posts, and the buttons along the bottom. The bar at the top scrolls away with the posts, and the buttons at the bottom stay put. Add <code>app</code> to the feed, put a <code>tb-screen</code> box inside it holding the top bar and your posts, and put the <code>tb-nav</code> buttons after it:</p>
+<p>The feed at the top of the chapter is a whole phone screen, like the app. Add <code>app</code> to the feed, put a <code>tb-screen</code> box inside it holding the top bar and your posts, and put the <code>tb-nav</code> buttons after it:</p>
 
 <pre><code>&lt;div class="tb-feed app theme-auto"&gt;
   &lt;div class="tb-screen"&gt;
@@ -930,8 +970,22 @@
   &lt;p class="tb-nav"&gt;&lt;span class="on ic ic-tb-home"&gt;&amp;#8962;&lt;/span&gt; &lt;span class="ic ic-tb-search"&gt;&amp;#128269;&lt;/span&gt; &lt;span class="ic ic-tb-community"&gt;&amp;#128101;&lt;/span&gt; &lt;span class="ic ic-tb-activity"&gt;&amp;#9889;&lt;/span&gt; &lt;span class="ic ic-tb-profile"&gt;&amp;#128100;&lt;/span&gt;&lt;/p&gt;
 &lt;/div&gt;</code></pre>
 
-<p>Tumblr Premium is dead and I have killed it, so it's not in the skin. Move <code>on</code> to a different tab to show a different one picked. The posts inside the screen don't scroll on their own - the whole screen scrolls instead.</p>
+<p>Tumblr Premium is dead and I have killed it, so it's not in the skin. Move <code>on</code> to a different tab to show a different one picked.</p>
 
-<p>In the Tumblr app, the white cards sit on a dark navy background (or black in dark mode). To get that, wrap your posts in a <code>tb-feed</code>, like the posts on the feed at the top of the chapter, and the cards sit on it with a gap between each one: <code>&lt;div class=&quot;tb-feed&quot;&gt;</code>, then your posts, then <code>&lt;/div&gt;</code>. The feed takes the same themes as the posts, so give it the same one as the posts inside it: <code>&lt;div class=&quot;tb-feed theme-auto&quot;&gt;</code> is navy, and turns black when the reader's device is in dark mode, and <code>theme-dark</code> is always black. Or add <code>black</code> for black all the time, <code>&lt;div class=&quot;tb-feed black&quot;&gt;</code>, or <code>classic</code> for the old Tumblr blue, <code>&lt;div class=&quot;tb-feed classic&quot;&gt;</code>. You can change the navy to any colour in the CSS (see <a href="tumblr-css.html#heading">The Feed</a>).</p>
+<details>
+<summary>How the screen scrolls</summary>
+
+<p>The bar at the top scrolls away with the posts, and the buttons at the bottom stay put. The posts inside the screen don't scroll on their own - the whole screen scrolls instead.</p>
+
+</details>
+
+<p>To put posts on the feed background without the rest of the screen, wrap them in <code>&lt;div class=&quot;tb-feed theme-auto&quot;&gt;</code> and <code>&lt;/div&gt;</code>. Give the feed the same theme as its posts: <code>theme-auto</code> is navy, and black when the reader's device is in dark mode, and <code>theme-dark</code> is always black.</p>
+
+<details>
+<summary>Other feed colours</summary>
+
+<p>Add <code>black</code> for black all the time, <code>&lt;div class=&quot;tb-feed black&quot;&gt;</code>, or <code>classic</code> for the old Tumblr blue, <code>&lt;div class=&quot;tb-feed classic&quot;&gt;</code>. You can change the navy to any colour in the CSS (see <a href="tumblr-css.html#heading">The Feed</a>).</p>
+
+</details>
 
 <p>This is completely optional - without it, each post is just a card on its own, like the reblog chain.</p>
