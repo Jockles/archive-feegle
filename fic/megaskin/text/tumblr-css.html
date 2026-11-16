@@ -178,6 +178,22 @@
 
 <p>This one is for checkmarks that come from a character profile. The checkmarks are a picture, and this line puts it at the right-hand end of the name, at just under the height of the text. The profile adds the picture itself and some padding after the name to make room for it.</p>
 
+<pre><code>#workskin .tb .tb-checks { margin-left: 0.25em; color: #42aaf5; font-size: 0.85em; }</code></pre>
+
+<p>This is the <code>tb-checks</code> span, for the checkmark pictures on a blog without a profile. The pictures themselves are in the Icons section at the end of the module, the same as the buttons, and if they're taken out, this line shows the typed checkmarks instead, in blue and a little smaller than the name.</p>
+
+<pre><code>#workskin .tb .tb-checks.ic {
+  height: 0.9em;
+  margin-left: 0;
+  font-size: 1em;
+  vertical-align: -0.05em;
+  background-position: right center;
+  background-size: auto 100%;
+}
+#workskin .tb .ic.ic-checks-2 { width: 2.15em; background-image: url(https://images.squidge.org/images/2026/11/15/tb-checks-2.png); }</code></pre>
+
+<p>In the Icons section, the span becomes the picture, at just under the height of the name. Each number of checkmarks has its own width, the same as the padding a profile uses, so the gap after the name comes out the same either way.</p>
+
 <h3>Reblog Chains</h3>
 
 <pre><code>#workskin .tb .tb-reblog {
@@ -315,7 +331,7 @@
   <li><strong>Asks:</strong> <code>tb-ask</code>, <code>tb-answer</code>, <code>tb-asker</code> and <code>tb-ask-pfp</code>.</li>
   <li><strong>Quote posts:</strong> <code>tb-quote</code> and <code>tb-source</code>.</li>
   <li><strong>Chat posts:</strong> <code>tb-chat</code>.</li>
-  <li><strong>Checkmarks:</strong> <code>tb-check</code>.</li>
+  <li><strong>Checkmarks:</strong> <code>tb-check</code>, <code>tb-checks</code> and the <code>ic-checks</code> lines in the Icons section.</li>
   <li><strong>Bottom row:</strong> <code>tb-footer</code>, <code>tb-notes</code> and <code>tb-icon</code>.</li>
   <li><strong>The feed:</strong> everything starting <code>.tb-feed</code>.</li>
 </ul>

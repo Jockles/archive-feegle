@@ -6,7 +6,7 @@
   <title>Megaskin, Chapter 12: Tumblr | jockles.com</title>
   <link rel="stylesheet" href="../../style.css">
   <script src="../../theme.js"></script>
-  <link rel="stylesheet" href="megaskin.css?v=e8071580" id="creator-style">
+  <link rel="stylesheet" href="megaskin.css?v=f071dfc6" id="creator-style">
 </head>
 <body>
 <header>
@@ -461,9 +461,13 @@
 
 <h3 id="s12-8">12.8 Verified Ticks and the Follow Button</h3>
 
-<p>Some blogs have coloured checkmarks after their names. On Tumblr these are bought for fun - lots of people have them as a joke - so they don't mean a blog is verified, and you can give them to any blog you like. They come in twos, fours or sixes, and always in the same colour order: blue and green, then lime and yellow, then amber and orange. So two checkmarks are always blue and green, and the other colours only show up on blogs with four or six. Add a <code>tb-check</code> span for each one, straight after the name, like <code>&lt;span class=&quot;tb-check&quot;&gt;&#10003;&lt;/span&gt;&lt;span class=&quot;tb-check&quot;&gt;&#10003;&lt;/span&gt;</code>, and the colours are added for you in the right order. These ones are drawn with CSS rather than being pictures, so they look a little simpler than Tumblr's, but they work on any blog, with or without a profile. Tumblr has lots of other badges too, but the skin only does the checkmarks.</p>
+<p>Some blogs have coloured checkmarks after their names. On Tumblr these are bought for fun - lots of people have them as a joke - so they don't mean a blog is verified, and you can give them to any blog you like. They come in twos, fours or sixes, and always in the same colour order: blue and green, then lime and yellow, then amber and orange. So two checkmarks are always blue and green, and the other colours only show up on blogs with four or six. Tumblr has lots of other badges too, but the skin only does the checkmarks.</p>
 
-<p>If a blog belongs to a character with a profile, the checkmarks can go in the profile instead. These are pictures of the whole set of two, four or six checkmarks together, drawn to look like Tumblr's, and they show up every time you use that blog without adding any spans. Luca's main blog has two this way, and his art blog has six:</p>
+<p>The checkmarks are pictures of the whole set of two, four or six together, drawn to look like Tumblr's. For any blog, put a <code>tb-checks</code> span straight after the name, with no space in between, and <code>ic-checks-2</code>, <code>ic-checks-4</code> or <code>ic-checks-6</code> for how many. Type the checkmarks inside it too, for readers with the workskin switched off: <code>&lt;span class=&quot;tb-checks ic ic-checks-6&quot;&gt;&amp;#10003;&amp;#10003;&amp;#10003;&amp;#10003;&amp;#10003;&amp;#10003;&lt;/span&gt;</code>. There's one in the Follow button example below.</p>
+
+<p>There's also a version drawn with CSS instead of pictures. It looks a little simpler than Tumblr's, but it doesn't need any pictures: add a <code>tb-check</code> span for each checkmark, like <code>&lt;span class=&quot;tb-check&quot;&gt;&#10003;&lt;/span&gt;&lt;span class=&quot;tb-check&quot;&gt;&#10003;&lt;/span&gt;</code>, and the colours are added for you in the right order.</p>
+
+<p>If a blog belongs to a character with a profile, the checkmarks can go in the profile instead. They're the same pictures, and they show up every time you use that blog without adding any spans. Luca's main blog has two this way, and his art blog has six:</p>
 
 <div class="mob tb theme-auto"><div class="tb-body"><div class="tb-reblog"><p class="tb-blog">
   <span class="tb-pfp"><span class="pfp pfp-luca acc-art"></span></span>
@@ -484,14 +488,13 @@
 
 <p>The line goes at the end of their profile. An extra account without its own line gets the main blog's checkmarks.</p>
 
-<p>A Follow button is <code>&lt;span class=&quot;tb-follow&quot;&gt;&lt;span&gt;Follow&lt;/span&gt;&lt;/span&gt;</code>. It goes after the three dots and before the name, which is why everything on the right-hand side comes first in the code below. sharksorswim doesn't have a profile, so its two checkmarks are the drawn <code>tb-check</code> spans from the start of this section:</p>
+<p>A Follow button is <code>&lt;span class=&quot;tb-follow&quot;&gt;&lt;span&gt;Follow&lt;/span&gt;&lt;/span&gt;</code>. It goes after the three dots and before the name, which is why everything on the right-hand side comes first in the code below. sharksorswim doesn't have a profile, so its two checkmarks are a <code>tb-checks</code> span:</p>
 
 <div class="mob tb theme-auto"><div class="tb-body"><div class="tb-reblog"><p class="tb-blog">
   <span class="tb-pfp"><span class="pfp"><img src="https://images.squidge.org/images/2026/11/16/Goalie.png" alt="Profile picture of sharksorswim, a hockey goalie"></span></span>
   <span class="tb-menu">&#8226;&#8226;&#8226;</span>
   <span class="tb-follow"><span>Follow</span></span>
-  <span class="tb-name"><b>sharksorswim
-    <span class="tb-check">&#10003;</span><span class="tb-check">&#10003;</span></b>
+  <span class="tb-name"><b>sharksorswim<span class="tb-checks ic ic-checks-2">&#10003;&#10003;</span></b>
     <span class="tb-subline">6h ago</span></span>
 </p></div></div></div>
 
@@ -499,8 +502,7 @@
   &lt;span class="tb-pfp"&gt;&lt;span class="pfp"&gt;&lt;img src="https://images.squidge.org/images/2026/11/16/Goalie.png" alt="Profile picture of sharksorswim, a hockey goalie"&gt;&lt;/span&gt;&lt;/span&gt;
   &lt;span class="tb-menu"&gt;&amp;#8226;&amp;#8226;&amp;#8226;&lt;/span&gt;
   &lt;span class="tb-follow"&gt;&lt;span&gt;Follow&lt;/span&gt;&lt;/span&gt;
-  &lt;span class="tb-name"&gt;&lt;b&gt;sharksorswim
-    &lt;span class="tb-check"&gt;&amp;#10003;&lt;/span&gt;&lt;span class="tb-check"&gt;&amp;#10003;&lt;/span&gt;&lt;/b&gt;
+  &lt;span class="tb-name"&gt;&lt;b&gt;sharksorswim&lt;span class="tb-checks ic ic-checks-2"&gt;&amp;#10003;&amp;#10003;&lt;/span&gt;&lt;/b&gt;
     &lt;span class="tb-subline"&gt;6h ago&lt;/span&gt;&lt;/span&gt;
 &lt;/p&gt;</code></pre>
 
