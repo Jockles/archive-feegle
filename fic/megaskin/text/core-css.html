@@ -213,6 +213,27 @@
 
 <p>A circle with no picture in it shows initials on a plain colour instead. The colours for that, <code>colour1</code> to <code>colour10</code>, are near the end of the core - see The Ten Colours, below.</p>
 
+<p>A profile can have initials too, set in the CSS instead of typed into each circle. This rule centres them in the circle in white, the second one makes them smaller in the tiny circles in Discord replies and Instagram's "Liked by" line, and the third makes them a bit bigger in Instagram's account picture:</p>
+
+<pre><code>#workskin .pfp::before {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 0.8em;
+  line-height: 1;
+}
+
+#workskin .dc .dc-reply .pfp::before,
+#workskin .ig .ig-like-pfp .pfp::before { font-size: 0.4em; }
+
+#workskin .ig .ig-top .ig-pfp .pfp::before { font-size: 1.1em; }</code></pre>
+
+<p>It doesn't do anything until a profile gives it some text, like Holster's does (see Character Profiles, Line by Line, below).</p>
+
 <h3>Hidden Text</h3>
 
 <pre><code>#workskin .hide.hide.hide.hide { display: none; }</code></pre>
@@ -263,7 +284,7 @@
 
 <h3>Hover and Tap Translations</h3>
 
-<p>This is the cleverest bit of the core, and it's based on La_Temperanza's tutorial (see the credits in chapter 1). Here's the HTML again, to have it in front of you:</p>
+<p>This is the cleverest bit of the core, and it's based on La_Temperanza's tutorial (see <a href="getting-started.html#heading">Credits and sources</a>). Here's the HTML again, to have it in front of you:</p>
 
 <pre><code>&lt;a class="tl" href="#t1"&gt;&lt;span class="orig"&gt;Diolch yn fawr&lt;/span&gt;&lt;span class="tltn"&gt;&lt;span class="hide"&gt; (&lt;/span&gt;Thank you very much&lt;span class="hide"&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/a&gt;</code></pre>
 
@@ -352,10 +373,10 @@
 
 <h4>A Simple Profile: Stan</h4>
 
-<p>Stan's is the simplest profile in the skin. It only has the five lines every profile needs:</p>
+<p>To make a profile for one of your characters, you only need five lines. Here they are for Stan, the simplest profile in the skin. Copy his block into the core CSS, then change <code>stan</code> to your character's name everywhere in it, and swap in their picture, name colour, name, handle and email address:</p>
 
 <pre><code>/* PROFILE: Stan */
-#workskin .pfp.pfp-stan { background-color: #c06a1f; }
+#workskin .pfp.pfp-stan { background-image: url(https://images.squidge.org/images/2026/11/15/GayCrosedHockeySticks.png); }
 #workskin .wa .who.pfp-stan, #workskin .dc .dc-name.pfp-stan { color: #d2782a; }
 #workskin .name.pfp-stan::before { content: "Stan"; }
 #workskin .handle.pfp-stan::after { content: "PuckStan"; }
@@ -364,14 +385,48 @@
 <p>Here's what each line does:</p>
 
 <ol>
-  <li><strong>The picture.</strong> Any <code>pfp</code> span that also has <code>pfp-stan</code> gets this. Stan doesn't have a photo, so his is just a plain orange circle (<code>background-color</code>). For a real picture, swap it for <code>background-image: url(https://example.com/stan.jpg);</code>, like Luca's below.</li>
+  <li><strong>The picture.</strong> Any <code>pfp</code> span that also has <code>pfp-stan</code> gets this picture, in every app, so you only add the link once - however many times he turns up. Swap the link for your character's picture, ending in <code>.jpg</code>, <code>.png</code> or <code>.gif</code>. For a plain colour instead, use <code>background-color: #7d4fb0;</code>, like Yuna's. To put initials in the circle, add a line like <code>#workskin .pfp.pfp-stan::before { content: &quot;S&quot;; }</code>, like Holster's.</li>
   <li><strong>The name colour.</strong> WhatsApp group names and Discord usernames are coloured, so this is Stan's colour in both. It does the same job as <code>colour1</code> to <code>colour10</code>, just for one character, so you don't need a colour class as well. Pick a colour you can read on white and on black, because readers will see it in both themes.</li>
   <li><strong>The name.</strong> <code>&lt;span class=&quot;name pfp-stan&quot;&gt;&lt;/span&gt;</code> is an empty span, and <code>::before</code> with <code>content</code> fills it in with "Stan".</li>
   <li><strong>The handle.</strong> The same idea for <code>&lt;span class=&quot;handle pfp-stan&quot;&gt;&lt;/span&gt;</code>, but with <code>::after</code>. Leave the @ off - Twitter/X adds it for you (there's more on why in line 8 of Luca's, below).</li>
   <li><strong>The email address.</strong> The same again, for <code>&lt;span class=&quot;email pfp-stan&quot;&gt;&lt;/span&gt;</code>.</li>
 </ol>
 
-<p>That's a whole profile. The comment line at the top (<code>/* PROFILE: Stan */</code>) doesn't do anything - it's just a label, so you can find each character's block.</p>
+<p>That's a whole profile. The comment line at the top (<code>/* PROFILE: Stan */</code>) doesn't do anything - it's just a label, so you can find each character's block. Change it to your character's name too.</p>
+
+<details>
+<summary>Things that trip people up</summary>
+
+<ul>
+  <li>A profile name can't have spaces in it. Use a hyphen: <code>pfp-shane-work</code>.</li>
+  <li>Keep the quotes around names, handles and emails, and keep the semicolon before the <code>}</code>. A missing quote is the most common reason AO3 rejects a skin.</li>
+  <li>If a name has a quote mark or apostrophe in it, like <code>Cat Guy's Cat</code>, that's fine inside double quotes. A double quote inside needs a backslash in front: <code>"The \"Captain\""</code>.</li>
+  <li>Picture links need to end in <code>.jpg</code>, <code>.png</code> or <code>.gif</code>. AO3 won't accept some links in CSS, even if they work in your HTML. This does mean that you can have a gif profile picture anywhere you want, even in apps that don't allow it. Use this power responsibly (or not I'm not your dad).</li>
+</ul>
+
+</details>
+
+<p>The profiles that come with the skin are examples of the kinds of set-ups you might want - a character with a separate work email, one with a different name on Twitter/X, one saved under a nickname on someone's phone. Use them to see how it's done, then make new profiles for your own characters. Delete the examples you don't need: they don't do anything unless you use them, but they make the skin longer.</p>
+
+<details>
+<summary>The example profiles in the skin</summary>
+
+<ul>
+  <li><strong>Stan</strong> (<code>pfp-stan</code>): Stan has the same appearance on every app - one picture, one name, one handle - so he only has the five lines every profile needs.</li>
+  <li><strong>Yuna</strong> (<code>pfp-yuna</code>): Yuna has a work life and a family life, and a plain coloured circle instead of a picture. She has a second email address for work (<code>acc-work</code>) - the extra account idea, just for email - plus a nickname line for how she's saved on her son's phone, and a wallpaper line for her own phone.</li>
+  <li><strong>Zim</strong> (<code>pfp-zim</code>): Jack only has a different appearance on one app, so he only has those lines added - a different name and handle on Twitter/X.</li>
+  <li><strong>Holster</strong> (<code>pfp-holster</code>): Holster only has a picture on one app, so that's the only picture line. Everywhere else he has initials, with a different circle colour on some apps.</li>
+  <li><strong>Rose</strong> (<code>pfp-rose</code>): Rose keeps her public and private accounts separate, so she has a second Instagram account, <code>acc-private</code>, with its own picture and handle (see More Than One Account on the Same App, below).</li>
+  <li><strong>Shane</strong> (<code>pfp-shane</code>): Shane is a main character who shows up everywhere, so he has a bit of everything - a real picture, a nickname on his partner's phone, a slightly different handle on each app, and a wallpaper for his own phone.</li>
+  <li><strong>Ilya</strong> (<code>pfp-ilya</code>): Ilya is the other main character, and he has two secret Twitter/X accounts alongside his main one - a burner (<code>acc-burner</code>) and a Shane fan account (<code>acc-shanewife</code>). He also has a nickname line for how he's saved on Shane's phone and a wallpaper line for his own phone.</li>
+  <li><strong>Luca</strong> (<code>pfp-luca</code>): Luca has every option at once, so you can see them all working together - he's explained line by line in Every Option: Luca, below.</li>
+</ul>
+
+</details>
+
+<h4>The Profile Maker Tool</h4>
+
+<p>If you'd like to see your profile as you build it, my <a href="profile-maker.html">Profile Maker</a> is a WYSIWYG (what you see is what you get) helper tool: fill in the boxes and it shows the character in every app as you go, then gives you the CSS to copy. It's only a shortcut, though. Everything in this section does the same job by hand, so you don't have to use it at all if you don't want to, or if it ever breaks.</p>
 
 <h4>Every Option: Luca</h4>
 
@@ -381,7 +436,7 @@
 
 <pre><code>#workskin .pfp.pfp-luca { background-image: url(https://example.com/luca.jpg); }</code></pre>
 
-<p>Any <code>pfp</code> span that also has <code>pfp-luca</code> gets this picture as its background. <code>background-size: cover</code>, from Round Pictures above, crops it to the circle. For a plain colour instead, use <code>background-color: #c06a1f;</code>, like Stan's.</p>
+<p>Any <code>pfp</code> span that also has <code>pfp-luca</code> gets this picture as its background. <code>background-size: cover</code>, from Round Pictures above, crops it to the circle. For a plain colour instead, use <code>background-color: #7d4fb0;</code>, like Yuna's.</p>
 
 <p><strong>2. A different picture on one app</strong></p>
 
@@ -438,17 +493,40 @@
 
 <pre><code>#workskin .email.pfp-luca::after { content: "luca@example.com"; }</code></pre>
 
-<p><strong>11. A different email address in Gmail or the email window</strong></p>
+<p><strong>11. Another email address</strong></p>
 
-<pre><code>#workskin .mail .email.pfp-luca::after { content: "luca@work.example.com"; }</code></pre>
+<pre><code>#workskin .email.pfp-luca.acc-work::after { content: "luca@work.example.com"; }</code></pre>
 
-<p><code>.mail</code> is the generic email window, and <code>.gm</code> is Gmail.</p>
+<p>A second email address works like a second account on an app: give it an <code>acc-</code> name and add that to the email span in your HTML, <code>&lt;span class=&quot;email pfp-luca acc-work&quot;&gt;&lt;/span&gt;</code>. It works in Gmail and the email window alike.</p>
 
 <p><strong>12. Their phone's wallpaper</strong></p>
 
 <pre><code>#workskin .mob.wa.pov-luca { background: linear-gradient(#fdf1d6, #f6d5c2); }</code></pre>
 
 <p>A WhatsApp chat with <code>pov-luca</code> on it gets this background. A colour, a gradient (one colour fading into another, like this) or <code>url(...)</code> with a picture all work.</p>
+
+<p><strong>13. More than one account on the same app</strong></p>
+
+<pre><code>#workskin .tb .pfp.pfp-luca.acc-art { background-image: url(https://images.squidge.org/images/2026/11/16/LucaTumblr.png); }
+#workskin .tb .handle.pfp-luca.acc-art::after { content: "gremlin-sketches"; }
+#workskin .tb .pfp.pfp-luca.acc-rpf { background-image: url(https://images.squidge.org/images/2026/11/16/Hollanov1.png); }
+#workskin .tb .handle.pfp-luca.acc-rpf::after { content: "rink-rivals-rpf"; }</code></pre>
+
+<p>As well as his main Tumblr, Luca has an art blog and a hockey RPF blog, each with its own picture and URL. In your HTML, add the account's <code>acc-</code> name: <code>&lt;span class=&quot;handle pfp-luca acc-art&quot;&gt;&lt;/span&gt;</code>. There's more on how this works in More Than One Account on the Same App, below.</p>
+
+<p><strong>14. Tumblr checkmarks</strong></p>
+
+<pre><code>#workskin .tb .handle.pfp-luca::after { background-image: url(https://images.squidge.org/images/2026/11/15/tb-checks-2.png); padding-right: 2.15em; }
+#workskin .tb .handle.pfp-luca.acc-art::after { background-image: url(https://images.squidge.org/images/2026/11/15/tb-checks-6.png); padding-right: 6.2em; }
+#workskin .tb .handle.pfp-luca.acc-rpf::after { background-image: url(https://images.squidge.org/images/2026/11/15/tb-checks-4.png); padding-right: 4.2em; }</code></pre>
+
+<p>The coloured checkmarks after a Tumblr name, set once so they follow the blog everywhere. Luca's main blog has two, his art blog six and his RPF blog four. Use <code>tb-checks-2.png</code>, <code>tb-checks-4.png</code> or <code>tb-checks-6.png</code>, with the padding that goes with it: 2.15em, 4.2em or 6.2em. An extra account without its own line gets the main blog's checkmarks. There's more in <a href="tumblr.html#heading">Verified Ticks and the Follow Button</a>.</p>
+
+<p><strong>15. A square Tumblr picture</strong></p>
+
+<pre><code>#workskin .tb .pfp.pfp-luca.acc-art { border-radius: 15%; }</code></pre>
+
+<p>Tumblr lets each blog show its picture as a circle or a square with rounded corners. Luca's art blog is square, so this makes it square everywhere it shows up on Tumblr: headers, reblogs and asks. There's more in <a href="tumblr.html#heading">Round or Square Pictures</a>.</p>
 
 <details>
 <summary>Why names, handles and emails look like the text around them</summary>
@@ -472,35 +550,32 @@
 
 </details>
 
-<h3>Making Your Own Profile</h3>
+<h4>More Than One Account on the Same App</h4>
 
-<p>The easiest way is the <a href="profile-maker.html">Profile Maker</a>: fill in the boxes, see the character in every app straight away, and copy the CSS it makes. Or do it by hand:</p>
+<p>Sometimes a character has more than one account on an app - a public one and a private one, their real account and a burner, or a fan account nobody can know about. Each extra account gets a name starting with <code>acc-</code>, the same way a phone gets <code>pov-</code>: <code>acc-burner</code>, <code>acc-shanewife</code>, <code>acc-private</code>, or whatever you like. Its lines go at the end of that character's profile. Here's Ilya's burner on Twitter/X:</p>
 
-<p>Copy Stan's block from above and change <code>stan</code> to your character's name everywhere in it:</p>
+<pre><code>#workskin .tw .pfp.pfp-ilya.acc-burner, #workskin .tw-reply .pfp.pfp-ilya.acc-burner, #workskin .twdm .pfp.pfp-ilya.acc-burner { background-image: url(https://images.squidge.org/images/2026/11/16/IlyaSmoke.png); }
+#workskin .tw .name.pfp-ilya.acc-burner::before, #workskin .tw-reply .name.pfp-ilya.acc-burner::before, #workskin .twdm .name.pfp-ilya.acc-burner::before { content: "hockey fan"; }
+#workskin .tw .handle.pfp-ilya.acc-burner::after, #workskin .tw-reply .handle.pfp-ilya.acc-burner::after, #workskin .twdm .handle.pfp-ilya.acc-burner::after { content: "definitely_not_ilya"; }</code></pre>
 
-<pre><code>/* PROFILE: Stan */
-#workskin .pfp.pfp-stan { background-color: #c06a1f; }
-#workskin .wa .who.pfp-stan, #workskin .dc .dc-name.pfp-stan { color: #d2782a; }
-#workskin .name.pfp-stan::before { content: "Stan"; }
-#workskin .handle.pfp-stan::after { content: "PuckStan"; }
-#workskin .email.pfp-stan::after { content: "Puckstan@gmail.com"; }</code></pre>
+<p>They're the same as the lines for a different picture, name or handle on one app, with the <code>acc-</code> name added after the profile name. In your HTML, add the <code>acc-</code> name whenever that account is the one posting, and leave it off for his main account:</p>
 
-<details>
-<summary>Things that trip people up</summary>
+<pre><code>&lt;span class="handle pfp-ilya acc-burner"&gt;&lt;/span&gt;</code></pre>
 
 <ul>
-  <li>A profile name can't have spaces in it. Use a hyphen: <code>pfp-shane-work</code>.</li>
-  <li>Keep the quotes around names, handles and emails, and keep the semicolon before the <code>}</code>. A missing quote is the most common reason AO3 rejects a skin.</li>
-  <li>If a name has a quote mark or apostrophe in it, like <code>Cat Guy's Cat</code>, that's fine inside double quotes. A double quote inside needs a backslash in front: <code>"The \"Captain\""</code>.</li>
-  <li>Picture links need to end in <code>.jpg</code>, <code>.png</code> or <code>.gif</code>. AO3 won't accept some links in CSS, even if they work in your HTML.</li>
-  <li>The profiles that come with the skin are only examples. Delete the ones you don't need - they don't do anything unless you use them, but they make the skin longer.</li>
+  <li>Keep the profile name in the HTML too - the <code>acc-</code> name only works alongside it. Anything you don't give the extra account - a name colour, an email address - comes from the main profile, so you only need lines for what's different.</li>
+  <li>Put the extra account's lines at the end of the profile, so they win over everything above them, including saved-as names.</li>
+  <li>Because the <code>acc-</code> name always goes with a profile, different characters can use the same one - Shane could have an <code>acc-burner</code> too, with his own lines.</li>
+  <li>Make as many as you like. Ilya has a second one, <code>acc-shanewife</code>, built the same way, and Rose's private Instagram, <code>acc-private</code>, uses <code>.ig</code> and <code>.igdm</code> instead of the Twitter/X classes. Yuna's work email, <code>acc-work</code>, is the same idea for an email address: <code>#workskin .email.pfp-yuna.acc-work::after { content: &quot;Yuna@HollanderHockey.com&quot;; }</code>.</li>
 </ul>
-
-</details>
 
 <h3>The Ten Colours</h3>
 
-<p>Every app uses the same ten colours, <code>colour1</code> to <code>colour10</code>, for its round picture circles and for people's names. They all live at the end of the core, so if you change a colour there, it changes in every app at once. Here's everything for <code>colour1</code>:</p>
+<p>Every app uses the same ten colours, <code>colour1</code> to <code>colour10</code>, for its round picture circles and for people's names. They all live at the end of the core, so if you change a colour there, it changes in every app at once.</p>
+
+<p>I'm British, so I've spelled colour the British way in the class names - <code>colour1</code>, not <code>color1</code>. If you forget the u and the skin doesn't work, you'll understand my pain, because I've had to take the u out of colour every time I've used someone else's code and couldn't figure out why it wasn't working. The CSS property itself is still <code>color</code>, with no u - that one's not up to me.</p>
+
+<p>Here's everything for <code>colour1</code>:</p>
 
 <pre><code>/* picture circles (the same in light and dark) */
 #workskin .wa .wa-pfp.colour1,

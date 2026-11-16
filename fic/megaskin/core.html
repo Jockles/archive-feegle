@@ -6,7 +6,7 @@
   <title>Megaskin, Chapter 2: The Core, Themes, and Extras | jockles.com</title>
   <link rel="stylesheet" href="../../style.css">
   <script src="../../theme.js"></script>
-  <link rel="stylesheet" href="megaskin.css?v=bb2a8e42" id="creator-style">
+  <link rel="stylesheet" href="megaskin.css?v=40437fc0" id="creator-style">
 </head>
 <body>
 <header>
@@ -48,7 +48,13 @@
       <li><a href="#themes">Light, dark and auto themes</a></li>
     </ul>
   </li>
-  <li><a href="#profiles">Cross-platform profiles</a> (<code>pfp-</code>), and <code>pov-</code> for a character's phone</li>
+  <li><a href="#profiles">Character appearances and profiles</a>
+    <ul>
+      <li><a href="#initials">Initials in a coloured circle</a></li>
+      <li><a href="#no-profile">Uploading a profile pic</a></li>
+      <li><a href="#character-profiles">Character profiles</a> (<code>pfp-</code>), and <code>pov-</code> for a character's phone</li>
+    </ul>
+  </li>
   <li><a href="#pictures">Pictures and formatting</a>: pictures, and cropping them to fit boxes and circles (<code>land</code>)</li>
   <li><a href="#fake-links">Links that go nowhere</a> (<code>fake-link</code>)</li>
   <li><a href="#translations">Hover and tap translations</a>, and hidden easter eggs (<code>egg</code>), which also work in ordinary text outside a chat</li>
@@ -159,9 +165,9 @@
 
 <p>Every picture needs alt text: a short description of what's in it. Screen readers read it out, and it shows in place of the picture if the picture doesn't load, whether the workskin is on or off. It goes on the picture tag itself, in <code>alt</code>. Describe the picture in a sentence or two, the way you'd describe it to someone over the phone:</p>
 
-<div class="mob imsg theme-auto"><div class="mob-body"><p class="msg out pic"><span class="hide"><em>Ilya:</em> </span><img src="https://64.media.tumblr.com/a99a60f0293cf7df3604b4a6dd4705f6/ba033a52c8982cb0-cc/s1280x1920/cb4c277845d0c3ef666d16b86b75509266b795b3.jpg" alt="Black and white cat holding out a paw daintily, on a beige and green cat tree. The cat looks to be stepping into the frame from the left"></p></div></div>
+<div class="mob imsg theme-auto"><div class="mob-body"><p class="msg out pic"><span class="hide"><em>Ilya:</em> </span><img src="https://images.squidge.org/images/2026/11/16/Cat3.jpg" alt="Black and white cat holding out a paw daintily, on a beige and green cat tree. The cat looks to be stepping into the frame from the left"></p></div></div>
 
-<pre><code>&lt;p class="msg out pic"&gt;&lt;span class="hide"&gt;&lt;em&gt;Ilya:&lt;/em&gt; &lt;/span&gt;&lt;img src="https://64.media.tumblr.com/a99a60f0293cf7df3604b4a6dd4705f6/ba033a52c8982cb0-cc/s1280x1920/cb4c277845d0c3ef666d16b86b75509266b795b3.jpg" alt="Black and white cat holding out a paw daintily, on a beige and green cat tree. The cat looks to be stepping into the frame from the left"&gt;&lt;/p&gt;</code></pre>
+<pre><code>&lt;p class="msg out pic"&gt;&lt;span class="hide"&gt;&lt;em&gt;Ilya:&lt;/em&gt; &lt;/span&gt;&lt;img src="https://images.squidge.org/images/2026/11/16/Cat3.jpg" alt="Black and white cat holding out a paw daintily, on a beige and green cat tree. The cat looks to be stepping into the frame from the left"&gt;&lt;/p&gt;</code></pre>
 
 <details>
 <summary>More about alt text</summary>
@@ -389,7 +395,7 @@
   <p class="mob-head">Mom<span class="hide"> - </span><span>online</span></p>
   <div class="mob-body">
     <div class="msg in"><p><span class="hide"><em>Mom:</em> </span>Are you coming Sunday?</p><p class="wa-time">10:02</p></div>
-    <div class="msg out"><p><span class="hide"><em>Shane:</em> </span>After skate on saturday</p><p class="wa-time">10:03 <span class="wa-read">✓✓</span></p></div>
+    <div class="msg out"><p><span class="hide"><em>Shane:</em> </span>After skate on saturday</p><p class="wa-time">10:03 <span class="wa-read ic ic-read">✓✓</span></p></div>
   </div>
 </div>
 
@@ -397,7 +403,7 @@
   <p class="mob-head">Mom<span class="hide"> - </span><span>online</span></p>
   <div class="mob-body">
     <div class="msg in"><p><span class="hide"><em>Mom:</em> </span>Are you coming Sunday?</p><p class="wa-time">10:02</p></div>
-    <div class="msg out"><p><span class="hide"><em>Shane:</em> </span>After skate on saturday</p><p class="wa-time">10:03 <span class="wa-read">✓✓</span></p></div>
+    <div class="msg out"><p><span class="hide"><em>Shane:</em> </span>After skate on saturday</p><p class="wa-time">10:03 <span class="wa-read ic ic-read">✓✓</span></p></div>
   </div>
 </div>
 
@@ -407,7 +413,7 @@
   &lt;p class="mob-head"&gt;Mom&lt;span class="hide"&gt; - &lt;/span&gt;&lt;span&gt;online&lt;/span&gt;&lt;/p&gt;
   &lt;div class="mob-body"&gt;
     &lt;div class="msg in"&gt;&lt;p&gt;&lt;span class="hide"&gt;&lt;em&gt;Mom:&lt;/em&gt; &lt;/span&gt;Are you coming Sunday?&lt;/p&gt;&lt;p class="wa-time"&gt;10:02&lt;/p&gt;&lt;/div&gt;
-    &lt;div class="msg out"&gt;&lt;p&gt;&lt;span class="hide"&gt;&lt;em&gt;Shane:&lt;/em&gt; &lt;/span&gt;After skate on saturday&lt;/p&gt;&lt;p class="wa-time"&gt;10:03 &lt;span class="wa-read"&gt;✓✓&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+    &lt;div class="msg out"&gt;&lt;p&gt;&lt;span class="hide"&gt;&lt;em&gt;Shane:&lt;/em&gt; &lt;/span&gt;After skate on saturday&lt;/p&gt;&lt;p class="wa-time"&gt;10:03 &lt;span class="wa-read ic ic-read"&gt;✓✓&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
   &lt;/div&gt;
 &lt;/div&gt;</code></pre>
 
@@ -622,19 +628,41 @@
 
 </details>
 
-<h3 id="profiles"><span id="s2-5"></span>2.5 Cross-Platform Profiles</h3>
+<h3 id="profiles"><span id="s2-5"></span>2.5 Character Appearances and Profiles</h3>
 
-<h4 id="s2-5-1">2.5.1 Profile Pictures</h4>
-
-<p>Most of the modules have round profile pictures next to people's names. There are three ways to fill one:</p>
+<p>The thing about social media and chat fics is that they're full of people. Some of them are people that are going to turn up again and again (your main characters) and some of them are going to turn up once. How much effort you want to go to for each will depend on you. To make it as easy as possible to have your fic look good without taking you 1000 years, there are three ways to display a person:</p>
 
 <ol>
-  <li><strong>Initials.</strong> Type them inside the circle, and add <code>colour1</code> to <code>colour10</code> for a colour.</li>
-  <li><strong>A picture.</strong> Put a picture tag, with alt text, inside a <code>pfp</code> span. Each module chapter shows you how.</li>
-  <li><strong>A profile.</strong> Set a character's picture once in the core CSS, and use it in every app. I'd recommend this for anyone who turns up in more than one chat.</li>
+  <li><a href="#initials"><strong>Initials in a coloured circle.</strong></a> Sometimes you just need a character to show up and you don't have time to get them a profile picture.</li>
+  <li><a href="#no-profile"><strong>A profile pic.</strong></a> A one-time upload of an image in the HTML itself. Useful for characters that appear once or a handful of times, where it's not worth making a profile.</li>
+  <li><a href="#character-profiles"><strong>A full character profile</strong></a>, that you can refer back to every time they appear, meaning you don't have to upload the same profile pic 1000 times.</li>
 </ol>
 
-<p>iMessage, Twitter/X DMs and Instagram DMs don't show profile pictures.</p>
+<p>You can mix all three in the same chat. iMessage, Twitter/X DMs and Instagram DMs don't show profile pictures at all, so there you only need the name.</p>
+
+<h4 id="initials"><span id="s2-5-1"></span>2.5.1 Initials in a Coloured Circle</h4>
+
+<p>The quickest way: type the person's initials inside the app's circle, and add one of <code>colour1</code> to <code>colour10</code> for a colour. Type their name where it goes in that app, the same as any other text:</p>
+
+<div class="mob wa theme-auto"><div class="mob-body"><div class="wa-row">
+  <p class="wa-pfp colour4">HP</p>
+  <div class="msg in tail">
+    <p class="who colour4">Hayden<span class="hide">:</span></p>
+    <p>should I bring the kids?</p>
+    <p class="wa-time">09:13</p>
+  </div>
+</div></div></div>
+
+<pre><code>&lt;div class="wa-row"&gt;
+  &lt;p class="wa-pfp colour4"&gt;HP&lt;/p&gt;
+  &lt;div class="msg in tail"&gt;
+    &lt;p class="who colour4"&gt;Hayden&lt;span class="hide"&gt;:&lt;/span&gt;&lt;/p&gt;
+    &lt;p&gt;should I bring the kids?&lt;/p&gt;
+    &lt;p class="wa-time"&gt;09:13&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+<p>Give each person the same colour every time, so readers can keep track of who's who. Each module chapter shows you where its circle goes:</p>
 
 <details>
 <summary>Where the circle goes in each module</summary>
@@ -652,24 +680,71 @@
 
 </details>
 
-<h4 id="s2-5-2">2.5.2 Character Profiles</h4>
+<h4 id="no-profile"><span id="s2-5-2"></span>2.5.2 Uploading a Profile Pic</h4>
 
-<p>A profile is one character's online identity - their picture, name, handle and email address - set once in the core CSS. You can use it in any chat, in any app, and if something changes, like a new picture or a new handle, you change it in one place and it changes everywhere.</p>
+<p>To give someone a picture and a name without making a profile:</p>
 
-<p><strong>The easy way:</strong> the <a href="profile-maker.html">Profile Maker</a> builds a profile for you. Fill in the boxes, add your picture links, and see the character in every app straight away, then copy the CSS it makes. The rest of this section explains what that CSS does.</p>
+<ol>
+  <li>Upload the picture somewhere (there's more on that in <a href="#pictures">Pictures and Formatting</a>, below) and copy its link.</li>
+  <li>Put a picture tag, with that link and some alt text, inside a <code>pfp</code> span, and put that inside the app's circle: <code>&lt;span class=&quot;pfp&quot;&gt;&lt;img src=&quot;LINK&quot; alt=&quot;Profile picture of Sam&quot;&gt;&lt;/span&gt;</code>. If the picture is wider than it is tall, add <code>class=&quot;land&quot;</code> to the picture tag.</li>
+  <li>Type their name, handle or email address wherever it goes in that app, like any other text.</li>
+  <li>Copy the picture and name onto every message or post from that person. Without a profile, the picture only shows where you've put it.</li>
+</ol>
 
-<p>Here's Stan's. It's the simplest profile in this tutorial, and it's all most characters need:</p>
+<p>Because the name is typed rather than coming from the CSS, readers with the workskin switched off see it too, so it doesn't need a hidden copy. Here are two strangers in a WhatsApp group, each with their own picture and name:</p>
+
+<div class="mob wa theme-auto"><div class="mob-body"><div class="wa-row">
+  <p class="wa-pfp colour6"><span class="pfp"><img src="https://images.squidge.org/images/2026/11/16/Cat2.jpg" alt="Profile picture of Sam, a black and white cat screaming at the camera"></span></p>
+  <div class="msg in tail">
+    <p class="who colour6">Sam<span class="hide">:</span></p>
+    <p>who's bringing the ice</p>
+    <p class="wa-time">18:02</p>
+  </div>
+</div>
+<div class="wa-row">
+  <p class="wa-pfp colour2"><span class="pfp"><img class="land" src="https://media.istockphoto.com/id/2172051553/photo/asiatic-lily.jpg?s=1024x1024&w=is&k=20&c=3vCuZD234XmkXzrnzWPBdIZM0oJA1B6qe1x-06K_wDo=" alt="Profile picture of Ash, a close-up photo of an Asiatic lily"></span></p>
+  <div class="msg in tail">
+    <p class="who colour2">Ash<span class="hide">:</span></p>
+    <p>not me, I'm bringing the dog</p>
+    <p class="wa-time">18:04</p>
+  </div>
+</div></div></div>
+
+<pre><code>&lt;div class="wa-row"&gt;
+  &lt;p class="wa-pfp colour6"&gt;&lt;span class="pfp"&gt;&lt;img src="https://images.squidge.org/images/2026/11/16/Cat2.jpg" alt="Profile picture of Sam, a black and white cat screaming at the camera"&gt;&lt;/span&gt;&lt;/p&gt;
+  &lt;div class="msg in tail"&gt;
+    &lt;p class="who colour6"&gt;Sam&lt;span class="hide"&gt;:&lt;/span&gt;&lt;/p&gt;
+    &lt;p&gt;who's bringing the ice&lt;/p&gt;
+    &lt;p class="wa-time"&gt;18:02&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="wa-row"&gt;
+  &lt;p class="wa-pfp colour2"&gt;&lt;span class="pfp"&gt;&lt;img class="land" src="https://media.istockphoto.com/id/2172051553/photo/asiatic-lily.jpg?s=1024x1024&amp;w=is&amp;k=20&amp;c=3vCuZD234XmkXzrnzWPBdIZM0oJA1B6qe1x-06K_wDo=" alt="Profile picture of Ash, a close-up photo of an Asiatic lily"&gt;&lt;/span&gt;&lt;/p&gt;
+  &lt;div class="msg in tail"&gt;
+    &lt;p class="who colour2"&gt;Ash&lt;span class="hide"&gt;:&lt;/span&gt;&lt;/p&gt;
+    &lt;p&gt;not me, I'm bringing the dog&lt;/p&gt;
+    &lt;p class="wa-time"&gt;18:04&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+<p>Every module chapter with pictures has its own section on this, showing exactly where the picture and name go in that app. And if someone ends up in more chats than you planned, you can always give them a full character profile later.</p>
+
+<h4 id="character-profiles"><span id="s2-5-3"></span>2.5.3 Character Profiles</h4>
+
+<p>A profile is one character's online identity - their picture, name, handle and email address - set once in the core CSS. You can use it in any chat, in any app, and if something changes, like a new picture or a new handle, you change it in one place and it changes everywhere. The biggest reason to make one is the picture: you add the link once, instead of uploading the same picture to every single message they send.</p>
+
+<p>Here's Stan's. It's the simplest profile in this tutorial, and it's all most characters need. His picture link is in it once, and every circle with his profile in it shows that picture, so you never have to add it again:</p>
 
 <pre><code>/* PROFILE: Stan */
-#workskin .pfp.pfp-stan { background-color: #c06a1f; }
+#workskin .pfp.pfp-stan { background-image: url(https://images.squidge.org/images/2026/11/15/GayCrosedHockeySticks.png); }
 #workskin .wa .who.pfp-stan, #workskin .dc .dc-name.pfp-stan { color: #d2782a; }
 #workskin .name.pfp-stan::before { content: "Stan"; }
 #workskin .handle.pfp-stan::after { content: "PuckStan"; }
 #workskin .email.pfp-stan::after { content: "Puckstan@gmail.com"; }</code></pre>
 
-<p>To make your own, copy Stan's block, change <code>stan</code> to your character's name everywhere in it, and fill in their details. Don't need a line? Delete it. For a picture instead of a coloured circle, swap the colour for <code>background-image: url(LINK);</code>, using a link that ends in <code>.jpg</code> or <code>.png</code> - AO3 is fussy about picture links in CSS.</p>
+<p>To make your own, copy Stan's block, change <code>stan</code> to your character's name everywhere in it, and fill in their details. Don't need a line? Delete it. Swap Stan's picture link for your character's, using a link that ends in <code>.jpg</code>, <code>.png</code> or <code>.gif</code> - AO3 is fussy about picture links in CSS. For a plain coloured circle instead, use <code>background-color: #7d4fb0;</code>, like Yuna's.</p>
 
-<p>The core CSS comes with all the profiles from this tutorial's examples - Stan, Yuna, Zim, Holster, Rose, Shane and Ilya - plus Luca, who uses every option there is, with a note on each line. Rename them, change them or delete them.</p>
+<p>The core CSS also has the profiles from this tutorial's examples - Stan, Yuna, Zim, Holster, Rose, Shane and Ilya - plus Luca, who uses every option there is, with a note on each line. They're there to show you how it's done, so make new profiles for your own characters, and delete the examples you don't need.</p>
 
 <details>
 <summary>What each line of a profile does</summary>
@@ -685,20 +760,22 @@
 </details>
 
 <details>
-<summary>Extras: a different picture, name or handle on one app, nicknames, and wallpapers</summary>
+<summary>Extras: a different picture, name or handle on one app, nicknames, wallpapers, and more</summary>
 
-<p>Most characters only need the five lines above. These are for characters who are different somewhere, and Luca's profile has an example of each one, so copy from there.</p>
+<p>Most characters only need the five lines above. These are for characters who are different somewhere, and Luca's profile has an example of each one, so you can see how to add them to your own.</p>
 
 <ul>
   <li><strong>A different picture, name or handle on one app:</strong> add a line with the app in it. <code>#workskin .tw .pfp.pfp-luca { background-image: url(LINK); }</code> gives Luca a different picture on Twitter/X only, and <code>#workskin .tw .name.pfp-luca::before { content: &quot;Luca | cat dad&quot;; }</code> gives him a different name there.</li>
   <li><strong>Saved as:</strong> what the other characters have them saved as on their phones. <code>#workskin .mob.pov-ilya .name.pfp-shane::before { content: &quot;Jane&quot;; }</code> makes Shane show up as Jane on Ilya's phone. It goes in the profile of the person being named, so everything about how Shane shows up is in Shane's block.</li>
+  <li><strong>Initials:</strong> a profile can put initials in the circle instead of a picture. <code>#workskin .pfp.pfp-holster::before { content: &quot;AB&quot;; }</code> gives Holster's circle "AB".</li>
   <li><strong>Their phone:</strong> a wallpaper for WhatsApp chats on their phone - a colour, or a picture with <code>background-image</code>.</li>
-  <li><strong>More than one account:</strong> give each one its own profile, like <code>pfp-shane</code> and <code>pfp-shane-work</code>.</li>
+  <li><strong>More than one account on the same app:</strong> a private account, a burner, a fan account, or a second email address for work. Give each extra account a name starting with <code>acc-</code>, like <code>acc-private</code> or <code>acc-burner</code>, with its own lines in the profile, and add that name in your HTML whenever that account turns up. Rose has a private Instagram, and Ilya has two extra Twitter/X accounts.</li>
+  <li><strong>Tumblr checkmarks:</strong> the coloured checkmarks after a Tumblr name can go in the profile too, so they follow that blog everywhere. The lines to copy are in <a href="tumblr.html#s12-8">Verified Ticks and the Follow Button</a>.</li>
 </ul>
 
 </details>
 
-<h4 id="s2-5-3">2.5.3 Using a Profile</h4>
+<h5 id="s2-5-3-1">2.5.3.1 Using a Profile</h5>
 
 <p>In your HTML, add the profile name wherever that character turns up:</p>
 
@@ -708,6 +785,7 @@
   <li><strong>Handle:</strong> <code>&lt;span class=&quot;handle pfp-stan&quot;&gt;&lt;/span&gt;</code></li>
   <li><strong>Email:</strong> <code>&lt;span class=&quot;email pfp-stan&quot;&gt;&lt;/span&gt;</code></li>
   <li><strong>Name colour:</strong> add <code>pfp-stan</code> to a WhatsApp <code>who</code> line or a Discord <code>dc-name</code>.</li>
+  <li><strong>Another account of theirs:</strong> add the account's <code>acc-</code> name, like <code>&lt;span class=&quot;handle pfp-ilya acc-burner&quot;&gt;&lt;/span&gt;</code> for Ilya's burner.</li>
 </ul>
 
 <p>Each one shows what's in the profile for whichever app it's in. Here's Stan in every app he's on (he's not on Tumblr), all from the one profile:</p>
@@ -744,8 +822,8 @@
           <td class="gm-date">9:15 AM</td>
         </tr>
         <tr>
-          <td class="gm-to">to me &#9662;</td>
-          <td class="gm-tools">&#8617; &#8943;</td>
+          <td class="gm-to">to me <span class="ic ic-dropdown">&#9662;</span></td>
+          <td class="gm-tools"><span class="ic ic-reply">&#8617;</span> <span class="ic ic-more">&#8943;</span></td>
         </tr>
       </tbody>
     </table>
@@ -784,12 +862,13 @@
 <ul>
   <li>A profile picture is cropped to fill the circle by itself, so wide pictures don't need <code>land</code>.</li>
   <li>Names, handles and email addresses take on the look of the text around them, so they fit in anywhere.</li>
-  <li>The core CSS chapter explains how profiles work, line by line.</li>
 </ul>
 
 </details>
 
-<h4 id="s2-5-4">2.5.4 Their Phone</h4>
+<p>The core CSS chapter explains how profiles work, line by line, but you can also use my <a href="profile-maker.html">Profile Maker</a> to see how your profile is going to look as you build it.</p>
+
+<h5 id="s2-5-3-2">2.5.3.2 Their Phone</h5>
 
 <p>When a chat is on one character's phone, add <code>pov-</code> and their profile name to the chat's container, like <code>pov-shane</code>. In WhatsApp, the chat gets their wallpaper, and in every app, people show up under whatever that character has them saved as. Here's the same chat on Shane's phone, where Ilya is saved as Lily, and on Ilya's, where Shane is Jane:</p>
 
@@ -877,34 +956,34 @@
 
 <div class="mob wa theme-auto"><div class="mob-body"><div class="msg out gallery"><p class="hide"><em>Yuna:</em></p>
   <p class="wa-photos four">
-    <span class="wa-photo"><img src="https://64.media.tumblr.com/694221426fb8229480fb3fb87b528ca7/ba033a52c8982cb0-01/s1280x1920/636653581e07a970475075f480c1717b23a72c0a.jpg" alt="Black and white cat staring through a gap between a screen and a desk, with blurred cables hanging down around and blue sky behind"></span>
-    <span class="wa-photo"><img src="https://64.media.tumblr.com/6898dc3a42cc6c7ab9729360b71366e4/ba033a52c8982cb0-bf/s2048x3072/b548d2fe61b02e530c0edd2ee6a6bd56ab73ad2c.jpg" alt="Black and white cat screaming at the camera, on a red patterned rug"></span>
-    <span class="wa-photo"><img src="https://64.media.tumblr.com/a99a60f0293cf7df3604b4a6dd4705f6/ba033a52c8982cb0-cc/s1280x1920/cb4c277845d0c3ef666d16b86b75509266b795b3.jpg" alt="Black and white cat holding out a paw daintily, on a beige and green cat tree. The cat looks to be stepping into the frame from the left"></span>
-    <span class="wa-photo"><img src="https://64.media.tumblr.com/45b3b47d7c42b593f6242a40153a629c/ba033a52c8982cb0-d7/s2048x3072/4e71b117e87747d78dd3d95595cecc77eec48d38.jpg" alt="Black and white cat sitting in an opened red suitcase, carry on size, on the floor behind a white door, and on a red patterned rug"></span>
+    <span class="wa-photo"><img src="https://images.squidge.org/images/2026/11/16/Cat1.jpg" alt="Black and white cat staring through a gap between a screen and a desk, with blurred cables hanging down around and blue sky behind"></span>
+    <span class="wa-photo"><img src="https://images.squidge.org/images/2026/11/16/Cat2.jpg" alt="Black and white cat screaming at the camera, on a red patterned rug"></span>
+    <span class="wa-photo"><img src="https://images.squidge.org/images/2026/11/16/Cat3.jpg" alt="Black and white cat holding out a paw daintily, on a beige and green cat tree. The cat looks to be stepping into the frame from the left"></span>
+    <span class="wa-photo"><img src="https://images.squidge.org/images/2026/11/16/Cat4.jpg" alt="Black and white cat sitting in an opened red suitcase, carry on size, on the floor behind a white door, and on a red patterned rug"></span>
   </p>
-  <p class="wa-time">12:26 <span class="wa-read">✓✓</span></p>
+  <p class="wa-time">12:26 <span class="wa-read ic ic-read">✓✓</span></p>
 </div></div></div>
 
 <p><em>With land on the two landscape pictures:</em></p>
 
 <div class="mob wa theme-auto"><div class="mob-body"><div class="msg out gallery"><p class="hide"><em>Yuna:</em></p>
   <p class="wa-photos four">
-    <span class="wa-photo"><img class="land" src="https://64.media.tumblr.com/694221426fb8229480fb3fb87b528ca7/ba033a52c8982cb0-01/s1280x1920/636653581e07a970475075f480c1717b23a72c0a.jpg" alt="Black and white cat staring through a gap between a screen and a desk, with blurred cables hanging down around and blue sky behind"></span>
-    <span class="wa-photo"><img src="https://64.media.tumblr.com/6898dc3a42cc6c7ab9729360b71366e4/ba033a52c8982cb0-bf/s2048x3072/b548d2fe61b02e530c0edd2ee6a6bd56ab73ad2c.jpg" alt="Black and white cat screaming at the camera, on a red patterned rug"></span>
-    <span class="wa-photo"><img class="land" src="https://64.media.tumblr.com/a99a60f0293cf7df3604b4a6dd4705f6/ba033a52c8982cb0-cc/s1280x1920/cb4c277845d0c3ef666d16b86b75509266b795b3.jpg" alt="Black and white cat holding out a paw daintily, on a beige and green cat tree. The cat looks to be stepping into the frame from the left"></span>
-    <span class="wa-photo"><img src="https://64.media.tumblr.com/45b3b47d7c42b593f6242a40153a629c/ba033a52c8982cb0-d7/s2048x3072/4e71b117e87747d78dd3d95595cecc77eec48d38.jpg" alt="Black and white cat sitting in an opened red suitcase, carry on size, on the floor behind a white door, and on a red patterned rug"></span>
+    <span class="wa-photo"><img class="land" src="https://images.squidge.org/images/2026/11/16/Cat1.jpg" alt="Black and white cat staring through a gap between a screen and a desk, with blurred cables hanging down around and blue sky behind"></span>
+    <span class="wa-photo"><img src="https://images.squidge.org/images/2026/11/16/Cat2.jpg" alt="Black and white cat screaming at the camera, on a red patterned rug"></span>
+    <span class="wa-photo"><img class="land" src="https://images.squidge.org/images/2026/11/16/Cat3.jpg" alt="Black and white cat holding out a paw daintily, on a beige and green cat tree. The cat looks to be stepping into the frame from the left"></span>
+    <span class="wa-photo"><img src="https://images.squidge.org/images/2026/11/16/Cat4.jpg" alt="Black and white cat sitting in an opened red suitcase, carry on size, on the floor behind a white door, and on a red patterned rug"></span>
   </p>
-  <p class="wa-time">12:26 <span class="wa-read">✓✓</span></p>
+  <p class="wa-time">12:26 <span class="wa-read ic ic-read">✓✓</span></p>
 </div></div></div>
 
 <pre><code>&lt;div class="msg out gallery"&gt;&lt;p class="hide"&gt;&lt;em&gt;Yuna:&lt;/em&gt;&lt;/p&gt;
   &lt;p class="wa-photos four"&gt;
-    &lt;span class="wa-photo"&gt;&lt;img class="land" src="https://64.media.tumblr.com/694221426fb8229480fb3fb87b528ca7/ba033a52c8982cb0-01/s1280x1920/636653581e07a970475075f480c1717b23a72c0a.jpg" alt="Black and white cat staring through a gap between a screen and a desk, with blurred cables hanging down around and blue sky behind"&gt;&lt;/span&gt;
-    &lt;span class="wa-photo"&gt;&lt;img src="https://64.media.tumblr.com/6898dc3a42cc6c7ab9729360b71366e4/ba033a52c8982cb0-bf/s2048x3072/b548d2fe61b02e530c0edd2ee6a6bd56ab73ad2c.jpg" alt="Black and white cat screaming at the camera, on a red patterned rug"&gt;&lt;/span&gt;
-    &lt;span class="wa-photo"&gt;&lt;img class="land" src="https://64.media.tumblr.com/a99a60f0293cf7df3604b4a6dd4705f6/ba033a52c8982cb0-cc/s1280x1920/cb4c277845d0c3ef666d16b86b75509266b795b3.jpg" alt="Black and white cat holding out a paw daintily, on a beige and green cat tree. The cat looks to be stepping into the frame from the left"&gt;&lt;/span&gt;
-    &lt;span class="wa-photo"&gt;&lt;img src="https://64.media.tumblr.com/45b3b47d7c42b593f6242a40153a629c/ba033a52c8982cb0-d7/s2048x3072/4e71b117e87747d78dd3d95595cecc77eec48d38.jpg" alt="Black and white cat sitting in an opened red suitcase, carry on size, on the floor behind a white door, and on a red patterned rug"&gt;&lt;/span&gt;
+    &lt;span class="wa-photo"&gt;&lt;img class="land" src="https://images.squidge.org/images/2026/11/16/Cat1.jpg" alt="Black and white cat staring through a gap between a screen and a desk, with blurred cables hanging down around and blue sky behind"&gt;&lt;/span&gt;
+    &lt;span class="wa-photo"&gt;&lt;img src="https://images.squidge.org/images/2026/11/16/Cat2.jpg" alt="Black and white cat screaming at the camera, on a red patterned rug"&gt;&lt;/span&gt;
+    &lt;span class="wa-photo"&gt;&lt;img class="land" src="https://images.squidge.org/images/2026/11/16/Cat3.jpg" alt="Black and white cat holding out a paw daintily, on a beige and green cat tree. The cat looks to be stepping into the frame from the left"&gt;&lt;/span&gt;
+    &lt;span class="wa-photo"&gt;&lt;img src="https://images.squidge.org/images/2026/11/16/Cat4.jpg" alt="Black and white cat sitting in an opened red suitcase, carry on size, on the floor behind a white door, and on a red patterned rug"&gt;&lt;/span&gt;
   &lt;/p&gt;
-  &lt;p class="wa-time"&gt;12:26 &lt;span class="wa-read"&gt;✓✓&lt;/span&gt;&lt;/p&gt;
+  &lt;p class="wa-time"&gt;12:26 &lt;span class="wa-read ic ic-read"&gt;✓✓&lt;/span&gt;&lt;/p&gt;
 &lt;/div&gt;</code></pre>
 
 <p>It works the same way for profile pictures. Jane's and Lily's pictures are both landscape, so here they are first without <code>land</code> and then with it, followed by the code for one of them:</p>
@@ -968,10 +1047,6 @@
 <pre><code>&lt;p class="msg in"&gt;&lt;span class="hide"&gt;&lt;em&gt;Jane:&lt;/em&gt; &lt;/span&gt;have you seen &lt;span class="fake-link"&gt;hockeynews.example/overtime-goal&lt;/span&gt;&lt;/p&gt;</code></pre>
 
 <p>Make up any address you like, since it's only text. A real link written with <code>&lt;a href=&quot;...&quot;&gt;</code> inside a chat gets the same look, so use that if you do want it to go somewhere.</p>
-
-<p><strong>Works in every module except Discord</strong></p>
-
-<p>These two are for any chat built on the <code>mob</code> container, which is every module apart from Discord. Discord is its own kind of window, so these don't apply there.</p>
 
 <h3 id="translations"><span id="s2-8"></span>2.8 Hover and Tap Translations</h3>
 
@@ -1061,9 +1136,11 @@
 
 <pre><code>&lt;p class="msg out"&gt;&lt;span class="hide"&gt;&lt;em&gt;Ilya:&lt;/em&gt; &lt;/span&gt;I'm &lt;a class="tl egg" href="#t4"&gt;&lt;span class="orig"&gt;fine&lt;/span&gt;&lt;span class="tltn"&gt;&lt;span class="hide"&gt; (&lt;/span&gt;not fine. not even a little bit&lt;span class="hide"&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;</code></pre>
 
-<p>Readers with the workskin switched off still get the hidden text in brackets after the original, so nobody misses out completely. And if you'd like every translation in your fic to look like this, the core module's CSS chapter shows you the one line to delete instead.</p>
+<p>Readers with the workskin switched off still get the hidden text in brackets after the original, so nobody misses out completely. And if you'd like every translation in your fic to look like this, <a href="core-css.html#s3-13">Hover and Tap Translations</a>, in the core CSS, shows you the one line to delete instead.</p>
 
 <h3 id="typing"><span id="s2-9"></span>2.9 Typing Line</h3>
+
+<p>This one's for any chat built on the <code>mob</code> container, which is every module apart from Discord. Discord has its own typing indicator, and <a href="discord.html#s16-24">Typing Indicator</a> shows you how to use it.</p>
 
 <p>To show that someone is typing, add a paragraph with <code>typing</code> at the end of the messages. It shows up as a small, slanted line of text:</p>
 
