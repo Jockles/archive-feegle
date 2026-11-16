@@ -46,7 +46,7 @@
     var col = 1;
     for (var i = 1; i <= 10; i++) if (used.indexOf(i) < 0) { col = i; break; }
     return { id: nid("c"), name: name || "", kind: kind || "oneoff", example: "shane", colour: String(col),
-      initials: "", pic: "", alt: "", num: "", prof: newProfile() };
+      custom: "#888888", showInitials: true, initials: "", pic: "", alt: "", num: "", prof: newProfile() };
   }
   function newMsg(from, text, time) {
     return { id: nid("m"), from: from || "", text: text || "", time: time || "", open: false,
@@ -118,6 +118,8 @@
     if (c.num.trim()) return "~ " + n + '<span class="hide"> </span><span class="wa-num">' + esc(c.num.trim()) + "</span>";
     return n;
   }
+  // a one-off's colour class: colour1 to colour10 from the skin, or their own colour (CSS made below)
+  function colourClass(c) { return c.colour === "custom" ? "colour-" + (MP.slugify(nameOf(c)) || "own") : "colour" + c.colour; }
   function picUrl(v) { return MP.url(v) ? v.trim() : ""; }
 
   // inline extras inside any text: [[shown|translation]], {{shown|hidden}}, ~~crossed out~~, <<fake link>>
@@ -220,15 +222,15 @@
   function waPfp(c) {
     if (isProfile(c)) return '<p class="wa-pfp"><span class="pfp pfp-' + slugOf(c) + '"></span></p>';
     var u = picUrl(c.pic);
-    if (u) return '<p class="wa-pfp colour' + c.colour + '"><span class="pfp"><img src="' + esc(u) + '" alt="' + esc(c.alt || ("Profile picture of " + nameOf(c))) + '"></span></p>';
-    return '<p class="wa-pfp colour' + c.colour + '">' + esc(initials(c)) + "</p>";
+    if (u) return '<p class="wa-pfp ' + colourClass(c) + '"><span class="pfp"><img src="' + esc(u) + '" alt="' + esc(c.alt.trim() || ("Profile picture of " + nameOf(c))) + '"></span></p>';
+    return '<p class="wa-pfp ' + colourClass(c) + '">' + (c.showInitials !== false ? esc(initials(c)) : "") + "</p>";
   }
   function waQuote(b, m) {
     var q = b.msgs.filter(function (x) { return x.id === m.replyTo; })[0];
     if (!q) return "";
     var qc = char(q.from); if (!qc) return "";
     var you = q.from === b.pov;
-    var cls = you ? " colour8" : (!isProfile(qc) && b.group ? " colour" + qc.colour : "");
+    var cls = you ? " colour8" : (!isProfile(qc) && b.group ? " " + colourClass(qc) : "");
     var who = you ? "You" : waName(qc);
     var txt = plain(q.text).trim();
     if (!txt && q.photos && q.photos.length) txt = "Photo";
@@ -267,7 +269,7 @@
       var label = hideLabel(plainName(c, true));
       var inner = [];
       var open = '<div class="' + cls + '">';
-      if (showWho) inner.push('<p class="who ' + (isProfile(c) ? "pfp-" + slugOf(c) : "colour" + c.colour) + '">' + waName(c) + '<span class="hide">:</span></p>');
+      if (showWho) inner.push('<p class="who ' + (isProfile(c) ? "pfp-" + slugOf(c) : colourClass(c)) + '">' + waName(c) + '<span class="hide">:</span></p>');
       else if (photos.length || link) open += '<p class="hide"><em>' + esc(plainName(c, true)) + ":</em></p>";
       if (m.replyTo) { var q = waQuote(b, m); if (q) inner.push(q); }
       var lab = showWho ? "" : label;
@@ -338,8 +340,18 @@
       email: p.email, apps: p.apps, dccol: p.dccolon ? p.dccol : "", tbsq: p.tbsq, saved: p.saved, accounts: p.accounts,
       wallcol: p.wallcolon ? p.wallcol : "", wallcolDefault: p.wallcol, wallpic: p.wallpic };
   }
+  // CSS for one-offs with their own colour: the circle and the name, in every app
+  function customColourCSS(c) {
+    var k = "." + colourClass(c), col = c.custom;
+    return "/* OWN COLOUR: " + nameOf(c).replace(/\*\//g, "") + " */\n" +
+      ["wa .wa-pfp", "tw .tw-pfp", "tw-reply .tw-pfp", "tb .tb-pfp", "tb .tb-ask-pfp", "gm .gm-pfp", "ig .ig-pfp", "ig .ig-like-pfp"]
+        .map(function (x) { return "#workskin ." + x + k; }).join(", ") + ", #workskin .dc .dc-name" + k + "::before { background-color: " + col + "; }\n" +
+      "#workskin .wa .who" + k + ", #workskin .wa .wa-quote" + k + " b, #workskin .dc " + k + " { color: " + col + "; }\n" +
+      "#workskin .wa .wa-quote" + k + " { border-left-color: " + col + "; }";
+  }
   function profilesCSS() {
-    return S.cast.filter(function (c) { return c.kind === "new"; }).map(function (c) { return MP.css(profileData(c)).css; }).join("\n\n");
+    return S.cast.filter(function (c) { return c.kind === "new"; }).map(function (c) { return MP.css(profileData(c)).css; })
+      .concat(S.cast.filter(function (c) { return c.kind === "oneoff" && c.colour === "custom"; }).map(customColourCSS)).join("\n\n");
   }
 
   // ---------- editor ----------
@@ -377,13 +389,13 @@
     if (c.kind === "example") {
       h.push(field(P + ".example", "Which one", { type: "select", re: true, options: EXAMPLES }));
     } else if (c.kind === "oneoff") {
-      h.push('<div class="fb-grid">');
-      h.push("<div>" + field(P + ".colour", "Colour", { type: "select", re: true, options: Object.keys(COLOURS).map(function (k) { return [k, "Colour " + k]; }) }) +
-        '<span class="fb-swatch" style="background:' + COLOURS[c.colour] + '"></span></div>');
-      h.push("<div>" + field(P + ".initials", "Initials", { ph: initials(c) }) + "</div>");
-      h.push("</div>");
+      // picture circle: a colour, initials yes or no, then an optional picture
+      h.push('<div class="fb-row">' + field(P + ".colour", "", { type: "select", re: true, options: Object.keys(COLOURS).map(function (k) { return [k, "Colour " + k]; }).concat([["custom", "My own colour"]]) }) +
+        (c.colour === "custom" ? field(P + ".custom", "", { type: "color" }) : '<span class="fb-swatch" style="background:' + COLOURS[c.colour] + '"></span>') + "</div>");
+      h.push('<div class="fb-row">' + field(P + ".showInitials", "Initials in the circle", { type: "check", re: true }) +
+        (c.showInitials !== false ? field(P + ".initials", "", { ph: initials(c) }) : "") + "</div>");
       h.push(field(P + ".pic", "Picture link (optional)", { type: "url", ph: "https://..." }));
-      h.push(field(P + ".alt", "Describe the picture", { ph: "Profile picture of " + nameOf(c) + ", ..." }));
+      h.push(field(P + ".alt", "Picture description (optional)", { ph: "Profile picture of " + nameOf(c) }));
       h.push(field(P + ".num", "WhatsApp phone number (for someone not saved in the phone)", { ph: "+44 7700 900123" }));
     } else {
       var Q = P + ".prof";
