@@ -3872,7 +3872,9 @@
 #workskin .tb .tb-chat b { font-weight: bold; }
 
 /* THE FEED BEHIND THE CARDS (optional): put one or more .tb posts inside <div class="tb-feed">
-   navy by default (Tumblr's light mode); add "black" for the dark-mode look */
+   THE FEED COLOUR is the background line below: navy (#001935) by default, Tumblr's True Blue light mode.
+   Add "black" for the dark-mode look, or "classic" for the old Tumblr blue. To use any other colour,
+   change the background line here. The feed colour is separate from the posts' own light, dark or auto theme. */
 #workskin .tb-feed {
   width: 380px;
   max-width: 100%;
@@ -3884,6 +3886,8 @@
 }
 
 #workskin .tb-feed.black { background: #000000; }
+
+#workskin .tb-feed.classic { background: #435874; }
 
 #workskin .tb-feed .mob {
   width: auto;
