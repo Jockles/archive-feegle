@@ -46,7 +46,7 @@
   <li><a href="#s16-8">16.8 Message Timestamp</a></li>
   <li><a href="#s16-9">16.9 Message Text</a></li>
   <li><a href="#s16-10">16.10 Reply to Message</a></li>
-  <li><a href="#s16-11">16.11 Pictures and Names Without a Profile</a></li>
+  <li><a href="#s16-11">16.11 Uploading a Profile Pic</a></li>
   <li><a href="#edited">16.12 Edited Message</a></li>
   <li><a href="#s16-13">16.13 Emoji Reactions</a></li>
   <li><a href="#s16-14">16.14 Spoiler Text</a></li>
@@ -567,7 +567,7 @@
 
 <p>It draws the curved line and the little preview of the message being replied to. Use the same colour class as the original sender's name, so the tiny profile picture matches - or, if they have a profile, the same <code>dc-pfp</code> span and profile name. Long previews get cut short with "..." automatically.</p>
 
-<h3 id="s16-11">16.11 Pictures and Names Without a Profile</h3>
+<h3 id="s16-11">16.11 Uploading a Profile Pic</h3>
 
 <p>Profiles are optional, and a busy server is full of people who only post once. For each message, put a <code>dc-pfp</code> span first inside the <code>dc-name</code>, with the picture tag in it, and type the username after it. Add one of <code>colour1</code> to <code>colour10</code> to the <code>dc-name</code> for the name colour. Replies show a little picture too, so copy the same <code>dc-pfp</code> into the name in the <code>dc-reply</code> line:</p>
 
