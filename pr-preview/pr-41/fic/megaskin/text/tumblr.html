@@ -160,11 +160,8 @@
         <p class="tb-asker"><span class="tb-ask-pfp colour3"></span><span class="hide"> </span><b>benchwarmer88</b> asked:</p>
         <p>Do you take commissions? I would like a drawing of my cat as a knight</p>
       </div>
-      <div class="tb-ask tb-answer">
-        <p class="tb-asker"><span class="tb-ask-pfp"><span class="pfp pfp-luca acc-art"></span></span><span class="hide"> </span><b><span class="handle pfp-luca acc-art"><span class="hide">gremlin-sketches</span></span></b> answered:</p>
-        <p>Commissions are closed right now, sorry!</p>
-        <p>But a cat in armour is a very good idea and I might steal it.</p>
-      </div>
+      <p>Commissions are closed right now, sorry!</p>
+      <p>But a cat in armour is a very good idea and I might steal it.</p>
     </div>
     <p class="tb-tags">#answered &nbsp;#knight cat agenda</p>
   </div>
@@ -223,11 +220,8 @@
         &lt;p class="tb-asker"&gt;&lt;span class="tb-ask-pfp colour3"&gt;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;b&gt;benchwarmer88&lt;/b&gt; asked:&lt;/p&gt;
         &lt;p&gt;Do you take commissions? I would like a drawing of my cat as a knight&lt;/p&gt;
       &lt;/div&gt;
-      &lt;div class="tb-ask tb-answer"&gt;
-        &lt;p class="tb-asker"&gt;&lt;span class="tb-ask-pfp"&gt;&lt;span class="pfp pfp-luca acc-art"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;b&gt;&lt;span class="handle pfp-luca acc-art"&gt;&lt;span class="hide"&gt;gremlin-sketches&lt;/span&gt;&lt;/span&gt;&lt;/b&gt; answered:&lt;/p&gt;
-        &lt;p&gt;Commissions are closed right now, sorry!&lt;/p&gt;
-        &lt;p&gt;But a cat in armour is a very good idea and I might steal it.&lt;/p&gt;
-      &lt;/div&gt;
+      &lt;p&gt;Commissions are closed right now, sorry!&lt;/p&gt;
+      &lt;p&gt;But a cat in armour is a very good idea and I might steal it.&lt;/p&gt;
     &lt;/div&gt;
     &lt;p class="tb-tags"&gt;#answered &amp;nbsp;#knight cat agenda&lt;/p&gt;
   &lt;/div&gt;
@@ -634,7 +628,9 @@
 
 <h3>Asks</h3>
 
-<p>An ask and its answer are two boxes, one after the other. The question box is <code>tb-ask</code>, and the answer box is <code>tb-ask</code> with <code>tb-answer</code> added. Each one starts with a <code>tb-asker</code> line, with the blog's name in <code>&lt;b&gt;</code> and then "asked:" or "answered:". The small picture on the right is <code>tb-ask-pfp</code>. It's a circle, or a rounded square if that blog's picture is square (see <a href="tumblr.html#heading">Round or Square Pictures</a>):</p>
+<p>How an ask looks depends on who posts it. When the blog that answered it posts it, only the question is in a box, and the answer is just the text of the post underneath it, with no picture - like gremlin-sketches' post on the feed at the top of the chapter. Put the <code>tb-ask</code> box first in <code>tb-body</code>, then the answer as ordinary paragraphs.</p>
+
+<p>When someone else reblogs it, the answer gets a box of its own too, with the picture of the blog that answered. Then an ask and its answer are two boxes, one after the other. The question box is <code>tb-ask</code>, and the answer box is <code>tb-ask</code> with <code>tb-answer</code> added. Each one starts with a <code>tb-asker</code> line, with the blog's name in <code>&lt;b&gt;</code> and then "asked:" or "answered:". The small picture on the right is <code>tb-ask-pfp</code>. It's a circle, or a rounded square if that blog's picture is square (see <a href="tumblr.html#heading">Round or Square Pictures</a>):</p>
 
 <div class="tb-feed"><div class="mob tb theme-auto"><div class="tb-body"><div class="tb-ask">
   <p class="tb-asker"><span class="tb-ask-pfp colour3">B</span><span class="hide"> </span><b>benchwarmer88</b> asked:</p>
