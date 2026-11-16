@@ -381,6 +381,12 @@
 /* 12. His phone: WhatsApp chats with pov-luca on the container. A colour, a gradient
    or a picture all work here. He uses theme-light. */
 #workskin .mob.wa.pov-luca { background: linear-gradient(#fdf1d6, #f6d5c2); }
+/* 13. More than one account on the same app: an art Tumblr (pfp-luca-art) and a hockey RPF Tumblr
+   (pfp-luca-rpf). Use them alongside his main profile: <span class="handle pfp-luca pfp-luca-art"> */
+#workskin .tb .pfp.pfp-luca.pfp-luca-art { background-image: linear-gradient(135deg, #ffd966, #e06666); }
+#workskin .tb .handle.pfp-luca.pfp-luca-art::after { content: "gremlin-sketches"; }
+#workskin .tb .pfp.pfp-luca.pfp-luca-rpf { background-image: linear-gradient(135deg, #3d85c6, #cc0000); }
+#workskin .tb .handle.pfp-luca.pfp-luca-rpf::after { content: "rink-rivals-rpf"; }
 
 /* PROFILE: Stan */
 #workskin .pfp.pfp-stan { background-image: url(https://images.squidge.org/images/2026/11/15/GayCrosedHockeySticks.png); }
