@@ -423,8 +423,9 @@
 /* 10. Email address, for Gmail and the email window */
 #workskin .email.pfp-luca::after { content: "luca@example.com"; }
 
-/* 11. A different email address in the email window (.mail) or Gmail (.gm) */
-#workskin .mail .email.pfp-luca::after { content: "luca@work.example.com"; }
+/* 11. Another email address: give it an acc- name, the same as a second account on an app.
+   Add the acc- name: <span class="email pfp-luca acc-work"> */
+#workskin .email.pfp-luca.acc-work::after { content: "luca@work.example.com"; }
 
 /* 12. His phone: WhatsApp chats with pov-luca on the container. A colour, a gradient
    or a picture all work here. He uses theme-light. */
@@ -449,15 +450,17 @@
 #workskin .handle.pfp-stan::after { content: "PuckStan"; }
 #workskin .email.pfp-stan::after { content: "Puckstan@gmail.com"; }
 
-/* PROFILE: Yuna */
+/* PROFILE: Yuna - with a second email address for work, acc-work. Add the acc- name:
+   <span class="email pfp-yuna acc-work"> */
 #workskin .pfp.pfp-yuna { background-color: #7d4fb0; }
 #workskin .wa .who.pfp-yuna, #workskin .dc .dc-name.pfp-yuna { color: #9a62d0; }
 #workskin .name.pfp-yuna::before { content: "Yuna"; }
 #workskin .mob.pov-shane .name.pfp-yuna::before { content: "Mom"; }
 #workskin .handle.pfp-yuna::after { content: "MetrosMomager"; }
 #workskin .email.pfp-yuna::after { content: "YunaHollander@gmail.com"; }
-#workskin .mail .email.pfp-yuna::after { content: "Yuna@HollanderHockey.com"; }
 #workskin .mob.wa.pov-yuna { background-color: #e8e8e8; background-image: url(https://64.media.tumblr.com/a1c0162c5542c5890e5fd9c13341513e/3b53694384f48caf-98/s1280x1920/8b2fcaaf7deb2b05c418f46c62ee729acb8ff8e4.jpg); background-size: cover; background-position: center; }
+/* her work email: acc-work */
+#workskin .email.pfp-yuna.acc-work::after { content: "Yuna@HollanderHockey.com"; }
 
 /* PROFILE: Zim */
 #workskin .pfp.pfp-zim { background-color: #4a6a8f; }
