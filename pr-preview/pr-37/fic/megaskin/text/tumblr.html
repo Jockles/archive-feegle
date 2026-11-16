@@ -503,6 +503,26 @@
   &lt;p&gt;And thank you!&lt;/p&gt;
 &lt;/div&gt;</code></pre>
 
+<p>Those two use initials, with a colour class for the colour. The square can also hold an uploaded picture, in a <code>pfp</code> span with alt text, or a picture from a profile, in an empty <code>pfp</code> span with the profile name. With a profile, the blog name can come from it too, in a handle span with the name typed inside it in a <code>hide</code> span:</p>
+
+<div class="tb-feed"><div class="mob tb theme-auto"><div class="tb-body"><div class="tb-ask">
+  <p class="tb-asker"><span class="tb-ask-pfp"><span class="pfp"><img src="https://64.media.tumblr.com/6898dc3a42cc6c7ab9729360b71366e4/ba033a52c8982cb0-bf/s2048x3072/b548d2fe61b02e530c0edd2ee6a6bd56ab73ad2c.jpg" alt="Profile picture of samthecat, a black and white cat screaming at the camera"></span></span><span class="hide"> </span><b>samthecat</b> asked:</p>
+  <p>what's your hockey hot take</p>
+</div>
+<div class="tb-ask tb-answer">
+  <p class="tb-asker"><span class="tb-ask-pfp"><span class="pfp pfp-shane"></span></span><span class="hide"> </span><b><span class="handle pfp-shane"><span class="hide">hollanderhockey</span></span></b> answered:</p>
+  <p>Practice is fun, actually.</p>
+</div></div></div></div>
+
+<pre><code>&lt;div class="tb-ask"&gt;
+  &lt;p class="tb-asker"&gt;&lt;span class="tb-ask-pfp"&gt;&lt;span class="pfp"&gt;&lt;img src="https://64.media.tumblr.com/6898dc3a42cc6c7ab9729360b71366e4/ba033a52c8982cb0-bf/s2048x3072/b548d2fe61b02e530c0edd2ee6a6bd56ab73ad2c.jpg" alt="Profile picture of samthecat, a black and white cat screaming at the camera"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;b&gt;samthecat&lt;/b&gt; asked:&lt;/p&gt;
+  &lt;p&gt;what's your hockey hot take&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="tb-ask tb-answer"&gt;
+  &lt;p class="tb-asker"&gt;&lt;span class="tb-ask-pfp"&gt;&lt;span class="pfp pfp-shane"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;b&gt;&lt;span class="handle pfp-shane"&gt;&lt;span class="hide"&gt;hollanderhockey&lt;/span&gt;&lt;/span&gt;&lt;/b&gt; answered:&lt;/p&gt;
+  &lt;p&gt;Practice is fun, actually.&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+
 <p>For an anon ask, leave out the picture and write <code>Anonymous</code> as the name. Both boxes go inside <code>tb-body</code>, and you can put an <code>&lt;img&gt;</code> picture in the answer box after the text.</p>
 
 <h3>Quote Posts</h3>

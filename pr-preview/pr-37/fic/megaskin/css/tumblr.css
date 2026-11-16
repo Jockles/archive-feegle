@@ -236,6 +236,11 @@
   font-weight: bold;
 }
 
+/* a picture or a profile in the ask square: <span class="tb-ask-pfp"><span class="pfp pfp-rose"></span></span>
+   (pfp is explained in the CORE) - squared off to match */
+#workskin .tb .tb-ask-pfp { overflow: hidden; }
+#workskin .tb .tb-ask-pfp .pfp { border-radius: 5px; }
+
 #workskin .tb .tb-tags {
   display: block;
   margin: 0;

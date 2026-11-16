@@ -255,12 +255,18 @@
 <ul>
   <li><code>tw-name</code> is the bold display name.</li>
   <li><code>tw-tick</code> inside the name adds the blue verified tick. Leave it out if the account isn't verified.</li>
-  <li><code>tw-handle</code> is the grey @handle, with the time after it. To take the handle from a character's profile, put a handle span in place of the @handle, with the handle typed inside it in a <code>hide</code> span for readers with the workskin off: <code>&lt;span class=&quot;tw-handle&quot;&gt;&lt;span class=&quot;handle pfp-shane&quot;&gt;&lt;span class=&quot;hide&quot;&gt;@ShaneHollanderHockeyPlayer&lt;/span&gt;&lt;/span&gt; &#183; 2h&lt;/span&gt;</code> (see <a href="core.html#heading">Character Profiles</a>).</li>
+  <li><code>tw-handle</code> is the grey @handle, with the time after it.</li>
 </ul>
+
+<p>The name and handle can be typed, like Scott's, or they can come from a character's profile. Put a name span in place of the name and a handle span in place of the @handle, each with a copy typed inside it in a <code>hide</code> span for readers with the workskin off. Leave the @ off a profile's handle - Twitter/X adds it for you (see <a href="core.html#heading">Character Profiles</a>):</p>
+
+<div class="mob tw theme-auto"><p class="tw-top"><span class="tw-pfp"><span class="pfp pfp-zim"></span></span><span class="hide"> </span><span class="tw-name"><span class="name pfp-zim"><span class="hide">Zim</span></span></span> <span class="tw-handle"><span class="handle pfp-zim"><span class="hide">@ZimBits</span></span> · 3h</span></p></div>
+
+<pre><code>&lt;p class="tw-top"&gt;&lt;span class="tw-pfp"&gt;&lt;span class="pfp pfp-zim"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="tw-name"&gt;&lt;span class="name pfp-zim"&gt;&lt;span class="hide"&gt;Zim&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; &lt;span class="tw-handle"&gt;&lt;span class="handle pfp-zim"&gt;&lt;span class="hide"&gt;@ZimBits&lt;/span&gt;&lt;/span&gt; · 3h&lt;/span&gt;&lt;/p&gt;</code></pre>
 
 <h4>Profile Picture</h4>
 
-<p>Every tweet has the account's round profile picture at the start of the name line. Put a <code>tw-pfp</code> span first in the <code>tw-top</code> line, with the initials inside it, and add <code>colour1</code> to <code>colour10</code> for a colour. When there's a picture, the handle moves under the name, like it does in the app:</p>
+<p>Every tweet has the account's round profile picture at the start of the name line. It can show initials, an uploaded picture or a picture from a profile, and there's an example of each below. For initials, put a <code>tw-pfp</code> span first in the <code>tw-top</code> line, with the initials inside it, and add <code>colour1</code> to <code>colour10</code> for a colour. When there's a picture, the handle moves under the name, like it does in the app:</p>
 
 <div class="mob tw theme-auto"><p class="tw-top"><span class="tw-pfp colour5">HF</span><span class="hide"> </span><span class="tw-name">Hockey Fan</span> <span class="tw-handle">@hockeyfan · 2h</span></p></div>
 
@@ -272,7 +278,13 @@
 
 <pre><code>&lt;p class="tw-top"&gt;&lt;span class="tw-pfp"&gt;&lt;span class="pfp"&gt;&lt;img src="https://64.media.tumblr.com/6898dc3a42cc6c7ab9729360b71366e4/ba033a52c8982cb0-bf/s2048x3072/b548d2fe61b02e530c0edd2ee6a6bd56ab73ad2c.jpg" alt="Profile picture of samthecat, a black and white cat screaming at the camera"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="tw-name"&gt;Sam&lt;/span&gt; &lt;span class="tw-handle"&gt;@samthecat · 1h&lt;/span&gt;&lt;/p&gt;</code></pre>
 
-<p>Or use a profile, so the same person has the same picture everywhere: <code>&lt;span class=&quot;tw-pfp&quot;&gt;&lt;span class=&quot;pfp pfp-shane&quot;&gt;&lt;/span&gt;&lt;/span&gt;</code> (see <a href="core.html#heading">Character Appearances and Profiles</a>). It works the same way in replies - just give the reply's name line the <code>tw-top</code> class, like the replies in the thread. The colours for <code>colour1</code> to <code>colour10</code> are set in the Twitter/X CSS, so you can change them there.</p>
+<p>Or use a profile, so the same person has the same picture everywhere. Put an empty <code>pfp</code> span with their profile name in the <code>tw-pfp</code>, with no colour class needed (see <a href="core.html#heading">Character Appearances and Profiles</a>):</p>
+
+<div class="mob tw theme-auto"><p class="tw-top"><span class="tw-pfp"><span class="pfp pfp-holster"></span></span><span class="hide"> </span><span class="tw-name"><span class="name pfp-holster"><span class="hide">Holster</span></span></span> <span class="tw-handle"><span class="handle pfp-holster"><span class="hide">@HolsterInLaw</span></span> · 2h</span></p></div>
+
+<pre><code>&lt;p class="tw-top"&gt;&lt;span class="tw-pfp"&gt;&lt;span class="pfp pfp-holster"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="tw-name"&gt;&lt;span class="name pfp-holster"&gt;&lt;span class="hide"&gt;Holster&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; &lt;span class="tw-handle"&gt;&lt;span class="handle pfp-holster"&gt;&lt;span class="hide"&gt;@HolsterInLaw&lt;/span&gt;&lt;/span&gt; · 2h&lt;/span&gt;&lt;/p&gt;</code></pre>
+
+<p>All three ways work the same in replies - just give the reply's name line the <code>tw-top</code> class, like the replies in the thread. The colours for <code>colour1</code> to <code>colour10</code> are set in the core CSS and shared with every app, so you can change them there.</p>
 
 <h4>Uploading a Profile Pic</h4>
 
@@ -311,7 +323,7 @@
 <ul>
   <li>The name and handle are typed, so they show whether the workskin is on or off, with no hidden copy needed.</li>
   <li>A wide picture needs <code>class=&quot;land&quot;</code> on the picture tag, like Mar's, or it won't fill its circle.</li>
-  <li>Twitter/X DMs don't show profile pictures, so in a group DM a stranger only needs their name typed in a <code>who</code> line (see Group Chats, below).</li>
+  <li>Twitter/X DMs don't show profile pictures, so in a group DM a stranger only needs their name typed in a <code>who</code> line, and a character with a profile can take theirs from it (see Group Chats, below).</li>
 </ul>
 
 <h4>Tweet Text</h4>
@@ -604,7 +616,13 @@
 
 <pre><code>&lt;p class="mob-head"&gt;Shane Hollander&lt;span class="hide"&gt; - &lt;/span&gt;&lt;span&gt;@ShaneHollanderHockeyPlayer&lt;/span&gt;&lt;/p&gt;</code></pre>
 
-<p>The span in the header is the person's @handle. After the header comes <code>&lt;div class=&quot;mob-body&quot;&gt;</code>, which holds all of the messages.</p>
+<p>The span in the header is the person's @handle. The name and handle can be typed, like Shane's here, or they can come from a profile, in a name span and a handle span with a hidden copy typed inside each. As in tweets, the @ is added for you, so only the hidden copy has one:</p>
+
+<div class="mob twdm theme-auto"><p class="mob-head"><span class="name pfp-zim"><span class="hide">Zim</span></span><span class="hide"> - </span><span><span class="handle pfp-zim"><span class="hide">@ZimBits</span></span></span></p></div>
+
+<pre><code>&lt;p class="mob-head"&gt;&lt;span class="name pfp-zim"&gt;&lt;span class="hide"&gt;Zim&lt;/span&gt;&lt;/span&gt;&lt;span class="hide"&gt; - &lt;/span&gt;&lt;span&gt;&lt;span class="handle pfp-zim"&gt;&lt;span class="hide"&gt;@ZimBits&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;</code></pre>
+
+<p>After the header comes <code>&lt;div class=&quot;mob-body&quot;&gt;</code>, which holds all of the messages.</p>
 
 <h4>Simple Messages</h4>
 
@@ -705,3 +723,11 @@
 <pre><code>&lt;p class="who"&gt;Hayden&lt;span class="hide"&gt;:&lt;/span&gt;&lt;/p&gt;
 &lt;p class="msg in"&gt;are we still going out?&lt;/p&gt;
 &lt;p class="twdm-reacts"&gt;&lt;span class="hide"&gt;[Reactions: &lt;/span&gt;&amp;#128077; &amp;#128514; 3&lt;span class="hide"&gt;]&lt;/span&gt;&lt;/p&gt;</code></pre>
+
+<p>For a character with a profile, put a name span in the <code>who</code> line instead, with the name typed inside it in a <code>hide</code> span. DMs don't show profile pictures, so the name is all a profile adds here, but it keeps them the same as everywhere else:</p>
+
+<div class="mob twdm theme-auto"><div class="mob-body"><p class="who"><span class="name pfp-zim"><span class="hide">Zim</span></span><span class="hide">:</span></p>
+<p class="msg in">I'm driving, so yes</p></div></div>
+
+<pre><code>&lt;p class="who"&gt;&lt;span class="name pfp-zim"&gt;&lt;span class="hide"&gt;Zim&lt;/span&gt;&lt;/span&gt;&lt;span class="hide"&gt;:&lt;/span&gt;&lt;/p&gt;
+&lt;p class="msg in"&gt;I'm driving, so yes&lt;/p&gt;</code></pre>

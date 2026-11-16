@@ -128,6 +128,17 @@
 
 <p><code>mob-head</code> is the header bar. The last <code>&lt;span&gt;</code> adds the smaller grey line under the name, like "iMessage" or "Mobile" - leave it out if you only want the name. After the header comes <code>&lt;div class=&quot;mob-body&quot;&gt;</code>, which holds all of the messages.</p>
 
+<p>iMessage doesn't show profile pictures, so the name is all you need, and there are two ways to do it:</p>
+
+<ul>
+  <li><strong>Typed:</strong> write the name straight into the header, like Ilya's above. That's all a one-off contact needs.</li>
+  <li><strong>From a profile:</strong> put a name span in its place, with the name typed inside it in a <code>hide</code> span for readers with the workskin off. The name then comes from the character's profile, so it's the same in every chat, and it changes to whatever your point-of-view character has them saved as (see <a href="core.html#heading">Their Phone</a>):</li>
+</ul>
+
+<div class="mob imsg theme-auto"><p class="mob-head"><span class="name pfp-ilya"><span class="hide">Ilya</span></span><span class="hide"> - </span><span>iMessage</span></p></div>
+
+<pre><code>&lt;p class="mob-head"&gt;&lt;span class="name pfp-ilya"&gt;&lt;span class="hide"&gt;Ilya&lt;/span&gt;&lt;/span&gt;&lt;span class="hide"&gt; - &lt;/span&gt;&lt;span&gt;iMessage&lt;/span&gt;&lt;/p&gt;</code></pre>
+
 <h3>Simple Messages</h3>
 
 <p>Each message is a paragraph with the class <code>msg</code>, plus one more class that says who sent it. <code>in</code> is a message from the other person, which shows as a grey bubble on the left, and <code>out</code> is a message from your point-of-view character, which shows as a blue bubble on the right. Give every message its own <code>&lt;p&gt;</code>, one after another, inside <code>mob-body</code>:</p>
@@ -269,7 +280,15 @@
 
 <p>The <code>who</code> line shows whether the workskin is on or off, so it only needs a hidden colon after the name, to read "Hayden:" followed by the message.</p>
 
-<p>iMessage doesn't show profile pictures, so you never need a profile here. For anyone in the group, however briefly they turn up, type their name in a <code>who</code> line and that's all there is to it.</p>
+<p>iMessage doesn't show profile pictures, so the name is all anyone needs. For someone who only turns up briefly, type their name in the <code>who</code> line, like Hayden and Scott above. For a character with a profile, put a name span in the <code>who</code> line instead, with their name typed inside it in a <code>hide</code> span, and the name comes from their profile:</p>
+
+<div class="mob imsg theme-auto"><div class="mob-body"><p class="who"><span class="name pfp-ilya"><span class="hide">Ilya</span></span><span class="hide">:</span></p>
+<p class="msg in">I am bringing extra cones. many extra cones</p></div></div>
+
+<pre><code>&lt;p class="who"&gt;&lt;span class="name pfp-ilya"&gt;&lt;span class="hide"&gt;Ilya&lt;/span&gt;&lt;/span&gt;&lt;span class="hide"&gt;:&lt;/span&gt;&lt;/p&gt;
+&lt;p class="msg in"&gt;I am bringing extra cones. many extra cones&lt;/p&gt;</code></pre>
+
+<p>You can mix the two in the same group, so main characters come from their profiles and everyone else is typed.</p>
 
 <h3>Green Text Messages</h3>
 

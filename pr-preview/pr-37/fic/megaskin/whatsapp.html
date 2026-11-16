@@ -6,7 +6,7 @@
   <title>Megaskin, Chapter 6: WhatsApp | jockles.com</title>
   <link rel="stylesheet" href="../../style.css">
   <script src="../../theme.js"></script>
-  <link rel="stylesheet" href="megaskin.css?v=f0fefff0" id="creator-style">
+  <link rel="stylesheet" href="megaskin.css?v=8b20b4a8" id="creator-style">
 </head>
 <body>
 <header>
@@ -494,6 +494,12 @@
 
 <p>The header is the green bar. The span underneath is the status line, like "online", "last seen today at 9:41" or "typing...", or the list of people in a group. After the header comes <code>&lt;div class=&quot;mob-body&quot;&gt;</code>, which holds all of the messages. There's a fancier header with a picture and icons too, which is in the group chat - see Group Header with Picture and Icons, further down.</p>
 
+<p>The name can be typed, like Lily's above, or it can come from a character's profile. Put a name span in its place, with the name typed inside it in a <code>hide</code> span for readers with the workskin off. Then it's the same in every chat, and it changes to whatever your point-of-view character has them saved as (see <a href="core.html#s2-5-3-2">Their Phone</a>):</p>
+
+<div class="mob wa theme-auto"><p class="mob-head"><span class="name pfp-ilya"><span class="hide">Ilya</span></span><span class="hide"> - </span><span>online</span></p></div>
+
+<pre><code>&lt;p class="mob-head"&gt;&lt;span class="name pfp-ilya"&gt;&lt;span class="hide"&gt;Ilya&lt;/span&gt;&lt;/span&gt;&lt;span class="hide"&gt; - &lt;/span&gt;&lt;span&gt;online&lt;/span&gt;&lt;/p&gt;</code></pre>
+
 <h3 id="s6-5">6.5 Simple Messages</h3>
 
 <p>WhatsApp bubbles hold more than one line of text - each one can have a time, ticks and a quoted reply in it. So instead of a single <code>&lt;p&gt;</code>, each message is a <code>&lt;div&gt;</code> with paragraphs inside:</p>
@@ -553,18 +559,18 @@
   &lt;p class="wa-time"&gt;23:42 &lt;span class="wa-read ic ic-read"&gt;✓✓&lt;/span&gt;&lt;/p&gt;
 &lt;/div&gt;</code></pre>
 
-<p>The ticks turn blue. For a message that hasn't been read yet, leave off the <code>wa-read</code> span and type the ticks as plain text, and they stay grey. One tick means the message was sent but hasn't reached the other person's phone, two grey ticks mean it got there but hasn't been read, and two blue ticks mean it's been read. Here are all three side by side:</p>
+<p>The ticks turn blue. For a message that hasn't been read yet, leave off <code>wa-read</code> and use <code>ic ic-sent</code> for one grey tick or <code>ic ic-delivered</code> for two. One tick means the message was sent but hasn't reached the other person's phone, two grey ticks mean it got there but hasn't been read, and two blue ticks mean it's been read. Here are all three side by side:</p>
 
 <div class="mob wa theme-auto">
   <p class="mob-head">Mom<span class="hide"> - </span><span>last seen today at 10:01</span></p>
   <div class="mob-body">
     <div class="msg out">
       <p><span class="hide"><em>Shane:</em> </span>Sent, but not delivered yet</p>
-      <p class="wa-time">10:03 ✓</p>
+      <p class="wa-time">10:03 <span class="ic ic-sent">✓</span></p>
     </div>
     <div class="msg out">
       <p><span class="hide"><em>Shane:</em> </span>Delivered, but unread</p>
-      <p class="wa-time">10:03 ✓✓</p>
+      <p class="wa-time">10:03 <span class="ic ic-delivered">✓✓</span></p>
     </div>
     <div class="msg out">
       <p><span class="hide"><em>Shane:</em> </span>Read</p>
@@ -580,11 +586,11 @@
   &lt;div class="mob-body"&gt;
     &lt;div class="msg out"&gt;
       &lt;p&gt;&lt;span class="hide"&gt;&lt;em&gt;Shane:&lt;/em&gt; &lt;/span&gt;Sent, but not delivered yet&lt;/p&gt;
-      &lt;p class="wa-time"&gt;10:03 ✓&lt;/p&gt;
+      &lt;p class="wa-time"&gt;10:03 &lt;span class="ic ic-sent"&gt;✓&lt;/span&gt;&lt;/p&gt;
     &lt;/div&gt;
     &lt;div class="msg out"&gt;
       &lt;p&gt;&lt;span class="hide"&gt;&lt;em&gt;Shane:&lt;/em&gt; &lt;/span&gt;Delivered, but unread&lt;/p&gt;
-      &lt;p class="wa-time"&gt;10:03 ✓✓&lt;/p&gt;
+      &lt;p class="wa-time"&gt;10:03 &lt;span class="ic ic-delivered"&gt;✓✓&lt;/span&gt;&lt;/p&gt;
     &lt;/div&gt;
     &lt;div class="msg out"&gt;
       &lt;p&gt;&lt;span class="hide"&gt;&lt;em&gt;Shane:&lt;/em&gt; &lt;/span&gt;Read&lt;/p&gt;
@@ -955,7 +961,19 @@
 
 <p>Give each person the same colour class every time, so their name stays the same colour all the way through the chat.</p>
 
-<p>Or add the person's profile name to the <code>who</code> line instead of a colour class, like <code>&lt;p class=&quot;who pfp-shane&quot;&gt;</code>, and their name colour comes from their profile, the same in every chat (see <a href="core.html#character-profiles">Character Profiles</a>).</p>
+<p>For a character with a profile, add their profile name to the <code>who</code> line instead of a colour class, and their name colour comes from their profile, the same in every chat. The name itself can come from the profile too, in a name span with the name typed inside it in a <code>hide</code> span, or you can just type it (see <a href="core.html#character-profiles">Character Profiles</a>):</p>
+
+<div class="mob wa theme-auto"><div class="mob-body"><div class="wa-row"><div class="msg in tail">
+  <p class="who pfp-ilya"><span class="name pfp-ilya"><span class="hide">Ilya</span></span><span class="hide">:</span></p>
+  <p>I will bring the kids. I am very good with kids</p>
+  <p class="wa-time">09:14</p>
+</div></div></div></div>
+
+<pre><code>&lt;div class="msg in tail"&gt;
+  &lt;p class="who pfp-ilya"&gt;&lt;span class="name pfp-ilya"&gt;&lt;span class="hide"&gt;Ilya&lt;/span&gt;&lt;/span&gt;&lt;span class="hide"&gt;:&lt;/span&gt;&lt;/p&gt;
+  &lt;p&gt;I will bring the kids. I am very good with kids&lt;/p&gt;
+  &lt;p class="wa-time"&gt;09:14&lt;/p&gt;
+&lt;/div&gt;</code></pre>
 
 <p>The <code>who</code> name shows at the top of the bubble whether the workskin is on or off, so it doesn't need a hidden label - just the hidden colon after it (<code>&lt;span class=&quot;hide&quot;&gt;:&lt;/span&gt;</code>), so it reads "Hayden:" followed by the message. Your own messages have no <code>who</code> line, so they keep the full hidden label.</p>
 
@@ -979,7 +997,7 @@
 
 <h3 id="s6-19">6.19 Profile Pictures in Groups</h3>
 
-<p>In a group, the first message in a run from one person has their round profile picture next to it. To add one, wrap the message in a <code>wa-row</code> and put a <code>wa-pfp</code> before the bubble. With no picture, <code>wa-pfp</code> shows the person's initials on a grey circle. To give the circle a colour, add one of <code>colour1</code> to <code>colour10</code>, like <code>wa-pfp colour4</code>:</p>
+<p>In a group, the first message in a run from one person has their round profile picture next to it. To add one, wrap the message in a <code>wa-row</code> and put a <code>wa-pfp</code> before the bubble. With no picture, <code>wa-pfp</code> shows the person's initials on a grey circle. To give the circle a colour, add one of <code>colour1</code> to <code>colour10</code>, like <code>wa-pfp colour4</code>. The circle can hold initials, an uploaded picture or a picture from a profile, and there's an example of each below. First, initials:</p>
 
 <div class="mob wa theme-auto"><div class="mob-body"><div class="wa-row">
   <p class="wa-pfp colour4">HP</p>
@@ -1035,7 +1053,27 @@
   &lt;/div&gt;
 &lt;/div&gt;</code></pre>
 
-<p>If the same person turns up again and again, or in other apps too, a profile saves you adding the picture every time: <code>&lt;p class=&quot;wa-pfp&quot;&gt;&lt;span class=&quot;pfp pfp-shane&quot;&gt;&lt;/span&gt;&lt;/p&gt;</code> (see <a href="core.html#profiles">Character Appearances and Profiles</a>). The colours for <code>colour1</code> to <code>colour10</code> are set in the WhatsApp CSS, so you can change them there.</p>
+<p>If the same person turns up again and again, or in other apps too, use their profile, so you don't have to add the picture every time. Put an empty <code>pfp</code> span with their profile name in the <code>wa-pfp</code>, and add the profile name to the <code>who</code> line for their name colour, with no colour classes needed (see <a href="core.html#profiles">Character Appearances and Profiles</a>):</p>
+
+<div class="mob wa theme-auto"><div class="mob-body"><div class="wa-row">
+  <p class="wa-pfp"><span class="pfp pfp-shane"></span></p>
+  <div class="msg in tail">
+    <p class="who pfp-shane"><span class="name pfp-shane"><span class="hide">Shane</span></span><span class="hide">:</span></p>
+    <p>I'll bring a salad</p>
+    <p class="wa-time">09:14</p>
+  </div>
+</div></div></div>
+
+<pre><code>&lt;div class="wa-row"&gt;
+  &lt;p class="wa-pfp"&gt;&lt;span class="pfp pfp-shane"&gt;&lt;/span&gt;&lt;/p&gt;
+  &lt;div class="msg in tail"&gt;
+    &lt;p class="who pfp-shane"&gt;&lt;span class="name pfp-shane"&gt;&lt;span class="hide"&gt;Shane&lt;/span&gt;&lt;/span&gt;&lt;span class="hide"&gt;:&lt;/span&gt;&lt;/p&gt;
+    &lt;p&gt;I'll bring a salad&lt;/p&gt;
+    &lt;p class="wa-time"&gt;09:14&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+<p>The colours for <code>colour1</code> to <code>colour10</code> are set in the core CSS and shared with every app, so you can change them there.</p>
 
 <h3 id="s6-20">6.20 Uploading a Profile Pic</h3>
 
@@ -1198,6 +1236,36 @@
 <p>The table has two rows. The first row has the back arrow (<code>wa-back</code>), the picture (<code>wa-pfp-cell</code>), the group name (<code>wa-title</code>) and the icons (<code>wa-actions</code>). The back arrow, picture and icons have <code>rowspan=&quot;2&quot;</code>, which stretches them down across both rows. The second row only has the member list (<code>wa-sub</code>), which sits under the name. If the name or the member list is too long, the workskin cuts it short with "..." for you.</p>
 
 <p>The picture is the same <code>wa-pfp</code> circle as in the group messages, so <code>colour1</code> to <code>colour10</code> work here too. You can use this header for a one-to-one chat as well - put "online" or "last seen..." where the member list goes, or "typing..." to show the other person is typing.</p>
+
+<p>An uploaded picture works in the header too, in a <code>pfp</code> span, the same as in the messages. For a one-to-one chat with someone who has a profile, put their profile in the circle and a name span in <code>wa-title</code>, so both come from the profile:</p>
+
+<div class="mob wa theme-auto"><table class="wa-bar">
+  <tbody>
+    <tr>
+      <td rowspan="2" class="wa-back"><span class="ic ic-back">&#8592;</span></td>
+      <td rowspan="2" class="wa-pfp-cell"><p class="wa-pfp"><span class="pfp pfp-shane"></span></p></td>
+      <td class="wa-title"><span class="name pfp-shane"><span class="hide">Shane</span></span></td>
+      <td rowspan="2" class="wa-actions"><span class="ic ic-video">&#127909;</span> <span class="ic ic-menu">&#8942;</span></td>
+    </tr>
+    <tr>
+      <td class="wa-sub">online</td>
+    </tr>
+  </tbody>
+</table></div>
+
+<pre><code>&lt;table class="wa-bar"&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td rowspan="2" class="wa-back"&gt;&lt;span class="ic ic-back"&gt;&amp;#8592;&lt;/span&gt;&lt;/td&gt;
+      &lt;td rowspan="2" class="wa-pfp-cell"&gt;&lt;p class="wa-pfp"&gt;&lt;span class="pfp pfp-shane"&gt;&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;
+      &lt;td class="wa-title"&gt;&lt;span class="name pfp-shane"&gt;&lt;span class="hide"&gt;Shane&lt;/span&gt;&lt;/span&gt;&lt;/td&gt;
+      &lt;td rowspan="2" class="wa-actions"&gt;&lt;span class="ic ic-video"&gt;&amp;#127909;&lt;/span&gt; &lt;span class="ic ic-menu"&gt;&amp;#8942;&lt;/span&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="wa-sub"&gt;online&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
 
 <h3 id="s6-24">6.24 Choosing a Background</h3>
 
