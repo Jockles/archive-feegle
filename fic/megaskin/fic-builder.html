@@ -51,7 +51,6 @@
     .fb-extras { padding: 4px 2px 2px; }
     .fb-script { border-top: 1px dashed var(--rule, #ccc); padding-top: 6px; }
     .fb-add { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
-    .fb-fmt { position: sticky; bottom: 0; background: var(--page, #fff); border-top: 1px solid var(--rule, #ccc); padding: 6px 0; z-index: 2; }
     .fb-out textarea { width: 100%; box-sizing: border-box; height: 14em; font-family: monospace; font-size: 0.8em; }
     .fb-files { border-collapse: collapse; width: 100%; }
     .fb-files th { text-align: left; font-weight: normal; font-size: 0.9em; padding: 4px 12px 4px 0; width: 14em; vertical-align: middle; }
@@ -125,13 +124,6 @@
         </div>
       </fieldset>
 
-      <div class="fb-fmt" id="fb-fmt" hidden>
-        <span class="hint">Select some words, then:</span>
-        <button type="button" data-act="fmt:tl">Translation</button>
-        <button type="button" data-act="fmt:egg">Easter egg</button>
-        <button type="button" data-act="fmt:del">Cross out</button>
-        <button type="button" data-act="fmt:link">Fake link</button>
-      </div>
     </form>
 
     <div class="fb-out">
