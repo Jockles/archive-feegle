@@ -376,6 +376,24 @@
 
 <p><strong>Changing the feed colour:</strong> the colour is the <code>background</code> line in <code>#workskin .tb-feed</code> (<code>#001935</code>). Swap it for any colour you like, and every feed without <code>black</code> or <code>classic</code> changes with it. There's a note at that line in the CSS too.</p>
 
+<h3>The App Screen</h3>
+
+<pre><code>#workskin .tb-feed.app { padding: 0; overflow: hidden; }
+
+#workskin .tb-feed .tb-screen {
+  display: block;
+  max-height: 640px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 0 0 0.5em 0;
+}
+
+#workskin .tb-screen .tb { max-height: none; overflow: visible; }</code></pre>
+
+<p>With <code>app</code>, the feed itself doesn't scroll - the <code>tb-screen</code> inside it does, up to <code>640px</code> tall. The buttons along the bottom come after the screen, outside it, so they stay where they are while everything in the screen scrolls past, and the top bar is inside the screen, so it scrolls away. The posts inside the screen lose their own scrolling, so there's only one scroll bar.</p>
+
+<p>The top bar, the tabs and the bottom buttons are flex rows like the bottom of a post. They have no background of their own, so they're always the feed colour, which is why the feed's <code>black</code> and <code>classic</code> work on them too. The picked tab is white with a short blue line under it, made with <code>::after</code> the same way as the reblog badge, and the other tabs and buttons are grey. The Tumblr logo is just a bold "t". The icons are pictures, in the Icons section with the rest, and they're the same in every theme because they always sit on the feed.</p>
+
 <h3>Links and Themes</h3>
 
 <pre><code>#workskin .tb .fake-link, #workskin .tb a:not(.tl) { color: #0070b8; }</code></pre>
@@ -395,6 +413,7 @@
   <li><strong>Checkmarks:</strong> <code>tb-check</code>, <code>tb-checks</code> and the <code>ic-checks</code> lines in the Icons section.</li>
   <li><strong>Bottom row:</strong> <code>tb-footer</code>, <code>tb-stat</code> and <code>tb-icon</code>.</li>
   <li><strong>The feed:</strong> everything starting <code>.tb-feed</code>.</li>
+  <li><strong>Just the app screen:</strong> the rules with <code>.tb-feed.app</code>, <code>tb-screen</code>, <code>tb-top</code>, <code>tb-logo</code>, <code>tb-topicon</code>, <code>tb-tabs</code>, <code>tb-tab</code>, <code>tb-nav</code> and <code>ic-tb-</code> in them.</li>
 </ul>
 
 <p>Keep the card, the header, the name, the picture and the body, which every post uses.</p>
