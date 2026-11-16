@@ -57,6 +57,20 @@
   overflow: hidden;
 }
 
+/* initials instead of a picture: <span class="ig-pfp colour3">RL</span>, and the same in
+   ig-like-pfp. With no colour class the circle is grey. */
+#workskin .ig .ig-top .ig-pfp,
+#workskin .ig .ig-like-pfp {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #8a8a8a;
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 0.8em;
+  line-height: 1;
+}
+
 #workskin .ig .ig-actions {
   display: block;
   overflow: hidden;
@@ -282,6 +296,9 @@
 
 #workskin .ig .ig-like-pfp:first-child { margin-left: 0; }
 
+/* initials in a face: inline-flex keeps them in the middle of the little circle */
+#workskin .ig .ig-like-pfp { display: inline-flex; font-size: 0.55em; }
+
 #workskin .igdm {
   background: #ffffff;
   color: #262626;
@@ -392,6 +409,7 @@
 #workskin .ig.theme-dark .ig-tag { color: #e0f1ff; }
 
 #workskin .ig.theme-dark .ig-top .ig-pfp.story .pfp { border-color: #000000; }
+#workskin .ig.theme-dark .ig-top .ig-pfp { color: #ffffff; }
 
 #workskin .ig.theme-dark .ig-like-pfp { border-color: #000000; }
 
@@ -433,6 +451,7 @@
   #workskin .ig.theme-auto .ig-tag { color: #e0f1ff; }
 
   #workskin .ig.theme-auto .ig-top .ig-pfp.story .pfp { border-color: #000000; }
+  #workskin .ig.theme-auto .ig-top .ig-pfp { color: #ffffff; }
 
   #workskin .ig.theme-auto .ig-like-pfp { border-color: #000000; }
 

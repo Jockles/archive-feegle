@@ -132,11 +132,11 @@
 }
 
 /* the tiny circles in Discord replies and Instagram's "Liked by" line get smaller initials */
-#workskin .dc .dc-reply .pfp::before,
-#workskin .ig .ig-like-pfp .pfp::before { font-size: 0.4em; }
+#workskin .dc .dc-reply .pfp::before { font-size: 0.4em; }
+#workskin .ig .ig-like-pfp .pfp::before { font-size: 0.75em; }
 
 /* Instagram's account picture is bigger than its text, so its initials need a bigger size */
-#workskin .ig .ig-top .ig-pfp .pfp::before { font-size: 1.1em; }
+#workskin .ig .ig-top .ig-pfp .pfp::before { font-size: 1.4em; }
 
 #workskin .pfp img {
   position: absolute;
@@ -485,7 +485,7 @@
 /* ==========================================================
    COLOURS: colour1 to colour10
    One set of ten colours for every app. Add colour1 to colour10 to a picture
-   circle (wa-pfp, tw-pfp, tb-pfp, tb-ask-pfp, gm-pfp) or a name (WhatsApp who,
+   circle (wa-pfp, tw-pfp, ig-pfp, ig-like-pfp, tb-pfp, tb-ask-pfp, gm-pfp) or a name (WhatsApp who,
    Discord dc-name) to colour it. Use the same number for a person everywhere.
    Change a colour here and it changes in every app.
    Each rule lists the class names for all the apps. If you've left some apps
@@ -500,6 +500,8 @@
 #workskin .tb .tb-pfp.colour1,
 #workskin .tb .tb-ask-pfp.colour1,
 #workskin .gm .gm-pfp.colour1,
+#workskin .ig .ig-pfp.colour1,
+#workskin .ig .ig-like-pfp.colour1,
 #workskin .dc .dc-name.colour1::before { background-color: #b5733a; }
 
 #workskin .wa .wa-pfp.colour2,
@@ -508,6 +510,8 @@
 #workskin .tb .tb-pfp.colour2,
 #workskin .tb .tb-ask-pfp.colour2,
 #workskin .gm .gm-pfp.colour2,
+#workskin .ig .ig-pfp.colour2,
+#workskin .ig .ig-like-pfp.colour2,
 #workskin .dc .dc-name.colour2::before { background-color: #3a3a3c; }
 
 #workskin .wa .wa-pfp.colour3,
@@ -516,6 +520,8 @@
 #workskin .tb .tb-pfp.colour3,
 #workskin .tb .tb-ask-pfp.colour3,
 #workskin .gm .gm-pfp.colour3,
+#workskin .ig .ig-pfp.colour3,
+#workskin .ig .ig-like-pfp.colour3,
 #workskin .dc .dc-name.colour3::before { background-color: #7a2b4e; }
 
 #workskin .wa .wa-pfp.colour4,
@@ -524,6 +530,8 @@
 #workskin .tb .tb-pfp.colour4,
 #workskin .tb .tb-ask-pfp.colour4,
 #workskin .gm .gm-pfp.colour4,
+#workskin .ig .ig-pfp.colour4,
+#workskin .ig .ig-like-pfp.colour4,
 #workskin .dc .dc-name.colour4::before { background-color: #2f7d6b; }
 
 #workskin .wa .wa-pfp.colour5,
@@ -532,6 +540,8 @@
 #workskin .tb .tb-pfp.colour5,
 #workskin .tb .tb-ask-pfp.colour5,
 #workskin .gm .gm-pfp.colour5,
+#workskin .ig .ig-pfp.colour5,
+#workskin .ig .ig-like-pfp.colour5,
 #workskin .dc .dc-name.colour5::before { background-color: #3b5ea8; }
 
 #workskin .wa .wa-pfp.colour6,
@@ -540,6 +550,8 @@
 #workskin .tb .tb-pfp.colour6,
 #workskin .tb .tb-ask-pfp.colour6,
 #workskin .gm .gm-pfp.colour6,
+#workskin .ig .ig-pfp.colour6,
+#workskin .ig .ig-like-pfp.colour6,
 #workskin .dc .dc-name.colour6::before { background-color: #6b4fa0; }
 
 #workskin .wa .wa-pfp.colour7,
@@ -548,6 +560,8 @@
 #workskin .tb .tb-pfp.colour7,
 #workskin .tb .tb-ask-pfp.colour7,
 #workskin .gm .gm-pfp.colour7,
+#workskin .ig .ig-pfp.colour7,
+#workskin .ig .ig-like-pfp.colour7,
 #workskin .dc .dc-name.colour7::before { background-color: #a8383b; }
 
 #workskin .wa .wa-pfp.colour8,
@@ -556,6 +570,8 @@
 #workskin .tb .tb-pfp.colour8,
 #workskin .tb .tb-ask-pfp.colour8,
 #workskin .gm .gm-pfp.colour8,
+#workskin .ig .ig-pfp.colour8,
+#workskin .ig .ig-like-pfp.colour8,
 #workskin .dc .dc-name.colour8::before { background-color: #4e7a2c; }
 
 #workskin .wa .wa-pfp.colour9,
@@ -564,6 +580,8 @@
 #workskin .tb .tb-pfp.colour9,
 #workskin .tb .tb-ask-pfp.colour9,
 #workskin .gm .gm-pfp.colour9,
+#workskin .ig .ig-pfp.colour9,
+#workskin .ig .ig-like-pfp.colour9,
 #workskin .dc .dc-name.colour9::before { background-color: #8c6d1f; }
 
 #workskin .wa .wa-pfp.colour10,
@@ -572,6 +590,8 @@
 #workskin .tb .tb-pfp.colour10,
 #workskin .tb .tb-ask-pfp.colour10,
 #workskin .gm .gm-pfp.colour10,
+#workskin .ig .ig-pfp.colour10,
+#workskin .ig .ig-like-pfp.colour10,
 #workskin .dc .dc-name.colour10::before { background-color: #2a7390; }
 
 /* names: a bit brighter than the circles, so they are easy to read as text.

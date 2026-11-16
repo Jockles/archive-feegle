@@ -6,7 +6,7 @@
   <title>Megaskin, Chapter 16: Discord | jockles.com</title>
   <link rel="stylesheet" href="../../style.css">
   <script src="../../theme.js"></script>
-  <link rel="stylesheet" href="megaskin.css?v=f0fefff0" id="creator-style">
+  <link rel="stylesheet" href="megaskin.css?v=0a6a4861" id="creator-style">
 </head>
 <body>
 <header>
@@ -466,7 +466,23 @@
 
 <h3 id="s16-7">16.7 Username</h3>
 
-<p>The name goes in a bold tag with the class <code>dc-name</code>. Add one of <code>colour1</code> to <code>colour10</code> as well - it colours both the name and the round profile picture. In the example, that's <code>colour1</code>:</p>
+<p>The name goes in a bold tag with the class <code>dc-name</code>. Add one of <code>colour1</code> to <code>colour10</code> as well - it colours both the name and the round profile picture. Discord doesn't put initials in the circle, so this way gives a plain coloured circle. The circle can also hold an uploaded picture or a picture from a profile, and there's an example of each below. First, just a colour:</p>
+
+<div class="dc theme-auto"><div class="dc-message">
+  <p>
+    <b class="dc-name colour1">mackattack</b>
+    <span class="dc-time">Today at 9:12 AM</span>
+  </p>
+  <p><span class="dc-text">who has the aux at practice</span></p>
+</div></div>
+
+<pre><code>&lt;div class="dc-message"&gt;
+  &lt;p&gt;
+    &lt;b class="dc-name colour1"&gt;mackattack&lt;/b&gt;
+    &lt;span class="dc-time"&gt;Today at 9:12 AM&lt;/span&gt;
+  &lt;/p&gt;
+  &lt;p&gt;&lt;span class="dc-text"&gt;who has the aux at practice&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;</code></pre>
 
 <ul>
   <li>These are the same ten colours as the picture circles in the other apps, with the names in their own light and dark shades so they're easy to read in either mode.</li>
@@ -491,7 +507,25 @@
   &lt;p&gt;&lt;span class="dc-text"&gt;some of us have practice at 10. please stop pinging the whole server&lt;/span&gt;&lt;/p&gt;
 &lt;/div&gt;</code></pre>
 
-<p>A picture tag works in <code>dc-pfp</code> too, inside a <code>pfp</code> span with alt text. The colours for <code>colour1</code> to <code>colour10</code> are set in the core CSS and shared with every app, so you can change them there.</p>
+<p>For an uploaded picture, put a <code>dc-pfp</code> span first inside the name, with the picture tag in a <code>pfp</code> span with alt text, and add a colour class for the name colour (there's more on this in Uploading a Profile Pic, below):</p>
+
+<div class="dc theme-auto"><div class="dc-message">
+  <p>
+    <b class="dc-name colour6"><span class="dc-pfp"><span class="pfp"><img src="https://64.media.tumblr.com/6898dc3a42cc6c7ab9729360b71366e4/ba033a52c8982cb0-bf/s2048x3072/b548d2fe61b02e530c0edd2ee6a6bd56ab73ad2c.jpg" alt="Profile picture of samthecat, a black and white cat screaming at the camera"></span></span>samthecat</b>
+    <span class="dc-time">Today at 9:16 AM</span>
+  </p>
+  <p><span class="dc-text">not me, I'm a cat</span></p>
+</div></div>
+
+<pre><code>&lt;div class="dc-message"&gt;
+  &lt;p&gt;
+    &lt;b class="dc-name colour6"&gt;&lt;span class="dc-pfp"&gt;&lt;span class="pfp"&gt;&lt;img src="https://64.media.tumblr.com/6898dc3a42cc6c7ab9729360b71366e4/ba033a52c8982cb0-bf/s2048x3072/b548d2fe61b02e530c0edd2ee6a6bd56ab73ad2c.jpg" alt="Profile picture of samthecat, a black and white cat screaming at the camera"&gt;&lt;/span&gt;&lt;/span&gt;samthecat&lt;/b&gt;
+    &lt;span class="dc-time"&gt;Today at 9:16 AM&lt;/span&gt;
+  &lt;/p&gt;
+  &lt;p&gt;&lt;span class="dc-text"&gt;not me, I'm a cat&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+
+<p>The colours for <code>colour1</code> to <code>colour10</code> are set in the core CSS and shared with every app, so you can change them there.</p>
 
 <h3 id="s16-8">16.8 Message Timestamp</h3>
 
@@ -565,7 +599,7 @@
   &lt;/p&gt;
 &lt;/div&gt;</code></pre>
 
-<p>It draws the curved line and the little preview of the message being replied to. Use the same colour class as the original sender's name, so the tiny profile picture matches - or, if they have a profile, the same <code>dc-pfp</code> span and profile name. Long previews get cut short with "..." automatically.</p>
+<p>It draws the curved line and the little preview of the message being replied to. Give the name in it the same look as the original sender's, so the tiny profile picture matches: the same colour class, the same <code>dc-pfp</code> span with their uploaded picture in it, or, if they have a profile, the same <code>dc-pfp</code> span and profile name. Long previews get cut short with "..." automatically.</p>
 
 <h3 id="s16-11">16.11 Uploading a Profile Pic</h3>
 
