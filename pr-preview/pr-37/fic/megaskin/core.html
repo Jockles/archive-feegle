@@ -6,7 +6,7 @@
   <title>Megaskin, Chapter 2: The Core, Themes, and Extras | jockles.com</title>
   <link rel="stylesheet" href="../../style.css">
   <script src="../../theme.js"></script>
-  <link rel="stylesheet" href="megaskin.css?v=a076db28" id="creator-style">
+  <link rel="stylesheet" href="megaskin.css?v=adb91122" id="creator-style">
 </head>
 <body>
 <header>
@@ -769,7 +769,7 @@
   <li><strong>Saved as:</strong> what the other characters have them saved as on their phones. <code>#workskin .mob.pov-ilya .name.pfp-shane::before { content: &quot;Jane&quot;; }</code> makes Shane show up as Jane on Ilya's phone. It goes in the profile of the person being named, so everything about how Shane shows up is in Shane's block.</li>
   <li><strong>Initials:</strong> a profile can put initials in the circle instead of a picture. <code>#workskin .pfp.pfp-holster::before { content: &quot;AB&quot;; }</code> gives Holster's circle "AB".</li>
   <li><strong>Their phone:</strong> a wallpaper for WhatsApp chats on their phone - a colour, or a picture with <code>background-image</code>.</li>
-  <li><strong>More than one account on the same app:</strong> a private account, a burner, a fan account. Give each extra account its own name, like <code>pfp-rose-private</code> or <code>pfp-ilya-burner</code>, with its own lines in the profile, and add that name next to the main one in your HTML whenever that account turns up. Rose has a private Instagram, and Ilya has two extra Twitter/X accounts.</li>
+  <li><strong>More than one account on the same app:</strong> a private account, a burner, a fan account. Give each extra account a name starting with <code>acc-</code>, like <code>acc-private</code> or <code>acc-burner</code>, with its own lines in the profile, and add that name in your HTML whenever that account turns up. Rose has a private Instagram, and Ilya has two extra Twitter/X accounts.</li>
 </ul>
 
 </details>
@@ -784,7 +784,7 @@
   <li><strong>Handle:</strong> <code>&lt;span class=&quot;handle pfp-stan&quot;&gt;&lt;/span&gt;</code></li>
   <li><strong>Email:</strong> <code>&lt;span class=&quot;email pfp-stan&quot;&gt;&lt;/span&gt;</code></li>
   <li><strong>Name colour:</strong> add <code>pfp-stan</code> to a WhatsApp <code>who</code> line or a Discord <code>dc-name</code>.</li>
-  <li><strong>Another account of theirs:</strong> add the account's name next to the main one, like <code>&lt;span class=&quot;handle pfp-ilya pfp-ilya-burner&quot;&gt;&lt;/span&gt;</code> for Ilya's burner.</li>
+  <li><strong>Another account of theirs:</strong> add the account's <code>acc-</code> name, like <code>&lt;span class=&quot;handle pfp-ilya acc-burner&quot;&gt;&lt;/span&gt;</code> for Ilya's burner.</li>
 </ul>
 
 <p>Each one shows what's in the profile for whichever app it's in. Here's Stan in every app he's on (he's not on Tumblr), all from the one profile:</p>

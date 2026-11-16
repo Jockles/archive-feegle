@@ -381,12 +381,12 @@
 /* 12. His phone: WhatsApp chats with pov-luca on the container. A colour, a gradient
    or a picture all work here. He uses theme-light. */
 #workskin .mob.wa.pov-luca { background: linear-gradient(#fdf1d6, #f6d5c2); }
-/* 13. More than one account on the same app: an art Tumblr (pfp-luca-art) and a hockey RPF Tumblr
-   (pfp-luca-rpf). Use them alongside his main profile: <span class="handle pfp-luca pfp-luca-art"> */
-#workskin .tb .pfp.pfp-luca.pfp-luca-art { background-image: linear-gradient(135deg, #ffd966, #e06666); }
-#workskin .tb .handle.pfp-luca.pfp-luca-art::after { content: "gremlin-sketches"; }
-#workskin .tb .pfp.pfp-luca.pfp-luca-rpf { background-image: linear-gradient(135deg, #3d85c6, #cc0000); }
-#workskin .tb .handle.pfp-luca.pfp-luca-rpf::after { content: "rink-rivals-rpf"; }
+/* 13. More than one account on the same app: an art Tumblr (acc-art) and a hockey RPF Tumblr
+   (acc-rpf). Add the acc- name: <span class="handle pfp-luca acc-art"> */
+#workskin .tb .pfp.pfp-luca.acc-art { background-image: linear-gradient(135deg, #ffd966, #e06666); }
+#workskin .tb .handle.pfp-luca.acc-art::after { content: "gremlin-sketches"; }
+#workskin .tb .pfp.pfp-luca.acc-rpf { background-image: linear-gradient(135deg, #3d85c6, #cc0000); }
+#workskin .tb .handle.pfp-luca.acc-rpf::after { content: "rink-rivals-rpf"; }
 
 /* PROFILE: Stan */
 #workskin .pfp.pfp-stan { background-image: url(https://images.squidge.org/images/2026/11/15/GayCrosedHockeySticks.png); }
@@ -429,19 +429,19 @@
 #workskin .email.pfp-holster::after { content: "birka@samwellU.edu"; }
 
 /* PROFILE: Rose - her public accounts (Twitter/X and Instagram) use her full name, and she has a
-   private second account on Instagram, pfp-rose-private. Use it alongside her main profile:
-   <span class="handle pfp-rose pfp-rose-private"> */
+   private second account on Instagram, acc-private. Add the acc- name:
+   <span class="handle pfp-rose acc-private"> */
 #workskin .pfp.pfp-rose { background-color: #c2416b; }
 #workskin .wa .who.pfp-rose, #workskin .dc .dc-name.pfp-rose { color: #d6336c; }
 #workskin .name.pfp-rose::before { content: "Rose"; }
 #workskin .tw .name.pfp-rose::before, #workskin .tw-reply .name.pfp-rose::before, #workskin .twdm .name.pfp-rose::before, #workskin .ig .name.pfp-rose::before, #workskin .igdm .name.pfp-rose::before { content: "Rose Landry"; }
 #workskin .handle.pfp-rose::after { content: "PoseyRosey"; }
 #workskin .tw .handle.pfp-rose::after, #workskin .tw-reply .handle.pfp-rose::after, #workskin .twdm .handle.pfp-rose::after, #workskin .ig .handle.pfp-rose::after, #workskin .igdm .handle.pfp-rose::after { content: "RoseLandry"; }
-/* her private Instagram: pfp-rose-private */
-#workskin .ig .pfp.pfp-rose.pfp-rose-private, #workskin .igdm .pfp.pfp-rose.pfp-rose-private { background-color: #8f2d4f; }
-#workskin .ig .pfp.pfp-rose.pfp-rose-private::before, #workskin .igdm .pfp.pfp-rose.pfp-rose-private::before { content: "R"; }
-#workskin .ig .name.pfp-rose.pfp-rose-private::before, #workskin .igdm .name.pfp-rose.pfp-rose-private::before { content: "Rose"; }
-#workskin .ig .handle.pfp-rose.pfp-rose-private::after, #workskin .igdm .handle.pfp-rose.pfp-rose-private::after { content: "rosie.after.dark"; }
+/* her private Instagram: acc-private */
+#workskin .ig .pfp.pfp-rose.acc-private, #workskin .igdm .pfp.pfp-rose.acc-private { background-color: #8f2d4f; }
+#workskin .ig .pfp.pfp-rose.acc-private::before, #workskin .igdm .pfp.pfp-rose.acc-private::before { content: "R"; }
+#workskin .ig .name.pfp-rose.acc-private::before, #workskin .igdm .name.pfp-rose.acc-private::before { content: "Rose"; }
+#workskin .ig .handle.pfp-rose.acc-private::after, #workskin .igdm .handle.pfp-rose.acc-private::after { content: "rosie.after.dark"; }
 
 /* PROFILE: Shane */
 #workskin .pfp.pfp-shane { background-image: url(https://www.shutterstock.com/shutterstock/photos/1100283806/display_1500/stock-photo-beautiful-lavender-flower-in-the-dalat-flower-park-selective-focus-1100283806.jpg); }
@@ -455,8 +455,8 @@
 #workskin .email.pfp-shane::after { content: "shane@example.com"; }
 #workskin .mob.wa.pov-shane { background: #dfeaf6; }
 
-/* PROFILE: Ilya - with two extra Twitter/X accounts, pfp-ilya-burner and pfp-ilya-shanewife. Use them
-   alongside his main profile: <span class="handle pfp-ilya pfp-ilya-burner"> */
+/* PROFILE: Ilya - with two extra Twitter/X accounts, acc-burner and acc-shanewife. Add the
+   acc- name: <span class="handle pfp-ilya acc-burner"> */
 #workskin .pfp.pfp-ilya { background-color: #b5433a; }
 #workskin .wa .who.pfp-ilya, #workskin .dc .dc-name.pfp-ilya { color: #d65548; }
 #workskin .name.pfp-ilya::before { content: "Ilya"; }
@@ -464,14 +464,14 @@
 #workskin .handle.pfp-ilya::after { content: "irozanov"; }
 #workskin .ig .handle.pfp-ilya::after, #workskin .igdm .handle.pfp-ilya::after { content: "ilya.r"; }
 #workskin .mob.wa.pov-ilya { background: #1b1f2b; }
-/* his burner Twitter/X: pfp-ilya-burner */
-#workskin .tw .pfp.pfp-ilya.pfp-ilya-burner, #workskin .tw-reply .pfp.pfp-ilya.pfp-ilya-burner, #workskin .twdm .pfp.pfp-ilya.pfp-ilya-burner { background-color: #8899a6; }
-#workskin .tw .name.pfp-ilya.pfp-ilya-burner::before, #workskin .tw-reply .name.pfp-ilya.pfp-ilya-burner::before, #workskin .twdm .name.pfp-ilya.pfp-ilya-burner::before { content: "hockey fan"; }
-#workskin .tw .handle.pfp-ilya.pfp-ilya-burner::after, #workskin .tw-reply .handle.pfp-ilya.pfp-ilya-burner::after, #workskin .twdm .handle.pfp-ilya.pfp-ilya-burner::after { content: "definitely_not_ilya"; }
-/* his Shane fan account on Twitter/X: pfp-ilya-shanewife */
-#workskin .tw .pfp.pfp-ilya.pfp-ilya-shanewife, #workskin .tw-reply .pfp.pfp-ilya.pfp-ilya-shanewife, #workskin .twdm .pfp.pfp-ilya.pfp-ilya-shanewife { background-color: #3a7bd5; }
-#workskin .tw .name.pfp-ilya.pfp-ilya-shanewife::before, #workskin .tw-reply .name.pfp-ilya.pfp-ilya-shanewife::before, #workskin .twdm .name.pfp-ilya.pfp-ilya-shanewife::before { content: "Shane Hollander's Wife"; }
-#workskin .tw .handle.pfp-ilya.pfp-ilya-shanewife::after, #workskin .tw-reply .handle.pfp-ilya.pfp-ilya-shanewife::after, #workskin .twdm .handle.pfp-ilya.pfp-ilya-shanewife::after { content: "hollanderswife"; }
+/* his burner Twitter/X: acc-burner */
+#workskin .tw .pfp.pfp-ilya.acc-burner, #workskin .tw-reply .pfp.pfp-ilya.acc-burner, #workskin .twdm .pfp.pfp-ilya.acc-burner { background-color: #8899a6; }
+#workskin .tw .name.pfp-ilya.acc-burner::before, #workskin .tw-reply .name.pfp-ilya.acc-burner::before, #workskin .twdm .name.pfp-ilya.acc-burner::before { content: "hockey fan"; }
+#workskin .tw .handle.pfp-ilya.acc-burner::after, #workskin .tw-reply .handle.pfp-ilya.acc-burner::after, #workskin .twdm .handle.pfp-ilya.acc-burner::after { content: "definitely_not_ilya"; }
+/* his Shane fan account on Twitter/X: acc-shanewife */
+#workskin .tw .pfp.pfp-ilya.acc-shanewife, #workskin .tw-reply .pfp.pfp-ilya.acc-shanewife, #workskin .twdm .pfp.pfp-ilya.acc-shanewife { background-color: #3a7bd5; }
+#workskin .tw .name.pfp-ilya.acc-shanewife::before, #workskin .tw-reply .name.pfp-ilya.acc-shanewife::before, #workskin .twdm .name.pfp-ilya.acc-shanewife::before { content: "Shane Hollander's Wife"; }
+#workskin .tw .handle.pfp-ilya.acc-shanewife::after, #workskin .tw-reply .handle.pfp-ilya.acc-shanewife::after, #workskin .twdm .handle.pfp-ilya.acc-shanewife::after { content: "hollanderswife"; }
 
 /* ==========================================================
    COLOURS: colour1 to colour10
