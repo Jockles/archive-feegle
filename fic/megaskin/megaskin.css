@@ -505,7 +505,7 @@
 #workskin .mob.pov-ilya .name.pfp-shane::before { content: "Jane"; }
 #workskin .handle.pfp-shane::after { content: "ShaneHollanderHockeyPlayer"; }
 #workskin .ig .handle.pfp-shane::after, #workskin .igdm .handle.pfp-shane::after { content: "shanehollanderhockeyplayer"; }
-#workskin .tb .handle.pfp-shane::after { content: "hollanderhockey"; }
+#workskin .tb .handle.pfp-shane::after { content: "alliknowishockey"; }
 #workskin .dc .handle.pfp-shane::after { content: "shanehollander"; }
 #workskin .email.pfp-shane::after { content: "shane@example.com"; }
 #workskin .mob.wa.pov-shane { background: #dfeaf6; }
