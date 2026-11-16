@@ -67,6 +67,7 @@
     S = { v: 1, pasted: "", cast: [], blocks: [] };
     ex.cast.forEach(function (p) {
       var c = newChar(p.name);
+      c.open = false; // examples load with the cast folded up
       ["colour", "initials", "pic", "alt", "num", "land"].forEach(function (k) { if (p[k]) c[k] = p[k]; });
       S.cast.push(c);
       ids[p.name] = c.id;
