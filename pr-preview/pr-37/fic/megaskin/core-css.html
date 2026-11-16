@@ -443,7 +443,7 @@
 <p>Here's what each line does:</p>
 
 <ol>
-  <li><strong>The picture.</strong> Any <code>pfp</code> span that also has <code>pfp-stan</code> gets this picture, in every app, so you only add the link once - however many times he turns up. Swap the link for your character's picture, ending in <code>.jpg</code>, <code>.png</code> or <code>.gif</code>. For a plain colour instead, use <code>background-color: #c06a1f;</code>, like Ilya's. To put initials in the circle, add a line like <code>#workskin .pfp.pfp-stan::before { content: &quot;S&quot;; }</code>, like Holster's.</li>
+  <li><strong>The picture.</strong> Any <code>pfp</code> span that also has <code>pfp-stan</code> gets this picture, in every app, so you only add the link once - however many times he turns up. Swap the link for your character's picture, ending in <code>.jpg</code>, <code>.png</code> or <code>.gif</code>. For a plain colour instead, use <code>background-color: #7d4fb0;</code>, like Yuna's. To put initials in the circle, add a line like <code>#workskin .pfp.pfp-stan::before { content: &quot;S&quot;; }</code>, like Holster's.</li>
   <li><strong>The name colour.</strong> WhatsApp group names and Discord usernames are coloured, so this is Stan's colour in both. It does the same job as <code>colour1</code> to <code>colour10</code>, just for one character, so you don't need a colour class as well. Pick a colour you can read on white and on black, because readers will see it in both themes.</li>
   <li><strong>The name.</strong> <code>&lt;span class=&quot;name pfp-stan&quot;&gt;&lt;/span&gt;</code> is an empty span, and <code>::before</code> with <code>content</code> fills it in with "Stan".</li>
   <li><strong>The handle.</strong> The same idea for <code>&lt;span class=&quot;handle pfp-stan&quot;&gt;&lt;/span&gt;</code>, but with <code>::after</code>. Leave the @ off - Twitter/X adds it for you (there's more on why in line 8 of Luca's, below).</li>
@@ -471,12 +471,12 @@
 
 <ul>
   <li><strong>Stan</strong> (<code>pfp-stan</code>): Stan has the same appearance on every app - one picture, one name, one handle - so he only has the five lines every profile needs.</li>
-  <li><strong>Yuna</strong> (<code>pfp-yuna</code>): Yuna has a work life and a family life, so she has a separate work email, a nickname line for how she's saved on her son's phone, and a wallpaper line for her own phone.</li>
+  <li><strong>Yuna</strong> (<code>pfp-yuna</code>): Yuna has a work life and a family life, and a plain coloured circle instead of a picture. She has a separate work email, a nickname line for how she's saved on her son's phone, and a wallpaper line for her own phone.</li>
   <li><strong>Zim</strong> (<code>pfp-zim</code>): Jack only has a different appearance on one app, so he only has those lines added - a different name and handle on Twitter/X.</li>
   <li><strong>Holster</strong> (<code>pfp-holster</code>): Holster only has a picture on one app, so that's the only picture line. Everywhere else he has initials, with a different circle colour on some apps.</li>
   <li><strong>Rose</strong> (<code>pfp-rose</code> and <code>pfp-rose-private</code>): Rose keeps her public and private accounts separate, so her private Instagram is a whole second profile with its own handle.</li>
   <li><strong>Shane</strong> (<code>pfp-shane</code>): Shane is a main character who shows up everywhere, so he has a bit of everything - a real picture, a nickname on his partner's phone, a slightly different handle on each app, and a wallpaper for his own phone.</li>
-  <li><strong>Ilya</strong> (<code>pfp-ilya</code>): Ilya doesn't have a picture yet, so he has a plain colour ready to swap for one, plus a nickname line and a wallpaper line for his own phone.</li>
+  <li><strong>Ilya</strong> (<code>pfp-ilya</code>): Ilya is the other main character, so he has a nickname line for how he's saved on Shane's phone, a different handle on Instagram, and a wallpaper line for his own phone.</li>
   <li><strong>Luca</strong> (<code>pfp-luca</code>): Luca has every option at once, so you can see them all working together - he's explained line by line in Every Option: Luca, below.</li>
 </ul>
 
@@ -494,7 +494,7 @@
 
 <pre><code>#workskin .pfp.pfp-luca { background-image: url(https://example.com/luca.jpg); }</code></pre>
 
-<p>Any <code>pfp</code> span that also has <code>pfp-luca</code> gets this picture as its background. <code>background-size: cover</code>, from Round Pictures above, crops it to the circle. For a plain colour instead, use <code>background-color: #c06a1f;</code>, like Ilya's.</p>
+<p>Any <code>pfp</code> span that also has <code>pfp-luca</code> gets this picture as its background. <code>background-size: cover</code>, from Round Pictures above, crops it to the circle. For a plain colour instead, use <code>background-color: #7d4fb0;</code>, like Yuna's.</p>
 
 <p><strong>2. A different picture on one app</strong></p>
 
