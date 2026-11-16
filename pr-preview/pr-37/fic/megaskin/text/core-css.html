@@ -373,10 +373,10 @@
 
 <h4>A Simple Profile: Stan</h4>
 
-<p>To make a profile for one of your characters, you only need five lines. Here they are for Stan, the simplest profile in the skin. Copy his block into the core CSS, then change <code>stan</code> to your character's name everywhere in it, and swap in their colour, name, handle and email address:</p>
+<p>To make a profile for one of your characters, you only need five lines. Here they are for Stan, the simplest profile in the skin. Copy his block into the core CSS, then change <code>stan</code> to your character's name everywhere in it, and swap in their picture, name colour, name, handle and email address:</p>
 
 <pre><code>/* PROFILE: Stan */
-#workskin .pfp.pfp-stan { background-color: #c06a1f; }
+#workskin .pfp.pfp-stan { background-image: url(https://images.squidge.org/images/2026/11/15/GayCrosedHockeySticks.png); }
 #workskin .wa .who.pfp-stan, #workskin .dc .dc-name.pfp-stan { color: #d2782a; }
 #workskin .name.pfp-stan::before { content: "Stan"; }
 #workskin .handle.pfp-stan::after { content: "PuckStan"; }
@@ -385,7 +385,7 @@
 <p>Here's what each line does:</p>
 
 <ol>
-  <li><strong>The picture.</strong> Any <code>pfp</code> span that also has <code>pfp-stan</code> gets this. Stan doesn't have a photo, so his is just a plain orange circle (<code>background-color</code>). For a real picture, swap it for <code>background-image: url(https://example.com/stan.jpg);</code>, like Luca's below. To put initials in the circle, add a line like <code>#workskin .pfp.pfp-stan::before { content: &quot;S&quot;; }</code>, like Holster's.</li>
+  <li><strong>The picture.</strong> Any <code>pfp</code> span that also has <code>pfp-stan</code> gets this picture, in every app, so you only add the link once - however many times he turns up. Swap the link for your character's picture, ending in <code>.jpg</code>, <code>.png</code> or <code>.gif</code>. For a plain colour instead, use <code>background-color: #c06a1f;</code>, like Ilya's. To put initials in the circle, add a line like <code>#workskin .pfp.pfp-stan::before { content: &quot;S&quot;; }</code>, like Holster's.</li>
   <li><strong>The name colour.</strong> WhatsApp group names and Discord usernames are coloured, so this is Stan's colour in both. It does the same job as <code>colour1</code> to <code>colour10</code>, just for one character, so you don't need a colour class as well. Pick a colour you can read on white and on black, because readers will see it in both themes.</li>
   <li><strong>The name.</strong> <code>&lt;span class=&quot;name pfp-stan&quot;&gt;&lt;/span&gt;</code> is an empty span, and <code>::before</code> with <code>content</code> fills it in with "Stan".</li>
   <li><strong>The handle.</strong> The same idea for <code>&lt;span class=&quot;handle pfp-stan&quot;&gt;&lt;/span&gt;</code>, but with <code>::after</code>. Leave the @ off - Twitter/X adds it for you (there's more on why in line 8 of Luca's, below).</li>
@@ -412,7 +412,7 @@
 <summary>The example profiles in the skin</summary>
 
 <ul>
-  <li><strong>Stan</strong> (<code>pfp-stan</code>): Stan looks the same everywhere, so he only has the five lines every profile needs.</li>
+  <li><strong>Stan</strong> (<code>pfp-stan</code>): Stan has the same appearance on every app - one picture, one name, one handle - so he only has the five lines every profile needs.</li>
   <li><strong>Yuna</strong> (<code>pfp-yuna</code>): Yuna has a work life and a family life, so she has a separate work email, a nickname line for how she's saved on her son's phone, and a wallpaper line for her own phone.</li>
   <li><strong>Zim</strong> (<code>pfp-zim</code>): Jack only has a different appearance on one app, so he only has those lines added - a different name and handle on Twitter/X.</li>
   <li><strong>Holster</strong> (<code>pfp-holster</code>): Holster only has a picture on one app, so that's the only picture line. Everywhere else he has initials, with a different circle colour on some apps.</li>
@@ -436,7 +436,7 @@
 
 <pre><code>#workskin .pfp.pfp-luca { background-image: url(https://example.com/luca.jpg); }</code></pre>
 
-<p>Any <code>pfp</code> span that also has <code>pfp-luca</code> gets this picture as its background. <code>background-size: cover</code>, from Round Pictures above, crops it to the circle. For a plain colour instead, use <code>background-color: #c06a1f;</code>, like Stan's.</p>
+<p>Any <code>pfp</code> span that also has <code>pfp-luca</code> gets this picture as its background. <code>background-size: cover</code>, from Round Pictures above, crops it to the circle. For a plain colour instead, use <code>background-color: #c06a1f;</code>, like Ilya's.</p>
 
 <p><strong>2. A different picture on one app</strong></p>
 
