@@ -287,6 +287,31 @@
 
 <p>The quote is big and in a serif font, and the curly quotation marks are added before and after it - <code>\201C</code> is “ and <code>\201D</code> is ”. The chat post is in a typewriter font.</p>
 
+<h3>Polls</h3>
+
+<pre><code>#workskin .tb .tb-body .tb-opt {
+  display: flex;
+  align-items: center;
+  margin: 0.45em 0.9em;
+  padding: 0.6em 0.9em;
+  border-radius: 8px;
+  background-color: #f0f0f0;
+  background-repeat: no-repeat;
+  background-size: 0% 100%;
+  font-weight: bold;
+  line-height: 1.3;
+}
+
+#workskin .tb .tb-body .tb-opt.res { background-image: linear-gradient(#dcdcdc, #dcdcdc); }
+
+#workskin .tb .tb-opt .tb-pct { margin-left: auto; padding-left: 0.8em; font-weight: normal; white-space: nowrap; }
+
+#workskin .tb .tb-opt.p50 { background-size: 50% 100%; }</code></pre>
+
+<p>This is built on the Twitter poll (see <a href="twitter-x-css.html#heading">Polls</a>). Each option is a grey box with rounded corners. With <code>res</code>, a darker bar is drawn across it as a background: <code>linear-gradient</code> with the same colour twice is just a block of colour, and <code>background-size</code> sets how wide it is, so <code>p50</code> fills half the box. There's one line like that for each bar size. The box is a flex row, so <code>margin-left: auto</code> pushes the percentage to the right-hand end.</p>
+
+<p>The <code>.tb-body</code> in the first two rules is there so they win over the body's own paragraph spacing. <code>tb-pollinfo</code> is the small grey centred line underneath. In dark posts the box, the bar and the line are darker.</p>
+
 <h3>Pictures and Gifs</h3>
 
 <pre><code>#workskin .tb .tb-body .tb-row {
@@ -430,6 +455,7 @@
   <li><strong>Asks:</strong> <code>tb-ask</code>, <code>tb-answer</code>, <code>tb-asker</code> and <code>tb-ask-pfp</code>.</li>
   <li><strong>Quote posts:</strong> <code>tb-quote</code> and <code>tb-source</code>.</li>
   <li><strong>Chat posts:</strong> <code>tb-chat</code>.</li>
+  <li><strong>Polls:</strong> <code>tb-opt</code>, <code>tb-pct</code> and <code>tb-pollinfo</code>.</li>
   <li><strong>Pictures and gifs:</strong> <code>tb-photos</code>, <code>tb-row</code> and <code>tb-photo</code>.</li>
   <li><strong>Mentions:</strong> <code>tb-at</code>.</li>
   <li><strong>Checkmarks:</strong> <code>tb-check</code>, <code>tb-checks</code> and the <code>ic-checks</code> lines in the Icons section.</li>
