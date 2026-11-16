@@ -135,6 +135,9 @@
 #workskin .dc .dc-reply .pfp::before,
 #workskin .ig .ig-like-pfp .pfp::before { font-size: 0.4em; }
 
+/* Instagram's account picture is bigger than its text, so its initials need a bigger size */
+#workskin .ig .ig-top .ig-pfp .pfp::before { font-size: 1.1em; }
+
 #workskin .pfp img {
   position: absolute;
   top: 0;

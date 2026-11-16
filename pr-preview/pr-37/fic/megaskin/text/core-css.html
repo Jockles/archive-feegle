@@ -213,7 +213,7 @@
 
 <p>A circle with no picture in it shows initials on a plain colour instead. The colours for that, <code>colour1</code> to <code>colour10</code>, are near the end of the core - see The Ten Colours, below.</p>
 
-<p>A profile can have initials too, set in the CSS instead of typed into each circle. This rule centres them in the circle in white, and the second one makes them smaller in the tiny circles in Discord replies and Instagram's "Liked by" line:</p>
+<p>A profile can have initials too, set in the CSS instead of typed into each circle. This rule centres them in the circle in white, the second one makes them smaller in the tiny circles in Discord replies and Instagram's "Liked by" line, and the third makes them a bit bigger in Instagram's account picture:</p>
 
 <pre><code>#workskin .pfp::before {
   display: flex;
@@ -228,7 +228,9 @@
 }
 
 #workskin .dc .dc-reply .pfp::before,
-#workskin .ig .ig-like-pfp .pfp::before { font-size: 0.4em; }</code></pre>
+#workskin .ig .ig-like-pfp .pfp::before { font-size: 0.4em; }
+
+#workskin .ig .ig-top .ig-pfp .pfp::before { font-size: 1.1em; }</code></pre>
 
 <p>It doesn't do anything until a profile gives it some text, like Holster's does (see Character Profiles, Line by Line, below).</p>
 
