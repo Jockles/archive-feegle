@@ -46,7 +46,7 @@
     var col = 1;
     for (var i = 1; i <= 10; i++) if (used.indexOf(i) < 0) { col = i; break; }
     return { id: nid("c"), name: name || "", kind: kind || "oneoff", example: "shane", colour: String(col),
-      custom: "#888888", showInitials: true, initials: "", pic: "", alt: "", num: "", prof: newProfile() };
+      showInitials: true, initials: "", pic: "", alt: "", num: "", prof: newProfile() };
   }
   function newMsg(from, text, time) {
     return { id: nid("m"), from: from || "", text: text || "", time: time || "", open: false,
@@ -118,8 +118,8 @@
     if (c.num.trim()) return "~ " + n + '<span class="hide"> </span><span class="wa-num">' + esc(c.num.trim()) + "</span>";
     return n;
   }
-  // a one-off's colour class: colour1 to colour10 from the skin, or their own colour (CSS made below)
-  function colourClass(c) { return c.colour === "custom" ? "colour-" + (MP.slugify(nameOf(c)) || "own") : "colour" + c.colour; }
+  // a one-off's colour class: colour1 to colour10 from the skin
+  function colourClass(c) { return "colour" + c.colour; }
   function picUrl(v) { return MP.url(v) ? v.trim() : ""; }
 
   // inline extras inside any text: [[shown|translation]], {{shown|hidden}}, ~~crossed out~~, <<fake link>>
@@ -340,18 +340,8 @@
       email: p.email, apps: p.apps, dccol: p.dccolon ? p.dccol : "", tbsq: p.tbsq, saved: p.saved, accounts: p.accounts,
       wallcol: p.wallcolon ? p.wallcol : "", wallcolDefault: p.wallcol, wallpic: p.wallpic };
   }
-  // CSS for one-offs with their own colour: the circle and the name, in every app
-  function customColourCSS(c) {
-    var k = "." + colourClass(c), col = c.custom;
-    return "/* OWN COLOUR: " + nameOf(c).replace(/\*\//g, "") + " */\n" +
-      ["wa .wa-pfp", "tw .tw-pfp", "tw-reply .tw-pfp", "tb .tb-pfp", "tb .tb-ask-pfp", "gm .gm-pfp", "ig .ig-pfp", "ig .ig-like-pfp"]
-        .map(function (x) { return "#workskin ." + x + k; }).join(", ") + ", #workskin .dc .dc-name" + k + "::before { background-color: " + col + "; }\n" +
-      "#workskin .wa .who" + k + ", #workskin .wa .wa-quote" + k + " b, #workskin .dc " + k + " { color: " + col + "; }\n" +
-      "#workskin .wa .wa-quote" + k + " { border-left-color: " + col + "; }";
-  }
   function profilesCSS() {
-    return S.cast.filter(function (c) { return c.kind === "new"; }).map(function (c) { return MP.css(profileData(c)).css; })
-      .concat(S.cast.filter(function (c) { return c.kind === "oneoff" && c.colour === "custom"; }).map(customColourCSS)).join("\n\n");
+    return S.cast.filter(function (c) { return c.kind === "new"; }).map(function (c) { return MP.css(profileData(c)).css; }).join("\n\n");
   }
 
   // ---------- editor ----------
@@ -390,8 +380,8 @@
       h.push(field(P + ".example", "Which one", { type: "select", re: true, options: EXAMPLES }));
     } else if (c.kind === "oneoff") {
       // picture circle: a colour, initials yes or no, then an optional picture
-      h.push('<div class="fb-row">' + field(P + ".colour", "", { type: "select", re: true, options: Object.keys(COLOURS).map(function (k) { return [k, "Colour " + k]; }).concat([["custom", "My own colour"]]) }) +
-        (c.colour === "custom" ? field(P + ".custom", "", { type: "color" }) : '<span class="fb-swatch" style="background:' + COLOURS[c.colour] + '"></span>') + "</div>");
+      h.push('<div class="fb-row">' + field(P + ".colour", "", { type: "select", re: true, options: Object.keys(COLOURS).map(function (k) { return [k, "Colour " + k]; }) }) +
+        '<span class="fb-swatch" style="background:' + COLOURS[c.colour] + '"></span>' + "</div>");
       h.push('<div class="fb-row">' + field(P + ".showInitials", "Initials in the circle", { type: "check", re: true }) +
         (c.showInitials !== false ? field(P + ".initials", "", { ph: initials(c) }) : "") + "</div>");
       h.push(field(P + ".pic", "Picture link (optional)", { type: "url", ph: "https://..." }));
