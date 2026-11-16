@@ -6,7 +6,7 @@
   <title>Megaskin, Chapter 12: Tumblr | jockles.com</title>
   <link rel="stylesheet" href="../../style.css">
   <script src="../../theme.js"></script>
-  <link rel="stylesheet" href="megaskin.css?v=f4a9d6dc" id="creator-style">
+  <link rel="stylesheet" href="megaskin.css?v=ca74eb54" id="creator-style">
 </head>
 <body>
 <header>
@@ -372,6 +372,27 @@
 <h3 id="s12-7">12.7 Verified Ticks and the Follow Button</h3>
 
 <p>Some blogs have coloured checkmarks after their names. On Tumblr these are bought for fun - lots of people have them as a joke - so they don't mean a blog is verified, and you can give them to any blog you like. They come in twos, fours or sixes, and always in the same colour order: blue and green, then lime and yellow, then amber and orange. So two checkmarks are always blue and green, and the other colours only show up on blogs with four or six. Add a <code>tb-check</code> span for each one, straight after the name, like <code>&lt;span class=&quot;tb-check&quot;&gt;&#10003;&lt;/span&gt;&lt;span class=&quot;tb-check&quot;&gt;&#10003;&lt;/span&gt;</code>, and the colours are added for you in the right order. Tumblr has lots of other badges too, but the skin only does the checkmarks.</p>
+
+<p>If a blog belongs to a character with a profile, the checkmarks can go in the profile instead, so they show up every time you use that blog without adding any spans. Luca's main blog has two this way, and his art blog has six:</p>
+
+<div class="mob tb theme-auto"><div class="tb-body"><div class="tb-reblog"><p class="tb-blog">
+  <span class="tb-pfp"><span class="pfp pfp-luca acc-art"></span></span>
+  <span class="tb-menu">&#8226;&#8226;&#8226;</span>
+  <span class="tb-name"><b><span class="handle pfp-luca acc-art"><span class="hide">gremlin-sketches</span></span></b>
+    <span class="tb-subline">2h ago</span></span>
+</p><p>new sketch of the cat. he would not sit still</p></div></div></div>
+
+<pre><code>#workskin .tb .handle.pfp-luca.acc-art::after { background-image: url(https://images.squidge.org/images/2026/11/15/tb-checks-6.png); padding-right: 6.2em; }</code></pre>
+
+<p>Swap <code>pfp-luca.acc-art</code> for your character's profile (and their <code>acc-</code> name, if it's for another of their blogs). There are three pictures, one for each number of checkmarks, and each has its own padding:</p>
+
+<ul>
+  <li>Two: <code>https://images.squidge.org/images/2026/11/15/tb-checks-2.png</code> with <code>padding-right: 2.15em;</code></li>
+  <li>Four: <code>https://images.squidge.org/images/2026/11/15/tb-checks-4.png</code> with <code>padding-right: 4.2em;</code></li>
+  <li>Six: <code>https://images.squidge.org/images/2026/11/15/tb-checks-6.png</code> with <code>padding-right: 6.2em;</code></li>
+</ul>
+
+<p>The line goes at the end of their profile. An extra account without its own line gets the main blog's checkmarks.</p>
 
 <p>A Follow button is <code>&lt;span class=&quot;tb-follow&quot;&gt;&lt;span&gt;Follow&lt;/span&gt;&lt;/span&gt;</code>. It goes after the three dots and before the name, which is why everything on the right-hand side comes first in the code below:</p>
 

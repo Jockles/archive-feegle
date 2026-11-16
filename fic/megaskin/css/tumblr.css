@@ -134,6 +134,9 @@
 
 #workskin .tb .tb-check + .tb-check + .tb-check + .tb-check + .tb-check + .tb-check { background: #f08b37; }
 
+/* checkmarks from a profile: the profile adds the picture and the padding to make room for it */
+#workskin .tb .handle::after { background-repeat: no-repeat; background-position: right center; background-size: auto 0.9em; }
+
 #workskin .tb .tb-follow { display: block; float: right; margin: 2px 0 0 0.5em; }
 
 #workskin .tb .tb-follow span {
