@@ -509,7 +509,7 @@
       h.push('<ol class="fb-msgs">' + b.msgs.map(function (m, mi) { return msgRow(b, i, m, mi); }).join("") + "</ol>");
       h.push('<div class="fb-script">' + field(P + ".script", "Type or paste messages", { type: "area", rows: 4,
         ph: "Ilya: are you awake\nShane: no\n-- Today 11:48 PM" }) +
-        '<p class="hint">One message per line, starting with who\'s talking and a colon. A line on its own with no name carries on from the last person. Start a line with -- for a date or notice line' + ". New names are added to the cast.</p>" +
+        '<p class="hint">One message per line, starting with who\'s talking and a colon. A line on its own with no name carries on from the last person. Start a line with -- for a date or notice line, and put a time first if you like, like 09:15 Lily: hi. New names are added to the cast.</p>' +
         btn("script:" + i, "Add these messages") + " " + btn("msg-add:" + i, "+ One empty message") + "</div>");
     }
     h.push("</section>");
@@ -549,8 +549,10 @@
       line = line.trim();
       if (!line) return;
       if (/^--/.test(line)) { b.msgs.push(newMsg("sys", line.replace(/^-+\s*/, ""))); return; }
+      var tm = line.match(/^(\d{1,2}[:.]\d{2})\s+(.*)$/); // a time first, like "09:15 Lily: hi"
+      if (tm) { time = tm[1]; line = tm[2]; }
       var sp = line.match(/^([^:]{1,40}):\s*(.*)$/);
-      if (sp && !/^https?$/i.test(sp[1].trim())) {
+      if (sp && !/^https?$/i.test(sp[1].trim())) { // "https:" isn't a name
         var c = findChar(sp[1]);
         if (!c) { c = newChar(sp[1].trim()); S.cast.push(c); }
         from = c.id; line = sp[2];
