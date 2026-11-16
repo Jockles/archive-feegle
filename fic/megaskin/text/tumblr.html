@@ -143,7 +143,10 @@
 
 <h3>Posts on the Feed</h3>
 
-<div class="tb-feed">
+<div class="tb-feed app">
+  <div class="tb-screen">
+    <p class="tb-top"><span class="tb-logo">t</span> <span class="tb-topicon ic ic-tb-shop">&#127978;</span> <span class="tb-topicon ic ic-tb-gem">&#128142;</span></p>
+    <p class="tb-tabs"><span class="tb-tab on">Following</span> <span class="tb-tab">For you</span> <span class="tb-tab">Your tags</span> <span class="tb-topicon ic ic-tb-filter">&#8801;</span></p>
   <div class="mob tb theme-auto">
     <p class="tb-header">
       <span class="tb-pfp"><span class="pfp pfp-luca acc-art"></span></span>
@@ -231,12 +234,17 @@
       <span class="tb-icon ic ic-share-up">&#8679;</span>
     </p>
   </div>
+  </div>
+  <p class="tb-nav"><span class="on ic ic-tb-home">&#8962;</span> <span class="ic ic-tb-search">&#128269;</span> <span class="ic ic-tb-community">&#128101;</span> <span class="ic ic-tb-activity">&#9889;</span> <span class="ic ic-tb-profile">&#128100;</span></p>
 </div>
 
 <details>
 <summary>The full HTML for these posts</summary>
 
-<pre><code>&lt;div class="tb-feed"&gt;
+<pre><code>&lt;div class="tb-feed app"&gt;
+  &lt;div class="tb-screen"&gt;
+    &lt;p class="tb-top"&gt;&lt;span class="tb-logo"&gt;t&lt;/span&gt; &lt;span class="tb-topicon ic ic-tb-shop"&gt;&amp;#127978;&lt;/span&gt; &lt;span class="tb-topicon ic ic-tb-gem"&gt;&amp;#128142;&lt;/span&gt;&lt;/p&gt;
+    &lt;p class="tb-tabs"&gt;&lt;span class="tb-tab on"&gt;Following&lt;/span&gt; &lt;span class="tb-tab"&gt;For you&lt;/span&gt; &lt;span class="tb-tab"&gt;Your tags&lt;/span&gt; &lt;span class="tb-topicon ic ic-tb-filter"&gt;&amp;#8801;&lt;/span&gt;&lt;/p&gt;
   &lt;div class="mob tb theme-auto"&gt;
     &lt;p class="tb-header"&gt;
       &lt;span class="tb-pfp"&gt;&lt;span class="pfp pfp-luca acc-art"&gt;&lt;/span&gt;&lt;/span&gt;
@@ -324,6 +332,8 @@
       &lt;span class="tb-icon ic ic-share-up"&gt;&amp;#8679;&lt;/span&gt;
     &lt;/p&gt;
   &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;p class="tb-nav"&gt;&lt;span class="on ic ic-tb-home"&gt;&amp;#8962;&lt;/span&gt; &lt;span class="ic ic-tb-search"&gt;&amp;#128269;&lt;/span&gt; &lt;span class="ic ic-tb-community"&gt;&amp;#128101;&lt;/span&gt; &lt;span class="ic ic-tb-activity"&gt;&amp;#9889;&lt;/span&gt; &lt;span class="ic ic-tb-profile"&gt;&amp;#128100;&lt;/span&gt;&lt;/p&gt;
 &lt;/div&gt;</code></pre>
 
 </details>
@@ -903,6 +913,20 @@
 <p>The replies, reblogs and likes always take a third of the row each, so they line up from post to post whatever the numbers are. If a post has no replies, Tumblr just shows the button, so leave out the number and its <code>hide</code> span: <code>&lt;span class=&quot;tb-stat&quot;&gt;&lt;span class=&quot;tb-icon ic ic-comment&quot;&gt;&amp;#9993;&lt;/span&gt;&lt;/span&gt;</code>. You can leave the share button out too, or the whole row.</p>
 
 <h3>The Feed Background</h3>
+
+<p>The feed at the top of the chapter is a whole phone screen, like the app: Tumblr's bar along the top with the Following, For you and Your tags tabs, the posts, and the buttons along the bottom. The bar at the top scrolls away with the posts, and the buttons at the bottom stay put. Add <code>app</code> to the feed, put a <code>tb-screen</code> box inside it holding the top bar and your posts, and put the <code>tb-nav</code> buttons after it:</p>
+
+<pre><code>&lt;div class="tb-feed app"&gt;
+  &lt;div class="tb-screen"&gt;
+    &lt;p class="tb-top"&gt;&lt;span class="tb-logo"&gt;t&lt;/span&gt; &lt;span class="tb-topicon ic ic-tb-shop"&gt;&amp;#127978;&lt;/span&gt; &lt;span class="tb-topicon ic ic-tb-gem"&gt;&amp;#128142;&lt;/span&gt;&lt;/p&gt;
+    &lt;p class="tb-tabs"&gt;&lt;span class="tb-tab on"&gt;Following&lt;/span&gt; &lt;span class="tb-tab"&gt;For you&lt;/span&gt; &lt;span class="tb-tab"&gt;Your tags&lt;/span&gt; &lt;span class="tb-topicon ic ic-tb-filter"&gt;&amp;#8801;&lt;/span&gt;&lt;/p&gt;
+
+    [your posts go here]
+  &lt;/div&gt;
+  &lt;p class="tb-nav"&gt;&lt;span class="on ic ic-tb-home"&gt;&amp;#8962;&lt;/span&gt; &lt;span class="ic ic-tb-search"&gt;&amp;#128269;&lt;/span&gt; &lt;span class="ic ic-tb-community"&gt;&amp;#128101;&lt;/span&gt; &lt;span class="ic ic-tb-activity"&gt;&amp;#9889;&lt;/span&gt; &lt;span class="ic ic-tb-profile"&gt;&amp;#128100;&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+
+<p>Move <code>on</code> to a different tab to show a different one picked. The posts inside the screen don't scroll on their own - the whole screen scrolls instead.</p>
 
 <p>In the Tumblr app, the white cards sit on a dark navy background (or black in dark mode). To get that, wrap one or more posts in a <code>tb-feed</code>, like the posts on the feed at the top of the chapter, and the cards sit on it with a gap between each one: <code>&lt;div class=&quot;tb-feed&quot;&gt;</code>, then your posts, then <code>&lt;/div&gt;</code>. Add <code>black</code> for the black version, <code>&lt;div class=&quot;tb-feed black&quot;&gt;</code>, or <code>classic</code> for the old Tumblr blue, <code>&lt;div class=&quot;tb-feed classic&quot;&gt;</code>. The feed colour is separate from the posts' own light, dark or auto theme, so you can mix them however you like, and you can change it to any colour in the CSS (see <a href="tumblr-css.html#heading">The Feed</a>).</p>
 

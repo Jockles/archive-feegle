@@ -6,7 +6,7 @@
   <title>Megaskin, Chapter 13: Tumblr CSS | jockles.com</title>
   <link rel="stylesheet" href="../../style.css">
   <script src="../../theme.js"></script>
-  <link rel="stylesheet" href="megaskin.css?v=1718c3eb" id="creator-style">
+  <link rel="stylesheet" href="megaskin.css?v=fab08cc8" id="creator-style">
 </head>
 <body>
 <header>
@@ -49,8 +49,9 @@
   <li><a href="#s13-11">13.11 Pictures and Gifs</a></li>
   <li><a href="#s13-12">13.12 Tags and the Bottom Row</a></li>
   <li><a href="#s13-13">13.13 The Feed</a></li>
-  <li><a href="#s13-14">13.14 Links and Themes</a></li>
-  <li><a href="#s13-15">13.15 Taking Parts Out</a></li>
+  <li><a href="#s13-14">13.14 The App Screen</a></li>
+  <li><a href="#s13-15">13.15 Links and Themes</a></li>
+  <li><a href="#s13-16">13.16 Taking Parts Out</a></li>
 </ul>
 
 <p>This chapter goes through the CSS for the Tumblr posts in the last chapter: the card, the header with its picture and checkmarks, reblog chains, asks, quote and chat posts, the bottom row, and the feed behind the cards.</p>
@@ -427,13 +428,31 @@
 
 <p><strong>Changing the feed colour:</strong> the colour is the <code>background</code> line in <code>#workskin .tb-feed</code> (<code>#001935</code>). Swap it for any colour you like, and every feed without <code>black</code> or <code>classic</code> changes with it. There's a note at that line in the CSS too.</p>
 
-<h3 id="s13-14">13.14 Links and Themes</h3>
+<h3 id="s13-14">13.14 The App Screen</h3>
+
+<pre><code>#workskin .tb-feed.app { padding: 0; overflow: hidden; }
+
+#workskin .tb-feed .tb-screen {
+  display: block;
+  max-height: 640px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 0 0 0.5em 0;
+}
+
+#workskin .tb-screen .tb { max-height: none; overflow: visible; }</code></pre>
+
+<p>With <code>app</code>, the feed itself doesn't scroll - the <code>tb-screen</code> inside it does, up to <code>640px</code> tall. The buttons along the bottom come after the screen, outside it, so they stay where they are while everything in the screen scrolls past, and the top bar is inside the screen, so it scrolls away. The posts inside the screen lose their own scrolling, so there's only one scroll bar.</p>
+
+<p>The top bar, the tabs and the bottom buttons are flex rows like the bottom of a post. They have no background of their own, so they're always the feed colour, which is why the feed's <code>black</code> and <code>classic</code> work on them too. The picked tab is white with a short blue line under it, made with <code>::after</code> the same way as the reblog badge, and the other tabs and buttons are grey. The Tumblr logo is just a bold "t". The icons are pictures, in the Icons section with the rest, and they're the same in every theme because they always sit on the feed.</p>
+
+<h3 id="s13-15">13.15 Links and Themes</h3>
 
 <pre><code>#workskin .tb .fake-link, #workskin .tb a:not(.tl) { color: #0070b8; }</code></pre>
 
 <p>Links are Tumblr's blue. The dark theme makes the card dark grey (<code>#1f1f1f</code>) with light text, turns all the small print and the ask boxes darker, and gives links a brighter blue (<code>#00b8ff</code>) so they show up. The white edges round the reblog badge become the card colour. As always, the auto theme is the same again inside <code>@media (prefers-color-scheme: dark)</code>.</p>
 
-<h3 id="s13-15">13.15 Taking Parts Out</h3>
+<h3 id="s13-16">13.16 Taking Parts Out</h3>
 
 <p>Search for the class names and delete every rule with them in, including in the dark and auto blocks:</p>
 
@@ -446,6 +465,7 @@
   <li><strong>Checkmarks:</strong> <code>tb-check</code>, <code>tb-checks</code> and the <code>ic-checks</code> lines in the Icons section.</li>
   <li><strong>Bottom row:</strong> <code>tb-footer</code>, <code>tb-stat</code> and <code>tb-icon</code>.</li>
   <li><strong>The feed:</strong> everything starting <code>.tb-feed</code>.</li>
+  <li><strong>Just the app screen:</strong> the rules with <code>.tb-feed.app</code>, <code>tb-screen</code>, <code>tb-top</code>, <code>tb-logo</code>, <code>tb-topicon</code>, <code>tb-tabs</code>, <code>tb-tab</code>, <code>tb-nav</code> and <code>ic-tb-</code> in them.</li>
 </ul>
 
 <p>Keep the card, the header, the name, the picture and the body, which every post uses.</p>
