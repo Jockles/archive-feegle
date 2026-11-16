@@ -62,7 +62,7 @@
     return b;
   }
   function starter() {
-    S = { v: 1, cast: [], blocks: [] };
+    S = { v: 1, pasted: "", cast: [], blocks: [] };
     var a = newChar("Shane", "example"); a.example = "shane";
     var b = newChar("Ilya", "example"); b.example = "ilya";
     S.cast.push(a, b);
@@ -86,6 +86,31 @@
 
   function esc(v) { return String(v == null ? "" : v).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
   function char(id) { return S.cast.filter(function (c) { return c.id === id; })[0]; }
+  // profiles pasted into the "Profiles you already have" box: [slug, name] for each
+  function pastedProfiles() {
+    var css = S.pasted || "", out = [];
+    var re = /\.pfp\.pfp-([a-z0-9-]+)/g, m;
+    while ((m = re.exec(css))) {
+      var slug = m[1];
+      if (out.some(function (p) { return p[0] === slug; })) continue;
+      var n = css.match(new RegExp("#workskin \\.name\\.pfp-" + slug + "::before \\{ content: \"((?:[^\"\\\\]|\\\\.)*)\"")); // their main name
+      out.push([slug, n ? n[1].replace(/\\(.)/g, "$1") : slug]);
+    }
+    return out;
+  }
+  // every existing profile: the skin's examples, then pasted ones
+  function existing() {
+    var mine = pastedProfiles();
+    return mine.concat(EXAMPLES.filter(function (e) { return !mine.some(function (p) { return p[0] === e[0]; }); }));
+  }
+  // add any pasted profile that isn't in the cast yet
+  function addPasted() {
+    pastedProfiles().forEach(function (p) {
+      if (S.cast.some(function (c) { return c.kind === "example" && c.example === p[0]; })) return;
+      var c = newChar("", "example"); c.example = p[0];
+      S.cast.push(c);
+    });
+  }
   function isProfile(c) { return c && (c.kind === "new" || c.kind === "example"); }
   function slugOf(c) {
     if (!c) return "";
@@ -96,7 +121,10 @@
   function nameOf(c) {
     if (!c) return "Someone";
     if (c.name.trim()) return c.name.trim();
-    if (c.kind === "example") return EXAMPLES.filter(function (e) { return e[0] === c.example; })[0][1];
+    if (c.kind === "example") {
+      var e = existing().filter(function (e) { return e[0] === c.example; })[0];
+      return e ? e[1] : c.example;
+    }
     return "Someone";
   }
   function initials(c) {
@@ -375,9 +403,9 @@
     h.push('<div class="fb-card" data-i="' + i + '">');
     h.push('<div class="fb-row">' + field(P + ".name", "", { ph: "Name", re: true }) +
       btn("cast-del:" + i, "&times;", "Remove " + nameOf(c)) + "</div>");
-    h.push(field(P + ".kind", "", { type: "select", re: true, options: [["oneoff", "One-off: no profile"], ["new", "New profile"], ["example", "Example profile from the skin"]] }));
+    h.push(field(P + ".kind", "", { type: "select", re: true, options: [["oneoff", "One-off: no profile"], ["new", "New profile"], ["example", "Profile you already have, or an example"]] }));
     if (c.kind === "example") {
-      h.push(field(P + ".example", "Which one", { type: "select", re: true, options: EXAMPLES }));
+      h.push(field(P + ".example", "Which one", { type: "select", re: true, options: existing() }));
     } else if (c.kind === "oneoff") {
       // picture circle: a colour, initials yes or no, then an optional picture
       h.push('<div class="fb-row">' + field(P + ".colour", "", { type: "select", re: true, options: Object.keys(COLOURS).map(function (k) { return [k, "Colour " + k]; }) }) +
@@ -519,6 +547,7 @@
   }
 
   function renderEditor() {
+    $("fb-pasted").value = S.pasted || "";
     $("fb-cast").innerHTML = S.cast.map(castCard).join("");
     $("fb-blocks").innerHTML = S.blocks.map(blockCard).join("") || '<p class="hint">Nothing here yet. Add a chat below.</p>';
   }
@@ -527,7 +556,7 @@
   function refresh() {
     save();
     var html = allHTML(), css = profilesCSS();
-    $("fb-live").textContent = css;
+    $("fb-live").textContent = (S.pasted || "") + "\n\n" + css;
     $("workskin").innerHTML = html;
     $("fb-html").value = html;
     $("fb-css").value = css;
@@ -574,7 +603,8 @@
     var v = el.type === "checkbox" ? el.checked : el.value;
     set(path, v);
     if (/^cast\.\d+\.prof\.slug$/.test(path)) get(path.replace(/slug$/, "")).slugTouched = true;
-    if (el.hasAttribute("data-re") && e.type === "change") rerender();
+    if (path === "pasted" && e.type === "change") { addPasted(); rerender(); }
+    else if (el.hasAttribute("data-re") && e.type === "change") rerender();
     else refresh();
   }
   document.addEventListener("input", onInput);
@@ -619,7 +649,7 @@
       case "copy-html": copy("fb-html", t); return;
       case "copy-css": copy("fb-css", t); return;
       case "save-file": saveFile(); return;
-      case "new": if (!confirm("Start again? Everything here will be cleared, so save it to a file first if you want to keep it.")) return; S = { v: 1, cast: [], blocks: [] }; break;
+      case "new": if (!confirm("Start again? Everything here will be cleared, so save it to a file first if you want to keep it.")) return; S = { v: 1, pasted: "", cast: [], blocks: [] }; break;
       case "example": if (!confirm("Load the example? Everything here will be replaced.")) return; starter(); break;
       case "fmt": wrap(a[1]); return;
       default: return;
