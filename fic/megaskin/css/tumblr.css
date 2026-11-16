@@ -156,6 +156,8 @@
 
 #workskin .tb .handle::after { background-repeat: no-repeat; background-position: right center; background-size: auto 0.9em; }
 
+/* Follow button (optional) on a reblog header, for a blog you don't follow. It doesn't go on the post's top header:
+   you already follow the blog whose post is on your dash. */
 #workskin .tb .tb-follow { display: block; float: right; margin: 2px 0 0 0.5em; }
 
 #workskin .tb .tb-follow span {
