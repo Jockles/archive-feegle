@@ -24,6 +24,7 @@
     .fb button { font: inherit; padding: 3px 9px; cursor: pointer; }
     .fb-row { display: flex; gap: 6px; align-items: center; }
     .fb-row > input, .fb-row > select { flex: 1; min-width: 0; }
+    .fb-row > input[type=color] { flex: none; }
     .fb-row label { margin: 0; }
     .fb-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 0 12px; }
     .fb-card { border: 1px solid var(--rule, #ccc); border-radius: 6px; padding: 8px 10px; margin: 0 0 10px; background: var(--box-fill, #f4f8f7); }
@@ -124,7 +125,7 @@
       <p><button type="button" data-act="copy-html">Copy the HTML</button></p>
       <textarea id="fb-html" readonly aria-label="HTML"></textarea>
       <div id="fb-css-wrap">
-        <p><button type="button" data-act="copy-css">Copy the profile CSS</button></p>
+        <p><button type="button" data-act="copy-css">Copy the CSS</button></p>
         <textarea id="fb-css" readonly aria-label="Profile CSS"></textarea>
       </div>
     </div>
