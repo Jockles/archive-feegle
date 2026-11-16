@@ -3,13 +3,13 @@
 // and can be saved to a file and opened again.
 //
 // How it fits together:
-//   S            everything typed in: the cast and the parts of the chapter (blocks)
-//   ...HTML()    turn S into the chapter HTML, one function per app
+//   S            everything typed in: the cast and the chats (blocks)
+//   ...HTML()    turn S into the HTML, one function per app
 //   castCard(), blockCard(), msgRow()   draw the boxes on the left
 //   data-bind    each box says which bit of S it fills in, e.g. "blocks.2.msgs.0.text"
 //   data-act     each button says what it does, e.g. "msg-del:2:0" (block 2, message 0)
 // To add a new app: a newBlock() default, an ...HTML() function, a line in
-// chapterHTML(), and a button on the page.
+// allHTML(), and a button on the page.
 (function () {
   "use strict";
   var $ = function (id) { return document.getElementById(id); };
@@ -25,7 +25,6 @@
   var BACKGROUNDS = ["", "beige", "black", "blush", "dusk", "forest", "lilac", "navy", "night",
     "ocean", "plum", "sage", "sky", "slate", "sunset", "white"];
   var KINDS = {
-    prose: "Story text",
     imsg: "iMessage chat",
     wa: "WhatsApp chat"
   };
@@ -56,7 +55,6 @@
   }
   function newBlock(type) {
     var b = { id: nid("b"), type: type };
-    if (type === "prose") { b.text = ""; return b; }
     var pov = S.cast[0] ? S.cast[0].id : "";
     b.pov = pov; b.group = false; b.title = ""; b.sub = type === "imsg" ? "iMessage" : "online";
     b.theme = "theme-auto"; b.width = ""; b.scroll = ""; b.bar = "empty"; b.barText = "";
@@ -68,13 +66,11 @@
     var a = newChar("Shane", "example"); a.example = "shane";
     var b = newChar("Ilya", "example"); b.example = "ilya";
     S.cast.push(a, b);
-    var p = newBlock("prose");
-    p.text = "Shane couldn't sleep. His phone buzzed on the bedside table.";
     var c = newBlock("imsg");
     c.pov = a.id;
     c.msgs.push(newMsg("sys", "Today 11:48 PM"), newMsg(b.id, "are you awake"), newMsg(a.id, "no"));
     c.msgs[2].status = "Read 11:52 PM";
-    S.blocks.push(p, c);
+    S.blocks.push(c);
   }
 
   function save() { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) {} }
@@ -328,16 +324,9 @@
     return L.join("\n");
   }
 
-  function proseHTML(b) {
-    return b.text.split(/\n\s*\n/).map(function (p) { return p.trim(); }).filter(Boolean).map(function (p) {
-      return "<p>" + p.split(/\n/).map(fmt).join("<br>") + "</p>";
-    }).join("\n\n");
-  }
-
-  function chapterHTML() {
+  function allHTML() {
     tlCount = 0;
     return S.blocks.map(function (b) {
-      if (b.type === "prose") return proseHTML(b);
       if (b.type === "imsg") return imsgHTML(b);
       if (b.type === "wa") return waHTML(b);
       return "";
@@ -499,10 +488,8 @@
     var P = "blocks." + i, h = [];
     h.push('<section class="fb-block" data-i="' + i + '">');
     h.push('<div class="fb-bhead"><b>' + (i + 1) + ". " + KINDS[b.type] + "</b><span class=\"fb-tools\">" +
-      btn("blk-up:" + i, "&uarr;", "Move up") + btn("blk-down:" + i, "&darr;", "Move down") + btn("blk-del:" + i, "&times;", "Delete this part") + "</span></div>");
-    if (b.type === "prose") {
-      h.push(field(P + ".text", "", { type: "area", rows: 5, ph: "Type your story here. Leave a blank line between paragraphs." }));
-    } else {
+      btn("blk-up:" + i, "&uarr;", "Move up") + btn("blk-down:" + i, "&darr;", "Move down") + btn("blk-del:" + i, "&times;", "Delete this chat") + "</span></div>");
+    {
       var wa = b.type === "wa";
       h.push("<details" + (b.open ? " open" : "") + ' data-open="' + P + '.open"><summary>Chat settings</summary><div class="fb-grid">');
       h.push("<div>" + field(P + ".pov", "Whose phone is it?", { type: "select", re: true, options: S.cast.map(function (c) { return [c.id, nameOf(c)]; }) }) + "</div>");
@@ -531,13 +518,13 @@
 
   function renderEditor() {
     $("fb-cast").innerHTML = S.cast.map(castCard).join("");
-    $("fb-blocks").innerHTML = S.blocks.map(blockCard).join("") || '<p class="hint">Nothing here yet. Add a part below.</p>';
+    $("fb-blocks").innerHTML = S.blocks.map(blockCard).join("") || '<p class="hint">Nothing here yet. Add a chat below.</p>';
   }
 
   // remake the preview and the copy boxes (after every change)
   function refresh() {
     save();
-    var html = chapterHTML(), css = profilesCSS();
+    var html = allHTML(), css = profilesCSS();
     $("fb-live").textContent = css;
     $("workskin").innerHTML = html;
     $("fb-html").value = html;
@@ -611,7 +598,7 @@
       case "add": S.blocks.push(newBlock(a[1])); break;
       case "blk-up": move(S.blocks, n[0], -1); break;
       case "blk-down": move(S.blocks, n[0], 1); break;
-      case "blk-del": if (!confirm("Delete this part of the chapter?")) return; S.blocks.splice(n[0], 1); break;
+      case "blk-del": if (!confirm("Delete this chat?")) return; S.blocks.splice(n[0], 1); break;
       case "script": addScript(n[0]); return;
       case "msg-add": b.msgs.push(newMsg(b.msgs.length ? b.msgs[b.msgs.length - 1].from : "", "", b.msgs.length ? b.msgs[b.msgs.length - 1].time : "")); break;
       case "msg-ins": b.msgs.splice(n[1] + 1, 0, newMsg(m.from, "", m.time)); break;
@@ -628,8 +615,8 @@
       case "copy-html": copy("fb-html", t); return;
       case "copy-css": copy("fb-css", t); return;
       case "save-file": saveFile(); return;
-      case "new": if (!confirm("Start a new chapter? Everything here will be cleared, so save it to a file first if you want to keep it.")) return; S = { v: 1, cast: [], blocks: [] }; break;
-      case "example": if (!confirm("Load the example chapter? Everything here will be replaced.")) return; starter(); break;
+      case "new": if (!confirm("Start again? Everything here will be cleared, so save it to a file first if you want to keep it.")) return; S = { v: 1, cast: [], blocks: [] }; break;
+      case "example": if (!confirm("Load the example? Everything here will be replaced.")) return; starter(); break;
       case "fmt": wrap(a[1]); return;
       default: return;
     }
@@ -648,7 +635,7 @@
   });
   function wrap(kind) {
     var el = lastText;
-    if (!el || !document.body.contains(el)) { alert("Click in a message or story box first, and select the words you want."); return; }
+    if (!el || !document.body.contains(el)) { alert("Click in a message box first, and select the words you want."); return; }
     var s = el.selectionStart, e = el.selectionEnd, v = el.value, sel = v.slice(s, e);
     if (!sel) { alert("Select the words first, then press the button."); return; }
     var out;
@@ -676,7 +663,7 @@
     var blob = new Blob([JSON.stringify(S, null, 1)], { type: "application/json" });
     var a = document.createElement("a");
     a.href = URL.createObjectURL(blob);
-    a.download = "megaskin-chapter.json";
+    a.download = "megaskin-chats.json";
     document.body.appendChild(a); a.click(); a.remove();
     setTimeout(function () { URL.revokeObjectURL(a.href); }, 1000);
   }
@@ -685,7 +672,7 @@
     var r = new FileReader();
     r.onload = function () {
       try { var d = JSON.parse(r.result); if (!d.cast || !d.blocks) throw 0; S = d; rerender(); }
-      catch (err) { alert("That file doesn't look like a saved Fic Builder chapter."); }
+      catch (err) { alert("That file doesn't look like a saved Fic Builder file."); }
     };
     r.readAsText(f);
     this.value = "";
