@@ -491,6 +491,12 @@
    Each rule lists the class names for all the apps. If you've left some apps
    out, keep the whole list anyway: a name for an app you don't use just
    doesn't match anything, so it does no harm.
+   A note on spelling: I'm British, so I've spelled colour the British way in
+   the class names - colour1, not color1. If you forget the u and the skin
+   doesn't work, you'll understand my pain, because I've had to take the u out
+   of colour every time I've used someone else's code and couldn't figure out
+   why it wasn't working. (The CSS property itself is still color, with no u -
+   that one's not up to me.)
    ========================================================== */
 
 /* picture circles (the same in light and dark) */
