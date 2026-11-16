@@ -732,7 +732,7 @@
 
 <ul>
   <li><strong>A different picture, name or handle on one app:</strong> add a line with the app in it. <code>#workskin .tw .pfp.pfp-luca { background-image: url(LINK); }</code> gives Luca a different picture on Twitter/X only, and <code>#workskin .tw .name.pfp-luca::before { content: &quot;Luca | cat dad&quot;; }</code> gives him a different name there.</li>
-  <li><strong>Saved as:</strong> what the other characters have them saved as on their phones. <code>#workskin .mob.pov-ilya .name.pfp-shane::before { content: &quot;Jane&quot;; }</code> makes Shane show up as Jane on Ilya's phone. It goes in the profile of the person being named, so everything about how Shane shows up is in Shane's block. A picture works the same way: <code>#workskin .mob.pov-shane .pfp.pfp-rose { background-image: url(...); }</code> gives Rose a different picture on Shane's phone.</li>
+  <li><strong>Saved as:</strong> what the other characters have them saved as on their phones. <code>#workskin .pov-ilya .name.pfp-shane::before { content: &quot;Jane&quot;; }</code> makes Shane show up as Jane on Ilya's phone. It goes in the profile of the person being named, so everything about how Shane shows up is in Shane's block. A picture works the same way: <code>#workskin .pov-shane .pfp.pfp-rose { background-image: url(...); }</code> gives Rose a different picture on Shane's phone.</li>
   <li><strong>Initials:</strong> a profile can put initials in the circle instead of a picture. <code>#workskin .pfp.pfp-holster::before { content: &quot;AB&quot;; }</code> gives Holster's circle "AB".</li>
   <li><strong>Their phone:</strong> a wallpaper for WhatsApp chats on their phone - a colour, or a picture with <code>background-image</code>.</li>
   <li><strong>More than one account on the same app:</strong> a private account, a burner, a fan account, or a second email address for work. Give each extra account a name starting with <code>acc-</code>, like <code>acc-private</code> or <code>acc-burner</code>, with its own lines in the profile, and add that name in your HTML whenever that account turns up. Rose has a private Instagram, and Ilya has two extra Twitter/X accounts.</li>
@@ -836,7 +836,7 @@
 
 <h5>Their Phone</h5>
 
-<p>When a chat is on one character's phone, add <code>pov-</code> and their profile name to the chat's container, like <code>pov-shane</code>. In WhatsApp, the chat gets their wallpaper, and in every app, people show up under whatever that character has them saved as. Here's the same chat on Shane's phone, where Ilya is saved as Lily, and on Ilya's, where Shane is Jane:</p>
+<p>When a chat is on one character's phone, add <code>pov-</code> and their profile name to the chat's container, like <code>pov-shane</code>. In WhatsApp, the chat gets their wallpaper, and people show up with whatever name and picture that character has saved for them. It works in any app, but to keep it true to life, use it in iMessage and WhatsApp chats and Discord DMs (names only, in Discord). Everywhere else - Twitter/X, Instagram, Tumblr and email - people are stuck with their account's own name and picture in the real apps. Here's the same chat on Shane's phone, where Ilya is saved as Lily, and on Ilya's, where Shane is Jane:</p>
 
 <p><em>On Shane's phone:</em></p>
 

@@ -468,14 +468,18 @@
 
 <p><strong>7. Saved as</strong></p>
 
-<pre><code>#workskin .mob.pov-shane .name.pfp-luca::before { content: "Luca (cat pictures)"; }
-#workskin .mob.pov-ilya .name.pfp-luca::before { content: "Cat Guy"; }</code></pre>
+<pre><code>#workskin .pov-shane .name.pfp-luca::before { content: "Luca (cat pictures)"; }
+#workskin .pov-ilya .name.pfp-luca::before { content: "Cat Guy"; }</code></pre>
 
 <p>This is "Luca's name, inside a chat on Shane's phone". <code>pov-shane</code> goes on the chat's container, so every name in that chat changes to what Shane has saved. One line per phone, and it goes in the profile of the person being named, so everything about how Luca shows up is in Luca's block.</p>
 
+<p>The CSS works in any chat with <code>pov-</code> on it, but in the real apps you can only rename people in iMessage, WhatsApp and Discord DMs. On Twitter/X, Instagram, Tumblr and email, everyone shows up as their account's own name whatever phone it's on, so that's where to use it if you want it to look true to life.</p>
+
 <p>A picture can be different on one phone too, the same way. Rose has her private picture on Shane's phone, so this goes in Rose's profile:</p>
 
-<pre><code>#workskin .mob.pov-shane .pfp.pfp-rose { background-image: url(https://images.squidge.org/images/2026/11/16/RosePriv.jpg); }</code></pre>
+<pre><code>#workskin .pov-shane .pfp.pfp-rose { background-image: url(https://images.squidge.org/images/2026/11/16/RosePriv.jpg); }</code></pre>
+
+<p>In the real apps, only iMessage and WhatsApp let you change someone's picture - Discord shows everyone's own, even in a DM.</p>
 
 <p><strong>8. Handle (every profile)</strong></p>
 
