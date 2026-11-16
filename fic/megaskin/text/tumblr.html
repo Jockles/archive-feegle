@@ -485,9 +485,9 @@
 
 <h3>Verified Ticks and the Follow Button</h3>
 
-<p>Some blogs have coloured checkmarks after their names. On Tumblr these are bought for fun - lots of people have them as a joke - so they don't mean a blog is verified, and you can give them to any blog you like. They come in pairs, up to twelve, and always in the same colour order, round the rainbow: blue and green, lime and yellow, amber and orange, dark orange and red, pink and magenta, then purple and violet. So two checkmarks are always blue and green, and the other colours only show up on blogs with more. A blog with lots of checkmarks gets them cut off where the Follow button or the three dots start, like in the app, so on a narrow screen you won't see all twelve. Tumblr also sells a pair of plain blue checkmarks, so that's in the skin too. Tumblr has lots of other badges as well, but the skin only does the checkmarks.</p>
+<p>Some blogs have coloured checkmarks after their names. On Tumblr these are bought for fun - lots of people have them as a joke - so they don't mean a blog is verified, and you can give them to any blog you like. They come in pairs, up to twelve, and always in the same colour order, round the rainbow: blue and green, lime and yellow, amber and orange, dark orange and red, pink and magenta, then purple and violet. So two checkmarks are always blue and green, and the other colours only show up on blogs with more. A blog with lots of checkmarks gets them cut off where the Follow button or the three dots start, like in the app, so on a narrow screen you won't see all twelve. Tumblr has lots of other badges too, but the skin only does the checkmarks.</p>
 
-<p>The checkmarks are pictures of the whole set together, drawn to look like Tumblr's. For any blog, put a <code>tb-checks</code> span straight after the name, with no space in between, and <code>ic-checks-2</code>, <code>ic-checks-4</code>, <code>ic-checks-6</code>, <code>ic-checks-8</code>, <code>ic-checks-10</code> or <code>ic-checks-12</code> for how many, or <code>ic-checks-blue</code> for two blue ones. Type the checkmarks inside it too, for readers with the workskin switched off: <code>&lt;span class=&quot;tb-checks ic ic-checks-6&quot;&gt;&amp;#10003;&amp;#10003;&amp;#10003;&amp;#10003;&amp;#10003;&amp;#10003;&lt;/span&gt;</code>. There's one in the Follow button example below.</p>
+<p>The checkmarks are pictures of the whole set together, drawn to look like Tumblr's. For any blog, put a <code>tb-checks</code> span straight after the name, with no space in between, and <code>ic-checks-2</code>, <code>ic-checks-4</code>, <code>ic-checks-6</code>, <code>ic-checks-8</code>, <code>ic-checks-10</code> or <code>ic-checks-12</code> for how many, or <code>ic-checks-blue</code> for two blue ones. Type the checkmarks inside it too, for readers with the workskin switched off: <code>&lt;span class=&quot;tb-checks ic ic-checks-6&quot;&gt;&amp;#10003;&amp;#10003;&amp;#10003;&amp;#10003;&amp;#10003;&amp;#10003;&lt;/span&gt;</code>. There's one in the Follow button example below, and samthecat has the two blue ones in <a href="#heading">Uploading a Profile Pic</a>.</p>
 
 <p>There's also a version drawn with CSS instead of pictures. It looks a little simpler than Tumblr's, but it doesn't need any pictures: add a <code>tb-check</code> span for each checkmark, like <code>&lt;span class=&quot;tb-check&quot;&gt;&#10003;&lt;/span&gt;&lt;span class=&quot;tb-check&quot;&gt;&#10003;&lt;/span&gt;</code>, and the colours are added for you in the right order. For two blue ones, add <code>blue</code> to the second: <code>&lt;span class=&quot;tb-check blue&quot;&gt;</code>.</p>
 
@@ -632,7 +632,7 @@
   <p class="tb-blog">
     <span class="tb-pfp"><span class="pfp"><img src="https://images.squidge.org/images/2026/11/16/Cat2.jpg" alt="Profile picture of Sam, a black and white cat screaming at the camera"></span></span>
     <span class="tb-menu">&#8226;&#8226;&#8226;</span>
-    <span class="tb-name"><b>samthecat</b>
+    <span class="tb-name"><b>samthecat<span class="tb-checks ic ic-checks-blue">&#10003;&#10003;</span></b>
       <span class="tb-subline">5h ago</span></span>
   </p>
   <p>congratulations to you both</p>
@@ -661,7 +661,7 @@
   &lt;p class="tb-blog"&gt;
     &lt;span class="tb-pfp"&gt;&lt;span class="pfp"&gt;&lt;img src="https://images.squidge.org/images/2026/11/16/Cat2.jpg" alt="Profile picture of Sam, a black and white cat screaming at the camera"&gt;&lt;/span&gt;&lt;/span&gt;
     &lt;span class="tb-menu"&gt;&amp;#8226;&amp;#8226;&amp;#8226;&lt;/span&gt;
-    &lt;span class="tb-name"&gt;&lt;b&gt;samthecat&lt;/b&gt;
+    &lt;span class="tb-name"&gt;&lt;b&gt;samthecat&lt;span class="tb-checks ic ic-checks-blue"&gt;&amp;#10003;&amp;#10003;&lt;/span&gt;&lt;/b&gt;
       &lt;span class="tb-subline"&gt;5h ago&lt;/span&gt;&lt;/span&gt;
   &lt;/p&gt;
   &lt;p&gt;congratulations to you both&lt;/p&gt;
