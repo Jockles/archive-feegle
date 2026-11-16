@@ -6,7 +6,7 @@
   <title>Megaskin, Chapter 13: Tumblr CSS | jockles.com</title>
   <link rel="stylesheet" href="../../style.css">
   <script src="../../theme.js"></script>
-  <link rel="stylesheet" href="megaskin.css?v=bb2a8e42" id="creator-style">
+  <link rel="stylesheet" href="megaskin.css?v=40437fc0" id="creator-style">
 </head>
 <body>
 <header>
@@ -60,7 +60,7 @@
 
 <h3 id="s13-3">13.3 How the Module is Laid Out</h3>
 
-<p>The usual order - the main rules, Links, Scrolling, Dark theme and Auto theme. Like a tweet or an Instagram post, a Tumblr post has no <code>mob-body</code>, so it scrolls as a whole once it's taller than <code>700px</code>.</p>
+<p>The usual order - the main rules, Links, Scrolling, Dark theme, Auto theme and Icons. Like a tweet or an Instagram post, a Tumblr post has no <code>mob-body</code>, so it scrolls as a whole once it's taller than <code>700px</code>.</p>
 
 <h3 id="s13-4">13.4 The Card</h3>
 
@@ -134,7 +134,7 @@
   font-size: 0.8em;
 }</code></pre>
 
-<p>Both float right, which is why they come before the name in the code (see Account Line Extras in the Instagram CSS chapter). The first one in the code goes furthest right, so the dots go first and the Follow button second, to end up in the right order.</p>
+<p>Both float right, which is why they come before the name in the code (see <a href="instagram-css.html#s11-6">The Account Line Extras</a>). The first one in the code goes furthest right, so the dots go first and the Follow button second, to end up in the right order.</p>
 
 </details>
 
@@ -161,6 +161,12 @@
 }</code></pre>
 
 <p>The circle works like the other modules', with initials or a picture inside and <code>colour1</code> to <code>colour10</code> for the colours. It uses <code>display: flex</code> to centre the initials, which is a newer and more exact way than the line-height trick: <code>align-items</code> centres them top to bottom, and <code>justify-content</code> side to side.</p>
+
+<pre><code>#workskin .tb .tb-pfp.sq,
+#workskin .tb .tb-ask-pfp.sq,
+#workskin .tb .sq .pfp { border-radius: 15%; }</code></pre>
+
+<p><code>sq</code> swaps the circle for a square with rounded corners, on either kind of picture and on a <code>pfp</code> picture inside one. <code>15%</code> rounds the corners by the same amount whatever the size of the square. A profile does the same thing with its own <code>border-radius</code> line (see <a href="tumblr.html#s12-6">Round or Square Pictures</a>).</p>
 
 <pre><code>#workskin .tb .tb-pfp.rb::after {
   content: '\21C4';
@@ -218,6 +224,10 @@
 
 <p>Every checkmark starts blue. Then the same <code>+</code> trick as iMessage's stacked tapbacks counts them: <code>.tb-check + .tb-check</code> is the second, and each extra <code>+ .tb-check</code> is one further along, so the second is green, the third lime, and so on to orange. That's how the colours always come out in the right order, without you having to say which is which.</p>
 
+<pre><code>#workskin .tb .handle::after { background-repeat: no-repeat; background-position: right center; background-size: auto 0.9em; }</code></pre>
+
+<p>This one is for checkmarks that come from a character profile. The checkmarks are a picture, and this line puts it at the right-hand end of the name, at just under the height of the text. The profile adds the picture itself and some padding after the name to make room for it.</p>
+
 <h3 id="s13-8">13.8 Reblog Chains</h3>
 
 <pre><code>#workskin .tb .tb-reblog {
@@ -263,7 +273,7 @@
   height: 28px;
   line-height: 28px;
   text-align: center;
-  border-radius: 5px;
+  border-radius: 50%;
   background-color: #8a8a8a;
   font-family: Arial, Helvetica, sans-serif;
   background-size: cover;
@@ -276,7 +286,7 @@
 <ul>
   <li>The ask box is grey with a <code>36px</code> margin on its right, leaving room for the picture outside it.</li>
   <li>The pointer is a CSS triangle - the same border trick as WhatsApp's bubble tails - pinned to the right edge, pointing at the picture.</li>
-  <li>The picture is pinned outside the box with <code>right: -36px</code>. It's a square with rounded corners (<code>5px</code>) rather than a circle, like Tumblr's, and it has its own <code>colour1</code> to <code>colour10</code>.</li>
+  <li>The picture is pinned outside the box with <code>right: -36px</code>. It's a circle like the header picture, and it has its own <code>colour1</code> to <code>colour10</code>.</li>
 </ul>
 
 <h3 id="s13-10">13.10 Quote and Chat Posts</h3>
@@ -315,7 +325,7 @@
   font-size: 0.85em;
 }</code></pre>
 
-<p><code>display: flex</code> lines the bottom row up. The note count has <code>margin-right: auto</code> (the second of the four numbers), which takes up all the spare room on its right, pushing every button after it over to the right-hand end. The save button is the same CSS bookmark as Instagram's (see Icons Drawn With CSS, in the Instagram CSS chapter), just a little smaller.</p>
+<p><code>display: flex</code> lines the bottom row up. The note count has <code>margin-right: auto</code> (the second of the four numbers), which takes up all the spare room on its right, pushing every button after it over to the right-hand end. The save button is the same CSS bookmark as Instagram's (see <a href="instagram-css.html#s11-9">Icons Drawn With CSS</a>), just a little smaller.</p>
 
 <h3 id="s13-12">13.12 The Feed</h3>
 

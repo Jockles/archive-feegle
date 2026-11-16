@@ -134,6 +134,9 @@
 
 #workskin .tb .tb-check + .tb-check + .tb-check + .tb-check + .tb-check + .tb-check { background: #f08b37; }
 
+/* checkmarks from a profile: the profile adds the picture and the padding to make room for it */
+#workskin .tb .handle::after { background-repeat: no-repeat; background-position: right center; background-size: auto 0.9em; }
+
 #workskin .tb .tb-follow { display: block; float: right; margin: 2px 0 0 0.5em; }
 
 #workskin .tb .tb-follow span {
@@ -223,7 +226,7 @@
   height: 28px;
   line-height: 28px;
   text-align: center;
-  border-radius: 5px;
+  border-radius: 50%;
   background-color: #8a8a8a;
   font-family: Arial, Helvetica, sans-serif;
   background-size: cover;
@@ -232,6 +235,15 @@
   font-size: 0.75em;
   font-weight: bold;
 }
+
+/* ROUNDED SQUARE PICTURES: on Tumblr, each blog picks a circle or a rounded square for its picture,
+   and it's the same everywhere that blog shows up. For a blog without a profile, add sq to its
+   picture every time: <span class="tb-pfp sq colour6">PB</span> or <span class="tb-ask-pfp sq colour6">PB</span>
+   For a profile, add a line to the profile instead, e.g.
+   #workskin .tb .pfp.pfp-luca.acc-art { border-radius: 15%; } */
+#workskin .tb .tb-pfp.sq,
+#workskin .tb .tb-ask-pfp.sq,
+#workskin .tb .sq .pfp { border-radius: 15%; }
 
 #workskin .tb .tb-tags {
   display: block;
@@ -436,6 +448,58 @@
   #workskin .tb.theme-auto .tb-header { border-bottom-color: #2c2c2c; }
 
   #workskin .tb.theme-auto .tb-ask::after { border-left-color: #272727; }
+}
+
+/* ---------- Tumblr: Icons ----------
+   The buttons and ticks are pictures: black in light chats, white in dark ones.
+   Each one is a span with "ic" and its name, with the typed symbol inside, which
+   this hides. Delete this whole section to get the typed symbols back. */
+#workskin .tb .ic {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  overflow: hidden;
+  text-indent: -100em;
+  text-align: left;
+  white-space: nowrap;
+  vertical-align: -0.15em;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+/* the save bookmark is a picture too, in place of the CSS drawing above */
+#workskin .tb .tb-icon.save {
+  width: 1em;
+  height: 1em;
+  border: 0;
+  vertical-align: -0.1em;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+#workskin .tb .tb-icon.save::after { display: none; }
+
+#workskin .tb .ic.ic-share-up { background-image: url(https://images.squidge.org/images/2026/11/15/share-up-black.png); }
+#workskin .tb .ic.ic-comment { background-image: url(https://images.squidge.org/images/2026/11/15/comment-black.png); }
+#workskin .tb .ic.ic-reblog { background-image: url(https://images.squidge.org/images/2026/11/15/reblog-black.png); }
+#workskin .tb .ic.ic-heart { background-image: url(https://images.squidge.org/images/2026/11/15/heart-black.png); }
+#workskin .tb .tb-icon.save { background-image: url(https://images.squidge.org/images/2026/11/15/bookmark-black.png); }
+
+/* Tumblr icons, dark */
+#workskin .tb.theme-dark .ic.ic-share-up { background-image: url(https://images.squidge.org/images/2026/11/15/share-up-white.png); }
+#workskin .tb.theme-dark .ic.ic-comment { background-image: url(https://images.squidge.org/images/2026/11/15/comment-white.png); }
+#workskin .tb.theme-dark .ic.ic-reblog { background-image: url(https://images.squidge.org/images/2026/11/15/reblog-white.png); }
+#workskin .tb.theme-dark .ic.ic-heart { background-image: url(https://images.squidge.org/images/2026/11/15/heart-white.png); }
+#workskin .tb.theme-dark .tb-icon.save { background-image: url(https://images.squidge.org/images/2026/11/15/bookmark-white.png); }
+
+/* Tumblr icons, auto: dark when the reader's device is in dark mode */
+@media (prefers-color-scheme: dark) {
+  #workskin .tb.theme-auto .ic.ic-share-up { background-image: url(https://images.squidge.org/images/2026/11/15/share-up-white.png); }
+  #workskin .tb.theme-auto .ic.ic-comment { background-image: url(https://images.squidge.org/images/2026/11/15/comment-white.png); }
+  #workskin .tb.theme-auto .ic.ic-reblog { background-image: url(https://images.squidge.org/images/2026/11/15/reblog-white.png); }
+  #workskin .tb.theme-auto .ic.ic-heart { background-image: url(https://images.squidge.org/images/2026/11/15/heart-white.png); }
+  #workskin .tb.theme-auto .tb-icon.save { background-image: url(https://images.squidge.org/images/2026/11/15/bookmark-white.png); }
 }
 
 /* <<<<<<<<<< MODULE: Tumblr (end) <<<<<<<<<< */

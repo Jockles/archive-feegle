@@ -117,6 +117,27 @@
   background-position: center;
 }
 
+/* initials from a profile: #workskin .pfp.pfp-holster::before { content: "AB"; } puts AB in the
+   middle of the circle, in white, sized to fit whichever app it's in */
+#workskin .pfp::before {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 0.8em;
+  line-height: 1;
+}
+
+/* the tiny circles in Discord replies and Instagram's "Liked by" line get smaller initials */
+#workskin .dc .dc-reply .pfp::before { font-size: 0.4em; }
+#workskin .ig .ig-like-pfp .pfp::before { font-size: 0.75em; }
+
+/* Instagram's account picture is bigger than its text, so its initials need a bigger size */
+#workskin .ig .ig-top .ig-pfp .pfp::before { font-size: 1.4em; }
+
 #workskin .pfp img {
   position: absolute;
   top: 0;
@@ -314,12 +335,12 @@
    Only the lines with "every profile" need to be in yours; the rest are extras. */
 
 /* 1. Picture (every profile) */
-#workskin .pfp.pfp-luca { background-image: url(https://64.media.tumblr.com/a99a60f0293cf7df3604b4a6dd4705f6/ba033a52c8982cb0-cc/s1280x1920/cb4c277845d0c3ef666d16b86b75509266b795b3.jpg); }
+#workskin .pfp.pfp-luca { background-image: url(https://images.squidge.org/images/2026/11/16/SwedenHockey2.png); }
 
 /* 2. A different picture for one app. Each line replaces the picture on that app only. */
-#workskin .tw .pfp.pfp-luca, #workskin .tw-reply .pfp.pfp-luca { background-image: url(https://64.media.tumblr.com/6898dc3a42cc6c7ab9729360b71366e4/ba033a52c8982cb0-bf/s2048x3072/b548d2fe61b02e530c0edd2ee6a6bd56ab73ad2c.jpg); }
-#workskin .ig .pfp.pfp-luca, #workskin .igdm .pfp.pfp-luca { background-image: url(https://64.media.tumblr.com/45b3b47d7c42b593f6242a40153a629c/ba033a52c8982cb0-d7/s2048x3072/4e71b117e87747d78dd3d95595cecc77eec48d38.jpg); }
-#workskin .tb .pfp.pfp-luca { background-image: url(https://64.media.tumblr.com/694221426fb8229480fb3fb87b528ca7/ba033a52c8982cb0-01/s1280x1920/636653581e07a970475075f480c1717b23a72c0a.jpg); }
+#workskin .tw .pfp.pfp-luca, #workskin .tw-reply .pfp.pfp-luca { background-image: url(https://images.squidge.org/images/2026/11/16/LucaMain.png); }
+#workskin .ig .pfp.pfp-luca, #workskin .igdm .pfp.pfp-luca { background-image: url(https://images.squidge.org/images/2026/11/16/LucaPriv.png); }
+#workskin .tb .pfp.pfp-luca { background-image: url(https://images.squidge.org/images/2026/11/16/SwedenHockey.png); }
 #workskin .gm .pfp.pfp-luca { background-image: linear-gradient(135deg, #f6b26b, #e06666); }
 #workskin .dc .pfp.pfp-luca { background-image: linear-gradient(135deg, #8e7cc3, #6fa8dc); }
 
@@ -354,29 +375,46 @@
 /* 10. Email address, for Gmail and the email window */
 #workskin .email.pfp-luca::after { content: "luca@example.com"; }
 
-/* 11. A different email address in the email window (.mail) or Gmail (.gm) */
-#workskin .mail .email.pfp-luca::after { content: "luca@work.example.com"; }
+/* 11. Another email address: give it an acc- name, the same as a second account on an app.
+   Add the acc- name: <span class="email pfp-luca acc-work"> */
+#workskin .email.pfp-luca.acc-work::after { content: "luca@work.example.com"; }
 
 /* 12. His phone: WhatsApp chats with pov-luca on the container. A colour, a gradient
    or a picture all work here. He uses theme-light. */
 #workskin .mob.wa.pov-luca { background: linear-gradient(#fdf1d6, #f6d5c2); }
+/* 13. More than one account on the same app: an art Tumblr (acc-art) and a hockey RPF Tumblr
+   (acc-rpf). Add the acc- name: <span class="handle pfp-luca acc-art"> */
+#workskin .tb .pfp.pfp-luca.acc-art { background-image: url(https://images.squidge.org/images/2026/11/16/LucaTumblr.png); }
+#workskin .tb .handle.pfp-luca.acc-art::after { content: "gremlin-sketches"; }
+#workskin .tb .pfp.pfp-luca.acc-rpf { background-image: url(https://images.squidge.org/images/2026/11/16/Hollanov1.png); }
+#workskin .tb .handle.pfp-luca.acc-rpf::after { content: "rink-rivals-rpf"; }
+/* 14. Tumblr checkmarks after the blog's name. Pick the picture with 2, 4 or 6 checkmarks and the
+   padding that goes with it: tb-checks-2.png 2.15em, tb-checks-4.png 4.2em, tb-checks-6.png 6.2em.
+   An acc- account has its own line, or it gets the main blog's checkmarks. */
+#workskin .tb .handle.pfp-luca::after { background-image: url(https://images.squidge.org/images/2026/11/15/tb-checks-2.png); padding-right: 2.15em; }
+#workskin .tb .handle.pfp-luca.acc-art::after { background-image: url(https://images.squidge.org/images/2026/11/15/tb-checks-6.png); padding-right: 6.2em; }
+#workskin .tb .handle.pfp-luca.acc-rpf::after { background-image: url(https://images.squidge.org/images/2026/11/15/tb-checks-4.png); padding-right: 4.2em; }
+/* 15. A rounded square picture on Tumblr instead of a circle, everywhere this blog shows up */
+#workskin .tb .pfp.pfp-luca.acc-art { border-radius: 15%; }
 
 /* PROFILE: Stan */
-#workskin .pfp.pfp-stan { background-color: #c06a1f; }
+#workskin .pfp.pfp-stan { background-image: url(https://images.squidge.org/images/2026/11/15/GayCrosedHockeySticks.png); }
 #workskin .wa .who.pfp-stan, #workskin .dc .dc-name.pfp-stan { color: #d2782a; }
 #workskin .name.pfp-stan::before { content: "Stan"; }
 #workskin .handle.pfp-stan::after { content: "PuckStan"; }
 #workskin .email.pfp-stan::after { content: "Puckstan@gmail.com"; }
 
-/* PROFILE: Yuna */
+/* PROFILE: Yuna - with a second email address for work, acc-work. Add the acc- name:
+   <span class="email pfp-yuna acc-work"> */
 #workskin .pfp.pfp-yuna { background-color: #7d4fb0; }
 #workskin .wa .who.pfp-yuna, #workskin .dc .dc-name.pfp-yuna { color: #9a62d0; }
 #workskin .name.pfp-yuna::before { content: "Yuna"; }
 #workskin .mob.pov-shane .name.pfp-yuna::before { content: "Mom"; }
 #workskin .handle.pfp-yuna::after { content: "MetrosMomager"; }
 #workskin .email.pfp-yuna::after { content: "YunaHollander@gmail.com"; }
-#workskin .mail .email.pfp-yuna::after { content: "Yuna@HollanderHockey.com"; }
 #workskin .mob.wa.pov-yuna { background-color: #e8e8e8; background-image: url(https://64.media.tumblr.com/a1c0162c5542c5890e5fd9c13341513e/3b53694384f48caf-98/s1280x1920/8b2fcaaf7deb2b05c418f46c62ee729acb8ff8e4.jpg); background-size: cover; background-position: center; }
+/* her work email: acc-work */
+#workskin .email.pfp-yuna.acc-work::after { content: "Yuna@HollanderHockey.com"; }
 
 /* PROFILE: Zim */
 #workskin .pfp.pfp-zim { background-color: #4a6a8f; }
@@ -387,54 +425,82 @@
 #workskin .tw .handle.pfp-zim::after, #workskin .tw-reply .handle.pfp-zim::after, #workskin .twdm .handle.pfp-zim::after { content: "ZimBits"; }
 #workskin .email.pfp-zim::after { content: "Jack@zimmerman.com"; }
 
-/* PROFILE: Holster - a different picture on each app (colours for now) */
+/* PROFILE: Holster - initials in his circle, a different circle colour on each app, and a picture on Twitter/X
+   (picture from the Check Please! Wiki: https://omgcheckplease.fandom.com/wiki/Adam_Birkholtz) */
 #workskin .pfp.pfp-holster { background-color: #138a72; }
-#workskin .tw .pfp.pfp-holster, #workskin .tw-reply .pfp.pfp-holster { background-color: #1d6fa5; }
+#workskin .pfp.pfp-holster::before { content: "AB"; }
+#workskin .tw .pfp.pfp-holster::before, #workskin .tw-reply .pfp.pfp-holster::before, #workskin .ig .pfp.pfp-holster::before { display: none; }
+#workskin .tw .pfp.pfp-holster, #workskin .tw-reply .pfp.pfp-holster { background-image: url(https://static.wikia.nocookie.net/omgcheckplease/images/b/b2/Holsty.png); }
 #workskin .ig .pfp.pfp-holster, #workskin .igdm .pfp.pfp-holster { background-color: #c13584; }
 #workskin .tb .pfp.pfp-holster { background-color: #35465c; }
 #workskin .dc .pfp.pfp-holster { background-color: #5865f2; }
 #workskin .wa .who.pfp-holster, #workskin .dc .dc-name.pfp-holster { color: #1aa386; }
 #workskin .name.pfp-holster::before { content: "Holster"; }
 #workskin .handle.pfp-holster::after { content: "HolsterInLaw"; }
+#workskin .email.pfp-holster::after { content: "birka@samwellU.edu"; }
 
-/* PROFILE: Rose */
-#workskin .pfp.pfp-rose { background-color: #c2416b; }
+/* PROFILE: Rose - her public accounts (Twitter/X and Instagram) use her full name, and she has a
+   private second account on Instagram, acc-private. Add the acc- name:
+   <span class="handle pfp-rose acc-private"> */
+#workskin .pfp.pfp-rose { background-color: #c2416b; background-image: url(https://images.squidge.org/images/2026/11/16/RoseHeadshot.jpg); }
 #workskin .wa .who.pfp-rose, #workskin .dc .dc-name.pfp-rose { color: #d6336c; }
 #workskin .name.pfp-rose::before { content: "Rose"; }
 #workskin .tw .name.pfp-rose::before, #workskin .tw-reply .name.pfp-rose::before, #workskin .twdm .name.pfp-rose::before, #workskin .ig .name.pfp-rose::before, #workskin .igdm .name.pfp-rose::before { content: "Rose Landry"; }
 #workskin .handle.pfp-rose::after { content: "PoseyRosey"; }
 #workskin .tw .handle.pfp-rose::after, #workskin .tw-reply .handle.pfp-rose::after, #workskin .twdm .handle.pfp-rose::after, #workskin .ig .handle.pfp-rose::after, #workskin .igdm .handle.pfp-rose::after { content: "RoseLandry"; }
+/* her private Instagram: acc-private */
+#workskin .ig .pfp.pfp-rose.acc-private, #workskin .igdm .pfp.pfp-rose.acc-private { background-image: url(https://images.squidge.org/images/2026/11/16/RosePriv.jpg); }
+#workskin .ig .name.pfp-rose.acc-private::before, #workskin .igdm .name.pfp-rose.acc-private::before { content: "Rose"; }
+#workskin .ig .handle.pfp-rose.acc-private::after, #workskin .igdm .handle.pfp-rose.acc-private::after { content: "rosie.after.dark"; }
+/* her Tumblr uses her private picture too */
+#workskin .tb .pfp.pfp-rose { background-image: url(https://images.squidge.org/images/2026/11/16/RosePriv.jpg); }
 
 /* PROFILE: Shane */
-#workskin .pfp.pfp-shane { background-image: url(https://www.shutterstock.com/shutterstock/photos/1100283806/display_1500/stock-photo-beautiful-lavender-flower-in-the-dalat-flower-park-selective-focus-1100283806.jpg); }
+#workskin .pfp.pfp-shane { background-image: url(https://images.squidge.org/images/2026/11/16/ShaneHockey.png); }
 #workskin .wa .who.pfp-shane, #workskin .dc .dc-name.pfp-shane { color: #3a7bd5; }
 #workskin .name.pfp-shane::before { content: "Shane"; }
 #workskin .mob.pov-ilya .name.pfp-shane::before { content: "Jane"; }
 #workskin .handle.pfp-shane::after { content: "ShaneHollanderHockeyPlayer"; }
 #workskin .ig .handle.pfp-shane::after, #workskin .igdm .handle.pfp-shane::after { content: "shanehollanderhockeyplayer"; }
-#workskin .tb .handle.pfp-shane::after { content: "hollanderhockey"; }
+#workskin .tb .handle.pfp-shane::after { content: "alliknowishockey"; }
 #workskin .dc .handle.pfp-shane::after { content: "shanehollander"; }
 #workskin .email.pfp-shane::after { content: "shane@example.com"; }
 #workskin .mob.wa.pov-shane { background: #dfeaf6; }
 
-/* PROFILE: Ilya - no picture yet: swap background-color for background-image: url(LINK) */
-#workskin .pfp.pfp-ilya { background-color: #b5433a; }
+/* PROFILE: Ilya - with two extra Twitter/X accounts, acc-burner and acc-shanewife. Add the
+   acc- name: <span class="handle pfp-ilya acc-burner"> */
+#workskin .pfp.pfp-ilya { background-color: #b5433a; background-image: url(https://images.squidge.org/images/2026/11/16/IlyaHelmet.png); }
 #workskin .wa .who.pfp-ilya, #workskin .dc .dc-name.pfp-ilya { color: #d65548; }
 #workskin .name.pfp-ilya::before { content: "Ilya"; }
 #workskin .mob.pov-shane .name.pfp-ilya::before { content: "Lily"; }
 #workskin .handle.pfp-ilya::after { content: "irozanov"; }
 #workskin .ig .handle.pfp-ilya::after, #workskin .igdm .handle.pfp-ilya::after { content: "ilya.r"; }
+#workskin .tb .handle.pfp-ilya::after { content: "oghollanovtruther"; }
 #workskin .mob.wa.pov-ilya { background: #1b1f2b; }
+/* his burner Twitter/X: acc-burner */
+#workskin .tw .pfp.pfp-ilya.acc-burner, #workskin .tw-reply .pfp.pfp-ilya.acc-burner, #workskin .twdm .pfp.pfp-ilya.acc-burner { background-image: url(https://images.squidge.org/images/2026/11/16/IlyaSmoke.png); }
+#workskin .tw .name.pfp-ilya.acc-burner::before, #workskin .tw-reply .name.pfp-ilya.acc-burner::before, #workskin .twdm .name.pfp-ilya.acc-burner::before { content: "hockey fan"; }
+#workskin .tw .handle.pfp-ilya.acc-burner::after, #workskin .tw-reply .handle.pfp-ilya.acc-burner::after, #workskin .twdm .handle.pfp-ilya.acc-burner::after { content: "definitely_not_ilya"; }
+/* his Shane fan account on Twitter/X: acc-shanewife */
+#workskin .tw .pfp.pfp-ilya.acc-shanewife, #workskin .tw-reply .pfp.pfp-ilya.acc-shanewife, #workskin .twdm .pfp.pfp-ilya.acc-shanewife { background-image: url(https://images.squidge.org/images/2026/11/16/WetShane.jpg); }
+#workskin .tw .name.pfp-ilya.acc-shanewife::before, #workskin .tw-reply .name.pfp-ilya.acc-shanewife::before, #workskin .twdm .name.pfp-ilya.acc-shanewife::before { content: "Shane Hollander's Wife"; }
+#workskin .tw .handle.pfp-ilya.acc-shanewife::after, #workskin .tw-reply .handle.pfp-ilya.acc-shanewife::after, #workskin .twdm .handle.pfp-ilya.acc-shanewife::after { content: "hollanderswife"; }
 
 /* ==========================================================
    COLOURS: colour1 to colour10
    One set of ten colours for every app. Add colour1 to colour10 to a picture
-   circle (wa-pfp, tw-pfp, tb-pfp, tb-ask-pfp, gm-pfp) or a name (WhatsApp who,
+   circle (wa-pfp, tw-pfp, ig-pfp, ig-like-pfp, tb-pfp, tb-ask-pfp, gm-pfp) or a name (WhatsApp who,
    Discord dc-name) to colour it. Use the same number for a person everywhere.
    Change a colour here and it changes in every app.
    Each rule lists the class names for all the apps. If you've left some apps
    out, keep the whole list anyway: a name for an app you don't use just
    doesn't match anything, so it does no harm.
+   A note on spelling: I'm British, so I've spelled colour the British way in
+   the class names - colour1, not color1. If you forget the u and the skin
+   doesn't work, you'll understand my pain, because I've had to take the u out
+   of colour every time I've used someone else's code and couldn't figure out
+   why it wasn't working. (The CSS property itself is still color, with no u -
+   that one's not up to me.)
    ========================================================== */
 
 /* picture circles (the same in light and dark) */
@@ -444,6 +510,8 @@
 #workskin .tb .tb-pfp.colour1,
 #workskin .tb .tb-ask-pfp.colour1,
 #workskin .gm .gm-pfp.colour1,
+#workskin .ig .ig-pfp.colour1,
+#workskin .ig .ig-like-pfp.colour1,
 #workskin .dc .dc-name.colour1::before { background-color: #b5733a; }
 
 #workskin .wa .wa-pfp.colour2,
@@ -452,6 +520,8 @@
 #workskin .tb .tb-pfp.colour2,
 #workskin .tb .tb-ask-pfp.colour2,
 #workskin .gm .gm-pfp.colour2,
+#workskin .ig .ig-pfp.colour2,
+#workskin .ig .ig-like-pfp.colour2,
 #workskin .dc .dc-name.colour2::before { background-color: #3a3a3c; }
 
 #workskin .wa .wa-pfp.colour3,
@@ -460,6 +530,8 @@
 #workskin .tb .tb-pfp.colour3,
 #workskin .tb .tb-ask-pfp.colour3,
 #workskin .gm .gm-pfp.colour3,
+#workskin .ig .ig-pfp.colour3,
+#workskin .ig .ig-like-pfp.colour3,
 #workskin .dc .dc-name.colour3::before { background-color: #7a2b4e; }
 
 #workskin .wa .wa-pfp.colour4,
@@ -468,6 +540,8 @@
 #workskin .tb .tb-pfp.colour4,
 #workskin .tb .tb-ask-pfp.colour4,
 #workskin .gm .gm-pfp.colour4,
+#workskin .ig .ig-pfp.colour4,
+#workskin .ig .ig-like-pfp.colour4,
 #workskin .dc .dc-name.colour4::before { background-color: #2f7d6b; }
 
 #workskin .wa .wa-pfp.colour5,
@@ -476,6 +550,8 @@
 #workskin .tb .tb-pfp.colour5,
 #workskin .tb .tb-ask-pfp.colour5,
 #workskin .gm .gm-pfp.colour5,
+#workskin .ig .ig-pfp.colour5,
+#workskin .ig .ig-like-pfp.colour5,
 #workskin .dc .dc-name.colour5::before { background-color: #3b5ea8; }
 
 #workskin .wa .wa-pfp.colour6,
@@ -484,6 +560,8 @@
 #workskin .tb .tb-pfp.colour6,
 #workskin .tb .tb-ask-pfp.colour6,
 #workskin .gm .gm-pfp.colour6,
+#workskin .ig .ig-pfp.colour6,
+#workskin .ig .ig-like-pfp.colour6,
 #workskin .dc .dc-name.colour6::before { background-color: #6b4fa0; }
 
 #workskin .wa .wa-pfp.colour7,
@@ -492,6 +570,8 @@
 #workskin .tb .tb-pfp.colour7,
 #workskin .tb .tb-ask-pfp.colour7,
 #workskin .gm .gm-pfp.colour7,
+#workskin .ig .ig-pfp.colour7,
+#workskin .ig .ig-like-pfp.colour7,
 #workskin .dc .dc-name.colour7::before { background-color: #a8383b; }
 
 #workskin .wa .wa-pfp.colour8,
@@ -500,6 +580,8 @@
 #workskin .tb .tb-pfp.colour8,
 #workskin .tb .tb-ask-pfp.colour8,
 #workskin .gm .gm-pfp.colour8,
+#workskin .ig .ig-pfp.colour8,
+#workskin .ig .ig-like-pfp.colour8,
 #workskin .dc .dc-name.colour8::before { background-color: #4e7a2c; }
 
 #workskin .wa .wa-pfp.colour9,
@@ -508,6 +590,8 @@
 #workskin .tb .tb-pfp.colour9,
 #workskin .tb .tb-ask-pfp.colour9,
 #workskin .gm .gm-pfp.colour9,
+#workskin .ig .ig-pfp.colour9,
+#workskin .ig .ig-like-pfp.colour9,
 #workskin .dc .dc-name.colour9::before { background-color: #8c6d1f; }
 
 #workskin .wa .wa-pfp.colour10,
@@ -516,6 +600,8 @@
 #workskin .tb .tb-pfp.colour10,
 #workskin .tb .tb-ask-pfp.colour10,
 #workskin .gm .gm-pfp.colour10,
+#workskin .ig .ig-pfp.colour10,
+#workskin .ig .ig-like-pfp.colour10,
 #workskin .dc .dc-name.colour10::before { background-color: #2a7390; }
 
 /* names: a bit brighter than the circles, so they are easy to read as text.

@@ -20,7 +20,8 @@
      Email (Gmail + generic), Discord.
    - Each module is complete in itself apart from CORE. It holds
      its own layout and colours, link colours, scrolling, dark
-     theme and auto theme (and WhatsApp's wallpapers). Each one
+     theme and auto theme (and WhatsApp's wallpapers), then the
+     pictures for its buttons and ticks in an Icons section. Each one
      runs from its ">>>>>>>>>> MODULE" line to its "<<<<<<<<<< MODULE"
      line, so you can keep CORE plus only the modules you use.
    - Every chat takes a module class (imsg, wa, tw, ...) and a
@@ -162,6 +163,27 @@
   background-size: cover;
   background-position: center;
 }
+
+/* initials from a profile: #workskin .pfp.pfp-holster::before { content: "AB"; } puts AB in the
+   middle of the circle, in white, sized to fit whichever app it's in */
+#workskin .pfp::before {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 0.8em;
+  line-height: 1;
+}
+
+/* the tiny circles in Discord replies and Instagram's "Liked by" line get smaller initials */
+#workskin .dc .dc-reply .pfp::before { font-size: 0.4em; }
+#workskin .ig .ig-like-pfp .pfp::before { font-size: 0.75em; }
+
+/* Instagram's account picture is bigger than its text, so its initials need a bigger size */
+#workskin .ig .ig-top .ig-pfp .pfp::before { font-size: 1.4em; }
 
 #workskin .pfp img {
   position: absolute;
@@ -360,12 +382,12 @@
    Only the lines with "every profile" need to be in yours; the rest are extras. */
 
 /* 1. Picture (every profile) */
-#workskin .pfp.pfp-luca { background-image: url(https://64.media.tumblr.com/a99a60f0293cf7df3604b4a6dd4705f6/ba033a52c8982cb0-cc/s1280x1920/cb4c277845d0c3ef666d16b86b75509266b795b3.jpg); }
+#workskin .pfp.pfp-luca { background-image: url(https://images.squidge.org/images/2026/11/16/SwedenHockey2.png); }
 
 /* 2. A different picture for one app. Each line replaces the picture on that app only. */
-#workskin .tw .pfp.pfp-luca, #workskin .tw-reply .pfp.pfp-luca { background-image: url(https://64.media.tumblr.com/6898dc3a42cc6c7ab9729360b71366e4/ba033a52c8982cb0-bf/s2048x3072/b548d2fe61b02e530c0edd2ee6a6bd56ab73ad2c.jpg); }
-#workskin .ig .pfp.pfp-luca, #workskin .igdm .pfp.pfp-luca { background-image: url(https://64.media.tumblr.com/45b3b47d7c42b593f6242a40153a629c/ba033a52c8982cb0-d7/s2048x3072/4e71b117e87747d78dd3d95595cecc77eec48d38.jpg); }
-#workskin .tb .pfp.pfp-luca { background-image: url(https://64.media.tumblr.com/694221426fb8229480fb3fb87b528ca7/ba033a52c8982cb0-01/s1280x1920/636653581e07a970475075f480c1717b23a72c0a.jpg); }
+#workskin .tw .pfp.pfp-luca, #workskin .tw-reply .pfp.pfp-luca { background-image: url(https://images.squidge.org/images/2026/11/16/LucaMain.png); }
+#workskin .ig .pfp.pfp-luca, #workskin .igdm .pfp.pfp-luca { background-image: url(https://images.squidge.org/images/2026/11/16/LucaPriv.png); }
+#workskin .tb .pfp.pfp-luca { background-image: url(https://images.squidge.org/images/2026/11/16/SwedenHockey.png); }
 #workskin .gm .pfp.pfp-luca { background-image: linear-gradient(135deg, #f6b26b, #e06666); }
 #workskin .dc .pfp.pfp-luca { background-image: linear-gradient(135deg, #8e7cc3, #6fa8dc); }
 
@@ -400,29 +422,46 @@
 /* 10. Email address, for Gmail and the email window */
 #workskin .email.pfp-luca::after { content: "luca@example.com"; }
 
-/* 11. A different email address in the email window (.mail) or Gmail (.gm) */
-#workskin .mail .email.pfp-luca::after { content: "luca@work.example.com"; }
+/* 11. Another email address: give it an acc- name, the same as a second account on an app.
+   Add the acc- name: <span class="email pfp-luca acc-work"> */
+#workskin .email.pfp-luca.acc-work::after { content: "luca@work.example.com"; }
 
 /* 12. His phone: WhatsApp chats with pov-luca on the container. A colour, a gradient
    or a picture all work here. He uses theme-light. */
 #workskin .mob.wa.pov-luca { background: linear-gradient(#fdf1d6, #f6d5c2); }
+/* 13. More than one account on the same app: an art Tumblr (acc-art) and a hockey RPF Tumblr
+   (acc-rpf). Add the acc- name: <span class="handle pfp-luca acc-art"> */
+#workskin .tb .pfp.pfp-luca.acc-art { background-image: url(https://images.squidge.org/images/2026/11/16/LucaTumblr.png); }
+#workskin .tb .handle.pfp-luca.acc-art::after { content: "gremlin-sketches"; }
+#workskin .tb .pfp.pfp-luca.acc-rpf { background-image: url(https://images.squidge.org/images/2026/11/16/Hollanov1.png); }
+#workskin .tb .handle.pfp-luca.acc-rpf::after { content: "rink-rivals-rpf"; }
+/* 14. Tumblr checkmarks after the blog's name. Pick the picture with 2, 4 or 6 checkmarks and the
+   padding that goes with it: tb-checks-2.png 2.15em, tb-checks-4.png 4.2em, tb-checks-6.png 6.2em.
+   An acc- account has its own line, or it gets the main blog's checkmarks. */
+#workskin .tb .handle.pfp-luca::after { background-image: url(https://images.squidge.org/images/2026/11/15/tb-checks-2.png); padding-right: 2.15em; }
+#workskin .tb .handle.pfp-luca.acc-art::after { background-image: url(https://images.squidge.org/images/2026/11/15/tb-checks-6.png); padding-right: 6.2em; }
+#workskin .tb .handle.pfp-luca.acc-rpf::after { background-image: url(https://images.squidge.org/images/2026/11/15/tb-checks-4.png); padding-right: 4.2em; }
+/* 15. A rounded square picture on Tumblr instead of a circle, everywhere this blog shows up */
+#workskin .tb .pfp.pfp-luca.acc-art { border-radius: 15%; }
 
 /* PROFILE: Stan */
-#workskin .pfp.pfp-stan { background-color: #c06a1f; }
+#workskin .pfp.pfp-stan { background-image: url(https://images.squidge.org/images/2026/11/15/GayCrosedHockeySticks.png); }
 #workskin .wa .who.pfp-stan, #workskin .dc .dc-name.pfp-stan { color: #d2782a; }
 #workskin .name.pfp-stan::before { content: "Stan"; }
 #workskin .handle.pfp-stan::after { content: "PuckStan"; }
 #workskin .email.pfp-stan::after { content: "Puckstan@gmail.com"; }
 
-/* PROFILE: Yuna */
+/* PROFILE: Yuna - with a second email address for work, acc-work. Add the acc- name:
+   <span class="email pfp-yuna acc-work"> */
 #workskin .pfp.pfp-yuna { background-color: #7d4fb0; }
 #workskin .wa .who.pfp-yuna, #workskin .dc .dc-name.pfp-yuna { color: #9a62d0; }
 #workskin .name.pfp-yuna::before { content: "Yuna"; }
 #workskin .mob.pov-shane .name.pfp-yuna::before { content: "Mom"; }
 #workskin .handle.pfp-yuna::after { content: "MetrosMomager"; }
 #workskin .email.pfp-yuna::after { content: "YunaHollander@gmail.com"; }
-#workskin .mail .email.pfp-yuna::after { content: "Yuna@HollanderHockey.com"; }
 #workskin .mob.wa.pov-yuna { background-color: #e8e8e8; background-image: url(https://64.media.tumblr.com/a1c0162c5542c5890e5fd9c13341513e/3b53694384f48caf-98/s1280x1920/8b2fcaaf7deb2b05c418f46c62ee729acb8ff8e4.jpg); background-size: cover; background-position: center; }
+/* her work email: acc-work */
+#workskin .email.pfp-yuna.acc-work::after { content: "Yuna@HollanderHockey.com"; }
 
 /* PROFILE: Zim */
 #workskin .pfp.pfp-zim { background-color: #4a6a8f; }
@@ -433,54 +472,82 @@
 #workskin .tw .handle.pfp-zim::after, #workskin .tw-reply .handle.pfp-zim::after, #workskin .twdm .handle.pfp-zim::after { content: "ZimBits"; }
 #workskin .email.pfp-zim::after { content: "Jack@zimmerman.com"; }
 
-/* PROFILE: Holster - a different picture on each app (colours for now) */
+/* PROFILE: Holster - initials in his circle, a different circle colour on each app, and a picture on Twitter/X
+   (picture from the Check Please! Wiki: https://omgcheckplease.fandom.com/wiki/Adam_Birkholtz) */
 #workskin .pfp.pfp-holster { background-color: #138a72; }
-#workskin .tw .pfp.pfp-holster, #workskin .tw-reply .pfp.pfp-holster { background-color: #1d6fa5; }
+#workskin .pfp.pfp-holster::before { content: "AB"; }
+#workskin .tw .pfp.pfp-holster::before, #workskin .tw-reply .pfp.pfp-holster::before, #workskin .ig .pfp.pfp-holster::before { display: none; }
+#workskin .tw .pfp.pfp-holster, #workskin .tw-reply .pfp.pfp-holster { background-image: url(https://static.wikia.nocookie.net/omgcheckplease/images/b/b2/Holsty.png); }
 #workskin .ig .pfp.pfp-holster, #workskin .igdm .pfp.pfp-holster { background-color: #c13584; }
 #workskin .tb .pfp.pfp-holster { background-color: #35465c; }
 #workskin .dc .pfp.pfp-holster { background-color: #5865f2; }
 #workskin .wa .who.pfp-holster, #workskin .dc .dc-name.pfp-holster { color: #1aa386; }
 #workskin .name.pfp-holster::before { content: "Holster"; }
 #workskin .handle.pfp-holster::after { content: "HolsterInLaw"; }
+#workskin .email.pfp-holster::after { content: "birka@samwellU.edu"; }
 
-/* PROFILE: Rose */
-#workskin .pfp.pfp-rose { background-color: #c2416b; }
+/* PROFILE: Rose - her public accounts (Twitter/X and Instagram) use her full name, and she has a
+   private second account on Instagram, acc-private. Add the acc- name:
+   <span class="handle pfp-rose acc-private"> */
+#workskin .pfp.pfp-rose { background-color: #c2416b; background-image: url(https://images.squidge.org/images/2026/11/16/RoseHeadshot.jpg); }
 #workskin .wa .who.pfp-rose, #workskin .dc .dc-name.pfp-rose { color: #d6336c; }
 #workskin .name.pfp-rose::before { content: "Rose"; }
 #workskin .tw .name.pfp-rose::before, #workskin .tw-reply .name.pfp-rose::before, #workskin .twdm .name.pfp-rose::before, #workskin .ig .name.pfp-rose::before, #workskin .igdm .name.pfp-rose::before { content: "Rose Landry"; }
 #workskin .handle.pfp-rose::after { content: "PoseyRosey"; }
 #workskin .tw .handle.pfp-rose::after, #workskin .tw-reply .handle.pfp-rose::after, #workskin .twdm .handle.pfp-rose::after, #workskin .ig .handle.pfp-rose::after, #workskin .igdm .handle.pfp-rose::after { content: "RoseLandry"; }
+/* her private Instagram: acc-private */
+#workskin .ig .pfp.pfp-rose.acc-private, #workskin .igdm .pfp.pfp-rose.acc-private { background-image: url(https://images.squidge.org/images/2026/11/16/RosePriv.jpg); }
+#workskin .ig .name.pfp-rose.acc-private::before, #workskin .igdm .name.pfp-rose.acc-private::before { content: "Rose"; }
+#workskin .ig .handle.pfp-rose.acc-private::after, #workskin .igdm .handle.pfp-rose.acc-private::after { content: "rosie.after.dark"; }
+/* her Tumblr uses her private picture too */
+#workskin .tb .pfp.pfp-rose { background-image: url(https://images.squidge.org/images/2026/11/16/RosePriv.jpg); }
 
 /* PROFILE: Shane */
-#workskin .pfp.pfp-shane { background-image: url(https://www.shutterstock.com/shutterstock/photos/1100283806/display_1500/stock-photo-beautiful-lavender-flower-in-the-dalat-flower-park-selective-focus-1100283806.jpg); }
+#workskin .pfp.pfp-shane { background-image: url(https://images.squidge.org/images/2026/11/16/ShaneHockey.png); }
 #workskin .wa .who.pfp-shane, #workskin .dc .dc-name.pfp-shane { color: #3a7bd5; }
 #workskin .name.pfp-shane::before { content: "Shane"; }
 #workskin .mob.pov-ilya .name.pfp-shane::before { content: "Jane"; }
 #workskin .handle.pfp-shane::after { content: "ShaneHollanderHockeyPlayer"; }
 #workskin .ig .handle.pfp-shane::after, #workskin .igdm .handle.pfp-shane::after { content: "shanehollanderhockeyplayer"; }
-#workskin .tb .handle.pfp-shane::after { content: "hollanderhockey"; }
+#workskin .tb .handle.pfp-shane::after { content: "alliknowishockey"; }
 #workskin .dc .handle.pfp-shane::after { content: "shanehollander"; }
 #workskin .email.pfp-shane::after { content: "shane@example.com"; }
 #workskin .mob.wa.pov-shane { background: #dfeaf6; }
 
-/* PROFILE: Ilya - no picture yet: swap background-color for background-image: url(LINK) */
-#workskin .pfp.pfp-ilya { background-color: #b5433a; }
+/* PROFILE: Ilya - with two extra Twitter/X accounts, acc-burner and acc-shanewife. Add the
+   acc- name: <span class="handle pfp-ilya acc-burner"> */
+#workskin .pfp.pfp-ilya { background-color: #b5433a; background-image: url(https://images.squidge.org/images/2026/11/16/IlyaHelmet.png); }
 #workskin .wa .who.pfp-ilya, #workskin .dc .dc-name.pfp-ilya { color: #d65548; }
 #workskin .name.pfp-ilya::before { content: "Ilya"; }
 #workskin .mob.pov-shane .name.pfp-ilya::before { content: "Lily"; }
 #workskin .handle.pfp-ilya::after { content: "irozanov"; }
 #workskin .ig .handle.pfp-ilya::after, #workskin .igdm .handle.pfp-ilya::after { content: "ilya.r"; }
+#workskin .tb .handle.pfp-ilya::after { content: "oghollanovtruther"; }
 #workskin .mob.wa.pov-ilya { background: #1b1f2b; }
+/* his burner Twitter/X: acc-burner */
+#workskin .tw .pfp.pfp-ilya.acc-burner, #workskin .tw-reply .pfp.pfp-ilya.acc-burner, #workskin .twdm .pfp.pfp-ilya.acc-burner { background-image: url(https://images.squidge.org/images/2026/11/16/IlyaSmoke.png); }
+#workskin .tw .name.pfp-ilya.acc-burner::before, #workskin .tw-reply .name.pfp-ilya.acc-burner::before, #workskin .twdm .name.pfp-ilya.acc-burner::before { content: "hockey fan"; }
+#workskin .tw .handle.pfp-ilya.acc-burner::after, #workskin .tw-reply .handle.pfp-ilya.acc-burner::after, #workskin .twdm .handle.pfp-ilya.acc-burner::after { content: "definitely_not_ilya"; }
+/* his Shane fan account on Twitter/X: acc-shanewife */
+#workskin .tw .pfp.pfp-ilya.acc-shanewife, #workskin .tw-reply .pfp.pfp-ilya.acc-shanewife, #workskin .twdm .pfp.pfp-ilya.acc-shanewife { background-image: url(https://images.squidge.org/images/2026/11/16/WetShane.jpg); }
+#workskin .tw .name.pfp-ilya.acc-shanewife::before, #workskin .tw-reply .name.pfp-ilya.acc-shanewife::before, #workskin .twdm .name.pfp-ilya.acc-shanewife::before { content: "Shane Hollander's Wife"; }
+#workskin .tw .handle.pfp-ilya.acc-shanewife::after, #workskin .tw-reply .handle.pfp-ilya.acc-shanewife::after, #workskin .twdm .handle.pfp-ilya.acc-shanewife::after { content: "hollanderswife"; }
 
 /* ==========================================================
    COLOURS: colour1 to colour10
    One set of ten colours for every app. Add colour1 to colour10 to a picture
-   circle (wa-pfp, tw-pfp, tb-pfp, tb-ask-pfp, gm-pfp) or a name (WhatsApp who,
+   circle (wa-pfp, tw-pfp, ig-pfp, ig-like-pfp, tb-pfp, tb-ask-pfp, gm-pfp) or a name (WhatsApp who,
    Discord dc-name) to colour it. Use the same number for a person everywhere.
    Change a colour here and it changes in every app.
    Each rule lists the class names for all the apps. If you've left some apps
    out, keep the whole list anyway: a name for an app you don't use just
    doesn't match anything, so it does no harm.
+   A note on spelling: I'm British, so I've spelled colour the British way in
+   the class names - colour1, not color1. If you forget the u and the skin
+   doesn't work, you'll understand my pain, because I've had to take the u out
+   of colour every time I've used someone else's code and couldn't figure out
+   why it wasn't working. (The CSS property itself is still color, with no u -
+   that one's not up to me.)
    ========================================================== */
 
 /* picture circles (the same in light and dark) */
@@ -490,6 +557,8 @@
 #workskin .tb .tb-pfp.colour1,
 #workskin .tb .tb-ask-pfp.colour1,
 #workskin .gm .gm-pfp.colour1,
+#workskin .ig .ig-pfp.colour1,
+#workskin .ig .ig-like-pfp.colour1,
 #workskin .dc .dc-name.colour1::before { background-color: #b5733a; }
 
 #workskin .wa .wa-pfp.colour2,
@@ -498,6 +567,8 @@
 #workskin .tb .tb-pfp.colour2,
 #workskin .tb .tb-ask-pfp.colour2,
 #workskin .gm .gm-pfp.colour2,
+#workskin .ig .ig-pfp.colour2,
+#workskin .ig .ig-like-pfp.colour2,
 #workskin .dc .dc-name.colour2::before { background-color: #3a3a3c; }
 
 #workskin .wa .wa-pfp.colour3,
@@ -506,6 +577,8 @@
 #workskin .tb .tb-pfp.colour3,
 #workskin .tb .tb-ask-pfp.colour3,
 #workskin .gm .gm-pfp.colour3,
+#workskin .ig .ig-pfp.colour3,
+#workskin .ig .ig-like-pfp.colour3,
 #workskin .dc .dc-name.colour3::before { background-color: #7a2b4e; }
 
 #workskin .wa .wa-pfp.colour4,
@@ -514,6 +587,8 @@
 #workskin .tb .tb-pfp.colour4,
 #workskin .tb .tb-ask-pfp.colour4,
 #workskin .gm .gm-pfp.colour4,
+#workskin .ig .ig-pfp.colour4,
+#workskin .ig .ig-like-pfp.colour4,
 #workskin .dc .dc-name.colour4::before { background-color: #2f7d6b; }
 
 #workskin .wa .wa-pfp.colour5,
@@ -522,6 +597,8 @@
 #workskin .tb .tb-pfp.colour5,
 #workskin .tb .tb-ask-pfp.colour5,
 #workskin .gm .gm-pfp.colour5,
+#workskin .ig .ig-pfp.colour5,
+#workskin .ig .ig-like-pfp.colour5,
 #workskin .dc .dc-name.colour5::before { background-color: #3b5ea8; }
 
 #workskin .wa .wa-pfp.colour6,
@@ -530,6 +607,8 @@
 #workskin .tb .tb-pfp.colour6,
 #workskin .tb .tb-ask-pfp.colour6,
 #workskin .gm .gm-pfp.colour6,
+#workskin .ig .ig-pfp.colour6,
+#workskin .ig .ig-like-pfp.colour6,
 #workskin .dc .dc-name.colour6::before { background-color: #6b4fa0; }
 
 #workskin .wa .wa-pfp.colour7,
@@ -538,6 +617,8 @@
 #workskin .tb .tb-pfp.colour7,
 #workskin .tb .tb-ask-pfp.colour7,
 #workskin .gm .gm-pfp.colour7,
+#workskin .ig .ig-pfp.colour7,
+#workskin .ig .ig-like-pfp.colour7,
 #workskin .dc .dc-name.colour7::before { background-color: #a8383b; }
 
 #workskin .wa .wa-pfp.colour8,
@@ -546,6 +627,8 @@
 #workskin .tb .tb-pfp.colour8,
 #workskin .tb .tb-ask-pfp.colour8,
 #workskin .gm .gm-pfp.colour8,
+#workskin .ig .ig-pfp.colour8,
+#workskin .ig .ig-like-pfp.colour8,
 #workskin .dc .dc-name.colour8::before { background-color: #4e7a2c; }
 
 #workskin .wa .wa-pfp.colour9,
@@ -554,6 +637,8 @@
 #workskin .tb .tb-pfp.colour9,
 #workskin .tb .tb-ask-pfp.colour9,
 #workskin .gm .gm-pfp.colour9,
+#workskin .ig .ig-pfp.colour9,
+#workskin .ig .ig-like-pfp.colour9,
 #workskin .dc .dc-name.colour9::before { background-color: #8c6d1f; }
 
 #workskin .wa .wa-pfp.colour10,
@@ -562,6 +647,8 @@
 #workskin .tb .tb-pfp.colour10,
 #workskin .tb .tb-ask-pfp.colour10,
 #workskin .gm .gm-pfp.colour10,
+#workskin .ig .ig-pfp.colour10,
+#workskin .ig .ig-like-pfp.colour10,
 #workskin .dc .dc-name.colour10::before { background-color: #2a7390; }
 
 /* names: a bit brighter than the circles, so they are easy to read as text.
@@ -1097,6 +1184,38 @@
   #workskin .imsg.theme-auto .imsg-field { border-color: #757579; background: #1c1c1e; color: #8e8e93; }
 
   #workskin .imsg.theme-auto .imsg-field.typed { color: #ffffff; }
+}
+
+/* ---------- iMessage: Icons ----------
+   The buttons and ticks are pictures: black in light chats, white in dark ones.
+   Each one is a span with "ic" and its name, with the typed symbol inside, which
+   this hides. Delete this whole section to get the typed symbols back. */
+#workskin .imsg .ic {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  overflow: hidden;
+  text-indent: -100em;
+  text-align: left;
+  white-space: nowrap;
+  vertical-align: -0.15em;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+/* the send arrow is a whole round button, so the picture fills it */
+#workskin .imsg .imsg-send.ic { width: 1.7em; height: 1.7em; vertical-align: baseline; background-color: transparent; background-size: 100%; }
+
+#workskin .imsg .ic.ic-mic { background-image: url(https://images.squidge.org/images/2026/11/15/mic-black.png); }
+#workskin .imsg .ic.ic-imsg-send { background-image: url(https://images.squidge.org/images/2026/11/15/imessage-send.png); }
+
+/* iMessage icons, dark */
+#workskin .imsg.theme-dark .ic.ic-mic { background-image: url(https://images.squidge.org/images/2026/11/15/mic-white.png); }
+
+/* iMessage icons, auto: dark when the reader's device is in dark mode */
+@media (prefers-color-scheme: dark) {
+  #workskin .imsg.theme-auto .ic.ic-mic { background-image: url(https://images.squidge.org/images/2026/11/15/mic-white.png); }
 }
 
 /* <<<<<<<<<< MODULE: iMessage (end) <<<<<<<<<< */
@@ -1778,7 +1897,7 @@
 #workskin .wa.bg-dusk { background-color: #4b3a6e; background-image: linear-gradient(#7b5ea7, #2c2145); }
 
 /* YOUR OWN WALLPAPER (a photo or pattern from the web)
-   1. Upload the picture somewhere that gives a direct link (an image host such as Imgur).
+   1. Upload the picture somewhere that gives a direct link (an image host such as squidge.org).
    2. Replace the example link in the rule below with yours (the colour shows if the picture fails).
    3. Use the class on any chat: <div class="mob wa theme-auto bg-image1">
    4. For another wallpaper, copy the rule again and rename bg-image1 to bg-image2, etc. */
@@ -1788,6 +1907,79 @@
   background-size: cover;
   background-position: center;
 }
+
+/* ---------- WhatsApp: Icons ----------
+   The buttons and ticks are pictures: black in light chats, white in dark ones.
+   Each one is a span with "ic" and its name, with the typed symbol inside, which
+   this hides. Delete this whole section to get the typed symbols back. */
+#workskin .wa .ic {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  overflow: hidden;
+  text-indent: -100em;
+  text-align: left;
+  white-space: nowrap;
+  vertical-align: -0.15em;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+#workskin .wa .wa-link-url::before {
+  content: "";
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.15em;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+/* the icons in the message box sit in table cells, so they keep a set width */
+#workskin .wa .wa-field .ic { display: table-cell; width: 1.6em; background-size: 1.15em; }
+
+/* the double ticks are wider than one symbol. The grey sent and delivered ticks are
+   the same grey as the time, so they change with the theme. */
+#workskin .wa .ic.ic-read,
+#workskin .wa .ic.ic-delivered { width: 1.25em; }
+
+/* the mic and send buttons are whole round buttons, so the picture fills them */
+#workskin .wa .wa-mic.ic { display: block; width: 2.4em; height: 2.4em; vertical-align: baseline; background-color: transparent; background-size: 100%; }
+
+#workskin .wa .ic.ic-emoji { background-image: url(https://images.squidge.org/images/2026/11/15/emoji-black.png); }
+#workskin .wa .ic.ic-paperclip { background-image: url(https://images.squidge.org/images/2026/11/15/paperclip-black.png); }
+#workskin .wa .ic.ic-camera { background-image: url(https://images.squidge.org/images/2026/11/15/camera-black.png); }
+#workskin .wa .wa-link-url::before { background-image: url(https://images.squidge.org/images/2026/11/15/link-black.png); }
+#workskin .wa .ic.ic-read { background-image: url(https://images.squidge.org/images/2026/11/15/double-tick-blue.png); }
+#workskin .wa .ic.ic-sent { background-image: url(https://images.squidge.org/images/2026/11/15/tick-grey-light.png); }
+#workskin .wa .ic.ic-delivered { background-image: url(https://images.squidge.org/images/2026/11/15/double-tick-grey-light.png); }
+#workskin .wa .ic.ic-wa-mic { background-image: url(https://images.squidge.org/images/2026/11/15/whatsapp-mic.png); }
+#workskin .wa .ic.ic-wa-send { background-image: url(https://images.squidge.org/images/2026/11/15/whatsapp-send.png); }
+
+/* WhatsApp icons, dark */
+#workskin .wa.theme-dark .ic.ic-emoji { background-image: url(https://images.squidge.org/images/2026/11/15/emoji-white.png); }
+#workskin .wa.theme-dark .ic.ic-paperclip { background-image: url(https://images.squidge.org/images/2026/11/15/paperclip-white.png); }
+#workskin .wa.theme-dark .ic.ic-camera { background-image: url(https://images.squidge.org/images/2026/11/15/camera-white.png); }
+#workskin .wa.theme-dark .wa-link-url::before { background-image: url(https://images.squidge.org/images/2026/11/15/link-white.png); }
+#workskin .wa.theme-dark .ic.ic-sent { background-image: url(https://images.squidge.org/images/2026/11/15/tick-grey-dark.png); }
+#workskin .wa.theme-dark .ic.ic-delivered { background-image: url(https://images.squidge.org/images/2026/11/15/double-tick-grey-dark.png); }
+
+/* WhatsApp icons, auto: dark when the reader's device is in dark mode */
+@media (prefers-color-scheme: dark) {
+  #workskin .wa.theme-auto .ic.ic-emoji { background-image: url(https://images.squidge.org/images/2026/11/15/emoji-white.png); }
+  #workskin .wa.theme-auto .ic.ic-paperclip { background-image: url(https://images.squidge.org/images/2026/11/15/paperclip-white.png); }
+  #workskin .wa.theme-auto .ic.ic-camera { background-image: url(https://images.squidge.org/images/2026/11/15/camera-white.png); }
+  #workskin .wa.theme-auto .wa-link-url::before { background-image: url(https://images.squidge.org/images/2026/11/15/link-white.png); }
+  #workskin .wa.theme-auto .ic.ic-sent { background-image: url(https://images.squidge.org/images/2026/11/15/tick-grey-dark.png); }
+  #workskin .wa.theme-auto .ic.ic-delivered { background-image: url(https://images.squidge.org/images/2026/11/15/double-tick-grey-dark.png); }
+}
+
+/* the top bar is coloured in every theme, so its icons are white */
+#workskin .wa .wa-bar .ic.ic-back { background-image: url(https://images.squidge.org/images/2026/11/15/back-white.png); }
+#workskin .wa .wa-bar .ic.ic-video { background-image: url(https://images.squidge.org/images/2026/11/15/video-white.png); }
+#workskin .wa .wa-bar .ic.ic-menu { background-image: url(https://images.squidge.org/images/2026/11/15/menu-vertical-white.png); }
 
 /* <<<<<<<<<< MODULE: WhatsApp (end) <<<<<<<<<< */
 
@@ -2722,6 +2914,38 @@
   #workskin .twdm.theme-auto .in { background: #2f3336; color: #e7e9ea; }
 }
 
+/* ---------- Twitter/X: Icons ----------
+   The buttons and ticks are pictures: black in light chats, white in dark ones.
+   Each one is a span with "ic" and its name, with the typed symbol inside, which
+   this hides. Delete this whole section to get the typed symbols back. */
+#workskin .tw .ic, #workskin .tw-reply .ic, #workskin .twdm .ic {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  overflow: hidden;
+  text-indent: -100em;
+  text-align: left;
+  white-space: nowrap;
+  vertical-align: -0.15em;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+#workskin .tw .ic.ic-play, #workskin .tw-reply .ic.ic-play, #workskin .twdm .ic.ic-play { background-image: url(https://images.squidge.org/images/2026/11/15/play-black.png); }
+#workskin .tw .ic.ic-verified, #workskin .tw-reply .ic.ic-verified, #workskin .twdm .ic.ic-verified { background-image: url(https://images.squidge.org/images/2026/11/15/verified-blue.png); }
+
+/* Twitter/X icons, dark */
+#workskin .tw.theme-dark .ic.ic-play, #workskin .tw-reply.theme-dark .ic.ic-play, #workskin .twdm.theme-dark .ic.ic-play, #workskin .tw-thread.theme-dark .ic.ic-play { background-image: url(https://images.squidge.org/images/2026/11/15/play-white.png); }
+
+/* Twitter/X icons, auto: dark when the reader's device is in dark mode */
+@media (prefers-color-scheme: dark) {
+  #workskin .tw.theme-auto .ic.ic-play, #workskin .tw-reply.theme-auto .ic.ic-play, #workskin .twdm.theme-auto .ic.ic-play, #workskin .tw-thread.theme-auto .ic.ic-play { background-image: url(https://images.squidge.org/images/2026/11/15/play-white.png); }
+}
+
+/* a voice note you sent sits in a blue bubble, so its play button is always white */
+#workskin .twdm .msg.out .ic.ic-play { background-image: url(https://images.squidge.org/images/2026/11/15/play-white.png); }
+
 /* <<<<<<<<<< MODULE: Twitter/X (posts, replies, DMs) (end) <<<<<<<<<< */
 
 /* >>>>>>>>>> MODULE: Instagram (posts, comments, DMs) (start) >>>>>>>>>> */
@@ -2781,6 +3005,20 @@
   margin: 0 0.6em 0 0;
   border-radius: 50%;
   overflow: hidden;
+}
+
+/* initials instead of a picture: <span class="ig-pfp colour3">RL</span>, and the same in
+   ig-like-pfp. With no colour class the circle is grey. */
+#workskin .ig .ig-top .ig-pfp,
+#workskin .ig .ig-like-pfp {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #8a8a8a;
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 0.8em;
+  line-height: 1;
 }
 
 #workskin .ig .ig-actions {
@@ -3008,6 +3246,9 @@
 
 #workskin .ig .ig-like-pfp:first-child { margin-left: 0; }
 
+/* initials in a face: inline-flex keeps them in the middle of the little circle */
+#workskin .ig .ig-like-pfp { display: inline-flex; font-size: 0.55em; }
+
 #workskin .igdm {
   background: #ffffff;
   color: #262626;
@@ -3118,6 +3359,7 @@
 #workskin .ig.theme-dark .ig-tag { color: #e0f1ff; }
 
 #workskin .ig.theme-dark .ig-top .ig-pfp.story .pfp { border-color: #000000; }
+#workskin .ig.theme-dark .ig-top .ig-pfp { color: #ffffff; }
 
 #workskin .ig.theme-dark .ig-like-pfp { border-color: #000000; }
 
@@ -3159,6 +3401,7 @@
   #workskin .ig.theme-auto .ig-tag { color: #e0f1ff; }
 
   #workskin .ig.theme-auto .ig-top .ig-pfp.story .pfp { border-color: #000000; }
+  #workskin .ig.theme-auto .ig-top .ig-pfp { color: #ffffff; }
 
   #workskin .ig.theme-auto .ig-like-pfp { border-color: #000000; }
 
@@ -3179,6 +3422,70 @@
   #workskin .igdm.theme-auto .in { background: #262626; color: #f5f5f5; }
 
   #workskin .igdm.theme-auto .igdm-shared { border-color: #363636; color: #a8a8a8; }
+}
+
+/* ---------- Instagram: Icons ----------
+   The buttons and ticks are pictures: black in light chats, white in dark ones.
+   Each one is a span with "ic" and its name, with the typed symbol inside, which
+   this hides. Delete this whole section to get the typed symbols back. */
+#workskin .ig .ic, #workskin .igdm .ic {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  overflow: hidden;
+  text-indent: -100em;
+  text-align: left;
+  white-space: nowrap;
+  vertical-align: -0.15em;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+/* the liked heart shows when the button is clicked */
+#workskin .ig .ig-tog[open] .ic.on { display: inline-block; }
+
+/* the comment bubble and bookmark are pictures too, in place of the CSS drawings above */
+#workskin .ig .ig-icon.cm, #workskin .ig .ig-icon.bm {
+  width: 1em;
+  height: 1em;
+  border: 0;
+  border-radius: 0;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+#workskin .ig .ig-icon.bm::after { display: none; }
+
+#workskin .ig .ic.ic-more, #workskin .igdm .ic.ic-more { background-image: url(https://images.squidge.org/images/2026/11/15/menu-horizontal-black.png); }
+#workskin .ig .ic.ic-share, #workskin .igdm .ic.ic-share { background-image: url(https://images.squidge.org/images/2026/11/15/share-black.png); }
+#workskin .ig .ic.ic-repost, #workskin .igdm .ic.ic-repost { background-image: url(https://images.squidge.org/images/2026/11/15/repost-black.png); }
+#workskin .ig .ic.ic-heart, #workskin .igdm .ic.ic-heart { background-image: url(https://images.squidge.org/images/2026/11/15/heart-black.png); }
+#workskin .ig .ig-icon.cm { background-image: url(https://images.squidge.org/images/2026/11/15/comment-black.png); }
+#workskin .ig .ig-icon.bm { background-image: url(https://images.squidge.org/images/2026/11/15/bookmark-black.png); }
+#workskin .ig .ig-icon.bm.on { background-image: url(https://images.squidge.org/images/2026/11/15/bookmark-filled-black.png); }
+#workskin .ig .ic.ic-verified, #workskin .igdm .ic.ic-verified { background-image: url(https://images.squidge.org/images/2026/11/15/verified-blue.png); }
+#workskin .ig .ic.ic-heart-red, #workskin .igdm .ic.ic-heart-red { background-image: url(https://images.squidge.org/images/2026/11/15/heart-filled-red.png); }
+
+/* Instagram icons, dark */
+#workskin .ig.theme-dark .ic.ic-more, #workskin .igdm.theme-dark .ic.ic-more { background-image: url(https://images.squidge.org/images/2026/11/15/menu-horizontal-white.png); }
+#workskin .ig.theme-dark .ic.ic-share, #workskin .igdm.theme-dark .ic.ic-share { background-image: url(https://images.squidge.org/images/2026/11/15/share-white.png); }
+#workskin .ig.theme-dark .ic.ic-repost, #workskin .igdm.theme-dark .ic.ic-repost { background-image: url(https://images.squidge.org/images/2026/11/15/repost-white.png); }
+#workskin .ig.theme-dark .ic.ic-heart, #workskin .igdm.theme-dark .ic.ic-heart { background-image: url(https://images.squidge.org/images/2026/11/15/heart-white.png); }
+#workskin .ig.theme-dark .ig-icon.cm { background-image: url(https://images.squidge.org/images/2026/11/15/comment-white.png); }
+#workskin .ig.theme-dark .ig-icon.bm { background-image: url(https://images.squidge.org/images/2026/11/15/bookmark-white.png); }
+#workskin .ig.theme-dark .ig-icon.bm.on { background-image: url(https://images.squidge.org/images/2026/11/15/bookmark-filled-white.png); }
+
+/* Instagram icons, auto: dark when the reader's device is in dark mode */
+@media (prefers-color-scheme: dark) {
+  #workskin .ig.theme-auto .ic.ic-more, #workskin .igdm.theme-auto .ic.ic-more { background-image: url(https://images.squidge.org/images/2026/11/15/menu-horizontal-white.png); }
+  #workskin .ig.theme-auto .ic.ic-share, #workskin .igdm.theme-auto .ic.ic-share { background-image: url(https://images.squidge.org/images/2026/11/15/share-white.png); }
+  #workskin .ig.theme-auto .ic.ic-repost, #workskin .igdm.theme-auto .ic.ic-repost { background-image: url(https://images.squidge.org/images/2026/11/15/repost-white.png); }
+  #workskin .ig.theme-auto .ic.ic-heart, #workskin .igdm.theme-auto .ic.ic-heart { background-image: url(https://images.squidge.org/images/2026/11/15/heart-white.png); }
+  #workskin .ig.theme-auto .ig-icon.cm { background-image: url(https://images.squidge.org/images/2026/11/15/comment-white.png); }
+  #workskin .ig.theme-auto .ig-icon.bm { background-image: url(https://images.squidge.org/images/2026/11/15/bookmark-white.png); }
+  #workskin .ig.theme-auto .ig-icon.bm.on { background-image: url(https://images.squidge.org/images/2026/11/15/bookmark-filled-white.png); }
 }
 
 /* <<<<<<<<<< MODULE: Instagram (posts, comments, DMs) (end) <<<<<<<<<< */
@@ -3319,6 +3626,9 @@
 
 #workskin .tb .tb-check + .tb-check + .tb-check + .tb-check + .tb-check + .tb-check { background: #f08b37; }
 
+/* checkmarks from a profile: the profile adds the picture and the padding to make room for it */
+#workskin .tb .handle::after { background-repeat: no-repeat; background-position: right center; background-size: auto 0.9em; }
+
 #workskin .tb .tb-follow { display: block; float: right; margin: 2px 0 0 0.5em; }
 
 #workskin .tb .tb-follow span {
@@ -3408,7 +3718,7 @@
   height: 28px;
   line-height: 28px;
   text-align: center;
-  border-radius: 5px;
+  border-radius: 50%;
   background-color: #8a8a8a;
   font-family: Arial, Helvetica, sans-serif;
   background-size: cover;
@@ -3417,6 +3727,15 @@
   font-size: 0.75em;
   font-weight: bold;
 }
+
+/* ROUNDED SQUARE PICTURES: on Tumblr, each blog picks a circle or a rounded square for its picture,
+   and it's the same everywhere that blog shows up. For a blog without a profile, add sq to its
+   picture every time: <span class="tb-pfp sq colour6">PB</span> or <span class="tb-ask-pfp sq colour6">PB</span>
+   For a profile, add a line to the profile instead, e.g.
+   #workskin .tb .pfp.pfp-luca.acc-art { border-radius: 15%; } */
+#workskin .tb .tb-pfp.sq,
+#workskin .tb .tb-ask-pfp.sq,
+#workskin .tb .sq .pfp { border-radius: 15%; }
 
 #workskin .tb .tb-tags {
   display: block;
@@ -3621,6 +3940,58 @@
   #workskin .tb.theme-auto .tb-header { border-bottom-color: #2c2c2c; }
 
   #workskin .tb.theme-auto .tb-ask::after { border-left-color: #272727; }
+}
+
+/* ---------- Tumblr: Icons ----------
+   The buttons and ticks are pictures: black in light chats, white in dark ones.
+   Each one is a span with "ic" and its name, with the typed symbol inside, which
+   this hides. Delete this whole section to get the typed symbols back. */
+#workskin .tb .ic {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  overflow: hidden;
+  text-indent: -100em;
+  text-align: left;
+  white-space: nowrap;
+  vertical-align: -0.15em;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+/* the save bookmark is a picture too, in place of the CSS drawing above */
+#workskin .tb .tb-icon.save {
+  width: 1em;
+  height: 1em;
+  border: 0;
+  vertical-align: -0.1em;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+#workskin .tb .tb-icon.save::after { display: none; }
+
+#workskin .tb .ic.ic-share-up { background-image: url(https://images.squidge.org/images/2026/11/15/share-up-black.png); }
+#workskin .tb .ic.ic-comment { background-image: url(https://images.squidge.org/images/2026/11/15/comment-black.png); }
+#workskin .tb .ic.ic-reblog { background-image: url(https://images.squidge.org/images/2026/11/15/reblog-black.png); }
+#workskin .tb .ic.ic-heart { background-image: url(https://images.squidge.org/images/2026/11/15/heart-black.png); }
+#workskin .tb .tb-icon.save { background-image: url(https://images.squidge.org/images/2026/11/15/bookmark-black.png); }
+
+/* Tumblr icons, dark */
+#workskin .tb.theme-dark .ic.ic-share-up { background-image: url(https://images.squidge.org/images/2026/11/15/share-up-white.png); }
+#workskin .tb.theme-dark .ic.ic-comment { background-image: url(https://images.squidge.org/images/2026/11/15/comment-white.png); }
+#workskin .tb.theme-dark .ic.ic-reblog { background-image: url(https://images.squidge.org/images/2026/11/15/reblog-white.png); }
+#workskin .tb.theme-dark .ic.ic-heart { background-image: url(https://images.squidge.org/images/2026/11/15/heart-white.png); }
+#workskin .tb.theme-dark .tb-icon.save { background-image: url(https://images.squidge.org/images/2026/11/15/bookmark-white.png); }
+
+/* Tumblr icons, auto: dark when the reader's device is in dark mode */
+@media (prefers-color-scheme: dark) {
+  #workskin .tb.theme-auto .ic.ic-share-up { background-image: url(https://images.squidge.org/images/2026/11/15/share-up-white.png); }
+  #workskin .tb.theme-auto .ic.ic-comment { background-image: url(https://images.squidge.org/images/2026/11/15/comment-white.png); }
+  #workskin .tb.theme-auto .ic.ic-reblog { background-image: url(https://images.squidge.org/images/2026/11/15/reblog-white.png); }
+  #workskin .tb.theme-auto .ic.ic-heart { background-image: url(https://images.squidge.org/images/2026/11/15/heart-white.png); }
+  #workskin .tb.theme-auto .tb-icon.save { background-image: url(https://images.squidge.org/images/2026/11/15/bookmark-white.png); }
 }
 
 /* <<<<<<<<<< MODULE: Tumblr (end) <<<<<<<<<< */
@@ -3958,6 +4329,69 @@
   #workskin .gm.theme-auto table.gm-actions td { border-color: #5f6368; color: #bdc1c6; }
 }
 
+/* ---------- Email: Icons ----------
+   The buttons and ticks are pictures: black in light chats, white in dark ones.
+   Each one is a span with "ic" and its name, with the typed symbol inside, which
+   this hides. Delete this whole section to get the typed symbols back. */
+#workskin .gm .ic, #workskin .mail .ic {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  overflow: hidden;
+  text-indent: -100em;
+  text-align: left;
+  white-space: nowrap;
+  vertical-align: -0.15em;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+#workskin .gm .mail-attachment::before, #workskin .gm .mail-attachment.doc::before, #workskin .gm .mail-attachment.img::before {
+  content: "";
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.15em;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+#workskin .gm .ic.ic-star, #workskin .mail .ic.ic-star { background-image: url(https://images.squidge.org/images/2026/11/15/star-black.png); }
+#workskin .gm .ic.ic-reply, #workskin .mail .ic.ic-reply { background-image: url(https://images.squidge.org/images/2026/11/15/reply-black.png); }
+#workskin .gm .ic.ic-reply-all, #workskin .mail .ic.ic-reply-all { background-image: url(https://images.squidge.org/images/2026/11/15/reply-all-black.png); }
+#workskin .gm .ic.ic-more, #workskin .mail .ic.ic-more { background-image: url(https://images.squidge.org/images/2026/11/15/menu-horizontal-black.png); }
+#workskin .gm .ic.ic-dropdown, #workskin .mail .ic.ic-dropdown { background-image: url(https://images.squidge.org/images/2026/11/15/dropdown-black.png); }
+#workskin .gm .ic.ic-forward, #workskin .mail .ic.ic-forward { background-image: url(https://images.squidge.org/images/2026/11/15/forward-black.png); }
+#workskin .gm .mail-attachment::before { background-image: url(https://images.squidge.org/images/2026/11/15/paperclip-black.png); }
+#workskin .gm .mail-attachment.doc::before { background-image: url(https://images.squidge.org/images/2026/11/15/document-black.png); }
+#workskin .gm .mail-attachment.img::before { background-image: url(https://images.squidge.org/images/2026/11/15/image-black.png); }
+
+/* Email icons, dark */
+#workskin .gm.theme-dark .ic.ic-star, #workskin .mail.theme-dark .ic.ic-star { background-image: url(https://images.squidge.org/images/2026/11/15/star-white.png); }
+#workskin .gm.theme-dark .ic.ic-reply, #workskin .mail.theme-dark .ic.ic-reply { background-image: url(https://images.squidge.org/images/2026/11/15/reply-white.png); }
+#workskin .gm.theme-dark .ic.ic-reply-all, #workskin .mail.theme-dark .ic.ic-reply-all { background-image: url(https://images.squidge.org/images/2026/11/15/reply-all-white.png); }
+#workskin .gm.theme-dark .ic.ic-more, #workskin .mail.theme-dark .ic.ic-more { background-image: url(https://images.squidge.org/images/2026/11/15/menu-horizontal-white.png); }
+#workskin .gm.theme-dark .ic.ic-dropdown, #workskin .mail.theme-dark .ic.ic-dropdown { background-image: url(https://images.squidge.org/images/2026/11/15/dropdown-white.png); }
+#workskin .gm.theme-dark .ic.ic-forward, #workskin .mail.theme-dark .ic.ic-forward { background-image: url(https://images.squidge.org/images/2026/11/15/forward-white.png); }
+#workskin .gm.theme-dark .mail-attachment::before { background-image: url(https://images.squidge.org/images/2026/11/15/paperclip-white.png); }
+#workskin .gm.theme-dark .mail-attachment.doc::before { background-image: url(https://images.squidge.org/images/2026/11/15/document-white.png); }
+#workskin .gm.theme-dark .mail-attachment.img::before { background-image: url(https://images.squidge.org/images/2026/11/15/image-white.png); }
+
+/* Email icons, auto: dark when the reader's device is in dark mode */
+@media (prefers-color-scheme: dark) {
+  #workskin .gm.theme-auto .ic.ic-star, #workskin .mail.theme-auto .ic.ic-star { background-image: url(https://images.squidge.org/images/2026/11/15/star-white.png); }
+  #workskin .gm.theme-auto .ic.ic-reply, #workskin .mail.theme-auto .ic.ic-reply { background-image: url(https://images.squidge.org/images/2026/11/15/reply-white.png); }
+  #workskin .gm.theme-auto .ic.ic-reply-all, #workskin .mail.theme-auto .ic.ic-reply-all { background-image: url(https://images.squidge.org/images/2026/11/15/reply-all-white.png); }
+  #workskin .gm.theme-auto .ic.ic-more, #workskin .mail.theme-auto .ic.ic-more { background-image: url(https://images.squidge.org/images/2026/11/15/menu-horizontal-white.png); }
+  #workskin .gm.theme-auto .ic.ic-dropdown, #workskin .mail.theme-auto .ic.ic-dropdown { background-image: url(https://images.squidge.org/images/2026/11/15/dropdown-white.png); }
+  #workskin .gm.theme-auto .ic.ic-forward, #workskin .mail.theme-auto .ic.ic-forward { background-image: url(https://images.squidge.org/images/2026/11/15/forward-white.png); }
+  #workskin .gm.theme-auto .mail-attachment::before { background-image: url(https://images.squidge.org/images/2026/11/15/paperclip-white.png); }
+  #workskin .gm.theme-auto .mail-attachment.doc::before { background-image: url(https://images.squidge.org/images/2026/11/15/document-white.png); }
+  #workskin .gm.theme-auto .mail-attachment.img::before { background-image: url(https://images.squidge.org/images/2026/11/15/image-white.png); }
+}
+
 /* <<<<<<<<<< MODULE: Email (Gmail and generic email window) (end) <<<<<<<<<< */
 
 /* >>>>>>>>>> MODULE: Discord (start) >>>>>>>>>> */
@@ -4103,7 +4537,7 @@
   left: 1rem;
   height: 1.5rem;
   width: 1.5rem;
-  background-image: url(https://i.imgur.com/JB3HgBA.png);
+  background-image: url(https://images.squidge.org/images/2026/11/15/dc-plus-light.png);
 }
 
 #workskin .dc .dc-message { min-height: 2.75rem; margin-top: 1.0625rem; padding: 0.125rem 3rem 0.125rem 4.5rem; }
@@ -4451,7 +4885,7 @@
 
 #workskin .dc .dc-new-user::before {
   content: '';
-  background-image: url(https://i.imgur.com/AATotHy.png);
+  background-image: url(https://images.squidge.org/images/2026/11/15/dc-new-user.png);
   background-repeat: no-repeat;
   background-size: contain;
   position: absolute;
@@ -4468,7 +4902,7 @@
   content: '\00a0\00a0\00a0\00a0 BOT';
   color: rgb(255, 255, 255);
   background-color: rgb(88, 101, 242);
-  background-image: url(https://i.imgur.com/3Ox94zk.png);
+  background-image: url(https://images.squidge.org/images/2026/11/15/dc-bot-tick.png);
   background-repeat: no-repeat;
   background-size: contain;
   position: absolute;
@@ -4550,11 +4984,11 @@
 
 #workskin .dc .dc-new-divider .dc-divider-label { color: rgb(216, 60, 62); }
 
-#workskin .dc .hashtag::before { background-image: url(https://i.imgur.com/XbvXZWD.png); }
+#workskin .dc .hashtag::before { background-image: url(https://images.squidge.org/images/2026/11/15/dc-hashtag-light.png); }
 
-#workskin .dc .locked::before { background-image: url(https://i.imgur.com/MwjtrTT.png); }
+#workskin .dc .locked::before { background-image: url(https://images.squidge.org/images/2026/11/15/dc-lock-light.png); }
 
-#workskin .dc .at-symbol::before { background-image: url(https://i.imgur.com/0w9EkYY.png); }
+#workskin .dc .at-symbol::before { background-image: url(https://images.squidge.org/images/2026/11/15/dc-at-light.png); }
 
 #workskin .dc .dc-spoiler-text:active {
   color: rgb(46, 51, 56);
@@ -4660,13 +5094,13 @@
 
 #workskin .dc.theme-dark .dc-input { background-color: rgb(64, 68, 75); }
 
-#workskin .dc.theme-dark .hashtag::before { background-image: url(https://i.imgur.com/y0r7k71.png); }
+#workskin .dc.theme-dark .hashtag::before { background-image: url(https://images.squidge.org/images/2026/11/15/dc-hashtag-dark.png); }
 
-#workskin .dc.theme-dark .locked::before { background-image: url(https://i.imgur.com/TUuqT0R.png); }
+#workskin .dc.theme-dark .locked::before { background-image: url(https://images.squidge.org/images/2026/11/15/dc-lock-dark.png); }
 
-#workskin .dc.theme-dark .at-symbol::before { background-image: url(https://i.imgur.com/Pd0cDve.png); }
+#workskin .dc.theme-dark .at-symbol::before { background-image: url(https://images.squidge.org/images/2026/11/15/dc-at-dark.png); }
 
-#workskin .dc.theme-dark .dc-input-text::before { background-image: url(https://i.imgur.com/LjARlpe.png); }
+#workskin .dc.theme-dark .dc-input-text::before { background-image: url(https://images.squidge.org/images/2026/11/15/dc-plus-dark.png); }
 
 /* spoilers, dark: hidden until clicked */
 #workskin .dc.theme-dark .dc-spoiler-text {
@@ -4778,13 +5212,13 @@
 
   #workskin .dc.theme-auto .dc-input { background-color: rgb(64, 68, 75); }
 
-  #workskin .dc.theme-auto .hashtag::before { background-image: url(https://i.imgur.com/y0r7k71.png); }
+  #workskin .dc.theme-auto .hashtag::before { background-image: url(https://images.squidge.org/images/2026/11/15/dc-hashtag-dark.png); }
 
-  #workskin .dc.theme-auto .locked::before { background-image: url(https://i.imgur.com/TUuqT0R.png); }
+  #workskin .dc.theme-auto .locked::before { background-image: url(https://images.squidge.org/images/2026/11/15/dc-lock-dark.png); }
 
-  #workskin .dc.theme-auto .at-symbol::before { background-image: url(https://i.imgur.com/Pd0cDve.png); }
+  #workskin .dc.theme-auto .at-symbol::before { background-image: url(https://images.squidge.org/images/2026/11/15/dc-at-dark.png); }
 
-  #workskin .dc.theme-auto .dc-input-text::before { background-image: url(https://i.imgur.com/LjARlpe.png); }
+  #workskin .dc.theme-auto .dc-input-text::before { background-image: url(https://images.squidge.org/images/2026/11/15/dc-plus-dark.png); }
 
   /* spoilers, dark: hidden until clicked */
   #workskin .dc.theme-auto .dc-spoiler-text {

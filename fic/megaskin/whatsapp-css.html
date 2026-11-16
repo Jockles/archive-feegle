@@ -6,7 +6,7 @@
   <title>Megaskin, Chapter 7: WhatsApp CSS | jockles.com</title>
   <link rel="stylesheet" href="../../style.css">
   <script src="../../theme.js"></script>
-  <link rel="stylesheet" href="megaskin.css?v=bb2a8e42" id="creator-style">
+  <link rel="stylesheet" href="megaskin.css?v=40437fc0" id="creator-style">
 </head>
 <body>
 <header>
@@ -64,7 +64,7 @@
 
 <h3 id="s7-3">7.3 How the Module is Laid Out</h3>
 
-<p>It's in the same order as every module - the main rules, then Links, Dark theme and Auto theme - with one extra section on the end: <strong>Wallpapers</strong>. They come last on purpose. When two rules are equally specific, the one further down wins, so a wallpaper beats the background that the dark and auto themes set. That's how a chat can be <code>theme-auto</code> and still keep its blush pink wallpaper in dark mode.</p>
+<p>It's in the same order as every module - the main rules, then Links, Dark theme and Auto theme - with one extra section on the end: <strong>Wallpapers</strong>. They come last on purpose. When two rules are equally specific, the one further down wins, so a wallpaper beats the background that the dark and auto themes set. That's how a chat can be <code>theme-auto</code> and still keep its blush pink wallpaper in dark mode. After the wallpapers come the Icons, which don't touch the background, so they can sit after them.</p>
 
 <h3 id="s7-4">7.4 The Window and Bubbles</h3>
 
@@ -226,7 +226,7 @@
 
 <p>A circle with no picture shows initials, and <code>line-height</code> the same as the height is what centres them from top to bottom. A picture or a profile goes inside with a <code>pfp</code> span, which the core crops into the circle. The circle in the header is the same, just bigger (<code>38px</code>).</p>
 
-<p>Add <code>colour1</code> to <code>colour10</code> to a circle for its colour, and the same number to a name (<code>who</code>) or a quoted reply (<code>wa-quote</code>) to colour the name and the line down the side. The ten colours are in the core, shared with every app - see The Ten Colours in the core CSS chapter for how to change them.</p>
+<p>Add <code>colour1</code> to <code>colour10</code> to a circle for its colour, and the same number to a name (<code>who</code>) or a quoted reply (<code>wa-quote</code>) to colour the name and the line down the side. The ten colours are in the core, shared with every app - see <a href="core-css.html#s3-15">The Ten Colours</a> for how to change them.</p>
 
 <h3 id="s7-10">7.10 Group Messages With Pictures</h3>
 
@@ -482,7 +482,7 @@
 }</code></pre>
 
 <ol>
-  <li>Upload your picture somewhere that gives you a direct link to it - one that ends in <code>.jpg</code> or <code>.png</code>. (See Pictures and Alt Text, in the Core, Themes, and Extras chapter, for where.)</li>
+  <li>Upload your picture somewhere that gives you a direct link to it - one that ends in <code>.jpg</code> or <code>.png</code>. (See <a href="core.html#s2-6-1">Pictures and Alt Text</a> for where.)</li>
   <li>Put your link in place of <code>https://example.com/my-wallpaper.jpg</code>, keeping the brackets.</li>
   <li>Change <code>#1c1c1c</code> to a colour close to your picture. It shows while the picture loads, or if the link ever breaks.</li>
   <li>Use it like any other wallpaper: <code>&lt;div class=&quot;mob wa theme-auto bg-image1&quot;&gt;</code></li>
