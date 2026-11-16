@@ -328,7 +328,7 @@
 <ul>
   <li><code>tw-name</code> is the bold display name.</li>
   <li><code>tw-tick</code> inside the name adds the blue verified tick. Leave it out if the account isn't verified.</li>
-  <li><code>tw-handle</code> is the grey @handle, with the time after it. To take the handle from a character's profile, put a handle span in place of the @handle, with the handle typed inside it in a <code>hide</code> span for readers with the workskin off: <code>&lt;span class=&quot;tw-handle&quot;&gt;&lt;span class=&quot;handle pfp-shane&quot;&gt;&lt;span class=&quot;hide&quot;&gt;@ShaneHollanderHockeyPlayer&lt;/span&gt;&lt;/span&gt; &#183; 2h&lt;/span&gt;</code> (see Character Profiles, in the Core, Themes, and Extras chapter).</li>
+  <li><code>tw-handle</code> is the grey @handle, with the time after it. To take the handle from a character's profile, put a handle span in place of the @handle, with the handle typed inside it in a <code>hide</code> span for readers with the workskin off: <code>&lt;span class=&quot;tw-handle&quot;&gt;&lt;span class=&quot;handle pfp-shane&quot;&gt;&lt;span class=&quot;hide&quot;&gt;@ShaneHollanderHockeyPlayer&lt;/span&gt;&lt;/span&gt; &#183; 2h&lt;/span&gt;</code> (see <a href="core.html#character-profiles">Character Profiles</a>).</li>
 </ul>
 
 <h4 id="s8-2-5">8.2.5 Profile Picture</h4>
@@ -345,7 +345,7 @@
 
 <pre><code>&lt;p class="tw-top"&gt;&lt;span class="tw-pfp"&gt;&lt;span class="pfp"&gt;&lt;img src="https://64.media.tumblr.com/6898dc3a42cc6c7ab9729360b71366e4/ba033a52c8982cb0-bf/s2048x3072/b548d2fe61b02e530c0edd2ee6a6bd56ab73ad2c.jpg" alt="Profile picture of samthecat, a black and white cat screaming at the camera"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="tw-name"&gt;Sam&lt;/span&gt; &lt;span class="tw-handle"&gt;@samthecat · 1h&lt;/span&gt;&lt;/p&gt;</code></pre>
 
-<p>Or use a profile, so the same person has the same picture everywhere: <code>&lt;span class=&quot;tw-pfp&quot;&gt;&lt;span class=&quot;pfp pfp-shane&quot;&gt;&lt;/span&gt;&lt;/span&gt;</code> (see Character Appearances and Profiles, in the Core, Themes, and Extras chapter). It works the same way in replies - just give the reply's name line the <code>tw-top</code> class, like the replies in the thread. The colours for <code>colour1</code> to <code>colour10</code> are set in the Twitter/X CSS, so you can change them there.</p>
+<p>Or use a profile, so the same person has the same picture everywhere: <code>&lt;span class=&quot;tw-pfp&quot;&gt;&lt;span class=&quot;pfp pfp-shane&quot;&gt;&lt;/span&gt;&lt;/span&gt;</code> (see <a href="core.html#profiles">Character Appearances and Profiles</a>). It works the same way in replies - just give the reply's name line the <code>tw-top</code> class, like the replies in the thread. The colours for <code>colour1</code> to <code>colour10</code> are set in the Twitter/X CSS, so you can change them there.</p>
 
 <h4 id="s8-2-6">8.2.6 Uploading a Profile Pic</h4>
 
@@ -515,9 +515,9 @@
 
 <pre><code>&lt;div class="tw-media video"&gt;&lt;iframe src="https://player.vimeo.com/video/1169167060?badge=0&amp;amp;autopause=0&amp;amp;player_id=0&amp;amp;app_id=58479" frameborder="0" title="Ilya Rozanov | Come Home"&gt;&lt;/iframe&gt;&lt;p class="vid-desc"&gt;[Video: a tribute edit of Ilya Rozanov, made from Heated Rivalry footage and set to "Would You Come Home" by Tyler Blackburn]&lt;/p&gt;&lt;/div&gt;</code></pre>
 
-<p>AO3 only allows embeds from certain sites, so check AO3's FAQ for the current list. A video file you host yourself can also go in a <code>video</code> tag with <code>controls</code>, inside a plain <code>tw-media</code> box. Videos don't get alt text on AO3, so add a video description straight after the video instead, like the one in the example above (see Video Descriptions, under Accessibility, in the Core, Themes, and Extras chapter).</p>
+<p>AO3 only allows embeds from certain sites, so check AO3's FAQ for the current list. A video file you host yourself can also go in a <code>video</code> tag with <code>controls</code>, inside a plain <code>tw-media</code> box. Videos don't get alt text on AO3, so add a video description straight after the video instead, like the one in the example above (see <a href="core.html#s2-3-5">Video Descriptions</a>).</p>
 
-<p>For a tweet with several pictures, add <code>two</code>, <code>three</code> or <code>four</code> to the box to match the number of pictures, and put each picture tag in a <code>tw-photo</code> span. The span crops each picture to fit its space without squashing it. For the square spaces (all four in the four-photo layout, and the two small ones in the three-photo layout), add <code>class=&quot;land&quot;</code> to the picture tag of any photo that's wider than it is tall (see Pictures in Boxes and Circles, in the Core, Themes, and Extras chapter). Two pictures sit side by side, both tall:</p>
+<p>For a tweet with several pictures, add <code>two</code>, <code>three</code> or <code>four</code> to the box to match the number of pictures, and put each picture tag in a <code>tw-photo</code> span. The span crops each picture to fit its space without squashing it. For the square spaces (all four in the four-photo layout, and the two small ones in the three-photo layout), add <code>class=&quot;land&quot;</code> to the picture tag of any photo that's wider than it is tall (see <a href="core.html#s2-6-2">Pictures in Boxes and Circles</a>). Two pictures sit side by side, both tall:</p>
 
 <div class="tw-thread theme-auto"><div class="tw-scroll"><div class="mob tw-reply"><p class="tw-media two">
   <span class="tw-photo"><img src="https://64.media.tumblr.com/694221426fb8229480fb3fb87b528ca7/ba033a52c8982cb0-01/s1280x1920/636653581e07a970475075f480c1717b23a72c0a.jpg" alt="Black and white cat staring through a gap between a screen and a desk, with blurred cables hanging down around and blue sky behind"></span>
@@ -575,7 +575,7 @@
 
 <pre><code>&lt;p class="tw-foot"&gt;&lt;span&gt;Reply&lt;/span&gt;&lt;span class="hide"&gt; - &lt;/span&gt;Tweet your reply&lt;/p&gt;</code></pre>
 
-<p>The tweet and the replies keep their normal classes, but leave the theme class off them, because the <code>tw-thread</code> already has it. Only the box with the replies scrolls, once there's more than about a phone screen's worth. You don't need this for a short thread - ordinary tweets already scroll if they get too tall (see Scrolling Long Chats in the Core, Themes, and Extras chapter).</p>
+<p>The tweet and the replies keep their normal classes, but leave the theme class off them, because the <code>tw-thread</code> already has it. Only the box with the replies scrolls, once there's more than about a phone screen's worth. You don't need this for a short thread - ordinary tweets already scroll if they get too tall (see <a href="core.html#scrolling">Scrolling Long Chats</a>).</p>
 
 <h3 id="s8-3">8.3 Twitter/X DMs</h3>
 
@@ -705,7 +705,7 @@
   <p><em>Ilya:</em> it was meant to be funny</p>
 </blockquote>
 
-<p>Swap the name for whoever is talking. There's more on this in Accessibility, in the Core, Themes, and Extras chapter.</p>
+<p>Swap the name for whoever is talking. There's more on this in <a href="core.html#accessibility">Accessibility</a>.</p>
 
 </details>
 
