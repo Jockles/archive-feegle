@@ -422,20 +422,19 @@
 #workskin .handle.pfp-holster::after { content: "HolsterInLaw"; }
 #workskin .email.pfp-holster::after { content: "birka@samwellU.edu"; }
 
-/* PROFILE: Rose - her public accounts (Twitter/X and Instagram) use her full name; her private
-   Instagram is a second profile, pfp-rose-private, below */
+/* PROFILE: Rose - her public accounts (Twitter/X and Instagram) use her full name, and she has a
+   private second account on Instagram: add "alt" to the spans, like <span class="handle pfp-rose alt"> */
 #workskin .pfp.pfp-rose { background-color: #c2416b; }
 #workskin .wa .who.pfp-rose, #workskin .dc .dc-name.pfp-rose { color: #d6336c; }
 #workskin .name.pfp-rose::before { content: "Rose"; }
 #workskin .tw .name.pfp-rose::before, #workskin .tw-reply .name.pfp-rose::before, #workskin .twdm .name.pfp-rose::before, #workskin .ig .name.pfp-rose::before, #workskin .igdm .name.pfp-rose::before { content: "Rose Landry"; }
 #workskin .handle.pfp-rose::after { content: "PoseyRosey"; }
 #workskin .tw .handle.pfp-rose::after, #workskin .tw-reply .handle.pfp-rose::after, #workskin .twdm .handle.pfp-rose::after, #workskin .ig .handle.pfp-rose::after, #workskin .igdm .handle.pfp-rose::after { content: "RoseLandry"; }
-
-/* PROFILE: Rose's private Instagram - a second account gets its own profile */
-#workskin .pfp.pfp-rose-private { background-color: #8f2d4f; }
-#workskin .pfp.pfp-rose-private::before { content: "R"; }
-#workskin .name.pfp-rose-private::before { content: "Rose"; }
-#workskin .handle.pfp-rose-private::after { content: "rosie.after.dark"; }
+/* her private Instagram (alt) */
+#workskin .ig .pfp.pfp-rose.alt, #workskin .igdm .pfp.pfp-rose.alt { background-color: #8f2d4f; }
+#workskin .ig .pfp.pfp-rose.alt::before, #workskin .igdm .pfp.pfp-rose.alt::before { content: "R"; }
+#workskin .ig .name.pfp-rose.alt::before, #workskin .igdm .name.pfp-rose.alt::before { content: "Rose"; }
+#workskin .ig .handle.pfp-rose.alt::after, #workskin .igdm .handle.pfp-rose.alt::after { content: "rosie.after.dark"; }
 
 /* PROFILE: Shane */
 #workskin .pfp.pfp-shane { background-image: url(https://www.shutterstock.com/shutterstock/photos/1100283806/display_1500/stock-photo-beautiful-lavender-flower-in-the-dalat-flower-park-selective-focus-1100283806.jpg); }
@@ -449,7 +448,7 @@
 #workskin .email.pfp-shane::after { content: "shane@example.com"; }
 #workskin .mob.wa.pov-shane { background: #dfeaf6; }
 
-/* PROFILE: Ilya - no picture yet: swap background-color for background-image: url(LINK) */
+/* PROFILE: Ilya - with a burner Twitter/X account: add "alt" to the spans, like <span class="handle pfp-ilya alt"> */
 #workskin .pfp.pfp-ilya { background-color: #b5433a; }
 #workskin .wa .who.pfp-ilya, #workskin .dc .dc-name.pfp-ilya { color: #d65548; }
 #workskin .name.pfp-ilya::before { content: "Ilya"; }
@@ -457,6 +456,10 @@
 #workskin .handle.pfp-ilya::after { content: "irozanov"; }
 #workskin .ig .handle.pfp-ilya::after, #workskin .igdm .handle.pfp-ilya::after { content: "ilya.r"; }
 #workskin .mob.wa.pov-ilya { background: #1b1f2b; }
+/* his burner Twitter/X (alt) */
+#workskin .tw .pfp.pfp-ilya.alt, #workskin .tw-reply .pfp.pfp-ilya.alt, #workskin .twdm .pfp.pfp-ilya.alt { background-color: #8899a6; }
+#workskin .tw .name.pfp-ilya.alt::before, #workskin .tw-reply .name.pfp-ilya.alt::before, #workskin .twdm .name.pfp-ilya.alt::before { content: "hockey fan"; }
+#workskin .tw .handle.pfp-ilya.alt::after, #workskin .tw-reply .handle.pfp-ilya.alt::after, #workskin .twdm .handle.pfp-ilya.alt::after { content: "definitely_not_ilya"; }
 
 /* ==========================================================
    COLOURS: colour1 to colour10

@@ -416,9 +416,9 @@
   <li><strong>Yuna</strong> (<code>pfp-yuna</code>): Yuna has a work life and a family life, and a plain coloured circle instead of a picture. She has a separate work email, a nickname line for how she's saved on her son's phone, and a wallpaper line for her own phone.</li>
   <li><strong>Zim</strong> (<code>pfp-zim</code>): Jack only has a different appearance on one app, so he only has those lines added - a different name and handle on Twitter/X.</li>
   <li><strong>Holster</strong> (<code>pfp-holster</code>): Holster only has a picture on one app, so that's the only picture line. Everywhere else he has initials, with a different circle colour on some apps.</li>
-  <li><strong>Rose</strong> (<code>pfp-rose</code> and <code>pfp-rose-private</code>): Rose keeps her public and private accounts separate, so her private Instagram is a whole second profile with its own handle.</li>
+  <li><strong>Rose</strong> (<code>pfp-rose</code>): Rose keeps her public and private accounts separate, so she has a second account on Instagram, with its own picture and handle (see A Second Account on the Same App, below).</li>
   <li><strong>Shane</strong> (<code>pfp-shane</code>): Shane is a main character who shows up everywhere, so he has a bit of everything - a real picture, a nickname on his partner's phone, a slightly different handle on each app, and a wallpaper for his own phone.</li>
-  <li><strong>Ilya</strong> (<code>pfp-ilya</code>): Ilya is the other main character, so he has a nickname line for how he's saved on Shane's phone, a different handle on Instagram, and a wallpaper line for his own phone.</li>
+  <li><strong>Ilya</strong> (<code>pfp-ilya</code>): Ilya is the other main character, and he has a burner Twitter/X account alongside his main one, so he has a nickname line for how he's saved on Shane's phone, a wallpaper line for his own phone, and a second account on Twitter/X.</li>
   <li><strong>Luca</strong> (<code>pfp-luca</code>): Luca has every option at once, so you can see them all working together - he's explained line by line in Every Option: Luca, below.</li>
 </ul>
 
@@ -526,6 +526,22 @@
 <p>A profile span can end up inside almost anything - a bold name line, a grey subline, a link - and some of those parts have rules for every span inside them. This rule wipes all of that off, so a handle takes on the look of wherever it's sitting. The classes are repeated for the same reason as <code>hide</code>: so this rule beats everything else.</p>
 
 </details>
+
+<h4>A Second Account on the Same App</h4>
+
+<p>Sometimes a character has two accounts on one app - a public one and a private one, or their real account and a burner. The second account lives in the same profile, with <code>alt</code> added to its lines. Here's Ilya's burner on Twitter/X:</p>
+
+<pre><code>#workskin .tw .pfp.pfp-ilya.alt, #workskin .tw-reply .pfp.pfp-ilya.alt, #workskin .twdm .pfp.pfp-ilya.alt { background-color: #8899a6; }
+#workskin .tw .name.pfp-ilya.alt::before, #workskin .tw-reply .name.pfp-ilya.alt::before, #workskin .twdm .name.pfp-ilya.alt::before { content: "hockey fan"; }
+#workskin .tw .handle.pfp-ilya.alt::after, #workskin .tw-reply .handle.pfp-ilya.alt::after, #workskin .twdm .handle.pfp-ilya.alt::after { content: "definitely_not_ilya"; }</code></pre>
+
+<p>They're the same as the lines for a different picture, name or handle on one app, with <code>.alt</code> on the end of the profile name. In your HTML, add <code>alt</code> to the spans whenever the burner is the one posting - <code>&lt;span class=&quot;handle pfp-ilya alt&quot;&gt;&lt;/span&gt;</code> - and leave it off for his main account.</p>
+
+<ul>
+  <li>Put the <code>alt</code> lines at the end of the profile, so they win over everything above them, including saved-as names.</li>
+  <li>Anything you don't give the second account comes from the main one, so you only need lines for what's different.</li>
+  <li>Rose's private Instagram works the same way, with <code>.ig</code> and <code>.igdm</code> instead of the Twitter/X classes.</li>
+</ul>
 
 <h3>The Ten Colours</h3>
 
