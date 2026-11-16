@@ -6,7 +6,7 @@
   <title>Megaskin, Chapter 13: Tumblr CSS | jockles.com</title>
   <link rel="stylesheet" href="../../style.css">
   <script src="../../theme.js"></script>
-  <link rel="stylesheet" href="megaskin.css?v=32f181bc" id="creator-style">
+  <link rel="stylesheet" href="megaskin.css?v=92c36e5e" id="creator-style">
 </head>
 <body>
 <header>
@@ -365,6 +365,13 @@
 
 <p>Two side by side are squares. A box with no height and <code>padding-top: 50%</code> is as tall as half the row is wide, so it's square, whatever is inside it. The picture is pinned in the middle of the box and anything sticking out of the top and bottom is hidden, the same cropping trick as the Twitter/X photos (see <a href="twitter-x-css.html#s9-8">Pictures and Videos</a>). <code>land</code> swaps it round for a wide picture, so it's as tall as the box and the sides get cropped instead. The grey background only shows while a picture is loading.</p>
 
+<pre><code>#workskin .tb .tb-body &gt; .tb-photos:first-child,
+#workskin .tb .tb-reblog &gt; .tb-blog + .tb-photos { margin-top: -0.3em; }
+
+#workskin .tb .tb-at { color: #3a5f86; }</code></pre>
+
+<p>Pictures at the very start of a post, or straight after a reblog's header, get a small negative margin to cancel out the gap at the top of the body, so they sit right up against the header. <code>&gt;</code> means "directly inside", and <code>+</code> means "straight after". The <code>tb-at</code> mentions are a dusty blue, just different enough from the text to stand out (the dark theme makes them a pale blue instead).</p>
+
 <h3 id="s13-12">13.12 Tags and the Bottom Row</h3>
 
 <pre><code>#workskin .tb .tb-footer {
@@ -431,6 +438,7 @@
   <li><strong>Quote posts:</strong> <code>tb-quote</code> and <code>tb-source</code>.</li>
   <li><strong>Chat posts:</strong> <code>tb-chat</code>.</li>
   <li><strong>Pictures and gifs:</strong> <code>tb-photos</code>, <code>tb-row</code> and <code>tb-photo</code>.</li>
+  <li><strong>Mentions:</strong> <code>tb-at</code>.</li>
   <li><strong>Checkmarks:</strong> <code>tb-check</code>, <code>tb-checks</code> and the <code>ic-checks</code> lines in the Icons section.</li>
   <li><strong>Bottom row:</strong> <code>tb-footer</code>, <code>tb-stat</code> and <code>tb-icon</code>.</li>
   <li><strong>The feed:</strong> everything starting <code>.tb-feed</code>.</li>
