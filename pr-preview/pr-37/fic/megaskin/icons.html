@@ -40,8 +40,9 @@
   <li><a href="#s18-2">18.2 Where the Icons Come From</a></li>
   <li><a href="#s18-3">18.3 How They Work in the HTML</a></li>
   <li><a href="#s18-4">18.4 What Shows Up Without the Icons</a></li>
-  <li><a href="#s18-5">18.5 The CSS</a></li>
-  <li><a href="#s18-6">18.6 Taking the Icons Out</a></li>
+  <li><a href="#s18-5">18.5 With the Workskin Off</a></li>
+  <li><a href="#s18-6">18.6 The CSS</a></li>
+  <li><a href="#s18-7">18.7 Taking the Icons Out</a></li>
 </ul>
 
 <h3 id="s18-2">18.2 Where the Icons Come From</h3>
@@ -82,7 +83,21 @@
 
 <p>The Tumblr checkmarks and Discord's icons aren't part of this - they always use their own pictures.</p>
 
-<h3 id="s18-5">18.5 The CSS</h3>
+<h3 id="s18-5">18.5 With the Workskin Off</h3>
+
+<p>Readers with creator's style turned off don't get any of the pictures, but they do get the typed symbols, sitting in the text as plain characters. So the bottom of a Tumblr post reads "171 notes &#8679; &#9993; &#8644; &#9825;", a WhatsApp message box reads "&#9786; Message &#128206; &#128247; &#127908;", and an email header ends "to me, Ilya &#9662; &#8617; &#8943;".</p>
+
+<p>That's fine, and you don't need to describe every one. By the time a reader gets to the buttons they already know it's a Tumblr post or a WhatsApp chat (see <a href="core.html#accessibility">Accessibility</a>), so the buttons are just the furniture of the app. What matters is the salient stuff, and that's already in the text or in the <code>hide</code> spans:</p>
+
+<ul>
+  <li><strong>Counts:</strong> Instagram's buttons read "&#9825; 2,431 likes", "&#8635; 12 reposts" and "&#10148; 7 shares", and a Tumblr post has its note count.</li>
+  <li><strong>Ticks:</strong> WhatsApp's read ticks show as &#10003;&#10003; after the time, and verified badges as a &#10003; after the name.</li>
+  <li><strong>Buttons with words:</strong> Gmail's buttons still say "Reply", "Reply all" and "Forward", and Instagram's save button gets a hidden "Save".</li>
+</ul>
+
+<p>If a button doesn't add anything to your scene, you can always leave it out of your copy of the HTML.</p>
+
+<h3 id="s18-6">18.6 The CSS</h3>
 
 <p>Each app module ends with its own Icons section, after the auto theme. It starts with this, which turns each <code>ic</code> span into a square the size of the text around it:</p>
 
@@ -118,7 +133,7 @@
   <li><strong>Link previews and attachments:</strong> these symbols come from the CSS rather than the HTML, so the picture goes in the same place.</li>
 </ul>
 
-<h3 id="s18-6">18.6 Taking the Icons Out</h3>
+<h3 id="s18-7">18.7 Taking the Icons Out</h3>
 
 <p>To go back to the typed symbols for a whole app, delete its Icons section: everything from its Icons heading (like <code>---------- Tumblr: Icons ----------</code>) to the end of the module. That's the only place they're set, so nothing else breaks.</p>
 
