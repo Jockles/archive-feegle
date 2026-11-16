@@ -6,7 +6,7 @@
   <title>Megaskin, Chapter 13: Tumblr CSS | jockles.com</title>
   <link rel="stylesheet" href="../../style.css">
   <script src="../../theme.js"></script>
-  <link rel="stylesheet" href="megaskin.css?v=f3329c4d" id="creator-style">
+  <link rel="stylesheet" href="megaskin.css?v=a35f2250" id="creator-style">
 </head>
 <body>
 <header>
@@ -429,6 +429,13 @@
 
 #workskin .tb-feed.classic { background: #435874; }
 
+/* the feed follows the theme too: theme-dark is always black, and theme-auto turns black in dark mode */
+#workskin .tb-feed.theme-dark { background: #000000; }
+
+@media (prefers-color-scheme: dark) {
+  #workskin .tb-feed.theme-auto { background: #000000; }
+}
+
 #workskin .tb-feed .mob {
   width: auto;
   max-width: none;
@@ -437,9 +444,9 @@
   border-radius: 14px;
 }</code></pre>
 
-<p>The feed is a phone-sized navy box, Tumblr's own colour. The posts inside it lose their own width and fill the feed instead, with a small gap between each one and no visible edge, so they look like cards laid on the background. <code>black</code> swaps the navy for black, and <code>classic</code> for the old Tumblr blue. The feed has no theme of its own, so it stays the same whether the posts are light, dark or auto - pick the one that goes with your posts.</p>
+<p>The feed is a phone-sized navy box, Tumblr's own colour. The posts inside it lose their own width and fill the feed instead, with a small gap between each one and no visible edge, so they look like cards laid on the background. <code>black</code> swaps the navy for black, and <code>classic</code> for the old Tumblr blue. The feed also takes the same themes as the posts: <code>theme-dark</code> makes it black, and <code>theme-auto</code> keeps it navy until the reader's device is in dark mode, then turns it black, the same as Tumblr's own dark mode. It's the same <code>@media</code> trick the posts use for <code>theme-auto</code>. Give the feed the same theme as the posts inside it so they match.</p>
 
-<p><strong>Changing the feed colour:</strong> the colour is the <code>background</code> line in <code>#workskin .tb-feed</code> (<code>#001935</code>). Swap it for any colour you like, and every feed without <code>black</code> or <code>classic</code> changes with it. There's a note at that line in the CSS too.</p>
+<p><strong>Changing the feed colour:</strong> the colour is the <code>background</code> line in <code>#workskin .tb-feed</code> (<code>#001935</code>). Swap it for any colour you like, and every feed without <code>black</code>, <code>classic</code> or a dark theme changes with it. There's a note at that line in the CSS too.</p>
 
 <h3 id="s13-14">13.14 The App Screen</h3>
 

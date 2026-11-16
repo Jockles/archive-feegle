@@ -3890,8 +3890,9 @@
 
 /* THE FEED BEHIND THE CARDS (optional): put one or more .tb posts inside <div class="tb-feed">
    THE FEED COLOUR is the background line below: navy (#001935) by default, Tumblr's True Blue light mode.
-   Add "black" for the dark-mode look, or "classic" for the old Tumblr blue. To use any other colour,
-   change the background line here. The feed colour is separate from the posts' own light, dark or auto theme. */
+   Add theme-auto to make it black when the reader's device is in dark mode, the same as the posts,
+   or theme-dark to make it always black. "black" and "classic" (the old Tumblr blue) are fixed colours.
+   To use any other colour, change the background line here. */
 #workskin .tb-feed {
   width: 380px;
   max-width: 100%;
@@ -3905,6 +3906,13 @@
 #workskin .tb-feed.black { background: #000000; }
 
 #workskin .tb-feed.classic { background: #435874; }
+
+/* the feed follows the theme too: theme-dark is always black, and theme-auto turns black in dark mode */
+#workskin .tb-feed.theme-dark { background: #000000; }
+
+@media (prefers-color-scheme: dark) {
+  #workskin .tb-feed.theme-auto { background: #000000; }
+}
 
 /* THE APP SCREEN (optional): add "app" to the feed for Tumblr's bar along the top and the buttons along the bottom.
    <div class="tb-feed app"><div class="tb-screen"> top bar, tabs, posts </div><p class="tb-nav"> buttons </p></div>
