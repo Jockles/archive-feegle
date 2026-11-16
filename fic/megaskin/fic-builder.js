@@ -779,11 +779,15 @@
       catch (err) { alert("That file wasn't saved from the Fic Builder, so it can't be opened here."); }
     });
   });
-  $("fb-open-css").addEventListener("change", function () {
-    openFile(this, function (text) {
-      S.pasted = ((S.pasted || "").trim() + "\n\n" + text.trim()).trim();
-      addPasted();
-      rerender();
+  // there are two "open a CSS file" buttons: one at the top, one in the existing profiles box
+  Array.prototype.forEach.call(document.querySelectorAll(".fb-open-css"), function (input) {
+    input.addEventListener("change", function () {
+      openFile(this, function (text) {
+        S.pasted = ((S.pasted || "").trim() + "\n\n" + text.trim()).trim();
+        addPasted();
+        $("fb-paste-box").hidden = true;
+        rerender();
+      });
     });
   });
 
