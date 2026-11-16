@@ -226,7 +226,7 @@
   height: 28px;
   line-height: 28px;
   text-align: center;
-  border-radius: 5px;
+  border-radius: 50%;
   background-color: #8a8a8a;
   font-family: Arial, Helvetica, sans-serif;
   background-size: cover;
@@ -236,10 +236,14 @@
   font-weight: bold;
 }
 
-/* a picture or a profile in the ask square: <span class="tb-ask-pfp"><span class="pfp pfp-rose"></span></span>
-   (pfp is explained in the CORE) - squared off to match */
-#workskin .tb .tb-ask-pfp { overflow: hidden; }
-#workskin .tb .tb-ask-pfp .pfp { border-radius: 5px; }
+/* ROUNDED SQUARE PICTURES: on Tumblr, each blog picks a circle or a rounded square for its picture,
+   and it's the same everywhere that blog shows up. For a blog without a profile, add sq to its
+   picture every time: <span class="tb-pfp sq colour6">PB</span> or <span class="tb-ask-pfp sq colour6">PB</span>
+   For a profile, add a line to the profile instead, e.g.
+   #workskin .tb .pfp.pfp-luca.acc-art { border-radius: 15%; } */
+#workskin .tb .tb-pfp.sq,
+#workskin .tb .tb-ask-pfp.sq,
+#workskin .tb .sq .pfp { border-radius: 15%; }
 
 #workskin .tb .tb-tags {
   display: block;
