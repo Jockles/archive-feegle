@@ -148,7 +148,7 @@
 
 #workskin .tb .tb-check + .tb-check + .tb-check + .tb-check + .tb-check + .tb-check + .tb-check + .tb-check + .tb-check + .tb-check + .tb-check + .tb-check { background: #775df6; }
 
-/* add "blue" to a checkmark to keep it blue, for the two blue checkmarks you can buy */
+/* add "blue" to a checkmark to keep it blue, for two blue checkmarks */
 #workskin .tb .tb-check.blue { background: #52b5f9; }
 
 /* checkmarks from a profile: the profile adds the picture and the padding to make room for it */
