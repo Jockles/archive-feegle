@@ -123,7 +123,7 @@
   function addPasted() {
     pastedProfiles().forEach(function (p) {
       if (S.cast.some(function (c) { return c.kind === "example" && c.example === p[0]; })) return;
-      var c = newChar("", "example"); c.example = p[0];
+      var c = newChar("", "example"); c.example = p[0]; c.open = false;
       S.cast.push(c);
     });
   }
@@ -434,7 +434,9 @@
 
   function castCard(c, i) {
     var P = "cast." + i, h = [];
-    h.push('<div class="fb-card" data-i="' + i + '">');
+    // each character folds up to just their name
+    var kinds = { oneoff: "one-off", "new": "new profile", example: changed(c) ? "changed profile" : "profile" };
+    h.push('<details class="fb-card" data-open="' + P + '.open"' + (c.open !== false ? " open" : "") + "><summary><b>" + esc(nameOf(c)) + "</b> <span class=\"hint\">(" + kinds[c.kind] + ")</span></summary>");
     h.push('<div class="fb-row">' + field(P + ".name", "", { ph: "Name", re: true }) +
       btn("cast-del:" + i, "&times;", "Remove " + nameOf(c)) + "</div>");
     h.push(field(P + ".kind", "", { type: "select", re: true, options: [["oneoff", "One-off: no profile"], ["new", "New profile"], ["example", "Edit an existing profile"]] }));
@@ -488,7 +490,7 @@
       h.push(field(Q + ".wallpic", "", { type: "url", ph: "Or a picture link" }));
       h.push("</details>");
     }
-    h.push("</div>");
+    h.push("</details>");
     return h.join("");
   }
 
@@ -502,7 +504,7 @@
     var side = m.from === b.pov ? " out" : m.from === "sys" || m.from === "typing" ? " sys" : "";
     h.push('<li class="fb-msg' + side + '">');
     h.push('<div class="fb-row">' + field(P + ".from", "", { type: "select", re: true, options: speakerOptions(b, wa ? "Typing line" : "Typing dots") }));
-    if (!(m.from === "typing" && !wa)) h.push(field(P + ".text", "", { ph: m.from === "sys" ? "Today 11:48 PM" : m.from === "typing" ? "Lily is typing..." : "Message", cls: "fb-text" }));
+    if (!(m.from === "typing" && !wa)) h.push(field(P + ".text", "", { ph: m.from === "sys" ? "Today 11:48 PM" : m.from === "typing" ? "Lily is typing..." : m.photos.length || m.link ? "(no text, just the picture or link)" : "Message", cls: "fb-text" }));
     if (wa && m.from !== "sys" && m.from !== "typing") h.push(field(P + ".time", "", { ph: "09:15", cls: "fb-time" }));
     h.push('<span class="fb-tools">' + (m.from === "sys" || m.from === "typing" ? "" : btn("msg-more:" + bi + ":" + mi, m.open ? "Less" : "Extras", "Extras for this message")) +
       btn("msg-up:" + bi + ":" + mi, "&uarr;", "Move up") + btn("msg-down:" + bi + ":" + mi, "&darr;", "Move down") +
@@ -586,7 +588,6 @@
 
   function renderEditor() {
     S.cast.forEach(function (c) { if (c.kind === "example" && c.loadedFrom !== c.example) loadProfile(c); });
-    $("fb-pasted").value = S.pasted || "";
     $("fb-cast").innerHTML = S.cast.map(castCard).join("");
     $("fb-blocks").innerHTML = S.blocks.map(blockCard).join("") || '<p class="hint">Nothing here yet. Add a chat below.</p>';
   }
@@ -642,8 +643,7 @@
     var v = el.type === "checkbox" ? el.checked : el.value;
     set(path, v);
     if (/^cast\.\d+\.prof\.slug$/.test(path)) get(path.replace(/slug$/, "")).slugTouched = true;
-    if (path === "pasted" && e.type === "change") { addPasted(); rerender(); }
-    else if (el.hasAttribute("data-re") && e.type === "change") rerender();
+    if (el.hasAttribute("data-re") && e.type === "change") rerender();
     else refresh();
   }
   document.addEventListener("input", onInput);
@@ -661,6 +661,14 @@
     var b = S.blocks[n[0]], m = b && b.msgs ? b.msgs[n[1]] : null;
     switch (act) {
       case "cast-add": S.cast.push(newChar("")); break;
+      case "paste-show": $("fb-paste-box").hidden = false; $("fb-paste").focus(); return;
+      case "paste-hide": $("fb-paste-box").hidden = true; return;
+      case "paste-add":
+        S.pasted = ((S.pasted || "").trim() + "\n\n" + $("fb-paste").value.trim()).trim();
+        $("fb-paste").value = "";
+        $("fb-paste-box").hidden = true;
+        addPasted();
+        break;
       case "cast-del":
         if (!confirm("Remove " + nameOf(S.cast[n[0]]) + " from the cast? Their messages will disappear too.")) return;
         S.cast.splice(n[0], 1); break;

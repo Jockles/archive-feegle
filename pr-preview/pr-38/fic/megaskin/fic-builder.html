@@ -29,6 +29,8 @@
     .fb-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 0 12px; }
     .fb-card { border: 1px solid var(--rule, #ccc); border-radius: 6px; padding: 8px 10px; margin: 0 0 10px; background: var(--box-fill, #f4f8f7); }
     .fb-card details, .fb-block details { margin-top: 6px; }
+    .fb-card > summary { margin: -2px 0; }
+    .fb-card[open] > summary { margin-bottom: 6px; }
     .fb summary { cursor: pointer; font-size: 0.9em; }
     .fb-swatch { display: inline-block; width: 1.2em; height: 1.2em; border-radius: 50%; vertical-align: middle; margin-left: 4px; }
     .fb-app { display: grid; grid-template-columns: 6em 1fr 1fr 1fr; gap: 4px; align-items: center; font-size: 0.85em; margin: 3px 0; }
@@ -103,13 +105,14 @@
       <fieldset>
         <legend>1. Cast</legend>
         <p class="hint">Everyone who sends a message. One-offs are typed straight into the chat. Profiles keep a character the same in every chat and every app, and the profile CSS goes into your work skin (see <a href="core.html#heading">Character Profiles</a>). The example profiles are already in the skin.</p>
-        <details id="fb-pasted-box">
-          <summary>Profiles you already have</summary>
-          <p class="hint">Made profiles before, here or with the <a href="profile-maker.html">Profile Maker</a>? Paste their CSS here (one profile or lots) and they're added to the cast, ready to use or edit. They're already in your work skin, so they only go in the CSS to copy if you change them.</p>
-          <textarea id="fb-pasted" data-bind="pasted" rows="5" placeholder="/* PROFILE: Stan */ ..."></textarea>
-        </details>
         <div id="fb-cast"></div>
-        <button type="button" data-act="cast-add">+ Add a character</button>
+        <p><button type="button" data-act="cast-add">+ Add a character</button>
+          <button type="button" data-act="paste-show">+ Add existing profiles</button></p>
+        <div id="fb-paste-box" class="fb-acct" hidden>
+          <p class="hint">Made profiles before, here or with the <a href="profile-maker.html">Profile Maker</a>? Paste their CSS here (one profile or lots), or use "Open a CSS file" at the top. They're added to the cast ready to use or edit, and they only go in the CSS to copy if you change them.</p>
+          <textarea id="fb-paste" rows="5" placeholder="/* PROFILE: Stan */ ..."></textarea>
+          <p><button type="button" data-act="paste-add">Add them to the cast</button> <button type="button" data-act="paste-hide">Cancel</button></p>
+        </div>
       </fieldset>
 
       <fieldset>
