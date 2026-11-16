@@ -152,7 +152,7 @@
   line-height: 1;
   margin-left: 0.25em;
   border-radius: 50%;
-  background: #42aaf5;
+  background: #52b5f9;
   color: #111111;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 0.75em;
@@ -162,23 +162,35 @@
 
 #workskin .tb .tb-check + .tb-check { margin-left: 0.12em; }
 
-#workskin .tb .tb-check + .tb-check { background: #4ccd4a; }
+#workskin .tb .tb-check + .tb-check { background: #5ecc4f; }
 
-#workskin .tb .tb-check + .tb-check + .tb-check { background: #a6d03f; }
+#workskin .tb .tb-check + .tb-check + .tb-check { background: #b4d456; }
 
-#workskin .tb .tb-check + .tb-check + .tb-check + .tb-check { background: #e3cf3c; }
+#workskin .tb .tb-check + .tb-check + .tb-check + .tb-check { background: #e5d85a; }
 
-#workskin .tb .tb-check + .tb-check + .tb-check + .tb-check + .tb-check { background: #efb238; }
+#workskin .tb .tb-check + .tb-check + .tb-check + .tb-check + .tb-check { background: #e9b545; }
 
-#workskin .tb .tb-check + .tb-check + .tb-check + .tb-check + .tb-check + .tb-check { background: #f08b37; }</code></pre>
+#workskin .tb .tb-check + .tb-check + .tb-check + .tb-check + .tb-check + .tb-check { background: #f09035; }
 
-<p>Every checkmark starts blue. Then the same <code>+</code> trick as iMessage's stacked tapbacks counts them: <code>.tb-check + .tb-check</code> is the second, and each extra <code>+ .tb-check</code> is one further along, so the second is green, the third lime, and so on to orange. That's how the colours always come out in the right order, without you having to say which is which.</p>
+#workskin .tb .tb-check + .tb-check + .tb-check + .tb-check + .tb-check + .tb-check + .tb-check { background: #ed7335; }
+
+#workskin .tb .tb-check + .tb-check + .tb-check + .tb-check + .tb-check + .tb-check + .tb-check + .tb-check { background: #eb583e; }
+
+#workskin .tb .tb-check + .tb-check + .tb-check + .tb-check + .tb-check + .tb-check + .tb-check + .tb-check + .tb-check { background: #ec6284; }
+
+#workskin .tb .tb-check + .tb-check + .tb-check + .tb-check + .tb-check + .tb-check + .tb-check + .tb-check + .tb-check + .tb-check { background: #ed6cc9; }
+
+#workskin .tb .tb-check + .tb-check + .tb-check + .tb-check + .tb-check + .tb-check + .tb-check + .tb-check + .tb-check + .tb-check + .tb-check { background: #b464de; }
+
+#workskin .tb .tb-check + .tb-check + .tb-check + .tb-check + .tb-check + .tb-check + .tb-check + .tb-check + .tb-check + .tb-check + .tb-check + .tb-check { background: #775df6; }</code></pre>
+
+<p>Every checkmark starts blue. Then the same <code>+</code> trick as iMessage's stacked tapbacks counts them: <code>.tb-check + .tb-check</code> is the second, and each extra <code>+ .tb-check</code> is one further along, so the second is green, the third lime, and so on round to violet for the twelfth. That's how the colours always come out in the right order, without you having to say which is which.</p>
 
 <pre><code>#workskin .tb .handle::after { background-repeat: no-repeat; background-position: right center; background-size: auto 0.9em; }</code></pre>
 
 <p>This one is for checkmarks that come from a character profile. The checkmarks are a picture, and this line puts it at the right-hand end of the name, at just under the height of the text. The profile adds the picture itself and some padding after the name to make room for it.</p>
 
-<pre><code>#workskin .tb .tb-checks { margin-left: 0.25em; color: #42aaf5; font-size: 0.85em; }</code></pre>
+<pre><code>#workskin .tb .tb-checks { margin-left: 0.25em; color: #52b5f9; font-size: 0.85em; }</code></pre>
 
 <p>This is the <code>tb-checks</code> span, for the checkmark pictures on a blog without a profile. The pictures themselves are in the Icons section at the end of the module, the same as the buttons, and if they're taken out, this line shows the typed checkmarks instead, in blue and a little smaller than the name.</p>
 
@@ -190,7 +202,7 @@
   background-position: right center;
   background-size: auto 100%;
 }
-#workskin .tb .ic.ic-checks-2 { width: 2.15em; background-image: url(https://images.squidge.org/images/2026/11/15/tb-checks-2.png); }</code></pre>
+#workskin .tb .ic.ic-checks-2 { width: 2.15em; background-image: url(https://images.squidge.org/images/2026/11/16/tb-checks-2.png); }</code></pre>
 
 <p>In the Icons section, the span becomes the picture, at just under the height of the name. Each number of checkmarks has its own width, the same as the padding a profile uses, so the gap after the name comes out the same either way.</p>
 
