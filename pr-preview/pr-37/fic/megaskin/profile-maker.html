@@ -81,6 +81,8 @@
         </table>
         <label for="dccol">Different name colour on Discord</label>
         <div class="row"><input type="checkbox" id="dccolon"> <input type="color" id="dccol" value="#e8734a"></div>
+        <label><input type="checkbox" id="tbsq"> Rounded square picture on Tumblr</label>
+        <p class="hint">Tumblr lets each blog show its picture as a circle or a square with rounded corners. Tick this and it's square everywhere on Tumblr: headers, reblogs and asks.</p>
       </fieldset>
 
       <fieldset>
@@ -170,6 +172,7 @@
       '<label>Picture link</label><input type="url" class="ac-pic" placeholder="https://...">' +
       '<label>Name</label><input type="text" class="ac-dname">' +
       '<label>Handle (or email address, for Email)</label><input type="text" class="ac-handle">' +
+      '<label><input type="checkbox" class="ac-sq"> Rounded square picture (Tumblr only)</label>' +
       '<p><button type="button">Remove this account</button></p>';
     d.querySelector(".ac-name").value = acc || "";
     if (app) d.querySelector(".ac-app").value = app;
@@ -185,7 +188,8 @@
       if (!acc || !app) return;
       out.push({ acc: "acc-" + acc, app: app,
         pic: tr.querySelector(".ac-pic").value, name: tr.querySelector(".ac-dname").value.trim(),
-        handle: tr.querySelector(".ac-handle").value.trim().replace(/^@/, "") });
+        handle: tr.querySelector(".ac-handle").value.trim().replace(/^@/, ""),
+        sq: tr.querySelector(".ac-sq").checked });
     });
     return out;
   }
@@ -217,6 +221,7 @@
       if (u) L.push(list(a.sel, ".pfp." + p) + " { background-image: " + u + "; }");
     });
     L.push("#workskin .wa .who." + p + ", #workskin .dc .dc-name." + p + " { color: " + $("namecol").value + "; }");
+    if ($("tbsq").checked) L.push("#workskin .tb .pfp." + p + " { border-radius: 15%; }");
     if ($("dccolon").checked) L.push("#workskin .dc .dc-name." + p + " { color: " + $("dccol").value + "; }");
     if (name) L.push("#workskin .name." + p + "::before { content: " + str(name) + "; }");
     APPS.forEach(function (a) {
@@ -237,8 +242,10 @@
     if (e) L.push("#workskin .email." + p + "::after { content: " + str(e) + "; }");
     accounts().forEach(function (x) {
       var k = "." + p + "." + x.acc, a = x.app, all = a.namesel || a.sel, u = url(x.pic);
-      if (u || x.name || x.handle) L.push("/* " + (name || slug).replace(/\*\//g, "") + "'s extra " + (a.key === "gm" ? "email address" : a.label + " account") + ": " + x.acc + " */");
+      var shape = a.key !== "tb" ? "" : x.sq ? "15%" : $("tbsq").checked ? "50%" : "";
+      if (u || x.name || x.handle || shape) L.push("/* " + (name || slug).replace(/\*\//g, "") + "'s extra " + (a.key === "gm" ? "email address" : a.label + " account") + ": " + x.acc + " */");
       if (u) L.push(list(all, ".pfp" + k) + " { background-image: " + u + "; }");
+      if (shape) L.push("#workskin .tb .pfp" + k + " { border-radius: " + shape + "; }");
       if (x.name) L.push(list(all, ".name" + k + "::before") + " { content: " + str(x.name) + "; }");
       if (x.handle) L.push(a.key === "gm" ? "#workskin .email" + k + "::after { content: " + str(x.handle) + "; }" : list(all, ".handle" + k + "::after") + " { content: " + str(x.handle) + "; }");
     });
