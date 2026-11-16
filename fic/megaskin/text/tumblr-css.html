@@ -304,11 +304,13 @@
 
 #workskin .tb .tb-body .tb-opt.res { background-image: linear-gradient(#dcdcdc, #dcdcdc); }
 
+#workskin .tb .tb-body .tb-opt.res.win { background-image: linear-gradient(#a6d9ec, #a6d9ec); }
+
 #workskin .tb .tb-opt .tb-pct { margin-left: auto; padding-left: 0.8em; font-weight: normal; white-space: nowrap; }
 
 #workskin .tb .tb-opt.p50 { background-size: 50% 100%; }</code></pre>
 
-<p>This is built on the Twitter poll (see <a href="twitter-x-css.html#heading">Polls</a>). Each option is a grey box with rounded corners. With <code>res</code>, a darker bar is drawn across it as a background: <code>linear-gradient</code> with the same colour twice is just a block of colour, and <code>background-size</code> sets how wide it is, so <code>p50</code> fills half the box. There's one line like that for each bar size. The box is a flex row, so <code>margin-left: auto</code> pushes the percentage to the right-hand end.</p>
+<p>This is built on the Twitter poll (see <a href="twitter-x-css.html#heading">Polls</a>). Each option is a grey box with rounded corners. With <code>res</code>, a darker bar is drawn across it as a background: <code>linear-gradient</code> with the same colour twice is just a block of colour, and <code>background-size</code> sets how wide it is, so <code>p50</code> fills half the box. <code>win</code> swaps the grey bar for blue. There's one line like that for each bar size. The box is a flex row, so <code>margin-left: auto</code> pushes the percentage to the right-hand end.</p>
 
 <p>The <code>.tb-body</code> in the first two rules is there so they win over the body's own paragraph spacing. <code>tb-pollinfo</code> is the small grey centred line underneath. In dark posts the box, the bar and the line are darker.</p>
 

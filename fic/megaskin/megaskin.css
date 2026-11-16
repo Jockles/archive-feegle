@@ -3894,7 +3894,8 @@
 
 /* poll: in tb-body, the question as a paragraph, then each option as <p class="tb-opt">Option<span class="tb-pct">50%</span></p>
    and <p class="tb-pollinfo">votes &middot; time left</p> underneath.
-   An OPEN poll: just tb-opt. RESULTS: add "res" and a bar size, p0 to p100 in tens (p5 p25 p33 p67 p75 also exist). */
+   An OPEN poll: just tb-opt. RESULTS: add "res" and a bar size, p0 to p100 in tens (p5 p25 p33 p67 p75 also exist),
+   and "win" for the winner of a finished poll. */
 #workskin .tb .tb-body .tb-opt {
   display: flex;
   align-items: center;
@@ -3909,6 +3910,8 @@
 }
 
 #workskin .tb .tb-body .tb-opt.res { background-image: linear-gradient(#dcdcdc, #dcdcdc); }
+
+#workskin .tb .tb-body .tb-opt.res.win { background-image: linear-gradient(#a6d9ec, #a6d9ec); }
 
 #workskin .tb .tb-opt .tb-pct { margin-left: auto; padding-left: 0.8em; font-weight: normal; white-space: nowrap; }
 
@@ -4093,7 +4096,9 @@
 
 #workskin .tb.theme-dark .tb-body .tb-opt { background-color: #2a2a2a; }
 
-#workskin .tb.theme-dark .tb-body .tb-opt.res { background-image: linear-gradient(#474747, #474747); }
+#workskin .tb.theme-dark .tb-body .tb-opt.res { background-image: linear-gradient(#404040, #404040); }
+
+#workskin .tb.theme-dark .tb-body .tb-opt.res.win { background-image: linear-gradient(#19637e, #19637e); }
 
 #workskin .tb.theme-dark .tb-body .tb-pollinfo { color: #bdbdbd; }
 
@@ -4139,7 +4144,9 @@
 
   #workskin .tb.theme-auto .tb-body .tb-opt { background-color: #2a2a2a; }
 
-  #workskin .tb.theme-auto .tb-body .tb-opt.res { background-image: linear-gradient(#474747, #474747); }
+  #workskin .tb.theme-auto .tb-body .tb-opt.res { background-image: linear-gradient(#404040, #404040); }
+
+  #workskin .tb.theme-auto .tb-body .tb-opt.res.win { background-image: linear-gradient(#19637e, #19637e); }
 
   #workskin .tb.theme-auto .tb-body .tb-pollinfo { color: #bdbdbd; }
 
