@@ -272,6 +272,48 @@
 
 <p>The quote is big and in a serif font, and the curly quotation marks are added before and after it - <code>\201C</code> is “ and <code>\201D</code> is ”. The chat post is in a typewriter font.</p>
 
+<h3>Pictures and Gifs</h3>
+
+<pre><code>#workskin .tb .tb-body .tb-row {
+  display: flex;
+  margin: 0 0 4px 0;
+  padding: 0;
+}
+
+#workskin .tb .tb-photo {
+  display: block;
+  position: relative;
+  flex: 1 1 0;
+  overflow: hidden;
+  background: #e8e8e8;
+}
+
+#workskin .tb .tb-photo img {
+  display: block;
+  width: 100%;
+  max-width: none;
+  height: auto;
+  margin: 0;
+  border-radius: 0;
+}</code></pre>
+
+<p>Each row is a flex row with a <code>4px</code> gap under it, and each picture in it takes an equal share of the width (the same <code>flex: 1 1 0</code> as the bottom row). The row is a paragraph so that AO3 doesn't add one of its own, which is why it needs <code>padding: 0</code> to undo the body's paragraph padding. The picture fills its box, with the rounded corners and the gap round it that ordinary pictures in a post get taken off, so it goes edge to edge.</p>
+
+<pre><code>#workskin .tb .tb-row.two .tb-photo {
+  height: 0;
+  padding: 50% 0 0 0;
+}
+
+#workskin .tb .tb-row.two .tb-photo img {
+  position: absolute;
+  top: -9999px;
+  bottom: -9999px;
+  left: 0;
+  margin: auto 0;
+}</code></pre>
+
+<p>Two side by side are squares. A box with no height and <code>padding-top: 50%</code> is as tall as half the row is wide, so it's square, whatever is inside it. The picture is pinned in the middle of the box and anything sticking out of the top and bottom is hidden, the same cropping trick as the Twitter/X photos (see <a href="twitter-x-css.html#heading">Pictures and Videos</a>). <code>land</code> swaps it round for a wide picture, so it's as tall as the box and the sides get cropped instead. The grey background only shows while a picture is loading.</p>
+
 <h3>Tags and the Bottom Row</h3>
 
 <pre><code>#workskin .tb .tb-footer {
@@ -337,6 +379,7 @@
   <li><strong>Asks:</strong> <code>tb-ask</code>, <code>tb-answer</code>, <code>tb-asker</code> and <code>tb-ask-pfp</code>.</li>
   <li><strong>Quote posts:</strong> <code>tb-quote</code> and <code>tb-source</code>.</li>
   <li><strong>Chat posts:</strong> <code>tb-chat</code>.</li>
+  <li><strong>Pictures and gifs:</strong> <code>tb-photos</code>, <code>tb-row</code> and <code>tb-photo</code>.</li>
   <li><strong>Checkmarks:</strong> <code>tb-check</code>, <code>tb-checks</code> and the <code>ic-checks</code> lines in the Icons section.</li>
   <li><strong>Bottom row:</strong> <code>tb-footer</code>, <code>tb-stat</code> and <code>tb-icon</code>.</li>
   <li><strong>The feed:</strong> everything starting <code>.tb-feed</code>.</li>

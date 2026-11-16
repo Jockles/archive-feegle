@@ -177,6 +177,68 @@
   border-radius: 4px;
 }
 
+/* PICTURES AND GIFS: a picture post goes edge to edge across the card. Each row is a tb-row:
+   one picture at its own shape, or "two" for two side by side, cropped to squares. Stack rows for a photoset:
+   <div class="tb-photos">
+     <p class="tb-row"><span class="tb-photo"><img src="..." alt="..."></span></p>
+     <p class="tb-row two"><span class="tb-photo"><img src="..." alt="..."></span><span class="tb-photo"><img src="..." alt="..."></span></p>
+   </div>
+   In a two row, add class="land" to a picture that's wider than tall, so the sides get cropped instead of the top and bottom. */
+#workskin .tb .tb-photos { display: block; margin: 0.6em 0; }
+
+#workskin .tb .tb-body .tb-row {
+  display: flex;
+  margin: 0 0 4px 0;
+  padding: 0;
+}
+
+#workskin .tb .tb-body .tb-row:last-child { margin-bottom: 0; }
+
+#workskin .tb .tb-row br { display: none; }
+
+#workskin .tb .tb-photo {
+  display: block;
+  position: relative;
+  flex: 1 1 0;
+  overflow: hidden;
+  background: #e8e8e8;
+}
+
+#workskin .tb .tb-photo img {
+  display: block;
+  width: 100%;
+  max-width: none;
+  height: auto;
+  margin: 0;
+  border-radius: 0;
+}
+
+/* two side by side: each is a square box, with a small gap between */
+#workskin .tb .tb-row.two .tb-photo {
+  height: 0;
+  padding: 50% 0 0 0;
+}
+
+#workskin .tb .tb-row.two .tb-photo + .tb-photo { margin-left: 4px; }
+
+#workskin .tb .tb-row.two .tb-photo img {
+  position: absolute;
+  top: -9999px;
+  bottom: -9999px;
+  left: 0;
+  margin: auto 0;
+}
+
+#workskin .tb .tb-row.two .tb-photo img.land {
+  top: 0;
+  bottom: auto;
+  right: -9999px;
+  left: -9999px;
+  width: auto;
+  height: 100%;
+  margin: 0 auto;
+}
+
 /* each reblog in the chain: one after another, with a thin line between, edge to edge */
 #workskin .tb .tb-reblog {
   display: block;
@@ -366,6 +428,8 @@
 
 #workskin .tb.theme-dark .tb-follow span { background: #2e2e2e; }
 
+#workskin .tb.theme-dark .tb-photo { background: #2e2e2e; }
+
 #workskin .tb.theme-dark .tb-pfp.rb::after { border-color: #1f1f1f; }
 
 #workskin .tb.theme-dark .tb-reblog { border-top-color: #2c2c2c; }
@@ -401,6 +465,8 @@
   #workskin .tb.theme-auto .tb-footer { color: #bdbdbd; }
 
   #workskin .tb.theme-auto .tb-follow span { background: #2e2e2e; }
+
+  #workskin .tb.theme-auto .tb-photo { background: #2e2e2e; }
 
   #workskin .tb.theme-auto .tb-pfp.rb::after { border-color: #1f1f1f; }
 
