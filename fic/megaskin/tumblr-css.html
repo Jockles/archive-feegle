@@ -6,7 +6,7 @@
   <title>Megaskin, Chapter 13: Tumblr CSS | jockles.com</title>
   <link rel="stylesheet" href="../../style.css">
   <script src="../../theme.js"></script>
-  <link rel="stylesheet" href="megaskin.css?v=ee9d9819" id="creator-style">
+  <link rel="stylesheet" href="megaskin.css?v=17621bbf" id="creator-style">
 </head>
 <body>
 <header>
@@ -46,7 +46,11 @@
   <li><a href="#s13-8">13.8 Reblog Chains</a></li>
   <li><a href="#s13-9">13.9 Asks</a></li>
   <li><a href="#s13-10">13.10 Quote and Chat Posts</a></li>
-  <li><a href="#s13-11">13.11 Polls</a></li>
+  <li><a href="#s13-11">13.11 Polls</a>
+    <ul>
+      <li><a href="#s13-11-1">13.11.1 Tappable Polls</a></li>
+    </ul>
+  </li>
   <li><a href="#s13-12">13.12 Pictures and Gifs</a></li>
   <li><a href="#s13-13">13.13 Tags and the Bottom Row</a></li>
   <li><a href="#s13-14">13.14 The Feed</a></li>
@@ -345,17 +349,27 @@
 <pre><code>#workskin .tb .tb-body .tb-opt {
   display: flex;
   align-items: center;
+  justify-content: center;
   margin: 0.45em 0.9em;
-  padding: 0.6em 0.9em;
-  border-radius: 8px;
-  background-color: #f0f0f0;
+  padding: 0.5em 0.9em;
+  border: 2px solid #00b8ff;
+  border-radius: 2em;
+  color: #00b8ff;
+  background-color: transparent;
   background-repeat: no-repeat;
   background-size: 0% 100%;
   font-weight: bold;
   line-height: 1.3;
 }
 
-#workskin .tb .tb-body .tb-opt.res { background-image: linear-gradient(#dcdcdc, #dcdcdc); }
+#workskin .tb .tb-body .tb-opt.res {
+  justify-content: flex-start;
+  border-color: transparent;
+  border-radius: 8px;
+  color: inherit;
+  background-color: #f0f0f0;
+  background-image: linear-gradient(#dcdcdc, #dcdcdc);
+}
 
 #workskin .tb .tb-body .tb-opt.res.win { background-image: linear-gradient(#a6d9ec, #a6d9ec); }
 
@@ -363,9 +377,19 @@
 
 #workskin .tb .tb-opt.p50 { background-size: 50% 100%; }</code></pre>
 
-<p>This is built on the Twitter poll (see <a href="twitter-x-css.html#s9-7">Polls</a>). Each option is a grey box with rounded corners. With <code>res</code>, a darker bar is drawn across it as a background: <code>linear-gradient</code> with the same colour twice is just a block of colour, and <code>background-size</code> sets how wide it is, so <code>p50</code> fills half the box. <code>win</code> swaps the grey bar for blue. There's one line like that for each bar size. The box is a flex row, so <code>margin-left: auto</code> pushes the percentage to the right-hand end.</p>
+<p>This is built on the Twitter poll (see <a href="twitter-x-css.html#s9-7">Polls</a>). Before anyone's voted, each option is a blue outline with round ends and the text in the middle. With <code>res</code> it turns into a grey box with the text on the left, and a darker bar is drawn across it as a background: <code>linear-gradient</code> with the same colour twice is just a block of colour, and <code>background-size</code> sets how wide it is, so <code>p50</code> fills half the box. <code>win</code> swaps the grey bar for blue. There's one line like that for each bar size. The box is a flex row, so <code>margin-left: auto</code> pushes the percentage to the right-hand end.</p>
 
 <p>The <code>.tb-body</code> in the first two rules is there so they win over the body's own paragraph spacing. <code>tb-pollinfo</code> is the small grey centred line underneath. In dark posts the box, the bar and the line are darker.</p>
+
+<h4 id="s13-11-1">13.11.1 Tappable Polls</h4>
+
+<pre><code>#workskin .tb .tb-vote[open] &gt; summary { display: none; }
+
+#workskin .tb .tb-pick[open] &gt; summary { visibility: hidden; }
+
+#workskin .tb .tb-results { display: block; position: absolute; top: 0; left: 0; right: 0; z-index: 1; background: #ffffff; }</code></pre>
+
+<p>A <code>&lt;details&gt;</code> box opens when it's tapped, the same trick as Instagram's like and save buttons (see <a href="instagram-css.html#s11-8">Clickable Buttons</a>). In <code>tb-vote</code>, the open poll is the <code>&lt;summary&gt;</code>, and once it's tapped it's hidden, so only the results show. In the reader-picks version, each option is its own <code>&lt;details&gt;</code>, and its results are lifted out with <code>position: absolute</code> to sit over the whole <code>tb-poll</code> box, with the card's colour behind them so the blank boxes don't show through. The other lines hide the little triangle a <code>&lt;summary&gt;</code> normally has, and <code>tb-voter</code> is the small picture, pushed to the right next to the percentage.</p>
 
 <h3 id="s13-12">13.12 Pictures and Gifs</h3>
 
@@ -510,7 +534,7 @@
   <li><strong>Asks:</strong> <code>tb-ask</code>, <code>tb-answer</code>, <code>tb-asker</code> and <code>tb-ask-pfp</code>.</li>
   <li><strong>Quote posts:</strong> <code>tb-quote</code> and <code>tb-source</code>.</li>
   <li><strong>Chat posts:</strong> <code>tb-chat</code>.</li>
-  <li><strong>Polls:</strong> <code>tb-opt</code>, <code>tb-pct</code> and <code>tb-pollinfo</code>.</li>
+  <li><strong>Polls:</strong> <code>tb-opt</code>, <code>tb-pct</code>, <code>tb-pollinfo</code>, <code>tb-vote</code>, <code>tb-pick</code>, <code>tb-poll</code>, <code>tb-results</code> and <code>tb-voter</code>.</li>
   <li><strong>Pictures and gifs:</strong> <code>tb-photos</code>, <code>tb-row</code> and <code>tb-photo</code>.</li>
   <li><strong>Mentions:</strong> <code>tb-at</code>.</li>
   <li><strong>Checkmarks:</strong> <code>tb-check</code>, <code>tb-checks</code> and the <code>ic-checks</code> lines in the Icons section.</li>
