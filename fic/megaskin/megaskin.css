@@ -441,6 +441,8 @@
 #workskin .tb .handle.pfp-luca::after { background-image: url(https://images.squidge.org/images/2026/11/15/tb-checks-2.png); padding-right: 2.15em; }
 #workskin .tb .handle.pfp-luca.acc-art::after { background-image: url(https://images.squidge.org/images/2026/11/15/tb-checks-6.png); padding-right: 6.2em; }
 #workskin .tb .handle.pfp-luca.acc-rpf::after { background-image: url(https://images.squidge.org/images/2026/11/15/tb-checks-4.png); padding-right: 4.2em; }
+/* 15. A rounded square picture on Tumblr instead of a circle, everywhere this blog shows up */
+#workskin .tb .pfp.pfp-luca.acc-art { border-radius: 15%; }
 
 /* PROFILE: Stan */
 #workskin .pfp.pfp-stan { background-image: url(https://images.squidge.org/images/2026/11/15/GayCrosedHockeySticks.png); }
@@ -3716,7 +3718,7 @@
   height: 28px;
   line-height: 28px;
   text-align: center;
-  border-radius: 5px;
+  border-radius: 50%;
   background-color: #8a8a8a;
   font-family: Arial, Helvetica, sans-serif;
   background-size: cover;
@@ -3726,10 +3728,14 @@
   font-weight: bold;
 }
 
-/* a picture or a profile in the ask square: <span class="tb-ask-pfp"><span class="pfp pfp-rose"></span></span>
-   (pfp is explained in the CORE) - squared off to match */
-#workskin .tb .tb-ask-pfp { overflow: hidden; }
-#workskin .tb .tb-ask-pfp .pfp { border-radius: 5px; }
+/* ROUNDED SQUARE PICTURES: on Tumblr, each blog picks a circle or a rounded square for its picture,
+   and it's the same everywhere that blog shows up. For a blog without a profile, add sq to its
+   picture every time: <span class="tb-pfp sq colour6">PB</span> or <span class="tb-ask-pfp sq colour6">PB</span>
+   For a profile, add a line to the profile instead, e.g.
+   #workskin .tb .pfp.pfp-luca.acc-art { border-radius: 15%; } */
+#workskin .tb .tb-pfp.sq,
+#workskin .tb .tb-ask-pfp.sq,
+#workskin .tb .sq .pfp { border-radius: 15%; }
 
 #workskin .tb .tb-tags {
   display: block;

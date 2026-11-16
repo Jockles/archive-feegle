@@ -394,6 +394,8 @@
 #workskin .tb .handle.pfp-luca::after { background-image: url(https://images.squidge.org/images/2026/11/15/tb-checks-2.png); padding-right: 2.15em; }
 #workskin .tb .handle.pfp-luca.acc-art::after { background-image: url(https://images.squidge.org/images/2026/11/15/tb-checks-6.png); padding-right: 6.2em; }
 #workskin .tb .handle.pfp-luca.acc-rpf::after { background-image: url(https://images.squidge.org/images/2026/11/15/tb-checks-4.png); padding-right: 4.2em; }
+/* 15. A rounded square picture on Tumblr instead of a circle, everywhere this blog shows up */
+#workskin .tb .pfp.pfp-luca.acc-art { border-radius: 15%; }
 
 /* PROFILE: Stan */
 #workskin .pfp.pfp-stan { background-image: url(https://images.squidge.org/images/2026/11/15/GayCrosedHockeySticks.png); }

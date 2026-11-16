@@ -112,6 +112,12 @@
 
 <p>The circle works like the other modules', with initials or a picture inside and <code>colour1</code> to <code>colour10</code> for the colours. It uses <code>display: flex</code> to centre the initials, which is a newer and more exact way than the line-height trick: <code>align-items</code> centres them top to bottom, and <code>justify-content</code> side to side.</p>
 
+<pre><code>#workskin .tb .tb-pfp.sq,
+#workskin .tb .tb-ask-pfp.sq,
+#workskin .tb .sq .pfp { border-radius: 15%; }</code></pre>
+
+<p><code>sq</code> swaps the circle for a square with rounded corners, on either kind of picture and on a <code>pfp</code> picture inside one. <code>15%</code> rounds the corners by the same amount whatever the size of the square. A profile does the same thing with its own <code>border-radius</code> line (see <a href="tumblr.html#heading">Round or Square Pictures</a>).</p>
+
 <pre><code>#workskin .tb .tb-pfp.rb::after {
   content: '\21C4';
   position: absolute;
@@ -217,7 +223,7 @@
   height: 28px;
   line-height: 28px;
   text-align: center;
-  border-radius: 5px;
+  border-radius: 50%;
   background-color: #8a8a8a;
   font-family: Arial, Helvetica, sans-serif;
   background-size: cover;
@@ -230,7 +236,7 @@
 <ul>
   <li>The ask box is grey with a <code>36px</code> margin on its right, leaving room for the picture outside it.</li>
   <li>The pointer is a CSS triangle - the same border trick as WhatsApp's bubble tails - pinned to the right edge, pointing at the picture.</li>
-  <li>The picture is pinned outside the box with <code>right: -36px</code>. It's a square with rounded corners (<code>5px</code>) rather than a circle, like Tumblr's, and it has its own <code>colour1</code> to <code>colour10</code>.</li>
+  <li>The picture is pinned outside the box with <code>right: -36px</code>. It's a circle like the header picture, and it has its own <code>colour1</code> to <code>colour10</code>.</li>
 </ul>
 
 <h3>Quote and Chat Posts</h3>

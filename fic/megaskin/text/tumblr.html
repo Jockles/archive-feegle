@@ -150,7 +150,7 @@
 <div class="tb-feed">
   <div class="mob tb theme-auto">
     <p class="tb-header">
-      <span class="tb-pfp rb colour6">PB</span>
+      <span class="tb-pfp rb sq colour6">PB</span>
       <span class="tb-menu">&#8226;&#8226;&#8226;</span>
       <span class="tb-name"><b>penalty-box-art
         <span class="tb-check">&#10003;</span><span class="tb-check">&#10003;</span><span class="tb-check">&#10003;</span><span class="tb-check">&#10003;</span></b>
@@ -214,7 +214,7 @@
 <pre><code>&lt;div class="tb-feed"&gt;
   &lt;div class="mob tb theme-auto"&gt;
     &lt;p class="tb-header"&gt;
-      &lt;span class="tb-pfp rb colour6"&gt;PB&lt;/span&gt;
+      &lt;span class="tb-pfp rb sq colour6"&gt;PB&lt;/span&gt;
       &lt;span class="tb-menu"&gt;&amp;#8226;&amp;#8226;&amp;#8226;&lt;/span&gt;
       &lt;span class="tb-name"&gt;&lt;b&gt;penalty-box-art
         &lt;span class="tb-check"&gt;&amp;#10003;&lt;/span&gt;&lt;span class="tb-check"&gt;&amp;#10003;&lt;/span&gt;&lt;span class="tb-check"&gt;&amp;#10003;&lt;/span&gt;&lt;span class="tb-check"&gt;&amp;#10003;&lt;/span&gt;&lt;/b&gt;
@@ -353,19 +353,57 @@
 
 <p>The colours for <code>colour1</code> to <code>colour10</code> are set in the core CSS and shared with every app, so you can change them there.</p>
 
+<h3>Round or Square Pictures</h3>
+
+<p>On Tumblr, everyone picks whether their picture shows as a circle or a square with rounded corners, and it's the same everywhere their blog turns up: the header, a reblog chain and next to their asks. The pictures in the skin are circles unless you say otherwise.</p>
+
+<p>For a blog without a profile, add <code>sq</code> to its picture, and do it every time that blog appears so it stays the same. It works on <code>tb-pfp</code> and <code>tb-ask-pfp</code>, with initials, a colour or an uploaded picture:</p>
+
+<div class="tb-feed"><div class="mob tb theme-auto"><p class="tb-header">
+  <span class="tb-pfp sq colour6">PB</span>
+  <span class="tb-menu">&#8226;&#8226;&#8226;</span>
+  <span class="tb-name"><b>penalty-box-art</b>
+    <span class="tb-subline">37m ago</span></span>
+</p>
+<div class="tb-body"><div class="tb-ask tb-answer"><p class="tb-asker"><span class="tb-ask-pfp sq colour6">PB</span><span class="hide"> </span><b>penalty-box-art</b> answered:</p>
+<p>Anything you can eat with your gloves on.</p></div></div></div></div>
+
+<pre><code>&lt;p class="tb-header"&gt;
+  &lt;span class="tb-pfp sq colour6"&gt;PB&lt;/span&gt;
+  &lt;span class="tb-menu"&gt;&amp;#8226;&amp;#8226;&amp;#8226;&lt;/span&gt;
+  &lt;span class="tb-name"&gt;&lt;b&gt;penalty-box-art&lt;/b&gt;
+    &lt;span class="tb-subline"&gt;37m ago&lt;/span&gt;&lt;/span&gt;
+&lt;/p&gt;
+
+&lt;p class="tb-asker"&gt;&lt;span class="tb-ask-pfp sq colour6"&gt;PB&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;b&gt;penalty-box-art&lt;/b&gt; answered:&lt;/p&gt;</code></pre>
+
+<p>For a character with a profile, add one line to their profile instead, and their picture is square everywhere on Tumblr without adding anything to your HTML. Luca's art blog has one:</p>
+
+<pre><code>#workskin .tb .pfp.pfp-luca.acc-art { border-radius: 15%; }</code></pre>
+
+<div class="mob tb theme-auto"><div class="tb-body"><div class="tb-reblog"><p class="tb-blog">
+  <span class="tb-pfp"><span class="pfp pfp-luca acc-art"></span></span>
+  <span class="tb-menu">&#8226;&#8226;&#8226;</span>
+  <span class="tb-name"><b><span class="handle pfp-luca acc-art"><span class="hide">gremlin-sketches</span></span></b>
+    <span class="tb-subline">2h ago</span></span>
+</p>
+<p>new sketch of the cat. he would not sit still</p></div></div></div>
+
+<p>Swap <code>pfp-luca.acc-art</code> for your character's profile (and their <code>acc-</code> name, if it's for another of their blogs). The line goes at the end of their profile.</p>
+
 <h3>The Green Reblog Badge</h3>
 
 <p>When a header belongs to a reblog, Tumblr puts a little green reblog symbol on the corner of the picture. To add it, put <code>rb</code> after <code>tb-pfp</code>. The grey line then usually says who it was reblogged from - write that name in <code>&lt;b&gt;</code> so it stands out:</p>
 
 <div class="mob tb theme-auto"><p class="tb-header">
-  <span class="tb-pfp rb colour6">PB</span>
+  <span class="tb-pfp rb sq colour6">PB</span>
   <span class="tb-menu">&#8226;&#8226;&#8226;</span>
   <span class="tb-name"><b>penalty-box-art</b>
     <span class="tb-subline">Reblogged <b>gremlin-sketches</b> &middot; 37m ago</span></span>
 </p></div>
 
 <pre><code>&lt;p class="tb-header"&gt;
-  &lt;span class="tb-pfp rb colour6"&gt;PB&lt;/span&gt;
+  &lt;span class="tb-pfp rb sq colour6"&gt;PB&lt;/span&gt;
   &lt;span class="tb-menu"&gt;&amp;#8226;&amp;#8226;&amp;#8226;&lt;/span&gt;
   &lt;span class="tb-name"&gt;&lt;b&gt;penalty-box-art&lt;/b&gt;
     &lt;span class="tb-subline"&gt;Reblogged &lt;b&gt;gremlin-sketches&lt;/b&gt; &amp;middot; 37m ago&lt;/span&gt;&lt;/span&gt;
@@ -596,14 +634,14 @@
 
 <h3>Asks</h3>
 
-<p>An ask and its answer are two boxes, one after the other. The question box is <code>tb-ask</code>, and the answer box is <code>tb-ask</code> with <code>tb-answer</code> added. Each one starts with a <code>tb-asker</code> line, with the blog's name in <code>&lt;b&gt;</code> and then "asked:" or "answered:". The small square picture on the right is <code>tb-ask-pfp</code>:</p>
+<p>An ask and its answer are two boxes, one after the other. The question box is <code>tb-ask</code>, and the answer box is <code>tb-ask</code> with <code>tb-answer</code> added. Each one starts with a <code>tb-asker</code> line, with the blog's name in <code>&lt;b&gt;</code> and then "asked:" or "answered:". The small picture on the right is <code>tb-ask-pfp</code>. It's a circle, or a rounded square if that blog's picture is square (see <a href="tumblr.html#heading">Round or Square Pictures</a>):</p>
 
 <div class="tb-feed"><div class="mob tb theme-auto"><div class="tb-body"><div class="tb-ask">
   <p class="tb-asker"><span class="tb-ask-pfp colour3">B</span><span class="hide"> </span><b>benchwarmer88</b> asked:</p>
   <p>what's the best snack to bring to a game</p>
 </div>
 <div class="tb-ask tb-answer">
-  <p class="tb-asker"><span class="tb-ask-pfp colour6">PB</span><span class="hide"> </span><b>penalty-box-art</b> answered:</p>
+  <p class="tb-asker"><span class="tb-ask-pfp sq colour6">PB</span><span class="hide"> </span><b>penalty-box-art</b> answered:</p>
   <p>Anything you can eat with your gloves on.</p>
   <p>So not nachos. Learn from my mistakes.</p>
 </div></div></div></div>
@@ -613,12 +651,12 @@
   &lt;p&gt;what's the best snack to bring to a game&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="tb-ask tb-answer"&gt;
-  &lt;p class="tb-asker"&gt;&lt;span class="tb-ask-pfp colour6"&gt;PB&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;b&gt;penalty-box-art&lt;/b&gt; answered:&lt;/p&gt;
+  &lt;p class="tb-asker"&gt;&lt;span class="tb-ask-pfp sq colour6"&gt;PB&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;b&gt;penalty-box-art&lt;/b&gt; answered:&lt;/p&gt;
   &lt;p&gt;Anything you can eat with your gloves on.&lt;/p&gt;
   &lt;p&gt;So not nachos. Learn from my mistakes.&lt;/p&gt;
 &lt;/div&gt;</code></pre>
 
-<p>Those two use initials, with a colour class for the colour. The square can also hold an uploaded picture, in a <code>pfp</code> span with alt text, or a picture from a profile, in an empty <code>pfp</code> span with the profile name. With a profile, the blog name can come from it too, in a handle span with the name typed inside it in a <code>hide</code> span:</p>
+<p>Those two use initials, with a colour class for the colour. It can also hold an uploaded picture, in a <code>pfp</code> span with alt text, or a picture from a profile, in an empty <code>pfp</code> span with the profile name. With a profile, the blog name can come from it too, in a handle span with the name typed inside it in a <code>hide</code> span:</p>
 
 <div class="tb-feed"><div class="mob tb theme-auto"><div class="tb-body"><div class="tb-ask">
   <p class="tb-asker"><span class="tb-ask-pfp"><span class="pfp"><img src="https://images.squidge.org/images/2026/11/16/Cat2.jpg" alt="Profile picture of samthecat, a black and white cat screaming at the camera"></span></span><span class="hide"> </span><b>samthecat</b> asked:</p>
