@@ -53,7 +53,13 @@
     .fb-add { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
     .fb-fmt { position: sticky; bottom: 0; background: var(--page, #fff); border-top: 1px solid var(--rule, #ccc); padding: 6px 0; z-index: 2; }
     .fb-out textarea { width: 100%; box-sizing: border-box; height: 14em; font-family: monospace; font-size: 0.8em; }
-    .fb-file { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+    .fb-files { border-collapse: collapse; width: 100%; }
+    .fb-files th { text-align: left; font-weight: normal; font-size: 0.9em; padding: 4px 12px 4px 0; width: 14em; vertical-align: middle; }
+    .fb-files td { padding: 4px 0; }
+    .fb .fb-files th label { font-size: inherit; margin: 0; display: inline; }
+    .fb .fb-nowrap { display: flex; gap: 6px; }
+    .fb .fb-nowrap select { flex: 1; width: auto; min-width: 0; }
+    @media (max-width: 600px) { .fb-files th, .fb-files td { display: block; width: auto; padding: 2px 0; } .fb-files th { padding-top: 8px; } }
     .fb-preview { border: 1px dashed var(--rule, #ccc); padding: 10px; border-radius: 6px; }
     @media (max-width: 860px) { .fb-out { position: static; max-height: none; } .fb-app { grid-template-columns: 1fr 1fr; } }
   </style>
@@ -85,21 +91,14 @@
     <form class="fb-edit" autocomplete="off" onsubmit="return false">
       <fieldset>
         <legend>Your work</legend>
-        <div class="fb-file">
-          <button type="button" data-act="save-html">Download the HTML</button>
-          <button type="button" data-act="save-css">Download the CSS</button>
-        </div>
+        <table class="fb-files">
+          <tr><th>Download</th><td><button type="button" data-act="save-html">Download the HTML</button> <button type="button" data-act="save-css">Download the CSS</button></td></tr>
+          <tr><th><label for="fb-open-html">Open an HTML file</label></th><td><input type="file" id="fb-open-html" accept=".html,.htm,text/html"></td></tr>
+          <tr><th><label for="fb-open-css">Open a CSS file</label></th><td><input type="file" id="fb-open-css" class="fb-open-css" accept=".css,text/css,text/plain"></td></tr>
+          <tr><th><label for="fb-example">Load an example from the tutorial</label></th><td class="fb-nowrap"><select id="fb-example"></select> <button type="button" data-act="example">Load it</button></td></tr>
+          <tr><th>Start again</th><td><button type="button" data-act="new">Start a new one</button></td></tr>
+        </table>
         <p class="hint">The HTML file can be opened here again to carry on editing your chats. The CSS file has every profile you've used, pasted or made here, so you can open it for the next chapter.</p>
-        <div class="fb-file">
-          <label class="ck">Open an HTML file <input type="file" id="fb-open-html" accept=".html,.htm,text/html"></label>
-          <label class="ck">Open a CSS file <input type="file" class="fb-open-css" accept=".css,text/css,text/plain"></label>
-        </div>
-        <div class="fb-file">
-          <button type="button" data-act="new">Start a new one</button>
-          <label class="ck" style="margin:0" for="fb-example">Load an example from the tutorial:</label>
-          <select id="fb-example"></select>
-          <button type="button" data-act="example">Load it</button>
-        </div>
       </fieldset>
 
       <fieldset>
