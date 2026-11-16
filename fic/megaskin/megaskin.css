@@ -1027,6 +1027,7 @@
 /* a picture sent in a message: <p class="msg out pic"><img src="..."></p>
    or, for a description instead: <p class="msg out pic text">[A photo of the rink]</p> */
 #workskin .imsg .msg.pic { width: 55%; padding: 0.2em; overflow: hidden; }
+#workskin .imsg .msg.pic.tapped { overflow: visible; }
 
 #workskin .imsg .msg.pic img {
   display: block;
