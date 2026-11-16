@@ -1930,8 +1930,10 @@
 /* the icons in the message box sit in table cells, so they keep a set width */
 #workskin .wa .wa-field .ic { display: table-cell; width: 1.6em; background-size: 1.15em; }
 
-/* the double ticks are wider than one symbol */
-#workskin .wa .ic.ic-read { width: 1.25em; }
+/* the double ticks are wider than one symbol. The grey sent and delivered ticks are
+   the same grey as the time, so they change with the theme. */
+#workskin .wa .ic.ic-read,
+#workskin .wa .ic.ic-delivered { width: 1.25em; }
 
 /* the mic and send buttons are whole round buttons, so the picture fills them */
 #workskin .wa .wa-mic.ic { display: block; width: 2.4em; height: 2.4em; vertical-align: baseline; background-color: transparent; background-size: 100%; }
@@ -1941,6 +1943,8 @@
 #workskin .wa .ic.ic-camera { background-image: url(https://images.squidge.org/images/2026/11/15/camera-black.png); }
 #workskin .wa .wa-link-url::before { background-image: url(https://images.squidge.org/images/2026/11/15/link-black.png); }
 #workskin .wa .ic.ic-read { background-image: url(https://images.squidge.org/images/2026/11/15/double-tick-blue.png); }
+#workskin .wa .ic.ic-sent { background-image: url(https://images.squidge.org/images/2026/11/15/tick-grey-light.png); }
+#workskin .wa .ic.ic-delivered { background-image: url(https://images.squidge.org/images/2026/11/15/double-tick-grey-light.png); }
 #workskin .wa .ic.ic-wa-mic { background-image: url(https://images.squidge.org/images/2026/11/15/whatsapp-mic.png); }
 #workskin .wa .ic.ic-wa-send { background-image: url(https://images.squidge.org/images/2026/11/15/whatsapp-send.png); }
 
@@ -1949,6 +1953,8 @@
 #workskin .wa.theme-dark .ic.ic-paperclip { background-image: url(https://images.squidge.org/images/2026/11/15/paperclip-white.png); }
 #workskin .wa.theme-dark .ic.ic-camera { background-image: url(https://images.squidge.org/images/2026/11/15/camera-white.png); }
 #workskin .wa.theme-dark .wa-link-url::before { background-image: url(https://images.squidge.org/images/2026/11/15/link-white.png); }
+#workskin .wa.theme-dark .ic.ic-sent { background-image: url(https://images.squidge.org/images/2026/11/15/tick-grey-dark.png); }
+#workskin .wa.theme-dark .ic.ic-delivered { background-image: url(https://images.squidge.org/images/2026/11/15/double-tick-grey-dark.png); }
 
 /* WhatsApp icons, auto: dark when the reader's device is in dark mode */
 @media (prefers-color-scheme: dark) {
@@ -1956,6 +1962,8 @@
   #workskin .wa.theme-auto .ic.ic-paperclip { background-image: url(https://images.squidge.org/images/2026/11/15/paperclip-white.png); }
   #workskin .wa.theme-auto .ic.ic-camera { background-image: url(https://images.squidge.org/images/2026/11/15/camera-white.png); }
   #workskin .wa.theme-auto .wa-link-url::before { background-image: url(https://images.squidge.org/images/2026/11/15/link-white.png); }
+  #workskin .wa.theme-auto .ic.ic-sent { background-image: url(https://images.squidge.org/images/2026/11/15/tick-grey-dark.png); }
+  #workskin .wa.theme-auto .ic.ic-delivered { background-image: url(https://images.squidge.org/images/2026/11/15/double-tick-grey-dark.png); }
 }
 
 /* the top bar is coloured in every theme, so its icons are white */

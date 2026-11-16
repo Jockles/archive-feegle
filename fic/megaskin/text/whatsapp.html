@@ -499,18 +499,18 @@
   &lt;p class="wa-time"&gt;23:42 &lt;span class="wa-read ic ic-read"&gt;✓✓&lt;/span&gt;&lt;/p&gt;
 &lt;/div&gt;</code></pre>
 
-<p>The ticks turn blue. For a message that hasn't been read yet, leave off the <code>wa-read</code> span and type the ticks as plain text, and they stay grey. One tick means the message was sent but hasn't reached the other person's phone, two grey ticks mean it got there but hasn't been read, and two blue ticks mean it's been read. Here are all three side by side:</p>
+<p>The ticks turn blue. For a message that hasn't been read yet, leave off <code>wa-read</code> and use <code>ic ic-sent</code> for one grey tick or <code>ic ic-delivered</code> for two. One tick means the message was sent but hasn't reached the other person's phone, two grey ticks mean it got there but hasn't been read, and two blue ticks mean it's been read. Here are all three side by side:</p>
 
 <div class="mob wa theme-auto">
   <p class="mob-head">Mom<span class="hide"> - </span><span>last seen today at 10:01</span></p>
   <div class="mob-body">
     <div class="msg out">
       <p><span class="hide"><em>Shane:</em> </span>Sent, but not delivered yet</p>
-      <p class="wa-time">10:03 ✓</p>
+      <p class="wa-time">10:03 <span class="ic ic-sent">✓</span></p>
     </div>
     <div class="msg out">
       <p><span class="hide"><em>Shane:</em> </span>Delivered, but unread</p>
-      <p class="wa-time">10:03 ✓✓</p>
+      <p class="wa-time">10:03 <span class="ic ic-delivered">✓✓</span></p>
     </div>
     <div class="msg out">
       <p><span class="hide"><em>Shane:</em> </span>Read</p>
@@ -526,11 +526,11 @@
   &lt;div class="mob-body"&gt;
     &lt;div class="msg out"&gt;
       &lt;p&gt;&lt;span class="hide"&gt;&lt;em&gt;Shane:&lt;/em&gt; &lt;/span&gt;Sent, but not delivered yet&lt;/p&gt;
-      &lt;p class="wa-time"&gt;10:03 ✓&lt;/p&gt;
+      &lt;p class="wa-time"&gt;10:03 &lt;span class="ic ic-sent"&gt;✓&lt;/span&gt;&lt;/p&gt;
     &lt;/div&gt;
     &lt;div class="msg out"&gt;
       &lt;p&gt;&lt;span class="hide"&gt;&lt;em&gt;Shane:&lt;/em&gt; &lt;/span&gt;Delivered, but unread&lt;/p&gt;
-      &lt;p class="wa-time"&gt;10:03 ✓✓&lt;/p&gt;
+      &lt;p class="wa-time"&gt;10:03 &lt;span class="ic ic-delivered"&gt;✓✓&lt;/span&gt;&lt;/p&gt;
     &lt;/div&gt;
     &lt;div class="msg out"&gt;
       &lt;p&gt;&lt;span class="hide"&gt;&lt;em&gt;Shane:&lt;/em&gt; &lt;/span&gt;Read&lt;/p&gt;
