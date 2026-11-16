@@ -81,8 +81,10 @@
         </table>
         <label for="dccol">Different name colour on Discord</label>
         <div class="row"><input type="checkbox" id="dccolon"> <input type="color" id="dccol" value="#e8734a"></div>
-        <label for="workemail">Different email address in the email window (a work email, say)</label>
+        <label for="workemail">Second email address (a work email, say)</label>
         <input type="text" id="workemail">
+        <label for="workacc">Its account name: acc-</label>
+        <input type="text" id="workacc" value="work">
       </fieldset>
 
       <fieldset>
@@ -238,7 +240,8 @@
     var e = $("email").value.trim();
     if (e) L.push("#workskin .email." + p + "::after { content: " + str(e) + "; }");
     var we = $("workemail").value.trim();
-    if (we) L.push("#workskin .mail .email." + p + "::after { content: " + str(we) + "; }");
+    var wa = slugify($("workacc").value) || "work";
+    if (we) L.push("/* second email address: <span class=\"email " + p + " acc-" + wa + "\"> */", "#workskin .email." + p + ".acc-" + wa + "::after { content: " + str(we) + "; }");
     accounts().forEach(function (x) {
       var k = "." + p + "." + x.acc, a = x.app, all = a.namesel || a.sel, u = url(x.pic);
       if (u || x.name || x.handle) L.push("/* " + (name || slug).replace(/\*\//g, "") + "'s extra " + a.label + " account: " + x.acc + " */");

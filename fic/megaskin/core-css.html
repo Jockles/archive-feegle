@@ -6,7 +6,7 @@
   <title>Megaskin, Chapter 3: The Core CSS | jockles.com</title>
   <link rel="stylesheet" href="../../style.css">
   <script src="../../theme.js"></script>
-  <link rel="stylesheet" href="megaskin.css?v=4b448ba0" id="creator-style">
+  <link rel="stylesheet" href="megaskin.css?v=72a382f0" id="creator-style">
 </head>
 <body>
 <header>
@@ -472,7 +472,7 @@
 
 <ul>
   <li><strong>Stan</strong> (<code>pfp-stan</code>): Stan has the same appearance on every app - one picture, one name, one handle - so he only has the five lines every profile needs.</li>
-  <li><strong>Yuna</strong> (<code>pfp-yuna</code>): Yuna has a work life and a family life, and a plain coloured circle instead of a picture. She has a separate work email, a nickname line for how she's saved on her son's phone, and a wallpaper line for her own phone.</li>
+  <li><strong>Yuna</strong> (<code>pfp-yuna</code>): Yuna has a work life and a family life, and a plain coloured circle instead of a picture. She has a second email address for work (<code>acc-work</code>) - the extra account idea, just for email - plus a nickname line for how she's saved on her son's phone, and a wallpaper line for her own phone.</li>
   <li><strong>Zim</strong> (<code>pfp-zim</code>): Jack only has a different appearance on one app, so he only has those lines added - a different name and handle on Twitter/X.</li>
   <li><strong>Holster</strong> (<code>pfp-holster</code>): Holster only has a picture on one app, so that's the only picture line. Everywhere else he has initials, with a different circle colour on some apps.</li>
   <li><strong>Rose</strong> (<code>pfp-rose</code>): Rose keeps her public and private accounts separate, so she has a second Instagram account, <code>acc-private</code>, with its own picture and handle (see More Than One Account on the Same App, below).</li>
@@ -552,11 +552,11 @@
 
 <pre><code>#workskin .email.pfp-luca::after { content: "luca@example.com"; }</code></pre>
 
-<p><strong>11. A different email address in Gmail or the email window</strong></p>
+<p><strong>11. Another email address</strong></p>
 
-<pre><code>#workskin .mail .email.pfp-luca::after { content: "luca@work.example.com"; }</code></pre>
+<pre><code>#workskin .email.pfp-luca.acc-work::after { content: "luca@work.example.com"; }</code></pre>
 
-<p><code>.mail</code> is the generic email window, and <code>.gm</code> is Gmail.</p>
+<p>A second email address works like a second account on an app: give it an <code>acc-</code> name and add that to the email span in your HTML, <code>&lt;span class=&quot;email pfp-luca acc-work&quot;&gt;&lt;/span&gt;</code>. It works in Gmail and the email window alike.</p>
 
 <p><strong>12. Their phone's wallpaper</strong></p>
 
@@ -619,7 +619,7 @@
   <li>Keep the profile name in the HTML too - the <code>acc-</code> name only works alongside it. Anything you don't give the extra account - a name colour, an email address - comes from the main profile, so you only need lines for what's different.</li>
   <li>Put the extra account's lines at the end of the profile, so they win over everything above them, including saved-as names.</li>
   <li>Because the <code>acc-</code> name always goes with a profile, different characters can use the same one - Shane could have an <code>acc-burner</code> too, with his own lines.</li>
-  <li>Make as many as you like. Ilya has a second one, <code>acc-shanewife</code>, built the same way, and Rose's private Instagram, <code>acc-private</code>, uses <code>.ig</code> and <code>.igdm</code> instead of the Twitter/X classes.</li>
+  <li>Make as many as you like. Ilya has a second one, <code>acc-shanewife</code>, built the same way, and Rose's private Instagram, <code>acc-private</code>, uses <code>.ig</code> and <code>.igdm</code> instead of the Twitter/X classes. Yuna's work email, <code>acc-work</code>, is the same idea for an email address: <code>#workskin .email.pfp-yuna.acc-work::after { content: &quot;Yuna@HollanderHockey.com&quot;; }</code>.</li>
 </ul>
 
 <h3 id="s3-15">3.15 The Ten Colours</h3>
