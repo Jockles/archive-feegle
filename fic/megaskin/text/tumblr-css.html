@@ -52,9 +52,9 @@
 
 #workskin .tb .tb-header { padding-bottom: 0.8em; border-bottom: 1px solid #eeeeee; }
 
-#workskin .tb .tb-name { display: block; min-height: 38px; margin-left: 48px; }
+#workskin .tb .tb-name { display: block; min-height: 38px; margin-left: 48px; overflow: hidden; }
 
-#workskin .tb .tb-name &gt; b { display: block; font-weight: bold; line-height: 1.3; }
+#workskin .tb .tb-name &gt; b { display: block; overflow: hidden; white-space: nowrap; font-weight: bold; line-height: 1.3; }
 
 #workskin .tb .tb-name &gt; b:only-child { line-height: 38px; }
 
@@ -64,6 +64,7 @@
   <li>The post's header (<code>tb-header</code>) and each reblog's header (<code>tb-blog</code>) are built the same, except the post's header has a line under it.</li>
   <li>The picture floats left, and the name is pushed <code>48px</code> in from the left to clear it - the picture's <code>38px</code> and a gap. <code>min-height</code> makes the name block at least as tall as the picture, so the next thing always starts below both.</li>
   <li><code>:only-child</code> catches a name with no grey line under it, and makes its line as tall as the picture, which centres it from top to bottom beside the picture.</li>
+  <li>The name never wraps onto a second line (<code>nowrap</code>), and <code>overflow: hidden</code> on both cuts off anything that doesn't fit. That's for blogs with lots of checkmarks: like the app, they run up to the Follow button or the three dots and get cut off sharply there, however wide the screen is.</li>
 </ul>
 
 <p>The header code is written over several lines, and AO3 turns line breaks into <code>&lt;br /&gt;</code> tags, so a couple of rules hide those and flatten the paragraph AO3 wraps around it, as in WhatsApp's message bar.</p>
