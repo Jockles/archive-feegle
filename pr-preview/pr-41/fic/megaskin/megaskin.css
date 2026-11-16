@@ -3755,47 +3755,31 @@
   font-size: 0.88em;
 }
 
-/* the bottom row: the note count on the left, the buttons on the right
-   <p class="tb-footer"><span class="tb-notes"><b>149</b> notes</span> <span class="tb-icon save"></span> ... </p> */
+/* the bottom row: replies, reblogs and likes, each with its own count, then share on the far right
+   <p class="tb-footer"><span class="tb-stat"><span class="tb-icon ic ic-comment">&#9993;</span> 7<span class="hide"> replies</span></span> ... </p> */
 #workskin .tb .tb-footer {
   display: flex;
   align-items: center;
-  padding: 0.5em 0.9em 0.8em 0.9em;
+  padding: 0.6em 0.9em 0.9em 0.9em;
   color: #555555;
 }
 
-/* the buttons: save, share, reply, reblog and like, in that order */
+/* each button and its count takes an equal share of the row */
+#workskin .tb .tb-stat {
+  display: block;
+  flex: 1 1 0;
+  white-space: nowrap;
+}
+
 #workskin .tb .tb-icon {
   display: inline-block;
-  margin-left: 1em;
-  font-size: 1.15em;
+  margin-right: 0.3em;
+  font-size: 1.3em;
   line-height: 1;
+  vertical-align: -0.15em;
 }
 
-/* the save button's bookmark, drawn with CSS: <span class="tb-icon save"></span> */
-#workskin .tb .tb-icon.save {
-  position: relative;
-  box-sizing: border-box;
-  width: 13px;
-  height: 16px;
-  border: 2px solid currentColor;
-  border-bottom: 0;
-}
-
-#workskin .tb .tb-icon.save::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  bottom: 0;
-  box-sizing: border-box;
-  width: 7px;
-  height: 7px;
-  margin: 0 0 -3px -3px;
-  border-top: 2px solid currentColor;
-  border-left: 2px solid currentColor;
-  -webkit-transform: rotate(45deg);
-  transform: rotate(45deg);
-}
+#workskin .tb .tb-footer > .tb-icon { margin-right: 0; }
 
 /* quote post: <p class="tb-quote">text</p><p class="tb-source">&mdash; someone</p> */
 #workskin .tb .tb-quote { font-family: Georgia, serif; font-size: 1.9em; line-height: 1.25; }
@@ -3817,19 +3801,6 @@
 #workskin .tb .tb-chat p { margin: 0; padding: 0.35em 0; }
 
 #workskin .tb .tb-chat b { font-weight: bold; }
-
-/* the note count, in a rounded box at the left of the bottom row */
-#workskin .tb .tb-notes {
-  display: inline-block;
-  margin: 0 auto 0 0;
-  padding: 0.35em 0.9em;
-  border: 1px solid #e3e3e3;
-  border-radius: 2em;
-  color: #777777;
-  font-size: 0.85em;
-}
-
-#workskin .tb .tb-notes b { color: #222222; }
 
 /* THE FEED BEHIND THE CARDS (optional): put one or more .tb posts inside <div class="tb-feed">
    navy by default (Tumblr's light mode); add "black" for the dark-mode look */
@@ -3882,8 +3853,7 @@
 
 #workskin .tb.theme-dark .tb-subline,
 #workskin .tb.theme-dark .tb-menu,
-#workskin .tb.theme-dark .tb-tags,
-#workskin .tb.theme-dark .tb-notes {
+#workskin .tb.theme-dark .tb-tags {
   color: #9a9a9a;
 }
 
@@ -3904,9 +3874,7 @@
   color: #a8a8a8;
 }
 
-#workskin .tb.theme-dark .tb-notes { border-color: #3a3a3a; }
 
-#workskin .tb.theme-dark .tb-notes b { color: #e8e8e8; }
 
 #workskin .tb.theme-dark .tb-header { border-bottom-color: #2c2c2c; }
 
@@ -3921,8 +3889,7 @@
 
   #workskin .tb.theme-auto .tb-subline,
     #workskin .tb.theme-auto .tb-menu,
-    #workskin .tb.theme-auto .tb-tags,
-    #workskin .tb.theme-auto .tb-notes {
+    #workskin .tb.theme-auto .tb-tags {
       color: #9a9a9a;
     }
 
@@ -3943,9 +3910,7 @@
       color: #a8a8a8;
     }
 
-  #workskin .tb.theme-auto .tb-notes { border-color: #3a3a3a; }
 
-  #workskin .tb.theme-auto .tb-notes b { color: #e8e8e8; }
 
   #workskin .tb.theme-auto .tb-header { border-bottom-color: #2c2c2c; }
 
@@ -3970,23 +3935,10 @@
   background-size: contain;
 }
 
-/* the save bookmark is a picture too, in place of the CSS drawing above */
-#workskin .tb .tb-icon.save {
-  width: 1em;
-  height: 1em;
-  border: 0;
-  vertical-align: -0.1em;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-}
-#workskin .tb .tb-icon.save::after { display: none; }
-
 #workskin .tb .ic.ic-share-up { background-image: url(https://images.squidge.org/images/2026/11/15/share-up-black.png); }
 #workskin .tb .ic.ic-comment { background-image: url(https://images.squidge.org/images/2026/11/15/comment-black.png); }
 #workskin .tb .ic.ic-reblog { background-image: url(https://images.squidge.org/images/2026/11/15/reblog-black.png); }
 #workskin .tb .ic.ic-heart { background-image: url(https://images.squidge.org/images/2026/11/15/heart-black.png); }
-#workskin .tb .tb-icon.save { background-image: url(https://images.squidge.org/images/2026/11/15/bookmark-black.png); }
 
 /* the checkmark pictures for a blog without a profile, the same ones a profile uses */
 #workskin .tb .tb-checks.ic {
@@ -4015,7 +3967,6 @@
 #workskin .tb.theme-dark .ic.ic-comment { background-image: url(https://images.squidge.org/images/2026/11/15/comment-white.png); }
 #workskin .tb.theme-dark .ic.ic-reblog { background-image: url(https://images.squidge.org/images/2026/11/15/reblog-white.png); }
 #workskin .tb.theme-dark .ic.ic-heart { background-image: url(https://images.squidge.org/images/2026/11/15/heart-white.png); }
-#workskin .tb.theme-dark .tb-icon.save { background-image: url(https://images.squidge.org/images/2026/11/15/bookmark-white.png); }
 
 /* Tumblr icons, auto: dark when the reader's device is in dark mode */
 @media (prefers-color-scheme: dark) {
@@ -4023,7 +3974,6 @@
   #workskin .tb.theme-auto .ic.ic-comment { background-image: url(https://images.squidge.org/images/2026/11/15/comment-white.png); }
   #workskin .tb.theme-auto .ic.ic-reblog { background-image: url(https://images.squidge.org/images/2026/11/15/reblog-white.png); }
   #workskin .tb.theme-auto .ic.ic-heart { background-image: url(https://images.squidge.org/images/2026/11/15/heart-white.png); }
-  #workskin .tb.theme-auto .tb-icon.save { background-image: url(https://images.squidge.org/images/2026/11/15/bookmark-white.png); }
 }
 
 /* <<<<<<<<<< MODULE: Tumblr (end) <<<<<<<<<< */
