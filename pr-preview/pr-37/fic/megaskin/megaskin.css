@@ -163,8 +163,7 @@
   background-position: center;
 }
 
-/* initials from a profile: #workskin .pfp.pfp-holster::before { content: "RH"; }
-#workskin .tw .pfp.pfp-holster::before, #workskin .tw-reply .pfp.pfp-holster::before, #workskin .ig .pfp.pfp-holster::before { display: none; } puts RH in the
+/* initials from a profile: #workskin .pfp.pfp-holster::before { content: "AB"; } puts AB in the
    middle of the circle, in white, sized to fit whichever app it's in */
 #workskin .pfp::before {
   display: flex;
@@ -452,17 +451,19 @@
 #workskin .tw .handle.pfp-zim::after, #workskin .tw-reply .handle.pfp-zim::after, #workskin .twdm .handle.pfp-zim::after { content: "ZimBits"; }
 #workskin .email.pfp-zim::after { content: "Jack@zimmerman.com"; }
 
-/* PROFILE: Holster - initials in his circle, and a different circle colour on each app */
+/* PROFILE: Holster - initials in his circle, a different circle colour on each app, and a picture on Twitter/X
+   (picture from the Check Please! Wiki: https://omgcheckplease.fandom.com/wiki/Adam_Birkholtz) */
 #workskin .pfp.pfp-holster { background-color: #138a72; }
-#workskin .pfp.pfp-holster::before { content: "RH"; }
+#workskin .pfp.pfp-holster::before { content: "AB"; }
 #workskin .tw .pfp.pfp-holster::before, #workskin .tw-reply .pfp.pfp-holster::before, #workskin .ig .pfp.pfp-holster::before { display: none; }
-#workskin .tw .pfp.pfp-holster, #workskin .tw-reply .pfp.pfp-holster { background-color: #1d6fa5; }
+#workskin .tw .pfp.pfp-holster, #workskin .tw-reply .pfp.pfp-holster { background-image: url(https://static.wikia.nocookie.net/omgcheckplease/images/b/b2/Holsty.png); }
 #workskin .ig .pfp.pfp-holster, #workskin .igdm .pfp.pfp-holster { background-color: #c13584; }
 #workskin .tb .pfp.pfp-holster { background-color: #35465c; }
 #workskin .dc .pfp.pfp-holster { background-color: #5865f2; }
 #workskin .wa .who.pfp-holster, #workskin .dc .dc-name.pfp-holster { color: #1aa386; }
 #workskin .name.pfp-holster::before { content: "Holster"; }
 #workskin .handle.pfp-holster::after { content: "HolsterInLaw"; }
+#workskin .email.pfp-holster::after { content: "birka@samwellU.edu"; }
 
 /* PROFILE: Rose */
 #workskin .pfp.pfp-rose { background-color: #c2416b; }
