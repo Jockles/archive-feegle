@@ -92,7 +92,7 @@
         <p class="hint">The HTML file can be opened here again to carry on editing your chats. The CSS file has every profile you've used, pasted or made here, so you can open it for the next chapter.</p>
         <div class="fb-file">
           <label class="ck">Open an HTML file <input type="file" id="fb-open-html" accept=".html,.htm,text/html"></label>
-          <label class="ck">Open a CSS file <input type="file" id="fb-open-css" accept=".css,text/css,text/plain"></label>
+          <label class="ck">Open a CSS file <input type="file" class="fb-open-css" accept=".css,text/css,text/plain"></label>
         </div>
         <div class="fb-file">
           <button type="button" data-act="new">Start a new one</button>
@@ -109,9 +109,10 @@
         <p><button type="button" data-act="cast-add">+ Add a character</button>
           <button type="button" data-act="paste-show">+ Add existing profiles</button></p>
         <div id="fb-paste-box" class="fb-acct" hidden>
-          <p class="hint">Made profiles before, here or with the <a href="profile-maker.html">Profile Maker</a>? Paste their CSS here (one profile or lots), or use "Open a CSS file" at the top. They're added to the cast ready to use or edit, and they only go in the CSS to copy if you change them.</p>
+          <p class="hint">Made profiles before, here or with the <a href="profile-maker.html">Profile Maker</a>? Paste their CSS here (one profile or lots). If you have them saved as a CSS file, you can upload the file with the button below instead. They're added to the cast ready to use or edit, and they only go in the CSS to copy if you change them.</p>
           <textarea id="fb-paste" rows="5" placeholder="/* PROFILE: Stan */ ..."></textarea>
           <p><button type="button" data-act="paste-add">Add them to the cast</button> <button type="button" data-act="paste-hide">Cancel</button></p>
+          <label class="ck">Or upload a CSS file <input type="file" class="fb-open-css" accept=".css,text/css,text/plain"></label>
         </div>
       </fieldset>
 
