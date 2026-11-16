@@ -81,10 +81,6 @@
         </table>
         <label for="dccol">Different name colour on Discord</label>
         <div class="row"><input type="checkbox" id="dccolon"> <input type="color" id="dccol" value="#e8734a"></div>
-        <label for="workemail">Second email address (a work email, say)</label>
-        <input type="text" id="workemail">
-        <label for="workacc">Its account name: acc-</label>
-        <input type="text" id="workacc" value="work">
       </fieldset>
 
       <fieldset>
@@ -170,10 +166,10 @@
     var d = document.createElement("div");
     d.className = "acct";
     d.innerHTML = '<label>Account name</label><div class="row"><span>acc-</span><input type="text" class="ac-name"></div>' +
-      '<label>App</label><select class="ac-app">' + APPS.map(function (a) { return '<option value="' + a.key + '">' + a.label + '</option>'; }).join("") + '</select>' +
+      '<label>App</label><select class="ac-app">' + APPS.map(function (a) { return '<option value="' + a.key + '">' + (a.key === "gm" ? "Email (Gmail and the email window)" : a.label) + '</option>'; }).join("") + '</select>' +
       '<label>Picture link</label><input type="url" class="ac-pic" placeholder="https://...">' +
       '<label>Name</label><input type="text" class="ac-dname">' +
-      '<label>Handle (or email address, on Gmail)</label><input type="text" class="ac-handle">' +
+      '<label>Handle (or email address, for Email)</label><input type="text" class="ac-handle">' +
       '<p><button type="button">Remove this account</button></p>';
     d.querySelector(".ac-name").value = acc || "";
     if (app) d.querySelector(".ac-app").value = app;
@@ -239,15 +235,12 @@
     });
     var e = $("email").value.trim();
     if (e) L.push("#workskin .email." + p + "::after { content: " + str(e) + "; }");
-    var we = $("workemail").value.trim();
-    var wa = slugify($("workacc").value) || "work";
-    if (we) L.push("/* second email address: <span class=\"email " + p + " acc-" + wa + "\"> */", "#workskin .email." + p + ".acc-" + wa + "::after { content: " + str(we) + "; }");
     accounts().forEach(function (x) {
       var k = "." + p + "." + x.acc, a = x.app, all = a.namesel || a.sel, u = url(x.pic);
-      if (u || x.name || x.handle) L.push("/* " + (name || slug).replace(/\*\//g, "") + "'s extra " + a.label + " account: " + x.acc + " */");
+      if (u || x.name || x.handle) L.push("/* " + (name || slug).replace(/\*\//g, "") + "'s extra " + (a.key === "gm" ? "email address" : a.label + " account") + ": " + x.acc + " */");
       if (u) L.push(list(all, ".pfp" + k) + " { background-image: " + u + "; }");
       if (x.name) L.push(list(all, ".name" + k + "::before") + " { content: " + str(x.name) + "; }");
-      if (x.handle) L.push(list(all, (a.key === "gm" ? ".email" : ".handle") + k + "::after") + " { content: " + str(x.handle) + "; }");
+      if (x.handle) L.push(a.key === "gm" ? "#workskin .email" + k + "::after { content: " + str(x.handle) + "; }" : list(all, ".handle" + k + "::after") + " { content: " + str(x.handle) + "; }");
     });
     var wp = url($("wallpic").value);
     if (wp) L.push("#workskin .mob.wa.pov-" + slug + " { background-color: " + $("wallcol").value + "; background-image: " + wp + "; background-size: cover; background-position: center; }");
