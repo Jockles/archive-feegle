@@ -83,5 +83,68 @@
     return { css: L.join("\n"), slug: slug, p: p, name: name || slug };
   }
 
-  window.MegaskinProfile = { APPS: APPS, css: css, slugify: slugify, url: url };
+  // The other way round: read one profile back out of some CSS (the skin, or pasted profiles),
+  // so it can be edited. Anything it doesn't recognise is left out.
+  function parse(text, slug) {
+    var d = { name: "", slug: slug, pic: "", piccol: "#888888", namecol: "#666666", handle: "", email: "",
+      apps: { tw: {}, ig: {}, tb: {}, gm: {}, dc: {} }, dccol: "", tbsq: false, saved: [], accounts: [], wallcol: "", wallpic: "" };
+    var me = new RegExp("\\.pfp-" + slug + "(?![a-z0-9-])");
+    var wall = new RegExp("\\.mob\\.wa\\.pov-" + slug + "(?![a-z0-9-])");
+    var appOf = { tw: "tw", "tw-reply": "tw", twdm: "tw", ig: "ig", igdm: "ig", tb: "tb", gm: "gm", dc: "dc" };
+    function prop(body, name) { var m = body.match(new RegExp("(?:^|;)\\s*" + name + ":\\s*([^;]+)")); return m ? m[1].trim() : ""; }
+    function content(body) { var m = body.match(/content:\s*"((?:[^"\\]|\\.)*)"/); return m ? m[1].replace(/\\(.)/g, "$1") : ""; }
+    function link(body) { var m = body.match(/background-image:\s*url\(([^)]+)\)/); return m ? m[1].trim() : ""; }
+    function account(acc, app) {
+      var x = d.accounts.filter(function (a) { return a.acc === acc; })[0];
+      if (!x) { x = { acc: acc, app: app || "ig", pic: "", name: "", handle: "", sq: false }; d.accounts.push(x); }
+      if (app) x.app = app;
+      return x;
+    }
+    var rules = text.replace(/\/\*[\s\S]*?\*\//g, "").split("}");
+    rules.forEach(function (r) {
+      var i = r.indexOf("{"); if (i < 0) return;
+      var sel = r.slice(0, i).trim(), body = r.slice(i + 1).trim();
+      if (wall.test(sel) && !me.test(sel)) {
+        d.wallpic = link(body);
+        d.wallcol = prop(body, "background-color") || prop(body, "background");
+        return;
+      }
+      if (!me.test(sel)) return;
+      var sels = sel.split(",").map(function (x) { return x.trim(); });
+      var first = sels[0];
+      var apps = [];
+      sels.forEach(function (x) { var m = x.match(/^#workskin \.([a-z-]+) /); if (m && appOf[m[1]] && apps.indexOf(appOf[m[1]]) < 0) apps.push(appOf[m[1]]); });
+      var acc = (first.match(/\.acc-([a-z0-9-]+)/) || [])[1];
+      var pov = (first.match(/\.mob\.pov-([a-z0-9-]+) \.name/) || [])[1];
+      if (pov) { d.saved.push({ owner: pov, as: content(body) }); return; }
+      if (/\.who\.|\.dc-name\./.test(first) && prop(body, "color")) {
+        if (/\.wa \.who\./.test(first)) d.namecol = prop(body, "color"); else d.dccol = prop(body, "color");
+        return;
+      }
+      var kind = /\.name\.[^ ]*::before/.test(first) ? "name" : /\.handle\.[^ ]*::after/.test(first) ? "handle" :
+        /\.email\.[^ ]*::after/.test(first) ? "email" : /\.pfp\.pfp-/.test(first) ? "pfp" : "";
+      if (kind === "email" && acc) { account(acc, "gm").handle = content(body); return; }
+      if (!kind) return;
+      if (acc) {
+        var x = account(acc, apps[0]);
+        if (kind === "pfp") { if (link(body)) x.pic = link(body); if (prop(body, "border-radius") === "15%") x.sq = true; }
+        else if (content(body)) x[kind] = content(body);
+        return;
+      }
+      if (!apps.length) {
+        if (kind === "pfp") { d.pic = link(body); d.piccol = prop(body, "background-color") || d.piccol; }
+        else if (content(body)) d[kind] = content(body);
+        return;
+      }
+      apps.forEach(function (k) {
+        if (kind === "pfp") {
+          if (k === "tb" && prop(body, "border-radius") === "15%") d.tbsq = true;
+          else if (link(body)) d.apps[k].pic = link(body);
+        } else if (kind !== "email" && content(body)) d.apps[k][kind] = content(body);
+      });
+    });
+    return d;
+  }
+
+  window.MegaskinProfile = { APPS: APPS, css: css, parse: parse, slugify: slugify, url: url };
 })();
