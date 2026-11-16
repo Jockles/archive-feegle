@@ -1825,7 +1825,7 @@
 #workskin .wa.bg-dusk { background-color: #4b3a6e; background-image: linear-gradient(#7b5ea7, #2c2145); }
 
 /* YOUR OWN WALLPAPER (a photo or pattern from the web)
-   1. Upload the picture somewhere that gives a direct link (an image host such as Imgur).
+   1. Upload the picture somewhere that gives a direct link (an image host such as squidge.org).
    2. Replace the example link in the rule below with yours (the colour shows if the picture fails).
    3. Use the class on any chat: <div class="mob wa theme-auto bg-image1">
    4. For another wallpaper, copy the rule again and rename bg-image1 to bg-image2, etc. */

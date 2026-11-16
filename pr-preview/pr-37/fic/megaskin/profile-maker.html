@@ -11,6 +11,7 @@
   <style>
     .pm { display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-start; }
     .pm-form, .pm-out { flex: 1 1 380px; min-width: 0; }
+    .pm .acct { border-top: 1px dashed var(--rule, #ccc); margin-top: 10px; padding-top: 6px; }
     .pm fieldset { border: 1px solid var(--rule, #ccc); border-radius: 6px; margin: 0 0 16px; padding: 10px 14px 12px; }
     .pm legend { font-weight: bold; padding: 0 4px; }
     .pm label { display: block; margin: 8px 0 2px; font-size: 0.9em; }
@@ -48,7 +49,7 @@
   <h2>Profile Maker</h2>
 
   <p>Fill in the boxes and the chats on the right update as you type, using the real megaskin. When you're happy, copy the CSS at the bottom and paste it into the PROFILES section of your work skin, next to the other profiles. Nothing you type leaves your browser.</p>
-  <p>Only the first box is essential. Leave anything you don't need empty and it won't go in the CSS. Pictures need a direct link to the image file, usually ending in .jpg or .png, from somewhere like Imgur or Tumblr.</p>
+  <p>Only the first box is essential. Leave anything you don't need empty and it won't go in the CSS. Pictures need a direct link to the image file, usually ending in .jpg or .png, from somewhere like squidge.org or Tumblr.</p>
 
   <div class="pm">
     <form class="pm-form" id="pm" autocomplete="off" onsubmit="return false">
@@ -92,6 +93,13 @@
           <tbody id="saved"></tbody>
         </table>
         <button type="button" id="addsaved">+ Add a phone</button>
+      </fieldset>
+
+      <fieldset>
+        <legend>Extra accounts</legend>
+        <p class="hint">A second account on one app - a private Instagram, a burner, a fan account. Give each one a name, then fill in only what's different from their main account. In your HTML, add the acc- name next to the profile, like <code>pfp-<span class="slugtxt">stan</span> acc-burner</code>.</p>
+        <div id="accts"></div>
+        <button type="button" id="addacct">+ Add an account</button>
       </fieldset>
 
       <fieldset>
@@ -155,6 +163,34 @@
     $("saved").appendChild(tr);
   }
   $("addsaved").onclick = function () { addSaved(); update(); };
+
+  function addAcct(acc, app) {
+    var d = document.createElement("div");
+    d.className = "acct";
+    d.innerHTML = '<label>Account name</label><div class="row"><span>acc-</span><input type="text" class="ac-name"></div>' +
+      '<label>App</label><select class="ac-app">' + APPS.map(function (a) { return '<option value="' + a.key + '">' + a.label + '</option>'; }).join("") + '</select>' +
+      '<label>Picture link</label><input type="url" class="ac-pic" placeholder="https://...">' +
+      '<label>Name</label><input type="text" class="ac-dname">' +
+      '<label>Handle (or email address, on Gmail)</label><input type="text" class="ac-handle">' +
+      '<p><button type="button">Remove this account</button></p>';
+    d.querySelector(".ac-name").value = acc || "";
+    if (app) d.querySelector(".ac-app").value = app;
+    d.querySelector("button").onclick = function () { d.remove(); update(); };
+    $("accts").appendChild(d);
+  }
+  $("addacct").onclick = function () { addAcct(); update(); };
+  function accounts() {
+    var out = [];
+    Array.prototype.forEach.call($("accts").children, function (tr) {
+      var acc = slugify(tr.querySelector(".ac-name").value);
+      var app = APPS.filter(function (a) { return a.key === tr.querySelector(".ac-app").value; })[0];
+      if (!acc || !app) return;
+      out.push({ acc: "acc-" + acc, app: app,
+        pic: tr.querySelector(".ac-pic").value, name: tr.querySelector(".ac-dname").value.trim(),
+        handle: tr.querySelector(".ac-handle").value.trim().replace(/^@/, "") });
+    });
+    return out;
+  }
   addSaved("shane", "Stan from the bar");
 
   // keep values safe inside CSS
@@ -203,6 +239,13 @@
     if (e) L.push("#workskin .email." + p + "::after { content: " + str(e) + "; }");
     var we = $("workemail").value.trim();
     if (we) L.push("#workskin .mail .email." + p + "::after { content: " + str(we) + "; }");
+    accounts().forEach(function (x) {
+      var k = "." + p + "." + x.acc, a = x.app, all = a.namesel || a.sel, u = url(x.pic);
+      if (u || x.name || x.handle) L.push("/* " + (name || slug).replace(/\*\//g, "") + "'s extra " + a.label + " account: " + x.acc + " */");
+      if (u) L.push(list(all, ".pfp" + k) + " { background-image: " + u + "; }");
+      if (x.name) L.push(list(all, ".name" + k + "::before") + " { content: " + str(x.name) + "; }");
+      if (x.handle) L.push(list(all, (a.key === "gm" ? ".email" : ".handle") + k + "::after") + " { content: " + str(x.handle) + "; }");
+    });
     var wp = url($("wallpic").value);
     if (wp) L.push("#workskin .mob.wa.pov-" + slug + " { background-color: " + $("wallcol").value + "; background-image: " + wp + "; background-size: cover; background-position: center; }");
     else if ($("wallcolon").checked) L.push("#workskin .mob.wa.pov-" + slug + " { background: " + $("wallcol").value + "; }");
@@ -215,26 +258,34 @@
     var owner = "";
     var first = $("saved").querySelector(".sv-owner");
     if (first && slugify(first.value)) owner = slugify(first.value);
-    var html =
-      '<div class="mob wa ' + t + '"><div class="mob-body"><div class="wa-row">' +
-        '<p class="wa-pfp"><span class="pfp ' + p + '"></span></p>' +
-        '<div class="msg in tail"><p class="who ' + p + '"><span class="name ' + p + '"></span><span class="hide">:</span></p>' +
-        '<p>this is what my messages look like in a group</p><p class="wa-time">09:15</p></div></div></div></div>' +
-      '<div class="mob tw ' + t + '"><p class="tw-top"><span class="tw-pfp"><span class="pfp ' + p + '"></span></span>' +
-        '<span class="tw-name"><span class="name ' + p + '"></span></span> <span class="tw-handle"><span class="handle ' + p + '"></span> · 2h</span></p>' +
-        '<p class="tw-text">and this is me on Twitter/X</p></div>' +
-      '<div class="mob ig ' + t + '"><p class="ig-top"><span class="ig-pfp"><span class="pfp ' + p + '"></span></span>' +
-        '<span class="handle ' + p + '"></span></p></div>' +
-      '<div class="mob tb ' + t + '"><p class="tb-header"><span class="tb-pfp"><span class="pfp ' + p + '"></span></span>' +
-        '<span class="tb-name"><b><span class="handle ' + p + '"></span></b><span class="tb-subline">18m ago</span></span></p>' +
-        '<div class="tb-body"><p>and on Tumblr</p></div></div>' +
-      '<div class="mob gm ' + t + '"><div class="gm-msg"><table class="gm-head"><tbody><tr>' +
-        '<td rowspan="2" class="gm-pfp-cell"><span class="gm-pfp"><span class="pfp ' + p + '"></span></span></td>' +
-        '<td class="gm-from"><span class="name ' + p + '"></span> <span class="gm-address">&lt;<span class="email ' + p + '"></span>&gt;</span></td>' +
-        '<td class="gm-date">9:15 AM</td></tr><tr><td class="gm-to">to me &#9662;</td><td class="gm-tools">&#8617; &#8943;</td></tr></tbody></table></div></div>' +
-      '<div class="dc ' + t + '"><div class="dc-message"><p><b class="dc-name ' + p + '"><span class="dc-pfp"><span class="pfp ' + p + '"></span></span>' +
-        '<span class="name ' + p + '"></span></b> <span class="dc-time">Today at 9:15 AM</span></p>' +
-        '<p><span class="dc-text">and on Discord</span></p></div></div>' +
+    function blocks(c) {
+      return {
+        wa: '<div class="mob wa ' + t + '"><div class="mob-body"><div class="wa-row">' +
+          '<p class="wa-pfp"><span class="pfp ' + c + '"></span></p>' +
+          '<div class="msg in tail"><p class="who ' + c + '"><span class="name ' + c + '"></span><span class="hide">:</span></p>' +
+          '<p>this is what my messages look like in a group</p><p class="wa-time">09:15</p></div></div></div></div>',
+        tw: '<div class="mob tw ' + t + '"><p class="tw-top"><span class="tw-pfp"><span class="pfp ' + c + '"></span></span>' +
+          '<span class="tw-name"><span class="name ' + c + '"></span></span> <span class="tw-handle"><span class="handle ' + c + '"></span> · 2h</span></p>' +
+          '<p class="tw-text">and this is me on Twitter/X</p></div>',
+        ig: '<div class="mob ig ' + t + '"><p class="ig-top"><span class="ig-pfp"><span class="pfp ' + c + '"></span></span>' +
+          '<span class="handle ' + c + '"></span></p></div>',
+        tb: '<div class="mob tb ' + t + '"><p class="tb-header"><span class="tb-pfp"><span class="pfp ' + c + '"></span></span>' +
+          '<span class="tb-name"><b><span class="handle ' + c + '"></span></b><span class="tb-subline">18m ago</span></span></p>' +
+          '<div class="tb-body"><p>and on Tumblr</p></div></div>',
+        gm: '<div class="mob gm ' + t + '"><div class="gm-msg"><table class="gm-head"><tbody><tr>' +
+          '<td rowspan="2" class="gm-pfp-cell"><span class="gm-pfp"><span class="pfp ' + c + '"></span></span></td>' +
+          '<td class="gm-from"><span class="name ' + c + '"></span> <span class="gm-address">&lt;<span class="email ' + c + '"></span>&gt;</span></td>' +
+          '<td class="gm-date">9:15 AM</td></tr><tr><td class="gm-to">to me &#9662;</td><td class="gm-tools">&#8617; &#8943;</td></tr></tbody></table></div></div>',
+        dc: '<div class="dc ' + t + '"><div class="dc-message"><p><b class="dc-name ' + c + '"><span class="dc-pfp"><span class="pfp ' + c + '"></span></span>' +
+          '<span class="name ' + c + '"></span></b> <span class="dc-time">Today at 9:15 AM</span></p>' +
+          '<p><span class="dc-text">and on Discord</span></p></div></div>'
+      };
+    }
+    var b = blocks(p);
+    var html = b.wa + b.tw + b.ig + b.tb + b.gm + b.dc +
+      accounts().map(function (x) {
+        return '<p><em>Extra ' + esc(x.app.label) + ' account (' + esc(x.acc) + '):</em></p>' + blocks(p + " " + x.acc)[x.app.key];
+      }).join("") +
       (owner ? '<p><em>On ' + esc(owner) + "'s phone (pov-" + esc(owner) + '):</em></p>' +
         '<div class="mob wa ' + t + ' pov-' + owner + '"><p class="mob-head"><span class="name ' + p + '"></span><span class="hide"> - </span><span>online</span></p>' +
         '<div class="mob-body"><div class="msg in"><p>hey it\'s me</p><p class="wa-time">10:02</p></div></div></div>' : '') +
