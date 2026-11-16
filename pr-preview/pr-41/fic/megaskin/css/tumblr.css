@@ -135,6 +135,11 @@
 #workskin .tb .tb-check + .tb-check + .tb-check + .tb-check + .tb-check + .tb-check { background: #f08b37; }
 
 /* checkmarks from a profile: the profile adds the picture and the padding to make room for it */
+/* checkmarks as one picture, for a blog without a profile: <span class="tb-checks ic ic-checks-2">&#10003;&#10003;</span>
+   straight after the name, with ic-checks-2, ic-checks-4 or ic-checks-6. The picture is in the Icons section;
+   without it, the typed checkmarks show in blue. */
+#workskin .tb .tb-checks { margin-left: 0.25em; color: #42aaf5; font-size: 0.85em; }
+
 #workskin .tb .handle::after { background-repeat: no-repeat; background-position: right center; background-size: auto 0.9em; }
 
 #workskin .tb .tb-follow { display: block; float: right; margin: 2px 0 0 0.5em; }
@@ -485,6 +490,19 @@
 #workskin .tb .ic.ic-reblog { background-image: url(https://images.squidge.org/images/2026/11/15/reblog-black.png); }
 #workskin .tb .ic.ic-heart { background-image: url(https://images.squidge.org/images/2026/11/15/heart-black.png); }
 #workskin .tb .tb-icon.save { background-image: url(https://images.squidge.org/images/2026/11/15/bookmark-black.png); }
+
+/* the checkmark pictures for a blog without a profile, the same ones a profile uses */
+#workskin .tb .tb-checks.ic {
+  height: 0.9em;
+  margin-left: 0;
+  font-size: 1em;
+  vertical-align: -0.05em;
+  background-position: right center;
+  background-size: auto 100%;
+}
+#workskin .tb .ic.ic-checks-2 { width: 2.15em; background-image: url(https://images.squidge.org/images/2026/11/15/tb-checks-2.png); }
+#workskin .tb .ic.ic-checks-4 { width: 4.2em; background-image: url(https://images.squidge.org/images/2026/11/15/tb-checks-4.png); }
+#workskin .tb .ic.ic-checks-6 { width: 6.2em; background-image: url(https://images.squidge.org/images/2026/11/15/tb-checks-6.png); }
 
 /* the green reblog badge on a picture: the white reblog picture instead of the typed arrows */
 #workskin .tb .tb-pfp.rb::after {
