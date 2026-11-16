@@ -44,18 +44,19 @@
       <li><a href="#s8-2-3">8.2.3 Tweet Container</a></li>
       <li><a href="#s8-2-4">8.2.4 Name and Handle</a></li>
       <li><a href="#s8-2-5">8.2.5 Profile Picture</a></li>
-      <li><a href="#s8-2-6">8.2.6 Tweet Text</a></li>
-      <li><a href="#s8-2-7">8.2.7 Stats Line</a></li>
-      <li><a href="#s8-2-8">8.2.8 Replies</a></li>
-      <li><a href="#s8-2-9">8.2.9 Quote Tweets</a></li>
-      <li><a href="#s8-2-10">8.2.10 Community Notes</a></li>
-      <li><a href="#s8-2-11">8.2.11 Timestamp Line</a></li>
-      <li><a href="#s8-2-12">8.2.12 Liked and Reposted Counts</a></li>
-      <li><a href="#s8-2-13">8.2.13 Labels: Promoted and Circle Tweets</a></li>
-      <li><a href="#s8-2-14">8.2.14 Sensitive Content Warning</a></li>
-      <li><a href="#s8-2-15">8.2.15 Polls</a></li>
-      <li><a href="#s8-2-16">8.2.16 Pictures and Videos</a></li>
-      <li><a href="#s8-2-17">8.2.17 A Scrollable Thread</a></li>
+      <li><a href="#s8-2-6">8.2.6 Pictures and Names Without a Profile</a></li>
+      <li><a href="#s8-2-7">8.2.7 Tweet Text</a></li>
+      <li><a href="#s8-2-8">8.2.8 Stats Line</a></li>
+      <li><a href="#s8-2-9">8.2.9 Replies</a></li>
+      <li><a href="#s8-2-10">8.2.10 Quote Tweets</a></li>
+      <li><a href="#s8-2-11">8.2.11 Community Notes</a></li>
+      <li><a href="#s8-2-12">8.2.12 Timestamp Line</a></li>
+      <li><a href="#s8-2-13">8.2.13 Liked and Reposted Counts</a></li>
+      <li><a href="#s8-2-14">8.2.14 Labels: Promoted and Circle Tweets</a></li>
+      <li><a href="#s8-2-15">8.2.15 Sensitive Content Warning</a></li>
+      <li><a href="#s8-2-16">8.2.16 Polls</a></li>
+      <li><a href="#s8-2-17">8.2.17 Pictures and Videos</a></li>
+      <li><a href="#s8-2-18">8.2.18 A Scrollable Thread</a></li>
     </ul>
   </li>
   <li><a href="#s8-3">8.3 Twitter/X DMs</a>
@@ -95,7 +96,7 @@
     </div>
     <div class="mob tw-reply">
       <p class="tw-replying">Replying to <span class="tw-link">@HolsterInLaw</span></p>
-      <p class="tw-top"><span class="tw-pfp"><span class="pfp"><img src="https://64.media.tumblr.com/6898dc3a42cc6c7ab9729360b71366e4/ba033a52c8982cb0-bf/s2048x3072/b548d2fe61b02e530c0edd2ee6a6bd56ab73ad2c.jpg" alt="Profile picture of samthecat, a black and white cat screaming at the camera"></span></span><span class="tw-name">Sam</span> <span class="tw-handle">@samthecat · 1h</span></p>
+      <p class="tw-top"><span class="tw-pfp"><span class="pfp"><img src="https://64.media.tumblr.com/6898dc3a42cc6c7ab9729360b71366e4/ba033a52c8982cb0-bf/s2048x3072/b548d2fe61b02e530c0edd2ee6a6bd56ab73ad2c.jpg" alt="Profile picture of samthecat, a black and white cat screaming at the camera"></span></span><span class="hide"> </span><span class="tw-name">Sam</span> <span class="tw-handle">@samthecat · 1h</span></p>
       <p>this is lovely. anyway feed me</p>
     </div>
     <div class="mob tw-reply">
@@ -142,7 +143,7 @@
     &lt;/div&gt;
     &lt;div class="mob tw-reply"&gt;
       &lt;p class="tw-replying"&gt;Replying to &lt;span class="tw-link"&gt;@HolsterInLaw&lt;/span&gt;&lt;/p&gt;
-      &lt;p class="tw-top"&gt;&lt;span class="tw-pfp"&gt;&lt;span class="pfp"&gt;&lt;img src="https://64.media.tumblr.com/6898dc3a42cc6c7ab9729360b71366e4/ba033a52c8982cb0-bf/s2048x3072/b548d2fe61b02e530c0edd2ee6a6bd56ab73ad2c.jpg" alt="Profile picture of samthecat, a black and white cat screaming at the camera"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="tw-name"&gt;Sam&lt;/span&gt; &lt;span class="tw-handle"&gt;@samthecat · 1h&lt;/span&gt;&lt;/p&gt;
+      &lt;p class="tw-top"&gt;&lt;span class="tw-pfp"&gt;&lt;span class="pfp"&gt;&lt;img src="https://64.media.tumblr.com/6898dc3a42cc6c7ab9729360b71366e4/ba033a52c8982cb0-bf/s2048x3072/b548d2fe61b02e530c0edd2ee6a6bd56ab73ad2c.jpg" alt="Profile picture of samthecat, a black and white cat screaming at the camera"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="tw-name"&gt;Sam&lt;/span&gt; &lt;span class="tw-handle"&gt;@samthecat · 1h&lt;/span&gt;&lt;/p&gt;
       &lt;p&gt;this is lovely. anyway feed me&lt;/p&gt;
     &lt;/div&gt;
     &lt;div class="mob tw-reply"&gt;
@@ -340,13 +341,53 @@
 
 <p>For a real picture, put the picture tag inside a <code>pfp</code> span inside the <code>tw-pfp</code>:</p>
 
-<div class="tw-thread theme-auto"><div class="tw-scroll"><div class="mob tw-reply"><p class="tw-top"><span class="tw-pfp"><span class="pfp"><img src="https://64.media.tumblr.com/6898dc3a42cc6c7ab9729360b71366e4/ba033a52c8982cb0-bf/s2048x3072/b548d2fe61b02e530c0edd2ee6a6bd56ab73ad2c.jpg" alt="Profile picture of samthecat, a black and white cat screaming at the camera"></span></span><span class="tw-name">Sam</span> <span class="tw-handle">@samthecat · 1h</span></p></div></div></div>
+<div class="tw-thread theme-auto"><div class="tw-scroll"><div class="mob tw-reply"><p class="tw-top"><span class="tw-pfp"><span class="pfp"><img src="https://64.media.tumblr.com/6898dc3a42cc6c7ab9729360b71366e4/ba033a52c8982cb0-bf/s2048x3072/b548d2fe61b02e530c0edd2ee6a6bd56ab73ad2c.jpg" alt="Profile picture of samthecat, a black and white cat screaming at the camera"></span></span><span class="hide"> </span><span class="tw-name">Sam</span> <span class="tw-handle">@samthecat · 1h</span></p></div></div></div>
 
-<pre><code>&lt;p class="tw-top"&gt;&lt;span class="tw-pfp"&gt;&lt;span class="pfp"&gt;&lt;img src="https://64.media.tumblr.com/6898dc3a42cc6c7ab9729360b71366e4/ba033a52c8982cb0-bf/s2048x3072/b548d2fe61b02e530c0edd2ee6a6bd56ab73ad2c.jpg" alt="Profile picture of samthecat, a black and white cat screaming at the camera"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="tw-name"&gt;Sam&lt;/span&gt; &lt;span class="tw-handle"&gt;@samthecat · 1h&lt;/span&gt;&lt;/p&gt;</code></pre>
+<pre><code>&lt;p class="tw-top"&gt;&lt;span class="tw-pfp"&gt;&lt;span class="pfp"&gt;&lt;img src="https://64.media.tumblr.com/6898dc3a42cc6c7ab9729360b71366e4/ba033a52c8982cb0-bf/s2048x3072/b548d2fe61b02e530c0edd2ee6a6bd56ab73ad2c.jpg" alt="Profile picture of samthecat, a black and white cat screaming at the camera"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="tw-name"&gt;Sam&lt;/span&gt; &lt;span class="tw-handle"&gt;@samthecat · 1h&lt;/span&gt;&lt;/p&gt;</code></pre>
 
 <p>Or use a profile, so the same person has the same picture everywhere: <code>&lt;span class=&quot;tw-pfp&quot;&gt;&lt;span class=&quot;pfp pfp-shane&quot;&gt;&lt;/span&gt;&lt;/span&gt;</code> (see Profile Pictures, in the Core, Themes, and Extras chapter). It works the same way in replies - just give the reply's name line the <code>tw-top</code> class, like the replies in the thread. The colours for <code>colour1</code> to <code>colour10</code> are set in the Twitter/X CSS, so you can change them there.</p>
 
-<h4 id="s8-2-6">8.2.6 Tweet Text</h4>
+<h4 id="s8-2-6">8.2.6 Pictures and Names Without a Profile</h4>
+
+<p>Profiles are optional, and a thread full of random accounts is the perfect place to skip them. For each tweet, put the picture tag in the <code>tw-pfp</code>, type the name in <code>tw-name</code>, and type the handle in <code>tw-handle</code>, with the @. Copy all three onto every tweet or reply from that account:</p>
+
+<div class="tw-thread theme-auto"><div class="tw-scroll"><div class="mob tw">
+  <p class="tw-top"><span class="tw-pfp"><span class="pfp"><img src="https://media.istockphoto.com/id/1298570775/photo/rose.jpg?s=1024x1024&w=is&k=20&c=UFPisYCT3g2Vm04F2E5zrhtUWqDtLRLDXZisKb6Xf5s=" alt="Profile picture of Gemma, a close-up photo of a rose"></span></span><span class="hide"> </span><span class="tw-name">Gemma</span> <span class="tw-handle">@gemma_bakes · 2h</span></p>
+  <p class="tw-text">just saw a man carry a full size hockey net onto the bus. respect</p>
+</div>
+<div class="mob tw-reply">
+  <p class="tw-replying">Replying to <span class="tw-link">@gemma_bakes</span></p>
+  <p class="tw-top"><span class="tw-pfp"><span class="pfp"><img src="https://64.media.tumblr.com/6898dc3a42cc6c7ab9729360b71366e4/ba033a52c8982cb0-bf/s2048x3072/b548d2fe61b02e530c0edd2ee6a6bd56ab73ad2c.jpg" alt="Profile picture of Sam, a black and white cat screaming at the camera"></span></span><span class="hide"> </span><span class="tw-name">Sam</span> <span class="tw-handle">@samthecat · 1h</span></p>
+  <p>was it a nice net</p>
+</div>
+<div class="mob tw-reply">
+  <p class="tw-replying">Replying to <span class="tw-link">@samthecat</span></p>
+  <p class="tw-top"><span class="tw-pfp"><span class="pfp"><img class="land" src="https://www.shutterstock.com/shutterstock/photos/1100283806/display_1500/stock-photo-beautiful-lavender-flower-in-the-dalat-flower-park-selective-focus-1100283806.jpg" alt="Profile picture of Mar, a lavender flower"></span></span><span class="hide"> </span><span class="tw-name">Mar</span> <span class="tw-handle">@marlavender · 40m</span></p>
+  <p>that was my brother. it was a very nice net</p>
+</div></div></div>
+
+<pre><code>&lt;div class="mob tw"&gt;
+  &lt;p class="tw-top"&gt;&lt;span class="tw-pfp"&gt;&lt;span class="pfp"&gt;&lt;img src="https://media.istockphoto.com/id/1298570775/photo/rose.jpg?s=1024x1024&amp;w=is&amp;k=20&amp;c=UFPisYCT3g2Vm04F2E5zrhtUWqDtLRLDXZisKb6Xf5s=" alt="Profile picture of Gemma, a close-up photo of a rose"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="tw-name"&gt;Gemma&lt;/span&gt; &lt;span class="tw-handle"&gt;@gemma_bakes · 2h&lt;/span&gt;&lt;/p&gt;
+  &lt;p class="tw-text"&gt;just saw a man carry a full size hockey net onto the bus. respect&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="mob tw-reply"&gt;
+  &lt;p class="tw-replying"&gt;Replying to &lt;span class="tw-link"&gt;@gemma_bakes&lt;/span&gt;&lt;/p&gt;
+  &lt;p class="tw-top"&gt;&lt;span class="tw-pfp"&gt;&lt;span class="pfp"&gt;&lt;img src="https://64.media.tumblr.com/6898dc3a42cc6c7ab9729360b71366e4/ba033a52c8982cb0-bf/s2048x3072/b548d2fe61b02e530c0edd2ee6a6bd56ab73ad2c.jpg" alt="Profile picture of Sam, a black and white cat screaming at the camera"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="tw-name"&gt;Sam&lt;/span&gt; &lt;span class="tw-handle"&gt;@samthecat · 1h&lt;/span&gt;&lt;/p&gt;
+  &lt;p&gt;was it a nice net&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="mob tw-reply"&gt;
+  &lt;p class="tw-replying"&gt;Replying to &lt;span class="tw-link"&gt;@samthecat&lt;/span&gt;&lt;/p&gt;
+  &lt;p class="tw-top"&gt;&lt;span class="tw-pfp"&gt;&lt;span class="pfp"&gt;&lt;img class="land" src="https://www.shutterstock.com/shutterstock/photos/1100283806/display_1500/stock-photo-beautiful-lavender-flower-in-the-dalat-flower-park-selective-focus-1100283806.jpg" alt="Profile picture of Mar, a lavender flower"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="tw-name"&gt;Mar&lt;/span&gt; &lt;span class="tw-handle"&gt;@marlavender · 40m&lt;/span&gt;&lt;/p&gt;
+  &lt;p&gt;that was my brother. it was a very nice net&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+
+<ul>
+  <li>The name and handle are typed, so they show whether the workskin is on or off, with no hidden copy needed.</li>
+  <li>A wide picture needs <code>class=&quot;land&quot;</code> on the picture tag, like Mar's, or it won't fill its circle.</li>
+  <li>Twitter/X DMs don't show profile pictures, so in a group DM a stranger only needs their name typed in a <code>who</code> line (see Group Chats, below).</li>
+</ul>
+
+<h4 id="s8-2-7">8.2.7 Tweet Text</h4>
 
 <p>The text of the tweet goes in <code>tw-text</code>. To make a hashtag, an @mention or a link blue, wrap it in a span with <code>tw-link</code>:</p>
 
@@ -354,7 +395,7 @@
 
 <pre><code>&lt;p class="tw-text"&gt;Reminder to everyone that there could be (and likely are) queer players on many of the teams that didn't pledge. Thoughts go out to them. &lt;span class="tw-link"&gt;#HunterShortlist&lt;/span&gt; &lt;span class="tw-link"&gt;@SHunter&lt;/span&gt;&lt;/p&gt;</code></pre>
 
-<h4 id="s8-2-7">8.2.7 Stats Line</h4>
+<h4 id="s8-2-8">8.2.8 Stats Line</h4>
 
 <p>The row of reposts, likes and replies is <code>tw-stats</code>. Put each number in <code>&lt;b&gt;</code> to make it bold, and use <code>&amp;nbsp;</code> to space them out:</p>
 
@@ -362,7 +403,7 @@
 
 <pre><code>&lt;p class="tw-stats"&gt;&lt;b&gt;3&lt;/b&gt; Reposts &amp;nbsp; &lt;b&gt;13&lt;/b&gt; Likes &amp;nbsp; &lt;b&gt;1&lt;/b&gt; Reply&lt;/p&gt;</code></pre>
 
-<h4 id="s8-2-8">8.2.8 Replies</h4>
+<h4 id="s8-2-9">8.2.9 Replies</h4>
 
 <p>A reply is its own container, with the class <code>tw-reply</code> instead of <code>tw</code>. Put it straight underneath the tweet and the two join up into a thread:</p>
 
@@ -380,7 +421,7 @@
 
 <p><code>tw-replying</code> is the little grey "Replying to" line at the top. For a longer comment section, add as many <code>tw-reply</code> containers as you like, one after another.</p>
 
-<h4 id="s8-2-9">8.2.9 Quote Tweets</h4>
+<h4 id="s8-2-10">8.2.10 Quote Tweets</h4>
 
 <p>To quote another tweet inside a tweet, add a paragraph with <code>tw-quote</code> after the text:</p>
 
@@ -390,7 +431,7 @@
 
 <p>Put the quoted account's name in <code>&lt;b&gt;</code> and their handle in <code>tw-handle</code>, then a line break and their words. The rounded box around it is drawn for you.</p>
 
-<h4 id="s8-2-10">8.2.10 Community Notes</h4>
+<h4 id="s8-2-11">8.2.11 Community Notes</h4>
 
 <p>For the grey "Readers added context" box at the bottom of a tweet, use <code>tw-note</code>:</p>
 
@@ -398,7 +439,7 @@
 
 <pre><code>&lt;p class="tw-note"&gt;Readers added context: the trade has not been confirmed.&lt;/p&gt;</code></pre>
 
-<h4 id="s8-2-11">8.2.11 Timestamp Line</h4>
+<h4 id="s8-2-12">8.2.12 Timestamp Line</h4>
 
 <p>A tweet opened on its own page also shows the exact time and date above the counts. Add it with <code>tw-date</code>, just before the stats line:</p>
 
@@ -406,7 +447,7 @@
 
 <pre><code>&lt;p class="tw-date"&gt;8:23 AM · 11 May 23&lt;/p&gt;</code></pre>
 
-<h4 id="s8-2-12">8.2.12 Liked and Reposted Counts</h4>
+<h4 id="s8-2-13">8.2.13 Liked and Reposted Counts</h4>
 
 <p>When the account has liked or reposted the tweet, Twitter colours that count. To get that, wrap the number and its word in a span - <code>tw-liked</code> for a pink like, <code>tw-rt</code> for a green repost:</p>
 
@@ -416,7 +457,7 @@
 <pre><code>&lt;p class="tw-date"&gt;8:23 AM · 11 May 23&lt;/p&gt;
 &lt;p class="tw-stats"&gt;&lt;span class="tw-rt"&gt;&lt;b&gt;580&lt;/b&gt; Reposts&lt;/span&gt; &amp;nbsp; &lt;span class="tw-liked"&gt;&lt;b&gt;2.6k&lt;/b&gt; Likes&lt;/span&gt; &amp;nbsp; &lt;b&gt;10&lt;/b&gt; Replies&lt;/p&gt;</code></pre>
 
-<h4 id="s8-2-13">8.2.13 Labels: Promoted and Circle Tweets</h4>
+<h4 id="s8-2-14">8.2.14 Labels: Promoted and Circle Tweets</h4>
 
 <p>For a little grey line like "Promoted", or the notice on a Twitter Circle tweet, use <code>tw-label</code>:</p>
 
@@ -424,7 +465,7 @@
 
 <pre><code>&lt;p class="tw-label"&gt;Only people in @MetrosMomager's Twitter Circle can see this Tweet.&lt;/p&gt;</code></pre>
 
-<h4 id="s8-2-14">8.2.14 Sensitive Content Warning</h4>
+<h4 id="s8-2-15">8.2.15 Sensitive Content Warning</h4>
 
 <p>To cover a tweet's picture with the sensitive content warning, use <code>tw-warn</code>, with the heading in <code>&lt;b&gt;</code>:</p>
 
@@ -432,7 +473,7 @@
 
 <pre><code>&lt;p class="tw-warn"&gt;&lt;b&gt;Content warning: Sensitive content&lt;/b&gt;&lt;br&gt;The Tweet author flagged this Tweet as showing sensitive content.&lt;/p&gt;</code></pre>
 
-<h4 id="s8-2-15">8.2.15 Polls</h4>
+<h4 id="s8-2-16">8.2.16 Polls</h4>
 
 <p>A poll is a set of <code>tw-opt</code> options, with a <code>tw-pollinfo</code> line for the number of votes and the time left. While a poll is still open, each option is just an outlined box. Polls work in a <code>tw-reply</code> as well as a tweet, like Stan's:</p>
 
@@ -454,7 +495,7 @@
 &lt;p class="tw-opt res p25"&gt;Boston&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="tw-pct"&gt;25%&lt;/span&gt;&lt;/p&gt;
 &lt;p class="tw-pollinfo"&gt;97 votes · Final results&lt;/p&gt;</code></pre>
 
-<h4 id="s8-2-16">8.2.16 Pictures and Videos</h4>
+<h4 id="s8-2-17">8.2.17 Pictures and Videos</h4>
 
 <p>To add a picture or a video to a tweet, put it in a <code>tw-media</code> box, with a normal picture or video tag inside. Your own link goes in <code>src</code>, and a description of the picture goes in <code>alt</code>:</p>
 
@@ -526,7 +567,7 @@
 
 <p>All of this works in a <code>tw-reply</code> too.</p>
 
-<h4 id="s8-2-17">8.2.17 A Scrollable Thread</h4>
+<h4 id="s8-2-18">8.2.18 A Scrollable Thread</h4>
 
 <p>A tweet with lots of replies can go in a scrolling window, with a "Tweet your reply" bar that stays at the bottom, like the thread at the top of this chapter. Wrap everything in <code>tw-thread</code> (with a theme class), put the tweet and the replies in a <code>tw-scroll</code> box, and finish with a <code>tw-foot</code> bar after it:</p>
 

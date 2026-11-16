@@ -505,6 +505,57 @@
 
 <p>It draws the curved line and the little preview of the message being replied to. Use the same colour class as the original sender's name, so the tiny profile picture matches - or, if they have a profile, the same <code>dc-pfp</code> span and profile name. Long previews get cut short with "..." automatically.</p>
 
+<h3>Pictures and Names Without a Profile</h3>
+
+<p>Profiles are optional, and a busy server is full of people who only post once. For each message, put a <code>dc-pfp</code> span first inside the <code>dc-name</code>, with the picture tag in it, and type the username after it. Add one of <code>colour1</code> to <code>colour10</code> to the <code>dc-name</code> for the name colour. Replies show a little picture too, so copy the same <code>dc-pfp</code> into the name in the <code>dc-reply</code> line:</p>
+
+<div class="dc theme-auto">
+<div class="dc-message">
+  <p>
+    <b class="dc-name colour6"><span class="dc-pfp"><span class="pfp"><img src="https://64.media.tumblr.com/6898dc3a42cc6c7ab9729360b71366e4/ba033a52c8982cb0-bf/s2048x3072/b548d2fe61b02e530c0edd2ee6a6bd56ab73ad2c.jpg" alt="Profile picture of Sam, a black and white cat screaming at the camera"></span></span>samthecat</b>
+    <span class="dc-time">Today at 7:02 PM</span>
+  </p>
+  <p><span class="dc-text">does anyone have a spare skate key</span></p>
+</div>
+<div class="dc-message">
+  <p class="dc-reply">
+    <span class="hide">Replying to message by: </span>
+    <b class="dc-name colour6"><span class="dc-pfp"><span class="pfp"><img src="https://64.media.tumblr.com/6898dc3a42cc6c7ab9729360b71366e4/ba033a52c8982cb0-bf/s2048x3072/b548d2fe61b02e530c0edd2ee6a6bd56ab73ad2c.jpg" alt="Profile picture of Sam, a black and white cat screaming at the camera"></span></span>samthecat</b>
+    <span class="dc-text">does anyone have a spare skate key</span>
+  </p>
+  <p>
+    <b class="dc-name colour3"><span class="dc-pfp"><span class="pfp"><img class="land" src="https://www.shutterstock.com/shutterstock/photos/1100283806/display_1500/stock-photo-beautiful-lavender-flower-in-the-dalat-flower-park-selective-focus-1100283806.jpg" alt="Profile picture of Mar, a lavender flower"></span></span>marlavender</b>
+    <span class="dc-time">Today at 7:04 PM</span>
+  </p>
+  <p><span class="dc-text">that's not a thing sam</span></p>
+</div>
+</div>
+
+<pre><code>&lt;div class="dc-message"&gt;
+  &lt;p&gt;
+    &lt;b class="dc-name colour6"&gt;&lt;span class="dc-pfp"&gt;&lt;span class="pfp"&gt;&lt;img src="https://64.media.tumblr.com/6898dc3a42cc6c7ab9729360b71366e4/ba033a52c8982cb0-bf/s2048x3072/b548d2fe61b02e530c0edd2ee6a6bd56ab73ad2c.jpg" alt="Profile picture of Sam, a black and white cat screaming at the camera"&gt;&lt;/span&gt;&lt;/span&gt;samthecat&lt;/b&gt;
+    &lt;span class="dc-time"&gt;Today at 7:02 PM&lt;/span&gt;
+  &lt;/p&gt;
+  &lt;p&gt;&lt;span class="dc-text"&gt;does anyone have a spare skate key&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="dc-message"&gt;
+  &lt;p class="dc-reply"&gt;
+    &lt;span class="hide"&gt;Replying to message by: &lt;/span&gt;
+    &lt;b class="dc-name colour6"&gt;&lt;span class="dc-pfp"&gt;&lt;span class="pfp"&gt;&lt;img src="https://64.media.tumblr.com/6898dc3a42cc6c7ab9729360b71366e4/ba033a52c8982cb0-bf/s2048x3072/b548d2fe61b02e530c0edd2ee6a6bd56ab73ad2c.jpg" alt="Profile picture of Sam, a black and white cat screaming at the camera"&gt;&lt;/span&gt;&lt;/span&gt;samthecat&lt;/b&gt;
+    &lt;span class="dc-text"&gt;does anyone have a spare skate key&lt;/span&gt;
+  &lt;/p&gt;
+  &lt;p&gt;
+    &lt;b class="dc-name colour3"&gt;&lt;span class="dc-pfp"&gt;&lt;span class="pfp"&gt;&lt;img class="land" src="https://www.shutterstock.com/shutterstock/photos/1100283806/display_1500/stock-photo-beautiful-lavender-flower-in-the-dalat-flower-park-selective-focus-1100283806.jpg" alt="Profile picture of Mar, a lavender flower"&gt;&lt;/span&gt;&lt;/span&gt;marlavender&lt;/b&gt;
+    &lt;span class="dc-time"&gt;Today at 7:04 PM&lt;/span&gt;
+  &lt;/p&gt;
+  &lt;p&gt;&lt;span class="dc-text"&gt;that's not a thing sam&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+
+<ul>
+  <li>The username is typed, so it shows whether the workskin is on or off, with no hidden copy needed.</li>
+  <li>A wide picture needs <code>class=&quot;land&quot;</code> on the picture tag, like marlavender's, or it won't fill its circle.</li>
+</ul>
+
 <h3 id="edited">Edited Message</h3>
 
 <p>For the little "(edited)" tag at the end of a message, add a <code>dc-edited</code> span inside the <code>dc-text</code>:</p>

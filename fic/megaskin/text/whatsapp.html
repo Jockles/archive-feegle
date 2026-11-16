@@ -977,6 +977,78 @@
 
 <p>If the same person turns up again and again, or in other apps too, a profile saves you adding the picture every time: <code>&lt;p class=&quot;wa-pfp&quot;&gt;&lt;span class=&quot;pfp pfp-shane&quot;&gt;&lt;/span&gt;&lt;/p&gt;</code> (see Profile Pictures, in the Core, Themes, and Extras chapter). The colours for <code>colour1</code> to <code>colour10</code> are set in the WhatsApp CSS, so you can change them there.</p>
 
+<h3>Pictures and Names Without a Profile</h3>
+
+<p>Profiles are optional, and in a big group where most people only say a line or two, it's quicker to skip them. For each person, put their picture tag in the <code>wa-pfp</code> and type their name in the <code>who</code> line, with the same colour class on both so the name matches the circle. Every time they start a new run of messages, copy the whole <code>wa-pfp</code> paragraph and <code>who</code> line in again, and use <code>wa-row cont</code> for the messages straight after it, the same as above:</p>
+
+<div class="mob wa theme-auto"><div class="mob-body"><div class="wa-row">
+  <p class="wa-pfp colour6"><span class="pfp"><img src="https://64.media.tumblr.com/6898dc3a42cc6c7ab9729360b71366e4/ba033a52c8982cb0-bf/s2048x3072/b548d2fe61b02e530c0edd2ee6a6bd56ab73ad2c.jpg" alt="Profile picture of Sam, a black and white cat screaming at the camera"></span></p>
+  <div class="msg in tail">
+    <p class="who colour6">~ Sam<span class="hide"> </span><span class="wa-num">+353 87 555 0142</span><span class="hide">:</span></p>
+    <p>who's bringing the ice</p>
+    <p class="wa-time">18:02</p>
+  </div>
+</div>
+<div class="wa-row cont">
+  <div class="msg in">
+    <p><span class="hide"><em>~ Sam:</em> </span>for the drinks not the rink</p>
+    <p class="wa-time">18:02</p>
+  </div>
+</div>
+<div class="wa-row">
+  <p class="wa-pfp colour2"><span class="pfp"><img class="land" src="https://media.istockphoto.com/id/2172051553/photo/asiatic-lily.jpg?s=1024x1024&w=is&k=20&c=3vCuZD234XmkXzrnzWPBdIZM0oJA1B6qe1x-06K_wDo=" alt="Profile picture of Ash, a close-up photo of an Asiatic lily"></span></p>
+  <div class="msg in tail">
+    <p class="who colour2">Ash<span class="hide">:</span></p>
+    <p>not me, I'm bringing the dog</p>
+    <p class="wa-time">18:04</p>
+  </div>
+</div>
+<div class="wa-row">
+  <p class="wa-pfp colour6"><span class="pfp"><img src="https://64.media.tumblr.com/6898dc3a42cc6c7ab9729360b71366e4/ba033a52c8982cb0-bf/s2048x3072/b548d2fe61b02e530c0edd2ee6a6bd56ab73ad2c.jpg" alt="Profile picture of Sam, a black and white cat screaming at the camera"></span></p>
+  <div class="msg in tail">
+    <p class="who colour6">~ Sam<span class="hide"> </span><span class="wa-num">+353 87 555 0142</span><span class="hide">:</span></p>
+    <p>the dog can't carry ice ash</p>
+    <p class="wa-time">18:05</p>
+  </div>
+</div></div></div>
+
+<pre><code>&lt;div class="wa-row"&gt;
+  &lt;p class="wa-pfp colour6"&gt;&lt;span class="pfp"&gt;&lt;img src="https://64.media.tumblr.com/6898dc3a42cc6c7ab9729360b71366e4/ba033a52c8982cb0-bf/s2048x3072/b548d2fe61b02e530c0edd2ee6a6bd56ab73ad2c.jpg" alt="Profile picture of Sam, a black and white cat screaming at the camera"&gt;&lt;/span&gt;&lt;/p&gt;
+  &lt;div class="msg in tail"&gt;
+    &lt;p class="who colour6"&gt;~ Sam&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="wa-num"&gt;+353 87 555 0142&lt;/span&gt;&lt;span class="hide"&gt;:&lt;/span&gt;&lt;/p&gt;
+    &lt;p&gt;who's bringing the ice&lt;/p&gt;
+    &lt;p class="wa-time"&gt;18:02&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="wa-row cont"&gt;
+  &lt;div class="msg in"&gt;
+    &lt;p&gt;&lt;span class="hide"&gt;&lt;em&gt;~ Sam:&lt;/em&gt; &lt;/span&gt;for the drinks not the rink&lt;/p&gt;
+    &lt;p class="wa-time"&gt;18:02&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="wa-row"&gt;
+  &lt;p class="wa-pfp colour2"&gt;&lt;span class="pfp"&gt;&lt;img class="land" src="https://media.istockphoto.com/id/2172051553/photo/asiatic-lily.jpg?s=1024x1024&amp;w=is&amp;k=20&amp;c=3vCuZD234XmkXzrnzWPBdIZM0oJA1B6qe1x-06K_wDo=" alt="Profile picture of Ash, a close-up photo of an Asiatic lily"&gt;&lt;/span&gt;&lt;/p&gt;
+  &lt;div class="msg in tail"&gt;
+    &lt;p class="who colour2"&gt;Ash&lt;span class="hide"&gt;:&lt;/span&gt;&lt;/p&gt;
+    &lt;p&gt;not me, I'm bringing the dog&lt;/p&gt;
+    &lt;p class="wa-time"&gt;18:04&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="wa-row"&gt;
+  &lt;p class="wa-pfp colour6"&gt;&lt;span class="pfp"&gt;&lt;img src="https://64.media.tumblr.com/6898dc3a42cc6c7ab9729360b71366e4/ba033a52c8982cb0-bf/s2048x3072/b548d2fe61b02e530c0edd2ee6a6bd56ab73ad2c.jpg" alt="Profile picture of Sam, a black and white cat screaming at the camera"&gt;&lt;/span&gt;&lt;/p&gt;
+  &lt;div class="msg in tail"&gt;
+    &lt;p class="who colour6"&gt;~ Sam&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="wa-num"&gt;+353 87 555 0142&lt;/span&gt;&lt;span class="hide"&gt;:&lt;/span&gt;&lt;/p&gt;
+    &lt;p&gt;the dog can't carry ice ash&lt;/p&gt;
+    &lt;p class="wa-time"&gt;18:05&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+<ul>
+  <li>The name is typed, so it shows whether the workskin is on or off. The hidden colon after it is all it needs.</li>
+  <li>A wide picture needs <code>class=&quot;land&quot;</code> on the picture tag, like Ash's, or it won't fill its circle.</li>
+  <li>The same picture tag works in the header's <code>wa-pfp</code>, for a one-to-one chat with someone who doesn't have a profile.</li>
+</ul>
+
 <h3>Quoting a Message in a Group</h3>
 
 <p>Quotes in a group work the same as in a one-to-one chat, except the coloured bar on the left takes the colour of the person being quoted. Add the same colour class to the <code>wa-quote</code>:</p>

@@ -48,7 +48,7 @@
       <li><a href="#themes">Light, dark and auto themes</a></li>
     </ul>
   </li>
-  <li><a href="#profiles">Cross-platform profiles</a> (<code>pfp-</code>), and <code>pov-</code> for a character's phone</li>
+  <li><a href="#profiles">Profile pictures and names</a>: one-off pictures and names, optional cross-platform profiles (<code>pfp-</code>), and <code>pov-</code> for a character's phone</li>
   <li><a href="#pictures">Pictures and formatting</a>: pictures, and cropping them to fit boxes and circles (<code>land</code>)</li>
   <li><a href="#fake-links">Links that go nowhere</a> (<code>fake-link</code>)</li>
   <li><a href="#translations">Hover and tap translations</a>, and hidden easter eggs (<code>egg</code>), which also work in ordinary text outside a chat</li>
@@ -624,6 +624,8 @@
 
 <h3 id="profiles"><span id="s2-5"></span>2.5 Cross-Platform Profiles</h3>
 
+<p>Profiles are optional. They save time for characters who keep turning up - your main cast, in chat after chat and app after app - but you never have to make one. For anyone who only appears once or twice, like a Twitter/X thread full of strangers, a big group chat where most people only say a line or two, or one email from a landlord, it's quicker to type their name into the HTML and put their picture straight into the circle. That works on every message, in every app, without touching the CSS (see <a href="#no-profile">Pictures and Names Without a Profile</a>, below).</p>
+
 <h4 id="s2-5-1">2.5.1 Profile Pictures</h4>
 
 <p>Most of the modules have round profile pictures next to people's names. There are three ways to fill one:</p>
@@ -652,7 +654,56 @@
 
 </details>
 
-<h4 id="s2-5-2">2.5.2 Character Profiles</h4>
+<h4 id="no-profile"><span id="s2-5-2"></span>2.5.2 Pictures and Names Without a Profile</h4>
+
+<p>To give someone a picture and a name without making a profile:</p>
+
+<ol>
+  <li>Upload the picture somewhere (there's more on that in <a href="#pictures">Pictures and Formatting</a>, below) and copy its link.</li>
+  <li>Put a picture tag, with that link and some alt text, inside a <code>pfp</code> span, and put that inside the app's circle: <code>&lt;span class=&quot;pfp&quot;&gt;&lt;img src=&quot;LINK&quot; alt=&quot;Profile picture of Sam&quot;&gt;&lt;/span&gt;</code>. If the picture is wider than it is tall, add <code>class=&quot;land&quot;</code> to the picture tag.</li>
+  <li>Type their name, handle or email address wherever it goes in that app, like any other text.</li>
+  <li>Copy the picture and name onto every message or post from that person. Without a profile, the picture only shows where you've put it.</li>
+</ol>
+
+<p>Because the name is typed rather than coming from the CSS, readers with the workskin switched off see it too, so it doesn't need a hidden copy. Here are two strangers in a WhatsApp group, each with their own picture and name:</p>
+
+<div class="mob wa theme-auto"><div class="mob-body"><div class="wa-row">
+  <p class="wa-pfp colour6"><span class="pfp"><img src="https://64.media.tumblr.com/6898dc3a42cc6c7ab9729360b71366e4/ba033a52c8982cb0-bf/s2048x3072/b548d2fe61b02e530c0edd2ee6a6bd56ab73ad2c.jpg" alt="Profile picture of Sam, a black and white cat screaming at the camera"></span></p>
+  <div class="msg in tail">
+    <p class="who colour6">Sam<span class="hide">:</span></p>
+    <p>who's bringing the ice</p>
+    <p class="wa-time">18:02</p>
+  </div>
+</div>
+<div class="wa-row">
+  <p class="wa-pfp colour2"><span class="pfp"><img class="land" src="https://media.istockphoto.com/id/2172051553/photo/asiatic-lily.jpg?s=1024x1024&w=is&k=20&c=3vCuZD234XmkXzrnzWPBdIZM0oJA1B6qe1x-06K_wDo=" alt="Profile picture of Ash, a close-up photo of an Asiatic lily"></span></p>
+  <div class="msg in tail">
+    <p class="who colour2">Ash<span class="hide">:</span></p>
+    <p>not me, I'm bringing the dog</p>
+    <p class="wa-time">18:04</p>
+  </div>
+</div></div></div>
+
+<pre><code>&lt;div class="wa-row"&gt;
+  &lt;p class="wa-pfp colour6"&gt;&lt;span class="pfp"&gt;&lt;img src="https://64.media.tumblr.com/6898dc3a42cc6c7ab9729360b71366e4/ba033a52c8982cb0-bf/s2048x3072/b548d2fe61b02e530c0edd2ee6a6bd56ab73ad2c.jpg" alt="Profile picture of Sam, a black and white cat screaming at the camera"&gt;&lt;/span&gt;&lt;/p&gt;
+  &lt;div class="msg in tail"&gt;
+    &lt;p class="who colour6"&gt;Sam&lt;span class="hide"&gt;:&lt;/span&gt;&lt;/p&gt;
+    &lt;p&gt;who's bringing the ice&lt;/p&gt;
+    &lt;p class="wa-time"&gt;18:02&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="wa-row"&gt;
+  &lt;p class="wa-pfp colour2"&gt;&lt;span class="pfp"&gt;&lt;img class="land" src="https://media.istockphoto.com/id/2172051553/photo/asiatic-lily.jpg?s=1024x1024&amp;w=is&amp;k=20&amp;c=3vCuZD234XmkXzrnzWPBdIZM0oJA1B6qe1x-06K_wDo=" alt="Profile picture of Ash, a close-up photo of an Asiatic lily"&gt;&lt;/span&gt;&lt;/p&gt;
+  &lt;div class="msg in tail"&gt;
+    &lt;p class="who colour2"&gt;Ash&lt;span class="hide"&gt;:&lt;/span&gt;&lt;/p&gt;
+    &lt;p&gt;not me, I'm bringing the dog&lt;/p&gt;
+    &lt;p class="wa-time"&gt;18:04&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+<p>Every module chapter with pictures has its own section on this, showing exactly where the picture and name go in that app. And if someone ends up in more chats than you planned, you can always give them a profile later.</p>
+
+<h4 id="s2-5-3">2.5.3 Character Profiles</h4>
 
 <p>A profile is one character's online identity - their picture, name, handle and email address - set once in the core CSS. You can use it in any chat, in any app, and if something changes, like a new picture or a new handle, you change it in one place and it changes everywhere.</p>
 
@@ -698,7 +749,7 @@
 
 </details>
 
-<h4 id="s2-5-3">2.5.3 Using a Profile</h4>
+<h4 id="s2-5-4">2.5.4 Using a Profile</h4>
 
 <p>In your HTML, add the profile name wherever that character turns up:</p>
 
@@ -789,7 +840,7 @@
 
 </details>
 
-<h4 id="s2-5-4">2.5.4 Their Phone</h4>
+<h4 id="s2-5-5">2.5.5 Their Phone</h4>
 
 <p>When a chat is on one character's phone, add <code>pov-</code> and their profile name to the chat's container, like <code>pov-shane</code>. In WhatsApp, the chat gets their wallpaper, and in every app, people show up under whatever that character has them saved as. Here's the same chat on Shane's phone, where Ilya is saved as Lily, and on Ilya's, where Shane is Jane:</p>
 

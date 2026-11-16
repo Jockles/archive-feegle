@@ -313,6 +313,92 @@
 
 <p>The colours for <code>colour1</code> to <code>colour10</code> are set in the core CSS and shared with every app, so you can change them there.</p>
 
+<h4>Pictures and Names Without a Profile</h4>
+
+<p>Profiles are optional, and a one-off email - from a coach, a landlord, a bake sale - doesn't need one. Put the picture tag in the <code>gm-pfp</code>, type the name in <code>gm-from</code>, and type the address in <code>gm-address</code>. In a thread, every email has its own header, so copy them into each email from that person:</p>
+
+<div class="mob gm theme-auto">
+<div class="gm-msg">
+  <table class="gm-head">
+    <tbody>
+      <tr>
+        <td rowspan="2" class="gm-pfp-cell"><span class="gm-pfp"><span class="pfp"><img src="https://media.istockphoto.com/id/1298570775/photo/rose.jpg?s=1024x1024&w=is&k=20&c=UFPisYCT3g2Vm04F2E5zrhtUWqDtLRLDXZisKb6Xf5s=" alt="Profile picture of Gemma, a close-up photo of a rose"></span></span></td>
+        <td class="gm-from">Gemma Byrne <span class="gm-address">&lt;gemma@example.com&gt;</span></td>
+        <td class="gm-date">Mar 3, 10:02 AM</td>
+      </tr>
+      <tr>
+        <td class="gm-to">to me, Mar &#9662;</td>
+        <td class="gm-tools">&#8617; &#8943;</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="gm-body">
+    <p>Is anyone actually coming to the bake sale or am I eating forty brownies alone?</p>
+  </div>
+</div>
+<div class="gm-msg">
+  <table class="gm-head">
+    <tbody>
+      <tr>
+        <td rowspan="2" class="gm-pfp-cell"><span class="gm-pfp"><span class="pfp"><img class="land" src="https://www.shutterstock.com/shutterstock/photos/1100283806/display_1500/stock-photo-beautiful-lavender-flower-in-the-dalat-flower-park-selective-focus-1100283806.jpg" alt="Profile picture of Mar, a lavender flower"></span></span></td>
+        <td class="gm-from">Mar Quinn <span class="gm-address">&lt;mar@example.com&gt;</span></td>
+        <td class="gm-date">Mar 3, 10:15 AM</td>
+      </tr>
+      <tr>
+        <td class="gm-to">to Gemma, me &#9662;</td>
+        <td class="gm-tools">&#8617; &#8943;</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="gm-body">
+    <p>Coming. Save me six.</p>
+  </div>
+</div>
+</div>
+
+<pre><code>&lt;div class="gm-msg"&gt;
+  &lt;table class="gm-head"&gt;
+    &lt;tbody&gt;
+      &lt;tr&gt;
+        &lt;td rowspan="2" class="gm-pfp-cell"&gt;&lt;span class="gm-pfp"&gt;&lt;span class="pfp"&gt;&lt;img src="https://media.istockphoto.com/id/1298570775/photo/rose.jpg?s=1024x1024&amp;w=is&amp;k=20&amp;c=UFPisYCT3g2Vm04F2E5zrhtUWqDtLRLDXZisKb6Xf5s=" alt="Profile picture of Gemma, a close-up photo of a rose"&gt;&lt;/span&gt;&lt;/span&gt;&lt;/td&gt;
+        &lt;td class="gm-from"&gt;Gemma Byrne &lt;span class="gm-address"&gt;&amp;lt;gemma@example.com&amp;gt;&lt;/span&gt;&lt;/td&gt;
+        &lt;td class="gm-date"&gt;Mar 3, 10:02 AM&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td class="gm-to"&gt;to me, Mar &amp;#9662;&lt;/td&gt;
+        &lt;td class="gm-tools"&gt;&amp;#8617; &amp;#8943;&lt;/td&gt;
+      &lt;/tr&gt;
+    &lt;/tbody&gt;
+  &lt;/table&gt;
+  &lt;div class="gm-body"&gt;
+    &lt;p&gt;Is anyone actually coming to the bake sale or am I eating forty brownies alone?&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="gm-msg"&gt;
+  &lt;table class="gm-head"&gt;
+    &lt;tbody&gt;
+      &lt;tr&gt;
+        &lt;td rowspan="2" class="gm-pfp-cell"&gt;&lt;span class="gm-pfp"&gt;&lt;span class="pfp"&gt;&lt;img class="land" src="https://www.shutterstock.com/shutterstock/photos/1100283806/display_1500/stock-photo-beautiful-lavender-flower-in-the-dalat-flower-park-selective-focus-1100283806.jpg" alt="Profile picture of Mar, a lavender flower"&gt;&lt;/span&gt;&lt;/span&gt;&lt;/td&gt;
+        &lt;td class="gm-from"&gt;Mar Quinn &lt;span class="gm-address"&gt;&amp;lt;mar@example.com&amp;gt;&lt;/span&gt;&lt;/td&gt;
+        &lt;td class="gm-date"&gt;Mar 3, 10:15 AM&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td class="gm-to"&gt;to Gemma, me &amp;#9662;&lt;/td&gt;
+        &lt;td class="gm-tools"&gt;&amp;#8617; &amp;#8943;&lt;/td&gt;
+      &lt;/tr&gt;
+    &lt;/tbody&gt;
+  &lt;/table&gt;
+  &lt;div class="gm-body"&gt;
+    &lt;p&gt;Coming. Save me six.&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+<ul>
+  <li>The name and address are typed, so they show whether the workskin is on or off, with no hidden copy needed.</li>
+  <li>A wide picture needs <code>class=&quot;land&quot;</code> on the picture tag, like Mar's, or it won't fill its circle.</li>
+  <li>The generic email has no pictures, so there the name and address are just typed into the header lines.</li>
+</ul>
+
 <h4>Message Body</h4>
 
 <p>The text of the email goes in a <code>gm-body</code>, as ordinary paragraphs, and you can use bold, italics, links and line breaks as normal. The header and the body together make one email, wrapped in <code>gm-msg</code>, which also draws the thin line between one email and the next:</p>

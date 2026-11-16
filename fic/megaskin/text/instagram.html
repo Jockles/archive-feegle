@@ -214,6 +214,34 @@
 
 <pre><code>&lt;p class="ig-time"&gt;3 hours ago&lt;/p&gt;</code></pre>
 
+<h4>Pictures and Names Without a Profile</h4>
+
+<p>Profiles are optional, so an account that only turns up once doesn't need one. Put the picture tag in the <code>ig-pfp</code> and type the account name straight after it. The faces in the "Liked by" line work the same way, with a picture tag in each <code>ig-like-pfp</code>, and the names on the caption and comments are typed in <code>&lt;b&gt;</code>:</p>
+
+<div class="mob ig theme-auto">
+<p class="ig-top"><span class="ig-menu">&#8943;</span><span class="ig-pfp"><span class="pfp"><img src="https://media.istockphoto.com/id/1298570775/photo/rose.jpg?s=1024x1024&w=is&k=20&c=UFPisYCT3g2Vm04F2E5zrhtUWqDtLRLDXZisKb6Xf5s=" alt="Profile picture of Gemma, a close-up photo of a rose"></span></span>gemma_bakes<span class="hide"> - </span><span>Toronto, Ontario</span></p>
+<p class="ig-photo">[A photo of a sourdough loaf shaped like a hockey puck]</p>
+<p class="ig-likes liked-by"><span class="ig-like-pfps"><span class="ig-like-pfp"><span class="pfp"><img src="https://64.media.tumblr.com/6898dc3a42cc6c7ab9729360b71366e4/ba033a52c8982cb0-bf/s2048x3072/b548d2fe61b02e530c0edd2ee6a6bd56ab73ad2c.jpg" alt="Profile picture of Sam, a black and white cat screaming at the camera"></span></span><span class="ig-like-pfp"><span class="pfp"><img class="land" src="https://media.istockphoto.com/id/2172051553/photo/asiatic-lily.jpg?s=1024x1024&w=is&k=20&c=3vCuZD234XmkXzrnzWPBdIZM0oJA1B6qe1x-06K_wDo=" alt="Profile picture of Ash, a close-up photo of an Asiatic lily"></span></span><span class="ig-like-pfp"><span class="pfp"><img class="land" src="https://www.shutterstock.com/shutterstock/photos/1100283806/display_1500/stock-photo-beautiful-lavender-flower-in-the-dalat-flower-park-selective-focus-1100283806.jpg" alt="Profile picture of Mar, a lavender flower"></span></span></span>Liked by <b>samthecat</b> and <b>others</b></p>
+<p class="ig-caption"><b>gemma_bakes</b> it's a puck. it's bread. it's a pread <span class="ig-tag">#sourdough</span></p>
+<p class="ig-comment"><b>ash.lilies</b> please never say pread again</p>
+<p class="ig-comment"><b>marlavender</b> pread 🏒</p>
+<p class="ig-time">1 hour ago</p>
+</div>
+
+<pre><code>&lt;p class="ig-top"&gt;&lt;span class="ig-menu"&gt;&amp;#8943;&lt;/span&gt;&lt;span class="ig-pfp"&gt;&lt;span class="pfp"&gt;&lt;img src="https://media.istockphoto.com/id/1298570775/photo/rose.jpg?s=1024x1024&amp;w=is&amp;k=20&amp;c=UFPisYCT3g2Vm04F2E5zrhtUWqDtLRLDXZisKb6Xf5s=" alt="Profile picture of Gemma, a close-up photo of a rose"&gt;&lt;/span&gt;&lt;/span&gt;gemma_bakes&lt;span class="hide"&gt; - &lt;/span&gt;&lt;span&gt;Toronto, Ontario&lt;/span&gt;&lt;/p&gt;
+&lt;p class="ig-photo"&gt;[A photo of a sourdough loaf shaped like a hockey puck]&lt;/p&gt;
+&lt;p class="ig-likes liked-by"&gt;&lt;span class="ig-like-pfps"&gt;&lt;span class="ig-like-pfp"&gt;&lt;span class="pfp"&gt;&lt;img src="https://64.media.tumblr.com/6898dc3a42cc6c7ab9729360b71366e4/ba033a52c8982cb0-bf/s2048x3072/b548d2fe61b02e530c0edd2ee6a6bd56ab73ad2c.jpg" alt="Profile picture of Sam, a black and white cat screaming at the camera"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="ig-like-pfp"&gt;&lt;span class="pfp"&gt;&lt;img class="land" src="https://media.istockphoto.com/id/2172051553/photo/asiatic-lily.jpg?s=1024x1024&amp;w=is&amp;k=20&amp;c=3vCuZD234XmkXzrnzWPBdIZM0oJA1B6qe1x-06K_wDo=" alt="Profile picture of Ash, a close-up photo of an Asiatic lily"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="ig-like-pfp"&gt;&lt;span class="pfp"&gt;&lt;img class="land" src="https://www.shutterstock.com/shutterstock/photos/1100283806/display_1500/stock-photo-beautiful-lavender-flower-in-the-dalat-flower-park-selective-focus-1100283806.jpg" alt="Profile picture of Mar, a lavender flower"&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;Liked by &lt;b&gt;samthecat&lt;/b&gt; and &lt;b&gt;others&lt;/b&gt;&lt;/p&gt;
+&lt;p class="ig-caption"&gt;&lt;b&gt;gemma_bakes&lt;/b&gt; it's a puck. it's bread. it's a pread &lt;span class="ig-tag"&gt;#sourdough&lt;/span&gt;&lt;/p&gt;
+&lt;p class="ig-comment"&gt;&lt;b&gt;ash.lilies&lt;/b&gt; please never say pread again&lt;/p&gt;
+&lt;p class="ig-comment"&gt;&lt;b&gt;marlavender&lt;/b&gt; pread 🏒&lt;/p&gt;
+&lt;p class="ig-time"&gt;1 hour ago&lt;/p&gt;</code></pre>
+
+<ul>
+  <li>The names are typed, so they show whether the workskin is on or off, with no hidden copy needed.</li>
+  <li>A wide picture needs <code>class=&quot;land&quot;</code> on the picture tag, like the second and third faces, or it won't fill its circle.</li>
+  <li>Instagram DMs don't show profile pictures, so in a group DM a stranger only needs their name typed in a <code>who</code> line (see Group Chats, below).</li>
+</ul>
+
 <h3>Instagram DMs</h3>
 
 <p>Here's the two kinds of DM you can build: a message between two people, or a group chat. As before, the full HTML is underneath each, and the rest of this section takes it apart.</p>
