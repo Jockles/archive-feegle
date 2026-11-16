@@ -419,13 +419,20 @@
 #workskin .handle.pfp-holster::after { content: "HolsterInLaw"; }
 #workskin .email.pfp-holster::after { content: "birka@samwellU.edu"; }
 
-/* PROFILE: Rose */
+/* PROFILE: Rose - her public accounts (Twitter/X and Instagram) use her full name; her private
+   Instagram is a second profile, pfp-rose-private, below */
 #workskin .pfp.pfp-rose { background-color: #c2416b; }
 #workskin .wa .who.pfp-rose, #workskin .dc .dc-name.pfp-rose { color: #d6336c; }
 #workskin .name.pfp-rose::before { content: "Rose"; }
 #workskin .tw .name.pfp-rose::before, #workskin .tw-reply .name.pfp-rose::before, #workskin .twdm .name.pfp-rose::before, #workskin .ig .name.pfp-rose::before, #workskin .igdm .name.pfp-rose::before { content: "Rose Landry"; }
 #workskin .handle.pfp-rose::after { content: "PoseyRosey"; }
 #workskin .tw .handle.pfp-rose::after, #workskin .tw-reply .handle.pfp-rose::after, #workskin .twdm .handle.pfp-rose::after, #workskin .ig .handle.pfp-rose::after, #workskin .igdm .handle.pfp-rose::after { content: "RoseLandry"; }
+
+/* PROFILE: Rose's private Instagram - a second account gets its own profile */
+#workskin .pfp.pfp-rose-private { background-color: #8f2d4f; }
+#workskin .pfp.pfp-rose-private::before { content: "R"; }
+#workskin .name.pfp-rose-private::before { content: "Rose"; }
+#workskin .handle.pfp-rose-private::after { content: "rosie.after.dark"; }
 
 /* PROFILE: Shane */
 #workskin .pfp.pfp-shane { background-image: url(https://www.shutterstock.com/shutterstock/photos/1100283806/display_1500/stock-photo-beautiful-lavender-flower-in-the-dalat-flower-park-selective-focus-1100283806.jpg); }
