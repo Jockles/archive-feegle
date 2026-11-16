@@ -94,6 +94,11 @@
       <fieldset>
         <legend>1. Cast</legend>
         <p class="hint">Everyone who sends a message. One-offs are typed straight into the chat. Profiles keep a character the same in every chat and every app, and the profile CSS goes into your work skin (see <a href="core.html#heading">Character Profiles</a>). The example profiles are already in the skin.</p>
+        <details id="fb-pasted-box">
+          <summary>Profiles you already have</summary>
+          <p class="hint">Made profiles before, here or with the <a href="profile-maker.html">Profile Maker</a>? Paste their CSS here (one profile or lots) and they're added to the cast, ready to use. They're already in your work skin, so they don't go in the CSS to copy.</p>
+          <textarea id="fb-pasted" data-bind="pasted" rows="5" placeholder="/* PROFILE: Stan */ ..."></textarea>
+        </details>
         <div id="fb-cast"></div>
         <button type="button" data-act="cast-add">+ Add a character</button>
       </fieldset>
