@@ -148,6 +148,9 @@
 
 #workskin .tb .tb-check + .tb-check + .tb-check + .tb-check + .tb-check + .tb-check + .tb-check + .tb-check + .tb-check + .tb-check + .tb-check + .tb-check { background: #775df6; }
 
+/* add "blue" to a checkmark to keep it blue, for the two blue checkmarks you can buy */
+#workskin .tb .tb-check.blue { background: #52b5f9; }
+
 /* checkmarks from a profile: the profile adds the picture and the padding to make room for it */
 /* checkmarks as one picture, for a blog without a profile: <span class="tb-checks ic ic-checks-2">&#10003;&#10003;</span>
    straight after the name, with ic-checks-2, -4, -6, -8, -10 or -12. The picture is in the Icons section;
@@ -664,6 +667,7 @@
 #workskin .tb .ic.ic-checks-8 { width: 7.55em; background-image: url(https://images.squidge.org/images/2026/11/16/tb-checks-8.png); }
 #workskin .tb .ic.ic-checks-10 { width: 9.35em; background-image: url(https://images.squidge.org/images/2026/11/16/tb-checks-10.png); }
 #workskin .tb .ic.ic-checks-12 { width: 11.15em; background-image: url(https://images.squidge.org/images/2026/11/16/tb-checks-12.png); }
+#workskin .tb .ic.ic-checks-blue { width: 2.15em; background-image: url(https://images.squidge.org/images/2026/11/16/tb-checks-blue.png); }
 
 /* the green reblog badge on a picture: the white reblog picture instead of the typed arrows */
 #workskin .tb .tb-pfp.rb::after {
