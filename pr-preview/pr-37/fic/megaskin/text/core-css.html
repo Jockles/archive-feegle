@@ -507,9 +507,9 @@
 
 <p><strong>13. More than one account on the same app</strong></p>
 
-<pre><code>#workskin .tb .pfp.pfp-luca.acc-art { background-image: linear-gradient(135deg, #ffd966, #e06666); }
+<pre><code>#workskin .tb .pfp.pfp-luca.acc-art { background-image: url(https://images.squidge.org/images/2026/11/16/LucaTumblr.png); }
 #workskin .tb .handle.pfp-luca.acc-art::after { content: "gremlin-sketches"; }
-#workskin .tb .pfp.pfp-luca.acc-rpf { background-image: linear-gradient(135deg, #3d85c6, #cc0000); }
+#workskin .tb .pfp.pfp-luca.acc-rpf { background-image: url(https://images.squidge.org/images/2026/11/16/Hollanov1.png); }
 #workskin .tb .handle.pfp-luca.acc-rpf::after { content: "rink-rivals-rpf"; }</code></pre>
 
 <p>As well as his main Tumblr, Luca has an art blog and a hockey RPF blog, each with its own picture and URL. In your HTML, add the account's <code>acc-</code> name: <code>&lt;span class=&quot;handle pfp-luca acc-art&quot;&gt;&lt;/span&gt;</code>. There's more on how this works in More Than One Account on the Same App, below.</p>
@@ -548,7 +548,7 @@
 
 <p>Sometimes a character has more than one account on an app - a public one and a private one, their real account and a burner, or a fan account nobody can know about. Each extra account gets a name starting with <code>acc-</code>, the same way a phone gets <code>pov-</code>: <code>acc-burner</code>, <code>acc-shanewife</code>, <code>acc-private</code>, or whatever you like. Its lines go at the end of that character's profile. Here's Ilya's burner on Twitter/X:</p>
 
-<pre><code>#workskin .tw .pfp.pfp-ilya.acc-burner, #workskin .tw-reply .pfp.pfp-ilya.acc-burner, #workskin .twdm .pfp.pfp-ilya.acc-burner { background-color: #8899a6; }
+<pre><code>#workskin .tw .pfp.pfp-ilya.acc-burner, #workskin .tw-reply .pfp.pfp-ilya.acc-burner, #workskin .twdm .pfp.pfp-ilya.acc-burner { background-image: url(https://images.squidge.org/images/2026/11/16/IlyaSmoke.png); }
 #workskin .tw .name.pfp-ilya.acc-burner::before, #workskin .tw-reply .name.pfp-ilya.acc-burner::before, #workskin .twdm .name.pfp-ilya.acc-burner::before { content: "hockey fan"; }
 #workskin .tw .handle.pfp-ilya.acc-burner::after, #workskin .tw-reply .handle.pfp-ilya.acc-burner::after, #workskin .twdm .handle.pfp-ilya.acc-burner::after { content: "definitely_not_ilya"; }</code></pre>
 
