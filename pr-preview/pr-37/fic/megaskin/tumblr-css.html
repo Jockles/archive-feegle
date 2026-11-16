@@ -6,7 +6,7 @@
   <title>Megaskin, Chapter 13: Tumblr CSS | jockles.com</title>
   <link rel="stylesheet" href="../../style.css">
   <script src="../../theme.js"></script>
-  <link rel="stylesheet" href="megaskin.css?v=f4a9d6dc" id="creator-style">
+  <link rel="stylesheet" href="megaskin.css?v=ca74eb54" id="creator-style">
 </head>
 <body>
 <header>
@@ -217,6 +217,10 @@
 #workskin .tb .tb-check + .tb-check + .tb-check + .tb-check + .tb-check + .tb-check { background: #f08b37; }</code></pre>
 
 <p>Every checkmark starts blue. Then the same <code>+</code> trick as iMessage's stacked tapbacks counts them: <code>.tb-check + .tb-check</code> is the second, and each extra <code>+ .tb-check</code> is one further along, so the second is green, the third lime, and so on to orange. That's how the colours always come out in the right order, without you having to say which is which.</p>
+
+<pre><code>#workskin .tb .handle::after { background-repeat: no-repeat; background-position: right center; background-size: auto 0.9em; }</code></pre>
+
+<p>This one is for checkmarks that come from a character profile. The checkmarks are a picture, and this line puts it at the right-hand end of the name, at just under the height of the text. The profile adds the picture itself and some padding after the name to make room for it.</p>
 
 <h3 id="s13-8">13.8 Reblog Chains</h3>
 

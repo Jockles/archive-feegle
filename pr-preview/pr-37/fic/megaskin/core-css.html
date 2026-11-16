@@ -6,7 +6,7 @@
   <title>Megaskin, Chapter 3: The Core CSS | jockles.com</title>
   <link rel="stylesheet" href="../../style.css">
   <script src="../../theme.js"></script>
-  <link rel="stylesheet" href="megaskin.css?v=f4a9d6dc" id="creator-style">
+  <link rel="stylesheet" href="megaskin.css?v=ca74eb54" id="creator-style">
 </head>
 <body>
 <header>
@@ -572,6 +572,14 @@
 #workskin .tb .handle.pfp-luca.acc-rpf::after { content: "rink-rivals-rpf"; }</code></pre>
 
 <p>As well as his main Tumblr, Luca has an art blog and a hockey RPF blog, each with its own picture and URL. In your HTML, add the account's <code>acc-</code> name: <code>&lt;span class=&quot;handle pfp-luca acc-art&quot;&gt;&lt;/span&gt;</code>. There's more on how this works in More Than One Account on the Same App, below.</p>
+
+<p><strong>14. Tumblr checkmarks</strong></p>
+
+<pre><code>#workskin .tb .handle.pfp-luca::after { background-image: url(https://images.squidge.org/images/2026/11/15/tb-checks-2.png); padding-right: 2.15em; }
+#workskin .tb .handle.pfp-luca.acc-art::after { background-image: url(https://images.squidge.org/images/2026/11/15/tb-checks-6.png); padding-right: 6.2em; }
+#workskin .tb .handle.pfp-luca.acc-rpf::after { background-image: url(https://images.squidge.org/images/2026/11/15/tb-checks-4.png); padding-right: 4.2em; }</code></pre>
+
+<p>The coloured checkmarks after a Tumblr name, set once so they follow the blog everywhere. Luca's main blog has two, his art blog six and his RPF blog four. Use <code>tb-checks-2.png</code>, <code>tb-checks-4.png</code> or <code>tb-checks-6.png</code>, with the padding that goes with it: 2.15em, 4.2em or 6.2em. An extra account without its own line gets the main blog's checkmarks. The Tumblr chapter has more.</p>
 
 <details>
 <summary>Why names, handles and emails look like the text around them</summary>
