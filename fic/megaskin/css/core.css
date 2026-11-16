@@ -117,6 +117,25 @@
   background-position: center;
 }
 
+/* initials from a profile: #workskin .pfp.pfp-holster::before { content: "RH"; }
+#workskin .tw .pfp.pfp-holster::before, #workskin .tw-reply .pfp.pfp-holster::before, #workskin .ig .pfp.pfp-holster::before { display: none; } puts RH in the
+   middle of the circle, in white, sized to fit whichever app it's in */
+#workskin .pfp::before {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 0.8em;
+  line-height: 1;
+}
+
+/* the tiny circles in Discord replies and Instagram's "Liked by" line get smaller initials */
+#workskin .dc .dc-reply .pfp::before,
+#workskin .ig .ig-like-pfp .pfp::before { font-size: 0.4em; }
+
 #workskin .pfp img {
   position: absolute;
   top: 0;
@@ -387,8 +406,10 @@
 #workskin .tw .handle.pfp-zim::after, #workskin .tw-reply .handle.pfp-zim::after, #workskin .twdm .handle.pfp-zim::after { content: "ZimBits"; }
 #workskin .email.pfp-zim::after { content: "Jack@zimmerman.com"; }
 
-/* PROFILE: Holster - a different picture on each app (colours for now) */
+/* PROFILE: Holster - initials in his circle, and a different circle colour on each app */
 #workskin .pfp.pfp-holster { background-color: #138a72; }
+#workskin .pfp.pfp-holster::before { content: "RH"; }
+#workskin .tw .pfp.pfp-holster::before, #workskin .tw-reply .pfp.pfp-holster::before, #workskin .ig .pfp.pfp-holster::before { display: none; }
 #workskin .tw .pfp.pfp-holster, #workskin .tw-reply .pfp.pfp-holster { background-color: #1d6fa5; }
 #workskin .ig .pfp.pfp-holster, #workskin .igdm .pfp.pfp-holster { background-color: #c13584; }
 #workskin .tb .pfp.pfp-holster { background-color: #35465c; }
