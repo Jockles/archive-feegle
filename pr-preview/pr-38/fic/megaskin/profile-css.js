@@ -55,8 +55,8 @@
     });
     (d.saved || []).forEach(function (s) {
       var o = slugify(s.owner), as = t(s.as), u = url(s.pic);
-      if (o && as) L.push("#workskin .mob.pov-" + o + " .name." + p + "::before { content: " + str(as) + "; }");
-      if (o && u) L.push("#workskin .mob.pov-" + o + " .pfp." + p + " { background-image: " + u + "; }");
+      if (o && as) L.push("#workskin .pov-" + o + " .name." + p + "::before { content: " + str(as) + "; }");
+      if (o && u) L.push("#workskin .pov-" + o + " .pfp." + p + " { background-image: " + u + "; }");
     });
     var hd = h(d.handle);
     if (hd) L.push("#workskin .handle." + p + "::after { content: " + str(hd) + "; }");
@@ -116,7 +116,7 @@
       var apps = [];
       sels.forEach(function (x) { var m = x.match(/^#workskin \.([a-z-]+) /); if (m && appOf[m[1]] && apps.indexOf(appOf[m[1]]) < 0) apps.push(appOf[m[1]]); });
       var acc = (first.match(/\.acc-([a-z0-9-]+)/) || [])[1];
-      var pov = (first.match(/\.mob\.pov-([a-z0-9-]+) \.(name|pfp)\./) || []);
+      var pov = (first.match(/\.pov-([a-z0-9-]+) \.(name|pfp)\./) || []);
       if (pov[1]) {
         var sv = d.saved.filter(function (x) { return x.owner === pov[1]; })[0];
         if (!sv) { sv = { owner: pov[1], as: "", pic: "" }; d.saved.push(sv); }
