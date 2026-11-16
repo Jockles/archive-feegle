@@ -74,14 +74,14 @@
   <p class="work-title"><a href="index.html">Megaskin</a> by Jockles</p>
   <h2>Fic Builder</h2>
 
-  <p>This is a WYSIWYG (what you see is what you get) helper for putting a whole chapter together: add your characters, type your story and your chats, and pick the extras you want. The preview shows it with the real megaskin as you go, and when you're done you can copy all the HTML, in order, ready to paste into AO3. It's only a shortcut. Everything it makes is the same HTML the tutorial teaches, so you can still change any of it by hand afterwards, and you don't have to use it at all if you don't want to, or if it ever breaks.</p>
-  <p>Nothing you type leaves your browser. Your chapter is kept in this browser until you clear it, and you can save it to a file to carry on somewhere else.</p>
+  <p>This is a WYSIWYG (what you see is what you get) helper for building the skinned HTML for your chats: add your characters, type the messages, and pick the extras you want. The preview shows it with the real megaskin as you go, and when you're done you can copy all the HTML in one go. It's only a shortcut. Everything it makes is the same HTML the tutorial teaches, so you can still change any of it by hand afterwards, and you don't have to use it at all if you don't want to, or if it ever breaks.</p>
+  <p>Nothing you type leaves your browser. Your work is kept in this browser until you clear it, and you can save it to a file to carry on somewhere else.</p>
   <p><strong>Save to a file often!</strong> If you clear your browser's cache or history without saving to a file first, everything you've made here is gone for good. Browsers can also crash or tidy up their storage on their own, so download a copy of anything you're working on regularly.</p>
 
   <div class="fb">
     <form class="fb-edit" autocomplete="off" onsubmit="return false">
       <fieldset>
-        <legend>Your chapter</legend>
+        <legend>Your work</legend>
         <div class="fb-file">
           <button type="button" data-act="save-file">Save to a file</button>
           <label class="ck" style="margin:0">Open a saved file <input type="file" id="fb-open" accept=".json,application/json"></label>
@@ -98,11 +98,10 @@
       </fieldset>
 
       <fieldset>
-        <legend>2. The chapter</legend>
-        <p class="hint">Add the parts in the order they happen. Each chat has its own settings, a list of messages, and a box to type or paste lots of messages at once.</p>
+        <legend>2. Chats</legend>
+        <p class="hint">Each chat has its own settings, a list of messages, and a box to type or paste lots of messages at once.</p>
         <div id="fb-blocks"></div>
         <div class="fb-add">Add:
-          <button type="button" data-act="add:prose">Story text</button>
           <button type="button" data-act="add:imsg">iMessage chat</button>
           <button type="button" data-act="add:wa">WhatsApp chat</button>
         </div>
@@ -122,12 +121,10 @@
       <div class="fb-preview"><div id="workskin"></div></div>
 
       <h3>3. Copy</h3>
-      <p><button type="button" data-act="copy-html">Copy the chapter HTML</button></p>
-      <p class="hint">Paste it into the chapter text box on AO3, with the HTML button selected.</p>
-      <textarea id="fb-html" readonly aria-label="Chapter HTML"></textarea>
+      <p><button type="button" data-act="copy-html">Copy the HTML</button></p>
+      <textarea id="fb-html" readonly aria-label="HTML"></textarea>
       <div id="fb-css-wrap">
         <p><button type="button" data-act="copy-css">Copy the profile CSS</button></p>
-        <p class="hint">Paste this into the PROFILES section of your work skin, next to the other profiles.</p>
         <textarea id="fb-css" readonly aria-label="Profile CSS"></textarea>
       </div>
     </div>
