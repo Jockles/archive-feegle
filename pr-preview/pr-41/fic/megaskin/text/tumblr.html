@@ -885,7 +885,7 @@
 
 <h3>Polls</h3>
 
-<p>A poll goes in <code>tb-body</code>: the question as an ordinary paragraph, then each option as a <code>tb-opt</code> paragraph, then a <code>tb-pollinfo</code> line for the votes and the time left. Before anyone's voted, the options are just grey boxes:</p>
+<p>A poll goes in <code>tb-body</code>: the question as an ordinary paragraph, then each option as a <code>tb-opt</code> paragraph, then a <code>tb-pollinfo</code> line for the votes and the time left. Before anyone's voted, the options are blue outlines:</p>
 
 <div class="mob tb theme-auto"><div class="tb-body">
   <p>how do you watch the games</p>
@@ -950,6 +950,143 @@
   &lt;span class="tb-icon ic ic-share-up"&gt;&amp;#8679;&lt;/span&gt;
 &lt;/p&gt;
 &lt;/div&gt;</code></pre>
+
+<p>A poll can be tappable too, like on Tumblr: it starts with blank boxes, and tapping it votes and shows the results, with the voter's picture on their option. Put the open poll in a <code>&lt;summary&gt;</code>, with each option as a <code>tb-opt</code> span, then the results after it, all inside <code>&lt;details class=&quot;tb-vote&quot;&gt;</code>. You decide which option your pov character votes for, and their picture goes there in a <code>tb-voter</code> span, with a <code>pfp</code> span inside like any other picture. Tap this one to vote as Luca:</p>
+
+<div class="mob tb theme-auto"><div class="tb-body">
+<p>how do you watch the games</p>
+<details class="tb-vote">
+<summary>
+  <span class="tb-opt">On the couch, screaming</span>
+  <span class="tb-opt">At the rink, screaming</span>
+  <span class="tb-opt">Through my fingers</span>
+  <span class="tb-opt">See Results</span>
+  <span class="tb-pollinfo">Remaining time: 6 days 23 hours</span>
+</summary>
+  <p class="tb-opt res p50">On the couch, screaming<span class="hide"> - </span><span class="tb-voter"><span class="pfp pfp-luca"></span></span><span class="tb-pct">52%</span></p>
+  <p class="tb-opt res p30">At the rink, screaming<span class="hide"> - </span><span class="tb-pct">31%</span></p>
+  <p class="tb-opt res p10">Through my fingers<span class="hide"> - </span><span class="tb-pct">12%</span></p>
+  <p class="tb-opt res p5">See Results<span class="hide"> - </span><span class="tb-pct">5%</span></p>
+  <p class="tb-pollinfo">4,813 votes &middot; Remaining time: 6 days 23 hours</p>
+</details>
+</div></div>
+
+<pre><code>&lt;details class="tb-vote"&gt;
+&lt;summary&gt;
+  &lt;span class="tb-opt"&gt;On the couch, screaming&lt;/span&gt;
+  &lt;span class="tb-opt"&gt;At the rink, screaming&lt;/span&gt;
+  &lt;span class="tb-opt"&gt;Through my fingers&lt;/span&gt;
+  &lt;span class="tb-opt"&gt;See Results&lt;/span&gt;
+  &lt;span class="tb-pollinfo"&gt;Remaining time: 6 days 23 hours&lt;/span&gt;
+&lt;/summary&gt;
+  &lt;p class="tb-opt res p50"&gt;On the couch, screaming&lt;span class="hide"&gt; - &lt;/span&gt;&lt;span class="tb-voter"&gt;&lt;span class="pfp pfp-luca"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="tb-pct"&gt;52%&lt;/span&gt;&lt;/p&gt;
+  &lt;p class="tb-opt res p30"&gt;At the rink, screaming&lt;span class="hide"&gt; - &lt;/span&gt;&lt;span class="tb-pct"&gt;31%&lt;/span&gt;&lt;/p&gt;
+  &lt;p class="tb-opt res p10"&gt;Through my fingers&lt;span class="hide"&gt; - &lt;/span&gt;&lt;span class="tb-pct"&gt;12%&lt;/span&gt;&lt;/p&gt;
+  &lt;p class="tb-opt res p5"&gt;See Results&lt;span class="hide"&gt; - &lt;/span&gt;&lt;span class="tb-pct"&gt;5%&lt;/span&gt;&lt;/p&gt;
+  &lt;p class="tb-pollinfo"&gt;4,813 votes &amp;middot; Remaining time: 6 days 23 hours&lt;/p&gt;
+&lt;/details&gt;</code></pre>
+
+<details>
+<summary>Letting the reader pick the option</summary>
+
+<p>To let the reader choose, each option gets its own <code>&lt;details class=&quot;tb-pick&quot;&gt;</code>, with the option in a <code>&lt;summary class=&quot;tb-opt&quot;&gt;</code> and a full copy of the results in a <code>tb-results</code> box, with the voter's picture on that option. Wrap them all in a <code>tb-poll</code> box. Whichever option is tapped, its results cover the poll. It's a lot more HTML, but it's mostly copy and paste - only the voter's picture moves:</p>
+
+<div class="mob tb theme-auto"><div class="tb-body">
+<p>how do you watch the games</p>
+<div class="tb-poll">
+<details class="tb-pick">
+  <summary class="tb-opt">On the couch, screaming</summary>
+  <div class="tb-results">
+    <p class="tb-opt res p50">On the couch, screaming<span class="hide"> - </span><span class="tb-voter"><span class="pfp pfp-luca"></span></span><span class="tb-pct">52%</span></p>
+    <p class="tb-opt res p30">At the rink, screaming<span class="hide"> - </span><span class="tb-pct">31%</span></p>
+    <p class="tb-opt res p10">Through my fingers<span class="hide"> - </span><span class="tb-pct">12%</span></p>
+    <p class="tb-opt res p5">See Results<span class="hide"> - </span><span class="tb-pct">5%</span></p>
+    <p class="tb-pollinfo">4,813 votes &middot; Remaining time: 6 days 23 hours</p>
+  </div>
+</details>
+<details class="tb-pick">
+  <summary class="tb-opt">At the rink, screaming</summary>
+  <div class="tb-results">
+    <p class="tb-opt res p50">On the couch, screaming<span class="hide"> - </span><span class="tb-pct">52%</span></p>
+    <p class="tb-opt res p30">At the rink, screaming<span class="hide"> - </span><span class="tb-voter"><span class="pfp pfp-luca"></span></span><span class="tb-pct">31%</span></p>
+    <p class="tb-opt res p10">Through my fingers<span class="hide"> - </span><span class="tb-pct">12%</span></p>
+    <p class="tb-opt res p5">See Results<span class="hide"> - </span><span class="tb-pct">5%</span></p>
+    <p class="tb-pollinfo">4,813 votes &middot; Remaining time: 6 days 23 hours</p>
+  </div>
+</details>
+<details class="tb-pick">
+  <summary class="tb-opt">Through my fingers</summary>
+  <div class="tb-results">
+    <p class="tb-opt res p50">On the couch, screaming<span class="hide"> - </span><span class="tb-pct">52%</span></p>
+    <p class="tb-opt res p30">At the rink, screaming<span class="hide"> - </span><span class="tb-pct">31%</span></p>
+    <p class="tb-opt res p10">Through my fingers<span class="hide"> - </span><span class="tb-voter"><span class="pfp pfp-luca"></span></span><span class="tb-pct">12%</span></p>
+    <p class="tb-opt res p5">See Results<span class="hide"> - </span><span class="tb-pct">5%</span></p>
+    <p class="tb-pollinfo">4,813 votes &middot; Remaining time: 6 days 23 hours</p>
+  </div>
+</details>
+<details class="tb-pick">
+  <summary class="tb-opt">See Results</summary>
+  <div class="tb-results">
+    <p class="tb-opt res p50">On the couch, screaming<span class="hide"> - </span><span class="tb-pct">52%</span></p>
+    <p class="tb-opt res p30">At the rink, screaming<span class="hide"> - </span><span class="tb-pct">31%</span></p>
+    <p class="tb-opt res p10">Through my fingers<span class="hide"> - </span><span class="tb-pct">12%</span></p>
+    <p class="tb-opt res p5">See Results<span class="hide"> - </span><span class="tb-voter"><span class="pfp pfp-luca"></span></span><span class="tb-pct">5%</span></p>
+    <p class="tb-pollinfo">4,813 votes &middot; Remaining time: 6 days 23 hours</p>
+  </div>
+</details>
+<p class="tb-pollinfo">Remaining time: 6 days 23 hours</p>
+</div>
+</div></div>
+
+<pre><code>&lt;div class="tb-poll"&gt;
+&lt;details class="tb-pick"&gt;
+  &lt;summary class="tb-opt"&gt;On the couch, screaming&lt;/summary&gt;
+  &lt;div class="tb-results"&gt;
+    &lt;p class="tb-opt res p50"&gt;On the couch, screaming&lt;span class="hide"&gt; - &lt;/span&gt;&lt;span class="tb-voter"&gt;&lt;span class="pfp pfp-luca"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="tb-pct"&gt;52%&lt;/span&gt;&lt;/p&gt;
+    &lt;p class="tb-opt res p30"&gt;At the rink, screaming&lt;span class="hide"&gt; - &lt;/span&gt;&lt;span class="tb-pct"&gt;31%&lt;/span&gt;&lt;/p&gt;
+    &lt;p class="tb-opt res p10"&gt;Through my fingers&lt;span class="hide"&gt; - &lt;/span&gt;&lt;span class="tb-pct"&gt;12%&lt;/span&gt;&lt;/p&gt;
+    &lt;p class="tb-opt res p5"&gt;See Results&lt;span class="hide"&gt; - &lt;/span&gt;&lt;span class="tb-pct"&gt;5%&lt;/span&gt;&lt;/p&gt;
+    &lt;p class="tb-pollinfo"&gt;4,813 votes &amp;middot; Remaining time: 6 days 23 hours&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/details&gt;
+&lt;details class="tb-pick"&gt;
+  &lt;summary class="tb-opt"&gt;At the rink, screaming&lt;/summary&gt;
+  &lt;div class="tb-results"&gt;
+    &lt;p class="tb-opt res p50"&gt;On the couch, screaming&lt;span class="hide"&gt; - &lt;/span&gt;&lt;span class="tb-pct"&gt;52%&lt;/span&gt;&lt;/p&gt;
+    &lt;p class="tb-opt res p30"&gt;At the rink, screaming&lt;span class="hide"&gt; - &lt;/span&gt;&lt;span class="tb-voter"&gt;&lt;span class="pfp pfp-luca"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="tb-pct"&gt;31%&lt;/span&gt;&lt;/p&gt;
+    &lt;p class="tb-opt res p10"&gt;Through my fingers&lt;span class="hide"&gt; - &lt;/span&gt;&lt;span class="tb-pct"&gt;12%&lt;/span&gt;&lt;/p&gt;
+    &lt;p class="tb-opt res p5"&gt;See Results&lt;span class="hide"&gt; - &lt;/span&gt;&lt;span class="tb-pct"&gt;5%&lt;/span&gt;&lt;/p&gt;
+    &lt;p class="tb-pollinfo"&gt;4,813 votes &amp;middot; Remaining time: 6 days 23 hours&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/details&gt;
+&lt;details class="tb-pick"&gt;
+  &lt;summary class="tb-opt"&gt;Through my fingers&lt;/summary&gt;
+  &lt;div class="tb-results"&gt;
+    &lt;p class="tb-opt res p50"&gt;On the couch, screaming&lt;span class="hide"&gt; - &lt;/span&gt;&lt;span class="tb-pct"&gt;52%&lt;/span&gt;&lt;/p&gt;
+    &lt;p class="tb-opt res p30"&gt;At the rink, screaming&lt;span class="hide"&gt; - &lt;/span&gt;&lt;span class="tb-pct"&gt;31%&lt;/span&gt;&lt;/p&gt;
+    &lt;p class="tb-opt res p10"&gt;Through my fingers&lt;span class="hide"&gt; - &lt;/span&gt;&lt;span class="tb-voter"&gt;&lt;span class="pfp pfp-luca"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="tb-pct"&gt;12%&lt;/span&gt;&lt;/p&gt;
+    &lt;p class="tb-opt res p5"&gt;See Results&lt;span class="hide"&gt; - &lt;/span&gt;&lt;span class="tb-pct"&gt;5%&lt;/span&gt;&lt;/p&gt;
+    &lt;p class="tb-pollinfo"&gt;4,813 votes &amp;middot; Remaining time: 6 days 23 hours&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/details&gt;
+&lt;details class="tb-pick"&gt;
+  &lt;summary class="tb-opt"&gt;See Results&lt;/summary&gt;
+  &lt;div class="tb-results"&gt;
+    &lt;p class="tb-opt res p50"&gt;On the couch, screaming&lt;span class="hide"&gt; - &lt;/span&gt;&lt;span class="tb-pct"&gt;52%&lt;/span&gt;&lt;/p&gt;
+    &lt;p class="tb-opt res p30"&gt;At the rink, screaming&lt;span class="hide"&gt; - &lt;/span&gt;&lt;span class="tb-pct"&gt;31%&lt;/span&gt;&lt;/p&gt;
+    &lt;p class="tb-opt res p10"&gt;Through my fingers&lt;span class="hide"&gt; - &lt;/span&gt;&lt;span class="tb-pct"&gt;12%&lt;/span&gt;&lt;/p&gt;
+    &lt;p class="tb-opt res p5"&gt;See Results&lt;span class="hide"&gt; - &lt;/span&gt;&lt;span class="tb-voter"&gt;&lt;span class="pfp pfp-luca"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="tb-pct"&gt;5%&lt;/span&gt;&lt;/p&gt;
+    &lt;p class="tb-pollinfo"&gt;4,813 votes &amp;middot; Remaining time: 6 days 23 hours&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/details&gt;
+&lt;p class="tb-pollinfo"&gt;Remaining time: 6 days 23 hours&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+
+<p>Once a vote is in, it can't be taken back, the same as Tumblr. Refreshing the page resets it.</p>
+
+</details>
+
+<p>For a finished poll that your pov character voted on while it was live, put a <code>tb-voter</code> span on their option in the results too.</p>
 
 <details>
 <summary>More about polls</summary>
