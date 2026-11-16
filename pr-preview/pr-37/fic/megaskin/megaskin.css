@@ -4150,7 +4150,7 @@
   left: 1rem;
   height: 1.5rem;
   width: 1.5rem;
-  background-image: url(https://i.imgur.com/JB3HgBA.png);
+  background-image: url(https://images.squidge.org/images/2026/11/15/dc-plus-light.png);
 }
 
 #workskin .dc .dc-message { min-height: 2.75rem; margin-top: 1.0625rem; padding: 0.125rem 3rem 0.125rem 4.5rem; }
@@ -4498,7 +4498,7 @@
 
 #workskin .dc .dc-new-user::before {
   content: '';
-  background-image: url(https://i.imgur.com/AATotHy.png);
+  background-image: url(https://images.squidge.org/images/2026/11/15/dc-new-user.png);
   background-repeat: no-repeat;
   background-size: contain;
   position: absolute;
@@ -4515,7 +4515,7 @@
   content: '\00a0\00a0\00a0\00a0 BOT';
   color: rgb(255, 255, 255);
   background-color: rgb(88, 101, 242);
-  background-image: url(https://i.imgur.com/3Ox94zk.png);
+  background-image: url(https://images.squidge.org/images/2026/11/15/dc-bot-tick.png);
   background-repeat: no-repeat;
   background-size: contain;
   position: absolute;
@@ -4597,11 +4597,11 @@
 
 #workskin .dc .dc-new-divider .dc-divider-label { color: rgb(216, 60, 62); }
 
-#workskin .dc .hashtag::before { background-image: url(https://i.imgur.com/XbvXZWD.png); }
+#workskin .dc .hashtag::before { background-image: url(https://images.squidge.org/images/2026/11/15/dc-hashtag-light.png); }
 
-#workskin .dc .locked::before { background-image: url(https://i.imgur.com/MwjtrTT.png); }
+#workskin .dc .locked::before { background-image: url(https://images.squidge.org/images/2026/11/15/dc-lock-light.png); }
 
-#workskin .dc .at-symbol::before { background-image: url(https://i.imgur.com/0w9EkYY.png); }
+#workskin .dc .at-symbol::before { background-image: url(https://images.squidge.org/images/2026/11/15/dc-at-light.png); }
 
 #workskin .dc .dc-spoiler-text:active {
   color: rgb(46, 51, 56);
@@ -4707,13 +4707,13 @@
 
 #workskin .dc.theme-dark .dc-input { background-color: rgb(64, 68, 75); }
 
-#workskin .dc.theme-dark .hashtag::before { background-image: url(https://i.imgur.com/y0r7k71.png); }
+#workskin .dc.theme-dark .hashtag::before { background-image: url(https://images.squidge.org/images/2026/11/15/dc-hashtag-dark.png); }
 
-#workskin .dc.theme-dark .locked::before { background-image: url(https://i.imgur.com/TUuqT0R.png); }
+#workskin .dc.theme-dark .locked::before { background-image: url(https://images.squidge.org/images/2026/11/15/dc-lock-dark.png); }
 
-#workskin .dc.theme-dark .at-symbol::before { background-image: url(https://i.imgur.com/Pd0cDve.png); }
+#workskin .dc.theme-dark .at-symbol::before { background-image: url(https://images.squidge.org/images/2026/11/15/dc-at-dark.png); }
 
-#workskin .dc.theme-dark .dc-input-text::before { background-image: url(https://i.imgur.com/LjARlpe.png); }
+#workskin .dc.theme-dark .dc-input-text::before { background-image: url(https://images.squidge.org/images/2026/11/15/dc-plus-dark.png); }
 
 /* spoilers, dark: hidden until clicked */
 #workskin .dc.theme-dark .dc-spoiler-text {
@@ -4825,13 +4825,13 @@
 
   #workskin .dc.theme-auto .dc-input { background-color: rgb(64, 68, 75); }
 
-  #workskin .dc.theme-auto .hashtag::before { background-image: url(https://i.imgur.com/y0r7k71.png); }
+  #workskin .dc.theme-auto .hashtag::before { background-image: url(https://images.squidge.org/images/2026/11/15/dc-hashtag-dark.png); }
 
-  #workskin .dc.theme-auto .locked::before { background-image: url(https://i.imgur.com/TUuqT0R.png); }
+  #workskin .dc.theme-auto .locked::before { background-image: url(https://images.squidge.org/images/2026/11/15/dc-lock-dark.png); }
 
-  #workskin .dc.theme-auto .at-symbol::before { background-image: url(https://i.imgur.com/Pd0cDve.png); }
+  #workskin .dc.theme-auto .at-symbol::before { background-image: url(https://images.squidge.org/images/2026/11/15/dc-at-dark.png); }
 
-  #workskin .dc.theme-auto .dc-input-text::before { background-image: url(https://i.imgur.com/LjARlpe.png); }
+  #workskin .dc.theme-auto .dc-input-text::before { background-image: url(https://images.squidge.org/images/2026/11/15/dc-plus-dark.png); }
 
   /* spoilers, dark: hidden until clicked */
   #workskin .dc.theme-auto .dc-spoiler-text {
