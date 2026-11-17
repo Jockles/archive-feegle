@@ -70,7 +70,7 @@
 }
 
 /* a long name ends in "..." when it's typed in a plain span:
-   &lt;span class="tw-name"&gt;&lt;span&gt;A really long name&lt;/span&gt; &lt;span class="tw-lock ic ic-tw-lock"&gt;&amp;#128274;&lt;/span&gt;&lt;/span&gt;
+   &lt;span class="tw-name"&gt;&lt;span&gt;A really long name&lt;/span&gt;&lt;/span&gt;
    Without the span it stops at the last whole word that fits */
 #workskin .tw .tw-name,
 #workskin .tw-reply .tw-name {
@@ -91,7 +91,7 @@
   text-overflow: ellipsis;
 }
 
-/* the padlock never shrinks; the tick is cut off before the name is */
+/* an icon in the name never shrinks; the tick is cut off before the name is */
 #workskin .tw .tw-name &gt; .ic,
 #workskin .tw-reply .tw-name &gt; .ic {
   flex: none;
@@ -163,7 +163,7 @@
 #workskin .tw-thread.app .tw .tw-fan { position: absolute; margin-left: 0.55em; }</code></pre>
 
 <ul>
-  <li>The name line is a flex row, with the picture, name, handle and time side by side. <code>white-space: nowrap</code> keeps them all on one line, however long they are, and <code>overflow: hidden</code> cuts off anything that still doesn't fit.</li>
+  <li>The name line is a flex row, with the picture, name, handle, padlock and time side by side. <code>white-space: nowrap</code> keeps them all on one line, however long they are, and <code>overflow: hidden</code> cuts off anything that still doesn't fit.</li>
   <li>When the row is too long, flex shrinks the boxes in it. <code>flex-shrink</code> (the middle number in <code>flex: 0 100000 auto</code>) says how fast each one shrinks: the handle's is 100000 and the name's is 1, so the handle shrinks a hundred thousand times faster. That's so fast that it's gone completely before the name has shrunk by even a fraction of a pixel, so you never see a cut-off name next to a scrap of handle. <code>min-width: 0</code> is what allows a box to shrink smaller than its words. The time and the padlock get <code>flex: none</code>, so they never shrink at all.</li>
   <li><code>text-overflow: ellipsis</code> puts "..." where the handle or the name is cut. The name is a flex row too, so its tick can shrink away before the name does. The tick's <code>background-size</code> is fixed, so it gets cut off instead of squashed.</li>
   <li>A name typed straight in, with no span around it, can't get the "...", so it wraps onto a hidden second line instead: <code>max-height: 1.3em</code>, the same as the <code>line-height</code>, shows the first line and hides the rest.</li>
