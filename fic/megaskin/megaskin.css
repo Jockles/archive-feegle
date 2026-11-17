@@ -2080,18 +2080,42 @@
 
 #workskin .tw-reply .tw-stats .ic { width: 1.5em; height: 1.5em; }
 
-/* AO3 turns line breaks in the row into <br /> tags: keep them out */
+/* AO3 turns line breaks in the row into <br /> tags, and wraps each button in a <p>: keep them flat */
 #workskin .tw .tw-stats br,
 #workskin .tw-reply .tw-stats br { display: none; }
 
+#workskin .tw .tw-stats p,
+#workskin .tw-reply .tw-stats p { display: inline; margin: 0; padding: 0; }
+
 #workskin .tw .tw-stat,
-#workskin .tw-reply .tw-stat { display: block; white-space: nowrap; }
+#workskin .tw-reply .tw-stat { display: block; margin: 0; padding: 0; white-space: nowrap; }
 
 #workskin .tw .tw-stats .ic,
 #workskin .tw-reply .tw-stats .ic { width: 1.3em; height: 1.3em; margin-right: 0.3em; vertical-align: -0.3em; }
 
-#workskin .tw .tw-stats > .ic,
-#workskin .tw-reply .tw-stats > .ic { margin-right: 0; }
+#workskin .tw .tw-stats .ic.ic-tw-share,
+#workskin .tw-reply .tw-stats .ic.ic-tw-share { margin-right: 0; }
+
+/* ---- a like readers can click: <details class="tw-stat tw-tog">
+   Inside the <summary>, the "off" count shows at first and the "on" count once clicked.
+   Click again and it goes back. */
+#workskin .tw .tw-tog summary,
+#workskin .tw-reply .tw-tog summary { display: block; list-style: none; cursor: pointer; color: inherit; }
+
+#workskin .tw .tw-tog summary::-webkit-details-marker,
+#workskin .tw-reply .tw-tog summary::-webkit-details-marker { display: none; }
+
+#workskin .tw .tw-tog summary::marker,
+#workskin .tw-reply .tw-tog summary::marker { content: ""; }
+
+#workskin .tw .tw-tog .on,
+#workskin .tw-reply .tw-tog .on { display: none; }
+
+#workskin .tw .tw-tog[open] .on,
+#workskin .tw-reply .tw-tog[open] .on { display: inline; }
+
+#workskin .tw .tw-tog[open] .off,
+#workskin .tw-reply .tw-tog[open] .off { display: none; }
 
 /* "Replying to @someone" */
 #workskin .tw .tw-replying {
@@ -2168,15 +2192,23 @@
   font-size: 0.85em;
 }
 
-/* buttons the account has used: add tw-liked to the like's tw-stat, or tw-rt to the repost's */
+/* buttons the account has used: add tw-liked to the like's tw-stat, tw-rt to the repost's, or tw-saved to the bookmark's.
+   A clicked tw-tog like turns pink too. */
 #workskin .tw .tw-stats .tw-liked,
-#workskin .tw-reply .tw-stats .tw-liked {
+#workskin .tw-reply .tw-stats .tw-liked,
+#workskin .tw .tw-stats .tw-tog[open],
+#workskin .tw-reply .tw-stats .tw-tog[open] {
   color: #f91880;
 }
 
 #workskin .tw .tw-stats .tw-rt,
 #workskin .tw-reply .tw-stats .tw-rt {
   color: #00ba7c;
+}
+
+#workskin .tw .tw-stats .tw-saved,
+#workskin .tw-reply .tw-stats .tw-saved {
+  color: #1d9bf0;
 }
 
 /* polls: each option is <p class="tw-opt">Option<span class="tw-pct">50%</span></p>
@@ -2986,8 +3018,9 @@
   #workskin .tw.theme-auto .ic.ic-tw-share, #workskin .tw-reply.theme-auto .ic.ic-tw-share, #workskin .tw-thread.theme-auto .ic.ic-tw-share { background-image: url(https://images.squidge.org/images/2026/11/17/tw-share-dark.png); }
 }
 
-/* a pink heart and a green repost for buttons the account has used, in every theme */
-#workskin .tw .tw-stats .tw-liked .ic.ic-tw-like, #workskin .tw-reply .tw-stats .tw-liked .ic.ic-tw-like { background-image: url(https://images.squidge.org/images/2026/11/17/tw-like-pink.png); }
+/* a pink heart, a green repost and a blue bookmark for buttons the account has used, in every theme */
+#workskin .tw .tw-stats .tw-liked .ic.ic-tw-like, #workskin .tw-reply .tw-stats .tw-liked .ic.ic-tw-like, #workskin .tw .tw-stats .tw-tog[open] .ic.ic-tw-like, #workskin .tw-reply .tw-stats .tw-tog[open] .ic.ic-tw-like { background-image: url(https://images.squidge.org/images/2026/11/17/tw-like-pink.png); }
+#workskin .tw .tw-stats .tw-saved .ic.ic-tw-bookmark, #workskin .tw-reply .tw-stats .tw-saved .ic.ic-tw-bookmark { background-image: url(https://images.squidge.org/images/2026/11/17/tw-bookmark-blue.png); }
 #workskin .tw .tw-stats .tw-rt .ic.ic-tw-repost, #workskin .tw-reply .tw-stats .tw-rt .ic.ic-tw-repost { background-image: url(https://images.squidge.org/images/2026/11/17/tw-repost-green.png); }
 
 /* a voice note you sent sits in a blue bubble, so its play button is always white */
