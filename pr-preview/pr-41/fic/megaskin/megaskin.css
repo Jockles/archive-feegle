@@ -2121,11 +2121,12 @@
 #workskin .tw-reply .tw-tog[open] .off { display: none; }
 
 /* "Replying to @someone" */
-#workskin .tw .tw-replying {
+#workskin .tw .tw-replying,
+#workskin .tw-reply .tw-replying {
   display: block;
   color: #536471;
   font-size: 0.85em;
-  margin-bottom: 0.2em;
+  margin: 0 0 0.6em 0;
 }
 
 /* quote-tweet box */
