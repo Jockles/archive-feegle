@@ -6,7 +6,7 @@
   <title>Megaskin, Chapter 9: Twitter/X CSS | jockles.com</title>
   <link rel="stylesheet" href="../../style.css">
   <script src="../../theme.js"></script>
-  <link rel="stylesheet" href="megaskin.css?v=2efe9b68" id="creator-style">
+  <link rel="stylesheet" href="megaskin.css?v=22f4961a" id="creator-style">
 </head>
 <body>
 <header>
@@ -43,13 +43,14 @@
   <li><a href="#s9-5">9.5 Name Line and Profile Picture</a></li>
   <li><a href="#s9-6">9.6 Text, Stats, Quotes and Notes</a></li>
   <li><a href="#s9-7">9.7 Polls</a></li>
-  <li><a href="#s9-8">9.8 Pictures and Videos</a></li>
-  <li><a href="#s9-9">9.9 The Scrolling Thread</a></li>
-  <li><a href="#s9-10">9.10 Scrolling</a></li>
-  <li><a href="#s9-11">9.11 DMs</a></li>
-  <li><a href="#s9-12">9.12 Links</a></li>
-  <li><a href="#s9-13">9.13 Dark and Auto Themes</a></li>
-  <li><a href="#s9-14">9.14 Taking Parts Out</a></li>
+  <li><a href="#s9-8">9.8 Tappable Polls</a></li>
+  <li><a href="#s9-9">9.9 Pictures and Videos</a></li>
+  <li><a href="#s9-10">9.10 The Scrolling Thread</a></li>
+  <li><a href="#s9-11">9.11 Scrolling</a></li>
+  <li><a href="#s9-12">9.12 DMs</a></li>
+  <li><a href="#s9-13">9.13 Links</a></li>
+  <li><a href="#s9-14">9.14 Dark and Auto Themes</a></li>
+  <li><a href="#s9-15">9.15 Taking Parts Out</a></li>
 </ul>
 
 <p>This chapter goes through the CSS for the tweets, threads and DMs in the last chapter. The module has three parts: tweets and replies (<code>tw</code> and <code>tw-reply</code>), the scrolling thread they can sit in (<code>tw-thread</code>), and DMs (<code>twdm</code>). DMs are built just like iMessage, so if you've read that chapter, they'll be quick.</p>
@@ -210,19 +211,24 @@
 #workskin .tw-reply .tw-opt {
   display: block;
   border: 1px solid #1d9bf0;
-  border-radius: 6px;
+  border-radius: 2em;
   padding: 0.4em 0.7em;
   margin: 0.35em 0;
-  color: #0f1419;
+  color: #1d9bf0;
+  font-weight: bold;
+  text-align: center;
 }
 
-/* a finished option is a row: the bar with the option in it, then the percentage at the far right */
+/* results: each option is a row, the bar with the option in it, then the percentage at the far right */
 #workskin .tw .tw-opt.res,
 #workskin .tw-reply .tw-opt.res {
   display: flex;
   align-items: center;
   border: 0;
   padding: 0;
+  color: #0f1419;
+  font-weight: normal;
+  text-align: left;
 }
 
 #workskin .tw .tw-bar,
@@ -232,7 +238,7 @@
   box-sizing: border-box;
   min-width: 2.6em;
   padding: 0.4em 0.7em;
-  border-radius: 2em;
+  border-radius: 6px;
   background: #cfd9de;
   white-space: nowrap;
 }
@@ -256,7 +262,7 @@
 
 #workskin .tw .tw-opt.p50 .tw-bar, #workskin .tw-reply .tw-opt.p50 .tw-bar { width: 50%; }</code></pre>
 
-<p>An open poll is just a blue outline. A finished one (<code>res</code>) turns the option into a flex row, like the buttons along the bottom of a tweet: the <code>tw-bar</code> span with the option in it, then the percentage pushed to the far right by <code>margin-left: auto</code>. The bar is a grey box with very round corners, and each <code>p</code> class sets how wide it is. <code>min-width</code> keeps a tiny percentage from shrinking the bar to nothing, and <code>nowrap</code> lets the words run on past the end of a short bar, like the real thing. <code>win</code> swaps the grey bar for a blue one and makes the text bold.</p>
+<p>An open poll is a blue outline with very round corners and bold blue words in the middle. The results (<code>res</code>) turns the option into a flex row, like the buttons along the bottom of a tweet: the <code>tw-bar</code> span with the option in it, then the percentage pushed to the far right by <code>margin-left: auto</code>. The bar is a grey box with slightly rounded corners, and each <code>p</code> class sets how wide it is. <code>min-width</code> keeps a tiny percentage from shrinking the bar to nothing, and <code>nowrap</code> lets the words run on past the end of a short bar, like the real thing. <code>win</code> swaps the grey bar for a blue one and makes the text bold.</p>
 
 <details>
 <summary>Adding a poll percentage that isn't there</summary>
@@ -269,7 +275,73 @@
 
 </details>
 
-<h3 id="s9-8">9.8 Pictures and Videos</h3>
+<h3 id="s9-8">9.8 Tappable Polls</h3>
+
+<pre><code>/* the tick in a circle on the option the account voted for */
+#workskin .tw .tw-voted,
+#workskin .tw-reply .tw-voted {
+  display: inline-block;
+  width: 1.1em;
+  height: 1.1em;
+  margin-left: 0.4em;
+  border: 1px solid;
+  border-radius: 50%;
+  font-size: 0.75em;
+  font-weight: bold;
+  line-height: 1.1em;
+  text-align: center;
+  vertical-align: 0.15em;
+}
+
+/* TAPPABLE POLL, the short way: &lt;details class="tw-vote"&gt; with the open poll in &lt;summary&gt; (spans with tw-opt,
+   and a tw-pollinfo span), then the results after it, with tw-voted on the pov character's vote.
+   Tapping shows the results instead. */
+#workskin .tw .tw-vote,
+#workskin .tw-reply .tw-vote,
+#workskin .tw .tw-vote &gt; summary,
+#workskin .tw-reply .tw-vote &gt; summary { display: block; }
+
+#workskin .tw .tw-vote &gt; summary,
+#workskin .tw-reply .tw-vote &gt; summary,
+#workskin .tw .tw-pick &gt; summary,
+#workskin .tw-reply .tw-pick &gt; summary { cursor: pointer; list-style: none; }
+
+#workskin .tw .tw-vote &gt; summary::-webkit-details-marker,
+#workskin .tw-reply .tw-vote &gt; summary::-webkit-details-marker,
+#workskin .tw .tw-pick &gt; summary::-webkit-details-marker,
+#workskin .tw-reply .tw-pick &gt; summary::-webkit-details-marker { display: none; }
+
+#workskin .tw .tw-vote &gt; summary::marker,
+#workskin .tw-reply .tw-vote &gt; summary::marker,
+#workskin .tw .tw-pick &gt; summary::marker,
+#workskin .tw-reply .tw-pick &gt; summary::marker { content: ""; }
+
+#workskin .tw .tw-vote[open] &gt; summary,
+#workskin .tw-reply .tw-vote[open] &gt; summary { display: none; }
+
+/* TAPPABLE POLL where the reader picks: &lt;div class="tw-poll"&gt;, then one &lt;details class="tw-pick"&gt; per option,
+   each with &lt;summary class="tw-opt"&gt;Option&lt;/summary&gt; and a &lt;div class="tw-results"&gt; holding the results
+   with tw-voted on that option. The results cover the poll when it's tapped. */
+#workskin .tw .tw-poll,
+#workskin .tw-reply .tw-poll { display: block; position: relative; }
+
+#workskin .tw .tw-pick,
+#workskin .tw-reply .tw-pick { display: block; margin: 0.35em 0; }
+
+#workskin .tw .tw-pick &gt; .tw-opt,
+#workskin .tw-reply .tw-pick &gt; .tw-opt { margin: 0; }
+
+#workskin .tw .tw-pick[open] &gt; summary,
+#workskin .tw-reply .tw-pick[open] &gt; summary { visibility: hidden; }
+
+#workskin .tw .tw-results,
+#workskin .tw-reply .tw-results { display: block; position: absolute; top: -0.35em; left: 0; right: 0; z-index: 1; background: #ffffff; }</code></pre>
+
+<p>The tick is just a tick character in a span with a thin round border: <code>border-radius: 50%</code> turns a square into a circle. With no colour given, the border takes the colour of the words.</p>
+
+<p>The tappable polls work exactly like Tumblr's. In <code>tw-vote</code>, the open poll is the <code>summary</code>, and <code>[open]</code> hides it once it's been tapped, so the results underneath show instead. In the reader-picks version, each option is its own details, and its <code>tw-results</code> box is lifted out of the line with <code>position: absolute</code> so it sits over the whole <code>tw-poll</code> box, starting at the top. The white background (black in dark mode) hides the options underneath, and <code>z-index</code> keeps it on top. The tapped option's own outline is hidden with <code>visibility: hidden</code>, which keeps its space so nothing jumps about.</p>
+
+<h3 id="s9-9">9.9 Pictures and Videos</h3>
 
 <pre><code>#workskin .tw .tw-media,
 #workskin .tw-reply .tw-media {
@@ -299,7 +371,7 @@
 
 <p>Floating things don't take up any height, so a box of floated pictures would shrink to nothing, and the stats line would slide up behind the pictures. This adds an invisible empty line after them with <code>clear: both</code>, which means "go below anything floating", so the box stretches down to hold them.</p>
 
-<h3 id="s9-9">9.9 The Scrolling Thread</h3>
+<h3 id="s9-10">9.10 The Scrolling Thread</h3>
 
 <pre><code>#workskin .tw-thread {
   width: 380px;
@@ -351,7 +423,7 @@
 
 <p>The "Tweet your reply" bar sits under the scrolling part, so it stays in place. AO3 wraps its text in a paragraph, which the middle rule flattens, and the Reply button floats to the right.</p>
 
-<h3 id="s9-10">9.10 Scrolling</h3>
+<h3 id="s9-11">9.11 Scrolling</h3>
 
 <pre><code>#workskin .tw-thread .tw-scroll {
   display: block;
@@ -368,7 +440,7 @@
 
 <p>In a thread, only the <code>tw-scroll</code> part scrolls, at the same height as every other chat. A tweet on its own scrolls as a whole, and it's allowed to be taller (<code>700px</code>), because a tweet with a picture is usually taller than a chat window and you'd rather not scroll it if you can help it. Adding <code>no-scroll</code> to a tweet switches its scrolling off, as usual.</p>
 
-<h3 id="s9-11">9.11 DMs</h3>
+<h3 id="s9-12">9.12 DMs</h3>
 
 <pre><code>#workskin .twdm .msg {
   display: table;
@@ -414,7 +486,7 @@
 
 </details>
 
-<h3 id="s9-12">9.12 Links</h3>
+<h3 id="s9-13">9.13 Links</h3>
 
 <pre><code>#workskin .tw .fake-link, #workskin .tw a:not(.tl),
 #workskin .tw-reply .fake-link, #workskin .tw-reply a:not(.tl) { color: #1d9bf0; }
@@ -425,7 +497,7 @@
 
 <p>Blue everywhere, except in your own blue DM bubbles, where links are white so they show up. <code>tw-link</code>, for hashtags and @mentions, is the same blue.</p>
 
-<h3 id="s9-13">9.13 Dark and Auto Themes</h3>
+<h3 id="s9-14">9.14 Dark and Auto Themes</h3>
 
 <pre><code>#workskin .tw.theme-dark { background: #000000; color: #e7e9ea; border-color: #2f3336; }
 
@@ -442,7 +514,7 @@
 
 <p>The auto theme is the whole lot again inside <code>@media (prefers-color-scheme: dark)</code>, so change a dark colour in both places.</p>
 
-<h3 id="s9-14">9.14 Taking Parts Out</h3>
+<h3 id="s9-15">9.15 Taking Parts Out</h3>
 
 <p>Search for the class names and delete every rule with them in, including in the dark and auto blocks:</p>
 
