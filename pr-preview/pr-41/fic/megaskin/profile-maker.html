@@ -49,6 +49,7 @@
   <h2>Profile Maker</h2>
 
   <p>Fill in the boxes and the chats on the right update as you type, using the real megaskin. When you're happy, copy the CSS at the bottom and paste it into the PROFILES section of your work skin, next to the other profiles. Nothing you type leaves your browser.</p>
+  <p>Building chats too? The <a href="fic-builder.html">Fic Builder</a> has this built in.</p>
   <p>Only the first box is essential. Leave anything you don't need empty and it won't go in the CSS. Pictures need a direct link to the image file, usually ending in .jpg or .png, from somewhere like squidge.org or Tumblr.</p>
 
   <div class="pm">
@@ -87,9 +88,9 @@
 
       <fieldset>
         <legend>Saved as</legend>
-        <p class="hint">What other characters have them saved as on their phones. The phone owner is the other character's profile class, without pfp-.</p>
+        <p class="hint">What other characters have them saved as on their phones, and a different picture on that phone if you want one. The phone owner is the other character's profile class, without pfp-. This only works in iMessage and WhatsApp messages, and only the name works in Discord DMs. Everywhere else they show the account's default.</p>
         <table>
-          <thead><tr><th>Phone owner</th><th>Saved as</th><th></th></tr></thead>
+          <thead><tr><th>Phone owner</th><th>Saved as</th><th>Picture on their phone (optional)</th><th></th></tr></thead>
           <tbody id="saved"></tbody>
         </table>
         <button type="button" id="addsaved">+ Add a phone</button>
@@ -130,15 +131,10 @@
   Made by hand in HTML &amp; CSS. No trackers, no cookies, no ads.
 </footer>
 
+<script src="profile-css.js"></script>
 <script>
 (function () {
-  var APPS = [
-    { key: "tw", label: "Twitter/X", sel: ["tw", "tw-reply"], namesel: ["tw", "tw-reply", "twdm"] },
-    { key: "ig", label: "Instagram", sel: ["ig", "igdm"] },
-    { key: "tb", label: "Tumblr", sel: ["tb"] },
-    { key: "gm", label: "Email", sel: ["gm"] },
-    { key: "dc", label: "Discord", sel: ["dc"] }
-  ];
+  var APPS = MegaskinProfile.APPS;
   var $ = function (id) { return document.getElementById(id); };
   var slugTouched = false;
 
@@ -156,6 +152,7 @@
   function addSaved(owner, as) {
     var tr = document.createElement("tr");
     tr.innerHTML = '<td><input type="text" class="sv-owner"></td><td><input type="text" class="sv-as"></td>' +
+      '<td><input type="url" class="sv-pic" placeholder="https://..."></td>' +
       '<td><button type="button" title="Remove">&times;</button></td>';
     tr.querySelector(".sv-owner").value = owner || "";
     tr.querySelector(".sv-as").value = as || "";
@@ -195,64 +192,31 @@
   }
   addSaved("shane", "Stan from the bar");
 
-  // keep values safe inside CSS
-  function str(v) { return '"' + v.replace(/\\/g, "\\\\").replace(/"/g, '\\"').replace(/[\r\n]+/g, " ") + '"'; }
-  function url(v) {
-    v = v.trim();
-    if (!/^https?:\/\/[^\s"'()<>\\]+$/i.test(v)) return null;
-    return "url(" + v + ")";
-  }
-  function slugify(v) { return v.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^[^a-z]+/, "").replace(/-+$/, ""); }
-  function list(classes, tail) {
-    return classes.map(function (c) { return "#workskin ." + c + " " + tail; }).join(", ");
-  }
+  var slugify = MegaskinProfile.slugify;
   function esc(v) { return v.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
 
   function build() {
-    var name = $("name").value.trim();
-    var slug = slugify($("slug").value) || "character";
-    var p = "pfp-" + slug;
-    var L = [];
-    L.push("/* PROFILE: " + (name || slug).replace(/\*\//g, "") + " */");
-    var pic = url($("pic").value);
-    L.push("#workskin .pfp." + p + " { background-color: " + $("piccol").value + ";" + (pic ? " background-image: " + pic + ";" : "") + " }");
+    var apps = {};
     APPS.forEach(function (a) {
-      var u = url($("pic-" + a.key).value);
-      if (u) L.push(list(a.sel, ".pfp." + p) + " { background-image: " + u + "; }");
+      apps[a.key] = { pic: $("pic-" + a.key).value, name: $("name-" + a.key).value,
+        handle: $("handle-" + a.key) ? $("handle-" + a.key).value : "" };
     });
-    L.push("#workskin .wa .who." + p + ", #workskin .dc .dc-name." + p + " { color: " + $("namecol").value + "; }");
-    if ($("tbsq").checked) L.push("#workskin .tb .pfp." + p + " { border-radius: 15%; }");
-    if ($("dccolon").checked) L.push("#workskin .dc .dc-name." + p + " { color: " + $("dccol").value + "; }");
-    if (name) L.push("#workskin .name." + p + "::before { content: " + str(name) + "; }");
-    APPS.forEach(function (a) {
-      var n = $("name-" + a.key).value.trim();
-      if (n) L.push(list(a.namesel || a.sel, ".name." + p + "::before") + " { content: " + str(n) + "; }");
+    return MegaskinProfile.css({
+      name: $("name").value, slug: $("slug").value, pic: $("pic").value,
+      piccol: $("piccol").value, namecol: $("namecol").value,
+      handle: $("handle").value, email: $("email").value, apps: apps,
+      dccol: $("dccolon").checked ? $("dccol").value : "", tbsq: $("tbsq").checked,
+      saved: Array.prototype.map.call($("saved").children, function (tr) {
+        return { owner: tr.querySelector(".sv-owner").value, as: tr.querySelector(".sv-as").value, pic: tr.querySelector(".sv-pic").value };
+      }),
+      accounts: Array.prototype.map.call($("accts").children, function (d) {
+        return { acc: d.querySelector(".ac-name").value, app: d.querySelector(".ac-app").value,
+          pic: d.querySelector(".ac-pic").value, name: d.querySelector(".ac-dname").value,
+          handle: d.querySelector(".ac-handle").value, sq: d.querySelector(".ac-sq").checked };
+      }),
+      wallcol: $("wallcolon").checked ? $("wallcol").value : "", wallcolDefault: $("wallcol").value,
+      wallpic: $("wallpic").value
     });
-    Array.prototype.forEach.call($("saved").children, function (tr) {
-      var o = slugify(tr.querySelector(".sv-owner").value), as = tr.querySelector(".sv-as").value.trim();
-      if (o && as) L.push("#workskin .mob.pov-" + o + " .name." + p + "::before { content: " + str(as) + "; }");
-    });
-    var h = $("handle").value.trim().replace(/^@/, "");
-    if (h) L.push("#workskin .handle." + p + "::after { content: " + str(h) + "; }");
-    APPS.forEach(function (a) {
-      var hh = $("handle-" + a.key) ? $("handle-" + a.key).value.trim().replace(/^@/, "") : "";
-      if (hh) L.push(list(a.namesel || a.sel, ".handle." + p + "::after") + " { content: " + str(hh) + "; }");
-    });
-    var e = $("email").value.trim();
-    if (e) L.push("#workskin .email." + p + "::after { content: " + str(e) + "; }");
-    accounts().forEach(function (x) {
-      var k = "." + p + "." + x.acc, a = x.app, all = a.namesel || a.sel, u = url(x.pic);
-      var shape = a.key !== "tb" ? "" : x.sq ? "15%" : $("tbsq").checked ? "50%" : "";
-      if (u || x.name || x.handle || shape) L.push("/* " + (name || slug).replace(/\*\//g, "") + "'s extra " + (a.key === "gm" ? "email address" : a.label + " account") + ": " + x.acc + " */");
-      if (u) L.push(list(all, ".pfp" + k) + " { background-image: " + u + "; }");
-      if (shape) L.push("#workskin .tb .pfp" + k + " { border-radius: " + shape + "; }");
-      if (x.name) L.push(list(all, ".name" + k + "::before") + " { content: " + str(x.name) + "; }");
-      if (x.handle) L.push(a.key === "gm" ? "#workskin .email" + k + "::after { content: " + str(x.handle) + "; }" : list(all, ".handle" + k + "::after") + " { content: " + str(x.handle) + "; }");
-    });
-    var wp = url($("wallpic").value);
-    if (wp) L.push("#workskin .mob.wa.pov-" + slug + " { background-color: " + $("wallcol").value + "; background-image: " + wp + "; background-size: cover; background-position: center; }");
-    else if ($("wallcolon").checked) L.push("#workskin .mob.wa.pov-" + slug + " { background: " + $("wallcol").value + "; }");
-    return { css: L.join("\n"), slug: slug, p: p, name: name || slug };
   }
 
   function preview(r) {
