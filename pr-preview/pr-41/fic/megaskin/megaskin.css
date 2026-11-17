@@ -2043,15 +2043,15 @@
 /* verified tick: add as <span class="tw-tick">✔</span> */
 #workskin .tw .tw-tick { color: #1d9bf0; font-size: 0.85em; }
 
-/* a private account's padlock: add <span class="tw-lock ic ic-tw-lock">&#128274;</span> after the name, inside tw-name */
-#workskin .tw .tw-lock, #workskin .tw-reply .tw-lock { margin-left: 0.15em; }
+/* a private account's padlock: add <span class="tw-lock ic ic-tw-lock">&#128274;</span> between the handle and the time */
+#workskin .tw .tw-lock, #workskin .tw-reply .tw-lock { flex: none; margin: 0.15em 0 0 0.3em; }
 
 /* profile picture: the first thing in the tw-top line.
    Initials: <span class="tw-pfp colour1">JD</span>
    A picture: <span class="tw-pfp"><span class="pfp"><img src="..." alt="..."></span></span>
    A profile (set in the core section): <span class="tw-pfp"><span class="pfp pfp-shane"></span></span>
    colour1-colour10 are the colours. */
-/* the name line is a flex row: the picture, the name with any tick or padlock, the @handle, then the time.
+/* the name line is a flex row: the picture, the name with any tick, the @handle, any padlock, then the time.
    When it doesn't all fit, the handle shrinks first and can disappear completely, then the name and its
    tick are cut off. The padlock and the time always stay. */
 #workskin .tw .tw-top,
@@ -2088,7 +2088,7 @@
 }
 
 /* a long name ends in "..." when it's typed in a plain span:
-   <span class="tw-name"><span>A really long name</span> <span class="tw-lock ic ic-tw-lock">&#128274;</span></span>
+   <span class="tw-name"><span>A really long name</span></span>
    Without the span it stops at the last whole word that fits */
 #workskin .tw .tw-name,
 #workskin .tw-reply .tw-name {
@@ -2109,7 +2109,7 @@
   text-overflow: ellipsis;
 }
 
-/* the padlock never shrinks; the tick is cut off before the name is */
+/* an icon in the name never shrinks; the tick is cut off before the name is */
 #workskin .tw .tw-name > .ic,
 #workskin .tw-reply .tw-name > .ic {
   flex: none;
