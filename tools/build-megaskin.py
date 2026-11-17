@@ -169,6 +169,8 @@ def number_headings(text, n):
     counts = [0, 0, 0]
     out, last = [], 0
     for (line, col), tagtext, level, hid in p.found:
+        if hid == "contents":
+            continue  # the contents list isn't numbered: numbering starts after it
         i = level - 3
         counts[i] += 1
         counts[i + 1:] = [0] * (2 - i)
