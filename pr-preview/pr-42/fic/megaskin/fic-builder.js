@@ -112,7 +112,8 @@
         img: x.link.img || "", alt: x.link.alt || "", video: x.link.video || "", imgdesc: x.link.imgdesc || "" };
       return m;
     });
-    ex.msgs.forEach(function (line, i) { if (line[2] && line[2].reply !== undefined) b.msgs[i].replyTo = b.msgs[line[2].reply].id; });
+    // a reply: WhatsApp quotes a message, a tweet replies to a person
+    ex.msgs.forEach(function (line, i) { if (line[2] && line[2].reply !== undefined) b.msgs[i].replyTo = b.msgs[line[2].reply][b.type === "twthread" ? "from" : "id"]; });
     S.blocks.push(b);
   }
   function starter() { loadExample(0); }
@@ -503,8 +504,10 @@
     var c = char(m.from); if (!c) return [];
     var a = accOf(c, m.acc, "tw"), L = [];
     if (kind === "reply") {
-      var q = b.msgs.filter(function (x) { return x.id === m.replyTo; })[0] || b.msgs[0], qc = q && char(q.from);
-      if (qc && q !== m) L.push('<p class="tw-replying">Replying to <span class="tw-link">@' + esc(twHandle(qc, accOf(qc, q.acc, "tw"))) + "</span></p>");
+      // replying to someone further up the thread: by default, whoever posted the tweet just above
+      var i = b.msgs.indexOf(m), above = b.msgs.slice(0, i).filter(function (x) { return char(x.from); });
+      var to = above.filter(function (x) { return x.from === m.replyTo; }).pop() || above[above.length - 1], qc = to && char(to.from);
+      if (qc) L.push('<p class="tw-replying">Replying to <span class="tw-link">@' + esc(twHandle(qc, accOf(qc, to.acc, "tw"))) + "</span></p>");
     }
     L.push('<p class="tw-top">' + circle("tw-pfp", c, a) + '<span class="hide"> </span><span class="tw-name">' + twNameHTML(c, a) +
       (m.verified ? ' <span class="tw-tick ic ic-verified">✔</span>' : "") + '</span> <span class="tw-handle">' + twHandleHTML(c, a) +
@@ -841,16 +844,18 @@
     if (thread) h.push('<p class="hint"><b>' + (mi === 0 ? "The tweet" : "Reply") + "</b></p>");
     h.push('<div class="fb-row">' + field(P + ".from", "", { type: "select", re: true, options: castOptions() }) +
       field(P + ".time", "", { ph: "2h", cls: "fb-time" }) + rowTools(bi, mi, m, true) + "</div>");
+    if (thread && mi > 0) {
+      // who it's replying to: anyone who posted further up the thread
+      var users = [];
+      b.msgs.slice(0, mi).forEach(function (x) { if (char(x.from) && users.indexOf(x.from) < 0) users.push(x.from); });
+      var prev = b.msgs[mi - 1];
+      h.push('<div class="fb-row"><label for="f-' + P.replace(/\./g, "-") + '-replyTo">Replying to</label>' + field(P + ".replyTo", "", { type: "select", re: true, options: [["", nameOf(char(prev.from)) + " (the tweet above)"]].concat(users.map(function (u) { return [u, nameOf(char(u))]; })) }) + "</div>");
+    }
     h.push(field(P + ".text", "", { type: "area", rows: 2, ph: "What's happening? #hashtags and @mentions go blue by themselves" }));
     if (m.open) {
       var c = char(m.from);
       h.push('<div class="fb-extras">' + fmtButtons());
       h.push(accField(P + ".acc", c, "tw"));
-      if (thread && mi > 0) {
-        h.push(field(P + ".replyTo", "Replying to", { type: "select", options: b.msgs.slice(0, mi).map(function (x, k) {
-          var tx = plain(x.text).trim(); return [x.id, (k ? "" : "The tweet: ") + nameOf(char(x.from)) + (tx ? ": " + (tx.length > 40 ? tx.slice(0, 40) + "..." : tx) : "")];
-        }) }));
-      }
       h.push(field(P + ".verified", "Blue verified tick", { type: "check" }));
       h.push(field(P + ".label", "Little grey label (Promoted, or a Twitter Circle notice)", {}));
       h.push('<div class="fb-grid"><div>' + field(P + ".reposts", "Reposts", { ph: "580" }) + field(P + ".reposted", "Reposted (green)", { type: "check" }) + "</div><div>" +
@@ -952,7 +957,7 @@
   }
   var SCRIPT_HINTS = {
     chat: "One message per line, starting with who's talking and a colon. A line on its own with no name carries on from the last person. Start a line with -- for a date or notice line, and put a time first if you like, like 09:15 Lily: hi. New names are added to the cast.",
-    twthread: "One tweet per line, starting with who's posting and a colon. The first one is the tweet, and the rest are replies to it (you can change who each one replies to in its extras). New names are added to the cast.",
+    twthread: "One tweet per line, starting with who's posting and a colon. The first one is the tweet, and the rest are replies. Each reply answers the tweet just above it, and you can change who it's replying to in the list. New names are added to the cast.",
     twfeed: "One tweet per line, starting with who's posting and a colon. New names are added to the cast.",
     igpost: "One comment per line, starting with who's commenting and a colon. New names are added to the cast."
   };

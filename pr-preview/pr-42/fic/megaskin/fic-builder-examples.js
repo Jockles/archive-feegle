@@ -6,7 +6,8 @@
 //   msgs:  one line per message: [who, text, extras]. who is a cast name, "sys" for a
 //          date or notice line, or "typing". extras can have time, tick, reacts (iMessage
 //          tapbacks: [[who, emoji]]), waReacts, waCount, sms, big, edited, status,
-//          reply (the number of an earlier message, counting from 0), photos, link.
+//          reply (the number of an earlier message, counting from 0; in a tweet thread, the reply
+//          goes to whoever posted it, and with no reply it goes to the tweet just above), photos, link.
 //          Tweets also take verified, label, date, reposts, reposted, likes, liked, replies, poll,
 //          pollinfo, qName, qHandle, qText, note, warn, vUrl, vTitle, vDesc. Twitter/X DMs take voice;
 //          Instagram DMs take shared. An Instagram post's settings are in chat, and its msgs are comments.
@@ -128,10 +129,10 @@ window.FB_EXAMPLES = [
       ["Zim", "Reminder to everyone that there could be (and likely are) queer players on many of the teams that didn't pledge. Thoughts go out to them. #HunterShortlist @SHunter",
         { time: "3h", date: "8:23 AM · 11 May 23", reposts: "580", reposted: true, likes: "2.6k", liked: true, replies: "10" }],
       ["Holster", "I played all through college with a guy whose boyfriend was also on the team. That man now plays professionally. This is not the whole story of queer hockey.", { time: "2h" }],
-      ["Sam", "this is lovely. anyway feed me", { time: "1h", reply: 1 }],
-      ["Stan", "Settle something for me while we're all here. Who's got the cup this year?", { time: "45m", poll: "Montreal\nBoston", pollinfo: "179 votes · 13 minutes left" }],
-      ["Rose", "The Ottawa crowd last night 🏳️‍🌈", { time: "30m", photos: [{ url: CAT1, alt: ALT1 }, { url: CAT2, alt: ALT2 }] }],
-      ["Stan", "Rose those are cats.", { time: "20m", reply: 4 }]
+      ["Sam", "this is lovely. anyway feed me", { time: "1h" }],
+      ["Stan", "Settle something for me while we're all here. Who's got the cup this year?", { time: "45m", reply: 0, poll: "Montreal\nBoston", pollinfo: "179 votes · 13 minutes left" }],
+      ["Rose", "The Ottawa crowd last night 🏳️‍🌈", { time: "30m", reply: 0, photos: [{ url: CAT1, alt: ALT1 }, { url: CAT2, alt: ALT2 }] }],
+      ["Stan", "Rose those are cats.", { time: "20m" }]
     ]
   },
   {
