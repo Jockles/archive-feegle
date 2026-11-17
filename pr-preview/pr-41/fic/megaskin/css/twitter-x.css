@@ -219,9 +219,9 @@
   color: #1d9bf0;
 }
 
-/* polls: each option is <p class="tw-opt">Option<span class="tw-pct">50%</span></p>
-   an OPEN poll: just tw-opt (a blue outline).
-   FINISHED poll: add "res" and a bar size p0 to p100 (p25 p75 p33 p67 also exist); add "win" for the winner */
+/* polls: an OPEN poll is <p class="tw-opt">Option</p> for each option (a blue outline).
+   FINISHED poll: <p class="tw-opt res p75"><span class="tw-bar">Option</span><span class="tw-pct">75%</span></p>
+   with a bar size p0 to p100 (p25 p75 p33 p67 also exist); add "win" for the winner */
 #workskin .tw .tw-opt,
 #workskin .tw-reply .tw-opt {
   display: block;
@@ -232,100 +232,60 @@
   color: #0f1419;
 }
 
+/* a finished option is a row: the bar with the option in it, then the percentage at the far right */
 #workskin .tw .tw-opt.res,
 #workskin .tw-reply .tw-opt.res {
-  border-color: transparent;
-  background-color: #eff3f4;
-  background-image: linear-gradient(#cfd9de, #cfd9de);
-  background-repeat: no-repeat;
-  background-size: 0% 100%;
+  display: flex;
+  align-items: center;
+  border: 0;
+  padding: 0;
 }
 
-#workskin .tw .tw-opt.res.win,
-#workskin .tw-reply .tw-opt.res.win {
-  background-image: linear-gradient(#8ecdf7, #8ecdf7);
-  font-weight: bold;
+#workskin .tw .tw-bar,
+#workskin .tw-reply .tw-bar {
+  display: block;
+  flex: 0 1 auto;
+  box-sizing: border-box;
+  min-width: 2.6em;
+  padding: 0.4em 0.7em;
+  border-radius: 2em;
+  background: #cfd9de;
+  white-space: nowrap;
+}
+
+#workskin .tw .tw-opt.win .tw-bar,
+#workskin .tw-reply .tw-opt.win .tw-bar {
+  background: #8ecdf7;
 }
 
 #workskin .tw .tw-opt .tw-pct,
 #workskin .tw-reply .tw-opt .tw-pct {
-  float: right;
+  margin-left: auto;
+  padding-left: 0.8em;
+  white-space: nowrap;
 }
 
-#workskin .tw .tw-opt.p0,
-#workskin .tw-reply .tw-opt.p0 {
-  background-size: 0% 100%;
+#workskin .tw .tw-opt.win,
+#workskin .tw-reply .tw-opt.win {
+  font-weight: bold;
 }
 
-#workskin .tw .tw-opt.p10,
-#workskin .tw-reply .tw-opt.p10 {
-  background-size: 10% 100%;
-}
-
-#workskin .tw .tw-opt.p20,
-#workskin .tw-reply .tw-opt.p20 {
-  background-size: 20% 100%;
-}
-
-#workskin .tw .tw-opt.p25,
-#workskin .tw-reply .tw-opt.p25 {
-  background-size: 25% 100%;
-}
-
-#workskin .tw .tw-opt.p30,
-#workskin .tw-reply .tw-opt.p30 {
-  background-size: 30% 100%;
-}
-
-#workskin .tw .tw-opt.p33,
-#workskin .tw-reply .tw-opt.p33 {
-  background-size: 33% 100%;
-}
-
-#workskin .tw .tw-opt.p40,
-#workskin .tw-reply .tw-opt.p40 {
-  background-size: 40% 100%;
-}
-
-#workskin .tw .tw-opt.p50,
-#workskin .tw-reply .tw-opt.p50 {
-  background-size: 50% 100%;
-}
-
-#workskin .tw .tw-opt.p60,
-#workskin .tw-reply .tw-opt.p60 {
-  background-size: 60% 100%;
-}
-
-#workskin .tw .tw-opt.p67,
-#workskin .tw-reply .tw-opt.p67 {
-  background-size: 67% 100%;
-}
-
-#workskin .tw .tw-opt.p70,
-#workskin .tw-reply .tw-opt.p70 {
-  background-size: 70% 100%;
-}
-
-#workskin .tw .tw-opt.p75,
-#workskin .tw-reply .tw-opt.p75 {
-  background-size: 75% 100%;
-}
-
-#workskin .tw .tw-opt.p80,
-#workskin .tw-reply .tw-opt.p80 {
-  background-size: 80% 100%;
-}
-
-#workskin .tw .tw-opt.p90,
-#workskin .tw-reply .tw-opt.p90 {
-  background-size: 90% 100%;
-}
-
-#workskin .tw .tw-opt.p100,
-#workskin .tw-reply .tw-opt.p100 {
-  background-size: 100% 100%;
-}
+/* how long each bar is */
+#workskin .tw .tw-opt.p0 .tw-bar, #workskin .tw-reply .tw-opt.p0 .tw-bar { width: 0%; }
+#workskin .tw .tw-opt.p10 .tw-bar, #workskin .tw-reply .tw-opt.p10 .tw-bar { width: 10%; }
+#workskin .tw .tw-opt.p20 .tw-bar, #workskin .tw-reply .tw-opt.p20 .tw-bar { width: 20%; }
+#workskin .tw .tw-opt.p25 .tw-bar, #workskin .tw-reply .tw-opt.p25 .tw-bar { width: 25%; }
+#workskin .tw .tw-opt.p30 .tw-bar, #workskin .tw-reply .tw-opt.p30 .tw-bar { width: 30%; }
+#workskin .tw .tw-opt.p33 .tw-bar, #workskin .tw-reply .tw-opt.p33 .tw-bar { width: 33%; }
+#workskin .tw .tw-opt.p40 .tw-bar, #workskin .tw-reply .tw-opt.p40 .tw-bar { width: 40%; }
+#workskin .tw .tw-opt.p50 .tw-bar, #workskin .tw-reply .tw-opt.p50 .tw-bar { width: 50%; }
+#workskin .tw .tw-opt.p60 .tw-bar, #workskin .tw-reply .tw-opt.p60 .tw-bar { width: 60%; }
+#workskin .tw .tw-opt.p67 .tw-bar, #workskin .tw-reply .tw-opt.p67 .tw-bar { width: 67%; }
+#workskin .tw .tw-opt.p70 .tw-bar, #workskin .tw-reply .tw-opt.p70 .tw-bar { width: 70%; }
+#workskin .tw .tw-opt.p75 .tw-bar, #workskin .tw-reply .tw-opt.p75 .tw-bar { width: 75%; }
+#workskin .tw .tw-opt.p80 .tw-bar, #workskin .tw-reply .tw-opt.p80 .tw-bar { width: 80%; }
+#workskin .tw .tw-opt.p90 .tw-bar, #workskin .tw-reply .tw-opt.p90 .tw-bar { width: 90%; }
+#workskin .tw .tw-opt.p100 .tw-bar, #workskin .tw-reply .tw-opt.p100 .tw-bar { width: 100%; }
 
 #workskin .tw .tw-pollinfo,
 #workskin .tw-reply .tw-pollinfo {
@@ -752,12 +712,9 @@
 
 #workskin .tw.theme-dark .tw-opt { color: #e7e9ea; }
 
-#workskin .tw.theme-dark .tw-opt.res {
-  background-color: #16181c;
-  background-image: linear-gradient(#2f3336, #2f3336);
-}
+#workskin .tw.theme-dark .tw-bar { background: #4d4d4d; }
 
-#workskin .tw.theme-dark .tw-opt.res.win { background-image: linear-gradient(#1a5a8a, #1a5a8a); }
+#workskin .tw.theme-dark .tw-opt.win .tw-bar { background: #315a8a; }
 
 #workskin .tw-reply.theme-dark .tw-date,
 #workskin .tw-reply.theme-dark .tw-label,
@@ -769,12 +726,9 @@
 
 #workskin .tw-reply.theme-dark .tw-opt { color: #e7e9ea; }
 
-#workskin .tw-reply.theme-dark .tw-opt.res {
-  background-color: #16181c;
-  background-image: linear-gradient(#2f3336, #2f3336);
-}
+#workskin .tw-reply.theme-dark .tw-bar { background: #4d4d4d; }
 
-#workskin .tw-reply.theme-dark .tw-opt.res.win { background-image: linear-gradient(#1a5a8a, #1a5a8a); }
+#workskin .tw-reply.theme-dark .tw-opt.win .tw-bar { background: #315a8a; }
 
 #workskin .twdm.theme-dark .twdm-reacts { background: #16181c; border-color: #2f3336; color: #e7e9ea; }
 
@@ -809,12 +763,9 @@
 
 #workskin .tw-thread.theme-dark .tw-opt { color: #e7e9ea; }
 
-#workskin .tw-thread.theme-dark .tw-opt.res {
-  background-color: #16181c;
-  background-image: linear-gradient(#2f3336, #2f3336);
-}
+#workskin .tw-thread.theme-dark .tw-bar { background: #4d4d4d; }
 
-#workskin .tw-thread.theme-dark .tw-opt.res.win { background-image: linear-gradient(#1a5a8a, #1a5a8a); }
+#workskin .tw-thread.theme-dark .tw-opt.win .tw-bar { background: #315a8a; }
 
 #workskin .twdm.theme-dark .who { color: #71767b; }
 
@@ -870,12 +821,9 @@
 
   #workskin .tw.theme-auto .tw-opt { color: #e7e9ea; }
 
-  #workskin .tw.theme-auto .tw-opt.res {
-      background-color: #16181c;
-      background-image: linear-gradient(#2f3336, #2f3336);
-    }
+  #workskin .tw.theme-auto .tw-bar { background: #4d4d4d; }
 
-  #workskin .tw.theme-auto .tw-opt.res.win { background-image: linear-gradient(#1a5a8a, #1a5a8a); }
+  #workskin .tw.theme-auto .tw-opt.win .tw-bar { background: #315a8a; }
 
   #workskin .tw-reply.theme-auto .tw-date,
     #workskin .tw-reply.theme-auto .tw-label,
@@ -887,12 +835,9 @@
 
   #workskin .tw-reply.theme-auto .tw-opt { color: #e7e9ea; }
 
-  #workskin .tw-reply.theme-auto .tw-opt.res {
-      background-color: #16181c;
-      background-image: linear-gradient(#2f3336, #2f3336);
-    }
+  #workskin .tw-reply.theme-auto .tw-bar { background: #4d4d4d; }
 
-  #workskin .tw-reply.theme-auto .tw-opt.res.win { background-image: linear-gradient(#1a5a8a, #1a5a8a); }
+  #workskin .tw-reply.theme-auto .tw-opt.win .tw-bar { background: #315a8a; }
 
   #workskin .twdm.theme-auto .twdm-reacts { background: #16181c; border-color: #2f3336; color: #e7e9ea; }
 
@@ -927,12 +872,9 @@
 
   #workskin .tw-thread.theme-auto .tw-opt { color: #e7e9ea; }
 
-  #workskin .tw-thread.theme-auto .tw-opt.res {
-      background-color: #16181c;
-      background-image: linear-gradient(#2f3336, #2f3336);
-    }
+  #workskin .tw-thread.theme-auto .tw-bar { background: #4d4d4d; }
 
-  #workskin .tw-thread.theme-auto .tw-opt.res.win { background-image: linear-gradient(#1a5a8a, #1a5a8a); }
+  #workskin .tw-thread.theme-auto .tw-opt.win .tw-bar { background: #315a8a; }
 
   #workskin .tw-thread.theme-auto .mob { border-color: #2f3336; }
 
