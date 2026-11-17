@@ -2628,7 +2628,7 @@
 
 #workskin .tw-thread .tw-tab.on { color: #0f1419; }
 
-/* the rounded line under the picked tab, as wide as its words */
+/* the rounded line under the picked tab, as wide as its words, in the same colour */
 #workskin .tw-thread .tw-tab.on::after {
   content: "";
   position: absolute;
@@ -2637,7 +2637,21 @@
   bottom: 0;
   height: 4px;
   border-radius: 2px;
-  background: #1d9bf0;
+  background: currentColor;
+}
+
+/* the little down arrow after For you: <span class="tw-drop"></span> */
+#workskin .tw-thread .tw-drop {
+  display: inline-block;
+  box-sizing: border-box;
+  width: 0.45em;
+  height: 0.45em;
+  margin: 0 0.15em 0 0.55em;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  vertical-align: 0.3em;
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
 }
 
 /* the + at the far right, for adding a community tab. It stays put, and any tabs too long for the row go under it */
