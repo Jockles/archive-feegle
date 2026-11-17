@@ -8,6 +8,9 @@
 //   castCard(), blockCard(), msgRow()   draw the boxes on the left
 //   data-bind    each box says which bit of S it fills in, e.g. "blocks.2.msgs.0.text"
 //   data-act     each button says what it does, e.g. "msg-del:2:0" (block 2, message 0)
+// Chats (iMessage, WhatsApp, Twitter/X and Instagram DMs) are a list of messages.
+// A Twitter/X thread or timeline is a list of tweets, kept in the same msgs list,
+// and an Instagram post keeps its settings on the block and its comments in msgs.
 // To add a new app: a newBlock() default, an ...HTML() function, a line in
 // allHTML(), and a button on the page.
 (function () {
@@ -26,8 +29,14 @@
     "ocean", "plum", "sage", "sky", "slate", "sunset", "white"];
   var KINDS = {
     imsg: "iMessage chat",
-    wa: "WhatsApp chat"
+    wa: "WhatsApp chat",
+    twthread: "Twitter/X tweet and replies",
+    twfeed: "Twitter/X timeline",
+    twdm: "Twitter/X DM",
+    igpost: "Instagram post",
+    igdm: "Instagram DM"
   };
+  function isChat(b) { return b.type === "imsg" || b.type === "wa" || b.type === "twdm" || b.type === "igdm"; }
 
   // ---------- state ----------
 
@@ -46,12 +55,16 @@
     var col = 1;
     for (var i = 1; i <= 10; i++) if (used.indexOf(i) < 0) { col = i; break; }
     return { id: nid("c"), name: name || "", kind: kind || "oneoff", example: "shane", colour: String(col),
-      showInitials: true, initials: "", pic: "", alt: "", num: "", prof: newProfile() };
+      showInitials: true, initials: "", pic: "", alt: "", num: "", handle: "", ighandle: "", prof: newProfile() };
   }
   function newMsg(from, text, time) {
     return { id: nid("m"), from: from || "", text: text || "", time: time || "", open: false,
       reacts: [], waReacts: "", waCount: "", tick: "read", edited: false, status: "", sms: false, big: false,
-      replyTo: "", photos: [], link: null };
+      replyTo: "", photos: [], link: null,
+      // Twitter/X and Instagram bits
+      acc: "", verified: false, label: "", qName: "", qHandle: "", qText: "", note: "", date: "",
+      reposts: "", likes: "", replies: "", liked: false, reposted: false, poll: "", pollinfo: "",
+      vUrl: "", vTitle: "", vDesc: "", warn: false, voice: "", shared: false };
   }
   // the group's picture in the WhatsApp header: a one-off circle, set up the same way
   function newGroupPic() { return { colour: "5", showInitials: true, initials: "", pic: "", alt: "", land: false }; }
@@ -61,6 +74,15 @@
     b.pov = pov; b.group = false; b.title = ""; b.sub = type === "imsg" ? "iMessage" : "online";
     b.theme = "theme-auto"; b.width = ""; b.scroll = ""; b.bar = "empty"; b.barText = "";
     b.bg = ""; b.pics = true; b.header = "simple"; b.gp = newGroupPic(); b.script = ""; b.msgs = []; b.open = true;
+    b.acc = "";
+    if (type === "twdm") b.sub = "";
+    if (type === "igdm") b.sub = "Active now";
+    if (type === "igpost") {
+      // an Instagram post is one post: its settings are the post, and the messages are its comments
+      b.from = pov; b.menu = true; b.story = false; b.verified = false; b.follow = false; b.underKind = "location"; b.under = "";
+      b.photo = { url: "", alt: "", desc: "" }; b.likes = ""; b.likeClick = false; b.liked = false; b.cmCount = ""; b.reposts = "";
+      b.shares = ""; b.saveClick = false; b.saved = false; b.likesLine = "count"; b.faces = []; b.caption = ""; b.viewAll = false; b.time = "";
+    }
     return b;
   }
   // load one of the tutorial's example chats (from fic-builder-examples.js)
@@ -71,17 +93,19 @@
       var c = newChar(p.name, p.profile ? "example" : "oneoff");
       if (p.profile) c.example = p.profile;
       c.open = false; // examples load with the cast folded up
-      ["colour", "initials", "pic", "alt", "num", "land"].forEach(function (k) { if (p[k]) c[k] = p[k]; });
+      ["colour", "initials", "showInitials", "pic", "alt", "num", "land", "handle", "ighandle"].forEach(function (k) { if (p[k] !== undefined) c[k] = p[k]; });
       S.cast.push(c);
       ids[p.name] = c.id;
     });
     var b = newBlock(ex.chat.type);
     Object.keys(ex.chat).forEach(function (k) { if (k !== "type") b[k] = ex.chat[k]; });
-    b.pov = ids[ex.chat.pov];
+    b.pov = ids[ex.chat.pov] || (S.cast[0] && S.cast[0].id) || "";
+    if (ex.chat.from) b.from = ids[ex.chat.from];
+    if (ex.chat.faces) b.faces = ex.chat.faces.map(function (n) { return ids[n]; });
     b.msgs = ex.msgs.map(function (line) {
       var x = line[2] || {};
       var m = newMsg(ids[line[0]] || line[0], line[1], x.time);
-      ["tick", "waReacts", "waCount", "sms", "big", "edited", "status"].forEach(function (k) { if (x[k] !== undefined) m[k] = x[k]; });
+      Object.keys(x).forEach(function (k) { if (["reacts", "photos", "link", "reply", "time"].indexOf(k) < 0) m[k] = x[k]; });
       m.reacts = (x.reacts || []).map(function (r) { return { by: ids[r[0]], emoji: r[1] }; });
       m.photos = (x.photos || []).map(function (p) { return { url: p.url || "", alt: p.alt || "", desc: p.desc || "", land: !!p.land }; });
       if (x.link) m.link = { url: x.link.url || "", showUrl: !!x.link.showUrl, title: x.link.title || "", desc: x.link.desc || "",
@@ -215,7 +239,7 @@
     if (b.width) c.push(b.width);
     if (b.scroll) c.push(b.scroll);
     var pov = char(b.pov);
-    if (isProfile(pov)) c.push("pov-" + slugOf(pov));
+    if (isProfile(pov) && (app === "imsg" || app === "wa")) c.push("pov-" + slugOf(pov)); // per-phone names and pictures: iMessage and WhatsApp only
     return c.join(" ");
   }
   function others(b) {
@@ -395,11 +419,209 @@
     return L.join("\n");
   }
 
+  // ---------- Twitter/X and Instagram: names, handles and pictures ----------
+
+  function t(v) { return String(v == null ? "" : v).trim(); }
+  function noAt(v) { return t(v).replace(/^@/, ""); }
+  // one of a profile's extra accounts on this app, picked on the post or chat
+  function accOf(c, acc, app) {
+    if (!isProfile(c) || !acc) return null;
+    return c.prof.accounts.filter(function (a) { return MP.slugify(a.acc) === acc && a.app === app; })[0] || null;
+  }
+  function accCls(a) { return a ? " acc-" + MP.slugify(a.acc) : ""; }
+  function appBit(c, app, k) { return t(((c.prof.apps || {})[app] || {})[k]); }
+  function twName(c, a) { return isProfile(c) ? (a && t(a.name)) || appBit(c, "tw", "name") || nameOf(c) : nameOf(c); }
+  function twHandle(c, a) {
+    if (isProfile(c)) return (a && noAt(a.handle)) || noAt(appBit(c, "tw", "handle")) || noAt(c.prof.handle) || slugOf(c);
+    return noAt(c.handle) || nameOf(c).replace(/\s+/g, "");
+  }
+  function igName(c, a) {
+    if (isProfile(c)) return (a && noAt(a.handle)) || noAt(appBit(c, "ig", "handle")) || noAt(c.prof.handle) || slugOf(c);
+    return noAt(c.ighandle) || noAt(c.handle) || nameOf(c).toLowerCase().replace(/\s+/g, ".");
+  }
+  // a profile's name or handle span, with a typed copy inside for readers with the style off
+  function pSpan(kind, c, a, text) {
+    return '<span class="' + kind + " pfp-" + slugOf(c) + accCls(a) + '"><span class="hide">' + esc(text) + "</span></span>";
+  }
+  function twNameHTML(c, a) { return isProfile(c) ? pSpan("name", c, a, twName(c, a)) : esc(nameOf(c)); }
+  function twHandleHTML(c, a) { return isProfile(c) ? pSpan("handle", c, a, "@" + twHandle(c, a)) : "@" + esc(twHandle(c)); }
+  function igNameHTML(c, a) { return isProfile(c) ? pSpan("handle", c, a, igName(c, a)) : esc(igName(c)); }
+  // a round picture: from a profile, an uploaded picture, or initials in a colour
+  function circle(cls, c, a) {
+    if (isProfile(c)) return '<span class="' + cls + '"><span class="pfp pfp-' + slugOf(c) + accCls(a) + '"></span></span>';
+    var u = picUrl(c.pic);
+    if (u) return '<span class="' + cls + '"><span class="pfp"><img ' + (c.land ? 'class="land" ' : "") + 'src="' + esc(u) + '" alt="' + esc(t(c.alt) || ("Profile picture of " + nameOf(c))) + '"></span></span>';
+    return '<span class="' + cls + " " + colourClass(c) + '">' + (c.showInitials !== false ? esc(initials(c)) : "") + "</span>";
+  }
+  function plural(n, one, many) { return t(n) === "1" ? one : many; }
+
+  // ---------- Twitter/X posts ----------
+
+  var POLL_SIZES = [0, 10, 20, 25, 30, 33, 40, 50, 60, 67, 70, 75, 80, 90, 100];
+  function twText(text) {
+    // hashtags and @mentions go blue
+    return fmt(text).replace(/(^|[\s(])([#@][A-Za-z0-9_]+)/g, '$1<span class="tw-link">$2</span>');
+  }
+  function twPoll(m) {
+    var opts = t(m.poll).split(/\n/).map(t).filter(Boolean).map(function (line) {
+      var p = line.match(/^(.*?)\s+(\d{1,3})\s*%$/);
+      return p ? { text: p[1], pct: +p[2] } : { text: line, pct: null };
+    });
+    if (!opts.length) return [];
+    var done = opts.some(function (o) { return o.pct !== null; });
+    var top = Math.max.apply(null, opts.map(function (o) { return o.pct || 0; })), won = false;
+    var L = opts.map(function (o) {
+      if (!done) return '<p class="tw-opt">' + esc(o.text) + "</p>";
+      var pct = o.pct || 0, size = POLL_SIZES.reduce(function (a, b) { return Math.abs(b - pct) < Math.abs(a - pct) ? b : a; });
+      var win = !won && pct === top; if (win) won = true;
+      return '<p class="tw-opt res' + (win ? " win" : "") + " p" + size + '">' + esc(o.text) + '<span class="hide"> </span><span class="tw-pct">' + pct + "%</span></p>";
+    });
+    if (t(m.pollinfo)) L.push('<p class="tw-pollinfo">' + esc(t(m.pollinfo)) + "</p>");
+    return L;
+  }
+  function twMedia(m) {
+    var v = picUrl(m.vUrl);
+    if (v) return ['<div class="tw-media video"><iframe src="' + esc(v) + '" frameborder="0" title="' + esc(t(m.vTitle) || "Video") + '"></iframe>' +
+      (t(m.vDesc) ? '<p class="vid-desc">[' + esc(t(m.vDesc)) + "]</p>" : "") + "</div>"];
+    var ph = (m.photos || []).filter(function (p) { return picUrl(p.url) || t(p.desc); }).slice(0, 4);
+    if (!ph.length) return [];
+    function img(p) { return '<img ' + (p.land ? 'class="land" ' : "") + 'src="' + esc(picUrl(p.url)) + '" alt="' + esc(p.alt) + '">'; }
+    if (ph.length === 1) return ['<p class="tw-media">' + (picUrl(ph[0].url) ? img(ph[0]) : "<span>[" + esc(t(ph[0].desc)) + "]</span>") + "</p>"];
+    return ['<p class="tw-media ' + ["two", "three", "four"][ph.length - 2] + '">'].concat(ph.map(function (p) {
+      return '  <span class="tw-photo">' + (picUrl(p.url) ? img(p) : '<span class="tw-desc">[' + esc(t(p.desc)) + "]</span>") + "</span>";
+    })).concat(["</p>"]);
+  }
+  function twStats(m) {
+    var s = [];
+    if (t(m.reposts)) { var r = "<b>" + esc(t(m.reposts)) + "</b> " + plural(m.reposts, "Repost", "Reposts"); s.push(m.reposted ? '<span class="tw-rt">' + r + "</span>" : r); }
+    if (t(m.likes)) { var k = "<b>" + esc(t(m.likes)) + "</b> " + plural(m.likes, "Like", "Likes"); s.push(m.liked ? '<span class="tw-liked">' + k + "</span>" : k); }
+    if (t(m.replies)) s.push("<b>" + esc(t(m.replies)) + "</b> " + plural(m.replies, "Reply", "Replies"));
+    return s.length ? ['<p class="tw-stats">' + s.join(" &nbsp; ") + "</p>"] : [];
+  }
+  // one tweet: kind is "feed" (on its own), "main" (top of a thread) or "reply"
+  function tweetHTML(b, m, kind) {
+    var c = char(m.from); if (!c) return [];
+    var a = accOf(c, m.acc, "tw"), L = [];
+    if (kind === "reply") {
+      var q = b.msgs.filter(function (x) { return x.id === m.replyTo; })[0] || b.msgs[0], qc = q && char(q.from);
+      if (qc && q !== m) L.push('<p class="tw-replying">Replying to <span class="tw-link">@' + esc(twHandle(qc, accOf(qc, q.acc, "tw"))) + "</span></p>");
+    }
+    L.push('<p class="tw-top">' + circle("tw-pfp", c, a) + '<span class="hide"> </span><span class="tw-name">' + twNameHTML(c, a) +
+      (m.verified ? ' <span class="tw-tick ic ic-verified">✔</span>' : "") + '</span> <span class="tw-handle">' + twHandleHTML(c, a) +
+      (t(m.time) ? " · " + esc(t(m.time)) : "") + "</span></p>");
+    if (t(m.label)) L.push('<p class="tw-label">' + esc(t(m.label)) + "</p>");
+    if (t(m.text)) L.push((kind === "reply" ? "<p>" : '<p class="tw-text">') + twText(m.text) + "</p>");
+    L = L.concat(twPoll(m), twMedia(m));
+    if (m.warn) L.push('<p class="tw-warn"><b>Content warning: Sensitive content</b><br>The Tweet author flagged this Tweet as showing sensitive content.</p>');
+    if (t(m.qText) || t(m.qName)) L.push('<p class="tw-quote"><b>' + esc(t(m.qName)) + "</b>" + (noAt(m.qHandle) ? ' <span class="tw-handle">@' + esc(noAt(m.qHandle)) + "</span>" : "") + "<br>" + fmt(m.qText) + "</p>");
+    if (t(m.note)) L.push('<p class="tw-note">' + esc(t(m.note)) + "</p>");
+    if (t(m.date)) L.push('<p class="tw-date">' + esc(t(m.date)) + "</p>");
+    L = L.concat(twStats(m));
+    var open = kind === "feed" ? '<div class="mob tw ' + b.theme + (b.width ? " " + b.width : "") + '">' : kind === "main" ? '<div class="mob tw">' : '<div class="mob tw-reply">';
+    return [open].concat(ind(L, 1)).concat(["</div>"]);
+  }
+  function twFeedHTML(b) {
+    return b.msgs.map(function (m) { return tweetHTML(b, m, "feed").join("\n"); }).filter(Boolean).join("\n\n");
+  }
+  function twThreadHTML(b) {
+    var L = ['<div class="tw-thread ' + b.theme + (b.width ? " " + b.width : "") + '">', '  <div class="tw-scroll">'];
+    b.msgs.forEach(function (m, i) { L = L.concat(ind(tweetHTML(b, m, i ? "reply" : "main"), 2)); });
+    L.push("  </div>");
+    if (b.bar !== "none") L.push('  <p class="tw-foot"><span>Reply</span><span class="hide"> - </span>Tweet your reply</p>');
+    L.push("</div>");
+    return L.join("\n");
+  }
+
+  // ---------- Instagram post ----------
+
+  function bumpCount(v) {
+    // one more like, keeping the commas: 2,431 becomes 2,432
+    var n = t(v).replace(/,/g, "");
+    if (!/^\d+$/.test(n)) return t(v);
+    return String(+n + 1).replace(/\B(?=(\d{3})+(?!\d))/g, t(v).indexOf(",") >= 0 ? "," : "");
+  }
+  function igPostHTML(b) {
+    var c = char(b.from) || S.cast[0], L = []; // until someone's picked, the first in the cast
+    var a = c && accOf(c, b.acc, "ig");
+    if (c) {
+      var top = (b.menu ? '<span class="ig-menu ic ic-more">&#8943;</span>' : "") + circle("ig-pfp" + (b.story ? " story" : ""), c, a) + igNameHTML(c, a);
+      if (b.verified) top += '<span class="hide"> </span><span class="ig-tick ic ic-verified">&#10003;</span>';
+      if (b.follow) top += '<span class="hide"> - </span><span class="ig-follow">Follow</span>';
+      if (t(b.under)) top += '<span class="hide"> - </span><span>' + (b.underKind === "song" ? "&#9835; " : "") + esc(t(b.under)) + "</span>";
+      L.push('<p class="ig-top">' + top + "</p>");
+    }
+    var u = picUrl(b.photo.url);
+    if (u) L.push('<p class="ig-photo real"><img src="' + esc(u) + '" alt="' + esc(b.photo.alt) + '"></p>');
+    else if (t(b.photo.desc)) L.push('<p class="ig-photo">[' + esc(t(b.photo.desc)) + "]</p>");
+    var btns = [];
+    if (b.likeClick) btns.push('<details class="ig-tog like"' + (b.liked ? " open" : "") + '><summary><span class="ig-icon off ic ic-heart">&#9825;</span><span class="hide"> </span><span class="ig-count off">' + esc(t(b.likes)) +
+      '</span><span class="hide"> likes (</span><span class="ig-icon on ic ic-heart-red">&#9829;</span><span class="hide"> </span><span class="ig-count on">' + esc(bumpCount(b.likes)) + '</span><span class="hide"> when liked)</span></summary></details>');
+    else if (t(b.likes)) btns.push('<p class="ig-btn"><span class="ig-icon ic ic-heart">&#9825;</span><span class="hide"> </span><span class="ig-count">' + esc(t(b.likes)) + '</span><span class="hide"> ' + plural(b.likes, "like", "likes") + "</span></p>");
+    if (t(b.cmCount)) btns.push('<p class="ig-btn"><span class="ig-icon cm"></span><span class="ig-count">' + esc(t(b.cmCount)) + '</span><span class="hide"> ' + plural(b.cmCount, "comment", "comments") + "</span></p>");
+    if (t(b.reposts)) btns.push('<p class="ig-btn"><span class="ig-icon ic ic-repost">&#8635;</span><span class="hide"> </span><span class="ig-count">' + esc(t(b.reposts)) + '</span><span class="hide"> ' + plural(b.reposts, "repost", "reposts") + "</span></p>");
+    if (t(b.shares)) btns.push('<p class="ig-btn"><span class="ig-icon ic ic-share">&#10148;</span><span class="hide"> </span><span class="ig-count">' + esc(t(b.shares)) + '</span><span class="hide"> ' + plural(b.shares, "share", "shares") + "</span></p>");
+    if (b.saveClick) btns.push('<details class="ig-tog save"' + (b.saved ? " open" : "") + '><summary><span class="hide">Save</span><span class="ig-icon bm off"></span><span class="ig-icon bm on"></span></summary></details>');
+    if (btns.length) L = L.concat(['<div class="ig-actions">'], btns, ["</div>"]);
+    var faces = (b.faces || []).map(char).filter(Boolean);
+    if (b.likesLine === "faces" && faces.length) {
+      L.push('<p class="ig-likes liked-by"><span class="ig-like-pfps">' + faces.map(function (f) { return circle("ig-like-pfp", f, null); }).join("") +
+        "</span>Liked by <b>" + igNameHTML(faces[0], null) + "</b> and <b>others</b></p>");
+    } else if (b.likesLine !== "none" && t(b.likes)) L.push('<p class="ig-likes">' + esc(t(b.likes)) + " " + plural(b.likes, "like", "likes") + "</p>");
+    if (c && t(b.caption)) L.push('<p class="ig-caption"><b>' + igNameHTML(c, a) + "</b> " + fmt(b.caption).replace(/(^|\s)(#[A-Za-z0-9_]+)/g, '$1<span class="ig-tag">$2</span>') + "</p>");
+    if (b.viewAll && t(b.cmCount)) L.push('<p class="ig-viewall">View all ' + esc(t(b.cmCount)) + " comments</p>");
+    b.msgs.forEach(function (m) {
+      var mc = char(m.from);
+      if (mc && t(m.text)) L.push('<p class="ig-comment"><b>' + igNameHTML(mc, accOf(mc, m.acc, "ig")) + "</b> " + fmt(m.text) + "</p>");
+    });
+    if (t(b.time)) L.push('<p class="ig-time">' + esc(t(b.time)) + "</p>");
+    return ['<div class="mob ig ' + b.theme + (b.width ? " " + b.width : "") + (b.scroll ? " " + b.scroll : "") + '">'].concat(L, ["</div>"]).join("\n");
+  }
+
+  // ---------- Twitter/X and Instagram DMs ----------
+
+  function dmHTML(b) {
+    var app = b.type, tw = app === "twdm", L = [], last = "", body = [];
+    var o = others(b)[0];
+    // header: the chat's name and the line under it, from the other person if left empty
+    var title = t(b.title) ? esc(t(b.title)) : b.group ? "Group chat" : !o ? "Someone" : tw ? twNameHTML(o, accOf(o, b.acc, "tw")) : igNameHTML(o, accOf(o, b.acc, "ig"));
+    var sub = t(b.sub) ? esc(t(b.sub)) : tw && o && !b.group ? twHandleHTML(o, accOf(o, b.acc, "tw")) : "";
+    L.push('<div class="' + containerClass(b, app) + '">');
+    L.push('  <p class="mob-head">' + title + '<span class="hide"> - </span>' + (sub ? "<span>" + sub + "</span>" : "") + "</p>");
+    L.push('  <div class="mob-body">');
+    b.msgs.forEach(function (m) {
+      var c = char(m.from); if (!c) return;
+      var out = m.from === b.pov, side = out ? "out" : "in";
+      if (b.group && !out && last !== m.from && !m.shared) body.push('<p class="who">' + (tw ? twNameHTML(c, null) : igNameHTML(c, null)) + '<span class="hide">:</span></p>');
+      last = out ? "" : m.from;
+      var label = b.group && !out && !m.shared ? "" : hideLabel(nameOf(c));
+      if (m.shared) body.push('<p class="igdm-shared">' + hideLabel(nameOf(c)) + fmt(m.text) + "</p>");
+      else if (tw && t(m.voice)) body.push('<p class="msg ' + side + ' voice">' + label + '<span class="twdm-play ic ic-play">&#9654;</span><span class="twdm-wave"></span><span class="twdm-dur">' + esc(t(m.voice)) + "</span></p>");
+      else if (t(m.text)) body.push('<p class="msg ' + side + '">' + label + fmt(m.text) + "</p>");
+      if (tw) (m.photos || []).forEach(function (ph) {
+        var u = picUrl(ph.url);
+        if (u) body.push('<p class="msg ' + side + ' pic">' + label + '<img src="' + esc(u) + '" alt="' + esc(ph.alt) + '"></p>');
+        else if (t(ph.desc)) body.push('<p class="msg ' + side + ' pic text">' + label + "[" + esc(t(ph.desc)) + "]</p>");
+      });
+      if (tw && t(m.waReacts)) body.push('<p class="twdm-reacts' + (out ? " out" : "") + '"><span class="hide">[Reactions: </span>' + esc(t(m.waReacts)) + (t(m.waCount) ? " " + esc(t(m.waCount)) : "") + '<span class="hide">]</span></p>');
+      if (tw && t(m.time)) body.push('<p class="twdm-time' + (out ? " time-out" : "") + '">' + esc(t(m.time)) + "</p>");
+      if (!tw && t(m.status)) body.push('<p class="igdm-status">' + esc(t(m.status)) + "</p>");
+    });
+    L = L.concat(ind(body, 2));
+    L.push("  </div>");
+    if (tw && b.bar !== "none") L.push('  <p class="twdm-foot"><span>Start a message</span></p>');
+    L.push("</div>");
+    return L.join("\n");
+  }
+
   function allHTML() {
     tlCount = 0;
     return S.blocks.map(function (b) {
       if (b.type === "imsg") return imsgHTML(b);
       if (b.type === "wa") return waHTML(b);
+      if (b.type === "twthread") return twThreadHTML(b);
+      if (b.type === "twfeed") return twFeedHTML(b);
+      if (b.type === "igpost") return igPostHTML(b);
+      if (b.type === "twdm" || b.type === "igdm") return dmHTML(b);
       return "";
     }).filter(Boolean).join("\n\n");
   }
@@ -459,6 +681,10 @@
       h.push(field(P + ".alt", "Picture description (optional)", { ph: "Profile picture of " + nameOf(c) }));
       h.push(field(P + ".land", "Landscape picture", { type: "check" }));
       h.push(field(P + ".num", "WhatsApp phone number (for someone not saved in the phone)", { ph: "+44 7700 900123" }));
+      // their names on Twitter/X and Instagram, when there's a post or DM from those apps
+      var has = function (re) { return S.blocks.some(function (b) { return re.test(b.type); }); };
+      if (has(/^tw/)) h.push(field(P + ".handle", "Twitter/X handle", { ph: "@" + twHandle(c) }));
+      if (has(/^ig/)) h.push(field(P + ".ighandle", "Instagram name", { ph: igName(c) }));
     } else {
       var Q = P + ".prof";
       if (c.kind === "example") {
@@ -510,16 +736,29 @@
   }
 
   function msgRow(b, bi, m, mi) {
-    var P = "blocks." + bi + ".msgs." + mi, wa = b.type === "wa", h = [];
+    var P = "blocks." + bi + ".msgs." + mi, wa = b.type === "wa", dm = b.type === "twdm" || b.type === "igdm", h = [];
     var side = m.from === b.pov ? " out" : m.from === "sys" || m.from === "typing" ? " sys" : "";
     h.push('<li class="fb-msg' + side + '">');
-    h.push('<div class="fb-row">' + field(P + ".from", "", { type: "select", re: true, options: speakerOptions(b, wa ? "Typing line" : "Typing dots") }));
+    h.push('<div class="fb-row">' + field(P + ".from", "", { type: "select", re: true, options: dm ? castOptions().map(function (o) { return o[0] === b.pov ? [o[0], o[1] + " (phone owner)"] : o; }) : speakerOptions(b, wa ? "Typing line" : "Typing dots") }));
     if (!(m.from === "typing" && !wa)) h.push(field(P + ".text", "", { ph: m.from === "sys" ? "Today 11:48 PM" : m.from === "typing" ? "Lily is typing..." : m.photos.length || m.link ? "(no text, open extras for more)" : "Message", cls: "fb-text" }));
-    if (wa && m.from !== "sys" && m.from !== "typing") h.push(field(P + ".time", "", { ph: "09:15", cls: "fb-time" }));
+    if ((wa || b.type === "twdm") && m.from !== "sys" && m.from !== "typing") h.push(field(P + ".time", "", { ph: wa ? "09:15" : "10:14 PM", cls: "fb-time" }));
     h.push('<span class="fb-tools">' + (m.from === "sys" || m.from === "typing" ? "" : btn("msg-more:" + bi + ":" + mi, m.open ? "Less" : "Extras", "Extras for this message")) +
       btn("msg-up:" + bi + ":" + mi, "&uarr;", "Move up") + btn("msg-down:" + bi + ":" + mi, "&darr;", "Move down") +
       btn("msg-ins:" + bi + ":" + mi, "+", "Add a message under this one") + btn("msg-del:" + bi + ":" + mi, "&times;", "Delete this message") + "</span></div>");
-    if (m.open && m.from !== "sys" && m.from !== "typing") {
+    if (m.open && dm) {
+      // Twitter/X and Instagram DMs have fewer extras
+      h.push('<div class="fb-extras">' + fmtButtons());
+      if (b.type === "twdm") {
+        h.push('<div class="fb-row">' + field(P + ".waReacts", "Reactions", { ph: "😏" }) + field(P + ".waCount", "Count", { ph: "1", cls: "fb-time" }) + "</div>");
+        h.push(field(P + ".voice", "Voice message: its length (this replaces the text)", { ph: "0:02" }));
+        h.push(pictureRows(P, bi, mi, m, 0, false));
+      } else {
+        h.push(field(P + ".shared", "A shared post, reel or story (the text goes in an outlined box)", { type: "check" }));
+        h.push(field(P + ".status", "Line under it (e.g. Seen, or Seen by 3)", {}));
+      }
+      h.push("</div>");
+    }
+    if (m.open && !dm && m.from !== "sys" && m.from !== "typing") {
       h.push('<div class="fb-extras">');
       h.push('<p class="hint">Select some words in the message, then: ' + btn("fmt:tl", "Translation") + " " + btn("fmt:egg", "Easter egg") + " " +
         btn("fmt:del", "Cross out") + " " + btn("fmt:link", "Fake link") + "</p>");
@@ -566,48 +805,176 @@
     return h.join("");
   }
 
-  function blockCard(b, i) {
-    var P = "blocks." + i, h = [];
-    h.push('<section class="fb-block" data-i="' + i + '">');
-    h.push('<div class="fb-bhead"><b>' + (i + 1) + ". " + KINDS[b.type] + "</b><span class=\"fb-tools\">" +
-      btn("blk-up:" + i, "&uarr;", "Move up") + btn("blk-down:" + i, "&darr;", "Move down") + btn("blk-del:" + i, "&times;", "Delete this chat") + "</span></div>");
-    {
-      var wa = b.type === "wa";
-      h.push("<details" + (b.open ? " open" : "") + ' data-open="' + P + '.open"><summary>Chat settings</summary><div class="fb-grid">');
-      h.push("<div>" + field(P + ".pov", "Whose phone is it?", { type: "select", re: true, options: S.cast.map(function (c) { return [c.id, nameOf(c)]; }) }) + "</div>");
-      h.push("<div>" + field(P + ".group", "Group chat", { type: "check", re: true }) + (wa && b.group ? field(P + ".pics", "Show pictures by names", { type: "check" }) : "") + "</div>");
-      h.push("<div>" + field(P + ".title", "Name at the top", { ph: b.group ? "Group chat name" : "The other person's name" }) + "</div>");
-      h.push("<div>" + field(P + ".sub", "Smaller line under it", { ph: wa ? "online" : "iMessage" }) + "</div>");
-      h.push("<div>" + field(P + ".theme", "Light, dark, or auto", { type: "select", options: [["theme-light", "Light"], ["theme-dark", "Dark"], ["theme-auto", "Auto"]] }) + "</div>");
-      h.push("<div>" + field(P + ".width", "Width", { type: "select", options: [["", "Phone width"], ["wide", "Full width"]] }) + "</div>");
-      h.push("<div>" + field(P + ".scroll", "Long chats", { type: "select", options: [["", "Scroll inside the phone"], ["no-scroll", "Show it all"]] }) + "</div>");
-      if (wa) {
-        h.push("<div>" + field(P + ".header", "Header", { type: "select", re: true, options: [["simple", "Simple"], ["bar", "With picture and icons"]] }) + "</div>");
-        h.push("<div>" + field(P + ".bg", "Background", { type: "select", options: BACKGROUNDS.map(function (x) { return [x, x ? x.charAt(0).toUpperCase() + x.slice(1) : "Normal"]; }) }) + "</div>");
+  // pick one of a profile's extra accounts on this app (only shown when they have one)
+  function accField(path, c, app) {
+    var accs = isProfile(c) ? c.prof.accounts.filter(function (a) { return a.app === app && MP.slugify(a.acc); }) : [];
+    if (!accs.length) return "";
+    return field(path, "Which account", { type: "select", options: [["", "Their main account"]].concat(accs.map(function (a) {
+      return [MP.slugify(a.acc), "acc-" + MP.slugify(a.acc) + (t(a.handle) ? " (" + t(a.handle) + ")" : "")]; })) });
+  }
+  function castOptions() { return S.cast.map(function (c) { return [c.id, nameOf(c)]; }); }
+  function pictureRows(P, bi, mi, m, max, land) {
+    var h = ['<p class="hint">Pictures' + (max ? " (up to " + max + ")" : "") + ":</p>"];
+    m.photos.forEach(function (p, k) {
+      var K = P + ".photos." + k;
+      h.push('<div class="fb-acct"><div class="fb-row">' + field(K + ".url", "", { type: "url", ph: "Picture link" }) + btn("photo-del:" + bi + ":" + mi + ":" + k, "&times;", "Remove") + "</div>" +
+        field(K + ".alt", "", { ph: "Describe the picture (alt text)" }) + field(K + ".desc", "", { ph: "Or, with no picture, describe it in words" }) +
+        (land ? field(K + ".land", "Landscape picture", { type: "check" }) : "") + "</div>");
+    });
+    if (!max || m.photos.length < max) h.push(btn("photo-add:" + bi + ":" + mi, "+ Picture"));
+    return h.join("");
+  }
+  function rowTools(bi, mi, m, extras) {
+    return '<span class="fb-tools">' + (extras ? btn("msg-more:" + bi + ":" + mi, m.open ? "Less" : "Extras", "Extras") : "") +
+      btn("msg-up:" + bi + ":" + mi, "&uarr;", "Move up") + btn("msg-down:" + bi + ":" + mi, "&darr;", "Move down") +
+      btn("msg-ins:" + bi + ":" + mi, "+", "Add one under this") + btn("msg-del:" + bi + ":" + mi, "&times;", "Delete") + "</span>";
+  }
+  function fmtButtons() {
+    return '<p class="hint">Select some words in the text, then: ' + btn("fmt:tl", "Translation") + " " + btn("fmt:egg", "Easter egg") + " " +
+      btn("fmt:del", "Cross out") + " " + btn("fmt:link", "Fake link") + "</p>";
+  }
+
+  // one tweet in a timeline or thread
+  function tweetRow(b, bi, m, mi) {
+    var P = "blocks." + bi + ".msgs." + mi, h = [], thread = b.type === "twthread";
+    h.push('<li class="fb-msg' + (thread && mi === 0 ? " out" : "") + '">');
+    if (thread) h.push('<p class="hint"><b>' + (mi === 0 ? "The tweet" : "Reply") + "</b></p>");
+    h.push('<div class="fb-row">' + field(P + ".from", "", { type: "select", re: true, options: castOptions() }) +
+      field(P + ".time", "", { ph: "2h", cls: "fb-time" }) + rowTools(bi, mi, m, true) + "</div>");
+    h.push(field(P + ".text", "", { type: "area", rows: 2, ph: "What's happening? #hashtags and @mentions go blue by themselves" }));
+    if (m.open) {
+      var c = char(m.from);
+      h.push('<div class="fb-extras">' + fmtButtons());
+      h.push(accField(P + ".acc", c, "tw"));
+      if (thread && mi > 0) {
+        h.push(field(P + ".replyTo", "Replying to", { type: "select", options: b.msgs.slice(0, mi).map(function (x, k) {
+          var tx = plain(x.text).trim(); return [x.id, (k ? "" : "The tweet: ") + nameOf(char(x.from)) + (tx ? ": " + (tx.length > 40 ? tx.slice(0, 40) + "..." : tx) : "")];
+        }) }));
       }
+      h.push(field(P + ".verified", "Blue verified tick", { type: "check" }));
+      h.push(field(P + ".label", "Little grey label (Promoted, or a Twitter Circle notice)", {}));
+      h.push('<div class="fb-grid"><div>' + field(P + ".reposts", "Reposts", { ph: "580" }) + field(P + ".reposted", "Reposted (green)", { type: "check" }) + "</div><div>" +
+        field(P + ".likes", "Likes", { ph: "2.6k" }) + field(P + ".liked", "Liked (pink)", { type: "check" }) + "</div><div>" +
+        field(P + ".replies", "Replies", { ph: "10" }) + "</div></div>");
+      h.push(field(P + ".date", "Exact time and date (for a tweet opened on its own)", { ph: "8:23 AM · 11 May 23" }));
+      h.push(field(P + ".poll", "Poll: one option per line. For a finished poll, put the percentage after each one, like Montreal 75%", { type: "area", rows: 2 }));
+      if (t(m.poll)) h.push(field(P + ".pollinfo", "Under the poll", { ph: "179 votes · 13 minutes left" }));
+      h.push('<p class="hint">Quote tweet:</p><div class="fb-grid"><div>' + field(P + ".qName", "", { ph: "Their name" }) + "</div><div>" + field(P + ".qHandle", "", { ph: "Their handle" }) + "</div></div>" +
+        field(P + ".qText", "", { ph: "What they said" }));
+      h.push(field(P + ".note", "Community note", { ph: "Readers added context: ..." }));
+      h.push(pictureRows(P, bi, mi, m, 4, true));
+      h.push(field(P + ".warn", "Cover the pictures with a sensitive content warning", { type: "check" }));
+      h.push('<p class="hint">Or a video:</p>' + field(P + ".vUrl", "", { type: "url", ph: "Video embed link (Vimeo, YouTube or the Internet Archive)" }) +
+        field(P + ".vTitle", "", { ph: "The video's title" }) + field(P + ".vDesc", "", { ph: "Describe the video" }));
+      h.push("</div>");
+    }
+    h.push("</li>");
+    return h.join("");
+  }
+  // one comment on an Instagram post
+  function commentRow(b, bi, m, mi) {
+    var P = "blocks." + bi + ".msgs." + mi;
+    return '<li class="fb-msg"><div class="fb-row">' + field(P + ".from", "", { type: "select", re: true, options: castOptions() }) +
+      field(P + ".text", "", { ph: "Comment", cls: "fb-text" }) + rowTools(bi, mi, m, false) + "</div>" + accField(P + ".acc", char(m.from), "ig") + "</li>";
+  }
+  // the Instagram post itself
+  function igSettings(b, i) {
+    var P = "blocks." + i, h = [];
+    h.push("<details" + (b.open ? " open" : "") + ' data-open="' + P + '.open"><summary>The post</summary>');
+    h.push('<div class="fb-grid"><div>' + field(P + ".from", "Who posted it", { type: "select", re: true, options: castOptions() }) + "</div><div>" +
+      field(P + ".theme", "Light, dark, or auto", { type: "select", options: [["theme-light", "Light"], ["theme-dark", "Dark"], ["theme-auto", "Auto"]] }) + "</div><div>" +
+      field(P + ".scroll", "Long posts", { type: "select", options: [["", "Scroll inside the phone"], ["no-scroll", "Show it all"]] }) + "</div></div>");
+    h.push(accField(P + ".acc", char(b.from), "ig"));
+    h.push(field(P + ".story", "Story ring", { type: "check" }) + " " + field(P + ".verified", "Verified tick", { type: "check" }) + " " +
+      field(P + ".follow", "Follow link", { type: "check" }) + " " + field(P + ".menu", "Three dots menu", { type: "check" }));
+    h.push('<div class="fb-row">' + field(P + ".underKind", "", { type: "select", options: [["location", "Location"], ["song", "Song"]] }) + field(P + ".under", "", { ph: "Under the name: Ottawa, Ontario, or Artist - Song" }) + "</div>");
+    h.push('<p class="hint">The photo:</p>' + field(P + ".photo.url", "", { type: "url", ph: "Picture link" }) + field(P + ".photo.alt", "", { ph: "Describe the picture (alt text)" }) +
+      field(P + ".photo.desc", "", { ph: "Or, with no picture, describe it in words" }));
+    h.push('<p class="hint">Buttons (leave a count empty to leave that button out):</p><div class="fb-grid"><div>' +
+      field(P + ".likes", "Likes", { ph: "2,431" }) + field(P + ".likeClick", "Readers can click it", { type: "check", re: true }) + (b.likeClick ? field(P + ".liked", "Already liked", { type: "check" }) : "") + "</div><div>" +
+      field(P + ".cmCount", "Comments", { ph: "84" }) + "</div><div>" + field(P + ".reposts", "Reposts", { ph: "12" }) + "</div><div>" +
+      field(P + ".shares", "Shares", { ph: "7" }) + "</div><div>" + field(P + ".saveClick", "Save button", { type: "check", re: true }) +
+      (b.saveClick ? field(P + ".saved", "Already saved", { type: "check" }) : "") + "</div></div>");
+    h.push(field(P + ".likesLine", "Likes line", { type: "select", re: true, options: [["count", "The number of likes"], ["faces", "Liked by, with faces"], ["none", "None"]] }));
+    if (b.likesLine === "faces") {
+      b.faces.forEach(function (f, k) {
+        h.push('<div class="fb-row">' + field(P + ".faces." + k, "", { type: "select", options: castOptions() }) + btn("face-del:" + i + ":" + k, "&times;", "Remove") + "</div>");
+      });
+      if (b.faces.length < 3) h.push(btn("face-add:" + i, "+ Face"));
+      h.push('<p class="hint">It says "Liked by" the first one, "and others".</p>');
+    }
+    h.push(field(P + ".caption", "Caption (#hashtags are coloured by themselves)", { type: "area", rows: 2 }));
+    h.push(field(P + ".viewAll", "\"View all comments\" line", { type: "check" }));
+    h.push(field(P + ".time", "Time posted", { ph: "3 hours ago" }));
+    h.push("</details>");
+    return h.join("");
+  }
+  // the settings for a chat: iMessage, WhatsApp, and the Twitter/X and Instagram DMs
+  function chatSettings(b, i) {
+    var P = "blocks." + i, h = [], wa = b.type === "wa", dm = b.type === "twdm" || b.type === "igdm";
+    h.push("<details" + (b.open ? " open" : "") + ' data-open="' + P + '.open"><summary>Chat settings</summary><div class="fb-grid">');
+    h.push("<div>" + field(P + ".pov", "Whose phone is it?", { type: "select", re: true, options: castOptions() }) + "</div>");
+    h.push("<div>" + field(P + ".group", "Group chat", { type: "check", re: true }) + (wa && b.group ? field(P + ".pics", "Show pictures by names", { type: "check" }) : "") + "</div>");
+    h.push("<div>" + field(P + ".title", "Name at the top", { ph: b.group ? "Group chat name" : "The other person's name" }) + "</div>");
+    h.push("<div>" + field(P + ".sub", "Smaller line under it", { ph: wa ? "online" : b.type === "twdm" ? "Their @handle" : b.type === "igdm" ? "Active now" : "iMessage" }) + "</div>");
+    h.push("<div>" + field(P + ".theme", "Light, dark, or auto", { type: "select", options: [["theme-light", "Light"], ["theme-dark", "Dark"], ["theme-auto", "Auto"]] }) + "</div>");
+    h.push("<div>" + field(P + ".width", "Width", { type: "select", options: [["", "Phone width"], ["wide", "Full width"]] }) + "</div>");
+    h.push("<div>" + field(P + ".scroll", "Long chats", { type: "select", options: [["", "Scroll inside the phone"], ["no-scroll", "Show it all"]] }) + "</div>");
+    if (wa) {
+      h.push("<div>" + field(P + ".header", "Header", { type: "select", re: true, options: [["simple", "Simple"], ["bar", "With picture and icons"]] }) + "</div>");
+      h.push("<div>" + field(P + ".bg", "Background", { type: "select", options: BACKGROUNDS.map(function (x) { return [x, x ? x.charAt(0).toUpperCase() + x.slice(1) : "Normal"]; }) }) + "</div>");
+    }
+    if (b.type === "twdm") h.push("<div>" + field(P + ".bar", "Start a message bar", { type: "select", options: [["empty", "Yes"], ["none", "No"]] }) + "</div>");
+    else if (!dm) {
       h.push("<div>" + field(P + ".bar", "Message bar at the bottom", { type: "select", re: true, options: [["none", "None"], ["empty", "Empty"], ["typed", "Something half-typed"]] }) + "</div>");
       if (b.bar === "typed") h.push("<div>" + field(P + ".barText", "Half-typed message", {}) + "</div>");
-      h.push("</div>");
-      if (wa && b.group && b.header === "bar") {
-        // the group's picture in the header
-        if (!b.gp) b.gp = newGroupPic();
-        var G = P + ".gp";
-        h.push('<div class="fb-acct"><p class="hint">The group\'s picture in the header</p>');
-        h.push('<div class="fb-row">' + field(G + ".colour", "", { type: "select", re: true, options: Object.keys(COLOURS).map(function (k) { return [k, "Colour " + k]; }) }) +
-          '<span class="fb-swatch" style="background:' + COLOURS[b.gp.colour] + '"></span>' + "</div>");
-        h.push('<div class="fb-row">' + field(G + ".showInitials", "Initials in the circle", { type: "check", re: true }) +
-          (b.gp.showInitials !== false ? field(G + ".initials", "", { ph: (b.title.trim() || "G").charAt(0).toUpperCase() }) : "") + "</div>");
-        h.push(field(G + ".pic", "Picture link (optional)", { type: "url", ph: "https://..." }));
-        h.push(field(G + ".alt", "Picture description (optional)", { ph: "Profile picture of " + (b.title.trim() || "the group") }));
-        h.push(field(G + ".land", "Landscape picture", { type: "check" }) + "</div>");
-      }
-      h.push("</details>");
-      h.push('<ol class="fb-msgs">' + b.msgs.map(function (m, mi) { return msgRow(b, i, m, mi); }).join("") + "</ol>");
-      h.push('<div class="fb-script">' + field(P + ".script", "Type or paste messages", { type: "area", rows: 4,
-        ph: "Ilya: are you awake\nShane: no\n-- Today 11:48 PM" }) +
-        '<p class="hint">One message per line, starting with who\'s talking and a colon. A line on its own with no name carries on from the last person. Start a line with -- for a date or notice line, and put a time first if you like, like 09:15 Lily: hi. New names are added to the cast.</p>' +
-        btn("script:" + i, "Add these messages") + " " + btn("msg-add:" + i, "+ One empty message") + "</div>");
     }
+    h.push("</div>");
+    if (dm && !b.group) {
+      var o = others(b)[0];
+      h.push(accField(P + ".acc", o, b.type === "twdm" ? "tw" : "ig"));
+    }
+    if (wa && b.group && b.header === "bar") {
+      // the group's picture in the header
+      if (!b.gp) b.gp = newGroupPic();
+      var G = P + ".gp";
+      h.push('<div class="fb-acct"><p class="hint">The group\'s picture in the header</p>');
+      h.push('<div class="fb-row">' + field(G + ".colour", "", { type: "select", re: true, options: Object.keys(COLOURS).map(function (k) { return [k, "Colour " + k]; }) }) +
+        '<span class="fb-swatch" style="background:' + COLOURS[b.gp.colour] + '"></span>' + "</div>");
+      h.push('<div class="fb-row">' + field(G + ".showInitials", "Initials in the circle", { type: "check", re: true }) +
+        (b.gp.showInitials !== false ? field(G + ".initials", "", { ph: (b.title.trim() || "G").charAt(0).toUpperCase() }) : "") + "</div>");
+      h.push(field(G + ".pic", "Picture link (optional)", { type: "url", ph: "https://..." }));
+      h.push(field(G + ".alt", "Picture description (optional)", { ph: "Profile picture of " + (b.title.trim() || "the group") }));
+      h.push(field(G + ".land", "Landscape picture", { type: "check" }) + "</div>");
+    }
+    h.push("</details>");
+    return h.join("");
+  }
+  var SCRIPT_HINTS = {
+    chat: "One message per line, starting with who's talking and a colon. A line on its own with no name carries on from the last person. Start a line with -- for a date or notice line, and put a time first if you like, like 09:15 Lily: hi. New names are added to the cast.",
+    twthread: "One tweet per line, starting with who's posting and a colon. The first one is the tweet, and the rest are replies to it (you can change who each one replies to in its extras). New names are added to the cast.",
+    twfeed: "One tweet per line, starting with who's posting and a colon. New names are added to the cast.",
+    igpost: "One comment per line, starting with who's commenting and a colon. New names are added to the cast."
+  };
+  function blockCard(b, i) {
+    var P = "blocks." + i, h = [], chat = isChat(b);
+    h.push('<section class="fb-block" data-i="' + i + '">');
+    h.push('<div class="fb-bhead"><b>' + (i + 1) + ". " + KINDS[b.type] + "</b><span class=\"fb-tools\">" +
+      btn("blk-up:" + i, "&uarr;", "Move up") + btn("blk-down:" + i, "&darr;", "Move down") + btn("blk-del:" + i, "&times;", "Delete this") + "</span></div>");
+    if (chat) h.push(chatSettings(b, i));
+    else if (b.type === "igpost") h.push(igSettings(b, i));
+    else {
+      h.push('<div class="fb-grid"><div>' + field(P + ".theme", "Light, dark, or auto", { type: "select", options: [["theme-light", "Light"], ["theme-dark", "Dark"], ["theme-auto", "Auto"]] }) + "</div><div>" +
+        field(P + ".width", "Width", { type: "select", options: [["", "Phone width"], ["wide", "Full width"]] }) + "</div>" +
+        (b.type === "twthread" ? "<div>" + field(P + ".bar", "Tweet your reply bar", { type: "select", options: [["empty", "Yes"], ["none", "No"]] }) + "</div>" : "") + "</div>");
+    }
+    if (b.type === "igpost") h.push('<p class="hint"><b>Comments</b></p>');
+    var row = chat ? msgRow : b.type === "igpost" ? commentRow : tweetRow;
+    h.push('<ol class="fb-msgs">' + b.msgs.map(function (m, mi) { return row(b, i, m, mi); }).join("") + "</ol>");
+    var ph = chat ? "Ilya: are you awake\nShane: no\n-- Today 11:48 PM" : b.type === "igpost" ? "shane.h: why are you awake" : "Zim: Reminder to everyone...\nHolster: I played all through college...";
+    h.push('<div class="fb-script">' + field(P + ".script", b.type === "igpost" ? "Type or paste comments" : chat ? "Type or paste messages" : "Type or paste tweets", { type: "area", rows: 4, ph: ph }) +
+      '<p class="hint">' + (SCRIPT_HINTS[chat ? "chat" : b.type]) + "</p>" +
+      btn("script:" + i, "Add these") + " " + btn("msg-add:" + i, b.type === "igpost" ? "+ One empty comment" : chat ? "+ One empty message" : "+ One empty tweet") + "</div>");
     h.push("</section>");
     return h.join("");
   }
@@ -645,7 +1012,7 @@
     b.script.split(/\n/).forEach(function (line) {
       line = line.trim();
       if (!line) return;
-      if (/^--/.test(line)) { b.msgs.push(newMsg("sys", line.replace(/^-+\s*/, ""))); return; }
+      if (/^--/.test(line) && (b.type === "imsg" || b.type === "wa")) { b.msgs.push(newMsg("sys", line.replace(/^-+\s*/, ""))); return; }
       var tm = line.match(/^(\d{1,2}[:.]\d{2})\s+(.*)$/); // a time first, like "09:15 Lily: hi"
       if (tm) { time = tm[1]; line = tm[2]; }
       var sp = line.match(/^([^:]{1,40}):\s*(.*)$/);
@@ -698,6 +1065,8 @@
       case "cast-del":
         if (!confirm("Remove " + nameOf(S.cast[n[0]]) + " from the cast? Their messages will disappear too.")) return;
         S.cast.splice(n[0], 1); break;
+      case "face-add": b.faces.push(S.cast[0] ? S.cast[0].id : ""); break;
+      case "face-del": b.faces.splice(n[1], 1); break;
       case "saved-add": S.cast[n[0]].prof.saved.push({ owner: "", as: "", pic: "" }); break;
       case "saved-del": S.cast[n[0]].prof.saved.splice(n[1], 1); break;
       case "acct-add": S.cast[n[0]].prof.accounts.push({ acc: "", app: "ig", pic: "", name: "", handle: "", sq: false }); break;
