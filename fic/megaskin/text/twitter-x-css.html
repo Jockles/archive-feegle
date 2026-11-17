@@ -74,7 +74,6 @@
 #workskin .tw-reply .tw-stats {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   margin: 0.5em 0 0 0;
   padding: 0.55em 0.2em 0 0.2em;
   border-top: 1px solid #eff3f4;
@@ -93,7 +92,11 @@
 #workskin .tw-reply .tw-stats p { display: inline; margin: 0; padding: 0; }
 
 #workskin .tw .tw-stat,
-#workskin .tw-reply .tw-stat { display: block; margin: 0; padding: 0; white-space: nowrap; }
+#workskin .tw-reply .tw-stat { display: block; flex: 1 1 0; margin: 0; padding: 0; white-space: nowrap; }
+
+/* the bookmark and share buttons (tw-end) hug the right-hand edge */
+#workskin .tw .tw-stat.tw-end,
+#workskin .tw-reply .tw-stat.tw-end { flex: none; margin-left: 0.9em; }
 
 #workskin .tw .tw-stats .ic,
 #workskin .tw-reply .tw-stats .ic { width: 1.3em; height: 1.3em; margin-right: 0.3em; vertical-align: -0.3em; }
@@ -110,7 +113,7 @@
   font-size: 0.92em;
 }</code></pre>
 
-<p>Most of the parts of a tweet are simple: a line with its own size, colour and spacing. The row of buttons is a flex row, like the bottom of a Tumblr post: <code>space-between</code> spreads the buttons out evenly, with the share button at the far end. The main tweet's row has a pale line above it, and a reply's row is smaller with no line. The buttons themselves are pictures, in the Icons section at the end of the module. A quote tweet is a smaller rounded box inside the tweet. The Community Note (<code>tw-note</code>) and the sensitive content cover (<code>tw-warn</code>) are boxes the same way, with a pale grey background.</p>
+<p>Most of the parts of a tweet are simple: a line with its own size, colour and spacing. The row of buttons is a flex row, like the bottom of a Tumblr post. <code>flex: 1 1 0</code> gives each button an equal share of the width, so replies, reposts, likes and views spread out evenly. <code>tw-end</code> switches that off with <code>flex: none</code>, so the bookmark and share buttons only take up as much room as they need, and sit together at the right-hand end. The main tweet's row has a pale line above it, and a reply's row is smaller with no line. The buttons themselves are pictures, in the Icons section at the end of the module. A quote tweet is a smaller rounded box inside the tweet. The Community Note (<code>tw-note</code>) and the sensitive content cover (<code>tw-warn</code>) are boxes the same way, with a pale grey background.</p>
 
 <pre><code>/* ---- a like readers can click: &lt;details class="tw-stat tw-tog"&gt;
    Inside the &lt;summary&gt;, the "off" count shows at first and the "on" count once clicked.
