@@ -6,7 +6,7 @@
   <title>Megaskin, Chapter 3: The Core CSS | jockles.com</title>
   <link rel="stylesheet" href="../../style.css">
   <script src="../../theme.js"></script>
-  <link rel="stylesheet" href="megaskin.css?v=fcfa478b" id="creator-style">
+  <link rel="stylesheet" href="megaskin.css?v=c10c0783" id="creator-style">
 </head>
 <body>
 <header>
@@ -45,18 +45,19 @@
   <li><a href="#s3-8">3.8 Hidden Text</a></li>
   <li><a href="#s3-9">3.9 Video Descriptions</a></li>
   <li><a href="#s3-10">3.10 Typing Line and Deleted Text</a></li>
-  <li><a href="#s3-11">3.11 Links That Go Nowhere</a></li>
-  <li><a href="#s3-12">3.12 Hover and Tap Translations</a></li>
-  <li><a href="#s3-13">3.13 Character Profiles, Line by Line</a>
+  <li><a href="#s3-11">3.11 Flashing Cursor</a></li>
+  <li><a href="#s3-12">3.12 Links That Go Nowhere</a></li>
+  <li><a href="#s3-13">3.13 Hover and Tap Translations</a></li>
+  <li><a href="#s3-14">3.14 Character Profiles, Line by Line</a>
     <ul>
-      <li><a href="#s3-13-1">3.13.1 A Simple Profile: Stan</a></li>
-      <li><a href="#s3-13-2">3.13.2 The Profile Maker Tool</a></li>
-      <li><a href="#s3-13-3">3.13.3 Every Option: Luca</a></li>
-      <li><a href="#s3-13-4">3.13.4 More Than One Account on the Same App</a></li>
+      <li><a href="#s3-14-1">3.14.1 A Simple Profile: Stan</a></li>
+      <li><a href="#s3-14-2">3.14.2 The Profile Maker Tool</a></li>
+      <li><a href="#s3-14-3">3.14.3 Every Option: Luca</a></li>
+      <li><a href="#s3-14-4">3.14.4 More Than One Account on the Same App</a></li>
     </ul>
   </li>
-  <li><a href="#s3-14">3.14 The Ten Colours</a></li>
-  <li><a href="#s3-15">3.15 Themes</a></li>
+  <li><a href="#s3-15">3.15 The Ten Colours</a></li>
+  <li><a href="#s3-16">3.16 Themes</a></li>
 </ul>
 
 <p>This chapter goes through the CSS behind the last one: the chat box, scrolling, round pictures, hidden text, translations, character profiles and the ten colours every app shares. It's the part of the skin that every module needs, so whichever apps you use, the core goes in first.</p>
@@ -331,7 +332,24 @@
 
 <p><code>opacity</code> fades the text, so it's lighter than the messages on a light chat and darker on a dark one, without needing a colour for each. Lower the number to fade it more.</p>
 
-<h3 id="s3-11">3.11 Links That Go Nowhere</h3>
+<h3 id="s3-11">3.11 Flashing Cursor</h3>
+
+<pre><code>#workskin .cursor {
+  display: inline-block;
+  width: 0.2em;
+  height: 1.2em;
+  overflow: hidden;
+  text-indent: -100em;
+  vertical-align: -0.25em;
+  background-image: url(https://images.squidge.org/images/2026/11/17/cursor-flash.gif);
+  background-repeat: no-repeat;
+  background-position: left center;
+  background-size: 1.2em 1.2em;
+}</code></pre>
+
+<p>The cursor is a moving picture (a gif) of a flashing line, set as the background of a thin box, the same way the icons work. <code>text-indent: -100em</code> pushes the typed <code>|</code> far off to the left, and <code>overflow: hidden</code> hides it, so only the picture shows. The picture is square with the line near its left edge, so <code>background-size</code> makes it as tall as the box, <code>background-position: left center</code> lines the line up with the box's left edge, and the <code>0.2em</code> width cuts off the empty rest of the square. <code>vertical-align</code> drops it a little so it sits level with the words.</p>
+
+<h3 id="s3-12">3.12 Links That Go Nowhere</h3>
 
 <pre><code>#workskin .mob .fake-link,
 #workskin .mob a:not(.tl) {
@@ -343,7 +361,7 @@
 
 <p>A <code>fake-link</code> and a real link get the same underline and the same pointing-hand cursor, so readers can't tell them apart. <code>a:not(.tl)</code> means "any link that isn't a translation", because translations are links too and need to look different. The colours are in each module, under its <em>Links</em> heading.</p>
 
-<h3 id="s3-12">3.12 Hover and Tap Translations</h3>
+<h3 id="s3-13">3.13 Hover and Tap Translations</h3>
 
 <p>Thanks to La_Temperanza, whose <a href="https://archiveofourown.org/works/10957056"><em>How To Change Text on AO3 When the Cursor is Hovering Over It (Or Clicked on Mobile)</em></a> the translations are built on. Copied and adapted from it: swapping the text on hover or tap, the brackets for readers with Creator's Style off, and the link that makes tapping work on phones.</p>
 
@@ -430,11 +448,11 @@
 
 </details>
 
-<h3 id="s3-13">3.13 Character Profiles, Line by Line</h3>
+<h3 id="s3-14">3.14 Character Profiles, Line by Line</h3>
 
 <p>A profile is a block of CSS for one character. The trick behind it is that CSS can't put text on a page by itself, but it <em>can</em> add text before or after something with <code>::before</code> and <code>::after</code>. So <code>&lt;span class=&quot;handle pfp-luca&quot;&gt;&lt;/span&gt;</code> is an empty span, and the profile fills it in. Because the words come from the CSS, they disappear when the skin is off, which is why every example has a <code>hide</code> copy typed inside.</p>
 
-<h4 id="s3-13-1">3.13.1 A Simple Profile: Stan</h4>
+<h4 id="s3-14-1">3.14.1 A Simple Profile: Stan</h4>
 
 <p>To make a profile for one of your characters, you only need five lines. Here they are for Stan, the simplest profile in the skin. Copy his block into the core CSS, then change <code>stan</code> to your character's name everywhere in it, and swap in their picture, name colour, name, handle and email address:</p>
 
@@ -487,11 +505,11 @@
 
 </details>
 
-<h4 id="s3-13-2">3.13.2 The Profile Maker Tool</h4>
+<h4 id="s3-14-2">3.14.2 The Profile Maker Tool</h4>
 
 <p>If you'd like to see your profile as you build it, my <a href="profile-maker.html">Profile Maker</a> is a WYSIWYG (what you see is what you get) helper tool: fill in the boxes and it shows the character in every app as you go, then gives you the CSS to copy. It's only a shortcut, though. Everything in this section does the same job by hand, so you don't have to use it at all if you don't want to, or if it ever breaks.</p>
 
-<h4 id="s3-13-3">3.13.3 Every Option: Luca</h4>
+<h4 id="s3-14-3">3.14.3 Every Option: Luca</h4>
 
 <p>Luca's profile uses every option, so here it is a line at a time. Only the lines marked <em>every profile</em> need to be in yours - they're the same five as Stan's.</p>
 
@@ -621,7 +639,7 @@
 
 </details>
 
-<h4 id="s3-13-4">3.13.4 More Than One Account on the Same App</h4>
+<h4 id="s3-14-4">3.14.4 More Than One Account on the Same App</h4>
 
 <p>Sometimes a character has more than one account on an app - a public one and a private one, their real account and a burner, or a fan account nobody can know about. Each extra account gets a name starting with <code>acc-</code>, the same way a phone gets <code>pov-</code>: <code>acc-burner</code>, <code>acc-shanewife</code>, <code>acc-private</code>, or whatever you like. Its lines go at the end of that character's profile. Here's Ilya's burner on Twitter/X:</p>
 
@@ -640,7 +658,7 @@
   <li>Make as many as you like. Ilya has a second one, <code>acc-shanewife</code>, built the same way, and Rose's private Instagram, <code>acc-private</code>, uses <code>.ig</code> and <code>.igdm</code> instead of the Twitter/X classes. Yuna's work email, <code>acc-work</code>, is the same idea for an email address: <code>#workskin .email.pfp-yuna.acc-work::after { content: &quot;Yuna@HollanderHockey.com&quot;; }</code>.</li>
 </ul>
 
-<h3 id="s3-14">3.14 The Ten Colours</h3>
+<h3 id="s3-15">3.15 The Ten Colours</h3>
 
 <p>Every app uses the same ten colours, <code>colour1</code> to <code>colour10</code>, for its round picture circles and for people's names. They all live at the end of the core, so if you change a colour there, it changes in every app at once.</p>
 
@@ -691,7 +709,7 @@
 
 </details>
 
-<h3 id="s3-15">3.15 Themes</h3>
+<h3 id="s3-16">3.16 Themes</h3>
 
 <p>Apart from the ten colours above, the core doesn't hold any colours, so there's nothing else about themes in it. Each module has its own dark theme and auto theme at the bottom of its block, and they work the same way everywhere:</p>
 

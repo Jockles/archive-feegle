@@ -235,6 +235,21 @@
 /* strikethrough / deleted text */
 #workskin .mob .del, #workskin .dc .del { text-decoration: line-through; opacity: 0.6; }
 
+/* a flashing cursor at the end of a half-written message, in any app: <span class="cursor">|</span>.
+   The typed line only shows for readers with the workskin off */
+#workskin .cursor {
+  display: inline-block;
+  width: 0.2em;
+  height: 1.2em;
+  overflow: hidden;
+  text-indent: -100em;
+  vertical-align: -0.25em;
+  background-image: url(https://images.squidge.org/images/2026/11/17/cursor-flash.gif);
+  background-repeat: no-repeat;
+  background-position: left center;
+  background-size: 1.2em 1.2em;
+}
+
 /* ---------- Links that go nowhere (the colours are in each module) ---------- */
 
 /* links that look clickable but go nowhere: <span class="fake-link">example.com/page</span>
