@@ -34,43 +34,43 @@
         <div id="workskin">
 <p>Thanks to gadaursan and shysonata, whose <a href="https://archiveofourown.org/works/8631214"><em>Repository: Work Skins</em></a> and <a href="https://archiveofourown.org/works/79674881"><em>Work Skin - Instagram Image Post</em></a> this module is built on. Copied and adapted from them: the post layout, hidden-text emojis, the Follow link, verified tick, stories ring, button counts, &#8220;liked by&#8221; faces, and clickable like and save buttons.</p>
 
-<h3 id="contents"><span id="s10-1"></span>10.1 Chapter Contents</h3>
+<h3 id="contents">Chapter Contents</h3>
 
 <ul class="contents">
-  <li><a href="#s10-2">10.2 Instagram posts and comments</a>
+  <li><a href="#s10-1">10.1 Instagram posts and comments</a>
     <ul>
-      <li><a href="#s10-2-1">10.2.1 A Full Post</a></li>
-      <li><a href="#s10-2-2">10.2.2 A Simpler Post</a></li>
-      <li><a href="#s10-2-3">10.2.3 Account Line</a></li>
-      <li><a href="#s10-2-4">10.2.4 Profile Picture and Stories Ring</a></li>
-      <li><a href="#s10-2-5">10.2.5 The Photo</a></li>
-      <li><a href="#s10-2-6">10.2.6 Buttons With Counts</a></li>
-      <li><a href="#s10-2-7">10.2.7 Clickable Like and Save Buttons</a></li>
-      <li><a href="#s10-2-8">10.2.8 Liked By, With Faces</a></li>
-      <li><a href="#s10-2-9">10.2.9 Caption</a></li>
-      <li><a href="#s10-2-10">10.2.10 Comments</a></li>
-      <li><a href="#s10-2-11">10.2.11 Time Posted</a></li>
-      <li><a href="#s10-2-12">10.2.12 Uploading a Profile Pic</a></li>
+      <li><a href="#s10-1-1">10.1.1 A Full Post</a></li>
+      <li><a href="#s10-1-2">10.1.2 A Simpler Post</a></li>
+      <li><a href="#s10-1-3">10.1.3 Account Line</a></li>
+      <li><a href="#s10-1-4">10.1.4 Profile Picture and Stories Ring</a></li>
+      <li><a href="#s10-1-5">10.1.5 The Photo</a></li>
+      <li><a href="#s10-1-6">10.1.6 Buttons With Counts</a></li>
+      <li><a href="#s10-1-7">10.1.7 Clickable Like and Save Buttons</a></li>
+      <li><a href="#s10-1-8">10.1.8 Liked By, With Faces</a></li>
+      <li><a href="#s10-1-9">10.1.9 Caption</a></li>
+      <li><a href="#s10-1-10">10.1.10 Comments</a></li>
+      <li><a href="#s10-1-11">10.1.11 Time Posted</a></li>
+      <li><a href="#s10-1-12">10.1.12 Uploading a Profile Pic</a></li>
     </ul>
   </li>
-  <li><a href="#s10-3">10.3 Instagram DMs</a>
+  <li><a href="#s10-2">10.2 Instagram DMs</a>
     <ul>
-      <li><a href="#s10-3-1">10.3.1 A One-to-One DM</a></li>
-      <li><a href="#s10-3-2">10.3.2 A Group DM</a></li>
-      <li><a href="#s10-3-3">10.3.3 Instagram DM Window</a></li>
-      <li><a href="#s10-3-4">10.3.4 Simple Messages</a></li>
-      <li><a href="#s10-3-5">10.3.5 Shared Posts and Reels</a></li>
-      <li><a href="#s10-3-6">10.3.6 Seen Status</a></li>
-      <li><a href="#s10-3-7">10.3.7 Group Chats</a></li>
+      <li><a href="#s10-2-1">10.2.1 A One-to-One DM</a></li>
+      <li><a href="#s10-2-2">10.2.2 A Group DM</a></li>
+      <li><a href="#s10-2-3">10.2.3 Instagram DM Window</a></li>
+      <li><a href="#s10-2-4">10.2.4 Simple Messages</a></li>
+      <li><a href="#s10-2-5">10.2.5 Shared Posts and Reels</a></li>
+      <li><a href="#s10-2-6">10.2.6 Seen Status</a></li>
+      <li><a href="#s10-2-7">10.2.7 Group Chats</a></li>
     </ul>
   </li>
 </ul>
 
-<h3 id="s10-2">10.2 Instagram posts and comments</h3>
+<h3 id="s10-1">10.1 Instagram posts and comments</h3>
 
 <p>An Instagram post is a stack of lines inside one container, from the account name at the top down to the time at the bottom. The module class is <code>ig</code>. Before we begin, here's the two kinds of post you can build: a full post with everything the workskin can do, and a simpler one. The full HTML is underneath each, which you can copy and modify yourself. The rest of this section takes the HTML apart so that you can modify all the individual parts to say exactly what you want.</p>
 
-<h4 id="s10-2-1">10.2.1 A Full Post</h4>
+<h4 id="s10-1-1">10.1.1 A Full Post</h4>
 
 <p>This one has the verified tick, the Follow link, the three dots menu, a story ring, a song, a photo, buttons with counts that you can actually click, a "Liked by" line with faces, a caption, comments and the time. Try clicking the heart and the bookmark:</p>
 
@@ -117,7 +117,7 @@
 
 <p>A post with a real photo in it can end up taller than a phone screen, so this container has <code>no-scroll</code> added to keep the buttons in view (see <a href="core.html#scrolling">Scrolling Long Chats</a>).</p>
 
-<h4 id="s10-2-2">10.2.2 A Simpler Post</h4>
+<h4 id="s10-1-2">10.1.2 A Simpler Post</h4>
 
 <p>This one takes its picture and name from Rose's profile, has a location instead of a song, describes the photo instead of showing it, and has plain buttons that don't click:</p>
 
@@ -156,7 +156,7 @@
 
 <p>Anything you don't want, you can just leave out of your copy, and the Instagram CSS chapter shows you how to switch parts off for the whole fic.</p>
 
-<h4 id="s10-2-3">10.2.3 Account Line</h4>
+<h4 id="s10-1-3">10.1.3 Account Line</h4>
 
 <p>The first line is the account that posted. The name comes first, and the last <code>&lt;span&gt;</code> in the line adds the small grey line underneath it, which can be a song, like here, or a location. Straight after the name go the blue verified tick (<code>ig-tick</code>) and the "Follow" link (<code>ig-follow</code>). The three dots menu (<code>ig-menu</code>) sits at the far right, so it goes <em>first</em> in the line:</p>
 
@@ -170,7 +170,7 @@
 
 <pre><code>&lt;p class="ig-top"&gt;&lt;span class="ig-menu ic ic-more"&gt;&amp;#8943;&lt;/span&gt;&lt;span class="ig-pfp"&gt;&lt;span class="pfp pfp-rose"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="handle pfp-rose"&gt;&lt;span class="hide"&gt;RoseLandry&lt;/span&gt;&lt;/span&gt;&lt;span class="hide"&gt; - &lt;/span&gt;&lt;span&gt;Ottawa, Ontario&lt;/span&gt;&lt;/p&gt;</code></pre>
 
-<h4 id="s10-2-4">10.2.4 Profile Picture and Stories Ring</h4>
+<h4 id="s10-1-4">10.1.4 Profile Picture and Stories Ring</h4>
 
 <p>The profile picture goes at the very start of the account line, straight after the menu. It can show initials, an uploaded picture or a picture from a profile, and there's an example of each below.</p>
 
@@ -180,7 +180,7 @@
 
 <pre><code>&lt;p class="ig-top"&gt;&lt;span class="ig-pfp colour3"&gt;SC&lt;/span&gt;scott.h&lt;/p&gt;</code></pre>
 
-<p>For an uploaded picture, put the picture tag inside a span with <code>pfp</code>, inside a span with <code>ig-pfp</code>. The <code>pfp</code> span crops the picture into a circle without squashing it, and the alt text should describe the picture (for example, "Profile picture of ilya.r"). If the picture is wider than it is tall, add <code>class=&quot;land&quot;</code> to the picture tag (see <a href="core.html#s2-6-2">Pictures in Boxes and Circles</a>). To show that the account has a story up, add <code>story</code> to the <code>ig-pfp</code> span, which draws the colourful ring around the picture:</p>
+<p>For an uploaded picture, put the picture tag inside a span with <code>pfp</code>, inside a span with <code>ig-pfp</code>. The <code>pfp</code> span crops the picture into a circle without squashing it, and the alt text should describe the picture (for example, "Profile picture of ilya.r"). If the picture is wider than it is tall, add <code>class=&quot;land&quot;</code> to the picture tag (see <a href="core.html#s2-5-2">Pictures in Boxes and Circles</a>). To show that the account has a story up, add <code>story</code> to the <code>ig-pfp</code> span, which draws the colourful ring around the picture:</p>
 
 <div class="mob ig theme-auto no-scroll"><p class="ig-top"><span class="ig-pfp story"><span class="pfp"><img src="https://64.media.tumblr.com/2f5204e07f5dc3467a42508584f56c7d/188bbfab996df056-77/s400x600/e139f3e69f9be02470797bbd3505a69cc26def70.pnj" alt="Profile picture of ilya.r"></span></span></p></div>
 
@@ -193,7 +193,7 @@
 <pre><code>&lt;p class="ig-top"&gt;&lt;span class="ig-pfp"&gt;&lt;span class="pfp pfp-rose"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="handle pfp-rose"&gt;&lt;span class="hide"&gt;RoseLandry&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;</code></pre>
 
 
-<h4 id="s10-2-5">10.2.5 The Photo</h4>
+<h4 id="s10-1-5">10.1.5 The Photo</h4>
 
 <p>Host the photo somewhere else and put it in an <code>ig-photo</code> box that also has <code>real</code>, with your link in <code>src</code> and a description in <code>alt</code>:</p>
 
@@ -207,7 +207,7 @@
 
 <pre><code>&lt;p class="ig-photo"&gt;[A photo of a very large lasagne, with one corner already missing]&lt;/p&gt;</code></pre>
 
-<h4 id="s10-2-6">10.2.6 Buttons With Counts</h4>
+<h4 id="s10-1-6">10.1.6 Buttons With Counts</h4>
 
 <p>The row of buttons is a <code>div</code> with <code>ig-actions</code>, and each button is its own paragraph with <code>ig-btn</code>. The symbol goes in a span with <code>ig-icon</code>, and the number in a span with <code>ig-count</code>. The comment bubble is drawn for you with <code>ig-icon cm</code>, and the others are plain symbols (a heart for likes, a circle arrow for repost, an arrow for share). After each number is a <code>hide</code> span with a word in it, like <code>&lt;span class=&quot;hide&quot;&gt; comments&lt;/span&gt;</code>, so readers with the workskin off get "2 comments" rather than a number on its own. Leave a button out if you don't want it on the post:</p>
 
@@ -223,7 +223,7 @@
 &lt;p class="ig-btn"&gt;&lt;span class="ig-icon ic ic-share"&gt;&amp;#10148;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="ig-count"&gt;1&lt;/span&gt;&lt;span class="hide"&gt; share&lt;/span&gt;&lt;/p&gt;
 &lt;/div&gt;</code></pre>
 
-<h4 id="s10-2-7">10.2.7 Clickable Like and Save Buttons</h4>
+<h4 id="s10-1-7">10.1.7 Clickable Like and Save Buttons</h4>
 
 <p>Readers can click or tap the heart and the save button to switch them on and off, like on the real app. They're made with the details and summary tags, and you use them in place of the plain heart from the last section. Inside the <code>summary</code> are two versions of the same thing: the parts with <code>off</code> show to begin with, and the parts with <code>on</code> swap in after a click. Click again, and it goes back. The heart turns red, and because the number is in there too, you can make the likes go up by one. The save button (<code>ig-tog save</code>) sits on its own at the far right, and has a bookmark that fills in when it's clicked:</p>
 
@@ -251,9 +251,9 @@
   <li>The <code>hide</code> spans are for readers with the workskin off. Without them the heart reads "&#9825;&#9829;2,4312,432", and with them it reads "&#9825; 2,431 likes (&#9829; 2,432 when liked)". The save button gets a hidden "Save", because its bookmark is drawn by the workskin and disappears with it. You'll still see a small triangle in front of each one with the workskin off - that's the details tag's own marker, and only the workskin can hide it.</li>
 </ul>
 
-<h4 id="s10-2-8">10.2.8 Liked By, With Faces</h4>
+<h4 id="s10-1-8">10.1.8 Liked By, With Faces</h4>
 
-<p><code>ig-likes</code> is the likes line. Add <code>liked-by</code> to it for a "Liked by" line, which puts little overlapping profile pictures in front and keeps the text from being bold unless you put names in <code>&lt;b&gt;</code>. Each face is a span with <code>ig-like-pfp</code>, with the usual <code>pfp</code> and picture tag inside, all inside one <code>ig-like-pfps</code> span. Keep the faces together on one line, with no gaps between them. A picture that's wider than tall needs <code>class=&quot;land&quot;</code> on its picture tag, like the second and third faces here, or it won't fill its circle (see <a href="core.html#s2-6-2">Pictures in Boxes and Circles</a>):</p>
+<p><code>ig-likes</code> is the likes line. Add <code>liked-by</code> to it for a "Liked by" line, which puts little overlapping profile pictures in front and keeps the text from being bold unless you put names in <code>&lt;b&gt;</code>. Each face is a span with <code>ig-like-pfp</code>, with the usual <code>pfp</code> and picture tag inside, all inside one <code>ig-like-pfps</code> span. Keep the faces together on one line, with no gaps between them. A picture that's wider than tall needs <code>class=&quot;land&quot;</code> on its picture tag, like the second and third faces here, or it won't fill its circle (see <a href="core.html#s2-5-2">Pictures in Boxes and Circles</a>):</p>
 
 <div class="mob ig theme-auto no-scroll"><p class="ig-likes liked-by"><span class="ig-like-pfps"><span class="ig-like-pfp"><span class="pfp"><img src="https://media.istockphoto.com/id/1298570775/photo/rose.jpg?s=1024x1024&w=is&k=20&c=UFPisYCT3g2Vm04F2E5zrhtUWqDtLRLDXZisKb6Xf5s=" alt="Profile picture of shane.h"></span></span><span class="ig-like-pfp"><span class="pfp"><img class="land" src="https://media.istockphoto.com/id/2172051553/photo/asiatic-lily.jpg?s=1024x1024&w=is&k=20&c=3vCuZD234XmkXzrnzWPBdIZM0oJA1B6qe1x-06K_wDo=" alt="Profile picture of scott.h"></span></span><span class="ig-like-pfp"><span class="pfp"><img class="land" src="https://www.shutterstock.com/shutterstock/photos/1100283806/display_1500/stock-photo-beautiful-lavender-flower-in-the-dalat-flower-park-selective-focus-1100283806.jpg" alt="Profile picture of jane_t"></span></span></span>Liked by <b>shane.h</b> and <b>others</b></p></div>
 
@@ -267,7 +267,7 @@
 
 <p>For a plain count with no faces, use <code>ig-likes</code> on its own, without <code>liked-by</code>, like the simpler post: <code>&lt;p class=&quot;ig-likes&quot;&gt;312 likes&lt;/p&gt;</code>.</p>
 
-<h4 id="s10-2-9">10.2.9 Caption</h4>
+<h4 id="s10-1-9">10.1.9 Caption</h4>
 
 <p><code>ig-caption</code> is the caption, with the poster's name in <code>&lt;b&gt;</code>. To colour a hashtag like Instagram does, wrap it in a span with <code>ig-tag</code>:</p>
 
@@ -275,7 +275,7 @@
 
 <pre><code>&lt;p class="ig-caption"&gt;&lt;b&gt;ilya.r&lt;/b&gt; early skate &lt;span class="ig-tag"&gt;#nofilter&lt;/span&gt;&lt;/p&gt;</code></pre>
 
-<h4 id="s10-2-10">10.2.10 Comments</h4>
+<h4 id="s10-1-10">10.1.10 Comments</h4>
 
 <p>Add a grey "View all comments" line with <code>ig-viewall</code>, then each comment as its own <code>ig-comment</code>, with the commenter's name in <code>&lt;b&gt;</code>. Add as many comments as you need:</p>
 
@@ -287,7 +287,7 @@
 &lt;p class="ig-comment"&gt;&lt;b&gt;shane.h&lt;/b&gt; why are you awake&lt;/p&gt;
 &lt;p class="ig-comment"&gt;&lt;b&gt;scott.h&lt;/b&gt; I see you 👀&lt;/p&gt;</code></pre>
 
-<h4 id="s10-2-11">10.2.11 Time Posted</h4>
+<h4 id="s10-1-11">10.1.11 Time Posted</h4>
 
 <p>The last line is the little grey time at the bottom, <code>ig-time</code>. It's put into capitals for you:</p>
 
@@ -295,7 +295,7 @@
 
 <pre><code>&lt;p class="ig-time"&gt;3 hours ago&lt;/p&gt;</code></pre>
 
-<h4 id="s10-2-12">10.2.12 Uploading a Profile Pic</h4>
+<h4 id="s10-1-12">10.1.12 Uploading a Profile Pic</h4>
 
 <p>Profiles are optional, so an account that only turns up once doesn't need one. Put the picture tag in the <code>ig-pfp</code> and type the account name straight after it. The faces in the "Liked by" line work the same way, with a picture tag in each <code>ig-like-pfp</code>, and the names on the caption and comments are typed in <code>&lt;b&gt;</code>:</p>
 
@@ -323,11 +323,11 @@
   <li>Instagram DMs don't show profile pictures, so in a group DM a stranger only needs their name typed in a <code>who</code> line, and a character with a profile can take theirs from it (see Group Chats, below).</li>
 </ul>
 
-<h3 id="s10-3">10.3 Instagram DMs</h3>
+<h3 id="s10-2">10.2 Instagram DMs</h3>
 
 <p>Here's the two kinds of DM you can build: a message between two people, or a group chat. As before, the full HTML is underneath each, and the rest of this section takes it apart.</p>
 
-<h4 id="s10-3-1">10.3.1 A One-to-One DM</h4>
+<h4 id="s10-2-1">10.2.1 A One-to-One DM</h4>
 
 <div class="mob igdm theme-auto">
   <p class="mob-head">shane.h<span class="hide"> - </span><span>Active now</span></p>
@@ -358,7 +358,7 @@
 
 </details>
 
-<h4 id="s10-3-2">10.3.2 A Group DM</h4>
+<h4 id="s10-2-2">10.2.2 A Group DM</h4>
 
 <div class="mob igdm theme-auto">
   <p class="mob-head">gala committee 🥂<span class="hide"> - </span><span>Active 2h ago</span></p>
@@ -389,7 +389,7 @@
 
 </details>
 
-<h4 id="s10-3-3">10.3.3 Instagram DM Window</h4>
+<h4 id="s10-2-3">10.2.3 Instagram DM Window</h4>
 
 <p>Instagram DMs use the usual container, header and body, with the module class <code>igdm</code>, so the container is <code>&lt;div class=&quot;mob igdm theme-auto&quot;&gt;</code>. First comes the header:</p>
 
@@ -405,7 +405,7 @@
 
 <p>After the header comes <code>&lt;div class=&quot;mob-body&quot;&gt;</code>, which holds all of the messages.</p>
 
-<h4 id="s10-3-4">10.3.4 Simple Messages</h4>
+<h4 id="s10-2-4">10.2.4 Simple Messages</h4>
 
 <p>Messages are <code>msg in</code> and <code>msg out</code> paragraphs again. Messages you send are purple, and messages you get are grey:</p>
 
@@ -435,7 +435,7 @@
 
 </details>
 
-<h4 id="s10-3-5">10.3.5 Shared Posts and Reels</h4>
+<h4 id="s10-2-5">10.2.5 Shared Posts and Reels</h4>
 
 <p>When someone sends a post, a reel or a story into the chat, show it with <code>igdm-shared</code>, which makes an outlined box. It gets the hidden label too, so readers with the workskin off know who shared it:</p>
 
@@ -443,7 +443,7 @@
 
 <pre><code>&lt;p class="igdm-shared"&gt;&lt;span class="hide"&gt;&lt;em&gt;Shane:&lt;/em&gt; &lt;/span&gt;Shared a story from @shane.h: "6am skate. Again."&lt;/p&gt;</code></pre>
 
-<h4 id="s10-3-6">10.3.6 Seen Status</h4>
+<h4 id="s10-2-6">10.2.6 Seen Status</h4>
 
 <p>The little "Seen" or "Sent" line under your last message is <code>igdm-status</code>, like the status line in iMessage:</p>
 
@@ -453,7 +453,7 @@
 <pre><code>&lt;p class="msg out"&gt;&lt;span class="hide"&gt;&lt;em&gt;Ilya:&lt;/em&gt; &lt;/span&gt;ok maybe I did&lt;/p&gt;
 &lt;p class="igdm-status"&gt;Seen&lt;/p&gt;</code></pre>
 
-<h4 id="s10-3-7">10.3.7 Group Chats</h4>
+<h4 id="s10-2-7">10.2.7 Group Chats</h4>
 
 <p>For a group, put the group's name in the header. Above a message from someone else, put a <code>who</code> line to show who sent it. The name shows either way, so it only gets a hidden colon after it - your own messages, with no name above them, keep the full hidden label:</p>
 

@@ -34,37 +34,37 @@
         <div id="workskin">
 <p>Thanks to worlds_end_valentine, whose <a href="https://archiveofourown.org/works/47803507"><em>Twitter Work Skin Template</em></a> this module is built on. Copied and adapted from it: the timestamp line, liked and reposted counts, labels, the sensitive content warning, polls, pictures and videos, scrollable threads, and DM reactions, group DMs, voice messages and the DM window.</p>
 
-<h3 id="contents"><span id="s9-1"></span>9.1 Chapter Contents</h3>
+<h3 id="contents">Chapter Contents</h3>
 
 <ul class="contents">
-  <li><a href="#s9-2">9.2 Getting the CSS</a></li>
-  <li><a href="#s9-3">9.3 How the Module is Laid Out</a></li>
-  <li><a href="#s9-4">9.4 The Tweet</a></li>
-  <li><a href="#s9-5">9.5 Name Line and Profile Picture</a></li>
-  <li><a href="#s9-6">9.6 Text, Stats, Quotes and Notes</a></li>
-  <li><a href="#s9-7">9.7 Polls</a></li>
-  <li><a href="#s9-8">9.8 Tappable Polls</a></li>
-  <li><a href="#s9-9">9.9 Pictures and Videos</a></li>
-  <li><a href="#s9-10">9.10 The Scrolling Thread</a></li>
-  <li><a href="#s9-11">9.11 The App Screen</a></li>
-  <li><a href="#s9-12">9.12 Scrolling</a></li>
-  <li><a href="#s9-13">9.13 DMs</a></li>
-  <li><a href="#s9-14">9.14 Links</a></li>
-  <li><a href="#s9-15">9.15 Dark and Auto Themes</a></li>
-  <li><a href="#s9-16">9.16 Taking Parts Out</a></li>
+  <li><a href="#s9-1">9.1 Getting the CSS</a></li>
+  <li><a href="#s9-2">9.2 How the Module is Laid Out</a></li>
+  <li><a href="#s9-3">9.3 The Tweet</a></li>
+  <li><a href="#s9-4">9.4 Name Line and Profile Picture</a></li>
+  <li><a href="#s9-5">9.5 Text, Stats, Quotes and Notes</a></li>
+  <li><a href="#s9-6">9.6 Polls</a></li>
+  <li><a href="#s9-7">9.7 Tappable Polls</a></li>
+  <li><a href="#s9-8">9.8 Pictures and Videos</a></li>
+  <li><a href="#s9-9">9.9 The Scrolling Thread</a></li>
+  <li><a href="#s9-10">9.10 The App Screen</a></li>
+  <li><a href="#s9-11">9.11 Scrolling</a></li>
+  <li><a href="#s9-12">9.12 DMs</a></li>
+  <li><a href="#s9-13">9.13 Links</a></li>
+  <li><a href="#s9-14">9.14 Dark and Auto Themes</a></li>
+  <li><a href="#s9-15">9.15 Taking Parts Out</a></li>
 </ul>
 
 <p>This chapter goes through the CSS for the tweets, threads and DMs in the last chapter. The module has three parts: tweets and replies (<code>tw</code> and <code>tw-reply</code>), the scrolling thread they can sit in (<code>tw-thread</code>), and DMs (<code>twdm</code>). DMs are built just like iMessage, so if you've read that chapter, they'll be quick.</p>
 
-<h3 id="s9-2">9.2 Getting the CSS</h3>
+<h3 id="s9-1">9.1 Getting the CSS</h3>
 
 <p>The Twitter/X CSS is here: <a href="css/twitter-x.css">jockles.com/fic/megaskin/css/twitter-x.css</a>. It needs the core CSS too, so paste the <a href="core-css.html">core</a> into your work skin first and this underneath it.</p>
 
-<h3 id="s9-3">9.3 How the Module is Laid Out</h3>
+<h3 id="s9-2">9.2 How the Module is Laid Out</h3>
 
 <p>The usual order - the main rules, Links, Dark theme and Auto theme - with a <strong>Scrolling</strong> section before the themes, because tweets and threads scroll differently from the phone-style chats, and Icons at the end. You'll notice that most rules name both <code>.tw</code> and <code>.tw-reply</code>. A reply is its own box rather than something inside a tweet, so every part that can turn up in both has to be given to both.</p>
 
-<h3 id="s9-4">9.4 The Tweet</h3>
+<h3 id="s9-3">9.3 The Tweet</h3>
 
 <pre><code>#workskin .tw {
   background: #ffffff;
@@ -86,7 +86,7 @@
 
 <p>The text colours are Twitter/X's own: <code>#0f1419</code> is its near-black, <code>#536471</code> the grey for handles and small print, and <code>#1d9bf0</code> its blue, which is used for links, hashtags, the verified tick and poll outlines.</p>
 
-<h3 id="s9-5">9.5 Name Line and Profile Picture</h3>
+<h3 id="s9-4">9.4 Name Line and Profile Picture</h3>
 
 <pre><code>#workskin .tw .tw-top,
 #workskin .tw-reply .tw-top { display: block; overflow: hidden; }
@@ -118,7 +118,7 @@
   <li>Initials circles take <code>colour1</code> to <code>colour10</code>, the same ten colours as every other app, which are in the core.</li>
 </ul>
 
-<h3 id="s9-6">9.6 Text, Stats, Quotes and Notes</h3>
+<h3 id="s9-5">9.5 Text, Stats, Quotes and Notes</h3>
 
 <pre><code>#workskin .tw .tw-text { display: block; font-size: 1.02em; margin: 0.2em 0 0.4em 0; }
 
@@ -215,7 +215,7 @@
 
 <p>A button the account has used turns red for a like, green for a repost or blue for a bookmark, count and all, and a clicked like turns red the same way. <code>tw-locked</code> fades a private tweet's repost button to pale grey, or dark grey in dark mode. The coloured pictures are in the Icons section too.</p>
 
-<h3 id="s9-7">9.7 Polls</h3>
+<h3 id="s9-6">9.6 Polls</h3>
 
 <pre><code>#workskin .tw .tw-opt,
 #workskin .tw-reply .tw-opt {
@@ -285,7 +285,7 @@
 
 </details>
 
-<h3 id="s9-8">9.8 Tappable Polls</h3>
+<h3 id="s9-7">9.7 Tappable Polls</h3>
 
 <pre><code>/* the tick in a circle on the option the account voted for */
 #workskin .tw .tw-voted,
@@ -351,7 +351,7 @@
 
 <p>The tappable polls work exactly like Tumblr's. In <code>tw-vote</code>, the open poll is the <code>summary</code>, and <code>[open]</code> hides it once it's been tapped, so the results underneath show instead. In the reader-picks version, each option is its own details, and its <code>tw-results</code> box is lifted out of the line with <code>position: absolute</code> so it sits over the whole <code>tw-poll</code> box, starting at the top. The white background (black in dark mode) hides the options underneath, and <code>z-index</code> keeps it on top. The tapped option's own outline is hidden with <code>visibility: hidden</code>, which keeps its space so nothing jumps about.</p>
 
-<h3 id="s9-9">9.9 Pictures and Videos</h3>
+<h3 id="s9-8">9.8 Pictures and Videos</h3>
 
 <pre><code>#workskin .tw .tw-media,
 #workskin .tw-reply .tw-media {
@@ -369,7 +369,7 @@
 
 <p>One picture fills the rounded box at its own shape, and <code>overflow: hidden</code> rounds off its corners with the box. An embedded video (<code>video</code>) is <code>200px</code> tall, and a description gets padding to make it about the size of a picture.</p>
 
-<p>Two, three and four pictures work exactly like WhatsApp's photo galleries - squares made with <code>padding-top</code>, floated into a grid, with <code>land</code> for wide pictures - so see <a href="whatsapp-css.html#s7-14">Photo Galleries</a> for how. The only differences are the sizes (<code>49.2%</code> squares with a <code>1.2%</code> gap, adding up to <code>99.6%</code>), and this at the end:</p>
+<p>Two, three and four pictures work exactly like WhatsApp's photo galleries - squares made with <code>padding-top</code>, floated into a grid, with <code>land</code> for wide pictures - so see <a href="whatsapp-css.html#s7-13">Photo Galleries</a> for how. The only differences are the sizes (<code>49.2%</code> squares with a <code>1.2%</code> gap, adding up to <code>99.6%</code>), and this at the end:</p>
 
 <pre><code>#workskin .tw .tw-media.two::after,
 #workskin .tw .tw-media.three::after,
@@ -381,7 +381,7 @@
 
 <p>Floating things don't take up any height, so a box of floated pictures would shrink to nothing, and the stats line would slide up behind the pictures. This adds an invisible empty line after them with <code>clear: both</code>, which means "go below anything floating", so the box stretches down to hold them.</p>
 
-<h3 id="s9-10">9.10 The Scrolling Thread</h3>
+<h3 id="s9-9">9.9 The Scrolling Thread</h3>
 
 <pre><code>#workskin .tw-thread {
   width: 380px;
@@ -433,7 +433,7 @@
 
 <p>The "Tweet your reply" bar sits under the scrolling part, so it stays in place. AO3 wraps its text in a paragraph, which the middle rule flattens, and the Reply button floats to the right.</p>
 
-<h3 id="s9-11">9.11 The App Screen</h3>
+<h3 id="s9-10">9.10 The App Screen</h3>
 
 <pre><code>#workskin .tw-thread .tw-apptop,
 #workskin .tw-thread .tw-tabs {
@@ -528,7 +528,7 @@
 
 <p>The app screen is just two flex rows at the top of the scrolling part of a thread. In the top bar, the X gets <code>flex: 1</code> to take up all the room left over, and its <code>margin-right</code> is the same width as the picture on the left, so the X sits in the true middle. In the tabs, the line under the picked tab is a <code>::after</code> box filled with <code>currentColor</code> (the colour of the words), pinned to the bottom of the tab with <code>position: absolute</code>, stretched from <code>left: 0</code> to <code>right: 0</code> so it's always as wide as the words. The down arrow is just the bottom and right borders of a tiny square, turned 45 degrees with <code>transform: rotate(45deg)</code>. The plus sign is pinned to the right-hand end the same way, with a background the same colour as the screen, so long tabs slide under it instead of pushing it off the edge.</p>
 
-<h3 id="s9-12">9.12 Scrolling</h3>
+<h3 id="s9-11">9.11 Scrolling</h3>
 
 <pre><code>#workskin .tw-thread .tw-scroll {
   display: block;
@@ -545,7 +545,7 @@
 
 <p>In a thread, only the <code>tw-scroll</code> part scrolls, at the same height as every other chat. A tweet on its own scrolls as a whole, and it's allowed to be taller (<code>700px</code>), because a tweet with a picture is usually taller than a chat window and you'd rather not scroll it if you can help it. Adding <code>no-scroll</code> to a tweet switches its scrolling off, as usual.</p>
 
-<h3 id="s9-13">9.13 DMs</h3>
+<h3 id="s9-12">9.12 DMs</h3>
 
 <pre><code>#workskin .twdm .msg {
   display: table;
@@ -591,7 +591,7 @@
 
 </details>
 
-<h3 id="s9-14">9.14 Links</h3>
+<h3 id="s9-13">9.13 Links</h3>
 
 <pre><code>#workskin .tw .fake-link, #workskin .tw a:not(.tl),
 #workskin .tw-reply .fake-link, #workskin .tw-reply a:not(.tl) { color: #1d9bf0; }
@@ -602,7 +602,7 @@
 
 <p>Blue everywhere, except in your own blue DM bubbles, where links are white so they show up. <code>tw-link</code>, for hashtags and @mentions, is the same blue.</p>
 
-<h3 id="s9-15">9.15 Dark and Auto Themes</h3>
+<h3 id="s9-14">9.14 Dark and Auto Themes</h3>
 
 <pre><code>#workskin .tw.theme-dark { background: #000000; color: #e7e9ea; border-color: #2f3336; }
 
@@ -619,7 +619,7 @@
 
 <p>The auto theme is the whole lot again inside <code>@media (prefers-color-scheme: dark)</code>, so change a dark colour in both places.</p>
 
-<h3 id="s9-16">9.16 Taking Parts Out</h3>
+<h3 id="s9-15">9.15 Taking Parts Out</h3>
 
 <p>Search for the class names and delete every rule with them in, including in the dark and auto blocks:</p>
 

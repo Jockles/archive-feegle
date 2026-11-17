@@ -34,34 +34,34 @@
         <div id="workskin">
 <p>Thanks to phyripo and Aposiopesis, whose <a href="https://archiveofourown.org/works/11474979"><em>How to Make Tumblr posts on AO3</em></a> and <a href="https://archiveofourown.org/works/21099596"><em>Tumblr-style CSS Tweaks</em></a> this module is built on. Copied and adapted from them: reblog chains, asks, quote posts, chat posts, and the reblog and photoset tweaks.</p>
 
-<h3 id="contents"><span id="s12-1"></span>12.1 Chapter Contents</h3>
+<h3 id="contents">Chapter Contents</h3>
 
 <ul class="contents">
-  <li><a href="#s12-2">12.2 A Reblog Chain</a></li>
-  <li><a href="#s12-3">12.3 Posts on the Feed</a></li>
-  <li><a href="#s12-4">12.4 Tumblr Post Container</a></li>
-  <li><a href="#s12-5">12.5 The Header: Picture, Name and Time</a></li>
-  <li><a href="#s12-6">12.6 Round or Square Pictures</a></li>
-  <li><a href="#s12-7">12.7 The Green Reblog Badge</a></li>
-  <li><a href="#s12-8">12.8 Verified Ticks and the Follow Button</a></li>
-  <li><a href="#s12-9">12.9 Reblog Chains</a></li>
-  <li><a href="#s12-10">12.10 Uploading a Profile Pic</a></li>
-  <li><a href="#s12-11">12.11 Tumblr's Default Pictures</a></li>
-  <li><a href="#s12-12">12.12 Asks</a></li>
-  <li><a href="#s12-13">12.13 Quote Posts</a></li>
-  <li><a href="#s12-14">12.14 Chat Posts</a></li>
-  <li><a href="#s12-15">12.15 Polls</a></li>
-  <li><a href="#s12-16">12.16 Pictures and Gifs</a></li>
-  <li><a href="#s12-17">12.17 Mentioning a Blog</a></li>
-  <li><a href="#s12-18">12.18 Notes Along the Bottom</a></li>
-  <li><a href="#s12-19">12.19 The Feed Background</a></li>
+  <li><a href="#s12-1">12.1 A Reblog Chain</a></li>
+  <li><a href="#s12-2">12.2 Posts on the Feed</a></li>
+  <li><a href="#s12-3">12.3 Tumblr Post Container</a></li>
+  <li><a href="#s12-4">12.4 The Header: Picture, Name and Time</a></li>
+  <li><a href="#s12-5">12.5 Round or Square Pictures</a></li>
+  <li><a href="#s12-6">12.6 The Green Reblog Badge</a></li>
+  <li><a href="#s12-7">12.7 Verified Ticks and the Follow Button</a></li>
+  <li><a href="#s12-8">12.8 Reblog Chains</a></li>
+  <li><a href="#s12-9">12.9 Uploading a Profile Pic</a></li>
+  <li><a href="#s12-10">12.10 Tumblr's Default Pictures</a></li>
+  <li><a href="#s12-11">12.11 Asks</a></li>
+  <li><a href="#s12-12">12.12 Quote Posts</a></li>
+  <li><a href="#s12-13">12.13 Chat Posts</a></li>
+  <li><a href="#s12-14">12.14 Polls</a></li>
+  <li><a href="#s12-15">12.15 Pictures and Gifs</a></li>
+  <li><a href="#s12-16">12.16 Mentioning a Blog</a></li>
+  <li><a href="#s12-17">12.17 Notes Along the Bottom</a></li>
+  <li><a href="#s12-18">12.18 The Feed Background</a></li>
 </ul>
 
 <p>The Tumblr module is styled after the Tumblr mobile app: each post is a rounded card, and a reblog chain is a list of comments with a thin line between each one.</p>
 
 <p>There are two kinds of thing you can build: a single post (here, a reblog chain), or several posts together on the feed, like scrolling the app. The full HTML is under each one, and the rest of the chapter takes it apart piece by piece.</p>
 
-<h3 id="s12-2">12.2 A Reblog Chain</h3>
+<h3 id="s12-1">12.1 A Reblog Chain</h3>
 
 <div class="mob tb theme-auto">
   <p class="tb-header">
@@ -196,7 +196,7 @@
 
 </details>
 
-<h3 id="s12-3">12.3 Posts on the Feed</h3>
+<h3 id="s12-2">12.2 Posts on the Feed</h3>
 
 <div class="tb-feed app theme-auto">
   <div class="tb-screen">
@@ -393,7 +393,7 @@
 
 </details>
 
-<h3 id="s12-4">12.4 Tumblr Post Container</h3>
+<h3 id="s12-3">12.3 Tumblr Post Container</h3>
 
 <p>A Tumblr post has a header with the blog's picture and name, a body, and then the tags and notes along the bottom. The module class is <code>tb</code>. Here's the outline of a post, with the parts filled in with placeholders:</p>
 
@@ -429,7 +429,7 @@
   <li><code>tb-header</code> is the header row at the top of the post.</li>
   <li><code>tb-body</code> holds the post itself, written as ordinary paragraphs.</li>
   <li><code>tb-tags</code> is the grey row of tags. Type the <code>#</code> in yourself, and use <code>&amp;nbsp;</code> to space the tags out.</li>
-  <li><code>tb-footer</code> is the row along the bottom, with the replies, reblogs and likes. You can leave it out (see <a href="tumblr.html#s12-18">Notes Along the Bottom</a>).</li>
+  <li><code>tb-footer</code> is the row along the bottom, with the replies, reblogs and likes. You can leave it out (see <a href="tumblr.html#s12-17">Notes Along the Bottom</a>).</li>
 </ul>
 
 <p>Here are the tags from the reblog chain:</p>
@@ -438,7 +438,7 @@
 
 <pre><code>&lt;p class="tb-tags"&gt;#cats &amp;nbsp;#the cat is right &amp;nbsp;#I love this website&lt;/p&gt;</code></pre>
 
-<h3 id="s12-5">12.5 The Header: Picture, Name and Time</h3>
+<h3 id="s12-4">12.4 The Header: Picture, Name and Time</h3>
 
 <p>The header has the blog's picture, the name with a small grey line under it, and the three dots. The picture is <code>tb-pfp</code>: with no image it shows initials, and <code>colour1</code> to <code>colour10</code> give it a colour:</p>
 
@@ -496,7 +496,7 @@
 
 </details>
 
-<h3 id="s12-6">12.6 Round or Square Pictures</h3>
+<h3 id="s12-5">12.5 Round or Square Pictures</h3>
 
 <p>Pictures are circles unless you say otherwise. On Tumblr, everyone picks a circle or a rounded square, and it's the same everywhere their blog turns up.</p>
 
@@ -534,7 +534,7 @@
 
 <p>Swap <code>pfp-luca.acc-art</code> for your character's profile (and their <code>acc-</code> name, if it's for another of their blogs). The line goes at the end of their profile.</p>
 
-<h3 id="s12-7">12.7 The Green Reblog Badge</h3>
+<h3 id="s12-6">12.6 The Green Reblog Badge</h3>
 
 <p>For a reblog, put <code>rb</code> after <code>tb-pfp</code> for the little green badge on the picture. The grey line usually says who it was reblogged from, with the name in <code>&lt;b&gt;</code>:</p>
 
@@ -552,11 +552,11 @@
     &lt;span class="tb-subline"&gt;Reblogged &lt;b&gt;gremlin-sketches&lt;/b&gt; &amp;middot; 37m ago&lt;/span&gt;&lt;/span&gt;
 &lt;/p&gt;</code></pre>
 
-<h3 id="s12-8">12.8 Verified Ticks and the Follow Button</h3>
+<h3 id="s12-7">12.7 Verified Ticks and the Follow Button</h3>
 
 <p>Some blogs have coloured checkmarks after their names. On Tumblr these are bought for fun, so they don't mean a blog is verified - give them to any blog you like. Put a <code>tb-checks</code> span straight after the name, with no space, and <code>ic-checks-2</code>, <code>ic-checks-4</code>, <code>ic-checks-6</code>, <code>ic-checks-8</code>, <code>ic-checks-10</code> or <code>ic-checks-12</code> for how many, or <code>ic-checks-blue</code> for two blue ones. Type the checkmarks inside it too, for readers with the workskin switched off: <code>&lt;span class=&quot;tb-checks ic ic-checks-6&quot;&gt;&amp;#10003;&amp;#10003;&amp;#10003;&amp;#10003;&amp;#10003;&amp;#10003;&lt;/span&gt;</code>.</p>
 
-<p>There's one in the Follow button example below, and samthecat has the two blue ones in <a href="tumblr.html#s12-10">Uploading a Profile Pic</a>.</p>
+<p>There's one in the Follow button example below, and samthecat has the two blue ones in <a href="tumblr.html#s12-9">Uploading a Profile Pic</a>.</p>
 
 <details>
 <summary>More about the checkmarks</summary>
@@ -618,7 +618,7 @@
     &lt;span class="tb-subline"&gt;6h ago&lt;/span&gt;&lt;/span&gt;
 &lt;/p&gt;</code></pre>
 
-<h3 id="s12-9">12.9 Reblog Chains</h3>
+<h3 id="s12-8">12.8 Reblog Chains</h3>
 
 <p>Each comment in a reblog chain is its own <code>tb-reblog</code> block inside <code>tb-body</code>, starting with a <code>tb-blog</code> header built like <code>tb-header</code>. Put them one after another, oldest first, and the lines between them are added for you:</p>
 
@@ -698,7 +698,7 @@
 
 <p>Use the same picture colour for the same blog every time, so the reader can keep track of who's talking.</p>
 
-<h3 id="s12-10">12.10 Uploading a Profile Pic</h3>
+<h3 id="s12-9">12.9 Uploading a Profile Pic</h3>
 
 <p>Most blogs in a reblog chain will be strangers without a profile. For each one, put the picture tag in the <code>tb-pfp</code> and type the name in the <code>&lt;b&gt;</code>, in every header that blog has - here sharksorswim turns up twice:</p>
 
@@ -762,7 +762,7 @@
 
 <p>The name is typed, so there's no hidden copy needed. A post's top header, <code>tb-header</code>, works the same way.</p>
 
-<h3 id="s12-11">12.11 Tumblr's Default Pictures</h3>
+<h3 id="s12-10">12.10 Tumblr's Default Pictures</h3>
 
 <p>New Tumblr blogs get a default picture. I've put some on squidge for people to use. They're see-through, so put a colour class on the <code>tb-pfp</code> for the background, and the picture tag inside it as usual. It's not exactly how Tumblr does it, but anyone who's spent time on Tumblr will recognise them:</p>
 
@@ -793,7 +793,7 @@
 
 <p>They work in a profile too, if one of your characters never bothered to change theirs - give the profile a <code>background-color</code> as well as the picture (see <a href="core.html#profiles">Character Appearances and Profiles</a>).</p>
 
-<h3 id="s12-12">12.12 Asks</h3>
+<h3 id="s12-11">12.11 Asks</h3>
 
 <p>An ask is a question in a grey box, <code>tb-ask</code>, inside <code>tb-body</code>. Its <code>tb-asker</code> line has the blog's name in <code>&lt;b&gt;</code> and "asked:", and <code>tb-ask-pfp</code> is the small picture on the right.</p>
 
@@ -908,9 +908,9 @@
 
 </details>
 
-<p>For an anon ask, write <code>Anonymous</code> as the name and use Tumblr's anon picture, which I've put on squidge: <code>https://images.squidge.org/images/2026/11/16/tumblr-anon.png</code>. Pictures can go in an answer too, after the text, in a <code>tb-photos</code> box (see <a href="tumblr.html#s12-16">Pictures and Gifs</a>).</p>
+<p>For an anon ask, write <code>Anonymous</code> as the name and use Tumblr's anon picture, which I've put on squidge: <code>https://images.squidge.org/images/2026/11/16/tumblr-anon.png</code>. Pictures can go in an answer too, after the text, in a <code>tb-photos</code> box (see <a href="tumblr.html#s12-15">Pictures and Gifs</a>).</p>
 
-<h3 id="s12-13">12.13 Quote Posts</h3>
+<h3 id="s12-12">12.12 Quote Posts</h3>
 
 <p>A quote post is a big line of text with the source underneath, and the quotation marks are added for you. Put it in <code>tb-body</code>:</p>
 
@@ -922,7 +922,7 @@
 
 <p><code>tb-quote</code> is the big quoted line, and <code>tb-source</code> is the smaller line with the source.</p>
 
-<h3 id="s12-14">12.14 Chat Posts</h3>
+<h3 id="s12-13">12.13 Chat Posts</h3>
 
 <p>A chat post is a block of dialogue in a typewriter font. Each line is its own paragraph, with the speaker's name in <code>&lt;b&gt;</code>:</p>
 
@@ -938,7 +938,7 @@
   &lt;p&gt;&lt;b&gt;Shane:&lt;/b&gt; that's never good&lt;/p&gt;
 &lt;/div&gt;</code></pre>
 
-<h3 id="s12-15">12.15 Polls</h3>
+<h3 id="s12-14">12.14 Polls</h3>
 
 <p>A poll goes in <code>tb-body</code>: the question as an ordinary paragraph, then each option as a <code>tb-opt</code> paragraph, then a <code>tb-pollinfo</code> line for the votes and the time left. Before anyone's voted, the options are blue outlines:</p>
 
@@ -1152,7 +1152,7 @@
 
 </details>
 
-<h3 id="s12-16">12.16 Pictures and Gifs</h3>
+<h3 id="s12-15">12.15 Pictures and Gifs</h3>
 
 <p>Pictures and gifs go in a <code>tb-photos</code> box inside <code>tb-body</code>. Each row is a <code>tb-row</code>, and each picture goes in a <code>tb-photo</code> span. Don't forget the alt text (see <a href="core.html#accessibility">Accessibility</a>).</p>
 
@@ -1201,11 +1201,11 @@
 
 </details>
 
-<h3 id="s12-17">12.17 Mentioning a Blog</h3>
+<h3 id="s12-16">12.16 Mentioning a Blog</h3>
 
 <p>Put a mentioned blog's name, with its <code>@</code>, in a <code>tb-at</code> span: <code>&lt;span class=&quot;tb-at&quot;&gt;@oghollanovtruther&lt;/span&gt;</code>. It turns a slightly different colour, like Tumblr, and works anywhere in a post, a reblog or an ask.</p>
 
-<h3 id="s12-18">12.18 Notes Along the Bottom</h3>
+<h3 id="s12-17">12.17 Notes Along the Bottom</h3>
 
 <p>The bottom row is <code>tb-footer</code>, after <code>tb-body</code> and the tags. Each button and its count is a <code>tb-stat</code> span: the button, the number, then a <code>hide</code> span saying what the number is, for readers with the workskin switched off:</p>
 
@@ -1225,7 +1225,7 @@
 
 <p>If a post has no replies, Tumblr just shows the button, so leave out the number and its <code>hide</code> span: <code>&lt;span class=&quot;tb-stat&quot;&gt;&lt;span class=&quot;tb-icon ic ic-comment&quot;&gt;&amp;#9993;&lt;/span&gt;&lt;/span&gt;</code>. You can leave out the share button too, or the whole row.</p>
 
-<h3 id="s12-19">12.19 The Feed Background</h3>
+<h3 id="s12-18">12.18 The Feed Background</h3>
 
 <p>The feed at the top of the chapter is a whole phone screen, like the app. Add <code>app</code> to the feed, put a <code>tb-screen</code> box inside it holding the top bar and your posts, and put the <code>tb-nav</code> buttons after it:</p>
 
@@ -1253,7 +1253,7 @@
 <details>
 <summary>Other feed colours</summary>
 
-<p>Add <code>black</code> for black all the time, <code>&lt;div class=&quot;tb-feed black&quot;&gt;</code>, or <code>classic</code> for the old Tumblr blue, <code>&lt;div class=&quot;tb-feed classic&quot;&gt;</code>. You can change the navy to any colour in the CSS (see <a href="tumblr-css.html#s13-14">The Feed</a>).</p>
+<p>Add <code>black</code> for black all the time, <code>&lt;div class=&quot;tb-feed black&quot;&gt;</code>, or <code>classic</code> for the old Tumblr blue, <code>&lt;div class=&quot;tb-feed classic&quot;&gt;</code>. You can change the navy to any colour in the CSS (see <a href="tumblr-css.html#s13-13">The Feed</a>).</p>
 
 </details>
 
