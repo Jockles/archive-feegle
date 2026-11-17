@@ -828,9 +828,11 @@
     return h.join("");
   }
   function rowTools(bi, mi, m, extras) {
+    var ty = S.blocks[bi].type;
+    var plus = ty === "twthread" ? "Add a reply below this" : ty === "twfeed" ? "Add a tweet below this" : ty === "igpost" ? "Add a comment below this" : "Add a message below this";
     return '<span class="fb-tools">' + (extras ? btn("msg-more:" + bi + ":" + mi, m.open ? "Less" : "Extras", "Extras") : "") +
       btn("msg-up:" + bi + ":" + mi, "&uarr;", "Move up") + btn("msg-down:" + bi + ":" + mi, "&darr;", "Move down") +
-      btn("msg-ins:" + bi + ":" + mi, "+", "Add one under this") + btn("msg-del:" + bi + ":" + mi, "&times;", "Delete") + "</span>";
+      btn("msg-ins:" + bi + ":" + mi, "+", plus) + btn("msg-del:" + bi + ":" + mi, "&times;", "Delete") + "</span>";
   }
   function fmtButtons() {
     return '<p class="hint">Select some words in the text, then: ' + btn("fmt:tl", "Translation") + " " + btn("fmt:egg", "Easter egg") + " " +
@@ -977,9 +979,12 @@
     var row = chat ? msgRow : b.type === "igpost" ? commentRow : tweetRow;
     h.push('<ol class="fb-msgs">' + b.msgs.map(function (m, mi) { return row(b, i, m, mi); }).join("") + "</ol>");
     var ph = chat ? "Ilya: are you awake\nShane: no\n-- Today 11:48 PM" : b.type === "igpost" ? "shane.h: why are you awake" : "Zim: Reminder to everyone...\nHolster: I played all through college...";
+    // tweets and comments get their add button straight under the list; chats keep theirs by the script box
+    var addOne = btn("msg-add:" + i, b.type === "igpost" ? "+ Add a comment" : chat ? "+ One empty message" : b.type === "twthread" ? (b.msgs.length ? "+ Add a reply" : "+ Add the tweet") : "+ Add a tweet");
+    if (!chat) h.push("<p>" + addOne + "</p>");
     h.push('<div class="fb-script">' + field(P + ".script", b.type === "igpost" ? "Type or paste comments" : chat ? "Type or paste messages" : "Type or paste tweets", { type: "area", rows: 4, ph: ph }) +
       '<p class="hint">' + (SCRIPT_HINTS[chat ? "chat" : b.type]) + "</p>" +
-      btn("script:" + i, "Add these") + " " + btn("msg-add:" + i, b.type === "igpost" ? "+ Add a comment" : chat ? "+ One empty message" : b.type === "twthread" ? (b.msgs.length ? "+ Add a reply" : "+ Add the tweet") : "+ Add a tweet") + "</div>");
+      btn("script:" + i, "Add these") + (chat ? " " + addOne : "") + "</div>");
     h.push("</section>");
     return h.join("");
   }
