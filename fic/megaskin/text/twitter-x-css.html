@@ -381,6 +381,87 @@
 
 <p>The "Tweet your reply" bar sits under the scrolling part, so it stays in place. AO3 wraps its text in a paragraph, which the middle rule flattens, and the Reply button floats to the right.</p>
 
+<h3>The App Screen</h3>
+
+<pre><code>#workskin .tw-thread .tw-apptop,
+#workskin .tw-thread .tw-tabs {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  white-space: nowrap;
+}
+
+#workskin .tw-thread .tw-apptop br,
+#workskin .tw-thread .tw-tabs br { display: none; }
+
+#workskin .tw-thread .tw-apptop { padding: 0.8em 1em 0.3em 1em; }
+
+/* the reader's own picture, top left */
+#workskin .tw-thread .tw-me {
+  display: block;
+  flex: none;
+  width: 2.2em;
+  height: 2.2em;
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+/* the X in the middle: the margin on the right balances the picture on the left */
+#workskin .tw-thread .tw-logo {
+  flex: 1;
+  margin-right: 2.2em;
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.9em;
+  font-weight: bold;
+  line-height: 1;
+}
+
+#workskin .tw-thread .tw-tabs {
+  position: relative;
+  overflow: hidden;
+  padding: 0.6em 2.6em 0 1em;
+  border-bottom: 1px solid #eff3f4;
+  color: #536471;
+  font-weight: bold;
+}
+
+#workskin .tw-thread .tw-tab {
+  position: relative;
+  flex: none;
+  margin-right: 1.6em;
+  padding-bottom: 0.75em;
+}
+
+#workskin .tw-thread .tw-tab.on { color: #0f1419; }
+
+/* the rounded line under the picked tab, as wide as its words */
+#workskin .tw-thread .tw-tab.on::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 4px;
+  border-radius: 2px;
+  background: #1d9bf0;
+}
+
+/* the + at the far right, for adding a community tab. It stays put, and any tabs too long for the row go under it */
+#workskin .tw-thread .tw-add {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 1px;
+  padding: 0.3em 0.7em 0 0.7em;
+  background: #ffffff;
+  font-size: 1.4em;
+  font-weight: normal;
+  line-height: 1;
+}</code></pre>
+
+<p>The app screen is just two flex rows at the top of the scrolling part of a thread. In the top bar, the X gets <code>flex: 1</code> to take up all the room left over, and its <code>margin-right</code> is the same width as the picture on the left, so the X sits in the true middle. In the tabs, the blue line under the picked tab is a <code>::after</code> box pinned to the bottom of the tab with <code>position: absolute</code>, stretched from <code>left: 0</code> to <code>right: 0</code> so it's always as wide as the words. The plus sign is pinned to the right-hand end the same way, with a background the same colour as the screen, so long tabs slide under it instead of pushing it off the edge.</p>
+
 <h3>Scrolling</h3>
 
 <pre><code>#workskin .tw-thread .tw-scroll {
