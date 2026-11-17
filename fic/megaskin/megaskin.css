@@ -2679,6 +2679,46 @@
   line-height: 1;
 }
 
+/* OLD TWITTER (2022): add "old" to an app screen, <div class="tw-thread app old theme-auto">.
+   The bird takes the place of the X with a sparkle on the right, the tabs are hidden,
+   and the tweets lose their bookmark button and the line above their stats, with share spaced out like the rest */
+#workskin .tw-thread.old .tw-apptop {
+  padding-bottom: 0.6em;
+  border-bottom: 1px solid #eff3f4;
+}
+
+#workskin .tw-thread.old .tw-logo {
+  height: 1em;
+  margin-right: 0;
+  overflow: hidden;
+  text-indent: -100em;
+  white-space: nowrap;
+  background-image: url(https://images.squidge.org/images/2026/11/17/twitter-logo.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+/* the sparkle, top right, the same width as the picture on the left */
+#workskin .tw-thread.old .tw-apptop::after {
+  content: "\2726";
+  display: block;
+  flex: none;
+  width: 1.7em;
+  color: #1d9bf0;
+  font-size: 1.3em;
+  line-height: 1;
+  text-align: right;
+}
+
+#workskin .tw-thread.old .tw-tabs { display: none; }
+
+#workskin .tw-thread.old .tw-stats { border-top: 0; padding-top: 0.2em; }
+
+#workskin .tw-thread.old .tw-stat.tw-end { flex: 1 1 0; margin-left: 0; }
+
+#workskin .tw-thread.old .tw-stat.tw-end:not(:last-of-type) { display: none; }
+
 #workskin .twdm {
   background: #ffffff;
   color: #0f1419;
@@ -2934,6 +2974,8 @@
 
 #workskin .tw-thread.theme-dark .tw-add { background: #000000; }
 
+#workskin .tw-thread.theme-dark.old .tw-apptop { border-bottom-color: #2f3336; }
+
 #workskin .tw-thread.theme-dark .tw-foot { border-top-color: #2f3336; color: #71767b; }
 
 /* the tweets inside a thread take the thread's theme */
@@ -3054,6 +3096,8 @@
   #workskin .tw-thread.theme-auto .tw-tab.on { color: #e7e9ea; }
 
   #workskin .tw-thread.theme-auto .tw-add { background: #000000; }
+
+  #workskin .tw-thread.theme-auto.old .tw-apptop { border-bottom-color: #2f3336; }
 
   #workskin .tw-thread.theme-auto .tw-foot { border-top-color: #2f3336; color: #71767b; }
 
