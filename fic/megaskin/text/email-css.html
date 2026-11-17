@@ -6,7 +6,7 @@
 
 <h3>Getting the CSS</h3>
 
-<p>The Email CSS is here: <a href="css/email.css">jockles.com/fic/megaskin/css/email.css</a>. It needs the core CSS too (<a href="css/core.css">jockles.com/fic/megaskin/css/core.css</a>), so paste the core into your work skin first and this underneath it.</p>
+<p>The Email CSS is here: <a href="css/email.css">jockles.com/fic/megaskin/css/email.css</a>. It needs the core CSS too, so paste the <a href="core-css.html">core</a> into your work skin first and this underneath it.</p>
 
 <h3>How the Module is Laid Out</h3>
 
@@ -90,10 +90,12 @@
 <p>Each email in the thread has a thin line above it. The picture column is <code>46px</code> wide - the picture's <code>36px</code> and a gap - and in the HTML it has <code>rowspan="2"</code>, so it stretches down beside both the name row and the "to me" row.</p>
 
 <pre><code>#workskin .gm .gm-pfp {
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 36px;
   height: 36px;
-  line-height: 36px;
+  line-height: 1;
   text-align: center;
   border-radius: 50%;
   background-color: #5f6368;

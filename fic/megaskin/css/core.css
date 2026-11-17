@@ -129,6 +129,8 @@
   font-weight: bold;
   font-size: 0.8em;
   line-height: 1;
+  position: relative;
+  top: 0; /* nudges the initials down (1px, 2px) or up (-1px, -2px) */
 }
 
 /* the tiny circles in Discord replies and Instagram's "Liked by" line get smaller initials */
@@ -185,6 +187,21 @@
 
 /* strikethrough / deleted text */
 #workskin .mob .del, #workskin .dc .del { text-decoration: line-through; opacity: 0.6; }
+
+/* a flashing cursor at the end of a half-written message, in any app: <span class="cursor">|</span>.
+   The typed line only shows for readers with the workskin off */
+#workskin .cursor {
+  display: inline-block;
+  width: 0.2em;
+  height: 1.2em;
+  overflow: hidden;
+  text-indent: -100em;
+  vertical-align: -0.25em;
+  background-image: url(https://images.squidge.org/images/2026/11/17/cursor-flash.gif);
+  background-repeat: no-repeat;
+  background-position: left center;
+  background-size: 1.2em 1.2em;
+}
 
 /* ---------- Links that go nowhere (the colours are in each module) ---------- */
 
@@ -390,12 +407,14 @@
 #workskin .tb .handle.pfp-luca.acc-art::after { content: "gremlin-sketches"; }
 #workskin .tb .pfp.pfp-luca.acc-rpf { background-image: url(https://images.squidge.org/images/2026/11/16/Hollanov1.png); }
 #workskin .tb .handle.pfp-luca.acc-rpf::after { content: "rink-rivals-rpf"; }
-/* 14. Tumblr checkmarks after the blog's name. Pick the picture with 2, 4 or 6 checkmarks and the
-   padding that goes with it: tb-checks-2.png 2.15em, tb-checks-4.png 4.2em, tb-checks-6.png 6.2em.
+/* 14. Tumblr checkmarks after the blog's name. Pick the picture with 2, 4, 6, 8, 10 or 12 checkmarks and the
+   padding that goes with it: tb-checks-2.png 2.15em, tb-checks-4.png 3.95em, tb-checks-6.png 5.75em,
+   tb-checks-8.png 7.55em, tb-checks-10.png 9.35em, tb-checks-12.png 11.15em,
+   or tb-checks-blue.png 2.15em for two blue ones.
    An acc- account has its own line, or it gets the main blog's checkmarks. */
-#workskin .tb .handle.pfp-luca::after { background-image: url(https://images.squidge.org/images/2026/11/15/tb-checks-2.png); padding-right: 2.15em; }
-#workskin .tb .handle.pfp-luca.acc-art::after { background-image: url(https://images.squidge.org/images/2026/11/15/tb-checks-6.png); padding-right: 6.2em; }
-#workskin .tb .handle.pfp-luca.acc-rpf::after { background-image: url(https://images.squidge.org/images/2026/11/15/tb-checks-4.png); padding-right: 4.2em; }
+#workskin .tb .handle.pfp-luca::after { background-image: url(https://images.squidge.org/images/2026/11/16/tb-checks-2.png); padding-right: 2.15em; }
+#workskin .tb .handle.pfp-luca.acc-art::after { background-image: url(https://images.squidge.org/images/2026/11/16/tb-checks-6.png); padding-right: 5.75em; }
+#workskin .tb .handle.pfp-luca.acc-rpf::after { background-image: url(https://images.squidge.org/images/2026/11/16/tb-checks-4.png); padding-right: 3.95em; }
 /* 15. A rounded square picture on Tumblr instead of a circle, everywhere this blog shows up */
 #workskin .tb .pfp.pfp-luca.acc-art { border-radius: 15%; }
 
