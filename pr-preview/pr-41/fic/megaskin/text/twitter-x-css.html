@@ -160,19 +160,24 @@
 #workskin .tw-reply .tw-opt {
   display: block;
   border: 1px solid #1d9bf0;
-  border-radius: 6px;
+  border-radius: 2em;
   padding: 0.4em 0.7em;
   margin: 0.35em 0;
-  color: #0f1419;
+  color: #1d9bf0;
+  font-weight: bold;
+  text-align: center;
 }
 
-/* a finished option is a row: the bar with the option in it, then the percentage at the far right */
+/* results: each option is a row, the bar with the option in it, then the percentage at the far right */
 #workskin .tw .tw-opt.res,
 #workskin .tw-reply .tw-opt.res {
   display: flex;
   align-items: center;
   border: 0;
   padding: 0;
+  color: #0f1419;
+  font-weight: normal;
+  text-align: left;
 }
 
 #workskin .tw .tw-bar,
@@ -182,7 +187,7 @@
   box-sizing: border-box;
   min-width: 2.6em;
   padding: 0.4em 0.7em;
-  border-radius: 2em;
+  border-radius: 6px;
   background: #cfd9de;
   white-space: nowrap;
 }
@@ -206,7 +211,7 @@
 
 #workskin .tw .tw-opt.p50 .tw-bar, #workskin .tw-reply .tw-opt.p50 .tw-bar { width: 50%; }</code></pre>
 
-<p>An open poll is just a blue outline. A finished one (<code>res</code>) turns the option into a flex row, like the buttons along the bottom of a tweet: the <code>tw-bar</code> span with the option in it, then the percentage pushed to the far right by <code>margin-left: auto</code>. The bar is a grey box with very round corners, and each <code>p</code> class sets how wide it is. <code>min-width</code> keeps a tiny percentage from shrinking the bar to nothing, and <code>nowrap</code> lets the words run on past the end of a short bar, like the real thing. <code>win</code> swaps the grey bar for a blue one and makes the text bold.</p>
+<p>An open poll is a blue outline with very round corners and bold blue words in the middle. The results (<code>res</code>) turns the option into a flex row, like the buttons along the bottom of a tweet: the <code>tw-bar</code> span with the option in it, then the percentage pushed to the far right by <code>margin-left: auto</code>. The bar is a grey box with slightly rounded corners, and each <code>p</code> class sets how wide it is. <code>min-width</code> keeps a tiny percentage from shrinking the bar to nothing, and <code>nowrap</code> lets the words run on past the end of a short bar, like the real thing. <code>win</code> swaps the grey bar for a blue one and makes the text bold.</p>
 
 <details>
 <summary>Adding a poll percentage that isn't there</summary>
@@ -218,6 +223,72 @@
 <p>The percentage the reader sees is just the text in <code>tw-pct</code>, so it doesn't have to match the bar exactly - the nearest bar is usually close enough.</p>
 
 </details>
+
+<h3>Tappable Polls</h3>
+
+<pre><code>/* the tick in a circle on the option the account voted for */
+#workskin .tw .tw-voted,
+#workskin .tw-reply .tw-voted {
+  display: inline-block;
+  width: 1.1em;
+  height: 1.1em;
+  margin-left: 0.4em;
+  border: 1px solid;
+  border-radius: 50%;
+  font-size: 0.75em;
+  font-weight: bold;
+  line-height: 1.1em;
+  text-align: center;
+  vertical-align: 0.15em;
+}
+
+/* TAPPABLE POLL, the short way: &lt;details class="tw-vote"&gt; with the open poll in &lt;summary&gt; (spans with tw-opt,
+   and a tw-pollinfo span), then the results after it, with tw-voted on the pov character's vote.
+   Tapping shows the results instead. */
+#workskin .tw .tw-vote,
+#workskin .tw-reply .tw-vote,
+#workskin .tw .tw-vote &gt; summary,
+#workskin .tw-reply .tw-vote &gt; summary { display: block; }
+
+#workskin .tw .tw-vote &gt; summary,
+#workskin .tw-reply .tw-vote &gt; summary,
+#workskin .tw .tw-pick &gt; summary,
+#workskin .tw-reply .tw-pick &gt; summary { cursor: pointer; list-style: none; }
+
+#workskin .tw .tw-vote &gt; summary::-webkit-details-marker,
+#workskin .tw-reply .tw-vote &gt; summary::-webkit-details-marker,
+#workskin .tw .tw-pick &gt; summary::-webkit-details-marker,
+#workskin .tw-reply .tw-pick &gt; summary::-webkit-details-marker { display: none; }
+
+#workskin .tw .tw-vote &gt; summary::marker,
+#workskin .tw-reply .tw-vote &gt; summary::marker,
+#workskin .tw .tw-pick &gt; summary::marker,
+#workskin .tw-reply .tw-pick &gt; summary::marker { content: ""; }
+
+#workskin .tw .tw-vote[open] &gt; summary,
+#workskin .tw-reply .tw-vote[open] &gt; summary { display: none; }
+
+/* TAPPABLE POLL where the reader picks: &lt;div class="tw-poll"&gt;, then one &lt;details class="tw-pick"&gt; per option,
+   each with &lt;summary class="tw-opt"&gt;Option&lt;/summary&gt; and a &lt;div class="tw-results"&gt; holding the results
+   with tw-voted on that option. The results cover the poll when it's tapped. */
+#workskin .tw .tw-poll,
+#workskin .tw-reply .tw-poll { display: block; position: relative; }
+
+#workskin .tw .tw-pick,
+#workskin .tw-reply .tw-pick { display: block; margin: 0.35em 0; }
+
+#workskin .tw .tw-pick &gt; .tw-opt,
+#workskin .tw-reply .tw-pick &gt; .tw-opt { margin: 0; }
+
+#workskin .tw .tw-pick[open] &gt; summary,
+#workskin .tw-reply .tw-pick[open] &gt; summary { visibility: hidden; }
+
+#workskin .tw .tw-results,
+#workskin .tw-reply .tw-results { display: block; position: absolute; top: -0.35em; left: 0; right: 0; z-index: 1; background: #ffffff; }</code></pre>
+
+<p>The tick is just a tick character in a span with a thin round border: <code>border-radius: 50%</code> turns a square into a circle. With no colour given, the border takes the colour of the words.</p>
+
+<p>The tappable polls work exactly like Tumblr's. In <code>tw-vote</code>, the open poll is the <code>summary</code>, and <code>[open]</code> hides it once it's been tapped, so the results underneath show instead. In the reader-picks version, each option is its own details, and its <code>tw-results</code> box is lifted out of the line with <code>position: absolute</code> so it sits over the whole <code>tw-poll</code> box, starting at the top. The white background (black in dark mode) hides the options underneath, and <code>z-index</code> keeps it on top. The tapped option's own outline is hidden with <code>visibility: hidden</code>, which keeps its space so nothing jumps about.</p>
 
 <h3>Pictures and Videos</h3>
 

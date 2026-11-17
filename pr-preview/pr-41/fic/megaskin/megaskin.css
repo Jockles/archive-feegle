@@ -2212,25 +2212,31 @@
 }
 
 /* polls: an OPEN poll is <p class="tw-opt">Option</p> for each option (a blue outline).
-   FINISHED poll: <p class="tw-opt res p75"><span class="tw-bar">Option</span><span class="tw-pct">75%</span></p>
-   with a bar size p0 to p100 (p25 p75 p33 p67 also exist); add "win" for the winner */
+   RESULTS: <p class="tw-opt res p75"><span class="tw-bar">Option</span><span class="tw-pct">75%</span></p>
+   with a bar size p0 to p100 (p25 p75 p33 p67 also exist); add "win" for the winner of a finished poll.
+   The option the account voted for gets <span class="tw-voted">&#10003;</span> after its words, inside the tw-bar. */
 #workskin .tw .tw-opt,
 #workskin .tw-reply .tw-opt {
   display: block;
   border: 1px solid #1d9bf0;
-  border-radius: 6px;
+  border-radius: 2em;
   padding: 0.4em 0.7em;
   margin: 0.35em 0;
-  color: #0f1419;
+  color: #1d9bf0;
+  font-weight: bold;
+  text-align: center;
 }
 
-/* a finished option is a row: the bar with the option in it, then the percentage at the far right */
+/* results: each option is a row, the bar with the option in it, then the percentage at the far right */
 #workskin .tw .tw-opt.res,
 #workskin .tw-reply .tw-opt.res {
   display: flex;
   align-items: center;
   border: 0;
   padding: 0;
+  color: #0f1419;
+  font-weight: normal;
+  text-align: left;
 }
 
 #workskin .tw .tw-bar,
@@ -2240,7 +2246,7 @@
   box-sizing: border-box;
   min-width: 2.6em;
   padding: 0.4em 0.7em;
-  border-radius: 2em;
+  border-radius: 6px;
   background: #cfd9de;
   white-space: nowrap;
 }
@@ -2261,6 +2267,66 @@
 #workskin .tw-reply .tw-opt.win {
   font-weight: bold;
 }
+
+/* the tick in a circle on the option the account voted for */
+#workskin .tw .tw-voted,
+#workskin .tw-reply .tw-voted {
+  display: inline-block;
+  width: 1.1em;
+  height: 1.1em;
+  margin-left: 0.4em;
+  border: 1px solid;
+  border-radius: 50%;
+  font-size: 0.75em;
+  font-weight: bold;
+  line-height: 1.1em;
+  text-align: center;
+  vertical-align: 0.15em;
+}
+
+/* TAPPABLE POLL, the short way: <details class="tw-vote"> with the open poll in <summary> (spans with tw-opt,
+   and a tw-pollinfo span), then the results after it, with tw-voted on the pov character's vote.
+   Tapping shows the results instead. */
+#workskin .tw .tw-vote,
+#workskin .tw-reply .tw-vote,
+#workskin .tw .tw-vote > summary,
+#workskin .tw-reply .tw-vote > summary { display: block; }
+
+#workskin .tw .tw-vote > summary,
+#workskin .tw-reply .tw-vote > summary,
+#workskin .tw .tw-pick > summary,
+#workskin .tw-reply .tw-pick > summary { cursor: pointer; list-style: none; }
+
+#workskin .tw .tw-vote > summary::-webkit-details-marker,
+#workskin .tw-reply .tw-vote > summary::-webkit-details-marker,
+#workskin .tw .tw-pick > summary::-webkit-details-marker,
+#workskin .tw-reply .tw-pick > summary::-webkit-details-marker { display: none; }
+
+#workskin .tw .tw-vote > summary::marker,
+#workskin .tw-reply .tw-vote > summary::marker,
+#workskin .tw .tw-pick > summary::marker,
+#workskin .tw-reply .tw-pick > summary::marker { content: ""; }
+
+#workskin .tw .tw-vote[open] > summary,
+#workskin .tw-reply .tw-vote[open] > summary { display: none; }
+
+/* TAPPABLE POLL where the reader picks: <div class="tw-poll">, then one <details class="tw-pick"> per option,
+   each with <summary class="tw-opt">Option</summary> and a <div class="tw-results"> holding the results
+   with tw-voted on that option. The results cover the poll when it's tapped. */
+#workskin .tw .tw-poll,
+#workskin .tw-reply .tw-poll { display: block; position: relative; }
+
+#workskin .tw .tw-pick,
+#workskin .tw-reply .tw-pick { display: block; margin: 0.35em 0; }
+
+#workskin .tw .tw-pick > .tw-opt,
+#workskin .tw-reply .tw-pick > .tw-opt { margin: 0; }
+
+#workskin .tw .tw-pick[open] > summary,
+#workskin .tw-reply .tw-pick[open] > summary { visibility: hidden; }
+
+#workskin .tw .tw-results,
+#workskin .tw-reply .tw-results { display: block; position: absolute; top: -0.35em; left: 0; right: 0; z-index: 1; background: #ffffff; }
 
 /* how long each bar is */
 #workskin .tw .tw-opt.p0 .tw-bar, #workskin .tw-reply .tw-opt.p0 .tw-bar { width: 0%; }
@@ -2702,9 +2768,11 @@
 
 #workskin .tw.theme-dark .tw-warn { background: #16181c; border-color: #2f3336; }
 
-#workskin .tw.theme-dark .tw-opt { color: #e7e9ea; }
+#workskin .tw.theme-dark .tw-opt.res { color: #e7e9ea; }
 
-#workskin .tw.theme-dark .tw-bar { background: #4d4d4d; }
+#workskin .tw.theme-dark .tw-results { background: #000000; }
+
+#workskin .tw.theme-dark .tw-bar { background: #333639; }
 
 #workskin .tw.theme-dark .tw-opt.win .tw-bar { background: #315a8a; }
 
@@ -2716,9 +2784,11 @@
 
 #workskin .tw-reply.theme-dark .tw-warn { background: #16181c; border-color: #2f3336; }
 
-#workskin .tw-reply.theme-dark .tw-opt { color: #e7e9ea; }
+#workskin .tw-reply.theme-dark .tw-opt.res { color: #e7e9ea; }
 
-#workskin .tw-reply.theme-dark .tw-bar { background: #4d4d4d; }
+#workskin .tw-reply.theme-dark .tw-results { background: #000000; }
+
+#workskin .tw-reply.theme-dark .tw-bar { background: #333639; }
 
 #workskin .tw-reply.theme-dark .tw-opt.win .tw-bar { background: #315a8a; }
 
@@ -2753,9 +2823,11 @@
 #workskin .tw-thread.theme-dark .tw-note,
 #workskin .tw-thread.theme-dark .tw-warn { background: #16181c; border-color: #2f3336; }
 
-#workskin .tw-thread.theme-dark .tw-opt { color: #e7e9ea; }
+#workskin .tw-thread.theme-dark .tw-opt.res { color: #e7e9ea; }
 
-#workskin .tw-thread.theme-dark .tw-bar { background: #4d4d4d; }
+#workskin .tw-thread.theme-dark .tw-results { background: #000000; }
+
+#workskin .tw-thread.theme-dark .tw-bar { background: #333639; }
 
 #workskin .tw-thread.theme-dark .tw-opt.win .tw-bar { background: #315a8a; }
 
@@ -2811,9 +2883,11 @@
 
   #workskin .tw.theme-auto .tw-warn { background: #16181c; border-color: #2f3336; }
 
-  #workskin .tw.theme-auto .tw-opt { color: #e7e9ea; }
+  #workskin .tw.theme-auto .tw-opt.res { color: #e7e9ea; }
 
-  #workskin .tw.theme-auto .tw-bar { background: #4d4d4d; }
+  #workskin .tw.theme-auto .tw-results { background: #000000; }
+
+  #workskin .tw.theme-auto .tw-bar { background: #333639; }
 
   #workskin .tw.theme-auto .tw-opt.win .tw-bar { background: #315a8a; }
 
@@ -2825,9 +2899,11 @@
 
   #workskin .tw-reply.theme-auto .tw-warn { background: #16181c; border-color: #2f3336; }
 
-  #workskin .tw-reply.theme-auto .tw-opt { color: #e7e9ea; }
+  #workskin .tw-reply.theme-auto .tw-opt.res { color: #e7e9ea; }
 
-  #workskin .tw-reply.theme-auto .tw-bar { background: #4d4d4d; }
+  #workskin .tw-reply.theme-auto .tw-results { background: #000000; }
+
+  #workskin .tw-reply.theme-auto .tw-bar { background: #333639; }
 
   #workskin .tw-reply.theme-auto .tw-opt.win .tw-bar { background: #315a8a; }
 
@@ -2862,9 +2938,11 @@
   #workskin .tw-thread.theme-auto .tw-note,
     #workskin .tw-thread.theme-auto .tw-warn { background: #16181c; border-color: #2f3336; }
 
-  #workskin .tw-thread.theme-auto .tw-opt { color: #e7e9ea; }
+  #workskin .tw-thread.theme-auto .tw-opt.res { color: #e7e9ea; }
 
-  #workskin .tw-thread.theme-auto .tw-bar { background: #4d4d4d; }
+  #workskin .tw-thread.theme-auto .tw-results { background: #000000; }
+
+  #workskin .tw-thread.theme-auto .tw-bar { background: #333639; }
 
   #workskin .tw-thread.theme-auto .tw-opt.win .tw-bar { background: #315a8a; }
 
