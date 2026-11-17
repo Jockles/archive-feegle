@@ -1076,7 +1076,11 @@
       case "blk-down": move(S.blocks, n[0], 1); break;
       case "blk-del": if (!confirm("Delete this chat?")) return; S.blocks.splice(n[0], 1); break;
       case "script": addScript(n[0]); return;
-      case "msg-add": b.msgs.push(newMsg(b.msgs.length ? b.msgs[b.msgs.length - 1].from : "", "", b.msgs.length ? b.msgs[b.msgs.length - 1].time : "")); break;
+      case "msg-add":
+        // a new message or tweet is from the last person, or else from the first person in the cast
+        var lastM = b.msgs[b.msgs.length - 1], who = lastM && char(lastM.from) ? lastM.from : char(b.pov) ? b.pov : S.cast[0] && S.cast[0].id;
+        if (!who) { var someone = newChar("Someone"); S.cast.push(someone); who = someone.id; }
+        b.msgs.push(newMsg(who, "", lastM ? lastM.time : "")); break;
       case "msg-ins": b.msgs.splice(n[1] + 1, 0, newMsg(m.from, "", m.time)); break;
       case "msg-up": move(b.msgs, n[1], -1); break;
       case "msg-down": move(b.msgs, n[1], 1); break;
