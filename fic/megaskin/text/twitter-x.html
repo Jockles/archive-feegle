@@ -491,6 +491,20 @@
   <li><code>tw-handle</code> is the grey @handle, with the time after it.</li>
 </ul>
 
+<p>The name, handle and time all stay on one line. If they don't fit, the handle gets cut off first, and a really long name gets cut off too - see <a href="twitter-x.html#heading">Private Accounts</a>.</p>
+
+<p>For a grey second line under the name, like "Fan account", add a <code>tw-fan</code> span after the handle:</p>
+
+<div class="mob tw theme-auto">
+  <p class="tw-top"><span class="tw-pfp colour2">H</span><span class="hide"> </span><span class="tw-name">hayley <span class="tw-tick ic ic-verified">&#10004;</span></span> <span class="tw-handle">@hockeyhayley · 18h</span> <span class="tw-fan">Fan account</span></p>
+  <p class="tw-text">the happiest person to play hockey ever his pure joy</p>
+</div>
+
+<pre><code>&lt;div class="mob tw theme-auto"&gt;
+  &lt;p class="tw-top"&gt;&lt;span class="tw-pfp colour2"&gt;H&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="tw-name"&gt;hayley &lt;span class="tw-tick ic ic-verified"&gt;&amp;#10004;&lt;/span&gt;&lt;/span&gt; &lt;span class="tw-handle"&gt;@hockeyhayley · 18h&lt;/span&gt; &lt;span class="tw-fan"&gt;Fan account&lt;/span&gt;&lt;/p&gt;
+  &lt;p class="tw-text"&gt;the happiest person to play hockey ever his pure joy&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+
 <p>The name and handle can be typed, like Scott's, or they can come from a character's profile. Put a name span in place of the name and a handle span in place of the @handle, each with a copy typed inside it in a <code>hide</code> span for readers with the workskin off. Leave the @ off a profile's handle - Twitter/X adds it for you (see <a href="core.html#heading">Character Profiles</a>):</p>
 
 <div class="mob tw theme-auto"><p class="tw-top"><span class="tw-pfp"><span class="pfp pfp-zim"></span></span><span class="hide"> </span><span class="tw-name"><span class="name pfp-zim"><span class="hide">Zim</span></span></span> <span class="tw-handle"><span class="handle pfp-zim"><span class="hide">@ZimBits</span></span> · 3h</span></p></div>
@@ -710,6 +724,18 @@
 &lt;/div&gt;</code></pre>
 
 <p>The padlock works after a name from a profile too - put it after the name span, still inside <code>tw-name</code>.</p>
+
+<p>Names on private accounts tend to be long, and a name that's too long for the line gets cut off at the edge, with the padlock or tick still showing after it. The handle goes first, and can disappear completely. Put the name in a plain <code>&lt;span&gt;</code> inside <code>tw-name</code> and it ends in "..." like on Twitter/X. Without the span it still works, but it stops at the last whole word that fits instead:</p>
+
+<div class="mob tw theme-auto">
+  <p class="tw-top"><span class="tw-pfp colour4">HP</span><span class="hide"> </span><span class="tw-name"><span>this is me trying (hayden's yap space for absolutely everything)</span> <span class="tw-lock ic ic-tw-lock">&#128274;</span></span> <span class="tw-handle">@hpitt_private · 45s</span></p>
+  <p class="tw-text">testing poll?</p>
+</div>
+
+<pre><code>&lt;div class="mob tw theme-auto"&gt;
+  &lt;p class="tw-top"&gt;&lt;span class="tw-pfp colour4"&gt;HP&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="tw-name"&gt;&lt;span&gt;this is me trying (hayden's yap space for absolutely everything)&lt;/span&gt; &lt;span class="tw-lock ic ic-tw-lock"&gt;&amp;#128274;&lt;/span&gt;&lt;/span&gt; &lt;span class="tw-handle"&gt;@hpitt_private · 45s&lt;/span&gt;&lt;/p&gt;
+  &lt;p class="tw-text"&gt;testing poll?&lt;/p&gt;
+&lt;/div&gt;</code></pre>
 
 <h4>Labels: Promoted and Circle Tweets</h4>
 

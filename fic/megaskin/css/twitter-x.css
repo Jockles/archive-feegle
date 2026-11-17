@@ -40,9 +40,14 @@
    Initials: <span class="tw-pfp colour1">JD</span>
    A picture: <span class="tw-pfp"><span class="pfp"><img src="..." alt="..."></span></span>
    A profile (set in the core section): <span class="tw-pfp"><span class="pfp pfp-shane"></span></span>
-   The handle moves under the name when there's a picture. colour1-colour10 are the colours. */
+   colour1-colour10 are the colours. */
 #workskin .tw .tw-top,
-#workskin .tw-reply .tw-top { display: block; overflow: hidden; }
+#workskin .tw-reply .tw-top {
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
 
 #workskin .tw .tw-pfp,
 #workskin .tw-reply .tw-pfp {
@@ -63,8 +68,45 @@
   font-weight: bold;
 }
 
-#workskin .tw .tw-pfp ~ .tw-handle,
-#workskin .tw-reply .tw-pfp ~ .tw-handle { display: block; }
+/* the name, any tick or padlock, then the @handle and time, all on one line. Anything that doesn't
+   fit is cut off at the edge: the handle goes first, and a very long name is cut off too, keeping its
+   tick or padlock in view. Typed in a plain span,
+   <span class="tw-name"><span>A really long name</span> <span class="tw-lock ic ic-tw-lock">&#128274;</span></span>,
+   a long name ends in "..." like on Twitter/X; without the span it stops at the last whole word that fits */
+#workskin .tw .tw-name,
+#workskin .tw-reply .tw-name {
+  display: inline-flex;
+  align-items: flex-start;
+  max-width: 75%;
+  overflow: hidden;
+  white-space: normal;
+  line-height: 1.3;
+  max-height: 1.3em;
+}
+
+#workskin .tw .tw-name > span,
+#workskin .tw-reply .tw-name > span {
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+#workskin .tw .tw-name > .ic,
+#workskin .tw-reply .tw-name > .ic {
+  flex: none;
+  margin: 0.15em 0 0 0.25em;
+}
+
+/* a second grey line under the name, like "Fan account": <span class="tw-fan">Fan account</span>
+   after the handle, inside tw-top */
+#workskin .tw .tw-fan,
+#workskin .tw-reply .tw-fan {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #536471;
+}
 
 #workskin .tw .tw-handle {
   color: #536471;
@@ -912,6 +954,8 @@
 #workskin .tw-thread.theme-dark .tw-media span { background: #202327; }
 
 #workskin .tw-thread.theme-dark .tw-handle,
+
+#workskin .tw-thread.theme-dark .tw-fan,
 #workskin .tw-thread.theme-dark .tw-stats {
   color: #71767b;
 }
@@ -923,6 +967,8 @@
 #workskin .tw.theme-dark .tw-name { color: #e7e9ea; }
 
 #workskin .tw.theme-dark .tw-handle,
+
+#workskin .tw.theme-dark .tw-fan,
 #workskin .tw.theme-dark .tw-replying {
   color: #71767b;
 }
@@ -1023,6 +1069,8 @@
 #workskin .tw-reply.theme-dark .tw-name { color: #e7e9ea; }
 
 #workskin .tw-reply.theme-dark .tw-handle,
+
+#workskin .tw-reply.theme-dark .tw-fan,
 #workskin .tw-reply.theme-dark .tw-replying {
   color: #71767b;
 }
@@ -1046,6 +1094,8 @@
   #workskin .tw.theme-auto .tw-name { color: #e7e9ea; }
 
   #workskin .tw.theme-auto .tw-handle,
+
+  #workskin .tw.theme-auto .tw-fan,
     #workskin .tw.theme-auto .tw-replying {
       color: #71767b;
     }
@@ -1148,6 +1198,8 @@
   #workskin .tw-thread.theme-auto .tw-media span { background: #202327; }
 
   #workskin .tw-thread.theme-auto .tw-handle,
+
+  #workskin .tw-thread.theme-auto .tw-fan,
     #workskin .tw-thread.theme-auto .tw-stats {
       color: #71767b;
     }
@@ -1165,6 +1217,8 @@
   #workskin .tw-reply.theme-auto .tw-name { color: #e7e9ea; }
 
   #workskin .tw-reply.theme-auto .tw-handle,
+
+  #workskin .tw-reply.theme-auto .tw-fan,
     #workskin .tw-reply.theme-auto .tw-replying {
       color: #71767b;
     }
