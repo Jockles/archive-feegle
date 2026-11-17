@@ -127,39 +127,45 @@ window.FB_EXAMPLES = [
     chat: { type: "twthread", bar: "empty" },
     msgs: [
       ["Zim", "Reminder to everyone that there could be (and likely are) queer players on many of the teams that didn't pledge. Thoughts go out to them. #HunterShortlist @SHunter",
-        { time: "3h", date: "8:23 AM · 11 May 23", reposts: "580", reposted: true, likes: "2.6k", liked: true, replies: "10" }],
-      ["Holster", "I played all through college with a guy whose boyfriend was also on the team. That man now plays professionally. This is not the whole story of queer hockey.", { time: "2h" }],
-      ["Sam", "this is lovely. anyway feed me", { time: "1h" }],
-      ["Stan", "Settle something for me while we're all here. Who's got the cup this year?", { time: "45m", reply: 0, poll: "Montreal\nBoston", pollinfo: "179 votes · 13 minutes left" }],
-      ["Rose", "The Ottawa crowd last night 🏳️‍🌈", { time: "30m", reply: 0, photos: [{ url: CAT1, alt: ALT1 }, { url: CAT2, alt: ALT2 }] }],
-      ["Stan", "Rose those are cats.", { time: "20m" }]
+        { time: "3h", date: "8:23 AM · 11 May 23", replies: "10", reposts: "580", reposted: true, likes: "2,614", views: "71K", saved: true }],
+      ["Holster", "I played all through college with a guy whose boyfriend was also on the team. That man now plays professionally. This is not the whole story of queer hockey.", { time: "2h", replies: "1", likes: "12", views: "324" }],
+      ["Sam", "this is lovely. anyway feed me", { time: "1h", likes: "3", views: "81" }],
+      ["Stan", "Settle something for me while we're all here. Who's got the cup this year?", { time: "45m", reply: 0, poll: "Montreal 58%\nBoston 31%\nToronto 11%",
+        pollinfo: "179 votes · 13 minutes left", pollTap: true, pollVote: "0", replies: "4", reposts: "2", likes: "9", views: "243" }],
+      ["Rose", "The Ottawa crowd last night 🏳️‍🌈", { time: "30m", reply: 0, photos: [{ url: CAT1, alt: ALT1 }, { url: CAT2, alt: ALT2 }], likes: "31", views: "837" }],
+      ["Stan", "Rose those are cats.", { time: "20m", replies: "1", likes: "57", views: "1.5K" }]
     ]
   },
   {
     label: "Twitter/X: a timeline of tweets",
     cast: [
+      { name: "Ilya", profile: "ilya" },
       { name: "Hockey Fan", handle: "hockeyfan", pic: "https://images.squidge.org/images/2026/11/16/HockeyBlur.png", alt: "Profile picture of hockeyfan, a blurred photo of a hockey game" },
       { name: "Scott Hunter", handle: "SHunter", colour: "6", initials: "SH" },
       { name: "Yuna", profile: "yuna" },
-      { name: "Sharks or Swim", handle: "SharksSwim", pic: "https://images.squidge.org/images/2026/11/16/Goalie.png", alt: "Profile picture of SharksSwim, a hockey goalie" },
+      { name: "Shane Hollander is my babygirl", handle: "SharksSwim", pic: "https://images.squidge.org/images/2026/11/16/Goalie.png", alt: "Profile picture of SharksSwim, a hockey goalie" },
       { name: "Pace Off", handle: "Pace_Off_Puckers", pic: "https://images.squidge.org/images/2026/11/16/Goal.png", alt: "Profile picture of Pace_Off_Puckers, a hockey goal" },
       { name: "Jockles", handle: "jockles25", colour: "8", initials: "J" },
       { name: "Geri", handle: "Geronimum", colour: "2", showInitials: false }
     ],
-    chat: { type: "twfeed" },
+    chat: { type: "twfeed", app: "app", pov: "Ilya", tabs: "Metros Fans\nHockey Twitter" },
     msgs: [
-      ["Hockey Fan", "Can't believe that overtime goal.", { time: "2h", reposts: "3", likes: "13", replies: "1" }],
+      ["Hockey Fan", "Can't believe that overtime goal.", { time: "2h", replies: "1", reposts: "3", likes: "13", views: "351" }],
       ["Scott Hunter", "no comment. #NoComment", { time: "5m", verified: true, qName: "Reporter", qHandle: "sportsdesk", qText: "Sources say the trade is happening.",
-        note: "Readers added context: the trade has not been confirmed.", reposts: "912", likes: "8,204", replies: "77" }],
-      ["Yuna", "Cat sitting again.", { time: "2h", label: "Only people in @MetrosMomager's Twitter Circle can see this Tweet.",
-        photos: [{ url: CAT1, alt: ALT1, land: true }, { url: CAT2, alt: ALT2 }, { url: CAT3, alt: ALT3, land: true }, { url: CAT4, alt: ALT4 }] }],
-      ["Sharks or Swim", "My Captain.", { time: "2h", photos: [{ url: MACK, alt: MACKALT }] }],
-      ["Pace Off", "Last Metros game of the regular season and @SHollanderHockeyPlayer looks miserable.", { time: "3h", photos: [{ desc: "Shane Hollander looking tired at a press conference" }] }],
+        note: "Readers added context: the trade has not been confirmed.", replies: "77", reposts: "912", likes: "8,204", views: "222K" }],
+      ["Yuna", "Cat sitting again.", { time: "2h", label: "Only people in @MetrosMomager's Twitter Circle can see this Tweet.", likeClick: false,
+        photos: [{ url: CAT1, alt: ALT1, land: true }, { url: CAT2, alt: ALT2 }, { url: CAT3, alt: ALT3, land: true }, { url: CAT4, alt: ALT4 }],
+        replies: "3", noRepost: true, likes: "41", views: "512" }],
+      ["Shane Hollander is my babygirl", "My Captain.", { time: "2h", photos: [{ url: MACK, alt: MACKALT }], locked: true, likeClick: false, replies: "12", likes: "230", views: "3.1K" }],
+      ["Pace Off", "Last Metros game of the regular season and @SHollanderHockeyPlayer looks miserable.", { time: "3h", photos: [{ desc: "Shane Hollander looking tired at a press conference" }],
+        likeClick: false, replies: "88", reposts: "402", likes: "2.4K", views: "61K" }],
       ["Jockles", "Ilya Rozanov you will always be famous to me", { time: "2h", vUrl: "https://player.vimeo.com/video/1169167060?badge=0&autopause=0&player_id=0&app_id=58479",
-        vTitle: "Ilya Rozanov | Come Home", vDesc: "Video: a tribute edit of Ilya Rozanov, made from Heated Rivalry footage and set to \"Would You Come Home\" by Tyler Blackburn" }],
-      ["Hockey Fan", "Who's got the cup this year?", { time: "1d", poll: "Montreal 75%\nBoston 25%", pollinfo: "97 votes · Final results" }],
+        vTitle: "Ilya Rozanov | Come Home", vDesc: "Video: a tribute edit of Ilya Rozanov, made from Heated Rivalry footage and set to \"Would You Come Home\" by Tyler Blackburn",
+        likeClick: false, replies: "5", reposts: "19", likes: "210", views: "4K" }],
+      ["Hockey Fan", "Who's got the cup this year?", { time: "1d", poll: "Montreal 75%\nBoston 25%", pollinfo: "97 votes · Final results", likeClick: false, replies: "2", reposts: "1", likes: "9", views: "260" }],
       ["Geri", "Rink at night vs rink in the morning. Guess which one I prefer", { time: "4h", warn: true,
-        photos: [{ desc: "A photo of the empty rink at night" }, { desc: "A photo of the same rink at 6am, full of children in helmets" }] }]
+        photos: [{ desc: "A photo of the empty rink at night" }, { desc: "A photo of the same rink at 6am, full of children in helmets" }],
+        likeClick: false, replies: "31", reposts: "145", likes: "1.2K", views: "22K" }]
     ]
   },
   {
