@@ -480,11 +480,11 @@
     if (t(m.pollinfo)) L.push('<p class="tw-pollinfo">' + esc(t(m.pollinfo)) + "</p>");
     return L;
   }
-  function twMedia(m) {
-    var v = picUrl(m.vUrl);
+  function twMedia(m, video, pics) {
+    var v = video ? picUrl(m.vUrl) : "";
     if (v) return ['<div class="tw-media video"><iframe src="' + esc(v) + '" frameborder="0" title="' + esc(t(m.vTitle) || "Video") + '"></iframe>' +
       (t(m.vDesc) ? '<p class="vid-desc">[' + esc(t(m.vDesc)) + "]</p>" : "") + "</div>"];
-    var ph = (m.photos || []).filter(function (p) { return picUrl(p.url) || t(p.desc); }).slice(0, 4);
+    var ph = pics ? (m.photos || []).filter(function (p) { return picUrl(p.url) || t(p.desc); }).slice(0, 4) : [];
     if (!ph.length) return [];
     function img(p) { return '<img ' + (p.land ? 'class="land" ' : "") + 'src="' + esc(picUrl(p.url)) + '" alt="' + esc(p.alt) + '">'; }
     if (ph.length === 1) return ['<p class="tw-media">' + (picUrl(ph[0].url) ? img(ph[0]) : "<span>[" + esc(t(ph[0].desc)) + "]</span>") + "</p>"];
@@ -500,6 +500,16 @@
     return s.length ? ['<p class="tw-stats">' + s.join(" &nbsp; ") + "</p>"] : [];
   }
   // one tweet: kind is "feed" (on its own), "main" (top of a thread) or "reply"
+  // the extras ticked on a tweet: [tick box, label]. Older tweets with no tick saved go by what's filled in
+  var TW_ADDS = [["hasPoll", "Poll"], ["hasQuote", "Quote tweet"], ["hasNote", "Community note"], ["hasPics", "Pictures"], ["hasVideo", "Video"]];
+  function has(m, k) {
+    if (m[k] !== undefined) return !!m[k];
+    if (k === "hasPoll") return !!t(m.poll);
+    if (k === "hasQuote") return !!(t(m.qText) || t(m.qName));
+    if (k === "hasNote") return !!t(m.note);
+    if (k === "hasPics") return (m.photos || []).length > 0;
+    return !!t(m.vUrl);
+  }
   function tweetHTML(b, m, kind) {
     var c = char(m.from); if (!c) return [];
     var a = accOf(c, m.acc, "tw"), L = [];
@@ -514,10 +524,11 @@
       (t(m.time) ? " · " + esc(t(m.time)) : "") + "</span></p>");
     if (t(m.label)) L.push('<p class="tw-label">' + esc(t(m.label)) + "</p>");
     if (t(m.text)) L.push((kind === "reply" ? "<p>" : '<p class="tw-text">') + twText(m.text) + "</p>");
-    L = L.concat(twPoll(m), twMedia(m));
-    if (m.warn) L.push('<p class="tw-warn"><b>Content warning: Sensitive content</b><br>The Tweet author flagged this Tweet as showing sensitive content.</p>');
-    if (t(m.qText) || t(m.qName)) L.push('<p class="tw-quote"><b>' + esc(t(m.qName)) + "</b>" + (noAt(m.qHandle) ? ' <span class="tw-handle">@' + esc(noAt(m.qHandle)) + "</span>" : "") + "<br>" + fmt(m.qText) + "</p>");
-    if (t(m.note)) L.push('<p class="tw-note">' + esc(t(m.note)) + "</p>");
+    if (has(m, "hasPoll")) L = L.concat(twPoll(m));
+    if (has(m, "hasVideo") || has(m, "hasPics")) L = L.concat(twMedia(m, has(m, "hasVideo"), has(m, "hasPics")));
+    if (m.warn && has(m, "hasPics")) L.push('<p class="tw-warn"><b>Content warning: Sensitive content</b><br>The Tweet author flagged this Tweet as showing sensitive content.</p>');
+    if (has(m, "hasQuote") && (t(m.qText) || t(m.qName))) L.push('<p class="tw-quote"><b>' + esc(t(m.qName)) + "</b>" + (noAt(m.qHandle) ? ' <span class="tw-handle">@' + esc(noAt(m.qHandle)) + "</span>" : "") + "<br>" + fmt(m.qText) + "</p>");
+    if (has(m, "hasNote") && t(m.note)) L.push('<p class="tw-note">' + esc(t(m.note)) + "</p>");
     if (t(m.date)) L.push('<p class="tw-date">' + esc(t(m.date)) + "</p>");
     L = L.concat(twStats(m));
     var open = kind === "feed" ? '<div class="mob tw ' + b.theme + (b.width ? " " + b.width : "") + '">' : kind === "main" ? '<div class="mob tw">' : '<div class="mob tw-reply">';
@@ -864,15 +875,17 @@
         field(P + ".likes", "Likes", { ph: "2.6k" }) + field(P + ".liked", "Liked (pink)", { type: "check" }) + "</div><div>" +
         field(P + ".replies", "Replies", { ph: "10" }) + "</div></div>");
       h.push(field(P + ".date", "Exact time and date (for a tweet opened on its own)", { ph: "8:23 AM · 11 May 23" }));
-      h.push(field(P + ".poll", "Poll: one option per line. For a finished poll, put the percentage after each one, like Montreal 75%", { type: "area", rows: 2 }));
-      if (t(m.poll)) h.push(field(P + ".pollinfo", "Under the poll", { ph: "179 votes · 13 minutes left" }));
-      h.push('<p class="hint">Quote tweet:</p><div class="fb-grid"><div>' + field(P + ".qName", "", { ph: "Their name" }) + "</div><div>" + field(P + ".qHandle", "", { ph: "Their handle" }) + "</div></div>" +
-        field(P + ".qText", "", { ph: "What they said" }));
-      h.push(field(P + ".note", "Community note", { ph: "Readers added context: ..." }));
-      h.push(pictureRows(P, bi, mi, m, 4, true));
-      h.push(field(P + ".warn", "Cover the pictures with a sensitive content warning", { type: "check" }));
-      h.push('<p class="hint">Or a video:</p>' + field(P + ".vUrl", "", { type: "url", ph: "Video embed link (Vimeo, YouTube or the Internet Archive)" }) +
-        field(P + ".vTitle", "", { ph: "The video's title" }) + field(P + ".vDesc", "", { ph: "Describe the video" }));
+      // the bigger extras only open up when they're ticked
+      TW_ADDS.forEach(function (a) { if (m[a[0]] === undefined) m[a[0]] = has(m, a[0]); });
+      h.push('<p class="hint">Add to this tweet:</p><div>' + TW_ADDS.map(function (a) { return field(P + "." + a[0], a[1], { type: "check", re: true }); }).join(" ") + "</div>");
+      if (m.hasPoll) h.push('<div class="fb-acct">' + field(P + ".poll", "Poll: one option per line. For a finished poll, put the percentage after each one, like Montreal 75%", { type: "area", rows: 2 }) +
+        field(P + ".pollinfo", "Under the poll", { ph: "179 votes · 13 minutes left" }) + "</div>");
+      if (m.hasQuote) h.push('<div class="fb-acct"><p class="hint">Quote tweet:</p><div class="fb-grid"><div>' + field(P + ".qName", "", { ph: "Their name" }) + "</div><div>" + field(P + ".qHandle", "", { ph: "Their handle" }) + "</div></div>" +
+        field(P + ".qText", "", { ph: "What they said" }) + "</div>");
+      if (m.hasNote) h.push('<div class="fb-acct">' + field(P + ".note", "Community note", { ph: "Readers added context: ..." }) + "</div>");
+      if (m.hasPics) h.push('<div class="fb-acct">' + pictureRows(P, bi, mi, m, 4, true) + field(P + ".warn", "Cover the pictures with a sensitive content warning", { type: "check" }) + "</div>");
+      if (m.hasVideo) h.push('<div class="fb-acct"><p class="hint">Video:</p>' + field(P + ".vUrl", "", { type: "url", ph: "Video embed link (Vimeo, YouTube or the Internet Archive)" }) +
+        field(P + ".vTitle", "", { ph: "The video's title" }) + field(P + ".vDesc", "", { ph: "Describe the video" }) + "</div>");
       h.push("</div>");
     }
     h.push("</li>");
