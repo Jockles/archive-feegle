@@ -42,24 +42,25 @@
       <li><a href="#s8-1-1">8.1.1 A Tweet and Its Replies</a></li>
       <li><a href="#s8-1-2">8.1.2 A Timeline of Tweets</a></li>
       <li><a href="#s8-1-3">8.1.3 The X App Screen</a></li>
-      <li><a href="#s8-1-4">8.1.4 Tweet Container</a></li>
-      <li><a href="#s8-1-5">8.1.5 Name and Handle</a></li>
-      <li><a href="#s8-1-6">8.1.6 Profile Picture</a></li>
-      <li><a href="#s8-1-7">8.1.7 Uploading a Profile Pic</a></li>
-      <li><a href="#s8-1-8">8.1.8 Tweet Text</a></li>
-      <li><a href="#s8-1-9">8.1.9 Stats Line</a></li>
-      <li><a href="#s8-1-10">8.1.10 Clickable Likes</a></li>
-      <li><a href="#s8-1-11">8.1.11 Replies</a></li>
-      <li><a href="#s8-1-12">8.1.12 Quote Tweets</a></li>
-      <li><a href="#s8-1-13">8.1.13 Community Notes</a></li>
-      <li><a href="#s8-1-14">8.1.14 Timestamp Line</a></li>
-      <li><a href="#s8-1-15">8.1.15 Liked, Reposted and Bookmarked</a></li>
-      <li><a href="#s8-1-16">8.1.16 Labels: Promoted and Circle Tweets</a></li>
-      <li><a href="#s8-1-17">8.1.17 Sensitive Content Warning</a></li>
-      <li><a href="#s8-1-18">8.1.18 Polls</a></li>
-      <li><a href="#s8-1-19">8.1.19 Tappable Polls</a></li>
-      <li><a href="#s8-1-20">8.1.20 Pictures and Videos</a></li>
-      <li><a href="#s8-1-21">8.1.21 A Scrollable Thread</a></li>
+      <li><a href="#s8-1-4">8.1.4 The Old Twitter Bird</a></li>
+      <li><a href="#s8-1-5">8.1.5 Tweet Container</a></li>
+      <li><a href="#s8-1-6">8.1.6 Name and Handle</a></li>
+      <li><a href="#s8-1-7">8.1.7 Profile Picture</a></li>
+      <li><a href="#s8-1-8">8.1.8 Uploading a Profile Pic</a></li>
+      <li><a href="#s8-1-9">8.1.9 Tweet Text</a></li>
+      <li><a href="#s8-1-10">8.1.10 Stats Line</a></li>
+      <li><a href="#s8-1-11">8.1.11 Clickable Likes</a></li>
+      <li><a href="#s8-1-12">8.1.12 Replies</a></li>
+      <li><a href="#s8-1-13">8.1.13 Quote Tweets</a></li>
+      <li><a href="#s8-1-14">8.1.14 Community Notes</a></li>
+      <li><a href="#s8-1-15">8.1.15 Timestamp Line</a></li>
+      <li><a href="#s8-1-16">8.1.16 Liked, Reposted and Bookmarked</a></li>
+      <li><a href="#s8-1-17">8.1.17 Labels: Promoted and Circle Tweets</a></li>
+      <li><a href="#s8-1-18">8.1.18 Sensitive Content Warning</a></li>
+      <li><a href="#s8-1-19">8.1.19 Polls</a></li>
+      <li><a href="#s8-1-20">8.1.20 Tappable Polls</a></li>
+      <li><a href="#s8-1-21">8.1.21 Pictures and Videos</a></li>
+      <li><a href="#s8-1-22">8.1.22 A Scrollable Thread</a></li>
     </ul>
   </li>
   <li><a href="#s8-2">8.2 Twitter/X DMs</a>
@@ -470,15 +471,58 @@
   &lt;/div&gt;
 &lt;/div&gt;</code></pre>
 
-<p>For a fic set before mid-2023, swap the X for the old blue bird by adding <code>bird</code> to the <code>tw-logo</code>. The word inside is what readers see with the workskin switched off:</p>
+<p>The tweets inside lose their own borders and corners, and sit one under the other with a line between them, like in the app. <code>theme-auto</code> or <code>theme-dark</code> goes on the <code>tw-thread</code>, so you don't need it on each tweet.</p>
 
-<div class="tw-thread app theme-auto"><div class="tw-scroll"><p class="tw-apptop"><span class="tw-me"><span class="pfp pfp-yuna"></span></span> <span class="tw-logo bird">Twitter</span></p></div></div>
+<h4 id="s8-1-4">8.1.4 The Old Twitter Bird</h4>
+
+<p>For a fic set before mid-2023, when Twitter became X, you can swap the X at the top of the app screen for the old blue bird. Add <code>bird</code> to the <code>tw-logo</code> span, and write <code>Twitter</code> inside it instead of the X:</p>
 
 <pre><code>&lt;span class="tw-logo bird"&gt;Twitter&lt;/span&gt;</code></pre>
 
-<p>The tweets inside lose their own borders and corners, and sit one under the other with a line between them, like in the app. <code>theme-auto</code> or <code>theme-dark</code> goes on the <code>tw-thread</code>, so you don't need it on each tweet.</p>
+<p>The word is hidden and the bird shows in its place. Readers with the workskin switched off see the word instead. Views only arrived in late 2022, so an older tweet like this one leaves out the views button too:</p>
 
-<h4 id="s8-1-4">8.1.4 Tweet Container</h4>
+<div class="tw-thread app theme-auto">
+  <div class="tw-scroll">
+  <p class="tw-apptop"><span class="tw-me"><span class="pfp pfp-yuna"></span></span> <span class="tw-logo bird">Twitter</span></p>
+  <p class="tw-tabs"><span class="tw-tab on">For you<span class="tw-drop"></span></span> <span class="tw-tab">Following</span> <span class="tw-add">+</span></p>
+  <div class="mob tw">
+    <p class="tw-top"><span class="tw-pfp colour6">SH</span><span class="hide"> </span><span class="tw-name">Scott Hunter <span class="tw-tick ic ic-verified">&#10004;</span></span> <span class="tw-handle">@SHunter · 5m</span></p>
+    <p class="tw-text">Good game tonight. Proud of this team.</p>
+    <div class="tw-stats">
+      <div class="tw-stat"><span class="ic ic-tw-reply">&#9993;</span> 48<span class="hide"> replies</span></div>
+      <div class="tw-stat"><span class="ic ic-tw-repost">&#8644;</span> 310<span class="hide"> reposts</span></div>
+      <details class="tw-stat tw-tog"><summary><span class="ic ic-tw-like">&#9825;</span><span class="off"> 4,102</span><span class="hide"> likes (</span><span class="on"> 4,103</span><span class="hide"> once liked)</span></summary></details>
+      <div class="tw-stat tw-end"><span class="ic ic-tw-bookmark">&#128278;</span></div>
+      <div class="tw-stat tw-end"><span class="ic ic-tw-share">&#8679;</span></div>
+    </div>
+  </div>
+  </div>
+</div>
+
+<details>
+<summary>The full HTML for this example</summary>
+
+<pre><code>&lt;div class="tw-thread app theme-auto"&gt;
+  &lt;div class="tw-scroll"&gt;
+  &lt;p class="tw-apptop"&gt;&lt;span class="tw-me"&gt;&lt;span class="pfp pfp-yuna"&gt;&lt;/span&gt;&lt;/span&gt; &lt;span class="tw-logo bird"&gt;Twitter&lt;/span&gt;&lt;/p&gt;
+  &lt;p class="tw-tabs"&gt;&lt;span class="tw-tab on"&gt;For you&lt;span class="tw-drop"&gt;&lt;/span&gt;&lt;/span&gt; &lt;span class="tw-tab"&gt;Following&lt;/span&gt; &lt;span class="tw-add"&gt;+&lt;/span&gt;&lt;/p&gt;
+  &lt;div class="mob tw"&gt;
+    &lt;p class="tw-top"&gt;&lt;span class="tw-pfp colour6"&gt;SH&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="tw-name"&gt;Scott Hunter &lt;span class="tw-tick ic ic-verified"&gt;&amp;#10004;&lt;/span&gt;&lt;/span&gt; &lt;span class="tw-handle"&gt;@SHunter · 5m&lt;/span&gt;&lt;/p&gt;
+    &lt;p class="tw-text"&gt;Good game tonight. Proud of this team.&lt;/p&gt;
+    &lt;div class="tw-stats"&gt;
+      &lt;div class="tw-stat"&gt;&lt;span class="ic ic-tw-reply"&gt;&amp;#9993;&lt;/span&gt; 48&lt;span class="hide"&gt; replies&lt;/span&gt;&lt;/div&gt;
+      &lt;div class="tw-stat"&gt;&lt;span class="ic ic-tw-repost"&gt;&amp;#8644;&lt;/span&gt; 310&lt;span class="hide"&gt; reposts&lt;/span&gt;&lt;/div&gt;
+      &lt;details class="tw-stat tw-tog"&gt;&lt;summary&gt;&lt;span class="ic ic-tw-like"&gt;&amp;#9825;&lt;/span&gt;&lt;span class="off"&gt; 4,102&lt;/span&gt;&lt;span class="hide"&gt; likes (&lt;/span&gt;&lt;span class="on"&gt; 4,103&lt;/span&gt;&lt;span class="hide"&gt; once liked)&lt;/span&gt;&lt;/summary&gt;&lt;/details&gt;
+      &lt;div class="tw-stat tw-end"&gt;&lt;span class="ic ic-tw-bookmark"&gt;&amp;#128278;&lt;/span&gt;&lt;/div&gt;
+      &lt;div class="tw-stat tw-end"&gt;&lt;span class="ic ic-tw-share"&gt;&amp;#8679;&lt;/span&gt;&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+</details>
+
+<h4 id="s8-1-5">8.1.5 Tweet Container</h4>
 
 <p>A tweet is a single container, <code>&lt;div class=&quot;mob tw theme-auto&quot;&gt;</code>, with a few lines inside it. There's no header or body here - the lines go straight in:</p>
 
@@ -510,7 +554,7 @@
 
 <p>The next few sections go through each of those three lines.</p>
 
-<h4 id="s8-1-5">8.1.5 Name and Handle</h4>
+<h4 id="s8-1-6">8.1.6 Name and Handle</h4>
 
 <p>The first line, <code>tw-top</code>, has the account's picture, name, handle and the time:</p>
 
@@ -530,7 +574,7 @@
 
 <pre><code>&lt;p class="tw-top"&gt;&lt;span class="tw-pfp"&gt;&lt;span class="pfp pfp-zim"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="tw-name"&gt;&lt;span class="name pfp-zim"&gt;&lt;span class="hide"&gt;Zim&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; &lt;span class="tw-handle"&gt;&lt;span class="handle pfp-zim"&gt;&lt;span class="hide"&gt;@ZimBits&lt;/span&gt;&lt;/span&gt; · 3h&lt;/span&gt;&lt;/p&gt;</code></pre>
 
-<h4 id="s8-1-6">8.1.6 Profile Picture</h4>
+<h4 id="s8-1-7">8.1.7 Profile Picture</h4>
 
 <p>Every tweet has the account's round profile picture at the start of the name line. It can show initials, an uploaded picture or a picture from a profile, and there's an example of each below. For initials, put a <code>tw-pfp</code> span first in the <code>tw-top</code> line, with the initials inside it, and add <code>colour1</code> to <code>colour10</code> for a colour. When there's a picture, the handle moves under the name, like it does in the app:</p>
 
@@ -552,7 +596,7 @@
 
 <p>All three ways work the same in replies - just give the reply's name line the <code>tw-top</code> class, like the replies in the thread. The colours for <code>colour1</code> to <code>colour10</code> are set in the core CSS and shared with every app, so you can change them there.</p>
 
-<h4 id="s8-1-7">8.1.7 Uploading a Profile Pic</h4>
+<h4 id="s8-1-8">8.1.8 Uploading a Profile Pic</h4>
 
 <p>Profiles are optional, and a thread full of random accounts is the perfect place to skip them. For each tweet, put the picture tag in the <code>tw-pfp</code>, type the name in <code>tw-name</code>, and type the handle in <code>tw-handle</code>, with the @. Copy all three onto every tweet or reply from that account:</p>
 
@@ -592,7 +636,7 @@
   <li>Twitter/X DMs don't show profile pictures, so in a group DM a stranger only needs their name typed in a <code>who</code> line, and a character with a profile can take theirs from it (see Group Chats, below).</li>
 </ul>
 
-<h4 id="s8-1-8">8.1.8 Tweet Text</h4>
+<h4 id="s8-1-9">8.1.9 Tweet Text</h4>
 
 <p>The text of the tweet goes in <code>tw-text</code>. To make a hashtag, an @mention or a link blue, wrap it in a span with <code>tw-link</code>:</p>
 
@@ -600,7 +644,7 @@
 
 <pre><code>&lt;p class="tw-text"&gt;Reminder to everyone that there could be (and likely are) queer players on many of the teams that didn't pledge. Thoughts go out to them. &lt;span class="tw-link"&gt;#HunterShortlist&lt;/span&gt; &lt;span class="tw-link"&gt;@SHunter&lt;/span&gt;&lt;/p&gt;</code></pre>
 
-<h4 id="s8-1-9">8.1.9 Stats Line</h4>
+<h4 id="s8-1-10">8.1.10 Stats Line</h4>
 
 <p>The row of buttons along the bottom is <code>tw-stats</code>: replies, reposts, likes, views, then the bookmark and share buttons. Each button and its count is a <code>tw-stat</code> div: the button, the number, then a <code>hide</code> span saying what the number is, for readers with the workskin switched off. Leave out the number for a button with no count, and leave out any button you don't want. The bookmark and share buttons have no count, and get <code>tw-end</code> as well, which tucks them against the right-hand edge. A reply has the same row, smaller and without the line above it:</p>
 
@@ -624,7 +668,7 @@
 
 <p>Views only showed up on Twitter in late 2022, so for an older tweet, leave out the views button and the other three spread out to fill the gap.</p>
 
-<h4 id="s8-1-10">8.1.10 Clickable Likes</h4>
+<h4 id="s8-1-11">8.1.11 Clickable Likes</h4>
 
 <p>Readers can click or tap a like to switch it on and off, like on the real app. It's made with the details and summary tags, like Instagram's heart, and goes in place of the plain like. Inside the <code>summary</code> are two counts: the one with <code>off</code> shows to begin with, and the one with <code>on</code> swaps in after a click, so the likes can go up by one. The heart and its count turn red too. Click again, and it goes back:</p>
 
@@ -644,7 +688,7 @@
   <li>To start with the like already switched on (a tweet the character has already liked, say), add <code>open</code>: <code>&lt;details class="tw-stat tw-tog" open&gt;</code>.</li>
 </ul>
 
-<h4 id="s8-1-11">8.1.11 Replies</h4>
+<h4 id="s8-1-12">8.1.12 Replies</h4>
 
 <p>A reply is its own container, with the class <code>tw-reply</code> instead of <code>tw</code>. Put it straight underneath the tweet and the two join up into a thread:</p>
 
@@ -662,7 +706,7 @@
 
 <p><code>tw-replying</code> is the little grey "Replying to" line at the top. For a longer comment section, add as many <code>tw-reply</code> containers as you like, one after another.</p>
 
-<h4 id="s8-1-12">8.1.12 Quote Tweets</h4>
+<h4 id="s8-1-13">8.1.13 Quote Tweets</h4>
 
 <p>To quote another tweet inside a tweet, add a paragraph with <code>tw-quote</code> after the text:</p>
 
@@ -672,7 +716,7 @@
 
 <p>Put the quoted account's name in <code>&lt;b&gt;</code> and their handle in <code>tw-handle</code>, then a line break and their words. The rounded box around it is drawn for you.</p>
 
-<h4 id="s8-1-13">8.1.13 Community Notes</h4>
+<h4 id="s8-1-14">8.1.14 Community Notes</h4>
 
 <p>For the grey "Readers added context" box at the bottom of a tweet, use <code>tw-note</code>:</p>
 
@@ -680,7 +724,7 @@
 
 <pre><code>&lt;p class="tw-note"&gt;Readers added context: the trade has not been confirmed.&lt;/p&gt;</code></pre>
 
-<h4 id="s8-1-14">8.1.14 Timestamp Line</h4>
+<h4 id="s8-1-15">8.1.15 Timestamp Line</h4>
 
 <p>A tweet opened on its own page also shows the exact time and date above the counts. Add it with <code>tw-date</code>, just before the stats line:</p>
 
@@ -688,7 +732,7 @@
 
 <pre><code>&lt;p class="tw-date"&gt;8:23 AM · 11 May 23&lt;/p&gt;</code></pre>
 
-<h4 id="s8-1-15">8.1.15 Liked, Reposted and Bookmarked</h4>
+<h4 id="s8-1-16">8.1.16 Liked, Reposted and Bookmarked</h4>
 
 <p>When the account has liked, reposted or bookmarked the tweet, Twitter colours that button and its count. These stay as they are, so readers can't click them. Add <code>tw-liked</code> to the like's <code>tw-stat</code> for a red heart, <code>tw-rt</code> to the repost's for green, or <code>tw-saved</code> to the bookmark's for a blue one:</p>
 
@@ -725,7 +769,7 @@
 
 <pre><code>&lt;div class="tw-stat tw-locked"&gt;&lt;span class="ic ic-tw-repost"&gt;&amp;#8644;&lt;/span&gt;&lt;/div&gt;</code></pre>
 
-<h4 id="s8-1-16">8.1.16 Labels: Promoted and Circle Tweets</h4>
+<h4 id="s8-1-17">8.1.17 Labels: Promoted and Circle Tweets</h4>
 
 <p>For a little grey line like "Promoted", or the notice on a Twitter Circle tweet, use <code>tw-label</code>:</p>
 
@@ -733,7 +777,7 @@
 
 <pre><code>&lt;p class="tw-label"&gt;Only people in @MetrosMomager's Twitter Circle can see this Tweet.&lt;/p&gt;</code></pre>
 
-<h4 id="s8-1-17">8.1.17 Sensitive Content Warning</h4>
+<h4 id="s8-1-18">8.1.18 Sensitive Content Warning</h4>
 
 <p>To cover a tweet's picture with the sensitive content warning, use <code>tw-warn</code>, with the heading in <code>&lt;b&gt;</code>:</p>
 
@@ -741,7 +785,7 @@
 
 <pre><code>&lt;p class="tw-warn"&gt;&lt;b&gt;Content warning: Sensitive content&lt;/b&gt;&lt;br&gt;The Tweet author flagged this Tweet as showing sensitive content.&lt;/p&gt;</code></pre>
 
-<h4 id="s8-1-18">8.1.18 Polls</h4>
+<h4 id="s8-1-19">8.1.19 Polls</h4>
 
 <p>A poll is a set of <code>tw-opt</code> options, with a <code>tw-pollinfo</code> line for the number of votes and the time left. While a poll is still open, each option is just a blue outline. Polls work in a <code>tw-reply</code> as well as a tweet, like Stan's:</p>
 
@@ -763,7 +807,7 @@
 &lt;p class="tw-opt res p25"&gt;&lt;span class="tw-bar"&gt;Boston&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="tw-pct"&gt;25%&lt;/span&gt;&lt;/p&gt;
 &lt;p class="tw-pollinfo"&gt;97 votes · Final results&lt;/p&gt;</code></pre>
 
-<h4 id="s8-1-19">8.1.19 Tappable Polls</h4>
+<h4 id="s8-1-20">8.1.20 Tappable Polls</h4>
 
 <p>A poll can be tappable too, like on Twitter: it starts as blue outlines, and tapping it votes and shows the results, with a tick in a circle on the option that was picked. Put the open poll in a <code>&lt;summary&gt;</code>, with each option as a <code>tw-opt</code> span, then the results after it, all inside <code>&lt;details class=&quot;tw-vote&quot;&gt;</code>. You decide which option your pov character votes for, and the tick goes there in a <code>tw-voted</code> span, inside the <code>tw-bar</code> just after the words. Tap this one to vote:</p>
 
@@ -870,7 +914,7 @@
 
 </details>
 
-<h4 id="s8-1-20">8.1.20 Pictures and Videos</h4>
+<h4 id="s8-1-21">8.1.21 Pictures and Videos</h4>
 
 <p>To add a picture or a video to a tweet, put it in a <code>tw-media</code> box, with a normal picture or video tag inside. Your own link goes in <code>src</code>, and a description of the picture goes in <code>alt</code>:</p>
 
@@ -942,7 +986,7 @@
 
 <p>All of this works in a <code>tw-reply</code> too.</p>
 
-<h4 id="s8-1-21">8.1.21 A Scrollable Thread</h4>
+<h4 id="s8-1-22">8.1.22 A Scrollable Thread</h4>
 
 <p>A tweet with lots of replies can go in a scrolling window, with a "Tweet your reply" bar that stays at the bottom, like the thread at the top of this chapter. Wrap everything in <code>tw-thread</code> (with a theme class), put the tweet and the replies in a <code>tw-scroll</code> box, and finish with a <code>tw-foot</code> bar after it:</p>
 
