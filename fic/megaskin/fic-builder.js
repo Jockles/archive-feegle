@@ -1090,7 +1090,10 @@
         // a new message or tweet is from the last person, or else from the first person in the cast
         var lastM = b.msgs[b.msgs.length - 1], who = lastM && char(lastM.from) ? lastM.from : char(b.pov) ? b.pov : S.cast[0] && S.cast[0].id;
         if (!who) { var someone = newChar("Someone"); S.cast.push(someone); who = someone.id; }
-        b.msgs.push(newMsg(who, "", lastM ? lastM.time : "")); break;
+        b.msgs.push(newMsg(who, "", lastM ? lastM.time : ""));
+        // in a thread, the button at the bottom starts a new reply to the original tweet
+        if (b.type === "twthread" && b.msgs.length > 1) b.msgs[b.msgs.length - 1].replyTo = b.msgs[0].from;
+        break;
       case "msg-ins": b.msgs.splice(n[1] + 1, 0, newMsg(m.from, "", m.time)); break;
       case "msg-up": move(b.msgs, n[1], -1); break;
       case "msg-down": move(b.msgs, n[1], 1); break;
