@@ -550,8 +550,8 @@
 
   function bumpCount(v) {
     // one more like, keeping the commas: 2,431 becomes 2,432
-    var n = t(v).replace(/,/g, "");
-    if (!/^\d+$/.test(n)) return t(v);
+    var n = t(v).replace(/,/g, "") || "0";
+    if (!/^\d+$/.test(n)) return t(v); // 2.6k and so on stay as they are
     return String(+n + 1).replace(/\B(?=(\d{3})+(?!\d))/g, t(v).indexOf(",") >= 0 ? "," : "");
   }
   function igPostHTML(b) {
@@ -1105,9 +1105,13 @@
         if (!who) { var someone = newChar("Someone"); S.cast.push(someone); who = someone.id; }
         b.msgs.push(newMsg(who, "", lastM ? lastM.time : ""));
         // in a thread, the button at the bottom starts a new reply to the original tweet
-        if (b.type === "twthread" && b.msgs.length > 1) b.msgs[b.msgs.length - 1].replyTo = b.msgs[0].from;
+        // and the tweet it answers gets one more reply
+        if (b.type === "twthread" && b.msgs.length > 1) { b.msgs[b.msgs.length - 1].replyTo = b.msgs[0].from; b.msgs[0].replies = bumpCount(b.msgs[0].replies); }
         break;
-      case "msg-ins": b.msgs.splice(n[1] + 1, 0, newMsg(m.from, "", m.time)); break;
+      case "msg-ins":
+        b.msgs.splice(n[1] + 1, 0, newMsg(m.from, "", m.time));
+        if (b.type === "twthread") m.replies = bumpCount(m.replies); // a reply to this tweet
+        break;
       case "msg-up": move(b.msgs, n[1], -1); break;
       case "msg-down": move(b.msgs, n[1], 1); break;
       case "msg-del": b.msgs.splice(n[1], 1); break;
