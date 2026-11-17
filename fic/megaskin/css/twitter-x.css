@@ -577,6 +577,90 @@
   font-size: 0.9em;
 }
 
+/* THE APP SCREEN (optional): add "app" to a tw-thread for X's bar along the top, with the tabs under it.
+   <div class="tw-thread app theme-auto"><div class="tw-scroll">
+     <p class="tw-apptop"><span class="tw-me"><span class="pfp pfp-name"></span></span> <span class="tw-logo">X</span></p>
+     <p class="tw-tabs"><span class="tw-tab on">For you</span> <span class="tw-tab">Following</span> <span class="tw-add">+</span></p>
+     tweets
+   </div></div>
+   The bar is inside the scrolling part, so it scrolls away with the tweets, like in the app. */
+#workskin .tw-thread .tw-apptop,
+#workskin .tw-thread .tw-tabs {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  white-space: nowrap;
+}
+
+#workskin .tw-thread .tw-apptop br,
+#workskin .tw-thread .tw-tabs br { display: none; }
+
+#workskin .tw-thread .tw-apptop { padding: 0.8em 1em 0.3em 1em; }
+
+/* the reader's own picture, top left */
+#workskin .tw-thread .tw-me {
+  display: block;
+  flex: none;
+  width: 2.2em;
+  height: 2.2em;
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+/* the X in the middle: the margin on the right balances the picture on the left */
+#workskin .tw-thread .tw-logo {
+  flex: 1;
+  margin-right: 2.2em;
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.9em;
+  font-weight: bold;
+  line-height: 1;
+}
+
+#workskin .tw-thread .tw-tabs {
+  position: relative;
+  overflow: hidden;
+  padding: 0.6em 2.6em 0 1em;
+  border-bottom: 1px solid #eff3f4;
+  color: #536471;
+  font-weight: bold;
+}
+
+#workskin .tw-thread .tw-tab {
+  position: relative;
+  flex: none;
+  margin-right: 1.6em;
+  padding-bottom: 0.75em;
+}
+
+#workskin .tw-thread .tw-tab.on { color: #0f1419; }
+
+/* the rounded line under the picked tab, as wide as its words */
+#workskin .tw-thread .tw-tab.on::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 4px;
+  border-radius: 2px;
+  background: #1d9bf0;
+}
+
+/* the + at the far right, for adding a community tab. It stays put, and any tabs too long for the row go under it */
+#workskin .tw-thread .tw-add {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 1px;
+  padding: 0.3em 0.7em 0 0.7em;
+  background: #ffffff;
+  font-size: 1.4em;
+  font-weight: normal;
+  line-height: 1;
+}
+
 #workskin .twdm {
   background: #ffffff;
   color: #0f1419;
@@ -826,6 +910,12 @@
 
 #workskin .tw-thread.theme-dark { background: #000000; color: #e7e9ea; border-color: #2f3336; }
 
+#workskin .tw-thread.theme-dark .tw-tabs { border-bottom-color: #2f3336; color: #71767b; }
+
+#workskin .tw-thread.theme-dark .tw-tab.on { color: #e7e9ea; }
+
+#workskin .tw-thread.theme-dark .tw-add { background: #000000; }
+
 #workskin .tw-thread.theme-dark .tw-foot { border-top-color: #2f3336; color: #71767b; }
 
 /* the tweets inside a thread take the thread's theme */
@@ -940,6 +1030,12 @@
     }
 
   #workskin .tw-thread.theme-auto { background: #000000; color: #e7e9ea; border-color: #2f3336; }
+
+  #workskin .tw-thread.theme-auto .tw-tabs { border-bottom-color: #2f3336; color: #71767b; }
+
+  #workskin .tw-thread.theme-auto .tw-tab.on { color: #e7e9ea; }
+
+  #workskin .tw-thread.theme-auto .tw-add { background: #000000; }
 
   #workskin .tw-thread.theme-auto .tw-foot { border-top-color: #2f3336; color: #71767b; }
 
