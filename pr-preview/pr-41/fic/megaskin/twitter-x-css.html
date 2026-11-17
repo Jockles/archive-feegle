@@ -6,7 +6,7 @@
   <title>Megaskin, Chapter 9: Twitter/X CSS | jockles.com</title>
   <link rel="stylesheet" href="../../style.css">
   <script src="../../theme.js"></script>
-  <link rel="stylesheet" href="megaskin.css?v=15712b74" id="creator-style">
+  <link rel="stylesheet" href="megaskin.css?v=c6f8fa2a" id="creator-style">
 </head>
 <body>
 <header>
@@ -469,6 +469,18 @@
   line-height: 1;
 }
 
+/* the old blue bird instead of the X: &lt;span class="tw-logo bird"&gt;Twitter&lt;/span&gt; */
+#workskin .tw-thread .tw-logo.bird {
+  height: 1em;
+  overflow: hidden;
+  text-indent: -100em;
+  white-space: nowrap;
+  background-image: url(https://images.squidge.org/images/2026/11/17/twitter-logo.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
 #workskin .tw-thread .tw-tabs {
   position: relative;
   overflow: hidden;
@@ -526,7 +538,7 @@
   line-height: 1;
 }</code></pre>
 
-<p>The app screen is just two flex rows at the top of the scrolling part of a thread. In the top bar, the X gets <code>flex: 1</code> to take up all the room left over, and its <code>margin-right</code> is the same width as the picture on the left, so the X sits in the true middle. In the tabs, the line under the picked tab is a <code>::after</code> box filled with <code>currentColor</code> (the colour of the words), pinned to the bottom of the tab with <code>position: absolute</code>, stretched from <code>left: 0</code> to <code>right: 0</code> so it's always as wide as the words. The down arrow is just the bottom and right borders of a tiny square, turned 45 degrees with <code>transform: rotate(45deg)</code>. The plus sign is pinned to the right-hand end the same way, with a background the same colour as the screen, so long tabs slide under it instead of pushing it off the edge.</p>
+<p>The app screen is just two flex rows at the top of the scrolling part of a thread. In the top bar, the X gets <code>flex: 1</code> to take up all the room left over, and its <code>margin-right</code> is the same width as the picture on the left, so the X sits in the true middle. The <code>bird</code> version hides the word inside by pushing it far off to the left with <code>text-indent</code>, and shows the logo picture in its place, the same way the icons work. In the tabs, the line under the picked tab is a <code>::after</code> box filled with <code>currentColor</code> (the colour of the words), pinned to the bottom of the tab with <code>position: absolute</code>, stretched from <code>left: 0</code> to <code>right: 0</code> so it's always as wide as the words. The down arrow is just the bottom and right borders of a tiny square, turned 45 degrees with <code>transform: rotate(45deg)</code>. The plus sign is pinned to the right-hand end the same way, with a background the same colour as the screen, so long tabs slide under it instead of pushing it off the edge.</p>
 
 <h3 id="s9-11">9.11 Scrolling</h3>
 
