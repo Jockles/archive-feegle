@@ -618,6 +618,18 @@
   line-height: 1;
 }
 
+/* the old blue bird instead of the X: <span class="tw-logo bird">Twitter</span> */
+#workskin .tw-thread .tw-logo.bird {
+  height: 1em;
+  overflow: hidden;
+  text-indent: -100em;
+  white-space: nowrap;
+  background-image: url(https://images.squidge.org/images/2026/11/17/twitter-logo.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
 #workskin .tw-thread .tw-tabs {
   position: relative;
   overflow: hidden;
