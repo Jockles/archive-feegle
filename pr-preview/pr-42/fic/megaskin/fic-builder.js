@@ -974,7 +974,7 @@
     var ph = chat ? "Ilya: are you awake\nShane: no\n-- Today 11:48 PM" : b.type === "igpost" ? "shane.h: why are you awake" : "Zim: Reminder to everyone...\nHolster: I played all through college...";
     h.push('<div class="fb-script">' + field(P + ".script", b.type === "igpost" ? "Type or paste comments" : chat ? "Type or paste messages" : "Type or paste tweets", { type: "area", rows: 4, ph: ph }) +
       '<p class="hint">' + (SCRIPT_HINTS[chat ? "chat" : b.type]) + "</p>" +
-      btn("script:" + i, "Add these") + " " + btn("msg-add:" + i, b.type === "igpost" ? "+ One empty comment" : chat ? "+ One empty message" : "+ One empty tweet") + "</div>");
+      btn("script:" + i, "Add these") + " " + btn("msg-add:" + i, b.type === "igpost" ? "+ Add a comment" : chat ? "+ One empty message" : b.type === "twthread" ? (b.msgs.length ? "+ Add a reply" : "+ Add the tweet") : "+ Add a tweet") + "</div>");
     h.push("</section>");
     return h.join("");
   }
