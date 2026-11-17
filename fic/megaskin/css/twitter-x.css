@@ -43,11 +43,13 @@
 
 #workskin .tw .tw-pfp,
 #workskin .tw-reply .tw-pfp {
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   float: left;
   width: 40px;
   height: 40px;
-  line-height: 43px;
+  line-height: 1;
   margin: 0 0.65em 0 0;
   border-radius: 50%;
   overflow: hidden;

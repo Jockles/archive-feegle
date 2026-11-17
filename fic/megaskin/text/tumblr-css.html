@@ -111,7 +111,7 @@
   font-weight: bold;
 }</code></pre>
 
-<p>The circle works like the other modules', with initials or a picture inside and <code>colour1</code> to <code>colour10</code> for the colours. It uses <code>display: flex</code> to centre the initials, which is a newer and more exact way than the line-height trick: <code>align-items</code> centres them top to bottom, and <code>justify-content</code> side to side.</p>
+<p>The circle works like the other modules', with initials or a picture inside and <code>colour1</code> to <code>colour10</code> for the colours. It uses <code>display: flex</code> to centre the initials, the same as every app's circle: <code>align-items</code> centres them top to bottom, and <code>justify-content</code> side to side.</p>
 
 <pre><code>#workskin .tb .tb-pfp.sq,
 #workskin .tb .tb-ask-pfp.sq,
@@ -246,13 +246,15 @@
 }
 
 #workskin .tb .tb-ask-pfp {
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: absolute;
   top: 0.8em;
   right: -36px;
   width: 28px;
   height: 28px;
-  line-height: 28px;
+  line-height: 1;
   text-align: center;
   border-radius: 50%;
   background-color: #8a8a8a;
