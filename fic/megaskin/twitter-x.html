@@ -6,7 +6,7 @@
   <title>Megaskin, Chapter 8: Twitter/X | jockles.com</title>
   <link rel="stylesheet" href="../../style.css">
   <script src="../../theme.js"></script>
-  <link rel="stylesheet" href="megaskin.css?v=8149c193" id="creator-style">
+  <link rel="stylesheet" href="megaskin.css?v=29a9c05a" id="creator-style">
 </head>
 <body>
 <header>
@@ -55,12 +55,13 @@
       <li><a href="#s8-1-14">8.1.14 Community Notes</a></li>
       <li><a href="#s8-1-15">8.1.15 Timestamp Line</a></li>
       <li><a href="#s8-1-16">8.1.16 Liked, Reposted and Bookmarked</a></li>
-      <li><a href="#s8-1-17">8.1.17 Labels: Promoted and Circle Tweets</a></li>
-      <li><a href="#s8-1-18">8.1.18 Sensitive Content Warning</a></li>
-      <li><a href="#s8-1-19">8.1.19 Polls</a></li>
-      <li><a href="#s8-1-20">8.1.20 Tappable Polls</a></li>
-      <li><a href="#s8-1-21">8.1.21 Pictures and Videos</a></li>
-      <li><a href="#s8-1-22">8.1.22 A Scrollable Thread</a></li>
+      <li><a href="#s8-1-17">8.1.17 Private Accounts</a></li>
+      <li><a href="#s8-1-18">8.1.18 Labels: Promoted and Circle Tweets</a></li>
+      <li><a href="#s8-1-19">8.1.19 Sensitive Content Warning</a></li>
+      <li><a href="#s8-1-20">8.1.20 Polls</a></li>
+      <li><a href="#s8-1-21">8.1.21 Tappable Polls</a></li>
+      <li><a href="#s8-1-22">8.1.22 Pictures and Videos</a></li>
+      <li><a href="#s8-1-23">8.1.23 A Scrollable Thread</a></li>
     </ul>
   </li>
   <li><a href="#s8-2">8.2 Twitter/X DMs</a>
@@ -756,20 +757,39 @@
   &lt;div class="tw-stat tw-end"&gt;&lt;span class="ic ic-tw-share"&gt;&amp;#8679;&lt;/span&gt;&lt;/div&gt;
 &lt;/div&gt;</code></pre>
 
-<p>A private account's tweets can't be reposted, so Twitter fades the repost button out. Add <code>tw-locked</code> to the repost's <code>tw-stat</code> to do the same:</p>
+<h4 id="s8-1-17">8.1.17 Private Accounts</h4>
 
-<div class="mob tw theme-auto"><div class="tw-stats">
-  <div class="tw-stat"><span class="ic ic-tw-reply">&#9993;</span> 2<span class="hide"> replies</span></div>
-  <div class="tw-stat tw-locked"><span class="ic ic-tw-repost">&#8644;</span></div>
-  <div class="tw-stat"><span class="ic ic-tw-like">&#9825;</span> 5<span class="hide"> likes</span></div>
-  <div class="tw-stat"><span class="ic ic-tw-views">&#128202;</span> 2<span class="hide"> views</span></div>
-  <div class="tw-stat tw-end"><span class="ic ic-tw-bookmark">&#128278;</span></div>
-  <div class="tw-stat tw-end"><span class="ic ic-tw-share">&#8679;</span></div>
-</div></div>
+<p>A private account has a little padlock after its name. Add a <code>tw-lock</code> span inside <code>tw-name</code>, straight after the name, in the same place as a verified tick. Its tweets can't be reposted either, so Twitter fades the repost button out - add <code>tw-locked</code> to the repost's <code>tw-stat</code> to do the same, and leave its number out:</p>
 
-<pre><code>&lt;div class="tw-stat tw-locked"&gt;&lt;span class="ic ic-tw-repost"&gt;&amp;#8644;&lt;/span&gt;&lt;/div&gt;</code></pre>
+<div class="mob tw theme-auto">
+  <p class="tw-top"><span class="tw-pfp colour4">HP</span><span class="hide"> </span><span class="tw-name">Hayden <span class="tw-lock ic ic-tw-lock">&#128274;</span></span> <span class="tw-handle">@hpitt_private · 1h</span></p>
+  <p class="tw-text">nobody from the team knows about this account and I'd like to keep it that way</p>
+  <div class="tw-stats">
+    <div class="tw-stat"><span class="ic ic-tw-reply">&#9993;</span> 2<span class="hide"> replies</span></div>
+    <div class="tw-stat tw-locked"><span class="ic ic-tw-repost">&#8644;</span></div>
+    <div class="tw-stat"><span class="ic ic-tw-like">&#9825;</span> 5<span class="hide"> likes</span></div>
+    <div class="tw-stat"><span class="ic ic-tw-views">&#128202;</span> 14<span class="hide"> views</span></div>
+    <div class="tw-stat tw-end"><span class="ic ic-tw-bookmark">&#128278;</span></div>
+    <div class="tw-stat tw-end"><span class="ic ic-tw-share">&#8679;</span></div>
+  </div>
+</div>
 
-<h4 id="s8-1-17">8.1.17 Labels: Promoted and Circle Tweets</h4>
+<pre><code>&lt;div class="mob tw theme-auto"&gt;
+  &lt;p class="tw-top"&gt;&lt;span class="tw-pfp colour4"&gt;HP&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="tw-name"&gt;Hayden &lt;span class="tw-lock ic ic-tw-lock"&gt;&amp;#128274;&lt;/span&gt;&lt;/span&gt; &lt;span class="tw-handle"&gt;@hpitt_private · 1h&lt;/span&gt;&lt;/p&gt;
+  &lt;p class="tw-text"&gt;nobody from the team knows about this account and I'd like to keep it that way&lt;/p&gt;
+  &lt;div class="tw-stats"&gt;
+    &lt;div class="tw-stat"&gt;&lt;span class="ic ic-tw-reply"&gt;&amp;#9993;&lt;/span&gt; 2&lt;span class="hide"&gt; replies&lt;/span&gt;&lt;/div&gt;
+    &lt;div class="tw-stat tw-locked"&gt;&lt;span class="ic ic-tw-repost"&gt;&amp;#8644;&lt;/span&gt;&lt;/div&gt;
+    &lt;div class="tw-stat"&gt;&lt;span class="ic ic-tw-like"&gt;&amp;#9825;&lt;/span&gt; 5&lt;span class="hide"&gt; likes&lt;/span&gt;&lt;/div&gt;
+    &lt;div class="tw-stat"&gt;&lt;span class="ic ic-tw-views"&gt;&amp;#128202;&lt;/span&gt; 14&lt;span class="hide"&gt; views&lt;/span&gt;&lt;/div&gt;
+    &lt;div class="tw-stat tw-end"&gt;&lt;span class="ic ic-tw-bookmark"&gt;&amp;#128278;&lt;/span&gt;&lt;/div&gt;
+    &lt;div class="tw-stat tw-end"&gt;&lt;span class="ic ic-tw-share"&gt;&amp;#8679;&lt;/span&gt;&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+<p>The padlock works after a name from a profile too - put it after the name span, still inside <code>tw-name</code>.</p>
+
+<h4 id="s8-1-18">8.1.18 Labels: Promoted and Circle Tweets</h4>
 
 <p>For a little grey line like "Promoted", or the notice on a Twitter Circle tweet, use <code>tw-label</code>:</p>
 
@@ -777,7 +797,7 @@
 
 <pre><code>&lt;p class="tw-label"&gt;Only people in @MetrosMomager's Twitter Circle can see this Tweet.&lt;/p&gt;</code></pre>
 
-<h4 id="s8-1-18">8.1.18 Sensitive Content Warning</h4>
+<h4 id="s8-1-19">8.1.19 Sensitive Content Warning</h4>
 
 <p>To cover a tweet's picture with the sensitive content warning, use <code>tw-warn</code>, with the heading in <code>&lt;b&gt;</code>:</p>
 
@@ -785,7 +805,7 @@
 
 <pre><code>&lt;p class="tw-warn"&gt;&lt;b&gt;Content warning: Sensitive content&lt;/b&gt;&lt;br&gt;The Tweet author flagged this Tweet as showing sensitive content.&lt;/p&gt;</code></pre>
 
-<h4 id="s8-1-19">8.1.19 Polls</h4>
+<h4 id="s8-1-20">8.1.20 Polls</h4>
 
 <p>A poll is a set of <code>tw-opt</code> options, with a <code>tw-pollinfo</code> line for the number of votes and the time left. While a poll is still open, each option is just a blue outline. Polls work in a <code>tw-reply</code> as well as a tweet, like Stan's:</p>
 
@@ -807,7 +827,7 @@
 &lt;p class="tw-opt res p25"&gt;&lt;span class="tw-bar"&gt;Boston&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="tw-pct"&gt;25%&lt;/span&gt;&lt;/p&gt;
 &lt;p class="tw-pollinfo"&gt;97 votes · Final results&lt;/p&gt;</code></pre>
 
-<h4 id="s8-1-20">8.1.20 Tappable Polls</h4>
+<h4 id="s8-1-21">8.1.21 Tappable Polls</h4>
 
 <p>A poll can be tappable too, like on Twitter: it starts as blue outlines, and tapping it votes and shows the results, with a tick in a circle on the option that was picked. Put the open poll in a <code>&lt;summary&gt;</code>, with each option as a <code>tw-opt</code> span, then the results after it, all inside <code>&lt;details class=&quot;tw-vote&quot;&gt;</code>. You decide which option your pov character votes for, and the tick goes there in a <code>tw-voted</code> span, inside the <code>tw-bar</code> just after the words. Tap this one to vote:</p>
 
@@ -914,7 +934,7 @@
 
 </details>
 
-<h4 id="s8-1-21">8.1.21 Pictures and Videos</h4>
+<h4 id="s8-1-22">8.1.22 Pictures and Videos</h4>
 
 <p>To add a picture or a video to a tweet, put it in a <code>tw-media</code> box, with a normal picture or video tag inside. Your own link goes in <code>src</code>, and a description of the picture goes in <code>alt</code>:</p>
 
@@ -986,7 +1006,7 @@
 
 <p>All of this works in a <code>tw-reply</code> too.</p>
 
-<h4 id="s8-1-22">8.1.22 A Scrollable Thread</h4>
+<h4 id="s8-1-23">8.1.23 A Scrollable Thread</h4>
 
 <p>A tweet with lots of replies can go in a scrolling window, with a "Tweet your reply" bar that stays at the bottom, like the thread at the top of this chapter. Wrap everything in <code>tw-thread</code> (with a theme class), put the tweet and the replies in a <code>tw-scroll</code> box, and finish with a <code>tw-foot</code> bar after it:</p>
 

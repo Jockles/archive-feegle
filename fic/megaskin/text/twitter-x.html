@@ -679,18 +679,37 @@
   &lt;div class="tw-stat tw-end"&gt;&lt;span class="ic ic-tw-share"&gt;&amp;#8679;&lt;/span&gt;&lt;/div&gt;
 &lt;/div&gt;</code></pre>
 
-<p>A private account's tweets can't be reposted, so Twitter fades the repost button out. Add <code>tw-locked</code> to the repost's <code>tw-stat</code> to do the same:</p>
+<h4>Private Accounts</h4>
 
-<div class="mob tw theme-auto"><div class="tw-stats">
-  <div class="tw-stat"><span class="ic ic-tw-reply">&#9993;</span> 2<span class="hide"> replies</span></div>
-  <div class="tw-stat tw-locked"><span class="ic ic-tw-repost">&#8644;</span></div>
-  <div class="tw-stat"><span class="ic ic-tw-like">&#9825;</span> 5<span class="hide"> likes</span></div>
-  <div class="tw-stat"><span class="ic ic-tw-views">&#128202;</span> 2<span class="hide"> views</span></div>
-  <div class="tw-stat tw-end"><span class="ic ic-tw-bookmark">&#128278;</span></div>
-  <div class="tw-stat tw-end"><span class="ic ic-tw-share">&#8679;</span></div>
-</div></div>
+<p>A private account has a little padlock after its name. Add a <code>tw-lock</code> span inside <code>tw-name</code>, straight after the name, in the same place as a verified tick. Its tweets can't be reposted either, so Twitter fades the repost button out - add <code>tw-locked</code> to the repost's <code>tw-stat</code> to do the same, and leave its number out:</p>
 
-<pre><code>&lt;div class="tw-stat tw-locked"&gt;&lt;span class="ic ic-tw-repost"&gt;&amp;#8644;&lt;/span&gt;&lt;/div&gt;</code></pre>
+<div class="mob tw theme-auto">
+  <p class="tw-top"><span class="tw-pfp colour4">HP</span><span class="hide"> </span><span class="tw-name">Hayden <span class="tw-lock ic ic-tw-lock">&#128274;</span></span> <span class="tw-handle">@hpitt_private · 1h</span></p>
+  <p class="tw-text">nobody from the team knows about this account and I'd like to keep it that way</p>
+  <div class="tw-stats">
+    <div class="tw-stat"><span class="ic ic-tw-reply">&#9993;</span> 2<span class="hide"> replies</span></div>
+    <div class="tw-stat tw-locked"><span class="ic ic-tw-repost">&#8644;</span></div>
+    <div class="tw-stat"><span class="ic ic-tw-like">&#9825;</span> 5<span class="hide"> likes</span></div>
+    <div class="tw-stat"><span class="ic ic-tw-views">&#128202;</span> 14<span class="hide"> views</span></div>
+    <div class="tw-stat tw-end"><span class="ic ic-tw-bookmark">&#128278;</span></div>
+    <div class="tw-stat tw-end"><span class="ic ic-tw-share">&#8679;</span></div>
+  </div>
+</div>
+
+<pre><code>&lt;div class="mob tw theme-auto"&gt;
+  &lt;p class="tw-top"&gt;&lt;span class="tw-pfp colour4"&gt;HP&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="tw-name"&gt;Hayden &lt;span class="tw-lock ic ic-tw-lock"&gt;&amp;#128274;&lt;/span&gt;&lt;/span&gt; &lt;span class="tw-handle"&gt;@hpitt_private · 1h&lt;/span&gt;&lt;/p&gt;
+  &lt;p class="tw-text"&gt;nobody from the team knows about this account and I'd like to keep it that way&lt;/p&gt;
+  &lt;div class="tw-stats"&gt;
+    &lt;div class="tw-stat"&gt;&lt;span class="ic ic-tw-reply"&gt;&amp;#9993;&lt;/span&gt; 2&lt;span class="hide"&gt; replies&lt;/span&gt;&lt;/div&gt;
+    &lt;div class="tw-stat tw-locked"&gt;&lt;span class="ic ic-tw-repost"&gt;&amp;#8644;&lt;/span&gt;&lt;/div&gt;
+    &lt;div class="tw-stat"&gt;&lt;span class="ic ic-tw-like"&gt;&amp;#9825;&lt;/span&gt; 5&lt;span class="hide"&gt; likes&lt;/span&gt;&lt;/div&gt;
+    &lt;div class="tw-stat"&gt;&lt;span class="ic ic-tw-views"&gt;&amp;#128202;&lt;/span&gt; 14&lt;span class="hide"&gt; views&lt;/span&gt;&lt;/div&gt;
+    &lt;div class="tw-stat tw-end"&gt;&lt;span class="ic ic-tw-bookmark"&gt;&amp;#128278;&lt;/span&gt;&lt;/div&gt;
+    &lt;div class="tw-stat tw-end"&gt;&lt;span class="ic ic-tw-share"&gt;&amp;#8679;&lt;/span&gt;&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+<p>The padlock works after a name from a profile too - put it after the name span, still inside <code>tw-name</code>.</p>
 
 <h4>Labels: Promoted and Circle Tweets</h4>
 

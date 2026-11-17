@@ -2028,6 +2028,9 @@
 /* verified tick: add as <span class="tw-tick">✔</span> */
 #workskin .tw .tw-tick { color: #1d9bf0; font-size: 0.85em; }
 
+/* a private account's padlock: add <span class="tw-lock ic ic-tw-lock">&#128274;</span> after the name, inside tw-name */
+#workskin .tw .tw-lock, #workskin .tw-reply .tw-lock { margin-left: 0.15em; }
+
 /* profile picture: the first thing in the tw-top line.
    Initials: <span class="tw-pfp colour1">JD</span>
    A picture: <span class="tw-pfp"><span class="pfp"><img src="..." alt="..."></span></span>
@@ -3193,6 +3196,7 @@
 
 #workskin .tw .ic.ic-play, #workskin .tw-reply .ic.ic-play, #workskin .twdm .ic.ic-play { background-image: url(https://images.squidge.org/images/2026/11/15/play-black.png); }
 #workskin .tw .ic.ic-verified, #workskin .tw-reply .ic.ic-verified, #workskin .twdm .ic.ic-verified { background-image: url(https://images.squidge.org/images/2026/11/15/verified-blue.png); }
+#workskin .tw .ic.ic-tw-lock, #workskin .tw-reply .ic.ic-tw-lock { background-image: url(https://images.squidge.org/images/2026/11/15/dc-lock-light.png); }
 
 /* the buttons along the bottom: black, or white in dark mode */
 #workskin .tw .ic.ic-tw-reply, #workskin .tw-reply .ic.ic-tw-reply { background-image: url(https://images.squidge.org/images/2026/11/15/comment-black.png); }
@@ -3204,6 +3208,7 @@
 
 /* Twitter/X icons, dark */
 #workskin .tw.theme-dark .ic.ic-play, #workskin .tw-reply.theme-dark .ic.ic-play, #workskin .twdm.theme-dark .ic.ic-play, #workskin .tw-thread.theme-dark .ic.ic-play { background-image: url(https://images.squidge.org/images/2026/11/15/play-white.png); }
+#workskin .tw.theme-dark .ic.ic-tw-lock, #workskin .tw-reply.theme-dark .ic.ic-tw-lock, #workskin .tw-thread.theme-dark .ic.ic-tw-lock { background-image: url(https://images.squidge.org/images/2026/11/15/dc-lock-dark.png); }
 #workskin .tw.theme-dark .ic.ic-tw-reply, #workskin .tw-reply.theme-dark .ic.ic-tw-reply, #workskin .tw-thread.theme-dark .ic.ic-tw-reply { background-image: url(https://images.squidge.org/images/2026/11/15/comment-white.png); }
 #workskin .tw.theme-dark .ic.ic-tw-repost, #workskin .tw-reply.theme-dark .ic.ic-tw-repost, #workskin .tw-thread.theme-dark .ic.ic-tw-repost { background-image: url(https://images.squidge.org/images/2026/11/17/repost-tw-white.png); }
 #workskin .tw.theme-dark .tw-stats .tw-locked .ic.ic-tw-repost, #workskin .tw-reply.theme-dark .tw-stats .tw-locked .ic.ic-tw-repost, #workskin .tw-thread.theme-dark .tw-stats .tw-locked .ic.ic-tw-repost { background-image: url(https://images.squidge.org/images/2026/11/17/repost-tw-faded-dark.png); }
@@ -3216,6 +3221,7 @@
 /* Twitter/X icons, auto: dark when the reader's device is in dark mode */
 @media (prefers-color-scheme: dark) {
   #workskin .tw.theme-auto .ic.ic-play, #workskin .tw-reply.theme-auto .ic.ic-play, #workskin .twdm.theme-auto .ic.ic-play, #workskin .tw-thread.theme-auto .ic.ic-play { background-image: url(https://images.squidge.org/images/2026/11/15/play-white.png); }
+  #workskin .tw.theme-auto .ic.ic-tw-lock, #workskin .tw-reply.theme-auto .ic.ic-tw-lock, #workskin .tw-thread.theme-auto .ic.ic-tw-lock { background-image: url(https://images.squidge.org/images/2026/11/15/dc-lock-dark.png); }
   #workskin .tw.theme-auto .ic.ic-tw-reply, #workskin .tw-reply.theme-auto .ic.ic-tw-reply, #workskin .tw-thread.theme-auto .ic.ic-tw-reply { background-image: url(https://images.squidge.org/images/2026/11/15/comment-white.png); }
   #workskin .tw.theme-auto .ic.ic-tw-repost, #workskin .tw-reply.theme-auto .ic.ic-tw-repost, #workskin .tw-thread.theme-auto .ic.ic-tw-repost { background-image: url(https://images.squidge.org/images/2026/11/17/repost-tw-white.png); }
   #workskin .tw.theme-auto .tw-stats .tw-locked .ic.ic-tw-repost, #workskin .tw-reply.theme-auto .tw-stats .tw-locked .ic.ic-tw-repost, #workskin .tw-thread.theme-auto .tw-stats .tw-locked .ic.ic-tw-repost { background-image: url(https://images.squidge.org/images/2026/11/17/repost-tw-faded-dark.png); }
