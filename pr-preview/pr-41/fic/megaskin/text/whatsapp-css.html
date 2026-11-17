@@ -155,10 +155,12 @@
 <h3>Profile Pictures and the Ten Colours</h3>
 
 <pre><code>#workskin .wa .wa-pfp {
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 30px;
   height: 30px;
-  line-height: 30px;
+  line-height: 1;
   text-align: center;
   border-radius: 50%;
   background-color: #8696a0;
@@ -170,7 +172,7 @@
   overflow: hidden;
 }</code></pre>
 
-<p>A circle with no picture shows initials, and <code>line-height</code> the same as the height is what centres them from top to bottom. A picture or a profile goes inside with a <code>pfp</code> span, which the core crops into the circle. The circle in the header is the same, just bigger (<code>38px</code>).</p>
+<p>A circle with no picture shows initials, centred the same way as in every app's circle: <code>display: flex</code>, with <code>align-items</code> centring them top to bottom and <code>justify-content</code> side to side. A picture or a profile goes inside with a <code>pfp</code> span, which the core crops into the circle. The circle in the header is the same, just bigger (<code>38px</code>).</p>
 
 <p>Add <code>colour1</code> to <code>colour10</code> to a circle for its colour, and the same number to a name (<code>who</code>) or a quoted reply (<code>wa-quote</code>) to colour the name and the line down the side. The ten colours are in the core, shared with every app - see <a href="core-css.html#heading">The Ten Colours</a> for how to change them.</p>
 

@@ -311,13 +311,15 @@
 
 /* small square picture at the top right of an ask box */
 #workskin .tb .tb-ask-pfp {
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: absolute;
   top: 0.8em;
   right: -36px;
   width: 28px;
   height: 28px;
-  line-height: 28px;
+  line-height: 1;
   text-align: center;
   border-radius: 50%;
   background-color: #8a8a8a;
