@@ -64,7 +64,8 @@
       // Twitter/X and Instagram bits
       acc: "", verified: false, label: "", qName: "", qHandle: "", qText: "", note: "", date: "",
       reposts: "", likes: "", replies: "", liked: false, reposted: false, poll: "", pollinfo: "",
-      vUrl: "", vTitle: "", vDesc: "", warn: false, voice: "", shared: false };
+      vUrl: "", vTitle: "", vDesc: "", warn: false, voice: "", shared: false,
+      views: "", saved: false, likeClick: true, locked: false, noRepost: false, fan: "", pollTap: false, pollVote: "0" };
   }
   // the group's picture in the WhatsApp header: a one-off circle, set up the same way
   function newGroupPic() { return { colour: "5", showInitials: true, initials: "", pic: "", alt: "", land: false }; }
@@ -75,6 +76,7 @@
     b.theme = "theme-auto"; b.width = ""; b.scroll = ""; b.bar = "empty"; b.barText = "";
     b.bg = ""; b.pics = true; b.header = "simple"; b.gp = newGroupPic(); b.script = ""; b.msgs = []; b.open = true;
     b.acc = "";
+    b.era = ""; b.app = ""; b.tabs = ""; // Twitter/X: the 2020 look, and the X app screen around a timeline
     if (type === "twdm") b.sub = "";
     if (type === "igdm") b.sub = "Active now";
     if (type === "igpost") {
@@ -463,22 +465,31 @@
     // hashtags and @mentions go blue
     return fmt(text).replace(/(^|[\s(])([#@][A-Za-z0-9_]+)/g, '$1<span class="tw-link">$2</span>');
   }
-  function twPoll(m) {
-    var opts = t(m.poll).split(/\n/).map(t).filter(Boolean).map(function (line) {
+  // the poll's options, one per line, with a percentage at the end once there are results
+  function pollOpts(m) {
+    return t(m.poll).split(/\n/).map(t).filter(Boolean).map(function (line) {
       var p = line.match(/^(.*?)\s+(\d{1,3})\s*%$/);
       return p ? { text: p[1], pct: +p[2] } : { text: line, pct: null };
     });
+  }
+  function twPoll(m) {
+    var opts = pollOpts(m);
     if (!opts.length) return [];
-    var done = opts.some(function (o) { return o.pct !== null; });
+    var done = opts.some(function (o) { return o.pct !== null; }), tap = done && m.pollTap;
     var top = Math.max.apply(null, opts.map(function (o) { return o.pct || 0; })), won = false;
-    var L = opts.map(function (o) {
-      if (!done) return '<p class="tw-opt">' + esc(o.text) + "</p>";
+    var res = opts.map(function (o, i) {
       var pct = o.pct || 0, size = POLL_SIZES.reduce(function (a, b) { return Math.abs(b - pct) < Math.abs(a - pct) ? b : a; });
-      var win = !won && pct === top; if (win) won = true;
-      return '<p class="tw-opt res' + (win ? " win" : "") + " p" + size + '">' + esc(o.text) + '<span class="hide"> </span><span class="tw-pct">' + pct + "%</span></p>";
+      var win = !tap && !won && pct === top; if (win) won = true;
+      var voted = tap && String(i) === String(m.pollVote || 0) ? '<span class="hide"> - voted </span><span class="tw-voted">&#10003;</span>' : "";
+      return '<p class="tw-opt res' + (win ? " win" : "") + " p" + size + '"><span class="tw-bar">' + esc(o.text) + voted + '</span><span class="hide"> </span><span class="tw-pct">' + pct + "%</span></p>";
     });
-    if (t(m.pollinfo)) L.push('<p class="tw-pollinfo">' + esc(t(m.pollinfo)) + "</p>");
-    return L;
+    var info = t(m.pollinfo);
+    if (!done) return opts.map(function (o) { return '<p class="tw-opt">' + esc(o.text) + "</p>"; }).concat(info ? ['<p class="tw-pollinfo">' + esc(info) + "</p>"] : []);
+    if (!tap) return res.concat(info ? ['<p class="tw-pollinfo">' + esc(info) + "</p>"] : []);
+    // tappable: the open poll first, and tapping it shows the results with one more vote
+    return ['<details class="tw-vote">', "<summary>"].concat(opts.map(function (o) { return '  <span class="tw-opt">' + esc(o.text) + "</span>"; }))
+      .concat(info ? ['  <span class="tw-pollinfo">' + esc(info) + "</span>"] : []).concat(["</summary>"]).concat(ind(res, 1))
+      .concat(info ? ['  <p class="tw-pollinfo">' + esc(info.replace(/\d[\d,]*/, bumpCount)) + "</p>"] : []).concat(["</details>"]);
   }
   function twMedia(m, video, pics) {
     var v = video ? picUrl(m.vUrl) : "";
@@ -492,12 +503,24 @@
       return '  <span class="tw-photo">' + (picUrl(p.url) ? img(p) : '<span class="tw-desc">[' + esc(t(p.desc)) + "]</span>") + "</span>";
     })).concat(["</p>"]);
   }
-  function twStats(m) {
-    var s = [];
-    if (t(m.reposts)) { var r = "<b>" + esc(t(m.reposts)) + "</b> " + plural(m.reposts, "Repost", "Reposts"); s.push(m.reposted ? '<span class="tw-rt">' + r + "</span>" : r); }
-    if (t(m.likes)) { var k = "<b>" + esc(t(m.likes)) + "</b> " + plural(m.likes, "Like", "Likes"); s.push(m.liked ? '<span class="tw-liked">' + k + "</span>" : k); }
-    if (t(m.replies)) s.push("<b>" + esc(t(m.replies)) + "</b> " + plural(m.replies, "Reply", "Replies"));
-    return s.length ? ['<p class="tw-stats">' + s.join(" &nbsp; ") + "</p>"] : [];
+  // the row of buttons: replies, reposts, likes, views, bookmark and share
+  function twStats(b, m) {
+    var old = b.era === "tw2020";
+    function stat(cls, icon, code, n, one, many) {
+      return '  <p class="tw-stat' + cls + '"><span class="ic ic-tw-' + icon + '">&#' + code + ";</span>" +
+        (t(n) ? " " + esc(t(n)) + '<span class="hide"> ' + plural(n, one, many) + "</span>" : "") + "</p>";
+    }
+    var L = ['<div class="tw-stats">', stat("", "reply", 9993, m.replies, "reply", "replies")];
+    if (m.locked || m.noRepost) L.push(stat(" tw-locked", "repost", 8644, ""));
+    else L.push(stat(m.reposted ? " tw-rt" : "", "repost", 8644, m.reposts, old ? "retweet" : "repost", old ? "retweets" : "reposts"));
+    // a like readers can click goes up by one, and turns red
+    if (m.likeClick) L.push('  <details class="tw-stat tw-tog"' + (m.liked ? " open" : "") + '><summary><span class="ic ic-tw-like">&#9825;</span><span class="off">' +
+      (t(m.likes) ? " " + esc(t(m.likes)) : "") + '</span><span class="hide"> likes (</span><span class="on"> ' + esc(bumpCount(m.likes)) + '</span><span class="hide"> once liked)</span></summary></details>');
+    else L.push(stat(m.liked ? " tw-liked" : "", "like", 9825, m.likes, "like", "likes"));
+    if (!old && t(m.views)) L.push(stat("", "views", 128202, m.views, "view", "views"));
+    if (!old) L.push(stat(" tw-end" + (m.saved ? " tw-saved" : ""), "bookmark", 128278, ""));
+    L.push(stat(" tw-end", "share", 8679, ""));
+    return L.concat(["</div>"]);
   }
   // one tweet: kind is "feed" (on its own), "main" (top of a thread) or "reply"
   // the extras ticked on a tweet: [tick box, label]. Older tweets with no tick saved go by what's filled in
@@ -519,9 +542,11 @@
       var to = above.filter(function (x) { return x.from === m.replyTo; }).pop() || above[above.length - 1], qc = to && char(to.from);
       if (qc) L.push('<p class="tw-replying">Replying to <span class="tw-link">@' + esc(twHandle(qc, accOf(qc, to.acc, "tw"))) + "</span></p>");
     }
-    L.push('<p class="tw-top">' + circle("tw-pfp", c, a) + '<span class="hide"> </span><span class="tw-name">' + twNameHTML(c, a) +
-      (m.verified ? ' <span class="tw-tick ic ic-verified">✔</span>' : "") + '</span> <span class="tw-handle">' + twHandleHTML(c, a) +
-      (t(m.time) ? " · " + esc(t(m.time)) : "") + "</span></p>");
+    // a typed name sits in its own span, so a long one ends in "..."
+    L.push('<p class="tw-top">' + circle("tw-pfp", c, a) + '<span class="hide"> </span><span class="tw-name">' + (isProfile(c) ? twNameHTML(c, a) : "<span>" + esc(nameOf(c)) + "</span>") +
+      (m.verified ? ' <span class="tw-tick ic ic-verified">&#10004;</span>' : "") + '</span> <span class="tw-handle">' + twHandleHTML(c, a) + "</span>" +
+      (m.locked ? ' <span class="tw-lock ic ic-tw-lock">&#128274;</span>' : "") + (t(m.time) ? ' <span class="tw-time">· ' + esc(t(m.time)) + "</span>" : "") +
+      (t(m.fan) ? ' <span class="tw-fan"><span class="ic ic-tw-fan">&#127917;</span> ' + esc(t(m.fan)) + "</span>" : "") + "</p>");
     if (t(m.label)) L.push('<p class="tw-label">' + esc(t(m.label)) + "</p>");
     if (t(m.text)) L.push((kind === "reply" ? "<p>" : '<p class="tw-text">') + twText(m.text) + "</p>");
     if (has(m, "hasPoll")) L = L.concat(twPoll(m));
@@ -530,15 +555,23 @@
     if (has(m, "hasQuote") && (t(m.qText) || t(m.qName))) L.push('<p class="tw-quote"><b>' + esc(t(m.qName)) + "</b>" + (noAt(m.qHandle) ? ' <span class="tw-handle">@' + esc(noAt(m.qHandle)) + "</span>" : "") + "<br>" + fmt(m.qText) + "</p>");
     if (has(m, "hasNote") && t(m.note)) L.push('<p class="tw-note">' + esc(t(m.note)) + "</p>");
     if (t(m.date)) L.push('<p class="tw-date">' + esc(t(m.date)) + "</p>");
-    L = L.concat(twStats(m));
-    var open = kind === "feed" ? '<div class="mob tw ' + b.theme + (b.width ? " " + b.width : "") + '">' : kind === "main" ? '<div class="mob tw">' : '<div class="mob tw-reply">';
+    L = L.concat(twStats(b, m));
+    var open = kind === "feed" && !b.app ? '<div class="mob tw ' + b.theme + (b.width ? " " + b.width : "") + '">' : kind === "reply" ? '<div class="mob tw-reply">' : '<div class="mob tw">';
     return [open].concat(ind(L, 1)).concat(["</div>"]);
   }
   function twFeedHTML(b) {
-    return b.msgs.map(function (m) { return tweetHTML(b, m, "feed").join("\n"); }).filter(Boolean).join("\n\n");
+    var tweets = b.msgs.map(function (m) { return tweetHTML(b, m, "feed").join("\n"); }).filter(Boolean);
+    if (!b.app) return tweets.join("\n\n");
+    // the X app screen: the pov character's picture and the logo, then the tabs, then the tweets
+    var me = char(b.pov) || S.cast[0], old = b.era === "tw2020";
+    var L = ['<div class="tw-thread app' + (old ? " tw2020" : "") + " " + b.theme + (b.width ? " " + b.width : "") + '">', '  <div class="tw-scroll">',
+      '  <p class="tw-apptop">' + (me ? circle("tw-me", me) + " " : "") + '<span class="tw-logo">' + (old ? "Twitter" : "X") + "</span></p>"];
+    if (!old) L.push('  <p class="tw-tabs"><span class="tw-tab on">For you<span class="tw-drop"></span></span> <span class="tw-tab">Following</span>' +
+      t(b.tabs).split(/\n/).map(t).filter(Boolean).map(function (x) { return ' <span class="tw-tab">' + esc(x) + "</span>"; }).join("") + ' <span class="tw-add">+</span></p>');
+    return L.concat(ind(tweets.join("\n\n").split("\n"), 1)).concat(["  </div>", "</div>"]).join("\n").replace(/\n  \n/g, "\n\n");
   }
   function twThreadHTML(b) {
-    var L = ['<div class="tw-thread ' + b.theme + (b.width ? " " + b.width : "") + '">', '  <div class="tw-scroll">'];
+    var L = ['<div class="tw-thread' + (b.era === "tw2020" ? " tw2020" : "") + " " + b.theme + (b.width ? " " + b.width : "") + '">', '  <div class="tw-scroll">'];
     b.msgs.forEach(function (m, i) { L = L.concat(ind(tweetHTML(b, m, i ? "reply" : "main"), 2)); });
     L.push("  </div>");
     if (b.bar !== "none") L.push('  <p class="tw-foot"><span>Reply</span><span class="hide"> - </span>Tweet your reply</p>');
@@ -670,7 +703,7 @@
         return '<option value="' + esc(o[0]) + '"' + (String(v) === String(o[0]) ? " selected" : "") + ">" + esc(o[1]) + "</option>";
       }).join("") + "</select>";
     }
-    if (type === "area") return lab + '<textarea id="' + id + '" data-bind="' + path + '" rows="' + (opts.rows || 4) + '"' + (opts.ph ? ' placeholder="' + esc(opts.ph) + '"' : "") + ">" + esc(v) + "</textarea>";
+    if (type === "area") return lab + '<textarea id="' + id + '" data-bind="' + path + '" rows="' + (opts.rows || 4) + '"' + (opts.re ? " data-re" : "") + (opts.ph ? ' placeholder="' + esc(opts.ph) + '"' : "") + ">" + esc(v) + "</textarea>";
     return lab + '<input type="' + type + '" id="' + id + '" data-bind="' + path + '" value="' + esc(v) + '"' + (opts.ph ? ' placeholder="' + esc(opts.ph) + '"' : "") + (opts.re ? " data-re" : "") + (opts.cls ? ' class="' + opts.cls + '"' : "") + ">";
   }
   function btn(act, text, title, extra) {
@@ -869,17 +902,31 @@
       var c = char(m.from);
       h.push('<div class="fb-extras">' + fmtButtons());
       h.push(accField(P + ".acc", c, "tw"));
-      h.push(field(P + ".verified", "Blue verified tick", { type: "check" }));
+      var old = b.era === "tw2020";
+      h.push(field(P + ".verified", "Blue verified tick", { type: "check" }) + " " + field(P + ".locked", "Private account (padlock)", { type: "check", re: true }));
+      h.push(field(P + ".fan", "Grey line under the name", { ph: "Fan account" }));
       h.push(field(P + ".label", "Little grey label (Promoted, or a Twitter Circle notice)", {}));
-      h.push('<div class="fb-grid"><div>' + field(P + ".reposts", "Reposts", { ph: "580" }) + field(P + ".reposted", "Reposted (green)", { type: "check" }) + "</div><div>" +
-        field(P + ".likes", "Likes", { ph: "2.6k" }) + field(P + ".liked", "Liked (pink)", { type: "check" }) + "</div><div>" +
-        field(P + ".replies", "Replies", { ph: "10" }) + "</div></div>");
+      // the buttons along the bottom
+      h.push('<p class="hint">Buttons along the bottom (leave a number empty for a button with no count):</p><div class="fb-grid"><div>' +
+        field(P + ".replies", "Replies", { ph: "10" }) + "</div><div>" +
+        (m.locked ? '<p class="hint">Reposts: faded out, because private tweets can\'t be reposted</p>' :
+          field(P + ".reposts", old ? "Retweets" : "Reposts", { ph: "580" }) + field(P + ".reposted", (old ? "Retweeted" : "Reposted") + " (green)", { type: "check" }) +
+          field(P + ".noRepost", "Faded out (a Twitter Circle tweet)", { type: "check", re: true })) + "</div><div>" +
+        field(P + ".likes", "Likes", { ph: "2,614" }) + field(P + ".likeClick", "Readers can click it", { type: "check", re: true }) +
+        field(P + ".liked", m.likeClick ? "Already liked (adds one)" : "Liked (red)", { type: "check" }) + "</div>" +
+        (old ? "" : "<div>" + field(P + ".views", "Views (leave empty for no views button)", { ph: "71K" }) + "</div><div>" +
+          field(P + ".saved", "Bookmarked (blue)", { type: "check" }) + "</div>") + "</div>");
       h.push(field(P + ".date", "Exact time and date (for a tweet opened on its own)", { ph: "8:23 AM · 11 May 23" }));
       // the bigger extras only open up when they're ticked
       TW_ADDS.forEach(function (a) { if (m[a[0]] === undefined) m[a[0]] = has(m, a[0]); });
       h.push('<p class="hint">Add to this tweet:</p><div>' + TW_ADDS.map(function (a) { return field(P + "." + a[0], a[1], { type: "check", re: true }); }).join(" ") + "</div>");
-      if (m.hasPoll) h.push('<div class="fb-acct">' + field(P + ".poll", "Poll: one option per line. For a finished poll, put the percentage after each one, like Montreal 75%", { type: "area", rows: 2 }) +
-        field(P + ".pollinfo", "Under the poll", { ph: "179 votes · 13 minutes left" }) + "</div>");
+      if (m.hasPoll) {
+        // with results, the poll can be tapped to vote: the tick goes on the pov character's choice
+        h.push('<div class="fb-acct">' + field(P + ".poll", "Poll: one option per line. For the results, put the percentage after each one, like Montreal 58%", { type: "area", rows: 2 }) +
+          field(P + ".pollinfo", "Under the poll", { ph: "179 votes · 13 minutes left" }) +
+          field(P + ".pollTap", "Readers tap the poll to vote and see the results (needs the percentages, and adds one to the votes)", { type: "check", re: true }) +
+          (m.pollTap ? field(P + ".pollVote", "The vote goes to", { type: "select", options: [["0", "The first option"], ["1", "The second option"], ["2", "The third option"], ["3", "The fourth option"]] }) : "") + "</div>");
+      }
       if (m.hasQuote) h.push('<div class="fb-acct"><p class="hint">Quote tweet:</p><div class="fb-grid"><div>' + field(P + ".qName", "", { ph: "Their name" }) + "</div><div>" + field(P + ".qHandle", "", { ph: "Their handle" }) + "</div></div>" +
         field(P + ".qText", "", { ph: "What they said" }) + "</div>");
       if (m.hasNote) h.push('<div class="fb-acct">' + field(P + ".note", "Community note", { ph: "Readers added context: ..." }) + "</div>");
@@ -986,7 +1033,11 @@
     else {
       h.push('<div class="fb-grid"><div>' + field(P + ".theme", "Light, dark, or auto", { type: "select", options: [["theme-light", "Light"], ["theme-dark", "Dark"], ["theme-auto", "Auto"]] }) + "</div><div>" +
         field(P + ".width", "Width", { type: "select", options: [["", "Phone width"], ["wide", "Full width"]] }) + "</div>" +
-        (b.type === "twthread" ? "<div>" + field(P + ".bar", "Tweet your reply bar", { type: "select", options: [["empty", "Yes"], ["none", "No"]] }) + "</div>" : "") + "</div>");
+        (b.type === "twthread" ? "<div>" + field(P + ".bar", "Tweet your reply bar", { type: "select", options: [["empty", "Yes"], ["none", "No"]] }) + "</div>" : "") +
+        "<div>" + field(P + ".era", "Which look", { type: "select", re: true, options: [["", "X (from mid-2023)"], ["tw2020", "Twitter (2020 to mid-2023)"]] }) + "</div>" +
+        (b.type === "twfeed" ? "<div>" + field(P + ".app", "Show the tweets", { type: "select", re: true, options: [["", "On their own"], ["app", "Inside the app screen"]] }) + "</div>" +
+          (b.app ? "<div>" + field(P + ".pov", "Whose phone is it? (their picture goes at the top)", { type: "select", options: castOptions() }) + "</div>" : "") : "") + "</div>");
+      if (b.type === "twfeed" && b.app && b.era !== "tw2020") h.push(field(P + ".tabs", "Communities in the tabs, after For you and Following (one per line)", { type: "area", rows: 2, ph: "Metros Fans\nHockey Twitter" }));
     }
     if (b.type === "igpost") h.push('<p class="hint"><b>Comments</b></p>');
     var row = chat ? msgRow : b.type === "igpost" ? commentRow : tweetRow;
