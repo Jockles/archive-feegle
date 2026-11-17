@@ -46,11 +46,12 @@
   <li><a href="#s9-8">9.8 Tappable Polls</a></li>
   <li><a href="#s9-9">9.9 Pictures and Videos</a></li>
   <li><a href="#s9-10">9.10 The Scrolling Thread</a></li>
-  <li><a href="#s9-11">9.11 Scrolling</a></li>
-  <li><a href="#s9-12">9.12 DMs</a></li>
-  <li><a href="#s9-13">9.13 Links</a></li>
-  <li><a href="#s9-14">9.14 Dark and Auto Themes</a></li>
-  <li><a href="#s9-15">9.15 Taking Parts Out</a></li>
+  <li><a href="#s9-11">9.11 The App Screen</a></li>
+  <li><a href="#s9-12">9.12 Scrolling</a></li>
+  <li><a href="#s9-13">9.13 DMs</a></li>
+  <li><a href="#s9-14">9.14 Links</a></li>
+  <li><a href="#s9-15">9.15 Dark and Auto Themes</a></li>
+  <li><a href="#s9-16">9.16 Taking Parts Out</a></li>
 </ul>
 
 <p>This chapter goes through the CSS for the tweets, threads and DMs in the last chapter. The module has three parts: tweets and replies (<code>tw</code> and <code>tw-reply</code>), the scrolling thread they can sit in (<code>tw-thread</code>), and DMs (<code>twdm</code>). DMs are built just like iMessage, so if you've read that chapter, they'll be quick.</p>
@@ -432,7 +433,88 @@
 
 <p>The "Tweet your reply" bar sits under the scrolling part, so it stays in place. AO3 wraps its text in a paragraph, which the middle rule flattens, and the Reply button floats to the right.</p>
 
-<h3 id="s9-11">9.11 Scrolling</h3>
+<h3 id="s9-11">9.11 The App Screen</h3>
+
+<pre><code>#workskin .tw-thread .tw-apptop,
+#workskin .tw-thread .tw-tabs {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  white-space: nowrap;
+}
+
+#workskin .tw-thread .tw-apptop br,
+#workskin .tw-thread .tw-tabs br { display: none; }
+
+#workskin .tw-thread .tw-apptop { padding: 0.8em 1em 0.3em 1em; }
+
+/* the reader's own picture, top left */
+#workskin .tw-thread .tw-me {
+  display: block;
+  flex: none;
+  width: 2.2em;
+  height: 2.2em;
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+/* the X in the middle: the margin on the right balances the picture on the left */
+#workskin .tw-thread .tw-logo {
+  flex: 1;
+  margin-right: 2.2em;
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.9em;
+  font-weight: bold;
+  line-height: 1;
+}
+
+#workskin .tw-thread .tw-tabs {
+  position: relative;
+  overflow: hidden;
+  padding: 0.6em 2.6em 0 1em;
+  border-bottom: 1px solid #eff3f4;
+  color: #536471;
+  font-weight: bold;
+}
+
+#workskin .tw-thread .tw-tab {
+  position: relative;
+  flex: none;
+  margin-right: 1.6em;
+  padding-bottom: 0.75em;
+}
+
+#workskin .tw-thread .tw-tab.on { color: #0f1419; }
+
+/* the rounded line under the picked tab, as wide as its words */
+#workskin .tw-thread .tw-tab.on::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 4px;
+  border-radius: 2px;
+  background: #1d9bf0;
+}
+
+/* the + at the far right, for adding a community tab. It stays put, and any tabs too long for the row go under it */
+#workskin .tw-thread .tw-add {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 1px;
+  padding: 0.3em 0.7em 0 0.7em;
+  background: #ffffff;
+  font-size: 1.4em;
+  font-weight: normal;
+  line-height: 1;
+}</code></pre>
+
+<p>The app screen is just two flex rows at the top of the scrolling part of a thread. In the top bar, the X gets <code>flex: 1</code> to take up all the room left over, and its <code>margin-right</code> is the same width as the picture on the left, so the X sits in the true middle. In the tabs, the blue line under the picked tab is a <code>::after</code> box pinned to the bottom of the tab with <code>position: absolute</code>, stretched from <code>left: 0</code> to <code>right: 0</code> so it's always as wide as the words. The plus sign is pinned to the right-hand end the same way, with a background the same colour as the screen, so long tabs slide under it instead of pushing it off the edge.</p>
+
+<h3 id="s9-12">9.12 Scrolling</h3>
 
 <pre><code>#workskin .tw-thread .tw-scroll {
   display: block;
@@ -449,7 +531,7 @@
 
 <p>In a thread, only the <code>tw-scroll</code> part scrolls, at the same height as every other chat. A tweet on its own scrolls as a whole, and it's allowed to be taller (<code>700px</code>), because a tweet with a picture is usually taller than a chat window and you'd rather not scroll it if you can help it. Adding <code>no-scroll</code> to a tweet switches its scrolling off, as usual.</p>
 
-<h3 id="s9-12">9.12 DMs</h3>
+<h3 id="s9-13">9.13 DMs</h3>
 
 <pre><code>#workskin .twdm .msg {
   display: table;
@@ -495,7 +577,7 @@
 
 </details>
 
-<h3 id="s9-13">9.13 Links</h3>
+<h3 id="s9-14">9.14 Links</h3>
 
 <pre><code>#workskin .tw .fake-link, #workskin .tw a:not(.tl),
 #workskin .tw-reply .fake-link, #workskin .tw-reply a:not(.tl) { color: #1d9bf0; }
@@ -506,7 +588,7 @@
 
 <p>Blue everywhere, except in your own blue DM bubbles, where links are white so they show up. <code>tw-link</code>, for hashtags and @mentions, is the same blue.</p>
 
-<h3 id="s9-14">9.14 Dark and Auto Themes</h3>
+<h3 id="s9-15">9.15 Dark and Auto Themes</h3>
 
 <pre><code>#workskin .tw.theme-dark { background: #000000; color: #e7e9ea; border-color: #2f3336; }
 
@@ -523,7 +605,7 @@
 
 <p>The auto theme is the whole lot again inside <code>@media (prefers-color-scheme: dark)</code>, so change a dark colour in both places.</p>
 
-<h3 id="s9-15">9.15 Taking Parts Out</h3>
+<h3 id="s9-16">9.16 Taking Parts Out</h3>
 
 <p>Search for the class names and delete every rule with them in, including in the dark and auto blocks:</p>
 
