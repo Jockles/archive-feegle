@@ -223,6 +223,8 @@
   font-weight: bold;
   font-size: 0.8em;
   line-height: 1;
+  position: relative;
+  top: 0; /* nudges the initials down (1px, 2px) or up (-1px, -2px) */
 }
 
 #workskin .dc .dc-reply .pfp::before,
@@ -231,6 +233,8 @@
 #workskin .ig .ig-top .ig-pfp .pfp::before { font-size: 1.1em; }</code></pre>
 
 <p>It doesn't do anything until a profile gives it some text, like Holster's does (see Character Profiles, Line by Line, below).</p>
+
+<p>If the initials sit too high or too low for you, <code>top</code> is the number to change: <code>1px</code> or <code>2px</code> moves them down, and <code>-1px</code> or <code>-2px</code> moves them up. Initials typed straight into a circle are lined up by each app's own circle rule instead. In most apps, that's the <code>line-height</code> in the circle's rule - in Twitter/X, it's the <code>line-height: 43px</code> in the <code>tw-pfp</code> rule. Make the number bigger to move the initials down, or smaller to move them up. Instagram and Tumblr centre them with flex, so there it's easiest to add <code>padding-top: 2px</code> to move them down. Fonts sit differently on different devices, so check on a phone as well as a computer before you change anything - letters that look low on a Mac are usually spot on everywhere else.</p>
 
 <h3>Hidden Text</h3>
 

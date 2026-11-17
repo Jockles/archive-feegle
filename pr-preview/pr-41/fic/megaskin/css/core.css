@@ -129,6 +129,8 @@
   font-weight: bold;
   font-size: 0.8em;
   line-height: 1;
+  position: relative;
+  top: 0; /* nudges the initials down (1px, 2px) or up (-1px, -2px) */
 }
 
 /* the tiny circles in Discord replies and Instagram's "Liked by" line get smaller initials */
