@@ -368,12 +368,12 @@
 
 <h4>The X App Screen</h4>
 
-<p>To show tweets the way they look in the app, put them inside a <code>tw-thread</code> with <code>app</code> added, and a <code>tw-scroll</code> inside that. At the top go two lines that scroll away with the tweets: <code>tw-apptop</code>, with the pov character's own picture in <code>tw-me</code> and the X in <code>tw-logo</code>, then the row of tabs in <code>tw-tabs</code>. The picked tab gets <code>on</code>, which makes it dark (or white in dark mode) with a blue line under it. After For you and Following come any communities the character has joined, and the <code>tw-add</code> plus sign goes at the end:</p>
+<p>To show tweets the way they look in the app, put them inside a <code>tw-thread</code> with <code>app</code> added, and a <code>tw-scroll</code> inside that. At the top go two lines that scroll away with the tweets: <code>tw-apptop</code>, with the pov character's own picture in <code>tw-me</code> and the X in <code>tw-logo</code>, then the row of tabs in <code>tw-tabs</code>. The picked tab gets <code>on</code>, which makes it dark (or white in dark mode) with a line under it in the same colour. The little down arrow after For you is an empty <code>tw-drop</code> span. After For you and Following come any communities the character has joined, and the <code>tw-add</code> plus sign goes at the end:</p>
 
 <div class="tw-thread app theme-auto">
   <div class="tw-scroll">
   <p class="tw-apptop"><span class="tw-me"><span class="pfp pfp-yuna"></span></span> <span class="tw-logo">X</span></p>
-  <p class="tw-tabs"><span class="tw-tab on">For you</span> <span class="tw-tab">Following</span> <span class="tw-tab">Metros Fans</span> <span class="tw-tab">Hockey Twitter</span> <span class="tw-add">+</span></p>
+  <p class="tw-tabs"><span class="tw-tab on">For you<span class="tw-drop"></span></span> <span class="tw-tab">Following</span> <span class="tw-tab">Metros Fans</span> <span class="tw-tab">Hockey Twitter</span> <span class="tw-add">+</span></p>
   <div class="mob tw">
     <p class="tw-top"><span class="tw-pfp"><span class="pfp"><img src="https://images.squidge.org/images/2026/11/16/HockeyBlur.png" alt="Profile picture of hockeyfan, a blurred photo of a hockey game"></span></span><span class="hide"> </span><span class="tw-name">Hockey Fan</span> <span class="tw-handle">@hockeyfan · 2h</span></p>
     <p class="tw-text">Can't believe that overtime goal.</p>
@@ -411,7 +411,7 @@
 <pre><code>&lt;div class="tw-thread app theme-auto"&gt;
   &lt;div class="tw-scroll"&gt;
   &lt;p class="tw-apptop"&gt;&lt;span class="tw-me"&gt;&lt;span class="pfp pfp-yuna"&gt;&lt;/span&gt;&lt;/span&gt; &lt;span class="tw-logo"&gt;X&lt;/span&gt;&lt;/p&gt;
-  &lt;p class="tw-tabs"&gt;&lt;span class="tw-tab on"&gt;For you&lt;/span&gt; &lt;span class="tw-tab"&gt;Following&lt;/span&gt; &lt;span class="tw-tab"&gt;Metros Fans&lt;/span&gt; &lt;span class="tw-tab"&gt;Hockey Twitter&lt;/span&gt; &lt;span class="tw-add"&gt;+&lt;/span&gt;&lt;/p&gt;
+  &lt;p class="tw-tabs"&gt;&lt;span class="tw-tab on"&gt;For you&lt;span class="tw-drop"&gt;&lt;/span&gt;&lt;/span&gt; &lt;span class="tw-tab"&gt;Following&lt;/span&gt; &lt;span class="tw-tab"&gt;Metros Fans&lt;/span&gt; &lt;span class="tw-tab"&gt;Hockey Twitter&lt;/span&gt; &lt;span class="tw-add"&gt;+&lt;/span&gt;&lt;/p&gt;
   &lt;div class="mob tw"&gt;
     ...
   &lt;/div&gt;
