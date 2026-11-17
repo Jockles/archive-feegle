@@ -6,7 +6,7 @@
   <title>Megaskin, Chapter 9: Twitter/X CSS | jockles.com</title>
   <link rel="stylesheet" href="../../style.css">
   <script src="../../theme.js"></script>
-  <link rel="stylesheet" href="megaskin.css?v=2e99a238" id="creator-style">
+  <link rel="stylesheet" href="megaskin.css?v=2efe9b68" id="creator-style">
 </head>
 <body>
 <header>
@@ -160,7 +160,7 @@
   font-size: 0.92em;
 }</code></pre>
 
-<p>Most of the parts of a tweet are simple: a line with its own size, colour and spacing. The row of buttons is a flex row, like the bottom of a Tumblr post: <code>space-between</code> spreads the buttons out evenly, with the share button at the far end. The main tweet's row has a pale line above it, and a reply's row is smaller with no line. The buttons themselves are grey pictures, in the Icons section at the end of the module. A quote tweet is a smaller rounded box inside the tweet. The Community Note (<code>tw-note</code>) and the sensitive content cover (<code>tw-warn</code>) are boxes the same way, with a pale grey background.</p>
+<p>Most of the parts of a tweet are simple: a line with its own size, colour and spacing. The row of buttons is a flex row, like the bottom of a Tumblr post: <code>space-between</code> spreads the buttons out evenly, with the share button at the far end. The main tweet's row has a pale line above it, and a reply's row is smaller with no line. The buttons themselves are pictures, in the Icons section at the end of the module. A quote tweet is a smaller rounded box inside the tweet. The Community Note (<code>tw-note</code>) and the sensitive content cover (<code>tw-warn</code>) are boxes the same way, with a pale grey background.</p>
 
 <pre><code>/* ---- a like readers can click: &lt;details class="tw-stat tw-tog"&gt;
    Inside the &lt;summary&gt;, the "off" count shows at first and the "on" count once clicked.
@@ -187,7 +187,7 @@
 #workskin .tw-reply .tw-stats .tw-liked,
 #workskin .tw .tw-stats .tw-tog[open],
 #workskin .tw-reply .tw-stats .tw-tog[open] {
-  color: #f91880;
+  color: #ed4956;
 }
 
 #workskin .tw .tw-stats .tw-rt,
@@ -202,7 +202,7 @@
 
 <p>The clickable like works the same way as Instagram's heart: the <code>summary</code> holds a count marked <code>off</code> and one marked <code>on</code>, and <code>[open]</code> means "after it's been clicked", which hides the first and shows the second. The little arrow that details normally shows is switched off with <code>list-style</code> and the two <code>marker</code> rules.</p>
 
-<p>A button the account has used turns pink for a like, green for a repost or blue for a bookmark, count and all, and a clicked like turns pink the same way. The coloured pictures are in the Icons section too.</p>
+<p>A button the account has used turns red for a like, green for a repost or blue for a bookmark, count and all, and a clicked like turns red the same way. The coloured pictures are in the Icons section too.</p>
 
 <h3 id="s9-7">9.7 Polls</h3>
 
