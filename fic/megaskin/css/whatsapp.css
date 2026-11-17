@@ -147,10 +147,12 @@
 /* round profile picture: initials by default; add a number class colour1-colour10 for a colour (the colours are
    in the COLOURS section of the CORE), or put a picture or a profile inside it with a pfp span */
 #workskin .wa .wa-pfp {
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 30px;
   height: 30px;
-  line-height: 30px;
+  line-height: 1;
   text-align: center;
   border-radius: 50%;
   background-color: #8696a0;
@@ -165,7 +167,6 @@
 #workskin .wa table.wa-bar .wa-pfp {
   width: 38px;
   height: 38px;
-  line-height: 38px;
   font-size: 0.85em;
   font-weight: bold;
 }

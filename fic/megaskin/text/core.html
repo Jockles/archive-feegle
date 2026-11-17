@@ -1,5 +1,3 @@
-<p>Thanks to La_Temperanza, whose <a href="https://archiveofourown.org/works/10957056"><em>How To Change Text on AO3 When the Cursor is Hovering Over It (Or Clicked on Mobile)</em></a> the translations are built on. Copied and adapted from it: swapping the text on hover or tap, the brackets for readers with Creator's Style off, and the link that makes tapping work on phones.</p>
-
 <h3 id="contents">Chapter Contents</h3>
 
 <p>Everything in this chapter lives in the core CSS - the bit of the skin that every module needs - so you get all of it whichever modules you've picked. It all works in Discord too, apart from the typing line.</p>
@@ -25,6 +23,7 @@
   <li><a href="#fake-links">Links that go nowhere</a> (<code>fake-link</code>)</li>
   <li><a href="#translations">Hover and tap translations</a>, and hidden easter eggs (<code>egg</code>), which also work in ordinary text outside a chat</li>
   <li><a href="#typing">The typing line</a> (<code>typing</code>) - not in Discord</li>
+  <li><a href="#cursor">A flashing cursor</a> (<code>cursor</code>)</li>
   <li><a href="#deleted">Deleted or corrected text</a> (<code>del</code>)</li>
   <li><a href="#together">Putting it together</a>: a chat using both</li>
 </ul>
@@ -152,7 +151,7 @@
 
 <p>AO3 doesn't give videos an alt text option, so the workskin has a class for it instead. Put a paragraph with <code>vid-desc</code> straight after the video, with a description of what happens in it in square brackets:</p>
 
-<div class="mob tw theme-auto"><p class="tw-top"><span class="tw-name">Jockles</span> <span class="tw-handle">@jockles25 · 2h</span></p><p class="tw-text">Ilya Rozanov you will always be famous to me</p><div class="tw-media video"><iframe src="https://player.vimeo.com/video/1169167060?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" title="Ilya Rozanov | Come Home"></iframe><p class="vid-desc">[Video: a tribute edit of Ilya Rozanov, made from Heated Rivalry footage and set to "Would You Come Home" by Tyler Blackburn]</p></div></div>
+<div class="mob tw theme-auto"><p class="tw-top"><span class="tw-name">Jockles</span> <span class="tw-handle">@jockles25</span> <span class="tw-time">· 2h</span></p><p class="tw-text">Ilya Rozanov you will always be famous to me</p><div class="tw-media video"><iframe src="https://player.vimeo.com/video/1169167060?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" title="Ilya Rozanov | Come Home"></iframe><p class="vid-desc">[Video: a tribute edit of Ilya Rozanov, made from Heated Rivalry footage and set to "Would You Come Home" by Tyler Blackburn]</p></div></div>
 
 <pre><code>&lt;div class="tw-media video"&gt;&lt;iframe src="https://player.vimeo.com/video/1169167060?badge=0&amp;amp;autopause=0&amp;amp;player_id=0&amp;amp;app_id=58479" frameborder="0" title="Ilya Rozanov | Come Home"&gt;&lt;/iframe&gt;&lt;p class="vid-desc"&gt;[Video: a tribute edit of Ilya Rozanov, made from Heated Rivalry footage and set to "Would You Come Home" by Tyler Blackburn]&lt;/p&gt;&lt;/div&gt;</code></pre>
 
@@ -386,36 +385,57 @@
 <h5>Twitter/X Post and Reply</h5>
 
 <div class="mob tw theme-dark">
-  <p class="tw-top"><span class="tw-name">Anna knows Puck</span> <span class="tw-handle">@puckingwhat · 2h</span></p>
+  <p class="tw-top"><span class="tw-name">Anna knows Puck</span> <span class="tw-handle">@puckingwhat</span> <span class="tw-time">· 2h</span></p>
   <p class="tw-text">Can't believe that overtime goal.</p>
-  <p class="tw-stats"><b>180</b> Reposts &nbsp; <b>1k</b> Likes</p>
+  <div class="tw-stats">
+    <p class="tw-stat"><span class="ic ic-tw-reply">&#9993;</span></p>
+    <p class="tw-stat"><span class="ic ic-tw-repost">&#8644;</span> 180<span class="hide"> reposts</span></p>
+    <p class="tw-stat"><span class="ic ic-tw-like">&#9825;</span> 1k<span class="hide"> likes</span></p>
+    <p class="tw-stat"><span class="ic ic-tw-views">&#128202;</span> 27K<span class="hide"> views</span></p>
+    <p class="tw-stat tw-end"><span class="ic ic-tw-bookmark">&#128278;</span></p>
+    <p class="tw-stat tw-end"><span class="ic ic-tw-share">&#8679;</span></p>
+  </div>
 </div>
 
 <div class="mob tw-reply theme-dark">
-  <p><span class="tw-name">Denis</span> <span class="tw-handle">@motherpucker · 1h</span></p>
+  <p><span class="tw-name">Denis</span> <span class="tw-handle">@motherpucker</span> <span class="tw-time">· 1h</span></p>
   <p>best game all season</p>
 </div>
 
 <div class="mob tw theme-light">
-  <p class="tw-top"><span class="tw-name">Anna knows Puck</span> <span class="tw-handle">@puckingwhat · 2h</span></p>
+  <p class="tw-top"><span class="tw-name">Anna knows Puck</span> <span class="tw-handle">@puckingwhat</span> <span class="tw-time">· 2h</span></p>
   <p class="tw-text">Can't believe that overtime goal.</p>
-  <p class="tw-stats"><b>4,312</b> Reposts &nbsp; <b>18.2K</b> Likes</p>
+  <div class="tw-stats">
+    <p class="tw-stat"><span class="ic ic-tw-reply">&#9993;</span></p>
+    <p class="tw-stat"><span class="ic ic-tw-repost">&#8644;</span> 4,312<span class="hide"> reposts</span></p>
+    <p class="tw-stat"><span class="ic ic-tw-like">&#9825;</span> 18.2K<span class="hide"> likes</span></p>
+    <p class="tw-stat"><span class="ic ic-tw-views">&#128202;</span> 491K<span class="hide"> views</span></p>
+    <p class="tw-stat tw-end"><span class="ic ic-tw-bookmark">&#128278;</span></p>
+    <p class="tw-stat tw-end"><span class="ic ic-tw-share">&#8679;</span></p>
+  </div>
 </div>
 
 <div class="mob tw-reply theme-light">
-  <p><span class="tw-name">Denis</span> <span class="tw-handle">@motherpucker · 1h</span></p>
+  <p><span class="tw-name">Denis</span> <span class="tw-handle">@motherpucker</span> <span class="tw-time">· 1h</span></p>
   <p>best game all season</p>
 </div>
 
 <p><em>The HTML for the dark version:</em></p>
 
 <pre><code>&lt;div class="mob tw theme-dark"&gt;
-  &lt;p class="tw-top"&gt;&lt;span class="tw-name"&gt;Holster&lt;/span&gt; &lt;span class="tw-handle"&gt;@HolsterInLaw · 2h&lt;/span&gt;&lt;/p&gt;
+  &lt;p class="tw-top"&gt;&lt;span class="tw-name"&gt;Holster&lt;/span&gt; &lt;span class="tw-handle"&gt;@HolsterInLaw&lt;/span&gt; &lt;span class="tw-time"&gt;· 2h&lt;/span&gt;&lt;/p&gt;
   &lt;p class="tw-text"&gt;I need everyone to get really cool about a lot of stuff really fast&lt;/p&gt;
-  &lt;p class="tw-stats"&gt;&lt;b&gt;1&lt;/b&gt; Reposts &amp;nbsp; &lt;b&gt;12&lt;/b&gt; Likes&lt;/p&gt;
+  &lt;div class="tw-stats"&gt;
+    &lt;p class="tw-stat"&gt;&lt;span class="ic ic-tw-reply"&gt;&amp;#9993;&lt;/span&gt;&lt;/p&gt;
+    &lt;p class="tw-stat"&gt;&lt;span class="ic ic-tw-repost"&gt;&amp;#8644;&lt;/span&gt; 1&lt;span class="hide"&gt; repost&lt;/span&gt;&lt;/p&gt;
+    &lt;p class="tw-stat"&gt;&lt;span class="ic ic-tw-like"&gt;&amp;#9825;&lt;/span&gt; 12&lt;span class="hide"&gt; likes&lt;/span&gt;&lt;/p&gt;
+    &lt;p class="tw-stat"&gt;&lt;span class="ic ic-tw-views"&gt;&amp;#128202;&lt;/span&gt; 324&lt;span class="hide"&gt; views&lt;/span&gt;&lt;/p&gt;
+    &lt;p class="tw-stat tw-end"&gt;&lt;span class="ic ic-tw-bookmark"&gt;&amp;#128278;&lt;/span&gt;&lt;/p&gt;
+    &lt;p class="tw-stat tw-end"&gt;&lt;span class="ic ic-tw-share"&gt;&amp;#8679;&lt;/span&gt;&lt;/p&gt;
+  &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="mob tw-reply theme-dark"&gt;
-  &lt;p&gt;&lt;span class="tw-name"&gt;Zim&lt;/span&gt; &lt;span class="tw-handle"&gt;@ZimBits · 1h&lt;/span&gt;&lt;/p&gt;
+  &lt;p&gt;&lt;span class="tw-name"&gt;Zim&lt;/span&gt; &lt;span class="tw-handle"&gt;@ZimBits&lt;/span&gt; &lt;span class="tw-time"&gt;· 1h&lt;/span&gt;&lt;/p&gt;
   &lt;p&gt;WHAT DID YOU DO??&lt;/p&gt;
 &lt;/div&gt;</code></pre>
 
@@ -628,6 +648,8 @@
   &lt;/div&gt;
 &lt;/div&gt;</code></pre>
 
+<p>On a Mac, the initials can sit a little low in the circle - Mac fonts just sit lower than most, so it's nothing you've done wrong, and they're fine on phones. If you want to move them up or down in your own skin, <a href="core-css.html#heading">Round Pictures</a>, in the core CSS, shows you which number to change.</p>
+
 <p>Give each person the same colour every time, so readers can keep track of who's who. Each module chapter shows you where its circle goes:</p>
 
 <details>
@@ -770,7 +792,7 @@
 </div>
 
 <div class="mob tw theme-auto">
-  <p class="tw-top"><span class="tw-pfp"><span class="pfp pfp-stan"></span></span><span class="tw-name">Stan</span> <span class="tw-handle"><span class="handle pfp-stan"><span class="hide">@PuckStan</span></span> · 2h</span></p>
+  <p class="tw-top"><span class="tw-pfp"><span class="pfp pfp-stan"></span></span><span class="tw-name">Stan</span> <span class="tw-handle"><span class="handle pfp-stan"><span class="hide">@PuckStan</span></span></span> <span class="tw-time">· 2h</span></p>
   <p class="tw-text">same picture everywhere now</p>
 </div>
 
@@ -810,7 +832,7 @@
 &lt;p class="who pfp-stan"&gt;Stan&lt;span class="hide"&gt;:&lt;/span&gt;&lt;/p&gt;
 
 &lt;span class="tw-pfp"&gt;&lt;span class="pfp pfp-stan"&gt;&lt;/span&gt;&lt;/span&gt;
-&lt;span class="tw-handle"&gt;&lt;span class="handle pfp-stan"&gt;&lt;span class="hide"&gt;@PuckStan&lt;/span&gt;&lt;/span&gt; · 2h&lt;/span&gt;
+&lt;span class="tw-handle"&gt;&lt;span class="handle pfp-stan"&gt;&lt;span class="hide"&gt;@PuckStan&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; &lt;span class="tw-time"&gt;· 2h&lt;/span&gt;
 
 &lt;span class="ig-pfp"&gt;&lt;span class="pfp pfp-stan"&gt;&lt;/span&gt;&lt;/span&gt;
 &lt;span class="handle pfp-stan"&gt;&lt;span class="hide"&gt;PuckStan&lt;/span&gt;&lt;/span&gt;
@@ -1016,6 +1038,8 @@
 
 <h3 id="translations">Hover and Tap Translations</h3>
 
+<p>Thanks to La_Temperanza, whose <a href="https://archiveofourown.org/works/10957056"><em>How To Change Text on AO3 When the Cursor is Hovering Over It (Or Clicked on Mobile)</em></a> the translations are built on. Copied and adapted from it: swapping the text on hover or tap, the brackets for readers with Creator's Style off, and the link that makes tapping work on phones.</p>
+
 <p>If your characters switch languages every now and then, you can show the original words with the translation tucked away behind them. The reader sees the original with a dotted line under it, and when they hover over it on a computer, or tap it on a phone, the translation swaps in. It works in ordinary text as well as inside every chat and post in the skin, and the words take on the colour of whatever they're sitting in (dark mode included), so they never get mixed up with a chat link:</p>
 
 <pre><code>&lt;a class="tl" href="#t1"&gt;&lt;span class="orig"&gt;Diolch yn fawr&lt;/span&gt;&lt;span class="tltn"&gt;&lt;span class="hide"&gt; (&lt;/span&gt;Thank you very much&lt;span class="hide"&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/a&gt;</code></pre>
@@ -1067,14 +1091,14 @@
 &lt;/div&gt;</code></pre>
 
 <div class="mob tw theme-auto">
-  <p class="tw-top"><span class="tw-name">Ilya Rozanov</span> <span class="tw-handle">@irozanov · 7m</span></p>
+  <p class="tw-top"><span class="tw-name">Ilya Rozanov</span> <span class="tw-handle">@irozanov</span> <span class="tw-time">· 7m</span></p>
   <p class="tw-text"><a class="tl" href="#t3"><span class="orig">Bore da</span><span class="tltn"><span class="hide"> (</span>Good morning<span class="hide">)</span></span></a>! I am learning Welsh now. Do not ask why.</p>
 </div>
 
 <p><em>The finished chat looks like this, and here is the full HTML:</em></p>
 
 <pre><code>&lt;div class="mob tw theme-auto"&gt;
-  &lt;p class="tw-top"&gt;&lt;span class="tw-name"&gt;Ilya Rozanov&lt;/span&gt; &lt;span class="tw-handle"&gt;@irozanov · 7m&lt;/span&gt;&lt;/p&gt;
+  &lt;p class="tw-top"&gt;&lt;span class="tw-name"&gt;Ilya Rozanov&lt;/span&gt; &lt;span class="tw-handle"&gt;@irozanov&lt;/span&gt; &lt;span class="tw-time"&gt;· 7m&lt;/span&gt;&lt;/p&gt;
   &lt;p class="tw-text"&gt;&lt;a class="tl" href="#t3"&gt;&lt;span class="orig"&gt;Bore da&lt;/span&gt;&lt;span class="tltn"&gt;&lt;span class="hide"&gt; (&lt;/span&gt;Good morning&lt;span class="hide"&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/a&gt;! I am learning Welsh now. Do not ask why.&lt;/p&gt;
 &lt;/div&gt;</code></pre>
 
@@ -1113,6 +1137,16 @@
 <div class="mob imsg theme-auto"><div class="mob-body"><p class="typing">Scott is typing...</p></div></div>
 
 <pre><code>&lt;p class="typing"&gt;Scott is typing...&lt;/p&gt;</code></pre>
+
+<h3 id="cursor">A Flashing Cursor</h3>
+
+<p>For a message someone's still writing, put a <code>cursor</code> span straight after the last word, with a typed <code>|</code> inside it. It shows up as a flashing cursor, in any app - in a typing bar, a draft, a half-written comment, wherever. The typed line only shows for readers with the workskin switched off:</p>
+
+<div class="mob imsg theme-auto"><p class="imsg-input"><span class="imsg-plus">+</span><span class="hide"> </span><span class="imsg-field typed">ok so about last night<span class="cursor">|</span><span class="hide"> </span><span class="imsg-send ic ic-imsg-send">&#8593;</span></span></p></div>
+
+<pre><code>&lt;div class="mob imsg theme-auto"&gt;&lt;p class="imsg-input"&gt;&lt;span class="imsg-plus"&gt;+&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="imsg-field typed"&gt;ok so about last night&lt;span class="cursor"&gt;|&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="imsg-send ic ic-imsg-send"&gt;&amp;#8593;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;</code></pre>
+
+<p>The bit that matters is just <code>&lt;span class="cursor"&gt;|&lt;/span&gt;</code> - the rest is iMessage's typing bar, from the iMessage chapter.</p>
 
 <h3 id="deleted">Deleted or Corrected Text</h3>
 
