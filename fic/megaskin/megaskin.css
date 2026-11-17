@@ -2118,15 +2118,15 @@
 
 #workskin .tw .tw-name > .tw-tick,
 #workskin .tw-reply .tw-name > .tw-tick {
-  flex: 0 100 auto;
+  flex: 0 100000 auto;
   background-size: 1em 1em;
   background-position: left center;
 }
 
-/* the handle shrinks a hundred times faster than the name, so it goes first */
+/* the handle shrinks a hundred thousand times faster than the name, so it has gone completely before the name starts to shrink */
 #workskin .tw .tw-handle,
 #workskin .tw-reply .tw-handle {
-  flex: 0 100 auto;
+  flex: 0 100000 auto;
   min-width: 0;
   margin-left: 0.25em;
   overflow: hidden;
