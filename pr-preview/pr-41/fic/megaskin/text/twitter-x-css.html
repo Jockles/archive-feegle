@@ -100,15 +100,15 @@
 
 #workskin .tw .tw-name &gt; .tw-tick,
 #workskin .tw-reply .tw-name &gt; .tw-tick {
-  flex: 0 100 auto;
+  flex: 0 100000 auto;
   background-size: 1em 1em;
   background-position: left center;
 }
 
-/* the handle shrinks a hundred times faster than the name, so it goes first */
+/* the handle shrinks a hundred thousand times faster than the name, so it has gone completely before the name starts to shrink */
 #workskin .tw .tw-handle,
 #workskin .tw-reply .tw-handle {
-  flex: 0 100 auto;
+  flex: 0 100000 auto;
   min-width: 0;
   margin-left: 0.25em;
   overflow: hidden;
@@ -164,7 +164,7 @@
 
 <ul>
   <li>The name line is a flex row, with the picture, name, handle and time side by side. <code>white-space: nowrap</code> keeps them all on one line, however long they are, and <code>overflow: hidden</code> cuts off anything that still doesn't fit.</li>
-  <li>When the row is too long, flex shrinks the boxes in it. <code>flex-shrink</code> (the middle number in <code>flex: 0 100 auto</code>) says how fast each one shrinks: the handle's is 100 and the name's is 1, so the handle shrinks a hundred times faster and goes first, all the way down to nothing. <code>min-width: 0</code> is what allows a box to shrink smaller than its words. The time and the padlock get <code>flex: none</code>, so they never shrink at all.</li>
+  <li>When the row is too long, flex shrinks the boxes in it. <code>flex-shrink</code> (the middle number in <code>flex: 0 100000 auto</code>) says how fast each one shrinks: the handle's is 100000 and the name's is 1, so the handle shrinks a hundred thousand times faster. That's so fast that it's gone completely before the name has shrunk by even a fraction of a pixel, so you never see a cut-off name next to a scrap of handle. <code>min-width: 0</code> is what allows a box to shrink smaller than its words. The time and the padlock get <code>flex: none</code>, so they never shrink at all.</li>
   <li><code>text-overflow: ellipsis</code> puts "..." where the handle or the name is cut. The name is a flex row too, so its tick can shrink away before the name does. The tick's <code>background-size</code> is fixed, so it gets cut off instead of squashed.</li>
   <li>A name typed straight in, with no span around it, can't get the "...", so it wraps onto a hidden second line instead: <code>max-height: 1.3em</code>, the same as the <code>line-height</code>, shows the first line and hides the rest.</li>
   <li>The picture is 40px tall, which leaves room under the name for a second line. <code>tw-fan</code> is pinned there with <code>position: absolute</code>, starting just past the picture, so it doesn't push the tweet down.</li>
