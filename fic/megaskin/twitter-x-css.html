@@ -6,7 +6,7 @@
   <title>Megaskin, Chapter 9: Twitter/X CSS | jockles.com</title>
   <link rel="stylesheet" href="../../style.css">
   <script src="../../theme.js"></script>
-  <link rel="stylesheet" href="megaskin.css?v=c47e3814" id="creator-style">
+  <link rel="stylesheet" href="megaskin.css?v=2e99a238" id="creator-style">
 </head>
 <body>
 <header>
@@ -216,31 +216,54 @@
   color: #0f1419;
 }
 
+/* a finished option is a row: the bar with the option in it, then the percentage at the far right */
 #workskin .tw .tw-opt.res,
 #workskin .tw-reply .tw-opt.res {
-  border-color: transparent;
-  background-color: #eff3f4;
-  background-image: linear-gradient(#cfd9de, #cfd9de);
-  background-repeat: no-repeat;
-  background-size: 0% 100%;
+  display: flex;
+  align-items: center;
+  border: 0;
+  padding: 0;
 }
 
-#workskin .tw .tw-opt.p50,
-#workskin .tw-reply .tw-opt.p50 {
-  background-size: 50% 100%;
-}</code></pre>
+#workskin .tw .tw-bar,
+#workskin .tw-reply .tw-bar {
+  display: block;
+  flex: 0 1 auto;
+  box-sizing: border-box;
+  min-width: 2.6em;
+  padding: 0.4em 0.7em;
+  border-radius: 2em;
+  background: #cfd9de;
+  white-space: nowrap;
+}
 
-<p>An open poll is just a blue outline. A finished one (<code>res</code>) is cleverer: the bar is a <em>background picture</em>. <code>linear-gradient(#cfd9de, #cfd9de)</code> is a "gradient" from one colour to the same colour, which is a trick for making a solid block of colour that can be sized. <code>background-size</code> then sets how wide the block is, from <code>0%</code> to <code>100%</code> of the option, and <code>no-repeat</code> stops it filling the rest. Each <code>p</code> class just sets a different width. <code>win</code> swaps the grey block for a blue one and makes the text bold.</p>
+#workskin .tw .tw-opt.win .tw-bar,
+#workskin .tw-reply .tw-opt.win .tw-bar {
+  background: #8ecdf7;
+}
+
+#workskin .tw .tw-opt .tw-pct,
+#workskin .tw-reply .tw-opt .tw-pct {
+  margin-left: auto;
+  padding-left: 0.8em;
+  white-space: nowrap;
+}
+
+#workskin .tw .tw-opt.win,
+#workskin .tw-reply .tw-opt.win {
+  font-weight: bold;
+}
+
+#workskin .tw .tw-opt.p50 .tw-bar, #workskin .tw-reply .tw-opt.p50 .tw-bar { width: 50%; }</code></pre>
+
+<p>An open poll is just a blue outline. A finished one (<code>res</code>) turns the option into a flex row, like the buttons along the bottom of a tweet: the <code>tw-bar</code> span with the option in it, then the percentage pushed to the far right by <code>margin-left: auto</code>. The bar is a grey box with very round corners, and each <code>p</code> class sets how wide it is. <code>min-width</code> keeps a tiny percentage from shrinking the bar to nothing, and <code>nowrap</code> lets the words run on past the end of a short bar, like the real thing. <code>win</code> swaps the grey bar for a blue one and makes the text bold.</p>
 
 <details>
 <summary>Adding a poll percentage that isn't there</summary>
 
-<p>The skin has <code>p0</code> to <code>p100</code> in tens, plus <code>p25</code>, <code>p33</code>, <code>p67</code> and <code>p75</code>. To add another, copy one of the rules and change both numbers:</p>
+<p>The skin has <code>p0</code> to <code>p100</code> in tens, plus <code>p25</code>, <code>p33</code>, <code>p67</code> and <code>p75</code>. To add another, copy one of the rules and change all three numbers:</p>
 
-<pre><code>#workskin .tw .tw-opt.p45,
-#workskin .tw-reply .tw-opt.p45 {
-  background-size: 45% 100%;
-}</code></pre>
+<pre><code>#workskin .tw .tw-opt.p45 .tw-bar, #workskin .tw-reply .tw-opt.p45 .tw-bar { width: 45%; }</code></pre>
 
 <p>The percentage the reader sees is just the text in <code>tw-pct</code>, so it doesn't have to match the bar exactly - the nearest bar is usually close enough.</p>
 
