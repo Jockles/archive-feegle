@@ -687,15 +687,15 @@
   line-height: 1;
 }
 
-/* TWITTER IN 2022: add "tw2022" to an app screen, <div class="tw-thread app tw2022 theme-auto">.
+/* THE 2020 TWITTER REDESIGN: add "tw2020" to an app screen, <div class="tw-thread app tw2020 theme-auto">.
    The bird takes the place of the X with a sparkle on the right, the tabs are hidden,
    and the tweets lose their bookmark button and the line above their stats, with share spaced out like the rest */
-#workskin .tw-thread.tw2022 .tw-apptop {
+#workskin .tw-thread.tw2020 .tw-apptop {
   padding-bottom: 0.6em;
   border-bottom: 1px solid #eff3f4;
 }
 
-#workskin .tw-thread.tw2022 .tw-logo {
+#workskin .tw-thread.tw2020 .tw-logo {
   height: 1em;
   margin-right: 0;
   overflow: hidden;
@@ -708,7 +708,7 @@
 }
 
 /* the sparkle, top right, the same width as the picture on the left */
-#workskin .tw-thread.tw2022 .tw-apptop::after {
+#workskin .tw-thread.tw2020 .tw-apptop::after {
   content: "\2726";
   display: block;
   flex: none;
@@ -719,13 +719,13 @@
   text-align: right;
 }
 
-#workskin .tw-thread.tw2022 .tw-tabs { display: none; }
+#workskin .tw-thread.tw2020 .tw-tabs { display: none; }
 
-#workskin .tw-thread.tw2022 .tw-stats { border-top: 0; padding-top: 0.2em; }
+#workskin .tw-thread.tw2020 .tw-stats { border-top: 0; padding-top: 0.2em; }
 
-#workskin .tw-thread.tw2022 .tw-stat.tw-end { flex: 1 1 0; margin-left: 0; }
+#workskin .tw-thread.tw2020 .tw-stat.tw-end { flex: 1 1 0; margin-left: 0; }
 
-#workskin .tw-thread.tw2022 .tw-stat.tw-end:not(:last-of-type) { display: none; }
+#workskin .tw-thread.tw2020 .tw-stat.tw-end:not(:last-of-type) { display: none; }
 
 #workskin .twdm {
   background: #ffffff;
@@ -982,7 +982,7 @@
 
 #workskin .tw-thread.theme-dark .tw-add { background: #000000; }
 
-#workskin .tw-thread.theme-dark.tw2022 .tw-apptop { border-bottom-color: #2f3336; }
+#workskin .tw-thread.theme-dark.tw2020 .tw-apptop { border-bottom-color: #2f3336; }
 
 #workskin .tw-thread.theme-dark .tw-foot { border-top-color: #2f3336; color: #71767b; }
 
@@ -1105,7 +1105,7 @@
 
   #workskin .tw-thread.theme-auto .tw-add { background: #000000; }
 
-  #workskin .tw-thread.theme-auto.tw2022 .tw-apptop { border-bottom-color: #2f3336; }
+  #workskin .tw-thread.theme-auto.tw2020 .tw-apptop { border-bottom-color: #2f3336; }
 
   #workskin .tw-thread.theme-auto .tw-foot { border-top-color: #2f3336; color: #71767b; }
 

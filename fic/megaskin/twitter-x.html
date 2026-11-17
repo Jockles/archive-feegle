@@ -6,7 +6,7 @@
   <title>Megaskin, Chapter 8: Twitter/X | jockles.com</title>
   <link rel="stylesheet" href="../../style.css">
   <script src="../../theme.js"></script>
-  <link rel="stylesheet" href="megaskin.css?v=0e0a3aa8" id="creator-style">
+  <link rel="stylesheet" href="megaskin.css?v=9c81df60" id="creator-style">
 </head>
 <body>
 <header>
@@ -42,7 +42,7 @@
       <li><a href="#s8-1-1">8.1.1 A Tweet and Its Replies</a></li>
       <li><a href="#s8-1-2">8.1.2 A Timeline of Tweets</a></li>
       <li><a href="#s8-1-3">8.1.3 The X App Screen</a></li>
-      <li><a href="#s8-1-4">8.1.4 Twitter in 2022</a></li>
+      <li><a href="#s8-1-4">8.1.4 The 2020 Twitter Redesign</a></li>
       <li><a href="#s8-1-5">8.1.5 Tweet Container</a></li>
       <li><a href="#s8-1-6">8.1.6 Name and Handle</a></li>
       <li><a href="#s8-1-7">8.1.7 Profile Picture</a></li>
@@ -473,17 +473,17 @@
 
 <p>The tweets inside lose their own borders and corners, and sit one under the other with a line between them, like in the app. <code>theme-auto</code> or <code>theme-dark</code> goes on the <code>tw-thread</code>, so you don't need it on each tweet.</p>
 
-<h4 id="s8-1-4">8.1.4 Twitter in 2022</h4>
+<h4 id="s8-1-4">8.1.4 The 2020 Twitter Redesign</h4>
 
-<p>For a fic set before mid-2023, when Twitter became X, you can switch the app screen back to how Twitter looked in 2022. Add <code>tw2022</code> to the thread, and write <code>Twitter</code> in the <code>tw-logo</code> span instead of the X:</p>
+<p>For a fic set before mid-2023, when Twitter became X, you can switch the app screen back to Twitter's 2020 redesign, which it kept until then. Add <code>tw2020</code> to the thread, and write <code>Twitter</code> in the <code>tw-logo</code> span instead of the X:</p>
 
-<pre><code>&lt;div class="tw-thread app tw2022 theme-auto"&gt;
+<pre><code>&lt;div class="tw-thread app tw2020 theme-auto"&gt;
   &lt;div class="tw-scroll"&gt;
   &lt;p class="tw-apptop"&gt;&lt;span class="tw-me"&gt;&lt;span class="pfp pfp-yuna"&gt;&lt;/span&gt;&lt;/span&gt; &lt;span class="tw-logo"&gt;Twitter&lt;/span&gt;&lt;/p&gt;</code></pre>
 
 <p>The old blue bird takes the place of the X, with the sparkle on the right, and the word only shows for readers with the workskin switched off. There were no For you and Following tabs back then, so you can leave them out - if you're switching a screen you've already made, they're hidden anyway. The tweets inside lose the line above their buttons and the bookmark button, and the share button spreads out like the others. Views only arrived in late 2022, so leave the views button out of older tweets yourself:</p>
 
-<div class="tw-thread app tw2022 theme-auto">
+<div class="tw-thread app tw2020 theme-auto">
   <div class="tw-scroll">
   <p class="tw-apptop"><span class="tw-me"><span class="pfp pfp-yuna"></span></span> <span class="tw-logo">Twitter</span></p>
   <div class="mob tw">
@@ -502,7 +502,7 @@
 <details>
 <summary>The full HTML for this example</summary>
 
-<pre><code>&lt;div class="tw-thread app tw2022 theme-auto"&gt;
+<pre><code>&lt;div class="tw-thread app tw2020 theme-auto"&gt;
   &lt;div class="tw-scroll"&gt;
   &lt;p class="tw-apptop"&gt;&lt;span class="tw-me"&gt;&lt;span class="pfp pfp-yuna"&gt;&lt;/span&gt;&lt;/span&gt; &lt;span class="tw-logo"&gt;Twitter&lt;/span&gt;&lt;/p&gt;
   &lt;div class="mob tw"&gt;
