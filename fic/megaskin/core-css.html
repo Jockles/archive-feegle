@@ -6,7 +6,7 @@
   <title>Megaskin, Chapter 3: The Core CSS | jockles.com</title>
   <link rel="stylesheet" href="../../style.css">
   <script src="../../theme.js"></script>
-  <link rel="stylesheet" href="megaskin.css?v=f039f849" id="creator-style">
+  <link rel="stylesheet" href="megaskin.css?v=67deb230" id="creator-style">
 </head>
 <body>
 <header>
@@ -32,21 +32,20 @@
       <div class="fic">
         <h3 class="chapter-title">Chapter 3: The Core CSS</h3>
         <div id="workskin">
-<p>Thanks to La_Temperanza, whose <a href="https://archiveofourown.org/works/10957056"><em>How To Change Text on AO3 When the Cursor is Hovering Over It (Or Clicked on Mobile)</em></a> the translations are built on. Copied and adapted from it: swapping the text on hover or tap, the brackets for readers with Creator's Style off, and the link that makes tapping work on phones.</p>
-
-<h3 id="contents"><span id="s3-1"></span>3.1 Chapter Contents</h3>
+<h3 id="contents">Chapter Contents</h3>
 
 <ul class="contents">
-  <li><a href="#s3-2">3.2 Getting the CSS</a></li>
-  <li><a href="#s3-3">3.3 How the CSS is Laid Out</a></li>
-  <li><a href="#s3-4">3.4 The Chat Box</a></li>
-  <li><a href="#s3-5">3.5 Using the Reader's Own Font</a></li>
-  <li><a href="#s3-6">3.6 Phone Width or Full Width</a></li>
-  <li><a href="#s3-7">3.7 Scrolling</a></li>
-  <li><a href="#s3-8">3.8 Round Pictures</a></li>
-  <li><a href="#s3-9">3.9 Hidden Text</a></li>
-  <li><a href="#s3-10">3.10 Video Descriptions</a></li>
-  <li><a href="#s3-11">3.11 Typing Line and Deleted Text</a></li>
+  <li><a href="#s3-1">3.1 Getting the CSS</a></li>
+  <li><a href="#s3-2">3.2 How the CSS is Laid Out</a></li>
+  <li><a href="#s3-3">3.3 The Chat Box</a></li>
+  <li><a href="#s3-4">3.4 Using the Reader's Own Font</a></li>
+  <li><a href="#s3-5">3.5 Phone Width or Full Width</a></li>
+  <li><a href="#s3-6">3.6 Scrolling</a></li>
+  <li><a href="#s3-7">3.7 Round Pictures</a></li>
+  <li><a href="#s3-8">3.8 Hidden Text</a></li>
+  <li><a href="#s3-9">3.9 Video Descriptions</a></li>
+  <li><a href="#s3-10">3.10 Typing Line and Deleted Text</a></li>
+  <li><a href="#s3-11">3.11 Flashing Cursor</a></li>
   <li><a href="#s3-12">3.12 Links That Go Nowhere</a></li>
   <li><a href="#s3-13">3.13 Hover and Tap Translations</a></li>
   <li><a href="#s3-14">3.14 Character Profiles, Line by Line</a>
@@ -65,7 +64,7 @@
 
 <p>You don't need to understand any of this to use the skin. It's here for when you want to change something - a size, a colour, a profile - and want to know which bit to touch without breaking anything else.</p>
 
-<h3 id="s3-2">3.2 Getting the CSS</h3>
+<h3 id="s3-1">3.1 Getting the CSS</h3>
 
 <p>The core CSS is here: <a href="css/core.css">jockles.com/fic/megaskin/css/core.css</a>. Open it, select everything, and copy it into your work skin <em>before</em> any of the modules. Each module chapter has its own link like this one, and the very last chapter has the whole megaskin in one file.</p>
 
@@ -78,7 +77,7 @@
 
 </details>
 
-<h3 id="s3-3">3.3 How the CSS is Laid Out</h3>
+<h3 id="s3-2">3.2 How the CSS is Laid Out</h3>
 
 <p>Every rule in the skin starts with <code>#workskin</code>. AO3 insists on it: it's how AO3 keeps a work skin inside your fic, so it can't touch the rest of the page. If you write your own rules, start them with <code>#workskin</code> too, or AO3 will throw them out.</p>
 
@@ -92,7 +91,7 @@
 
 <p>The core comes first, then one block per app, in the same order as the chapters. Each app's block only needs the core, so you can keep the core plus the apps you use and delete the rest, from its start line to its end line.</p>
 
-<h3 id="s3-4">3.4 The Chat Box</h3>
+<h3 id="s3-3">3.3 The Chat Box</h3>
 
 <p>Every chat apart from Discord sits in a <code>mob</code> box, and this is where it gets its size:</p>
 
@@ -145,7 +144,7 @@
 
 </details>
 
-<h3 id="s3-5">3.5 Using the Reader's Own Font</h3>
+<h3 id="s3-4">3.4 Using the Reader's Own Font</h3>
 
 <p>Each app sets its own font, so the chats look like the real thing - the core's is the plain phone font above, and some apps have their own (Gmail uses Roboto, Discord uses Whitney, Tumblr's quote posts use Georgia, and so on). That's the default, and it's what the skin does as it comes.</p>
 
@@ -179,7 +178,7 @@
 
 </details>
 
-<h3 id="s3-6">3.6 Phone Width or Full Width</h3>
+<h3 id="s3-5">3.5 Phone Width or Full Width</h3>
 
 <pre><code>#workskin .mob.wide {
   width: auto;
@@ -188,7 +187,7 @@
 
 <p><code>wide</code> undoes the phone width, so the chat fills whatever it's sitting in. <code>.mob.wide</code> with no space means "a box that has <em>both</em> <code>mob</code> and <code>wide</code>", so it only touches chats you've added <code>wide</code> to.</p>
 
-<h3 id="s3-7">3.7 Scrolling</h3>
+<h3 id="s3-6">3.6 Scrolling</h3>
 
 <pre><code>#workskin .mob-body { max-height: 580px; overflow-y: auto; overflow-x: hidden; }
 
@@ -228,7 +227,7 @@
 
 </details>
 
-<h3 id="s3-8">3.8 Round Pictures</h3>
+<h3 id="s3-7">3.7 Round Pictures</h3>
 
 <p>Every profile picture, in every app, is a <code>pfp</code> span inside that app's circle. The circle decides the size, and <code>pfp</code> does the cropping:</p>
 
@@ -284,6 +283,8 @@
   font-weight: bold;
   font-size: 0.8em;
   line-height: 1;
+  position: relative;
+  top: 0; /* nudges the initials down (1px, 2px) or up (-1px, -2px) */
 }
 
 #workskin .dc .dc-reply .pfp::before,
@@ -293,7 +294,9 @@
 
 <p>It doesn't do anything until a profile gives it some text, like Holster's does (see Character Profiles, Line by Line, below).</p>
 
-<h3 id="s3-9">3.9 Hidden Text</h3>
+<p>If the initials sit too high or too low for you, <code>top</code> is the number to change: <code>1px</code> or <code>2px</code> moves them down, and <code>-1px</code> or <code>-2px</code> moves them up. Initials typed straight into a circle are centred the same way, with the same three flex lines in every app's circle rule. Fonts sit differently on different devices, so check on a phone as well as a computer before you change anything - letters that look low on a Mac are usually spot on everywhere else.</p>
+
+<h3 id="s3-8">3.8 Hidden Text</h3>
 
 <pre><code>#workskin .hide.hide.hide.hide { display: none; }</code></pre>
 
@@ -301,7 +304,7 @@
 
 <p>The class is written four times on purpose. When two rules disagree, the browser goes with the more specific one, and every extra class makes a rule more specific. Lots of rules in the modules set <code>display</code> on spans and paragraphs, and some of them could otherwise win and make hidden text show up in the middle of a chat. Four times beats all of them.</p>
 
-<h3 id="s3-10">3.10 Video Descriptions</h3>
+<h3 id="s3-9">3.9 Video Descriptions</h3>
 
 <pre><code>#workskin .vid-desc {
   position: absolute;
@@ -313,7 +316,7 @@
 
 <p>This doesn't hide the description, it just moves it a long way off the left edge of the screen and shrinks it to a single dot. Sighted readers never see it, but screen readers still read it out, because as far as they're concerned it's still on the page. <code>display: none</code>, like <code>hide</code> uses, would hide it from screen readers too.</p>
 
-<h3 id="s3-11">3.11 Typing Line and Deleted Text</h3>
+<h3 id="s3-10">3.10 Typing Line and Deleted Text</h3>
 
 <pre><code>#workskin .mob .typing {
   display: block;
@@ -329,6 +332,23 @@
 
 <p><code>opacity</code> fades the text, so it's lighter than the messages on a light chat and darker on a dark one, without needing a colour for each. Lower the number to fade it more.</p>
 
+<h3 id="s3-11">3.11 Flashing Cursor</h3>
+
+<pre><code>#workskin .cursor {
+  display: inline-block;
+  width: 0.2em;
+  height: 1.2em;
+  overflow: hidden;
+  text-indent: -100em;
+  vertical-align: -0.25em;
+  background-image: url(https://images.squidge.org/images/2026/11/17/cursor-flash.gif);
+  background-repeat: no-repeat;
+  background-position: left center;
+  background-size: 1.2em 1.2em;
+}</code></pre>
+
+<p>The cursor is a moving picture (a gif) of a flashing line, set as the background of a thin box, the same way the icons work. <code>text-indent: -100em</code> pushes the typed <code>|</code> far off to the left, and <code>overflow: hidden</code> hides it, so only the picture shows. The picture is square with the line near its left edge, so <code>background-size</code> makes it as tall as the box, <code>background-position: left center</code> lines the line up with the box's left edge, and the <code>0.2em</code> width cuts off the empty rest of the square. <code>vertical-align</code> drops it a little so it sits level with the words.</p>
+
 <h3 id="s3-12">3.12 Links That Go Nowhere</h3>
 
 <pre><code>#workskin .mob .fake-link,
@@ -343,7 +363,9 @@
 
 <h3 id="s3-13">3.13 Hover and Tap Translations</h3>
 
-<p>This is the cleverest bit of the core, and it's based on La_Temperanza's tutorial (see <a href="getting-started.html#credits">Credits and sources</a>). Here's the HTML again, to have it in front of you:</p>
+<p>Thanks to La_Temperanza, whose <a href="https://archiveofourown.org/works/10957056"><em>How To Change Text on AO3 When the Cursor is Hovering Over It (Or Clicked on Mobile)</em></a> the translations are built on. Copied and adapted from it: swapping the text on hover or tap, the brackets for readers with Creator's Style off, and the link that makes tapping work on phones.</p>
+
+<p>This was the first major change I made from an existing skin. Here's the HTML again, to have it in front of you:</p>
 
 <pre><code>&lt;a class="tl" href="#t1"&gt;&lt;span class="orig"&gt;Diolch yn fawr&lt;/span&gt;&lt;span class="tltn"&gt;&lt;span class="hide"&gt; (&lt;/span&gt;Thank you very much&lt;span class="hide"&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/a&gt;</code></pre>
 
@@ -475,7 +497,7 @@
   <li><strong>Yuna</strong> (<code>pfp-yuna</code>): Yuna has a work life and a family life, and a plain coloured circle instead of a picture. She has a second email address for work (<code>acc-work</code>) - the extra account idea, just for email - plus a nickname line for how she's saved on her son's phone, and a wallpaper line for her own phone.</li>
   <li><strong>Zim</strong> (<code>pfp-zim</code>): Jack only has a different appearance on one app, so he only has those lines added - a different name and handle on Twitter/X.</li>
   <li><strong>Holster</strong> (<code>pfp-holster</code>): Holster only has a picture on one app, so that's the only picture line. Everywhere else he has initials, with a different circle colour on some apps.</li>
-  <li><strong>Rose</strong> (<code>pfp-rose</code>): Rose keeps her public and private accounts separate, so she has a second Instagram account, <code>acc-private</code>, with its own picture and handle (see More Than One Account on the Same App, below).</li>
+  <li><strong>Rose</strong> (<code>pfp-rose</code>): Rose keeps her public and private accounts separate, so she has a second Instagram account, <code>acc-private</code>, with its own picture and handle (see More Than One Account on the Same App, below). She's also saved with her private picture on Shane's phone, which shows how a picture can be different on just one phone.</li>
   <li><strong>Shane</strong> (<code>pfp-shane</code>): Shane is a main character who shows up everywhere, so he has a bit of everything - a real picture, a nickname on his partner's phone, a slightly different handle on each app, and a wallpaper for his own phone.</li>
   <li><strong>Ilya</strong> (<code>pfp-ilya</code>): Ilya is the other main character, and he has two secret Twitter/X accounts alongside his main one - a burner (<code>acc-burner</code>) and a Shane fan account (<code>acc-shanewife</code>). He also has a nickname line for how he's saved on Shane's phone and a wallpaper line for his own phone.</li>
   <li><strong>Luca</strong> (<code>pfp-luca</code>): Luca has every option at once, so you can see them all working together - he's explained line by line in Every Option: Luca, below.</li>
@@ -583,17 +605,17 @@
 
 <p><strong>14. Tumblr checkmarks</strong></p>
 
-<pre><code>#workskin .tb .handle.pfp-luca::after { background-image: url(https://images.squidge.org/images/2026/11/15/tb-checks-2.png); padding-right: 2.15em; }
-#workskin .tb .handle.pfp-luca.acc-art::after { background-image: url(https://images.squidge.org/images/2026/11/15/tb-checks-6.png); padding-right: 6.2em; }
-#workskin .tb .handle.pfp-luca.acc-rpf::after { background-image: url(https://images.squidge.org/images/2026/11/15/tb-checks-4.png); padding-right: 4.2em; }</code></pre>
+<pre><code>#workskin .tb .handle.pfp-luca::after { background-image: url(https://images.squidge.org/images/2026/11/16/tb-checks-2.png); padding-right: 2.15em; }
+#workskin .tb .handle.pfp-luca.acc-art::after { background-image: url(https://images.squidge.org/images/2026/11/16/tb-checks-6.png); padding-right: 5.75em; }
+#workskin .tb .handle.pfp-luca.acc-rpf::after { background-image: url(https://images.squidge.org/images/2026/11/16/tb-checks-4.png); padding-right: 3.95em; }</code></pre>
 
-<p>The coloured checkmarks after a Tumblr name, set once so they follow the blog everywhere. Luca's main blog has two, his art blog six and his RPF blog four. Use <code>tb-checks-2.png</code>, <code>tb-checks-4.png</code> or <code>tb-checks-6.png</code>, with the padding that goes with it: 2.15em, 4.2em or 6.2em. An extra account without its own line gets the main blog's checkmarks. There's more in <a href="tumblr.html#s12-8">Verified Ticks and the Follow Button</a>.</p>
+<p>The coloured checkmarks after a Tumblr name, set once so they follow the blog everywhere. Luca's main blog has two, his art blog six and his RPF blog four. Use <code>tb-checks-2.png</code>, <code>tb-checks-4.png</code> or <code>tb-checks-6.png</code>, with the padding that goes with it: 2.15em, 3.95em or 5.75em. An extra account without its own line gets the main blog's checkmarks. There's more in <a href="tumblr.html#s12-7">Verified Ticks and the Follow Button</a>.</p>
 
 <p><strong>15. A square Tumblr picture</strong></p>
 
 <pre><code>#workskin .tb .pfp.pfp-luca.acc-art { border-radius: 15%; }</code></pre>
 
-<p>Tumblr lets each blog show its picture as a circle or a square with rounded corners. Luca's art blog is square, so this makes it square everywhere it shows up on Tumblr: headers, reblogs and asks. There's more in <a href="tumblr.html#s12-6">Round or Square Pictures</a>.</p>
+<p>Tumblr lets each blog show its picture as a circle or a square with rounded corners. Luca's art blog is square, so this makes it square everywhere it shows up on Tumblr: headers, reblogs and asks. There's more in <a href="tumblr.html#s12-5">Round or Square Pictures</a>.</p>
 
 <details>
 <summary>Why names, handles and emails look like the text around them</summary>
