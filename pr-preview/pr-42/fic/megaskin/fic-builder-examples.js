@@ -8,8 +8,10 @@
 //          tapbacks: [[who, emoji]]), waReacts, waCount, sms, big, edited, status,
 //          reply (the number of an earlier message, counting from 0; in a tweet thread, the reply
 //          goes to whoever posted it, and with no reply it goes to the tweet just above), photos, link.
-//          Tweets also take verified, label, date, reposts, reposted, likes, liked, replies, poll,
-//          pollinfo, qName, qHandle, qText, note, warn, vUrl, vTitle, vDesc. Twitter/X DMs take voice;
+//          Tweets also take verified, label, date, replies, reposts, reposted, likes, liked, likeClick
+//          (true unless set), views, saved, locked, noRepost, fan, poll, pollinfo, pollTap, pollVote, qName,
+//          qHandle, qText, note, warn, vUrl, vTitle, vDesc. A Twitter/X chat can set era ("tw2020"), and a
+//          timeline can set app ("app"), pov and tabs for the X app screen. Twitter/X DMs take voice;
 //          Instagram DMs take shared. An Instagram post's settings are in chat, and its msgs are comments.
 (function () {
 var CAT1 = "https://images.squidge.org/images/2026/11/16/Cat1.jpg";
