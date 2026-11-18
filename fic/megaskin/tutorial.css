@@ -1,16 +1,19 @@
-/* The Tutorial button, the step-by-step panel, and the help under each box.
-   The help only shows while the tutorial is on (the tut-on class on the page). */
+/* The Tutorial and Help text buttons, the step-by-step panel, and the help under each box.
+   The panel shows while the tutorial is on (the tut-on class on the page), and the help
+   under each box shows while help text is on (the help-on class). */
 
 .tut-btn { font: inherit; font-weight: bold; padding: 5px 12px 5px 6px; border-radius: 999px; cursor: pointer;
   border: 1px solid var(--header, #0b5563); background: var(--tag-fill, #e3f1ec); color: var(--ink, #2a2a2a); }
 .tut-btn::before { content: "?"; display: inline-block; width: 1.4em; height: 1.4em; line-height: 1.4em; margin-right: 6px;
   border-radius: 50%; text-align: center; background: var(--header, #0b5563); color: var(--header-text, #fff); }
-.tut-on .tut-btn { background: var(--header, #0b5563); color: var(--header-text, #fff); }
+.tut-btn[data-helptext]::before { content: "i"; font-family: Georgia, serif; }
+.tut-btn[aria-pressed="true"] { background: var(--header, #0b5563); color: var(--header-text, #fff); }
+.tut-btn[aria-pressed="true"]::before { background: var(--header-text, #fff); color: var(--header, #0b5563); }
 
 .tut-help { display: none; }
-.tut-on .tut-help { display: block; box-sizing: border-box; flex: 1 0 100%; order: 9; margin: 4px 0 8px; padding: 5px 8px; font-size: 0.85em; line-height: 1.4;
+.help-on .tut-help { display: block; box-sizing: border-box; flex: 1 0 100%; order: 9; margin: 4px 0 8px; padding: 5px 8px; font-size: 0.85em; line-height: 1.4;
   border-left: 3px solid var(--hover, #1a8f6a); background: var(--tag-fill, #e3f1ec); border-radius: 0 4px 4px 0; }
-.tut-on .fb-row { flex-wrap: wrap; }
+.help-on .fb-row { flex-wrap: wrap; }
 
 /* the box the current step is about */
 .tut-here { outline: 3px solid var(--hover, #1a8f6a); outline-offset: 3px; border-radius: 4px; scroll-margin-top: 12px; }
