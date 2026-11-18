@@ -176,19 +176,17 @@
   overflow: hidden;
 }
 
-/* a flashing cursor at the end of a half-written message, in any app: <span class="cursor">|</span>.
-   The typed line only shows for readers with the workskin off */
-#workskin .cursor {
-  display: inline-block;
-  width: 0.2em;
+/* a flashing cursor at the end of a half-written message, in any app, as a picture:
+   <img class="cursor" src="https://images.squidge.org/images/2026/11/17/cursor-flash.gif" alt="blinking cursor" height="20">
+   It's square with the line near its left edge, so the negative margins trim the empty space around the line */
+#workskin img.cursor {
+  display: inline;
+  width: auto;
   height: 1.2em;
-  overflow: hidden;
-  text-indent: -100em;
+  margin: 0 -1em 0 -0.08em;
+  padding: 0;
+  border: 0;
   vertical-align: -0.25em;
-  background-image: url(https://images.squidge.org/images/2026/11/17/cursor-flash.gif);
-  background-repeat: no-repeat;
-  background-position: left center;
-  background-size: 1.2em 1.2em;
 }
 
 /* ---------- Links that go nowhere (the colours are in each module) ---------- */
