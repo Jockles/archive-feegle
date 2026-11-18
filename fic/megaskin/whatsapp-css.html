@@ -6,7 +6,7 @@
   <title>Megaskin, Chapter 7: WhatsApp CSS | jockles.com</title>
   <link rel="stylesheet" href="../../style.css">
   <script src="../../theme.js"></script>
-  <link rel="stylesheet" href="megaskin.css?v=b37a174d" id="creator-style">
+  <link rel="stylesheet" href="megaskin.css?v=20f8e91a" id="creator-style">
 </head>
 <body>
 <header>
@@ -279,9 +279,11 @@
 
 <h3 id="s7-11">7.11 Typing Dots</h3>
 
-<pre><code>#workskin .wa .typing-indicator { display: block; margin: 0.35em 0 0.25em 0; line-height: 1; }
+<pre><code>#workskin .wa .msg.typing-indicator { min-width: 0; }
 
-#workskin .wa .typing-indicator span {
+#workskin .wa .typing-indicator p:last-child { margin: 0.35em 0 0.25em 0; line-height: 1; }
+
+#workskin .wa .typing-indicator p:last-child span {
   display: inline-block;
   width: 0.6em;
   height: 0.6em;
@@ -291,11 +293,11 @@
   opacity: 0.5;
 }
 
-#workskin .wa .typing-indicator span:nth-last-child(2) { opacity: 0.7; }
+#workskin .wa .typing-indicator p:last-child span:nth-last-child(2) { opacity: 0.7; }
 
-#workskin .wa .typing-indicator span:last-child { opacity: 1; margin-right: 0; }</code></pre>
+#workskin .wa .typing-indicator p:last-child span:last-child { opacity: 1; margin-right: 0; }</code></pre>
 
-<p>The dots go inside an ordinary message bubble, so they get everything a message gets: the colour, the tail, and in a group, the picture and name. Each dot is an empty span made round with <code>border-radius: 50%</code>, in WhatsApp's grey, and they get darker from left to right, like a frozen version of the moving dots. <code>:nth-last-child</code> counts from the end, the same as in iMessage.</p>
+<p>The dots go inside an ordinary message bubble, so they get everything a message gets: the colour, the tail, and in a group, the picture and name. <code>min-width: 0</code> undoes the usual minimum width, which is there to fit the time, so the bubble shrinks to fit the dots. <code>p:last-child</code> picks out the paragraph with the dots in, so a name line above it is left alone. Each dot is an empty span made round with <code>border-radius: 50%</code>, in WhatsApp's grey, and they get darker from left to right, like a frozen version of the moving dots. <code>:nth-last-child</code> counts from the end, the same as in iMessage.</p>
 
 <h3 id="s7-12">7.12 The Message Bar</h3>
 
