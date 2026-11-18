@@ -292,7 +292,11 @@
 
 <p>For a half-typed message, <code>typed</code> undoes the <code>nowrap</code> so long messages wrap, and makes the words dark (light in dark mode):</p>
 
-<pre><code>#workskin .wa .wa-field .wa-ph.typed { white-space: normal; color: #111b21; }</code></pre>
+<pre><code>#workskin .wa .wa-field .wa-ph.typed { white-space: normal; color: #111b21; }
+
+#workskin .wa .wa-field .cursor { display: inline-block; width: 0.2em; padding: 0; white-space: normal; vertical-align: -0.25em; }</code></pre>
+
+<p>Every span in the bar is a table cell, which would make a flashing <code>cursor</code> (from the core) into a cell of its own and stretch the bar. The second rule turns it back into a small picture sitting in the line of words.</p>
 
 <h3>Link Cards</h3>
 
