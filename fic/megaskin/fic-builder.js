@@ -699,7 +699,7 @@
     $("fb-css").value = css;
     $("fb-css-wrap").hidden = !css && !pasteOpen;
   }
-  // "Paste in profile" makes the profile CSS box take pasted profiles too, with no files
+  // "Manually add profile" makes the profile CSS box take pasted profiles too, with no files
   var pasteOpen = false;
   function pasteProfiles(text) {
     var found = pastedProfiles(text);
