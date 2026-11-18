@@ -829,8 +829,8 @@
       case "copy-css": copy("fb-css", t); return;
       case "save-html": saveHTML(); return;
       case "save-css": download("megaskin-profiles.css", allProfilesCSS(), "text/css"); return;
-      case "new": if (!confirm("Start again? Everything here will be cleared, so download your HTML and CSS first if you want to keep them.")) return; S = { v: 1, pasted: "", cast: [], blocks: [] }; break;
-      case "example": if (!confirm("Load this example? Everything here will be replaced, so download your HTML and CSS first if you want to keep them.")) return; loadExample(+$("fb-example").value); break;
+      case "new": if (!confirm("Start again? Everything here will be cleared, so save your HTML and CSS first if you want to keep them.")) return; S = { v: 1, pasted: "", cast: [], blocks: [] }; break;
+      case "example": if (!confirm("Load this example? Everything here will be replaced, so save your HTML and CSS first if you want to keep them.")) return; loadExample(+$("fb-example").value); break;
       case "fmt": wrap(a[1]); return;
       default: return;
     }
