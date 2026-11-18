@@ -16,9 +16,11 @@ The description comes from, in order:
 2. the DESCRIPTIONS list below
 3. the first paragraph of the page
 
-Pages that ask search engines to stay away (WIPs), and the pages in
-ICON_ONLY, only get the icon, so nothing about them shows up in link
-previews. Redirect pages are skipped.
+Works in progress (wip/) get a preview card too, so a WIP link shared with
+friends looks right, but their description starts with "Work In Progress!!"
+and comes from the work's summary. They still tell search engines to stay
+away. The pages in ICON_ONLY, and any other page that tells search engines
+to stay away, only get the icon. Redirect pages are skipped.
 
 To try it on your own computer, copy the site somewhere and run:
     python3 tools/site-meta.py <that folder>
@@ -63,6 +65,18 @@ def first_paragraph(page):
     return DESCRIPTIONS["index.html"]
 
 
+def wip_description(page):
+    """A WIP's summary, or failing that its first paragraph, after the WIP label."""
+    summary = re.search(r"<h3>Summary:</h3>\s*<blockquote>(.*?)</blockquote>", page, re.S)
+    if summary:
+        text = " ".join(html.unescape(re.sub(r"<[^>]+>", " ", summary.group(1))).split())
+        if len(text) > 190:
+            text = text[:187].rsplit(" ", 1)[0] + "..."
+    else:
+        text = first_paragraph(re.sub(r'<p class="wip-note">.*?</p>', "", page, flags=re.S))
+    return "Work In Progress!! " + text
+
+
 def page_url(rel):
     if rel == "index.html":
         return SITE
@@ -80,7 +94,8 @@ def tags(rel, page):
         '<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">',
         '<meta name="theme-color" content="#0b5563">',
     ]
-    if rel in ICON_ONLY or re.search(r'<meta name="robots" content="[^"]*noindex', page):
+    wip = rel.startswith("wip/")
+    if rel in ICON_ONLY or (not wip and re.search(r'<meta name="robots" content="[^"]*noindex', page)):
         return lines
 
     title = re.search(r"<title>(.*?)</title>", page, re.S)
@@ -90,7 +105,10 @@ def tags(rel, page):
         title = "jockles.com"
 
     own = re.search(r'<meta name="description" content="([^"]*)"', page)
-    if own:
+    if wip:
+        own = None
+        desc = wip_description(page)
+    elif own:
         desc = html.unescape(own.group(1))
     elif rel in DESCRIPTIONS:
         desc = DESCRIPTIONS[rel]
