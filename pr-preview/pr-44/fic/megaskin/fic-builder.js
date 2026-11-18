@@ -426,6 +426,7 @@
   }
   // help under each box, shown when Help text is pressed (tutorial.js and tutorial.css).
   // Paths are written with N for any number. Each one shows once, by the first box it fits.
+  // A message row's first box has its own help for date or notice lines (:sys) and typing lines (:typing).
   var PIC = "Upload the picture somewhere like squidge.org first, then copy the link to the picture itself (it usually ends in .jpg or .png) and paste it here.";
   var ALT = "A few words saying what's in the picture. Screen readers read this out for anyone who can't see it.";
   var HELP = {
@@ -464,6 +465,8 @@
     "blocks.N.barText": "What the phone owner is halfway through typing.",
     "blocks.N.gp.colour": "The group's picture works just like a character's: a coloured circle with letters in it, or a picture.",
     "blocks.N.script": "The quickest way to add messages. Put each message on its own line: the name, a colon, then the message, like Ilya: are you awake. Then press Add these messages, and they're added to the list above.",
+    "blocks.N.msgs.N.from:sys": "The first box says what kind of line this is: Date or notice line is for the small lines in the middle of the chat. The second box is what the line says, like Today 11:48 PM or Lily left the group. To turn it into a message, pick a person in the first box. The buttons: the arrows move the line, + adds a new message under it, and &times; deletes it.",
+    "blocks.N.msgs.N.from:typing": "The first box says what kind of line this is: the typing line shows someone typing. In iMessage it's three dots in a grey bubble. In WhatsApp, the second box is what it says, like Lily is typing... To turn it into a message, pick a person in the first box. The buttons: the arrows move the line, + adds a new message under it, and &times; deletes it.",
     "blocks.N.msgs.N.from": "The first box is who sends the message. Pick Date or notice line for the small lines in the middle, like a date, or the typing line to show someone typing. The second box is the message itself: type it just like you'd send it. In WhatsApp, the third box is the time on the message, like 09:15. The buttons: Extras has more options (pictures, reactions and more), the arrows move the message, + adds a new message under it, and &times; deletes it.",
     "blocks.N.msgs.N.sms": "Makes the bubble green, like a text to someone who hasn't got an iPhone.",
     "blocks.N.msgs.N.reacts.N.emoji": "The little emoji on the corner of a bubble. Pick who reacted, and type one emoji.",
@@ -479,14 +482,14 @@
     "blocks.N.msgs.N.photos.N.desc": "No picture? Describe it here instead, and the words show where the picture would be."
   };
   var helped = {};
-  function help(path) {
-    var k = path.replace(/\.\d+(?=\.|$)/g, ".N");
+  function help(path, kind) {
+    var k = path.replace(/\.\d+(?=\.|$)/g, ".N") + (kind ? ":" + kind : "");
     if (!HELP[k] || helped[k]) return "";
     helped[k] = true;
     return '<span class="tut-help">' + HELP[k] + "</span>";
   }
   function field(path, label, opts) {
-    return box(path, label, opts) + help(path);
+    return box(path, label, opts) + help(path, opts && opts.help);
   }
   function box(path, label, opts) {
     opts = opts || {};
@@ -578,7 +581,7 @@
     var P = "blocks." + bi + ".msgs." + mi, wa = b.type === "wa", h = [];
     var side = m.from === b.pov ? " out" : m.from === "sys" || m.from === "typing" ? " sys" : "";
     h.push('<li class="fb-msg' + side + '">');
-    h.push('<div class="fb-row">' + field(P + ".from", "", { type: "select", re: true, options: speakerOptions(b, wa ? "Typing line" : "Typing dots") }));
+    h.push('<div class="fb-row">' + field(P + ".from", "", { type: "select", re: true, help: m.from === "sys" || m.from === "typing" ? m.from : "", options: speakerOptions(b, wa ? "Typing line" : "Typing dots") }));
     if (!(m.from === "typing" && !wa)) h.push(field(P + ".text", "", { ph: m.from === "sys" ? "Today 11:48 PM" : m.from === "typing" ? "Lily is typing..." : m.photos.length || m.link ? "(no text, open extras for more)" : "Message", cls: "fb-text" }));
     if (wa && m.from !== "sys" && m.from !== "typing") h.push(field(P + ".time", "", { ph: "09:15", cls: "fb-time" }));
     h.push('<span class="fb-tools">' + (m.from === "sys" || m.from === "typing" ? "" : btn("msg-more:" + bi + ":" + mi, m.open ? "Less" : "Extras", "Extras for this message")) +
