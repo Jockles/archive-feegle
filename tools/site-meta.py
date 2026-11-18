@@ -48,6 +48,11 @@ DESCRIPTIONS = {
     "fic/megaskin/profile-maker.html": "Make a character's social media profile for the Megaskin AO3 work skin.",
 }
 
+# Works still in progress that live on the public site. Every page under
+# these folders gets "Work In Progress!!" at the start of its description,
+# like the WIPs. Take a folder out of this list when that work is finished.
+WIP_WORKS = ("fic/megaskin/",)
+
 # Pages that get the icon but no description or link-preview tags.
 ICON_ONLY = {"404.html", "admin/index.html", "fic/sample-fic.html"}
 
@@ -116,6 +121,9 @@ def tags(rel, page):
         desc = MEGASKIN
     else:
         desc = first_paragraph(page)
+
+    if rel.startswith(WIP_WORKS) and not desc.startswith("Work In Progress!!"):
+        desc = "Work In Progress!! " + desc
 
     e = lambda s: html.escape(s, quote=True)
     if not own:
