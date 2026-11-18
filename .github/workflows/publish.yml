@@ -11,8 +11,11 @@ on:
 permissions:
   contents: write
 
+# Its own queue, so a draft preview can never push a publish run out of
+# line. Both push to gh-pages; the deploy step rebases and retries if they
+# land at the same moment.
 concurrency:
-  group: gh-pages
+  group: publish-site
   cancel-in-progress: false
 
 jobs:
