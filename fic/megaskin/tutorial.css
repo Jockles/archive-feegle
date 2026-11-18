@@ -10,6 +10,15 @@
 .tut-btn[aria-pressed="true"] { background: var(--header, #0b5563); color: var(--header-text, #fff); }
 .tut-btn[aria-pressed="true"]::before { background: var(--header-text, #fff); color: var(--header, #0b5563); }
 
+/* the box with the two buttons, beside the intro (below it on a phone) */
+.tut-intro { display: flex; flex-wrap: wrap; gap: 0 24px; align-items: flex-start; }
+.tut-intro > div { flex: 1 1 420px; min-width: 0; }
+.tut-box { flex: 0 1 260px; margin: 1em 0; padding: 10px 12px; font-size: 0.9em; border: 1px solid var(--box-edge, #bbb); border-radius: 6px; background: var(--box-fill, #f4f8f7); }
+.tut-box p { margin: 0 0 8px; }
+.tut-box p:last-child { margin: 0; }
+.tut-box .tut-btn { margin: 0 4px 4px 0; }
+@media (max-width: 700px) { .tut-box { flex-basis: 100%; } }
+
 .tut-help { display: none; }
 .help-on .tut-help { display: block; box-sizing: border-box; flex: 1 0 100%; order: 9; margin: 4px 0 8px; padding: 5px 8px; font-size: 0.85em; line-height: 1.4;
   border-left: 3px solid var(--hover, #1a8f6a); background: var(--tag-fill, #e3f1ec); border-radius: 0 4px 4px 0; }

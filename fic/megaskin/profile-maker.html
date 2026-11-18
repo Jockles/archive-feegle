@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="../../style.css">
   <script src="../../theme.js"></script>
   <link rel="stylesheet" href="megaskin.css">
-  <link rel="stylesheet" href="tutorial.css?v=2">
+  <link rel="stylesheet" href="tutorial.css?v=3">
   <style id="live-profile"></style>
   <style>
     .pm { display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-start; }
@@ -48,13 +48,18 @@
 <main>
   <p class="work-title"><a href="index.html">Megaskin</a> by Jockles</p>
   <h2>Profile Maker</h2>
-  <p><button type="button" class="tut-btn" data-tutorial>Tutorial</button> <button type="button" class="tut-btn" data-helptext>Help text</button></p>
-  <p>New here? The Tutorial walks you through making a character's profile, step by step. Help text shows a short explanation under every box. You can have either one on, or both.</p>
-
-  <p>Fill in the boxes and the chats on the right update as you type, using the default megaskin. When you're happy, copy the CSS at the bottom and paste it into the PROFILES section of your work skin, next to the other profiles. Nothing you type leaves your browser.</p>
-  <p>Building chats too? The <a href="fic-builder.html">Fic Builder</a> has this built in.</p>
-  <p>To edit a profile you've already made, paste its CSS into the Your CSS box at the bottom (one profile at a time). The boxes fill in from it, and you can carry on from there.</p>
-  <p>Only the first box is essential. Leave anything you don't need empty and it won't go in the CSS. Pictures need a direct link to the image file, usually ending in .jpg or .png, from somewhere like squidge.org or Tumblr.</p>
+  <div class="tut-intro">
+    <div>
+    <p>Fill in the boxes and the chats on the right update as you type, using the default megaskin. When you're happy, copy the CSS at the bottom and paste it into the PROFILES section of your work skin, next to the other profiles. Nothing you type leaves your browser.</p>
+    <p>Building chats too? The <a href="fic-builder.html">Fic Builder</a> has this built in.</p>
+    <p>To edit a profile you've already made, paste its CSS into the Your CSS box at the bottom (one profile at a time). The boxes fill in from it, and you can carry on from there.</p>
+    <p>Only the first box is essential. Leave anything you don't need empty and it won't go in the CSS. Pictures need a direct link to the image file, usually ending in .jpg or .png, from somewhere like squidge.org or Tumblr.</p>
+    </div>
+    <aside class="tut-box">
+      <p><button type="button" class="tut-btn" data-tutorial>Tutorial</button> <button type="button" class="tut-btn" data-helptext>Help text</button></p>
+      <p>New here? The Tutorial walks you through making a character's profile, step by step. Help text shows a short explanation under every box. You can have either one on, or both.</p>
+    </aside>
+  </div>
 
   <div class="pm">
     <form class="pm-form" id="pm" autocomplete="off" onsubmit="return false">
@@ -152,7 +157,7 @@
 </footer>
 
 <script src="profile-css.js"></script>
-<script src="tutorial.js?v=2"></script>
+<script src="tutorial.js?v=3"></script>
 <script>
 Tutorial([
   { title: "Make a character profile",

@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="../../style.css">
   <script src="../../theme.js"></script>
   <link rel="stylesheet" href="megaskin.css">
-  <link rel="stylesheet" href="tutorial.css?v=2">
+  <link rel="stylesheet" href="tutorial.css?v=3">
   <style id="fb-live"></style>
   <style>
     main { max-width: 1400px; }
@@ -82,12 +82,17 @@
 <main>
   <p class="work-title"><a href="index.html">Megaskin</a> by Jockles</p>
   <h2>Fic Builder</h2>
-  <p><button type="button" class="tut-btn" data-tutorial>Tutorial</button> <button type="button" class="tut-btn" data-helptext>Help text</button></p>
-  <p>New here? The Tutorial walks you through making a simple text chat, step by step. Help text shows a short explanation under every box. You can have either one on, or both.</p>
-
-  <p>This is a WYSIWYG (what you see is what you get) helper for building the skinned HTML for your chats: add your characters, type the messages, and pick the extras you want. The preview shows it with the default megaskin as you go, and when you're done you can copy all the HTML in one go. It's only a shortcut. Everything it makes is the same HTML the tutorial teaches, so you can still change any of it by hand afterwards, and you don't have to use it at all if you don't want to, or if it ever breaks.</p>
-  <p>Nothing you type leaves your browser. Your work is kept in this browser until you clear it, and you can download it as files to carry on somewhere else.</p>
-  <p><strong>Download your files often!</strong> If you clear your browser's cache or history without downloading your HTML and CSS first, everything you've made here is gone for good. Browsers can also crash or tidy up their storage on their own, so download a copy of anything you're working on regularly.</p>
+  <div class="tut-intro">
+    <div>
+    <p>This is a WYSIWYG (what you see is what you get) helper for building the skinned HTML for your chats: add your characters, type the messages, and pick the extras you want. The preview shows it with the default megaskin as you go, and when you're done you can copy all the HTML in one go. It's only a shortcut. Everything it makes is the same HTML the tutorial teaches, so you can still change any of it by hand afterwards, and you don't have to use it at all if you don't want to, or if it ever breaks.</p>
+    <p>Nothing you type leaves your browser. Your work is kept in this browser until you clear it, and you can download it as files to carry on somewhere else.</p>
+    <p><strong>Download your files often!</strong> If you clear your browser's cache or history without downloading your HTML and CSS first, everything you've made here is gone for good. Browsers can also crash or tidy up their storage on their own, so download a copy of anything you're working on regularly.</p>
+    </div>
+    <aside class="tut-box">
+      <p><button type="button" class="tut-btn" data-tutorial>Tutorial</button> <button type="button" class="tut-btn" data-helptext>Help text</button></p>
+      <p>New here? The Tutorial walks you through making a simple text chat, step by step. Help text shows a short explanation under every box. You can have either one on, or both.</p>
+    </aside>
+  </div>
 
   <div class="fb">
     <form class="fb-edit" autocomplete="off" onsubmit="return false">
@@ -155,7 +160,7 @@
 <script src="profile-css.js"></script>
 <script src="fic-builder-examples.js"></script>
 <script src="fic-builder.js"></script>
-<script src="tutorial.js?v=2"></script>
+<script src="tutorial.js?v=3"></script>
 <script>
 Tutorial([
   { title: "Make a simple text chat",
