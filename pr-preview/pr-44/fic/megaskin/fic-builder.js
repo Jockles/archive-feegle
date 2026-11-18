@@ -83,6 +83,7 @@
     b.msgs = ex.msgs.map(function (line) {
       var x = line[2] || {};
       var m = newMsg(ids[line[0]] || line[0], line[1], x.time);
+      if (x.by) m.by = ids[x.by];
       ["tick", "waReacts", "waCount", "sms", "big", "edited", "status"].forEach(function (k) { if (x[k] !== undefined) m[k] = x[k]; });
       m.reacts = (x.reacts || []).map(function (r) { return { by: ids[r[0]], emoji: r[1] }; });
       m.photos = (x.photos || []).map(function (p) { return { url: p.url || "", alt: p.alt || "", desc: p.desc || "", land: !!p.land }; });
@@ -199,7 +200,7 @@
       tlCount += 1;
       return '<a class="tl egg" href="#t' + tlCount + '"><span class="orig">' + a + '</span><span class="tltn"><span class="hide"> (</span>' + b + '<span class="hide">)</span></span></a>';
     });
-    s = s.replace(/~~(.+?)~~/g, '<span class="del">$1</span>');
+    s = s.replace(/~~(.+?)~~/g, "$1"); // crossed-out text left over from older saved work
     s = s.replace(/&lt;&lt;(.+?)&gt;&gt;/g, '<span class="fake-link">$1</span>');
     return s;
   }
@@ -207,6 +208,12 @@
     return String(text || "").replace(/\[\[([^\]|]+)\|[^\]]+\]\]/g, "$1").replace(/\{\{([^}|]+)\|[^}]+\}\}/g, "$1")
       .replace(/~~(.+?)~~/g, "$1").replace(/<<(.+?)>>/g, "$1");
   }
+  // a typing row's person (picked in its second box): whoever was picked, or else the first person who isn't the phone owner
+  function typer(b, m) {
+    if (!char(m.by)) { var o = others(b)[0] || S.cast.filter(function (c) { return c.id !== b.pov; })[0] || char(b.pov); m.by = o ? o.id : ""; }
+    return char(m.by);
+  }
+  function typingHide(c, named) { return (named ? "<em>" + esc(nameOf(c)) + "</em> " : "") + "is typing..."; }
   function hideLabel(name) { return '<span class="hide"><em>' + esc(name) + ":</em> </span>"; }
   function ind(lines, n) { var pad = new Array(n + 1).join("  "); return lines.map(function (l) { return pad + l; }); }
 
@@ -246,7 +253,13 @@
     var body = [];
     b.msgs.forEach(function (m) {
       if (m.from === "sys") { body.push('<p class="mob-sys">' + fmt(m.text) + "</p>"); last = ""; return; }
-      if (m.from === "typing") { body.push('<p class="typing-indicator"><span></span><span></span><span></span></p>'); last = ""; return; }
+      if (m.from === "typing") {
+        var tc = typer(b, m); if (!tc) return;
+        var tOut = tc.id === b.pov, tWho = b.group && !tOut;
+        if (tWho && last !== tc.id) body.push('<p class="who">' + (isProfile(tc) ? profileName(tc) : esc(nameOf(tc))) + "</p>");
+        body.push('<p class="msg ' + (tOut ? "out" : "in") + ' typing-indicator"><span class="hide">' + typingHide(tc, !tWho) + "</span><span></span><span></span><span></span></p>");
+        last = ""; return;
+      }
       var c = char(m.from); if (!c) return;
       var out = m.from === b.pov, side = out ? "out" : "in";
       var showWho = b.group && !out && last !== m.from;
@@ -326,7 +339,17 @@
     var body = [];
     b.msgs.forEach(function (m) {
       if (m.from === "sys") { body.push('<p class="mob-sys">' + fmt(m.text) + "</p>"); last = ""; return; }
-      if (m.from === "typing") { body.push('<p class="typing">' + fmt(m.text || "typing...") + "</p>"); return; }
+      if (m.from === "typing") {
+        var tc = typer(b, m); if (!tc) return;
+        var tOut = tc.id === b.pov, tWho = b.group && !tOut;
+        var tb = ['<div class="msg ' + (tOut ? "out" : "in") + ' tail typing-indicator">'];
+        if (tWho) tb.push('  <p class="who ' + (isProfile(tc) ? "pfp-" + slugOf(tc) : colourClass(tc)) + '">' + waName(tc) + "</p>");
+        tb.push('  <p class="hide">' + typingHide(tc, !tWho) + "</p>", "  <p><span></span><span></span><span></span></p>", "</div>");
+        if (!tWho) tb = [tb[0] + tb.slice(1, -1).map(function (x) { return x.trim(); }).join("") + "</div>"];
+        if (tWho && b.pics) tb = ['<div class="wa-row">', "  " + waPfp(tc)].concat(ind(tb, 1)).concat(["</div>"]);
+        body = body.concat(tb);
+        last = ""; return;
+      }
       var c = char(m.from); if (!c) return;
       var out = m.from === b.pov, side = out ? "out" : "in";
       var first = last !== m.from;
@@ -468,8 +491,8 @@
     "blocks.N.gp.colour": "The group's picture works just like a character's: a coloured circle with letters in it, or a picture link, which replaces the circle and letters.",
     "blocks.N.script": "The quickest way to add messages. Put each message on its own line: the name, a colon, then the message, like 'Ilya: are you awake'. Then press 'Add these messages', and they're added to the list above.",
     "blocks.N.msgs.N.from:sys": "Date or notice lines are the small lines in the middle of the chat. The second box is what the line says, like 'Today 11:48 PM' or 'Lily left the group'. The buttons: the arrows move the line, + adds a new message under it, and &times; deletes it. To turn it into a message, change the first box to a character.",
-    "blocks.N.msgs.N.from:typing": "The typing line shows someone typing. In iMessage it's three dots in a grey bubble. In WhatsApp, the second box is what it says, like 'Lily is typing...'. The buttons: the arrows move the line, + adds a new message under it, and &times; deletes it. To turn it into a message, change the first box to a character.",
-    "blocks.N.msgs.N.from": "The first box chooses who wrote the message, from the cast list above. You can also change it to a date or notice line, or a typing line. The second box is the message itself: type it just like you'd send it. In WhatsApp, the third box is the time on the message, like '09:15'. The buttons: 'Extras' has more options (pictures, reactions and more), the arrows move the message, + adds a new message under it, and &times; deletes it.",
+    "blocks.N.msgs.N.from:typing": "Typing dots show someone is typing: three dots in a bubble, the same as their messages. The second box chooses who is typing. Pick the phone owner to put the dots on their side, halfway through writing something. The buttons: the arrows move the dots, + adds a new message under them, and &times; deletes them. To turn it into a message, change the first box to a character.",
+    "blocks.N.msgs.N.from": "The first box chooses who wrote the message, from the cast list above. You can also change it to a date or notice line, or 'Typing dots'. The second box is the message itself: type it just like you'd send it. In WhatsApp, the third box is the time on the message, like '09:15'. The buttons: 'Extras' has more options (pictures, reactions and more), the arrows move the message, + adds a new message under it, and &times; deletes it.",
     "blocks.N.msgs.N.sms": "Makes the bubble green, like a text to someone who hasn't got an iPhone.",
     "blocks.N.msgs.N.reacts.N.emoji": "The little emoji on the corner of a bubble. Pick who reacted, and type one emoji.",
     "blocks.N.msgs.N.status": "Small words under the message, like 'Delivered' or 'Read 11:52 PM'. Usually only on the phone owner's last message.",
@@ -582,25 +605,25 @@
     return h.join("");
   }
 
-  function speakerOptions(b, typingLabel) {
+  function speakerOptions(b) {
     return S.cast.map(function (c) { return [c.id, nameOf(c) + (c.id === b.pov ? " (phone owner)" : "")]; })
-      .concat([["sys", "Date or notice line"], ["typing", typingLabel]]);
+      .concat([["sys", "Date or notice line"], ["typing", "Typing dots"]]);
   }
 
   function msgRow(b, bi, m, mi) {
     var P = "blocks." + bi + ".msgs." + mi, wa = b.type === "wa", h = [];
     var side = m.from === b.pov ? " out" : m.from === "sys" || m.from === "typing" ? " sys" : "";
     h.push('<li class="fb-msg' + side + '">');
-    h.push('<div class="fb-row">' + field(P + ".from", "", { type: "select", re: true, help: m.from === "sys" || m.from === "typing" ? m.from : "", options: speakerOptions(b, wa ? "Typing line" : "Typing dots") }));
-    if (!(m.from === "typing" && !wa)) h.push(field(P + ".text", "", { ph: m.from === "sys" ? "Today 11:48 PM" : m.from === "typing" ? "Lily is typing..." : m.photos.length || m.link ? "(no text, open extras for more)" : "Message", cls: "fb-text" }));
+    h.push('<div class="fb-row">' + field(P + ".from", "", { type: "select", re: true, help: m.from === "sys" || m.from === "typing" ? m.from : "", options: speakerOptions(b) }));
+    if (m.from === "typing") { typer(b, m); h.push(field(P + ".by", "", { type: "select", re: true, options: S.cast.map(function (c) { return [c.id, nameOf(c) + (c.id === b.pov ? " (phone owner)" : "")]; }) })); }
+    else h.push(field(P + ".text", "", { ph: m.from === "sys" ? "Today 11:48 PM" : m.photos.length || m.link ? "(no text, open extras for more)" : "Message", cls: "fb-text" }));
     if (wa && m.from !== "sys" && m.from !== "typing") h.push(field(P + ".time", "", { ph: "09:15", cls: "fb-time" }));
     h.push('<span class="fb-tools">' + (m.from === "sys" || m.from === "typing" ? "" : btn("msg-more:" + bi + ":" + mi, m.open ? "Less" : "Extras", "Extras for this message")) +
       btn("msg-up:" + bi + ":" + mi, "&uarr;", "Move up") + btn("msg-down:" + bi + ":" + mi, "&darr;", "Move down") +
       btn("msg-ins:" + bi + ":" + mi, "+", "Add a message under this one") + btn("msg-del:" + bi + ":" + mi, "&times;", "Delete this message") + "</span></div>");
     if (m.open && m.from !== "sys" && m.from !== "typing") {
       h.push('<div class="fb-extras">');
-      h.push('<p class="hint">Select some words in the message, then: ' + btn("fmt:tl", "Translation") + " " + btn("fmt:egg", "Easter egg") + " " +
-        btn("fmt:del", "Cross out") + " " + btn("fmt:link", "Fake link") + "</p>");
+      h.push('<p class="hint">Select some words in the message, then: ' + btn("fmt:tl", "Translation") + " " + btn("fmt:egg", "Easter egg") + " " + btn("fmt:link", "Fake link") + "</p>");
       if (!wa) {
         h.push(field(P + ".sms", "Green text message (SMS)", { type: "check" }));
         h.push('<p class="hint">Tapbacks (one emoji per person):</p>');
@@ -855,8 +878,7 @@
       var t = prompt(kind === "tl" ? "What does \"" + sel + "\" mean?" : "What's the hidden text behind \"" + sel + "\"?");
       if (!t) return;
       out = kind === "tl" ? "[[" + sel + "|" + t + "]]" : "{{" + sel + "|" + t + "}}";
-    } else if (kind === "del") out = "~~" + sel + "~~";
-    else out = "<<" + sel + ">>";
+    } else out = "<<" + sel + ">>";
     el.value = v.slice(0, s) + out + v.slice(e);
     el.focus();
     el.selectionStart = el.selectionEnd = s + out.length;

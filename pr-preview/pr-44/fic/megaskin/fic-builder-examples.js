@@ -4,7 +4,7 @@
 //          colour, initials, pic, alt, num for one-offs
 //   chat:  the chat settings (type is "imsg" or "wa"; pov is whose phone it is)
 //   msgs:  one line per message: [who, text, extras]. who is a cast name, "sys" for a
-//          date or notice line, or "typing". extras can have time, tick, reacts (iMessage
+//          date or notice line, or "typing" for typing dots (by: who is typing). extras can have time, tick, reacts (iMessage
 //          tapbacks: [[who, emoji]]), waReacts, waCount, sms, big, edited, status,
 //          reply (the number of an earlier message, counting from 0), photos, link.
 (function () {
@@ -32,7 +32,7 @@ window.FB_EXAMPLES = [
       ["Ilya", "", { photos: [{ url: CAT4, alt: "A cat curled up inside an open suitcase" }] }],
       ["Ilya", "", { photos: [{ desc: "A blurry photo of the same cat, now asleep on Ilya's hotel bed" }] }],
       ["Shane", "call me?", { status: "Read 11:52 PM" }],
-      ["typing", ""]
+      ["typing", "", { by: "Ilya" }]
     ]
   },
   {
@@ -85,7 +85,7 @@ window.FB_EXAMPLES = [
       ["Shane", "making these tonight if you're coming over", { time: "14:20" }],
       ["Shane", "", { time: "14:22", waReacts: "😍", photos: [{ url: CAT3, alt: ALT3, land: true }, { url: CAT4, alt: ALT4 }] }],
       ["Ilya", "she says she wants pierogi too", { time: "14:24", photos: [{ url: CAT2, alt: ALT2 }] }],
-      ["typing", "Lily is typing..."]
+      ["typing", "", { by: "Ilya" }]
     ]
   },
   {
