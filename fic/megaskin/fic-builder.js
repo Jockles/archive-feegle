@@ -23,6 +23,7 @@
   ];
   var COLOURS = { 1: "#b8651f", 2: "#5f6368", 3: "#b03a6f", 4: "#1f8a72", 5: "#2f68c8",
     6: "#7b52c4", 7: "#c0392b", 8: "#4a8a25", 9: "#9a7412", 10: "#1f7fa3" };
+  var COLOUR_NAMES = { 1: "orange", 2: "grey", 3: "pink", 4: "teal", 5: "blue", 6: "purple", 7: "red", 8: "green", 9: "mustard", 10: "sea blue" };
   var BACKGROUNDS = ["", "beige", "black", "blush", "dusk", "forest", "lilac", "navy", "night",
     "ocean", "plum", "sage", "sky", "slate", "sunset", "white"];
   var KINDS = {
@@ -433,9 +434,9 @@
   var HELP = {
     "cast.N.name": "The character's name, the way you want it to show in the chats.",
     "cast.N.kind": "'One-off' is the quickest: they just get a coloured circle. Pick 'New profile' if they turn up in lots of chats or apps, so they look the same everywhere. 'Edit an existing profile' uses one of the tutorial's example characters, or a profile you've added through the CSS upload.",
-    "cast.N.colour": "The colour of the circle by their messages, when there's no picture.",
-    "cast.N.showInitials": "The letters in the circle. Leave the box empty to use the first letter of their name, or untick it for an empty circle.",
-    "cast.N.pic": "Optional. A picture to show instead of the coloured circle. " + PIC,
+    "cast.N.colour": "The colour of their circle, which shows their initials. If you add a picture link below, the picture is used instead.",
+    "cast.N.showInitials": "The letters in the coloured circle. Leave the box empty to use the first letter of their name, or untick it for an empty circle. A picture link replaces the circle and its letters.",
+    "cast.N.pic": "Optional. A picture replaces the coloured circle and initials as their profile picture, so the colour and initials above won't show. " + PIC,
     "cast.N.alt": ALT,
     "cast.N.land": "Tick this if the picture is wider than it is tall, so it isn't squashed.",
     "cast.N.num": "Only for WhatsApp. Someone who isn't saved in the phone shows as a phone number instead of a name. Leave it empty otherwise.",
@@ -464,7 +465,7 @@
     "blocks.N.bg": "The pattern behind the messages.",
     "blocks.N.bar": "The box at the bottom where you'd type. 'Empty' shows it with nothing in it. 'Something half-typed' shows a message the phone owner hasn't sent yet.",
     "blocks.N.barText": "What the phone owner is halfway through typing.",
-    "blocks.N.gp.colour": "The group's picture works just like a character's: a coloured circle with letters in it, or a picture.",
+    "blocks.N.gp.colour": "The group's picture works just like a character's: a coloured circle with letters in it, or a picture link, which replaces the circle and letters.",
     "blocks.N.script": "The quickest way to add messages. Put each message on its own line: the name, a colon, then the message, like 'Ilya: are you awake'. Then press 'Add these messages', and they're added to the list above.",
     "blocks.N.msgs.N.from:sys": "Date or notice lines are the small lines in the middle of the chat. The second box is what the line says, like 'Today 11:48 PM' or 'Lily left the group'. The buttons: the arrows move the line, + adds a new message under it, and &times; deletes it. To turn it into a message, change the first box to a character.",
     "blocks.N.msgs.N.from:typing": "The typing line shows someone typing. In iMessage it's three dots in a grey bubble. In WhatsApp, the second box is what it says, like 'Lily is typing...'. The buttons: the arrows move the line, + adds a new message under it, and &times; deletes it. To turn it into a message, change the first box to a character.",
@@ -527,11 +528,11 @@
     h.push(field(P + ".kind", "", { type: "select", re: true, wrap: true, options: [["oneoff", "One-off: no profile"], ["new", "New profile"], ["example", "Edit an existing profile"]] }));
     if (c.kind === "oneoff") {
       // picture circle: a colour, initials yes or no, then an optional picture
-      h.push('<div class="fb-row">' + field(P + ".colour", "", { type: "select", re: true, options: Object.keys(COLOURS).map(function (k) { return [k, "Colour " + k]; }) }) +
+      h.push('<div class="fb-row">' + field(P + ".colour", "", { type: "select", re: true, options: Object.keys(COLOURS).map(function (k) { return [k, "Colour " + k + ": " + COLOUR_NAMES[k]]; }) }) +
         '<span class="fb-swatch" style="background:' + COLOURS[c.colour] + '"></span>' + "</div>");
       h.push('<div class="fb-row">' + field(P + ".showInitials", "Initials in the circle", { type: "check", re: true }) +
         (c.showInitials !== false ? field(P + ".initials", "", { ph: initials(c) }) : "") + "</div>");
-      h.push(field(P + ".pic", "Picture link (optional)", { type: "url", ph: "https://..." }));
+      h.push(field(P + ".pic", "Picture link (optional, replaces the colour and initials)", { type: "url", ph: "https://..." }));
       h.push(field(P + ".alt", "Picture description (optional)", { ph: "Profile picture of " + nameOf(c) }));
       h.push(field(P + ".land", "Landscape picture", { type: "check" }));
       h.push(field(P + ".num", "WhatsApp phone number (for someone not saved in the phone)", { ph: "+44 7700 900123" }));
@@ -669,11 +670,11 @@
         if (!b.gp) b.gp = newGroupPic();
         var G = P + ".gp";
         h.push('<div class="fb-acct"><p class="hint">The group\'s picture in the header</p>');
-        h.push('<div class="fb-row">' + field(G + ".colour", "", { type: "select", re: true, options: Object.keys(COLOURS).map(function (k) { return [k, "Colour " + k]; }) }) +
+        h.push('<div class="fb-row">' + field(G + ".colour", "", { type: "select", re: true, options: Object.keys(COLOURS).map(function (k) { return [k, "Colour " + k + ": " + COLOUR_NAMES[k]]; }) }) +
           '<span class="fb-swatch" style="background:' + COLOURS[b.gp.colour] + '"></span>' + "</div>");
         h.push('<div class="fb-row">' + field(G + ".showInitials", "Initials in the circle", { type: "check", re: true }) +
           (b.gp.showInitials !== false ? field(G + ".initials", "", { ph: (b.title.trim() || "G").charAt(0).toUpperCase() }) : "") + "</div>");
-        h.push(field(G + ".pic", "Picture link (optional)", { type: "url", ph: "https://..." }));
+        h.push(field(G + ".pic", "Picture link (optional, replaces the colour and initials)", { type: "url", ph: "https://..." }));
         h.push(field(G + ".alt", "Picture description (optional)", { ph: "Profile picture of " + (b.title.trim() || "the group") }));
         h.push(field(G + ".land", "Landscape picture", { type: "check" }) + "</div>");
       }
