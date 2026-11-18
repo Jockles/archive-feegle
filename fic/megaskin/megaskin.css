@@ -1254,7 +1254,9 @@
    ========================================================== */
 
 #workskin .wa {
-  background: #efeae2;
+  background-color: #efeae2;
+  background-image: url(https://images.squidge.org/images/2026/11/18/whatsapp-bck-light.jpg);
+  background-size: 400px auto;
   color: #111b21;
   border: 1px solid #d1d7db;
   border-radius: 10px;
@@ -1755,7 +1757,7 @@
 
 /* ---------- WhatsApp: Dark theme (theme-dark) ---------- */
 
-#workskin .wa.theme-dark { background: #0b141a; color: #e9edef; border-color: #222d34; }
+#workskin .wa.theme-dark { background-color: #0b141a; background-image: url(https://images.squidge.org/images/2026/11/18/whatsapp-bck-dark.png); color: #e9edef; border-color: #222d34; }
 
 #workskin .wa.theme-dark .mob-head,
 #workskin .wa.theme-dark table.wa-bar {
@@ -1807,7 +1809,7 @@
 /* ---------- WhatsApp: Auto theme (theme-auto): light, switching to dark when the reader's device is in dark mode ---------- */
 
 @media (prefers-color-scheme: dark) {
-  #workskin .wa.theme-auto { background: #0b141a; color: #e9edef; border-color: #222d34; }
+  #workskin .wa.theme-auto { background-color: #0b141a; background-image: url(https://images.squidge.org/images/2026/11/18/whatsapp-bck-dark.png); color: #e9edef; border-color: #222d34; }
 
   #workskin .wa.theme-auto .mob-head,
     #workskin .wa.theme-auto table.wa-bar {

@@ -15,7 +15,9 @@
 <h3>The Window and Bubbles</h3>
 
 <pre><code>#workskin .wa {
-  background: #efeae2;
+  background-color: #efeae2;
+  background-image: url(https://images.squidge.org/images/2026/11/18/whatsapp-bck-light.jpg);
+  background-size: 400px auto;
   color: #111b21;
   border: 1px solid #d1d7db;
   border-radius: 10px;
@@ -42,7 +44,7 @@
 
 #workskin .wa .in { margin-right: auto; background: #ffffff; }</code></pre>
 
-<p>The beige is WhatsApp's own chat background, and <code>#008069</code> is its green. The bubbles work like iMessage's: <code>display: table</code> makes them fit their words, and <code>auto</code> margins push them to one side. The differences are:</p>
+<p>The background is WhatsApp's own doodle wallpaper, a picture that repeats down the chat like tiles. <code>background-size: 400px auto</code> makes each tile 400px wide, about the width of a phone screen - make it smaller for smaller doodles. The beige <code>background-color</code> shows if the picture doesn't load. <code>#008069</code> is WhatsApp's green. The bubbles work like iMessage's: <code>display: table</code> makes them fit their words, and <code>auto</code> margins push them to one side. The differences are:</p>
 
 <ul>
   <li><code>min-width: 90px</code>, so even a one-word bubble is wide enough for the time and ticks underneath.</li>
@@ -400,9 +402,9 @@
 
 <h3>Dark and Auto Themes</h3>
 
-<p>The dark theme swaps the beige for WhatsApp's near-black, the bubbles for dark grey and dark green, and every bit of grey text for a lighter grey. It also has the lighter set of name colours, and the tails again in the new bubble colours. As in iMessage, the auto theme is the same rules again inside <code>@media (prefers-color-scheme: dark)</code>, so change a dark colour in both places.</p>
+<p>The dark theme swaps the wallpaper for WhatsApp's dark version (with its near-black underneath), the bubbles for dark grey and dark green, and every bit of grey text for a lighter grey. It also has the lighter set of name colours, and the tails again in the new bubble colours. As in iMessage, the auto theme is the same rules again inside <code>@media (prefers-color-scheme: dark)</code>, so change a dark colour in both places.</p>
 
-<pre><code>#workskin .wa.theme-dark { background: #0b141a; color: #e9edef; border-color: #222d34; }
+<pre><code>#workskin .wa.theme-dark { background-color: #0b141a; background-image: url(https://images.squidge.org/images/2026/11/18/whatsapp-bck-dark.png); color: #e9edef; border-color: #222d34; }
 
 #workskin .wa.theme-dark .out { background: #005c4b; color: #e9edef; }
 
