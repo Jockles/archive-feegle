@@ -82,7 +82,7 @@
   <p class="work-title"><a href="index.html">Megaskin</a> by Jockles</p>
   <h2>Fic Builder</h2>
 
-  <p>This is a WYSIWYG (what you see is what you get) helper for building the skinned HTML for your chats: add your characters, type the messages, and pick the extras you want. The preview shows it with the real megaskin as you go, and when you're done you can copy all the HTML in one go. It's only a shortcut. Everything it makes is the same HTML the tutorial teaches, so you can still change any of it by hand afterwards, and you don't have to use it at all if you don't want to, or if it ever breaks.</p>
+  <p>This is a WYSIWYG (what you see is what you get) helper for building the skinned HTML for your chats: add your characters, type the messages, and pick the extras you want. The preview shows it with the default megaskin as you go, and when you're done you can copy all the HTML in one go. It's only a shortcut. Everything it makes is the same HTML the tutorial teaches, so you can still change any of it by hand afterwards, and you don't have to use it at all if you don't want to, or if it ever breaks.</p>
   <p>Nothing you type leaves your browser. Your work is kept in this browser until you clear it, and you can download it as files to carry on somewhere else.</p>
   <p><strong>Download your files often!</strong> If you clear your browser's cache or history without downloading your HTML and CSS first, everything you've made here is gone for good. Browsers can also crash or tidy up their storage on their own, so download a copy of anything you're working on regularly.</p>
 
@@ -97,17 +97,18 @@
           <tr><th><label for="fb-example">Load an example from the tutorial</label></th><td class="fb-nowrap"><select id="fb-example"></select> <button type="button" data-act="example">Load it</button></td></tr>
           <tr><th>Start again</th><td><button type="button" data-act="new">Start a new one</button></td></tr>
         </table>
-        <p class="hint">The HTML file can be opened here again to carry on editing your chats. The CSS file has every profile you've used, pasted or made here, so you can open it for the next chapter.</p>
+        <p class="hint">The HTML file can be opened here again to carry on editing your chats. The CSS file has every profile you've used, pasted or made here, so you can open it for the next chapter. Only character profiles can be opened or pasted here. Any changes made to the rest of the skin won't show in this preview, so test those in your own AO3 drafts.</p>
       </fieldset>
 
       <fieldset>
         <legend>1. Cast</legend>
         <p class="hint">Everyone who sends a message. One-offs are typed straight into the chat. Profiles keep a character the same in every chat and every app, and the profile CSS goes into your work skin (see <a href="core.html#heading">Character Profiles</a>). The example profiles are already in the skin.</p>
+        <p class="hint">For an easier way to make a full character profile, with every option and a preview of it in every app, use the <a href="profile-maker.html">Profile Maker</a>. Then paste or open its CSS here with "+ Add existing profiles".</p>
         <div id="fb-cast"></div>
         <p><button type="button" data-act="cast-add">+ Add a character</button>
           <button type="button" data-act="paste-show">+ Add existing profiles</button></p>
         <div id="fb-paste-box" class="fb-acct" hidden>
-          <p class="hint">Made profiles before, here or with the <a href="profile-maker.html">Profile Maker</a>? Paste their CSS here (one profile or lots). If you have them saved as a CSS file, you can upload the file with the button below instead. They're added to the cast ready to use or edit, and they only go in the CSS to copy if you change them.</p>
+          <p class="hint">Made profiles before, here or with the <a href="profile-maker.html">Profile Maker</a>? Paste their CSS here (one profile or lots). If you have them saved as a CSS file, you can upload the file with the button below instead. They're added to the cast ready to use or edit, and they only go in the CSS to copy if you change them. Only character profiles can be opened or pasted here. Any changes made to the rest of the skin won't show in this preview, so test those in your own AO3 drafts.</p>
           <textarea id="fb-paste" rows="5" placeholder="/* PROFILE: Stan */ ..."></textarea>
           <p><button type="button" data-act="paste-add">Add them to the cast</button> <button type="button" data-act="paste-hide">Cancel</button></p>
           <label class="ck">Or upload a CSS file <input type="file" class="fb-open-css" accept=".css,text/css,text/plain"></label>
