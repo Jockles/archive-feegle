@@ -222,6 +222,26 @@
 
 <p>The reactions are a separate paragraph after the bubble, but the <em>negative</em> top margin (<code>-0.55em</code>) pulls them up so they overlap its bottom edge. <code>position: relative</code> makes sure they sit on top of the bubble instead of behind it. <code>out</code> moves them to the right, and <code>pad</code> moves them past a profile picture.</p>
 
+<h3>Typing Dots</h3>
+
+<pre><code>#workskin .wa .typing-indicator { display: block; margin: 0.35em 0 0.25em 0; line-height: 1; }
+
+#workskin .wa .typing-indicator span {
+  display: inline-block;
+  width: 0.6em;
+  height: 0.6em;
+  margin-right: 0.25em;
+  border-radius: 50%;
+  background: #8696a0;
+  opacity: 0.5;
+}
+
+#workskin .wa .typing-indicator span:nth-last-child(2) { opacity: 0.7; }
+
+#workskin .wa .typing-indicator span:last-child { opacity: 1; margin-right: 0; }</code></pre>
+
+<p>The dots go inside an ordinary message bubble, so they get everything a message gets: the colour, the tail, and in a group, the picture and name. Each dot is an empty span made round with <code>border-radius: 50%</code>, in WhatsApp's grey, and they get darker from left to right, like a frozen version of the moving dots. <code>:nth-last-child</code> counts from the end, the same as in iMessage.</p>
+
 <h3>The Message Bar</h3>
 
 <pre><code>#workskin .wa .wa-input { position: relative; padding: 0.5em 3.4em 0.5em 0.6em; }
