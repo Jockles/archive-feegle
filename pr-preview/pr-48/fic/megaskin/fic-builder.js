@@ -214,8 +214,8 @@
     return char(m.by);
   }
   function typingHide(c, named) { return (named ? "<em>" + esc(nameOf(c)) + "</em> " : "") + "is typing..."; }
-  // the flashing cursor at the end of a half-typed message (the skin sizes it to the text)
-  var CURSOR = '<img class="cursor" src="https://images.squidge.org/images/2026/11/17/cursor-flash.gif" alt="blinking cursor" height="20">';
+  // the flashing cursor at the end of a half-typed message (the skin draws it, black or white to suit the chat)
+  var CURSOR = '<span class="cursor">|</span>';
   function hideLabel(name) { return '<span class="hide"><em>' + esc(name) + ":</em> </span>"; }
   function ind(lines, n) { var pad = new Array(n + 1).join("  "); return lines.map(function (l) { return pad + l; }); }
 
