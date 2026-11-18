@@ -90,7 +90,7 @@
     </div>
     <aside class="tut-box">
       <p><button type="button" class="tut-btn" data-tutorial>Tutorial</button> <button type="button" class="tut-btn" data-helptext>Help text</button></p>
-      <p>New here? The Tutorial walks you through making a simple text chat, step by step. Help text shows a short explanation under every box. You can have either one on, or both.</p>
+      <p>New here? 'Tutorial' walks you through making a simple text chat, step by step. 'Help text' shows a short explanation under every box. You can have either one on, or both.</p>
     </aside>
   </div>
 
@@ -105,7 +105,7 @@
           <tr><th><label for="fb-example">Load an example from the tutorial</label></th><td class="fb-nowrap"><select id="fb-example"></select> <button type="button" data-act="example">Load it</button></td></tr>
           <tr><th>Start again</th><td><button type="button" data-act="new">Start a new one</button></td></tr>
         </table>
-        <p class="tut-help">Download saves your work as files on your device. Open a file to carry on from where you left off. The examples are the chats from the tutorial, to look at or change. Start a new one clears everything for a blank page.</p>
+        <p class="tut-help">'Download' saves your work as files on your device. 'Open' a file to carry on from where you left off. The examples are the chats from the tutorial, to look at or change. 'Start a new one' clears everything for a blank page.</p>
         <p class="hint">The HTML file can be opened here again to carry on editing your chats. The CSS file has every profile you've used, pasted or made here, so you can open it for the next chapter. Only character profiles can be opened or pasted here. Any changes made to the rest of the skin won't show in this preview, so test those in your own AO3 drafts.</p>
       </fieldset>
 
@@ -116,7 +116,7 @@
         <div id="fb-cast"></div>
         <p id="fb-cast-btns"><button type="button" data-act="cast-add">+ Add a character</button>
           <button type="button" data-act="paste-show">+ Add existing profiles</button></p>
-        <p class="tut-help">Add a character gives you a new box to fill in. You don't have to add everyone here first: anyone named in a chat's Type or paste messages box is added for you. Press a character's name to fold their box up or open it again.</p>
+        <p class="tut-help">'Add a character' gives you a new box to fill in. You don't have to add everyone here first: anyone named in a chat's 'Type or paste messages' box is added for you. Press a character's name to fold their box up or open it again.</p>
         <div id="fb-paste-box" class="fb-acct" hidden>
           <p class="hint">Made profiles before, here or with the <a href="profile-maker.html">Profile Maker</a>? Paste their CSS here (one profile or lots). If you have them saved as a CSS file, you can upload the file with the button below instead. They're added to the cast ready to use or edit, and they only go in the CSS to copy if you change them. Only character profiles can be opened or pasted here. Any changes made to the rest of the skin won't show in this preview, so test those in your own AO3 drafts.</p>
           <textarea id="fb-paste" rows="5" placeholder="/* PROFILE: Stan */ ..."></textarea>
@@ -144,7 +144,7 @@
       <div class="fb-preview"><div id="workskin"></div></div>
 
       <h3>3. Copy</h3>
-      <p class="tut-help">Copy the HTML copies the code for all your chats in one go, ready to paste. The profile CSS box only shows up if you've made or changed a profile. The <a href="index.html">tutorial</a> explains where each one goes.</p>
+      <p class="tut-help">'Copy the HTML' copies the code for all your chats in one go, ready to paste. The 'Profile CSS' box only shows up if you've made or changed a profile. The <a href="index.html">tutorial</a> explains where each one goes.</p>
       <p id="fb-copy"><button type="button" data-act="copy-html">Copy the HTML</button></p>
       <textarea id="fb-html" readonly aria-label="HTML"></textarea>
       <div id="fb-css-wrap">
@@ -159,28 +159,28 @@
 </footer>
 <script src="profile-css.js"></script>
 <script src="fic-builder-examples.js"></script>
-<script src="fic-builder.js?v=3"></script>
+<script src="fic-builder.js?v=4"></script>
 <script src="tutorial.js?v=3"></script>
 <script>
 Tutorial([
   { title: "Make a simple text chat",
-    text: "<p>This walks you through making a text chat between two characters, one step at a time. For more about any box, press <b>Help text</b> at the top of the page.</p><p>Press <b>Next</b> to start. You can close it any time with &times;, or make it smaller with &minus; to see more of the page.</p>" },
+    text: "<p>This walks you through making a text chat between two characters, one step at a time. For more about any box, press <b>'Help text'</b> at the top of the page.</p><p>Press <b>'Next'</b> to start. You can close it any time with &times;, or make it smaller with &minus; to see more of the page.</p>" },
   { title: "Start with a blank page", target: ".fb-files",
-    text: "<p>If there's anything here already, press <b>Start a new one</b> to clear it. Download anything you want to keep first!</p><p>If it's already empty, carry on.</p>" },
+    text: "<p>If there's anything here already, press <b>'Start a new one'</b> to clear it. Download anything you want to keep first!</p><p>If it's already empty, carry on.</p>" },
   { title: "Add a chat", target: ".fb-add",
-    text: "<p>Under <b>2. Chats</b>, press <b>iMessage chat</b>. A new, empty chat appears.</p>" },
+    text: "<p>Under <b>'2. Chats'</b>, press <b>'iMessage chat'</b>. A new, empty chat appears.</p>" },
   { title: "Type the messages", target: "#fb-blocks .fb-script",
-    text: "<p>In the <b>Type or paste messages</b> box, put each message on its own line: the name, a colon, then the message. For example:</p><p><code>Ilya: are you awake<br>Shane: no<br>Ilya: liar</code></p><p>Then press <b>Add these messages</b>. Anyone new is added to the cast for you.</p>" },
+    text: "<p>In the <b>'Type or paste messages'</b> box, put each message on its own line: the name, a colon, then the message. For example:</p><p><code>Ilya: are you awake<br>Shane: no<br>Ilya: liar</code></p><p>Then press <b>'Add these messages'</b>. Anyone new is added to the cast for you.</p>" },
   { title: "Whose phone is it?", target: "#fb-blocks .fb-block details", open: "#fb-blocks .fb-block details",
-    text: "<p>In <b>Chat settings</b>, pick whose phone we're looking at. Their messages go on the right in blue, and the other person's go on the left in grey.</p><p>Try swapping whose phone it is, and watch the preview: the messages swap sides. Then pick the one you want.</p><p>The other person's name goes at the top of the chat for you. To show something else there, like a nickname, type it in <b>Name at the top</b>.</p>" },
+    text: "<p>In <b>'Chat settings'</b>, pick whose phone we're looking at. Their messages go on the right in blue, and the other person's go on the left in grey.</p><p>Try swapping whose phone it is, and watch the preview: the messages swap sides. Then pick the one you want.</p><p>The other person's name goes at the top of the chat for you. To show something else there, like a nickname, type it in <b>'Name at the top'</b>.</p>" },
   { title: "Check the messages", target: "#fb-blocks .fb-msgs",
-    text: "<p>Your messages are in a list now. Change any words right in the boxes. The arrows move a message, + adds one under it, and &times; deletes it.</p><p><b>Extras</b> has more: pictures, reactions, and words like Delivered under a message.</p>" },
+    text: "<p>Your messages are in a list now. Change any words right in the boxes. The arrows move a message, + adds one under it, and &times; deletes it.</p><p><b>'Extras'</b> has more: pictures, reactions, and words like 'Delivered' under a message.</p>" },
   { title: "Your characters", target: "#fb-cast",
-    text: "<p>Up in <b>1. Cast</b>, each character has a box. Press a name to open it, then pick a colour for their circle, or add a picture link.</p><p>One-off is fine for a basic chat. You only need a profile if they'll be in lots of chats or apps.</p>" },
+    text: "<p>Up in <b>'1. Cast'</b>, each character has a box. Press a name to open it, then pick a colour for their circle, or add a picture link.</p><p>'One-off' is fine for a basic chat. You only need a profile if they'll be in lots of chats or apps.</p>" },
   { title: "Look at the preview", target: ".fb-preview",
     text: "<p>The preview shows how your chat looks with the default megaskin. It changes as you type, so you can try things out and see what they do.</p>" },
   { title: "Copy it", target: "#fb-copy",
-    text: "<p>Happy with it? Press <b>Copy the HTML</b>. The <a href=\"index.html\">tutorial</a> explains where it goes.</p><p>Download your files too (at the top, under <b>Your work</b>), so you can carry on later. That's it, you've made a chat!</p>" }
+    text: "<p>Happy with it? Press <b>'Copy the HTML'</b>. The <a href=\"index.html\">tutorial</a> explains where it goes.</p><p>Download your files too (at the top, under <b>'Your work'</b>), so you can carry on later. That's it, you've made a chat!</p>" }
 ]);
 </script>
 </body>
