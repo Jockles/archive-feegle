@@ -495,7 +495,8 @@
   function field(path, label, opts) {
     opts = opts || {};
     var h = help(path, opts.help);
-    if (!h || opts.type === "check") return box(path, label, opts) + h;
+    if (!h) return box(path, label, opts);
+    if (opts.type === "check") return '<span class="tut-row">' + box(path, label, opts) + h + "</span>";
     if (label) { opts.labHelp = h; return box(path, label, opts); }
     return opts.wrap ? '<div class="fb-row">' + box(path, label, opts) + h + "</div>" : box(path, label, opts) + h;
   }

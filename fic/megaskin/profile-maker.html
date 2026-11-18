@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="../../style.css">
   <script src="../../theme.js"></script>
   <link rel="stylesheet" href="megaskin.css">
-  <link rel="stylesheet" href="tutorial.css?v=11">
+  <link rel="stylesheet" href="tutorial.css?v=12">
   <style id="live-profile"></style>
   <style>
     .pm { display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-start; }
@@ -73,9 +73,9 @@
         <div class="tut-lab"><label for="pic">Picture link</label> <span class="tut-help" tabindex="0"><span>Optional. A picture for their circle in every app. Upload the picture somewhere like squidge.org first, then copy the link to the picture itself (it usually ends in .jpg or .png) and paste it here.</span></span></div>
         <input type="url" id="pic" placeholder="https://...">
         <label for="piccol">Circle colour (shows when there's no picture, or while it loads)</label>
-        <input type="color" id="piccol" value="#c06a1f"> <span class="tut-help" tabindex="0"><span>Press the colour to pick a new one. With no picture, the circle shows this colour with their first letter in it.</span></span>
+        <div class="tut-row"><input type="color" id="piccol" value="#c06a1f"> <span class="tut-help" tabindex="0"><span>Press the colour to pick a new one. With no picture, the circle shows this colour with their first letter in it.</span></span></div>
         <label for="namecol">Name colour (WhatsApp group names and Discord usernames)</label>
-        <input type="color" id="namecol" value="#d2782a"> <span class="tut-help" tabindex="0"><span>The colour of their name in WhatsApp groups and on Discord. Pick one that's easy to read on both light and dark backgrounds.</span></span>
+        <div class="tut-row"><input type="color" id="namecol" value="#d2782a"> <span class="tut-help" tabindex="0"><span>The colour of their name in WhatsApp groups and on Discord. Pick one that's easy to read on both light and dark backgrounds.</span></span></div>
         <div class="tut-lab"><label for="handle">Handle (leave off the @)</label> <span class="tut-help" tabindex="0"><span>Their username on apps like Twitter, Instagram and Tumblr. Leave off the @, it's added for you.</span></span></div>
         <input type="text" id="handle" value="PuckStan">
         <div class="tut-lab"><label for="email">Email address</label> <span class="tut-help" tabindex="0"><span>Their email address, for the email apps. It doesn't have to be real.</span></span></div>
@@ -143,7 +143,7 @@
 </footer>
 
 <script src="profile-css.js"></script>
-<script src="tutorial.js?v=4"></script>
+<script src="tutorial.js?v=5"></script>
 <script>
 Tutorial([
   { title: "Make a character profile",

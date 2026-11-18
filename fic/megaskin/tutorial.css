@@ -30,17 +30,21 @@
 .fb-row > .tut-help { order: 9; }
 /* a label with its ? beside it */
 div.tut-lab { margin: 8px 0 2px; }
-div.tut-lab > label { display: inline; margin: 0; }
+div.tut-lab > label { margin: 0; }
+/* the ? sits in the middle of its line: anything with a ? in it lines things up down the middle */
+h3:has(> .tut-help), legend:has(> .tut-help), p:has(> .tut-help), div.tut-lab, .tut-row { display: flex; align-items: center; flex-wrap: nowrap; gap: 0 4px; }
+.tut-row { display: inline-flex; vertical-align: middle; }
+.help-on h3:has(> .tut-help), .help-on legend:has(> .tut-help), .help-on p:has(> .tut-help), .help-on div.tut-lab, .help-on .tut-row { flex-wrap: wrap; }
 html:not(.help-on) .tut-help { display: inline-block; position: relative; vertical-align: middle; margin: -6px 0; padding: 4px; line-height: 1; flex: none; }
 html:not(.help-on) .tut-help::before { content: "?"; display: inline-block; width: 10px; height: 10px; line-height: 10px; border-radius: 50%; text-align: center;
   font-size: 8px; font-weight: bold; cursor: help; background: var(--tut-q-fill); color: var(--tut-q-ink); border: 1px solid var(--tut-q-ink); }
-html:not(.help-on) .tut-help > span { display: none; position: absolute; z-index: 40; top: 100%; left: 0; width: 280px; max-width: calc(100vw - 32px); margin-top: 4px;
+html:not(.help-on) .tut-help > span { display: none; position: fixed; z-index: 60; top: 0; left: 0; width: 280px; max-width: calc(100vw - 32px);
   padding: 6px 9px; font-size: 13px; line-height: 1.4; font-weight: normal; font-family: "Lucida Grande", "Lucida Sans Unicode", Verdana, Helvetica, sans-serif; text-align: left; background: var(--page, #fff); color: var(--ink, #2a2a2a);
   border: 1px solid var(--tut-q-edge); border-radius: 6px; box-shadow: 0 3px 12px rgba(0, 0, 0, 0.2); }
 html:not(.help-on) .tut-help:hover > span, html:not(.help-on) .tut-help:focus > span { display: block; }
 @media (max-width: 600px) {
   /* on a phone the help pops up along the bottom of the screen instead */
-  html:not(.help-on) .tut-help > span { position: fixed; top: auto; bottom: 16px; left: 16px !important; right: 16px; width: auto; max-width: none; margin: 0; font-size: 14px; }
+  html:not(.help-on) .tut-help > span { position: fixed; top: auto !important; bottom: 16px; left: 16px !important; right: 16px; width: auto; max-width: none; margin: 0; font-size: 14px; }
 }
 .help-on .tut-help { display: block; box-sizing: border-box; flex: 1 0 100%; order: 9; margin: 4px 0 8px; padding: 5px 8px; font-size: 0.85rem; font-weight: normal; line-height: 1.4;
   border-left: 3px solid var(--hover, #1a8f6a); background: var(--tag-fill, #e3f1ec); border-radius: 0 4px 4px 0; }
