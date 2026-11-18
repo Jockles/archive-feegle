@@ -6,7 +6,7 @@
   <title>Megaskin, Chapter 4: iMessage | jockles.com</title>
   <link rel="stylesheet" href="../../style.css">
   <script src="../../theme.js"></script>
-  <link rel="stylesheet" href="megaskin.css?v=7f6675d9" id="creator-style">
+  <link rel="stylesheet" href="megaskin.css?v=b37a174d" id="creator-style">
 </head>
 <body>
 <header>
@@ -70,7 +70,7 @@
     <p class="msg in pic text"><span class="hide"><em>Ilya:</em> </span>[A blurry photo of the same cat, now asleep on Ilya's hotel bed]</p>
     <p class="msg out"><span class="hide"><em>Shane:</em> </span>call me?</p>
     <p class="imsg-status">Read 11:52 PM</p>
-    <p class="msg in typing-indicator"><span class="hide"><em>Ilya:</em> typing...</span><span></span><span></span><span></span></p>
+    <p class="msg in typing-indicator"><span class="hide"><em>Ilya</em> is typing...</span><span></span><span></span><span></span></p>
   </div>
   <p class="imsg-input"><span class="imsg-plus">+</span><span class="hide"> </span><span class="imsg-field">iMessage<span class="hide"> </span><span class="imsg-mic ic ic-mic">&#127908;</span></span></p>
 </div>
@@ -91,7 +91,7 @@
     &lt;p class="msg in pic text"&gt;&lt;span class="hide"&gt;&lt;em&gt;Ilya:&lt;/em&gt; &lt;/span&gt;[A blurry photo of the same cat, now asleep on Ilya's hotel bed]&lt;/p&gt;
     &lt;p class="msg out"&gt;&lt;span class="hide"&gt;&lt;em&gt;Shane:&lt;/em&gt; &lt;/span&gt;call me?&lt;/p&gt;
     &lt;p class="imsg-status"&gt;Read 11:52 PM&lt;/p&gt;
-    &lt;p class="msg in typing-indicator"&gt;&lt;span class="hide"&gt;&lt;em&gt;Ilya:&lt;/em&gt; typing...&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/p&gt;
+    &lt;p class="msg in typing-indicator"&gt;&lt;span class="hide"&gt;&lt;em&gt;Ilya&lt;/em&gt; is typing...&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/p&gt;
   &lt;/div&gt;
   &lt;p class="imsg-input"&gt;&lt;span class="imsg-plus"&gt;+&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="imsg-field"&gt;iMessage&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="imsg-mic ic ic-mic"&gt;&amp;#127908;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
 &lt;/div&gt;</code></pre>
@@ -295,25 +295,25 @@
 
 <p>The three dots that show someone is typing are a message bubble with three empty spans in it, so they belong to whoever is typing. Add <code>typing-indicator</code> to a message with <code>in</code> for someone else:</p>
 
-<div class="mob imsg theme-auto"><div class="mob-body"><p class="msg in typing-indicator"><span class="hide"><em>Ilya:</em> typing...</span><span></span><span></span><span></span></p></div></div>
+<div class="mob imsg theme-auto"><div class="mob-body"><p class="msg in typing-indicator"><span class="hide"><em>Ilya</em> is typing...</span><span></span><span></span><span></span></p></div></div>
 
-<pre><code>&lt;p class="msg in typing-indicator"&gt;&lt;span class="hide"&gt;&lt;em&gt;Ilya:&lt;/em&gt; typing...&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/p&gt;</code></pre>
+<pre><code>&lt;p class="msg in typing-indicator"&gt;&lt;span class="hide"&gt;&lt;em&gt;Ilya&lt;/em&gt; is typing...&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/p&gt;</code></pre>
 
 <p>Or <code>out</code> for whoever owns the phone, halfway through writing something - the dots go on the right, in a blue bubble:</p>
 
-<div class="mob imsg theme-auto"><div class="mob-body"><p class="msg out typing-indicator"><span class="hide"><em>Shane:</em> typing...</span><span></span><span></span><span></span></p></div></div>
+<div class="mob imsg theme-auto"><div class="mob-body"><p class="msg out typing-indicator"><span class="hide"><em>Shane</em> is typing...</span><span></span><span></span><span></span></p></div></div>
 
-<pre><code>&lt;p class="msg out typing-indicator"&gt;&lt;span class="hide"&gt;&lt;em&gt;Shane:&lt;/em&gt; typing...&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/p&gt;</code></pre>
+<pre><code>&lt;p class="msg out typing-indicator"&gt;&lt;span class="hide"&gt;&lt;em&gt;Shane&lt;/em&gt; is typing...&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/p&gt;</code></pre>
 
 <p>In a group chat, put their name above it, the same as their messages:</p>
 
-<div class="mob imsg theme-auto"><div class="mob-body"><p class="who">Hayden<span class="hide">:</span></p>
-<p class="msg in typing-indicator"><span class="hide">typing...</span><span></span><span></span><span></span></p></div></div>
+<div class="mob imsg theme-auto"><div class="mob-body"><p class="who">Hayden</p>
+<p class="msg in typing-indicator"><span class="hide">is typing...</span><span></span><span></span><span></span></p></div></div>
 
-<pre><code>&lt;p class="who"&gt;Hayden&lt;span class="hide"&gt;:&lt;/span&gt;&lt;/p&gt;
-&lt;p class="msg in typing-indicator"&gt;&lt;span class="hide"&gt;typing...&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/p&gt;</code></pre>
+<pre><code>&lt;p class="who"&gt;Hayden&lt;/p&gt;
+&lt;p class="msg in typing-indicator"&gt;&lt;span class="hide"&gt;is typing...&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/p&gt;</code></pre>
 
-<p>The hidden "typing..." is for readers with the workskin switched off.</p>
+<p>The hidden "is typing..." is for readers with the workskin switched off.</p>
 
 <h3 id="s4-11">4.11 Message Bar</h3>
 

@@ -95,7 +95,7 @@
       <p class="wa-caption">she says she wants pierogi too</p>
       <p class="wa-time">14:24</p>
     </div>
-    <div class="msg in tail"><p class="hide"><em>Lily:</em> typing...</p><p class="typing-indicator"><span></span><span></span><span></span></p></div>
+    <div class="msg in tail"><p class="hide"><em>Lily</em> is typing...</p><p class="typing-indicator"><span></span><span></span><span></span></p></div>
   </div>
   <p class="wa-input">
     <span class="wa-field">
@@ -200,7 +200,7 @@
       &lt;p class="wa-caption"&gt;she says she wants pierogi too&lt;/p&gt;
       &lt;p class="wa-time"&gt;14:24&lt;/p&gt;
     &lt;/div&gt;
-    &lt;div class="msg in tail"&gt;&lt;p class="hide"&gt;&lt;em&gt;Lily:&lt;/em&gt; typing...&lt;/p&gt;&lt;p class="typing-indicator"&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+    &lt;div class="msg in tail"&gt;&lt;p class="hide"&gt;&lt;em&gt;Lily&lt;/em&gt; is typing...&lt;/p&gt;&lt;p class="typing-indicator"&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
   &lt;/div&gt;
   &lt;p class="wa-input"&gt;
     &lt;span class="wa-field"&gt;
@@ -835,15 +835,15 @@
 
 <p>To show someone is typing, put three empty spans in a <code>typing-indicator</code> paragraph, inside a message bubble from them. It gets the same bubble as their messages, tail and all. The hidden line says who it is for readers with the workskin off:</p>
 
-<div class="mob wa theme-auto"><div class="mob-body"><div class="msg in tail"><p class="hide"><em>Lily:</em> typing...</p><p class="typing-indicator"><span></span><span></span><span></span></p></div></div></div>
+<div class="mob wa theme-auto"><div class="mob-body"><div class="msg in tail"><p class="hide"><em>Lily</em> is typing...</p><p class="typing-indicator"><span></span><span></span><span></span></p></div></div></div>
 
-<pre><code>&lt;div class="msg in tail"&gt;&lt;p class="hide"&gt;&lt;em&gt;Lily:&lt;/em&gt; typing...&lt;/p&gt;&lt;p class="typing-indicator"&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;</code></pre>
+<pre><code>&lt;div class="msg in tail"&gt;&lt;p class="hide"&gt;&lt;em&gt;Lily&lt;/em&gt; is typing...&lt;/p&gt;&lt;p class="typing-indicator"&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;</code></pre>
 
 <p>Use <code>out</code> instead for whoever owns the phone, halfway through writing something, and the dots go on the right in a green bubble:</p>
 
-<div class="mob wa theme-auto"><div class="mob-body"><div class="msg out tail"><p class="hide"><em>Shane:</em> typing...</p><p class="typing-indicator"><span></span><span></span><span></span></p></div></div></div>
+<div class="mob wa theme-auto"><div class="mob-body"><div class="msg out tail"><p class="hide"><em>Shane</em> is typing...</p><p class="typing-indicator"><span></span><span></span><span></span></p></div></div></div>
 
-<pre><code>&lt;div class="msg out tail"&gt;&lt;p class="hide"&gt;&lt;em&gt;Shane:&lt;/em&gt; typing...&lt;/p&gt;&lt;p class="typing-indicator"&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;</code></pre>
+<pre><code>&lt;div class="msg out tail"&gt;&lt;p class="hide"&gt;&lt;em&gt;Shane&lt;/em&gt; is typing...&lt;/p&gt;&lt;p class="typing-indicator"&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;</code></pre>
 
 <p>In a group chat, give it the person's picture and name like any of their messages (see <a href="#heading">Profile Pictures in Groups</a>):</p>
 
@@ -851,8 +851,8 @@
     <div class="wa-row">
       <p class="wa-pfp colour4">HP</p>
       <div class="msg in tail">
-        <p class="who colour4">Hayden<span class="hide">:</span></p>
-        <p class="hide">typing...</p>
+        <p class="who colour4">Hayden</p>
+        <p class="hide">is typing...</p>
         <p class="typing-indicator"><span></span><span></span><span></span></p>
       </div>
     </div>
@@ -861,8 +861,8 @@
 <pre><code>&lt;div class="wa-row"&gt;
   &lt;p class="wa-pfp colour4"&gt;HP&lt;/p&gt;
   &lt;div class="msg in tail"&gt;
-    &lt;p class="who colour4"&gt;Hayden&lt;span class="hide"&gt;:&lt;/span&gt;&lt;/p&gt;
-    &lt;p class="hide"&gt;typing...&lt;/p&gt;
+    &lt;p class="who colour4"&gt;Hayden&lt;/p&gt;
+    &lt;p class="hide"&gt;is typing...&lt;/p&gt;
     &lt;p class="typing-indicator"&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/p&gt;
   &lt;/div&gt;
 &lt;/div&gt;</code></pre>
