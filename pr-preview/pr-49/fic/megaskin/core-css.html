@@ -24,7 +24,7 @@
   <!-- /site meta -->
   <link rel="stylesheet" href="../../style.css">
   <script src="../../theme.js"></script>
-  <link rel="stylesheet" href="megaskin.css?v=8f926c8a" id="creator-style">
+  <link rel="stylesheet" href="megaskin.css?v=5fac2cdd" id="creator-style">
 </head>
 <body>
 <header>
@@ -335,17 +335,31 @@
 
 <h3 id="s3-10">3.10 Flashing Cursor</h3>
 
-<pre><code>#workskin img.cursor {
-  display: inline;
-  width: auto;
+<pre><code>#workskin .cursor {
+  display: inline-block;
+  width: 0.2em;
   height: 1.2em;
-  margin: -0.2em -1em -0.2em -0.08em;
+  margin: -0.2em 0;
   padding: 0;
-  border: 0;
+  overflow: hidden;
+  text-indent: -100em;
+  white-space: normal;
   vertical-align: -0.25em;
+  background-image: url(https://images.squidge.org/images/2026/11/18/cursor-flash-black.gif);
+  background-repeat: no-repeat;
+  background-position: left center;
+  background-size: 1.2em 1.2em;
+}
+
+#workskin .theme-dark .cursor { background-image: url(https://images.squidge.org/images/2026/11/17/cursor-flash.gif); }
+
+@media (prefers-color-scheme: dark) {
+  #workskin .theme-auto .cursor { background-image: url(https://images.squidge.org/images/2026/11/17/cursor-flash.gif); }
 }</code></pre>
 
-<p>The cursor is a moving picture (a gif) of a flashing line, put straight into the text. <code>height: 1.2em</code> makes it as tall as a line of words whatever the text size, and <code>width: auto</code> keeps it square. The line is near the left edge of the square, so the negative margins pull the words in around it: <code>-1em</code> on the right takes away the empty part of the square, and the tiny <code>-0.08em</code> on the left closes the gap before it. The <code>-0.2em</code> above and below stop it pushing the line taller than the words. <code>vertical-align</code> drops it a little so it sits level with the words.</p>
+<p>The cursor is a moving picture (a gif) of a flashing line, set as the background of a thin box, the same way the icons work. <code>text-indent: -100em</code> pushes the typed <code>|</code> far off to the left, and <code>overflow: hidden</code> hides it, so only the picture shows. The picture is square with the line near its left edge, so <code>background-size</code> makes it as tall as the box, <code>background-position: left center</code> lines the line up with the box's left edge, and the <code>0.2em</code> width cuts off the empty rest of the square. <code>vertical-align</code> drops it a little so it sits level with the words, and the <code>-0.2em</code> margins above and below stop it making the line taller.</p>
+
+<p>The black cursor is the default. Because it's a background, the skin can swap it: in a <code>theme-dark</code> chat it's the white one, and in a <code>theme-auto</code> chat it turns white when the reader's device is in dark mode.</p>
 
 <h3 id="s3-11">3.11 Links That Go Nowhere</h3>
 

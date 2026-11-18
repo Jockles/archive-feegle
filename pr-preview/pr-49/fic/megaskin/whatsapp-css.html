@@ -24,7 +24,7 @@
   <!-- /site meta -->
   <link rel="stylesheet" href="../../style.css">
   <script src="../../theme.js"></script>
-  <link rel="stylesheet" href="megaskin.css?v=8f926c8a" id="creator-style">
+  <link rel="stylesheet" href="megaskin.css?v=5fac2cdd" id="creator-style">
 </head>
 <body>
 <header>
@@ -365,7 +365,11 @@
 
 <p>For a half-typed message, <code>typed</code> undoes the <code>nowrap</code> so long messages wrap, and makes the words dark (light in dark mode):</p>
 
-<pre><code>#workskin .wa .wa-field .wa-ph.typed { white-space: normal; color: #111b21; }</code></pre>
+<pre><code>#workskin .wa .wa-field .wa-ph.typed { white-space: normal; color: #111b21; }
+
+#workskin .wa .wa-field .cursor { display: inline-block; width: 0.2em; padding: 0; }</code></pre>
+
+<p>Every span in the bar is a table cell, which would make a flashing <code>cursor</code> (from the core) a cell of its own and stretch the bar. The second rule keeps it a thin box in the line of words.</p>
 
 <h3 id="s7-13">7.13 Link Cards</h3>
 

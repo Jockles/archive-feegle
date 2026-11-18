@@ -223,17 +223,28 @@
   overflow: hidden;
 }
 
-/* a flashing cursor at the end of a half-written message, in any app, as a picture:
-   <img class="cursor" src="https://images.squidge.org/images/2026/11/17/cursor-flash.gif" alt="blinking cursor" height="20">
-   It's square with the line near its left edge, so the negative margins trim the empty space around the line */
-#workskin img.cursor {
-  display: inline;
-  width: auto;
+/* a flashing cursor at the end of a half-written message, in any app: <span class="cursor">|</span>
+   It's a moving picture, black in light chats and white in dark ones. The typed | only shows for readers with the workskin off */
+#workskin .cursor {
+  display: inline-block;
+  width: 0.2em;
   height: 1.2em;
-  margin: -0.2em -1em -0.2em -0.08em;
+  margin: -0.2em 0;
   padding: 0;
-  border: 0;
+  overflow: hidden;
+  text-indent: -100em;
+  white-space: normal;
   vertical-align: -0.25em;
+  background-image: url(https://images.squidge.org/images/2026/11/18/cursor-flash-black.gif);
+  background-repeat: no-repeat;
+  background-position: left center;
+  background-size: 1.2em 1.2em;
+}
+
+#workskin .theme-dark .cursor { background-image: url(https://images.squidge.org/images/2026/11/17/cursor-flash.gif); }
+
+@media (prefers-color-scheme: dark) {
+  #workskin .theme-auto .cursor { background-image: url(https://images.squidge.org/images/2026/11/17/cursor-flash.gif); }
 }
 
 /* ---------- Links that go nowhere (the colours are in each module) ---------- */
@@ -1526,6 +1537,9 @@
 
 /* a half-typed message: dark text that wraps onto more lines */
 #workskin .wa .wa-field .wa-ph.typed { white-space: normal; color: #111b21; }
+
+/* a flashing cursor in the typed message stays in the line of words, not a cell of its own */
+#workskin .wa .wa-field .cursor { display: inline-block; width: 0.2em; padding: 0; }
 
 #workskin .wa .wa-mic {
   position: absolute;

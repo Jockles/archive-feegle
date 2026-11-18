@@ -1128,13 +1128,13 @@
 
 <h3 id="cursor">A Flashing Cursor</h3>
 
-<p>For a message someone's still writing, put the flashing cursor picture straight after the last word, with the class <code>cursor</code>. It works in any app - in a typing bar, a draft, a half-written comment, wherever. The workskin sizes it to match the words, and <code>height="20"</code> keeps it small for readers with the workskin switched off:</p>
+<p>For a message someone's still writing, put a <code>cursor</code> span straight after the last word, with a typed <code>|</code> inside it. It shows up as a flashing cursor, in any app - in a typing bar, a draft, a half-written comment, wherever. It's black in light chats and white in dark ones, and switches with <code>theme-auto</code>. The typed line only shows for readers with the workskin switched off:</p>
 
-<div class="mob imsg theme-auto"><p class="imsg-input"><span class="imsg-plus">+</span><span class="hide"> </span><span class="imsg-field typed">ok so about last night<img class="cursor" src="https://images.squidge.org/images/2026/11/17/cursor-flash.gif" alt="blinking cursor" height="20"><span class="hide"> </span><span class="imsg-send ic ic-imsg-send">&#8593;</span></span></p></div>
+<div class="mob imsg theme-auto"><p class="imsg-input"><span class="imsg-plus">+</span><span class="hide"> </span><span class="imsg-field typed">ok so about last night<span class="cursor">|</span><span class="hide"> </span><span class="imsg-send ic ic-imsg-send">&#8593;</span></span></p></div>
 
-<pre><code>&lt;div class="mob imsg theme-auto"&gt;&lt;p class="imsg-input"&gt;&lt;span class="imsg-plus"&gt;+&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="imsg-field typed"&gt;ok so about last night&lt;img class="cursor" src="https://images.squidge.org/images/2026/11/17/cursor-flash.gif" alt="blinking cursor" height="20"&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="imsg-send ic ic-imsg-send"&gt;&amp;#8593;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;</code></pre>
+<pre><code>&lt;div class="mob imsg theme-auto"&gt;&lt;p class="imsg-input"&gt;&lt;span class="imsg-plus"&gt;+&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="imsg-field typed"&gt;ok so about last night&lt;span class="cursor"&gt;|&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="imsg-send ic ic-imsg-send"&gt;&amp;#8593;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;</code></pre>
 
-<p>The bit that matters is just <code>&lt;img class="cursor" src="https://images.squidge.org/images/2026/11/17/cursor-flash.gif" alt="blinking cursor" height="20"&gt;</code> - the rest is iMessage's typing bar, from the iMessage chapter.</p>
+<p>The bit that matters is just <code>&lt;span class="cursor"&gt;|&lt;/span&gt;</code> - the rest is iMessage's typing bar, from the iMessage chapter.</p>
 
 <h3 id="together">Putting It Together</h3>
 
