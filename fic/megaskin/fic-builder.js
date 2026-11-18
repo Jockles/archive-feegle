@@ -292,7 +292,7 @@
     L = L.concat(ind(body, 2));
     L.push("  </div>");
     if (b.bar === "empty") L.push('  <p class="imsg-input"><span class="imsg-plus">+</span><span class="hide"> </span><span class="imsg-field">iMessage<span class="hide"> </span><span class="imsg-mic ic ic-mic">&#127908;</span></span></p>');
-    if (b.bar === "typed") L.push('  <p class="imsg-input"><span class="imsg-plus">+</span><span class="hide"> </span><span class="imsg-field typed">' + fmt(b.barText) + '<span class="hide"> </span><span class="imsg-send ic ic-imsg-send">&#8593;</span></span></p>');
+    if (b.bar === "typed") L.push('  <p class="imsg-input"><span class="imsg-plus">+</span><span class="hide"> </span><span class="imsg-field typed">' + fmt(b.barText) + (b.cursor ? '<span class="cursor">|</span>' : "") + '<span class="hide"> </span><span class="imsg-send ic ic-imsg-send">&#8593;</span></span></p>');
     L.push("</div>");
     return L.join("\n");
   }
@@ -413,7 +413,7 @@
     if (b.bar === "empty" || b.bar === "typed") {
       var typed = b.bar === "typed";
       L = L.concat(ind(['<p class="wa-input">', '  <span class="wa-field">', '    <span class="ic ic-emoji">&#9786;</span>',
-        typed ? '    <span class="wa-ph typed">' + fmt(b.barText) + "</span>" : '    <span class="wa-ph">Message</span>',
+        typed ? '    <span class="wa-ph typed">' + fmt(b.barText) + (b.cursor ? '<span class="cursor">|</span>' : "") + "</span>" : '    <span class="wa-ph">Message</span>',
         '    <span class="wa-ic ic ic-paperclip">&#128206;</span>'].concat(typed ? [] : ['    <span class="wa-ic ic ic-camera">&#128247;</span>'])
         .concat(["  </span>", typed ? '  <span class="wa-mic ic ic-wa-send">&#10148;</span>' : '  <span class="wa-mic ic ic-wa-mic">&#127908;</span>', "</p>"]), 1));
     }
@@ -488,6 +488,7 @@
     "blocks.N.bg": "The pattern behind the messages.",
     "blocks.N.bar": "The box at the bottom where you'd type. 'Empty' shows it with nothing in it. 'Something half-typed' shows a message the phone owner hasn't sent yet.",
     "blocks.N.barText": "What the phone owner is halfway through typing.",
+    "blocks.N.cursor": "Adds a flashing line at the end of the half-typed message, as if the phone owner is still typing it.",
     "blocks.N.gp.colour": "The group's picture works just like a character's: a coloured circle with letters in it, or a picture link, which replaces the circle and letters.",
     "blocks.N.script": "The quickest way to add messages. Put each message on its own line: the name, a colon, then the message, like 'Ilya: are you awake'. Then press 'Add these messages', and they're added to the list above.",
     "blocks.N.msgs.N.from:sys": "Date or notice lines are the small lines in the middle of the chat. The second box is what the line says, like 'Today 11:48 PM' or 'Lily left the group'. The buttons: the arrows move the line, + adds a new message under it, and &times; deletes it. To turn it into a message, change the first box to a character.",
@@ -687,7 +688,7 @@
         h.push("<div>" + field(P + ".bg", "Background", { type: "select", options: BACKGROUNDS.map(function (x) { return [x, x ? x.charAt(0).toUpperCase() + x.slice(1) : "Normal"]; }) }) + "</div>");
       }
       h.push("<div>" + field(P + ".bar", "Message bar at the bottom", { type: "select", re: true, options: [["none", "None"], ["empty", "Empty"], ["typed", "Something half-typed"]] }) + "</div>");
-      if (b.bar === "typed") h.push("<div>" + field(P + ".barText", "Half-typed message", {}) + "</div>");
+      if (b.bar === "typed") h.push("<div>" + field(P + ".barText", "Half-typed message", {}) + field(P + ".cursor", "Flashing cursor", { type: "check" }) + "</div>");
       h.push("</div>");
       if (wa && b.group && b.header === "bar") {
         // the group's picture in the header
