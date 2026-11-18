@@ -8,6 +8,7 @@
 //   castCard(), blockCard(), msgRow()   draw the boxes on the left
 //   data-bind    each box says which bit of S it fills in, e.g. "blocks.2.msgs.0.text"
 //   data-act     each button says what it does, e.g. "msg-del:2:0" (block 2, message 0)
+//   HELP         the help under each box, shown when Help text is pressed
 // To add a new app: a newBlock() default, an ...HTML() function, a line in
 // allHTML(), and a button on the page.
 (function () {
@@ -22,6 +23,7 @@
   ];
   var COLOURS = { 1: "#b8651f", 2: "#5f6368", 3: "#b03a6f", 4: "#1f8a72", 5: "#2f68c8",
     6: "#7b52c4", 7: "#c0392b", 8: "#4a8a25", 9: "#9a7412", 10: "#1f7fa3" };
+  var COLOUR_NAMES = { 1: "orange", 2: "grey", 3: "pink", 4: "teal", 5: "blue", 6: "purple", 7: "red", 8: "green", 9: "mustard", 10: "sea blue" };
   var BACKGROUNDS = ["", "beige", "black", "blush", "dusk", "forest", "lilac", "navy", "night",
     "ocean", "plum", "sage", "sky", "slate", "sunset", "white"];
   var KINDS = {
@@ -81,6 +83,7 @@
     b.msgs = ex.msgs.map(function (line) {
       var x = line[2] || {};
       var m = newMsg(ids[line[0]] || line[0], line[1], x.time);
+      if (x.by) m.by = ids[x.by];
       ["tick", "waReacts", "waCount", "sms", "big", "edited", "status"].forEach(function (k) { if (x[k] !== undefined) m[k] = x[k]; });
       m.reacts = (x.reacts || []).map(function (r) { return { by: ids[r[0]], emoji: r[1] }; });
       m.photos = (x.photos || []).map(function (p) { return { url: p.url || "", alt: p.alt || "", desc: p.desc || "", land: !!p.land }; });
@@ -107,8 +110,9 @@
   function esc(v) { return String(v == null ? "" : v).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
   function char(id) { return S.cast.filter(function (c) { return c.id === id; })[0]; }
   // profiles pasted into the "Profiles you already have" box: [slug, name] for each
-  function pastedProfiles() {
-    var css = S.pasted || "", out = [];
+  function pastedProfiles(css) {
+    css = css || S.pasted || "";
+    var out = [];
     var re = /\.pfp\.pfp-([a-z0-9-]+)/g, m;
     while ((m = re.exec(css))) {
       var slug = m[1];
@@ -196,7 +200,7 @@
       tlCount += 1;
       return '<a class="tl egg" href="#t' + tlCount + '"><span class="orig">' + a + '</span><span class="tltn"><span class="hide"> (</span>' + b + '<span class="hide">)</span></span></a>';
     });
-    s = s.replace(/~~(.+?)~~/g, '<span class="del">$1</span>');
+    s = s.replace(/~~(.+?)~~/g, "$1"); // crossed-out text left over from older saved work
     s = s.replace(/&lt;&lt;(.+?)&gt;&gt;/g, '<span class="fake-link">$1</span>');
     return s;
   }
@@ -204,6 +208,12 @@
     return String(text || "").replace(/\[\[([^\]|]+)\|[^\]]+\]\]/g, "$1").replace(/\{\{([^}|]+)\|[^}]+\}\}/g, "$1")
       .replace(/~~(.+?)~~/g, "$1").replace(/<<(.+?)>>/g, "$1");
   }
+  // a typing row's person (picked in its second box): whoever was picked, or else the first person who isn't the phone owner
+  function typer(b, m) {
+    if (!char(m.by)) { var o = others(b)[0] || S.cast.filter(function (c) { return c.id !== b.pov; })[0] || char(b.pov); m.by = o ? o.id : ""; }
+    return char(m.by);
+  }
+  function typingHide(c, named) { return (named ? "<em>" + esc(nameOf(c)) + "</em> " : "") + "is typing..."; }
   function hideLabel(name) { return '<span class="hide"><em>' + esc(name) + ":</em> </span>"; }
   function ind(lines, n) { var pad = new Array(n + 1).join("  "); return lines.map(function (l) { return pad + l; }); }
 
@@ -243,7 +253,13 @@
     var body = [];
     b.msgs.forEach(function (m) {
       if (m.from === "sys") { body.push('<p class="mob-sys">' + fmt(m.text) + "</p>"); last = ""; return; }
-      if (m.from === "typing") { body.push('<p class="typing-indicator"><span></span><span></span><span></span></p>'); last = ""; return; }
+      if (m.from === "typing") {
+        var tc = typer(b, m); if (!tc) return;
+        var tOut = tc.id === b.pov, tWho = b.group && !tOut;
+        if (tWho && last !== tc.id) body.push('<p class="who">' + (isProfile(tc) ? profileName(tc) : esc(nameOf(tc))) + "</p>");
+        body.push('<p class="msg ' + (tOut ? "out" : "in") + ' typing-indicator"><span class="hide">' + typingHide(tc, !tWho) + "</span><span></span><span></span><span></span></p>");
+        last = ""; return;
+      }
       var c = char(m.from); if (!c) return;
       var out = m.from === b.pov, side = out ? "out" : "in";
       var showWho = b.group && !out && last !== m.from;
@@ -323,7 +339,17 @@
     var body = [];
     b.msgs.forEach(function (m) {
       if (m.from === "sys") { body.push('<p class="mob-sys">' + fmt(m.text) + "</p>"); last = ""; return; }
-      if (m.from === "typing") { body.push('<p class="typing">' + fmt(m.text || "typing...") + "</p>"); return; }
+      if (m.from === "typing") {
+        var tc = typer(b, m); if (!tc) return;
+        var tOut = tc.id === b.pov, tWho = b.group && !tOut;
+        var tb = ['<div class="msg ' + (tOut ? "out" : "in") + ' tail typing-indicator">'];
+        if (tWho) tb.push('  <p class="who ' + (isProfile(tc) ? "pfp-" + slugOf(tc) : colourClass(tc)) + '">' + waName(tc) + "</p>");
+        tb.push('  <p class="hide">' + typingHide(tc, !tWho) + "</p>", "  <p><span></span><span></span><span></span></p>", "</div>");
+        if (!tWho) tb = [tb[0] + tb.slice(1, -1).map(function (x) { return x.trim(); }).join("") + "</div>"];
+        if (tWho && b.pics) tb = ['<div class="wa-row">', "  " + waPfp(tc)].concat(ind(tb, 1)).concat(["</div>"]);
+        body = body.concat(tb);
+        last = ""; return;
+      }
       var c = char(m.from); if (!c) return;
       var out = m.from === b.pov, side = out ? "out" : "in";
       var first = last !== m.from;
@@ -423,11 +449,86 @@
     var o = ks.reduce(function (o, k) { return o[k]; }, S);
     o[last] = v;
   }
+  // help under each box, shown when Help text is pressed (tutorial.js and tutorial.css).
+  // Paths are written with N for any number. Each one shows once, by the first box it fits.
+  // A message row's first box has its own help for date or notice lines (:sys) and typing lines (:typing).
+  var PIC = "Upload the picture somewhere like squidge.org first, then copy the link to the picture itself (it usually ends in .jpg or .png) and paste it here.";
+  var ALT = "A few words saying what's in the picture. Screen readers read this out for anyone who can't see it.";
+  var HELP = {
+    "cast.N.name": "The character's name, the way you want it to show in the chats.",
+    "cast.N.kind": "'One-off' is the quickest: they just get a coloured circle. Pick 'New profile' if they turn up in lots of chats or apps, so they look the same everywhere. 'Edit an existing profile' uses one of the tutorial's example characters, or a profile you've added through the CSS upload.",
+    "cast.N.colour": "The colour of their circle, which shows their initials. If you add a picture link below, the picture is used instead.",
+    "cast.N.showInitials": "The letters in the coloured circle. Leave the box empty to use the first letter of their name, or untick it for an empty circle. A picture link replaces the circle and its letters.",
+    "cast.N.pic": "Optional. A picture replaces the coloured circle and initials as their profile picture, so the colour and initials above won't show. " + PIC,
+    "cast.N.alt": ALT,
+    "cast.N.land": "Tick this if the picture is wider than it is tall, so it isn't squashed.",
+    "cast.N.num": "Only for WhatsApp. Someone who isn't saved in the phone shows as a phone number instead of a name. Leave it empty otherwise.",
+    "cast.N.example": "Pick which profile to use.",
+    "cast.N.prof.slug": "A short label for this profile that the skin uses to find it. Small letters, numbers and dashes only, no spaces. It's filled in from the name for you.",
+    "cast.N.prof.pic": "A picture for their circle in every app. " + PIC,
+    "cast.N.prof.piccol": "The circle's colour when there's no picture, or while the picture loads.",
+    "cast.N.prof.namecol": "The colour of their name in WhatsApp groups and on Discord.",
+    "cast.N.prof.handle": "Their username on apps like Instagram and Tumblr, without the @.",
+    "cast.N.prof.email": "Their email address, for the email apps. It doesn't have to be real.",
+    "cast.N.prof.saved.N.as": "What they're saved as on someone else's phone, like 'Mum' or a nickname. Pick whose phone first.",
+    "cast.N.prof.dccolon": "Tick this to give them a different name colour on Discord, then pick the colour.",
+    "cast.N.prof.tbsq": "Tumblr pictures can be a circle or a square with rounded corners. Tick this for the square.",
+    "cast.N.prof.accounts.N.acc": "A short label for the extra account, like 'burner' or 'work'. Small letters and dashes only. Then pick the app and fill in only what's different.",
+    "cast.N.prof.wallcolon": "Tick this to colour the background of WhatsApp chats on their phone, then pick the colour.",
+    "cast.N.prof.wallpic": "Or a picture for the background instead. " + PIC,
+    "blocks.N.pov": "Whose phone we're looking at. Their messages go on the right, and everyone else's go on the left.",
+    "blocks.N.group": "Tick this for a group chat. Everyone's name shows by their messages.",
+    "blocks.N.pics": "Shows each person's picture by their messages.",
+    "blocks.N.title": "The name at the very top. In a chat between two people, it's the other person's name. In a group, it's the group's name.",
+    "blocks.N.sub": "The small line under the name. Delete it if you don't want one.",
+    "blocks.N.theme": "A light or dark phone. 'Auto' follows the reader's own light or dark setting.",
+    "blocks.N.width": "'Phone width' looks like a phone. 'Full width' fills the page.",
+    "blocks.N.scroll": "For a long chat. 'Scroll inside the phone' keeps it phone-sized and readers scroll the messages. 'Show it all' makes the phone as long as the chat.",
+    "blocks.N.header": "'Simple' shows the name. 'With picture and icons' adds their picture and the call buttons, like the real app.",
+    "blocks.N.bg": "The pattern behind the messages.",
+    "blocks.N.bar": "The box at the bottom where you'd type. 'Empty' shows it with nothing in it. 'Something half-typed' shows a message the phone owner hasn't sent yet.",
+    "blocks.N.barText": "What the phone owner is halfway through typing.",
+    "blocks.N.gp.colour": "The group's picture works just like a character's: a coloured circle with letters in it, or a picture link, which replaces the circle and letters.",
+    "blocks.N.script": "The quickest way to add messages. Put each message on its own line: the name, a colon, then the message, like 'Ilya: are you awake'. Then press 'Add these messages', and they're added to the list above.",
+    "blocks.N.msgs.N.from:sys": "Date or notice lines are the small lines in the middle of the chat. The second box is what the line says, like 'Today 11:48 PM' or 'Lily left the group'. The buttons: the arrows move the line, + adds a new message under it, and &times; deletes it. To turn it into a message, change the first box to a character.",
+    "blocks.N.msgs.N.from:typing": "Typing dots show someone is typing: three dots in a bubble, the same as their messages. The second box chooses who is typing. Pick the phone owner to put the dots on their side, halfway through writing something. The buttons: the arrows move the dots, + adds a new message under them, and &times; deletes them. To turn it into a message, change the first box to a character.",
+    "blocks.N.msgs.N.from": "The first box chooses who wrote the message, from the cast list above. You can also change it to a date or notice line, or 'Typing dots'. The second box is the message itself: type it just like you'd send it. In WhatsApp, the third box is the time on the message, like '09:15'. The buttons: 'Extras' has more options (pictures, reactions and more), the arrows move the message, + adds a new message under it, and &times; deletes it.",
+    "blocks.N.msgs.N.sms": "Makes the bubble green, like a text to someone who hasn't got an iPhone.",
+    "blocks.N.msgs.N.reacts.N.emoji": "The little emoji on the corner of a bubble. Pick who reacted, and type one emoji.",
+    "blocks.N.msgs.N.status": "Small words under the message, like 'Delivered' or 'Read 11:52 PM'. Usually only on the phone owner's last message.",
+    "blocks.N.msgs.N.tick": "The little ticks on messages the phone owner sends.",
+    "blocks.N.msgs.N.big": "Tick this when the message is only an emoji, to show it big with no bubble.",
+    "blocks.N.msgs.N.replyTo": "Pick an earlier message to show it quoted above this one, as a reply.",
+    "blocks.N.msgs.N.waReacts": "Emoji reactions under the bubble, with a space between each one. 'Count' is how many people reacted, if it's more than one.",
+    "blocks.N.msgs.N.link.url": "A link preview is the little card that shows up when you send a link. Fill in what the card should say. The link doesn't have to work.",
+    "blocks.N.msgs.N.edited": "Adds the small word 'Edited' to the message.",
+    "blocks.N.msgs.N.photos.N.url": "A picture in the message. " + PIC,
+    "blocks.N.msgs.N.photos.N.alt": ALT,
+    "blocks.N.msgs.N.photos.N.desc": "No picture? Describe it here instead, and the words show where the picture would be."
+  };
+  var helped = {};
+  function help(path, kind) {
+    var k = path.replace(/\.\d+(?=\.|$)/g, ".N") + (kind ? ":" + kind : "");
+    if (!HELP[k] || helped[k]) return "";
+    helped[k] = true;
+    return '<span class="tut-help" tabindex="0"><span>' + HELP[k] + "</span></span>";
+  }
+  // the help's ? goes on the same line as the box's label, or at the end of its row
+  // (wrap: true puts a box with no label in a row of its own, so the ? can sit beside it)
   function field(path, label, opts) {
+    opts = opts || {};
+    var h = help(path, opts.help);
+    if (!h) return box(path, label, opts);
+    if (opts.type === "check") return '<span class="tut-row">' + box(path, label, opts) + h + "</span>";
+    if (label) { opts.labHelp = h; return box(path, label, opts); }
+    return opts.wrap ? '<div class="fb-row">' + box(path, label, opts) + h + "</div>" : box(path, label, opts) + h;
+  }
+  function box(path, label, opts) {
     opts = opts || {};
     var v = get(path), id = "f-" + path.replace(/\./g, "-");
     var type = opts.type || "text";
     var lab = label ? '<label for="' + id + '">' + label + "</label>" : "";
+    if (lab && opts.labHelp) lab = '<div class="tut-lab">' + lab + opts.labHelp + "</div>";
     if (type === "check") return '<label class="ck"><input type="checkbox" id="' + id + '" data-bind="' + path + '"' + (v ? " checked" : "") + (opts.re ? " data-re" : "") + "> " + label + "</label>";
     if (type === "select") {
       return lab + '<select id="' + id + '" data-bind="' + path + '"' + (opts.re ? " data-re" : "") + ">" + opts.options.map(function (o) {
@@ -448,14 +549,14 @@
     h.push('<details class="fb-card" data-open="' + P + '.open"' + (c.open !== false ? " open" : "") + "><summary><b>" + esc(nameOf(c)) + "</b> <span class=\"hint\">(" + kinds[c.kind] + ")</span></summary>");
     h.push('<div class="fb-row">' + field(P + ".name", "", { ph: "Name", re: true }) +
       btn("cast-del:" + i, "&times;", "Remove " + nameOf(c)) + "</div>");
-    h.push(field(P + ".kind", "", { type: "select", re: true, options: [["oneoff", "One-off: no profile"], ["new", "New profile"], ["example", "Edit an existing profile"]] }));
+    h.push(field(P + ".kind", "", { type: "select", re: true, wrap: true, options: [["oneoff", "One-off: no profile"], ["new", "New profile"], ["example", "Edit an existing profile"]] }));
     if (c.kind === "oneoff") {
       // picture circle: a colour, initials yes or no, then an optional picture
-      h.push('<div class="fb-row">' + field(P + ".colour", "", { type: "select", re: true, options: Object.keys(COLOURS).map(function (k) { return [k, "Colour " + k]; }) }) +
+      h.push('<div class="fb-row">' + field(P + ".colour", "", { type: "select", re: true, options: Object.keys(COLOURS).map(function (k) { return [k, "Colour " + k + ": " + COLOUR_NAMES[k]]; }) }) +
         '<span class="fb-swatch" style="background:' + COLOURS[c.colour] + '"></span>' + "</div>");
       h.push('<div class="fb-row">' + field(P + ".showInitials", "Initials in the circle", { type: "check", re: true }) +
         (c.showInitials !== false ? field(P + ".initials", "", { ph: initials(c) }) : "") + "</div>");
-      h.push(field(P + ".pic", "Picture link (optional)", { type: "url", ph: "https://..." }));
+      h.push(field(P + ".pic", "Picture link (optional, replaces the colour and initials)", { type: "url", ph: "https://..." }));
       h.push(field(P + ".alt", "Picture description (optional)", { ph: "Profile picture of " + nameOf(c) }));
       h.push(field(P + ".land", "Landscape picture", { type: "check" }));
       h.push(field(P + ".num", "WhatsApp phone number (for someone not saved in the phone)", { ph: "+44 7700 900123" }));
@@ -497,32 +598,32 @@
       h.push(btn("acct-add:" + i, "+ Extra account"));
       h.push('<p class="hint">WhatsApp wallpaper on their phone:</p>');
       h.push('<div class="fb-row">' + field(Q + ".wallcolon", "Colour", { type: "check" }) + field(Q + ".wallcol", "", { type: "color" }) + "</div>");
-      h.push(field(Q + ".wallpic", "", { type: "url", ph: "Or a picture link" }));
+      h.push(field(Q + ".wallpic", "", { type: "url", ph: "Or a picture link", wrap: true }));
       h.push("</details>");
     }
     h.push("</details>");
     return h.join("");
   }
 
-  function speakerOptions(b, typingLabel) {
+  function speakerOptions(b) {
     return S.cast.map(function (c) { return [c.id, nameOf(c) + (c.id === b.pov ? " (phone owner)" : "")]; })
-      .concat([["sys", "Date or notice line"], ["typing", typingLabel]]);
+      .concat([["sys", "Date or notice line"], ["typing", "Typing dots"]]);
   }
 
   function msgRow(b, bi, m, mi) {
     var P = "blocks." + bi + ".msgs." + mi, wa = b.type === "wa", h = [];
     var side = m.from === b.pov ? " out" : m.from === "sys" || m.from === "typing" ? " sys" : "";
     h.push('<li class="fb-msg' + side + '">');
-    h.push('<div class="fb-row">' + field(P + ".from", "", { type: "select", re: true, options: speakerOptions(b, wa ? "Typing line" : "Typing dots") }));
-    if (!(m.from === "typing" && !wa)) h.push(field(P + ".text", "", { ph: m.from === "sys" ? "Today 11:48 PM" : m.from === "typing" ? "Lily is typing..." : m.photos.length || m.link ? "(no text, open extras for more)" : "Message", cls: "fb-text" }));
+    h.push('<div class="fb-row">' + field(P + ".from", "", { type: "select", re: true, help: m.from === "sys" || m.from === "typing" ? m.from : "", options: speakerOptions(b) }));
+    if (m.from === "typing") { typer(b, m); h.push(field(P + ".by", "", { type: "select", re: true, options: S.cast.map(function (c) { return [c.id, nameOf(c) + (c.id === b.pov ? " (phone owner)" : "")]; }) })); }
+    else h.push(field(P + ".text", "", { ph: m.from === "sys" ? "Today 11:48 PM" : m.photos.length || m.link ? "(no text, open extras for more)" : "Message", cls: "fb-text" }));
     if (wa && m.from !== "sys" && m.from !== "typing") h.push(field(P + ".time", "", { ph: "09:15", cls: "fb-time" }));
     h.push('<span class="fb-tools">' + (m.from === "sys" || m.from === "typing" ? "" : btn("msg-more:" + bi + ":" + mi, m.open ? "Less" : "Extras", "Extras for this message")) +
       btn("msg-up:" + bi + ":" + mi, "&uarr;", "Move up") + btn("msg-down:" + bi + ":" + mi, "&darr;", "Move down") +
       btn("msg-ins:" + bi + ":" + mi, "+", "Add a message under this one") + btn("msg-del:" + bi + ":" + mi, "&times;", "Delete this message") + "</span></div>");
     if (m.open && m.from !== "sys" && m.from !== "typing") {
       h.push('<div class="fb-extras">');
-      h.push('<p class="hint">Select some words in the message, then: ' + btn("fmt:tl", "Translation") + " " + btn("fmt:egg", "Easter egg") + " " +
-        btn("fmt:del", "Cross out") + " " + btn("fmt:link", "Fake link") + "</p>");
+      h.push('<p class="hint">Select some words in the message, then: ' + btn("fmt:tl", "Translation") + " " + btn("fmt:egg", "Easter egg") + " " + btn("fmt:link", "Fake link") + "</p>");
       if (!wa) {
         h.push(field(P + ".sms", "Green text message (SMS)", { type: "check" }));
         h.push('<p class="hint">Tapbacks (one emoji per person):</p>');
@@ -544,7 +645,7 @@
         else {
           var K = P + ".link";
           h.push('<div class="fb-acct"><p class="hint">Link preview (the message text becomes the caption under it): ' + btn("link-del:" + bi + ":" + mi, "Remove") + "</p>" +
-            field(K + ".url", "", { ph: "Web address" }) + field(K + ".showUrl", "Show the address above the preview too", { type: "check" }) +
+            field(K + ".url", "", { ph: "Web address", wrap: true }) + field(K + ".showUrl", "Show the address above the preview too", { type: "check" }) +
             field(K + ".title", "", { ph: "Title" }) + field(K + ".desc", "", { ph: "Description" }) +
             field(K + ".img", "", { type: "url", ph: "Picture link" }) + field(K + ".alt", "", { ph: "Describe the picture" }) +
             field(K + ".video", "", { type: "url", ph: "Or a video embed link (Vimeo, YouTube or the Internet Archive)" }) +
@@ -556,7 +657,7 @@
       m.photos.forEach(function (p, k) {
         var K = P + ".photos." + k;
         h.push('<div class="fb-acct"><div class="fb-row">' + field(K + ".url", "", { type: "url", ph: "Picture link" }) + btn("photo-del:" + bi + ":" + mi + ":" + k, "&times;", "Remove") + "</div>" +
-          field(K + ".alt", "", { ph: "Describe the picture (alt text)" }) + field(K + ".desc", "", { ph: "Or, with no picture, describe it in words" }) +
+          field(K + ".alt", "", { ph: "Describe the picture (alt text)", wrap: true }) + field(K + ".desc", "", { ph: "Or, with no picture, describe it in words", wrap: true }) +
           (wa ? field(K + ".land", "Landscape picture", { type: "check" }) : "") + "</div>");
       });
       if (!wa || m.photos.length < 4) h.push(btn("photo-add:" + bi + ":" + mi, "+ Picture"));
@@ -593,11 +694,11 @@
         if (!b.gp) b.gp = newGroupPic();
         var G = P + ".gp";
         h.push('<div class="fb-acct"><p class="hint">The group\'s picture in the header</p>');
-        h.push('<div class="fb-row">' + field(G + ".colour", "", { type: "select", re: true, options: Object.keys(COLOURS).map(function (k) { return [k, "Colour " + k]; }) }) +
+        h.push('<div class="fb-row">' + field(G + ".colour", "", { type: "select", re: true, options: Object.keys(COLOURS).map(function (k) { return [k, "Colour " + k + ": " + COLOUR_NAMES[k]]; }) }) +
           '<span class="fb-swatch" style="background:' + COLOURS[b.gp.colour] + '"></span>' + "</div>");
         h.push('<div class="fb-row">' + field(G + ".showInitials", "Initials in the circle", { type: "check", re: true }) +
           (b.gp.showInitials !== false ? field(G + ".initials", "", { ph: (b.title.trim() || "G").charAt(0).toUpperCase() }) : "") + "</div>");
-        h.push(field(G + ".pic", "Picture link (optional)", { type: "url", ph: "https://..." }));
+        h.push(field(G + ".pic", "Picture link (optional, replaces the colour and initials)", { type: "url", ph: "https://..." }));
         h.push(field(G + ".alt", "Picture description (optional)", { ph: "Profile picture of " + (b.title.trim() || "the group") }));
         h.push(field(G + ".land", "Landscape picture", { type: "check" }) + "</div>");
       }
@@ -613,9 +714,11 @@
   }
 
   function renderEditor() {
+    helped = {};
     S.cast.forEach(function (c) { if (c.kind === "example" && c.loadedFrom !== c.example) loadProfile(c); });
     $("fb-cast").innerHTML = S.cast.map(castCard).join("");
     $("fb-blocks").innerHTML = S.blocks.map(blockCard).join("") || '<p class="hint">Nothing here yet. Add a chat below.</p>';
+    if (window.Tutorial && Tutorial.mark) Tutorial.mark();
   }
 
   // remake the preview and the copy boxes (after every change)
@@ -626,8 +729,26 @@
     $("workskin").innerHTML = html;
     $("fb-html").value = html;
     $("fb-css").value = css;
-    $("fb-css-wrap").hidden = !css;
+    $("fb-css-wrap").hidden = !css && !pasteOpen;
   }
+  // "Manually add profile" makes the profile CSS box take pasted profiles too, with no files
+  var pasteOpen = false;
+  function pasteProfiles(text) {
+    var found = pastedProfiles(text);
+    if (!found.length) { $("fb-css-status").textContent = "No profiles found in that. Check you copied the whole profile."; return; }
+    S.pasted = ((S.pasted || "").trim() + "\n\n" + text.trim()).trim();
+    addPasted();
+    rerender();
+    $("fb-css-status").textContent = "Added to the cast: " + found.map(function (p) { return p[1]; }).join(", ") + ".";
+  }
+  $("fb-css").addEventListener("paste", function (e) {
+    if (this.readOnly) return;
+    e.preventDefault();
+    pasteProfiles((e.clipboardData || window.clipboardData).getData("text"));
+  });
+  $("fb-css").addEventListener("change", function () {
+    if (!this.readOnly && this.value.trim() !== profilesCSS().trim()) pasteProfiles(this.value);
+  });
   // redraw the boxes on the left too (after adding, removing or moving something)
   function rerender() { renderEditor(); refresh(); }
 
@@ -658,6 +779,7 @@
       b.msgs.push(newMsg(from, line, time));
     });
     b.script = "";
+    if (!char(b.pov) && S.cast[0]) b.pov = S.cast[0].id; // a chat made before anyone was in the cast
     rerender();
   }
 
@@ -689,6 +811,13 @@
       case "cast-add": S.cast.push(newChar("")); break;
       case "paste-show": $("fb-paste-box").hidden = false; $("fb-paste").focus(); return;
       case "paste-hide": $("fb-paste-box").hidden = true; return;
+      case "css-paste":
+        pasteOpen = true;
+        $("fb-css").readOnly = false;
+        $("fb-css-note").hidden = false;
+        $("fb-css-wrap").hidden = false;
+        $("fb-css").focus();
+        return;
       case "paste-add":
         S.pasted = ((S.pasted || "").trim() + "\n\n" + $("fb-paste").value.trim()).trim();
         $("fb-paste").value = "";
@@ -723,8 +852,8 @@
       case "copy-css": copy("fb-css", t); return;
       case "save-html": saveHTML(); return;
       case "save-css": download("megaskin-profiles.css", allProfilesCSS(), "text/css"); return;
-      case "new": if (!confirm("Start again? Everything here will be cleared, so download your HTML and CSS first if you want to keep them.")) return; S = { v: 1, pasted: "", cast: [], blocks: [] }; break;
-      case "example": if (!confirm("Load this example? Everything here will be replaced, so download your HTML and CSS first if you want to keep them.")) return; loadExample(+$("fb-example").value); break;
+      case "new": if (!confirm("Start again? Everything here will be cleared, so save your HTML and CSS first if you want to keep them.")) return; S = { v: 1, pasted: "", cast: [], blocks: [] }; break;
+      case "example": if (!confirm("Load this example? Everything here will be replaced, so save your HTML and CSS first if you want to keep them.")) return; loadExample(+$("fb-example").value); break;
       case "fmt": wrap(a[1]); return;
       default: return;
     }
@@ -749,8 +878,7 @@
       var t = prompt(kind === "tl" ? "What does \"" + sel + "\" mean?" : "What's the hidden text behind \"" + sel + "\"?");
       if (!t) return;
       out = kind === "tl" ? "[[" + sel + "|" + t + "]]" : "{{" + sel + "|" + t + "}}";
-    } else if (kind === "del") out = "~~" + sel + "~~";
-    else out = "<<" + sel + ">>";
+    } else out = "<<" + sel + ">>";
     el.value = v.slice(0, s) + out + v.slice(e);
     el.focus();
     el.selectionStart = el.selectionEnd = s + out.length;
