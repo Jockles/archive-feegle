@@ -65,12 +65,14 @@ window.Tutorial = function (steps) {
     if (a === "back") go(step - 1);
     if (a === "next") { if (step === steps.length - 1) { step = 0; toggle(false); } else go(step + 1); }
   });
-  // keep a ?'s pop-up help on the screen
+  // a ?'s pop-up help floats over the page, under the ? (or above it if there's no room)
   function place(e) {
     var h = e.target.closest ? e.target.closest(".tut-help") : null;
-    if (!h || root.classList.contains("help-on") || !h.firstElementChild) return;
-    var r = h.getBoundingClientRect(), w = Math.min(280, window.innerWidth - 32);
-    h.firstElementChild.style.left = Math.min(0, window.innerWidth - 16 - r.left - w) + "px";
+    var pop = h && h.firstElementChild;
+    if (!pop || root.classList.contains("help-on")) return;
+    var r = h.getBoundingClientRect();
+    pop.style.left = Math.max(16, Math.min(r.left, window.innerWidth - 16 - pop.offsetWidth)) + "px";
+    pop.style.top = (r.bottom + pop.offsetHeight > window.innerHeight - 8 ? r.top - pop.offsetHeight : r.bottom) + "px";
   }
   document.addEventListener("mouseover", place);
   document.addEventListener("focusin", place);
