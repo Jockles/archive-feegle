@@ -50,6 +50,7 @@
 
   <p>Fill in the boxes and the chats on the right update as you type, using the real megaskin. When you're happy, copy the CSS at the bottom and paste it into the PROFILES section of your work skin, next to the other profiles. Nothing you type leaves your browser.</p>
   <p>Building chats too? The <a href="fic-builder.html">Fic Builder</a> has this built in.</p>
+  <p>To edit a profile you've already made, paste its CSS into the Your CSS box at the bottom (one profile at a time). The boxes fill in from it, and you can carry on from there.</p>
   <p>Only the first box is essential. Leave anything you don't need empty and it won't go in the CSS. Pictures need a direct link to the image file, usually ending in .jpg or .png, from somewhere like squidge.org or Tumblr.</p>
 
   <div class="pm">
@@ -123,7 +124,9 @@
 
       <h3>Your CSS</h3>
       <p><button type="button" id="copy">Copy the CSS</button> <span id="copied"></span></p>
-      <textarea id="css" readonly></textarea>
+      <p class="hint">Or paste a profile here to edit it.</p>
+      <textarea id="css" aria-label="Your CSS"></textarea>
+      <p class="hint" id="pasted" role="status"></p>
     </div>
   </div>
 </main>
@@ -275,9 +278,51 @@
     preview(r);
   }
 
+  // paste a profile into the CSS box to edit it: the boxes are filled in from it
+  function fill(text) {
+    var m = text.replace(/\/\*[\s\S]*?\*\//g, "").match(/\.pfp-([a-z][a-z0-9-]*)/);
+    if (!m) { $("pasted").textContent = "That doesn't look like a profile, so nothing was changed."; return; }
+    var d = MegaskinProfile.parse(text, m[1]);
+    function set(id, v) { $(id).value = v || ""; }
+    set("name", d.name || m[1]); set("slug", m[1]); slugTouched = true;
+    set("pic", d.pic); $("piccol").value = /^#[0-9a-f]{6}$/i.test(d.piccol) ? d.piccol : "#888888";
+    $("namecol").value = /^#[0-9a-f]{6}$/i.test(d.namecol) ? d.namecol : "#666666";
+    set("handle", d.handle); set("email", d.email);
+    APPS.forEach(function (a) {
+      var x = d.apps[a.key] || {};
+      set("pic-" + a.key, x.pic); set("name-" + a.key, x.name);
+      if ($("handle-" + a.key)) set("handle-" + a.key, x.handle);
+    });
+    $("dccolon").checked = !!d.dccol; if (d.dccol) $("dccol").value = d.dccol;
+    $("tbsq").checked = !!d.tbsq;
+    $("saved").innerHTML = "";
+    d.saved.forEach(function (x) { addSaved(x.owner, x.as); $("saved").lastChild.querySelector(".sv-pic").value = x.pic || ""; });
+    $("accts").innerHTML = "";
+    d.accounts.forEach(function (x) {
+      addAcct(x.acc, x.app);
+      var a = $("accts").lastChild;
+      a.querySelector(".ac-pic").value = x.pic || ""; a.querySelector(".ac-dname").value = x.name || "";
+      a.querySelector(".ac-handle").value = x.handle || ""; a.querySelector(".ac-sq").checked = !!x.sq;
+    });
+    $("wallcolon").checked = !!d.wallcol; if (/^#[0-9a-f]{6}$/i.test(d.wallcol)) $("wallcol").value = d.wallcol;
+    set("wallpic", d.wallpic);
+    $("pasted").textContent = "Loaded " + (d.name || m[1]) + "'s profile into the boxes.";
+    update();
+  }
+  // a paste replaces the whole box, so it doesn't matter what was selected
+  $("css").addEventListener("paste", function (e) {
+    var text = e.clipboardData && e.clipboardData.getData("text");
+    if (!text) { var ta = this; setTimeout(function () { fill(ta.value); }, 0); return; }
+    e.preventDefault();
+    fill(text);
+  });
+  $("css").addEventListener("change", function () { fill(this.value); });
+
   $("slug").addEventListener("input", function () { slugTouched = true; });
-  document.addEventListener("input", update);
-  document.addEventListener("change", update);
+  // the CSS box only changes the boxes when something is pasted in, or when you click away after typing
+  function changed(e) { if (e.target.id !== "css") update(); }
+  document.addEventListener("input", changed);
+  document.addEventListener("change", changed);
   $("copy").onclick = function () {
     var ta = $("css");
     ta.select();
