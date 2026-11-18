@@ -8,7 +8,7 @@
 //   castCard(), blockCard(), msgRow()   draw the boxes on the left
 //   data-bind    each box says which bit of S it fills in, e.g. "blocks.2.msgs.0.text"
 //   data-act     each button says what it does, e.g. "msg-del:2:0" (block 2, message 0)
-//   HELP         the help under each box, shown while the tutorial is on
+//   HELP         the help under each box, shown when Help text is pressed
 // To add a new app: a newBlock() default, an ...HTML() function, a line in
 // allHTML(), and a button on the page.
 (function () {
@@ -424,7 +424,7 @@
     var o = ks.reduce(function (o, k) { return o[k]; }, S);
     o[last] = v;
   }
-  // help under each box, shown while the tutorial is on (tutorial.js and tutorial.css).
+  // help under each box, shown when Help text is pressed (tutorial.js and tutorial.css).
   // Paths are written with N for any number. Each one shows once, by the first box it fits.
   var PIC = "Upload the picture somewhere like squidge.org first, then copy the link to the picture itself (it usually ends in .jpg or .png) and paste it here.";
   var ALT = "A few words saying what's in the picture. Screen readers read this out for anyone who can't see it.";

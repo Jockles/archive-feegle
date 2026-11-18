@@ -4,8 +4,9 @@
      text   - what to do (HTML)
      target - which part of the page to point at (a CSS selector; the last match is used)
      open   - optional: a folded-up section to open first (a CSS selector)
-   Pressing the Tutorial button turns it on or off. While it's on, the page gets the
-   tut-on class, which also shows the help under every box (see tutorial.css). */
+   The Tutorial button (data-tutorial) turns the steps on or off. The Help text button
+   (data-helptext) separately shows or hides the help under every box: it adds the
+   help-on class to the page (see tutorial.css). */
 window.Tutorial = function (steps) {
   var root = document.documentElement, step = 0;
   var panel = document.createElement("aside");
@@ -40,16 +41,22 @@ window.Tutorial = function (steps) {
     var el = mark();
     if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
   }
+  function pressed(sel, on) {
+    Array.prototype.forEach.call(document.querySelectorAll(sel), function (b) { b.setAttribute("aria-pressed", on); });
+  }
+  pressed("[data-tutorial], [data-helptext]", false);
   function toggle(on) {
     root.classList.toggle("tut-on", on);
+    pressed("[data-tutorial]", on);
     panel.hidden = !on;
     if (on) { panel.classList.remove("small"); q('[data-tut="small"]').innerHTML = "&minus;"; go(step); }
     else mark();
   }
 
   document.addEventListener("click", function (e) {
-    var t = e.target.closest ? e.target.closest("[data-tutorial], [data-tut]") : null;
+    var t = e.target.closest ? e.target.closest("[data-tutorial], [data-helptext], [data-tut]") : null;
     if (!t) return;
+    if (t.hasAttribute("data-helptext")) return pressed("[data-helptext]", root.classList.toggle("help-on"));
     if (t.hasAttribute("data-tutorial")) return toggle(!root.classList.contains("tut-on"));
     var a = t.getAttribute("data-tut");
     if (a === "close") toggle(false);
