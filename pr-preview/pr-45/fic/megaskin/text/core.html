@@ -1,6 +1,6 @@
 <h3 id="contents">Chapter Contents</h3>
 
-<p>Everything in this chapter lives in the core CSS - the bit of the skin that every module needs - so you get all of it whichever modules you've picked. It all works in Discord too, apart from the typing line.</p>
+<p>Everything in this chapter lives in the core CSS - the bit of the skin that every module needs - so you get all of it whichever modules you've picked. It all works in Discord too.</p>
 
 <ul>
   <li><a href="#anatomy">The chat container, and the anatomy of a module</a>: the container and its platform and theme classes</li>
@@ -22,9 +22,7 @@
   <li><a href="#pictures">Pictures and formatting</a>: pictures, and cropping them to fit boxes and circles (<code>land</code>)</li>
   <li><a href="#fake-links">Links that go nowhere</a> (<code>fake-link</code>)</li>
   <li><a href="#translations">Hover and tap translations</a>, and hidden easter eggs (<code>egg</code>), which also work in ordinary text outside a chat</li>
-  <li><a href="#typing">The typing line</a> (<code>typing</code>) - not in Discord</li>
   <li><a href="#cursor">A flashing cursor</a> (<code>cursor</code>)</li>
-  <li><a href="#deleted">Deleted or corrected text</a> (<code>del</code>)</li>
   <li><a href="#together">Putting it together</a>: a chat using both</li>
 </ul>
 
@@ -1128,16 +1126,6 @@
 
 <p>Readers with the workskin switched off still get the hidden text in brackets after the original, so nobody misses out completely. And if you'd like every translation in your fic to look like this, <a href="core-css.html#heading">Hover and Tap Translations</a>, in the core CSS, shows you the one line to delete instead.</p>
 
-<h3 id="typing">Typing Line</h3>
-
-<p>This one's for any chat built on the <code>mob</code> container, which is every module apart from Discord. Discord has its own typing indicator, and <a href="discord.html#heading">Typing Indicator</a> shows you how to use it.</p>
-
-<p>To show that someone is typing, add a paragraph with <code>typing</code> at the end of the messages. It shows up as a small, slanted line of text:</p>
-
-<div class="mob imsg theme-auto"><div class="mob-body"><p class="typing">Scott is typing...</p></div></div>
-
-<pre><code>&lt;p class="typing"&gt;Scott is typing...&lt;/p&gt;</code></pre>
-
 <h3 id="cursor">A Flashing Cursor</h3>
 
 <p>For a message someone's still writing, put a <code>cursor</code> span straight after the last word, with a typed <code>|</code> inside it. It shows up as a flashing cursor, in any app - in a typing bar, a draft, a half-written comment, wherever. The typed line only shows for readers with the workskin switched off:</p>
@@ -1148,22 +1136,13 @@
 
 <p>The bit that matters is just <code>&lt;span class="cursor"&gt;|&lt;/span&gt;</code> - the rest is iMessage's typing bar, from the iMessage chapter.</p>
 
-<h3 id="deleted">Deleted or Corrected Text</h3>
-
-<p>To strike a message through, as if the sender deleted or corrected it, wrap the words in a span with the class <code>del</code>:</p>
-
-<div class="mob imsg theme-auto"><div class="mob-body"><p class="msg out"><span class="hide"><em>Ilya:</em> </span><span class="del">I'm fine</span></p></div></div>
-
-<pre><code>&lt;p class="msg out"&gt;&lt;span class="hide"&gt;&lt;em&gt;Ilya:&lt;/em&gt; &lt;/span&gt;&lt;span class="del"&gt;I'm fine&lt;/span&gt;&lt;/p&gt;</code></pre>
-
 <h3 id="together">Putting It Together</h3>
 
 <div class="mob twdm theme-auto">
   <p class="mob-head">Scott<span class="hide"> - </span><span>@scotthunter</span></p>
   <div class="mob-body">
-    <p class="msg out"><span class="hide"><em>Ilya:</em> </span><span class="del">I'm fine</span></p>
-    <p class="msg out"><span class="hide"><em>Ilya:</em> </span>I'm not fine</p>
-    <p class="typing">Scott is typing...</p>
+    <p class="msg out"><span class="hide"><em>Ilya:</em> </span>I'm <a class="tl egg" href="#t5"><span class="orig">fine</span><span class="tltn"><span class="hide"> (</span>not fine. not even a little bit<span class="hide">)</span></span></a></p>
+    <p class="msg in"><span class="hide"><em>Scott:</em> </span>you're a terrible liar</p>
   </div>
 </div>
 
@@ -1172,9 +1151,8 @@
 <pre><code>&lt;div class="mob twdm theme-auto"&gt;
   &lt;p class="mob-head"&gt;Scott&lt;span class="hide"&gt; - &lt;/span&gt;&lt;span&gt;@scotthunter&lt;/span&gt;&lt;/p&gt;
   &lt;div class="mob-body"&gt;
-    &lt;p class="msg out"&gt;&lt;span class="hide"&gt;&lt;em&gt;Ilya:&lt;/em&gt; &lt;/span&gt;&lt;span class="del"&gt;I'm fine&lt;/span&gt;&lt;/p&gt;
-    &lt;p class="msg out"&gt;&lt;span class="hide"&gt;&lt;em&gt;Ilya:&lt;/em&gt; &lt;/span&gt;I'm not fine&lt;/p&gt;
-    &lt;p class="typing"&gt;Scott is typing...&lt;/p&gt;
+    &lt;p class="msg out"&gt;&lt;span class="hide"&gt;&lt;em&gt;Ilya:&lt;/em&gt; &lt;/span&gt;I'm &lt;a class="tl egg" href="#t5"&gt;&lt;span class="orig"&gt;fine&lt;/span&gt;&lt;span class="tltn"&gt;&lt;span class="hide"&gt; (&lt;/span&gt;not fine. not even a little bit&lt;span class="hide"&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+    &lt;p class="msg in"&gt;&lt;span class="hide"&gt;&lt;em&gt;Scott:&lt;/em&gt; &lt;/span&gt;you're a terrible liar&lt;/p&gt;
   &lt;/div&gt;
 &lt;/div&gt;</code></pre>
 
