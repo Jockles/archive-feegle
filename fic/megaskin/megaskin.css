@@ -1256,7 +1256,8 @@
 #workskin .wa {
   background-color: #efeae2;
   background-image: url(https://images.squidge.org/images/2026/11/18/whatsapp-bck-light.jpg);
-  background-size: 400px auto;
+  background-size: 100% auto;
+  background-repeat: repeat-y;
   color: #111b21;
   border: 1px solid #d1d7db;
   border-radius: 10px;

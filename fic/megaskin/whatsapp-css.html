@@ -6,7 +6,7 @@
   <title>Megaskin, Chapter 7: WhatsApp CSS | jockles.com</title>
   <link rel="stylesheet" href="../../style.css">
   <script src="../../theme.js"></script>
-  <link rel="stylesheet" href="megaskin.css?v=85fc1969" id="creator-style">
+  <link rel="stylesheet" href="megaskin.css?v=7905ca08" id="creator-style">
 </head>
 <body>
 <header>
@@ -71,7 +71,8 @@
 <pre><code>#workskin .wa {
   background-color: #efeae2;
   background-image: url(https://images.squidge.org/images/2026/11/18/whatsapp-bck-light.jpg);
-  background-size: 400px auto;
+  background-size: 100% auto;
+  background-repeat: repeat-y;
   color: #111b21;
   border: 1px solid #d1d7db;
   border-radius: 10px;
@@ -98,7 +99,7 @@
 
 #workskin .wa .in { margin-right: auto; background: #ffffff; }</code></pre>
 
-<p>The background is WhatsApp's own doodle wallpaper, a picture that repeats down the chat like tiles. <code>background-size: 400px auto</code> makes each tile 400px wide, about the width of a phone screen - make it smaller for smaller doodles. The beige <code>background-color</code> shows if the picture doesn't load. <code>#008069</code> is WhatsApp's green. The bubbles work like iMessage's: <code>display: table</code> makes them fit their words, and <code>auto</code> margins push them to one side. The differences are:</p>
+<p>The background is WhatsApp's own doodle wallpaper, one phone-screen-sized picture. <code>background-size: 100% auto</code> stretches it to the width of the chat and keeps its shape, and <code>repeat-y</code> repeats it down the page when a chat is longer than one screen. The beige <code>background-color</code> shows if the picture doesn't load. <code>#008069</code> is WhatsApp's green. The bubbles work like iMessage's: <code>display: table</code> makes them fit their words, and <code>auto</code> margins push them to one side. The differences are:</p>
 
 <ul>
   <li><code>min-width: 90px</code>, so even a one-word bubble is wide enough for the time and ticks underneath.</li>
