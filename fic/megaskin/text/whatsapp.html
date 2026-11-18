@@ -95,7 +95,7 @@
       <p class="wa-caption">she says she wants pierogi too</p>
       <p class="wa-time">14:24</p>
     </div>
-    <p class="typing">Lily is typing...</p>
+    <div class="msg in tail typing-indicator"><p class="hide"><em>Lily</em> is typing...</p><p><span></span><span></span><span></span></p></div>
   </div>
   <p class="wa-input">
     <span class="wa-field">
@@ -200,7 +200,7 @@
       &lt;p class="wa-caption"&gt;she says she wants pierogi too&lt;/p&gt;
       &lt;p class="wa-time"&gt;14:24&lt;/p&gt;
     &lt;/div&gt;
-    &lt;p class="typing"&gt;Lily is typing...&lt;/p&gt;
+    &lt;div class="msg in tail typing-indicator"&gt;&lt;p class="hide"&gt;&lt;em&gt;Lily&lt;/em&gt; is typing...&lt;/p&gt;&lt;p&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
   &lt;/div&gt;
   &lt;p class="wa-input"&gt;
     &lt;span class="wa-field"&gt;
@@ -831,13 +831,41 @@
   &lt;p class="wa-time"&gt;09:18&lt;/p&gt;
 &lt;/div&gt;</code></pre>
 
-<h3>Typing Line</h3>
+<h3>Typing Dots</h3>
 
-<p>To show the other person is typing, add a <code>typing</code> line at the end of the messages (see <a href="core.html#heading">Typing Line</a>):</p>
+<p>To show someone is typing, add <code>typing-indicator</code> to a message bubble from them, and put three empty spans in its last paragraph. It gets the same bubble as their messages, tail and all, just shrunk to fit the dots. The hidden line says who it is for readers with the workskin off:</p>
 
-<div class="mob wa theme-auto"><div class="mob-body"><p class="typing">Lily is typing...</p></div></div>
+<div class="mob wa theme-auto"><div class="mob-body"><div class="msg in tail typing-indicator"><p class="hide"><em>Lily</em> is typing...</p><p><span></span><span></span><span></span></p></div></div></div>
 
-<pre><code>&lt;p class="typing"&gt;Lily is typing...&lt;/p&gt;</code></pre>
+<pre><code>&lt;div class="msg in tail typing-indicator"&gt;&lt;p class="hide"&gt;&lt;em&gt;Lily&lt;/em&gt; is typing...&lt;/p&gt;&lt;p&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;</code></pre>
+
+<p>Use <code>out</code> instead for whoever owns the phone, halfway through writing something, and the dots go on the right in a green bubble:</p>
+
+<div class="mob wa theme-auto"><div class="mob-body"><div class="msg out tail typing-indicator"><p class="hide"><em>Shane</em> is typing...</p><p><span></span><span></span><span></span></p></div></div></div>
+
+<pre><code>&lt;div class="msg out tail typing-indicator"&gt;&lt;p class="hide"&gt;&lt;em&gt;Shane&lt;/em&gt; is typing...&lt;/p&gt;&lt;p&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;</code></pre>
+
+<p>In a group chat, give it the person's picture and name like any of their messages (see <a href="#heading">Profile Pictures in Groups</a>):</p>
+
+<div class="mob wa theme-auto"><div class="mob-body">
+    <div class="wa-row">
+      <p class="wa-pfp colour4">HP</p>
+      <div class="msg in tail typing-indicator">
+        <p class="who colour4">Hayden</p>
+        <p class="hide">is typing...</p>
+        <p><span></span><span></span><span></span></p>
+      </div>
+    </div>
+</div></div>
+
+<pre><code>&lt;div class="wa-row"&gt;
+  &lt;p class="wa-pfp colour4"&gt;HP&lt;/p&gt;
+  &lt;div class="msg in tail typing-indicator"&gt;
+    &lt;p class="who colour4"&gt;Hayden&lt;/p&gt;
+    &lt;p class="hide"&gt;is typing...&lt;/p&gt;
+    &lt;p&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
 
 <h3>The Message Bar</h3>
 
@@ -1253,10 +1281,10 @@
   &lt;/div&gt;
 &lt;/div&gt;</code></pre>
 
-<p>The backgrounds that come with the workskin are:</p>
+<p>Every chat starts with WhatsApp's own doodle wallpaper, in its light or dark version to match the theme. The other backgrounds that come with the workskin are:</p>
 
 <ul>
-  <li>Plain colours: <code>bg-beige</code>, <code>bg-white</code>, <code>bg-sage</code>, <code>bg-sky</code>, <code>bg-blush</code>, <code>bg-lilac</code>, <code>bg-slate</code>, <code>bg-navy</code>, <code>bg-forest</code>, <code>bg-plum</code>, <code>bg-black</code></li>
+  <li>Plain colours: <code>bg-beige</code> (WhatsApp's colour without the doodles), <code>bg-white</code>, <code>bg-sage</code>, <code>bg-sky</code>, <code>bg-blush</code>, <code>bg-lilac</code>, <code>bg-slate</code>, <code>bg-navy</code>, <code>bg-forest</code>, <code>bg-plum</code>, <code>bg-black</code></li>
   <li>Gradients: <code>bg-sunset</code>, <code>bg-ocean</code>, <code>bg-night</code>, <code>bg-dusk</code></li>
   <li>Your own picture: <code>bg-image1</code>. A picture has to be linked from the web, so it's set up in the CSS, and <a href="whatsapp-css.html#heading">Wallpapers</a> explains how. Once it's set up, you use it like any of the others: <code>&lt;div class=&quot;mob wa theme-auto bg-image1&quot;&gt;</code></li>
 </ul>

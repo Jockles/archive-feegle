@@ -3,8 +3,8 @@
 /* ==========================================================
    >>> CORE: needed by every module <<<
    The chat box and its parts, the width classes, scrolling,
-   hidden text, video descriptions, round pictures, the typing and deleted-text
-   touches, link basics, hover/tap translations, character profiles and the ten
+   hidden text, video descriptions, round pictures, the flashing cursor,
+   link basics, hover/tap translations, character profiles and the ten
    shared colours (colour1 to colour10). Keep this block whichever modules you use.
    ========================================================== */
 
@@ -98,7 +98,7 @@
   border-radius: 6px;
 }
 
-/* ---------- Small helpers: hidden text, video descriptions, round pictures, typing line, deleted text ---------- */
+/* ---------- Small helpers: hidden text, video descriptions, round pictures, flashing cursor ---------- */
 
 /* a real profile picture inside any round picture circle (WhatsApp wa-pfp, Tumblr tb-pfp,
    Gmail gm-pfp, Instagram ig-pfp, Discord dc-pfp): wrap the picture tag in a span with pfp, e.g.
@@ -175,18 +175,6 @@
   height: 1px;
   overflow: hidden;
 }
-
-/* typing indicator line */
-#workskin .mob .typing {
-  display: block;
-  font-size: 0.75em;
-  font-style: italic;
-  opacity: 0.7;
-  margin: 0.3em 0.9em;
-}
-
-/* strikethrough / deleted text */
-#workskin .mob .del, #workskin .dc .del { text-decoration: line-through; opacity: 0.6; }
 
 /* a flashing cursor at the end of a half-written message, in any app: <span class="cursor">|</span>.
    The typed line only shows for readers with the workskin off */
