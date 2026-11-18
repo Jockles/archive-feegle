@@ -300,6 +300,9 @@
 /* a half-typed message: dark text that wraps onto more lines */
 #workskin .wa .wa-field .wa-ph.typed { white-space: normal; color: #111b21; }
 
+/* a flashing cursor in the typed message stays in the line of words, not a cell of its own */
+#workskin .wa .wa-field .cursor { display: inline-block; width: 0.2em; padding: 0; }
+
 #workskin .wa .wa-mic {
   position: absolute;
   right: 0.6em;
