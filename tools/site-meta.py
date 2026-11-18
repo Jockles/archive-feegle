@@ -31,6 +31,22 @@ SITE = "https://jockles.com/"
 CARD = SITE + "images/social-card.png"
 CARD_ALT = "jockles.com: All the Fannish things I do."
 
+# Pages with their own social card: (path or folder, image, extra line on
+# the card). The first match wins; everything else uses social-card.png.
+CARDS = [
+    ("fic/megaskin/fic-builder.html", "social-card-fic-builder.png", "Megaskin Fic-Builder"),
+    ("fic/megaskin/profile-maker.html", "social-card-profile-builder.png", "Megaskin Profile-Builder"),
+    ("fic/megaskin/", "social-card-megaskin.png", "Social Media AO3 Skin"),
+]
+
+
+def card(rel):
+    for start, image, line in CARDS:
+        if rel.startswith(start):
+            return SITE + "images/" + image, CARD_ALT + " " + line
+    return CARD, CARD_ALT
+
+
 MEGASKIN = ("One AO3 work skin for every kind of social media in your fic: iMessage, "
             "WhatsApp, Twitter/X, Instagram, Tumblr, email and Discord, with a "
             "chapter for each app.")
@@ -125,6 +141,7 @@ def tags(rel, page):
     if rel.startswith(WIP_WORKS) and not desc.startswith("Work In Progress!!"):
         desc = "Work In Progress!! " + desc
 
+    image, alt = card(rel)
     e = lambda s: html.escape(s, quote=True)
     if not own:
         lines.append('<meta name="description" content="%s">' % e(desc))
@@ -135,10 +152,10 @@ def tags(rel, page):
         '<meta property="og:title" content="%s">' % e(title),
         '<meta property="og:description" content="%s">' % e(desc),
         '<meta property="og:url" content="%s">' % page_url(rel),
-        '<meta property="og:image" content="%s">' % CARD,
+        '<meta property="og:image" content="%s">' % image,
         '<meta property="og:image:width" content="1200">',
         '<meta property="og:image:height" content="630">',
-        '<meta property="og:image:alt" content="%s">' % e(CARD_ALT),
+        '<meta property="og:image:alt" content="%s">' % e(alt),
         '<meta name="twitter:card" content="summary_large_image">',
     ]
     return lines
