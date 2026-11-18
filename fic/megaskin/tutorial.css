@@ -1,0 +1,37 @@
+/* The Tutorial button, the step-by-step panel, and the help under each box.
+   The help only shows while the tutorial is on (the tut-on class on the page). */
+
+.tut-btn { font: inherit; font-weight: bold; padding: 5px 12px 5px 6px; border-radius: 999px; cursor: pointer;
+  border: 1px solid var(--header, #0b5563); background: var(--tag-fill, #e3f1ec); color: var(--ink, #2a2a2a); }
+.tut-btn::before { content: "?"; display: inline-block; width: 1.4em; height: 1.4em; line-height: 1.4em; margin-right: 6px;
+  border-radius: 50%; text-align: center; background: var(--header, #0b5563); color: var(--header-text, #fff); }
+.tut-on .tut-btn { background: var(--header, #0b5563); color: var(--header-text, #fff); }
+
+.tut-help { display: none; }
+.tut-on .tut-help { display: block; box-sizing: border-box; flex: 1 0 100%; order: 9; margin: 4px 0 8px; padding: 5px 8px; font-size: 0.85em; line-height: 1.4;
+  border-left: 3px solid var(--hover, #1a8f6a); background: var(--tag-fill, #e3f1ec); border-radius: 0 4px 4px 0; }
+.tut-on .fb-row { flex-wrap: wrap; }
+
+/* the box the current step is about */
+.tut-here { outline: 3px solid var(--hover, #1a8f6a); outline-offset: 3px; border-radius: 4px; scroll-margin-top: 12px; }
+
+/* the panel: a small box in the corner, or a short strip along the bottom on a phone */
+.tut { position: fixed; z-index: 50; right: 16px; bottom: 16px; width: 340px; max-height: 55vh; display: flex; flex-direction: column;
+  background: var(--page, #fff); color: var(--ink, #2a2a2a); border: 2px solid var(--header, #0b5563); border-radius: 8px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.25); font-size: 0.95em; }
+.tut[hidden] { display: none; }
+.tut-top { display: flex; align-items: center; gap: 6px; padding: 6px 8px 6px 12px; background: var(--header, #0b5563); color: var(--header-text, #fff); }
+.tut-top b { flex: 1; font-size: 0.9em; }
+.tut-top button { font: inherit; line-height: 1; padding: 3px 8px; cursor: pointer; background: none; color: inherit; border: 1px solid currentColor; border-radius: 4px; }
+.tut-body { overflow: auto; padding: 4px 12px; }
+.tut-body h4 { margin: 6px 0 4px; }
+.tut-body p { margin: 0 0 8px; }
+.tut-nav { display: flex; justify-content: space-between; gap: 8px; padding: 6px 12px 8px; border-top: 1px solid var(--rule, #ddd); }
+.tut-nav button { font: inherit; padding: 4px 14px; cursor: pointer; }
+.tut.small .tut-body { display: none; }
+
+@media (max-width: 600px) {
+  .tut { left: 0; right: 0; bottom: 0; width: auto; max-height: 40vh; border-width: 2px 0 0; border-radius: 10px 10px 0 0; }
+  /* room to scroll the last boxes up above the panel */
+  .tut-on body { padding-bottom: 42vh; }
+}

@@ -8,6 +8,7 @@
 //   castCard(), blockCard(), msgRow()   draw the boxes on the left
 //   data-bind    each box says which bit of S it fills in, e.g. "blocks.2.msgs.0.text"
 //   data-act     each button says what it does, e.g. "msg-del:2:0" (block 2, message 0)
+//   HELP         the help under each box, shown while the tutorial is on
 // To add a new app: a newBlock() default, an ...HTML() function, a line in
 // allHTML(), and a button on the page.
 (function () {
@@ -423,7 +424,73 @@
     var o = ks.reduce(function (o, k) { return o[k]; }, S);
     o[last] = v;
   }
+  // help under each box, shown while the tutorial is on (tutorial.js and tutorial.css).
+  // Paths are written with N for any number. Each one shows once, by the first box it fits.
+  var PIC = "Upload the picture somewhere like squidge.org first, then copy the link to the picture itself (it usually ends in .jpg or .png) and paste it here.";
+  var ALT = "A few words saying what's in the picture. Screen readers read this out for anyone who can't see it.";
+  var HELP = {
+    "cast.N.name": "The character's name, the way you want it to show in the chats.",
+    "cast.N.kind": "One-off is the quickest: they just get a coloured circle. Pick New profile if they turn up in lots of chats or apps, so they look the same everywhere. Edit an existing profile uses one of the tutorial's example characters, or a profile you've added.",
+    "cast.N.colour": "The colour of the circle by their messages, when there's no picture.",
+    "cast.N.showInitials": "The letters in the circle. Leave the box empty to use the first letter of their name, or untick it for an empty circle.",
+    "cast.N.pic": "Optional. A picture to show instead of the coloured circle. " + PIC,
+    "cast.N.alt": ALT,
+    "cast.N.land": "Tick this if the picture is wider than it is tall, so it isn't squashed.",
+    "cast.N.num": "Only for WhatsApp. Someone who isn't saved in the phone shows as a phone number instead of a name. Leave it empty otherwise.",
+    "cast.N.example": "Pick which profile to use.",
+    "cast.N.prof.slug": "A short label for this profile that the skin uses to find it. Small letters, numbers and dashes only, no spaces. It's filled in from the name for you.",
+    "cast.N.prof.pic": "A picture for their circle in every app. " + PIC,
+    "cast.N.prof.piccol": "The circle's colour when there's no picture, or while the picture loads.",
+    "cast.N.prof.namecol": "The colour of their name in WhatsApp groups and on Discord.",
+    "cast.N.prof.handle": "Their username on apps like Instagram and Tumblr, without the @.",
+    "cast.N.prof.email": "Their email address, for the email apps. It doesn't have to be real.",
+    "cast.N.prof.saved.N.as": "What they're saved as on someone else's phone, like Mum or a nickname. Pick whose phone first.",
+    "cast.N.prof.dccolon": "Tick this to give them a different name colour on Discord, then pick the colour.",
+    "cast.N.prof.tbsq": "Tumblr pictures can be a circle or a square with rounded corners. Tick this for the square.",
+    "cast.N.prof.accounts.N.acc": "A short label for the extra account, like burner or work. Small letters and dashes only. Then pick the app and fill in only what's different.",
+    "cast.N.prof.wallcolon": "Tick this to colour the background of WhatsApp chats on their phone, then pick the colour.",
+    "cast.N.prof.wallpic": "Or a picture for the background instead. " + PIC,
+    "blocks.N.pov": "Whose phone we're looking at. Their messages go on the right, and everyone else's go on the left.",
+    "blocks.N.group": "Tick this for a group chat. Everyone's name shows by their messages.",
+    "blocks.N.pics": "Shows each person's picture by their messages.",
+    "blocks.N.title": "The name at the very top. In a chat between two people, it's the other person's name. In a group, it's the group's name.",
+    "blocks.N.sub": "The small line under the name. Delete it if you don't want one.",
+    "blocks.N.theme": "A light or dark phone. Auto follows the reader's own light or dark setting.",
+    "blocks.N.width": "Phone width looks like a phone. Full width fills the page.",
+    "blocks.N.scroll": "For a long chat. Scroll inside the phone keeps it phone-sized and readers scroll the messages. Show it all makes the phone as long as the chat.",
+    "blocks.N.header": "Simple shows the name. With picture and icons adds their picture and the call buttons, like the real app.",
+    "blocks.N.bg": "The pattern behind the messages.",
+    "blocks.N.bar": "The box at the bottom where you'd type. Empty shows it with nothing in it. Something half-typed shows a message the phone owner hasn't sent yet.",
+    "blocks.N.barText": "What the phone owner is halfway through typing.",
+    "blocks.N.gp.colour": "The group's picture works just like a character's: a coloured circle with letters in it, or a picture.",
+    "blocks.N.script": "The quickest way to add messages. Put each message on its own line: the name, a colon, then the message, like Ilya: are you awake. Then press Add these messages, and they're added to the list above.",
+    "blocks.N.msgs.N.from": "Who sends this message. Pick Date or notice line for the small lines in the middle, like a date, or the typing line to show someone typing. The buttons at the end of the row: Extras has more options (pictures, reactions and more), the arrows move the message, + adds a new message under it, and &times; deletes it.",
+    "blocks.N.msgs.N.text": "The message itself. Type it just like you'd send it.",
+    "blocks.N.msgs.N.time": "The time on the message, like 09:15.",
+    "blocks.N.msgs.N.sms": "Makes the bubble green, like a text to someone who hasn't got an iPhone.",
+    "blocks.N.msgs.N.reacts.N.emoji": "The little emoji on the corner of a bubble. Pick who reacted, and type one emoji.",
+    "blocks.N.msgs.N.status": "Small words under the message, like Delivered or Read 11:52 PM. Usually only on the phone owner's last message.",
+    "blocks.N.msgs.N.tick": "The little ticks on messages the phone owner sends.",
+    "blocks.N.msgs.N.big": "Tick this when the message is only an emoji, to show it big with no bubble.",
+    "blocks.N.msgs.N.replyTo": "Pick an earlier message to show it quoted above this one, as a reply.",
+    "blocks.N.msgs.N.waReacts": "Emoji reactions under the bubble, with a space between each one. Count is how many people reacted, if it's more than one.",
+    "blocks.N.msgs.N.link.url": "A link preview is the little card that shows up when you send a link. Fill in what the card should say. The link doesn't have to work.",
+    "blocks.N.msgs.N.edited": "Adds the small word Edited to the message.",
+    "blocks.N.msgs.N.photos.N.url": "A picture in the message. " + PIC,
+    "blocks.N.msgs.N.photos.N.alt": ALT,
+    "blocks.N.msgs.N.photos.N.desc": "No picture? Describe it here instead, and the words show where the picture would be."
+  };
+  var helped = {};
+  function help(path) {
+    var k = path.replace(/\.\d+(?=\.|$)/g, ".N");
+    if (!HELP[k] || helped[k]) return "";
+    helped[k] = true;
+    return '<span class="tut-help">' + HELP[k] + "</span>";
+  }
   function field(path, label, opts) {
+    return box(path, label, opts) + help(path);
+  }
+  function box(path, label, opts) {
     opts = opts || {};
     var v = get(path), id = "f-" + path.replace(/\./g, "-");
     var type = opts.type || "text";
@@ -613,9 +680,11 @@
   }
 
   function renderEditor() {
+    helped = {};
     S.cast.forEach(function (c) { if (c.kind === "example" && c.loadedFrom !== c.example) loadProfile(c); });
     $("fb-cast").innerHTML = S.cast.map(castCard).join("");
     $("fb-blocks").innerHTML = S.blocks.map(blockCard).join("") || '<p class="hint">Nothing here yet. Add a chat below.</p>';
+    if (window.Tutorial && Tutorial.mark) Tutorial.mark();
   }
 
   // remake the preview and the copy boxes (after every change)
@@ -658,6 +727,7 @@
       b.msgs.push(newMsg(from, line, time));
     });
     b.script = "";
+    if (!char(b.pov) && S.cast[0]) b.pov = S.cast[0].id; // a chat made before anyone was in the cast
     rerender();
   }
 
