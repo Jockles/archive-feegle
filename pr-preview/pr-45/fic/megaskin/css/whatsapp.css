@@ -250,7 +250,7 @@
 
 /* the three typing dots, in a message bubble from whoever is typing (out for the phone's owner, in for anyone else,
    with the wa-row picture and who line in a group, like any message):
-   <div class="msg in tail"><p class="hide"><em>Lily:</em> typing...</p><p class="typing-indicator"><span></span><span></span><span></span></p></div> */
+   <div class="msg in tail"><p class="hide"><em>Lily</em> is typing...</p><p class="typing-indicator"><span></span><span></span><span></span></p></div> */
 #workskin .wa .typing-indicator { display: block; margin: 0.35em 0 0.25em 0; line-height: 1; }
 
 #workskin .wa .typing-indicator span {

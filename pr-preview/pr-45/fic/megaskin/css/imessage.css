@@ -193,7 +193,7 @@
 
 /* the three typing dots, in a message bubble from whoever is typing (out for the phone's owner, in for anyone else,
    with a who line above it in a group, like any message):
-   <p class="msg in typing-indicator"><span class="hide">typing...</span><span></span><span></span><span></span></p> */
+   <p class="msg in typing-indicator"><span class="hide">is typing...</span><span></span><span></span><span></span></p> */
 #workskin .imsg .typing-indicator { padding: 0.6em 0.8em; line-height: 1; }
 
 #workskin .imsg .typing-indicator span {
