@@ -19,8 +19,23 @@
 .tut-box .tut-btn { margin: 0 4px 4px 0; }
 @media (max-width: 700px) { .tut-box { flex-basis: 100%; } }
 
-.tut-help { display: none; }
-.help-on .tut-help { display: block; box-sizing: border-box; flex: 1 0 100%; order: 9; margin: 4px 0 8px; padding: 5px 8px; font-size: 0.85em; line-height: 1.4;
+/* with Help text off, each help is a small ? that shows its text when hovered over or tapped */
+.fb-row > .tut-help { order: 9; }
+/* a label with its ? beside it */
+div.tut-lab { margin: 8px 0 2px; }
+div.tut-lab > label { display: inline; margin: 0; }
+html:not(.help-on) .tut-help { display: inline-block; position: relative; vertical-align: middle; margin: -4px 4px; line-height: 1; flex: none; }
+html:not(.help-on) .tut-help::before { content: "?"; display: inline-block; width: 18px; height: 18px; line-height: 18px; border-radius: 50%; text-align: center;
+  font-size: 12px; font-weight: bold; cursor: help; background: var(--tag-fill, #e3f1ec); color: var(--header, #0b5563); border: 1px solid var(--header, #0b5563); }
+html:not(.help-on) .tut-help > span { display: none; position: absolute; z-index: 40; top: 100%; left: 0; width: 280px; max-width: calc(100vw - 32px); margin-top: 4px;
+  padding: 6px 9px; font-size: 13px; line-height: 1.4; font-weight: normal; text-align: left; background: var(--page, #fff); color: var(--ink, #2a2a2a);
+  border: 1px solid var(--header, #0b5563); border-radius: 6px; box-shadow: 0 3px 12px rgba(0, 0, 0, 0.2); }
+html:not(.help-on) .tut-help:hover > span, html:not(.help-on) .tut-help:focus > span { display: block; }
+@media (max-width: 600px) {
+  /* on a phone the help pops up along the bottom of the screen instead */
+  html:not(.help-on) .tut-help > span { position: fixed; top: auto; bottom: 16px; left: 16px !important; right: 16px; width: auto; max-width: none; margin: 0; font-size: 14px; }
+}
+.help-on .tut-help { display: block; box-sizing: border-box; flex: 1 0 100%; order: 9; margin: 4px 0 8px; padding: 5px 8px; font-size: 0.85rem; font-weight: normal; line-height: 1.4;
   border-left: 3px solid var(--hover, #1a8f6a); background: var(--tag-fill, #e3f1ec); border-radius: 0 4px 4px 0; }
 .help-on .fb-row { flex-wrap: wrap; }
 

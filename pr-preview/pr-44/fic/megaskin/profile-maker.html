@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="../../style.css">
   <script src="../../theme.js"></script>
   <link rel="stylesheet" href="megaskin.css">
-  <link rel="stylesheet" href="tutorial.css?v=3">
+  <link rel="stylesheet" href="tutorial.css?v=9">
   <style id="live-profile"></style>
   <style>
     .pm { display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-start; }
@@ -57,7 +57,7 @@
     </div>
     <aside class="tut-box">
       <p><button type="button" class="tut-btn" data-tutorial>Tutorial</button> <button type="button" class="tut-btn" data-helptext>Help text</button></p>
-      <p>New here? 'Tutorial' walks you through making a character's profile, step by step. 'Help text' shows a short explanation under every box. You can have either one on, or both.</p>
+      <p>New here? 'Tutorial' walks you through making a character's profile, step by step. 'Help text' shows a short explanation under every box. Without it, hover over or tap any ? to see the help for that box. You can have either one on, or both.</p>
     </aside>
   </div>
 
@@ -65,89 +65,75 @@
     <form class="pm-form" id="pm" autocomplete="off" onsubmit="return false">
       <fieldset>
         <legend>The basics</legend>
-        <label for="name">Name</label>
+        <div class="tut-lab"><label for="name">Name</label> <span class="tut-help" tabindex="0"><span>The character's name, the way you want it to show in the chats.</span></span></div>
         <input type="text" id="name" value="Stan">
-        <p class="tut-help">The character's name, the way you want it to show in the chats.</p>
-        <label for="slug">Profile class</label>
+        <div class="tut-lab"><label for="slug">Profile class</label> <span class="tut-help" tabindex="0"><span>A short label for this profile. It's how the skin knows which character is which, so you'll add it to their messages in your HTML, like 'pfp-stan'. No spaces, and no two characters can have the same one.</span></span></div>
         <div class="row"><span>pfp-</span><input type="text" id="slug" value="stan"></div>
         <p class="hint">Small letters, numbers and hyphens only. It's filled in from the name until you change it.</p>
-        <p class="tut-help">A short label for this profile. It's how the skin knows which character is which, so you'll add it to their messages in your HTML, like 'pfp-stan'. No spaces, and no two characters can have the same one.</p>
-        <label for="pic">Picture link</label>
+        <div class="tut-lab"><label for="pic">Picture link</label> <span class="tut-help" tabindex="0"><span>Optional. A picture for their circle in every app. Upload the picture somewhere like squidge.org first, then copy the link to the picture itself (it usually ends in .jpg or .png) and paste it here.</span></span></div>
         <input type="url" id="pic" placeholder="https://...">
-        <p class="tut-help">Optional. A picture for their circle in every app. Upload the picture somewhere like squidge.org first, then copy the link to the picture itself (it usually ends in .jpg or .png) and paste it here.</p>
         <label for="piccol">Circle colour (shows when there's no picture, or while it loads)</label>
-        <input type="color" id="piccol" value="#c06a1f">
-        <p class="tut-help">Press the colour to pick a new one. With no picture, the circle shows this colour with their first letter in it.</p>
+        <input type="color" id="piccol" value="#c06a1f"> <span class="tut-help" tabindex="0"><span>Press the colour to pick a new one. With no picture, the circle shows this colour with their first letter in it.</span></span>
         <label for="namecol">Name colour (WhatsApp group names and Discord usernames)</label>
-        <input type="color" id="namecol" value="#d2782a">
-        <p class="tut-help">The colour of their name in WhatsApp groups and on Discord. Pick one that's easy to read on both light and dark backgrounds.</p>
-        <label for="handle">Handle (leave off the @)</label>
+        <input type="color" id="namecol" value="#d2782a"> <span class="tut-help" tabindex="0"><span>The colour of their name in WhatsApp groups and on Discord. Pick one that's easy to read on both light and dark backgrounds.</span></span>
+        <div class="tut-lab"><label for="handle">Handle (leave off the @)</label> <span class="tut-help" tabindex="0"><span>Their username on apps like Twitter, Instagram and Tumblr. Leave off the @, it's added for you.</span></span></div>
         <input type="text" id="handle" value="PuckStan">
-        <p class="tut-help">Their username on apps like Twitter, Instagram and Tumblr. Leave off the @, it's added for you.</p>
-        <label for="email">Email address</label>
+        <div class="tut-lab"><label for="email">Email address</label> <span class="tut-help" tabindex="0"><span>Their email address, for the email apps. It doesn't have to be real.</span></span></div>
         <input type="text" id="email" value="Puckstan@gmail.com">
-        <p class="tut-help">Their email address, for the email apps. It doesn't have to be real.</p>
       </fieldset>
 
       <fieldset>
-        <legend>Different on one app</legend>
+        <legend>Different on one app <span class="tut-help" tabindex="0"><span>Optional. Maybe they use a different picture on Instagram, or a different name on Discord. Fill in only the boxes that are different, on the app's row. Empty boxes use the basics.</span></span></legend>
         <p class="hint">Only fill in the ones that are different from the basics.</p>
         <table>
           <thead><tr><th>App</th><th>Picture link</th><th>Name</th><th>Handle</th></tr></thead>
           <tbody id="apps"></tbody>
         </table>
-        <p class="tut-help">Optional. Maybe they use a different picture on Instagram, or a different name on Discord. Fill in only the boxes that are different, on the app's row. Empty boxes use the basics.</p>
-        <label for="dccol">Different name colour on Discord</label>
+        <div class="tut-lab"><label for="dccol">Different name colour on Discord</label> <span class="tut-help" tabindex="0"><span>Tick the box, then pick the colour.</span></span></div>
         <div class="row"><input type="checkbox" id="dccolon"> <input type="color" id="dccol" value="#e8734a"></div>
-        <p class="tut-help">Tick the box, then pick the colour.</p>
         <label><input type="checkbox" id="tbsq"> Rounded square picture on Tumblr</label>
         <p class="hint">Tumblr lets each blog show its picture as a circle or a square with rounded corners. Tick this and it's square everywhere on Tumblr: headers, reblogs and asks.</p>
       </fieldset>
 
       <fieldset>
-        <legend>Saved as</legend>
+        <legend>Saved as <span class="tut-help" tabindex="0"><span>Optional. For example, if Shane has Stan saved as Stan from the bar, type 'shane' in 'Phone owner' and 'Stan from the bar' in 'Saved as'. Press &times; to remove a row.</span></span></legend>
         <p class="hint">What other characters have them saved as on their phones, and a different picture on that phone if you want one. The phone owner is the other character's profile class, without pfp-. This only works in iMessage and WhatsApp messages, and only the name works in Discord DMs. Everywhere else they show the account's default.</p>
         <table>
           <thead><tr><th>Phone owner</th><th>Saved as</th><th>Picture on their phone (optional)</th><th></th></tr></thead>
           <tbody id="saved"></tbody>
         </table>
         <button type="button" id="addsaved">+ Add a phone</button>
-        <p class="tut-help">Optional. For example, if Shane has Stan saved as Stan from the bar, type 'shane' in 'Phone owner' and 'Stan from the bar' in 'Saved as'. Press &times; to remove a row.</p>
       </fieldset>
 
       <fieldset>
-        <legend>Extra accounts</legend>
+        <legend>Extra accounts <span class="tut-help" tabindex="0"><span>Optional. Press 'Add an account', give it a short name like 'burner' (small letters, no spaces), pick the app, then fill in only what's different.</span></span></legend>
         <p class="hint">A second account on one app - a private Instagram, a burner, a fan account. Give each one a name, then fill in only what's different from their main account. In your HTML, add the acc- name next to the profile, like <code>pfp-<span class="slugtxt">stan</span> acc-burner</code>.</p>
         <div id="accts"></div>
         <button type="button" id="addacct">+ Add an account</button>
-        <p class="tut-help">Optional. Press 'Add an account', give it a short name like 'burner' (small letters, no spaces), pick the app, then fill in only what's different.</p>
       </fieldset>
 
       <fieldset>
-        <legend>Their phone</legend>
+        <legend>Their phone <span class="tut-help" tabindex="0"><span>Optional. To colour the background, tick the box and pick a colour. Or use a picture instead. Upload the picture somewhere like squidge.org first, then copy the link to the picture itself (it usually ends in .jpg or .png) and paste it here.</span></span></legend>
         <p class="hint">The WhatsApp wallpaper for chats on their phone (add pov-<span class="slugtxt">stan</span> to the chat container). Leave both empty for the normal background.</p>
         <label for="wallcol">Colour</label>
         <div class="row"><input type="checkbox" id="wallcolon"> <input type="color" id="wallcol" value="#dfeaf6"></div>
         <label for="wallpic">Or a picture link</label>
         <input type="url" id="wallpic" placeholder="https://...">
-        <p class="tut-help">Optional. To colour the background, tick the box and pick a colour. Or use a picture instead. Upload the picture somewhere like squidge.org first, then copy the link to the picture itself (it usually ends in .jpg or .png) and paste it here.</p>
       </fieldset>
     </form>
 
     <div class="pm-out">
-      <h3>Preview</h3>
+      <h3>Preview <span class="tut-help" tabindex="0"><span>This is how your character looks in each app with the default megaskin. It changes as you type. 'Light' and 'Dark' switch the preview between a light and a dark phone.</span></span></h3>
       <p class="theme-pick">
         <label><input type="radio" name="theme" value="theme-light" checked> Light</label>
         <label><input type="radio" name="theme" value="theme-dark"> Dark</label>
       </p>
-      <p class="tut-help">This is how your character looks in each app with the default megaskin. It changes as you type. 'Light' and 'Dark' switch the preview between a light and a dark phone.</p>
       <div class="pm-preview"><div id="workskin"></div></div>
 
-      <h3>Your CSS</h3>
+      <h3>Your CSS <span class="tut-help" tabindex="0"><span>This is the code for your profile. It's made for you as you fill in the boxes, so you don't need to type anything here. To edit a profile you made before, paste its CSS in here and the boxes fill in from it.</span></span></h3>
       <p><button type="button" id="copy">Copy the CSS</button> <span id="copied"></span></p>
       <p class="hint">Or paste a profile here to edit it.</p>
       <textarea id="css" aria-label="Your CSS"></textarea>
-      <p class="tut-help">This is the code for your profile. It's made for you as you fill in the boxes, so you don't need to type anything here. To edit a profile you made before, paste its CSS in here and the boxes fill in from it.</p>
       <p class="hint" id="pasted" role="status"></p>
     </div>
   </div>
@@ -157,11 +143,11 @@
 </footer>
 
 <script src="profile-css.js"></script>
-<script src="tutorial.js?v=3"></script>
+<script src="tutorial.js?v=4"></script>
 <script>
 Tutorial([
   { title: "Make a character profile",
-    text: "<p>A profile keeps a character looking the same in every chat and every app. This walks you through the basics, one step at a time. For more about any box, press <b>'Help text'</b> at the top of the page.</p><p>Press <b>'Next'</b> to start. You can close it any time with &times;, or make it smaller with &minus; to see more of the page.</p>" },
+    text: "<p>A profile keeps a character looking the same in every chat and every app. This walks you through the basics, one step at a time. For more about any box, hover over or tap its ?, or press <b>'Help text'</b> at the top of the page.</p><p>Press <b>'Next'</b> to start. You can close it any time with &times;, or make it smaller with &minus; to see more of the page.</p>" },
   { title: "Their name", target: "#name",
     text: "<p>Type your character's name in <b>'Name'</b>, over Stan. The <b>'Profile class'</b> under it fills itself in.</p>" },
   { title: "Their picture", target: "#pic",
