@@ -108,8 +108,9 @@
   function esc(v) { return String(v == null ? "" : v).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
   function char(id) { return S.cast.filter(function (c) { return c.id === id; })[0]; }
   // profiles pasted into the "Profiles you already have" box: [slug, name] for each
-  function pastedProfiles() {
-    var css = S.pasted || "", out = [];
+  function pastedProfiles(css) {
+    css = css || S.pasted || "";
+    var out = [];
     var re = /\.pfp\.pfp-([a-z0-9-]+)/g, m;
     while ((m = re.exec(css))) {
       var slug = m[1];
@@ -431,7 +432,7 @@
   var ALT = "A few words saying what's in the picture. Screen readers read this out for anyone who can't see it.";
   var HELP = {
     "cast.N.name": "The character's name, the way you want it to show in the chats.",
-    "cast.N.kind": "'One-off' is the quickest: they just get a coloured circle. Pick 'New profile' if they turn up in lots of chats or apps, so they look the same everywhere. 'Edit an existing profile' uses one of the tutorial's example characters, or a profile you've added.",
+    "cast.N.kind": "'One-off' is the quickest: they just get a coloured circle. Pick 'New profile' if they turn up in lots of chats or apps, so they look the same everywhere. 'Edit an existing profile' uses one of the tutorial's example characters, or a profile you've added through the CSS upload.",
     "cast.N.colour": "The colour of the circle by their messages, when there's no picture.",
     "cast.N.showInitials": "The letters in the circle. Leave the box empty to use the first letter of their name, or untick it for an empty circle.",
     "cast.N.pic": "Optional. A picture to show instead of the coloured circle. " + PIC,
@@ -696,8 +697,26 @@
     $("workskin").innerHTML = html;
     $("fb-html").value = html;
     $("fb-css").value = css;
-    $("fb-css-wrap").hidden = !css;
+    $("fb-css-wrap").hidden = !css && !pasteOpen;
   }
+  // "Paste in profile" makes the profile CSS box take pasted profiles too, with no files
+  var pasteOpen = false;
+  function pasteProfiles(text) {
+    var found = pastedProfiles(text);
+    if (!found.length) { $("fb-css-status").textContent = "No profiles found in that. Check you copied the whole profile."; return; }
+    S.pasted = ((S.pasted || "").trim() + "\n\n" + text.trim()).trim();
+    addPasted();
+    rerender();
+    $("fb-css-status").textContent = "Added to the cast: " + found.map(function (p) { return p[1]; }).join(", ") + ".";
+  }
+  $("fb-css").addEventListener("paste", function (e) {
+    if (this.readOnly) return;
+    e.preventDefault();
+    pasteProfiles((e.clipboardData || window.clipboardData).getData("text"));
+  });
+  $("fb-css").addEventListener("change", function () {
+    if (!this.readOnly && this.value.trim() !== profilesCSS().trim()) pasteProfiles(this.value);
+  });
   // redraw the boxes on the left too (after adding, removing or moving something)
   function rerender() { renderEditor(); refresh(); }
 
@@ -760,6 +779,13 @@
       case "cast-add": S.cast.push(newChar("")); break;
       case "paste-show": $("fb-paste-box").hidden = false; $("fb-paste").focus(); return;
       case "paste-hide": $("fb-paste-box").hidden = true; return;
+      case "css-paste":
+        pasteOpen = true;
+        $("fb-css").readOnly = false;
+        $("fb-css-note").hidden = false;
+        $("fb-css-wrap").hidden = false;
+        $("fb-css").focus();
+        return;
       case "paste-add":
         S.pasted = ((S.pasted || "").trim() + "\n\n" + $("fb-paste").value.trim()).trim();
         $("fb-paste").value = "";
