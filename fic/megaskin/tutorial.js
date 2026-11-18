@@ -6,7 +6,8 @@
      open   - optional: a folded-up section to open first (a CSS selector)
    The Tutorial button (data-tutorial) turns the steps on or off. The Help text button
    (data-helptext) separately shows or hides the help under every box: it adds the
-   help-on class to the page (see tutorial.css). */
+   help-on class to the page (see tutorial.css). With it off, each help shows as a small ?
+   that pops up its text when hovered over or tapped. */
 window.Tutorial = function (steps) {
   var root = document.documentElement, step = 0;
   var panel = document.createElement("aside");
@@ -64,5 +65,14 @@ window.Tutorial = function (steps) {
     if (a === "back") go(step - 1);
     if (a === "next") { if (step === steps.length - 1) { step = 0; toggle(false); } else go(step + 1); }
   });
+  // keep a ?'s pop-up help on the screen
+  function place(e) {
+    var h = e.target.closest ? e.target.closest(".tut-help") : null;
+    if (!h || root.classList.contains("help-on") || !h.firstElementChild) return;
+    var r = h.getBoundingClientRect(), w = Math.min(280, window.innerWidth - 32);
+    h.firstElementChild.style.left = Math.min(0, window.innerWidth - 16 - r.left - w) + "px";
+  }
+  document.addEventListener("mouseover", place);
+  document.addEventListener("focusin", place);
   Tutorial.mark = mark;
 };

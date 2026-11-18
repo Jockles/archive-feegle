@@ -487,16 +487,23 @@
     var k = path.replace(/\.\d+(?=\.|$)/g, ".N") + (kind ? ":" + kind : "");
     if (!HELP[k] || helped[k]) return "";
     helped[k] = true;
-    return '<span class="tut-help">' + HELP[k] + "</span>";
+    return '<span class="tut-help" tabindex="0"><span>' + HELP[k] + "</span></span>";
   }
+  // the help's ? goes on the same line as the box's label, or at the end of its row
+  // (wrap: true puts a box with no label in a row of its own, so the ? can sit beside it)
   function field(path, label, opts) {
-    return box(path, label, opts) + help(path, opts && opts.help);
+    opts = opts || {};
+    var h = help(path, opts.help);
+    if (!h || opts.type === "check") return box(path, label, opts) + h;
+    if (label) { opts.labHelp = h; return box(path, label, opts); }
+    return opts.wrap ? '<div class="fb-row">' + box(path, label, opts) + h + "</div>" : box(path, label, opts) + h;
   }
   function box(path, label, opts) {
     opts = opts || {};
     var v = get(path), id = "f-" + path.replace(/\./g, "-");
     var type = opts.type || "text";
     var lab = label ? '<label for="' + id + '">' + label + "</label>" : "";
+    if (lab && opts.labHelp) lab = '<div class="tut-lab">' + lab + opts.labHelp + "</div>";
     if (type === "check") return '<label class="ck"><input type="checkbox" id="' + id + '" data-bind="' + path + '"' + (v ? " checked" : "") + (opts.re ? " data-re" : "") + "> " + label + "</label>";
     if (type === "select") {
       return lab + '<select id="' + id + '" data-bind="' + path + '"' + (opts.re ? " data-re" : "") + ">" + opts.options.map(function (o) {
@@ -517,7 +524,7 @@
     h.push('<details class="fb-card" data-open="' + P + '.open"' + (c.open !== false ? " open" : "") + "><summary><b>" + esc(nameOf(c)) + "</b> <span class=\"hint\">(" + kinds[c.kind] + ")</span></summary>");
     h.push('<div class="fb-row">' + field(P + ".name", "", { ph: "Name", re: true }) +
       btn("cast-del:" + i, "&times;", "Remove " + nameOf(c)) + "</div>");
-    h.push(field(P + ".kind", "", { type: "select", re: true, options: [["oneoff", "One-off: no profile"], ["new", "New profile"], ["example", "Edit an existing profile"]] }));
+    h.push(field(P + ".kind", "", { type: "select", re: true, wrap: true, options: [["oneoff", "One-off: no profile"], ["new", "New profile"], ["example", "Edit an existing profile"]] }));
     if (c.kind === "oneoff") {
       // picture circle: a colour, initials yes or no, then an optional picture
       h.push('<div class="fb-row">' + field(P + ".colour", "", { type: "select", re: true, options: Object.keys(COLOURS).map(function (k) { return [k, "Colour " + k]; }) }) +
@@ -566,7 +573,7 @@
       h.push(btn("acct-add:" + i, "+ Extra account"));
       h.push('<p class="hint">WhatsApp wallpaper on their phone:</p>');
       h.push('<div class="fb-row">' + field(Q + ".wallcolon", "Colour", { type: "check" }) + field(Q + ".wallcol", "", { type: "color" }) + "</div>");
-      h.push(field(Q + ".wallpic", "", { type: "url", ph: "Or a picture link" }));
+      h.push(field(Q + ".wallpic", "", { type: "url", ph: "Or a picture link", wrap: true }));
       h.push("</details>");
     }
     h.push("</details>");
@@ -613,7 +620,7 @@
         else {
           var K = P + ".link";
           h.push('<div class="fb-acct"><p class="hint">Link preview (the message text becomes the caption under it): ' + btn("link-del:" + bi + ":" + mi, "Remove") + "</p>" +
-            field(K + ".url", "", { ph: "Web address" }) + field(K + ".showUrl", "Show the address above the preview too", { type: "check" }) +
+            field(K + ".url", "", { ph: "Web address", wrap: true }) + field(K + ".showUrl", "Show the address above the preview too", { type: "check" }) +
             field(K + ".title", "", { ph: "Title" }) + field(K + ".desc", "", { ph: "Description" }) +
             field(K + ".img", "", { type: "url", ph: "Picture link" }) + field(K + ".alt", "", { ph: "Describe the picture" }) +
             field(K + ".video", "", { type: "url", ph: "Or a video embed link (Vimeo, YouTube or the Internet Archive)" }) +
@@ -625,7 +632,7 @@
       m.photos.forEach(function (p, k) {
         var K = P + ".photos." + k;
         h.push('<div class="fb-acct"><div class="fb-row">' + field(K + ".url", "", { type: "url", ph: "Picture link" }) + btn("photo-del:" + bi + ":" + mi + ":" + k, "&times;", "Remove") + "</div>" +
-          field(K + ".alt", "", { ph: "Describe the picture (alt text)" }) + field(K + ".desc", "", { ph: "Or, with no picture, describe it in words" }) +
+          field(K + ".alt", "", { ph: "Describe the picture (alt text)", wrap: true }) + field(K + ".desc", "", { ph: "Or, with no picture, describe it in words", wrap: true }) +
           (wa ? field(K + ".land", "Landscape picture", { type: "check" }) : "") + "</div>");
       });
       if (!wa || m.photos.length < 4) h.push(btn("photo-add:" + bi + ":" + mi, "+ Picture"));
