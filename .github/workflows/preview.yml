@@ -27,6 +27,8 @@ jobs:
           python3 tools/build-wips.py
       - name: Gather the site files
         run: rsync -a --exclude .git --exclude .github --exclude tools --exclude _wips --exclude CNAME ./ _site/
+      - name: Add the site icon and link-preview tags
+        run: python3 tools/site-meta.py _site
       - uses: rossjrw/pr-preview-action@v1
         with:
           source-dir: _site
