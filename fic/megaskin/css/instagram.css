@@ -624,7 +624,7 @@
 
 #workskin .ig.theme-dark .ig-story.me .ig-sname { color: #a8a8a8; }
 
-#workskin .ig.theme-dark .ig-story.me::before { background-color: #363636; }
+#workskin .ig.theme-dark .ig-story.me::before { background-color: #737373; }
 
 #workskin .ig.theme-dark .ig-story.me::after { border-color: #0c1014; background: #f5f5f5; color: #0c1014; }
 
@@ -683,7 +683,7 @@
 
   #workskin .ig.theme-auto .ig-story.me .ig-sname { color: #a8a8a8; }
 
-  #workskin .ig.theme-auto .ig-story.me::before { background-color: #363636; }
+  #workskin .ig.theme-auto .ig-story.me::before { background-color: #737373; }
 
   #workskin .ig.theme-auto .ig-story.me::after { border-color: #0c1014; background: #f5f5f5; color: #0c1014; }
 
