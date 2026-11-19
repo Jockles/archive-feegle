@@ -25,7 +25,7 @@
   <!-- /site meta -->
   <link rel="stylesheet" href="../../style.css">
   <script src="../../theme.js"></script>
-  <link rel="stylesheet" href="megaskin.css?v=e876ff05" id="creator-style">
+  <link rel="stylesheet" href="megaskin.css?v=2221d02b" id="creator-style">
 </head>
 <body>
 <header>
@@ -55,31 +55,38 @@
 
 <ul class="contents">
   <li><a href="#s11-1">11.1 Getting the CSS</a></li>
-  <li><a href="#s11-2">11.2 How the Module is Laid Out</a></li>
+  <li><a href="#s11-2">11.2 How the Modules are Laid Out</a></li>
   <li><a href="#s11-3">11.3 The Picture Column</a></li>
-  <li><a href="#s11-4">11.4 The 2012-15 Switch</a></li>
+  <li><a href="#s11-4">11.4 What's Different in 2012-15</a></li>
   <li><a href="#s11-5">11.5 Dark and Auto Themes</a></li>
   <li><a href="#s11-6">11.6 Taking Parts Out</a></li>
 </ul>
 
-<p>This chapter goes through the CSS for the classic tweets in the last chapter. The module has two parts: the tweet (<code>twc</code>) and the timeline it can sit in (<code>twc-feed</code>), with the 2012-15 switch (<code>tw2012</code>) after them.</p>
+<p>This chapter goes through the CSS for the classic tweets in the last chapter. There are two modules, one for each era, and each has two parts: the tweet (<code>twc16</code> or <code>twc12</code>) and the timeline it can sit in (<code>twc16-feed</code> or <code>twc12-feed</code>).</p>
 
 <h3 id="s11-1">11.1 Getting the CSS</h3>
 
-<p>The Classic Twitter CSS is here: <a href="css/twitter-classic.css">jockles.com/fic/megaskin/css/twitter-classic.css</a>. It needs the core CSS too, so paste the <a href="core-css.html">core</a> into your work skin first and this underneath it. It doesn't need the Twitter/X module.</p>
+<p>The Classic Twitter CSS is in two files, one for each module:</p>
 
-<h3 id="s11-2">11.2 How the Module is Laid Out</h3>
+<ul>
+  <li>2016-19: <a href="css/twitter-classic-2016.css">jockles.com/fic/megaskin/css/twitter-classic-2016.css</a></li>
+  <li>2012-15: <a href="css/twitter-classic-2012.css">jockles.com/fic/megaskin/css/twitter-classic-2012.css</a></li>
+</ul>
 
-<p>The usual order: the tweet, an opened tweet, the timeline, then the 2012-15 switch, the Dark and Auto themes, and Icons at the end. Every rule starts with <code>.twc</code> or <code>.twc-feed</code>, so even though the parts inside have the same names as Twitter/X's (<code>tw-top</code>, <code>tw-stats</code> and so on), the two modules never get in each other's way.</p>
+<p>Each needs the core CSS too, so paste the <a href="core-css.html">core</a> into your work skin first and the module (or both) underneath it. Neither needs the Twitter/X module or the other classic one.</p>
+
+<h3 id="s11-2">11.2 How the Modules are Laid Out</h3>
+
+<p>Both modules are in the same order: the tweet, an opened tweet, the timeline, the Dark and Auto themes, and Icons at the end. Every rule starts with the module's own classes, so even though the parts inside have the same names as Twitter/X's (<code>tw-top</code>, <code>tw-stats</code> and so on), none of the three modules get in each other's way.</p>
 
 <h3 id="s11-3">11.3 The Picture Column</h3>
 
-<pre><code>#workskin .twc {
+<pre><code>#workskin .twc16 {
   position: relative;
   padding: 0.7em 1em 0.55em 4.75em;
 }
 
-#workskin .twc .tw-pfp {
+#workskin .twc16 .tw-pfp {
   position: absolute;
   top: 0.75em;
   left: 1em;
@@ -90,16 +97,15 @@
 
 <p>The big left padding on the tweet leaves an empty column down the side, and the picture is pulled out of the line with <code>position: absolute</code> and pinned into it. Everything else in the tweet - the label, the name line, the words and the buttons - lines up in the space beside it, with no extra boxes needed. An opened tweet (<code>big</code>) takes the padding away again and gives the name line its own padding instead, so the picture sits beside the name and the words run the whole width underneath.</p>
 
-<h3 id="s11-4">11.4 The 2012-15 Switch</h3>
+<h3 id="s11-4">11.4 What's Different in 2012-15</h3>
 
-<pre><code>#workskin .twc.tw2012 .tw-pfp,
-#workskin .twc-feed.tw2012 .tw-pfp,
-#workskin .twc-feed.tw2012 .tw-me { border-radius: 5px; }
+<pre><code>#workskin .twc12 .tw-pfp {
+  border-radius: 5px;
+}
 
-#workskin .twc.tw2012 .tw-time,
-#workskin .twc-feed.tw2012 .tw-time { position: absolute; top: 0.85em; right: 1em; font-size: 0.85em; }</code></pre>
+#workskin .twc12 .tw-time { position: absolute; top: 0.85em; right: 1em; font-size: 0.85em; }</code></pre>
 
-<p>Every 2012-15 rule names both <code>.twc.tw2012</code> and <code>.twc-feed.tw2012</code>, so the switch works on a tweet on its own or on a whole timeline. The square pictures are the same circles with a smaller <code>border-radius</code>, and the time is pinned to the top right corner the same way the picture is pinned to the left. The star, the curved arrow and the three dots are swapped in by the Icons section, which changes the pictures behind the same icon spans.</p>
+<p>The <code>twc12</code> module is the same layout with the older look built into it. The square pictures are the same picture box with a smaller <code>border-radius</code>, and the time is pinned to the top right corner the same way the picture is pinned to the left. The star, the curved arrow and the three dots are swapped in by its Icons section, which puts different pictures behind the same icon spans.</p>
 
 <h3 id="s11-5">11.5 Dark and Auto Themes</h3>
 
@@ -108,9 +114,10 @@
 <h3 id="s11-6">11.6 Taking Parts Out</h3>
 
 <ul>
-  <li><strong>The timeline:</strong> everything starting <code>.twc-feed</code>.</li>
+  <li><strong>The timeline:</strong> everything starting <code>.twc16-feed</code> or <code>.twc12-feed</code>.</li>
   <li><strong>Opened tweets:</strong> the rules with <code>.big</code>, <code>tw-date</code>, <code>tw-counts</code> and <code>twc-foot</code>.</li>
-  <li><strong>2012-15:</strong> everything with <code>tw2012</code> in it.</li>
+  <li><strong>The little arrow (2016-19):</strong> the rules with <code>tw-more</code> and <code>ic-dropdown</code>.</li>
+  <li><strong>Details (2012-15):</strong> the <code>tw-details</code> rule.</li>
 </ul>
         </div>
       </div>

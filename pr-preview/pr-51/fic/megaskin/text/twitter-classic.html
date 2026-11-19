@@ -1,16 +1,16 @@
-<p>This module is Twitter as it was before it became X: hearts and round pictures from 2016 to 2019, and a switch back to the stars and square pictures of 2012 to 2015. It's a module of its own, separate from the Twitter/X one, so you only need to add it if your fic is set in those years. The tweets use the same HTML as the <a href="twitter-x.html">Twitter/X chapter</a>, so a tweet can move between the two by changing its container.</p>
+<p>This chapter is Twitter as it was before it became X, in two separate modules: <code>twc16</code> for hearts and round pictures from 2016 to 2019, and <code>twc12</code> for the stars and square pictures of 2012 to 2015. Each one works on its own, so add whichever fits when your fic is set, or both if it covers both. Neither needs the Twitter/X module. The tweets use the same HTML as the <a href="twitter-x.html">Twitter/X chapter</a>, so a tweet can move between any of the three by changing its container.</p>
 
 <!-- contents -->
 
 <h3>Classic Tweets</h3>
 
-<p>Here's a timeline from 2016-19, and an opened tweet from 2012-15. As before, the full HTML is underneath each, and the rest of the chapter takes it apart.</p>
+<p>Here's a 2016-19 timeline in <code>twc16</code>, and a 2012-15 opened tweet in <code>twc12</code>. As before, the full HTML is underneath each. Most of the chapter takes apart the 2016-19 one, and then <a href="#twc12">2012 to 2015</a> goes through what's different in the older one.</p>
 
 <h4>A 2016-19 Timeline</h4>
 
-<div class="twc-feed theme-auto">
+<div class="twc16-feed theme-auto">
   <p class="twc-bar"><span class="tw-me"><span class="pfp pfp-ilya"></span></span><span class="twc-title">Home</span></p>
-  <div class="mob twc">
+  <div class="mob twc16">
     <p class="tw-label"><span class="ic ic-tw-repost">&#8644;</span> Shane Hollander Retweeted</p>
     <p class="tw-top"><span class="tw-pfp"><span class="pfp pfp-zim"></span></span><span class="hide"> </span><span class="tw-name"><span class="name pfp-zim"><span class="hide">Zim</span></span></span> <span class="tw-handle"><span class="handle pfp-zim"><span class="hide">@ZimBits</span></span></span> <span class="tw-time">· 3h</span> <span class="tw-more ic ic-dropdown">&#8964;</span></p>
     <p class="tw-text">Rookie camp is officially open and someone has already lost a skate. Not a pair. One skate. <span class="tw-link">#preseason</span></p>
@@ -21,7 +21,7 @@
         <p class="tw-stat"><span class="ic ic-tw-share">&#8679;</span></p>
       </div>
   </div>
-  <div class="mob twc link">
+  <div class="mob twc16 link">
     <p class="tw-top"><span class="tw-pfp"><span class="pfp pfp-holster"></span></span><span class="hide"> </span><span class="tw-name"><span class="name pfp-holster"><span class="hide">Holster</span></span></span> <span class="tw-handle"><span class="handle pfp-holster"><span class="hide">@HolsterInLaw</span></span></span> <span class="tw-time">· 33m</span> <span class="tw-more ic ic-dropdown">&#8964;</span></p>
     <p class="tw-text"><span class="tw-link">@ZimBits</span> nearly lost my lunch watching Shane try and swing a baseball bat</p>
     <div class="tw-stats">
@@ -31,7 +31,7 @@
         <p class="tw-stat"><span class="ic ic-tw-share">&#8679;</span></p>
       </div>
   </div>
-  <div class="mob twc">
+  <div class="mob twc16">
     <p class="tw-top"><span class="tw-pfp"><span class="pfp pfp-rose"></span></span><span class="hide"> </span><span class="tw-name"><span class="name pfp-rose"><span class="hide">Rose Landry</span></span></span> <span class="tw-handle"><span class="handle pfp-rose"><span class="hide">@RoseLandry</span></span></span> <span class="tw-time">· 27s</span> <span class="tw-more ic ic-dropdown">&#8964;</span></p>
     <p class="tw-replying">Replying to <span class="tw-link">@HolsterInLaw</span></p>
     <p class="tw-text">now you know how it feels watching you try to play defence</p>
@@ -42,7 +42,7 @@
         <p class="tw-stat"><span class="ic ic-tw-share">&#8679;</span></p>
       </div>
   </div>
-  <div class="mob twc">
+  <div class="mob twc16">
     <p class="tw-label"><span class="ic ic-tw-like">&#9825;</span> Rose Landry liked</p>
     <p class="tw-top"><span class="tw-pfp"><span class="pfp pfp-stan"></span></span><span class="hide"> </span><span class="tw-name"><span class="name pfp-stan"><span class="hide">Stan</span></span></span> <span class="tw-handle"><span class="handle pfp-stan"><span class="hide">@PuckStan</span></span></span> <span class="tw-time">· 5h</span> <span class="tw-more ic ic-dropdown">&#8964;</span></p>
     <p class="tw-text">If there's one thing I've learnt it's that you're always right</p>
@@ -59,9 +59,9 @@
 <details>
 <summary>The full HTML for this timeline</summary>
 
-<pre><code>&lt;div class="twc-feed theme-auto"&gt;
+<pre><code>&lt;div class="twc16-feed theme-auto"&gt;
   &lt;p class="twc-bar"&gt;&lt;span class="tw-me"&gt;&lt;span class="pfp pfp-ilya"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="twc-title"&gt;Home&lt;/span&gt;&lt;/p&gt;
-  &lt;div class="mob twc"&gt;
+  &lt;div class="mob twc16"&gt;
     &lt;p class="tw-label"&gt;&lt;span class="ic ic-tw-repost"&gt;&amp;#8644;&lt;/span&gt; Shane Hollander Retweeted&lt;/p&gt;
     &lt;p class="tw-top"&gt;&lt;span class="tw-pfp"&gt;&lt;span class="pfp pfp-zim"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="tw-name"&gt;&lt;span class="name pfp-zim"&gt;&lt;span class="hide"&gt;Zim&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; &lt;span class="tw-handle"&gt;&lt;span class="handle pfp-zim"&gt;&lt;span class="hide"&gt;@ZimBits&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; &lt;span class="tw-time"&gt;· 3h&lt;/span&gt; &lt;span class="tw-more ic ic-dropdown"&gt;&amp;#8964;&lt;/span&gt;&lt;/p&gt;
     &lt;p class="tw-text"&gt;Rookie camp is officially open and someone has already lost a skate. Not a pair. One skate. &lt;span class="tw-link"&gt;#preseason&lt;/span&gt;&lt;/p&gt;
@@ -72,7 +72,7 @@
         &lt;p class="tw-stat"&gt;&lt;span class="ic ic-tw-share"&gt;&amp;#8679;&lt;/span&gt;&lt;/p&gt;
       &lt;/div&gt;
   &lt;/div&gt;
-  &lt;div class="mob twc link"&gt;
+  &lt;div class="mob twc16 link"&gt;
     &lt;p class="tw-top"&gt;&lt;span class="tw-pfp"&gt;&lt;span class="pfp pfp-holster"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="tw-name"&gt;&lt;span class="name pfp-holster"&gt;&lt;span class="hide"&gt;Holster&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; &lt;span class="tw-handle"&gt;&lt;span class="handle pfp-holster"&gt;&lt;span class="hide"&gt;@HolsterInLaw&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; &lt;span class="tw-time"&gt;· 33m&lt;/span&gt; &lt;span class="tw-more ic ic-dropdown"&gt;&amp;#8964;&lt;/span&gt;&lt;/p&gt;
     &lt;p class="tw-text"&gt;&lt;span class="tw-link"&gt;@ZimBits&lt;/span&gt; nearly lost my lunch watching Shane try and swing a baseball bat&lt;/p&gt;
     &lt;div class="tw-stats"&gt;
@@ -82,7 +82,7 @@
         &lt;p class="tw-stat"&gt;&lt;span class="ic ic-tw-share"&gt;&amp;#8679;&lt;/span&gt;&lt;/p&gt;
       &lt;/div&gt;
   &lt;/div&gt;
-  &lt;div class="mob twc"&gt;
+  &lt;div class="mob twc16"&gt;
     &lt;p class="tw-top"&gt;&lt;span class="tw-pfp"&gt;&lt;span class="pfp pfp-rose"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="tw-name"&gt;&lt;span class="name pfp-rose"&gt;&lt;span class="hide"&gt;Rose Landry&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; &lt;span class="tw-handle"&gt;&lt;span class="handle pfp-rose"&gt;&lt;span class="hide"&gt;@RoseLandry&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; &lt;span class="tw-time"&gt;· 27s&lt;/span&gt; &lt;span class="tw-more ic ic-dropdown"&gt;&amp;#8964;&lt;/span&gt;&lt;/p&gt;
     &lt;p class="tw-replying"&gt;Replying to &lt;span class="tw-link"&gt;@HolsterInLaw&lt;/span&gt;&lt;/p&gt;
     &lt;p class="tw-text"&gt;now you know how it feels watching you try to play defence&lt;/p&gt;
@@ -93,7 +93,7 @@
         &lt;p class="tw-stat"&gt;&lt;span class="ic ic-tw-share"&gt;&amp;#8679;&lt;/span&gt;&lt;/p&gt;
       &lt;/div&gt;
   &lt;/div&gt;
-  &lt;div class="mob twc"&gt;
+  &lt;div class="mob twc16"&gt;
     &lt;p class="tw-label"&gt;&lt;span class="ic ic-tw-like"&gt;&amp;#9825;&lt;/span&gt; Rose Landry liked&lt;/p&gt;
     &lt;p class="tw-top"&gt;&lt;span class="tw-pfp"&gt;&lt;span class="pfp pfp-stan"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="tw-name"&gt;&lt;span class="name pfp-stan"&gt;&lt;span class="hide"&gt;Stan&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; &lt;span class="tw-handle"&gt;&lt;span class="handle pfp-stan"&gt;&lt;span class="hide"&gt;@PuckStan&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; &lt;span class="tw-time"&gt;· 5h&lt;/span&gt; &lt;span class="tw-more ic ic-dropdown"&gt;&amp;#8964;&lt;/span&gt;&lt;/p&gt;
     &lt;p class="tw-text"&gt;If there's one thing I've learnt it's that you're always right&lt;/p&gt;
@@ -111,13 +111,13 @@
 
 <h4>A 2012-15 Opened Tweet</h4>
 
-<div class="twc-feed tw2012 theme-auto">
+<div class="twc12-feed theme-auto">
   <p class="twc-bar"><span class="ic ic-back">&#8592;</span><span class="twc-title">Tweet</span><span class="ic ic-x-search">&#128269;</span></p>
-  <div class="mob twc">
+  <div class="mob twc12">
     <p class="tw-top"><span class="tw-pfp"><span class="pfp pfp-stan"></span></span><span class="hide"> </span><span class="tw-name"><span class="name pfp-stan"><span class="hide">Stan</span></span></span> <span class="tw-handle"><span class="handle pfp-stan"><span class="hide">@PuckStan</span></span></span> <span class="tw-time">33m</span></p>
     <p class="tw-text">Shane Hollander on the ice in practice today. The rookie looks fast <span class="tw-link">#hockey</span></p>
   </div>
-  <div class="mob twc big">
+  <div class="mob twc12 big">
     <p class="tw-top"><span class="tw-pfp"><span class="pfp pfp-ilya"></span></span><span class="hide"> </span><span class="tw-name"><span class="name pfp-ilya"><span class="hide">Ilya Rozanov</span></span></span> <span class="tw-handle"><span class="handle pfp-ilya"><span class="hide">@ilya_roz</span></span></span></p>
     <p class="tw-text"><span class="tw-link">@PuckStan</span> he is not that fast. I have seen faster. I am faster</p>
     <p class="tw-date">8/2/13, 2:26 PM</p>
@@ -135,13 +135,13 @@
 <details>
 <summary>The full HTML for this tweet</summary>
 
-<pre><code>&lt;div class="twc-feed tw2012 theme-auto"&gt;
+<pre><code>&lt;div class="twc12-feed theme-auto"&gt;
   &lt;p class="twc-bar"&gt;&lt;span class="ic ic-back"&gt;&amp;#8592;&lt;/span&gt;&lt;span class="twc-title"&gt;Tweet&lt;/span&gt;&lt;span class="ic ic-x-search"&gt;&amp;#128269;&lt;/span&gt;&lt;/p&gt;
-  &lt;div class="mob twc"&gt;
+  &lt;div class="mob twc12"&gt;
     &lt;p class="tw-top"&gt;&lt;span class="tw-pfp"&gt;&lt;span class="pfp pfp-stan"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="tw-name"&gt;&lt;span class="name pfp-stan"&gt;&lt;span class="hide"&gt;Stan&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; &lt;span class="tw-handle"&gt;&lt;span class="handle pfp-stan"&gt;&lt;span class="hide"&gt;@PuckStan&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; &lt;span class="tw-time"&gt;33m&lt;/span&gt;&lt;/p&gt;
     &lt;p class="tw-text"&gt;Shane Hollander on the ice in practice today. The rookie looks fast &lt;span class="tw-link"&gt;#hockey&lt;/span&gt;&lt;/p&gt;
   &lt;/div&gt;
-  &lt;div class="mob twc big"&gt;
+  &lt;div class="mob twc12 big"&gt;
     &lt;p class="tw-top"&gt;&lt;span class="tw-pfp"&gt;&lt;span class="pfp pfp-ilya"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="tw-name"&gt;&lt;span class="name pfp-ilya"&gt;&lt;span class="hide"&gt;Ilya Rozanov&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; &lt;span class="tw-handle"&gt;&lt;span class="handle pfp-ilya"&gt;&lt;span class="hide"&gt;@ilya_roz&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
     &lt;p class="tw-text"&gt;&lt;span class="tw-link"&gt;@PuckStan&lt;/span&gt; he is not that fast. I have seen faster. I am faster&lt;/p&gt;
     &lt;p class="tw-date"&gt;8/2/13, 2:26 PM&lt;/p&gt;
@@ -162,9 +162,9 @@
 
 <h4>The Tweet</h4>
 
-<p>A classic tweet is a container with <code>mob twc</code> and a theme. Inside, it's built exactly like a Twitter/X tweet: the name line in <code>tw-top</code>, the words in <code>tw-text</code>, and the buttons in <code>tw-stats</code>. The picture sits in a column of its own on the left, and everything else lines up beside it, the way Twitter looked back then:</p>
+<p>A classic tweet is a container with <code>mob twc16</code> (or <code>mob twc12</code>) and a theme. Inside, it's built exactly like a Twitter/X tweet: the name line in <code>tw-top</code>, the words in <code>tw-text</code>, and the buttons in <code>tw-stats</code>. The picture sits in a column of its own on the left, and everything else lines up beside it, the way Twitter looked back then:</p>
 
-<div class="mob twc theme-auto">
+<div class="mob twc16 theme-auto">
   <p class="tw-top"><span class="tw-pfp"><span class="pfp pfp-zim"></span></span><span class="hide"> </span><span class="tw-name"><span class="name pfp-zim"><span class="hide">Zim</span></span></span> <span class="tw-handle"><span class="handle pfp-zim"><span class="hide">@ZimBits</span></span></span> <span class="tw-time">· 3h</span> <span class="tw-more ic ic-dropdown">&#8964;</span></p>
   <p class="tw-text">Rookie camp is officially open and someone has already lost a skate</p>
   <div class="tw-stats">
@@ -198,7 +198,7 @@
 
 <p>For a tweet that someone else retweeted into the timeline, add a <code>tw-label</code> line at the top, before the name line:</p>
 
-<div class="mob twc theme-auto"><p class="tw-label"><span class="ic ic-tw-repost">&#8644;</span> Shane Hollander Retweeted</p>
+<div class="mob twc16 theme-auto"><p class="tw-label"><span class="ic ic-tw-repost">&#8644;</span> Shane Hollander Retweeted</p>
 <p class="tw-top"><span class="tw-pfp"><span class="pfp pfp-zim"></span></span><span class="hide"> </span><span class="tw-name"><span class="name pfp-zim"><span class="hide">Zim</span></span></span> <span class="tw-handle"><span class="handle pfp-zim"><span class="hide">@ZimBits</span></span></span> <span class="tw-time">· 3h</span></p>
 <p class="tw-text">Rookie camp is officially open</p></div>
 
@@ -220,7 +220,7 @@
 
 <p>A quoted tweet goes in a box under the words, in a <code>tw-quote</code>. Inside it, the name line has just the name and handle, with no picture, and then the quoted words:</p>
 
-<div class="mob twc theme-auto">
+<div class="mob twc16 theme-auto">
 <p class="tw-top"><span class="tw-pfp"><span class="pfp pfp-stan"></span></span><span class="hide"> </span><span class="tw-name"><span class="name pfp-stan"><span class="hide">Stan</span></span></span> <span class="tw-handle"><span class="handle pfp-stan"><span class="hide">@PuckStan</span></span></span> <span class="tw-time">· 5h</span> <span class="tw-more ic ic-dropdown">&#8964;</span></p>
 <p class="tw-text">If there's one thing I've learnt it's that you're always right</p>
 <div class="tw-quote"><p class="tw-top"><span class="tw-name">Zim</span> <span class="tw-handle">@ZimBits</span></p><p class="tw-text">Rookie camp is officially open and someone has already lost a skate</p></div>
@@ -234,7 +234,7 @@
 
 <p>A quote tweet was also how people replied out loud, by quoting the tweet they were answering. Opened up, the quote sits between the words and the date, the same box at its usual size:</p>
 
-<div class="mob twc big theme-auto">
+<div class="mob twc16 big theme-auto">
 <p class="tw-top"><span class="tw-pfp"><span class="pfp pfp-ilya"></span></span><span class="hide"> </span><span class="tw-name"><span class="name pfp-ilya"><span class="hide">Ilya Rozanov</span></span></span> <span class="tw-handle"><span class="handle pfp-ilya"><span class="hide">@ilya_roz</span></span></span> <span class="tw-more ic ic-dropdown">&#8964;</span></p>
 <p class="tw-text">yes and I am the better one</p>
 <div class="tw-quote"><p class="tw-top"><span class="tw-name">Stan</span> <span class="tw-handle">@PuckStan</span></p><p class="tw-text">mate <span class="tw-link">@irozanov</span> your teammate might actually be better at hockey than you</p></div>
@@ -250,12 +250,12 @@
 
 <h4>Conversations</h4>
 
-<p>In a timeline, a tweet and a reply to it were joined by a grey line between their pictures. Add <code>link</code> to the first tweet's container, <code>&lt;div class=&quot;mob twc link&quot;&gt;</code>, and the line runs down from its picture to the picture of the tweet underneath. Chain as many as you like by adding <code>link</code> to each one except the last. You can see this in the timeline at the top of the chapter.</p>
+<p>In a timeline, a tweet and a reply to it were joined by a grey line between their pictures. Add <code>link</code> to the first tweet's container, <code>&lt;div class=&quot;mob twc16 link&quot;&gt;</code>, and the line runs down from its picture to the picture of the tweet underneath. Chain as many as you like by adding <code>link</code> to each one except the last. You can see this in the timeline at the top of the chapter.</p>
 
 <p>When you open a reply, the tweet it answers sits above it in timeline size, joined by the same line, and the reply itself is a <code>big</code> tweet with its "Replying to" line under the name:</p>
 
-<div class="twc-feed theme-auto">
-  <div class="mob twc link">
+<div class="twc16-feed theme-auto">
+  <div class="mob twc16 link">
     <p class="tw-top"><span class="tw-pfp"><span class="pfp pfp-stan"></span></span><span class="hide"> </span><span class="tw-name"><span class="name pfp-stan"><span class="hide">Stan</span></span></span> <span class="tw-handle"><span class="handle pfp-stan"><span class="hide">@PuckStan</span></span></span> <span class="tw-time">· 5m</span> <span class="tw-more ic ic-dropdown">&#8964;</span></p>
     <p class="tw-text">If there's one thing I've learnt it's that you're always right</p>
     <div class="tw-quote"><p class="tw-top"><span class="tw-name">Zim</span> <span class="tw-handle">@ZimBits</span></p><p class="tw-text">Biggest robbery of the season. That was offside and everyone in the building knew it</p></div>
@@ -266,7 +266,7 @@
         <p class="tw-stat"><span class="ic ic-tw-share">&#8679;</span></p>
       </div>
   </div>
-  <div class="mob twc big">
+  <div class="mob twc16 big">
     <p class="tw-top"><span class="tw-pfp"><span class="pfp pfp-zim"></span></span><span class="hide"> </span><span class="tw-name"><span class="name pfp-zim"><span class="hide">Zim</span></span></span> <span class="tw-handle"><span class="handle pfp-zim"><span class="hide">@ZimBits</span></span></span> <span class="tw-more ic ic-dropdown">&#8964;</span></p>
     <p class="tw-replying">Replying to <span class="tw-link">@PuckStan</span></p>
     <p class="tw-text">love you too, Stan</p>
@@ -274,8 +274,8 @@
   </div>
 </div>
 
-<pre><code>&lt;div class="twc-feed theme-auto"&gt;
-  &lt;div class="mob twc link"&gt;
+<pre><code>&lt;div class="twc16-feed theme-auto"&gt;
+  &lt;div class="mob twc16 link"&gt;
     &lt;p class="tw-top"&gt;&lt;span class="tw-pfp"&gt;&lt;span class="pfp pfp-stan"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="tw-name"&gt;&lt;span class="name pfp-stan"&gt;&lt;span class="hide"&gt;Stan&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; &lt;span class="tw-handle"&gt;&lt;span class="handle pfp-stan"&gt;&lt;span class="hide"&gt;@PuckStan&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; &lt;span class="tw-time"&gt;· 5m&lt;/span&gt; &lt;span class="tw-more ic ic-dropdown"&gt;&amp;#8964;&lt;/span&gt;&lt;/p&gt;
     &lt;p class="tw-text"&gt;If there's one thing I've learnt it's that you're always right&lt;/p&gt;
     &lt;div class="tw-quote"&gt;&lt;p class="tw-top"&gt;&lt;span class="tw-name"&gt;Zim&lt;/span&gt; &lt;span class="tw-handle"&gt;@ZimBits&lt;/span&gt;&lt;/p&gt;&lt;p class="tw-text"&gt;Biggest robbery of the season. That was offside and everyone in the building knew it&lt;/p&gt;&lt;/div&gt;
@@ -286,7 +286,7 @@
         &lt;p class="tw-stat"&gt;&lt;span class="ic ic-tw-share"&gt;&amp;#8679;&lt;/span&gt;&lt;/p&gt;
       &lt;/div&gt;
   &lt;/div&gt;
-  &lt;div class="mob twc big"&gt;
+  &lt;div class="mob twc16 big"&gt;
     &lt;p class="tw-top"&gt;&lt;span class="tw-pfp"&gt;&lt;span class="pfp pfp-zim"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="tw-name"&gt;&lt;span class="name pfp-zim"&gt;&lt;span class="hide"&gt;Zim&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; &lt;span class="tw-handle"&gt;&lt;span class="handle pfp-zim"&gt;&lt;span class="hide"&gt;@ZimBits&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; &lt;span class="tw-more ic ic-dropdown"&gt;&amp;#8964;&lt;/span&gt;&lt;/p&gt;
     &lt;p class="tw-replying"&gt;Replying to &lt;span class="tw-link"&gt;@PuckStan&lt;/span&gt;&lt;/p&gt;
     &lt;p class="tw-text"&gt;love you too, Stan&lt;/p&gt;
@@ -298,7 +298,7 @@
 
 <p>Add <code>big</code> to the container for a tweet that's been tapped on and opened. The handle moves under the name, the words get bigger, and the time is left out of the name line. The date line can say what the tweet was sent from, the way Twitter did: "11:04 PM · 10/20/18 · Twitter for iPhone". Under the words go the date in <code>tw-date</code> and the counts in <code>tw-counts</code>, with each number in bold, and the buttons have no numbers of their own. To finish it off, the reply box goes last, in <code>twc-foot</code>:</p>
 
-<div class="mob twc big theme-auto">
+<div class="mob twc16 big theme-auto">
   <p class="tw-top"><span class="tw-pfp"><span class="pfp pfp-rose"></span></span><span class="hide"> </span><span class="tw-name"><span class="name pfp-rose"><span class="hide">Rose Landry</span></span></span> <span class="tw-handle"><span class="handle pfp-rose"><span class="hide">@RoseLandry</span></span></span> <span class="tw-more ic ic-dropdown">&#8964;</span></p>
   <p class="tw-text">Table read done. Coffee count: four. Scenes I cried in: also four</p>
   <p class="tw-date">11:04 PM · 10/20/18 · Twitter for iPhone</p>
@@ -330,28 +330,67 @@
 
 <h4>The Timeline</h4>
 
-<p>To show tweets the way they looked in the app, put them inside a <code>twc-feed</code>. The tweets inside lose their own borders and sit one under the other with a line between them, and the whole timeline scrolls once it's taller than a phone screen. The theme goes on the <code>twc-feed</code>, so you don't need it on each tweet.</p>
+<p>To show tweets the way they looked in the app, put them inside a <code>twc16-feed</code> (or a <code>twc12-feed</code> for <code>twc12</code> tweets). The tweets inside lose their own borders and sit one under the other with a line between them, and the whole timeline scrolls once it's taller than a phone screen. The theme goes on the feed, so you don't need it on each tweet.</p>
 
 <p>The bar along the top, <code>twc-bar</code>, is optional. On the home timeline it has the pov character's own picture in <code>tw-me</code> on the left and the page name in <code>twc-title</code>. For an opened tweet, swap the picture for a back arrow, and add a search button on the right if you like:</p>
 
 <pre><code>&lt;p class="twc-bar"&gt;&lt;span class="tw-me"&gt;&lt;span class="pfp pfp-ilya"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="twc-title"&gt;Home&lt;/span&gt;&lt;/p&gt;
 &lt;p class="twc-bar"&gt;&lt;span class="ic ic-back"&gt;&amp;#8592;&lt;/span&gt;&lt;span class="twc-title"&gt;Tweet&lt;/span&gt;&lt;span class="ic ic-x-search"&gt;&amp;#128269;&lt;/span&gt;&lt;/p&gt;</code></pre>
 
-<h3>2012 to 2015</h3>
+<h3 id="twc12">2012 to 2015</h3>
 
-<p>Add <code>tw2012</code> to a <code>twc</code> or a <code>twc-feed</code> for Twitter before hearts. This switches:</p>
+<p>For Twitter before hearts, use <code>twc12</code> instead of <code>twc16</code>, and <code>twc12-feed</code> instead of <code>twc16-feed</code>. Everything else in this chapter works the same way, apart from these differences:</p>
 
 <ul>
-  <li>the pictures to squares with slightly rounded corners</li>
-  <li>the like button to a star, which turns gold instead of red. Call them favorites in the hidden text and the counts, the way Twitter did</li>
-  <li>the reply button to a curved arrow, and share to three dots for "more"</li>
-  <li>the time in the name line over to the right-hand side. Leave the dot off: <code>&lt;span class=&quot;tw-time&quot;&gt;33m&lt;/span&gt;</code></li>
-  <li>an opened tweet's words to a serif font, with the counts in capitals</li>
-  <li>the bar along the top to Twitter blue, with white writing and buttons</li>
+  <li>the pictures are squares with slightly rounded corners</li>
+  <li>the like button is a star, which turns gold instead of red. Call them favorites in the hidden text and the counts, the way Twitter did</li>
+  <li>the reply button is a curved arrow, and share is three dots for "more"</li>
+  <li>the time sits on the right-hand side of the name line. Leave the dot off: <code>&lt;span class=&quot;tw-time&quot;&gt;33m&lt;/span&gt;</code></li>
+  <li>there's no little arrow in the corner, because that's where the time goes</li>
+  <li>an opened tweet's words are in a serif font, with the counts in capitals</li>
+  <li>the bar along the top is Twitter blue, with white writing and buttons</li>
 </ul>
 
-<p>Timeline tweets on the website had a small grey "Details" link under them instead of buttons. To copy that, leave out the <code>tw-stats</code> and add <code>&lt;p class=&quot;tw-details&quot;&gt;Details&lt;/p&gt;</code> instead.</p>
+<p>Timeline tweets on the website had a small grey "Details" link under them instead of buttons. To copy that, leave out the <code>tw-stats</code> and add <code>&lt;p class=&quot;tw-details&quot;&gt;Details&lt;/p&gt;</code> instead. Here's one of each:</p>
+
+<div class="twc12-feed theme-auto">
+  <p class="twc-bar"><span class="tw-me"><span class="pfp pfp-shane"></span></span><span class="twc-title">Home</span></p>
+  <div class="mob twc12">
+    <p class="tw-top"><span class="tw-pfp"><span class="pfp pfp-stan"></span></span><span class="hide"> </span><span class="tw-name"><span class="name pfp-stan"><span class="hide">Stan</span></span></span> <span class="tw-handle"><span class="handle pfp-stan"><span class="hide">@PuckStan</span></span></span> <span class="tw-time">33m</span></p>
+    <p class="tw-text">Shane Hollander on the ice in practice today. The rookie looks fast <span class="tw-link">#hockey</span></p>
+    <p class="tw-details">Details</p>
+  </div>
+  <div class="mob twc12">
+    <p class="tw-top"><span class="tw-pfp"><span class="pfp pfp-luca"></span></span><span class="hide"> </span><span class="tw-name"><span class="name pfp-luca"><span class="hide">Luca</span></span></span> <span class="tw-handle"><span class="handle pfp-luca"><span class="hide">@luca</span></span></span> <span class="tw-time">2h</span></p>
+    <p class="tw-text">my cat has learnt to open the fridge. send help</p>
+    <div class="tw-stats">
+        <p class="tw-stat"><span class="ic ic-tw-reply">&#8617;</span> 3<span class="hide"> replies</span></p>
+        <p class="tw-stat"><span class="ic ic-tw-repost">&#8644;</span> 2<span class="hide"> retweets</span></p>
+        <details class="tw-stat tw-tog"><summary><span class="ic ic-tw-like">&#9825;</span><span class="off"> 19</span><span class="hide"> favorites (</span><span class="on"> 20</span><span class="hide"> once favourited)</span></summary></details>
+        <p class="tw-stat"><span class="ic ic-tw-share">&#8679;</span></p>
+      </div>
+  </div>
+</div>
+
+<pre><code>&lt;div class="twc12-feed theme-auto"&gt;
+  &lt;p class="twc-bar"&gt;&lt;span class="tw-me"&gt;&lt;span class="pfp pfp-shane"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="twc-title"&gt;Home&lt;/span&gt;&lt;/p&gt;
+  &lt;div class="mob twc12"&gt;
+    &lt;p class="tw-top"&gt;&lt;span class="tw-pfp"&gt;&lt;span class="pfp pfp-stan"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="tw-name"&gt;&lt;span class="name pfp-stan"&gt;&lt;span class="hide"&gt;Stan&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; &lt;span class="tw-handle"&gt;&lt;span class="handle pfp-stan"&gt;&lt;span class="hide"&gt;@PuckStan&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; &lt;span class="tw-time"&gt;33m&lt;/span&gt;&lt;/p&gt;
+    &lt;p class="tw-text"&gt;Shane Hollander on the ice in practice today. The rookie looks fast &lt;span class="tw-link"&gt;#hockey&lt;/span&gt;&lt;/p&gt;
+    &lt;p class="tw-details"&gt;Details&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="mob twc12"&gt;
+    &lt;p class="tw-top"&gt;&lt;span class="tw-pfp"&gt;&lt;span class="pfp pfp-luca"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="tw-name"&gt;&lt;span class="name pfp-luca"&gt;&lt;span class="hide"&gt;Luca&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; &lt;span class="tw-handle"&gt;&lt;span class="handle pfp-luca"&gt;&lt;span class="hide"&gt;@luca&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; &lt;span class="tw-time"&gt;2h&lt;/span&gt;&lt;/p&gt;
+    &lt;p class="tw-text"&gt;my cat has learnt to open the fridge. send help&lt;/p&gt;
+    &lt;div class="tw-stats"&gt;
+        &lt;p class="tw-stat"&gt;&lt;span class="ic ic-tw-reply"&gt;&amp;#8617;&lt;/span&gt; 3&lt;span class="hide"&gt; replies&lt;/span&gt;&lt;/p&gt;
+        &lt;p class="tw-stat"&gt;&lt;span class="ic ic-tw-repost"&gt;&amp;#8644;&lt;/span&gt; 2&lt;span class="hide"&gt; retweets&lt;/span&gt;&lt;/p&gt;
+        &lt;details class="tw-stat tw-tog"&gt;&lt;summary&gt;&lt;span class="ic ic-tw-like"&gt;&amp;#9825;&lt;/span&gt;&lt;span class="off"&gt; 19&lt;/span&gt;&lt;span class="hide"&gt; favorites (&lt;/span&gt;&lt;span class="on"&gt; 20&lt;/span&gt;&lt;span class="hide"&gt; once favourited)&lt;/span&gt;&lt;/summary&gt;&lt;/details&gt;
+        &lt;p class="tw-stat"&gt;&lt;span class="ic ic-tw-share"&gt;&amp;#8679;&lt;/span&gt;&lt;/p&gt;
+      &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
 
 <h3>Themes</h3>
 
-<p><code>theme-dark</code> is Twitter's night mode from 2019, a dark blue rather than black, and <code>theme-auto</code> switches to it when the reader's device is in dark mode, the same as every other app. Twitter didn't have a night mode in 2012-15, so for a fic set then, you might want <code>theme-light</code> - but it's your fic (or not I'm not your dad).</p>
+<p><code>theme-dark</code> is Twitter's night mode from 2019, a dark blue rather than black, and <code>theme-auto</code> switches to it when the reader's device is in dark mode, the same as every other app. Twitter didn't have a night mode in 2012-15, so for a <code>twc12</code> fic, you might want <code>theme-light</code> - but it's your fic (or not I'm not your dad).</p>
