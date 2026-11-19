@@ -352,7 +352,7 @@
 #workskin .pfp.pfp-luca { background-image: url(https://images.squidge.org/images/2026/11/16/SwedenHockey2.png); }
 
 /* 2. A different picture for one app. Each line replaces the picture on that app only. */
-#workskin .tw .pfp.pfp-luca, #workskin .tw-reply .pfp.pfp-luca { background-image: url(https://images.squidge.org/images/2026/11/16/LucaMain.png); }
+#workskin .tw .pfp.pfp-luca, #workskin .tw-reply .pfp.pfp-luca, #workskin .twdm .pfp.pfp-luca { background-image: url(https://images.squidge.org/images/2026/11/16/LucaMain.png); }
 #workskin .ig .pfp.pfp-luca, #workskin .igdm .pfp.pfp-luca { background-image: url(https://images.squidge.org/images/2026/11/16/LucaPriv.png); }
 #workskin .tb .pfp.pfp-luca { background-image: url(https://images.squidge.org/images/2026/11/16/SwedenHockey.png); }
 #workskin .gm .pfp.pfp-luca { background-image: linear-gradient(135deg, #f6b26b, #e06666); }
@@ -447,8 +447,8 @@
    (picture from the Check Please! Wiki: https://omgcheckplease.fandom.com/wiki/Adam_Birkholtz) */
 #workskin .pfp.pfp-holster { background-color: #138a72; }
 #workskin .pfp.pfp-holster::before { content: "AB"; }
-#workskin .tw .pfp.pfp-holster::before, #workskin .tw-reply .pfp.pfp-holster::before, #workskin .ig .pfp.pfp-holster::before { display: none; }
-#workskin .tw .pfp.pfp-holster, #workskin .tw-reply .pfp.pfp-holster { background-image: url(https://static.wikia.nocookie.net/omgcheckplease/images/b/b2/Holsty.png); }
+#workskin .tw .pfp.pfp-holster::before, #workskin .tw-reply .pfp.pfp-holster::before, #workskin .twdm .pfp.pfp-holster::before, #workskin .ig .pfp.pfp-holster::before { display: none; }
+#workskin .tw .pfp.pfp-holster, #workskin .tw-reply .pfp.pfp-holster, #workskin .twdm .pfp.pfp-holster { background-image: url(https://static.wikia.nocookie.net/omgcheckplease/images/b/b2/Holsty.png); }
 #workskin .ig .pfp.pfp-holster, #workskin .igdm .pfp.pfp-holster { background-color: #c13584; }
 #workskin .tb .pfp.pfp-holster { background-color: #35465c; }
 #workskin .dc .pfp.pfp-holster { background-color: #5865f2; }
@@ -527,6 +527,7 @@
 #workskin .wa .wa-pfp.colour1,
 #workskin .tw .tw-pfp.colour1,
 #workskin .tw-reply .tw-pfp.colour1,
+#workskin .twdm .tw-pfp.colour1,
 #workskin .tb .tb-pfp.colour1,
 #workskin .tb .tb-ask-pfp.colour1,
 #workskin .gm .gm-pfp.colour1,
@@ -537,6 +538,7 @@
 #workskin .wa .wa-pfp.colour2,
 #workskin .tw .tw-pfp.colour2,
 #workskin .tw-reply .tw-pfp.colour2,
+#workskin .twdm .tw-pfp.colour2,
 #workskin .tb .tb-pfp.colour2,
 #workskin .tb .tb-ask-pfp.colour2,
 #workskin .gm .gm-pfp.colour2,
@@ -547,6 +549,7 @@
 #workskin .wa .wa-pfp.colour3,
 #workskin .tw .tw-pfp.colour3,
 #workskin .tw-reply .tw-pfp.colour3,
+#workskin .twdm .tw-pfp.colour3,
 #workskin .tb .tb-pfp.colour3,
 #workskin .tb .tb-ask-pfp.colour3,
 #workskin .gm .gm-pfp.colour3,
@@ -557,6 +560,7 @@
 #workskin .wa .wa-pfp.colour4,
 #workskin .tw .tw-pfp.colour4,
 #workskin .tw-reply .tw-pfp.colour4,
+#workskin .twdm .tw-pfp.colour4,
 #workskin .tb .tb-pfp.colour4,
 #workskin .tb .tb-ask-pfp.colour4,
 #workskin .gm .gm-pfp.colour4,
@@ -567,6 +571,7 @@
 #workskin .wa .wa-pfp.colour5,
 #workskin .tw .tw-pfp.colour5,
 #workskin .tw-reply .tw-pfp.colour5,
+#workskin .twdm .tw-pfp.colour5,
 #workskin .tb .tb-pfp.colour5,
 #workskin .tb .tb-ask-pfp.colour5,
 #workskin .gm .gm-pfp.colour5,
@@ -577,6 +582,7 @@
 #workskin .wa .wa-pfp.colour6,
 #workskin .tw .tw-pfp.colour6,
 #workskin .tw-reply .tw-pfp.colour6,
+#workskin .twdm .tw-pfp.colour6,
 #workskin .tb .tb-pfp.colour6,
 #workskin .tb .tb-ask-pfp.colour6,
 #workskin .gm .gm-pfp.colour6,
@@ -587,6 +593,7 @@
 #workskin .wa .wa-pfp.colour7,
 #workskin .tw .tw-pfp.colour7,
 #workskin .tw-reply .tw-pfp.colour7,
+#workskin .twdm .tw-pfp.colour7,
 #workskin .tb .tb-pfp.colour7,
 #workskin .tb .tb-ask-pfp.colour7,
 #workskin .gm .gm-pfp.colour7,
@@ -597,6 +604,7 @@
 #workskin .wa .wa-pfp.colour8,
 #workskin .tw .tw-pfp.colour8,
 #workskin .tw-reply .tw-pfp.colour8,
+#workskin .twdm .tw-pfp.colour8,
 #workskin .tb .tb-pfp.colour8,
 #workskin .tb .tb-ask-pfp.colour8,
 #workskin .gm .gm-pfp.colour8,
@@ -607,6 +615,7 @@
 #workskin .wa .wa-pfp.colour9,
 #workskin .tw .tw-pfp.colour9,
 #workskin .tw-reply .tw-pfp.colour9,
+#workskin .twdm .tw-pfp.colour9,
 #workskin .tb .tb-pfp.colour9,
 #workskin .tb .tb-ask-pfp.colour9,
 #workskin .gm .gm-pfp.colour9,
@@ -617,6 +626,7 @@
 #workskin .wa .wa-pfp.colour10,
 #workskin .tw .tw-pfp.colour10,
 #workskin .tw-reply .tw-pfp.colour10,
+#workskin .twdm .tw-pfp.colour10,
 #workskin .tb .tb-pfp.colour10,
 #workskin .tb .tb-ask-pfp.colour10,
 #workskin .gm .gm-pfp.colour10,
