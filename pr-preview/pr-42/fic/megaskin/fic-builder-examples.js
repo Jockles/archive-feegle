@@ -9,7 +9,8 @@
 //          reply (the number of an earlier message, counting from 0; in a tweet thread, the reply
 //          goes to whoever posted it, and with no reply it goes to the tweet just above), photos, link.
 //          Tweets also take verified, label, date, replies, reposts, reposted, likes, liked, likeClick
-//          (true unless set), views, saved, locked, noRepost, fan, poll, pollinfo, pollTap, pollVote, qName,
+//          (true unless set), views, saved, locked, noRepost, fan, poll, pollinfo, pollKind ("open", "results" or "tap"),
+//          pollVote, pollShowVote, pollVoted, qName,
 //          qHandle, qText, note, warn, vUrl, vTitle, vDesc. A Twitter/X chat can set era ("tw2020"), and a
 //          timeline can set app ("app"), pov and tabs for the X app screen.
 (function () {
@@ -132,7 +133,7 @@ window.FB_EXAMPLES = [
       ["Holster", "I played all through college with a guy whose boyfriend was also on the team. That man now plays professionally. This is not the whole story of queer hockey.", { time: "2h", replies: "1", likes: "12", views: "324" }],
       ["Sam", "this is lovely. anyway feed me", { time: "1h", likes: "3", views: "81" }],
       ["Stan", "Settle something for me while we're all here. Who's got the cup this year?", { time: "45m", reply: 0, poll: "Montreal 58%\nBoston 31%\nToronto 11%",
-        pollinfo: "179 votes · 13 minutes left", pollTap: true, pollVote: "0", replies: "4", reposts: "2", likes: "9", views: "243" }],
+        pollinfo: "179 votes · 13 minutes left", pollKind: "tap", pollVote: "0", replies: "4", reposts: "2", likes: "9", views: "243" }],
       ["Rose", "The Ottawa crowd last night 🏳️‍🌈", { time: "30m", reply: 0, photos: [{ url: CAT1, alt: ALT1 }, { url: CAT2, alt: ALT2 }], likes: "31", views: "837" }],
       ["Stan", "Rose those are cats.", { time: "20m", replies: "1", likes: "57", views: "1.5K" }]
     ]
