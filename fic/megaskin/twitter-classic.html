@@ -206,7 +206,12 @@
 &lt;p class="tw-text"&gt;Shane Hollander on the ice in practice today. The rookie looks fast &lt;span class="tw-link"&gt;#hockey&lt;/span&gt;&lt;/p&gt;
 </code></pre>
 
+<details>
+<summary>Pictures, names, links and ticks</summary>
+
 <p>The picture in <code>tw-pfp</code> can be initials with a colour, a picture tag, or a profile, and the name and handle can be typed or come from a profile. Hashtags, @mentions and links go in <code>tw-link</code> to make them blue. A verified tick goes inside the <code>tw-name</code>, after the name: <code>&lt;span class=&quot;ic ic-verified&quot;&gt;&amp;#10004;&lt;/span&gt;</code>.</p>
+
+</details>
 
 <p>Twitter had no night mode in these years, so this module is always light, whatever theme you put on it.</p>
 
@@ -222,7 +227,13 @@
 
 <pre><code>&lt;p class="tw-text"&gt;&lt;span class="tw-link"&gt;@irozanov&lt;/span&gt; &lt;span class="tw-link"&gt;@PuckStan&lt;/span&gt; said the man who fell over at the blue line yesterday&lt;/p&gt;</code></pre>
 
+<details>
+<summary>The "Details" link</summary>
+
 <p>On the website, timeline tweets had a small grey "Details" link under them. To copy that, add <code>&lt;p class=&quot;tw-details&quot;&gt;Details&lt;/p&gt;</code> after the words.</p>
+
+</details>
+
 
 <h4 id="s10-1-6">10.1.6 2012-15 Pictures</h4>
 
@@ -239,11 +250,17 @@
   &lt;p class="tw-stat"&gt;&lt;span class="ic ic-tw-share"&gt;&amp;#8943;&lt;/span&gt;&lt;span class="hide"&gt; More&lt;/span&gt;&lt;/p&gt;
 &lt;/div&gt;</code></pre>
 
+<details>
+<summary>Clickable stars, and buttons already used</summary>
+
 <p>The star is clickable: readers can tap it to favorite the tweet and it turns gold, and tap it again to take it back. For a favorite or a retweet the account has already made, add <code>tw-liked</code> or <code>tw-rt</code> to that button's <code>tw-stat</code>, which makes it gold or green. The hidden words are for readers with the workskin off, so the row reads "Reply Retweet Favorite More" instead of a row of symbols.</p>
+
+</details>
+
 
 <h4 id="s10-1-8">10.1.8 A 2012-15 Opened Tweet</h4>
 
-<p>Add <code>big</code> to the container for a tweet that's been tapped on and opened. The handle moves under the name, and the words get bigger and switch to a serif font. Under the words go the date in <code>tw-date</code>, written the way Twitter did ("8/2/13, 2:26 PM"), and the counts in <code>tw-counts</code>, with each number in bold. Twitter wrote the counts in capitals, and the CSS does that for you. Then the buttons, and the reply box last of all, in <code>twc-foot</code>:</p>
+<p>Add <code>big</code> to the container for a tweet that's been tapped on and opened. The handle moves under the name, and the words get bigger and switch to a serif font, with the date, the counts, the buttons and a reply box underneath:</p>
 
 <div class="mob twc12 big">
 <p class="tw-top"><span class="tw-pfp"><span class="pfp pfp-ilya"></span></span><span class="hide"> </span><span class="tw-name"><span class="name pfp-ilya"><span class="hide">Ilya</span></span></span> <span class="tw-handle"><span class="handle pfp-ilya"><span class="hide">@irozanov</span></span></span></p>
@@ -273,20 +290,42 @@
 &lt;p class="twc-foot"&gt;&lt;span&gt;Reply to Ilya Rozanov&lt;/span&gt;&lt;/p&gt;
 </code></pre>
 
+<details>
+<summary>Each part of an opened tweet, piece by piece</summary>
+
+<ul>
+  <li><code>tw-date</code> - the date, written the way Twitter did: "8/2/13, 2:26 PM".</li>
+  <li><code>tw-counts</code> - the retweets and favorites, with each number in bold. Twitter wrote the counts in capitals, and the CSS does that for you.</li>
+  <li><code>tw-stats</code> - the buttons, with no numbers.</li>
+  <li><code>twc-foot</code> - the reply box, last of all.</li>
+</ul>
+
+</details>
+
 <p>In the app, the tweet being replied to sat above the opened tweet, and the replies were listed underneath it, all in the usual timeline size. You can see that in <a href="#heading">A 2012-15 Tweet and Its Replies</a>, above.</p>
 
 <h4 id="s10-1-9">10.1.9 The 2012-15 App Screen</h4>
 
 <p>To show tweets the way they looked in the app, put them inside a <code>twc12-feed</code>. The tweets inside lose their own borders and sit one under the other with a line between them, and the screen scrolls once it's taller than a phone.</p>
 
+<details>
+<summary>The blue bar along the top</summary>
+
 <p>The blue bar along the top, <code>twc-bar</code>, has the page name in <code>twc-title</code>, which always sits in the middle. On the home timeline there's a person button on the left, and on an opened tweet a back arrow instead. The search and write-a-tweet buttons go on the right:</p>
 
 <pre><code>&lt;p class="twc-bar"&gt;&lt;span class="ic ic-tw-me"&gt;&amp;#9786;&lt;/span&gt;&lt;span class="twc-title"&gt;Home&lt;/span&gt;&lt;span class="ic ic-x-search"&gt;&amp;#128269;&lt;/span&gt;&lt;span class="ic ic-tw-compose"&gt;&amp;#9998;&lt;/span&gt;&lt;/p&gt;
 &lt;p class="twc-bar"&gt;&lt;span class="ic ic-back"&gt;&amp;#8592;&lt;/span&gt;&lt;span class="twc-title"&gt;Tweet&lt;/span&gt;&lt;span class="ic ic-x-search"&gt;&amp;#128269;&lt;/span&gt;&lt;span class="ic ic-tw-compose"&gt;&amp;#9998;&lt;/span&gt;&lt;/p&gt;</code></pre>
 
+</details>
+
+<details>
+<summary>The black row of buttons along the bottom</summary>
+
 <p>The black row of buttons along the bottom, <code>tw-nav</code>, has Home, Connect, Discover and Me. Each one is a <code>tw-tab</code> with its icon and its name, and <code>on</code> lights up the page you're on:</p>
 
 <pre><code>&lt;p class="tw-nav"&gt;&lt;span class="tw-tab on"&gt;&lt;span class="ic ic-x-home-filled"&gt;&amp;#8962;&lt;/span&gt; Home&lt;/span&gt; &lt;span class="tw-tab"&gt;&lt;span class="ic ic-tw-at"&gt;@&lt;/span&gt; Connect&lt;/span&gt; &lt;span class="tw-tab"&gt;&lt;span class="ic ic-tw-hash"&gt;#&lt;/span&gt; Discover&lt;/span&gt; &lt;span class="tw-tab"&gt;&lt;span class="ic ic-tw-me"&gt;&amp;#9786;&lt;/span&gt; Me&lt;/span&gt;&lt;/p&gt;</code></pre>
+
+</details>
 
 <p>Both bars stay put while the tweets scroll between them, and both are optional, so leave either out if you don't want it.</p>
 
@@ -536,7 +575,13 @@
 &lt;/div&gt;
 </code></pre>
 
+<details>
+<summary>Pictures, names, links and ticks</summary>
+
 <p>The picture in <code>tw-pfp</code> can be initials with a colour, a picture tag, or a profile, and the name and handle can be typed or come from a profile. Type the dot before the time yourself. Hashtags, @mentions and links go in <code>tw-link</code> to make them blue, and a verified tick goes inside the <code>tw-name</code>, after the name: <code>&lt;span class=&quot;ic ic-verified&quot;&gt;&amp;#10004;&lt;/span&gt;</code>.</p>
+
+</details>
+
 
 <h4 id="s10-2-4">10.2.4 The Little Arrow</h4>
 
@@ -544,11 +589,18 @@
 
 <h4 id="s10-2-5">10.2.5 2016-19 Buttons</h4>
 
-<p>The row along the bottom of a tweet is reply, retweet, like and message, with the number after each icon. Leave a number out if it's nought. The like is clickable: readers can tap it to like the tweet, and it turns into a red heart and the number goes up by one. Tap it again to take it back. For a like or a retweet the account has already made, add <code>tw-liked</code> or <code>tw-rt</code> to that button's <code>tw-stat</code>, which makes it red or green:</p>
+<p>The row along the bottom of a tweet is reply, retweet, like and message, with the number after each icon. The like is clickable: readers can tap it to like the tweet, and it turns into a red heart and the number goes up by one. Tap it again to take it back.</p>
+
+<details>
+<summary>Numbers, buttons already used, and the share button</summary>
+
+<p>Leave a number out if it's nought. For a like or a retweet the account has already made, add <code>tw-liked</code> or <code>tw-rt</code> to that button's <code>tw-stat</code>, which makes it red or green:</p>
 
 <pre><code>&lt;p class="tw-stat tw-rt"&gt;&lt;span class="ic ic-tw-repost"&gt;&amp;#8644;&lt;/span&gt; 52&lt;span class="hide"&gt; retweets&lt;/span&gt;&lt;/p&gt;</code></pre>
 
 <p>The phone app had a share button at the end instead of the envelope. To use that, swap the last button for <code>&lt;p class=&quot;tw-stat&quot;&gt;&lt;span class=&quot;ic ic-tw-share&quot;&gt;&amp;#8679;&lt;/span&gt;&lt;span class=&quot;hide&quot;&gt; Share&lt;/span&gt;&lt;/p&gt;</code>.</p>
+
+</details>
 
 <h4 id="s10-2-6">10.2.6 Retweets and Likes</h4>
 
@@ -589,7 +641,7 @@
 
 <h4 id="s10-2-11">10.2.11 A 2016-19 Opened Tweet</h4>
 
-<p>Add <code>big</code> to the container for a tweet that's been tapped on and opened. The handle moves under the name, the words get bigger, and the time is left out of the name line. Under the words go the date in <code>tw-date</code> and the counts in <code>tw-counts</code>, with each number in bold, and the buttons have no numbers of their own. The date line can say what the tweet was sent from, the way Twitter did: "11:04 PM · 10/20/18 · Twitter for iPhone":</p>
+<p>Add <code>big</code> to the container for a tweet that's been tapped on and opened. The handle moves under the name and the words get bigger, with the date, the counts and the buttons underneath:</p>
 
 <div class="mob twc16 big theme-auto">
 <p class="tw-top"><span class="tw-pfp"><span class="pfp pfp-rose"></span></span><span class="hide"> </span><span class="tw-name"><span class="name pfp-rose"><span class="hide">Rose Landry</span></span> <span class="ic ic-verified">&#10004;</span></span> <span class="tw-handle"><span class="handle pfp-rose"><span class="hide">@RoseLandry</span></span></span> <span class="tw-more ic ic-dropdown">&#8964;</span></p>
@@ -617,11 +669,26 @@
 &lt;/div&gt;
 </code></pre>
 
+<details>
+<summary>Each part of an opened tweet, piece by piece</summary>
+
+<ul>
+  <li>The time is left out of the name line, because it moves into the date.</li>
+  <li><code>tw-date</code> - the date, which can say what the tweet was sent from, the way Twitter did: "11:04 PM · 10/20/18 · Twitter for iPhone".</li>
+  <li><code>tw-counts</code> - the retweets and likes, with each number in bold.</li>
+  <li><code>tw-stats</code> - the buttons, with no numbers of their own.</li>
+</ul>
+
+</details>
+
 <p>In the app, the tweet being answered sat above the opened one, joined by the conversation line, and the replies were listed underneath in the usual timeline size. You can see that in <a href="#heading">A 2016-19 Tweet and Its Replies</a>, above.</p>
 
 <h4 id="s10-2-12">10.2.12 The 2016-19 App Screen</h4>
 
 <p>To show tweets the way they looked in the app, put them inside a <code>twc16-feed</code>. The tweets inside lose their own borders and sit one under the other with a line between them, and the screen scrolls once it's taller than a phone. The theme goes on the <code>twc16-feed</code>, so you don't need it on each tweet.</p>
+
+<details>
+<summary>The bar along the top, and the reply box</summary>
 
 <p>The bar along the top, <code>twc-bar</code>, has the page name in <code>twc-title</code>, which always sits in the middle. On the home timeline the pov character's own picture goes on the left, in <code>tw-me</code>, and on an opened tweet a back arrow goes there instead:</p>
 
@@ -630,9 +697,16 @@
 
 <p>Under an opened tweet, the reply box goes on its own line before the replies: <code>&lt;p class=&quot;twc-foot&quot;&gt;&lt;span&gt;Tweet your reply&lt;/span&gt;&lt;/p&gt;</code>.</p>
 
+</details>
+
+<details>
+<summary>The row of buttons along the bottom</summary>
+
 <p>The row of buttons along the bottom, <code>tw-nav</code>, is home, search, notifications and messages. Add <code>on</code> to the page you're on, and use the filled home button for the timeline. For a blue number on a button, like new notifications, wrap the icon and the number in a <code>tw-badged</code>. The circle stretches into a lozenge for longer numbers:</p>
 
 <pre><code>&lt;p class="tw-nav"&gt;&lt;span class="on ic ic-x-home-filled"&gt;&amp;#8962;&lt;/span&gt; &lt;span class="ic ic-x-search"&gt;&amp;#128269;&lt;/span&gt; &lt;span class="tw-badged"&gt;&lt;span class="ic ic-x-bell"&gt;&amp;#128276;&lt;/span&gt;&lt;span class="tw-badge"&gt;&lt;span class="hide"&gt; (&lt;/span&gt;3&lt;span class="hide"&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; &lt;span class="ic ic-tw-mail"&gt;&amp;#9993;&lt;/span&gt;&lt;/p&gt;</code></pre>
+
+</details>
 
 <p>Both bars stay put while the tweets scroll between them, and both are optional, so leave either out if you don't want it.</p>
 
