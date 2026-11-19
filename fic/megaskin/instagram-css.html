@@ -7,7 +7,7 @@
   <title>Megaskin, Chapter 13: Instagram CSS | jockles.com</title>
   <link rel="stylesheet" href="../../style.css">
   <script src="../../theme.js"></script>
-  <link rel="stylesheet" href="megaskin.css?v=1c52ca92" id="creator-style">
+  <link rel="stylesheet" href="megaskin.css?v=c3034111" id="creator-style">
 </head>
 <body>
 <header>
@@ -47,10 +47,11 @@
   <li><a href="#s13-7">13.7 Clickable Buttons</a></li>
   <li><a href="#s13-8">13.8 Icons Drawn With CSS</a></li>
   <li><a href="#s13-9">13.9 Liked By, With Faces</a></li>
-  <li><a href="#s13-10">13.10 DMs</a></li>
-  <li><a href="#s13-11">13.11 Links, Scrolling and Themes</a></li>
-  <li><a href="#s13-12">13.12 Switching Parts Off for the Whole Fic</a></li>
-  <li><a href="#s13-13">13.13 Taking Parts Out</a></li>
+  <li><a href="#s13-10">13.10 The Feed</a></li>
+  <li><a href="#s13-11">13.11 DMs</a></li>
+  <li><a href="#s13-12">13.12 Links, Scrolling and Themes</a></li>
+  <li><a href="#s13-13">13.13 Switching Parts Off for the Whole Fic</a></li>
+  <li><a href="#s13-14">13.14 Taking Parts Out</a></li>
 </ul>
 
 <p>This chapter goes through the CSS for the Instagram posts and DMs in the last chapter. Posts (<code>ig</code>) are the interesting part, with the clickable like and save buttons and the icons drawn in CSS. DMs (<code>igdm</code>) are built like iMessage, so they're quick. At the end there's a section on switching parts of every post off for your whole fic, without editing each one.</p>
@@ -301,7 +302,83 @@
 
 <p>Each face is a tiny circle with a white edge, and the <em>negative</em> left margin pulls each one <code>8px</code> back over the one before, so they overlap. The first one doesn't need pulling back. This is why the faces have to be on one line of code with no gaps: a space between two inline things takes up room, and would push them apart again.</p>
 
-<h3 id="s13-10">13.10 DMs</h3>
+<h3 id="s13-10">13.10 The Feed</h3>
+
+<pre><code>#workskin .ig.ig-feed .ig {
+  width: auto;
+  max-width: none;
+  max-height: none;
+  margin: 0 0 0.6em 0;
+  overflow: visible;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: inherit;
+}
+
+#workskin .ig .ig-stories {
+  display: flex;
+  overflow: hidden;
+  padding: 0.5em 0.4em 0.6em 0.4em;
+  border-bottom: 1px solid #efefef;
+}
+
+#workskin .ig .ig-story::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 5em;
+  height: 5em;
+  margin-left: -2.5em;
+  border-radius: 50%;
+  background-color: #d62976;
+  background-image: linear-gradient(45deg, #fcaf45 0%, #fd1d1d 45%, #c13584 70%, #833ab4 100%);
+}
+
+#workskin .ig-story .ig-pfp {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  box-sizing: border-box;
+  width: 4.6em;
+  height: 4.6em;
+  margin: 0.2em auto 0 auto;
+  overflow: hidden;
+  border: 0.18em solid #ffffff;
+  border-radius: 50%;
+  background-color: #8a8a8a;
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 1em;
+  line-height: 1;
+}
+
+#workskin .ig .ig-story.seen::before { background-image: none; background-color: #c7c7c7; }
+
+#workskin .ig .ig-story.me::after {
+  content: "+";
+  position: absolute;
+  top: 3.4em;
+  left: 3.55em;
+  width: 1.1em;
+  height: 1.1em;
+  border: 3px solid #ffffff;
+  border-radius: 50%;
+  background: #262626;
+  color: #ffffff;
+  font-size: 1.05em;
+  font-weight: bold;
+  line-height: 1.05em;
+  text-align: center;
+}</code></pre>
+
+<p>A post inside an <code>ig-feed</code> drops its own width, border, rounded corners and scrolling, so the posts sit one after another and only the feed scrolls. Its background is <code>transparent</code> and its colour is <code>inherit</code>, which is how the posts take the feed's theme. The Stories row is a flex row with <code>overflow: hidden</code>, so any circles that don't fit are cut off at the edge.</p>
+
+<p>The ring is drawn by <code>::before</code>: a gradient circle, set behind the picture with <code>position: absolute</code>. The picture sits on top, slightly smaller, with a border in the background colour, which makes the gap between the picture and the ring. Drawing the ring separately means the colour classes for initials still work on the <code>ig-pfp</code>. <code>seen</code>, <code>close</code> and <code>plain</code> just swap the gradient for a plain colour or hide it. The + badge on your own circle is an <code>::after</code> on the <code>me</code> story, a small circle placed over the bottom right of the picture.</p>
+
+<h3 id="s13-11">13.11 DMs</h3>
 
 <pre><code>#workskin .igdm .out {
   margin-left: auto;
@@ -314,7 +391,7 @@
 
 <p>DM bubbles work like iMessage's, with rounder corners and no point. Your own messages are Instagram's purple, fading slightly from top to bottom, with a plain purple underneath in case the gradient doesn't show. <code>igdm-status</code> is the same as iMessage's status line, and <code>igdm-shared</code> is a bubble with an outline instead of a fill.</p>
 
-<h3 id="s13-11">13.11 Links, Scrolling and Themes</h3>
+<h3 id="s13-12">13.12 Links, Scrolling and Themes</h3>
 
 <pre><code>#workskin .ig .fake-link, #workskin .ig a:not(.tl) { color: #00376b; }
 
@@ -328,7 +405,7 @@
 
 <p>The dark theme is black, with <code>#f5f5f5</code> text and <code>#a8a8a8</code> grey. It also turns the white edges black - the gap in the story ring, the edges of the liked-by faces and the notch in a saved bookmark - because a white edge on a black post would show. The auto theme is the same rules again inside <code>@media (prefers-color-scheme: dark)</code>.</p>
 
-<h3 id="s13-12">13.12 Switching Parts Off for the Whole Fic</h3>
+<h3 id="s13-13">13.13 Switching Parts Off for the Whole Fic</h3>
 
 <p>You can leave anything out of a single post's HTML. But if you never want something on <em>any</em> post, it's quicker to switch it off once in the CSS. Paste any of these at the very bottom of your work skin - below everything else, so they win:</p>
 
@@ -363,12 +440,13 @@
 
 <p>Readers with the workskin switched off will still see anything you've switched off this way, because it's still in your HTML. That's usually what you want - a "Follow" or a count doesn't hurt anyone - but if it isn't, leave it out of the HTML instead.</p>
 
-<h3 id="s13-13">13.13 Taking Parts Out</h3>
+<h3 id="s13-14">13.14 Taking Parts Out</h3>
 
 <p>To make your skin shorter, search for the class names and delete every rule with them in, including in the dark and auto blocks:</p>
 
 <ul>
   <li><strong>DMs:</strong> everything starting <code>.igdm</code>.</li>
+  <li><strong>The feed:</strong> <code>ig-feed</code>, <code>ig-apptop</code>, <code>ig-new</code>, <code>ig-logo</code>, <code>ig-notif</code>, <code>ig-dot</code>, <code>ig-stories</code>, <code>ig-story</code> and <code>ig-sname</code>.</li>
   <li><strong>Clickable buttons:</strong> <code>ig-tog</code>, <code>bm</code>, and the <code>.on</code> and <code>.off</code> rules. Keep <code>ig-btn</code> for plain buttons.</li>
   <li><strong>Liked-by faces:</strong> <code>liked-by</code>, <code>ig-like-pfps</code> and <code>ig-like-pfp</code>.</li>
   <li><strong>Stories ring:</strong> the two <code>.story</code> rules.</li>

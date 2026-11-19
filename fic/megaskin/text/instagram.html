@@ -266,6 +266,130 @@
   <li>Instagram DMs don't show profile pictures, so in a group DM a stranger only needs their name typed in a <code>who</code> line, and a character with a profile can take theirs from it (see Group Chats, below).</li>
 </ul>
 
+<h3>The Instagram Feed</h3>
+
+<p>The feed is the home screen of the app: the top bar, the row of Stories circles, then posts one after another, all scrolling together. Add <code>ig-feed</code> to an Instagram container and put your posts inside it:</p>
+
+<div class="mob ig ig-feed theme-auto">
+<p class="ig-apptop"><span class="ig-new">+</span><span class="ig-logo">Instagram</span><span class="ig-notif ic ic-heart">&#9825;</span><span class="ig-dot"><span class="hide"> (new)</span></span></p>
+<div class="ig-stories">
+<p class="ig-story me seen"><span class="ig-pfp"><span class="pfp pfp-ilya"></span></span><span class="ig-sname">Your story</span></p>
+<p class="ig-story close"><span class="ig-pfp"><span class="pfp pfp-rose"></span></span><span class="ig-sname">rose.landry</span></p>
+<p class="ig-story"><span class="ig-pfp"><span class="pfp pfp-shane"></span></span><span class="ig-sname">shanehollanderhockeyplayer</span></p>
+<p class="ig-story seen"><span class="ig-pfp"><span class="pfp pfp-luca"></span></span><span class="ig-sname">luca.grams</span></p>
+<p class="ig-story"><span class="ig-pfp colour6">SH</span><span class="ig-sname">scott.h</span></p>
+</div>
+<div class="mob ig">
+<p class="ig-top"><span class="ig-menu ic ic-more">&#8943;</span><span class="ig-pfp"><span class="pfp pfp-rose"></span></span><span class="handle pfp-rose"><span class="hide">RoseLandry</span></span><span class="hide"> - </span><span>Ottawa, Ontario</span></p>
+<p class="ig-photo">[A photo of a very large lasagne, with one corner already missing]</p>
+<div class="ig-actions">
+<p class="ig-btn"><span class="ig-icon ic ic-heart">&#9825;</span><span class="hide"> </span><span class="ig-count">312</span><span class="hide"> likes</span></p>
+<p class="ig-btn"><span class="ig-icon cm"></span><span class="ig-count">2</span><span class="hide"> comments</span></p>
+</div>
+<p class="ig-caption"><b>RoseLandry</b> made enough for the whole committee. nobody came. <span class="ig-tag">#galaprep</span></p>
+<p class="ig-time">20 minutes ago</p>
+</div>
+<div class="mob ig">
+<p class="ig-top"><span class="ig-menu ic ic-more">&#8943;</span><span class="ig-pfp colour6">SH</span>scott.h<span class="hide"> - </span><span>New York, New York</span></p>
+<p class="ig-photo">[A photo of a smoothie stand with a queue round the block]</p>
+<div class="ig-actions">
+<p class="ig-btn"><span class="ig-icon ic ic-heart">&#9825;</span><span class="hide"> </span><span class="ig-count">1,208</span><span class="hide"> likes</span></p>
+<p class="ig-btn"><span class="ig-icon cm"></span><span class="ig-count">40</span><span class="hide"> comments</span></p>
+</div>
+<p class="ig-caption"><b>scott.h</b> opening day. thank you all for coming</p>
+<p class="ig-time">2 hours ago</p>
+</div>
+</div>
+
+<pre><code>&lt;div class="mob ig ig-feed theme-auto"&gt;
+&lt;p class="ig-apptop"&gt;the top bar&lt;/p&gt;
+&lt;div class="ig-stories"&gt;the Stories circles&lt;/div&gt;
+&lt;div class="mob ig"&gt;a post&lt;/div&gt;
+&lt;div class="mob ig"&gt;another post&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+<details>
+<summary>The full HTML for this feed</summary>
+
+<pre><code>&lt;div class="mob ig ig-feed theme-auto"&gt;
+&lt;p class="ig-apptop"&gt;&lt;span class="ig-new"&gt;+&lt;/span&gt;&lt;span class="ig-logo"&gt;Instagram&lt;/span&gt;&lt;span class="ig-notif ic ic-heart"&gt;&amp;#9825;&lt;/span&gt;&lt;span class="ig-dot"&gt;&lt;span class="hide"&gt; (new)&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;div class="ig-stories"&gt;
+&lt;p class="ig-story me seen"&gt;&lt;span class="ig-pfp"&gt;&lt;span class="pfp pfp-ilya"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="ig-sname"&gt;Your story&lt;/span&gt;&lt;/p&gt;
+&lt;p class="ig-story close"&gt;&lt;span class="ig-pfp"&gt;&lt;span class="pfp pfp-rose"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="ig-sname"&gt;rose.landry&lt;/span&gt;&lt;/p&gt;
+&lt;p class="ig-story"&gt;&lt;span class="ig-pfp"&gt;&lt;span class="pfp pfp-shane"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="ig-sname"&gt;shanehollanderhockeyplayer&lt;/span&gt;&lt;/p&gt;
+&lt;p class="ig-story seen"&gt;&lt;span class="ig-pfp"&gt;&lt;span class="pfp pfp-luca"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="ig-sname"&gt;luca.grams&lt;/span&gt;&lt;/p&gt;
+&lt;p class="ig-story"&gt;&lt;span class="ig-pfp colour6"&gt;SH&lt;/span&gt;&lt;span class="ig-sname"&gt;scott.h&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="mob ig"&gt;
+&lt;p class="ig-top"&gt;&lt;span class="ig-menu ic ic-more"&gt;&amp;#8943;&lt;/span&gt;&lt;span class="ig-pfp"&gt;&lt;span class="pfp pfp-rose"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="handle pfp-rose"&gt;&lt;span class="hide"&gt;RoseLandry&lt;/span&gt;&lt;/span&gt;&lt;span class="hide"&gt; - &lt;/span&gt;&lt;span&gt;Ottawa, Ontario&lt;/span&gt;&lt;/p&gt;
+&lt;p class="ig-photo"&gt;[A photo of a very large lasagne, with one corner already missing]&lt;/p&gt;
+&lt;div class="ig-actions"&gt;
+&lt;p class="ig-btn"&gt;&lt;span class="ig-icon ic ic-heart"&gt;&amp;#9825;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="ig-count"&gt;312&lt;/span&gt;&lt;span class="hide"&gt; likes&lt;/span&gt;&lt;/p&gt;
+&lt;p class="ig-btn"&gt;&lt;span class="ig-icon cm"&gt;&lt;/span&gt;&lt;span class="ig-count"&gt;2&lt;/span&gt;&lt;span class="hide"&gt; comments&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;p class="ig-caption"&gt;&lt;b&gt;RoseLandry&lt;/b&gt; made enough for the whole committee. nobody came. &lt;span class="ig-tag"&gt;#galaprep&lt;/span&gt;&lt;/p&gt;
+&lt;p class="ig-time"&gt;20 minutes ago&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="mob ig"&gt;
+&lt;p class="ig-top"&gt;&lt;span class="ig-menu ic ic-more"&gt;&amp;#8943;&lt;/span&gt;&lt;span class="ig-pfp colour6"&gt;SH&lt;/span&gt;scott.h&lt;span class="hide"&gt; - &lt;/span&gt;&lt;span&gt;New York, New York&lt;/span&gt;&lt;/p&gt;
+&lt;p class="ig-photo"&gt;[A photo of a smoothie stand with a queue round the block]&lt;/p&gt;
+&lt;div class="ig-actions"&gt;
+&lt;p class="ig-btn"&gt;&lt;span class="ig-icon ic ic-heart"&gt;&amp;#9825;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="ig-count"&gt;1,208&lt;/span&gt;&lt;span class="hide"&gt; likes&lt;/span&gt;&lt;/p&gt;
+&lt;p class="ig-btn"&gt;&lt;span class="ig-icon cm"&gt;&lt;/span&gt;&lt;span class="ig-count"&gt;40&lt;/span&gt;&lt;span class="hide"&gt; comments&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;p class="ig-caption"&gt;&lt;b&gt;scott.h&lt;/b&gt; opening day. thank you all for coming&lt;/p&gt;
+&lt;p class="ig-time"&gt;2 hours ago&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+</details>
+
+<h4>The Top Bar</h4>
+
+<p>The top bar is an <code>ig-apptop</code> line, with the + on the left, the logo in the middle and the heart on the right. The little red dot on the heart means there's something new, so leave out the <code>ig-dot</code> span if there isn't:</p>
+
+<div class="mob ig theme-auto"><p class="ig-apptop"><span class="ig-new">+</span><span class="ig-logo">Instagram</span><span class="ig-notif ic ic-heart">&#9825;</span><span class="ig-dot"><span class="hide"> (new)</span></span></p></div>
+
+<pre><code>&lt;p class="ig-apptop"&gt;&lt;span class="ig-new"&gt;+&lt;/span&gt;&lt;span class="ig-logo"&gt;Instagram&lt;/span&gt;&lt;span class="ig-notif ic ic-heart"&gt;&amp;#9825;&lt;/span&gt;&lt;span class="ig-dot"&gt;&lt;span class="hide"&gt; (new)&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;</code></pre>
+
+<h4>The Stories Row</h4>
+
+<p>The Stories row is an <code>ig-stories</code> box, with one <code>ig-story</code> line for each circle: the picture in an <code>ig-pfp</code>, then the account name in an <code>ig-sname</code> span. Add as many as you like - the ones that don't fit are cut off at the edge, like in the app:</p>
+
+<div class="mob ig theme-auto">
+<div class="ig-stories">
+<p class="ig-story me seen"><span class="ig-pfp"><span class="pfp pfp-ilya"></span></span><span class="ig-sname">Your story</span></p>
+<p class="ig-story close"><span class="ig-pfp"><span class="pfp pfp-rose"></span></span><span class="ig-sname">rose.landry</span></p>
+<p class="ig-story"><span class="ig-pfp"><span class="pfp pfp-shane"></span></span><span class="ig-sname">shanehollanderhockeyplayer</span></p>
+<p class="ig-story seen"><span class="ig-pfp"><span class="pfp pfp-luca"></span></span><span class="ig-sname">luca.grams</span></p>
+<p class="ig-story"><span class="ig-pfp colour6">SH</span><span class="ig-sname">scott.h</span></p>
+</div>
+</div>
+
+<pre><code>&lt;div class="ig-stories"&gt;
+&lt;p class="ig-story me seen"&gt;&lt;span class="ig-pfp"&gt;&lt;span class="pfp pfp-ilya"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="ig-sname"&gt;Your story&lt;/span&gt;&lt;/p&gt;
+&lt;p class="ig-story close"&gt;&lt;span class="ig-pfp"&gt;&lt;span class="pfp pfp-rose"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="ig-sname"&gt;rose.landry&lt;/span&gt;&lt;/p&gt;
+&lt;p class="ig-story"&gt;&lt;span class="ig-pfp"&gt;&lt;span class="pfp pfp-shane"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="ig-sname"&gt;shanehollanderhockeyplayer&lt;/span&gt;&lt;/p&gt;
+&lt;p class="ig-story seen"&gt;&lt;span class="ig-pfp"&gt;&lt;span class="pfp pfp-luca"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="ig-sname"&gt;luca.grams&lt;/span&gt;&lt;/p&gt;
+&lt;p class="ig-story"&gt;&lt;span class="ig-pfp colour6"&gt;SH&lt;/span&gt;&lt;span class="ig-sname"&gt;scott.h&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+
+<details>
+<summary>Ring colours, your own circle, and pictures</summary>
+
+<ul>
+  <li>With nothing added, the circle gets the colourful ring of a story nobody has watched yet. Add <code>seen</code> for the grey ring of one that's been watched, <code>close</code> for the green ring of a Close Friends story, or <code>plain</code> for no ring at all.</li>
+  <li>Your pov character's own circle goes first, with <code>me</code> added. That gives it the little + badge and grey words, and it's usually called "Your story".</li>
+  <li>The picture works the same three ways as everywhere else: initials with a colour class (<code>&lt;span class="ig-pfp colour3"&gt;SH&lt;/span&gt;</code>), an uploaded picture in a <code>pfp</code> span, or a profile (<code>&lt;span class="pfp pfp-rose"&gt;&lt;/span&gt;</code>).</li>
+  <li>Long names end in "...", so you can type the whole name.</li>
+</ul>
+
+</details>
+
+<h4>Posts in the Feed</h4>
+
+<p>Each post is a normal Instagram post, built the same way as in the first section, just without its own theme: the posts take their colours from the feed. Leave out the parts you don't need, like the "Liked by" faces or the comments, to keep the feed quick to scroll.</p>
+
 <h3>Instagram DMs</h3>
 
 <p>Here's the two kinds of DM you can build: a message between two people, or a group chat. As before, the full HTML is underneath each, and the rest of this section takes it apart.</p>
