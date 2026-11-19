@@ -1547,7 +1547,7 @@
 #workskin .twdm .ic.ic-x-grok, #workskin .tw-thread .ic.ic-x-grok { background-image: url(https://images.squidge.org/images/2026/11/19/x-grok-black.png); }
 #workskin .twdm .ic.ic-x-bell, #workskin .tw-thread .ic.ic-x-bell { background-image: url(https://images.squidge.org/images/2026/11/19/x-bell-black.png); }
 #workskin .twdm .ic.ic-x-chat, #workskin .tw-thread .ic.ic-x-chat { background-image: url(https://images.squidge.org/images/2026/11/19/x-chat-black.png); }
-#workskin .twdm .ic.ic-x-chat-outline, #workskin .tw-thread .ic.ic-x-chat-outline { background-image: url(https://images.squidge.org/images/2026/11/15/comment-black.png); }
+#workskin .twdm .ic.ic-x-chat-outline, #workskin .tw-thread .ic.ic-x-chat-outline { background-image: url(https://images.squidge.org/images/2026/11/19/x-chat-outline-black.png); }
 
 #workskin .twdm.theme-dark .ic.ic-back { background-image: url(https://images.squidge.org/images/2026/11/15/back-white.png); }
 #workskin .twdm.theme-dark .ic.ic-video { background-image: url(https://images.squidge.org/images/2026/11/15/video-white.png); }
@@ -1559,7 +1559,7 @@
 #workskin .twdm.theme-dark .ic.ic-x-grok, #workskin .tw-thread.theme-dark .ic.ic-x-grok { background-image: url(https://images.squidge.org/images/2026/11/19/x-grok-white.png); }
 #workskin .twdm.theme-dark .ic.ic-x-bell, #workskin .tw-thread.theme-dark .ic.ic-x-bell { background-image: url(https://images.squidge.org/images/2026/11/19/x-bell-white.png); }
 #workskin .twdm.theme-dark .ic.ic-x-chat, #workskin .tw-thread.theme-dark .ic.ic-x-chat { background-image: url(https://images.squidge.org/images/2026/11/19/x-chat-white.png); }
-#workskin .twdm.theme-dark .ic.ic-x-chat-outline, #workskin .tw-thread.theme-dark .ic.ic-x-chat-outline { background-image: url(https://images.squidge.org/images/2026/11/15/comment-white.png); }
+#workskin .twdm.theme-dark .ic.ic-x-chat-outline, #workskin .tw-thread.theme-dark .ic.ic-x-chat-outline { background-image: url(https://images.squidge.org/images/2026/11/19/x-chat-outline-white.png); }
 
 @media (prefers-color-scheme: dark) {
   #workskin .twdm.theme-auto .ic.ic-back { background-image: url(https://images.squidge.org/images/2026/11/15/back-white.png); }
@@ -1572,7 +1572,7 @@
   #workskin .twdm.theme-auto .ic.ic-x-grok, #workskin .tw-thread.theme-auto .ic.ic-x-grok { background-image: url(https://images.squidge.org/images/2026/11/19/x-grok-white.png); }
   #workskin .twdm.theme-auto .ic.ic-x-bell, #workskin .tw-thread.theme-auto .ic.ic-x-bell { background-image: url(https://images.squidge.org/images/2026/11/19/x-bell-white.png); }
   #workskin .twdm.theme-auto .ic.ic-x-chat, #workskin .tw-thread.theme-auto .ic.ic-x-chat { background-image: url(https://images.squidge.org/images/2026/11/19/x-chat-white.png); }
-  #workskin .twdm.theme-auto .ic.ic-x-chat-outline, #workskin .tw-thread.theme-auto .ic.ic-x-chat-outline { background-image: url(https://images.squidge.org/images/2026/11/15/comment-white.png); }
+  #workskin .twdm.theme-auto .ic.ic-x-chat-outline, #workskin .tw-thread.theme-auto .ic.ic-x-chat-outline { background-image: url(https://images.squidge.org/images/2026/11/19/x-chat-outline-white.png); }
 }
 
 /* <<<<<<<<<< MODULE: Twitter/X (posts, replies, DMs) (end) <<<<<<<<<< */
