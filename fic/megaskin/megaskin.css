@@ -3113,6 +3113,31 @@
 #workskin .twdm .tw-nav br,
 #workskin .tw-thread .tw-nav br { display: none; }
 
+/* a blue number on a button, like new notifications: wrap the icon and the number in a tw-badged span.
+   <span class="tw-badged"><span class="ic ic-x-bell">&#128276;</span><span class="tw-badge"><span class="hide"> (</span>3<span class="hide">)</span></span></span>
+   The circle stretches into a lozenge for longer numbers. */
+#workskin .twdm .tw-nav .tw-badged,
+#workskin .tw-thread .tw-nav .tw-badged { position: relative; display: block; line-height: 1; }
+
+#workskin .twdm .tw-nav .tw-badge,
+#workskin .tw-thread .tw-nav .tw-badge {
+  position: absolute;
+  top: -0.7em;
+  left: 1.1em;
+  min-width: 1.5em;
+  height: 1.5em;
+  padding: 0 0.4em;
+  box-sizing: border-box;
+  border-radius: 0.75em;
+  background: #1d9bf0;
+  color: #ffffff;
+  font-size: 0.5em;
+  font-weight: bold;
+  line-height: 1.5em;
+  text-align: center;
+  white-space: nowrap;
+}
+
 /* on the app screen, a line between the tweets and the buttons */
 #workskin .tw-thread .tw-nav { border-top: 1px solid #eff3f4; }
 
