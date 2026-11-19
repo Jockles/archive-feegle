@@ -555,7 +555,7 @@
     if (m.likeClick) L.push('  <details class="tw-stat tw-tog"' + (m.liked ? " open" : "") + '><summary><span class="ic ic-tw-like">&#9825;</span><span class="off">' +
       (t(m.likes) ? " " + esc(t(m.likes)) : "") + '</span><span class="hide"> likes (</span><span class="on"> ' + esc(bumpCount(m.likes)) + '</span><span class="hide"> once liked)</span></summary></details>');
     else L.push(stat(m.liked ? " tw-liked" : "", "like", 9825, m.likes, "like", "likes"));
-    if (!old && t(m.views)) L.push(stat("", "views", 128202, m.views, "view", "views"));
+    if (!old && t(m.views) !== "-") L.push(stat("", "views", 128202, m.views, "view", "views"));
     if (!old) L.push(stat(" tw-end" + (m.saved ? " tw-saved" : ""), "bookmark", 128278, ""));
     L.push(stat(" tw-end", "share", 8679, ""));
     return L.concat(["</div>"]);
@@ -746,7 +746,7 @@
     "blocks.N.msgs.N.noRepost:tw": "Fades out the repost button, like on a Twitter Circle tweet, which can't be reposted.",
     "blocks.N.msgs.N.likeClick:tw": "Readers can click the heart to like the tweet: it turns red and the number goes up by one.",
     "blocks.N.msgs.N.liked:tw": "Shows the heart already red, as if the phone owner has liked it. If readers can click it, a click un-likes it.",
-    "blocks.N.msgs.N.views:tw": "The number of views at the end of the row of buttons. Leave it empty to leave the views button out.",
+    "blocks.N.msgs.N.views:tw": "The number of views at the end of the row of buttons, like '71K' or '0'. Leave it empty for the views button with no number, or type a dash '-' to leave the views button out.",
     "blocks.N.msgs.N.saved:tw": "Turns the bookmark button blue, as if the phone owner has saved the tweet.",
     "blocks.N.msgs.N.date:tw": "The small grey line at the bottom of the tweet. A tweet opened on its own usually shows the exact time and date here, like '8:23 AM · 11 May 23', but you can put any words you like. Leave it empty for a reply or a tweet on a feed, so it looks real.",
     "blocks.N.msgs.N.poll:tw": "One option per line. For a finished or tappable poll, put the percentage after each one, like 'Montreal 58%'.",
