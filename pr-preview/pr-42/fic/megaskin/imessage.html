@@ -2,11 +2,30 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
+  <meta http-equiv="X-Clacks-Overhead" content="GNU Terry Pratchett">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Megaskin, Chapter 4: iMessage | jockles.com</title>
+  <!-- site meta -->
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="icon" href="/images/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+  <meta name="theme-color" content="#0b5563">
+  <meta name="description" content="Work In Progress!! One AO3 work skin for every kind of social media in your fic: iMessage, WhatsApp, Twitter/X, Instagram, Tumblr, email and Discord, with a chapter for each app.">
+  <link rel="canonical" href="https://jockles.com/fic/megaskin/imessage.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="jockles.com">
+  <meta property="og:title" content="Megaskin, Chapter 4: iMessage">
+  <meta property="og:description" content="Work In Progress!! One AO3 work skin for every kind of social media in your fic: iMessage, WhatsApp, Twitter/X, Instagram, Tumblr, email and Discord, with a chapter for each app.">
+  <meta property="og:url" content="https://jockles.com/fic/megaskin/imessage.html">
+  <meta property="og:image" content="https://jockles.com/images/social-card-megaskin.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="jockles.com: All the Fannish things I do. Social Media AO3 Skin">
+  <meta name="twitter:card" content="summary_large_image">
+  <!-- /site meta -->
   <link rel="stylesheet" href="../../style.css">
   <script src="../../theme.js"></script>
-  <link rel="stylesheet" href="megaskin.css?v=67deb230" id="creator-style">
+  <link rel="stylesheet" href="megaskin.css?v=5fac2cdd" id="creator-style">
 </head>
 <body>
 <header>
@@ -70,7 +89,7 @@
     <p class="msg in pic text"><span class="hide"><em>Ilya:</em> </span>[A blurry photo of the same cat, now asleep on Ilya's hotel bed]</p>
     <p class="msg out"><span class="hide"><em>Shane:</em> </span>call me?</p>
     <p class="imsg-status">Read 11:52 PM</p>
-    <p class="typing-indicator"><span></span><span></span><span></span></p>
+    <p class="msg in typing-indicator"><span class="hide"><em>Ilya</em> is typing...</span><span></span><span></span><span></span></p>
   </div>
   <p class="imsg-input"><span class="imsg-plus">+</span><span class="hide"> </span><span class="imsg-field">iMessage<span class="hide"> </span><span class="imsg-mic ic ic-mic">&#127908;</span></span></p>
 </div>
@@ -91,7 +110,7 @@
     &lt;p class="msg in pic text"&gt;&lt;span class="hide"&gt;&lt;em&gt;Ilya:&lt;/em&gt; &lt;/span&gt;[A blurry photo of the same cat, now asleep on Ilya's hotel bed]&lt;/p&gt;
     &lt;p class="msg out"&gt;&lt;span class="hide"&gt;&lt;em&gt;Shane:&lt;/em&gt; &lt;/span&gt;call me?&lt;/p&gt;
     &lt;p class="imsg-status"&gt;Read 11:52 PM&lt;/p&gt;
-    &lt;p class="typing-indicator"&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/p&gt;
+    &lt;p class="msg in typing-indicator"&gt;&lt;span class="hide"&gt;&lt;em&gt;Ilya&lt;/em&gt; is typing...&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/p&gt;
   &lt;/div&gt;
   &lt;p class="imsg-input"&gt;&lt;span class="imsg-plus"&gt;+&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="imsg-field"&gt;iMessage&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="imsg-mic ic ic-mic"&gt;&amp;#127908;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
 &lt;/div&gt;</code></pre>
@@ -293,11 +312,27 @@
 
 <h3 id="s4-10">4.10 Typing Dots</h3>
 
-<p>For the three dots that show someone is typing, add a <code>typing-indicator</code> paragraph with three empty spans at the very end of the chat:</p>
+<p>The three dots that show someone is typing are a message bubble with three empty spans in it, so they belong to whoever is typing. Add <code>typing-indicator</code> to a message with <code>in</code> for someone else:</p>
 
-<div class="mob imsg theme-auto"><div class="mob-body"><p class="typing-indicator"><span></span><span></span><span></span></p></div></div>
+<div class="mob imsg theme-auto"><div class="mob-body"><p class="msg in typing-indicator"><span class="hide"><em>Ilya</em> is typing...</span><span></span><span></span><span></span></p></div></div>
 
-<pre><code>&lt;p class="typing-indicator"&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/p&gt;</code></pre>
+<pre><code>&lt;p class="msg in typing-indicator"&gt;&lt;span class="hide"&gt;&lt;em&gt;Ilya&lt;/em&gt; is typing...&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/p&gt;</code></pre>
+
+<p>Or <code>out</code> for whoever owns the phone, halfway through writing something - the dots go on the right, in a blue bubble:</p>
+
+<div class="mob imsg theme-auto"><div class="mob-body"><p class="msg out typing-indicator"><span class="hide"><em>Shane</em> is typing...</span><span></span><span></span><span></span></p></div></div>
+
+<pre><code>&lt;p class="msg out typing-indicator"&gt;&lt;span class="hide"&gt;&lt;em&gt;Shane&lt;/em&gt; is typing...&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/p&gt;</code></pre>
+
+<p>In a group chat, put their name above it, the same as their messages:</p>
+
+<div class="mob imsg theme-auto"><div class="mob-body"><p class="who">Hayden</p>
+<p class="msg in typing-indicator"><span class="hide">is typing...</span><span></span><span></span><span></span></p></div></div>
+
+<pre><code>&lt;p class="who"&gt;Hayden&lt;/p&gt;
+&lt;p class="msg in typing-indicator"&gt;&lt;span class="hide"&gt;is typing...&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/p&gt;</code></pre>
+
+<p>The hidden "is typing..." is for readers with the workskin switched off.</p>
 
 <h3 id="s4-11">4.11 Message Bar</h3>
 
@@ -388,7 +423,7 @@
       <p class="chapter-nav"><a href="core-css.html">&larr; Previous Chapter</a> &middot; <a href="index.html">Chapter Index</a> &middot; <a href="imessage-css.html">Next Chapter &rarr;</a></p>
 </main>
 <footer>
-  Made by hand in HTML &amp; CSS. No trackers, no cookies, no ads.
+  Made by hand in HTML &amp; CSS. No trackers, no cookies, no ads. &middot; <a href="https://buymeacoffee.com/jockles">Support Me</a>
 </footer>
 <script>
   // Works like AO3's "Hide Creator's Style" button: switches the work skin off and on.

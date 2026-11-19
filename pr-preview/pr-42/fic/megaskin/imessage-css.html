@@ -2,11 +2,30 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
+  <meta http-equiv="X-Clacks-Overhead" content="GNU Terry Pratchett">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Megaskin, Chapter 5: iMessage CSS | jockles.com</title>
+  <!-- site meta -->
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="icon" href="/images/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+  <meta name="theme-color" content="#0b5563">
+  <meta name="description" content="Work In Progress!! One AO3 work skin for every kind of social media in your fic: iMessage, WhatsApp, Twitter/X, Instagram, Tumblr, email and Discord, with a chapter for each app.">
+  <link rel="canonical" href="https://jockles.com/fic/megaskin/imessage-css.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="jockles.com">
+  <meta property="og:title" content="Megaskin, Chapter 5: iMessage CSS">
+  <meta property="og:description" content="Work In Progress!! One AO3 work skin for every kind of social media in your fic: iMessage, WhatsApp, Twitter/X, Instagram, Tumblr, email and Discord, with a chapter for each app.">
+  <meta property="og:url" content="https://jockles.com/fic/megaskin/imessage-css.html">
+  <meta property="og:image" content="https://jockles.com/images/social-card-megaskin.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="jockles.com: All the Fannish things I do. Social Media AO3 Skin">
+  <meta name="twitter:card" content="summary_large_image">
+  <!-- /site meta -->
   <link rel="stylesheet" href="../../style.css">
   <script src="../../theme.js"></script>
-  <link rel="stylesheet" href="megaskin.css?v=67deb230" id="creator-style">
+  <link rel="stylesheet" href="megaskin.css?v=5fac2cdd" id="creator-style">
 </head>
 <body>
 <header>
@@ -314,14 +333,7 @@
 
 <h3 id="s5-10">5.10 Typing Dots</h3>
 
-<pre><code>#workskin .imsg .typing-indicator {
-  display: table;
-  margin: 0.3em 0;
-  padding: 0.6em 0.8em;
-  border-radius: 18px;
-  border-bottom-left-radius: 5px;
-  background: #e9e9eb;
-}
+<pre><code>#workskin .imsg .typing-indicator { padding: 0.6em 0.8em; line-height: 1; }
 
 #workskin .imsg .typing-indicator span {
   display: inline-block;
@@ -333,11 +345,13 @@
   opacity: 0.5;
 }
 
-#workskin .imsg .typing-indicator span:nth-child(2) { opacity: 0.7; }
+#workskin .imsg .typing-indicator span:nth-last-child(2) { opacity: 0.7; }
 
-#workskin .imsg .typing-indicator span:nth-child(3) { opacity: 1; margin-right: 0; }</code></pre>
+#workskin .imsg .typing-indicator span:last-child { opacity: 1; margin-right: 0; }
 
-<p>The bubble is built like a received message. Each empty span becomes a small grey circle, and <code>:nth-child(2)</code> and <code>:nth-child(3)</code> - the second and third dot - get darker, so it looks like the dots are mid-bounce.</p>
+#workskin .imsg .out.typing-indicator span { background: #ffffff; }</code></pre>
+
+<p>The dots sit in an ordinary message bubble, so the bubble's colour, side and tail all come from <code>in</code> or <code>out</code>. This rule just gives it a bit more padding. Each empty span becomes a small circle, and <code>:nth-last-child(2)</code> and <code>:last-child</code> - the second and third dot, counting from the end so the hidden text in front doesn't get counted - get darker, so it looks like the dots are mid-bounce. On a blue sent bubble the dots are white.</p>
 
 <h3 id="s5-11">5.11 Message Bar</h3>
 
@@ -424,8 +438,7 @@
 
 #workskin .imsg.theme-dark .mob-head { background: #1c1c1e; color: #ffffff; border-bottom-color: #2c2c2e; }
 
-#workskin .imsg.theme-dark .in,
-#workskin .imsg.theme-dark .typing-indicator {
+#workskin .imsg.theme-dark .in {
   background: #262628;
   color: #ffffff;
 }</code></pre>
@@ -456,7 +469,7 @@
   <li><strong>Tapbacks:</strong> everything with <code>tapped</code> or <code>imsg-tap</code> in it, including the lines in the dark and auto blocks.</li>
   <li><strong>Green bubbles:</strong> the <code>.out.sms</code> line.</li>
   <li><strong>Pictures:</strong> the three <code>.msg.pic</code> rules.</li>
-  <li><strong>Typing dots:</strong> the four <code>typing-indicator</code> rules, and <code>.typing-indicator</code> in the dark and auto blocks.</li>
+  <li><strong>Typing dots:</strong> the four <code>typing-indicator</code> rules, and <code>.out.typing-indicator</code>.</li>
   <li><strong>Message bar:</strong> everything with <code>imsg-input</code>, <code>imsg-plus</code>, <code>imsg-field</code> or <code>imsg-mic</code> in it.</li>
 </ul>
 
@@ -467,7 +480,7 @@
       <p class="chapter-nav"><a href="imessage.html">&larr; Previous Chapter</a> &middot; <a href="index.html">Chapter Index</a> &middot; <a href="whatsapp.html">Next Chapter &rarr;</a></p>
 </main>
 <footer>
-  Made by hand in HTML &amp; CSS. No trackers, no cookies, no ads.
+  Made by hand in HTML &amp; CSS. No trackers, no cookies, no ads. &middot; <a href="https://buymeacoffee.com/jockles">Support Me</a>
 </footer>
 <script>
   // Works like AO3's "Hide Creator's Style" button: switches the work skin off and on.

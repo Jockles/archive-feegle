@@ -2,11 +2,30 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
+  <meta http-equiv="X-Clacks-Overhead" content="GNU Terry Pratchett">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Megaskin, Chapter 2: The Core, Themes, and Extras | jockles.com</title>
+  <!-- site meta -->
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="icon" href="/images/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+  <meta name="theme-color" content="#0b5563">
+  <meta name="description" content="Work In Progress!! One AO3 work skin for every kind of social media in your fic: iMessage, WhatsApp, Twitter/X, Instagram, Tumblr, email and Discord, with a chapter for each app.">
+  <link rel="canonical" href="https://jockles.com/fic/megaskin/core.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="jockles.com">
+  <meta property="og:title" content="Megaskin, Chapter 2: The Core, Themes, and Extras">
+  <meta property="og:description" content="Work In Progress!! One AO3 work skin for every kind of social media in your fic: iMessage, WhatsApp, Twitter/X, Instagram, Tumblr, email and Discord, with a chapter for each app.">
+  <meta property="og:url" content="https://jockles.com/fic/megaskin/core.html">
+  <meta property="og:image" content="https://jockles.com/images/social-card-megaskin.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="jockles.com: All the Fannish things I do. Social Media AO3 Skin">
+  <meta name="twitter:card" content="summary_large_image">
+  <!-- /site meta -->
   <link rel="stylesheet" href="../../style.css">
   <script src="../../theme.js"></script>
-  <link rel="stylesheet" href="megaskin.css?v=67deb230" id="creator-style">
+  <link rel="stylesheet" href="megaskin.css?v=5fac2cdd" id="creator-style">
 </head>
 <body>
 <header>
@@ -34,7 +53,7 @@
         <div id="workskin">
 <h3 id="contents">Chapter Contents</h3>
 
-<p>Everything in this chapter lives in the core CSS - the bit of the skin that every module needs - so you get all of it whichever modules you've picked. It all works in Discord too, apart from the typing line.</p>
+<p>Everything in this chapter lives in the core CSS - the bit of the skin that every module needs - so you get all of it whichever modules you've picked. It all works in Discord too.</p>
 
 <ul>
   <li><a href="#anatomy">The chat container, and the anatomy of a module</a>: the container and its platform and theme classes</li>
@@ -56,9 +75,7 @@
   <li><a href="#pictures">Pictures and formatting</a>: pictures, and cropping them to fit boxes and circles (<code>land</code>)</li>
   <li><a href="#fake-links">Links that go nowhere</a> (<code>fake-link</code>)</li>
   <li><a href="#translations">Hover and tap translations</a>, and hidden easter eggs (<code>egg</code>), which also work in ordinary text outside a chat</li>
-  <li><a href="#typing">The typing line</a> (<code>typing</code>) - not in Discord</li>
   <li><a href="#cursor">A flashing cursor</a> (<code>cursor</code>)</li>
-  <li><a href="#deleted">Deleted or corrected text</a> (<code>del</code>)</li>
   <li><a href="#together">Putting it together</a>: a chat using both</li>
 </ul>
 
@@ -1160,21 +1177,11 @@
 
 <pre><code>&lt;p class="msg out"&gt;&lt;span class="hide"&gt;&lt;em&gt;Ilya:&lt;/em&gt; &lt;/span&gt;I'm &lt;a class="tl egg" href="#t4"&gt;&lt;span class="orig"&gt;fine&lt;/span&gt;&lt;span class="tltn"&gt;&lt;span class="hide"&gt; (&lt;/span&gt;not fine. not even a little bit&lt;span class="hide"&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;</code></pre>
 
-<p>Readers with the workskin switched off still get the hidden text in brackets after the original, so nobody misses out completely. And if you'd like every translation in your fic to look like this, <a href="core-css.html#s3-13">Hover and Tap Translations</a>, in the core CSS, shows you the one line to delete instead.</p>
+<p>Readers with the workskin switched off still get the hidden text in brackets after the original, so nobody misses out completely. And if you'd like every translation in your fic to look like this, <a href="core-css.html#s3-12">Hover and Tap Translations</a>, in the core CSS, shows you the one line to delete instead.</p>
 
-<h3 id="typing"><span id="s2-8"></span>2.8 Typing Line</h3>
+<h3 id="cursor"><span id="s2-8"></span>2.8 A Flashing Cursor</h3>
 
-<p>This one's for any chat built on the <code>mob</code> container, which is every module apart from Discord. Discord has its own typing indicator, and <a href="discord.html#s16-23">Typing Indicator</a> shows you how to use it.</p>
-
-<p>To show that someone is typing, add a paragraph with <code>typing</code> at the end of the messages. It shows up as a small, slanted line of text:</p>
-
-<div class="mob imsg theme-auto"><div class="mob-body"><p class="typing">Scott is typing...</p></div></div>
-
-<pre><code>&lt;p class="typing"&gt;Scott is typing...&lt;/p&gt;</code></pre>
-
-<h3 id="cursor"><span id="s2-9"></span>2.9 A Flashing Cursor</h3>
-
-<p>For a message someone's still writing, put a <code>cursor</code> span straight after the last word, with a typed <code>|</code> inside it. It shows up as a flashing cursor, in any app - in a typing bar, a draft, a half-written comment, wherever. The typed line only shows for readers with the workskin switched off:</p>
+<p>For a message someone's still writing, put a <code>cursor</code> span straight after the last word, with a typed <code>|</code> inside it. It shows up as a flashing cursor, in any app - in a typing bar, a draft, a half-written comment, wherever. It's black in light chats and white in dark ones, and switches with <code>theme-auto</code>. The typed line only shows for readers with the workskin switched off:</p>
 
 <div class="mob imsg theme-auto"><p class="imsg-input"><span class="imsg-plus">+</span><span class="hide"> </span><span class="imsg-field typed">ok so about last night<span class="cursor">|</span><span class="hide"> </span><span class="imsg-send ic ic-imsg-send">&#8593;</span></span></p></div>
 
@@ -1182,22 +1189,13 @@
 
 <p>The bit that matters is just <code>&lt;span class="cursor"&gt;|&lt;/span&gt;</code> - the rest is iMessage's typing bar, from the iMessage chapter.</p>
 
-<h3 id="deleted"><span id="s2-10"></span>2.10 Deleted or Corrected Text</h3>
-
-<p>To strike a message through, as if the sender deleted or corrected it, wrap the words in a span with the class <code>del</code>:</p>
-
-<div class="mob imsg theme-auto"><div class="mob-body"><p class="msg out"><span class="hide"><em>Ilya:</em> </span><span class="del">I'm fine</span></p></div></div>
-
-<pre><code>&lt;p class="msg out"&gt;&lt;span class="hide"&gt;&lt;em&gt;Ilya:&lt;/em&gt; &lt;/span&gt;&lt;span class="del"&gt;I'm fine&lt;/span&gt;&lt;/p&gt;</code></pre>
-
-<h3 id="together"><span id="s2-11"></span>2.11 Putting It Together</h3>
+<h3 id="together"><span id="s2-9"></span>2.9 Putting It Together</h3>
 
 <div class="mob twdm theme-auto">
   <p class="mob-head">Scott<span class="hide"> - </span><span>@scotthunter</span></p>
   <div class="mob-body">
-    <p class="msg out"><span class="hide"><em>Ilya:</em> </span><span class="del">I'm fine</span></p>
-    <p class="msg out"><span class="hide"><em>Ilya:</em> </span>I'm not fine</p>
-    <p class="typing">Scott is typing...</p>
+    <p class="msg out"><span class="hide"><em>Ilya:</em> </span>I'm <a class="tl egg" href="#t5"><span class="orig">fine</span><span class="tltn"><span class="hide"> (</span>not fine. not even a little bit<span class="hide">)</span></span></a></p>
+    <p class="msg in"><span class="hide"><em>Scott:</em> </span>you're a terrible liar</p>
   </div>
 </div>
 
@@ -1206,9 +1204,8 @@
 <pre><code>&lt;div class="mob twdm theme-auto"&gt;
   &lt;p class="mob-head"&gt;Scott&lt;span class="hide"&gt; - &lt;/span&gt;&lt;span&gt;@scotthunter&lt;/span&gt;&lt;/p&gt;
   &lt;div class="mob-body"&gt;
-    &lt;p class="msg out"&gt;&lt;span class="hide"&gt;&lt;em&gt;Ilya:&lt;/em&gt; &lt;/span&gt;&lt;span class="del"&gt;I'm fine&lt;/span&gt;&lt;/p&gt;
-    &lt;p class="msg out"&gt;&lt;span class="hide"&gt;&lt;em&gt;Ilya:&lt;/em&gt; &lt;/span&gt;I'm not fine&lt;/p&gt;
-    &lt;p class="typing"&gt;Scott is typing...&lt;/p&gt;
+    &lt;p class="msg out"&gt;&lt;span class="hide"&gt;&lt;em&gt;Ilya:&lt;/em&gt; &lt;/span&gt;I'm &lt;a class="tl egg" href="#t5"&gt;&lt;span class="orig"&gt;fine&lt;/span&gt;&lt;span class="tltn"&gt;&lt;span class="hide"&gt; (&lt;/span&gt;not fine. not even a little bit&lt;span class="hide"&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+    &lt;p class="msg in"&gt;&lt;span class="hide"&gt;&lt;em&gt;Scott:&lt;/em&gt; &lt;/span&gt;you're a terrible liar&lt;/p&gt;
   &lt;/div&gt;
 &lt;/div&gt;</code></pre>
 
@@ -1219,7 +1216,7 @@
       <p class="chapter-nav"><a href="getting-started.html">&larr; Previous Chapter</a> &middot; <a href="index.html">Chapter Index</a> &middot; <a href="core-css.html">Next Chapter &rarr;</a></p>
 </main>
 <footer>
-  Made by hand in HTML &amp; CSS. No trackers, no cookies, no ads.
+  Made by hand in HTML &amp; CSS. No trackers, no cookies, no ads. &middot; <a href="https://buymeacoffee.com/jockles">Support Me</a>
 </footer>
 <script>
   // Works like AO3's "Hide Creator's Style" button: switches the work skin off and on.
