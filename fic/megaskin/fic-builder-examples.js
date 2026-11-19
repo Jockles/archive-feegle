@@ -2,10 +2,11 @@
 // Each one is plain data:
 //   cast:  the people in it: profile (a profile from the skin, like "shane"), or name plus
 //          colour, initials, pic, alt, num for one-offs
-//   chat:  the chat settings (type is "imsg" or "wa"; pov is whose phone it is)
+//   chat:  the chat settings (type is "imsg", "wa", "twdm", "twthread" or "twfeed"; pov is whose phone it is;
+//          a Twitter/X DM can set nav and badge for the app buttons)
 //   msgs:  one line per message: [who, text, extras]. who is a cast name, "sys" for a
 //          date or notice line, or "typing" for typing dots (by: who is typing). extras can have time, tick, reacts (iMessage
-//          tapbacks: [[who, emoji]]), waReacts, waCount, sms, big, edited, status,
+//          tapbacks: [[who, emoji]]), waReacts, waCount, sms, big, edited, status, voice (a DM voice message's length),
 //          reply (the number of an earlier message, counting from 0; in a tweet thread, the reply
 //          goes to whoever posted it, and with no reply it goes to the tweet just above), photos, link.
 //          Tweets also take verified, label, date, replies, reposts, reposted, likes, liked, likeClick
@@ -168,6 +169,38 @@ window.FB_EXAMPLES = [
       ["Geri", "Rink at night vs rink in the morning. Guess which one I prefer", { time: "4h", warn: true,
         photos: [{ desc: "A photo of the empty rink at night" }, { desc: "A photo of the same rink at 6am, full of children in helmets" }],
         likeClick: false, replies: "31", reposts: "145", likes: "1.2K", views: "22K" }]
+    ]
+  },
+  {
+    label: "Twitter/X: a one-to-one DM",
+    cast: [{ name: "Ilya", profile: "ilya" }, { name: "Shane", profile: "shane" }],
+    chat: { type: "twdm", pov: "Ilya", bar: "empty", nav: true, badge: "3" },
+    msgs: [
+      ["sys", "Thu 17 Sep at 22:14"],
+      ["Shane", "saw your tweet"],
+      ["Ilya", "it was meant to be funny"],
+      ["Shane", "it wasn't"],
+      ["Ilya", "it was a little bit funny"],
+      ["Shane", "ok it was a little bit funny", { waReacts: "😏 1" }],
+      ["Ilya", "I am always funny", { waReacts: "🙄 1" }],
+      ["sys", "Today 09:02"],
+      ["Shane", "", { photos: [{ url: MACK, alt: MACKALT }] }],
+      ["Ilya", "you laughed. I heard you", { reply: 3 }],
+      ["Ilya", "", { voice: "0:02", status: "Seen" }]
+    ]
+  },
+  {
+    label: "Twitter/X: a group DM",
+    cast: [{ name: "Ilya", profile: "ilya" }, { name: "Hayden", colour: "4", initials: "HP" }, { name: "Shane", profile: "shane" },
+      { name: "Scott", colour: "7", initials: "SH" }],
+    chat: { type: "twdm", pov: "Ilya", group: true, title: "Rookie Dinner", gp: { colour: "3", showInitials: true, initials: "RD", pic: "", alt: "", land: false }, bar: "empty", nav: true, badge: "3" },
+    msgs: [
+      ["sys", "Today 18:55"],
+      ["Hayden", "are we still going out?"],
+      ["Hayden", "Jackie says I'm allowed"],
+      ["Shane", "yes. Ilya is paying", { waReacts: "👍 😂 3" }],
+      ["Ilya", "I did not agree to this", { reply: 3, status: "Sent" }],
+      ["Scott", "you did, actually. there are witnesses"]
     ]
   }
 ];
