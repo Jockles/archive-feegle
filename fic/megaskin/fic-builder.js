@@ -1154,9 +1154,11 @@
     helpKind = b.type === "twdm" ? "dm" : chat ? "" : "tw";
     h.push('<section class="fb-block" data-i="' + i + '">');
     // the name folds the chat up, leaving just this line and its buttons
-    var what = t(b.title) || (b.msgs[0] && plain(b.msgs[0].text).trim().slice(0, 40)) || "";
+    // folded, it shows who sent the first message and what it said
+    var first = b.msgs.filter(function (x) { return char(x.from) && (t(x.text) || x.photos.length); })[0];
+    var what = first ? "<em>" + esc(nameOf(char(first.from))) + ":</em> " + esc(plain(first.text).trim().slice(0, 80) || "(picture)") : esc(t(b.title));
     h.push('<div class="fb-bhead"><button type="button" class="fb-fold" data-act="blk-fold:' + i + '" aria-expanded="' + !b.fold + '">' +
-      (b.fold ? "&#9656; " : "&#9662; ") + "<b>" + (i + 1) + ". " + KINDS[b.type] + "</b>" + (b.fold && what ? ' <span class="hint">' + esc(what) + "</span>" : "") + "</button>" +
+      (b.fold ? "&#9656; " : "&#9662; ") + "<b>" + (i + 1) + ". " + KINDS[b.type] + "</b>" + (b.fold && what ? ' <span class="hint">' + what + "</span>" : "") + "</button>" +
       '<span class="fb-tools">' + btn("blk-up:" + i, "&uarr;", "Move up") + btn("blk-down:" + i, "&darr;", "Move down") + btn("blk-del:" + i, "&times;", "Delete this") + "</span></div>");
     if (b.fold) { helpKind = ""; return h.concat(["</section>"]).join(""); }
     if (chat) h.push(chatSettings(b, i));
