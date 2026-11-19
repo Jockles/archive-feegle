@@ -9,7 +9,7 @@
 //          reply (the number of an earlier message, counting from 0; in a tweet thread, the reply
 //          goes to whoever posted it, and with no reply it goes to the tweet just above), photos, link.
 //          Tweets also take verified, label, date, replies, reposts, reposted, likes, liked, likeClick
-//          (true unless set), views, saved, locked, noRepost, fan, poll, pollinfo, pollKind ("open", "results" or "tap"),
+//          (true unless set), views, saved, locked, noRepost, fan, fanMask, poll, pollinfo, pollKind ("open", "results" or "tap"),
 //          pollVote, pollShowVote, pollVoted, qName,
 //          qHandle, qText, note, warn, vUrl, vTitle, vDesc. A Twitter/X chat can set era ("tw2020"), and a
 //          timeline can set app ("app"), pov and tabs for the X app screen.

@@ -63,7 +63,7 @@
       acc: "", verified: false, label: "", qName: "", qHandle: "", qText: "", note: "", date: "",
       reposts: "", likes: "", replies: "", liked: false, reposted: false, poll: "", pollinfo: "",
       vUrl: "", vTitle: "", vDesc: "", warn: false,
-      views: "", saved: false, likeClick: true, locked: false, noRepost: false, fan: "", pollTap: false, pollVote: "0", pollShowVote: false, pollVoted: "0" };
+      views: "", saved: false, likeClick: true, locked: false, noRepost: false, fan: "", fanMask: false, pollTap: false, pollVote: "0", pollShowVote: false, pollVoted: "0" };
   }
   // the group's picture in the WhatsApp header: a one-off circle, set up the same way
   function newGroupPic() { return { colour: "5", showInitials: true, initials: "", pic: "", alt: "", land: false }; }
@@ -476,6 +476,8 @@
     // hashtags and @mentions go blue
     return fmt(text).replace(/(^|[\s(])([#@][A-Za-z0-9_]+)/g, '$1<span class="tw-link">$2</span>');
   }
+  // the fan account mask: ticked by hand, or (for work saved before the tick box) when the line says Fan account
+  function fanMask(m) { return m.fanMask === undefined ? /^fan account$/i.test(t(m.fan)) : !!m.fanMask; }
   // the poll's options, one per line, with a percentage at the end once there are results
   function pollOpts(m) {
     return t(m.poll).split(/\n/).map(t).filter(Boolean).map(function (line) {
@@ -582,7 +584,7 @@
     L.push('<p class="tw-top">' + circle("tw-pfp", c, a) + '<span class="hide"> </span><span class="tw-name">' + (isProfile(c) ? twNameHTML(c, a) : "<span>" + esc(nameOf(c)) + "</span>") +
       (m.verified ? ' <span class="tw-tick ic ic-verified">&#10004;</span>' : "") + '</span> <span class="tw-handle">' + twHandleHTML(c, a) + "</span>" +
       (m.locked ? ' <span class="tw-lock ic ic-tw-lock">&#128274;</span>' : "") + (t(m.time) ? ' <span class="tw-time">· ' + esc(t(m.time)) + "</span>" : "") +
-      (t(m.fan) ? ' <span class="tw-fan"><span class="ic ic-tw-fan">&#127917;</span> ' + esc(t(m.fan)) + "</span>" : "") + "</p>");
+      (t(m.fan) ? ' <span class="tw-fan">' + (fanMask(m) ? '<span class="ic ic-tw-fan">&#127917;</span> ' : "") + esc(t(m.fan)) + "</span>" : "") + "</p>");
     if (t(m.label)) L.push('<p class="tw-label">' + esc(t(m.label)) + "</p>");
     if (t(m.text)) L.push((kind === "reply" ? "<p>" : '<p class="tw-text">') + twText(m.text) + "</p>");
     if (has(m, "hasPoll")) L = L.concat(twPoll(m));
@@ -673,14 +675,11 @@
     "cast.N.prof.handle": "Their username on apps like Instagram and Tumblr, without the @.",
     "cast.N.prof.email": "Their email address, for the email apps. It doesn't have to be real.",
     "cast.N.prof.saved.N.as": "What they're saved as on someone else's phone, like 'Mum' or a nickname. Pick whose phone first.",
-    "cast.N.prof.dccolon": "Tick this to give them a different name colour on Discord, then pick the colour.",
-    "cast.N.prof.tbsq": "Tumblr pictures can be a circle or a square with rounded corners. Tick this for the square.",
     "cast.N.prof.accounts.N.acc": "A short label for the extra account, like 'burner' or 'work'. Small letters and dashes only. Then pick the app and fill in only what's different.",
     "cast.N.prof.wallcolon": "Tick this to colour the background of WhatsApp chats on their phone, then pick the colour.",
     "cast.N.prof.wallpic": "Or a picture for the background instead. " + PIC,
     "blocks.N.pov": "Whose phone we're looking at. Their messages go on the right, and everyone else's go on the left.",
     "blocks.N.group": "Tick this for a group chat. Everyone's name shows by their messages.",
-    "blocks.N.pics": "Shows each person's picture by their messages.",
     "blocks.N.title": "The name at the very top. In a chat between two people, it's the other person's name. In a group, it's the group's name.",
     "blocks.N.sub": "The small line under the name. Delete it if you don't want one.",
     "blocks.N.theme": "A light or dark phone. 'Auto' follows the reader's own light or dark setting.",
@@ -696,11 +695,9 @@
     "blocks.N.msgs.N.from:sys": "Date or notice lines are the small lines in the middle of the chat. The second box is what the line says, like 'Today 11:48 PM' or 'Lily left the group'. The buttons: the arrows move the line, + adds a new message under it, and &times; deletes it. To turn it into a message, change the first box to a character.",
     "blocks.N.msgs.N.from:typing": "Typing dots show someone is typing: three dots in a bubble, the same as their messages. The second box chooses who is typing. Pick the phone owner to put the dots on their side, halfway through writing something. The buttons: the arrows move the dots, + adds a new message under them, and &times; deletes them. To turn it into a message, change the first box to a character.",
     "blocks.N.msgs.N.from": "The first box chooses who wrote the message, from the cast list above. You can also change it to a date or notice line, or 'Typing dots'. The second box is the message itself: type it just like you'd send it. In WhatsApp, the third box is the time on the message, like '09:15'. The buttons: 'Extras' has more options (pictures, reactions and more), the arrows move the message, + adds a new message under it, and &times; deletes it.",
-    "blocks.N.msgs.N.sms": "Makes the bubble green, like a text to someone who hasn't got an iPhone.",
     "blocks.N.msgs.N.reacts.N.emoji": "The little emoji on the corner of a bubble. Pick who reacted, and type one emoji.",
     "blocks.N.msgs.N.status": "Small words under the message, like 'Delivered' or 'Read 11:52 PM'. Usually only on the phone owner's last message.",
     "blocks.N.msgs.N.tick": "The little ticks on messages the phone owner sends.",
-    "blocks.N.msgs.N.big": "Tick this when the message is only an emoji, to show it big with no bubble.",
     "blocks.N.msgs.N.replyTo": "Pick an earlier message to show it quoted above this one, as a reply.",
     "blocks.N.msgs.N.waReacts": "Emoji reactions under the bubble, with a space between each one. 'Count' is how many people reacted, if it's more than one.",
     "blocks.N.msgs.N.link.url": "A link preview is the little card that shows up when you send a link. Fill in what the card should say. The link doesn't have to work.",
@@ -720,25 +717,41 @@
     "blocks.N.msgs.N.from:tw": "The first box chooses who posted it, from the cast list above. The second box is how long ago, like '2h', '5m' or 'Jan 3', and the big box underneath is the tweet itself (#hashtags and @mentions turn blue by themselves). The buttons: 'Extras' has more options (likes, pictures, polls and more), the arrows move the tweet, + adds a new tweet under it, and &times; deletes it.",
     "blocks.N.msgs.N.replyTo:tw": "Who this reply answers. It shows as 'Replying to @them' above the reply.",
     "blocks.N.msgs.N.acc:tw": "If this character has more than one Twitter/X account in their profile, pick which one posted this.",
-    "blocks.N.msgs.N.verified:tw": "Adds the blue tick after their name.",
-    "blocks.N.msgs.N.locked:tw": "Adds a padlock after their name, for a private account. Private tweets can't be reposted, so the repost button fades out.",
-    "blocks.N.msgs.N.fan:tw": "A small grey line under the name, like 'Fan account', with a mask beside it.",
-    "blocks.N.msgs.N.label:tw": "A small grey line above the tweet, like 'Promoted', or a Twitter Circle notice.",
     "blocks.N.msgs.N.replies:tw": "The numbers on the buttons under the tweet. Leave a number empty and the button shows with no number.",
-    "blocks.N.msgs.N.likeClick:tw": "Readers can click the heart to like the tweet, and the number goes up by one.",
-    "blocks.N.msgs.N.date:tw": "The full time and date, shown when a tweet is opened on its own, like '8:23 AM · 11 May 23'. Leave it empty for most tweets.",
     "blocks.N.msgs.N.hasPoll:tw": "Tick any of these to add it to the tweet, and its boxes open up underneath.",
-    "blocks.N.msgs.N.poll:tw": "One option per line. To show the results, put the percentage after each one, like 'Montreal 58%'.",
     "blocks.N.msgs.N.pollKind:tw": "'Still open' shows just the options in blue outlines. 'Finished' shows the results, with the winner in blue. 'Tappable' starts open, and readers tap it to vote and see the results, with one more vote. 'Finished' and 'Tappable' need the percentages.",
-    "blocks.N.msgs.N.pollShowVote:tw": "Puts a tick on the option this account voted for.",
     "blocks.N.msgs.N.pollVote:tw": "Which option gets the vote and the tick. Pick 'Whichever one the reader picks' to let the reader choose, then set what the results say after each choice.",
     "blocks.N.msgs.N.qName:tw": "Another tweet shown inside this one, in a box. Fill in who posted it and what it said.",
     "blocks.N.msgs.N.note:tw": "A community note: the box under a tweet that adds context, starting 'Readers added context'.",
     "blocks.N.msgs.N.photos.N.url:tw": "A picture in the tweet. " + PIC,
     "blocks.N.msgs.N.photos.N.alt:tw": ALT,
     "blocks.N.msgs.N.photos.N.desc:tw": "No picture? Describe it here instead, and the words show where the picture would be.",
-    "blocks.N.msgs.N.warn:tw": "Hides the pictures behind a sensitive content warning that readers click to see.",
-    "blocks.N.msgs.N.vUrl:tw": "A video in the tweet. Paste an embed link from Vimeo, YouTube or the Internet Archive, then give it a title and describe it for readers who can't play it."
+    "blocks.N.msgs.N.vUrl:tw": "A video in the tweet. Paste an embed link from Vimeo, YouTube or the Internet Archive, then give it a title and describe it for readers who can't play it.",
+    "cast.N.prof.tbsq": "Tumblr pictures are round by default. Tick this for a square with rounded corners instead, like some Tumblr blogs.",
+    "cast.N.prof.accounts.N.sq": "Tumblr pictures are round by default. Tick this for a square with rounded corners on this account instead.",
+    "cast.N.prof.dccolon": "On Discord, names are coloured by the server's roles. Tick this to give them a different name colour there, then pick the colour.",
+    "blocks.N.pics": "In a group chat, puts each person's round picture beside the first of their messages, like the real app.",
+    "blocks.N.gp.land": "Tick this if the picture is wider than it is tall, so it isn't squashed in the circle.",
+    "blocks.N.msgs.N.sms": "Turns the bubble green, like a text sent to someone without an iPhone. Only for the phone owner's messages.",
+    "blocks.N.msgs.N.big": "For a message that's just an emoji or two: shows them big, with no bubble behind them.",
+    "blocks.N.msgs.N.link.showUrl": "Shows the web address as its own line above the preview card, like when you paste a link and send it.",
+    "blocks.N.msgs.N.photos.N.land": "Tick this if the picture is wider than it is tall, so it isn't squashed.",
+    "blocks.N.msgs.N.link.land": "Tick this if the picture is wider than it is tall, so it isn't squashed.",
+    "blocks.N.msgs.N.verified:tw": "The blue tick after the name, for a verified account.",
+    "blocks.N.msgs.N.locked:tw": "A padlock after the name, for an account only its followers can see. Private tweets can't be reposted, so the repost button fades out.",
+    "blocks.N.msgs.N.fan:tw": "A small grey line under the name, like a label the account gives itself. Tick 'Fan account mask' to put the theatre mask before it, the way X marks fan accounts.",
+    "blocks.N.msgs.N.fanMask:tw": "The little theatre mask X puts before 'Fan account'. Only tick it when the grey line says 'Fan account'.",
+    "blocks.N.msgs.N.label:tw": "A small grey line above the tweet, like 'Promoted', or 'Only people in @name's Twitter Circle can see this Tweet'.",
+    "blocks.N.msgs.N.reposted:tw": "Turns the repost button green, as if the phone owner has reposted it.",
+    "blocks.N.msgs.N.noRepost:tw": "Fades out the repost button, like on a Twitter Circle tweet, which can't be reposted.",
+    "blocks.N.msgs.N.likeClick:tw": "Readers can click the heart to like the tweet: it turns red and the number goes up by one.",
+    "blocks.N.msgs.N.liked:tw": "Shows the heart already red, as if the phone owner has liked it. If readers can click it, a click un-likes it.",
+    "blocks.N.msgs.N.views:tw": "The number of views at the end of the row of buttons. Leave it empty to leave the views button out.",
+    "blocks.N.msgs.N.saved:tw": "Turns the bookmark button blue, as if the phone owner has saved the tweet.",
+    "blocks.N.msgs.N.date:tw": "The small grey line at the bottom of the tweet. A tweet opened on its own usually shows the exact time and date here, like '8:23 AM · 11 May 23', but you can put any words you like. Leave it empty for a reply or a tweet on a feed, so it looks real.",
+    "blocks.N.msgs.N.poll:tw": "One option per line. For a finished or tappable poll, put the percentage after each one, like 'Montreal 58%'.",
+    "blocks.N.msgs.N.pollShowVote:tw": "Puts a tick on the option this account voted for. Pick the option underneath.",
+    "blocks.N.msgs.N.warn:tw": "Hides the pictures behind a grey 'Sensitive content' warning, which readers click to see them."
   };
   var helped = {}, helpKind = ""; // helpKind is "tw" while a Twitter/X block is drawn
   function help(path, kind) {
@@ -824,14 +837,14 @@
           field(Q + ".apps." + a.key + ".name", "", { ph: "Name" }) + (a.key === "gm" ? "" : field(Q + ".apps." + a.key + ".handle", "", { ph: "Handle" })) + "</div>");
       });
       h.push('<div class="fb-row">' + field(Q + ".dccolon", "Different name colour on Discord", { type: "check" }) + field(Q + ".dccol", "", { type: "color" }) + "</div>");
-      h.push(field(Q + ".tbsq", "Rounded square picture on Tumblr", { type: "check" }));
+      h.push(field(Q + ".tbsq", "Square Tumblr picture", { type: "check" }));
       h.push('<p class="hint">Extra accounts: a private Instagram, a burner, a work email.</p>');
       c.prof.accounts.forEach(function (x, k) {
         var A = Q + ".accounts." + k;
         h.push('<div class="fb-acct"><div class="fb-row"><span>acc-</span>' + field(A + ".acc", "", { ph: "burner" }) +
           field(A + ".app", "", { type: "select", options: MP.APPS.map(function (a) { return [a.key, a.label]; }) }) + btn("acct-del:" + i + ":" + k, "&times;", "Remove") + "</div>" +
           field(A + ".pic", "", { type: "url", ph: "Picture link" }) + field(A + ".name", "", { ph: "Name" }) + field(A + ".handle", "", { ph: "Handle, or email address" }) +
-          field(A + ".sq", "Rounded square picture (Tumblr only)", { type: "check" }) + "</div>");
+          field(A + ".sq", "Square Tumblr picture", { type: "check" }) + "</div>");
       });
       h.push(btn("acct-add:" + i, "+ Extra account"));
       h.push('<p class="hint">WhatsApp wallpaper on their phone:</p>');
@@ -863,7 +876,7 @@
       h.push('<div class="fb-extras">');
       h.push('<p class="hint">Select some words in the message, then: ' + btn("fmt:tl", "Translation") + " " + btn("fmt:egg", "Easter egg") + " " + btn("fmt:link", "Fake link") + "</p>");
       if (!wa) {
-        h.push(field(P + ".sms", "Green text message (SMS)", { type: "check" }));
+        h.push(field(P + ".sms", "Green SMS bubble", { type: "check" }));
         h.push('<p class="hint">Tapbacks (one emoji per person):</p>');
         m.reacts.forEach(function (r, k) {
           h.push('<div class="fb-row">' + field(P + ".reacts." + k + ".by", "", { type: "select", options: S.cast.map(function (c) { return [c.id, nameOf(c)]; }) }) +
@@ -873,7 +886,7 @@
         h.push(field(P + ".status", "Line under it (e.g. Delivered, or Read 11:52 PM)", {}));
       } else {
         if (m.from === b.pov) h.push(field(P + ".tick", "Ticks", { type: "select", options: [["read", "Read (blue)"], ["delivered", "Delivered (grey)"], ["sent", "Sent (one tick)"], ["", "None"]] }));
-        h.push(field(P + ".big", "Large emoji (an emoji on its own)", { type: "check" }));
+        h.push(field(P + ".big", "Large emoji", { type: "check" }));
         var earlier = b.msgs.slice(0, mi).filter(function (x) { return char(x.from); });
         h.push(field(P + ".replyTo", "Replying to", { type: "select", options: [["", "Not a reply"]].concat(earlier.map(function (x) {
           var t = plain(x.text).trim() || "(photo)"; return [x.id, nameOf(char(x.from)) + ": " + (t.length > 40 ? t.slice(0, 40) + "..." : t)];
@@ -883,7 +896,7 @@
         else {
           var K = P + ".link";
           h.push('<div class="fb-acct"><p class="hint">Link preview (the message text becomes the caption under it): ' + btn("link-del:" + bi + ":" + mi, "Remove") + "</p>" +
-            field(K + ".url", "", { ph: "Web address", wrap: true }) + field(K + ".showUrl", "Show the address above the preview too", { type: "check" }) +
+            field(K + ".url", "", { ph: "Web address", wrap: true }) + field(K + ".showUrl", "Show the web address", { type: "check" }) +
             field(K + ".title", "", { ph: "Title" }) + field(K + ".desc", "", { ph: "Description" }) +
             field(K + ".img", "", { type: "url", ph: "Picture link" }) + field(K + ".alt", "", { ph: "Describe the picture" }) +
             field(K + ".video", "", { type: "url", ph: "Or a video embed link (Vimeo, YouTube or the Internet Archive)" }) +
@@ -955,20 +968,21 @@
       h.push('<div class="fb-extras">' + fmtButtons());
       h.push(accField(P + ".acc", c, "tw"));
       var old = b.era === "tw2020";
-      h.push(field(P + ".verified", "Blue verified tick", { type: "check" }) + " " + field(P + ".locked", "Private account (padlock)", { type: "check", re: true }));
-      h.push(field(P + ".fan", "Grey line under the name", { ph: "Fan account" }));
-      h.push(field(P + ".label", "Little grey label (Promoted, or a Twitter Circle notice)", {}));
+      h.push(field(P + ".verified", "Blue verified tick", { type: "check" }) + " " + field(P + ".locked", "Private account", { type: "check", re: true }));
+      if (m.fanMask === undefined) m.fanMask = fanMask(m);
+      h.push(field(P + ".fan", "Grey line under the name", { ph: "Fan account" }) + field(P + ".fanMask", "Fan account mask", { type: "check" }));
+      h.push(field(P + ".label", "Grey label", {}));
       // the buttons along the bottom
       h.push('<p class="hint">Buttons along the bottom (leave a number empty for a button with no count):</p><div class="fb-grid"><div>' +
         field(P + ".replies", "Replies", { ph: "10" }) + "</div><div>" +
         (m.locked ? '<p class="hint">Reposts: faded out, because private tweets can\'t be reposted</p>' :
-          field(P + ".reposts", old ? "Retweets" : "Reposts", { ph: "580" }) + field(P + ".reposted", (old ? "Retweeted" : "Reposted") + " (green)", { type: "check" }) +
-          field(P + ".noRepost", "Faded out (a Twitter Circle tweet)", { type: "check", re: true })) + "</div><div>" +
-        field(P + ".likes", "Likes", { ph: "2,614" }) + field(P + ".likeClick", "Readers can click it", { type: "check", re: true }) +
-        field(P + ".liked", m.likeClick ? "Already liked (adds one)" : "Liked (red)", { type: "check" }) + "</div>" +
-        (old ? "" : "<div>" + field(P + ".views", "Views (leave empty for no views button)", { ph: "71K" }) + "</div><div>" +
-          field(P + ".saved", "Bookmarked (blue)", { type: "check" }) + "</div>") + "</div>");
-      h.push(field(P + ".date", "Exact time and date (for a tweet opened on its own)", { ph: "8:23 AM · 11 May 23" }));
+          field(P + ".reposts", old ? "Retweets" : "Reposts", { ph: "580" }) + field(P + ".reposted", old ? "Retweeted" : "Reposted", { type: "check" }) +
+          field(P + ".noRepost", "Faded repost button", { type: "check", re: true })) + "</div><div>" +
+        field(P + ".likes", "Likes", { ph: "2,614" }) + field(P + ".likeClick", "Clickable like", { type: "check", re: true }) +
+        field(P + ".liked", m.likeClick ? "Already liked" : "Liked", { type: "check" }) + "</div>" +
+        (old ? "" : "<div>" + field(P + ".views", "Views", { ph: "71K" }) + "</div><div>" +
+          field(P + ".saved", "Bookmarked", { type: "check" }) + "</div>") + "</div>");
+      h.push(field(P + ".date", "Small grey bottom text", { ph: "8:23 AM · 11 May 23" }));
       // the bigger extras only open up when they're ticked
       TW_ADDS.forEach(function (a) { if (m[a[0]] === undefined) m[a[0]] = has(m, a[0]); });
       h.push('<p class="hint">Add to this tweet:</p><div>' + TW_ADDS.map(function (a) { return field(P + "." + a[0], a[1], { type: "check", re: true }); }).join(" ") + "</div>");
@@ -976,10 +990,10 @@
         // open, finished (the results), or tapped to vote: the tick goes on the vote
         var kind = pollKind(m), names = pollOpts(m).slice(0, 4).map(function (o, k) { return [String(k), o.text]; });
         if (!names.length) names = [["0", "The first option"]];
-        h.push('<div class="fb-acct">' + field(P + ".poll", "Poll: one option per line. For the results, put the percentage after each one, like Montreal 58%", { type: "area", rows: 2 }) +
+        h.push('<div class="fb-acct">' + field(P + ".poll", "Poll options", { type: "area", rows: 2 }) +
           field(P + ".pollinfo", "Under the poll", { ph: kind === "results" ? "97 votes · Final results" : "179 votes · 13 minutes left" }) +
           field(P + ".pollKind", "This poll is", { type: "select", re: true, options: [["open", "Still open: just the options"], ["results", "Finished: showing the results"], ["tap", "Tappable: readers tap it to vote and see the results"]] }) +
-          (kind === "results" ? field(P + ".pollShowVote", "Show which one they voted for (a tick)", { type: "check", re: true }) +
+          (kind === "results" ? field(P + ".pollShowVote", "Show their vote", { type: "check", re: true }) +
             (m.pollShowVote ? field(P + ".pollVoted", "They voted for", { type: "select", options: names }) : "") : "") +
           (kind === "tap" ? field(P + ".pollVote", "The vote goes to", { type: "select", re: true, options: names.concat([["pick", "Whichever one the reader picks"]]) }) : "") +
           (kind === "tap" && m.pollVote === "pick" ? pickRows(P, m) : "") + "</div>");
@@ -987,7 +1001,7 @@
       if (m.hasQuote) h.push('<div class="fb-acct"><p class="hint">Quote tweet:' + help(P + ".qName") + '</p><div class="fb-grid"><div>' + field(P + ".qName", "", { ph: "Their name" }) + "</div><div>" + field(P + ".qHandle", "", { ph: "Their handle" }) + "</div></div>" +
         field(P + ".qText", "", { ph: "What they said" }) + "</div>");
       if (m.hasNote) h.push('<div class="fb-acct">' + field(P + ".note", "Community note", { ph: "Readers added context: ..." }) + "</div>");
-      if (m.hasPics) h.push('<div class="fb-acct">' + pictureRows(P, bi, mi, m, 4, true) + field(P + ".warn", "Cover the pictures with a sensitive content warning", { type: "check" }) + "</div>");
+      if (m.hasPics) h.push('<div class="fb-acct">' + pictureRows(P, bi, mi, m, 4, true) + field(P + ".warn", "Sensitive content cover", { type: "check" }) + "</div>");
       if (m.hasVideo) h.push('<div class="fb-acct"><p class="hint">Video:' + help(P + ".vUrl") + "</p>" + field(P + ".vUrl", "", { type: "url", ph: "Video embed link (Vimeo, YouTube or the Internet Archive)" }) +
         field(P + ".vTitle", "", { ph: "The video's title" }) + field(P + ".vDesc", "", { ph: "Describe the video" }) + "</div>");
       h.push("</div>");
