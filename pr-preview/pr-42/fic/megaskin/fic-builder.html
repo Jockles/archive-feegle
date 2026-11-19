@@ -71,6 +71,7 @@
     .fb-emoji { flex: 0 0 5em !important; }
     .fb-extras { padding: 4px 2px 2px; }
     .fb-script { border-top: 1px dashed var(--rule, #ccc); padding-top: 6px; }
+    .fb-add h4 { margin: 10px 0 0; font-size: 0.95em; }
     .fb-add ul { list-style: none; margin: 4px 0 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 16px; }
     .fb-add li { display: flex; align-items: center; gap: 8px; margin: 0; }
     .fb-add li button { min-width: 2em; font-weight: bold; }
@@ -151,12 +152,16 @@
         <div id="fb-blocks"></div>
         <div class="fb-add">
           <p class="tut-lab"><b>Add:</b><span class="tut-help" tabindex="0"><span>Each + adds a new, empty chat or post of that kind. You can have as many as you like, and the arrows at the top of each one move it up or down.</span></span></p>
+          <h4>Messaging</h4>
           <ul>
             <li><button type="button" data-act="add:imsg" aria-label="Add an iMessage chat">+</button> iMessage chat</li>
             <li><button type="button" data-act="add:wa" aria-label="Add a WhatsApp chat">+</button> WhatsApp chat</li>
-            <li><button type="button" data-act="add:twthread" aria-label="Add a Twitter/X tweet and replies">+</button> Twitter/X tweet and replies</li>
-            <li><button type="button" data-act="add:twfeed" aria-label="Add a Twitter/X timeline">+</button> Twitter/X timeline</li>
-            <li><button type="button" data-act="add:twdm" aria-label="Add a Twitter/X DM">+</button> Twitter/X DM</li>
+          </ul>
+          <h4>Twitter/X</h4>
+          <ul>
+            <li><button type="button" data-act="add:twthread" aria-label="Add a Twitter/X tweet and replies">+</button> Tweet and replies</li>
+            <li><button type="button" data-act="add:twfeed" aria-label="Add a Twitter/X timeline">+</button> Timeline</li>
+            <li><button type="button" data-act="add:twdm" aria-label="Add a Twitter/X DM">+</button> DM or group DM</li>
           </ul>
         </div>
       </fieldset>
