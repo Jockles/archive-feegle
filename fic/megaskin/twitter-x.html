@@ -7,7 +7,7 @@
   <title>Megaskin, Chapter 8: Twitter/X | jockles.com</title>
   <link rel="stylesheet" href="../../style.css">
   <script src="../../theme.js"></script>
-  <link rel="stylesheet" href="megaskin.css?v=4f59e50b" id="creator-style">
+  <link rel="stylesheet" href="megaskin.css?v=2673ed8d" id="creator-style">
 </head>
 <body>
 <header>
@@ -424,6 +424,7 @@
     </div>
   </div>
   </div>
+  <p class="tw-nav"><span class="on ic ic-x-home-filled">&#8962;</span> <span class="ic ic-x-search">&#128269;</span> <span class="ic ic-x-grok">&#8856;</span> <span class="ic ic-x-bell">&#128276;</span> <span class="ic ic-x-chat-outline">&#128172;</span></p>
 </div>
 
 <details>
@@ -554,6 +555,7 @@
     &lt;/div&gt;
   &lt;/div&gt;
   &lt;/div&gt;
+  &lt;p class="tw-nav"&gt;&lt;span class="on ic ic-x-home-filled"&gt;&amp;#8962;&lt;/span&gt; &lt;span class="ic ic-x-search"&gt;&amp;#128269;&lt;/span&gt; &lt;span class="ic ic-x-grok"&gt;&amp;#8856;&lt;/span&gt; &lt;span class="ic ic-x-bell"&gt;&amp;#128276;&lt;/span&gt; &lt;span class="ic ic-x-chat-outline"&gt;&amp;#128172;&lt;/span&gt;&lt;/p&gt;
 &lt;/div&gt;</code></pre>
 
 </details>
@@ -573,6 +575,10 @@
 &lt;/div&gt;</code></pre>
 
 <p>The tweets inside lose their own borders and corners, and sit one under the other with a line between them, like in the app. <code>theme-auto</code> or <code>theme-dark</code> goes on the <code>tw-thread</code>, so you don't need it on each tweet.</p>
+
+<p>The row of app buttons along the bottom is optional. It goes last, after the <code>tw-scroll</code> closes, so it stays put while the tweets scroll. It's the same row as in DMs (see <a href="twitter-x.html#s8-2-12">The App Buttons</a>), except that on the timeline the home button is the picked one, with a filled-in house, and the chat button is an outline:</p>
+
+<pre><code>&lt;p class="tw-nav"&gt;&lt;span class="on ic ic-x-home-filled"&gt;&amp;#8962;&lt;/span&gt; &lt;span class="ic ic-x-search"&gt;&amp;#128269;&lt;/span&gt; &lt;span class="ic ic-x-grok"&gt;&amp;#8856;&lt;/span&gt; &lt;span class="ic ic-x-bell"&gt;&amp;#128276;&lt;/span&gt; &lt;span class="ic ic-x-chat-outline"&gt;&amp;#128172;&lt;/span&gt;&lt;/p&gt;</code></pre>
 
 <h4 id="s8-1-4">8.1.4 The 2020 Twitter Redesign</h4>
 
@@ -1176,7 +1182,7 @@
     <p class="twdm-status">Seen</p>
   </div>
   <p class="twdm-input"><span class="twdm-plus">+</span><span class="hide"> </span><span class="twdm-field">Message<span class="hide"> </span><span class="ic ic-mic">&#127908;</span></span></p>
-  <p class="twdm-nav"><span class="ic ic-x-home">&#8962;</span> <span class="ic ic-x-search">&#128269;</span> <span class="ic ic-x-grok">&#8856;</span> <span class="ic ic-x-bell">&#128276;</span> <span class="on ic ic-x-chat">&#128172;</span></p>
+  <p class="tw-nav"><span class="ic ic-x-home">&#8962;</span> <span class="ic ic-x-search">&#128269;</span> <span class="ic ic-x-grok">&#8856;</span> <span class="ic ic-x-bell">&#128276;</span> <span class="on ic ic-x-chat">&#128172;</span></p>
 </div>
 
 <details>
@@ -1203,7 +1209,7 @@
     &lt;p class="twdm-status"&gt;Seen&lt;/p&gt;
   &lt;/div&gt;
   &lt;p class="twdm-input"&gt;&lt;span class="twdm-plus"&gt;+&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="twdm-field"&gt;Message&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="ic ic-mic"&gt;&amp;#127908;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
-  &lt;p class="twdm-nav"&gt;&lt;span class="ic ic-x-home"&gt;&amp;#8962;&lt;/span&gt; &lt;span class="ic ic-x-search"&gt;&amp;#128269;&lt;/span&gt; &lt;span class="ic ic-x-grok"&gt;&amp;#8856;&lt;/span&gt; &lt;span class="ic ic-x-bell"&gt;&amp;#128276;&lt;/span&gt; &lt;span class="on ic ic-x-chat"&gt;&amp;#128172;&lt;/span&gt;&lt;/p&gt;
+  &lt;p class="tw-nav"&gt;&lt;span class="ic ic-x-home"&gt;&amp;#8962;&lt;/span&gt; &lt;span class="ic ic-x-search"&gt;&amp;#128269;&lt;/span&gt; &lt;span class="ic ic-x-grok"&gt;&amp;#8856;&lt;/span&gt; &lt;span class="ic ic-x-bell"&gt;&amp;#128276;&lt;/span&gt; &lt;span class="on ic ic-x-chat"&gt;&amp;#128172;&lt;/span&gt;&lt;/p&gt;
 &lt;/div&gt;</code></pre>
 
 </details>
@@ -1237,7 +1243,7 @@
     <p class="twdm-status">Sent</p>
   </div>
   <p class="twdm-input"><span class="twdm-plus">+</span><span class="hide"> </span><span class="twdm-field">Message<span class="hide"> </span><span class="ic ic-mic">&#127908;</span></span></p>
-  <p class="twdm-nav"><span class="ic ic-x-home">&#8962;</span> <span class="ic ic-x-search">&#128269;</span> <span class="ic ic-x-grok">&#8856;</span> <span class="ic ic-x-bell">&#128276;</span> <span class="on ic ic-x-chat">&#128172;</span></p>
+  <p class="tw-nav"><span class="ic ic-x-home">&#8962;</span> <span class="ic ic-x-search">&#128269;</span> <span class="ic ic-x-grok">&#8856;</span> <span class="ic ic-x-bell">&#128276;</span> <span class="on ic ic-x-chat">&#128172;</span></p>
 </div>
 
 <details>
@@ -1270,7 +1276,7 @@
     &lt;p class="twdm-status"&gt;Sent&lt;/p&gt;
   &lt;/div&gt;
   &lt;p class="twdm-input"&gt;&lt;span class="twdm-plus"&gt;+&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="twdm-field"&gt;Message&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="ic ic-mic"&gt;&amp;#127908;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
-  &lt;p class="twdm-nav"&gt;&lt;span class="ic ic-x-home"&gt;&amp;#8962;&lt;/span&gt; &lt;span class="ic ic-x-search"&gt;&amp;#128269;&lt;/span&gt; &lt;span class="ic ic-x-grok"&gt;&amp;#8856;&lt;/span&gt; &lt;span class="ic ic-x-bell"&gt;&amp;#128276;&lt;/span&gt; &lt;span class="on ic ic-x-chat"&gt;&amp;#128172;&lt;/span&gt;&lt;/p&gt;
+  &lt;p class="tw-nav"&gt;&lt;span class="ic ic-x-home"&gt;&amp;#8962;&lt;/span&gt; &lt;span class="ic ic-x-search"&gt;&amp;#128269;&lt;/span&gt; &lt;span class="ic ic-x-grok"&gt;&amp;#8856;&lt;/span&gt; &lt;span class="ic ic-x-bell"&gt;&amp;#128276;&lt;/span&gt; &lt;span class="on ic ic-x-chat"&gt;&amp;#128172;&lt;/span&gt;&lt;/p&gt;
 &lt;/div&gt;</code></pre>
 
 </details>
@@ -1417,9 +1423,9 @@
 
 <p>The row of buttons along the very bottom of the app is optional. Put it last, after the message bar. Each button is an icon, and <code>on</code> gives the chat button its grey box, because that's the part of the app you're in:</p>
 
-<div class="mob twdm theme-auto"><p class="twdm-nav"><span class="ic ic-x-home">&#8962;</span> <span class="ic ic-x-search">&#128269;</span> <span class="ic ic-x-grok">&#8856;</span> <span class="ic ic-x-bell">&#128276;</span> <span class="on ic ic-x-chat">&#128172;</span></p></div>
+<div class="mob twdm theme-auto"><p class="tw-nav"><span class="ic ic-x-home">&#8962;</span> <span class="ic ic-x-search">&#128269;</span> <span class="ic ic-x-grok">&#8856;</span> <span class="ic ic-x-bell">&#128276;</span> <span class="on ic ic-x-chat">&#128172;</span></p></div>
 
-<pre><code>&lt;p class="twdm-nav"&gt;&lt;span class="ic ic-x-home"&gt;&amp;#8962;&lt;/span&gt; &lt;span class="ic ic-x-search"&gt;&amp;#128269;&lt;/span&gt; &lt;span class="ic ic-x-grok"&gt;&amp;#8856;&lt;/span&gt; &lt;span class="ic ic-x-bell"&gt;&amp;#128276;&lt;/span&gt; &lt;span class="on ic ic-x-chat"&gt;&amp;#128172;&lt;/span&gt;&lt;/p&gt;</code></pre>
+<pre><code>&lt;p class="tw-nav"&gt;&lt;span class="ic ic-x-home"&gt;&amp;#8962;&lt;/span&gt; &lt;span class="ic ic-x-search"&gt;&amp;#128269;&lt;/span&gt; &lt;span class="ic ic-x-grok"&gt;&amp;#8856;&lt;/span&gt; &lt;span class="ic ic-x-bell"&gt;&amp;#128276;&lt;/span&gt; &lt;span class="on ic ic-x-chat"&gt;&amp;#128172;&lt;/span&gt;&lt;/p&gt;</code></pre>
 
 <p>The header, the message bar and these buttons stay where they are, and once the chat gets long, the messages in between scroll.</p>
 
