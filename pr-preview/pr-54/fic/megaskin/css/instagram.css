@@ -442,7 +442,7 @@
 /* the logo is a picture, with the word hidden behind it for readers with the workskin off */
 #workskin .ig .ig-logo {
   flex: 1;
-  height: 2.4em;
+  height: 2em;
   margin-left: 0.4em;
   overflow: hidden;
   text-indent: -100em;
