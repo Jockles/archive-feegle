@@ -52,12 +52,14 @@
     .fb-card > summary { margin: -2px 0; }
     .fb-card[open] > summary { margin-bottom: 6px; }
     .fb summary { cursor: pointer; font-size: 0.9em; }
+    .fb #workskin summary { font-size: inherit; } /* the preview keeps the skin's own sizes */
     .fb-swatch { display: inline-block; width: 1.2em; height: 1.2em; border-radius: 50%; vertical-align: middle; margin-left: 4px; }
     .fb-app { display: grid; grid-template-columns: 6em 1fr 1fr 1fr; gap: 4px; align-items: center; font-size: 0.85em; margin: 3px 0; }
     .fb-acct { border-left: 3px solid var(--rule, #ccc); padding: 2px 0 4px 8px; margin: 6px 0; }
     .fb-acct > input, .fb-acct > label { margin-top: 3px; }
     .fb-block { border: 1px solid var(--box-edge, #bbb); border-radius: 6px; padding: 8px 10px; margin: 0 0 14px; }
     .fb-bhead { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; }
+    .fb-fold { background: none; border: 0; padding: 2px 0; font: inherit; color: inherit; cursor: pointer; text-align: left; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
     .fb-tools { display: inline-flex; gap: 3px; flex: none; }
     .fb-msgs { list-style: none; padding: 0; margin: 10px 0; }
     .fb-msg { margin: 0 0 5px; padding: 4px 6px; border-radius: 6px; background: var(--box-fill, #f4f8f7); border-left: 4px solid #8a9a9a; }
@@ -70,7 +72,10 @@
     .fb-emoji { flex: 0 0 5em !important; }
     .fb-extras { padding: 4px 2px 2px; }
     .fb-script { border-top: 1px dashed var(--rule, #ccc); padding-top: 6px; }
-    .fb-add { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+    .fb-add h4 { margin: 10px 0 0; font-size: 0.95em; }
+    .fb-add ul { list-style: none; margin: 4px 0 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 16px; }
+    .fb-add li { display: flex; align-items: center; gap: 8px; margin: 0; }
+    .fb-add li button { min-width: 2em; font-weight: bold; }
     .fb-out textarea { width: 100%; box-sizing: border-box; height: 14em; font-family: monospace; font-size: 0.8em; }
     .fb-files { border-collapse: collapse; width: 100%; }
     .fb-files th { text-align: left; font-weight: normal; font-size: 0.9em; padding: 4px 12px 4px 0; width: 14em; vertical-align: middle; }
@@ -143,13 +148,22 @@
       </fieldset>
 
       <fieldset>
-        <legend>2. Chats</legend>
-        <p class="hint">Each chat has its own settings, a list of messages, and a box to type or paste lots of messages at once.</p>
+        <legend>2. Chats and posts</legend>
+        <p class="hint">Each chat or post has its own settings, a list of messages (or tweets, or comments), and a box to type or paste lots of them at once.</p>
         <div id="fb-blocks"></div>
-        <div class="fb-add">Add:
-          <button type="button" data-act="add:imsg">iMessage chat</button>
-          <button type="button" data-act="add:wa">WhatsApp chat</button>
-          <span class="tut-help" tabindex="0"><span>Each button adds a new, empty chat in that app. You can have as many chats as you like, and the arrows at the top of each chat move it up or down.</span></span>
+        <div class="fb-add">
+          <p class="tut-lab"><b>Add:</b><span class="tut-help" tabindex="0"><span>Each + adds a new, empty chat or post of that kind. You can have as many as you like, and the arrows at the top of each one move it up or down.</span></span></p>
+          <h4>Messaging</h4>
+          <ul>
+            <li><button type="button" data-act="add:imsg" aria-label="Add an iMessage chat">+</button> iMessage chat</li>
+            <li><button type="button" data-act="add:wa" aria-label="Add a WhatsApp chat">+</button> WhatsApp chat</li>
+          </ul>
+          <h4>Twitter/X</h4>
+          <ul>
+            <li><button type="button" data-act="add:twthread" aria-label="Add a Twitter/X tweet and replies">+</button> Tweet and replies</li>
+            <li><button type="button" data-act="add:twfeed" aria-label="Add a Twitter/X timeline">+</button> Timeline</li>
+            <li><button type="button" data-act="add:twdm" aria-label="Add a Twitter/X DM">+</button> DM or group DM</li>
+          </ul>
         </div>
       </fieldset>
 
@@ -176,8 +190,8 @@
   Made by hand in HTML &amp; CSS. No trackers, no cookies, no ads. &middot; <a href="https://buymeacoffee.com/jockles">Support Me</a>
 </footer>
 <script src="profile-css.js"></script>
-<script src="fic-builder-examples.js?v=2"></script>
-<script src="fic-builder.js?v=14"></script>
+<script src="fic-builder-examples.js?v=6"></script>
+<script src="fic-builder.js?v=24"></script>
 <script src="tutorial.js?v=5"></script>
 <script>
 Tutorial([
@@ -186,7 +200,7 @@ Tutorial([
   { title: "Start with a blank page", target: ".fb-files",
     text: "<p>If there's anything here already, press <b>'Start a new one'</b> to clear it. Download anything you want to keep first!</p><p>If it's already empty, carry on.</p>" },
   { title: "Add a chat", target: ".fb-add",
-    text: "<p>Under <b>'2. Chats'</b>, press <b>'iMessage chat'</b>. A new, empty chat appears.</p>" },
+    text: "<p>Under <b>'2. Chats and posts'</b>, press the <b>+</b> next to <b>'iMessage chat'</b>. A new, empty chat appears.</p>" },
   { title: "Type the messages", target: "#fb-blocks .fb-script",
     text: "<p>In the <b>'Type or paste messages'</b> box, put each message on its own line: the name, a colon, then the message. For example:</p><p><code>Ilya: are you awake<br>Shane: no<br>Ilya: liar</code></p><p>Then press <b>'Add these messages'</b>. Anyone new is added to the cast for you.</p>" },
   { title: "Whose phone is it?", target: "#fb-blocks .fb-block details", open: "#fb-blocks .fb-block details",
