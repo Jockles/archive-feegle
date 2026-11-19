@@ -25,7 +25,7 @@
   <!-- /site meta -->
   <link rel="stylesheet" href="../../style.css">
   <script src="../../theme.js"></script>
-  <link rel="stylesheet" href="megaskin.css?v=2221d02b" id="creator-style">
+  <link rel="stylesheet" href="megaskin.css?v=d7089ef9" id="creator-style">
 </head>
 <body>
 <header>
@@ -51,39 +51,110 @@
       <div class="fic">
         <h3 class="chapter-title">Chapter 11: Classic Twitter CSS</h3>
         <div id="workskin">
+<p>This chapter goes through the CSS for the two classic Twitter modules in the last chapter. They're completely separate, so each has its own section and its own CSS, and you only need the one for your fic's years.</p>
+
 <h3 id="contents">Chapter Contents</h3>
 
 <ul class="contents">
-  <li><a href="#s11-1">11.1 Getting the CSS</a></li>
-  <li><a href="#s11-2">11.2 How the Modules are Laid Out</a></li>
-  <li><a href="#s11-3">11.3 The Picture Column</a></li>
-  <li><a href="#s11-4">11.4 What's Different in 2012-15</a></li>
-  <li><a href="#s11-5">11.5 Dark and Auto Themes</a></li>
-  <li><a href="#s11-6">11.6 Taking Parts Out</a></li>
+  <li><a href="#s11-1">11.1 The 2012-15 CSS</a>
+    <ul>
+      <li><a href="#s11-1-1">11.1.1 Getting the 2012-15 CSS</a></li>
+      <li><a href="#s11-1-2">11.1.2 How the 2012-15 Module is Laid Out</a></li>
+      <li><a href="#s11-1-3">11.1.3 The 2012-15 Picture Column</a></li>
+      <li><a href="#s11-1-4">11.1.4 The 2012-15 Bars</a></li>
+      <li><a href="#s11-1-5">11.1.5 Taking Parts Out of 2012-15</a></li>
+    </ul>
+  </li>
+  <li><a href="#s11-2">11.2 The 2016-19 CSS</a>
+    <ul>
+      <li><a href="#s11-2-1">11.2.1 Getting the 2016-19 CSS</a></li>
+      <li><a href="#s11-2-2">11.2.2 How the 2016-19 Module is Laid Out</a></li>
+      <li><a href="#s11-2-3">11.2.3 The 2016-19 Picture Column</a></li>
+      <li><a href="#s11-2-4">11.2.4 The Conversation Line</a></li>
+      <li><a href="#s11-2-5">11.2.5 The 2016-19 Bars</a></li>
+      <li><a href="#s11-2-6">11.2.6 2016-19 Dark and Auto Themes</a></li>
+      <li><a href="#s11-2-7">11.2.7 Taking Parts Out of 2016-19</a></li>
+    </ul>
+  </li>
 </ul>
 
-<p>This chapter goes through the CSS for the classic tweets in the last chapter. There are two modules, one for each era, and each has two parts: the tweet (<code>twc16</code> or <code>twc12</code>) and the timeline it can sit in (<code>twc16-feed</code> or <code>twc12-feed</code>).</p>
+<h3 id="s11-1">11.1 The 2012-15 CSS</h3>
 
-<h3 id="s11-1">11.1 Getting the CSS</h3>
+<h4 id="s11-1-1">11.1.1 Getting the 2012-15 CSS</h4>
 
-<p>The Classic Twitter CSS is in two files, one for each module:</p>
+<p>The 2012-15 CSS is here: <a href="css/twitter-classic-2012.css">jockles.com/fic/megaskin/css/twitter-classic-2012.css</a>. It needs the core CSS too, so paste the <a href="core-css.html">core</a> into your work skin first and this underneath it.</p>
+
+<h4 id="s11-1-2">11.1.2 How the 2012-15 Module is Laid Out</h4>
+
+<p>The tweet comes first, then an opened tweet, then the app screen with its two bars, and Icons at the end. There's no Dark or Auto section, because Twitter had no night mode yet. Every rule starts with <code>.twc12</code> or <code>.twc12-feed</code>, so even though the parts inside have the same names as other Twitter modules (<code>tw-top</code>, <code>tw-stats</code> and so on), nothing gets in anything else's way.</p>
+
+<h4 id="s11-1-3">11.1.3 The 2012-15 Picture Column</h4>
+
+<pre><code>#workskin .twc12 {
+  position: relative;
+  padding: 0.65em 0.8em 0.6em 4.6em;
+}
+
+#workskin .twc12 .tw-pfp {
+  position: absolute;
+  top: 0.75em;
+  left: 0.8em;
+  width: 48px;
+  height: 48px;
+  border-radius: 5px;
+}
+
+#workskin .twc12 .tw-time {
+  position: absolute;
+  top: 0.75em;
+  right: 0.8em;
+}</code></pre>
+
+<p>The big left padding on the tweet leaves an empty column down the side, and the picture is pulled out of the line with <code>position: absolute</code> and pinned into it. The time is pinned into the top right corner the same way, and the name line has some padding on the right so a long name never runs underneath it. The <code>border-radius</code> of 5px is what makes the pictures squares with soft corners. An opened tweet (<code>big</code>) takes the left padding away again and gives the name line its own padding instead, so the picture sits beside the name and the words run the whole width underneath.</p>
+
+<h4 id="s11-1-4">11.1.4 The 2012-15 Bars</h4>
+
+<pre><code>#workskin .twc12-feed .twc-bar {
+  display: flex;
+  position: sticky;
+  top: 0;
+  background: #3b94d9;
+}
+
+#workskin .twc12-feed .twc-title {
+  position: absolute;
+  left: 4.5em;
+  right: 4.5em;
+  text-align: center;
+}
+
+#workskin .twc12-feed .twc-title + .ic { margin-left: auto; }</code></pre>
+
+<p><code>position: sticky</code> keeps the bar at the top of the screen while the tweets scroll under it, and the black row of buttons does the same at the bottom with <code>bottom: 0</code>. The page name is taken out of the row and stretched across the middle, so it stays centred whether there's one button on the left and two on the right or anything else, and <code>margin-left: auto</code> pushes the buttons after it over to the right. Each <code>tw-tab</code> in the bottom row has its icon as a block, so the name drops underneath it.</p>
+
+<h4 id="s11-1-5">11.1.5 Taking Parts Out of 2012-15</h4>
 
 <ul>
-  <li>2016-19: <a href="css/twitter-classic-2016.css">jockles.com/fic/megaskin/css/twitter-classic-2016.css</a></li>
-  <li>2012-15: <a href="css/twitter-classic-2012.css">jockles.com/fic/megaskin/css/twitter-classic-2012.css</a></li>
+  <li><strong>The app screen:</strong> everything starting <code>.twc12-feed</code>.</li>
+  <li><strong>Opened tweets:</strong> the rules with <code>.big</code>, <code>tw-date</code>, <code>tw-counts</code> and <code>twc-foot</code>.</li>
+  <li><strong>Details:</strong> the <code>tw-details</code> rule.</li>
 </ul>
 
-<p>Each needs the core CSS too, so paste the <a href="core-css.html">core</a> into your work skin first and the module (or both) underneath it. Neither needs the Twitter/X module or the other classic one.</p>
+<h3 id="s11-2">11.2 The 2016-19 CSS</h3>
 
-<h3 id="s11-2">11.2 How the Modules are Laid Out</h3>
+<h4 id="s11-2-1">11.2.1 Getting the 2016-19 CSS</h4>
 
-<p>Both modules are in the same order: the tweet, an opened tweet, the timeline, the Dark and Auto themes, and Icons at the end. Every rule starts with the module's own classes, so even though the parts inside have the same names as Twitter/X's (<code>tw-top</code>, <code>tw-stats</code> and so on), none of the three modules get in each other's way.</p>
+<p>The 2016-19 CSS is here: <a href="css/twitter-classic-2016.css">jockles.com/fic/megaskin/css/twitter-classic-2016.css</a>. It needs the core CSS too, so paste the <a href="core-css.html">core</a> into your work skin first and this underneath it.</p>
 
-<h3 id="s11-3">11.3 The Picture Column</h3>
+<h4 id="s11-2-2">11.2.2 How the 2016-19 Module is Laid Out</h4>
+
+<p>The tweet comes first, then conversations, an opened tweet, the app screen with its two bars, the Dark and Auto themes, and Icons at the end. Every rule starts with <code>.twc16</code> or <code>.twc16-feed</code>, so even though the parts inside have the same names as other Twitter modules (<code>tw-top</code>, <code>tw-stats</code> and so on), nothing gets in anything else's way.</p>
+
+<h4 id="s11-2-3">11.2.3 The 2016-19 Picture Column</h4>
 
 <pre><code>#workskin .twc16 {
   position: relative;
-  padding: 0.7em 1em 0.55em 4.75em;
+  padding: 0.65em 1em 0.5em 4.75em;
 }
 
 #workskin .twc16 .tw-pfp {
@@ -95,29 +166,41 @@
   border-radius: 50%;
 }</code></pre>
 
-<p>The big left padding on the tweet leaves an empty column down the side, and the picture is pulled out of the line with <code>position: absolute</code> and pinned into it. Everything else in the tweet - the label, the name line, the words and the buttons - lines up in the space beside it, with no extra boxes needed. An opened tweet (<code>big</code>) takes the padding away again and gives the name line its own padding instead, so the picture sits beside the name and the words run the whole width underneath.</p>
+<p>The big left padding on the tweet leaves an empty column down the side, and the picture is pulled out of the line with <code>position: absolute</code> and pinned into it. Everything else in the tweet - the label, the name line, the words and the buttons - lines up in the space beside it, with no extra boxes needed. The little arrow is pinned into the top right corner the same way. An opened tweet (<code>big</code>) takes the left padding away again and gives the name line its own padding instead, so the picture sits beside the name and the words run the whole width underneath.</p>
 
-<h3 id="s11-4">11.4 What's Different in 2012-15</h3>
+<h4 id="s11-2-4">11.2.4 The Conversation Line</h4>
 
-<pre><code>#workskin .twc12 .tw-pfp {
-  border-radius: 5px;
+<pre><code>#workskin .twc16-feed .twc16.link::before,
+#workskin .twc16-feed .twc16.link + .twc16::before {
+  content: "";
+  position: absolute;
+  left: 1em;
+  width: 2px;
+  margin-left: 23px;
+  background: #ccd6dd;
 }
 
-#workskin .twc12 .tw-time { position: absolute; top: 0.85em; right: 1em; font-size: 0.85em; }</code></pre>
+#workskin .twc16-feed .twc16.link::before { top: 0.75em; bottom: 0; margin-top: 52px; }
 
-<p>The <code>twc12</code> module is the same layout with the older look built into it. The square pictures are the same picture box with a smaller <code>border-radius</code>, and the time is pinned to the top right corner the same way the picture is pinned to the left. The star, the curved arrow and the three dots are swapped in by its Icons section, which puts different pictures behind the same icon spans.</p>
+#workskin .twc16-feed .twc16.link + .twc16::before { top: 0; height: 0.7em; }</code></pre>
 
-<h3 id="s11-5">11.5 Dark and Auto Themes</h3>
+<p>The line is drawn in two pieces. The first runs from just under the linked tweet's picture to the bottom of that tweet, and the second, on the tweet underneath (the <code>+</code> means "the next tweet along"), runs from its top edge down to its picture. Together they look like one line. The 23px <code>margin-left</code> puts the 2px line in the middle of the 48px pictures.</p>
 
-<p>Night mode is <code>#15202b</code> for the background, white for the text, <code>#8899a6</code> for grey and <code>#38444d</code> for the lines. The blue 2012-15 bar stays blue in every theme. The auto theme is the dark rules again inside <code>@media (prefers-color-scheme: dark)</code>, so change a colour in both places.</p>
+<h4 id="s11-2-5">11.2.5 The 2016-19 Bars</h4>
 
-<h3 id="s11-6">11.6 Taking Parts Out</h3>
+<p>The bars work the same way as the 2012-15 ones: <code>position: sticky</code> keeps them at the top and bottom of the screen while the tweets scroll between them, and the page name is stretched across the middle of the top bar so it always stays centred. The blue number on a button is the icon in a <code>tw-badged</code> box, with the number pinned to its top right corner with <code>position: absolute</code>.</p>
+
+<h4 id="s11-2-6">11.2.6 2016-19 Dark and Auto Themes</h4>
+
+<p>Night mode is <code>#15202b</code> for the background, white for the text, <code>#8899a6</code> for grey and <code>#38444d</code> for the lines. The auto theme is the dark rules again inside <code>@media (prefers-color-scheme: dark)</code>, so change a colour in both places.</p>
+
+<h4 id="s11-2-7">11.2.7 Taking Parts Out of 2016-19</h4>
 
 <ul>
-  <li><strong>The timeline:</strong> everything starting <code>.twc16-feed</code> or <code>.twc12-feed</code>.</li>
-  <li><strong>Opened tweets:</strong> the rules with <code>.big</code>, <code>tw-date</code>, <code>tw-counts</code> and <code>twc-foot</code>.</li>
-  <li><strong>The little arrow (2016-19):</strong> the rules with <code>tw-more</code> and <code>ic-dropdown</code>.</li>
-  <li><strong>Details (2012-15):</strong> the <code>tw-details</code> rule.</li>
+  <li><strong>The app screen:</strong> everything starting <code>.twc16-feed</code>.</li>
+  <li><strong>Opened tweets:</strong> the rules with <code>.big</code>, <code>tw-date</code> and <code>tw-counts</code>.</li>
+  <li><strong>The little arrow:</strong> the rules with <code>tw-more</code> and <code>ic-dropdown</code>.</li>
+  <li><strong>Themes:</strong> the Dark and Auto sections, and the dark and auto parts of the Icons section.</li>
 </ul>
         </div>
       </div>
