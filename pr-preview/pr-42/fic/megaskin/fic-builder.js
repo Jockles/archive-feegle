@@ -32,9 +32,10 @@
     imsg: "iMessage chat",
     wa: "WhatsApp chat",
     twthread: "Twitter/X tweet and replies",
-    twfeed: "Twitter/X timeline"
+    twfeed: "Twitter/X timeline",
+    twdm: "Twitter/X DM"
   };
-  function isChat(b) { return b.type === "imsg" || b.type === "wa"; }
+  function isChat(b) { return b.type === "imsg" || b.type === "wa" || b.type === "twdm"; }
 
   // ---------- state ----------
 
@@ -63,7 +64,7 @@
       acc: "", verified: false, label: "", qName: "", qHandle: "", qText: "", note: "", date: "",
       reposts: "", likes: "", replies: "", liked: false, reposted: false, poll: "", pollinfo: "",
       vUrl: "", vTitle: "", vDesc: "", warn: false,
-      views: "", saved: false, likeClick: true, locked: false, noRepost: false, fan: "", fanMask: false, pollTap: false, pollVote: "0", pollShowVote: false, pollVoted: "0" };
+      views: "", saved: false, likeClick: true, locked: false, noRepost: false, fan: "", fanMask: false, voice: "", pollTap: false, pollVote: "0", pollShowVote: false, pollVoted: "0" };
   }
   // the group's picture in the WhatsApp header: a one-off circle, set up the same way
   function newGroupPic() { return { colour: "5", showInitials: true, initials: "", pic: "", alt: "", land: false }; }
@@ -74,6 +75,7 @@
     b.theme = "theme-auto"; b.width = ""; b.scroll = ""; b.bar = "empty"; b.barText = "";
     b.bg = ""; b.pics = true; b.header = "simple"; b.gp = newGroupPic(); b.script = ""; b.msgs = []; b.open = true;
     b.acc = "";
+    b.nav = false; b.badge = ""; // Twitter/X DMs: the row of app buttons at the bottom
     b.era = ""; b.app = ""; b.tabs = ""; // Twitter/X: the 2020 look, and the X app screen around a timeline
     return b;
   }
@@ -438,6 +440,63 @@
     return L.join("\n");
   }
 
+  // ---------- Twitter/X DMs ----------
+
+  // a round picture as its own line (the picture beside a run of messages in a group)
+  function pfpLine(c) { var h = circle("tw-pfp", c); return "<p" + h.slice(5, -7) + "</p>"; }
+  function dmName(c) { return isProfile(c) ? pSpan("name", c, null, twName(c)) : esc(nameOf(c)); }
+  function twdmHTML(b) {
+    var o = others(b), head = b.group ? groupPic(b) : o[0];
+    var name = t(b.title) ? esc(t(b.title)) : b.group ? "Group chat" : head ? dmName(head) : "Someone";
+    var L = ['<div class="' + containerClass(b, "twdm") + '">',
+      '  <p class="mob-head"><span class="twdm-back"><span class="ic ic-back">&#8592;</span></span>' + (head ? circle("tw-pfp", head) : '<span class="tw-pfp colour5">?</span>') +
+      '<span class="twdm-name">' + name + '</span><span class="twdm-calls"><span class="ic ic-video">&#127909;</span><span class="ic ic-phone">&#128222;</span></span></p>',
+      '  <div class="mob-body">'];
+    // in a group, each run of messages from one person goes in a row, with their picture and name first
+    var body = [], row = null;
+    function close() { if (row) body = body.concat(['<div class="twdm-row">'], ind(row.lines, 1), ["</div>"]); row = null; }
+    b.msgs.forEach(function (m) {
+      if (m.from === "sys") { close(); body.push('<p class="mob-sys">' + fmt(m.text) + "</p>"); return; }
+      var c = char(m.from); if (!c) return;
+      var out = m.from === b.pov, side = out ? "out" : "in", grouped = b.group && !out;
+      if (!grouped || (row && row.from !== m.from)) close();
+      if (grouped && !row) row = { from: m.from, first: true, lines: [pfpLine(c), '<p class="who">' + dmName(c) + '<span class="hide">:</span></p>'] };
+      var to = grouped ? row.lines : body;
+      var q = m.replyTo && b.msgs.filter(function (x) { return x.id === m.replyTo; })[0];
+      if (q && char(q.from)) {
+        var qt = plain(q.text).trim() || (q.photos.length ? "Photo" : t(q.voice) ? "Voice message" : "");
+        if (qt.length > 60) qt = qt.slice(0, 57).trim() + "...";
+        to.push('<p class="twdm-replied' + (out ? " out" : "") + '">Replied to ' + (q.from === b.pov ? "you" : esc(nameOf(char(q.from)))) + "</p>",
+          '<p class="msg ' + side + ' twdm-quote"><span class="hide">(</span>' + esc(qt) + '<span class="hide">)</span></p>');
+      }
+      var bubbles = [];
+      (m.photos || []).forEach(function (ph) {
+        var u = picUrl(ph.url);
+        if (u) bubbles.push([side + " pic", '<img src="' + esc(u) + '" alt="' + esc(ph.alt) + '">']);
+        else if (t(ph.desc)) bubbles.push([side + " pic text", "[" + esc(t(ph.desc)) + "]"]);
+      });
+      if (t(m.text)) bubbles.push([side, fmt(m.text)]);
+      if (t(m.voice)) bubbles.push([side + " voice", '<span class="twdm-play ic ic-play">&#9654;</span><span class="twdm-wave"></span><span class="twdm-dur">' + esc(t(m.voice)) + "</span>"]);
+      bubbles.forEach(function (bb) {
+        // the first message under a name in a group needs no hidden name: the name is just above it
+        to.push('<p class="msg ' + bb[0] + '">' + (grouped && row.first ? "" : hideLabel(nameOf(c))) + bb[1] + "</p>");
+        if (grouped) row.first = false;
+      });
+      if (t(m.waReacts)) to.push('<p class="twdm-reacts' + (out ? " out" : "") + '"><span class="hide">[Reactions: </span>' + esc(t(m.waReacts)) + '<span class="hide">]</span></p>');
+      if (t(m.status)) to.push('<p class="twdm-status">' + esc(t(m.status)) + "</p>");
+    });
+    close();
+    L = L.concat(ind(body, 2));
+    L.push("  </div>");
+    if (b.bar === "empty") L.push('  <p class="twdm-input"><span class="twdm-plus">+</span><span class="hide"> </span><span class="twdm-field">Message<span class="hide"> </span><span class="ic ic-mic">&#127908;</span></span></p>');
+    if (b.bar === "typed") L.push('  <p class="twdm-input"><span class="twdm-plus">+</span><span class="hide"> </span><span class="twdm-field typed">' + fmt(b.barText) + (b.cursor ? CURSOR : "") + '<span class="hide"> </span><span class="ic ic-mic">&#127908;</span></span></p>');
+    if (b.nav) L.push('  <p class="tw-nav"><span class="ic ic-x-home">&#8962;</span> <span class="ic ic-x-search">&#128269;</span> <span class="ic ic-x-grok">&#8856;</span> ' +
+      (t(b.badge) ? '<span class="tw-badged"><span class="ic ic-x-bell">&#128276;</span><span class="tw-badge"><span class="hide"> (</span>' + esc(t(b.badge)) + '<span class="hide">)</span></span></span>' : '<span class="ic ic-x-bell">&#128276;</span>') +
+      ' <span class="on ic ic-x-chat">&#128172;</span></p>');
+    L.push("</div>");
+    return L.join("\n");
+  }
+
   // ---------- Twitter/X: names, handles and pictures ----------
 
   function t(v) { return String(v == null ? "" : v).trim(); }
@@ -631,6 +690,7 @@
       if (b.type === "wa") return waHTML(b);
       if (b.type === "twthread") return twThreadHTML(b);
       if (b.type === "twfeed") return twFeedHTML(b);
+      if (b.type === "twdm") return twdmHTML(b);
       return "";
     }).filter(Boolean).join("\n\n");
   }
@@ -754,12 +814,22 @@
     "blocks.N.msgs.N.pollShowVote:tw": "Puts a tick on the option this account voted for. Pick the option underneath.",
     "blocks.N.msgs.N.warn:tw": "Hides the pictures behind a grey 'Sensitive content' warning, which readers click to see them.",
     "blocks.N.msgs.N.pollPick.N.N:tw": "Each option the reader might pick gets its own copy of the results, so they don't have to match. Make their pick always win, always lose, end in a draw, or anything else. Decimals like '3.2' work too.",
-    "blocks.N.msgs.N.pollPickInfo.N:tw": "The votes line under this pick's results. Leave it empty to use the line under the poll, with one more vote."
+    "blocks.N.msgs.N.pollPickInfo.N:tw": "The votes line under this pick's results. Leave it empty to use the line under the poll, with one more vote.",
+    // Twitter/X DMs (helpKind "dm"; anything not here uses the chat help)
+    "blocks.N.title:dm": "The name at the top, under the picture. In a chat between two people, it's the other person's name. In a group, it's the group's name.",
+    "blocks.N.nav:dm": "The row of X buttons along the very bottom of the app, with the chat button picked.",
+    "blocks.N.badge:dm": "The number in the blue circle on the bell, for new notifications. Leave it empty for none.",
+    "blocks.N.msgs.N.from:dm": "The first box chooses who wrote the message, from the cast list above. You can also change it to a date or notice line. The big box is the message. 'Extras' has replies, reactions, Seen or Sent, voice messages and pictures.",
+    "blocks.N.msgs.N.replyTo:dm": "Pick an earlier message to reply to it. It shows 'Replied to' and the name, then that message in an outlined bubble, above this one.",
+    "blocks.N.msgs.N.waReacts:dm": "Emoji reactions under the bubble, then how many, like '😂 1' or '👍 😂 3'.",
+    "blocks.N.msgs.N.status:dm": "The small word under the phone owner's last message: 'Sent', or 'Seen' once the other person has read it.",
+    "blocks.N.msgs.N.voice:dm": "Adds a voice message bubble, with a play button and sound bars. Type how long it is, like '0:02'."
   };
   var helped = {}, helpKind = ""; // helpKind is "tw" while a Twitter/X block is drawn
   function help(path, kind) {
     kind = kind || helpKind;
-    var k = path.replace(/\.\d+(?=\.|$)/g, ".N") + (kind ? ":" + kind : "");
+    var base = path.replace(/\.\d+(?=\.|$)/g, ".N"), k = base + (kind ? ":" + kind : "");
+    if (kind === "dm" && !HELP[k]) k = base; // a DM uses the chat help unless it has its own
     if (!HELP[k] || helped[k]) return "";
     helped[k] = true;
     return '<span class="tut-help" tabindex="0"><span>' + HELP[k] + "</span></span>";
@@ -861,11 +931,11 @@
 
   function speakerOptions(b) {
     return S.cast.map(function (c) { return [c.id, nameOf(c) + (c.id === b.pov ? " (phone owner)" : "")]; })
-      .concat([["sys", "Date or notice line"], ["typing", "Typing dots"]]);
+      .concat([["sys", "Date or notice line"]]).concat(b.type === "twdm" ? [] : [["typing", "Typing dots"]]);
   }
 
   function msgRow(b, bi, m, mi) {
-    var P = "blocks." + bi + ".msgs." + mi, wa = b.type === "wa", h = [];
+    var P = "blocks." + bi + ".msgs." + mi, wa = b.type === "wa", dm = b.type === "twdm", h = [];
     var side = m.from === b.pov ? " out" : m.from === "sys" || m.from === "typing" ? " sys" : "";
     h.push('<li class="fb-msg' + side + '">');
     h.push('<div class="fb-row">' + field(P + ".from", "", { type: "select", re: true, help: m.from === "sys" || m.from === "typing" ? m.from : "", options: speakerOptions(b) }));
@@ -878,7 +948,12 @@
     if (m.open && m.from !== "sys" && m.from !== "typing") {
       h.push('<div class="fb-extras">');
       h.push('<p class="hint">Select some words in the message, then: ' + btn("fmt:tl", "Translation") + " " + btn("fmt:egg", "Easter egg") + " " + btn("fmt:link", "Fake link") + "</p>");
-      if (!wa) {
+      if (dm) {
+        h.push(replyField(b, P, mi));
+        h.push(field(P + ".waReacts", "Reactions", { ph: "😂 1" }));
+        if (m.from === b.pov) h.push(field(P + ".status", "Seen or Sent", { ph: "Seen" }));
+        h.push(field(P + ".voice", "Voice message length", { ph: "0:02" }));
+      } else if (!wa) {
         h.push(field(P + ".sms", "Green SMS bubble", { type: "check" }));
         h.push('<p class="hint">Tapbacks (one emoji per person):</p>');
         m.reacts.forEach(function (r, k) {
@@ -890,10 +965,7 @@
       } else {
         if (m.from === b.pov) h.push(field(P + ".tick", "Ticks", { type: "select", options: [["read", "Read (blue)"], ["delivered", "Delivered (grey)"], ["sent", "Sent (one tick)"], ["", "None"]] }));
         h.push(field(P + ".big", "Large emoji", { type: "check" }));
-        var earlier = b.msgs.slice(0, mi).filter(function (x) { return char(x.from); });
-        h.push(field(P + ".replyTo", "Replying to", { type: "select", options: [["", "Not a reply"]].concat(earlier.map(function (x) {
-          var t = plain(x.text).trim() || "(photo)"; return [x.id, nameOf(char(x.from)) + ": " + (t.length > 40 ? t.slice(0, 40) + "..." : t)];
-        })) }));
+        h.push(replyField(b, P, mi));
         h.push('<div class="fb-row">' + field(P + ".waReacts", "Reactions", { ph: "❤️ 😂" }) + field(P + ".waCount", "Count", { ph: "2", cls: "fb-time" }) + "</div>");
         if (!m.link) h.push(btn("link-add:" + bi + ":" + mi, "+ Link preview"));
         else {
@@ -906,7 +978,7 @@
             field(K + ".imgdesc", "", { ph: "Describe the video, or with no picture, describe the picture" }) + "</div>");
         }
       }
-      h.push(field(P + ".edited", "Edited", { type: "check" }));
+      if (!dm) h.push(field(P + ".edited", "Edited", { type: "check" }));
       h.push('<p class="hint">Pictures' + (wa ? " (up to four; with pictures, the message text becomes the caption)" : "") + ":</p>");
       m.photos.forEach(function (p, k) {
         var K = P + ".photos." + k;
@@ -921,6 +993,13 @@
     return h.join("");
   }
 
+  // pick an earlier message to reply to (WhatsApp and Twitter/X DMs)
+  function replyField(b, P, mi) {
+    var earlier = b.msgs.slice(0, mi).filter(function (x) { return char(x.from); });
+    return field(P + ".replyTo", "Replying to", { type: "select", options: [["", "Not a reply"]].concat(earlier.map(function (x) {
+      var t = plain(x.text).trim() || "(photo)"; return [x.id, nameOf(char(x.from)) + ": " + (t.length > 40 ? t.slice(0, 40) + "..." : t)];
+    })) });
+  }
   // pick one of a profile's extra accounts on this app (only shown when they have one)
   function accField(path, c, app) {
     var accs = isProfile(c) ? c.prof.accounts.filter(function (a) { return a.app === app && MP.slugify(a.acc); }) : [];
@@ -1030,12 +1109,12 @@
   }
   // the settings for a chat: iMessage and WhatsApp
   function chatSettings(b, i) {
-    var P = "blocks." + i, h = [], wa = b.type === "wa";
+    var P = "blocks." + i, h = [], wa = b.type === "wa", dm = b.type === "twdm";
     h.push("<details" + (b.open ? " open" : "") + ' data-open="' + P + '.open"><summary>Chat settings</summary><div class="fb-grid">');
     h.push("<div>" + field(P + ".pov", "Whose phone is it?", { type: "select", re: true, options: castOptions() }) + "</div>");
     h.push("<div>" + field(P + ".group", "Group chat", { type: "check", re: true }) + (wa && b.group ? field(P + ".pics", "Show pictures by names", { type: "check" }) : "") + "</div>");
     h.push("<div>" + field(P + ".title", "Name at the top", { ph: b.group ? "Group chat name" : "The other person's name" }) + "</div>");
-    h.push("<div>" + field(P + ".sub", "Smaller line under it", { ph: wa ? "online" : "iMessage" }) + "</div>");
+    if (!dm) h.push("<div>" + field(P + ".sub", "Smaller line under it", { ph: wa ? "online" : "iMessage" }) + "</div>");
     h.push("<div>" + field(P + ".theme", "Light, dark, or auto", { type: "select", options: [["theme-light", "Light"], ["theme-dark", "Dark"], ["theme-auto", "Auto"]] }) + "</div>");
     h.push("<div>" + field(P + ".width", "Width", { type: "select", options: [["", "Phone width"], ["wide", "Full width"]] }) + "</div>");
     h.push("<div>" + field(P + ".scroll", "Long chats", { type: "select", options: [["", "Scroll inside the phone"], ["no-scroll", "Show it all"]] }) + "</div>");
@@ -1047,8 +1126,9 @@
       h.push("<div>" + field(P + ".bar", "Message bar at the bottom", { type: "select", re: true, options: [["none", "None"], ["empty", "Empty"], ["typed", "Something half-typed"]] }) + "</div>");
       if (b.bar === "typed") h.push("<div>" + field(P + ".barText", "Half-typed message", {}) + field(P + ".cursor", "Flashing cursor", { type: "check" }) + "</div>");
     }
+    if (dm) h.push("<div>" + field(P + ".nav", "App buttons", { type: "check", re: true }) + (b.nav ? field(P + ".badge", "Notifications number", { ph: "3" }) : "") + "</div>");
     h.push("</div>");
-    if (wa && b.group && b.header === "bar") {
+    if (b.group && (dm || (wa && b.header === "bar"))) {
       // the group's picture in the header
       if (!b.gp) b.gp = newGroupPic();
       var G = P + ".gp";
@@ -1071,7 +1151,7 @@
   };
   function blockCard(b, i) {
     var P = "blocks." + i, h = [], chat = isChat(b);
-    helpKind = chat ? "" : "tw";
+    helpKind = b.type === "twdm" ? "dm" : chat ? "" : "tw";
     h.push('<section class="fb-block" data-i="' + i + '">');
     h.push('<div class="fb-bhead"><b>' + (i + 1) + ". " + KINDS[b.type] + "</b><span class=\"fb-tools\">" +
       btn("blk-up:" + i, "&uarr;", "Move up") + btn("blk-down:" + i, "&darr;", "Move down") + btn("blk-del:" + i, "&times;", "Delete this") + "</span></div>");
@@ -1152,7 +1232,7 @@
     b.script.split(/\n/).forEach(function (line) {
       line = line.trim();
       if (!line) return;
-      if (/^--/.test(line) && (b.type === "imsg" || b.type === "wa")) { b.msgs.push(newMsg("sys", line.replace(/^-+\s*/, ""))); return; }
+      if (/^--/.test(line) && isChat(b)) { b.msgs.push(newMsg("sys", line.replace(/^-+\s*/, ""))); return; }
       var tm = line.match(/^(\d{1,2}[:.]\d{2})\s+(.*)$/); // a time first, like "09:15 Lily: hi"
       if (tm) { time = tm[1]; line = tm[2]; }
       var sp = line.match(/^([^:]{1,40}):\s*(.*)$/);
