@@ -7,7 +7,7 @@
   <title>Megaskin, Chapter 3: The Core CSS | jockles.com</title>
   <link rel="stylesheet" href="../../style.css">
   <script src="../../theme.js"></script>
-  <link rel="stylesheet" href="megaskin.css?v=e876ff05" id="creator-style">
+  <link rel="stylesheet" href="megaskin.css?v=2221d02b" id="creator-style">
 </head>
 <body>
 <header>
@@ -540,7 +540,7 @@
 
 <p><strong>6. A different name for one app</strong></p>
 
-<pre><code>#workskin .tw .name.pfp-luca::before, #workskin .tw-reply .name.pfp-luca::before, #workskin .twdm .name.pfp-luca::before, #workskin .twc .name.pfp-luca::before { content: "Luca | cat dad"; }</code></pre>
+<pre><code>#workskin .tw .name.pfp-luca::before, #workskin .tw-reply .name.pfp-luca::before, #workskin .twdm .name.pfp-luca::before, #workskin .twc12 .name.pfp-luca::before, #workskin .twc16 .name.pfp-luca::before { content: "Luca | cat dad"; }</code></pre>
 
 <p><strong>7. Saved as</strong></p>
 
@@ -565,7 +565,7 @@
 
 <pre><code>#workskin .tw span.handle::before,
 #workskin .tw-reply span.handle::before,
-#workskin .twdm span.handle::before, #workskin .twc span.handle::before { content: "@"; }</code></pre>
+#workskin .twdm span.handle::before, #workskin .twc12 span.handle::before, #workskin .twc16 span.handle::before { content: "@"; }</code></pre>
 
 <p>So on Twitter/X, a handle gets an @ in front and the name after it, and everywhere else it's just the name. That's why you leave the @ off.</p>
 
@@ -638,9 +638,9 @@
 
 <p>Sometimes a character has more than one account on an app - a public one and a private one, their real account and a burner, or a fan account nobody can know about. Each extra account gets a name starting with <code>acc-</code>, the same way a phone gets <code>pov-</code>: <code>acc-burner</code>, <code>acc-shanewife</code>, <code>acc-private</code>, or whatever you like. Its lines go at the end of that character's profile. Here's Ilya's burner on Twitter/X:</p>
 
-<pre><code>#workskin .tw .pfp.pfp-ilya.acc-burner, #workskin .tw-reply .pfp.pfp-ilya.acc-burner, #workskin .twdm .pfp.pfp-ilya.acc-burner, #workskin .twc .pfp.pfp-ilya.acc-burner { background-image: url(https://images.squidge.org/images/2026/11/16/IlyaSmoke.png); }
-#workskin .tw .name.pfp-ilya.acc-burner::before, #workskin .tw-reply .name.pfp-ilya.acc-burner::before, #workskin .twdm .name.pfp-ilya.acc-burner::before, #workskin .twc .name.pfp-ilya.acc-burner::before { content: "hockey fan"; }
-#workskin .tw .handle.pfp-ilya.acc-burner::after, #workskin .tw-reply .handle.pfp-ilya.acc-burner::after, #workskin .twdm .handle.pfp-ilya.acc-burner::after, #workskin .twc .handle.pfp-ilya.acc-burner::after { content: "definitely_not_ilya"; }</code></pre>
+<pre><code>#workskin .tw .pfp.pfp-ilya.acc-burner, #workskin .tw-reply .pfp.pfp-ilya.acc-burner, #workskin .twdm .pfp.pfp-ilya.acc-burner, #workskin .twc12 .pfp.pfp-ilya.acc-burner, #workskin .twc16 .pfp.pfp-ilya.acc-burner { background-image: url(https://images.squidge.org/images/2026/11/16/IlyaSmoke.png); }
+#workskin .tw .name.pfp-ilya.acc-burner::before, #workskin .tw-reply .name.pfp-ilya.acc-burner::before, #workskin .twdm .name.pfp-ilya.acc-burner::before, #workskin .twc12 .name.pfp-ilya.acc-burner::before, #workskin .twc16 .name.pfp-ilya.acc-burner::before { content: "hockey fan"; }
+#workskin .tw .handle.pfp-ilya.acc-burner::after, #workskin .tw-reply .handle.pfp-ilya.acc-burner::after, #workskin .twdm .handle.pfp-ilya.acc-burner::after, #workskin .twc12 .handle.pfp-ilya.acc-burner::after, #workskin .twc16 .handle.pfp-ilya.acc-burner::after { content: "definitely_not_ilya"; }</code></pre>
 
 <p>They're the same as the lines for a different picture, name or handle on one app, with the <code>acc-</code> name added after the profile name. In your HTML, add the <code>acc-</code> name whenever that account is the one posting, and leave it off for his main account:</p>
 
