@@ -3,8 +3,8 @@
 /* ==========================================================
    >>> CORE: needed by every module <<<
    The chat box and its parts, the width classes, scrolling,
-   hidden text, video descriptions, round pictures, the typing and deleted-text
-   touches, link basics, hover/tap translations, character profiles and the ten
+   hidden text, video descriptions, round pictures, the flashing cursor,
+   link basics, hover/tap translations, character profiles and the ten
    shared colours (colour1 to colour10). Keep this block whichever modules you use.
    ========================================================== */
 
@@ -98,7 +98,7 @@
   border-radius: 6px;
 }
 
-/* ---------- Small helpers: hidden text, video descriptions, round pictures, typing line, deleted text ---------- */
+/* ---------- Small helpers: hidden text, video descriptions, round pictures, flashing cursor ---------- */
 
 /* a real profile picture inside any round picture circle (WhatsApp wa-pfp, Tumblr tb-pfp,
    Gmail gm-pfp, Instagram ig-pfp, Discord dc-pfp): wrap the picture tag in a span with pfp, e.g.
@@ -176,31 +176,28 @@
   overflow: hidden;
 }
 
-/* typing indicator line */
-#workskin .mob .typing {
-  display: block;
-  font-size: 0.75em;
-  font-style: italic;
-  opacity: 0.7;
-  margin: 0.3em 0.9em;
-}
-
-/* strikethrough / deleted text */
-#workskin .mob .del, #workskin .dc .del { text-decoration: line-through; opacity: 0.6; }
-
-/* a flashing cursor at the end of a half-written message, in any app: <span class="cursor">|</span>.
-   The typed line only shows for readers with the workskin off */
+/* a flashing cursor at the end of a half-written message, in any app: <span class="cursor">|</span>
+   It's a moving picture, black in light chats and white in dark ones. The typed | only shows for readers with the workskin off */
 #workskin .cursor {
   display: inline-block;
   width: 0.2em;
   height: 1.2em;
+  margin: -0.2em 0;
+  padding: 0;
   overflow: hidden;
   text-indent: -100em;
+  white-space: normal;
   vertical-align: -0.25em;
-  background-image: url(https://images.squidge.org/images/2026/11/17/cursor-flash.gif);
+  background-image: url(https://images.squidge.org/images/2026/11/18/cursor-flash-black.gif);
   background-repeat: no-repeat;
   background-position: left center;
   background-size: 1.2em 1.2em;
+}
+
+#workskin .theme-dark .cursor { background-image: url(https://images.squidge.org/images/2026/11/17/cursor-flash.gif); }
+
+@media (prefers-color-scheme: dark) {
+  #workskin .theme-auto .cursor { background-image: url(https://images.squidge.org/images/2026/11/17/cursor-flash.gif); }
 }
 
 /* ---------- Links that go nowhere (the colours are in each module) ---------- */

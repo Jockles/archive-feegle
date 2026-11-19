@@ -256,38 +256,33 @@
 
 <p>This doesn't hide the description, it just moves it a long way off the left edge of the screen and shrinks it to a single dot. Sighted readers never see it, but screen readers still read it out, because as far as they're concerned it's still on the page. <code>display: none</code>, like <code>hide</code> uses, would hide it from screen readers too.</p>
 
-<h3>Typing Line and Deleted Text</h3>
-
-<pre><code>#workskin .mob .typing {
-  display: block;
-  font-size: 0.75em;
-  font-style: italic;
-  opacity: 0.7;
-  margin: 0.3em 0.9em;
-}
-
-#workskin .mob .del, #workskin .dc .del { text-decoration: line-through; opacity: 0.6; }</code></pre>
-
-<p>The typing line is only for phone chats (<code>mob</code>), because Discord has its own typing indicator. Deleted text works in Discord too, so its rule names <code>dc</code> as well.</p>
-
-<p><code>opacity</code> fades the text, so it's lighter than the messages on a light chat and darker on a dark one, without needing a colour for each. Lower the number to fade it more.</p>
-
 <h3>Flashing Cursor</h3>
 
 <pre><code>#workskin .cursor {
   display: inline-block;
   width: 0.2em;
   height: 1.2em;
+  margin: -0.2em 0;
+  padding: 0;
   overflow: hidden;
   text-indent: -100em;
+  white-space: normal;
   vertical-align: -0.25em;
-  background-image: url(https://images.squidge.org/images/2026/11/17/cursor-flash.gif);
+  background-image: url(https://images.squidge.org/images/2026/11/18/cursor-flash-black.gif);
   background-repeat: no-repeat;
   background-position: left center;
   background-size: 1.2em 1.2em;
+}
+
+#workskin .theme-dark .cursor { background-image: url(https://images.squidge.org/images/2026/11/17/cursor-flash.gif); }
+
+@media (prefers-color-scheme: dark) {
+  #workskin .theme-auto .cursor { background-image: url(https://images.squidge.org/images/2026/11/17/cursor-flash.gif); }
 }</code></pre>
 
-<p>The cursor is a moving picture (a gif) of a flashing line, set as the background of a thin box, the same way the icons work. <code>text-indent: -100em</code> pushes the typed <code>|</code> far off to the left, and <code>overflow: hidden</code> hides it, so only the picture shows. The picture is square with the line near its left edge, so <code>background-size</code> makes it as tall as the box, <code>background-position: left center</code> lines the line up with the box's left edge, and the <code>0.2em</code> width cuts off the empty rest of the square. <code>vertical-align</code> drops it a little so it sits level with the words.</p>
+<p>The cursor is a moving picture (a gif) of a flashing line, set as the background of a thin box, the same way the icons work. <code>text-indent: -100em</code> pushes the typed <code>|</code> far off to the left, and <code>overflow: hidden</code> hides it, so only the picture shows. The picture is square with the line near its left edge, so <code>background-size</code> makes it as tall as the box, <code>background-position: left center</code> lines the line up with the box's left edge, and the <code>0.2em</code> width cuts off the empty rest of the square. <code>vertical-align</code> drops it a little so it sits level with the words, and the <code>-0.2em</code> margins above and below stop it making the line taller.</p>
+
+<p>The black cursor is the default. Because it's a background, the skin can swap it: in a <code>theme-dark</code> chat it's the white one, and in a <code>theme-auto</code> chat it turns white when the reader's device is in dark mode.</p>
 
 <h3>Links That Go Nowhere</h3>
 

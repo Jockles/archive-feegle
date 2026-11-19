@@ -2,11 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
+  <meta http-equiv="X-Clacks-Overhead" content="GNU Terry Pratchett">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Megaskin, Chapter 7: WhatsApp CSS | jockles.com</title>
   <link rel="stylesheet" href="../../style.css">
   <script src="../../theme.js"></script>
-  <link rel="stylesheet" href="megaskin.css?v=67deb230" id="creator-style">
+  <link rel="stylesheet" href="megaskin.css?v=5fac2cdd" id="creator-style">
 </head>
 <body>
 <header>
@@ -47,13 +48,14 @@
   <li><a href="#s7-8">7.8 Profile Pictures and the Ten Colours</a></li>
   <li><a href="#s7-9">7.9 Group Messages With Pictures</a></li>
   <li><a href="#s7-10">7.10 Reactions and Large Emoji</a></li>
-  <li><a href="#s7-11">7.11 The Message Bar</a></li>
-  <li><a href="#s7-12">7.12 Link Cards</a></li>
-  <li><a href="#s7-13">7.13 Photo Galleries</a></li>
-  <li><a href="#s7-14">7.14 Captions and Links</a></li>
-  <li><a href="#s7-15">7.15 Dark and Auto Themes</a></li>
-  <li><a href="#s7-16">7.16 Wallpapers</a></li>
-  <li><a href="#s7-17">7.17 Taking Parts Out</a></li>
+  <li><a href="#s7-11">7.11 Typing Dots</a></li>
+  <li><a href="#s7-12">7.12 The Message Bar</a></li>
+  <li><a href="#s7-13">7.13 Link Cards</a></li>
+  <li><a href="#s7-14">7.14 Photo Galleries</a></li>
+  <li><a href="#s7-15">7.15 Captions and Links</a></li>
+  <li><a href="#s7-16">7.16 Dark and Auto Themes</a></li>
+  <li><a href="#s7-17">7.17 Wallpapers</a></li>
+  <li><a href="#s7-18">7.18 Taking Parts Out</a></li>
 </ul>
 
 <p>This chapter goes through the CSS for the WhatsApp chats in the last chapter. WhatsApp is a much bigger module than iMessage - it has headers, galleries, link cards and wallpapers - but it's built the same way, so if you've read the iMessage CSS chapter, a lot of this will look familiar. Where something works exactly like it does in iMessage, I'll point you back there rather than explain it twice.</p>
@@ -69,7 +71,10 @@
 <h3 id="s7-3">7.3 The Window and Bubbles</h3>
 
 <pre><code>#workskin .wa {
-  background: #efeae2;
+  background-color: #efeae2;
+  background-image: url(https://images.squidge.org/images/2026/11/18/whatsapp-bck-light.jpg);
+  background-size: 100% auto;
+  background-repeat: repeat-y;
   color: #111b21;
   border: 1px solid #d1d7db;
   border-radius: 10px;
@@ -96,7 +101,7 @@
 
 #workskin .wa .in { margin-right: auto; background: #ffffff; }</code></pre>
 
-<p>The beige is WhatsApp's own chat background, and <code>#008069</code> is its green. The bubbles work like iMessage's: <code>display: table</code> makes them fit their words, and <code>auto</code> margins push them to one side. The differences are:</p>
+<p>The background is WhatsApp's own doodle wallpaper, one phone-screen-sized picture. <code>background-size: 100% auto</code> stretches it to the width of the chat and keeps its shape, and <code>repeat-y</code> repeats it down the page when a chat is longer than one screen. The beige <code>background-color</code> shows if the picture doesn't load. <code>#008069</code> is WhatsApp's green. The bubbles work like iMessage's: <code>display: table</code> makes them fit their words, and <code>auto</code> margins push them to one side. The differences are:</p>
 
 <ul>
   <li><code>min-width: 90px</code>, so even a one-word bubble is wide enough for the time and ticks underneath.</li>
@@ -228,7 +233,7 @@
 
 <p>A circle with no picture shows initials, centred the same way as in every app's circle: <code>display: flex</code>, with <code>align-items</code> centring them top to bottom and <code>justify-content</code> side to side. A picture or a profile goes inside with a <code>pfp</code> span, which the core crops into the circle. The circle in the header is the same, just bigger (<code>38px</code>).</p>
 
-<p>Add <code>colour1</code> to <code>colour10</code> to a circle for its colour, and the same number to a name (<code>who</code>) or a quoted reply (<code>wa-quote</code>) to colour the name and the line down the side. The ten colours are in the core, shared with every app - see <a href="core-css.html#s3-15">The Ten Colours</a> for how to change them.</p>
+<p>Add <code>colour1</code> to <code>colour10</code> to a circle for its colour, and the same number to a name (<code>who</code>) or a quoted reply (<code>wa-quote</code>) to colour the name and the line down the side. The ten colours are in the core, shared with every app - see <a href="core-css.html#s3-14">The Ten Colours</a> for how to change them.</p>
 
 <h3 id="s7-9">7.9 Group Messages With Pictures</h3>
 
@@ -273,7 +278,29 @@
 
 <p>The reactions are a separate paragraph after the bubble, but the <em>negative</em> top margin (<code>-0.55em</code>) pulls them up so they overlap its bottom edge. <code>position: relative</code> makes sure they sit on top of the bubble instead of behind it. <code>out</code> moves them to the right, and <code>pad</code> moves them past a profile picture.</p>
 
-<h3 id="s7-11">7.11 The Message Bar</h3>
+<h3 id="s7-11">7.11 Typing Dots</h3>
+
+<pre><code>#workskin .wa .msg.typing-indicator { min-width: 0; }
+
+#workskin .wa .typing-indicator p:last-child { margin: 0.35em 0 0.25em 0; line-height: 1; }
+
+#workskin .wa .typing-indicator p:last-child span {
+  display: inline-block;
+  width: 0.6em;
+  height: 0.6em;
+  margin-right: 0.25em;
+  border-radius: 50%;
+  background: #8696a0;
+  opacity: 0.5;
+}
+
+#workskin .wa .typing-indicator p:last-child span:nth-last-child(2) { opacity: 0.7; }
+
+#workskin .wa .typing-indicator p:last-child span:last-child { opacity: 1; margin-right: 0; }</code></pre>
+
+<p>The dots go inside an ordinary message bubble, so they get everything a message gets: the colour, the tail, and in a group, the picture and name. <code>min-width: 0</code> undoes the usual minimum width, which is there to fit the time, so the bubble shrinks to fit the dots. <code>p:last-child</code> picks out the paragraph with the dots in, so a name line above it is left alone. Each dot is an empty span made round with <code>border-radius: 50%</code>, in WhatsApp's grey, and they get darker from left to right, like a frozen version of the moving dots. <code>:nth-last-child</code> counts from the end, the same as in iMessage.</p>
+
+<h3 id="s7-12">7.12 The Message Bar</h3>
 
 <pre><code>#workskin .wa .wa-input { position: relative; padding: 0.5em 3.4em 0.5em 0.6em; }
 
@@ -321,9 +348,13 @@
 
 <p>For a half-typed message, <code>typed</code> undoes the <code>nowrap</code> so long messages wrap, and makes the words dark (light in dark mode):</p>
 
-<pre><code>#workskin .wa .wa-field .wa-ph.typed { white-space: normal; color: #111b21; }</code></pre>
+<pre><code>#workskin .wa .wa-field .wa-ph.typed { white-space: normal; color: #111b21; }
 
-<h3 id="s7-12">7.12 Link Cards</h3>
+#workskin .wa .wa-field .cursor { display: inline-block; width: 0.2em; padding: 0; }</code></pre>
+
+<p>Every span in the bar is a table cell, which would make a flashing <code>cursor</code> (from the core) a cell of its own and stretch the bar. The second rule keeps it a thin box in the line of words.</p>
+
+<h3 id="s7-13">7.13 Link Cards</h3>
 
 <pre><code>#workskin .wa .msg.share,
 #workskin .wa .msg.gallery {
@@ -355,7 +386,7 @@
   <li><code>\1F517</code> is the code for the 🔗 emoji, added before the address with <code>::before</code>, so you don't have to type it.</li>
 </ul>
 
-<h3 id="s7-13">7.13 Photo Galleries</h3>
+<h3 id="s7-14">7.14 Photo Galleries</h3>
 
 <p>Galleries are the trickiest part of the module, because every photo has to be a perfect square, whatever shape the picture is.</p>
 
@@ -436,7 +467,7 @@
 
 </details>
 
-<h3 id="s7-14">7.14 Captions and Links</h3>
+<h3 id="s7-15">7.15 Captions and Links</h3>
 
 <pre><code>#workskin .wa .wa-caption {
   display: block;
@@ -452,11 +483,11 @@
 
 <p>A caption only needs a little padding, to line its text up with the edge of the photo above. Links in the text, <code>wa-ln</code> and <code>fake-link</code> are all WhatsApp's link blue.</p>
 
-<h3 id="s7-15">7.15 Dark and Auto Themes</h3>
+<h3 id="s7-16">7.16 Dark and Auto Themes</h3>
 
-<p>The dark theme swaps the beige for WhatsApp's near-black, the bubbles for dark grey and dark green, and every bit of grey text for a lighter grey. It also has the lighter set of name colours, and the tails again in the new bubble colours. As in iMessage, the auto theme is the same rules again inside <code>@media (prefers-color-scheme: dark)</code>, so change a dark colour in both places.</p>
+<p>The dark theme swaps the wallpaper for WhatsApp's dark version (with its near-black underneath), the bubbles for dark grey and dark green, and every bit of grey text for a lighter grey. It also has the lighter set of name colours, and the tails again in the new bubble colours. As in iMessage, the auto theme is the same rules again inside <code>@media (prefers-color-scheme: dark)</code>, so change a dark colour in both places.</p>
 
-<pre><code>#workskin .wa.theme-dark { background: #0b141a; color: #e9edef; border-color: #222d34; }
+<pre><code>#workskin .wa.theme-dark { background-color: #0b141a; background-image: url(https://images.squidge.org/images/2026/11/18/whatsapp-bck-dark.png); color: #e9edef; border-color: #222d34; }
 
 #workskin .wa.theme-dark .out { background: #005c4b; color: #e9edef; }
 
@@ -466,7 +497,7 @@
 
 #workskin .wa.theme-dark .out.tail::before { border-color: transparent transparent transparent #005c4b; }</code></pre>
 
-<h3 id="s7-16">7.16 Wallpapers</h3>
+<h3 id="s7-17">7.17 Wallpapers</h3>
 
 <pre><code>#workskin .wa.bg-sage { background: #d5e6d0; }
 
@@ -499,7 +530,7 @@
 
 </details>
 
-<h3 id="s7-17">7.17 Taking Parts Out</h3>
+<h3 id="s7-18">7.18 Taking Parts Out</h3>
 
 <p>WhatsApp is a long module, so it's worth trimming if you only use a few parts. These come out cleanly - search for the class names and delete every rule with them in, including in the dark and auto blocks:</p>
 
@@ -520,7 +551,7 @@
       <p class="chapter-nav"><a href="whatsapp.html">&larr; Previous Chapter</a> &middot; <a href="index.html">Chapter Index</a> &middot; <a href="twitter-x.html">Next Chapter &rarr;</a></p>
 </main>
 <footer>
-  Made by hand in HTML &amp; CSS. No trackers, no cookies, no ads.
+  Made by hand in HTML &amp; CSS. No trackers, no cookies, no ads. &middot; <a href="https://buymeacoffee.com/jockles">Support Me</a>
 </footer>
 <script>
   // Works like AO3's "Hide Creator's Style" button: switches the work skin off and on.

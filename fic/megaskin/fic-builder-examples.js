@@ -4,15 +4,14 @@
 //          colour, initials, pic, alt, num for one-offs
 //   chat:  the chat settings (type is "imsg" or "wa"; pov is whose phone it is)
 //   msgs:  one line per message: [who, text, extras]. who is a cast name, "sys" for a
-//          date or notice line, or "typing". extras can have time, tick, reacts (iMessage
+//          date or notice line, or "typing" for typing dots (by: who is typing). extras can have time, tick, reacts (iMessage
 //          tapbacks: [[who, emoji]]), waReacts, waCount, sms, big, edited, status,
 //          reply (the number of an earlier message, counting from 0; in a tweet thread, the reply
 //          goes to whoever posted it, and with no reply it goes to the tweet just above), photos, link.
 //          Tweets also take verified, label, date, replies, reposts, reposted, likes, liked, likeClick
 //          (true unless set), views, saved, locked, noRepost, fan, poll, pollinfo, pollTap, pollVote, qName,
 //          qHandle, qText, note, warn, vUrl, vTitle, vDesc. A Twitter/X chat can set era ("tw2020"), and a
-//          timeline can set app ("app"), pov and tabs for the X app screen. Twitter/X DMs take voice;
-//          Instagram DMs take shared. An Instagram post's settings are in chat, and its msgs are comments.
+//          timeline can set app ("app"), pov and tabs for the X app screen.
 (function () {
 var CAT1 = "https://images.squidge.org/images/2026/11/16/Cat1.jpg";
 var CAT2 = "https://images.squidge.org/images/2026/11/16/Cat2.jpg";
@@ -40,7 +39,7 @@ window.FB_EXAMPLES = [
       ["Ilya", "", { photos: [{ url: CAT4, alt: "A cat curled up inside an open suitcase" }] }],
       ["Ilya", "", { photos: [{ desc: "A blurry photo of the same cat, now asleep on Ilya's hotel bed" }] }],
       ["Shane", "call me?", { status: "Read 11:52 PM" }],
-      ["typing", ""]
+      ["typing", "", { by: "Ilya" }]
     ]
   },
   {
@@ -93,7 +92,7 @@ window.FB_EXAMPLES = [
       ["Shane", "making these tonight if you're coming over", { time: "14:20" }],
       ["Shane", "", { time: "14:22", waReacts: "😍", photos: [{ url: CAT3, alt: ALT3, land: true }, { url: CAT4, alt: ALT4 }] }],
       ["Ilya", "she says she wants pierogi too", { time: "14:24", photos: [{ url: CAT2, alt: ALT2 }] }],
-      ["typing", "Lily is typing..."]
+      ["typing", "", { by: "Ilya" }]
     ]
   },
   {
@@ -168,80 +167,6 @@ window.FB_EXAMPLES = [
       ["Geri", "Rink at night vs rink in the morning. Guess which one I prefer", { time: "4h", warn: true,
         photos: [{ desc: "A photo of the empty rink at night" }, { desc: "A photo of the same rink at 6am, full of children in helmets" }],
         likeClick: false, replies: "31", reposts: "145", likes: "1.2K", views: "22K" }]
-    ]
-  },
-  {
-    label: "Twitter/X: a one-to-one DM",
-    cast: [{ name: "Ilya", profile: "ilya" }, { name: "Shane", profile: "shane" }],
-    chat: { type: "twdm", pov: "Ilya", bar: "empty" },
-    msgs: [
-      ["Shane", "saw your tweet"],
-      ["Ilya", "it was meant to be funny"],
-      ["Shane", "it wasn't", { time: "10:14 PM" }],
-      ["Ilya", "it was a little bit funny", { time: "10:15 PM" }],
-      ["Shane", "ok it was a little bit funny", { waReacts: "😏", waCount: "1" }],
-      ["Ilya", "I am always funny", { waReacts: "🙄", waCount: "1" }],
-      ["Shane", "", { photos: [{ url: MACK, alt: MACKALT }] }],
-      ["Ilya", "", { photos: [{ desc: "A photo of Ilya pulling a face at the camera" }] }],
-      ["Ilya", "", { voice: "0:02", time: "10:21 PM" }]
-    ]
-  },
-  {
-    label: "Twitter/X: a group DM",
-    cast: [{ name: "Ilya", profile: "ilya" }, { name: "Hayden" }, { name: "Shane", profile: "shane" }, { name: "Scott" }],
-    chat: { type: "twdm", pov: "Ilya", group: true, title: "Rookie Dinner", sub: "4 people", bar: "empty" },
-    msgs: [
-      ["Hayden", "are we still going out?", { waReacts: "👍 😂", waCount: "3" }],
-      ["Shane", "yes. Ilya is paying"],
-      ["Ilya", "I did not agree to this"],
-      ["Scott", "you did, actually. there are witnesses", { time: "7:02 PM" }]
-    ]
-  },
-  {
-    label: "Instagram: a full post",
-    cast: [{ name: "Ilya", profile: "ilya" }, { name: "Shane", profile: "shane" },
-      { name: "Scott", ighandle: "scott.h", land: true, alt: "Profile picture of scott.h",
-        pic: "https://media.istockphoto.com/id/2172051553/photo/asiatic-lily.jpg?s=1024x1024&w=is&k=20&c=3vCuZD234XmkXzrnzWPBdIZM0oJA1B6qe1x-06K_wDo=" },
-      { name: "Jane", ighandle: "jane_t", land: true, alt: "Profile picture of jane_t",
-        pic: "https://www.shutterstock.com/shutterstock/photos/1100283806/display_1500/stock-photo-beautiful-lavender-flower-in-the-dalat-flower-park-selective-focus-1100283806.jpg" }],
-    chat: { type: "igpost", from: "Ilya", scroll: "no-scroll", menu: true, story: true, verified: true, follow: true, underKind: "song", under: "Boney M. - Rasputin",
-      photo: { url: MACK, alt: MACKALT, desc: "" }, likes: "2,431", likeClick: true, cmCount: "84", reposts: "12", shares: "7", saveClick: true,
-      likesLine: "faces", faces: ["Shane", "Scott", "Jane"], caption: "early skate #nofilter", viewAll: true, time: "3 hours ago" },
-    msgs: [
-      ["Shane", "why are you awake"],
-      ["Scott", "I see you 👀"]
-    ]
-  },
-  {
-    label: "Instagram: a simpler post",
-    cast: [{ name: "Rose", profile: "rose" }, { name: "Ilya", profile: "ilya" }],
-    chat: { type: "igpost", from: "Rose", menu: true, underKind: "location", under: "Ottawa, Ontario",
-      photo: { url: "", alt: "", desc: "A photo of a very large lasagne, with one corner already missing" }, likes: "312", cmCount: "2", shares: "1",
-      likesLine: "count", caption: "made enough for the whole committee. nobody came. #galaprep", time: "20 minutes ago" },
-    msgs: [
-      ["Ilya", "I am coming now"]
-    ]
-  },
-  {
-    label: "Instagram: a one-to-one DM",
-    cast: [{ name: "Ilya", profile: "ilya" }, { name: "Shane", profile: "shane" }],
-    chat: { type: "igdm", pov: "Ilya", sub: "Active now" },
-    msgs: [
-      ["Shane", "you replied to my story"],
-      ["Ilya", "I did not"],
-      ["Shane", "Shared a story from @shanehollanderhockeyplayer: \"6am skate. Again.\"", { shared: true }],
-      ["Shane", "this story. you replied with a heart"],
-      ["Ilya", "ok maybe I did", { status: "Seen" }]
-    ]
-  },
-  {
-    label: "Instagram: a group DM",
-    cast: [{ name: "Ilya", profile: "ilya" }, { name: "Rose", profile: "rose" }, { name: "Shane", profile: "shane" }],
-    chat: { type: "igdm", pov: "Ilya", group: true, title: "gala committee 🥂", sub: "Active 2h ago" },
-    msgs: [
-      ["Rose", "the lasagne is still here if anyone wants it"],
-      ["Shane", "on my way"],
-      ["Ilya", "I already ate half of it", { status: "Seen by 3" }]
     ]
   }
 ];

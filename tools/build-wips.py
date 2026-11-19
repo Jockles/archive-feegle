@@ -24,6 +24,7 @@ PAGE = """<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
+  <meta http-equiv="X-Clacks-Overhead" content="GNU Terry Pratchett">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex, nofollow">
   <title>{title} | jockles.com</title>
@@ -60,7 +61,7 @@ PAGE = """<!DOCTYPE html>
       </div>
 </main>
 <footer>
-  Made by hand in HTML &amp; CSS. No trackers, no cookies, no ads.
+  Made by hand in HTML &amp; CSS. No trackers, no cookies, no ads. &middot; <a href="https://buymeacoffee.com/jockles">Support Me</a>
 </footer>
 </body>
 </html>

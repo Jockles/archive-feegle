@@ -15,7 +15,10 @@
 <h3>The Window and Bubbles</h3>
 
 <pre><code>#workskin .wa {
-  background: #efeae2;
+  background-color: #efeae2;
+  background-image: url(https://images.squidge.org/images/2026/11/18/whatsapp-bck-light.jpg);
+  background-size: 100% auto;
+  background-repeat: repeat-y;
   color: #111b21;
   border: 1px solid #d1d7db;
   border-radius: 10px;
@@ -42,7 +45,7 @@
 
 #workskin .wa .in { margin-right: auto; background: #ffffff; }</code></pre>
 
-<p>The beige is WhatsApp's own chat background, and <code>#008069</code> is its green. The bubbles work like iMessage's: <code>display: table</code> makes them fit their words, and <code>auto</code> margins push them to one side. The differences are:</p>
+<p>The background is WhatsApp's own doodle wallpaper, one phone-screen-sized picture. <code>background-size: 100% auto</code> stretches it to the width of the chat and keeps its shape, and <code>repeat-y</code> repeats it down the page when a chat is longer than one screen. The beige <code>background-color</code> shows if the picture doesn't load. <code>#008069</code> is WhatsApp's green. The bubbles work like iMessage's: <code>display: table</code> makes them fit their words, and <code>auto</code> margins push them to one side. The differences are:</p>
 
 <ul>
   <li><code>min-width: 90px</code>, so even a one-word bubble is wide enough for the time and ticks underneath.</li>
@@ -219,6 +222,28 @@
 
 <p>The reactions are a separate paragraph after the bubble, but the <em>negative</em> top margin (<code>-0.55em</code>) pulls them up so they overlap its bottom edge. <code>position: relative</code> makes sure they sit on top of the bubble instead of behind it. <code>out</code> moves them to the right, and <code>pad</code> moves them past a profile picture.</p>
 
+<h3>Typing Dots</h3>
+
+<pre><code>#workskin .wa .msg.typing-indicator { min-width: 0; }
+
+#workskin .wa .typing-indicator p:last-child { margin: 0.35em 0 0.25em 0; line-height: 1; }
+
+#workskin .wa .typing-indicator p:last-child span {
+  display: inline-block;
+  width: 0.6em;
+  height: 0.6em;
+  margin-right: 0.25em;
+  border-radius: 50%;
+  background: #8696a0;
+  opacity: 0.5;
+}
+
+#workskin .wa .typing-indicator p:last-child span:nth-last-child(2) { opacity: 0.7; }
+
+#workskin .wa .typing-indicator p:last-child span:last-child { opacity: 1; margin-right: 0; }</code></pre>
+
+<p>The dots go inside an ordinary message bubble, so they get everything a message gets: the colour, the tail, and in a group, the picture and name. <code>min-width: 0</code> undoes the usual minimum width, which is there to fit the time, so the bubble shrinks to fit the dots. <code>p:last-child</code> picks out the paragraph with the dots in, so a name line above it is left alone. Each dot is an empty span made round with <code>border-radius: 50%</code>, in WhatsApp's grey, and they get darker from left to right, like a frozen version of the moving dots. <code>:nth-last-child</code> counts from the end, the same as in iMessage.</p>
+
 <h3>The Message Bar</h3>
 
 <pre><code>#workskin .wa .wa-input { position: relative; padding: 0.5em 3.4em 0.5em 0.6em; }
@@ -267,7 +292,11 @@
 
 <p>For a half-typed message, <code>typed</code> undoes the <code>nowrap</code> so long messages wrap, and makes the words dark (light in dark mode):</p>
 
-<pre><code>#workskin .wa .wa-field .wa-ph.typed { white-space: normal; color: #111b21; }</code></pre>
+<pre><code>#workskin .wa .wa-field .wa-ph.typed { white-space: normal; color: #111b21; }
+
+#workskin .wa .wa-field .cursor { display: inline-block; width: 0.2em; padding: 0; }</code></pre>
+
+<p>Every span in the bar is a table cell, which would make a flashing <code>cursor</code> (from the core) a cell of its own and stretch the bar. The second rule keeps it a thin box in the line of words.</p>
 
 <h3>Link Cards</h3>
 
@@ -400,9 +429,9 @@
 
 <h3>Dark and Auto Themes</h3>
 
-<p>The dark theme swaps the beige for WhatsApp's near-black, the bubbles for dark grey and dark green, and every bit of grey text for a lighter grey. It also has the lighter set of name colours, and the tails again in the new bubble colours. As in iMessage, the auto theme is the same rules again inside <code>@media (prefers-color-scheme: dark)</code>, so change a dark colour in both places.</p>
+<p>The dark theme swaps the wallpaper for WhatsApp's dark version (with its near-black underneath), the bubbles for dark grey and dark green, and every bit of grey text for a lighter grey. It also has the lighter set of name colours, and the tails again in the new bubble colours. As in iMessage, the auto theme is the same rules again inside <code>@media (prefers-color-scheme: dark)</code>, so change a dark colour in both places.</p>
 
-<pre><code>#workskin .wa.theme-dark { background: #0b141a; color: #e9edef; border-color: #222d34; }
+<pre><code>#workskin .wa.theme-dark { background-color: #0b141a; background-image: url(https://images.squidge.org/images/2026/11/18/whatsapp-bck-dark.png); color: #e9edef; border-color: #222d34; }
 
 #workskin .wa.theme-dark .out { background: #005c4b; color: #e9edef; }
 

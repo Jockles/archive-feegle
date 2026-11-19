@@ -50,8 +50,8 @@
 /* ==========================================================
    >>> CORE: needed by every module <<<
    The chat box and its parts, the width classes, scrolling,
-   hidden text, video descriptions, round pictures, the typing and deleted-text
-   touches, link basics, hover/tap translations, character profiles and the ten
+   hidden text, video descriptions, round pictures, the flashing cursor,
+   link basics, hover/tap translations, character profiles and the ten
    shared colours (colour1 to colour10). Keep this block whichever modules you use.
    ========================================================== */
 
@@ -145,7 +145,7 @@
   border-radius: 6px;
 }
 
-/* ---------- Small helpers: hidden text, video descriptions, round pictures, typing line, deleted text ---------- */
+/* ---------- Small helpers: hidden text, video descriptions, round pictures, flashing cursor ---------- */
 
 /* a real profile picture inside any round picture circle (WhatsApp wa-pfp, Tumblr tb-pfp,
    Gmail gm-pfp, Instagram ig-pfp, Discord dc-pfp): wrap the picture tag in a span with pfp, e.g.
@@ -223,31 +223,28 @@
   overflow: hidden;
 }
 
-/* typing indicator line */
-#workskin .mob .typing {
-  display: block;
-  font-size: 0.75em;
-  font-style: italic;
-  opacity: 0.7;
-  margin: 0.3em 0.9em;
-}
-
-/* strikethrough / deleted text */
-#workskin .mob .del, #workskin .dc .del { text-decoration: line-through; opacity: 0.6; }
-
-/* a flashing cursor at the end of a half-written message, in any app: <span class="cursor">|</span>.
-   The typed line only shows for readers with the workskin off */
+/* a flashing cursor at the end of a half-written message, in any app: <span class="cursor">|</span>
+   It's a moving picture, black in light chats and white in dark ones. The typed | only shows for readers with the workskin off */
 #workskin .cursor {
   display: inline-block;
   width: 0.2em;
   height: 1.2em;
+  margin: -0.2em 0;
+  padding: 0;
   overflow: hidden;
   text-indent: -100em;
+  white-space: normal;
   vertical-align: -0.25em;
-  background-image: url(https://images.squidge.org/images/2026/11/17/cursor-flash.gif);
+  background-image: url(https://images.squidge.org/images/2026/11/18/cursor-flash-black.gif);
   background-repeat: no-repeat;
   background-position: left center;
   background-size: 1.2em 1.2em;
+}
+
+#workskin .theme-dark .cursor { background-image: url(https://images.squidge.org/images/2026/11/17/cursor-flash.gif); }
+
+@media (prefers-color-scheme: dark) {
+  #workskin .theme-auto .cursor { background-image: url(https://images.squidge.org/images/2026/11/17/cursor-flash.gif); }
 }
 
 /* ---------- Links that go nowhere (the colours are in each module) ---------- */
@@ -1061,15 +1058,10 @@
 
 #workskin .imsg .msg.pic.text { padding: 2.5em 1em; font-style: italic; text-align: center; }
 
-/* the three typing dots: <p class="typing-indicator"><span></span><span></span><span></span></p> */
-#workskin .imsg .typing-indicator {
-  display: table;
-  margin: 0.3em 0;
-  padding: 0.6em 0.8em;
-  border-radius: 18px;
-  border-bottom-left-radius: 5px;
-  background: #e9e9eb;
-}
+/* the three typing dots, in a message bubble from whoever is typing (out for the phone's owner, in for anyone else,
+   with a who line above it in a group, like any message):
+   <p class="msg in typing-indicator"><span class="hide">is typing...</span><span></span><span></span><span></span></p> */
+#workskin .imsg .typing-indicator { padding: 0.6em 0.8em; line-height: 1; }
 
 #workskin .imsg .typing-indicator span {
   display: inline-block;
@@ -1081,9 +1073,11 @@
   opacity: 0.5;
 }
 
-#workskin .imsg .typing-indicator span:nth-child(2) { opacity: 0.7; }
+#workskin .imsg .typing-indicator span:nth-last-child(2) { opacity: 0.7; }
 
-#workskin .imsg .typing-indicator span:nth-child(3) { opacity: 1; margin-right: 0; }
+#workskin .imsg .typing-indicator span:last-child { opacity: 1; margin-right: 0; }
+
+#workskin .imsg .out.typing-indicator span { background: #ffffff; }
 
 /* the message bar at the bottom: goes after the mob-body, inside the chat, all on one line
    <p class="imsg-input"><span class="imsg-plus">+</span><span class="hide"> </span><span class="imsg-field">iMessage<span class="hide"> </span><span class="imsg-mic">&#127908;</span></span></p>
@@ -1162,8 +1156,7 @@
 
 #workskin .imsg.theme-dark .mob-head { background: #1c1c1e; color: #ffffff; border-bottom-color: #2c2c2e; }
 
-#workskin .imsg.theme-dark .in,
-#workskin .imsg.theme-dark .typing-indicator {
+#workskin .imsg.theme-dark .in {
   background: #262628;
   color: #ffffff;
 }
@@ -1189,8 +1182,7 @@
 
   #workskin .imsg.theme-auto .mob-head { background: #1c1c1e; color: #ffffff; border-bottom-color: #2c2c2e; }
 
-  #workskin .imsg.theme-auto .in,
-    #workskin .imsg.theme-auto .typing-indicator {
+  #workskin .imsg.theme-auto .in {
       background: #262628;
       color: #ffffff;
     }
@@ -1254,7 +1246,10 @@
    ========================================================== */
 
 #workskin .wa {
-  background: #efeae2;
+  background-color: #efeae2;
+  background-image: url(https://images.squidge.org/images/2026/11/18/whatsapp-bck-light.jpg);
+  background-size: 100% auto;
+  background-repeat: repeat-y;
   color: #111b21;
   border: 1px solid #d1d7db;
   border-radius: 10px;
@@ -1491,6 +1486,27 @@
 
 #workskin .wa .wa-reacts.pad { margin-left: 46px; }
 
+/* the three typing dots, in a message bubble from whoever is typing (out for the phone's owner, in for anyone else,
+   with the wa-row picture and who line in a group, like any message):
+   <div class="msg in tail typing-indicator"><p class="hide"><em>Lily</em> is typing...</p><p><span></span><span></span><span></span></p></div> */
+#workskin .wa .msg.typing-indicator { min-width: 0; }
+
+#workskin .wa .typing-indicator p:last-child { margin: 0.35em 0 0.25em 0; line-height: 1; }
+
+#workskin .wa .typing-indicator p:last-child span {
+  display: inline-block;
+  width: 0.6em;
+  height: 0.6em;
+  margin-right: 0.25em;
+  border-radius: 50%;
+  background: #8696a0;
+  opacity: 0.5;
+}
+
+#workskin .wa .typing-indicator p:last-child span:nth-last-child(2) { opacity: 0.7; }
+
+#workskin .wa .typing-indicator p:last-child span:last-child { opacity: 1; margin-right: 0; }
+
 /* the message bar at the bottom */
 #workskin .wa .wa-input { position: relative; padding: 0.5em 3.4em 0.5em 0.6em; }
 
@@ -1521,6 +1537,9 @@
 
 /* a half-typed message: dark text that wraps onto more lines */
 #workskin .wa .wa-field .wa-ph.typed { white-space: normal; color: #111b21; }
+
+/* a flashing cursor in the typed message stays in the line of words, not a cell of its own */
+#workskin .wa .wa-field .cursor { display: inline-block; width: 0.2em; padding: 0; }
 
 #workskin .wa .wa-mic {
   position: absolute;
@@ -1755,7 +1774,7 @@
 
 /* ---------- WhatsApp: Dark theme (theme-dark) ---------- */
 
-#workskin .wa.theme-dark { background: #0b141a; color: #e9edef; border-color: #222d34; }
+#workskin .wa.theme-dark { background-color: #0b141a; background-image: url(https://images.squidge.org/images/2026/11/18/whatsapp-bck-dark.png); color: #e9edef; border-color: #222d34; }
 
 #workskin .wa.theme-dark .mob-head,
 #workskin .wa.theme-dark table.wa-bar {
@@ -1807,7 +1826,7 @@
 /* ---------- WhatsApp: Auto theme (theme-auto): light, switching to dark when the reader's device is in dark mode ---------- */
 
 @media (prefers-color-scheme: dark) {
-  #workskin .wa.theme-auto { background: #0b141a; color: #e9edef; border-color: #222d34; }
+  #workskin .wa.theme-auto { background-color: #0b141a; background-image: url(https://images.squidge.org/images/2026/11/18/whatsapp-bck-dark.png); color: #e9edef; border-color: #222d34; }
 
   #workskin .wa.theme-auto .mob-head,
     #workskin .wa.theme-auto table.wa-bar {

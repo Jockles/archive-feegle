@@ -191,15 +191,10 @@
 
 #workskin .imsg .msg.pic.text { padding: 2.5em 1em; font-style: italic; text-align: center; }
 
-/* the three typing dots: <p class="typing-indicator"><span></span><span></span><span></span></p> */
-#workskin .imsg .typing-indicator {
-  display: table;
-  margin: 0.3em 0;
-  padding: 0.6em 0.8em;
-  border-radius: 18px;
-  border-bottom-left-radius: 5px;
-  background: #e9e9eb;
-}
+/* the three typing dots, in a message bubble from whoever is typing (out for the phone's owner, in for anyone else,
+   with a who line above it in a group, like any message):
+   <p class="msg in typing-indicator"><span class="hide">is typing...</span><span></span><span></span><span></span></p> */
+#workskin .imsg .typing-indicator { padding: 0.6em 0.8em; line-height: 1; }
 
 #workskin .imsg .typing-indicator span {
   display: inline-block;
@@ -211,9 +206,11 @@
   opacity: 0.5;
 }
 
-#workskin .imsg .typing-indicator span:nth-child(2) { opacity: 0.7; }
+#workskin .imsg .typing-indicator span:nth-last-child(2) { opacity: 0.7; }
 
-#workskin .imsg .typing-indicator span:nth-child(3) { opacity: 1; margin-right: 0; }
+#workskin .imsg .typing-indicator span:last-child { opacity: 1; margin-right: 0; }
+
+#workskin .imsg .out.typing-indicator span { background: #ffffff; }
 
 /* the message bar at the bottom: goes after the mob-body, inside the chat, all on one line
    <p class="imsg-input"><span class="imsg-plus">+</span><span class="hide"> </span><span class="imsg-field">iMessage<span class="hide"> </span><span class="imsg-mic">&#127908;</span></span></p>
@@ -292,8 +289,7 @@
 
 #workskin .imsg.theme-dark .mob-head { background: #1c1c1e; color: #ffffff; border-bottom-color: #2c2c2e; }
 
-#workskin .imsg.theme-dark .in,
-#workskin .imsg.theme-dark .typing-indicator {
+#workskin .imsg.theme-dark .in {
   background: #262628;
   color: #ffffff;
 }
@@ -319,8 +315,7 @@
 
   #workskin .imsg.theme-auto .mob-head { background: #1c1c1e; color: #ffffff; border-bottom-color: #2c2c2e; }
 
-  #workskin .imsg.theme-auto .in,
-    #workskin .imsg.theme-auto .typing-indicator {
+  #workskin .imsg.theme-auto .in {
       background: #262628;
       color: #ffffff;
     }

@@ -11,8 +11,11 @@ on:
 permissions:
   contents: write
 
+# Its own queue, so a draft preview can never push a publish run out of
+# line. Both push to gh-pages; the deploy step rebases and retries if they
+# land at the same moment.
 concurrency:
-  group: gh-pages
+  group: publish-site
   cancel-in-progress: false
 
 jobs:
@@ -26,6 +29,8 @@ jobs:
           python3 tools/build-wips.py
       - name: Gather the site files
         run: rsync -a --exclude .git --exclude .github --exclude tools --exclude _wips ./ _site/
+      - name: Add the site icon and link-preview tags
+        run: python3 tools/site-meta.py _site
       - uses: JamesIves/github-pages-deploy-action@v4
         with:
           folder: _site
