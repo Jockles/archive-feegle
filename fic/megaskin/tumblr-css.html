@@ -4,10 +4,10 @@
   <meta charset="utf-8">
   <meta http-equiv="X-Clacks-Overhead" content="GNU Terry Pratchett">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Megaskin, Chapter 13: Tumblr CSS | jockles.com</title>
+  <title>Megaskin, Chapter 15: Tumblr CSS | jockles.com</title>
   <link rel="stylesheet" href="../../style.css">
   <script src="../../theme.js"></script>
-  <link rel="stylesheet" href="megaskin.css?v=5fac2cdd" id="creator-style">
+  <link rel="stylesheet" href="megaskin.css?v=1c52ca92" id="creator-style">
 </head>
 <body>
 <header>
@@ -31,46 +31,46 @@
       <p class="chapter-nav"><a href="tumblr.html">&larr; Previous Chapter</a> &middot; <a href="index.html">Chapter Index</a> &middot; <a href="email.html">Next Chapter &rarr;</a></p>
 
       <div class="fic">
-        <h3 class="chapter-title">Chapter 13: Tumblr CSS</h3>
+        <h3 class="chapter-title">Chapter 15: Tumblr CSS</h3>
         <div id="workskin">
 <p>Thanks to phyripo and Aposiopesis, whose <a href="https://archiveofourown.org/works/11474979"><em>How to Make Tumblr posts on AO3</em></a> and <a href="https://archiveofourown.org/works/21099596"><em>Tumblr-style CSS Tweaks</em></a> this module is built on. Copied and adapted from them: reblog chains, asks, quote posts, chat posts, and the reblog and photoset tweaks.</p>
 
 <h3 id="contents">Chapter Contents</h3>
 
 <ul class="contents">
-  <li><a href="#s13-1">13.1 Getting the CSS</a></li>
-  <li><a href="#s13-2">13.2 How the Module is Laid Out</a></li>
-  <li><a href="#s13-3">13.3 The Card</a></li>
-  <li><a href="#s13-4">13.4 The Header</a></li>
-  <li><a href="#s13-5">13.5 Pictures and the Reblog Badge</a></li>
-  <li><a href="#s13-6">13.6 Checkmarks</a></li>
-  <li><a href="#s13-7">13.7 Reblog Chains</a></li>
-  <li><a href="#s13-8">13.8 Asks</a></li>
-  <li><a href="#s13-9">13.9 Quote and Chat Posts</a></li>
-  <li><a href="#s13-10">13.10 Polls</a>
+  <li><a href="#s15-1">15.1 Getting the CSS</a></li>
+  <li><a href="#s15-2">15.2 How the Module is Laid Out</a></li>
+  <li><a href="#s15-3">15.3 The Card</a></li>
+  <li><a href="#s15-4">15.4 The Header</a></li>
+  <li><a href="#s15-5">15.5 Pictures and the Reblog Badge</a></li>
+  <li><a href="#s15-6">15.6 Checkmarks</a></li>
+  <li><a href="#s15-7">15.7 Reblog Chains</a></li>
+  <li><a href="#s15-8">15.8 Asks</a></li>
+  <li><a href="#s15-9">15.9 Quote and Chat Posts</a></li>
+  <li><a href="#s15-10">15.10 Polls</a>
     <ul>
-      <li><a href="#s13-10-1">13.10.1 Tappable Polls</a></li>
+      <li><a href="#s15-10-1">15.10.1 Tappable Polls</a></li>
     </ul>
   </li>
-  <li><a href="#s13-11">13.11 Pictures and Gifs</a></li>
-  <li><a href="#s13-12">13.12 Tags and the Bottom Row</a></li>
-  <li><a href="#s13-13">13.13 The Feed</a></li>
-  <li><a href="#s13-14">13.14 The App Screen</a></li>
-  <li><a href="#s13-15">13.15 Links and Themes</a></li>
-  <li><a href="#s13-16">13.16 Taking Parts Out</a></li>
+  <li><a href="#s15-11">15.11 Pictures and Gifs</a></li>
+  <li><a href="#s15-12">15.12 Tags and the Bottom Row</a></li>
+  <li><a href="#s15-13">15.13 The Feed</a></li>
+  <li><a href="#s15-14">15.14 The App Screen</a></li>
+  <li><a href="#s15-15">15.15 Links and Themes</a></li>
+  <li><a href="#s15-16">15.16 Taking Parts Out</a></li>
 </ul>
 
 <p>This chapter goes through the CSS for the Tumblr posts in the last chapter: the card, the header with its picture and checkmarks, reblog chains, asks, quote and chat posts, the bottom row, and the feed behind the cards.</p>
 
-<h3 id="s13-1">13.1 Getting the CSS</h3>
+<h3 id="s15-1">15.1 Getting the CSS</h3>
 
 <p>The Tumblr CSS is here: <a href="css/tumblr.css">jockles.com/fic/megaskin/css/tumblr.css</a>. It needs the core CSS too, so paste the <a href="core-css.html">core</a> into your work skin first and this underneath it.</p>
 
-<h3 id="s13-2">13.2 How the Module is Laid Out</h3>
+<h3 id="s15-2">15.2 How the Module is Laid Out</h3>
 
 <p>The usual order - the main rules, Links, Scrolling, Dark theme, Auto theme and Icons. Like a tweet or an Instagram post, a Tumblr post has no <code>mob-body</code>, so it scrolls as a whole once it's taller than <code>700px</code>.</p>
 
-<h3 id="s13-3">13.3 The Card</h3>
+<h3 id="s15-3">15.3 The Card</h3>
 
 <pre><code>#workskin .tb {
   background: #ffffff;
@@ -98,7 +98,7 @@
 
 <p>This one catches every picture in a post, but not profile pictures: <code>:not(.pfp) &gt; img</code> means "a picture whose box isn't a <code>pfp</code>". The picture is centred, with a little space either side, and never wider than the card.</p>
 
-<h3 id="s13-4">13.4 The Header</h3>
+<h3 id="s15-4">15.4 The Header</h3>
 
 <pre><code>#workskin .tb .tb-header,
 #workskin .tb .tb-blog {
@@ -143,11 +143,11 @@
   font-size: 0.8em;
 }</code></pre>
 
-<p>Both float right, which is why they come before the name in the code (see <a href="instagram-css.html#s11-5">The Account Line Extras</a>). The first one in the code goes furthest right, so the dots go first and the Follow button second, to end up in the right order.</p>
+<p>Both float right, which is why they come before the name in the code (see <a href="instagram-css.html#s13-5">The Account Line Extras</a>). The first one in the code goes furthest right, so the dots go first and the Follow button second, to end up in the right order.</p>
 
 </details>
 
-<h3 id="s13-5">13.5 Pictures and the Reblog Badge</h3>
+<h3 id="s15-5">15.5 Pictures and the Reblog Badge</h3>
 
 <pre><code>#workskin .tb .tb-pfp {
   display: flex;
@@ -175,7 +175,7 @@
 #workskin .tb .tb-ask-pfp.sq,
 #workskin .tb .sq .pfp { border-radius: 15%; }</code></pre>
 
-<p><code>sq</code> swaps the circle for a square with rounded corners, on either kind of picture and on a <code>pfp</code> picture inside one. <code>15%</code> rounds the corners by the same amount whatever the size of the square. A profile does the same thing with its own <code>border-radius</code> line (see <a href="tumblr.html#s12-5">Round or Square Pictures</a>).</p>
+<p><code>sq</code> swaps the circle for a square with rounded corners, on either kind of picture and on a <code>pfp</code> picture inside one. <code>15%</code> rounds the corners by the same amount whatever the size of the square. A profile does the same thing with its own <code>border-radius</code> line (see <a href="tumblr.html#s14-5">Round or Square Pictures</a>).</p>
 
 <pre><code>#workskin .tb .tb-pfp.rb::after {
   content: '\21C4';
@@ -198,9 +198,9 @@
   font-weight: bold;
 }</code></pre>
 
-<p>The reblog badge is added with <code>::after</code> and pinned off the bottom right of the circle. <code>\21C4</code> is the ⇄ arrows, in white on Tumblr's green, with a white edge to separate it from the picture. With the icons on, the Icons section swaps the arrows for the white reblog picture (see <a href="icons.html#s18-6">Taking the Icons Out</a>).</p>
+<p>The reblog badge is added with <code>::after</code> and pinned off the bottom right of the circle. <code>\21C4</code> is the ⇄ arrows, in white on Tumblr's green, with a white edge to separate it from the picture. With the icons on, the Icons section swaps the arrows for the white reblog picture (see <a href="icons.html#s20-6">Taking the Icons Out</a>).</p>
 
-<h3 id="s13-6">13.6 Checkmarks</h3>
+<h3 id="s15-6">15.6 Checkmarks</h3>
 
 <pre><code>#workskin .tb .tb-check {
   display: inline-flex;
@@ -267,7 +267,7 @@
 
 <p>In the Icons section, the span becomes the picture, at just under the height of the name. Each number of checkmarks has its own width, the same as the padding a profile uses, so the gap after the name comes out the same either way.</p>
 
-<h3 id="s13-7">13.7 Reblog Chains</h3>
+<h3 id="s15-7">15.7 Reblog Chains</h3>
 
 <pre><code>#workskin .tb .tb-reblog {
   display: block;
@@ -280,7 +280,7 @@
 
 <p>Each reblog has a thin line along its top, and the first one in the chain doesn't, because the post's header already has a line under it.</p>
 
-<h3 id="s13-8">13.8 Asks</h3>
+<h3 id="s15-8">15.8 Asks</h3>
 
 <pre><code>#workskin .tb .tb-ask {
   display: block;
@@ -330,7 +330,7 @@
   <li>The picture is pinned outside the box with <code>right: -36px</code>. It's a circle like the header picture, and it has its own <code>colour1</code> to <code>colour10</code>.</li>
 </ul>
 
-<h3 id="s13-9">13.9 Quote and Chat Posts</h3>
+<h3 id="s15-9">15.9 Quote and Chat Posts</h3>
 
 <pre><code>#workskin .tb .tb-quote { font-family: Georgia, serif; font-size: 1.9em; line-height: 1.25; }
 
@@ -347,7 +347,7 @@
 
 <p>The quote is big and in a serif font, and the curly quotation marks are added before and after it - <code>\201C</code> is “ and <code>\201D</code> is ”. The chat post is in a typewriter font.</p>
 
-<h3 id="s13-10">13.10 Polls</h3>
+<h3 id="s15-10">15.10 Polls</h3>
 
 <pre><code>#workskin .tb .tb-body .tb-opt {
   display: flex;
@@ -384,7 +384,7 @@
 
 <p>The <code>.tb-body</code> in the first two rules is there so they win over the body's own paragraph spacing. <code>tb-pollinfo</code> is the small grey centred line underneath. In dark posts the box, the bar and the line are darker.</p>
 
-<h4 id="s13-10-1">13.10.1 Tappable Polls</h4>
+<h4 id="s15-10-1">15.10.1 Tappable Polls</h4>
 
 <pre><code>#workskin .tb .tb-vote[open] &gt; summary { display: none; }
 
@@ -392,9 +392,9 @@
 
 #workskin .tb .tb-results { display: block; position: absolute; top: 0; left: 0; right: 0; z-index: 1; background: #ffffff; }</code></pre>
 
-<p>A <code>&lt;details&gt;</code> box opens when it's tapped, the same trick as Instagram's like and save buttons (see <a href="instagram-css.html#s11-7">Clickable Buttons</a>). In <code>tb-vote</code>, the open poll is the <code>&lt;summary&gt;</code>, and once it's tapped it's hidden, so only the results show. In the reader-picks version, each option is its own <code>&lt;details&gt;</code>, and its results are lifted out with <code>position: absolute</code> to sit over the whole <code>tb-poll</code> box, with the card's colour behind them so the blank boxes don't show through. The other lines hide the little triangle a <code>&lt;summary&gt;</code> normally has, and <code>tb-voter</code> is the small picture, pushed to the right next to the percentage.</p>
+<p>A <code>&lt;details&gt;</code> box opens when it's tapped, the same trick as Instagram's like and save buttons (see <a href="instagram-css.html#s13-7">Clickable Buttons</a>). In <code>tb-vote</code>, the open poll is the <code>&lt;summary&gt;</code>, and once it's tapped it's hidden, so only the results show. In the reader-picks version, each option is its own <code>&lt;details&gt;</code>, and its results are lifted out with <code>position: absolute</code> to sit over the whole <code>tb-poll</code> box, with the card's colour behind them so the blank boxes don't show through. The other lines hide the little triangle a <code>&lt;summary&gt;</code> normally has, and <code>tb-voter</code> is the small picture, pushed to the right next to the percentage.</p>
 
-<h3 id="s13-11">13.11 Pictures and Gifs</h3>
+<h3 id="s15-11">15.11 Pictures and Gifs</h3>
 
 <pre><code>#workskin .tb .tb-body .tb-row {
   display: flex;
@@ -443,7 +443,7 @@
 
 <p>Pictures at the very start of a post, or straight after a reblog's header, get a small negative margin to cancel out the gap at the top of the body, so they sit right up against the header. <code>&gt;</code> means "directly inside", and <code>+</code> means "straight after". The <code>tb-at</code> mentions are a dusty blue, just different enough from the text to stand out (the dark theme makes them a pale blue instead).</p>
 
-<h3 id="s13-12">13.12 Tags and the Bottom Row</h3>
+<h3 id="s15-12">15.12 Tags and the Bottom Row</h3>
 
 <pre><code>#workskin .tb .tb-footer {
   display: flex;
@@ -470,7 +470,7 @@
 
 <p><code>display: flex</code> lines the bottom row up. Each <code>tb-stat</code> has <code>flex: 1 1 0</code>, which means "start from nothing and take an equal share of the spare room", so replies, reblogs and likes get a third each, however long their numbers are. The share button has no <code>flex</code>, so it only takes the room it needs, and that leaves it at the right-hand end. <code>white-space: nowrap</code> keeps a button and its count on the same line. The buttons are a little bigger than the counts, with a small gap before the number, and the share button doesn't need the gap because nothing comes after it.</p>
 
-<h3 id="s13-13">13.13 The Feed</h3>
+<h3 id="s15-13">15.13 The Feed</h3>
 
 <pre><code>#workskin .tb-feed {
   width: 380px;
@@ -505,7 +505,7 @@
 
 <p><strong>Changing the feed colour:</strong> the colour is the <code>background</code> line in <code>#workskin .tb-feed</code> (<code>#001935</code>). Swap it for any colour you like, and every feed without <code>black</code>, <code>classic</code> or a dark theme changes with it. There's a note at that line in the CSS too.</p>
 
-<h3 id="s13-14">13.14 The App Screen</h3>
+<h3 id="s15-14">15.14 The App Screen</h3>
 
 <pre><code>#workskin .tb-feed.app { padding: 0; overflow: hidden; }
 
@@ -523,13 +523,13 @@
 
 <p>The top bar, the tabs and the bottom buttons are flex rows like the bottom of a post. They have no background of their own, so they're always the feed colour, which is why the feed's <code>black</code> and <code>classic</code> work on them too. The picked tab is white with a short blue line under it, made with <code>::after</code> the same way as the reblog badge, and the other tabs and buttons are grey. The Tumblr logo is just a bold "t". The icons are pictures, in the Icons section with the rest, and they're the same in every theme because they always sit on the feed.</p>
 
-<h3 id="s13-15">13.15 Links and Themes</h3>
+<h3 id="s15-15">15.15 Links and Themes</h3>
 
 <pre><code>#workskin .tb .fake-link, #workskin .tb a:not(.tl) { color: #0070b8; }</code></pre>
 
 <p>Links are Tumblr's blue. The dark theme makes the card dark grey (<code>#1f1f1f</code>) with light text, turns all the small print and the ask boxes darker, and gives links a brighter blue (<code>#00b8ff</code>) so they show up. The white edges round the reblog badge become the card colour. As always, the auto theme is the same again inside <code>@media (prefers-color-scheme: dark)</code>.</p>
 
-<h3 id="s13-16">13.16 Taking Parts Out</h3>
+<h3 id="s15-16">15.16 Taking Parts Out</h3>
 
 <p>Search for the class names and delete every rule with them in, including in the dark and auto blocks:</p>
 
