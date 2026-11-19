@@ -1,0 +1,52 @@
+<!-- contents -->
+
+<p>This chapter goes through the CSS for the classic tweets in the last chapter. The module has two parts: the tweet (<code>twc</code>) and the timeline it can sit in (<code>twc-feed</code>), with the 2012-15 switch (<code>tw2012</code>) after them.</p>
+
+<h3>Getting the CSS</h3>
+
+<p>The Classic Twitter CSS is here: <a href="css/twitter-classic.css">jockles.com/fic/megaskin/css/twitter-classic.css</a>. It needs the core CSS too, so paste the <a href="core-css.html">core</a> into your work skin first and this underneath it. It doesn't need the Twitter/X module.</p>
+
+<h3>How the Module is Laid Out</h3>
+
+<p>The usual order: the tweet, an opened tweet, the timeline, then the 2012-15 switch, the Dark and Auto themes, and Icons at the end. Every rule starts with <code>.twc</code> or <code>.twc-feed</code>, so even though the parts inside have the same names as Twitter/X's (<code>tw-top</code>, <code>tw-stats</code> and so on), the two modules never get in each other's way.</p>
+
+<h3>The Picture Column</h3>
+
+<pre><code>#workskin .twc {
+  position: relative;
+  padding: 0.7em 1em 0.55em 4.75em;
+}
+
+#workskin .twc .tw-pfp {
+  position: absolute;
+  top: 0.75em;
+  left: 1em;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+}</code></pre>
+
+<p>The big left padding on the tweet leaves an empty column down the side, and the picture is pulled out of the line with <code>position: absolute</code> and pinned into it. Everything else in the tweet - the label, the name line, the words and the buttons - lines up in the space beside it, with no extra boxes needed. An opened tweet (<code>big</code>) takes the padding away again and gives the name line its own padding instead, so the picture sits beside the name and the words run the whole width underneath.</p>
+
+<h3>The 2012-15 Switch</h3>
+
+<pre><code>#workskin .twc.tw2012 .tw-pfp,
+#workskin .twc-feed.tw2012 .tw-pfp,
+#workskin .twc-feed.tw2012 .tw-me { border-radius: 5px; }
+
+#workskin .twc.tw2012 .tw-time,
+#workskin .twc-feed.tw2012 .tw-time { position: absolute; top: 0.85em; right: 1em; font-size: 0.85em; }</code></pre>
+
+<p>Every 2012-15 rule names both <code>.twc.tw2012</code> and <code>.twc-feed.tw2012</code>, so the switch works on a tweet on its own or on a whole timeline. The square pictures are the same circles with a smaller <code>border-radius</code>, and the time is pinned to the top right corner the same way the picture is pinned to the left. The star, the curved arrow and the three dots are swapped in by the Icons section, which changes the pictures behind the same icon spans.</p>
+
+<h3>Dark and Auto Themes</h3>
+
+<p>Night mode is <code>#15202b</code> for the background, white for the text, <code>#8899a6</code> for grey and <code>#38444d</code> for the lines. The blue 2012-15 bar stays blue in every theme. The auto theme is the dark rules again inside <code>@media (prefers-color-scheme: dark)</code>, so change a colour in both places.</p>
+
+<h3>Taking Parts Out</h3>
+
+<ul>
+  <li><strong>The timeline:</strong> everything starting <code>.twc-feed</code>.</li>
+  <li><strong>Opened tweets:</strong> the rules with <code>.big</code>, <code>tw-date</code>, <code>tw-counts</code> and <code>twc-foot</code>.</li>
+  <li><strong>2012-15:</strong> everything with <code>tw2012</code> in it.</li>
+</ul>
