@@ -481,7 +481,7 @@
   // the poll's options, one per line, with a percentage at the end once there are results
   function pollOpts(m) {
     return t(m.poll).split(/\n/).map(t).filter(Boolean).map(function (line) {
-      var p = line.match(/^(.*?)\s+(\d{1,3})\s*%$/);
+      var p = line.match(/^(.*?)\s+(\d{1,3}(?:\.\d+)?)\s*%$/);
       return p ? { text: p[1], pct: +p[2] } : { text: line, pct: null };
     });
   }
@@ -489,7 +489,7 @@
   // (m.pollPick[i][j] is option j's percentage once option i is picked; empty uses the poll's own)
   function pickPcts(m, opts, i) {
     var row = (m.pollPick || [])[i] || [];
-    return opts.map(function (o, j) { var v = t(row[j]).replace(/%$/, ""); return /^\d{1,3}$/.test(v) ? +v : o.pct || 0; });
+    return opts.map(function (o, j) { var v = t(row[j]).replace(/%$/, ""); return /^\d{1,3}(\.\d+)?$/.test(v) ? +v : o.pct || 0; });
   }
   function pollResults(opts, pcts, tap, vote, tick) {
     var top = Math.max.apply(null, pcts), won = false;
@@ -519,7 +519,8 @@
       var L = ['<div class="tw-poll">'];
       opts.forEach(function (o, i) {
         L.push('<details class="tw-pick">', '  <summary class="tw-opt">' + esc(o.text) + "</summary>", '  <div class="tw-results">');
-        L = L.concat(ind(pollResults(opts, pickPcts(m, opts, i), true, i).concat(after), 2));
+        var own = t((m.pollPickInfo || [])[i]);
+        L = L.concat(ind(pollResults(opts, pickPcts(m, opts, i), true, i).concat(own ? ['<p class="tw-pollinfo">' + esc(own) + "</p>"] : after), 2));
         L.push("  </div>", "</details>");
       });
       return L.concat(info ? ['<p class="tw-pollinfo">' + esc(info) + "</p>"] : []).concat(["</div>"]);
@@ -749,9 +750,11 @@
     "blocks.N.msgs.N.views:tw": "The number of views at the end of the row of buttons, like '71K' or '0'. Leave it empty for the views button with no number, or type a dash '-' to leave the views button out.",
     "blocks.N.msgs.N.saved:tw": "Turns the bookmark button blue, as if the phone owner has saved the tweet.",
     "blocks.N.msgs.N.date:tw": "The small grey line at the bottom of the tweet. A tweet opened on its own usually shows the exact time and date here, like '8:23 AM · 11 May 23', but you can put any words you like. Leave it empty for a reply or a tweet on a feed, so it looks real.",
-    "blocks.N.msgs.N.poll:tw": "One option per line. For a finished or tappable poll, put the percentage after each one, like 'Montreal 58%'.",
+    "blocks.N.msgs.N.poll:tw": "One option per line. For a finished or tappable poll, put the percentage after each one, like 'Montreal 58%' or 'Boston 3.2%'. The bar is drawn at the nearest size the skin has.",
     "blocks.N.msgs.N.pollShowVote:tw": "Puts a tick on the option this account voted for. Pick the option underneath.",
-    "blocks.N.msgs.N.warn:tw": "Hides the pictures behind a grey 'Sensitive content' warning, which readers click to see them."
+    "blocks.N.msgs.N.warn:tw": "Hides the pictures behind a grey 'Sensitive content' warning, which readers click to see them.",
+    "blocks.N.msgs.N.pollPick.N.N:tw": "Each option the reader might pick gets its own copy of the results, so they don't have to match. Make their pick always win, always lose, end in a draw, or anything else. Decimals like '3.2' work too.",
+    "blocks.N.msgs.N.pollPickInfo.N:tw": "The votes line under this pick's results. Leave it empty to use the line under the poll, with one more vote."
   };
   var helped = {}, helpKind = ""; // helpKind is "tw" while a Twitter/X block is drawn
   function help(path, kind) {
@@ -1013,12 +1016,15 @@
   function pickRows(P, m) {
     var opts = pollOpts(m), h = ['<p class="hint">The results the reader sees after each pick. An empty box uses the poll\'s own percentage:</p>'];
     if (!Array.isArray(m.pollPick)) m.pollPick = [];
+    if (!Array.isArray(m.pollPickInfo)) m.pollPickInfo = [];
+    var info = t(m.pollinfo).replace(/\d[\d,]*/, bumpCount);
     opts.forEach(function (o, i) {
       if (!Array.isArray(m.pollPick[i])) m.pollPick[i] = [];
+      if (m.pollPickInfo[i] == null) m.pollPickInfo[i] = "";
       opts.forEach(function (x, j) { if (m.pollPick[i][j] == null) m.pollPick[i][j] = ""; });
       h.push('<div class="fb-acct"><p class="hint">If they pick <b>' + esc(o.text) + "</b>:</p><div class=\"fb-grid\">" + opts.map(function (x, j) {
         return "<div>" + field(P + ".pollPick." + i + "." + j, esc(x.text) + " %", { ph: x.pct === null ? "" : String(x.pct) }) + "</div>";
-      }).join("") + "</div></div>");
+      }).join("") + "</div>" + field(P + ".pollPickInfo." + i, "Votes line", { ph: info }) + "</div>");
     });
     return h.join("");
   }
