@@ -151,6 +151,19 @@
   font-weight: normal;
 }
 
+/* an account you don't follow, suggested in the feed: a follow button (ig-add) sits left of the menu,
+   and the menu is two lines instead of three dots. Both go FIRST in the line, menu then follow:
+   <span class="ig-menu ic ic-ig-lines">&#8801;</span><span class="ig-add ic ic-ig-follow">Follow</span> */
+#workskin .ig .ig-top .ig-add {
+  display: block;
+  float: right;
+  margin: 0 0.3em 0 0.6em;
+  color: inherit;
+  font-size: 1.3em;
+  font-weight: bold;
+  line-height: 1;
+}
+
 /* the colourful stories ring: add "story" to the ig-pfp span: <span class="ig-pfp story"> */
 #workskin .ig .ig-top .ig-pfp.story {
   box-sizing: content-box;
@@ -715,6 +728,8 @@
 #workskin .ig .ig-icon.bm::after { display: none; }
 
 #workskin .ig .ic.ic-more, #workskin .igdm .ic.ic-more { background-image: url(https://images.squidge.org/images/2026/11/15/menu-horizontal-black.png); }
+#workskin .ig .ic.ic-ig-lines { background-image: url(https://images.squidge.org/images/2026/11/19/ig-lines-black.png); }
+#workskin .ig .ic.ic-ig-follow { background-image: url(https://images.squidge.org/images/2026/11/19/ig-follow-black.png); }
 #workskin .ig .ic.ic-share, #workskin .igdm .ic.ic-share { background-image: url(https://images.squidge.org/images/2026/11/15/share-black.png); }
 #workskin .ig .ic.ic-repost, #workskin .igdm .ic.ic-repost { background-image: url(https://images.squidge.org/images/2026/11/15/repost-black.png); }
 #workskin .ig .ic.ic-heart, #workskin .igdm .ic.ic-heart { background-image: url(https://images.squidge.org/images/2026/11/15/heart-black.png); }
@@ -726,6 +741,8 @@
 
 /* Instagram icons, dark */
 #workskin .ig.theme-dark .ic.ic-more, #workskin .igdm.theme-dark .ic.ic-more { background-image: url(https://images.squidge.org/images/2026/11/15/menu-horizontal-white.png); }
+#workskin .ig.theme-dark .ic.ic-ig-lines { background-image: url(https://images.squidge.org/images/2026/11/19/ig-lines-white.png); }
+#workskin .ig.theme-dark .ic.ic-ig-follow { background-image: url(https://images.squidge.org/images/2026/11/19/ig-follow-white.png); }
 #workskin .ig.theme-dark .ic.ic-share, #workskin .igdm.theme-dark .ic.ic-share { background-image: url(https://images.squidge.org/images/2026/11/15/share-white.png); }
 #workskin .ig.theme-dark .ic.ic-repost, #workskin .igdm.theme-dark .ic.ic-repost { background-image: url(https://images.squidge.org/images/2026/11/15/repost-white.png); }
 #workskin .ig.theme-dark .ic.ic-heart, #workskin .igdm.theme-dark .ic.ic-heart { background-image: url(https://images.squidge.org/images/2026/11/15/heart-white.png); }
@@ -736,6 +753,8 @@
 /* Instagram icons, auto: dark when the reader's device is in dark mode */
 @media (prefers-color-scheme: dark) {
   #workskin .ig.theme-auto .ic.ic-more, #workskin .igdm.theme-auto .ic.ic-more { background-image: url(https://images.squidge.org/images/2026/11/15/menu-horizontal-white.png); }
+  #workskin .ig.theme-auto .ic.ic-ig-lines { background-image: url(https://images.squidge.org/images/2026/11/19/ig-lines-white.png); }
+  #workskin .ig.theme-auto .ic.ic-ig-follow { background-image: url(https://images.squidge.org/images/2026/11/19/ig-follow-white.png); }
   #workskin .ig.theme-auto .ic.ic-share, #workskin .igdm.theme-auto .ic.ic-share { background-image: url(https://images.squidge.org/images/2026/11/15/share-white.png); }
   #workskin .ig.theme-auto .ic.ic-repost, #workskin .igdm.theme-auto .ic.ic-repost { background-image: url(https://images.squidge.org/images/2026/11/15/repost-white.png); }
   #workskin .ig.theme-auto .ic.ic-heart, #workskin .igdm.theme-auto .ic.ic-heart { background-image: url(https://images.squidge.org/images/2026/11/15/heart-white.png); }
