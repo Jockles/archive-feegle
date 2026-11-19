@@ -827,7 +827,8 @@
     "blocks.N.msgs.N.waReacts:dm": "Emoji reactions under the bubble, then how many, like '😂 1' or '👍 😂 3'.",
     "blocks.N.msgs.N.status:dm": "The small word under the phone owner's last message: 'Sent', or 'Seen' once the other person has read it.",
     "blocks.N.msgs.N.voice:dm": "Adds a voice message bubble, with a play button and sound bars. Type how long it is, like '0:02'.",
-    "blocks.N.html": "Type your story here, or paste it in from Google Docs, Word or AO3. Select some words and press a button to format them. Only the formatting AO3 allows is kept, so pasted fonts and colours are taken out. The text goes in the HTML between the chats around it, in the same order as here."
+    "blocks.N.html": "Type your story here, or paste it in from Google Docs, Word or AO3. Select some words and press a button to format them. Only the formatting AO3 allows is kept, so pasted fonts and colours are taken out. The text goes in the HTML between the chats around it, in the same order as here.",
+    "blocks.N.label:story": "A name for this bit of the story, just for you, like 'Opening scene'. It shows when the box is folded up, and it isn't in the HTML."
   };
   var helped = {}, helpKind = ""; // helpKind is "tw" while a Twitter/X block is drawn
   function help(path, kind) {
@@ -1219,6 +1220,7 @@
       (b.fold ? "&#9656; " : "&#9662; ") + "<b>" + (i + 1) + ". " + KINDS.text + "</b>" + (b.fold && words ? ' <span class="hint">' + esc(words.slice(0, 80)) + "</span>" : "") + "</button>" +
       '<span class="fb-tools">' + btn("blk-up:" + i, "&uarr;", "Move up") + btn("blk-down:" + i, "&darr;", "Move down") + btn("blk-del:" + i, "&times;", "Delete this") + "</span></div>"];
     if (!b.fold) {
+      h.push('<div class="fb-story-label">' + field("blocks." + i + ".label", "Label", { ph: "Opening scene" }) + "</div>");
       h.push('<div class="fb-rte-bar" role="toolbar" aria-label="Formatting">' + STORY_BUTTONS.map(function (x) {
         return '<button type="button" data-rte-cmd="' + x[0] + '" title="' + x[2] + '" aria-label="' + x[2] + '">' + x[1] + "</button>";
       }).join("") + '<span class="tut-help" tabindex="0"><span>' + HELP["blocks.N.html"] + "</span></span></div>");
@@ -1270,7 +1272,10 @@
       var words = cleanStory(b.html).replace(/<[^>]*>/g, " ").replace(/&nbsp;/g, " ").replace(/\s+/g, " ").trim();
       words = words.replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&quot;/g, '"');
       b.msgs = [];
-      return storyCard(b, i, words);
+      helpKind = "story";
+      var card = storyCard(b, i, t(b.label) || words);
+      helpKind = "";
+      return card;
     }
     var first = b.msgs.filter(function (x) { return char(x.from) && (t(x.text) || x.photos.length); })[0];
     var what = first ? "<em>" + esc(nameOf(char(first.from))) + ":</em> " + esc(plain(first.text).trim().slice(0, 80) || "(picture)") : esc(t(b.title));
