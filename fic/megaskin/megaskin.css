@@ -4847,8 +4847,7 @@
   transform: rotate(45deg);
 }
 
-/* saved: filled in Instagram blue */
-#workskin .ig .bm.on { background: #0095f6; color: #0095f6; }
+#workskin .ig .bm.on { background: currentColor; }
 
 /* a comment bubble drawn with CSS: <span class="ig-icon cm"></span> */
 #workskin .ig .cm {
@@ -5315,7 +5314,7 @@
 #workskin .ig .ic.ic-heart, #workskin .igdm .ic.ic-heart { background-image: url(https://images.squidge.org/images/2026/11/15/heart-black.png); }
 #workskin .ig .ig-icon.cm { background-image: url(https://images.squidge.org/images/2026/11/15/comment-black.png); }
 #workskin .ig .ig-icon.bm { background-image: url(https://images.squidge.org/images/2026/11/15/bookmark-black.png); }
-#workskin .ig .ig-icon.bm.on { background-image: url(https://images.squidge.org/images/2026/11/17/tw-bookmark-blue.png); }
+#workskin .ig .ig-icon.bm.on { background-image: url(https://images.squidge.org/images/2026/11/15/bookmark-filled-black.png); }
 #workskin .ig .ic.ic-verified, #workskin .igdm .ic.ic-verified { background-image: url(https://images.squidge.org/images/2026/11/15/verified-blue.png); }
 #workskin .ig .ic.ic-heart-red, #workskin .igdm .ic.ic-heart-red { background-image: url(https://images.squidge.org/images/2026/11/15/heart-filled-red.png); }
 
@@ -5328,7 +5327,7 @@
 #workskin .ig.theme-dark .ic.ic-heart, #workskin .igdm.theme-dark .ic.ic-heart { background-image: url(https://images.squidge.org/images/2026/11/15/heart-white.png); }
 #workskin .ig.theme-dark .ig-icon.cm { background-image: url(https://images.squidge.org/images/2026/11/15/comment-white.png); }
 #workskin .ig.theme-dark .ig-icon.bm { background-image: url(https://images.squidge.org/images/2026/11/15/bookmark-white.png); }
-#workskin .ig.theme-dark .ig-icon.bm.on { background-image: url(https://images.squidge.org/images/2026/11/17/tw-bookmark-blue.png); }
+#workskin .ig.theme-dark .ig-icon.bm.on { background-image: url(https://images.squidge.org/images/2026/11/15/bookmark-filled-white.png); }
 
 /* Instagram icons, auto: dark when the reader's device is in dark mode */
 @media (prefers-color-scheme: dark) {
@@ -5340,7 +5339,7 @@
   #workskin .ig.theme-auto .ic.ic-heart, #workskin .igdm.theme-auto .ic.ic-heart { background-image: url(https://images.squidge.org/images/2026/11/15/heart-white.png); }
   #workskin .ig.theme-auto .ig-icon.cm { background-image: url(https://images.squidge.org/images/2026/11/15/comment-white.png); }
   #workskin .ig.theme-auto .ig-icon.bm { background-image: url(https://images.squidge.org/images/2026/11/15/bookmark-white.png); }
-  #workskin .ig.theme-auto .ig-icon.bm.on { background-image: url(https://images.squidge.org/images/2026/11/17/tw-bookmark-blue.png); }
+  #workskin .ig.theme-auto .ig-icon.bm.on { background-image: url(https://images.squidge.org/images/2026/11/15/bookmark-filled-white.png); }
 }
 
 /* <<<<<<<<<< MODULE: Instagram (posts, comments, DMs) (end) <<<<<<<<<< */
