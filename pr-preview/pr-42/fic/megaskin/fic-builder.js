@@ -483,24 +483,44 @@
       return p ? { text: p[1], pct: +p[2] } : { text: line, pct: null };
     });
   }
+  // the reader-picks poll: for each option they might pick, the percentages they then see
+  // (m.pollPick[i][j] is option j's percentage once option i is picked; empty uses the poll's own)
+  function pickPcts(m, opts, i) {
+    var row = (m.pollPick || [])[i] || [];
+    return opts.map(function (o, j) { var v = t(row[j]).replace(/%$/, ""); return /^\d{1,3}$/.test(v) ? +v : o.pct || 0; });
+  }
+  function pollResults(opts, pcts, tap, vote) {
+    var top = Math.max.apply(null, pcts), won = false;
+    return opts.map(function (o, i) {
+      var pct = pcts[i], size = POLL_SIZES.reduce(function (a, b) { return Math.abs(b - pct) < Math.abs(a - pct) ? b : a; });
+      var win = !tap && !won && pct === top; if (win) won = true;
+      var voted = tap && i === vote ? '<span class="hide"> - voted </span><span class="tw-voted">&#10003;</span>' : "";
+      return '<p class="tw-opt res' + (win ? " win" : "") + " p" + size + '"><span class="tw-bar">' + esc(o.text) + voted + '</span><span class="hide"> </span><span class="tw-pct">' + pct + "%</span></p>";
+    });
+  }
   function twPoll(m) {
     var opts = pollOpts(m);
     if (!opts.length) return [];
     var done = opts.some(function (o) { return o.pct !== null; }), tap = done && m.pollTap;
-    var top = Math.max.apply(null, opts.map(function (o) { return o.pct || 0; })), won = false;
-    var res = opts.map(function (o, i) {
-      var pct = o.pct || 0, size = POLL_SIZES.reduce(function (a, b) { return Math.abs(b - pct) < Math.abs(a - pct) ? b : a; });
-      var win = !tap && !won && pct === top; if (win) won = true;
-      var voted = tap && String(i) === String(m.pollVote || 0) ? '<span class="hide"> - voted </span><span class="tw-voted">&#10003;</span>' : "";
-      return '<p class="tw-opt res' + (win ? " win" : "") + " p" + size + '"><span class="tw-bar">' + esc(o.text) + voted + '</span><span class="hide"> </span><span class="tw-pct">' + pct + "%</span></p>";
-    });
+    var res = pollResults(opts, opts.map(function (o) { return o.pct || 0; }), tap, +(m.pollVote || 0));
     var info = t(m.pollinfo);
     if (!done) return opts.map(function (o) { return '<p class="tw-opt">' + esc(o.text) + "</p>"; }).concat(info ? ['<p class="tw-pollinfo">' + esc(info) + "</p>"] : []);
     if (!tap) return res.concat(info ? ['<p class="tw-pollinfo">' + esc(info) + "</p>"] : []);
+    var after = info ? ['<p class="tw-pollinfo">' + esc(info.replace(/\d[\d,]*/, bumpCount)) + "</p>"] : [];
+    if (m.pollVote === "pick") {
+      // the reader picks: each option opens its own copy of the results, with the tick on it
+      var L = ['<div class="tw-poll">'];
+      opts.forEach(function (o, i) {
+        L.push('<details class="tw-pick">', '  <summary class="tw-opt">' + esc(o.text) + "</summary>", '  <div class="tw-results">');
+        L = L.concat(ind(pollResults(opts, pickPcts(m, opts, i), true, i).concat(after), 2));
+        L.push("  </div>", "</details>");
+      });
+      return L.concat(info ? ['<p class="tw-pollinfo">' + esc(info) + "</p>"] : []).concat(["</div>"]);
+    }
     // tappable: the open poll first, and tapping it shows the results with one more vote
     return ['<details class="tw-vote">', "<summary>"].concat(opts.map(function (o) { return '  <span class="tw-opt">' + esc(o.text) + "</span>"; }))
       .concat(info ? ['  <span class="tw-pollinfo">' + esc(info) + "</span>"] : []).concat(["</summary>"]).concat(ind(res, 1))
-      .concat(info ? ['  <p class="tw-pollinfo">' + esc(info.replace(/\d[\d,]*/, bumpCount)) + "</p>"] : []).concat(["</details>"]);
+      .concat(ind(after, 1)).concat(["</details>"]);
   }
   function twMedia(m, video, pics) {
     var v = video ? picUrl(m.vUrl) : "";
@@ -705,6 +725,7 @@
     "blocks.N.msgs.N.hasPoll:tw": "Tick any of these to add it to the tweet, and its boxes open up underneath.",
     "blocks.N.msgs.N.poll:tw": "One option per line. To show the results, put the percentage after each one, like 'Montreal 58%'.",
     "blocks.N.msgs.N.pollTap:tw": "Readers tap an option to vote, and the results show. It needs the percentages, and adds one to the number of votes.",
+    "blocks.N.msgs.N.pollVote:tw": "Which option gets the vote and the tick. Pick 'Whichever one the reader picks' to let the reader choose, then set what the results say after each choice.",
     "blocks.N.msgs.N.qName:tw": "Another tweet shown inside this one, in a box. Fill in who posted it and what it said.",
     "blocks.N.msgs.N.note:tw": "A community note: the box under a tweet that adds context, starting 'Readers added context'.",
     "blocks.N.msgs.N.photos.N.url:tw": "A picture in the tweet. " + PIC,
@@ -950,7 +971,8 @@
         h.push('<div class="fb-acct">' + field(P + ".poll", "Poll: one option per line. For the results, put the percentage after each one, like Montreal 58%", { type: "area", rows: 2 }) +
           field(P + ".pollinfo", "Under the poll", { ph: "179 votes · 13 minutes left" }) +
           field(P + ".pollTap", "Readers tap the poll to vote and see the results (needs the percentages, and adds one to the votes)", { type: "check", re: true }) +
-          (m.pollTap ? field(P + ".pollVote", "The vote goes to", { type: "select", options: [["0", "The first option"], ["1", "The second option"], ["2", "The third option"], ["3", "The fourth option"]] }) : "") + "</div>");
+          (m.pollTap ? field(P + ".pollVote", "The vote goes to", { type: "select", re: true, options: [["0", "The first option"], ["1", "The second option"], ["2", "The third option"], ["3", "The fourth option"], ["pick", "Whichever one the reader picks"]] }) : "") +
+          (m.pollTap && m.pollVote === "pick" ? pickRows(P, m) : "") + "</div>");
       }
       if (m.hasQuote) h.push('<div class="fb-acct"><p class="hint">Quote tweet:' + help(P + ".qName") + '</p><div class="fb-grid"><div>' + field(P + ".qName", "", { ph: "Their name" }) + "</div><div>" + field(P + ".qHandle", "", { ph: "Their handle" }) + "</div></div>" +
         field(P + ".qText", "", { ph: "What they said" }) + "</div>");
@@ -961,6 +983,19 @@
       h.push("</div>");
     }
     h.push("</li>");
+    return h.join("");
+  }
+  // the reader-picks poll: what the results say after each pick (an empty box uses the poll's own percentage)
+  function pickRows(P, m) {
+    var opts = pollOpts(m), h = ['<p class="hint">The results the reader sees after each pick. An empty box uses the poll\'s own percentage:</p>'];
+    if (!Array.isArray(m.pollPick)) m.pollPick = [];
+    opts.forEach(function (o, i) {
+      if (!Array.isArray(m.pollPick[i])) m.pollPick[i] = [];
+      opts.forEach(function (x, j) { if (m.pollPick[i][j] == null) m.pollPick[i][j] = ""; });
+      h.push('<div class="fb-acct"><p class="hint">If they pick <b>' + esc(o.text) + "</b>:</p><div class=\"fb-grid\">" + opts.map(function (x, j) {
+        return "<div>" + field(P + ".pollPick." + i + "." + j, esc(x.text) + " %", { ph: x.pct === null ? "" : String(x.pct) }) + "</div>";
+      }).join("") + "</div></div>");
+    });
     return h.join("");
   }
   // the settings for a chat: iMessage and WhatsApp
