@@ -385,13 +385,32 @@
 <p>An open poll is a blue outline with very round corners and bold blue words in the middle. The results (<code>res</code>) turns the option into a flex row, like the buttons along the bottom of a tweet: the <code>tw-bar</code> span with the option in it, then the percentage pushed to the far right by <code>margin-left: auto</code>. The bar is a grey box with slightly rounded corners, and each <code>p</code> class sets how wide it is. <code>min-width</code> keeps a tiny percentage from shrinking the bar to nothing, and <code>nowrap</code> lets the words run on past the end of a short bar, like the real thing. <code>win</code> swaps the grey bar for a blue one and makes the text bold.</p>
 
 <details>
-<summary>Adding a poll percentage that isn't there</summary>
+<summary>Where the bar sizes are set, and adding your own</summary>
 
-<p>The skin has <code>p0</code> to <code>p100</code> in tens, plus <code>p25</code>, <code>p33</code>, <code>p67</code> and <code>p75</code>. To add another, copy one of the rules and change all three numbers:</p>
+<p>The bar sizes are these rules near the end of the Twitter/X poll CSS, under the comment <code>/* how long each bar is */</code>. Each one says "an option with this class gets a bar this wide":</p>
 
-<pre><code>#workskin .tw .tw-opt.p45 .tw-bar, #workskin .tw-reply .tw-opt.p45 .tw-bar { width: 45%; }</code></pre>
+<pre><code>/* how long each bar is */
+#workskin .tw .tw-opt.p0 .tw-bar, #workskin .tw-reply .tw-opt.p0 .tw-bar { width: 0%; }
+#workskin .tw .tw-opt.p10 .tw-bar, #workskin .tw-reply .tw-opt.p10 .tw-bar { width: 10%; }
+#workskin .tw .tw-opt.p20 .tw-bar, #workskin .tw-reply .tw-opt.p20 .tw-bar { width: 20%; }
+#workskin .tw .tw-opt.p25 .tw-bar, #workskin .tw-reply .tw-opt.p25 .tw-bar { width: 25%; }
+#workskin .tw .tw-opt.p30 .tw-bar, #workskin .tw-reply .tw-opt.p30 .tw-bar { width: 30%; }
+#workskin .tw .tw-opt.p33 .tw-bar, #workskin .tw-reply .tw-opt.p33 .tw-bar { width: 33%; }
+#workskin .tw .tw-opt.p40 .tw-bar, #workskin .tw-reply .tw-opt.p40 .tw-bar { width: 40%; }
+#workskin .tw .tw-opt.p50 .tw-bar, #workskin .tw-reply .tw-opt.p50 .tw-bar { width: 50%; }
+#workskin .tw .tw-opt.p60 .tw-bar, #workskin .tw-reply .tw-opt.p60 .tw-bar { width: 60%; }
+#workskin .tw .tw-opt.p67 .tw-bar, #workskin .tw-reply .tw-opt.p67 .tw-bar { width: 67%; }
+#workskin .tw .tw-opt.p70 .tw-bar, #workskin .tw-reply .tw-opt.p70 .tw-bar { width: 70%; }
+#workskin .tw .tw-opt.p75 .tw-bar, #workskin .tw-reply .tw-opt.p75 .tw-bar { width: 75%; }
+#workskin .tw .tw-opt.p80 .tw-bar, #workskin .tw-reply .tw-opt.p80 .tw-bar { width: 80%; }
+#workskin .tw .tw-opt.p90 .tw-bar, #workskin .tw-reply .tw-opt.p90 .tw-bar { width: 90%; }
+#workskin .tw .tw-opt.p100 .tw-bar, #workskin .tw-reply .tw-opt.p100 .tw-bar { width: 100%; }</code></pre>
 
-<p>The percentage the reader sees is just the text in <code>tw-pct</code>, so it doesn't have to match the bar exactly - the nearest bar is usually close enough.</p>
+<p>The percentage the reader sees is just the text in <code>tw-pct</code>, so any number can go there. The bar only comes in these sizes, though, and the nearest one is usually close enough. If you want a bar of an exact length, copy one of the rules into your skin, change the three numbers, and give the option that class. For a 58% bar:</p>
+
+<pre><code>#workskin .tw .tw-opt.p58 .tw-bar, #workskin .tw-reply .tw-opt.p58 .tw-bar { width: 58%; }</code></pre>
+
+<p>Then <code><code>&lt;p class="tw-opt res p58"&gt;</code>lt;span class="tw-opt res p58"<code>&lt;p class="tw-opt res p58"&gt;</code>gt;</code> gets a bar 58% of the way across. The class name can be anything, but keeping the number in it makes it easy to remember.</p>
 
 </details>
 
