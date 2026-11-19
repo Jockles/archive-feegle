@@ -63,7 +63,7 @@
       acc: "", verified: false, label: "", qName: "", qHandle: "", qText: "", note: "", date: "",
       reposts: "", likes: "", replies: "", liked: false, reposted: false, poll: "", pollinfo: "",
       vUrl: "", vTitle: "", vDesc: "", warn: false,
-      views: "", saved: false, likeClick: true, locked: false, noRepost: false, fan: "", pollTap: false, pollVote: "0" };
+      views: "", saved: false, likeClick: true, locked: false, noRepost: false, fan: "", pollTap: false, pollVote: "0", pollShowVote: false, pollVoted: "0" };
   }
   // the group's picture in the WhatsApp header: a one-off circle, set up the same way
   function newGroupPic() { return { colour: "5", showInitials: true, initials: "", pic: "", alt: "", land: false }; }
@@ -489,20 +489,25 @@
     var row = (m.pollPick || [])[i] || [];
     return opts.map(function (o, j) { var v = t(row[j]).replace(/%$/, ""); return /^\d{1,3}$/.test(v) ? +v : o.pct || 0; });
   }
-  function pollResults(opts, pcts, tap, vote) {
+  function pollResults(opts, pcts, tap, vote, tick) {
     var top = Math.max.apply(null, pcts), won = false;
     return opts.map(function (o, i) {
       var pct = pcts[i], size = POLL_SIZES.reduce(function (a, b) { return Math.abs(b - pct) < Math.abs(a - pct) ? b : a; });
       var win = !tap && !won && pct === top; if (win) won = true;
-      var voted = tap && i === vote ? '<span class="hide"> - voted </span><span class="tw-voted">&#10003;</span>' : "";
+      var voted = (tap || tick) && i === vote ? '<span class="hide"> - voted </span><span class="tw-voted">&#10003;</span>' : "";
       return '<p class="tw-opt res' + (win ? " win" : "") + " p" + size + '"><span class="tw-bar">' + esc(o.text) + voted + '</span><span class="hide"> </span><span class="tw-pct">' + pct + "%</span></p>";
     });
+  }
+  function pollKind(m) {
+    if (!m.pollKind) m.pollKind = m.pollTap ? "tap" : pollOpts(m).some(function (o) { return o.pct !== null; }) ? "results" : "open";
+    return m.pollKind;
   }
   function twPoll(m) {
     var opts = pollOpts(m);
     if (!opts.length) return [];
-    var done = opts.some(function (o) { return o.pct !== null; }), tap = done && m.pollTap;
+    var kind = pollKind(m), done = kind !== "open", tap = kind === "tap";
     var res = pollResults(opts, opts.map(function (o) { return o.pct || 0; }), tap, +(m.pollVote || 0));
+    if (kind === "results" && m.pollShowVote) res = pollResults(opts, opts.map(function (o) { return o.pct || 0; }), false, +(m.pollVoted || 0), true);
     var info = t(m.pollinfo);
     if (!done) return opts.map(function (o) { return '<p class="tw-opt">' + esc(o.text) + "</p>"; }).concat(info ? ['<p class="tw-pollinfo">' + esc(info) + "</p>"] : []);
     if (!tap) return res.concat(info ? ['<p class="tw-pollinfo">' + esc(info) + "</p>"] : []);
@@ -724,7 +729,8 @@
     "blocks.N.msgs.N.date:tw": "The full time and date, shown when a tweet is opened on its own, like '8:23 AM · 11 May 23'. Leave it empty for most tweets.",
     "blocks.N.msgs.N.hasPoll:tw": "Tick any of these to add it to the tweet, and its boxes open up underneath.",
     "blocks.N.msgs.N.poll:tw": "One option per line. To show the results, put the percentage after each one, like 'Montreal 58%'.",
-    "blocks.N.msgs.N.pollTap:tw": "Readers tap an option to vote, and the results show. It needs the percentages, and adds one to the number of votes.",
+    "blocks.N.msgs.N.pollKind:tw": "'Still open' shows just the options in blue outlines. 'Finished' shows the results, with the winner in blue. 'Tappable' starts open, and readers tap it to vote and see the results, with one more vote. 'Finished' and 'Tappable' need the percentages.",
+    "blocks.N.msgs.N.pollShowVote:tw": "Puts a tick on the option this account voted for.",
     "blocks.N.msgs.N.pollVote:tw": "Which option gets the vote and the tick. Pick 'Whichever one the reader picks' to let the reader choose, then set what the results say after each choice.",
     "blocks.N.msgs.N.qName:tw": "Another tweet shown inside this one, in a box. Fill in who posted it and what it said.",
     "blocks.N.msgs.N.note:tw": "A community note: the box under a tweet that adds context, starting 'Readers added context'.",
@@ -967,12 +973,16 @@
       TW_ADDS.forEach(function (a) { if (m[a[0]] === undefined) m[a[0]] = has(m, a[0]); });
       h.push('<p class="hint">Add to this tweet:</p><div>' + TW_ADDS.map(function (a) { return field(P + "." + a[0], a[1], { type: "check", re: true }); }).join(" ") + "</div>");
       if (m.hasPoll) {
-        // with results, the poll can be tapped to vote: the tick goes on the pov character's choice
+        // open, finished (the results), or tapped to vote: the tick goes on the vote
+        var kind = pollKind(m), names = pollOpts(m).slice(0, 4).map(function (o, k) { return [String(k), o.text]; });
+        if (!names.length) names = [["0", "The first option"]];
         h.push('<div class="fb-acct">' + field(P + ".poll", "Poll: one option per line. For the results, put the percentage after each one, like Montreal 58%", { type: "area", rows: 2 }) +
-          field(P + ".pollinfo", "Under the poll", { ph: "179 votes · 13 minutes left" }) +
-          field(P + ".pollTap", "Readers tap the poll to vote and see the results (needs the percentages, and adds one to the votes)", { type: "check", re: true }) +
-          (m.pollTap ? field(P + ".pollVote", "The vote goes to", { type: "select", re: true, options: [["0", "The first option"], ["1", "The second option"], ["2", "The third option"], ["3", "The fourth option"], ["pick", "Whichever one the reader picks"]] }) : "") +
-          (m.pollTap && m.pollVote === "pick" ? pickRows(P, m) : "") + "</div>");
+          field(P + ".pollinfo", "Under the poll", { ph: kind === "results" ? "97 votes · Final results" : "179 votes · 13 minutes left" }) +
+          field(P + ".pollKind", "This poll is", { type: "select", re: true, options: [["open", "Still open: just the options"], ["results", "Finished: showing the results"], ["tap", "Tappable: readers tap it to vote and see the results"]] }) +
+          (kind === "results" ? field(P + ".pollShowVote", "Show which one they voted for (a tick)", { type: "check", re: true }) +
+            (m.pollShowVote ? field(P + ".pollVoted", "They voted for", { type: "select", options: names }) : "") : "") +
+          (kind === "tap" ? field(P + ".pollVote", "The vote goes to", { type: "select", re: true, options: names.concat([["pick", "Whichever one the reader picks"]]) }) : "") +
+          (kind === "tap" && m.pollVote === "pick" ? pickRows(P, m) : "") + "</div>");
       }
       if (m.hasQuote) h.push('<div class="fb-acct"><p class="hint">Quote tweet:' + help(P + ".qName") + '</p><div class="fb-grid"><div>' + field(P + ".qName", "", { ph: "Their name" }) + "</div><div>" + field(P + ".qHandle", "", { ph: "Their handle" }) + "</div></div>" +
         field(P + ".qText", "", { ph: "What they said" }) + "</div>");
