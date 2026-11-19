@@ -1,0 +1,651 @@
+<p>This chapter is Twitter before it became X, in two separate modules: <code>twc12</code> for 2012 to 2015, and <code>twc16</code> for 2016 to 2019. Each one has its own section below, and each works on its own, so add whichever fits when your fic is set, or both if it covers both. Neither needs the Twitter/X module.</p>
+
+<!-- contents -->
+
+<h3>2012 to 2015</h3>
+
+<p>Twitter in 2013: square pictures, stars instead of hearts, a bright blue bar along the top of the app and a black row of buttons along the bottom. Opened tweets had their words in a serif font, and the timeline in the app didn't show any buttons under the tweets at all. Here's a timeline, and an opened tweet with its replies. The full HTML is under each one, and the rest of this section takes them apart.</p>
+
+<h4>A 2012-15 Timeline</h4>
+
+<div class="twc12-feed">
+  <p class="twc-bar"><span class="ic ic-tw-me">&#9786;</span><span class="twc-title">Home</span><span class="ic ic-x-search">&#128269;</span><span class="ic ic-tw-compose">&#9998;</span></p>
+  <div class="mob twc12">
+    <p class="tw-top"><span class="tw-pfp"><span class="pfp pfp-stan"></span></span><span class="hide"> </span><span class="tw-name"><span class="name pfp-stan"><span class="hide">Stan</span></span></span> <span class="tw-handle"><span class="handle pfp-stan"><span class="hide">@PuckStan</span></span></span> <span class="tw-time">33m</span></p>
+    <p class="tw-text">Shane Hollander on the ice in practice today. The rookie looks fast <span class="tw-link">#hockey</span></p>
+  </div>
+  <div class="mob twc12">
+    <p class="tw-top"><span class="tw-pfp"><span class="pfp pfp-zim"></span></span><span class="hide"> </span><span class="tw-name"><span class="name pfp-zim"><span class="hide">Zim</span></span></span> <span class="tw-handle"><span class="handle pfp-zim"><span class="hide">@ZimBits</span></span></span> <span class="tw-time">1h</span></p>
+    <p class="tw-text">Rookie camp is officially open and someone has already lost a skate. Not a pair. One skate</p>
+    <p class="tw-label"><span class="ic ic-tw-repost">&#8644;</span> Retweeted by Holster</p>
+  </div>
+  <div class="mob twc12">
+    <p class="tw-top"><span class="tw-pfp"><span class="pfp pfp-luca"></span></span><span class="hide"> </span><span class="tw-name"><span class="name pfp-luca"><span class="hide">Luca</span></span></span> <span class="tw-handle"><span class="handle pfp-luca"><span class="hide">@luca_tweets</span></span></span> <span class="tw-time">2h</span></p>
+    <p class="tw-text">my cat has learnt to open the fridge. send help</p>
+  </div>
+  <div class="mob twc12">
+    <p class="tw-top"><span class="tw-pfp"><span class="pfp pfp-rose"></span></span><span class="hide"> </span><span class="tw-name"><span class="name pfp-rose"><span class="hide">Rose Landry</span></span> <span class="ic ic-verified">&#10004;</span></span> <span class="tw-handle"><span class="handle pfp-rose"><span class="hide">@RoseLandry</span></span></span> <span class="tw-time">3h</span></p>
+    <p class="tw-text">Table read done. Coffee count: four. Scenes I cried in: also four</p>
+  </div>
+  <p class="tw-nav"><span class="tw-tab on"><span class="ic ic-x-home-filled">&#8962;</span> Home</span> <span class="tw-tab"><span class="ic ic-tw-at">@</span> Connect</span> <span class="tw-tab"><span class="ic ic-tw-hash">#</span> Discover</span> <span class="tw-tab"><span class="ic ic-tw-me">&#9786;</span> Me</span></p>
+</div>
+
+<details>
+<summary>The full HTML for this timeline</summary>
+
+<pre><code>&lt;div class="twc12-feed"&gt;
+  &lt;p class="twc-bar"&gt;&lt;span class="ic ic-tw-me"&gt;&amp;#9786;&lt;/span&gt;&lt;span class="twc-title"&gt;Home&lt;/span&gt;&lt;span class="ic ic-x-search"&gt;&amp;#128269;&lt;/span&gt;&lt;span class="ic ic-tw-compose"&gt;&amp;#9998;&lt;/span&gt;&lt;/p&gt;
+  &lt;div class="mob twc12"&gt;
+    &lt;p class="tw-top"&gt;&lt;span class="tw-pfp"&gt;&lt;span class="pfp pfp-stan"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="tw-name"&gt;&lt;span class="name pfp-stan"&gt;&lt;span class="hide"&gt;Stan&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; &lt;span class="tw-handle"&gt;&lt;span class="handle pfp-stan"&gt;&lt;span class="hide"&gt;@PuckStan&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; &lt;span class="tw-time"&gt;33m&lt;/span&gt;&lt;/p&gt;
+    &lt;p class="tw-text"&gt;Shane Hollander on the ice in practice today. The rookie looks fast &lt;span class="tw-link"&gt;#hockey&lt;/span&gt;&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="mob twc12"&gt;
+    &lt;p class="tw-top"&gt;&lt;span class="tw-pfp"&gt;&lt;span class="pfp pfp-zim"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="tw-name"&gt;&lt;span class="name pfp-zim"&gt;&lt;span class="hide"&gt;Zim&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; &lt;span class="tw-handle"&gt;&lt;span class="handle pfp-zim"&gt;&lt;span class="hide"&gt;@ZimBits&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; &lt;span class="tw-time"&gt;1h&lt;/span&gt;&lt;/p&gt;
+    &lt;p class="tw-text"&gt;Rookie camp is officially open and someone has already lost a skate. Not a pair. One skate&lt;/p&gt;
+    &lt;p class="tw-label"&gt;&lt;span class="ic ic-tw-repost"&gt;&amp;#8644;&lt;/span&gt; Retweeted by Holster&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="mob twc12"&gt;
+    &lt;p class="tw-top"&gt;&lt;span class="tw-pfp"&gt;&lt;span class="pfp pfp-luca"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="tw-name"&gt;&lt;span class="name pfp-luca"&gt;&lt;span class="hide"&gt;Luca&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; &lt;span class="tw-handle"&gt;&lt;span class="handle pfp-luca"&gt;&lt;span class="hide"&gt;@luca_tweets&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; &lt;span class="tw-time"&gt;2h&lt;/span&gt;&lt;/p&gt;
+    &lt;p class="tw-text"&gt;my cat has learnt to open the fridge. send help&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="mob twc12"&gt;
+    &lt;p class="tw-top"&gt;&lt;span class="tw-pfp"&gt;&lt;span class="pfp pfp-rose"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="tw-name"&gt;&lt;span class="name pfp-rose"&gt;&lt;span class="hide"&gt;Rose Landry&lt;/span&gt;&lt;/span&gt; &lt;span class="ic ic-verified"&gt;&amp;#10004;&lt;/span&gt;&lt;/span&gt; &lt;span class="tw-handle"&gt;&lt;span class="handle pfp-rose"&gt;&lt;span class="hide"&gt;@RoseLandry&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; &lt;span class="tw-time"&gt;3h&lt;/span&gt;&lt;/p&gt;
+    &lt;p class="tw-text"&gt;Table read done. Coffee count: four. Scenes I cried in: also four&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;p class="tw-nav"&gt;&lt;span class="tw-tab on"&gt;&lt;span class="ic ic-x-home-filled"&gt;&amp;#8962;&lt;/span&gt; Home&lt;/span&gt; &lt;span class="tw-tab"&gt;&lt;span class="ic ic-tw-at"&gt;@&lt;/span&gt; Connect&lt;/span&gt; &lt;span class="tw-tab"&gt;&lt;span class="ic ic-tw-hash"&gt;#&lt;/span&gt; Discover&lt;/span&gt; &lt;span class="tw-tab"&gt;&lt;span class="ic ic-tw-me"&gt;&amp;#9786;&lt;/span&gt; Me&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+
+</details>
+
+<h4>A 2012-15 Tweet and Its Replies</h4>
+
+<div class="twc12-feed">
+  <p class="twc-bar"><span class="ic ic-back">&#8592;</span><span class="twc-title">Tweet</span><span class="ic ic-x-search">&#128269;</span><span class="ic ic-tw-compose">&#9998;</span></p>
+  <div class="mob twc12">
+    <p class="tw-top"><span class="tw-pfp"><span class="pfp pfp-stan"></span></span><span class="hide"> </span><span class="tw-name"><span class="name pfp-stan"><span class="hide">Stan</span></span></span> <span class="tw-handle"><span class="handle pfp-stan"><span class="hide">@PuckStan</span></span></span> <span class="tw-time">33m</span></p>
+    <p class="tw-text">Shane Hollander on the ice in practice today. The rookie looks fast <span class="tw-link">#hockey</span></p>
+  </div>
+  <div class="mob twc12 big">
+    <p class="tw-top"><span class="tw-pfp"><span class="pfp pfp-ilya"></span></span><span class="hide"> </span><span class="tw-name"><span class="name pfp-ilya"><span class="hide">Ilya</span></span></span> <span class="tw-handle"><span class="handle pfp-ilya"><span class="hide">@irozanov</span></span></span></p>
+    <p class="tw-text"><span class="tw-link">@PuckStan</span> he is not that fast. I have seen faster. I am faster</p>
+    <p class="tw-date">8/2/13, 2:26 PM</p>
+    <p class="tw-counts"><b>11</b> Retweets <b>17</b> Favorites</p>
+    <div class="tw-stats">
+      <p class="tw-stat"><span class="ic ic-tw-reply">&#8617;</span><span class="hide"> Reply</span></p>
+      <p class="tw-stat"><span class="ic ic-tw-repost">&#8644;</span><span class="hide"> Retweet</span></p>
+      <details class="tw-stat tw-tog"><summary><span class="ic ic-tw-like">&#9734;</span><span class="hide"> Favorite</span></summary></details>
+      <p class="tw-stat"><span class="ic ic-tw-share">&#8943;</span><span class="hide"> More</span></p>
+    </div>
+    <p class="twc-foot"><span>Reply to Ilya Rozanov</span></p>
+  </div>
+  <div class="mob twc12">
+    <p class="tw-top"><span class="tw-pfp"><span class="pfp pfp-zim"></span></span><span class="hide"> </span><span class="tw-name"><span class="name pfp-zim"><span class="hide">Zim</span></span></span> <span class="tw-handle"><span class="handle pfp-zim"><span class="hide">@ZimBits</span></span></span> <span class="tw-time">16m</span></p>
+    <p class="tw-text"><span class="tw-link">@irozanov</span> <span class="tw-link">@PuckStan</span> said the man who fell over at the blue line yesterday</p>
+  </div>
+  <div class="mob twc12">
+    <p class="tw-top"><span class="tw-pfp"><span class="pfp pfp-stan"></span></span><span class="hide"> </span><span class="tw-name"><span class="name pfp-stan"><span class="hide">Stan</span></span></span> <span class="tw-handle"><span class="handle pfp-stan"><span class="hide">@PuckStan</span></span></span> <span class="tw-time">9m</span></p>
+    <p class="tw-text"><span class="tw-link">@irozanov</span> sure mate</p>
+  </div>
+  <p class="tw-nav"><span class="tw-tab on"><span class="ic ic-x-home-filled">&#8962;</span> Home</span> <span class="tw-tab"><span class="ic ic-tw-at">@</span> Connect</span> <span class="tw-tab"><span class="ic ic-tw-hash">#</span> Discover</span> <span class="tw-tab"><span class="ic ic-tw-me">&#9786;</span> Me</span></p>
+</div>
+
+<details>
+<summary>The full HTML for this tweet and its replies</summary>
+
+<pre><code>&lt;div class="twc12-feed"&gt;
+  &lt;p class="twc-bar"&gt;&lt;span class="ic ic-back"&gt;&amp;#8592;&lt;/span&gt;&lt;span class="twc-title"&gt;Tweet&lt;/span&gt;&lt;span class="ic ic-x-search"&gt;&amp;#128269;&lt;/span&gt;&lt;span class="ic ic-tw-compose"&gt;&amp;#9998;&lt;/span&gt;&lt;/p&gt;
+  &lt;div class="mob twc12"&gt;
+    &lt;p class="tw-top"&gt;&lt;span class="tw-pfp"&gt;&lt;span class="pfp pfp-stan"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="tw-name"&gt;&lt;span class="name pfp-stan"&gt;&lt;span class="hide"&gt;Stan&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; &lt;span class="tw-handle"&gt;&lt;span class="handle pfp-stan"&gt;&lt;span class="hide"&gt;@PuckStan&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; &lt;span class="tw-time"&gt;33m&lt;/span&gt;&lt;/p&gt;
+    &lt;p class="tw-text"&gt;Shane Hollander on the ice in practice today. The rookie looks fast &lt;span class="tw-link"&gt;#hockey&lt;/span&gt;&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="mob twc12 big"&gt;
+    &lt;p class="tw-top"&gt;&lt;span class="tw-pfp"&gt;&lt;span class="pfp pfp-ilya"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="tw-name"&gt;&lt;span class="name pfp-ilya"&gt;&lt;span class="hide"&gt;Ilya&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; &lt;span class="tw-handle"&gt;&lt;span class="handle pfp-ilya"&gt;&lt;span class="hide"&gt;@irozanov&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+    &lt;p class="tw-text"&gt;&lt;span class="tw-link"&gt;@PuckStan&lt;/span&gt; he is not that fast. I have seen faster. I am faster&lt;/p&gt;
+    &lt;p class="tw-date"&gt;8/2/13, 2:26 PM&lt;/p&gt;
+    &lt;p class="tw-counts"&gt;&lt;b&gt;11&lt;/b&gt; Retweets &lt;b&gt;17&lt;/b&gt; Favorites&lt;/p&gt;
+    &lt;div class="tw-stats"&gt;
+      &lt;p class="tw-stat"&gt;&lt;span class="ic ic-tw-reply"&gt;&amp;#8617;&lt;/span&gt;&lt;span class="hide"&gt; Reply&lt;/span&gt;&lt;/p&gt;
+      &lt;p class="tw-stat"&gt;&lt;span class="ic ic-tw-repost"&gt;&amp;#8644;&lt;/span&gt;&lt;span class="hide"&gt; Retweet&lt;/span&gt;&lt;/p&gt;
+      &lt;details class="tw-stat tw-tog"&gt;&lt;summary&gt;&lt;span class="ic ic-tw-like"&gt;&amp;#9734;&lt;/span&gt;&lt;span class="hide"&gt; Favorite&lt;/span&gt;&lt;/summary&gt;&lt;/details&gt;
+      &lt;p class="tw-stat"&gt;&lt;span class="ic ic-tw-share"&gt;&amp;#8943;&lt;/span&gt;&lt;span class="hide"&gt; More&lt;/span&gt;&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;p class="twc-foot"&gt;&lt;span&gt;Reply to Ilya Rozanov&lt;/span&gt;&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="mob twc12"&gt;
+    &lt;p class="tw-top"&gt;&lt;span class="tw-pfp"&gt;&lt;span class="pfp pfp-zim"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="tw-name"&gt;&lt;span class="name pfp-zim"&gt;&lt;span class="hide"&gt;Zim&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; &lt;span class="tw-handle"&gt;&lt;span class="handle pfp-zim"&gt;&lt;span class="hide"&gt;@ZimBits&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; &lt;span class="tw-time"&gt;16m&lt;/span&gt;&lt;/p&gt;
+    &lt;p class="tw-text"&gt;&lt;span class="tw-link"&gt;@irozanov&lt;/span&gt; &lt;span class="tw-link"&gt;@PuckStan&lt;/span&gt; said the man who fell over at the blue line yesterday&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="mob twc12"&gt;
+    &lt;p class="tw-top"&gt;&lt;span class="tw-pfp"&gt;&lt;span class="pfp pfp-stan"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="tw-name"&gt;&lt;span class="name pfp-stan"&gt;&lt;span class="hide"&gt;Stan&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; &lt;span class="tw-handle"&gt;&lt;span class="handle pfp-stan"&gt;&lt;span class="hide"&gt;@PuckStan&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; &lt;span class="tw-time"&gt;9m&lt;/span&gt;&lt;/p&gt;
+    &lt;p class="tw-text"&gt;&lt;span class="tw-link"&gt;@irozanov&lt;/span&gt; sure mate&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;p class="tw-nav"&gt;&lt;span class="tw-tab on"&gt;&lt;span class="ic ic-x-home-filled"&gt;&amp;#8962;&lt;/span&gt; Home&lt;/span&gt; &lt;span class="tw-tab"&gt;&lt;span class="ic ic-tw-at"&gt;@&lt;/span&gt; Connect&lt;/span&gt; &lt;span class="tw-tab"&gt;&lt;span class="ic ic-tw-hash"&gt;#&lt;/span&gt; Discover&lt;/span&gt; &lt;span class="tw-tab"&gt;&lt;span class="ic ic-tw-me"&gt;&amp;#9786;&lt;/span&gt; Me&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+
+</details>
+
+<h4>The 2012-15 Tweet</h4>
+
+<p>A tweet is a container with <code>mob twc12</code>. Inside, the name line goes in <code>tw-top</code> and the words in <code>tw-text</code>. The picture sits in a column of its own on the left, the name and handle go beside it, and the time goes over in the top right corner. Leave the dot off the time, since it doesn't sit next to the handle:</p>
+
+<div class="mob twc12">
+<p class="tw-top"><span class="tw-pfp"><span class="pfp pfp-stan"></span></span><span class="hide"> </span><span class="tw-name"><span class="name pfp-stan"><span class="hide">Stan</span></span></span> <span class="tw-handle"><span class="handle pfp-stan"><span class="hide">@PuckStan</span></span></span> <span class="tw-time">33m</span></p>
+<p class="tw-text">Shane Hollander on the ice in practice today. The rookie looks fast <span class="tw-link">#hockey</span></p>
+</div>
+
+<pre><code>
+&lt;p class="tw-top"&gt;&lt;span class="tw-pfp"&gt;&lt;span class="pfp pfp-stan"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="tw-name"&gt;&lt;span class="name pfp-stan"&gt;&lt;span class="hide"&gt;Stan&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; &lt;span class="tw-handle"&gt;&lt;span class="handle pfp-stan"&gt;&lt;span class="hide"&gt;@PuckStan&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; &lt;span class="tw-time"&gt;33m&lt;/span&gt;&lt;/p&gt;
+&lt;p class="tw-text"&gt;Shane Hollander on the ice in practice today. The rookie looks fast &lt;span class="tw-link"&gt;#hockey&lt;/span&gt;&lt;/p&gt;
+</code></pre>
+
+<details>
+<summary>Pictures, names, links and ticks</summary>
+
+<p>The picture in <code>tw-pfp</code> can be initials with a colour, a picture tag, or a profile, and the name and handle can be typed or come from a profile. Hashtags, @mentions and links go in <code>tw-link</code> to make them blue. A verified tick goes inside the <code>tw-name</code>, after the name: <code>&lt;span class=&quot;ic ic-verified&quot;&gt;&amp;#10004;&lt;/span&gt;</code>.</p>
+
+<p>Any name can be too long for its line. When it doesn't fit, the handle shrinks first and can disappear completely, then the name is cut off, tick and all, and the time always stays. Put the name in a plain <code>&lt;span&gt;</code> inside <code>tw-name</code> and it ends in "...". Without the span it stops at the last whole word that fits. On an opened tweet, a long name wraps onto a second line instead.</p>
+
+</details>
+
+<p>Twitter had no night mode in these years, so this module is always light, whatever theme you put on it.</p>
+
+<h4>2012-15 Retweets</h4>
+
+<p>A retweet showed the original tweet with a small grey line under the words saying who retweeted it. Add it after the <code>tw-text</code>:</p>
+
+<pre><code>&lt;p class="tw-label"&gt;&lt;span class="ic ic-tw-repost"&gt;&amp;#8644;&lt;/span&gt; Retweeted by Holster&lt;/p&gt;</code></pre>
+
+<h4>2012-15 Replies</h4>
+
+<p>There was no "Replying to" line back then: a reply was a tweet that started with the @handle of the person it answered, and replying to several people meant a string of @handles at the start. Put each one in a <code>tw-link</code>:</p>
+
+<pre><code>&lt;p class="tw-text"&gt;&lt;span class="tw-link"&gt;@irozanov&lt;/span&gt; &lt;span class="tw-link"&gt;@PuckStan&lt;/span&gt; said the man who fell over at the blue line yesterday&lt;/p&gt;</code></pre>
+
+<details>
+<summary>The "Details" link</summary>
+
+<p>On the website, timeline tweets had a small grey "Details" link under them. To copy that, add <code>&lt;p class=&quot;tw-details&quot;&gt;Details&lt;/p&gt;</code> after the words.</p>
+
+</details>
+
+
+<h4>2012-15 Pictures</h4>
+
+<p>A picture goes under the words in a <code>tw-media</code>, with the corners rounded to match the profile pictures: <code>&lt;p class=&quot;tw-media&quot;&gt;&lt;img src=&quot;...&quot; alt=&quot;...&quot;&gt;&lt;/p&gt;</code>. One picture per tweet.</p>
+
+<h4>2012-15 Buttons</h4>
+
+<p>The buttons were reply (a curved arrow), retweet, favorite (a star) and three dots for more, all in grey with no numbers next to them. In the app they only showed up on an opened tweet, but you can add them to any tweet:</p>
+
+<pre><code>&lt;div class="tw-stats"&gt;
+  &lt;p class="tw-stat"&gt;&lt;span class="ic ic-tw-reply"&gt;&amp;#8617;&lt;/span&gt;&lt;span class="hide"&gt; Reply&lt;/span&gt;&lt;/p&gt;
+  &lt;p class="tw-stat"&gt;&lt;span class="ic ic-tw-repost"&gt;&amp;#8644;&lt;/span&gt;&lt;span class="hide"&gt; Retweet&lt;/span&gt;&lt;/p&gt;
+  &lt;details class="tw-stat tw-tog"&gt;&lt;summary&gt;&lt;span class="ic ic-tw-like"&gt;&amp;#9734;&lt;/span&gt;&lt;span class="hide"&gt; Favorite&lt;/span&gt;&lt;/summary&gt;&lt;/details&gt;
+  &lt;p class="tw-stat"&gt;&lt;span class="ic ic-tw-share"&gt;&amp;#8943;&lt;/span&gt;&lt;span class="hide"&gt; More&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+
+<details>
+<summary>Clickable stars, and buttons already used</summary>
+
+<p>The star is clickable: readers can tap it to favorite the tweet and it turns gold, and tap it again to take it back. For a favorite or a retweet the account has already made, add <code>tw-liked</code> or <code>tw-rt</code> to that button's <code>tw-stat</code>, which makes it gold or green. The hidden words are for readers with the workskin off, so the row reads "Reply Retweet Favorite More" instead of a row of symbols.</p>
+
+</details>
+
+
+<h4>A 2012-15 Opened Tweet</h4>
+
+<p>Add <code>big</code> to the container for a tweet that's been tapped on and opened. The handle moves under the name, and the words get bigger and switch to a serif font, with the date, the counts, the buttons and a reply box underneath:</p>
+
+<div class="mob twc12 big">
+<p class="tw-top"><span class="tw-pfp"><span class="pfp pfp-ilya"></span></span><span class="hide"> </span><span class="tw-name"><span class="name pfp-ilya"><span class="hide">Ilya</span></span></span> <span class="tw-handle"><span class="handle pfp-ilya"><span class="hide">@irozanov</span></span></span></p>
+<p class="tw-text"><span class="tw-link">@PuckStan</span> he is not that fast. I have seen faster. I am faster</p>
+<p class="tw-date">8/2/13, 2:26 PM</p>
+<p class="tw-counts"><b>11</b> Retweets <b>17</b> Favorites</p>
+<div class="tw-stats">
+  <p class="tw-stat"><span class="ic ic-tw-reply">&#8617;</span><span class="hide"> Reply</span></p>
+  <p class="tw-stat"><span class="ic ic-tw-repost">&#8644;</span><span class="hide"> Retweet</span></p>
+  <details class="tw-stat tw-tog"><summary><span class="ic ic-tw-like">&#9734;</span><span class="hide"> Favorite</span></summary></details>
+  <p class="tw-stat"><span class="ic ic-tw-share">&#8943;</span><span class="hide"> More</span></p>
+</div>
+<p class="twc-foot"><span>Reply to Ilya Rozanov</span></p>
+</div>
+
+<pre><code>
+&lt;p class="tw-top"&gt;&lt;span class="tw-pfp"&gt;&lt;span class="pfp pfp-ilya"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="tw-name"&gt;&lt;span class="name pfp-ilya"&gt;&lt;span class="hide"&gt;Ilya&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; &lt;span class="tw-handle"&gt;&lt;span class="handle pfp-ilya"&gt;&lt;span class="hide"&gt;@irozanov&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p class="tw-text"&gt;&lt;span class="tw-link"&gt;@PuckStan&lt;/span&gt; he is not that fast. I have seen faster. I am faster&lt;/p&gt;
+&lt;p class="tw-date"&gt;8/2/13, 2:26 PM&lt;/p&gt;
+&lt;p class="tw-counts"&gt;&lt;b&gt;11&lt;/b&gt; Retweets &lt;b&gt;17&lt;/b&gt; Favorites&lt;/p&gt;
+&lt;div class="tw-stats"&gt;
+  &lt;p class="tw-stat"&gt;&lt;span class="ic ic-tw-reply"&gt;&amp;#8617;&lt;/span&gt;&lt;span class="hide"&gt; Reply&lt;/span&gt;&lt;/p&gt;
+  &lt;p class="tw-stat"&gt;&lt;span class="ic ic-tw-repost"&gt;&amp;#8644;&lt;/span&gt;&lt;span class="hide"&gt; Retweet&lt;/span&gt;&lt;/p&gt;
+  &lt;details class="tw-stat tw-tog"&gt;&lt;summary&gt;&lt;span class="ic ic-tw-like"&gt;&amp;#9734;&lt;/span&gt;&lt;span class="hide"&gt; Favorite&lt;/span&gt;&lt;/summary&gt;&lt;/details&gt;
+  &lt;p class="tw-stat"&gt;&lt;span class="ic ic-tw-share"&gt;&amp;#8943;&lt;/span&gt;&lt;span class="hide"&gt; More&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;p class="twc-foot"&gt;&lt;span&gt;Reply to Ilya Rozanov&lt;/span&gt;&lt;/p&gt;
+</code></pre>
+
+<details>
+<summary>Each part of an opened tweet, piece by piece</summary>
+
+<ul>
+  <li><code>tw-date</code> - the date, written the way Twitter did: "8/2/13, 2:26 PM".</li>
+  <li><code>tw-counts</code> - the retweets and favorites, with each number in bold. Twitter wrote the counts in capitals, and the CSS does that for you.</li>
+  <li><code>tw-stats</code> - the buttons, with no numbers.</li>
+  <li><code>twc-foot</code> - the reply box, last of all.</li>
+</ul>
+
+</details>
+
+<p>In the app, the tweet being replied to sat above the opened tweet, and the replies were listed underneath it, all in the usual timeline size. You can see that in <a href="#heading">A 2012-15 Tweet and Its Replies</a>, above.</p>
+
+<h4>The 2012-15 App Screen</h4>
+
+<p>To show tweets the way they looked in the app, put them inside a <code>twc12-feed</code>. The tweets inside lose their own borders and sit one under the other with a line between them, and the screen scrolls once it's taller than a phone.</p>
+
+<details>
+<summary>The blue bar along the top</summary>
+
+<p>The blue bar along the top, <code>twc-bar</code>, has the page name in <code>twc-title</code>, which always sits in the middle. On the home timeline there's a person button on the left, and on an opened tweet a back arrow instead. The search and write-a-tweet buttons go on the right:</p>
+
+<pre><code>&lt;p class="twc-bar"&gt;&lt;span class="ic ic-tw-me"&gt;&amp;#9786;&lt;/span&gt;&lt;span class="twc-title"&gt;Home&lt;/span&gt;&lt;span class="ic ic-x-search"&gt;&amp;#128269;&lt;/span&gt;&lt;span class="ic ic-tw-compose"&gt;&amp;#9998;&lt;/span&gt;&lt;/p&gt;
+&lt;p class="twc-bar"&gt;&lt;span class="ic ic-back"&gt;&amp;#8592;&lt;/span&gt;&lt;span class="twc-title"&gt;Tweet&lt;/span&gt;&lt;span class="ic ic-x-search"&gt;&amp;#128269;&lt;/span&gt;&lt;span class="ic ic-tw-compose"&gt;&amp;#9998;&lt;/span&gt;&lt;/p&gt;</code></pre>
+
+</details>
+
+<details>
+<summary>The black row of buttons along the bottom</summary>
+
+<p>The black row of buttons along the bottom, <code>tw-nav</code>, has Home, Connect, Discover and Me. Each one is a <code>tw-tab</code> with its icon and its name, and <code>on</code> lights up the page you're on:</p>
+
+<pre><code>&lt;p class="tw-nav"&gt;&lt;span class="tw-tab on"&gt;&lt;span class="ic ic-x-home-filled"&gt;&amp;#8962;&lt;/span&gt; Home&lt;/span&gt; &lt;span class="tw-tab"&gt;&lt;span class="ic ic-tw-at"&gt;@&lt;/span&gt; Connect&lt;/span&gt; &lt;span class="tw-tab"&gt;&lt;span class="ic ic-tw-hash"&gt;#&lt;/span&gt; Discover&lt;/span&gt; &lt;span class="tw-tab"&gt;&lt;span class="ic ic-tw-me"&gt;&amp;#9786;&lt;/span&gt; Me&lt;/span&gt;&lt;/p&gt;</code></pre>
+
+</details>
+
+<p>Both bars stay put while the tweets scroll between them, and both are optional, so leave either out if you don't want it.</p>
+
+<h3>2016 to 2019</h3>
+
+<p>Twitter in 2018: round pictures, hearts, a little grey arrow in the corner of every tweet, and quote tweets everywhere. The app had a plain bar along the top with your own picture in it, a row of outline buttons along the bottom, and a dim blue night mode. Here's a timeline, and an opened tweet with its replies. The full HTML is under each one, and the rest of this section takes them apart.</p>
+
+<h4>A 2016-19 Timeline</h4>
+
+<div class="twc16-feed theme-auto">
+  <p class="twc-bar"><span class="tw-me"><span class="pfp pfp-shane"></span></span><span class="twc-title">Home</span></p>
+  <div class="mob twc16">
+    <p class="tw-label"><span class="ic ic-tw-repost">&#8644;</span> Shane Hollander Retweeted</p>
+    <p class="tw-top"><span class="tw-pfp"><span class="pfp pfp-zim"></span></span><span class="hide"> </span><span class="tw-name"><span class="name pfp-zim"><span class="hide">Zim</span></span></span> <span class="tw-handle"><span class="handle pfp-zim"><span class="hide">@ZimBits</span></span></span> <span class="tw-time">· 3h</span> <span class="tw-more ic ic-dropdown">&#8964;</span></p>
+    <p class="tw-text">Rookie camp is officially open and someone has already lost a skate. Not a pair. One skate. <span class="tw-link">#preseason</span></p>
+    <div class="tw-stats">
+      <p class="tw-stat"><span class="ic ic-tw-reply">&#128172;</span> 14<span class="hide"> replies</span></p>
+      <p class="tw-stat"><span class="ic ic-tw-repost">&#8644;</span> 52<span class="hide"> retweets</span></p>
+      <details class="tw-stat tw-tog"><summary><span class="ic ic-tw-like">&#9825;</span><span class="off"> 310</span><span class="hide"> likes (</span><span class="on"> 311</span><span class="hide"> once liked)</span></summary></details>
+      <p class="tw-stat"><span class="ic ic-tw-mail">&#9993;</span><span class="hide"> Message</span></p>
+    </div>
+  </div>
+  <div class="mob twc16 link">
+    <p class="tw-top"><span class="tw-pfp"><span class="pfp pfp-holster"></span></span><span class="hide"> </span><span class="tw-name"><span class="name pfp-holster"><span class="hide">Holster</span></span></span> <span class="tw-handle"><span class="handle pfp-holster"><span class="hide">@HolsterInLaw</span></span></span> <span class="tw-time">· 33m</span> <span class="tw-more ic ic-dropdown">&#8964;</span></p>
+    <p class="tw-text">nearly lost my lunch watching Shane try and swing a baseball bat</p>
+    <div class="tw-stats">
+      <p class="tw-stat"><span class="ic ic-tw-reply">&#128172;</span> 7<span class="hide"> replies</span></p>
+      <p class="tw-stat"><span class="ic ic-tw-repost">&#8644;</span> 27<span class="hide"> retweets</span></p>
+      <details class="tw-stat tw-tog"><summary><span class="ic ic-tw-like">&#9825;</span><span class="off"> 173</span><span class="hide"> likes (</span><span class="on"> 174</span><span class="hide"> once liked)</span></summary></details>
+      <p class="tw-stat"><span class="ic ic-tw-mail">&#9993;</span><span class="hide"> Message</span></p>
+    </div>
+  </div>
+  <div class="mob twc16">
+    <p class="tw-top"><span class="tw-pfp"><span class="pfp pfp-rose"></span></span><span class="hide"> </span><span class="tw-name"><span class="name pfp-rose"><span class="hide">Rose Landry</span></span> <span class="ic ic-verified">&#10004;</span></span> <span class="tw-handle"><span class="handle pfp-rose"><span class="hide">@RoseLandry</span></span></span> <span class="tw-time">· 27s</span> <span class="tw-more ic ic-dropdown">&#8964;</span></p>
+    <p class="tw-replying">Replying to <span class="tw-link">@HolsterInLaw</span></p>
+    <p class="tw-text">now you know how it feels watching you try to play defence</p>
+    <div class="tw-stats">
+      <p class="tw-stat"><span class="ic ic-tw-reply">&#128172;</span></p>
+      <p class="tw-stat"><span class="ic ic-tw-repost">&#8644;</span> 1<span class="hide"> retweets</span></p>
+      <details class="tw-stat tw-tog" open><summary><span class="ic ic-tw-like">&#9825;</span><span class="off"> 8</span><span class="hide"> likes (</span><span class="on"> 9</span><span class="hide"> once liked)</span></summary></details>
+      <p class="tw-stat"><span class="ic ic-tw-mail">&#9993;</span><span class="hide"> Message</span></p>
+    </div>
+  </div>
+  <div class="mob twc16">
+    <p class="tw-label"><span class="ic ic-tw-like">&#9825;</span> Rose Landry liked</p>
+    <p class="tw-top"><span class="tw-pfp"><span class="pfp pfp-stan"></span></span><span class="hide"> </span><span class="tw-name"><span class="name pfp-stan"><span class="hide">Stan</span></span></span> <span class="tw-handle"><span class="handle pfp-stan"><span class="hide">@PuckStan</span></span></span> <span class="tw-time">· 5h</span> <span class="tw-more ic ic-dropdown">&#8964;</span></p>
+    <p class="tw-text">If there's one thing I've learnt it's that you're always right</p>
+    <div class="tw-quote"><p class="tw-top"><span class="tw-name">Zim</span> <span class="tw-handle">@ZimBits</span></p><p class="tw-text">Biggest robbery of the season. That was offside and everyone in the building knew it</p></div>
+    <div class="tw-stats">
+      <p class="tw-stat"><span class="ic ic-tw-reply">&#128172;</span> 21<span class="hide"> replies</span></p>
+      <p class="tw-stat"><span class="ic ic-tw-repost">&#8644;</span> 160<span class="hide"> retweets</span></p>
+      <details class="tw-stat tw-tog"><summary><span class="ic ic-tw-like">&#9825;</span><span class="off"> 593</span><span class="hide"> likes (</span><span class="on"> 594</span><span class="hide"> once liked)</span></summary></details>
+      <p class="tw-stat"><span class="ic ic-tw-mail">&#9993;</span><span class="hide"> Message</span></p>
+    </div>
+  </div>
+  <p class="tw-nav"><span class="on ic ic-x-home-filled">&#8962;</span> <span class="ic ic-x-search">&#128269;</span> <span class="tw-badged"><span class="ic ic-x-bell">&#128276;</span><span class="tw-badge"><span class="hide"> (</span>3<span class="hide">)</span></span></span> <span class="ic ic-tw-mail">&#9993;</span></p>
+</div>
+
+<details>
+<summary>The full HTML for this timeline</summary>
+
+<pre><code>&lt;div class="twc16-feed theme-auto"&gt;
+  &lt;p class="twc-bar"&gt;&lt;span class="tw-me"&gt;&lt;span class="pfp pfp-shane"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="twc-title"&gt;Home&lt;/span&gt;&lt;/p&gt;
+  &lt;div class="mob twc16"&gt;
+    &lt;p class="tw-label"&gt;&lt;span class="ic ic-tw-repost"&gt;&amp;#8644;&lt;/span&gt; Shane Hollander Retweeted&lt;/p&gt;
+    &lt;p class="tw-top"&gt;&lt;span class="tw-pfp"&gt;&lt;span class="pfp pfp-zim"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="tw-name"&gt;&lt;span class="name pfp-zim"&gt;&lt;span class="hide"&gt;Zim&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; &lt;span class="tw-handle"&gt;&lt;span class="handle pfp-zim"&gt;&lt;span class="hide"&gt;@ZimBits&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; &lt;span class="tw-time"&gt;· 3h&lt;/span&gt; &lt;span class="tw-more ic ic-dropdown"&gt;&amp;#8964;&lt;/span&gt;&lt;/p&gt;
+    &lt;p class="tw-text"&gt;Rookie camp is officially open and someone has already lost a skate. Not a pair. One skate. &lt;span class="tw-link"&gt;#preseason&lt;/span&gt;&lt;/p&gt;
+    &lt;div class="tw-stats"&gt;
+      &lt;p class="tw-stat"&gt;&lt;span class="ic ic-tw-reply"&gt;&amp;#128172;&lt;/span&gt; 14&lt;span class="hide"&gt; replies&lt;/span&gt;&lt;/p&gt;
+      &lt;p class="tw-stat"&gt;&lt;span class="ic ic-tw-repost"&gt;&amp;#8644;&lt;/span&gt; 52&lt;span class="hide"&gt; retweets&lt;/span&gt;&lt;/p&gt;
+      &lt;details class="tw-stat tw-tog"&gt;&lt;summary&gt;&lt;span class="ic ic-tw-like"&gt;&amp;#9825;&lt;/span&gt;&lt;span class="off"&gt; 310&lt;/span&gt;&lt;span class="hide"&gt; likes (&lt;/span&gt;&lt;span class="on"&gt; 311&lt;/span&gt;&lt;span class="hide"&gt; once liked)&lt;/span&gt;&lt;/summary&gt;&lt;/details&gt;
+      &lt;p class="tw-stat"&gt;&lt;span class="ic ic-tw-mail"&gt;&amp;#9993;&lt;/span&gt;&lt;span class="hide"&gt; Message&lt;/span&gt;&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="mob twc16 link"&gt;
+    &lt;p class="tw-top"&gt;&lt;span class="tw-pfp"&gt;&lt;span class="pfp pfp-holster"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="tw-name"&gt;&lt;span class="name pfp-holster"&gt;&lt;span class="hide"&gt;Holster&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; &lt;span class="tw-handle"&gt;&lt;span class="handle pfp-holster"&gt;&lt;span class="hide"&gt;@HolsterInLaw&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; &lt;span class="tw-time"&gt;· 33m&lt;/span&gt; &lt;span class="tw-more ic ic-dropdown"&gt;&amp;#8964;&lt;/span&gt;&lt;/p&gt;
+    &lt;p class="tw-text"&gt;nearly lost my lunch watching Shane try and swing a baseball bat&lt;/p&gt;
+    &lt;div class="tw-stats"&gt;
+      &lt;p class="tw-stat"&gt;&lt;span class="ic ic-tw-reply"&gt;&amp;#128172;&lt;/span&gt; 7&lt;span class="hide"&gt; replies&lt;/span&gt;&lt;/p&gt;
+      &lt;p class="tw-stat"&gt;&lt;span class="ic ic-tw-repost"&gt;&amp;#8644;&lt;/span&gt; 27&lt;span class="hide"&gt; retweets&lt;/span&gt;&lt;/p&gt;
+      &lt;details class="tw-stat tw-tog"&gt;&lt;summary&gt;&lt;span class="ic ic-tw-like"&gt;&amp;#9825;&lt;/span&gt;&lt;span class="off"&gt; 173&lt;/span&gt;&lt;span class="hide"&gt; likes (&lt;/span&gt;&lt;span class="on"&gt; 174&lt;/span&gt;&lt;span class="hide"&gt; once liked)&lt;/span&gt;&lt;/summary&gt;&lt;/details&gt;
+      &lt;p class="tw-stat"&gt;&lt;span class="ic ic-tw-mail"&gt;&amp;#9993;&lt;/span&gt;&lt;span class="hide"&gt; Message&lt;/span&gt;&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="mob twc16"&gt;
+    &lt;p class="tw-top"&gt;&lt;span class="tw-pfp"&gt;&lt;span class="pfp pfp-rose"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="tw-name"&gt;&lt;span class="name pfp-rose"&gt;&lt;span class="hide"&gt;Rose Landry&lt;/span&gt;&lt;/span&gt; &lt;span class="ic ic-verified"&gt;&amp;#10004;&lt;/span&gt;&lt;/span&gt; &lt;span class="tw-handle"&gt;&lt;span class="handle pfp-rose"&gt;&lt;span class="hide"&gt;@RoseLandry&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; &lt;span class="tw-time"&gt;· 27s&lt;/span&gt; &lt;span class="tw-more ic ic-dropdown"&gt;&amp;#8964;&lt;/span&gt;&lt;/p&gt;
+    &lt;p class="tw-replying"&gt;Replying to &lt;span class="tw-link"&gt;@HolsterInLaw&lt;/span&gt;&lt;/p&gt;
+    &lt;p class="tw-text"&gt;now you know how it feels watching you try to play defence&lt;/p&gt;
+    &lt;div class="tw-stats"&gt;
+      &lt;p class="tw-stat"&gt;&lt;span class="ic ic-tw-reply"&gt;&amp;#128172;&lt;/span&gt;&lt;/p&gt;
+      &lt;p class="tw-stat"&gt;&lt;span class="ic ic-tw-repost"&gt;&amp;#8644;&lt;/span&gt; 1&lt;span class="hide"&gt; retweets&lt;/span&gt;&lt;/p&gt;
+      &lt;details class="tw-stat tw-tog" open&gt;&lt;summary&gt;&lt;span class="ic ic-tw-like"&gt;&amp;#9825;&lt;/span&gt;&lt;span class="off"&gt; 8&lt;/span&gt;&lt;span class="hide"&gt; likes (&lt;/span&gt;&lt;span class="on"&gt; 9&lt;/span&gt;&lt;span class="hide"&gt; once liked)&lt;/span&gt;&lt;/summary&gt;&lt;/details&gt;
+      &lt;p class="tw-stat"&gt;&lt;span class="ic ic-tw-mail"&gt;&amp;#9993;&lt;/span&gt;&lt;span class="hide"&gt; Message&lt;/span&gt;&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="mob twc16"&gt;
+    &lt;p class="tw-label"&gt;&lt;span class="ic ic-tw-like"&gt;&amp;#9825;&lt;/span&gt; Rose Landry liked&lt;/p&gt;
+    &lt;p class="tw-top"&gt;&lt;span class="tw-pfp"&gt;&lt;span class="pfp pfp-stan"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="tw-name"&gt;&lt;span class="name pfp-stan"&gt;&lt;span class="hide"&gt;Stan&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; &lt;span class="tw-handle"&gt;&lt;span class="handle pfp-stan"&gt;&lt;span class="hide"&gt;@PuckStan&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; &lt;span class="tw-time"&gt;· 5h&lt;/span&gt; &lt;span class="tw-more ic ic-dropdown"&gt;&amp;#8964;&lt;/span&gt;&lt;/p&gt;
+    &lt;p class="tw-text"&gt;If there's one thing I've learnt it's that you're always right&lt;/p&gt;
+    &lt;div class="tw-quote"&gt;&lt;p class="tw-top"&gt;&lt;span class="tw-name"&gt;Zim&lt;/span&gt; &lt;span class="tw-handle"&gt;@ZimBits&lt;/span&gt;&lt;/p&gt;&lt;p class="tw-text"&gt;Biggest robbery of the season. That was offside and everyone in the building knew it&lt;/p&gt;&lt;/div&gt;
+    &lt;div class="tw-stats"&gt;
+      &lt;p class="tw-stat"&gt;&lt;span class="ic ic-tw-reply"&gt;&amp;#128172;&lt;/span&gt; 21&lt;span class="hide"&gt; replies&lt;/span&gt;&lt;/p&gt;
+      &lt;p class="tw-stat"&gt;&lt;span class="ic ic-tw-repost"&gt;&amp;#8644;&lt;/span&gt; 160&lt;span class="hide"&gt; retweets&lt;/span&gt;&lt;/p&gt;
+      &lt;details class="tw-stat tw-tog"&gt;&lt;summary&gt;&lt;span class="ic ic-tw-like"&gt;&amp;#9825;&lt;/span&gt;&lt;span class="off"&gt; 593&lt;/span&gt;&lt;span class="hide"&gt; likes (&lt;/span&gt;&lt;span class="on"&gt; 594&lt;/span&gt;&lt;span class="hide"&gt; once liked)&lt;/span&gt;&lt;/summary&gt;&lt;/details&gt;
+      &lt;p class="tw-stat"&gt;&lt;span class="ic ic-tw-mail"&gt;&amp;#9993;&lt;/span&gt;&lt;span class="hide"&gt; Message&lt;/span&gt;&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;p class="tw-nav"&gt;&lt;span class="on ic ic-x-home-filled"&gt;&amp;#8962;&lt;/span&gt; &lt;span class="ic ic-x-search"&gt;&amp;#128269;&lt;/span&gt; &lt;span class="tw-badged"&gt;&lt;span class="ic ic-x-bell"&gt;&amp;#128276;&lt;/span&gt;&lt;span class="tw-badge"&gt;&lt;span class="hide"&gt; (&lt;/span&gt;3&lt;span class="hide"&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; &lt;span class="ic ic-tw-mail"&gt;&amp;#9993;&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+
+</details>
+
+<h4>A 2016-19 Tweet and Its Replies</h4>
+
+<div class="twc16-feed theme-auto">
+  <p class="twc-bar"><span class="ic ic-back">&#8592;</span><span class="twc-title">Tweet</span></p>
+  <div class="mob twc16 link">
+    <p class="tw-top"><span class="tw-pfp"><span class="pfp pfp-stan"></span></span><span class="hide"> </span><span class="tw-name"><span class="name pfp-stan"><span class="hide">Stan</span></span></span> <span class="tw-handle"><span class="handle pfp-stan"><span class="hide">@PuckStan</span></span></span> <span class="tw-time">· 5m</span> <span class="tw-more ic ic-dropdown">&#8964;</span></p>
+    <p class="tw-text">If there's one thing I've learnt it's that you're always right</p>
+    <div class="tw-quote"><p class="tw-top"><span class="tw-name">Zim</span> <span class="tw-handle">@ZimBits</span></p><p class="tw-text">Biggest robbery of the season. That was offside and everyone in the building knew it</p></div>
+    <div class="tw-stats">
+      <p class="tw-stat"><span class="ic ic-tw-reply">&#128172;</span> 21<span class="hide"> replies</span></p>
+      <p class="tw-stat"><span class="ic ic-tw-repost">&#8644;</span> 160<span class="hide"> retweets</span></p>
+      <details class="tw-stat tw-tog"><summary><span class="ic ic-tw-like">&#9825;</span><span class="off"> 593</span><span class="hide"> likes (</span><span class="on"> 594</span><span class="hide"> once liked)</span></summary></details>
+      <p class="tw-stat"><span class="ic ic-tw-mail">&#9993;</span><span class="hide"> Message</span></p>
+    </div>
+  </div>
+  <div class="mob twc16 big">
+    <p class="tw-top"><span class="tw-pfp"><span class="pfp pfp-zim"></span></span><span class="hide"> </span><span class="tw-name"><span class="name pfp-zim"><span class="hide">Zim</span></span> <span class="ic ic-verified">&#10004;</span></span> <span class="tw-handle"><span class="handle pfp-zim"><span class="hide">@ZimBits</span></span></span> <span class="tw-more ic ic-dropdown">&#8964;</span></p>
+    <p class="tw-replying">Replying to <span class="tw-link">@PuckStan</span></p>
+    <p class="tw-text">love you too, Stan</p>
+    <p class="tw-date">10:09 PM · 4/3/18 · Twitter for iPhone</p>
+    <p class="tw-counts"><b>88</b> Retweets <b>1,204</b> Likes</p>
+    <div class="tw-stats">
+      <p class="tw-stat"><span class="ic ic-tw-reply">&#128172;</span><span class="hide"> Reply</span></p>
+      <p class="tw-stat"><span class="ic ic-tw-repost">&#8644;</span><span class="hide"> Retweet</span></p>
+      <details class="tw-stat tw-tog"><summary><span class="ic ic-tw-like">&#9825;</span><span class="hide"> Like</span></summary></details>
+      <p class="tw-stat"><span class="ic ic-tw-mail">&#9993;</span><span class="hide"> Message</span></p>
+    </div>
+  </div>
+  <p class="twc-foot"><span>Tweet your reply</span></p>
+  <div class="mob twc16">
+    <p class="tw-top"><span class="tw-pfp"><span class="pfp pfp-holster"></span></span><span class="hide"> </span><span class="tw-name"><span class="name pfp-holster"><span class="hide">Holster</span></span></span> <span class="tw-handle"><span class="handle pfp-holster"><span class="hide">@HolsterInLaw</span></span></span> <span class="tw-time">· 2m</span> <span class="tw-more ic ic-dropdown">&#8964;</span></p>
+    <p class="tw-replying">Replying to <span class="tw-link">@ZimBits</span> <span class="tw-link">@PuckStan</span></p>
+    <p class="tw-text">this is the most romantic thing that has ever happened on this website</p>
+    <div class="tw-stats">
+      <p class="tw-stat"><span class="ic ic-tw-reply">&#128172;</span> 1<span class="hide"> replies</span></p>
+      <p class="tw-stat"><span class="ic ic-tw-repost">&#8644;</span></p>
+      <details class="tw-stat tw-tog"><summary><span class="ic ic-tw-like">&#9825;</span><span class="off"> 42</span><span class="hide"> likes (</span><span class="on"> 43</span><span class="hide"> once liked)</span></summary></details>
+      <p class="tw-stat"><span class="ic ic-tw-mail">&#9993;</span><span class="hide"> Message</span></p>
+    </div>
+  </div>
+  <div class="mob twc16">
+    <p class="tw-top"><span class="tw-pfp"><span class="pfp pfp-ilya"></span></span><span class="hide"> </span><span class="tw-name"><span class="name pfp-ilya"><span class="hide">Ilya</span></span></span> <span class="tw-handle"><span class="handle pfp-ilya"><span class="hide">@irozanov</span></span></span> <span class="tw-time">· 1m</span> <span class="tw-more ic ic-dropdown">&#8964;</span></p>
+    <p class="tw-replying">Replying to <span class="tw-link">@ZimBits</span> <span class="tw-link">@PuckStan</span></p>
+    <p class="tw-text">it was not offside</p>
+    <div class="tw-stats">
+      <p class="tw-stat"><span class="ic ic-tw-reply">&#128172;</span> 4<span class="hide"> replies</span></p>
+      <p class="tw-stat"><span class="ic ic-tw-repost">&#8644;</span> 2<span class="hide"> retweets</span></p>
+      <details class="tw-stat tw-tog"><summary><span class="ic ic-tw-like">&#9825;</span><span class="off"> 9</span><span class="hide"> likes (</span><span class="on"> 10</span><span class="hide"> once liked)</span></summary></details>
+      <p class="tw-stat"><span class="ic ic-tw-mail">&#9993;</span><span class="hide"> Message</span></p>
+    </div>
+  </div>
+  <p class="tw-nav"><span class="on ic ic-x-home-filled">&#8962;</span> <span class="ic ic-x-search">&#128269;</span> <span class="tw-badged"><span class="ic ic-x-bell">&#128276;</span><span class="tw-badge"><span class="hide"> (</span>3<span class="hide">)</span></span></span> <span class="ic ic-tw-mail">&#9993;</span></p>
+</div>
+
+<details>
+<summary>The full HTML for this tweet and its replies</summary>
+
+<pre><code>&lt;div class="twc16-feed theme-auto"&gt;
+  &lt;p class="twc-bar"&gt;&lt;span class="ic ic-back"&gt;&amp;#8592;&lt;/span&gt;&lt;span class="twc-title"&gt;Tweet&lt;/span&gt;&lt;/p&gt;
+  &lt;div class="mob twc16 link"&gt;
+    &lt;p class="tw-top"&gt;&lt;span class="tw-pfp"&gt;&lt;span class="pfp pfp-stan"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="tw-name"&gt;&lt;span class="name pfp-stan"&gt;&lt;span class="hide"&gt;Stan&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; &lt;span class="tw-handle"&gt;&lt;span class="handle pfp-stan"&gt;&lt;span class="hide"&gt;@PuckStan&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; &lt;span class="tw-time"&gt;· 5m&lt;/span&gt; &lt;span class="tw-more ic ic-dropdown"&gt;&amp;#8964;&lt;/span&gt;&lt;/p&gt;
+    &lt;p class="tw-text"&gt;If there's one thing I've learnt it's that you're always right&lt;/p&gt;
+    &lt;div class="tw-quote"&gt;&lt;p class="tw-top"&gt;&lt;span class="tw-name"&gt;Zim&lt;/span&gt; &lt;span class="tw-handle"&gt;@ZimBits&lt;/span&gt;&lt;/p&gt;&lt;p class="tw-text"&gt;Biggest robbery of the season. That was offside and everyone in the building knew it&lt;/p&gt;&lt;/div&gt;
+    &lt;div class="tw-stats"&gt;
+      &lt;p class="tw-stat"&gt;&lt;span class="ic ic-tw-reply"&gt;&amp;#128172;&lt;/span&gt; 21&lt;span class="hide"&gt; replies&lt;/span&gt;&lt;/p&gt;
+      &lt;p class="tw-stat"&gt;&lt;span class="ic ic-tw-repost"&gt;&amp;#8644;&lt;/span&gt; 160&lt;span class="hide"&gt; retweets&lt;/span&gt;&lt;/p&gt;
+      &lt;details class="tw-stat tw-tog"&gt;&lt;summary&gt;&lt;span class="ic ic-tw-like"&gt;&amp;#9825;&lt;/span&gt;&lt;span class="off"&gt; 593&lt;/span&gt;&lt;span class="hide"&gt; likes (&lt;/span&gt;&lt;span class="on"&gt; 594&lt;/span&gt;&lt;span class="hide"&gt; once liked)&lt;/span&gt;&lt;/summary&gt;&lt;/details&gt;
+      &lt;p class="tw-stat"&gt;&lt;span class="ic ic-tw-mail"&gt;&amp;#9993;&lt;/span&gt;&lt;span class="hide"&gt; Message&lt;/span&gt;&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="mob twc16 big"&gt;
+    &lt;p class="tw-top"&gt;&lt;span class="tw-pfp"&gt;&lt;span class="pfp pfp-zim"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="tw-name"&gt;&lt;span class="name pfp-zim"&gt;&lt;span class="hide"&gt;Zim&lt;/span&gt;&lt;/span&gt; &lt;span class="ic ic-verified"&gt;&amp;#10004;&lt;/span&gt;&lt;/span&gt; &lt;span class="tw-handle"&gt;&lt;span class="handle pfp-zim"&gt;&lt;span class="hide"&gt;@ZimBits&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; &lt;span class="tw-more ic ic-dropdown"&gt;&amp;#8964;&lt;/span&gt;&lt;/p&gt;
+    &lt;p class="tw-replying"&gt;Replying to &lt;span class="tw-link"&gt;@PuckStan&lt;/span&gt;&lt;/p&gt;
+    &lt;p class="tw-text"&gt;love you too, Stan&lt;/p&gt;
+    &lt;p class="tw-date"&gt;10:09 PM · 4/3/18 · Twitter for iPhone&lt;/p&gt;
+    &lt;p class="tw-counts"&gt;&lt;b&gt;88&lt;/b&gt; Retweets &lt;b&gt;1,204&lt;/b&gt; Likes&lt;/p&gt;
+    &lt;div class="tw-stats"&gt;
+      &lt;p class="tw-stat"&gt;&lt;span class="ic ic-tw-reply"&gt;&amp;#128172;&lt;/span&gt;&lt;span class="hide"&gt; Reply&lt;/span&gt;&lt;/p&gt;
+      &lt;p class="tw-stat"&gt;&lt;span class="ic ic-tw-repost"&gt;&amp;#8644;&lt;/span&gt;&lt;span class="hide"&gt; Retweet&lt;/span&gt;&lt;/p&gt;
+      &lt;details class="tw-stat tw-tog"&gt;&lt;summary&gt;&lt;span class="ic ic-tw-like"&gt;&amp;#9825;&lt;/span&gt;&lt;span class="hide"&gt; Like&lt;/span&gt;&lt;/summary&gt;&lt;/details&gt;
+      &lt;p class="tw-stat"&gt;&lt;span class="ic ic-tw-mail"&gt;&amp;#9993;&lt;/span&gt;&lt;span class="hide"&gt; Message&lt;/span&gt;&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;p class="twc-foot"&gt;&lt;span&gt;Tweet your reply&lt;/span&gt;&lt;/p&gt;
+  &lt;div class="mob twc16"&gt;
+    &lt;p class="tw-top"&gt;&lt;span class="tw-pfp"&gt;&lt;span class="pfp pfp-holster"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="tw-name"&gt;&lt;span class="name pfp-holster"&gt;&lt;span class="hide"&gt;Holster&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; &lt;span class="tw-handle"&gt;&lt;span class="handle pfp-holster"&gt;&lt;span class="hide"&gt;@HolsterInLaw&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; &lt;span class="tw-time"&gt;· 2m&lt;/span&gt; &lt;span class="tw-more ic ic-dropdown"&gt;&amp;#8964;&lt;/span&gt;&lt;/p&gt;
+    &lt;p class="tw-replying"&gt;Replying to &lt;span class="tw-link"&gt;@ZimBits&lt;/span&gt; &lt;span class="tw-link"&gt;@PuckStan&lt;/span&gt;&lt;/p&gt;
+    &lt;p class="tw-text"&gt;this is the most romantic thing that has ever happened on this website&lt;/p&gt;
+    &lt;div class="tw-stats"&gt;
+      &lt;p class="tw-stat"&gt;&lt;span class="ic ic-tw-reply"&gt;&amp;#128172;&lt;/span&gt; 1&lt;span class="hide"&gt; replies&lt;/span&gt;&lt;/p&gt;
+      &lt;p class="tw-stat"&gt;&lt;span class="ic ic-tw-repost"&gt;&amp;#8644;&lt;/span&gt;&lt;/p&gt;
+      &lt;details class="tw-stat tw-tog"&gt;&lt;summary&gt;&lt;span class="ic ic-tw-like"&gt;&amp;#9825;&lt;/span&gt;&lt;span class="off"&gt; 42&lt;/span&gt;&lt;span class="hide"&gt; likes (&lt;/span&gt;&lt;span class="on"&gt; 43&lt;/span&gt;&lt;span class="hide"&gt; once liked)&lt;/span&gt;&lt;/summary&gt;&lt;/details&gt;
+      &lt;p class="tw-stat"&gt;&lt;span class="ic ic-tw-mail"&gt;&amp;#9993;&lt;/span&gt;&lt;span class="hide"&gt; Message&lt;/span&gt;&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="mob twc16"&gt;
+    &lt;p class="tw-top"&gt;&lt;span class="tw-pfp"&gt;&lt;span class="pfp pfp-ilya"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="tw-name"&gt;&lt;span class="name pfp-ilya"&gt;&lt;span class="hide"&gt;Ilya&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; &lt;span class="tw-handle"&gt;&lt;span class="handle pfp-ilya"&gt;&lt;span class="hide"&gt;@irozanov&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; &lt;span class="tw-time"&gt;· 1m&lt;/span&gt; &lt;span class="tw-more ic ic-dropdown"&gt;&amp;#8964;&lt;/span&gt;&lt;/p&gt;
+    &lt;p class="tw-replying"&gt;Replying to &lt;span class="tw-link"&gt;@ZimBits&lt;/span&gt; &lt;span class="tw-link"&gt;@PuckStan&lt;/span&gt;&lt;/p&gt;
+    &lt;p class="tw-text"&gt;it was not offside&lt;/p&gt;
+    &lt;div class="tw-stats"&gt;
+      &lt;p class="tw-stat"&gt;&lt;span class="ic ic-tw-reply"&gt;&amp;#128172;&lt;/span&gt; 4&lt;span class="hide"&gt; replies&lt;/span&gt;&lt;/p&gt;
+      &lt;p class="tw-stat"&gt;&lt;span class="ic ic-tw-repost"&gt;&amp;#8644;&lt;/span&gt; 2&lt;span class="hide"&gt; retweets&lt;/span&gt;&lt;/p&gt;
+      &lt;details class="tw-stat tw-tog"&gt;&lt;summary&gt;&lt;span class="ic ic-tw-like"&gt;&amp;#9825;&lt;/span&gt;&lt;span class="off"&gt; 9&lt;/span&gt;&lt;span class="hide"&gt; likes (&lt;/span&gt;&lt;span class="on"&gt; 10&lt;/span&gt;&lt;span class="hide"&gt; once liked)&lt;/span&gt;&lt;/summary&gt;&lt;/details&gt;
+      &lt;p class="tw-stat"&gt;&lt;span class="ic ic-tw-mail"&gt;&amp;#9993;&lt;/span&gt;&lt;span class="hide"&gt; Message&lt;/span&gt;&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;p class="tw-nav"&gt;&lt;span class="on ic ic-x-home-filled"&gt;&amp;#8962;&lt;/span&gt; &lt;span class="ic ic-x-search"&gt;&amp;#128269;&lt;/span&gt; &lt;span class="tw-badged"&gt;&lt;span class="ic ic-x-bell"&gt;&amp;#128276;&lt;/span&gt;&lt;span class="tw-badge"&gt;&lt;span class="hide"&gt; (&lt;/span&gt;3&lt;span class="hide"&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; &lt;span class="ic ic-tw-mail"&gt;&amp;#9993;&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+
+</details>
+
+<h4>The 2016-19 Tweet</h4>
+
+<p>A tweet is a container with <code>mob twc16</code> and a theme. Inside, the name line goes in <code>tw-top</code>, the words in <code>tw-text</code> and the buttons in <code>tw-stats</code>. The picture sits in a column of its own on the left, and everything else lines up beside it, with the name, handle and time all on one line:</p>
+
+<div class="mob twc16 theme-auto">
+<p class="tw-top"><span class="tw-pfp"><span class="pfp pfp-zim"></span></span><span class="hide"> </span><span class="tw-name"><span class="name pfp-zim"><span class="hide">Zim</span></span></span> <span class="tw-handle"><span class="handle pfp-zim"><span class="hide">@ZimBits</span></span></span> <span class="tw-time">· 3h</span> <span class="tw-more ic ic-dropdown">&#8964;</span></p>
+<p class="tw-text">Rookie camp is officially open and someone has already lost a skate</p>
+<div class="tw-stats">
+  <p class="tw-stat"><span class="ic ic-tw-reply">&#128172;</span> 14<span class="hide"> replies</span></p>
+  <p class="tw-stat"><span class="ic ic-tw-repost">&#8644;</span> 52<span class="hide"> retweets</span></p>
+  <details class="tw-stat tw-tog"><summary><span class="ic ic-tw-like">&#9825;</span><span class="off"> 310</span><span class="hide"> likes (</span><span class="on"> 311</span><span class="hide"> once liked)</span></summary></details>
+  <p class="tw-stat"><span class="ic ic-tw-mail">&#9993;</span><span class="hide"> Message</span></p>
+</div>
+</div>
+
+<pre><code>
+&lt;p class="tw-top"&gt;&lt;span class="tw-pfp"&gt;&lt;span class="pfp pfp-zim"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="tw-name"&gt;&lt;span class="name pfp-zim"&gt;&lt;span class="hide"&gt;Zim&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; &lt;span class="tw-handle"&gt;&lt;span class="handle pfp-zim"&gt;&lt;span class="hide"&gt;@ZimBits&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; &lt;span class="tw-time"&gt;· 3h&lt;/span&gt; &lt;span class="tw-more ic ic-dropdown"&gt;&amp;#8964;&lt;/span&gt;&lt;/p&gt;
+&lt;p class="tw-text"&gt;Rookie camp is officially open and someone has already lost a skate&lt;/p&gt;
+&lt;div class="tw-stats"&gt;
+  &lt;p class="tw-stat"&gt;&lt;span class="ic ic-tw-reply"&gt;&amp;#128172;&lt;/span&gt; 14&lt;span class="hide"&gt; replies&lt;/span&gt;&lt;/p&gt;
+  &lt;p class="tw-stat"&gt;&lt;span class="ic ic-tw-repost"&gt;&amp;#8644;&lt;/span&gt; 52&lt;span class="hide"&gt; retweets&lt;/span&gt;&lt;/p&gt;
+  &lt;details class="tw-stat tw-tog"&gt;&lt;summary&gt;&lt;span class="ic ic-tw-like"&gt;&amp;#9825;&lt;/span&gt;&lt;span class="off"&gt; 310&lt;/span&gt;&lt;span class="hide"&gt; likes (&lt;/span&gt;&lt;span class="on"&gt; 311&lt;/span&gt;&lt;span class="hide"&gt; once liked)&lt;/span&gt;&lt;/summary&gt;&lt;/details&gt;
+  &lt;p class="tw-stat"&gt;&lt;span class="ic ic-tw-mail"&gt;&amp;#9993;&lt;/span&gt;&lt;span class="hide"&gt; Message&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+</code></pre>
+
+<details>
+<summary>Pictures, names, links and ticks</summary>
+
+<p>The picture in <code>tw-pfp</code> can be initials with a colour, a picture tag, or a profile, and the name and handle can be typed or come from a profile. Type the dot before the time yourself. Hashtags, @mentions and links go in <code>tw-link</code> to make them blue, and a verified tick goes inside the <code>tw-name</code>, after the name: <code>&lt;span class=&quot;ic ic-verified&quot;&gt;&amp;#10004;&lt;/span&gt;</code>.</p>
+
+<p>Any name can be too long for its line. When it doesn't fit, the handle shrinks first and can disappear completely, then the name is cut off, tick and all, and the time always stays. Put the name in a plain <code>&lt;span&gt;</code> inside <code>tw-name</code> and it ends in "...". Without the span it stops at the last whole word that fits. On an opened tweet, a long name wraps onto a second line instead.</p>
+
+</details>
+
+
+<h4>The Little Arrow</h4>
+
+<p>Every tweet had a small grey arrow in its top right corner, for the menu. Add it at the end of the name line, after the time: <code>&lt;span class=&quot;tw-more ic ic-dropdown&quot;&gt;&amp;#8964;&lt;/span&gt;</code>.</p>
+
+<h4>2016-19 Buttons</h4>
+
+<p>The row along the bottom of a tweet is reply, retweet, like and message, with the number after each icon. The like is clickable: readers can tap it to like the tweet, and it turns into a red heart and the number goes up by one. Tap it again to take it back.</p>
+
+<details>
+<summary>Numbers, buttons already used, and the share button</summary>
+
+<p>Leave a number out if it's nought. For a like or a retweet the account has already made, add <code>tw-liked</code> or <code>tw-rt</code> to that button's <code>tw-stat</code>, which makes it red or green:</p>
+
+<pre><code>&lt;p class="tw-stat tw-rt"&gt;&lt;span class="ic ic-tw-repost"&gt;&amp;#8644;&lt;/span&gt; 52&lt;span class="hide"&gt; retweets&lt;/span&gt;&lt;/p&gt;</code></pre>
+
+<p>The phone app had a share button at the end instead of the envelope. To use that, swap the last button for <code>&lt;p class=&quot;tw-stat&quot;&gt;&lt;span class=&quot;ic ic-tw-share&quot;&gt;&amp;#8679;&lt;/span&gt;&lt;span class=&quot;hide&quot;&gt; Share&lt;/span&gt;&lt;/p&gt;</code>.</p>
+
+</details>
+
+<h4>Retweets and Likes</h4>
+
+<p>For a tweet someone else retweeted into the timeline, add a <code>tw-label</code> line at the very top, before the name line. From 2018, Twitter also showed tweets your friends had liked, with the same line and a heart instead:</p>
+
+<pre><code>&lt;p class="tw-label"&gt;&lt;span class="ic ic-tw-repost"&gt;&amp;#8644;&lt;/span&gt; Shane Hollander Retweeted&lt;/p&gt;
+&lt;p class="tw-label"&gt;&lt;span class="ic ic-tw-like"&gt;&amp;#9825;&lt;/span&gt; Rose Landry liked&lt;/p&gt;</code></pre>
+
+<h4>2016-19 Replies</h4>
+
+<p>A reply has a grey "Replying to" line under the name line, before the words: <code>&lt;p class=&quot;tw-replying&quot;&gt;Replying to &lt;span class=&quot;tw-link&quot;&gt;@HolsterInLaw&lt;/span&gt;&lt;/p&gt;</code>. For a reply to several people, put each @handle in its own <code>tw-link</code>.</p>
+
+<h4>Quote Tweets</h4>
+
+<p>A quoted tweet goes in a rounded box under the words, in a <code>tw-quote</code>. Inside it, the name line has just the name and handle, with no picture, and then the quoted words:</p>
+
+<div class="mob twc16 theme-auto">
+<p class="tw-top"><span class="tw-pfp"><span class="pfp pfp-stan"></span></span><span class="hide"> </span><span class="tw-name"><span class="name pfp-stan"><span class="hide">Stan</span></span></span> <span class="tw-handle"><span class="handle pfp-stan"><span class="hide">@PuckStan</span></span></span> <span class="tw-time">· 5h</span> <span class="tw-more ic ic-dropdown">&#8964;</span></p>
+<p class="tw-text">If there's one thing I've learnt it's that you're always right</p>
+<div class="tw-quote"><p class="tw-top"><span class="tw-name">Zim</span> <span class="tw-handle">@ZimBits</span></p><p class="tw-text">Biggest robbery of the season. That was offside and everyone in the building knew it</p></div>
+</div>
+
+<pre><code>
+&lt;p class="tw-top"&gt;&lt;span class="tw-pfp"&gt;&lt;span class="pfp pfp-stan"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="tw-name"&gt;&lt;span class="name pfp-stan"&gt;&lt;span class="hide"&gt;Stan&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; &lt;span class="tw-handle"&gt;&lt;span class="handle pfp-stan"&gt;&lt;span class="hide"&gt;@PuckStan&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; &lt;span class="tw-time"&gt;· 5h&lt;/span&gt; &lt;span class="tw-more ic ic-dropdown"&gt;&amp;#8964;&lt;/span&gt;&lt;/p&gt;
+&lt;p class="tw-text"&gt;If there's one thing I've learnt it's that you're always right&lt;/p&gt;
+&lt;div class="tw-quote"&gt;&lt;p class="tw-top"&gt;&lt;span class="tw-name"&gt;Zim&lt;/span&gt; &lt;span class="tw-handle"&gt;@ZimBits&lt;/span&gt;&lt;/p&gt;&lt;p class="tw-text"&gt;Biggest robbery of the season. That was offside and everyone in the building knew it&lt;/p&gt;&lt;/div&gt;
+</code></pre>
+
+<p>Quoting was also how people answered out loud, so a quote tweet often turns up in a conversation, with the quote box at the same size in an opened tweet as in the timeline.</p>
+
+<h4>Conversations</h4>
+
+<p>In a timeline, a tweet and a reply to it were joined by a grey line between their pictures. Add <code>link</code> to the first tweet's container, <code>&lt;div class=&quot;mob twc16 link&quot;&gt;</code>, and the line runs down from its picture to the picture of the tweet underneath. Chain as many as you like by adding <code>link</code> to each one except the last. Holster and Rose's tweets in the timeline at the start of this section are joined like this.</p>
+
+<h4>2016-19 Pictures</h4>
+
+<p>A picture goes under the words in a <code>tw-media</code>, with rounded corners and a thin border: <code>&lt;p class=&quot;tw-media&quot;&gt;&lt;img src=&quot;...&quot; alt=&quot;...&quot;&gt;&lt;/p&gt;</code>. One picture per tweet.</p>
+
+<h4>A 2016-19 Opened Tweet</h4>
+
+<p>Add <code>big</code> to the container for a tweet that's been tapped on and opened. The handle moves under the name and the words get bigger, with the date, the counts and the buttons underneath:</p>
+
+<div class="mob twc16 big theme-auto">
+<p class="tw-top"><span class="tw-pfp"><span class="pfp pfp-rose"></span></span><span class="hide"> </span><span class="tw-name"><span class="name pfp-rose"><span class="hide">Rose Landry</span></span> <span class="ic ic-verified">&#10004;</span></span> <span class="tw-handle"><span class="handle pfp-rose"><span class="hide">@RoseLandry</span></span></span> <span class="tw-more ic ic-dropdown">&#8964;</span></p>
+<p class="tw-text">Table read done. Coffee count: four. Scenes I cried in: also four</p>
+<p class="tw-date">11:04 PM · 10/20/18 · Twitter for iPhone</p>
+<p class="tw-counts"><b>88</b> Retweets <b>1,204</b> Likes</p>
+<div class="tw-stats">
+  <p class="tw-stat"><span class="ic ic-tw-reply">&#128172;</span><span class="hide"> Reply</span></p>
+  <p class="tw-stat"><span class="ic ic-tw-repost">&#8644;</span><span class="hide"> Retweet</span></p>
+  <details class="tw-stat tw-tog"><summary><span class="ic ic-tw-like">&#9825;</span><span class="hide"> Like</span></summary></details>
+  <p class="tw-stat"><span class="ic ic-tw-mail">&#9993;</span><span class="hide"> Message</span></p>
+</div>
+</div>
+
+<pre><code>
+&lt;p class="tw-top"&gt;&lt;span class="tw-pfp"&gt;&lt;span class="pfp pfp-rose"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="tw-name"&gt;&lt;span class="name pfp-rose"&gt;&lt;span class="hide"&gt;Rose Landry&lt;/span&gt;&lt;/span&gt; &lt;span class="ic ic-verified"&gt;&amp;#10004;&lt;/span&gt;&lt;/span&gt; &lt;span class="tw-handle"&gt;&lt;span class="handle pfp-rose"&gt;&lt;span class="hide"&gt;@RoseLandry&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; &lt;span class="tw-more ic ic-dropdown"&gt;&amp;#8964;&lt;/span&gt;&lt;/p&gt;
+&lt;p class="tw-text"&gt;Table read done. Coffee count: four. Scenes I cried in: also four&lt;/p&gt;
+&lt;p class="tw-date"&gt;11:04 PM · 10/20/18 · Twitter for iPhone&lt;/p&gt;
+&lt;p class="tw-counts"&gt;&lt;b&gt;88&lt;/b&gt; Retweets &lt;b&gt;1,204&lt;/b&gt; Likes&lt;/p&gt;
+&lt;div class="tw-stats"&gt;
+  &lt;p class="tw-stat"&gt;&lt;span class="ic ic-tw-reply"&gt;&amp;#128172;&lt;/span&gt;&lt;span class="hide"&gt; Reply&lt;/span&gt;&lt;/p&gt;
+  &lt;p class="tw-stat"&gt;&lt;span class="ic ic-tw-repost"&gt;&amp;#8644;&lt;/span&gt;&lt;span class="hide"&gt; Retweet&lt;/span&gt;&lt;/p&gt;
+  &lt;details class="tw-stat tw-tog"&gt;&lt;summary&gt;&lt;span class="ic ic-tw-like"&gt;&amp;#9825;&lt;/span&gt;&lt;span class="hide"&gt; Like&lt;/span&gt;&lt;/summary&gt;&lt;/details&gt;
+  &lt;p class="tw-stat"&gt;&lt;span class="ic ic-tw-mail"&gt;&amp;#9993;&lt;/span&gt;&lt;span class="hide"&gt; Message&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+</code></pre>
+
+<details>
+<summary>Each part of an opened tweet, piece by piece</summary>
+
+<ul>
+  <li>The time is left out of the name line, because it moves into the date.</li>
+  <li><code>tw-date</code> - the date, which can say what the tweet was sent from, the way Twitter did: "11:04 PM · 10/20/18 · Twitter for iPhone".</li>
+  <li><code>tw-counts</code> - the retweets and likes, with each number in bold.</li>
+  <li><code>tw-stats</code> - the buttons, with no numbers of their own.</li>
+</ul>
+
+</details>
+
+<p>In the app, the tweet being answered sat above the opened one, joined by the conversation line, and the replies were listed underneath in the usual timeline size. You can see that in <a href="#heading">A 2016-19 Tweet and Its Replies</a>, above.</p>
+
+<h4>The 2016-19 App Screen</h4>
+
+<p>To show tweets the way they looked in the app, put them inside a <code>twc16-feed</code>. The tweets inside lose their own borders and sit one under the other with a line between them, and the screen scrolls once it's taller than a phone. The theme goes on the <code>twc16-feed</code>, so you don't need it on each tweet.</p>
+
+<details>
+<summary>The bar along the top, and the reply box</summary>
+
+<p>The bar along the top, <code>twc-bar</code>, has the page name in <code>twc-title</code>, which always sits in the middle. On the home timeline the pov character's own picture goes on the left, in <code>tw-me</code>, and on an opened tweet a back arrow goes there instead:</p>
+
+<pre><code>&lt;p class="twc-bar"&gt;&lt;span class="tw-me"&gt;&lt;span class="pfp pfp-shane"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="twc-title"&gt;Home&lt;/span&gt;&lt;/p&gt;
+&lt;p class="twc-bar"&gt;&lt;span class="ic ic-back"&gt;&amp;#8592;&lt;/span&gt;&lt;span class="twc-title"&gt;Tweet&lt;/span&gt;&lt;/p&gt;</code></pre>
+
+<p>Under an opened tweet, the reply box goes on its own line before the replies: <code>&lt;p class=&quot;twc-foot&quot;&gt;&lt;span&gt;Tweet your reply&lt;/span&gt;&lt;/p&gt;</code>.</p>
+
+</details>
+
+<details>
+<summary>The row of buttons along the bottom</summary>
+
+<p>The row of buttons along the bottom, <code>tw-nav</code>, is home, search, notifications and messages. Add <code>on</code> to the page you're on, and use the filled home button for the timeline. For a blue number on a button, like new notifications, wrap the icon and the number in a <code>tw-badged</code>. The circle stretches into a lozenge for longer numbers:</p>
+
+<pre><code>&lt;p class="tw-nav"&gt;&lt;span class="on ic ic-x-home-filled"&gt;&amp;#8962;&lt;/span&gt; &lt;span class="ic ic-x-search"&gt;&amp;#128269;&lt;/span&gt; &lt;span class="tw-badged"&gt;&lt;span class="ic ic-x-bell"&gt;&amp;#128276;&lt;/span&gt;&lt;span class="tw-badge"&gt;&lt;span class="hide"&gt; (&lt;/span&gt;3&lt;span class="hide"&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; &lt;span class="ic ic-tw-mail"&gt;&amp;#9993;&lt;/span&gt;&lt;/p&gt;</code></pre>
+
+</details>
+
+<p>Both bars stay put while the tweets scroll between them, and both are optional, so leave either out if you don't want it.</p>
+
+<h4>2016-19 Themes</h4>
+
+<p><code>theme-dark</code> is Twitter's night mode, a dim dark blue rather than black, and <code>theme-auto</code> switches to it when the reader's device is in dark mode, the same as every other app. Put the theme on each tweet on its own, or on the <code>twc16-feed</code> for a whole screen.</p>

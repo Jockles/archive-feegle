@@ -390,7 +390,7 @@
 /* Twitter/X puts an @ in front of every handle, so profiles don't need one */
 #workskin .tw span.handle::before,
 #workskin .tw-reply span.handle::before,
-#workskin .twdm span.handle::before { content: "@"; }
+#workskin .twdm span.handle::before, #workskin .twc12 span.handle::before, #workskin .twc16 span.handle::before { content: "@"; }
 
 /* PROFILE: Luca - every option a profile can have, explained line by line.
    Only the lines with "every profile" need to be in yours; the rest are extras. */
@@ -399,7 +399,7 @@
 #workskin .pfp.pfp-luca { background-image: url(https://images.squidge.org/images/2026/11/16/SwedenHockey2.png); }
 
 /* 2. A different picture for one app. Each line replaces the picture on that app only. */
-#workskin .tw .pfp.pfp-luca, #workskin .tw-reply .pfp.pfp-luca { background-image: url(https://images.squidge.org/images/2026/11/16/LucaMain.png); }
+#workskin .tw .pfp.pfp-luca, #workskin .tw-reply .pfp.pfp-luca, #workskin .twdm .pfp.pfp-luca, #workskin .twc12 .pfp.pfp-luca, #workskin .twc16 .pfp.pfp-luca { background-image: url(https://images.squidge.org/images/2026/11/16/LucaMain.png); }
 #workskin .ig .pfp.pfp-luca, #workskin .igdm .pfp.pfp-luca { background-image: url(https://images.squidge.org/images/2026/11/16/LucaPriv.png); }
 #workskin .tb .pfp.pfp-luca { background-image: url(https://images.squidge.org/images/2026/11/16/SwedenHockey.png); }
 #workskin .gm .pfp.pfp-luca { background-image: linear-gradient(135deg, #f6b26b, #e06666); }
@@ -415,7 +415,7 @@
 #workskin .name.pfp-luca::before { content: "Luca"; }
 
 /* 6. A different name for one app */
-#workskin .tw .name.pfp-luca::before, #workskin .tw-reply .name.pfp-luca::before, #workskin .twdm .name.pfp-luca::before { content: "Luca | cat dad"; }
+#workskin .tw .name.pfp-luca::before, #workskin .tw-reply .name.pfp-luca::before, #workskin .twdm .name.pfp-luca::before, #workskin .twc12 .name.pfp-luca::before, #workskin .twc16 .name.pfp-luca::before { content: "Luca | cat dad"; }
 #workskin .ig .name.pfp-luca::before, #workskin .igdm .name.pfp-luca::before { content: "Luca and the Cats"; }
 #workskin .dc .name.pfp-luca::before { content: "lucaaa"; }
 
@@ -431,7 +431,7 @@
 #workskin .handle.pfp-luca::after { content: "luca"; }
 
 /* 9. A different handle for one app */
-#workskin .tw .handle.pfp-luca::after, #workskin .tw-reply .handle.pfp-luca::after, #workskin .twdm .handle.pfp-luca::after { content: "luca_tweets"; }
+#workskin .tw .handle.pfp-luca::after, #workskin .tw-reply .handle.pfp-luca::after, #workskin .twdm .handle.pfp-luca::after, #workskin .twc12 .handle.pfp-luca::after, #workskin .twc16 .handle.pfp-luca::after { content: "luca_tweets"; }
 #workskin .ig .handle.pfp-luca::after, #workskin .igdm .handle.pfp-luca::after { content: "luca.grams"; }
 #workskin .tb .handle.pfp-luca::after { content: "luca-blogs-things"; }
 
@@ -485,17 +485,17 @@
 #workskin .pfp.pfp-zim { background-color: #4a6a8f; }
 #workskin .wa .who.pfp-zim, #workskin .dc .dc-name.pfp-zim { color: #5d84b3; }
 #workskin .name.pfp-zim::before { content: "Jack Zimmerman"; }
-#workskin .tw .name.pfp-zim::before, #workskin .tw-reply .name.pfp-zim::before, #workskin .twdm .name.pfp-zim::before { content: "Zim"; }
+#workskin .tw .name.pfp-zim::before, #workskin .tw-reply .name.pfp-zim::before, #workskin .twdm .name.pfp-zim::before, #workskin .twc12 .name.pfp-zim::before, #workskin .twc16 .name.pfp-zim::before { content: "Zim"; }
 #workskin .handle.pfp-zim::after { content: "JackZim"; }
-#workskin .tw .handle.pfp-zim::after, #workskin .tw-reply .handle.pfp-zim::after, #workskin .twdm .handle.pfp-zim::after { content: "ZimBits"; }
+#workskin .tw .handle.pfp-zim::after, #workskin .tw-reply .handle.pfp-zim::after, #workskin .twdm .handle.pfp-zim::after, #workskin .twc12 .handle.pfp-zim::after, #workskin .twc16 .handle.pfp-zim::after { content: "ZimBits"; }
 #workskin .email.pfp-zim::after { content: "Jack@zimmerman.com"; }
 
 /* PROFILE: Holster - initials in his circle, a different circle colour on each app, and a picture on Twitter/X
    (picture from the Check Please! Wiki: https://omgcheckplease.fandom.com/wiki/Adam_Birkholtz) */
 #workskin .pfp.pfp-holster { background-color: #138a72; }
 #workskin .pfp.pfp-holster::before { content: "AB"; }
-#workskin .tw .pfp.pfp-holster::before, #workskin .tw-reply .pfp.pfp-holster::before, #workskin .ig .pfp.pfp-holster::before { display: none; }
-#workskin .tw .pfp.pfp-holster, #workskin .tw-reply .pfp.pfp-holster { background-image: url(https://static.wikia.nocookie.net/omgcheckplease/images/b/b2/Holsty.png); }
+#workskin .tw .pfp.pfp-holster::before, #workskin .tw-reply .pfp.pfp-holster::before, #workskin .twdm .pfp.pfp-holster::before, #workskin .ig .pfp.pfp-holster::before, #workskin .twc12 .pfp.pfp-holster::before, #workskin .twc16 .pfp.pfp-holster::before { display: none; }
+#workskin .tw .pfp.pfp-holster, #workskin .tw-reply .pfp.pfp-holster, #workskin .twdm .pfp.pfp-holster, #workskin .twc12 .pfp.pfp-holster, #workskin .twc16 .pfp.pfp-holster { background-image: url(https://static.wikia.nocookie.net/omgcheckplease/images/b/b2/Holsty.png); }
 #workskin .ig .pfp.pfp-holster, #workskin .igdm .pfp.pfp-holster { background-color: #c13584; }
 #workskin .tb .pfp.pfp-holster { background-color: #35465c; }
 #workskin .dc .pfp.pfp-holster { background-color: #5865f2; }
@@ -510,9 +510,9 @@
 #workskin .pfp.pfp-rose { background-color: #c2416b; background-image: url(https://images.squidge.org/images/2026/11/16/RoseHeadshot.jpg); }
 #workskin .wa .who.pfp-rose, #workskin .dc .dc-name.pfp-rose { color: #d6336c; }
 #workskin .name.pfp-rose::before { content: "Rose"; }
-#workskin .tw .name.pfp-rose::before, #workskin .tw-reply .name.pfp-rose::before, #workskin .twdm .name.pfp-rose::before, #workskin .ig .name.pfp-rose::before, #workskin .igdm .name.pfp-rose::before { content: "Rose Landry"; }
+#workskin .tw .name.pfp-rose::before, #workskin .tw-reply .name.pfp-rose::before, #workskin .twdm .name.pfp-rose::before, #workskin .ig .name.pfp-rose::before, #workskin .igdm .name.pfp-rose::before, #workskin .twc12 .name.pfp-rose::before, #workskin .twc16 .name.pfp-rose::before { content: "Rose Landry"; }
 #workskin .handle.pfp-rose::after { content: "PoseyRosey"; }
-#workskin .tw .handle.pfp-rose::after, #workskin .tw-reply .handle.pfp-rose::after, #workskin .twdm .handle.pfp-rose::after, #workskin .ig .handle.pfp-rose::after, #workskin .igdm .handle.pfp-rose::after { content: "RoseLandry"; }
+#workskin .tw .handle.pfp-rose::after, #workskin .tw-reply .handle.pfp-rose::after, #workskin .twdm .handle.pfp-rose::after, #workskin .ig .handle.pfp-rose::after, #workskin .igdm .handle.pfp-rose::after, #workskin .twc12 .handle.pfp-rose::after, #workskin .twc16 .handle.pfp-rose::after { content: "RoseLandry"; }
 /* her private Instagram: acc-private */
 #workskin .ig .pfp.pfp-rose.acc-private, #workskin .igdm .pfp.pfp-rose.acc-private { background-image: url(https://images.squidge.org/images/2026/11/16/RosePriv.jpg); }
 #workskin .ig .name.pfp-rose.acc-private::before, #workskin .igdm .name.pfp-rose.acc-private::before { content: "Rose"; }
@@ -545,13 +545,13 @@
 #workskin .tb .handle.pfp-ilya::after { content: "oghollanovtruther"; }
 #workskin .mob.wa.pov-ilya { background: #1b1f2b; }
 /* his burner Twitter/X: acc-burner */
-#workskin .tw .pfp.pfp-ilya.acc-burner, #workskin .tw-reply .pfp.pfp-ilya.acc-burner, #workskin .twdm .pfp.pfp-ilya.acc-burner { background-image: url(https://images.squidge.org/images/2026/11/16/IlyaSmoke.png); }
-#workskin .tw .name.pfp-ilya.acc-burner::before, #workskin .tw-reply .name.pfp-ilya.acc-burner::before, #workskin .twdm .name.pfp-ilya.acc-burner::before { content: "hockey fan"; }
-#workskin .tw .handle.pfp-ilya.acc-burner::after, #workskin .tw-reply .handle.pfp-ilya.acc-burner::after, #workskin .twdm .handle.pfp-ilya.acc-burner::after { content: "definitely_not_ilya"; }
+#workskin .tw .pfp.pfp-ilya.acc-burner, #workskin .tw-reply .pfp.pfp-ilya.acc-burner, #workskin .twdm .pfp.pfp-ilya.acc-burner, #workskin .twc12 .pfp.pfp-ilya.acc-burner, #workskin .twc16 .pfp.pfp-ilya.acc-burner { background-image: url(https://images.squidge.org/images/2026/11/16/IlyaSmoke.png); }
+#workskin .tw .name.pfp-ilya.acc-burner::before, #workskin .tw-reply .name.pfp-ilya.acc-burner::before, #workskin .twdm .name.pfp-ilya.acc-burner::before, #workskin .twc12 .name.pfp-ilya.acc-burner::before, #workskin .twc16 .name.pfp-ilya.acc-burner::before { content: "hockey fan"; }
+#workskin .tw .handle.pfp-ilya.acc-burner::after, #workskin .tw-reply .handle.pfp-ilya.acc-burner::after, #workskin .twdm .handle.pfp-ilya.acc-burner::after, #workskin .twc12 .handle.pfp-ilya.acc-burner::after, #workskin .twc16 .handle.pfp-ilya.acc-burner::after { content: "definitely_not_ilya"; }
 /* his Shane fan account on Twitter/X: acc-shanewife */
-#workskin .tw .pfp.pfp-ilya.acc-shanewife, #workskin .tw-reply .pfp.pfp-ilya.acc-shanewife, #workskin .twdm .pfp.pfp-ilya.acc-shanewife { background-image: url(https://images.squidge.org/images/2026/11/16/WetShane.jpg); }
-#workskin .tw .name.pfp-ilya.acc-shanewife::before, #workskin .tw-reply .name.pfp-ilya.acc-shanewife::before, #workskin .twdm .name.pfp-ilya.acc-shanewife::before { content: "Shane Hollander's Wife"; }
-#workskin .tw .handle.pfp-ilya.acc-shanewife::after, #workskin .tw-reply .handle.pfp-ilya.acc-shanewife::after, #workskin .twdm .handle.pfp-ilya.acc-shanewife::after { content: "hollanderswife"; }
+#workskin .tw .pfp.pfp-ilya.acc-shanewife, #workskin .tw-reply .pfp.pfp-ilya.acc-shanewife, #workskin .twdm .pfp.pfp-ilya.acc-shanewife, #workskin .twc12 .pfp.pfp-ilya.acc-shanewife, #workskin .twc16 .pfp.pfp-ilya.acc-shanewife { background-image: url(https://images.squidge.org/images/2026/11/16/WetShane.jpg); }
+#workskin .tw .name.pfp-ilya.acc-shanewife::before, #workskin .tw-reply .name.pfp-ilya.acc-shanewife::before, #workskin .twdm .name.pfp-ilya.acc-shanewife::before, #workskin .twc12 .name.pfp-ilya.acc-shanewife::before, #workskin .twc16 .name.pfp-ilya.acc-shanewife::before { content: "Shane Hollander's Wife"; }
+#workskin .tw .handle.pfp-ilya.acc-shanewife::after, #workskin .tw-reply .handle.pfp-ilya.acc-shanewife::after, #workskin .twdm .handle.pfp-ilya.acc-shanewife::after, #workskin .twc12 .handle.pfp-ilya.acc-shanewife::after, #workskin .twc16 .handle.pfp-ilya.acc-shanewife::after { content: "hollanderswife"; }
 
 /* ==========================================================
    COLOURS: colour1 to colour10
@@ -574,6 +574,9 @@
 #workskin .wa .wa-pfp.colour1,
 #workskin .tw .tw-pfp.colour1,
 #workskin .tw-reply .tw-pfp.colour1,
+#workskin .twdm .tw-pfp.colour1,
+#workskin .twc12 .tw-pfp.colour1,
+#workskin .twc16 .tw-pfp.colour1,
 #workskin .tb .tb-pfp.colour1,
 #workskin .tb .tb-ask-pfp.colour1,
 #workskin .gm .gm-pfp.colour1,
@@ -584,6 +587,9 @@
 #workskin .wa .wa-pfp.colour2,
 #workskin .tw .tw-pfp.colour2,
 #workskin .tw-reply .tw-pfp.colour2,
+#workskin .twdm .tw-pfp.colour2,
+#workskin .twc12 .tw-pfp.colour2,
+#workskin .twc16 .tw-pfp.colour2,
 #workskin .tb .tb-pfp.colour2,
 #workskin .tb .tb-ask-pfp.colour2,
 #workskin .gm .gm-pfp.colour2,
@@ -594,6 +600,9 @@
 #workskin .wa .wa-pfp.colour3,
 #workskin .tw .tw-pfp.colour3,
 #workskin .tw-reply .tw-pfp.colour3,
+#workskin .twdm .tw-pfp.colour3,
+#workskin .twc12 .tw-pfp.colour3,
+#workskin .twc16 .tw-pfp.colour3,
 #workskin .tb .tb-pfp.colour3,
 #workskin .tb .tb-ask-pfp.colour3,
 #workskin .gm .gm-pfp.colour3,
@@ -604,6 +613,9 @@
 #workskin .wa .wa-pfp.colour4,
 #workskin .tw .tw-pfp.colour4,
 #workskin .tw-reply .tw-pfp.colour4,
+#workskin .twdm .tw-pfp.colour4,
+#workskin .twc12 .tw-pfp.colour4,
+#workskin .twc16 .tw-pfp.colour4,
 #workskin .tb .tb-pfp.colour4,
 #workskin .tb .tb-ask-pfp.colour4,
 #workskin .gm .gm-pfp.colour4,
@@ -614,6 +626,9 @@
 #workskin .wa .wa-pfp.colour5,
 #workskin .tw .tw-pfp.colour5,
 #workskin .tw-reply .tw-pfp.colour5,
+#workskin .twdm .tw-pfp.colour5,
+#workskin .twc12 .tw-pfp.colour5,
+#workskin .twc16 .tw-pfp.colour5,
 #workskin .tb .tb-pfp.colour5,
 #workskin .tb .tb-ask-pfp.colour5,
 #workskin .gm .gm-pfp.colour5,
@@ -624,6 +639,9 @@
 #workskin .wa .wa-pfp.colour6,
 #workskin .tw .tw-pfp.colour6,
 #workskin .tw-reply .tw-pfp.colour6,
+#workskin .twdm .tw-pfp.colour6,
+#workskin .twc12 .tw-pfp.colour6,
+#workskin .twc16 .tw-pfp.colour6,
 #workskin .tb .tb-pfp.colour6,
 #workskin .tb .tb-ask-pfp.colour6,
 #workskin .gm .gm-pfp.colour6,
@@ -634,6 +652,9 @@
 #workskin .wa .wa-pfp.colour7,
 #workskin .tw .tw-pfp.colour7,
 #workskin .tw-reply .tw-pfp.colour7,
+#workskin .twdm .tw-pfp.colour7,
+#workskin .twc12 .tw-pfp.colour7,
+#workskin .twc16 .tw-pfp.colour7,
 #workskin .tb .tb-pfp.colour7,
 #workskin .tb .tb-ask-pfp.colour7,
 #workskin .gm .gm-pfp.colour7,
@@ -644,6 +665,9 @@
 #workskin .wa .wa-pfp.colour8,
 #workskin .tw .tw-pfp.colour8,
 #workskin .tw-reply .tw-pfp.colour8,
+#workskin .twdm .tw-pfp.colour8,
+#workskin .twc12 .tw-pfp.colour8,
+#workskin .twc16 .tw-pfp.colour8,
 #workskin .tb .tb-pfp.colour8,
 #workskin .tb .tb-ask-pfp.colour8,
 #workskin .gm .gm-pfp.colour8,
@@ -654,6 +678,9 @@
 #workskin .wa .wa-pfp.colour9,
 #workskin .tw .tw-pfp.colour9,
 #workskin .tw-reply .tw-pfp.colour9,
+#workskin .twdm .tw-pfp.colour9,
+#workskin .twc12 .tw-pfp.colour9,
+#workskin .twc16 .tw-pfp.colour9,
 #workskin .tb .tb-pfp.colour9,
 #workskin .tb .tb-ask-pfp.colour9,
 #workskin .gm .gm-pfp.colour9,
@@ -664,6 +691,9 @@
 #workskin .wa .wa-pfp.colour10,
 #workskin .tw .tw-pfp.colour10,
 #workskin .tw-reply .tw-pfp.colour10,
+#workskin .twdm .tw-pfp.colour10,
+#workskin .twc12 .tw-pfp.colour10,
+#workskin .twc16 .tw-pfp.colour10,
 #workskin .tb .tb-pfp.colour10,
 #workskin .tb .tb-ask-pfp.colour10,
 #workskin .gm .gm-pfp.colour10,
@@ -2088,7 +2118,8 @@
 #workskin .tw-reply .tw-top br { display: none; }
 
 #workskin .tw .tw-pfp,
-#workskin .tw-reply .tw-pfp {
+#workskin .tw-reply .tw-pfp,
+#workskin .twdm .tw-pfp {
   display: flex;
   flex: none;
   align-items: center;
@@ -2245,7 +2276,8 @@
 #workskin .tw .tw-stats .ic.ic-tw-share,
 #workskin .tw-reply .tw-stats .ic.ic-tw-share { margin-right: 0; }
 
-/* ---- a like readers can click: <details class="tw-stat tw-tog">
+/* ---- a like or bookmark readers can click: <details class="tw-stat tw-tog">
+   (<details class="tw-stat tw-end tw-tog"> for the bookmark)
    Inside the <summary>, the "off" count shows at first and the "on" count once clicked.
    Click again and it goes back. */
 #workskin .tw .tw-tog summary,
@@ -2343,7 +2375,7 @@
 }
 
 /* buttons the account has used: add tw-liked to the like's tw-stat, tw-rt to the repost's, or tw-saved to the bookmark's.
-   A clicked tw-tog like turns red too. */
+   A clicked tw-tog like turns red too, and a clicked bookmark blue. */
 #workskin .tw .tw-stats .tw-liked,
 #workskin .tw-reply .tw-stats .tw-liked,
 #workskin .tw .tw-stats .tw-tog[open],
@@ -2357,7 +2389,9 @@
 }
 
 #workskin .tw .tw-stats .tw-saved,
-#workskin .tw-reply .tw-stats .tw-saved {
+#workskin .tw-reply .tw-stats .tw-saved,
+#workskin .tw .tw-stats .tw-tog.tw-end[open],
+#workskin .tw-reply .tw-stats .tw-tog.tw-end[open] {
   color: #1d9bf0;
 }
 
@@ -2863,7 +2897,9 @@
 
 #workskin .tw-thread.tw2020 .tw-stat.tw-end { flex: 1 1 0; margin-left: 0; }
 
-#workskin .tw-thread.tw2020 .tw-stat.tw-end:not(:last-of-type) { display: none; }
+#workskin .tw-thread.tw2020 .tw-stat.tw-end:not(:last-child) { display: none; }
+
+/* ---------- Twitter/X: DMs ---------- */
 
 #workskin .twdm {
   background: #ffffff;
@@ -2872,50 +2908,72 @@
   border-radius: 14px;
 }
 
+/* the top bar: a back arrow on the left, the picture and name in the middle, video and call buttons on the right
+   <p class="mob-head"><span class="twdm-back"><span class="ic ic-back">&#8592;</span></span><span class="tw-pfp"><span class="pfp pfp-shane"></span></span><span class="twdm-name">Shane Hollander</span><span class="twdm-calls"><span class="ic ic-video">&#127909;</span><span class="ic ic-phone">&#128222;</span></span></p>
+   The picture works like a tweet's tw-pfp: initials, a picture tag or a profile. */
 #workskin .twdm .mob-head {
+  position: relative;
+  padding: 0.55em 5.6em 0.45em 5.6em;
   background: #ffffff;
   color: #0f1419;
   border-bottom: 1px solid #eff3f4;
-  font-size: 0.9em;
+  font-size: 0.95em;
+  line-height: 1.2;
 }
 
-#workskin .twdm .mob-head span {
-  display: block;
-  font-weight: normal;
-  color: #536471;
-  font-size: 0.85em;
+#workskin .twdm .mob-head .tw-pfp { width: 40px; height: 40px; margin: 0 auto 0.25em auto; }
+
+#workskin .twdm .mob-head .twdm-name { display: block; }
+
+#workskin .twdm .twdm-back,
+#workskin .twdm .twdm-calls {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  line-height: 1;
 }
+
+#workskin .twdm .twdm-back { left: 0.9em; }
+
+#workskin .twdm .twdm-calls { right: 0.9em; }
+
+#workskin .twdm .mob-head .ic { width: 1.3em; height: 1.3em; vertical-align: middle; }
+
+#workskin .twdm .twdm-calls .ic + .ic { margin-left: 1.1em; }
+
+#workskin .twdm .mob-body { padding: 0.7em 0.8em 0.5em 0.8em; }
 
 #workskin .twdm .msg {
   display: table;
-  max-width: 72%;
-  margin: 0.2em 0;
-  padding: 0.55em 0.9em;
-  border-radius: 20px;
+  max-width: 75%;
+  margin: 0.25em 0;
+  padding: 0.55em 0.95em;
+  border-radius: 1.3em;
 }
 
 #workskin .twdm .out {
   margin-left: auto;
   background: #1d9bf0;
   color: #ffffff;
-  border-bottom-right-radius: 4px;
 }
 
 #workskin .twdm .in {
   margin-right: auto;
   background: #eff3f4;
   color: #0f1419;
-  border-bottom-left-radius: 4px;
 }
 
-#workskin .twdm .twdm-time {
+/* the date and time between messages use the core mob-sys line: <p class="mob-sys">Thu 17 Sep at 17:34</p> */
+#workskin .twdm .mob-sys { margin: 0.9em 0; color: #536471; opacity: 1; }
+
+/* "Seen" or "Sent" under your last message: <p class="twdm-status">Seen</p> */
+#workskin .twdm .twdm-status {
   display: block;
-  font-size: 0.7em;
+  text-align: right;
+  font-size: 0.78em;
   color: #536471;
-  margin: 0.1em 0.5em 0.5em 0.5em;
+  margin: 0.15em 0.6em 0.5em 0;
 }
-
-#workskin .twdm .time-out { text-align: right; }
 
 /* reaction pill under a DM: <p class="twdm-reacts">&#128562; 1</p>  (add "out" under one of your own) */
 #workskin .twdm .twdm-reacts {
@@ -2933,10 +2991,39 @@
 /* group DMs: the sender's name above their messages: <p class="who">Name</p> */
 #workskin .twdm .who {
   display: block;
-  margin: 0.5em 0.5em 0.1em 0.5em;
+  margin: 0.7em 0 0.1em 1.3em;
   color: #536471;
-  font-size: 0.72em;
+  font-size: 0.75em;
 }
+
+/* group DMs: one person's run of messages, with their picture beside the last bubble
+   <div class="twdm-row"><p class="tw-pfp colour4">HP</p><p class="who">Hayden<span class="hide">:</span></p><p class="msg in">...</p></div> */
+#workskin .twdm .twdm-row { position: relative; padding-left: 36px; margin: 0.25em 0; }
+
+#workskin .twdm .twdm-row .tw-pfp {
+  position: absolute;
+  left: 0;
+  bottom: 0.25em;
+  width: 28px;
+  height: 28px;
+  margin: 0;
+  font-size: 0.65em;
+}
+
+/* replying to a message: a small "Replied to" line, then the message being replied to in an outlined bubble, then the reply
+   <p class="twdm-replied out">Replied to Shane</p>
+   <p class="msg out twdm-quote"><span class="hide">(</span>the message being replied to<span class="hide">)</span></p>
+   Leave "out" off both for a reply from someone else. */
+#workskin .twdm .twdm-replied {
+  display: block;
+  margin: 0.7em 0.95em 0.15em 0.95em;
+  font-size: 0.78em;
+  color: #536471;
+}
+
+#workskin .twdm .twdm-replied.out { background: transparent; color: #536471; text-align: right; }
+
+#workskin .twdm .msg.twdm-quote { background: transparent; color: #536471; border: 1px solid #cfd9de; margin-bottom: 0.2em; }
 
 /* a picture in a DM: <p class="msg in pic"><img src="..."></p> or a [description] */
 #workskin .twdm .msg.pic {
@@ -2950,13 +3037,13 @@
   display: block;
   max-width: 100%;
   height: auto;
-  border-radius: 16px;
+  border-radius: 1.1em;
 }
 
 #workskin .twdm .msg.pic.text { padding: 2.5em 1.5em; }
 
 /* a voice message:
-   <p class="msg out voice"><span class="twdm-play">&#9654;</span><span class="twdm-wave"></span><span class="twdm-dur">0:02</span></p> */
+   <p class="msg out voice"><span class="twdm-play ic ic-play">&#9654;</span><span class="twdm-wave"></span><span class="twdm-dur">0:02</span></p> */
 #workskin .twdm .msg.voice { min-width: 55%; }
 
 #workskin .twdm .voice .twdm-play,
@@ -2984,15 +3071,101 @@
 
 #workskin .twdm .voice .twdm-dur { margin-left: 0.5em; font-size: 0.85em; }
 
-/* the "Start a message" bar at the bottom: <div class="twdm-foot"><span>Start a message</span></div> */
-#workskin .twdm .twdm-foot { display: block; padding: 0.6em 0.7em; border-top: 1px solid #eff3f4; }
+/* the message bar at the bottom: goes after the mob-body, inside the chat, all on one line
+   <p class="twdm-input"><span class="twdm-plus">+</span><span class="hide"> </span><span class="twdm-field">Message<span class="hide"> </span><span class="ic ic-mic">&#127908;</span></span></p>
+   Add "typed" to the twdm-field for a half-written message in dark text. */
+#workskin .twdm .twdm-input {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 0.45em 0.7em 0.55em 0.7em;
+}
 
-#workskin .twdm .twdm-foot span {
-  display: block;
-  padding: 0.5em 0.9em;
-  border-radius: 2em;
-  background: #eff3f4;
+#workskin .twdm .twdm-plus {
+  flex: none;
+  width: 1.55em;
+  height: 1.55em;
+  margin-right: 0.35em;
+  border-radius: 50%;
+  box-sizing: border-box;
+  border: 1px solid #cfd9de;
+  color: #0f1419;
+  font-size: 1.3em;
+  font-weight: 300;
+  line-height: 1.45em;
+  text-align: center;
+}
+
+#workskin .twdm .twdm-field {
+  flex: 1;
+  position: relative;
+  padding: 0.45em 2.4em 0.45em 0.9em;
+  border: 1px solid #cfd9de;
+  border-radius: 1.3em;
   color: #536471;
+}
+
+#workskin .twdm .twdm-field .ic {
+  position: absolute;
+  right: 0.8em;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1.15em;
+  height: 1.15em;
+}
+
+#workskin .twdm .twdm-field.typed { color: #0f1419; }
+
+/* the app's buttons along the very bottom (optional), in DMs and on the app screen. "on" gives the picked one its grey box.
+   <p class="tw-nav"><span class="ic ic-x-home">&#8962;</span> <span class="ic ic-x-search">&#128269;</span> <span class="ic ic-x-grok">&#8856;</span> <span class="ic ic-x-bell">&#128276;</span> <span class="on ic ic-x-chat">&#128172;</span></p>
+   On the app screen, use ic-x-home-filled with "on" for the home button, and ic-x-chat-outline for the chat button. */
+#workskin .twdm .tw-nav,
+#workskin .tw-thread .tw-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin: 0;
+  padding: 0.6em 0.4em 0.8em 0.4em;
+  font-size: 1.3em;
+  line-height: 1;
+}
+
+#workskin .twdm .tw-nav br,
+#workskin .tw-thread .tw-nav br { display: none; }
+
+/* a blue number on a button, like new notifications: wrap the icon and the number in a tw-badged span.
+   <span class="tw-badged"><span class="ic ic-x-bell">&#128276;</span><span class="tw-badge"><span class="hide"> (</span>3<span class="hide">)</span></span></span>
+   The circle stretches into a lozenge for longer numbers. */
+#workskin .twdm .tw-nav .tw-badged,
+#workskin .tw-thread .tw-nav .tw-badged { position: relative; display: block; line-height: 1; }
+
+#workskin .twdm .tw-nav .tw-badge,
+#workskin .tw-thread .tw-nav .tw-badge {
+  position: absolute;
+  top: -0.7em;
+  left: 1.1em;
+  min-width: 1.5em;
+  height: 1.5em;
+  padding: 0 0.4em;
+  box-sizing: border-box;
+  border-radius: 0.75em;
+  background: #1d9bf0;
+  color: #ffffff;
+  font-size: 0.5em;
+  font-weight: bold;
+  line-height: 1.5em;
+  text-align: center;
+  white-space: nowrap;
+}
+
+/* on the app screen, a line between the tweets and the buttons */
+#workskin .tw-thread .tw-nav { border-top: 1px solid #eff3f4; }
+
+#workskin .twdm .tw-nav .on,
+#workskin .tw-thread .tw-nav .on {
+  border-radius: 0.4em;
+  background-color: #eff3f4;
+  box-shadow: 0 0 0 0.35em #eff3f4;
 }
 
 /* ---------- Twitter/X: Links ---------- */
@@ -3155,9 +3328,15 @@
 
 #workskin .twdm.theme-dark .who { color: #71767b; }
 
-#workskin .twdm.theme-dark .twdm-foot { border-top-color: #2f3336; }
+#workskin .twdm.theme-dark .twdm-plus,
+#workskin .twdm.theme-dark .twdm-field { border-color: #2f3336; color: #71767b; }
 
-#workskin .twdm.theme-dark .twdm-foot span { background: #202327; color: #71767b; }
+#workskin .twdm.theme-dark .twdm-plus,
+#workskin .twdm.theme-dark .twdm-field.typed { color: #e7e9ea; }
+
+#workskin .tw-thread.theme-dark .tw-nav { border-top-color: #2f3336; }
+
+#workskin .twdm.theme-dark .tw-nav .on, #workskin .tw-thread.theme-dark .tw-nav .on { background-color: #202327; box-shadow: 0 0 0 0.35em #202327; }
 
 #workskin .tw-reply.theme-dark { background: #000000; color: #e7e9ea; border-color: #2f3336; }
 
@@ -3176,12 +3355,15 @@
 
 #workskin .twdm.theme-dark .mob-head { background: #000000; color: #e7e9ea; border-bottom-color: #2f3336; }
 
-#workskin .twdm.theme-dark .mob-head span,
-#workskin .twdm.theme-dark .twdm-time {
+#workskin .twdm.theme-dark .mob-sys,
+#workskin .twdm.theme-dark .twdm-status,
+#workskin .twdm.theme-dark .twdm-replied {
   color: #71767b;
 }
 
-#workskin .twdm.theme-dark .in { background: #2f3336; color: #e7e9ea; }
+#workskin .twdm.theme-dark .in { background: #202327; color: #e7e9ea; }
+
+#workskin .twdm.theme-dark .msg.twdm-quote { background: transparent; color: #71767b; border-color: #2f3336; }
 
 /* ---------- Twitter/X: Auto theme (theme-auto): light, switching to dark when the reader's device is in dark mode ---------- */
 
@@ -3309,9 +3491,15 @@
 
   #workskin .twdm.theme-auto .who { color: #71767b; }
 
-  #workskin .twdm.theme-auto .twdm-foot { border-top-color: #2f3336; }
+  #workskin .twdm.theme-auto .twdm-plus,
+    #workskin .twdm.theme-auto .twdm-field { border-color: #2f3336; color: #71767b; }
 
-  #workskin .twdm.theme-auto .twdm-foot span { background: #202327; color: #71767b; }
+  #workskin .twdm.theme-auto .twdm-plus,
+    #workskin .twdm.theme-auto .twdm-field.typed { color: #e7e9ea; }
+
+  #workskin .tw-thread.theme-auto .tw-nav { border-top-color: #2f3336; }
+
+  #workskin .twdm.theme-auto .tw-nav .on, #workskin .tw-thread.theme-auto .tw-nav .on { background-color: #202327; box-shadow: 0 0 0 0.35em #202327; }
 
   #workskin .tw-reply.theme-auto { background: #000000; color: #e7e9ea; border-color: #2f3336; }
 
@@ -3330,19 +3518,22 @@
 
   #workskin .twdm.theme-auto .mob-head { background: #000000; color: #e7e9ea; border-bottom-color: #2f3336; }
 
-  #workskin .twdm.theme-auto .mob-head span,
-    #workskin .twdm.theme-auto .twdm-time {
+  #workskin .twdm.theme-auto .mob-sys,
+    #workskin .twdm.theme-auto .twdm-status,
+    #workskin .twdm.theme-auto .twdm-replied {
       color: #71767b;
     }
 
-  #workskin .twdm.theme-auto .in { background: #2f3336; color: #e7e9ea; }
+  #workskin .twdm.theme-auto .in { background: #202327; color: #e7e9ea; }
+
+  #workskin .twdm.theme-auto .msg.twdm-quote { background: transparent; color: #71767b; border-color: #2f3336; }
 }
 
 /* ---------- Twitter/X: Icons ----------
    The buttons and ticks are pictures: black in light chats, white in dark ones.
    Each one is a span with "ic" and its name, with the typed symbol inside, which
    this hides. Delete this whole section to get the typed symbols back. */
-#workskin .tw .ic, #workskin .tw-reply .ic, #workskin .twdm .ic {
+#workskin .tw .ic, #workskin .tw-reply .ic, #workskin .twdm .ic, #workskin .tw-thread .tw-nav .ic {
   display: inline-block;
   width: 1em;
   height: 1em;
@@ -3397,15 +3588,996 @@
 
 /* a red heart, a green repost and a blue bookmark for buttons the account has used, in every theme */
 #workskin .tw .tw-stats .tw-liked .ic.ic-tw-like, #workskin .tw-reply .tw-stats .tw-liked .ic.ic-tw-like, #workskin .tw .tw-stats .tw-tog[open] .ic.ic-tw-like, #workskin .tw-reply .tw-stats .tw-tog[open] .ic.ic-tw-like { background-image: url(https://images.squidge.org/images/2026/11/15/heart-filled-red.png); }
-#workskin .tw .tw-stats .tw-saved .ic.ic-tw-bookmark, #workskin .tw-reply .tw-stats .tw-saved .ic.ic-tw-bookmark { background-image: url(https://images.squidge.org/images/2026/11/17/tw-bookmark-blue.png); }
+#workskin .tw .tw-stats .tw-saved .ic.ic-tw-bookmark, #workskin .tw-reply .tw-stats .tw-saved .ic.ic-tw-bookmark, #workskin .tw .tw-stats .tw-tog[open] .ic.ic-tw-bookmark, #workskin .tw-reply .tw-stats .tw-tog[open] .ic.ic-tw-bookmark { background-image: url(https://images.squidge.org/images/2026/11/17/tw-bookmark-blue.png); }
 #workskin .tw .tw-stats .tw-rt .ic.ic-tw-repost, #workskin .tw-reply .tw-stats .tw-rt .ic.ic-tw-repost { background-image: url(https://images.squidge.org/images/2026/11/17/repost-tw-green.png); }
 #workskin .tw .tw-stats .tw-locked .ic.ic-tw-repost, #workskin .tw-reply .tw-stats .tw-locked .ic.ic-tw-repost { background-image: url(https://images.squidge.org/images/2026/11/17/repost-tw-faded-light.png); }
 
 /* a voice note you sent sits in a blue bubble, so its play button is always white */
 #workskin .twdm .msg.out .ic.ic-play { background-image: url(https://images.squidge.org/images/2026/11/15/play-white.png); }
 
+/* DM buttons: the top bar, the message bar and the app buttons along the bottom */
+#workskin .twdm .ic.ic-back { background-image: url(https://images.squidge.org/images/2026/11/15/back-black.png); }
+#workskin .twdm .ic.ic-video { background-image: url(https://images.squidge.org/images/2026/11/15/video-black.png); }
+#workskin .twdm .ic.ic-phone { background-image: url(https://images.squidge.org/images/2026/11/15/phone-black.png); }
+#workskin .twdm .ic.ic-mic { background-image: url(https://images.squidge.org/images/2026/11/15/mic-black.png); }
+#workskin .twdm .ic.ic-x-home, #workskin .tw-thread .ic.ic-x-home { background-image: url(https://images.squidge.org/images/2026/11/19/x-home-black.png); }
+#workskin .twdm .ic.ic-x-home-filled, #workskin .tw-thread .ic.ic-x-home-filled { background-image: url(https://images.squidge.org/images/2026/11/19/x-home-filled-black.png); }
+#workskin .twdm .ic.ic-x-search, #workskin .tw-thread .ic.ic-x-search { background-image: url(https://images.squidge.org/images/2026/11/19/x-search-black.png); }
+#workskin .twdm .ic.ic-x-grok, #workskin .tw-thread .ic.ic-x-grok { background-image: url(https://images.squidge.org/images/2026/11/19/x-grok-black.png); }
+#workskin .twdm .ic.ic-x-bell, #workskin .tw-thread .ic.ic-x-bell { background-image: url(https://images.squidge.org/images/2026/11/19/x-bell-black.png); }
+#workskin .twdm .ic.ic-x-chat, #workskin .tw-thread .ic.ic-x-chat { background-image: url(https://images.squidge.org/images/2026/11/19/x-chat-black.png); }
+#workskin .twdm .ic.ic-x-chat-outline, #workskin .tw-thread .ic.ic-x-chat-outline { background-image: url(https://images.squidge.org/images/2026/11/19/x-chat-outline-black.png); }
+
+#workskin .twdm.theme-dark .ic.ic-back { background-image: url(https://images.squidge.org/images/2026/11/15/back-white.png); }
+#workskin .twdm.theme-dark .ic.ic-video { background-image: url(https://images.squidge.org/images/2026/11/15/video-white.png); }
+#workskin .twdm.theme-dark .ic.ic-phone { background-image: url(https://images.squidge.org/images/2026/11/15/phone-white.png); }
+#workskin .twdm.theme-dark .ic.ic-mic { background-image: url(https://images.squidge.org/images/2026/11/15/mic-white.png); }
+#workskin .twdm.theme-dark .ic.ic-x-home, #workskin .tw-thread.theme-dark .ic.ic-x-home { background-image: url(https://images.squidge.org/images/2026/11/19/x-home-white.png); }
+#workskin .twdm.theme-dark .ic.ic-x-home-filled, #workskin .tw-thread.theme-dark .ic.ic-x-home-filled { background-image: url(https://images.squidge.org/images/2026/11/19/x-home-filled-white.png); }
+#workskin .twdm.theme-dark .ic.ic-x-search, #workskin .tw-thread.theme-dark .ic.ic-x-search { background-image: url(https://images.squidge.org/images/2026/11/19/x-search-white.png); }
+#workskin .twdm.theme-dark .ic.ic-x-grok, #workskin .tw-thread.theme-dark .ic.ic-x-grok { background-image: url(https://images.squidge.org/images/2026/11/19/x-grok-white.png); }
+#workskin .twdm.theme-dark .ic.ic-x-bell, #workskin .tw-thread.theme-dark .ic.ic-x-bell { background-image: url(https://images.squidge.org/images/2026/11/19/x-bell-white.png); }
+#workskin .twdm.theme-dark .ic.ic-x-chat, #workskin .tw-thread.theme-dark .ic.ic-x-chat { background-image: url(https://images.squidge.org/images/2026/11/19/x-chat-white.png); }
+#workskin .twdm.theme-dark .ic.ic-x-chat-outline, #workskin .tw-thread.theme-dark .ic.ic-x-chat-outline { background-image: url(https://images.squidge.org/images/2026/11/19/x-chat-outline-white.png); }
+
+@media (prefers-color-scheme: dark) {
+  #workskin .twdm.theme-auto .ic.ic-back { background-image: url(https://images.squidge.org/images/2026/11/15/back-white.png); }
+  #workskin .twdm.theme-auto .ic.ic-video { background-image: url(https://images.squidge.org/images/2026/11/15/video-white.png); }
+  #workskin .twdm.theme-auto .ic.ic-phone { background-image: url(https://images.squidge.org/images/2026/11/15/phone-white.png); }
+  #workskin .twdm.theme-auto .ic.ic-mic { background-image: url(https://images.squidge.org/images/2026/11/15/mic-white.png); }
+  #workskin .twdm.theme-auto .ic.ic-x-home, #workskin .tw-thread.theme-auto .ic.ic-x-home { background-image: url(https://images.squidge.org/images/2026/11/19/x-home-white.png); }
+  #workskin .twdm.theme-auto .ic.ic-x-home-filled, #workskin .tw-thread.theme-auto .ic.ic-x-home-filled { background-image: url(https://images.squidge.org/images/2026/11/19/x-home-filled-white.png); }
+  #workskin .twdm.theme-auto .ic.ic-x-search, #workskin .tw-thread.theme-auto .ic.ic-x-search { background-image: url(https://images.squidge.org/images/2026/11/19/x-search-white.png); }
+  #workskin .twdm.theme-auto .ic.ic-x-grok, #workskin .tw-thread.theme-auto .ic.ic-x-grok { background-image: url(https://images.squidge.org/images/2026/11/19/x-grok-white.png); }
+  #workskin .twdm.theme-auto .ic.ic-x-bell, #workskin .tw-thread.theme-auto .ic.ic-x-bell { background-image: url(https://images.squidge.org/images/2026/11/19/x-bell-white.png); }
+  #workskin .twdm.theme-auto .ic.ic-x-chat, #workskin .tw-thread.theme-auto .ic.ic-x-chat { background-image: url(https://images.squidge.org/images/2026/11/19/x-chat-white.png); }
+  #workskin .twdm.theme-auto .ic.ic-x-chat-outline, #workskin .tw-thread.theme-auto .ic.ic-x-chat-outline { background-image: url(https://images.squidge.org/images/2026/11/19/x-chat-outline-white.png); }
+}
+
 /* <<<<<<<<<< MODULE: Twitter/X (posts, replies, DMs) (end) <<<<<<<<<< */
 
+/* >>>>>>>>>> MODULE: Classic Twitter 2012-15 (start) >>>>>>>>>> */
+
+/* ==========================================================
+   MODULE: CLASSIC TWITTER 2012-15   (classes: twc12, twc12-feed)
+   Twitter as it looked from 2012 to 2015: square pictures, stars, serif opened tweets, a blue bar
+   along the top and a black row of buttons along the bottom.
+   Single tweets (twc12), opened tweets (twc12 big) and the app screen (twc12-feed).
+   Twitter had no night mode back then, so this module is always light, whatever theme you give it.
+   Needs the CORE block. It doesn't need any other Twitter module.
+   ========================================================== */
+
+/* one tweet: <div class="mob twc12"> ... </div>
+   The picture sits in a column of its own on the left, and everything else lines up to the right of it. */
+#workskin .twc12 {
+  position: relative;
+  padding: 0.65em 0.8em 0.6em 4.6em;
+  background: #ffffff;
+  color: #292f33;
+  border: 1px solid #e1e8ed;
+  border-radius: 5px;
+}
+
+/* AO3 turns line breaks in your code into <br> tags: hide them in the rows */
+#workskin .twc12 .tw-top br,
+#workskin .twc12 .tw-stats br,
+#workskin .twc12-feed .twc-bar br,
+#workskin .twc12-feed .tw-nav br { display: none; }
+
+/* the name line: picture, name and @handle, with the time in the top right corner.
+   <p class="tw-top"><span class="tw-pfp">...</span><span class="hide"> </span><span class="tw-name">Name</span> <span class="tw-handle">@handle</span> <span class="tw-time">3h</span></p> */
+#workskin .twc12 .tw-top {
+  display: block;
+  margin: 0;
+  padding-right: 2.6em;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+#workskin .twc12 .tw-name { font-weight: bold; }
+
+#workskin .twc12 .tw-handle { color: #8899a6; font-size: 0.9em; }
+
+#workskin .twc12 .tw-time {
+  position: absolute;
+  top: 0.75em;
+  right: 0.8em;
+  color: #8899a6;
+  font-size: 0.85em;
+}
+
+#workskin .twc12 .tw-name .ic { width: 1em; height: 1em; margin-left: 0.2em; vertical-align: -0.15em; }
+
+/* a long name: the name line is a flex row, so when it doesn't all fit, the handle shrinks first and can
+   disappear completely, then the name is cut off, tick and all. The time always stays.
+   A name typed in a plain span ends in "...": <span class="tw-name"><span>A really long name</span></span>
+   Without the span it stops at the last whole word that fits */
+#workskin .twc12 .tw-top { display: flex; align-items: flex-start; line-height: 1.3; }
+
+#workskin .twc12 .tw-name {
+  display: flex;
+  flex: 0 1 auto;
+  align-items: flex-start;
+  min-width: 0;
+  max-height: 1.3em;
+  overflow: hidden;
+  white-space: normal;
+}
+
+#workskin .twc12 .tw-name > span { min-width: 0; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+
+#workskin .twc12 .tw-name > .ic { flex: 0 100000 auto; margin-top: 0.15em; background-position: left center; }
+
+#workskin .twc12 .tw-handle { flex: 0 100000 auto; min-width: 0; margin-left: 0.3em; overflow: hidden; text-overflow: ellipsis; }
+
+#workskin .twc12 .tw-time { flex: none; }
+
+/* the picture: a square with slightly rounded corners. Initials, a picture tag in a pfp span, or a profile. */
+#workskin .twc12 .tw-pfp {
+  display: flex;
+  position: absolute;
+  top: 0.75em;
+  left: 0.8em;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  line-height: 1;
+  border-radius: 5px;
+  overflow: hidden;
+  background-color: #ccd6dd;
+  color: #ffffff;
+  font-size: 0.9em;
+  font-weight: bold;
+}
+
+/* the core makes profile pictures round: square them off again */
+#workskin .twc12 .tw-pfp .pfp { border-radius: 0; }
+
+#workskin .twc12 .tw-text { display: block; margin: 0.1em 0 0.15em 0; }
+
+/* #hashtags, @mentions, links */
+#workskin .twc12 .tw-link { color: #2b9bd8; }
+
+/* "Retweeted by Shane" under the words: <p class="tw-label"><span class="ic ic-tw-repost">&#8644;</span> Retweeted by Shane</p> */
+#workskin .twc12 .tw-label {
+  display: block;
+  margin: 0.2em 0 0 0;
+  color: #8899a6;
+  font-size: 0.8em;
+}
+
+#workskin .twc12 .tw-label .ic { width: 1.1em; height: 1.1em; margin-right: 0.3em; vertical-align: -0.25em; }
+
+/* the grey "Details" under a tweet: <p class="tw-details">Details</p> */
+#workskin .twc12 .tw-details { display: block; margin: 0.15em 0 0 0; color: #8899a6; font-size: 0.8em; }
+
+/* a picture in a tweet: <p class="tw-media"><img src="..." alt="..."></p> */
+#workskin .twc12 .tw-media { display: block; margin: 0.5em 0 0.3em 0; }
+
+#workskin .twc12 .tw-media img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border-radius: 5px;
+}
+
+/* the buttons: reply, retweet, favorite and more, in grey with no numbers */
+#workskin .twc12 .tw-stats {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0.45em 0 0 0;
+  padding-right: 15%;
+  color: #8899a6;
+  font-size: 0.85em;
+}
+
+#workskin .twc12 .tw-stats p { display: inline; margin: 0; padding: 0; }
+
+#workskin .twc12 .tw-stat { display: block; flex: 0 0 auto; margin: 0; padding: 0; white-space: nowrap; }
+
+#workskin .twc12 .tw-stats .ic { width: 1.3em; height: 1.3em; vertical-align: -0.3em; }
+
+/* a favorite readers can click: <details class="tw-stat tw-tog"> */
+#workskin .twc12 .tw-tog summary { display: block; list-style: none; cursor: pointer; color: inherit; }
+
+#workskin .twc12 .tw-tog summary::-webkit-details-marker { display: none; }
+
+#workskin .twc12 .tw-tog summary::marker { content: ""; }
+
+#workskin .twc12 .tw-tog .on { display: none; }
+
+#workskin .twc12 .tw-tog[open] .on { display: inline; }
+
+#workskin .twc12 .tw-tog[open] .off { display: none; }
+
+/* a gold star and a green retweet for buttons the account has used: add tw-liked or tw-rt to the tw-stat */
+#workskin .twc12 .tw-stats .tw-liked,
+#workskin .twc12 .tw-stats .tw-tog[open] { color: #ffac33; }
+
+#workskin .twc12 .tw-stats .tw-rt { color: #5c913b; }
+
+/* ---------- Classic Twitter 2012-15: an opened tweet ----------
+   Add "big" for a tweet on its own page: the @handle goes under the name, the words are bigger and in a
+   serif font, and the date, the counts and the buttons get lines of their own.
+   <div class="mob twc12 big">
+     <p class="tw-top"> ... </p>
+     <p class="tw-text"> ... </p>
+     <p class="tw-date">8/2/13, 2:26 PM</p>
+     <p class="tw-counts"><b>11</b> Retweets <b>17</b> Favorites</p>
+     <div class="tw-stats"> the buttons </div>
+     <p class="twc-foot"><span>Reply to Name</span></p>
+   </div> */
+#workskin .twc12.big { padding: 0.8em 0.8em 0 0.8em; }
+
+#workskin .twc12.big .tw-top { min-height: 48px; padding: 0 0 0 58px; white-space: normal; }
+
+#workskin .twc12.big .tw-pfp { top: 0.8em; }
+
+#workskin .twc12.big .tw-top { display: block; }
+
+#workskin .twc12.big .tw-name { max-height: none; }
+
+#workskin .twc12.big .tw-name > span { white-space: normal; }
+
+#workskin .twc12.big .tw-handle { margin-left: 0; }
+
+#workskin .twc12.big .tw-top > .tw-name,
+#workskin .twc12.big .tw-top > .tw-handle { display: block; margin-top: 0.2em; }
+
+#workskin .twc12.big .tw-name { font-size: 1.05em; }
+
+#workskin .twc12.big .tw-text {
+  margin: 0.55em 0 0.5em 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.4em;
+  line-height: 1.3;
+}
+
+#workskin .twc12 .tw-date { display: block; margin: 0.4em 0 0.7em 0; color: #8899a6; font-size: 0.85em; }
+
+#workskin .twc12 .tw-counts {
+  display: block;
+  margin: 0;
+  padding: 0.6em 0;
+  border-top: 1px solid #e1e8ed;
+  border-bottom: 1px solid #e1e8ed;
+  color: #8899a6;
+  font-size: 0.8em;
+  text-transform: uppercase;
+}
+
+#workskin .twc12 .tw-counts b { margin-left: 0.8em; color: #292f33; font-size: 1.1em; }
+
+#workskin .twc12 .tw-counts b:first-child { margin-left: 0; }
+
+#workskin .twc12.big .tw-stats { justify-content: space-around; margin: 0; padding: 0.7em 0; font-size: 1em; }
+
+#workskin .twc12.big .tw-stats .ic { width: 1.75em; height: 1.75em; }
+
+/* the reply box under an opened tweet: <p class="twc-foot"><span>Reply to Name</span></p> */
+#workskin .twc12 .twc-foot {
+  display: block;
+  margin: 0 -0.8em;
+  padding: 0.45em 0.6em;
+  background-color: #e6e6e6;
+  background-image: linear-gradient(#f4f4f4, #d4d4d4);
+  border-top: 1px solid #c4c4c4;
+}
+
+#workskin .twc12 .twc-foot span {
+  display: block;
+  padding: 0.3em 0.7em;
+  background: #ffffff;
+  border: 1px solid #b0b0b0;
+  border-radius: 1em;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3);
+  color: #b0b0b0;
+}
+
+/* ---------- Classic Twitter 2012-15: the app screen ----------
+   <div class="twc12-feed">
+     <p class="twc-bar"> the blue bar along the top </p>
+     <div class="mob twc12"> ... </div>
+     <div class="mob twc12"> ... </div>
+     <p class="tw-nav"> the black row of buttons along the bottom </p>
+   </div>
+   The tweets inside lose their borders and sit one under the other, and the screen scrolls between the bars. */
+#workskin .twc12-feed {
+  width: 360px;
+  max-width: 100%;
+  max-height: 620px;
+  margin: 1.2em auto;
+  overflow-y: auto;
+  overflow-x: hidden;
+  box-sizing: border-box;
+  background: #ffffff;
+  color: #292f33;
+  border: 1px solid #ccd6dd;
+  border-radius: 5px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 0.92em;
+  line-height: 1.35;
+}
+
+#workskin .twc12-feed .twc12 {
+  width: auto;
+  margin: 0;
+  border: 0;
+  border-bottom: 1px solid #e1e8ed;
+  border-radius: 0;
+  font-size: 1em;
+}
+
+/* the blue bar along the top: a back arrow or the page's buttons, the page name in the middle, search and write a tweet on the right.
+   <p class="twc-bar"><span class="ic ic-back">&#8592;</span><span class="twc-title">Tweet</span><span class="ic ic-x-search">&#128269;</span><span class="ic ic-tw-compose">&#9998;</span></p> */
+#workskin .twc12-feed .twc-bar {
+  display: flex;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  align-items: center;
+  min-height: 1.4em;
+  margin: 0;
+  padding: 0.6em 0.8em;
+  background-color: #3b94d9;
+  background-image: linear-gradient(#6db9ef, #3b92d8 55%, #2f83c8);
+  border-bottom: 1px solid #23689f;
+  color: #ffffff;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.35);
+}
+
+/* the page name sits in the middle of the bar, whatever buttons are either side of it */
+#workskin .twc12-feed .twc-title {
+  position: absolute;
+  left: 4.5em;
+  right: 4.5em;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.15em;
+}
+
+#workskin .twc12-feed .twc-bar .ic { flex: none; width: 1.4em; height: 1.4em; }
+
+#workskin .twc12-feed .twc-title + .ic { margin-left: auto; }
+
+#workskin .twc12-feed .twc-bar .ic + .ic { margin-left: 0.8em; }
+
+/* the black row of buttons along the bottom, each with its name under it. "on" lights up the page you're on.
+   <p class="tw-nav"><span class="tw-tab on"><span class="ic ic-x-home-filled">&#8962;</span> Home</span> <span class="tw-tab"><span class="ic ic-tw-at">@</span> Connect</span> <span class="tw-tab"><span class="ic ic-tw-hash">#</span> Discover</span> <span class="tw-tab"><span class="ic ic-tw-me">&#9786;</span> Me</span></p> */
+#workskin .twc12-feed .tw-nav {
+  display: flex;
+  position: sticky;
+  bottom: 0;
+  z-index: 2;
+  margin: 0;
+  padding: 0;
+  background-color: #262626;
+  background-image: linear-gradient(#4a4a4a, #2c2c2c 50%, #1a1a1a 50%, #0e0e0e);
+  border-top: 1px solid #000000;
+  color: #a0a0a0;
+  font-size: 0.7em;
+  font-weight: bold;
+  line-height: 1;
+  text-shadow: 0 -1px 0 #000000;
+}
+
+#workskin .twc12-feed .tw-tab {
+  display: block;
+  flex: 1 1 0;
+  padding: 0.5em 0 0.45em 0;
+  text-align: center;
+}
+
+#workskin .twc12-feed .tw-tab .ic { display: block; width: 2.1em; height: 2.1em; margin: 0 auto 0.25em auto; }
+
+/* the page you're on is darker, as if it's pressed in */
+#workskin .twc12-feed .tw-tab.on {
+  background-color: #0c0c0c;
+  background-image: linear-gradient(#141414, #050505);
+  box-shadow: inset 0 0 6px #000000;
+  color: #ffffff;
+}
+
+#workskin .twc12-feed::-webkit-scrollbar { width: 6px; }
+
+#workskin .twc12-feed::-webkit-scrollbar-thumb { background: rgba(128, 128, 128, 0.5); border-radius: 6px; }
+
+/* ---------- Classic Twitter 2012-15: Icons ----------
+   Delete this whole section to get the typed symbols back. */
+#workskin .twc12 .ic, #workskin .twc12-feed .ic {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  overflow: hidden;
+  text-indent: -100em;
+  text-align: left;
+  white-space: nowrap;
+  vertical-align: -0.15em;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+#workskin .twc12 .ic.ic-verified { background-image: url(https://images.squidge.org/images/2026/11/15/verified-blue.png); }
+#workskin .twc12 .ic.ic-tw-reply { background-image: url(https://images.squidge.org/images/2026/11/19/tw12-reply-grey.png); }
+#workskin .twc12 .ic.ic-tw-repost { background-image: url(https://images.squidge.org/images/2026/11/19/tw12-retweet-grey.png); }
+#workskin .twc12 .ic.ic-tw-like { background-image: url(https://images.squidge.org/images/2026/11/19/tw12-star-grey.png); }
+#workskin .twc12 .ic.ic-tw-share { background-image: url(https://images.squidge.org/images/2026/11/19/tw12-more-grey.png); }
+#workskin .twc12-feed .twc-bar .ic.ic-back { background-image: url(https://images.squidge.org/images/2026/11/19/tw12-back-white.png); }
+#workskin .twc12-feed .twc-bar .ic.ic-x-search { background-image: url(https://images.squidge.org/images/2026/11/19/tw12-search-white.png); }
+#workskin .twc12-feed .twc-bar .ic.ic-tw-compose { background-image: url(https://images.squidge.org/images/2026/11/19/tw12-compose-white.png); }
+#workskin .twc12-feed .twc-bar .ic.ic-tw-me { background-image: url(https://images.squidge.org/images/2026/11/19/tw12-me-white.png); }
+#workskin .twc12-feed .tw-nav .ic.ic-x-home-filled { background-image: url(https://images.squidge.org/images/2026/11/19/tw12-home-grey.png); }
+#workskin .twc12-feed .tw-nav .ic.ic-tw-at { background-image: url(https://images.squidge.org/images/2026/11/19/tw12-at-grey.png); }
+#workskin .twc12-feed .tw-nav .ic.ic-tw-hash { background-image: url(https://images.squidge.org/images/2026/11/19/tw12-hash-grey.png); }
+#workskin .twc12-feed .tw-nav .ic.ic-tw-me { background-image: url(https://images.squidge.org/images/2026/11/19/tw12-me-grey.png); }
+
+/* the page you're on has blue buttons */
+#workskin .twc12-feed .tw-nav .on .ic.ic-x-home-filled { background-image: url(https://images.squidge.org/images/2026/11/19/tw12-home-blue.png); }
+#workskin .twc12-feed .tw-nav .on .ic.ic-tw-at { background-image: url(https://images.squidge.org/images/2026/11/19/tw12-at-blue.png); }
+#workskin .twc12-feed .tw-nav .on .ic.ic-tw-hash { background-image: url(https://images.squidge.org/images/2026/11/19/tw12-hash-blue.png); }
+#workskin .twc12-feed .tw-nav .on .ic.ic-tw-me { background-image: url(https://images.squidge.org/images/2026/11/19/tw12-me-blue.png); }
+
+/* a gold star and a green retweet for buttons the account has used */
+#workskin .twc12 .tw-stats .tw-liked .ic.ic-tw-like, #workskin .twc12 .tw-stats .tw-tog[open] .ic.ic-tw-like { background-image: url(https://images.squidge.org/images/2026/11/19/tw12-star-gold.png); }
+#workskin .twc12 .tw-stats .tw-rt .ic.ic-tw-repost { background-image: url(https://images.squidge.org/images/2026/11/19/tw12-retweet-green.png); }
+
+/* <<<<<<<<<< MODULE: Classic Twitter 2012-15 (end) <<<<<<<<<< */
+
+/* >>>>>>>>>> MODULE: Classic Twitter 2016-19 (start) >>>>>>>>>> */
+
+/* ==========================================================
+   MODULE: CLASSIC TWITTER 2016-19   (classes: twc16, twc16-feed)
+   Twitter as it looked from 2016 to 2019: round pictures, hearts, the little grey arrow, a white bar
+   along the top with your own picture in it, and a row of outline buttons along the bottom.
+   Single tweets (twc16), opened tweets (twc16 big) and the app screen (twc16-feed), with Twitter's dim blue night mode.
+   Needs the CORE block. It doesn't need any other Twitter module.
+   ========================================================== */
+
+/* one tweet: <div class="mob twc16 theme-auto"> ... </div>
+   The picture sits in a column of its own on the left, and everything else lines up to the right of it. */
+#workskin .twc16 {
+  position: relative;
+  padding: 0.65em 1em 0.5em 4.75em;
+  background: #ffffff;
+  color: #14171a;
+  border: 1px solid #e6ecf0;
+  border-radius: 6px;
+}
+
+/* AO3 turns line breaks in your code into <br> tags: hide them in the rows */
+#workskin .twc16 .tw-top br,
+#workskin .twc16 .tw-stats br,
+#workskin .twc16-feed .twc-bar br,
+#workskin .twc16-feed .tw-nav br { display: none; }
+
+/* "Shane Retweeted" or "Rose liked" above a tweet:
+   <p class="tw-label"><span class="ic ic-tw-repost">&#8644;</span> Shane Hollander Retweeted</p> */
+#workskin .twc16 .tw-label {
+  display: block;
+  margin: 0 0 0.15em 0;
+  color: #657786;
+  font-size: 0.8em;
+  font-weight: bold;
+}
+
+#workskin .twc16 .tw-label .ic { width: 1.1em; height: 1.1em; margin-right: 0.3em; vertical-align: -0.2em; }
+
+/* the name line: picture, name, @handle and time, all on one line, and the little grey arrow in the corner.
+   <p class="tw-top"><span class="tw-pfp">...</span><span class="hide"> </span><span class="tw-name">Name</span> <span class="tw-handle">@handle</span> <span class="tw-time">· 3h</span> <span class="tw-more ic ic-dropdown">&#8964;</span></p> */
+#workskin .twc16 .tw-top {
+  display: block;
+  margin: 0;
+  padding-right: 1.4em;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+#workskin .twc16 .tw-name { font-weight: bold; }
+
+#workskin .twc16 .tw-handle,
+#workskin .twc16 .tw-time { color: #657786; }
+
+#workskin .twc16 .tw-name .ic { width: 1em; height: 1em; margin-left: 0.2em; vertical-align: -0.15em; }
+
+/* a long name: the name line is a flex row, so when it doesn't all fit, the handle shrinks first and can
+   disappear completely, then the name is cut off, tick and all. The time always stays.
+   A name typed in a plain span ends in "...": <span class="tw-name"><span>A really long name</span></span>
+   Without the span it stops at the last whole word that fits */
+#workskin .twc16 .tw-top { display: flex; align-items: flex-start; line-height: 1.3; }
+
+#workskin .twc16 .tw-name {
+  display: flex;
+  flex: 0 1 auto;
+  align-items: flex-start;
+  min-width: 0;
+  max-height: 1.3em;
+  overflow: hidden;
+  white-space: normal;
+}
+
+#workskin .twc16 .tw-name > span { min-width: 0; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+
+#workskin .twc16 .tw-name > .ic { flex: 0 100000 auto; margin-top: 0.15em; background-position: left center; }
+
+#workskin .twc16 .tw-handle { flex: 0 100000 auto; min-width: 0; margin-left: 0.3em; overflow: hidden; text-overflow: ellipsis; }
+
+#workskin .twc16 .tw-time { flex: none; margin-left: 0.25em; }
+
+#workskin .twc16 .tw-more { position: absolute; top: 0.8em; right: 1em; opacity: 0.45; }
+
+/* the picture: a circle. Initials, a picture tag in a pfp span, or a profile. */
+#workskin .twc16 .tw-pfp {
+  display: flex;
+  position: absolute;
+  top: 0.75em;
+  left: 1em;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  line-height: 1;
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: #aab8c2;
+  color: #ffffff;
+  font-size: 0.9em;
+  font-weight: bold;
+}
+
+/* "Replying to @someone", under the name line */
+#workskin .twc16 .tw-replying { display: block; margin: 0.05em 0 0 0; color: #657786; font-size: 0.9em; }
+
+#workskin .twc16 .tw-text { display: block; margin: 0.1em 0 0.25em 0; }
+
+/* #hashtags, @mentions, links */
+#workskin .twc16 .tw-link { color: #1da1f2; }
+
+/* a quoted tweet, in a box under the words:
+   <div class="tw-quote"><p class="tw-top"><span class="tw-name">Name</span> <span class="tw-handle">@handle</span></p><p class="tw-text">...</p></div> */
+#workskin .twc16 .tw-quote {
+  display: block;
+  margin: 0.5em 0;
+  padding: 0.5em 0.8em;
+  border: 1px solid #ccd6dd;
+  border-radius: 14px;
+  font-size: 0.95em;
+}
+
+/* the doubled classes make these beat the opened-tweet rules, so a quote looks the same in an opened tweet */
+#workskin .twc16 .tw-quote .tw-top.tw-top { display: flex; padding: 0; min-height: 0; }
+
+#workskin .twc16 .tw-quote .tw-top.tw-top > .tw-name,
+#workskin .twc16 .tw-quote .tw-top.tw-top > .tw-handle { margin: 0; font-size: 1em; }
+
+#workskin .twc16 .tw-quote .tw-top.tw-top > .tw-handle { margin-left: 0.3em; }
+
+#workskin .twc16 .tw-quote .tw-text.tw-text.tw-text { margin: 0.15em 0 0 0; font-size: 1em; line-height: 1.35; }
+
+/* a picture in a tweet: <p class="tw-media"><img src="..." alt="..."></p> */
+#workskin .twc16 .tw-media { display: block; margin: 0.5em 0; }
+
+#workskin .twc16 .tw-media img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border: 1px solid #e6ecf0;
+  border-radius: 14px;
+}
+
+/* the row of buttons: reply, retweet, like and message (or share), each with its number */
+#workskin .twc16 .tw-stats {
+  display: flex;
+  align-items: center;
+  margin: 0.4em 0 0 0;
+  padding-right: 10%;
+  color: #657786;
+  font-size: 0.85em;
+}
+
+#workskin .twc16 .tw-stats p { display: inline; margin: 0; padding: 0; }
+
+#workskin .twc16 .tw-stat { display: block; flex: 1 1 0; margin: 0; padding: 0; white-space: nowrap; }
+
+/* the last button stays small at the end */
+#workskin .twc16 .tw-stat:last-child { flex: 0 0 auto; }
+
+#workskin .twc16 .tw-stats .ic { width: 1.3em; height: 1.3em; margin-right: 0.35em; vertical-align: -0.3em; opacity: 0.7; }
+
+/* a like readers can click: <details class="tw-stat tw-tog"> */
+#workskin .twc16 .tw-tog summary { display: block; list-style: none; cursor: pointer; color: inherit; }
+
+#workskin .twc16 .tw-tog summary::-webkit-details-marker { display: none; }
+
+#workskin .twc16 .tw-tog summary::marker { content: ""; }
+
+#workskin .twc16 .tw-tog .on { display: none; }
+
+#workskin .twc16 .tw-tog[open] .on { display: inline; }
+
+#workskin .twc16 .tw-tog[open] .off { display: none; }
+
+/* a red heart and a green retweet for buttons the account has used: add tw-liked or tw-rt to the tw-stat */
+#workskin .twc16 .tw-stats .tw-liked,
+#workskin .twc16 .tw-stats .tw-tog[open] { color: #e0245e; }
+
+#workskin .twc16 .tw-stats .tw-rt { color: #17bf63; }
+
+#workskin .twc16 .tw-stats .tw-liked .ic,
+#workskin .twc16 .tw-stats .tw-tog[open] .ic,
+#workskin .twc16 .tw-stats .tw-rt .ic { opacity: 1; }
+
+/* ---------- Classic Twitter 2016-19: conversations ----------
+   Add "link" to a tweet in a timeline, and a grey line joins its picture to the next tweet's. */
+#workskin .twc16-feed .twc16.link { border-bottom: 0; }
+
+#workskin .twc16-feed .twc16.link::before,
+#workskin .twc16-feed .twc16.link + .twc16::before {
+  content: "";
+  position: absolute;
+  left: 1em;
+  width: 2px;
+  margin-left: 23px;
+  background: #ccd6dd;
+}
+
+#workskin .twc16-feed .twc16.link::before { top: 0.75em; bottom: 0; margin-top: 52px; }
+
+#workskin .twc16-feed .twc16.link + .twc16::before { top: 0; height: 0.7em; }
+
+/* ---------- Classic Twitter 2016-19: an opened tweet ----------
+   Add "big" for a tweet on its own page: the @handle goes under the name, the words are bigger,
+   and the date, the counts and the buttons get lines of their own.
+   <div class="mob twc16 big theme-auto">
+     <p class="tw-top"> ... </p>
+     <p class="tw-text"> ... </p>
+     <p class="tw-date">11:04 PM · 10/20/18 · Twitter for iPhone</p>
+     <p class="tw-counts"><b>12</b> Retweets <b>45</b> Likes</p>
+     <div class="tw-stats"> the buttons, with no numbers </div>
+   </div> */
+#workskin .twc16.big { padding: 0.8em 1em 0.2em 1em; }
+
+#workskin .twc16.big .tw-top { min-height: 48px; padding-left: 58px; white-space: normal; }
+
+#workskin .twc16.big .tw-pfp { top: 0.8em; }
+
+#workskin .twc16.big .tw-top { display: block; }
+
+#workskin .twc16.big .tw-name { max-height: none; }
+
+#workskin .twc16.big .tw-name > span { white-space: normal; }
+
+#workskin .twc16.big .tw-handle { margin-left: 0; }
+
+#workskin .twc16.big .tw-top > .tw-name,
+#workskin .twc16.big .tw-top > .tw-handle { display: block; margin-top: 0.15em; }
+
+#workskin .twc16.big .tw-name { font-size: 1.05em; }
+
+#workskin .twc16.big .tw-replying { margin-top: 0.5em; }
+
+#workskin .twc16.big .tw-text { margin: 0.5em 0; font-size: 1.45em; line-height: 1.3; }
+
+#workskin .twc16 .tw-date { display: block; margin: 0.6em 0; color: #657786; font-size: 0.85em; }
+
+#workskin .twc16 .tw-counts {
+  display: block;
+  margin: 0;
+  padding: 0.65em 0;
+  border-top: 1px solid #e6ecf0;
+  border-bottom: 1px solid #e6ecf0;
+  color: #657786;
+  font-size: 0.9em;
+}
+
+#workskin .twc16 .tw-counts b { margin-left: 0.8em; color: #14171a; }
+
+#workskin .twc16 .tw-counts b:first-child { margin-left: 0; }
+
+#workskin .twc16.big .tw-stats { justify-content: space-around; margin: 0; padding: 0.6em 0 0.4em 0; }
+
+#workskin .twc16.big .tw-stat { flex: 0 0 auto; }
+
+#workskin .twc16.big .tw-stats .ic { width: 1.5em; height: 1.5em; margin-right: 0; }
+
+/* ---------- Classic Twitter 2016-19: the app screen ----------
+   <div class="twc16-feed theme-auto">
+     <p class="twc-bar"> the bar along the top </p>
+     <div class="mob twc16"> ... </div>
+     <div class="mob twc16"> ... </div>
+     <p class="tw-nav"> the row of buttons along the bottom </p>
+   </div>
+   The tweets inside lose their borders and sit one under the other, and the screen scrolls between the bars. */
+#workskin .twc16-feed {
+  width: 380px;
+  max-width: 100%;
+  max-height: 640px;
+  margin: 1.2em auto;
+  overflow-y: auto;
+  overflow-x: hidden;
+  box-sizing: border-box;
+  background: #ffffff;
+  color: #14171a;
+  border: 1px solid #e6ecf0;
+  border-radius: 6px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 0.92em;
+  line-height: 1.35;
+}
+
+#workskin .twc16-feed .twc16 {
+  width: auto;
+  margin: 0;
+  border: 0;
+  border-bottom: 1px solid #e6ecf0;
+  border-radius: 0;
+  font-size: 1em;
+}
+
+/* the bar along the top: your own picture (or a back arrow) on the left, the page name in the middle.
+   <p class="twc-bar"><span class="tw-me"><span class="pfp pfp-name"></span></span><span class="twc-title">Home</span></p> */
+#workskin .twc16-feed .twc-bar {
+  display: flex;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  align-items: center;
+  min-height: 2em;
+  margin: 0;
+  padding: 0.5em 1em;
+  background: #ffffff;
+  border-bottom: 1px solid #e6ecf0;
+}
+
+#workskin .twc16-feed .tw-me {
+  display: block;
+  flex: none;
+  width: 2em;
+  height: 2em;
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+#workskin .twc16-feed .twc-title {
+  position: absolute;
+  left: 4em;
+  right: 4em;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.1em;
+}
+
+#workskin .twc16-feed .twc-bar .ic { flex: none; width: 1.4em; height: 1.4em; }
+
+#workskin .twc16-feed .twc-title + .ic { margin-left: auto; }
+
+/* the replies box under an opened tweet: <p class="twc-foot"><span>Tweet your reply</span></p> */
+#workskin .twc16-feed .twc-foot {
+  display: block;
+  margin: 0;
+  padding: 0.5em 1em;
+  border-bottom: 1px solid #e6ecf0;
+}
+
+#workskin .twc16-feed .twc-foot span {
+  display: block;
+  padding: 0.35em 0.9em;
+  border: 1px solid #ccd6dd;
+  border-radius: 1.2em;
+  color: #8899a6;
+}
+
+/* the row of buttons along the bottom: home, search, notifications and messages. "on" makes the page you're on blue.
+   <p class="tw-nav"><span class="on ic ic-x-home-filled">&#8962;</span> <span class="ic ic-x-search">&#128269;</span> <span class="ic ic-x-bell">&#128276;</span> <span class="ic ic-tw-mail">&#9993;</span></p> */
+#workskin .twc16-feed .tw-nav {
+  display: flex;
+  position: sticky;
+  bottom: 0;
+  z-index: 2;
+  align-items: center;
+  justify-content: space-around;
+  margin: 0;
+  padding: 0.55em 0.4em 0.65em 0.4em;
+  background: #ffffff;
+  border-top: 1px solid #e6ecf0;
+  font-size: 1.3em;
+  line-height: 1;
+}
+
+#workskin .twc16-feed .tw-nav .ic { opacity: 0.55; }
+
+#workskin .twc16-feed .tw-nav .on { opacity: 1; }
+
+/* a blue number on a button, like new notifications: wrap the icon and the number in a tw-badged span.
+   <span class="tw-badged"><span class="ic ic-x-bell">&#128276;</span><span class="tw-badge"><span class="hide"> (</span>3<span class="hide">)</span></span></span>
+   The circle stretches into a lozenge for longer numbers. */
+#workskin .twc16-feed .tw-nav .tw-badged { position: relative; display: block; line-height: 1; }
+
+#workskin .twc16-feed .tw-nav .tw-badge {
+  position: absolute;
+  top: -0.7em;
+  left: 1.1em;
+  min-width: 1.5em;
+  height: 1.5em;
+  padding: 0 0.4em;
+  box-sizing: border-box;
+  border: 1px solid #ffffff;
+  border-radius: 0.75em;
+  background: #1da1f2;
+  color: #ffffff;
+  font-size: 0.5em;
+  font-weight: bold;
+  line-height: 1.4em;
+  text-align: center;
+  white-space: nowrap;
+}
+
+#workskin .twc16-feed::-webkit-scrollbar { width: 6px; }
+
+#workskin .twc16-feed::-webkit-scrollbar-thumb { background: rgba(128, 128, 128, 0.5); border-radius: 6px; }
+
+/* ---------- Classic Twitter 2016-19: Dark theme (theme-dark): Twitter's dim blue night mode ---------- */
+
+#workskin .twc16.theme-dark,
+#workskin .twc16-feed.theme-dark,
+#workskin .twc16-feed.theme-dark .twc16,
+#workskin .twc16-feed.theme-dark .twc-bar,
+#workskin .twc16-feed.theme-dark .tw-nav {
+  background: #15202b;
+  color: #ffffff;
+  border-color: #38444d;
+}
+
+#workskin .twc16.theme-dark .tw-handle,
+#workskin .twc16-feed.theme-dark .tw-handle,
+#workskin .twc16.theme-dark .tw-time,
+#workskin .twc16-feed.theme-dark .tw-time,
+#workskin .twc16.theme-dark .tw-label,
+#workskin .twc16-feed.theme-dark .tw-label,
+#workskin .twc16.theme-dark .tw-replying,
+#workskin .twc16-feed.theme-dark .tw-replying,
+#workskin .twc16.theme-dark .tw-stats,
+#workskin .twc16-feed.theme-dark .tw-stats,
+#workskin .twc16.theme-dark .tw-date,
+#workskin .twc16-feed.theme-dark .tw-date,
+#workskin .twc16.theme-dark .tw-counts,
+#workskin .twc16-feed.theme-dark .tw-counts {
+  color: #8899a6;
+}
+
+#workskin .twc16.theme-dark .tw-media img,
+#workskin .twc16-feed.theme-dark .tw-media img,
+#workskin .twc16.theme-dark .tw-counts,
+#workskin .twc16-feed.theme-dark .tw-counts,
+#workskin .twc16.theme-dark .tw-quote,
+#workskin .twc16-feed.theme-dark .tw-quote,
+#workskin .twc16-feed.theme-dark .twc-foot,
+#workskin .twc16-feed.theme-dark .twc-foot span {
+  border-color: #38444d;
+}
+
+#workskin .twc16.theme-dark .tw-counts b,
+#workskin .twc16-feed.theme-dark .tw-counts b { color: #ffffff; }
+
+#workskin .twc16-feed.theme-dark .twc16.link::before,
+#workskin .twc16-feed.theme-dark .twc16.link + .twc16::before { background: #38444d; }
+
+#workskin .twc16-feed.theme-dark .tw-nav .tw-badge { border-color: #15202b; }
+
+/* ---------- Classic Twitter 2016-19: Auto theme (theme-auto) ---------- */
+
+@media (prefers-color-scheme: dark) {
+  #workskin .twc16.theme-auto,
+  #workskin .twc16-feed.theme-auto,
+  #workskin .twc16-feed.theme-auto .twc16,
+  #workskin .twc16-feed.theme-auto .twc-bar,
+  #workskin .twc16-feed.theme-auto .tw-nav {
+    background: #15202b;
+    color: #ffffff;
+    border-color: #38444d;
+  }
+
+  #workskin .twc16.theme-auto .tw-handle,
+  #workskin .twc16-feed.theme-auto .tw-handle,
+  #workskin .twc16.theme-auto .tw-time,
+  #workskin .twc16-feed.theme-auto .tw-time,
+  #workskin .twc16.theme-auto .tw-label,
+  #workskin .twc16-feed.theme-auto .tw-label,
+  #workskin .twc16.theme-auto .tw-replying,
+  #workskin .twc16-feed.theme-auto .tw-replying,
+  #workskin .twc16.theme-auto .tw-stats,
+  #workskin .twc16-feed.theme-auto .tw-stats,
+  #workskin .twc16.theme-auto .tw-date,
+  #workskin .twc16-feed.theme-auto .tw-date,
+  #workskin .twc16.theme-auto .tw-counts,
+  #workskin .twc16-feed.theme-auto .tw-counts {
+    color: #8899a6;
+  }
+
+  #workskin .twc16.theme-auto .tw-media img,
+  #workskin .twc16-feed.theme-auto .tw-media img,
+  #workskin .twc16.theme-auto .tw-counts,
+  #workskin .twc16-feed.theme-auto .tw-counts,
+  #workskin .twc16.theme-auto .tw-quote,
+  #workskin .twc16-feed.theme-auto .tw-quote,
+  #workskin .twc16-feed.theme-auto .twc-foot,
+  #workskin .twc16-feed.theme-auto .twc-foot span {
+    border-color: #38444d;
+  }
+
+  #workskin .twc16.theme-auto .tw-counts b,
+  #workskin .twc16-feed.theme-auto .tw-counts b { color: #ffffff; }
+
+  #workskin .twc16-feed.theme-auto .twc16.link::before,
+  #workskin .twc16-feed.theme-auto .twc16.link + .twc16::before { background: #38444d; }
+
+  #workskin .twc16-feed.theme-auto .tw-nav .tw-badge { border-color: #15202b; }
+}
+
+/* ---------- Classic Twitter 2016-19: Icons ----------
+   Delete this whole section to get the typed symbols back. */
+#workskin .twc16 .ic, #workskin .twc16-feed .ic {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  overflow: hidden;
+  text-indent: -100em;
+  text-align: left;
+  white-space: nowrap;
+  vertical-align: -0.15em;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+#workskin .twc16 .ic.ic-verified { background-image: url(https://images.squidge.org/images/2026/11/15/verified-blue.png); }
+#workskin .twc16 .ic.ic-tw-reply { background-image: url(https://images.squidge.org/images/2026/11/15/comment-black.png); }
+#workskin .twc16 .ic.ic-tw-repost { background-image: url(https://images.squidge.org/images/2026/11/17/repost-tw-black.png); }
+#workskin .twc16 .ic.ic-tw-like { background-image: url(https://images.squidge.org/images/2026/11/15/heart-black.png); }
+#workskin .twc16 .ic.ic-tw-mail, #workskin .twc16-feed .ic.ic-tw-mail { background-image: url(https://images.squidge.org/images/2026/11/19/tw-mail-black.png); }
+#workskin .twc16 .ic.ic-tw-share { background-image: url(https://images.squidge.org/images/2026/11/15/share-up-black.png); }
+#workskin .twc16 .ic.ic-dropdown { background-image: url(https://images.squidge.org/images/2026/11/15/dropdown-black.png); }
+#workskin .twc16-feed .ic.ic-back { background-image: url(https://images.squidge.org/images/2026/11/15/back-black.png); }
+#workskin .twc16-feed .ic.ic-x-home { background-image: url(https://images.squidge.org/images/2026/11/19/x-home-black.png); }
+#workskin .twc16-feed .ic.ic-x-home-filled { background-image: url(https://images.squidge.org/images/2026/11/19/x-home-filled-black.png); }
+#workskin .twc16-feed .ic.ic-x-search { background-image: url(https://images.squidge.org/images/2026/11/19/x-search-black.png); }
+#workskin .twc16-feed .ic.ic-x-bell { background-image: url(https://images.squidge.org/images/2026/11/19/x-bell-black.png); }
+
+/* Classic Twitter 2016-19 icons, dark */
+#workskin .twc16.theme-dark .ic.ic-tw-reply, #workskin .twc16-feed.theme-dark .ic.ic-tw-reply { background-image: url(https://images.squidge.org/images/2026/11/15/comment-white.png); }
+#workskin .twc16.theme-dark .ic.ic-tw-repost, #workskin .twc16-feed.theme-dark .ic.ic-tw-repost { background-image: url(https://images.squidge.org/images/2026/11/17/repost-tw-white.png); }
+#workskin .twc16.theme-dark .ic.ic-tw-like, #workskin .twc16-feed.theme-dark .ic.ic-tw-like { background-image: url(https://images.squidge.org/images/2026/11/15/heart-white.png); }
+#workskin .twc16.theme-dark .ic.ic-tw-mail, #workskin .twc16-feed.theme-dark .ic.ic-tw-mail { background-image: url(https://images.squidge.org/images/2026/11/19/tw-mail-white.png); }
+#workskin .twc16.theme-dark .ic.ic-tw-share, #workskin .twc16-feed.theme-dark .ic.ic-tw-share { background-image: url(https://images.squidge.org/images/2026/11/15/share-up-white.png); }
+#workskin .twc16.theme-dark .ic.ic-dropdown, #workskin .twc16-feed.theme-dark .ic.ic-dropdown { background-image: url(https://images.squidge.org/images/2026/11/15/dropdown-white.png); }
+#workskin .twc16-feed.theme-dark .ic.ic-back { background-image: url(https://images.squidge.org/images/2026/11/15/back-white.png); }
+#workskin .twc16-feed.theme-dark .ic.ic-x-home { background-image: url(https://images.squidge.org/images/2026/11/19/x-home-white.png); }
+#workskin .twc16-feed.theme-dark .ic.ic-x-home-filled { background-image: url(https://images.squidge.org/images/2026/11/19/x-home-filled-white.png); }
+#workskin .twc16-feed.theme-dark .ic.ic-x-search { background-image: url(https://images.squidge.org/images/2026/11/19/x-search-white.png); }
+#workskin .twc16-feed.theme-dark .ic.ic-x-bell { background-image: url(https://images.squidge.org/images/2026/11/19/x-bell-white.png); }
+
+/* Classic Twitter 2016-19 icons, auto */
+@media (prefers-color-scheme: dark) {
+  #workskin .twc16.theme-auto .ic.ic-tw-reply, #workskin .twc16-feed.theme-auto .ic.ic-tw-reply { background-image: url(https://images.squidge.org/images/2026/11/15/comment-white.png); }
+  #workskin .twc16.theme-auto .ic.ic-tw-repost, #workskin .twc16-feed.theme-auto .ic.ic-tw-repost { background-image: url(https://images.squidge.org/images/2026/11/17/repost-tw-white.png); }
+  #workskin .twc16.theme-auto .ic.ic-tw-like, #workskin .twc16-feed.theme-auto .ic.ic-tw-like { background-image: url(https://images.squidge.org/images/2026/11/15/heart-white.png); }
+  #workskin .twc16.theme-auto .ic.ic-tw-mail, #workskin .twc16-feed.theme-auto .ic.ic-tw-mail { background-image: url(https://images.squidge.org/images/2026/11/19/tw-mail-white.png); }
+  #workskin .twc16.theme-auto .ic.ic-tw-share, #workskin .twc16-feed.theme-auto .ic.ic-tw-share { background-image: url(https://images.squidge.org/images/2026/11/15/share-up-white.png); }
+  #workskin .twc16.theme-auto .ic.ic-dropdown, #workskin .twc16-feed.theme-auto .ic.ic-dropdown { background-image: url(https://images.squidge.org/images/2026/11/15/dropdown-white.png); }
+  #workskin .twc16-feed.theme-auto .ic.ic-back { background-image: url(https://images.squidge.org/images/2026/11/15/back-white.png); }
+  #workskin .twc16-feed.theme-auto .ic.ic-x-home { background-image: url(https://images.squidge.org/images/2026/11/19/x-home-white.png); }
+  #workskin .twc16-feed.theme-auto .ic.ic-x-home-filled { background-image: url(https://images.squidge.org/images/2026/11/19/x-home-filled-white.png); }
+  #workskin .twc16-feed.theme-auto .ic.ic-x-search { background-image: url(https://images.squidge.org/images/2026/11/19/x-search-white.png); }
+  #workskin .twc16-feed.theme-auto .ic.ic-x-bell { background-image: url(https://images.squidge.org/images/2026/11/19/x-bell-white.png); }
+}
+
+/* a red heart and a green retweet for buttons the account has used, in every theme */
+#workskin .twc16 .tw-stats .tw-liked .ic.ic-tw-like, #workskin .twc16 .tw-stats .tw-tog[open] .ic.ic-tw-like { background-image: url(https://images.squidge.org/images/2026/11/15/heart-filled-red.png); }
+#workskin .twc16 .tw-stats .tw-rt .ic.ic-tw-repost { background-image: url(https://images.squidge.org/images/2026/11/17/repost-tw-green.png); }
+
+/* <<<<<<<<<< MODULE: Classic Twitter 2016-19 (end) <<<<<<<<<< */
 /* >>>>>>>>>> MODULE: Instagram (posts, comments, DMs) (start) >>>>>>>>>> */
 
 /* ==========================================================

@@ -53,6 +53,7 @@
   <li><code>wa</code>: WhatsApp</li>
   <li><code>tw</code>: a Twitter/X post, and <code>tw-reply</code>: a reply stacked under it</li>
   <li><code>twdm</code>: Twitter/X direct messages</li>
+  <li><code>twc12</code> and <code>twc16</code>: classic Twitter tweets from 2012-15 and 2016-19, and <code>twc12-feed</code> and <code>twc16-feed</code>: timelines of them</li>
   <li><code>ig</code>: an Instagram post, and <code>igdm</code>: Instagram direct messages</li>
   <li><code>tb</code>: a Tumblr post</li>
   <li><code>gm</code>: a Gmail email, or a whole email thread</li>
@@ -390,7 +391,7 @@
     <p class="tw-stat"><span class="ic ic-tw-repost">&#8644;</span> 180<span class="hide"> reposts</span></p>
     <p class="tw-stat"><span class="ic ic-tw-like">&#9825;</span> 1k<span class="hide"> likes</span></p>
     <p class="tw-stat"><span class="ic ic-tw-views">&#128202;</span> 27K<span class="hide"> views</span></p>
-    <p class="tw-stat tw-end"><span class="ic ic-tw-bookmark">&#128278;</span></p>
+    <details class="tw-stat tw-end tw-tog"><summary><span class="ic ic-tw-bookmark">&#128278;</span><span class="hide"> Bookmark</span></summary></details>
     <p class="tw-stat tw-end"><span class="ic ic-tw-share">&#8679;</span></p>
   </div>
 </div>
@@ -408,7 +409,7 @@
     <p class="tw-stat"><span class="ic ic-tw-repost">&#8644;</span> 4,312<span class="hide"> reposts</span></p>
     <p class="tw-stat"><span class="ic ic-tw-like">&#9825;</span> 18.2K<span class="hide"> likes</span></p>
     <p class="tw-stat"><span class="ic ic-tw-views">&#128202;</span> 491K<span class="hide"> views</span></p>
-    <p class="tw-stat tw-end"><span class="ic ic-tw-bookmark">&#128278;</span></p>
+    <details class="tw-stat tw-end tw-tog"><summary><span class="ic ic-tw-bookmark">&#128278;</span><span class="hide"> Bookmark</span></summary></details>
     <p class="tw-stat tw-end"><span class="ic ic-tw-share">&#8679;</span></p>
   </div>
 </div>
@@ -428,7 +429,7 @@
     &lt;p class="tw-stat"&gt;&lt;span class="ic ic-tw-repost"&gt;&amp;#8644;&lt;/span&gt; 1&lt;span class="hide"&gt; repost&lt;/span&gt;&lt;/p&gt;
     &lt;p class="tw-stat"&gt;&lt;span class="ic ic-tw-like"&gt;&amp;#9825;&lt;/span&gt; 12&lt;span class="hide"&gt; likes&lt;/span&gt;&lt;/p&gt;
     &lt;p class="tw-stat"&gt;&lt;span class="ic ic-tw-views"&gt;&amp;#128202;&lt;/span&gt; 324&lt;span class="hide"&gt; views&lt;/span&gt;&lt;/p&gt;
-    &lt;p class="tw-stat tw-end"&gt;&lt;span class="ic ic-tw-bookmark"&gt;&amp;#128278;&lt;/span&gt;&lt;/p&gt;
+    &lt;details class="tw-stat tw-end tw-tog"&gt;&lt;summary&gt;&lt;span class="ic ic-tw-bookmark"&gt;&amp;#128278;&lt;/span&gt;&lt;span class="hide"&gt; Bookmark&lt;/span&gt;&lt;/summary&gt;&lt;/details&gt;
     &lt;p class="tw-stat tw-end"&gt;&lt;span class="ic ic-tw-share"&gt;&amp;#8679;&lt;/span&gt;&lt;/p&gt;
   &lt;/div&gt;
 &lt;/div&gt;
@@ -440,7 +441,7 @@
 <h5>Twitter/X DMs</h5>
 
 <div class="mob twdm theme-dark">
-  <p class="mob-head">Shane Hollander<span class="hide"> - </span><span>@shanehollanderhockeyplayer</span></p>
+  <p class="mob-head"><span class="twdm-back"><span class="ic ic-back">&#8592;</span></span><span class="tw-pfp"><span class="pfp pfp-shane"></span></span><span class="twdm-name">Shane Hollander</span><span class="twdm-calls"><span class="ic ic-video">&#127909;</span><span class="ic ic-phone">&#128222;</span></span></p>
   <div class="mob-body">
     <p class="msg in"><span class="hide"><em>Shane Hollander:</em> </span>saw your tweet</p>
     <p class="msg out"><span class="hide"><em>Ilya Roz:</em> </span>You hate the dog? why don't you like the dog?</p>
@@ -448,7 +449,7 @@
 </div>
 
 <div class="mob twdm theme-light">
-  <p class="mob-head">Shane Hollander<span class="hide"> - </span><span>@shanehollanderhockeyplayer</span></p>
+  <p class="mob-head"><span class="twdm-back"><span class="ic ic-back">&#8592;</span></span><span class="tw-pfp"><span class="pfp pfp-shane"></span></span><span class="twdm-name">Shane Hollander</span><span class="twdm-calls"><span class="ic ic-video">&#127909;</span><span class="ic ic-phone">&#128222;</span></span></p>
   <div class="mob-body">
     <p class="msg in"><span class="hide"><em>Shane Hollander:</em> </span>saw your tweet</p>
     <p class="msg out"><span class="hide"><em>Ilya Roz:</em> </span>You hate the dog? why don't you like the dog?</p>
@@ -458,7 +459,7 @@
 <p><em>The HTML for the dark version:</em></p>
 
 <pre><code>&lt;div class="mob twdm theme-dark"&gt;
-  &lt;p class="mob-head"&gt;Shane Hollander&lt;span class="hide"&gt; - &lt;/span&gt;&lt;span&gt;@shanehollanderhockeyplayer&lt;/span&gt;&lt;/p&gt;
+  &lt;p class="mob-head"&gt;&lt;span class="twdm-back"&gt;&lt;span class="ic ic-back"&gt;&amp;#8592;&lt;/span&gt;&lt;/span&gt;&lt;span class="tw-pfp"&gt;&lt;span class="pfp pfp-shane"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="twdm-name"&gt;Shane Hollander&lt;/span&gt;&lt;span class="twdm-calls"&gt;&lt;span class="ic ic-video"&gt;&amp;#127909;&lt;/span&gt;&lt;span class="ic ic-phone"&gt;&amp;#128222;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
   &lt;div class="mob-body"&gt;
     &lt;p class="msg in"&gt;&lt;span class="hide"&gt;&lt;em&gt;Shane Hollander:&lt;/em&gt; &lt;/span&gt;saw your tweet&lt;/p&gt;
     &lt;p class="msg out"&gt;&lt;span class="hide"&gt;&lt;em&gt;Ilya Roz:&lt;/em&gt; &lt;/span&gt;You hate the dog? why don't you like the dog?&lt;/p&gt;
@@ -1139,7 +1140,7 @@
 <h3 id="together">Putting It Together</h3>
 
 <div class="mob twdm theme-auto">
-  <p class="mob-head">Scott<span class="hide"> - </span><span>@scotthunter</span></p>
+  <p class="mob-head"><span class="twdm-back"><span class="ic ic-back">&#8592;</span></span><span class="tw-pfp colour7">SH</span><span class="twdm-name">Scott</span><span class="twdm-calls"><span class="ic ic-video">&#127909;</span><span class="ic ic-phone">&#128222;</span></span></p>
   <div class="mob-body">
     <p class="msg out"><span class="hide"><em>Ilya:</em> </span>I'm <a class="tl egg" href="#t5"><span class="orig">fine</span><span class="tltn"><span class="hide"> (</span>not fine. not even a little bit<span class="hide">)</span></span></a></p>
     <p class="msg in"><span class="hide"><em>Scott:</em> </span>you're a terrible liar</p>
@@ -1149,7 +1150,7 @@
 <p><em>The finished chat looks like this, and here is the full HTML:</em></p>
 
 <pre><code>&lt;div class="mob twdm theme-auto"&gt;
-  &lt;p class="mob-head"&gt;Scott&lt;span class="hide"&gt; - &lt;/span&gt;&lt;span&gt;@scotthunter&lt;/span&gt;&lt;/p&gt;
+  &lt;p class="mob-head"&gt;&lt;span class="twdm-back"&gt;&lt;span class="ic ic-back"&gt;&amp;#8592;&lt;/span&gt;&lt;/span&gt;&lt;span class="tw-pfp colour7"&gt;SH&lt;/span&gt;&lt;span class="twdm-name"&gt;Scott&lt;/span&gt;&lt;span class="twdm-calls"&gt;&lt;span class="ic ic-video"&gt;&amp;#127909;&lt;/span&gt;&lt;span class="ic ic-phone"&gt;&amp;#128222;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
   &lt;div class="mob-body"&gt;
     &lt;p class="msg out"&gt;&lt;span class="hide"&gt;&lt;em&gt;Ilya:&lt;/em&gt; &lt;/span&gt;I'm &lt;a class="tl egg" href="#t5"&gt;&lt;span class="orig"&gt;fine&lt;/span&gt;&lt;span class="tltn"&gt;&lt;span class="hide"&gt; (&lt;/span&gt;not fine. not even a little bit&lt;span class="hide"&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
     &lt;p class="msg in"&gt;&lt;span class="hide"&gt;&lt;em&gt;Scott:&lt;/em&gt; &lt;/span&gt;you're a terrible liar&lt;/p&gt;
