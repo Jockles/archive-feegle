@@ -221,7 +221,8 @@
 
 <p>Most of the parts of a tweet are simple: a line with its own size, colour and spacing. The row of buttons is a flex row, like the bottom of a Tumblr post. <code>flex: 1 1 0</code> gives each button an equal share of the width, so replies, reposts, likes and views spread out evenly. <code>tw-end</code> switches that off with <code>flex: none</code>, so the bookmark and share buttons only take up as much room as they need, and sit together at the right-hand end. The main tweet's row has a pale line above it, and a reply's row is smaller with no line. The buttons themselves are pictures, in the Icons section at the end of the module. A quote tweet is a smaller rounded box inside the tweet. The Community Note (<code>tw-note</code>) and the sensitive content cover (<code>tw-warn</code>) are boxes the same way, with a pale grey background.</p>
 
-<pre><code>/* ---- a like readers can click: &lt;details class="tw-stat tw-tog"&gt;
+<pre><code>/* ---- a like or bookmark readers can click: &lt;details class="tw-stat tw-tog"&gt;
+   (&lt;details class="tw-stat tw-end tw-tog"&gt; for the bookmark)
    Inside the &lt;summary&gt;, the "off" count shows at first and the "on" count once clicked.
    Click again and it goes back. */
 #workskin .tw .tw-tog summary,
@@ -255,7 +256,9 @@
 }
 
 #workskin .tw .tw-stats .tw-saved,
-#workskin .tw-reply .tw-stats .tw-saved {
+#workskin .tw-reply .tw-stats .tw-saved,
+#workskin .tw .tw-stats .tw-tog.tw-end[open],
+#workskin .tw-reply .tw-stats .tw-tog.tw-end[open] {
   color: #1d9bf0;
 }
 
@@ -265,9 +268,9 @@
   color: #cfd9de;
 }</code></pre>
 
-<p>The clickable like works the same way as Instagram's heart: the <code>summary</code> holds a count marked <code>off</code> and one marked <code>on</code>, and <code>[open]</code> means "after it's been clicked", which hides the first and shows the second. The little arrow that details normally shows is switched off with <code>list-style</code> and the two <code>marker</code> rules.</p>
+<p>The clickable like and bookmark work the same way as Instagram's heart: the <code>summary</code> holds a count marked <code>off</code> and one marked <code>on</code>, and <code>[open]</code> means "after it's been clicked", which hides the first and shows the second. The little arrow that details normally shows is switched off with <code>list-style</code> and the two <code>marker</code> rules.</p>
 
-<p>A button the account has used turns red for a like, green for a repost or blue for a bookmark, count and all, and a clicked like turns red the same way. <code>tw-locked</code> fades a private tweet's repost button to pale grey, or dark grey in dark mode. The coloured pictures are in the Icons section too.</p>
+<p>A button the account has used turns red for a like, green for a repost or blue for a bookmark, count and all, and a clicked like turns red the same way. A clicked bookmark turns blue: <code>.tw-tog.tw-end</code> picks out the bookmark, and is more specific than the red rule, so it wins. <code>tw-locked</code> fades a private tweet's repost button to pale grey, or dark grey in dark mode. The coloured pictures are in the Icons section too.</p>
 
 <h3>Polls</h3>
 
@@ -630,7 +633,7 @@
 
 #workskin .tw-thread.tw2020 .tw-stat.tw-end { flex: 1 1 0; margin-left: 0; }
 
-#workskin .tw-thread.tw2020 .tw-stat.tw-end:not(:last-of-type) { display: none; }</code></pre>
+#workskin .tw-thread.tw2020 .tw-stat.tw-end:not(:last-child) { display: none; }</code></pre>
 
 <p>The app screen is just two flex rows at the top of the scrolling part of a thread. In the top bar, the X gets <code>flex: 1</code> to take up all the room left over, and its <code>margin-right</code> is the same width as the picture on the left, so the X sits in the true middle. The <code>bird</code> version hides the word inside by pushing it far off to the left with <code>text-indent</code>, and shows the logo picture in its place, the same way the icons work. In the tabs, the line under the picked tab is a <code>::after</code> box filled with <code>currentColor</code> (the colour of the words), pinned to the bottom of the tab with <code>position: absolute</code>, stretched from <code>left: 0</code> to <code>right: 0</code> so it's always as wide as the words. The down arrow is just the bottom and right borders of a tiny square, turned 45 degrees with <code>transform: rotate(45deg)</code>. The plus sign is pinned to the right-hand end the same way, with a background the same colour as the screen, so long tabs slide under it instead of pushing it off the edge.</p>
 

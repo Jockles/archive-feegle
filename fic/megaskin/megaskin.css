@@ -2245,7 +2245,8 @@
 #workskin .tw .tw-stats .ic.ic-tw-share,
 #workskin .tw-reply .tw-stats .ic.ic-tw-share { margin-right: 0; }
 
-/* ---- a like readers can click: <details class="tw-stat tw-tog">
+/* ---- a like or bookmark readers can click: <details class="tw-stat tw-tog">
+   (<details class="tw-stat tw-end tw-tog"> for the bookmark)
    Inside the <summary>, the "off" count shows at first and the "on" count once clicked.
    Click again and it goes back. */
 #workskin .tw .tw-tog summary,
@@ -2343,7 +2344,7 @@
 }
 
 /* buttons the account has used: add tw-liked to the like's tw-stat, tw-rt to the repost's, or tw-saved to the bookmark's.
-   A clicked tw-tog like turns red too. */
+   A clicked tw-tog like turns red too, and a clicked bookmark blue. */
 #workskin .tw .tw-stats .tw-liked,
 #workskin .tw-reply .tw-stats .tw-liked,
 #workskin .tw .tw-stats .tw-tog[open],
@@ -2357,7 +2358,9 @@
 }
 
 #workskin .tw .tw-stats .tw-saved,
-#workskin .tw-reply .tw-stats .tw-saved {
+#workskin .tw-reply .tw-stats .tw-saved,
+#workskin .tw .tw-stats .tw-tog.tw-end[open],
+#workskin .tw-reply .tw-stats .tw-tog.tw-end[open] {
   color: #1d9bf0;
 }
 
@@ -2863,7 +2866,7 @@
 
 #workskin .tw-thread.tw2020 .tw-stat.tw-end { flex: 1 1 0; margin-left: 0; }
 
-#workskin .tw-thread.tw2020 .tw-stat.tw-end:not(:last-of-type) { display: none; }
+#workskin .tw-thread.tw2020 .tw-stat.tw-end:not(:last-child) { display: none; }
 
 #workskin .twdm {
   background: #ffffff;
@@ -3397,7 +3400,7 @@
 
 /* a red heart, a green repost and a blue bookmark for buttons the account has used, in every theme */
 #workskin .tw .tw-stats .tw-liked .ic.ic-tw-like, #workskin .tw-reply .tw-stats .tw-liked .ic.ic-tw-like, #workskin .tw .tw-stats .tw-tog[open] .ic.ic-tw-like, #workskin .tw-reply .tw-stats .tw-tog[open] .ic.ic-tw-like { background-image: url(https://images.squidge.org/images/2026/11/15/heart-filled-red.png); }
-#workskin .tw .tw-stats .tw-saved .ic.ic-tw-bookmark, #workskin .tw-reply .tw-stats .tw-saved .ic.ic-tw-bookmark { background-image: url(https://images.squidge.org/images/2026/11/17/tw-bookmark-blue.png); }
+#workskin .tw .tw-stats .tw-saved .ic.ic-tw-bookmark, #workskin .tw-reply .tw-stats .tw-saved .ic.ic-tw-bookmark, #workskin .tw .tw-stats .tw-tog[open] .ic.ic-tw-bookmark, #workskin .tw-reply .tw-stats .tw-tog[open] .ic.ic-tw-bookmark { background-image: url(https://images.squidge.org/images/2026/11/17/tw-bookmark-blue.png); }
 #workskin .tw .tw-stats .tw-rt .ic.ic-tw-repost, #workskin .tw-reply .tw-stats .tw-rt .ic.ic-tw-repost { background-image: url(https://images.squidge.org/images/2026/11/17/repost-tw-green.png); }
 #workskin .tw .tw-stats .tw-locked .ic.ic-tw-repost, #workskin .tw-reply .tw-stats .tw-locked .ic.ic-tw-repost { background-image: url(https://images.squidge.org/images/2026/11/17/repost-tw-faded-light.png); }
 
