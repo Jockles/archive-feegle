@@ -143,6 +143,8 @@
 
 <p>The picture in <code>tw-pfp</code> can be initials with a colour, a picture tag, or a profile, and the name and handle can be typed or come from a profile. Hashtags, @mentions and links go in <code>tw-link</code> to make them blue. A verified tick goes inside the <code>tw-name</code>, after the name: <code>&lt;span class=&quot;ic ic-verified&quot;&gt;&amp;#10004;&lt;/span&gt;</code>.</p>
 
+<p>Any name can be too long for its line. When it doesn't fit, the handle shrinks first and can disappear completely, then the name is cut off, tick and all, and the time always stays. Put the name in a plain <code>&lt;span&gt;</code> inside <code>tw-name</code> and it ends in "...". Without the span it stops at the last whole word that fits. On an opened tweet, a long name wraps onto a second line instead.</p>
+
 </details>
 
 <p>Twitter had no night mode in these years, so this module is always light, whatever theme you put on it.</p>
@@ -511,6 +513,8 @@
 <summary>Pictures, names, links and ticks</summary>
 
 <p>The picture in <code>tw-pfp</code> can be initials with a colour, a picture tag, or a profile, and the name and handle can be typed or come from a profile. Type the dot before the time yourself. Hashtags, @mentions and links go in <code>tw-link</code> to make them blue, and a verified tick goes inside the <code>tw-name</code>, after the name: <code>&lt;span class=&quot;ic ic-verified&quot;&gt;&amp;#10004;&lt;/span&gt;</code>.</p>
+
+<p>Any name can be too long for its line. When it doesn't fit, the handle shrinks first and can disappear completely, then the name is cut off, tick and all, and the time always stays. Put the name in a plain <code>&lt;span&gt;</code> inside <code>tw-name</code> and it ends in "...". Without the span it stops at the last whole word that fits. On an opened tweet, a long name wraps onto a second line instead.</p>
 
 </details>
 

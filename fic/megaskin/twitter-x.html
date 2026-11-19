@@ -7,7 +7,7 @@
   <title>Megaskin, Chapter 8: Twitter/X | jockles.com</title>
   <link rel="stylesheet" href="../../style.css">
   <script src="../../theme.js"></script>
-  <link rel="stylesheet" href="megaskin.css?v=5f07c31a" id="creator-style">
+  <link rel="stylesheet" href="megaskin.css?v=1c52ca92" id="creator-style">
 </head>
 <body>
 <header>
@@ -700,7 +700,23 @@
   <li><code>tw-time</code> is the time, with a dot in front.</li>
 </ul>
 
-<p>A tweet on its own, or the first tweet in a reply chain, is shown the way an opened tweet looks on Twitter/X, with the handle and time on a second line under the name. In a feed (see <a href="twitter-x.html#s8-1-3">The X App Screen</a>) and in replies, the name, handle and time all share one line. If they don't fit, the handle gets cut off first, and can disappear completely, then a really long name gets cut off too, tick and all - see <a href="twitter-x.html#s8-1-17">Private Accounts</a>. The time always stays.</p>
+<p>A tweet on its own, or the first tweet in a reply chain, is shown the way an opened tweet looks on Twitter/X, with the handle and time on a second line under the name. In a feed (see <a href="twitter-x.html#s8-1-3">The X App Screen</a>) and in replies, the name, handle and time all share one line. If they don't fit, the handle gets cut off first, and can disappear completely, then a really long name gets cut off too, tick and all - see Long names, below. The time always stays.</p>
+
+</details>
+
+<details>
+<summary>Long names</summary>
+
+<p>Any name can be too long for its line, on any kind of account. When it doesn't all fit, the handle shrinks first and can disappear completely, then the name is cut off at the edge, tick and all. A padlock and the time always stay. Put the name in a plain <code>&lt;span&gt;</code> inside <code>tw-name</code> and it ends in "..." like on Twitter/X. Without the span it still works, but it stops at the last whole word that fits instead:</p>
+
+<div class="tw-thread app theme-auto"><div class="tw-scroll"><div class="mob tw">
+  <p class="tw-top"><span class="tw-pfp colour2">RL</span><span class="hide"> </span><span class="tw-name"><span>Rose Landry (on set, slow to reply, sorry in advance)</span> <span class="tw-tick ic ic-verified">&#10004;</span></span> <span class="tw-handle">@RoseLandry</span> <span class="tw-time">· 2h</span></p>
+  <p class="tw-text">call sheet says 5am. who decided this</p>
+</div></div></div>
+
+<pre><code>&lt;p class="tw-top"&gt;&lt;span class="tw-pfp colour2"&gt;RL&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="tw-name"&gt;&lt;span&gt;Rose Landry (on set, slow to reply, sorry in advance)&lt;/span&gt; &lt;span class="tw-tick ic ic-verified"&gt;&amp;#10004;&lt;/span&gt;&lt;/span&gt; &lt;span class="tw-handle"&gt;@RoseLandry&lt;/span&gt; &lt;span class="tw-time"&gt;· 2h&lt;/span&gt;&lt;/p&gt;</code></pre>
+
+<p>On a tweet on its own, the handle and time have a line of their own, so only the name is cut off.</p>
 
 </details>
 
@@ -976,25 +992,7 @@
   &lt;/div&gt;
 &lt;/div&gt;</code></pre>
 
-<details>
-<summary>Profile names and long names</summary>
-
-<p>The padlock works with a name from a profile too - it still goes between the handle and the time.</p>
-
-<p>Names on private accounts tend to be long, and a name that's too long for the line gets cut off at the edge - a tick gets cut off with the name. The handle goes first, and can disappear completely, but the padlock and the time always stay. Put the name in a plain <code>&lt;span&gt;</code> inside <code>tw-name</code> and it ends in "..." like on Twitter/X. Without the span it still works, but it stops at the last whole word that fits instead:</p>
-
-<div class="mob tw theme-auto">
-  <p class="tw-top"><span class="tw-pfp colour4">HP</span><span class="hide"> </span><span class="tw-name"><span>this is me trying (hayden's yap space for absolutely everything)</span></span> <span class="tw-handle">@hpitt_private</span> <span class="tw-lock ic ic-tw-lock">&#128274;</span> <span class="tw-time">· 45s</span></p>
-  <p class="tw-text">testing poll?</p>
-</div>
-
-<pre><code>&lt;div class="mob tw theme-auto"&gt;
-  &lt;p class="tw-top"&gt;&lt;span class="tw-pfp colour4"&gt;HP&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="tw-name"&gt;&lt;span&gt;this is me trying (hayden's yap space for absolutely everything)&lt;/span&gt;&lt;/span&gt; &lt;span class="tw-handle"&gt;@hpitt_private&lt;/span&gt; &lt;span class="tw-lock ic ic-tw-lock"&gt;&amp;#128274;&lt;/span&gt; &lt;span class="tw-time"&gt;· 45s&lt;/span&gt;&lt;/p&gt;
-  &lt;p class="tw-text"&gt;testing poll?&lt;/p&gt;
-&lt;/div&gt;</code></pre>
-
-</details>
-
+<p>The padlock works with a name from a profile too - it still goes between the handle and the time. A long name gets cut off the same way as on any other account (see Long names, under <a href="twitter-x.html#s8-1-6">Name and Handle</a>).</p>
 
 <h4 id="s8-1-18">8.1.18 Labels: Promoted and Circle Tweets</h4>
 
