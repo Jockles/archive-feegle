@@ -3714,12 +3714,13 @@
   border-radius: 14px;
 }
 
-#workskin .twc .tw-quote .tw-top { padding: 0; min-height: 0; }
+/* the doubled classes make these beat the opened-tweet rules, so a quote looks the same in an opened tweet */
+#workskin .twc .tw-quote .tw-top.tw-top { padding: 0; min-height: 0; }
 
-#workskin .twc .tw-quote .tw-name,
-#workskin .twc .tw-quote .tw-handle { display: inline; margin: 0; font-size: 1em; }
+#workskin .twc .tw-quote .tw-top.tw-top > .tw-name,
+#workskin .twc .tw-quote .tw-top.tw-top > .tw-handle { display: inline; margin: 0; font-size: 1em; }
 
-#workskin .twc .tw-quote .tw-text { margin: 0.1em 0 0 0; font-size: 1em; font-family: inherit; }
+#workskin .twc .tw-quote .tw-text.tw-text.tw-text { margin: 0.1em 0 0 0; font-size: 1em; line-height: 1.35; font-family: inherit; }
 
 /* a conversation: add "link" to a tweet in a timeline, and a grey line joins its picture to the next tweet's */
 #workskin .twc-feed .twc.link { border-bottom: 0; }
