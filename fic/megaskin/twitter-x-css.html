@@ -7,7 +7,7 @@
   <title>Megaskin, Chapter 9: Twitter/X CSS | jockles.com</title>
   <link rel="stylesheet" href="../../style.css">
   <script src="../../theme.js"></script>
-  <link rel="stylesheet" href="megaskin.css?v=ce9371b5" id="creator-style">
+  <link rel="stylesheet" href="megaskin.css?v=4f59e50b" id="creator-style">
 </head>
 <body>
 <header>
@@ -711,29 +711,69 @@
 
 <h3 id="s9-12">9.12 DMs</h3>
 
+<pre><code>#workskin .twdm .mob-head {
+  position: relative;
+  padding: 0.55em 5.6em 0.45em 5.6em;
+  background: #ffffff;
+  color: #0f1419;
+  border-bottom: 1px solid #eff3f4;
+  font-size: 0.95em;
+  line-height: 1.2;
+}
+
+#workskin .twdm .mob-head .tw-pfp { width: 40px; height: 40px; margin: 0 auto 0.25em auto; }
+
+#workskin .twdm .twdm-back,
+#workskin .twdm .twdm-calls {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  line-height: 1;
+}
+
+#workskin .twdm .twdm-back { left: 0.9em; }
+
+#workskin .twdm .twdm-calls { right: 0.9em; }</code></pre>
+
+<p>The header is the usual centred <code>mob-head</code>, with wide padding on both sides to leave room for the buttons. The picture is a tweet's <code>tw-pfp</code>, centred with <code>margin: 0 auto</code>. The back arrow and the call buttons are pulled out of the line with <code>position: absolute</code> and pinned to each side, and <code>top: 50%</code> with <code>translateY(-50%)</code> puts them halfway down, however tall the header is.</p>
+
 <pre><code>#workskin .twdm .msg {
   display: table;
-  max-width: 72%;
-  margin: 0.2em 0;
-  padding: 0.55em 0.9em;
-  border-radius: 20px;
+  max-width: 75%;
+  margin: 0.25em 0;
+  padding: 0.55em 0.95em;
+  border-radius: 1.3em;
 }
 
 #workskin .twdm .out {
   margin-left: auto;
   background: #1d9bf0;
   color: #ffffff;
-  border-bottom-right-radius: 4px;
 }
 
 #workskin .twdm .in {
   margin-right: auto;
   background: #eff3f4;
   color: #0f1419;
-  border-bottom-left-radius: 4px;
 }</code></pre>
 
-<p>These are iMessage's bubbles in Twitter/X colours, with slightly rounder corners. The header, timestamps (<code>twdm-time</code>, with <code>time-out</code> on the right), sender names and pictures all work the way they do in iMessage. Reactions are a pill pulled up under the bubble with a negative margin, like WhatsApp's.</p>
+<p>These are iMessage's bubbles in Twitter/X colours, but fully round, with no tail on any corner. Seen and Sent (<code>twdm-status</code>) work like iMessage's Delivered line, and the dates are the core <code>mob-sys</code> line in grey. Reactions are a pill pulled up under the bubble with a negative margin, like WhatsApp's. A quoted message in a reply (<code>twdm-quote</code>) is a bubble with its background taken away and a thin grey border added.</p>
+
+<pre><code>#workskin .twdm .twdm-row { position: relative; padding-left: 36px; margin: 0.25em 0; }
+
+#workskin .twdm .twdm-row .tw-pfp {
+  position: absolute;
+  left: 0;
+  bottom: 0.25em;
+  width: 28px;
+  height: 28px;
+  margin: 0;
+  font-size: 0.65em;
+}</code></pre>
+
+<p>In a group, the row is pushed in from the left to leave a gap, and the picture is pinned into that gap at the <em>bottom</em> of the row, so it always sits beside the last message, however many there are.</p>
+
+<p>The message bar copies iMessage's (see the iMessage CSS), with Twitter/X's grey outlines. The app buttons along the bottom are a flex row with <code>justify-content: space-around</code>, which spreads them out evenly, and the picked one gets its grey box from <code>box-shadow: 0 0 0 0.35em</code>: a shadow with no blur that spreads out evenly round the icon, so it works like a background that's bigger than the icon itself.</p>
 
 <details>
 <summary>Voice messages</summary>

@@ -399,7 +399,7 @@
 #workskin .pfp.pfp-luca { background-image: url(https://images.squidge.org/images/2026/11/16/SwedenHockey2.png); }
 
 /* 2. A different picture for one app. Each line replaces the picture on that app only. */
-#workskin .tw .pfp.pfp-luca, #workskin .tw-reply .pfp.pfp-luca { background-image: url(https://images.squidge.org/images/2026/11/16/LucaMain.png); }
+#workskin .tw .pfp.pfp-luca, #workskin .tw-reply .pfp.pfp-luca, #workskin .twdm .pfp.pfp-luca { background-image: url(https://images.squidge.org/images/2026/11/16/LucaMain.png); }
 #workskin .ig .pfp.pfp-luca, #workskin .igdm .pfp.pfp-luca { background-image: url(https://images.squidge.org/images/2026/11/16/LucaPriv.png); }
 #workskin .tb .pfp.pfp-luca { background-image: url(https://images.squidge.org/images/2026/11/16/SwedenHockey.png); }
 #workskin .gm .pfp.pfp-luca { background-image: linear-gradient(135deg, #f6b26b, #e06666); }
@@ -494,8 +494,8 @@
    (picture from the Check Please! Wiki: https://omgcheckplease.fandom.com/wiki/Adam_Birkholtz) */
 #workskin .pfp.pfp-holster { background-color: #138a72; }
 #workskin .pfp.pfp-holster::before { content: "AB"; }
-#workskin .tw .pfp.pfp-holster::before, #workskin .tw-reply .pfp.pfp-holster::before, #workskin .ig .pfp.pfp-holster::before { display: none; }
-#workskin .tw .pfp.pfp-holster, #workskin .tw-reply .pfp.pfp-holster { background-image: url(https://static.wikia.nocookie.net/omgcheckplease/images/b/b2/Holsty.png); }
+#workskin .tw .pfp.pfp-holster::before, #workskin .tw-reply .pfp.pfp-holster::before, #workskin .twdm .pfp.pfp-holster::before, #workskin .ig .pfp.pfp-holster::before { display: none; }
+#workskin .tw .pfp.pfp-holster, #workskin .tw-reply .pfp.pfp-holster, #workskin .twdm .pfp.pfp-holster { background-image: url(https://static.wikia.nocookie.net/omgcheckplease/images/b/b2/Holsty.png); }
 #workskin .ig .pfp.pfp-holster, #workskin .igdm .pfp.pfp-holster { background-color: #c13584; }
 #workskin .tb .pfp.pfp-holster { background-color: #35465c; }
 #workskin .dc .pfp.pfp-holster { background-color: #5865f2; }
@@ -574,6 +574,7 @@
 #workskin .wa .wa-pfp.colour1,
 #workskin .tw .tw-pfp.colour1,
 #workskin .tw-reply .tw-pfp.colour1,
+#workskin .twdm .tw-pfp.colour1,
 #workskin .tb .tb-pfp.colour1,
 #workskin .tb .tb-ask-pfp.colour1,
 #workskin .gm .gm-pfp.colour1,
@@ -584,6 +585,7 @@
 #workskin .wa .wa-pfp.colour2,
 #workskin .tw .tw-pfp.colour2,
 #workskin .tw-reply .tw-pfp.colour2,
+#workskin .twdm .tw-pfp.colour2,
 #workskin .tb .tb-pfp.colour2,
 #workskin .tb .tb-ask-pfp.colour2,
 #workskin .gm .gm-pfp.colour2,
@@ -594,6 +596,7 @@
 #workskin .wa .wa-pfp.colour3,
 #workskin .tw .tw-pfp.colour3,
 #workskin .tw-reply .tw-pfp.colour3,
+#workskin .twdm .tw-pfp.colour3,
 #workskin .tb .tb-pfp.colour3,
 #workskin .tb .tb-ask-pfp.colour3,
 #workskin .gm .gm-pfp.colour3,
@@ -604,6 +607,7 @@
 #workskin .wa .wa-pfp.colour4,
 #workskin .tw .tw-pfp.colour4,
 #workskin .tw-reply .tw-pfp.colour4,
+#workskin .twdm .tw-pfp.colour4,
 #workskin .tb .tb-pfp.colour4,
 #workskin .tb .tb-ask-pfp.colour4,
 #workskin .gm .gm-pfp.colour4,
@@ -614,6 +618,7 @@
 #workskin .wa .wa-pfp.colour5,
 #workskin .tw .tw-pfp.colour5,
 #workskin .tw-reply .tw-pfp.colour5,
+#workskin .twdm .tw-pfp.colour5,
 #workskin .tb .tb-pfp.colour5,
 #workskin .tb .tb-ask-pfp.colour5,
 #workskin .gm .gm-pfp.colour5,
@@ -624,6 +629,7 @@
 #workskin .wa .wa-pfp.colour6,
 #workskin .tw .tw-pfp.colour6,
 #workskin .tw-reply .tw-pfp.colour6,
+#workskin .twdm .tw-pfp.colour6,
 #workskin .tb .tb-pfp.colour6,
 #workskin .tb .tb-ask-pfp.colour6,
 #workskin .gm .gm-pfp.colour6,
@@ -634,6 +640,7 @@
 #workskin .wa .wa-pfp.colour7,
 #workskin .tw .tw-pfp.colour7,
 #workskin .tw-reply .tw-pfp.colour7,
+#workskin .twdm .tw-pfp.colour7,
 #workskin .tb .tb-pfp.colour7,
 #workskin .tb .tb-ask-pfp.colour7,
 #workskin .gm .gm-pfp.colour7,
@@ -644,6 +651,7 @@
 #workskin .wa .wa-pfp.colour8,
 #workskin .tw .tw-pfp.colour8,
 #workskin .tw-reply .tw-pfp.colour8,
+#workskin .twdm .tw-pfp.colour8,
 #workskin .tb .tb-pfp.colour8,
 #workskin .tb .tb-ask-pfp.colour8,
 #workskin .gm .gm-pfp.colour8,
@@ -654,6 +662,7 @@
 #workskin .wa .wa-pfp.colour9,
 #workskin .tw .tw-pfp.colour9,
 #workskin .tw-reply .tw-pfp.colour9,
+#workskin .twdm .tw-pfp.colour9,
 #workskin .tb .tb-pfp.colour9,
 #workskin .tb .tb-ask-pfp.colour9,
 #workskin .gm .gm-pfp.colour9,
@@ -664,6 +673,7 @@
 #workskin .wa .wa-pfp.colour10,
 #workskin .tw .tw-pfp.colour10,
 #workskin .tw-reply .tw-pfp.colour10,
+#workskin .twdm .tw-pfp.colour10,
 #workskin .tb .tb-pfp.colour10,
 #workskin .tb .tb-ask-pfp.colour10,
 #workskin .gm .gm-pfp.colour10,
@@ -2088,7 +2098,8 @@
 #workskin .tw-reply .tw-top br { display: none; }
 
 #workskin .tw .tw-pfp,
-#workskin .tw-reply .tw-pfp {
+#workskin .tw-reply .tw-pfp,
+#workskin .twdm .tw-pfp {
   display: flex;
   flex: none;
   align-items: center;
@@ -2868,6 +2879,8 @@
 
 #workskin .tw-thread.tw2020 .tw-stat.tw-end:not(:last-child) { display: none; }
 
+/* ---------- Twitter/X: DMs ---------- */
+
 #workskin .twdm {
   background: #ffffff;
   color: #0f1419;
@@ -2875,50 +2888,72 @@
   border-radius: 14px;
 }
 
+/* the top bar: a back arrow on the left, the picture and name in the middle, video and call buttons on the right
+   <p class="mob-head"><span class="twdm-back"><span class="ic ic-back">&#8592;</span></span><span class="tw-pfp"><span class="pfp pfp-shane"></span></span><span class="twdm-name">Shane Hollander</span><span class="twdm-calls"><span class="ic ic-video">&#127909;</span><span class="ic ic-phone">&#128222;</span></span></p>
+   The picture works like a tweet's tw-pfp: initials, a picture tag or a profile. */
 #workskin .twdm .mob-head {
+  position: relative;
+  padding: 0.55em 5.6em 0.45em 5.6em;
   background: #ffffff;
   color: #0f1419;
   border-bottom: 1px solid #eff3f4;
-  font-size: 0.9em;
+  font-size: 0.95em;
+  line-height: 1.2;
 }
 
-#workskin .twdm .mob-head span {
-  display: block;
-  font-weight: normal;
-  color: #536471;
-  font-size: 0.85em;
+#workskin .twdm .mob-head .tw-pfp { width: 40px; height: 40px; margin: 0 auto 0.25em auto; }
+
+#workskin .twdm .mob-head .twdm-name { display: block; }
+
+#workskin .twdm .twdm-back,
+#workskin .twdm .twdm-calls {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  line-height: 1;
 }
+
+#workskin .twdm .twdm-back { left: 0.9em; }
+
+#workskin .twdm .twdm-calls { right: 0.9em; }
+
+#workskin .twdm .mob-head .ic { width: 1.3em; height: 1.3em; vertical-align: middle; }
+
+#workskin .twdm .twdm-calls .ic + .ic { margin-left: 1.1em; }
+
+#workskin .twdm .mob-body { padding: 0.7em 0.8em 0.5em 0.8em; }
 
 #workskin .twdm .msg {
   display: table;
-  max-width: 72%;
-  margin: 0.2em 0;
-  padding: 0.55em 0.9em;
-  border-radius: 20px;
+  max-width: 75%;
+  margin: 0.25em 0;
+  padding: 0.55em 0.95em;
+  border-radius: 1.3em;
 }
 
 #workskin .twdm .out {
   margin-left: auto;
   background: #1d9bf0;
   color: #ffffff;
-  border-bottom-right-radius: 4px;
 }
 
 #workskin .twdm .in {
   margin-right: auto;
   background: #eff3f4;
   color: #0f1419;
-  border-bottom-left-radius: 4px;
 }
 
-#workskin .twdm .twdm-time {
+/* the date and time between messages use the core mob-sys line: <p class="mob-sys">Thu 17 Sep at 17:34</p> */
+#workskin .twdm .mob-sys { margin: 0.9em 0; color: #536471; opacity: 1; }
+
+/* "Seen" or "Sent" under your last message: <p class="twdm-status">Seen</p> */
+#workskin .twdm .twdm-status {
   display: block;
-  font-size: 0.7em;
+  text-align: right;
+  font-size: 0.78em;
   color: #536471;
-  margin: 0.1em 0.5em 0.5em 0.5em;
+  margin: 0.15em 0.6em 0.5em 0;
 }
-
-#workskin .twdm .time-out { text-align: right; }
 
 /* reaction pill under a DM: <p class="twdm-reacts">&#128562; 1</p>  (add "out" under one of your own) */
 #workskin .twdm .twdm-reacts {
@@ -2936,10 +2971,39 @@
 /* group DMs: the sender's name above their messages: <p class="who">Name</p> */
 #workskin .twdm .who {
   display: block;
-  margin: 0.5em 0.5em 0.1em 0.5em;
+  margin: 0.7em 0 0.1em 1.3em;
   color: #536471;
-  font-size: 0.72em;
+  font-size: 0.75em;
 }
+
+/* group DMs: one person's run of messages, with their picture beside the last bubble
+   <div class="twdm-row"><p class="tw-pfp colour4">HP</p><p class="who">Hayden<span class="hide">:</span></p><p class="msg in">...</p></div> */
+#workskin .twdm .twdm-row { position: relative; padding-left: 36px; margin: 0.25em 0; }
+
+#workskin .twdm .twdm-row .tw-pfp {
+  position: absolute;
+  left: 0;
+  bottom: 0.25em;
+  width: 28px;
+  height: 28px;
+  margin: 0;
+  font-size: 0.65em;
+}
+
+/* replying to a message: a small "Replied to" line, then the message being replied to in an outlined bubble, then the reply
+   <p class="twdm-replied out">Replied to Shane</p>
+   <p class="msg out twdm-quote"><span class="hide">(</span>the message being replied to<span class="hide">)</span></p>
+   Leave "out" off both for a reply from someone else. */
+#workskin .twdm .twdm-replied {
+  display: block;
+  margin: 0.7em 0.95em 0.15em 0.95em;
+  font-size: 0.78em;
+  color: #536471;
+}
+
+#workskin .twdm .twdm-replied.out { background: transparent; color: #536471; text-align: right; }
+
+#workskin .twdm .msg.twdm-quote { background: transparent; color: #536471; border: 1px solid #cfd9de; margin-bottom: 0.2em; }
 
 /* a picture in a DM: <p class="msg in pic"><img src="..."></p> or a [description] */
 #workskin .twdm .msg.pic {
@@ -2953,13 +3017,13 @@
   display: block;
   max-width: 100%;
   height: auto;
-  border-radius: 16px;
+  border-radius: 1.1em;
 }
 
 #workskin .twdm .msg.pic.text { padding: 2.5em 1.5em; }
 
 /* a voice message:
-   <p class="msg out voice"><span class="twdm-play">&#9654;</span><span class="twdm-wave"></span><span class="twdm-dur">0:02</span></p> */
+   <p class="msg out voice"><span class="twdm-play ic ic-play">&#9654;</span><span class="twdm-wave"></span><span class="twdm-dur">0:02</span></p> */
 #workskin .twdm .msg.voice { min-width: 55%; }
 
 #workskin .twdm .voice .twdm-play,
@@ -2987,15 +3051,69 @@
 
 #workskin .twdm .voice .twdm-dur { margin-left: 0.5em; font-size: 0.85em; }
 
-/* the "Start a message" bar at the bottom: <div class="twdm-foot"><span>Start a message</span></div> */
-#workskin .twdm .twdm-foot { display: block; padding: 0.6em 0.7em; border-top: 1px solid #eff3f4; }
+/* the message bar at the bottom: goes after the mob-body, inside the chat, all on one line
+   <p class="twdm-input"><span class="twdm-plus">+</span><span class="hide"> </span><span class="twdm-field">Message<span class="hide"> </span><span class="ic ic-mic">&#127908;</span></span></p>
+   Add "typed" to the twdm-field for a half-written message in dark text. */
+#workskin .twdm .twdm-input {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 0.45em 0.7em 0.55em 0.7em;
+}
 
-#workskin .twdm .twdm-foot span {
-  display: block;
-  padding: 0.5em 0.9em;
-  border-radius: 2em;
-  background: #eff3f4;
+#workskin .twdm .twdm-plus {
+  flex: none;
+  width: 1.55em;
+  height: 1.55em;
+  margin-right: 0.35em;
+  border-radius: 50%;
+  box-sizing: border-box;
+  border: 1px solid #cfd9de;
+  color: #0f1419;
+  font-size: 1.3em;
+  font-weight: 300;
+  line-height: 1.45em;
+  text-align: center;
+}
+
+#workskin .twdm .twdm-field {
+  flex: 1;
+  position: relative;
+  padding: 0.45em 2.4em 0.45em 0.9em;
+  border: 1px solid #cfd9de;
+  border-radius: 1.3em;
   color: #536471;
+}
+
+#workskin .twdm .twdm-field .ic {
+  position: absolute;
+  right: 0.8em;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1.15em;
+  height: 1.15em;
+}
+
+#workskin .twdm .twdm-field.typed { color: #0f1419; }
+
+/* the app's buttons along the very bottom (optional). "on" gives the picked one its grey box.
+   <p class="twdm-nav"><span class="ic ic-x-home">&#8962;</span> <span class="ic ic-x-search">&#128269;</span> <span class="ic ic-x-grok">&#8856;</span> <span class="ic ic-x-bell">&#128276;</span> <span class="on ic ic-x-chat">&#128172;</span></p> */
+#workskin .twdm .twdm-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin: 0;
+  padding: 0.6em 0.4em 0.8em 0.4em;
+  font-size: 1.3em;
+  line-height: 1;
+}
+
+#workskin .twdm .twdm-nav br { display: none; }
+
+#workskin .twdm .twdm-nav .on {
+  border-radius: 0.4em;
+  background-color: #eff3f4;
+  box-shadow: 0 0 0 0.35em #eff3f4;
 }
 
 /* ---------- Twitter/X: Links ---------- */
@@ -3158,9 +3276,13 @@
 
 #workskin .twdm.theme-dark .who { color: #71767b; }
 
-#workskin .twdm.theme-dark .twdm-foot { border-top-color: #2f3336; }
+#workskin .twdm.theme-dark .twdm-plus,
+#workskin .twdm.theme-dark .twdm-field { border-color: #2f3336; color: #71767b; }
 
-#workskin .twdm.theme-dark .twdm-foot span { background: #202327; color: #71767b; }
+#workskin .twdm.theme-dark .twdm-plus,
+#workskin .twdm.theme-dark .twdm-field.typed { color: #e7e9ea; }
+
+#workskin .twdm.theme-dark .twdm-nav .on { background-color: #202327; box-shadow: 0 0 0 0.35em #202327; }
 
 #workskin .tw-reply.theme-dark { background: #000000; color: #e7e9ea; border-color: #2f3336; }
 
@@ -3179,12 +3301,15 @@
 
 #workskin .twdm.theme-dark .mob-head { background: #000000; color: #e7e9ea; border-bottom-color: #2f3336; }
 
-#workskin .twdm.theme-dark .mob-head span,
-#workskin .twdm.theme-dark .twdm-time {
+#workskin .twdm.theme-dark .mob-sys,
+#workskin .twdm.theme-dark .twdm-status,
+#workskin .twdm.theme-dark .twdm-replied {
   color: #71767b;
 }
 
-#workskin .twdm.theme-dark .in { background: #2f3336; color: #e7e9ea; }
+#workskin .twdm.theme-dark .in { background: #202327; color: #e7e9ea; }
+
+#workskin .twdm.theme-dark .msg.twdm-quote { background: transparent; color: #71767b; border-color: #2f3336; }
 
 /* ---------- Twitter/X: Auto theme (theme-auto): light, switching to dark when the reader's device is in dark mode ---------- */
 
@@ -3312,9 +3437,13 @@
 
   #workskin .twdm.theme-auto .who { color: #71767b; }
 
-  #workskin .twdm.theme-auto .twdm-foot { border-top-color: #2f3336; }
+  #workskin .twdm.theme-auto .twdm-plus,
+    #workskin .twdm.theme-auto .twdm-field { border-color: #2f3336; color: #71767b; }
 
-  #workskin .twdm.theme-auto .twdm-foot span { background: #202327; color: #71767b; }
+  #workskin .twdm.theme-auto .twdm-plus,
+    #workskin .twdm.theme-auto .twdm-field.typed { color: #e7e9ea; }
+
+  #workskin .twdm.theme-auto .twdm-nav .on { background-color: #202327; box-shadow: 0 0 0 0.35em #202327; }
 
   #workskin .tw-reply.theme-auto { background: #000000; color: #e7e9ea; border-color: #2f3336; }
 
@@ -3333,12 +3462,15 @@
 
   #workskin .twdm.theme-auto .mob-head { background: #000000; color: #e7e9ea; border-bottom-color: #2f3336; }
 
-  #workskin .twdm.theme-auto .mob-head span,
-    #workskin .twdm.theme-auto .twdm-time {
+  #workskin .twdm.theme-auto .mob-sys,
+    #workskin .twdm.theme-auto .twdm-status,
+    #workskin .twdm.theme-auto .twdm-replied {
       color: #71767b;
     }
 
-  #workskin .twdm.theme-auto .in { background: #2f3336; color: #e7e9ea; }
+  #workskin .twdm.theme-auto .in { background: #202327; color: #e7e9ea; }
+
+  #workskin .twdm.theme-auto .msg.twdm-quote { background: transparent; color: #71767b; border-color: #2f3336; }
 }
 
 /* ---------- Twitter/X: Icons ----------
@@ -3406,6 +3538,39 @@
 
 /* a voice note you sent sits in a blue bubble, so its play button is always white */
 #workskin .twdm .msg.out .ic.ic-play { background-image: url(https://images.squidge.org/images/2026/11/15/play-white.png); }
+
+/* DM buttons: the top bar, the message bar and the app buttons along the bottom */
+#workskin .twdm .ic.ic-back { background-image: url(https://images.squidge.org/images/2026/11/15/back-black.png); }
+#workskin .twdm .ic.ic-video { background-image: url(https://images.squidge.org/images/2026/11/15/video-black.png); }
+#workskin .twdm .ic.ic-phone { background-image: url(https://images.squidge.org/images/2026/11/15/phone-black.png); }
+#workskin .twdm .ic.ic-mic { background-image: url(https://images.squidge.org/images/2026/11/15/mic-black.png); }
+#workskin .twdm .ic.ic-x-home { background-image: url(https://images.squidge.org/images/2026/11/19/x-home-black.png); }
+#workskin .twdm .ic.ic-x-search { background-image: url(https://images.squidge.org/images/2026/11/19/x-search-black.png); }
+#workskin .twdm .ic.ic-x-grok { background-image: url(https://images.squidge.org/images/2026/11/19/x-grok-black.png); }
+#workskin .twdm .ic.ic-x-bell { background-image: url(https://images.squidge.org/images/2026/11/19/x-bell-black.png); }
+#workskin .twdm .ic.ic-x-chat { background-image: url(https://images.squidge.org/images/2026/11/19/x-chat-black.png); }
+
+#workskin .twdm.theme-dark .ic.ic-back { background-image: url(https://images.squidge.org/images/2026/11/15/back-white.png); }
+#workskin .twdm.theme-dark .ic.ic-video { background-image: url(https://images.squidge.org/images/2026/11/15/video-white.png); }
+#workskin .twdm.theme-dark .ic.ic-phone { background-image: url(https://images.squidge.org/images/2026/11/15/phone-white.png); }
+#workskin .twdm.theme-dark .ic.ic-mic { background-image: url(https://images.squidge.org/images/2026/11/15/mic-white.png); }
+#workskin .twdm.theme-dark .ic.ic-x-home { background-image: url(https://images.squidge.org/images/2026/11/19/x-home-white.png); }
+#workskin .twdm.theme-dark .ic.ic-x-search { background-image: url(https://images.squidge.org/images/2026/11/19/x-search-white.png); }
+#workskin .twdm.theme-dark .ic.ic-x-grok { background-image: url(https://images.squidge.org/images/2026/11/19/x-grok-white.png); }
+#workskin .twdm.theme-dark .ic.ic-x-bell { background-image: url(https://images.squidge.org/images/2026/11/19/x-bell-white.png); }
+#workskin .twdm.theme-dark .ic.ic-x-chat { background-image: url(https://images.squidge.org/images/2026/11/19/x-chat-white.png); }
+
+@media (prefers-color-scheme: dark) {
+  #workskin .twdm.theme-auto .ic.ic-back { background-image: url(https://images.squidge.org/images/2026/11/15/back-white.png); }
+  #workskin .twdm.theme-auto .ic.ic-video { background-image: url(https://images.squidge.org/images/2026/11/15/video-white.png); }
+  #workskin .twdm.theme-auto .ic.ic-phone { background-image: url(https://images.squidge.org/images/2026/11/15/phone-white.png); }
+  #workskin .twdm.theme-auto .ic.ic-mic { background-image: url(https://images.squidge.org/images/2026/11/15/mic-white.png); }
+  #workskin .twdm.theme-auto .ic.ic-x-home { background-image: url(https://images.squidge.org/images/2026/11/19/x-home-white.png); }
+  #workskin .twdm.theme-auto .ic.ic-x-search { background-image: url(https://images.squidge.org/images/2026/11/19/x-search-white.png); }
+  #workskin .twdm.theme-auto .ic.ic-x-grok { background-image: url(https://images.squidge.org/images/2026/11/19/x-grok-white.png); }
+  #workskin .twdm.theme-auto .ic.ic-x-bell { background-image: url(https://images.squidge.org/images/2026/11/19/x-bell-white.png); }
+  #workskin .twdm.theme-auto .ic.ic-x-chat { background-image: url(https://images.squidge.org/images/2026/11/19/x-chat-white.png); }
+}
 
 /* <<<<<<<<<< MODULE: Twitter/X (posts, replies, DMs) (end) <<<<<<<<<< */
 
