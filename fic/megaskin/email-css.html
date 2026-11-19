@@ -4,10 +4,10 @@
   <meta charset="utf-8">
   <meta http-equiv="X-Clacks-Overhead" content="GNU Terry Pratchett">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Megaskin, Chapter 15: Email CSS | jockles.com</title>
+  <title>Megaskin, Chapter 17: Email CSS | jockles.com</title>
   <link rel="stylesheet" href="../../style.css">
   <script src="../../theme.js"></script>
-  <link rel="stylesheet" href="megaskin.css?v=f5b9d6df" id="creator-style">
+  <link rel="stylesheet" href="megaskin.css?v=620696d7" id="creator-style">
 </head>
 <body>
 <header>
@@ -31,40 +31,40 @@
       <p class="chapter-nav"><a href="email.html">&larr; Previous Chapter</a> &middot; <a href="index.html">Chapter Index</a> &middot; <a href="discord.html">Next Chapter &rarr;</a></p>
 
       <div class="fic">
-        <h3 class="chapter-title">Chapter 15: Email CSS</h3>
+        <h3 class="chapter-title">Chapter 17: Email CSS</h3>
         <div id="workskin">
 <p>Thanks to DemigodOfAgni and La_Temperanza, whose <a href="https://archiveofourown.org/works/53302357"><em>How to insert Gmail emails in your fic</em></a> and <a href="https://archiveofourown.org/works/7953412"><em>How to Mimic Email Windows</em></a> this module is built on. Copied and adapted from them: the Gmail layout, headers and Reply buttons, and the generic email window's title bar, header lines, scrolling body, attachments and button bar.</p>
 
 <h3 id="contents">Chapter Contents</h3>
 
 <ul class="contents">
-  <li><a href="#s15-1">15.1 Getting the CSS</a></li>
-  <li><a href="#s15-2">15.2 How the Module is Laid Out</a></li>
-  <li><a href="#s15-3">15.3 The Gmail Card</a></li>
-  <li><a href="#s15-4">15.4 Why Gmail Uses Tables</a></li>
-  <li><a href="#s15-5">15.5 The Subject Line</a></li>
-  <li><a href="#s15-6">15.6 One Email</a></li>
-  <li><a href="#s15-7">15.7 The Reply Buttons</a></li>
-  <li><a href="#s15-8">15.8 The Email Window</a></li>
-  <li><a href="#s15-9">15.9 Attachments</a></li>
-  <li><a href="#s15-10">15.10 The Button Bar</a></li>
-  <li><a href="#s15-11">15.11 Links</a></li>
-  <li><a href="#s15-12">15.12 Scrolling</a></li>
-  <li><a href="#s15-13">15.13 Themes</a></li>
-  <li><a href="#s15-14">15.14 Taking Parts Out</a></li>
+  <li><a href="#s17-1">17.1 Getting the CSS</a></li>
+  <li><a href="#s17-2">17.2 How the Module is Laid Out</a></li>
+  <li><a href="#s17-3">17.3 The Gmail Card</a></li>
+  <li><a href="#s17-4">17.4 Why Gmail Uses Tables</a></li>
+  <li><a href="#s17-5">17.5 The Subject Line</a></li>
+  <li><a href="#s17-6">17.6 One Email</a></li>
+  <li><a href="#s17-7">17.7 The Reply Buttons</a></li>
+  <li><a href="#s17-8">17.8 The Email Window</a></li>
+  <li><a href="#s17-9">17.9 Attachments</a></li>
+  <li><a href="#s17-10">17.10 The Button Bar</a></li>
+  <li><a href="#s17-11">17.11 Links</a></li>
+  <li><a href="#s17-12">17.12 Scrolling</a></li>
+  <li><a href="#s17-13">17.13 Themes</a></li>
+  <li><a href="#s17-14">17.14 Taking Parts Out</a></li>
 </ul>
 
 <p>This chapter goes through the CSS for the emails in the last chapter: the Gmail thread with its tables, and the plain email window with its title bar, fields, attachments and buttons.</p>
 
-<h3 id="s15-1">15.1 Getting the CSS</h3>
+<h3 id="s17-1">17.1 Getting the CSS</h3>
 
 <p>The Email CSS is here: <a href="css/email.css">jockles.com/fic/megaskin/css/email.css</a>. It needs the core CSS too, so paste the <a href="core-css.html">core</a> into your work skin first and this underneath it.</p>
 
-<h3 id="s15-2">15.2 How the Module is Laid Out</h3>
+<h3 id="s17-2">17.2 How the Module is Laid Out</h3>
 
 <p>Gmail first (everything starting <code>.gm</code>), then the email window (everything starting <code>.mail</code>), then Links, Scrolling, Dark theme, Auto theme and Icons. Both kinds of email sit inside a <code>mob</code> box, so they get the core's phone width and can use <code>no-scroll</code>.</p>
 
-<h3 id="s15-3">15.3 The Gmail Card</h3>
+<h3 id="s17-3">17.3 The Gmail Card</h3>
 
 <pre><code>#workskin .gm {
   background: #ffffff;
@@ -76,7 +76,7 @@
 
 <p>A white card with Gmail's pale grey edge and rounded corners. Roboto is Google's font - readers who don't have it get Helvetica or Arial instead.</p>
 
-<h3 id="s15-4">15.4 Why Gmail Uses Tables</h3>
+<h3 id="s17-4">17.4 Why Gmail Uses Tables</h3>
 
 <p>The top of a Gmail email has a lot going on in one row: a picture on the left, the name and address in the middle, the date on the right, then a "to me" line under the name. Floats can do it, but they fall apart easily when names are long. A table keeps everything in its own column whatever the text is, and AO3 handles tables reliably, so the headers are real <code>&lt;table&gt;</code>s.</p>
 
@@ -104,7 +104,7 @@
 <p><code>color: inherit</code> and <code>font: inherit</code> make the cells take the email's colours and font, instead of whatever the reader's AO3 skin says tables should look like. Without them, a reader with a dark site skin could end up with light text on the white card.</p>
 </details>
 
-<h3 id="s15-5">15.5 The Subject Line</h3>
+<h3 id="s17-5">17.5 The Subject Line</h3>
 
 <pre><code>#workskin .gm .gm-title { padding: 0.8em 0.4em 0.4em 0.9em; font-size: 1.35em; line-height: 1.25; }
 
@@ -133,7 +133,7 @@
   <li>The star gets its own narrow column (<code>38px</code>) on the right.</li>
 </ul>
 
-<h3 id="s15-6">15.6 One Email</h3>
+<h3 id="s17-6">17.6 One Email</h3>
 
 <pre><code>#workskin .gm .gm-msg { padding: 0.7em 0.9em 0.6em 0.9em; border-top: 1px solid #e8eaed; }
 
@@ -200,7 +200,7 @@
 
 <p>The "to me" line is small and grey. The icons under the date (<code>gm-tools</code>) are spaced out with <code>letter-spacing</code> and kept on one line. The message itself has taller lines and gaps between paragraphs, so it reads like an email rather than a chat.</p>
 
-<h3 id="s15-7">15.7 The Reply Buttons</h3>
+<h3 id="s17-7">17.7 The Reply Buttons</h3>
 
 <pre><code>#workskin .gm .gm-footer { display: block; padding: 0.7em 0.9em 0.9em 0.9em; border-top: 1px solid #e8eaed; }
 
@@ -228,7 +228,7 @@
   <li>Border spacing also adds a gap at the outside edges, so the pills wouldn't line up with the email above. <code>margin: 0 -0.4em</code> pulls the table out by the same amount on both sides, which cancels it.</li>
 </ul>
 
-<h3 id="s15-8">15.8 The Email Window</h3>
+<h3 id="s17-8">17.8 The Email Window</h3>
 
 <pre><code>#workskin .mail {
   border: 1px solid #cfcfcf;
@@ -293,7 +293,7 @@
 
 <p>Paragraphs get their gaps back, and the signature gets a line above it and goes smaller and grey.</p>
 
-<h3 id="s15-9">15.9 Attachments</h3>
+<h3 id="s17-9">17.9 Attachments</h3>
 
 <pre><code>#workskin .mail .mail-attachment {
   display: inline-block;
@@ -320,7 +320,7 @@
 <p>The emoji will look different depending on the reader's device, because each phone and computer draws its own.</p>
 </details>
 
-<h3 id="s15-10">15.10 The Button Bar</h3>
+<h3 id="s17-10">17.10 The Button Bar</h3>
 
 <pre><code>#workskin .mail .mail-buttons {
   display: block;
@@ -335,7 +335,7 @@
 
 <p>A light grey strip at the bottom, with a gap after each button.</p>
 
-<h3 id="s15-11">15.11 Links</h3>
+<h3 id="s17-11">17.11 Links</h3>
 
 <pre><code>#workskin .gm .fake-link, #workskin .gm a:not(.tl) { color: #1a0dab; }
 
@@ -343,7 +343,7 @@
 
 <p>Gmail's links are Google's dark blue, and the email window uses a brighter blue to match the attachments.</p>
 
-<h3 id="s15-12">15.12 Scrolling</h3>
+<h3 id="s17-12">17.12 Scrolling</h3>
 
 <pre><code>#workskin .mail .mail-body {
   display: block;
@@ -367,11 +367,11 @@
   <li>Adding <code>no-scroll</code> to the email's box switches the scrolling off for either kind.</li>
 </ul>
 
-<h3 id="s15-13">15.13 Themes</h3>
+<h3 id="s17-13">17.13 Themes</h3>
 
 <p>The dark theme follows Gmail's own dark mode for both kinds of email: a dark grey card (<code>#202124</code>) with light text, darker lines and chips, grey small print and a lighter blue for links (<code>#8ab4f8</code>). The email window's title bar goes almost black. The auto theme is the same again inside <code>@media (prefers-color-scheme: dark)</code>.</p>
 
-<h3 id="s15-14">15.14 Taking Parts Out</h3>
+<h3 id="s17-14">17.14 Taking Parts Out</h3>
 
 <p>If you only use one kind of email, you can delete the other:</p>
 
