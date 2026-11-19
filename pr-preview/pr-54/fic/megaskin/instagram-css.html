@@ -25,7 +25,7 @@
   <!-- /site meta -->
   <link rel="stylesheet" href="../../style.css">
   <script src="../../theme.js"></script>
-  <link rel="stylesheet" href="megaskin.css?v=0f8e4e2b" id="creator-style">
+  <link rel="stylesheet" href="megaskin.css?v=bfb82ca5" id="creator-style">
 </head>
 <body>
 <header>
@@ -106,7 +106,7 @@
   color: #737373;
 }</code></pre>
 
-<p>A post is a white card with nearly square corners, and every line in it is a block with the same <code>0.9em</code> of padding on each side, so they all line up down the left. The last span in the account line drops onto its own line in small grey, for the song or the place. The other lines - <code>ig-likes</code>, <code>ig-caption</code>, <code>ig-comment</code>, <code>ig-viewall</code> and <code>ig-time</code> - are just the same thing with different sizes and greys. <code>ig-time</code> has <code>text-transform: uppercase</code>, which is what puts it in capitals for you.</p>
+<p>A post is a white card with nearly square corners, and every line in it is a block with the same <code>0.9em</code> of padding on each side, so they all line up down the left. The last span in the account line drops onto its own line in small grey, for the song or the place. The other lines - <code>ig-likes</code>, <code>ig-caption</code>, <code>ig-comment</code>, <code>ig-viewall</code> and <code>ig-time</code> - are just the same thing with different sizes and greys.</p>
 
 <h3 id="s13-4">13.4 The Photo</h3>
 
@@ -373,7 +373,7 @@
   line-height: 1;
 }
 
-#workskin .ig .ig-story.seen::before { background-image: none; background-color: #c7c7c7; }
+#workskin .ig .ig-story.close::before { background-image: none; background-color: #1cd14f; }
 
 #workskin .ig .ig-story.me::after {
   content: "+";
@@ -394,7 +394,7 @@
 
 <p>A post inside an <code>ig-feed</code> drops its own width, border, rounded corners and scrolling, so the posts sit one after another and only the feed scrolls. Its background is <code>transparent</code> and its colour is <code>inherit</code>, which is how the posts take the feed's theme. The Stories row is a flex row with <code>overflow: hidden</code>, so any circles that don't fit are cut off at the edge.</p>
 
-<p>The ring is drawn by <code>::before</code>: a gradient circle, set behind the picture with <code>position: absolute</code>. The picture sits on top, slightly smaller, with a border in the background colour, which makes the gap between the picture and the ring. Drawing the ring separately means the colour classes for initials still work on the <code>ig-pfp</code>. <code>seen</code>, <code>close</code> and <code>plain</code> just swap the gradient for a plain colour or hide it. The + badge on your own circle is an <code>::after</code> on the <code>me</code> story, a small circle placed over the bottom right of the picture.</p>
+<p>The ring is drawn by <code>::before</code>: a gradient circle, set behind the picture with <code>position: absolute</code>. The picture sits on top, slightly smaller, with a border in the background colour, which makes the gap between the picture and the ring. Drawing the ring separately means the colour classes for initials still work on the <code>ig-pfp</code>. <code>close</code> swaps the gradient for green, and <code>plain</code> hides the ring. The + badge on your own circle is an <code>::after</code> on the <code>me</code> story, a small circle placed over the bottom right of the picture.</p>
 
 <h3 id="s13-11">13.11 DMs</h3>
 
@@ -446,8 +446,8 @@
 /* no "View all comments" lines */
 #workskin .ig .ig-viewall { display: none; }
 
-/* the time in normal letters instead of capitals */
-#workskin .ig .ig-time { text-transform: none; }</code></pre>
+/* the time in capitals, like older Instagram */
+#workskin .ig .ig-time { text-transform: uppercase; font-size: 0.7em; }</code></pre>
 
 <details>
 <summary>Why the counts line has the class three times</summary>

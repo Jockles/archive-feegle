@@ -106,8 +106,7 @@
   display: block;
   padding: 0.3em 0.9em 0.8em 0.9em;
   color: #737373;
-  font-size: 0.7em;
-  text-transform: uppercase;
+  font-size: 0.8em;
 }
 
 /* ---- more for the top line (put these inside ig-top) ----
@@ -440,14 +439,18 @@
   line-height: 1;
 }
 
-/* the logo: the margin on the right balances the + on the left */
+/* the logo is a picture, with the word hidden behind it for readers with the workskin off */
 #workskin .ig .ig-logo {
   flex: 1;
+  height: 2.4em;
   margin-left: 0.4em;
-  text-align: center;
-  font-family: "Billabong", "Brush Script MT", "Segoe Script", "Snell Roundhand", cursive;
-  font-size: 2em;
-  line-height: 1.2;
+  overflow: hidden;
+  text-indent: -100em;
+  white-space: nowrap;
+  background-image: url(https://images.squidge.org/images/2026/11/19/ig-logo-black.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
 }
 
 #workskin .ig .ig-notif {
@@ -527,10 +530,8 @@
 
 #workskin .ig .ig-story .pfp::before { font-size: 1.4em; }
 
-/* close friends: a green ring. Watched already: a grey ring. No story: no ring */
+/* close friends: a green ring. No story: no ring */
 #workskin .ig .ig-story.close::before { background-image: none; background-color: #1cd14f; }
-
-#workskin .ig .ig-story.seen::before { background-image: none; background-color: #c7c7c7; }
 
 #workskin .ig .ig-story.plain::before { display: none; }
 
@@ -584,6 +585,8 @@
 
 #workskin .ig.theme-dark .ig-more { color: #a8a8a8; }
 
+#workskin .ig.theme-dark .ig-logo { background-image: url(https://images.squidge.org/images/2026/11/19/ig-logo-white.png); }
+
 #workskin .ig.theme-dark .ig-top .ig-pfp.story .pfp { border-color: #0c1014; }
 #workskin .ig.theme-dark .ig-top .ig-pfp { color: #ffffff; }
 
@@ -598,7 +601,6 @@
 #workskin .ig.theme-dark .ig-story .ig-pfp { border-color: #0c1014; }
 
 
-#workskin .ig.theme-dark .ig-story.seen::before { background-color: #363636; }
 
 
 #workskin .ig.theme-dark .ig-story.me .ig-sname { color: #a8a8a8; }
@@ -640,6 +642,8 @@
 
   #workskin .ig.theme-auto .ig-more { color: #a8a8a8; }
 
+  #workskin .ig.theme-auto .ig-logo { background-image: url(https://images.squidge.org/images/2026/11/19/ig-logo-white.png); }
+
   #workskin .ig.theme-auto .ig-top .ig-pfp.story .pfp { border-color: #0c1014; }
   #workskin .ig.theme-auto .ig-top .ig-pfp { color: #ffffff; }
 
@@ -654,7 +658,6 @@
   #workskin .ig.theme-auto .ig-story .ig-pfp { border-color: #0c1014; }
 
 
-  #workskin .ig.theme-auto .ig-story.seen::before { background-color: #363636; }
 
 
   #workskin .ig.theme-auto .ig-story.me .ig-sname { color: #a8a8a8; }
