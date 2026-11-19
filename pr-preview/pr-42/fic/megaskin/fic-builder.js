@@ -1172,12 +1172,12 @@
     var row = chat ? msgRow : tweetRow;
     h.push('<ol class="fb-msgs">' + b.msgs.map(function (m, mi) { return row(b, i, m, mi); }).join("") + "</ol>");
     var ph = chat ? "Ilya: are you awake\nShane: no\n-- Today 11:48 PM" : "Zim: Reminder to everyone...\nHolster: I played all through college...";
-    // tweets and comments get their add button straight under the list; chats keep theirs by the script box
-    var addOne = btn("msg-add:" + i, chat ? "+ One empty message" : b.type === "twthread" ? (b.msgs.length ? "+ Add a reply" : "+ Add the tweet") : "+ Add a tweet");
-    if (!chat) h.push("<p>" + addOne + "</p>");
+    // the add button goes straight under the list, apart from the box for typing lots at once
+    var addOne = btn("msg-add:" + i, chat ? "+ Add a message" : b.type === "twthread" ? (b.msgs.length ? "+ Add a reply" : "+ Add the tweet") : "+ Add a tweet");
+    h.push("<p>" + addOne + "</p>");
     h.push('<div class="fb-script">' + field(P + ".script", chat ? "Type or paste messages" : "Type or paste tweets", { type: "area", rows: 4, ph: ph }) +
       '<p class="hint">' + (SCRIPT_HINTS[chat ? "chat" : b.type]) + "</p>" +
-      btn("script:" + i, chat ? "Add these messages" : "Add these tweets") + (chat ? " " + addOne : "") + "</div>");
+      btn("script:" + i, chat ? "Add these messages" : "Add these tweets") + "</div>");
     h.push("</section>");
     helpKind = "";
     return h.join("");
