@@ -54,6 +54,12 @@
     .fb-emoji { flex: 0 0 5em !important; }
     .fb-extras { padding: 4px 2px 2px; }
     .fb-script { border-top: 1px dashed var(--rule, #ccc); padding-top: 6px; }
+    .fb-rte-bar { display: flex; flex-wrap: wrap; gap: 4px; align-items: center; margin: 4px 0; }
+    .fb-rte-bar button { padding: 2px 8px; min-width: 2em; }
+    .fb-rte { min-height: 8em; max-height: 28em; overflow: auto; border: 1px solid var(--rule, #ccc); border-radius: 4px; padding: 6px 10px; background: var(--page); color: var(--ink); line-height: 1.5; }
+    .fb-rte:focus { outline: 2px solid var(--link, #2f68c8); }
+    .fb-rte p, .fb-rte div { margin: 0 0 0.8em; }
+    .fb-rte blockquote { margin: 0 0 0.8em 1.5em; }
     .fb-add h4 { margin: 10px 0 0; font-size: 0.95em; }
     .fb-add ul { list-style: none; margin: 4px 0 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 16px; }
     .fb-add li { display: flex; align-items: center; gap: 8px; margin: 0; }
@@ -146,6 +152,10 @@
             <li><button type="button" data-act="add:twfeed" aria-label="Add a Twitter/X timeline">+</button> Timeline</li>
             <li><button type="button" data-act="add:twdm" aria-label="Add a Twitter/X DM">+</button> DM or group DM</li>
           </ul>
+          <h4>Story</h4>
+          <ul>
+            <li><button type="button" data-act="add:text" aria-label="Add story text">+</button> Story text</li>
+          </ul>
         </div>
       </fieldset>
 
@@ -173,7 +183,7 @@
 </footer>
 <script src="profile-css.js"></script>
 <script src="fic-builder-examples.js?v=6"></script>
-<script src="fic-builder.js?v=24"></script>
+<script src="fic-builder.js?v=25"></script>
 <script src="tutorial.js?v=5"></script>
 <script>
 Tutorial([

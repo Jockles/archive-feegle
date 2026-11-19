@@ -33,7 +33,8 @@
     wa: "WhatsApp chat",
     twthread: "Twitter/X tweet and replies",
     twfeed: "Twitter/X timeline",
-    twdm: "Twitter/X DM"
+    twdm: "Twitter/X DM",
+    text: "Story text"
   };
   function isChat(b) { return b.type === "imsg" || b.type === "wa" || b.type === "twdm"; }
 
@@ -75,6 +76,7 @@
     b.theme = "theme-auto"; b.width = ""; b.scroll = ""; b.bar = "empty"; b.barText = "";
     b.bg = ""; b.pics = true; b.header = "simple"; b.gp = newGroupPic(); b.script = ""; b.msgs = []; b.open = true;
     b.acc = "";
+    b.html = ""; // story text, written in the rich text box
     b.nav = false; b.badge = ""; // Twitter/X DMs: the row of app buttons at the bottom
     b.era = ""; b.app = ""; b.tabs = ""; // Twitter/X: the 2020 look, and the X app screen around a timeline
     return b;
@@ -691,6 +693,7 @@
       if (b.type === "twthread") return twThreadHTML(b);
       if (b.type === "twfeed") return twFeedHTML(b);
       if (b.type === "twdm") return twdmHTML(b);
+      if (b.type === "text") return storyHTML(b.html);
       return "";
     }).filter(Boolean).join("\n\n");
   }
@@ -823,7 +826,8 @@
     "blocks.N.msgs.N.replyTo:dm": "Pick an earlier message to reply to it. It shows 'Replied to' and the name, then that message in an outlined bubble, above this one.",
     "blocks.N.msgs.N.waReacts:dm": "Emoji reactions under the bubble, then how many, like '😂 1' or '👍 😂 3'.",
     "blocks.N.msgs.N.status:dm": "The small word under the phone owner's last message: 'Sent', or 'Seen' once the other person has read it.",
-    "blocks.N.msgs.N.voice:dm": "Adds a voice message bubble, with a play button and sound bars. Type how long it is, like '0:02'."
+    "blocks.N.msgs.N.voice:dm": "Adds a voice message bubble, with a play button and sound bars. Type how long it is, like '0:02'.",
+    "blocks.N.html": "Type your story here, or paste it in from Google Docs, Word or AO3. Select some words and press a button to format them. Only the formatting AO3 allows is kept, so pasted fonts and colours are taken out. The text goes in the HTML between the chats around it, in the same order as here."
   };
   var helped = {}, helpKind = ""; // helpKind is "tw" while a Twitter/X block is drawn
   function help(path, kind) {
@@ -1149,12 +1153,125 @@
     twthread: "One tweet per line, starting with who's posting and a colon. The first one is the tweet, and the rest are replies. Each reply answers the tweet just above it, and you can change who it's replying to in the list. New names are added to the cast.",
     twfeed: "One tweet per line, starting with who's posting and a colon. New names are added to the cast."
   };
+  // ---------- story text: a rich text box like AO3's ----------
+
+  // the formatting AO3 keeps; anything else is taken out and its words kept
+  var STORY_TAGS = { P: "p", DIV: "p", BR: "br", EM: "em", I: "em", STRONG: "strong", B: "strong", U: "u", S: "s", STRIKE: "s", DEL: "s",
+    A: "a", BLOCKQUOTE: "blockquote", H1: "h2", H2: "h2", H3: "h3", H4: "h4", H5: "h4", H6: "h4", UL: "ul", OL: "ol", LI: "li", HR: "hr" };
+  var STORY_BLOCKS = /^(p|blockquote|h2|h3|h4|ul|ol|hr)$/;
+  // tidy up the box's HTML (or pasted HTML from Google Docs, Word or AO3)
+  function cleanStory(html) {
+    var box = document.createElement("div");
+    box.innerHTML = html || "";
+    function walk(node) {
+      var out = "";
+      node.childNodes.forEach(function (n) {
+        if (n.nodeType === 3) { out += esc(n.nodeValue.replace(/[\s\u00a0]+/g, " ")); return; }
+        if (n.nodeType !== 1 || /^(SCRIPT|STYLE|META|TITLE|LINK|XML)$/.test(n.tagName)) return;
+        var tag = STORY_TAGS[n.tagName], inner = walk(n), st = n.getAttribute("style") || "";
+        // Google Docs and Word mark bold, italic, underline and crossed-out words with styles
+        if (!tag || tag === "strong" && /font-weight:\s*(normal|400)/.test(st)) {
+          if (/font-weight:\s*(bold|[6-9]00)/.test(st)) inner = "<strong>" + inner + "</strong>";
+          if (/font-style:\s*italic/.test(st)) inner = "<em>" + inner + "</em>";
+          if (/text-decoration[^;]*underline/.test(st)) inner = "<u>" + inner + "</u>";
+          if (/text-decoration[^;]*line-through/.test(st)) inner = "<s>" + inner + "</s>";
+          out += inner; return;
+        }
+        if (tag === "br" || tag === "hr") { out += "<" + tag + ">"; return; }
+        if (tag === "a") {
+          var href = n.getAttribute("href") || "";
+          out += /^(https?:|mailto:)/i.test(href) ? '<a href="' + esc(href) + '">' + inner + "</a>" : inner; return;
+        }
+        out += "<" + tag + ">" + inner + "</" + tag + ">";
+      });
+      return out;
+    }
+    return walk(box);
+  }
+  // the story text for the HTML: each paragraph on its own line, and loose words put in paragraphs
+  function storyHTML(html) {
+    var box = document.createElement("div"), lines = [], loose = "";
+    box.innerHTML = cleanStory(html);
+    function flush() { if (loose.replace(/<br>/g, "").trim()) lines.push("<p>" + loose.trim().replace(/^(<br>)+|(<br>)+$/g, "") + "</p>"); loose = ""; }
+    box.childNodes.forEach(function (n) {
+      var tag = n.nodeType === 1 ? n.tagName.toLowerCase() : "";
+      if (STORY_BLOCKS.test(tag)) {
+        flush();
+        if (tag !== "hr" && !n.textContent.trim()) return; // an empty paragraph
+        // lists and quotes get a line for each part inside them
+        if (/^(ul|ol|blockquote)$/.test(tag) && n.querySelector("li, p")) {
+          lines.push("<" + tag + ">");
+          n.childNodes.forEach(function (k) { if (k.nodeType === 1 && k.textContent.trim()) lines.push("  " + k.outerHTML); });
+          lines.push("</" + tag + ">");
+        } else lines.push(n.outerHTML);
+      } else loose += n.nodeType === 1 ? n.outerHTML : esc(n.nodeValue);
+    });
+    flush();
+    return lines.join("\n");
+  }
+  var STORY_BUTTONS = [["bold", "<b>B</b>", "Bold"], ["italic", "<i>I</i>", "Italic"], ["underline", "<u>U</u>", "Underline"],
+    ["strikeThrough", "<s>S</s>", "Strikethrough"], ["link", "Link", "Link"], ["h3", "Heading", "Heading"], ["blockquote", "Quote", "Quote block"],
+    ["insertUnorderedList", "&bull; List", "List"], ["insertOrderedList", "1. List", "Numbered list"], ["p", "Normal", "Normal text"],
+    ["removeFormat", "Clear", "Clear the formatting"]];
+  function storyCard(b, i, words) {
+    var h = ['<section class="fb-block" data-i="' + i + '">',
+      '<div class="fb-bhead"><button type="button" class="fb-fold" data-act="blk-fold:' + i + '" aria-expanded="' + !b.fold + '">' +
+      (b.fold ? "&#9656; " : "&#9662; ") + "<b>" + (i + 1) + ". " + KINDS.text + "</b>" + (b.fold && words ? ' <span class="hint">' + esc(words.slice(0, 80)) + "</span>" : "") + "</button>" +
+      '<span class="fb-tools">' + btn("blk-up:" + i, "&uarr;", "Move up") + btn("blk-down:" + i, "&darr;", "Move down") + btn("blk-del:" + i, "&times;", "Delete this") + "</span></div>"];
+    if (!b.fold) {
+      h.push('<div class="fb-rte-bar" role="toolbar" aria-label="Formatting">' + STORY_BUTTONS.map(function (x) {
+        return '<button type="button" data-rte-cmd="' + x[0] + '" title="' + x[2] + '" aria-label="' + x[2] + '">' + x[1] + "</button>";
+      }).join("") + '<span class="tut-help" tabindex="0"><span>' + HELP["blocks.N.html"] + "</span></span></div>");
+      h.push('<div class="fb-rte" contenteditable="true" role="textbox" aria-multiline="true" aria-label="Story text" data-rte="' + i + '">' + (cleanStory(b.html) || "<p><br></p>") + "</div>");
+    }
+    h.push("</section>");
+    return h.join("");
+  }
+  // the box saves as you type; the buttons work on the selected words
+  document.addEventListener("input", function (e) {
+    var el = e.target.closest && e.target.closest("[data-rte]");
+    if (!el) return;
+    S.blocks[+el.getAttribute("data-rte")].html = el.innerHTML;
+    refresh();
+  });
+  document.addEventListener("mousedown", function (e) { if (e.target.closest && e.target.closest("[data-rte-cmd]")) e.preventDefault(); });
+  // new lines in the box start new paragraphs, like AO3's
+  document.addEventListener("focusin", function (e) { if (e.target.closest && e.target.closest("[data-rte]")) document.execCommand("defaultParagraphSeparator", false, "p"); });
+  document.addEventListener("click", function (e) {
+    var bt = e.target.closest && e.target.closest("[data-rte-cmd]");
+    if (!bt) return;
+    var box = bt.closest(".fb-block").querySelector("[data-rte]"), cmd = bt.getAttribute("data-rte-cmd");
+    if (!box.contains(document.getSelection().anchorNode)) box.focus();
+    document.execCommand("defaultParagraphSeparator", false, "p");
+    if (cmd === "link") {
+      var url = prompt("The web address for the link:", "https://");
+      if (url && /^(https?:|mailto:)/i.test(url.trim())) document.execCommand("createLink", false, url.trim());
+    } else if (/^(h3|blockquote|p)$/.test(cmd)) document.execCommand("formatBlock", false, cmd);
+    else document.execCommand(cmd, false, null);
+    box.dispatchEvent(new Event("input", { bubbles: true }));
+  });
+  // pasted writing is tidied first, so only AO3's formatting goes in
+  document.addEventListener("paste", function (e) {
+    var el = e.target.closest && e.target.closest("[data-rte]");
+    if (!el) return;
+    e.preventDefault();
+    var d = e.clipboardData, html = d.getData("text/html");
+    if (!html) html = d.getData("text/plain").split(/\r?\n\s*\r?\n/).map(function (para) { return "<p>" + esc(para).replace(/\r?\n/g, "<br>") + "</p>"; }).join("");
+    document.execCommand("insertHTML", false, cleanStory(html));
+  });
+
   function blockCard(b, i) {
     var P = "blocks." + i, h = [], chat = isChat(b);
     helpKind = b.type === "twdm" ? "dm" : chat ? "" : "tw";
     h.push('<section class="fb-block" data-i="' + i + '">');
     // the name folds the chat up, leaving just this line and its buttons
     // folded, it shows who sent the first message and what it said
+    if (b.type === "text") {
+      var words = cleanStory(b.html).replace(/<[^>]*>/g, " ").replace(/&nbsp;/g, " ").replace(/\s+/g, " ").trim();
+      words = words.replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&quot;/g, '"');
+      b.msgs = [];
+      return storyCard(b, i, words);
+    }
     var first = b.msgs.filter(function (x) { return char(x.from) && (t(x.text) || x.photos.length); })[0];
     var what = first ? "<em>" + esc(nameOf(char(first.from))) + ":</em> " + esc(plain(first.text).trim().slice(0, 80) || "(picture)") : esc(t(b.title));
     h.push('<div class="fb-bhead"><button type="button" class="fb-fold" data-act="blk-fold:' + i + '" aria-expanded="' + !b.fold + '">' +
