@@ -989,7 +989,7 @@
 <details>
 <summary>Letting the reader pick the option</summary>
 
-<p>To let the reader choose, each option gets its own <code>&lt;details class=&quot;tb-pick&quot;&gt;</code>, with the option in a <code>&lt;summary class=&quot;tb-opt&quot;&gt;</code> and a full copy of the results in a <code>tb-results</code> box, with the voter's picture on that option. Wrap them all in a <code>tb-poll</code> box. Whichever option is tapped, its results cover the poll. It's a lot more HTML, but it's mostly copy and paste - only the voter's picture moves:</p>
+<p>To let the reader choose, each option gets its own <code>&lt;details class=&quot;tb-pick&quot;&gt;</code>, with the option in a <code>&lt;summary class=&quot;tb-opt&quot;&gt;</code> and a full copy of the results in a <code>tb-results</code> box, with the voter's picture on that option. Wrap them all in a <code>tb-poll</code> box. Whichever option is tapped, its results cover the poll. It's a lot more HTML, but it's mostly copy and paste - only the voter's picture moves, unless you want the results to change too:</p>
 
 <div class="mob tb theme-auto"><div class="tb-body">
 <p>how do you watch the games</p>
@@ -1083,6 +1083,8 @@
 &lt;/div&gt;</code></pre>
 
 <p>Once a vote is in, it can't be taken back, the same as Tumblr. Refreshing the page resets it.</p>
+
+<p>Each option's results are a separate copy, so they don't have to match. You can give each one its own bars, percentages, winner and vote count. That means whatever the reader picks can always win, or always lose, or end in a draw, or anything else you like. Just change the bar sizes, <code>tb-pct</code> numbers and <code>win</code> in that option's <code>tb-results</code>.</p>
 
 </details>
 
