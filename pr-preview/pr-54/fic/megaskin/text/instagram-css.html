@@ -2,7 +2,7 @@
 
 <!-- contents -->
 
-<p>This chapter goes through the CSS for the Instagram posts and DMs in the last chapter. Posts (<code>ig</code>) are the interesting part, with the clickable like and save buttons and the icons drawn in CSS. DMs (<code>igdm</code>) are built like iMessage, so they're quick. At the end there's a section on switching parts of every post off for your whole fic, without editing each one.</p>
+<p>This chapter goes through the CSS for the Instagram posts and DMs in the last chapter. Posts (<code>ig</code>) sit in the feed (<code>ig-feed</code>), and they're the interesting part, with the clickable like and save buttons and the icons drawn in CSS. DMs (<code>igdm</code>) are built like iMessage, so they're quick. At the end there's a section on switching parts of every post off for your whole fic, without editing each one.</p>
 
 <h3>Getting the CSS</h3>
 
@@ -36,7 +36,85 @@
   color: #737373;
 }</code></pre>
 
-<p>A post is a white card with nearly square corners, and every line in it is a block with the same <code>0.9em</code> of padding on each side, so they all line up down the left. The last span in the account line drops onto its own line in small grey, for the song or the place. The other lines - <code>ig-likes</code>, <code>ig-caption</code>, <code>ig-comment</code>, <code>ig-viewall</code> and <code>ig-time</code> - are just the same thing with different sizes and greys.</p>
+<p>A post on its own is a white card with nearly square corners, and every line in it is a block with the same <code>0.9em</code> of padding on each side, so they all line up down the left. The last span in the account line drops onto its own line in small grey, for the song or the place. The other lines - <code>ig-likes</code>, <code>ig-caption</code>, <code>ig-comment</code>, <code>ig-viewall</code> and <code>ig-time</code> - are just the same thing with different sizes and greys.</p>
+
+<h3>The Feed</h3>
+
+<pre><code>#workskin .ig.ig-feed .ig {
+  width: auto;
+  max-width: none;
+  max-height: none;
+  margin: 0 0 1.2em 0;
+  overflow: visible;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: inherit;
+}
+
+#workskin .ig.ig-feed .ig:last-child { margin-bottom: 0.3em; }
+
+#workskin .ig .ig-stories {
+  display: flex;
+  overflow: hidden;
+  padding: 0.5em 0.4em 0.6em 0.4em;
+  border-bottom: 1px solid #efefef;
+}
+
+#workskin .ig .ig-story::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 5em;
+  height: 5em;
+  margin-left: -2.5em;
+  border-radius: 50%;
+  background-color: #d62976;
+  background-image: linear-gradient(45deg, #fcaf45 0%, #fd1d1d 45%, #c13584 70%, #833ab4 100%);
+}
+
+#workskin .ig-story .ig-pfp {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  box-sizing: border-box;
+  width: 4.6em;
+  height: 4.6em;
+  margin: 0.2em auto 0 auto;
+  overflow: hidden;
+  border: 0.18em solid #ffffff;
+  border-radius: 50%;
+  background-color: #8a8a8a;
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 1em;
+  line-height: 1;
+}
+
+#workskin .ig .ig-story.close::before { background-image: none; background-color: #1cd14f; }
+
+#workskin .ig .ig-story.me::after {
+  content: "+";
+  position: absolute;
+  top: 3.4em;
+  left: 3.55em;
+  width: 1.1em;
+  height: 1.1em;
+  border: 3px solid #ffffff;
+  border-radius: 50%;
+  background: #262626;
+  color: #ffffff;
+  font-size: 1.05em;
+  font-weight: bold;
+  line-height: 1.05em;
+  text-align: center;
+}</code></pre>
+
+<p>The feed is the default container, so it comes straight after the post. A post inside an <code>ig-feed</code> drops its own width, border, rounded corners and scrolling, so the posts sit one after another and only the feed scrolls. The last post keeps only a small gap under it, so a feed with one post fits snugly. Its background is <code>transparent</code> and its colour is <code>inherit</code>, which is how the posts take the feed's theme. The Stories row is a flex row with <code>overflow: hidden</code>, so any circles that don't fit are cut off at the edge.</p>
+
+<p>The ring is drawn by <code>::before</code>: a gradient circle, set behind the picture with <code>position: absolute</code>. The picture sits on top, slightly smaller, with a border in the background colour, which makes the gap between the picture and the ring. Drawing the ring separately means the colour classes for initials still work on the <code>ig-pfp</code>. <code>close</code> swaps the gradient for green, and <code>plain</code> hides the ring. The + badge on your own circle is an <code>::after</code> on the <code>me</code> story, a small circle placed over the bottom right of the picture.</p>
 
 <h3>The Photo</h3>
 
@@ -250,82 +328,6 @@
 
 <p>Each face is a tiny circle with a white edge, and the <em>negative</em> left margin pulls each one <code>8px</code> back over the one before, so they overlap. The first one doesn't need pulling back. This is why the faces have to be on one line of code with no gaps: a space between two inline things takes up room, and would push them apart again.</p>
 
-<h3>The Feed</h3>
-
-<pre><code>#workskin .ig.ig-feed .ig {
-  width: auto;
-  max-width: none;
-  max-height: none;
-  margin: 0 0 0.6em 0;
-  overflow: visible;
-  border: 0;
-  border-radius: 0;
-  background: transparent;
-  color: inherit;
-}
-
-#workskin .ig .ig-stories {
-  display: flex;
-  overflow: hidden;
-  padding: 0.5em 0.4em 0.6em 0.4em;
-  border-bottom: 1px solid #efefef;
-}
-
-#workskin .ig .ig-story::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 50%;
-  width: 5em;
-  height: 5em;
-  margin-left: -2.5em;
-  border-radius: 50%;
-  background-color: #d62976;
-  background-image: linear-gradient(45deg, #fcaf45 0%, #fd1d1d 45%, #c13584 70%, #833ab4 100%);
-}
-
-#workskin .ig-story .ig-pfp {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  box-sizing: border-box;
-  width: 4.6em;
-  height: 4.6em;
-  margin: 0.2em auto 0 auto;
-  overflow: hidden;
-  border: 0.18em solid #ffffff;
-  border-radius: 50%;
-  background-color: #8a8a8a;
-  color: #ffffff;
-  font-weight: bold;
-  font-size: 1em;
-  line-height: 1;
-}
-
-#workskin .ig .ig-story.close::before { background-image: none; background-color: #1cd14f; }
-
-#workskin .ig .ig-story.me::after {
-  content: "+";
-  position: absolute;
-  top: 3.4em;
-  left: 3.55em;
-  width: 1.1em;
-  height: 1.1em;
-  border: 3px solid #ffffff;
-  border-radius: 50%;
-  background: #262626;
-  color: #ffffff;
-  font-size: 1.05em;
-  font-weight: bold;
-  line-height: 1.05em;
-  text-align: center;
-}</code></pre>
-
-<p>A post inside an <code>ig-feed</code> drops its own width, border, rounded corners and scrolling, so the posts sit one after another and only the feed scrolls. Its background is <code>transparent</code> and its colour is <code>inherit</code>, which is how the posts take the feed's theme. The Stories row is a flex row with <code>overflow: hidden</code>, so any circles that don't fit are cut off at the edge.</p>
-
-<p>The ring is drawn by <code>::before</code>: a gradient circle, set behind the picture with <code>position: absolute</code>. The picture sits on top, slightly smaller, with a border in the background colour, which makes the gap between the picture and the ring. Drawing the ring separately means the colour classes for initials still work on the <code>ig-pfp</code>. <code>close</code> swaps the gradient for green, and <code>plain</code> hides the ring. The + badge on your own circle is an <code>::after</code> on the <code>me</code> story, a small circle placed over the bottom right of the picture.</p>
-
 <h3>DMs</h3>
 
 <pre><code>#workskin .igdm .out {
@@ -349,7 +351,7 @@
   overflow-x: hidden;
 }</code></pre>
 
-<p>Links and hashtags in posts are Instagram's dark blue. A post scrolls as a whole once it's taller than <code>700px</code>, which is why the example post with a real photo has <code>no-scroll</code>.</p>
+<p>Links and hashtags in posts are Instagram's dark blue. A feed scrolls once it's taller than <code>580px</code>, the same height as every other chat, and the posts inside it don't scroll on their own. A post on its own scrolls as a whole once it's taller than <code>700px</code>, which is why a post on its own with a real photo needs <code>no-scroll</code>.</p>
 
 <p>The dark theme is Instagram's very dark blue-black, <code>#0c1014</code>, with <code>#f5f5f5</code> text and <code>#a8a8a8</code> grey. It also turns the white edges dark - the gap in the story ring, the edges of the liked-by faces and the notch in a saved bookmark - because a white edge on a dark post would show. The auto theme is the same rules again inside <code>@media (prefers-color-scheme: dark)</code>.</p>
 
@@ -394,7 +396,7 @@
 
 <ul>
   <li><strong>DMs:</strong> everything starting <code>.igdm</code>.</li>
-  <li><strong>The feed:</strong> <code>ig-feed</code>, <code>ig-apptop</code>, <code>ig-new</code>, <code>ig-logo</code>, <code>ig-notif</code>, <code>ig-dot</code>, <code>ig-stories</code>, <code>ig-story</code> and <code>ig-sname</code>.</li>
+  <li><strong>The top bar and Stories row:</strong> <code>ig-apptop</code>, <code>ig-new</code>, <code>ig-logo</code>, <code>ig-notif</code>, <code>ig-dot</code>, <code>ig-stories</code>, <code>ig-story</code> and <code>ig-sname</code>. Keep the <code>ig-feed</code> rules, because they hold the posts.</li>
   <li><strong>Clickable buttons:</strong> <code>ig-tog</code>, <code>bm</code>, and the <code>.on</code> and <code>.off</code> rules. Keep <code>ig-btn</code> for plain buttons.</li>
   <li><strong>Liked-by faces:</strong> <code>liked-by</code>, <code>ig-like-pfps</code> and <code>ig-like-pfp</code>.</li>
   <li><strong>Stories ring:</strong> the two <code>.story</code> rules.</li>

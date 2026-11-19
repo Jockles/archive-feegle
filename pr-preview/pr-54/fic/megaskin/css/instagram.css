@@ -408,7 +408,7 @@
   border-radius: 6px;
 }
 
-/* ---- THE FEED (optional): a scrolling Instagram home screen, with the top bar and the Stories row,
+/* ---- THE FEED (the default container for posts): a scrolling Instagram home screen, with the top bar and the Stories row,
    then posts one after another. Add "ig-feed" to an ig container and put the posts inside it:
    <div class="mob ig ig-feed theme-auto">
      <p class="ig-apptop"><span class="ig-new">+</span><span class="ig-logo">Instagram</span><span class="ig-notif ic ic-heart">&#9825;</span><span class="ig-dot"><span class="hide"> (new)</span></span></p>
@@ -420,7 +420,8 @@
      <div class="mob ig"> another post </div>
    </div>
    The top bar and Stories scroll away with the posts, like in the app. The posts take their colours
-   from the feed, so only the feed needs a theme. */
+   from the feed, so only the feed needs a theme. A post can also go on its own, with no feed,
+   as <div class="mob ig theme-auto">. */
 #workskin .ig.ig-feed { max-height: 580px; }
 
 #workskin .ig.ig-feed .ig {
@@ -434,6 +435,8 @@
   background: transparent;
   color: inherit;
 }
+
+#workskin .ig.ig-feed .ig:last-child { margin-bottom: 0.3em; }
 
 #workskin .ig.ig-feed .ig .ig-top { border-bottom: 0; }
 

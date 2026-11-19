@@ -2,287 +2,13 @@
 
 <!-- contents -->
 
-<h3>Instagram posts and comments</h3>
+<h3>Instagram Posts and the Feed</h3>
 
-<p>An Instagram post is a stack of lines inside one container, from the account name at the top down to the time at the bottom. The module class is <code>ig</code>. Before we begin, here's the two kinds of post you can build: a full post with everything the workskin can do, and a simpler one. The full HTML is underneath each, which you can copy and modify yourself. The rest of this section takes the HTML apart so that you can modify all the individual parts to say exactly what you want.</p>
+<p>An Instagram post is a stack of lines, from the account name at the top down to the time at the bottom, and the posts sit in the feed: the home screen of the app, with the top bar, the row of Stories circles, and posts one after another, all scrolling together. The module class is <code>ig</code>, and the feed adds <code>ig-feed</code>. Before we begin, here's the three things you can build: a whole feed, a full post with everything the workskin can do, and a simpler one. The full HTML is underneath each, which you can copy and modify yourself. The rest of this section takes the HTML apart so that you can modify all the individual parts to say exactly what you want.</p>
 
-<h4>A Full Post</h4>
+<h4>A Feed</h4>
 
-<p>This one has the verified tick, the Follow link, the three dots menu, a story ring, a song, a photo, buttons with counts that you can actually click, a "Liked by" line with faces, a caption, comments and the time. Try clicking the heart and the bookmark:</p>
-
-<div class="mob ig theme-auto no-scroll">
-<p class="ig-top"><span class="ig-menu ic ic-more">&#8943;</span><span class="ig-pfp story"><span class="pfp"><img src="https://64.media.tumblr.com/2f5204e07f5dc3467a42508584f56c7d/188bbfab996df056-77/s400x600/e139f3e69f9be02470797bbd3505a69cc26def70.pnj" alt="Profile picture of ilya.r"></span></span>ilya.r<span class="hide"> </span><span class="ig-tick ic ic-verified">&#10003;</span><span class="hide"> - </span><span class="ig-follow">Follow</span><span class="hide"> - </span><span>&#9835; Boney M. - Rasputin</span></p>
-<p class="ig-photo real"><img src="https://64.media.tumblr.com/c3c4ecb5bfed8fa9f0590c54206ddb30/cff2318529321620-44/s1280x1920/42befcc40a517e1f202dda40783be2ffb95c1d92.pnj" alt="Macklin Celebrini at the IHF Worlds, dressed in his red jersey and black helmet. He's surrounded by sparkles, a red vignette, and hearts containing the Canadian flag"></p>
-<div class="ig-actions">
-<details class="ig-tog like"><summary><span class="ig-icon off ic ic-heart">&#9825;</span><span class="hide"> </span><span class="ig-count off">2,431</span><span class="hide"> likes (</span><span class="ig-icon on ic ic-heart-red">&#9829;</span><span class="hide"> </span><span class="ig-count on">2,432</span><span class="hide"> when liked)</span></summary></details>
-<p class="ig-btn"><span class="ig-icon cm"></span><span class="ig-count">84</span><span class="hide"> comments</span></p>
-<p class="ig-btn"><span class="ig-icon ic ic-repost">&#8635;</span><span class="hide"> </span><span class="ig-count">12</span><span class="hide"> reposts</span></p>
-<p class="ig-btn"><span class="ig-icon ic ic-share">&#10148;</span><span class="hide"> Share</span></p>
-<details class="ig-tog save"><summary><span class="hide">Save</span><span class="ig-icon bm off"></span><span class="ig-icon bm on"></span></summary></details>
-</div>
-<p class="ig-likes liked-by"><span class="ig-like-pfps"><span class="ig-like-pfp"><span class="pfp"><img src="https://media.istockphoto.com/id/1298570775/photo/rose.jpg?s=1024x1024&w=is&k=20&c=UFPisYCT3g2Vm04F2E5zrhtUWqDtLRLDXZisKb6Xf5s=" alt="Profile picture of shane.h"></span></span><span class="ig-like-pfp"><span class="pfp"><img class="land" src="https://media.istockphoto.com/id/2172051553/photo/asiatic-lily.jpg?s=1024x1024&w=is&k=20&c=3vCuZD234XmkXzrnzWPBdIZM0oJA1B6qe1x-06K_wDo=" alt="Profile picture of scott.h"></span></span><span class="ig-like-pfp"><span class="pfp"><img class="land" src="https://www.shutterstock.com/shutterstock/photos/1100283806/display_1500/stock-photo-beautiful-lavender-flower-in-the-dalat-flower-park-selective-focus-1100283806.jpg" alt="Profile picture of jane_t"></span></span></span>Liked by <b>shane.h</b> and <b>others</b></p>
-<p class="ig-caption"><b>ilya.r</b> early skate <span class="ig-tag">#nofilter</span></p>
-<p class="ig-viewall">View all 84 comments</p>
-<p class="ig-comment"><b>shane.h</b> why are you awake</p>
-<p class="ig-comment"><b>scott.h</b> I see you 👀</p>
-<p class="ig-time">3 hours ago</p>
-</div>
-
-<details>
-<summary>The full HTML for this post</summary>
-
-<pre><code>&lt;div class="mob ig theme-auto no-scroll"&gt;
-&lt;p class="ig-top"&gt;&lt;span class="ig-menu ic ic-more"&gt;&amp;#8943;&lt;/span&gt;&lt;span class="ig-pfp story"&gt;&lt;span class="pfp"&gt;&lt;img src="https://64.media.tumblr.com/2f5204e07f5dc3467a42508584f56c7d/188bbfab996df056-77/s400x600/e139f3e69f9be02470797bbd3505a69cc26def70.pnj" alt="Profile picture of ilya.r"&gt;&lt;/span&gt;&lt;/span&gt;ilya.r&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="ig-tick ic ic-verified"&gt;&amp;#10003;&lt;/span&gt;&lt;span class="hide"&gt; - &lt;/span&gt;&lt;span class="ig-follow"&gt;Follow&lt;/span&gt;&lt;span class="hide"&gt; - &lt;/span&gt;&lt;span&gt;&amp;#9835; Boney M. - Rasputin&lt;/span&gt;&lt;/p&gt;
-&lt;p class="ig-photo real"&gt;&lt;img src="https://64.media.tumblr.com/c3c4ecb5bfed8fa9f0590c54206ddb30/cff2318529321620-44/s1280x1920/42befcc40a517e1f202dda40783be2ffb95c1d92.pnj" alt="Macklin Celebrini at the IHF Worlds, dressed in his red jersey and black helmet. He's surrounded by sparkles, a red vignette, and hearts containing the Canadian flag"&gt;&lt;/p&gt;
-&lt;div class="ig-actions"&gt;
-&lt;details class="ig-tog like"&gt;&lt;summary&gt;&lt;span class="ig-icon off ic ic-heart"&gt;&amp;#9825;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="ig-count off"&gt;2,431&lt;/span&gt;&lt;span class="hide"&gt; likes (&lt;/span&gt;&lt;span class="ig-icon on ic ic-heart-red"&gt;&amp;#9829;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="ig-count on"&gt;2,432&lt;/span&gt;&lt;span class="hide"&gt; when liked)&lt;/span&gt;&lt;/summary&gt;&lt;/details&gt;
-&lt;p class="ig-btn"&gt;&lt;span class="ig-icon cm"&gt;&lt;/span&gt;&lt;span class="ig-count"&gt;84&lt;/span&gt;&lt;span class="hide"&gt; comments&lt;/span&gt;&lt;/p&gt;
-&lt;p class="ig-btn"&gt;&lt;span class="ig-icon ic ic-repost"&gt;&amp;#8635;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="ig-count"&gt;12&lt;/span&gt;&lt;span class="hide"&gt; reposts&lt;/span&gt;&lt;/p&gt;
-&lt;p class="ig-btn"&gt;&lt;span class="ig-icon ic ic-share"&gt;&amp;#10148;&lt;/span&gt;&lt;span class="hide"&gt; Share&lt;/span&gt;&lt;/p&gt;
-&lt;details class="ig-tog save"&gt;&lt;summary&gt;&lt;span class="hide"&gt;Save&lt;/span&gt;&lt;span class="ig-icon bm off"&gt;&lt;/span&gt;&lt;span class="ig-icon bm on"&gt;&lt;/span&gt;&lt;/summary&gt;&lt;/details&gt;
-&lt;/div&gt;
-&lt;p class="ig-likes liked-by"&gt;&lt;span class="ig-like-pfps"&gt;&lt;span class="ig-like-pfp"&gt;&lt;span class="pfp"&gt;&lt;img src="https://media.istockphoto.com/id/1298570775/photo/rose.jpg?s=1024x1024&amp;w=is&amp;k=20&amp;c=UFPisYCT3g2Vm04F2E5zrhtUWqDtLRLDXZisKb6Xf5s=" alt="Profile picture of shane.h"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="ig-like-pfp"&gt;&lt;span class="pfp"&gt;&lt;img class="land" src="https://media.istockphoto.com/id/2172051553/photo/asiatic-lily.jpg?s=1024x1024&amp;w=is&amp;k=20&amp;c=3vCuZD234XmkXzrnzWPBdIZM0oJA1B6qe1x-06K_wDo=" alt="Profile picture of scott.h"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="ig-like-pfp"&gt;&lt;span class="pfp"&gt;&lt;img class="land" src="https://www.shutterstock.com/shutterstock/photos/1100283806/display_1500/stock-photo-beautiful-lavender-flower-in-the-dalat-flower-park-selective-focus-1100283806.jpg" alt="Profile picture of jane_t"&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;Liked by &lt;b&gt;shane.h&lt;/b&gt; and &lt;b&gt;others&lt;/b&gt;&lt;/p&gt;
-&lt;p class="ig-caption"&gt;&lt;b&gt;ilya.r&lt;/b&gt; early skate &lt;span class="ig-tag"&gt;#nofilter&lt;/span&gt;&lt;/p&gt;
-&lt;p class="ig-viewall"&gt;View all 84 comments&lt;/p&gt;
-&lt;p class="ig-comment"&gt;&lt;b&gt;shane.h&lt;/b&gt; why are you awake&lt;/p&gt;
-&lt;p class="ig-comment"&gt;&lt;b&gt;scott.h&lt;/b&gt; I see you 👀&lt;/p&gt;
-&lt;p class="ig-time"&gt;3 hours ago&lt;/p&gt;
-&lt;/div&gt;</code></pre>
-
-</details>
-
-<p>A post with a real photo in it can end up taller than a phone screen, so this container has <code>no-scroll</code> added to keep the buttons in view (see <a href="core.html#heading">Scrolling Long Chats</a>).</p>
-
-<h4>A Simpler Post</h4>
-
-<p>This one takes its picture and name from Rose's profile, has a location instead of a song, describes the photo instead of showing it, and has plain buttons that don't click:</p>
-
-<div class="mob ig theme-auto">
-<p class="ig-top"><span class="ig-menu ic ic-more">&#8943;</span><span class="ig-pfp"><span class="pfp pfp-rose"></span></span><span class="handle pfp-rose"><span class="hide">RoseLandry</span></span><span class="hide"> - </span><span>Ottawa, Ontario</span></p>
-<p class="ig-photo">[A photo of a very large lasagne, with one corner already missing]</p>
-<div class="ig-actions">
-<p class="ig-btn"><span class="ig-icon ic ic-heart">&#9825;</span><span class="hide"> </span><span class="ig-count">312</span><span class="hide"> likes</span></p>
-<p class="ig-btn"><span class="ig-icon cm"></span><span class="ig-count">2</span><span class="hide"> comments</span></p>
-<p class="ig-btn"><span class="ig-icon ic ic-share">&#10148;</span><span class="hide"> Share</span></p>
-</div>
-<p class="ig-likes">312 likes</p>
-<p class="ig-caption"><b>RoseLandry</b> made enough for the whole committee. nobody came. <span class="ig-tag">#galaprep</span></p>
-<p class="ig-comment"><b>ilya.r</b> I am coming now</p>
-<p class="ig-time">20 minutes ago</p>
-</div>
-
-<details>
-<summary>The full HTML for this post</summary>
-
-<pre><code>&lt;div class="mob ig theme-auto"&gt;
-&lt;p class="ig-top"&gt;&lt;span class="ig-menu ic ic-more"&gt;&amp;#8943;&lt;/span&gt;&lt;span class="ig-pfp"&gt;&lt;span class="pfp pfp-rose"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="handle pfp-rose"&gt;&lt;span class="hide"&gt;RoseLandry&lt;/span&gt;&lt;/span&gt;&lt;span class="hide"&gt; - &lt;/span&gt;&lt;span&gt;Ottawa, Ontario&lt;/span&gt;&lt;/p&gt;
-&lt;p class="ig-photo"&gt;[A photo of a very large lasagne, with one corner already missing]&lt;/p&gt;
-&lt;div class="ig-actions"&gt;
-&lt;p class="ig-btn"&gt;&lt;span class="ig-icon ic ic-heart"&gt;&amp;#9825;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="ig-count"&gt;312&lt;/span&gt;&lt;span class="hide"&gt; likes&lt;/span&gt;&lt;/p&gt;
-&lt;p class="ig-btn"&gt;&lt;span class="ig-icon cm"&gt;&lt;/span&gt;&lt;span class="ig-count"&gt;2&lt;/span&gt;&lt;span class="hide"&gt; comments&lt;/span&gt;&lt;/p&gt;
-&lt;p class="ig-btn"&gt;&lt;span class="ig-icon ic ic-share"&gt;&amp;#10148;&lt;/span&gt;&lt;span class="hide"&gt; Share&lt;/span&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;p class="ig-likes"&gt;312 likes&lt;/p&gt;
-&lt;p class="ig-caption"&gt;&lt;b&gt;RoseLandry&lt;/b&gt; made enough for the whole committee. nobody came. &lt;span class="ig-tag"&gt;#galaprep&lt;/span&gt;&lt;/p&gt;
-&lt;p class="ig-comment"&gt;&lt;b&gt;ilya.r&lt;/b&gt; I am coming now&lt;/p&gt;
-&lt;p class="ig-time"&gt;20 minutes ago&lt;/p&gt;
-&lt;/div&gt;</code></pre>
-
-</details>
-
-<p>Anything you don't want, you can just leave out of your copy, and the Instagram CSS chapter shows you how to switch parts off for the whole fic.</p>
-
-<h4>Account Line</h4>
-
-<p>The first line is the account that posted. The name comes first, and the last <code>&lt;span&gt;</code> in the line adds the small grey line underneath it, which can be a song, like here, or a location. Straight after the name go the blue verified tick (<code>ig-tick</code>) and the "Follow" link (<code>ig-follow</code>). The three dots menu (<code>ig-menu</code>) sits at the far right, so it goes <em>first</em> in the line:</p>
-
-<div class="mob ig theme-auto no-scroll"><p class="ig-top"><span class="ig-menu ic ic-more">&#8943;</span><span class="ig-pfp story"><span class="pfp"><img src="https://64.media.tumblr.com/2f5204e07f5dc3467a42508584f56c7d/188bbfab996df056-77/s400x600/e139f3e69f9be02470797bbd3505a69cc26def70.pnj" alt="Profile picture of ilya.r"></span></span>ilya.r<span class="hide"> </span><span class="ig-tick ic ic-verified">&#10003;</span><span class="hide"> - </span><span class="ig-follow">Follow</span><span class="hide"> - </span><span>&#9835; Boney M. - Rasputin</span></p></div>
-
-<pre><code>&lt;p class="ig-top"&gt;&lt;span class="ig-menu ic ic-more"&gt;&amp;#8943;&lt;/span&gt;&lt;span class="ig-pfp story"&gt;&lt;span class="pfp"&gt;&lt;img src="https://64.media.tumblr.com/2f5204e07f5dc3467a42508584f56c7d/188bbfab996df056-77/s400x600/e139f3e69f9be02470797bbd3505a69cc26def70.pnj" alt="Profile picture of ilya.r"&gt;&lt;/span&gt;&lt;/span&gt;ilya.r&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="ig-tick ic ic-verified"&gt;&amp;#10003;&lt;/span&gt;&lt;span class="hide"&gt; - &lt;/span&gt;&lt;span class="ig-follow"&gt;Follow&lt;/span&gt;&lt;span class="hide"&gt; - &lt;/span&gt;&lt;span&gt;&amp;#9835; Boney M. - Rasputin&lt;/span&gt;&lt;/p&gt;</code></pre>
-
-<p>For a song, start that last span with the music note symbol, <code>&amp;#9835;</code>, then the artist and the song title. For a location, just write the place:</p>
-
-<div class="mob ig theme-auto"><p class="ig-top"><span class="ig-menu ic ic-more">&#8943;</span><span class="ig-pfp"><span class="pfp pfp-rose"></span></span><span class="handle pfp-rose"><span class="hide">RoseLandry</span></span><span class="hide"> - </span><span>Ottawa, Ontario</span></p></div>
-
-<pre><code>&lt;p class="ig-top"&gt;&lt;span class="ig-menu ic ic-more"&gt;&amp;#8943;&lt;/span&gt;&lt;span class="ig-pfp"&gt;&lt;span class="pfp pfp-rose"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="handle pfp-rose"&gt;&lt;span class="hide"&gt;RoseLandry&lt;/span&gt;&lt;/span&gt;&lt;span class="hide"&gt; - &lt;/span&gt;&lt;span&gt;Ottawa, Ontario&lt;/span&gt;&lt;/p&gt;</code></pre>
-
-<h4>An Account You Don't Follow</h4>
-
-<p>When the feed suggests a post from an account your pov character doesn't follow, the top line gets a follow button, and the menu is two lines instead of three dots. Put the menu (<code>ic-ig-lines</code>) first, then the follow button (<code>ig-add</code>), then the rest of the line as usual:</p>
-
-<div class="mob ig theme-auto no-scroll"><p class="ig-top"><span class="ig-menu ic ic-ig-lines">&#8801;</span><span class="ig-add ic ic-ig-follow">Follow</span><span class="ig-pfp colour6">SH</span>scott.h<span class="hide"> - </span><span>New York, New York</span></p></div>
-
-<pre><code>&lt;p class="ig-top"&gt;&lt;span class="ig-menu ic ic-ig-lines"&gt;&amp;#8801;&lt;/span&gt;&lt;span class="ig-add ic ic-ig-follow"&gt;Follow&lt;/span&gt;&lt;span class="ig-pfp colour6"&gt;SH&lt;/span&gt;scott.h&lt;span class="hide"&gt; - &lt;/span&gt;&lt;span&gt;New York, New York&lt;/span&gt;&lt;/p&gt;</code></pre>
-
-<h4>Profile Picture and Stories Ring</h4>
-
-<p>The profile picture goes at the very start of the account line, straight after the menu. It can show initials, an uploaded picture or a picture from a profile, and there's an example of each below.</p>
-
-<p>For initials, type them inside a span with <code>ig-pfp</code>, and add one of <code>colour1</code> to <code>colour10</code> for a colour. With no colour class, the circle is grey:</p>
-
-<div class="mob ig theme-auto no-scroll"><p class="ig-top"><span class="ig-pfp colour3">SC</span>scott.h</p></div>
-
-<pre><code>&lt;p class="ig-top"&gt;&lt;span class="ig-pfp colour3"&gt;SC&lt;/span&gt;scott.h&lt;/p&gt;</code></pre>
-
-<p>For an uploaded picture, put the picture tag inside a span with <code>pfp</code>, inside a span with <code>ig-pfp</code>. The <code>pfp</code> span crops the picture into a circle without squashing it, and the alt text should describe the picture (for example, "Profile picture of ilya.r"). If the picture is wider than it is tall, add <code>class=&quot;land&quot;</code> to the picture tag (see <a href="core.html#heading">Pictures in Boxes and Circles</a>). To show that the account has a story up, add <code>story</code> to the <code>ig-pfp</code> span, which draws the colourful ring around the picture:</p>
-
-<div class="mob ig theme-auto no-scroll"><p class="ig-top"><span class="ig-pfp story"><span class="pfp"><img src="https://64.media.tumblr.com/2f5204e07f5dc3467a42508584f56c7d/188bbfab996df056-77/s400x600/e139f3e69f9be02470797bbd3505a69cc26def70.pnj" alt="Profile picture of ilya.r"></span></span></p></div>
-
-<pre><code>&lt;span class="ig-pfp story"&gt;&lt;span class="pfp"&gt;&lt;img src="https://64.media.tumblr.com/2f5204e07f5dc3467a42508584f56c7d/188bbfab996df056-77/s400x600/e139f3e69f9be02470797bbd3505a69cc26def70.pnj" alt="Profile picture of ilya.r"&gt;&lt;/span&gt;&lt;/span&gt;</code></pre>
-
-<p>Or use a profile, so the same person has the same picture everywhere, like Rose's in the simpler post. Put an empty <code>pfp</code> span with their profile name in the <code>ig-pfp</code>. The account name can come from the profile too, in a handle span with the name typed inside it in a <code>hide</code> span. That's for readers with the workskin switched off - the handle comes from the CSS, so without it they wouldn't know who posted (see <a href="core.html#heading">Character Appearances and Profiles</a> and <a href="core.html#heading">Accessibility</a>):</p>
-
-<div class="mob ig theme-auto no-scroll"><p class="ig-top"><span class="ig-pfp"><span class="pfp pfp-rose"></span></span><span class="handle pfp-rose"><span class="hide">RoseLandry</span></span></p></div>
-
-<pre><code>&lt;p class="ig-top"&gt;&lt;span class="ig-pfp"&gt;&lt;span class="pfp pfp-rose"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="handle pfp-rose"&gt;&lt;span class="hide"&gt;RoseLandry&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;</code></pre>
-
-
-<h4>The Photo</h4>
-
-<p>Host the photo somewhere else and put it in an <code>ig-photo</code> box that also has <code>real</code>, with your link in <code>src</code> and a description in <code>alt</code>:</p>
-
-<div class="mob ig theme-auto no-scroll"><p class="ig-photo real"><img src="https://64.media.tumblr.com/c3c4ecb5bfed8fa9f0590c54206ddb30/cff2318529321620-44/s1280x1920/42befcc40a517e1f202dda40783be2ffb95c1d92.pnj" alt="Macklin Celebrini at the IHF Worlds, dressed in his red jersey and black helmet. He's surrounded by sparkles, a red vignette, and hearts containing the Canadian flag"></p></div>
-
-<pre><code>&lt;p class="ig-photo real"&gt;&lt;img src="https://64.media.tumblr.com/c3c4ecb5bfed8fa9f0590c54206ddb30/cff2318529321620-44/s1280x1920/42befcc40a517e1f202dda40783be2ffb95c1d92.pnj" alt="Macklin Celebrini at the IHF Worlds, dressed in his red jersey and black helmet. He's surrounded by sparkles, a red vignette, and hearts containing the Canadian flag"&gt;&lt;/p&gt;</code></pre>
-
-<p>If you'd rather not use a picture, a plain <code>&lt;p class=&quot;ig-photo&quot;&gt;</code> makes a grey box, and you can describe the photo inside it in square brackets:</p>
-
-<div class="mob ig theme-auto"><p class="ig-photo">[A photo of a very large lasagne, with one corner already missing]</p></div>
-
-<pre><code>&lt;p class="ig-photo"&gt;[A photo of a very large lasagne, with one corner already missing]&lt;/p&gt;</code></pre>
-
-<h4>Buttons With Counts</h4>
-
-<p>The row of buttons is a <code>div</code> with <code>ig-actions</code>, and each button is its own paragraph with <code>ig-btn</code>. The symbol goes in a span with <code>ig-icon</code>, and the number in a span with <code>ig-count</code>. The comment bubble is drawn for you with <code>ig-icon cm</code>, and the others are plain symbols (a heart for likes, a circle arrow for repost, an arrow for share). After each number is a <code>hide</code> span with a word in it, like <code>&lt;span class=&quot;hide&quot;&gt; comments&lt;/span&gt;</code>, so readers with the workskin off get "2 comments" rather than a number on its own. The share button has no number, just a hidden "Share". Leave a button out if you don't want it on the post:</p>
-
-<div class="mob ig theme-auto"><div class="ig-actions">
-<p class="ig-btn"><span class="ig-icon ic ic-heart">&#9825;</span><span class="hide"> </span><span class="ig-count">312</span><span class="hide"> likes</span></p>
-<p class="ig-btn"><span class="ig-icon cm"></span><span class="ig-count">2</span><span class="hide"> comments</span></p>
-<p class="ig-btn"><span class="ig-icon ic ic-share">&#10148;</span><span class="hide"> Share</span></p>
-</div></div>
-
-<pre><code>&lt;div class="ig-actions"&gt;
-&lt;p class="ig-btn"&gt;&lt;span class="ig-icon ic ic-heart"&gt;&amp;#9825;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="ig-count"&gt;312&lt;/span&gt;&lt;span class="hide"&gt; likes&lt;/span&gt;&lt;/p&gt;
-&lt;p class="ig-btn"&gt;&lt;span class="ig-icon cm"&gt;&lt;/span&gt;&lt;span class="ig-count"&gt;2&lt;/span&gt;&lt;span class="hide"&gt; comments&lt;/span&gt;&lt;/p&gt;
-&lt;p class="ig-btn"&gt;&lt;span class="ig-icon ic ic-share"&gt;&amp;#10148;&lt;/span&gt;&lt;span class="hide"&gt; Share&lt;/span&gt;&lt;/p&gt;
-&lt;/div&gt;</code></pre>
-
-<h4>Clickable Like and Save Buttons</h4>
-
-<p>Readers can click or tap the heart and the save button to switch them on and off, like on the real app. Use them in place of the plain heart from the last section. The heart turns red and its count goes up by one, and the bookmark fills in. Either one can start already switched on:</p>
-
-<div class="mob ig theme-auto no-scroll"><div class="ig-actions">
-<details class="ig-tog like"><summary><span class="ig-icon off ic ic-heart">&#9825;</span><span class="hide"> </span><span class="ig-count off">2,431</span><span class="hide"> likes (</span><span class="ig-icon on ic ic-heart-red">&#9829;</span><span class="hide"> </span><span class="ig-count on">2,432</span><span class="hide"> when liked)</span></summary></details>
-<p class="ig-btn"><span class="ig-icon cm"></span><span class="ig-count">84</span><span class="hide"> comments</span></p>
-<p class="ig-btn"><span class="ig-icon ic ic-repost">&#8635;</span><span class="hide"> </span><span class="ig-count">12</span><span class="hide"> reposts</span></p>
-<p class="ig-btn"><span class="ig-icon ic ic-share">&#10148;</span><span class="hide"> Share</span></p>
-<details class="ig-tog save"><summary><span class="hide">Save</span><span class="ig-icon bm off"></span><span class="ig-icon bm on"></span></summary></details>
-</div></div>
-
-<pre><code>&lt;div class="ig-actions"&gt;
-&lt;details class="ig-tog like"&gt;&lt;summary&gt;&lt;span class="ig-icon off ic ic-heart"&gt;&amp;#9825;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="ig-count off"&gt;2,431&lt;/span&gt;&lt;span class="hide"&gt; likes (&lt;/span&gt;&lt;span class="ig-icon on ic ic-heart-red"&gt;&amp;#9829;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="ig-count on"&gt;2,432&lt;/span&gt;&lt;span class="hide"&gt; when liked)&lt;/span&gt;&lt;/summary&gt;&lt;/details&gt;
-&lt;p class="ig-btn"&gt;&lt;span class="ig-icon cm"&gt;&lt;/span&gt;&lt;span class="ig-count"&gt;84&lt;/span&gt;&lt;span class="hide"&gt; comments&lt;/span&gt;&lt;/p&gt;
-&lt;p class="ig-btn"&gt;&lt;span class="ig-icon ic ic-repost"&gt;&amp;#8635;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="ig-count"&gt;12&lt;/span&gt;&lt;span class="hide"&gt; reposts&lt;/span&gt;&lt;/p&gt;
-&lt;p class="ig-btn"&gt;&lt;span class="ig-icon ic ic-share"&gt;&amp;#10148;&lt;/span&gt;&lt;span class="hide"&gt; Share&lt;/span&gt;&lt;/p&gt;
-&lt;details class="ig-tog save"&gt;&lt;summary&gt;&lt;span class="hide"&gt;Save&lt;/span&gt;&lt;span class="ig-icon bm off"&gt;&lt;/span&gt;&lt;span class="ig-icon bm on"&gt;&lt;/span&gt;&lt;/summary&gt;&lt;/details&gt;
-&lt;/div&gt;</code></pre>
-
-<details>
-<summary>How the clickable buttons work</summary>
-
-<p>They're made with the details and summary tags. Inside the <code>summary</code> are two versions of the same thing: the parts with <code>off</code> show to begin with, and the parts with <code>on</code> swap in after a click. Click again, and it goes back. Because the number is in there too, you can make the likes go up by one. The save button (<code>ig-tog save</code>) sits on its own at the far right.</p>
-
-<ul>
-  <li>Keep each <code>&lt;details&gt;</code> on a single line of code, like above, and put them inside the <code>ig-actions</code> <code>div</code>, not inside a <code>&lt;p&gt;</code>.</li>
-  <li>To start with a button already switched on (a post the character has already liked, say), add <code>open</code>: <code>&lt;details class=&quot;ig-tog like&quot; open&gt;</code>.</li>
-  <li>The clicking only works on AO3 itself, in a browser. In a download (EPUB, PDF and so on) the buttons stay as they started, so I'd recommend not having anything in your story depend on them being clicked.</li>
-  <li>If you don't want a clickable heart, use <code>ig-btn</code> for it instead, as in the last section. They look exactly the same until someone clicks.</li>
-  <li>The <code>hide</code> spans are for readers with the workskin off. Without them the heart reads "&#9825;&#9829;2,4312,432", and with them it reads "&#9825; 2,431 likes (&#9829; 2,432 when liked)". The save button gets a hidden "Save", because its bookmark is drawn by the workskin and disappears with it. You'll still see a small triangle in front of each one with the workskin off - that's the details tag's own marker, and only the workskin can hide it.</li>
-</ul>
-
-</details>
-
-<h4>Liked By, With Faces</h4>
-
-<p><code>ig-likes</code> is the likes line. Add <code>liked-by</code> to it for a "Liked by" line, which puts little overlapping profile pictures in front and keeps the text from being bold unless you put names in <code>&lt;b&gt;</code>. Each face is a span with <code>ig-like-pfp</code>, with the usual <code>pfp</code> and picture tag inside, all inside one <code>ig-like-pfps</code> span. Keep the faces together on one line, with no gaps between them. A picture that's wider than tall needs <code>class=&quot;land&quot;</code> on its picture tag, like the second and third faces here, or it won't fill its circle (see <a href="core.html#heading">Pictures in Boxes and Circles</a>):</p>
-
-<div class="mob ig theme-auto no-scroll"><p class="ig-likes liked-by"><span class="ig-like-pfps"><span class="ig-like-pfp"><span class="pfp"><img src="https://media.istockphoto.com/id/1298570775/photo/rose.jpg?s=1024x1024&w=is&k=20&c=UFPisYCT3g2Vm04F2E5zrhtUWqDtLRLDXZisKb6Xf5s=" alt="Profile picture of shane.h"></span></span><span class="ig-like-pfp"><span class="pfp"><img class="land" src="https://media.istockphoto.com/id/2172051553/photo/asiatic-lily.jpg?s=1024x1024&w=is&k=20&c=3vCuZD234XmkXzrnzWPBdIZM0oJA1B6qe1x-06K_wDo=" alt="Profile picture of scott.h"></span></span><span class="ig-like-pfp"><span class="pfp"><img class="land" src="https://www.shutterstock.com/shutterstock/photos/1100283806/display_1500/stock-photo-beautiful-lavender-flower-in-the-dalat-flower-park-selective-focus-1100283806.jpg" alt="Profile picture of jane_t"></span></span></span>Liked by <b>shane.h</b> and <b>others</b></p></div>
-
-<pre><code>&lt;p class="ig-likes liked-by"&gt;&lt;span class="ig-like-pfps"&gt;&lt;span class="ig-like-pfp"&gt;&lt;span class="pfp"&gt;&lt;img src="https://media.istockphoto.com/id/1298570775/photo/rose.jpg?s=1024x1024&amp;w=is&amp;k=20&amp;c=UFPisYCT3g2Vm04F2E5zrhtUWqDtLRLDXZisKb6Xf5s=" alt="Profile picture of shane.h"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="ig-like-pfp"&gt;&lt;span class="pfp"&gt;&lt;img class="land" src="https://media.istockphoto.com/id/2172051553/photo/asiatic-lily.jpg?s=1024x1024&amp;w=is&amp;k=20&amp;c=3vCuZD234XmkXzrnzWPBdIZM0oJA1B6qe1x-06K_wDo=" alt="Profile picture of scott.h"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="ig-like-pfp"&gt;&lt;span class="pfp"&gt;&lt;img class="land" src="https://www.shutterstock.com/shutterstock/photos/1100283806/display_1500/stock-photo-beautiful-lavender-flower-in-the-dalat-flower-park-selective-focus-1100283806.jpg" alt="Profile picture of jane_t"&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;Liked by &lt;b&gt;shane.h&lt;/b&gt; and &lt;b&gt;others&lt;/b&gt;&lt;/p&gt;</code></pre>
-
-<p>The faces work the same three ways as the account picture: initials with a colour class, an uploaded picture, or a profile. Here's one of each - Rose's from her profile, then an uploaded picture, then initials:</p>
-
-<div class="mob ig theme-auto no-scroll"><p class="ig-likes liked-by"><span class="ig-like-pfps"><span class="ig-like-pfp"><span class="pfp pfp-rose"></span></span><span class="ig-like-pfp"><span class="pfp"><img src="https://images.squidge.org/images/2026/11/16/Cat2.jpg" alt="Profile picture of samthecat"></span></span><span class="ig-like-pfp colour3">SC</span></span>Liked by <b><span class="handle pfp-rose"><span class="hide">RoseLandry</span></span></b> and <b>others</b></p></div>
-
-<pre><code>&lt;p class="ig-likes liked-by"&gt;&lt;span class="ig-like-pfps"&gt;&lt;span class="ig-like-pfp"&gt;&lt;span class="pfp pfp-rose"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="ig-like-pfp"&gt;&lt;span class="pfp"&gt;&lt;img src="https://images.squidge.org/images/2026/11/16/Cat2.jpg" alt="Profile picture of samthecat"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="ig-like-pfp colour3"&gt;SC&lt;/span&gt;&lt;/span&gt;Liked by &lt;b&gt;&lt;span class="handle pfp-rose"&gt;&lt;span class="hide"&gt;RoseLandry&lt;/span&gt;&lt;/span&gt;&lt;/b&gt; and &lt;b&gt;others&lt;/b&gt;&lt;/p&gt;</code></pre>
-
-<p>For a plain count with no faces, use <code>ig-likes</code> on its own, without <code>liked-by</code>, like the simpler post: <code>&lt;p class=&quot;ig-likes&quot;&gt;312 likes&lt;/p&gt;</code>.</p>
-
-<h4>Caption</h4>
-
-<p><code>ig-caption</code> is the caption, with the poster's name in <code>&lt;b&gt;</code>. To colour a hashtag like Instagram does, wrap it in a span with <code>ig-tag</code>:</p>
-
-<div class="mob ig theme-auto no-scroll"><p class="ig-caption"><b>ilya.r</b> early skate <span class="ig-tag">#nofilter</span></p></div>
-
-<pre><code>&lt;p class="ig-caption"&gt;&lt;b&gt;ilya.r&lt;/b&gt; early skate &lt;span class="ig-tag"&gt;#nofilter&lt;/span&gt;&lt;/p&gt;</code></pre>
-
-<p>To show a long caption cut short, like in a feed, stop partway through and end it with "... " and a grey <code>ig-more</code> span:</p>
-
-<div class="mob ig theme-auto no-scroll"><p class="ig-caption"><b>shane.h</b> Here's where things stand at the quarter... <span class="ig-more">more</span></p></div>
-
-<pre><code>&lt;p class="ig-caption"&gt;&lt;b&gt;shane.h&lt;/b&gt; Here's where things stand at the quarter... &lt;span class="ig-more"&gt;more&lt;/span&gt;&lt;/p&gt;</code></pre>
-
-<h4>Comments</h4>
-
-<p>Add a grey "View all comments" line with <code>ig-viewall</code>, then each comment as its own <code>ig-comment</code>, with the commenter's name in <code>&lt;b&gt;</code>. Add as many comments as you need:</p>
-
-<div class="mob ig theme-auto no-scroll"><p class="ig-viewall">View all 84 comments</p>
-<p class="ig-comment"><b>shane.h</b> why are you awake</p>
-<p class="ig-comment"><b>scott.h</b> I see you 👀</p></div>
-
-<pre><code>&lt;p class="ig-viewall"&gt;View all 84 comments&lt;/p&gt;
-&lt;p class="ig-comment"&gt;&lt;b&gt;shane.h&lt;/b&gt; why are you awake&lt;/p&gt;
-&lt;p class="ig-comment"&gt;&lt;b&gt;scott.h&lt;/b&gt; I see you 👀&lt;/p&gt;</code></pre>
-
-<h4>Time Posted</h4>
-
-<p>The last line is the little grey time at the bottom, <code>ig-time</code>:</p>
-
-<div class="mob ig theme-auto no-scroll"><p class="ig-time">3 hours ago</p></div>
-
-<pre><code>&lt;p class="ig-time"&gt;3 hours ago&lt;/p&gt;</code></pre>
-
-<h4>Uploading a Profile Pic</h4>
-
-<p>Profiles are optional, so an account that only turns up once doesn't need one. Put the picture tag in the <code>ig-pfp</code> and type the account name straight after it. The faces in the "Liked by" line work the same way, with a picture tag in each <code>ig-like-pfp</code>, and the names on the caption and comments are typed in <code>&lt;b&gt;</code>:</p>
-
-<div class="mob ig theme-auto">
-<p class="ig-top"><span class="ig-menu ic ic-more">&#8943;</span><span class="ig-pfp"><span class="pfp"><img src="https://media.istockphoto.com/id/1298570775/photo/rose.jpg?s=1024x1024&w=is&k=20&c=UFPisYCT3g2Vm04F2E5zrhtUWqDtLRLDXZisKb6Xf5s=" alt="Profile picture of Gemma, a close-up photo of a rose"></span></span>gemma_bakes<span class="hide"> - </span><span>Toronto, Ontario</span></p>
-<p class="ig-photo">[A photo of a sourdough loaf shaped like a hockey puck]</p>
-<p class="ig-likes liked-by"><span class="ig-like-pfps"><span class="ig-like-pfp"><span class="pfp"><img src="https://images.squidge.org/images/2026/11/16/Cat2.jpg" alt="Profile picture of Sam, a black and white cat screaming at the camera"></span></span><span class="ig-like-pfp"><span class="pfp"><img class="land" src="https://media.istockphoto.com/id/2172051553/photo/asiatic-lily.jpg?s=1024x1024&w=is&k=20&c=3vCuZD234XmkXzrnzWPBdIZM0oJA1B6qe1x-06K_wDo=" alt="Profile picture of Ash, a close-up photo of an Asiatic lily"></span></span><span class="ig-like-pfp"><span class="pfp"><img class="land" src="https://www.shutterstock.com/shutterstock/photos/1100283806/display_1500/stock-photo-beautiful-lavender-flower-in-the-dalat-flower-park-selective-focus-1100283806.jpg" alt="Profile picture of Mar, a lavender flower"></span></span></span>Liked by <b>samthecat</b> and <b>others</b></p>
-<p class="ig-caption"><b>gemma_bakes</b> it's a puck. it's bread. it's a pread <span class="ig-tag">#sourdough</span></p>
-<p class="ig-comment"><b>ash.lilies</b> please never say pread again</p>
-<p class="ig-comment"><b>marlavender</b> pread 🏒</p>
-<p class="ig-time">1 hour ago</p>
-</div>
-
-<pre><code>&lt;p class="ig-top"&gt;&lt;span class="ig-menu ic ic-more"&gt;&amp;#8943;&lt;/span&gt;&lt;span class="ig-pfp"&gt;&lt;span class="pfp"&gt;&lt;img src="https://media.istockphoto.com/id/1298570775/photo/rose.jpg?s=1024x1024&amp;w=is&amp;k=20&amp;c=UFPisYCT3g2Vm04F2E5zrhtUWqDtLRLDXZisKb6Xf5s=" alt="Profile picture of Gemma, a close-up photo of a rose"&gt;&lt;/span&gt;&lt;/span&gt;gemma_bakes&lt;span class="hide"&gt; - &lt;/span&gt;&lt;span&gt;Toronto, Ontario&lt;/span&gt;&lt;/p&gt;
-&lt;p class="ig-photo"&gt;[A photo of a sourdough loaf shaped like a hockey puck]&lt;/p&gt;
-&lt;p class="ig-likes liked-by"&gt;&lt;span class="ig-like-pfps"&gt;&lt;span class="ig-like-pfp"&gt;&lt;span class="pfp"&gt;&lt;img src="https://images.squidge.org/images/2026/11/16/Cat2.jpg" alt="Profile picture of Sam, a black and white cat screaming at the camera"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="ig-like-pfp"&gt;&lt;span class="pfp"&gt;&lt;img class="land" src="https://media.istockphoto.com/id/2172051553/photo/asiatic-lily.jpg?s=1024x1024&amp;w=is&amp;k=20&amp;c=3vCuZD234XmkXzrnzWPBdIZM0oJA1B6qe1x-06K_wDo=" alt="Profile picture of Ash, a close-up photo of an Asiatic lily"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="ig-like-pfp"&gt;&lt;span class="pfp"&gt;&lt;img class="land" src="https://www.shutterstock.com/shutterstock/photos/1100283806/display_1500/stock-photo-beautiful-lavender-flower-in-the-dalat-flower-park-selective-focus-1100283806.jpg" alt="Profile picture of Mar, a lavender flower"&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;Liked by &lt;b&gt;samthecat&lt;/b&gt; and &lt;b&gt;others&lt;/b&gt;&lt;/p&gt;
-&lt;p class="ig-caption"&gt;&lt;b&gt;gemma_bakes&lt;/b&gt; it's a puck. it's bread. it's a pread &lt;span class="ig-tag"&gt;#sourdough&lt;/span&gt;&lt;/p&gt;
-&lt;p class="ig-comment"&gt;&lt;b&gt;ash.lilies&lt;/b&gt; please never say pread again&lt;/p&gt;
-&lt;p class="ig-comment"&gt;&lt;b&gt;marlavender&lt;/b&gt; pread 🏒&lt;/p&gt;
-&lt;p class="ig-time"&gt;1 hour ago&lt;/p&gt;</code></pre>
-
-<ul>
-  <li>The names are typed, so they show whether the workskin is on or off, with no hidden copy needed.</li>
-  <li>A wide picture needs <code>class=&quot;land&quot;</code> on the picture tag, like the second and third faces, or it won't fill its circle.</li>
-  <li>Instagram DMs don't show profile pictures, so in a group DM a stranger only needs their name typed in a <code>who</code> line, and a character with a profile can take theirs from it (see Group Chats, below).</li>
-</ul>
-
-<h3>The Instagram Feed</h3>
-
-<p>The feed is the home screen of the app: the top bar, the row of Stories circles, then posts one after another, all scrolling together. Add <code>ig-feed</code> to an Instagram container and put your posts inside it:</p>
+<p>This is Ilya's home screen. Rose's post is from a Close Friend, Scott's is already liked and saved, and Hayden's is a suggested post from an account Ilya doesn't follow:</p>
 
 <div class="mob ig ig-feed theme-auto">
 <p class="ig-apptop"><span class="ig-new">+</span><span class="ig-logo">Instagram</span><span class="ig-notif ic ic-heart">&#9825;</span><span class="ig-dot"><span class="hide"> (new)</span></span></p>
@@ -330,13 +56,6 @@
 <p class="ig-time">1 hour ago</p>
 </div>
 </div>
-
-<pre><code>&lt;div class="mob ig ig-feed theme-auto"&gt;
-&lt;p class="ig-apptop"&gt;the top bar&lt;/p&gt;
-&lt;div class="ig-stories"&gt;the Stories circles&lt;/div&gt;
-&lt;div class="mob ig"&gt;a post&lt;/div&gt;
-&lt;div class="mob ig"&gt;another post&lt;/div&gt;
-&lt;/div&gt;</code></pre>
 
 <details>
 <summary>The full HTML for this feed</summary>
@@ -390,11 +109,116 @@
 
 </details>
 
+<h4>A Full Post</h4>
+
+<p>This one has the verified tick, the Follow link, the three dots menu, a story ring, a song, a photo, buttons with counts that you can actually click, a "Liked by" line with faces, a caption, comments and the time. Try clicking the heart and the bookmark. The top bar and Stories row are optional, so this feed has just the one post in it:</p>
+
+<div class="mob ig ig-feed theme-auto">
+<div class="mob ig">
+<p class="ig-top"><span class="ig-menu ic ic-more">&#8943;</span><span class="ig-pfp story"><span class="pfp"><img src="https://64.media.tumblr.com/2f5204e07f5dc3467a42508584f56c7d/188bbfab996df056-77/s400x600/e139f3e69f9be02470797bbd3505a69cc26def70.pnj" alt="Profile picture of ilya.r"></span></span>ilya.r<span class="hide"> </span><span class="ig-tick ic ic-verified">&#10003;</span><span class="hide"> - </span><span class="ig-follow">Follow</span><span class="hide"> - </span><span>&#9835; Boney M. - Rasputin</span></p>
+<p class="ig-photo real"><img src="https://64.media.tumblr.com/c3c4ecb5bfed8fa9f0590c54206ddb30/cff2318529321620-44/s1280x1920/42befcc40a517e1f202dda40783be2ffb95c1d92.pnj" alt="Macklin Celebrini at the IHF Worlds, dressed in his red jersey and black helmet. He's surrounded by sparkles, a red vignette, and hearts containing the Canadian flag"></p>
+<div class="ig-actions">
+<details class="ig-tog like"><summary><span class="ig-icon off ic ic-heart">&#9825;</span><span class="hide"> </span><span class="ig-count off">2,431</span><span class="hide"> likes (</span><span class="ig-icon on ic ic-heart-red">&#9829;</span><span class="hide"> </span><span class="ig-count on">2,432</span><span class="hide"> when liked)</span></summary></details>
+<p class="ig-btn"><span class="ig-icon cm"></span><span class="ig-count">84</span><span class="hide"> comments</span></p>
+<p class="ig-btn"><span class="ig-icon ic ic-repost">&#8635;</span><span class="hide"> </span><span class="ig-count">12</span><span class="hide"> reposts</span></p>
+<p class="ig-btn"><span class="ig-icon ic ic-share">&#10148;</span><span class="hide"> Share</span></p>
+<details class="ig-tog save"><summary><span class="hide">Save</span><span class="ig-icon bm off"></span><span class="ig-icon bm on"></span></summary></details>
+</div>
+<p class="ig-likes liked-by"><span class="ig-like-pfps"><span class="ig-like-pfp"><span class="pfp"><img src="https://media.istockphoto.com/id/1298570775/photo/rose.jpg?s=1024x1024&w=is&k=20&c=UFPisYCT3g2Vm04F2E5zrhtUWqDtLRLDXZisKb6Xf5s=" alt="Profile picture of shane.h"></span></span><span class="ig-like-pfp"><span class="pfp"><img class="land" src="https://media.istockphoto.com/id/2172051553/photo/asiatic-lily.jpg?s=1024x1024&w=is&k=20&c=3vCuZD234XmkXzrnzWPBdIZM0oJA1B6qe1x-06K_wDo=" alt="Profile picture of scott.h"></span></span><span class="ig-like-pfp"><span class="pfp"><img class="land" src="https://www.shutterstock.com/shutterstock/photos/1100283806/display_1500/stock-photo-beautiful-lavender-flower-in-the-dalat-flower-park-selective-focus-1100283806.jpg" alt="Profile picture of jane_t"></span></span></span>Liked by <b>shane.h</b> and <b>others</b></p>
+<p class="ig-caption"><b>ilya.r</b> early skate <span class="ig-tag">#nofilter</span></p>
+<p class="ig-viewall">View all 84 comments</p>
+<p class="ig-comment"><b>shane.h</b> why are you awake</p>
+<p class="ig-comment"><b>scott.h</b> I see you 👀</p>
+<p class="ig-time">3 hours ago</p>
+</div>
+</div>
+
+<details>
+<summary>The full HTML for this post</summary>
+
+<pre><code>&lt;div class="mob ig ig-feed theme-auto"&gt;
+&lt;div class="mob ig"&gt;
+&lt;p class="ig-top"&gt;&lt;span class="ig-menu ic ic-more"&gt;&amp;#8943;&lt;/span&gt;&lt;span class="ig-pfp story"&gt;&lt;span class="pfp"&gt;&lt;img src="https://64.media.tumblr.com/2f5204e07f5dc3467a42508584f56c7d/188bbfab996df056-77/s400x600/e139f3e69f9be02470797bbd3505a69cc26def70.pnj" alt="Profile picture of ilya.r"&gt;&lt;/span&gt;&lt;/span&gt;ilya.r&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="ig-tick ic ic-verified"&gt;&amp;#10003;&lt;/span&gt;&lt;span class="hide"&gt; - &lt;/span&gt;&lt;span class="ig-follow"&gt;Follow&lt;/span&gt;&lt;span class="hide"&gt; - &lt;/span&gt;&lt;span&gt;&amp;#9835; Boney M. - Rasputin&lt;/span&gt;&lt;/p&gt;
+&lt;p class="ig-photo real"&gt;&lt;img src="https://64.media.tumblr.com/c3c4ecb5bfed8fa9f0590c54206ddb30/cff2318529321620-44/s1280x1920/42befcc40a517e1f202dda40783be2ffb95c1d92.pnj" alt="Macklin Celebrini at the IHF Worlds, dressed in his red jersey and black helmet. He's surrounded by sparkles, a red vignette, and hearts containing the Canadian flag"&gt;&lt;/p&gt;
+&lt;div class="ig-actions"&gt;
+&lt;details class="ig-tog like"&gt;&lt;summary&gt;&lt;span class="ig-icon off ic ic-heart"&gt;&amp;#9825;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="ig-count off"&gt;2,431&lt;/span&gt;&lt;span class="hide"&gt; likes (&lt;/span&gt;&lt;span class="ig-icon on ic ic-heart-red"&gt;&amp;#9829;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="ig-count on"&gt;2,432&lt;/span&gt;&lt;span class="hide"&gt; when liked)&lt;/span&gt;&lt;/summary&gt;&lt;/details&gt;
+&lt;p class="ig-btn"&gt;&lt;span class="ig-icon cm"&gt;&lt;/span&gt;&lt;span class="ig-count"&gt;84&lt;/span&gt;&lt;span class="hide"&gt; comments&lt;/span&gt;&lt;/p&gt;
+&lt;p class="ig-btn"&gt;&lt;span class="ig-icon ic ic-repost"&gt;&amp;#8635;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="ig-count"&gt;12&lt;/span&gt;&lt;span class="hide"&gt; reposts&lt;/span&gt;&lt;/p&gt;
+&lt;p class="ig-btn"&gt;&lt;span class="ig-icon ic ic-share"&gt;&amp;#10148;&lt;/span&gt;&lt;span class="hide"&gt; Share&lt;/span&gt;&lt;/p&gt;
+&lt;details class="ig-tog save"&gt;&lt;summary&gt;&lt;span class="hide"&gt;Save&lt;/span&gt;&lt;span class="ig-icon bm off"&gt;&lt;/span&gt;&lt;span class="ig-icon bm on"&gt;&lt;/span&gt;&lt;/summary&gt;&lt;/details&gt;
+&lt;/div&gt;
+&lt;p class="ig-likes liked-by"&gt;&lt;span class="ig-like-pfps"&gt;&lt;span class="ig-like-pfp"&gt;&lt;span class="pfp"&gt;&lt;img src="https://media.istockphoto.com/id/1298570775/photo/rose.jpg?s=1024x1024&amp;w=is&amp;k=20&amp;c=UFPisYCT3g2Vm04F2E5zrhtUWqDtLRLDXZisKb6Xf5s=" alt="Profile picture of shane.h"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="ig-like-pfp"&gt;&lt;span class="pfp"&gt;&lt;img class="land" src="https://media.istockphoto.com/id/2172051553/photo/asiatic-lily.jpg?s=1024x1024&amp;w=is&amp;k=20&amp;c=3vCuZD234XmkXzrnzWPBdIZM0oJA1B6qe1x-06K_wDo=" alt="Profile picture of scott.h"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="ig-like-pfp"&gt;&lt;span class="pfp"&gt;&lt;img class="land" src="https://www.shutterstock.com/shutterstock/photos/1100283806/display_1500/stock-photo-beautiful-lavender-flower-in-the-dalat-flower-park-selective-focus-1100283806.jpg" alt="Profile picture of jane_t"&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;Liked by &lt;b&gt;shane.h&lt;/b&gt; and &lt;b&gt;others&lt;/b&gt;&lt;/p&gt;
+&lt;p class="ig-caption"&gt;&lt;b&gt;ilya.r&lt;/b&gt; early skate &lt;span class="ig-tag"&gt;#nofilter&lt;/span&gt;&lt;/p&gt;
+&lt;p class="ig-viewall"&gt;View all 84 comments&lt;/p&gt;
+&lt;p class="ig-comment"&gt;&lt;b&gt;shane.h&lt;/b&gt; why are you awake&lt;/p&gt;
+&lt;p class="ig-comment"&gt;&lt;b&gt;scott.h&lt;/b&gt; I see you 👀&lt;/p&gt;
+&lt;p class="ig-time"&gt;3 hours ago&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+</details>
+
+<h4>A Simpler Post</h4>
+
+<p>This one takes its picture and name from Rose's profile, has a location instead of a song, describes the photo instead of showing it, and has plain buttons that don't click:</p>
+
+<div class="mob ig ig-feed theme-auto">
+<div class="mob ig">
+<p class="ig-top"><span class="ig-menu ic ic-more">&#8943;</span><span class="ig-pfp"><span class="pfp pfp-rose"></span></span><span class="handle pfp-rose"><span class="hide">RoseLandry</span></span><span class="hide"> - </span><span>Ottawa, Ontario</span></p>
+<p class="ig-photo">[A photo of a very large lasagne, with one corner already missing]</p>
+<div class="ig-actions">
+<p class="ig-btn"><span class="ig-icon ic ic-heart">&#9825;</span><span class="hide"> </span><span class="ig-count">312</span><span class="hide"> likes</span></p>
+<p class="ig-btn"><span class="ig-icon cm"></span><span class="ig-count">2</span><span class="hide"> comments</span></p>
+<p class="ig-btn"><span class="ig-icon ic ic-share">&#10148;</span><span class="hide"> Share</span></p>
+</div>
+<p class="ig-likes">312 likes</p>
+<p class="ig-caption"><b>RoseLandry</b> made enough for the whole committee. nobody came. <span class="ig-tag">#galaprep</span></p>
+<p class="ig-comment"><b>ilya.r</b> I am coming now</p>
+<p class="ig-time">20 minutes ago</p>
+</div>
+</div>
+
+<details>
+<summary>The full HTML for this post</summary>
+
+<pre><code>&lt;div class="mob ig ig-feed theme-auto"&gt;
+&lt;div class="mob ig"&gt;
+&lt;p class="ig-top"&gt;&lt;span class="ig-menu ic ic-more"&gt;&amp;#8943;&lt;/span&gt;&lt;span class="ig-pfp"&gt;&lt;span class="pfp pfp-rose"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="handle pfp-rose"&gt;&lt;span class="hide"&gt;RoseLandry&lt;/span&gt;&lt;/span&gt;&lt;span class="hide"&gt; - &lt;/span&gt;&lt;span&gt;Ottawa, Ontario&lt;/span&gt;&lt;/p&gt;
+&lt;p class="ig-photo"&gt;[A photo of a very large lasagne, with one corner already missing]&lt;/p&gt;
+&lt;div class="ig-actions"&gt;
+&lt;p class="ig-btn"&gt;&lt;span class="ig-icon ic ic-heart"&gt;&amp;#9825;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="ig-count"&gt;312&lt;/span&gt;&lt;span class="hide"&gt; likes&lt;/span&gt;&lt;/p&gt;
+&lt;p class="ig-btn"&gt;&lt;span class="ig-icon cm"&gt;&lt;/span&gt;&lt;span class="ig-count"&gt;2&lt;/span&gt;&lt;span class="hide"&gt; comments&lt;/span&gt;&lt;/p&gt;
+&lt;p class="ig-btn"&gt;&lt;span class="ig-icon ic ic-share"&gt;&amp;#10148;&lt;/span&gt;&lt;span class="hide"&gt; Share&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;p class="ig-likes"&gt;312 likes&lt;/p&gt;
+&lt;p class="ig-caption"&gt;&lt;b&gt;RoseLandry&lt;/b&gt; made enough for the whole committee. nobody came. &lt;span class="ig-tag"&gt;#galaprep&lt;/span&gt;&lt;/p&gt;
+&lt;p class="ig-comment"&gt;&lt;b&gt;ilya.r&lt;/b&gt; I am coming now&lt;/p&gt;
+&lt;p class="ig-time"&gt;20 minutes ago&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+</details>
+
+<p>Anything you don't want, you can just leave out of your copy, and the Instagram CSS chapter shows you how to switch parts off for the whole fic.</p>
+
+<h3>The Feed Container</h3>
+
+<p>Every Instagram post in this chapter sits in a feed, the same way every iMessage sits in its chat window. The feed is a <code>mob ig ig-feed</code> box with a theme, and inside it go the top bar, the Stories row and the posts, in that order. The top bar and the Stories row are optional, so leave them out if you only want the posts:</p>
+
+<pre><code>&lt;div class="mob ig ig-feed theme-auto"&gt;
+&lt;p class="ig-apptop"&gt;the top bar&lt;/p&gt;
+&lt;div class="ig-stories"&gt;the Stories circles&lt;/div&gt;
+&lt;div class="mob ig"&gt;a post&lt;/div&gt;
+&lt;div class="mob ig"&gt;another post&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+<p>Once the feed is taller than a phone screen it scrolls, and the top bar and Stories scroll away with the posts, like in the app.</p>
+
 <h4>The Top Bar</h4>
 
 <p>The top bar is an <code>ig-apptop</code> line, with the + on the left, the logo in the middle and the heart on the right. The logo is a picture, and the word typed inside it is for readers with the workskin off. The little red dot on the heart means there's something new, so leave out the <code>ig-dot</code> span if there isn't:</p>
 
-<div class="mob ig theme-auto"><p class="ig-apptop"><span class="ig-new">+</span><span class="ig-logo">Instagram</span><span class="ig-notif ic ic-heart">&#9825;</span><span class="ig-dot"><span class="hide"> (new)</span></span></p></div>
+<div class="mob ig ig-feed theme-auto"><p class="ig-apptop"><span class="ig-new">+</span><span class="ig-logo">Instagram</span><span class="ig-notif ic ic-heart">&#9825;</span><span class="ig-dot"><span class="hide"> (new)</span></span></p></div>
 
 <pre><code>&lt;p class="ig-apptop"&gt;&lt;span class="ig-new"&gt;+&lt;/span&gt;&lt;span class="ig-logo"&gt;Instagram&lt;/span&gt;&lt;span class="ig-notif ic ic-heart"&gt;&amp;#9825;&lt;/span&gt;&lt;span class="ig-dot"&gt;&lt;span class="hide"&gt; (new)&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;</code></pre>
 
@@ -402,7 +226,7 @@
 
 <p>The Stories row is an <code>ig-stories</code> box, with one <code>ig-story</code> line for each circle: the picture in an <code>ig-pfp</code>, then the account name in an <code>ig-sname</code> span. Add as many as you like - the ones that don't fit are cut off at the edge, like in the app:</p>
 
-<div class="mob ig theme-auto">
+<div class="mob ig ig-feed theme-auto">
 <div class="ig-stories">
 <p class="ig-story me"><span class="ig-pfp"><span class="pfp pfp-ilya"></span></span><span class="ig-sname">Your story</span></p>
 <p class="ig-story close"><span class="ig-pfp"><span class="pfp pfp-rose"></span></span><span class="ig-sname">rose.landry</span></p>
@@ -434,7 +258,219 @@
 
 <h4>Posts in the Feed</h4>
 
-<p>Each post is a normal Instagram post, built the same way as in the first section, just without its own theme: the posts take their colours from the feed. The buttons can be clickable too, and Scott's post in the example has its like and save already switched on, with <code>open</code> (see Clickable Like and Save Buttons, above). Hayden's post is from an account Ilya doesn't follow, so it has the follow button and the two-line menu (see An Account You Don't Follow, above). Leave out the parts you don't need, like the "Liked by" faces or the comments, to keep the feed quick to scroll.</p>
+<p>Each post is its own <code>&lt;div class=&quot;mob ig&quot;&gt;</code> inside the feed, with no theme of its own: the posts take their colours from the feed. Put as many as you like one after another. In the example feed, Scott's post has its like and save already switched on (see Clickable Like and Save Buttons, below), and Hayden's is from an account Ilya doesn't follow (see An Account You Don't Follow, below). Leave out the parts you don't need, like the "Liked by" faces or the comments, to keep the feed quick to scroll.</p>
+
+<h3>Parts of a Post</h3>
+
+<p>Here's each line of a post, from the top down. The code under each example is just that line, to go inside a post's <code>mob ig</code> box.</p>
+
+<h4>Account Line</h4>
+
+<p>The first line is the account that posted. The name comes first, and the last <code>&lt;span&gt;</code> in the line adds the small grey line underneath it, which can be a song, like here, or a location. Straight after the name go the blue verified tick (<code>ig-tick</code>) and the "Follow" link (<code>ig-follow</code>). The three dots menu (<code>ig-menu</code>) sits at the far right, so it goes <em>first</em> in the line:</p>
+
+<div class="mob ig ig-feed theme-auto"><div class="mob ig"><p class="ig-top"><span class="ig-menu ic ic-more">&#8943;</span><span class="ig-pfp story"><span class="pfp"><img src="https://64.media.tumblr.com/2f5204e07f5dc3467a42508584f56c7d/188bbfab996df056-77/s400x600/e139f3e69f9be02470797bbd3505a69cc26def70.pnj" alt="Profile picture of ilya.r"></span></span>ilya.r<span class="hide"> </span><span class="ig-tick ic ic-verified">&#10003;</span><span class="hide"> - </span><span class="ig-follow">Follow</span><span class="hide"> - </span><span>&#9835; Boney M. - Rasputin</span></p></div></div>
+
+<pre><code>&lt;p class="ig-top"&gt;&lt;span class="ig-menu ic ic-more"&gt;&amp;#8943;&lt;/span&gt;&lt;span class="ig-pfp story"&gt;&lt;span class="pfp"&gt;&lt;img src="https://64.media.tumblr.com/2f5204e07f5dc3467a42508584f56c7d/188bbfab996df056-77/s400x600/e139f3e69f9be02470797bbd3505a69cc26def70.pnj" alt="Profile picture of ilya.r"&gt;&lt;/span&gt;&lt;/span&gt;ilya.r&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="ig-tick ic ic-verified"&gt;&amp;#10003;&lt;/span&gt;&lt;span class="hide"&gt; - &lt;/span&gt;&lt;span class="ig-follow"&gt;Follow&lt;/span&gt;&lt;span class="hide"&gt; - &lt;/span&gt;&lt;span&gt;&amp;#9835; Boney M. - Rasputin&lt;/span&gt;&lt;/p&gt;</code></pre>
+
+<p>For a song, start that last span with the music note symbol, <code>&amp;#9835;</code>, then the artist and the song title. For a location, just write the place:</p>
+
+<div class="mob ig ig-feed theme-auto"><div class="mob ig"><p class="ig-top"><span class="ig-menu ic ic-more">&#8943;</span><span class="ig-pfp"><span class="pfp pfp-rose"></span></span><span class="handle pfp-rose"><span class="hide">RoseLandry</span></span><span class="hide"> - </span><span>Ottawa, Ontario</span></p></div></div>
+
+<pre><code>&lt;p class="ig-top"&gt;&lt;span class="ig-menu ic ic-more"&gt;&amp;#8943;&lt;/span&gt;&lt;span class="ig-pfp"&gt;&lt;span class="pfp pfp-rose"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="handle pfp-rose"&gt;&lt;span class="hide"&gt;RoseLandry&lt;/span&gt;&lt;/span&gt;&lt;span class="hide"&gt; - &lt;/span&gt;&lt;span&gt;Ottawa, Ontario&lt;/span&gt;&lt;/p&gt;</code></pre>
+
+<h4>An Account You Don't Follow</h4>
+
+<p>When the feed suggests a post from an account your pov character doesn't follow, the top line gets a follow button, and the menu is two lines instead of three dots. Put the menu (<code>ic-ig-lines</code>) first, then the follow button (<code>ig-add</code>), then the rest of the line as usual:</p>
+
+<div class="mob ig ig-feed theme-auto"><div class="mob ig"><p class="ig-top"><span class="ig-menu ic ic-ig-lines">&#8801;</span><span class="ig-add ic ic-ig-follow">Follow</span><span class="ig-pfp colour6">SH</span>scott.h<span class="hide"> - </span><span>New York, New York</span></p></div></div>
+
+<pre><code>&lt;p class="ig-top"&gt;&lt;span class="ig-menu ic ic-ig-lines"&gt;&amp;#8801;&lt;/span&gt;&lt;span class="ig-add ic ic-ig-follow"&gt;Follow&lt;/span&gt;&lt;span class="ig-pfp colour6"&gt;SH&lt;/span&gt;scott.h&lt;span class="hide"&gt; - &lt;/span&gt;&lt;span&gt;New York, New York&lt;/span&gt;&lt;/p&gt;</code></pre>
+
+<h4>Profile Picture and Stories Ring</h4>
+
+<p>The profile picture goes at the very start of the account line, straight after the menu. It can show initials, an uploaded picture or a picture from a profile, and there's an example of each below.</p>
+
+<p>For initials, type them inside a span with <code>ig-pfp</code>, and add one of <code>colour1</code> to <code>colour10</code> for a colour. With no colour class, the circle is grey:</p>
+
+<div class="mob ig ig-feed theme-auto"><div class="mob ig"><p class="ig-top"><span class="ig-pfp colour3">SC</span>scott.h</p></div></div>
+
+<pre><code>&lt;p class="ig-top"&gt;&lt;span class="ig-pfp colour3"&gt;SC&lt;/span&gt;scott.h&lt;/p&gt;</code></pre>
+
+<p>For an uploaded picture, put the picture tag inside a span with <code>pfp</code>, inside a span with <code>ig-pfp</code>. The <code>pfp</code> span crops the picture into a circle without squashing it, and the alt text should describe the picture (for example, "Profile picture of ilya.r"). If the picture is wider than it is tall, add <code>class=&quot;land&quot;</code> to the picture tag (see <a href="core.html#heading">Pictures in Boxes and Circles</a>). To show that the account has a story up, add <code>story</code> to the <code>ig-pfp</code> span, which draws the colourful ring around the picture:</p>
+
+<div class="mob ig ig-feed theme-auto"><div class="mob ig"><p class="ig-top"><span class="ig-pfp story"><span class="pfp"><img src="https://64.media.tumblr.com/2f5204e07f5dc3467a42508584f56c7d/188bbfab996df056-77/s400x600/e139f3e69f9be02470797bbd3505a69cc26def70.pnj" alt="Profile picture of ilya.r"></span></span></p></div></div>
+
+<pre><code>&lt;span class="ig-pfp story"&gt;&lt;span class="pfp"&gt;&lt;img src="https://64.media.tumblr.com/2f5204e07f5dc3467a42508584f56c7d/188bbfab996df056-77/s400x600/e139f3e69f9be02470797bbd3505a69cc26def70.pnj" alt="Profile picture of ilya.r"&gt;&lt;/span&gt;&lt;/span&gt;</code></pre>
+
+<p>Or use a profile, so the same person has the same picture everywhere, like Rose's in the simpler post. Put an empty <code>pfp</code> span with their profile name in the <code>ig-pfp</code>. The account name can come from the profile too, in a handle span with the name typed inside it in a <code>hide</code> span. That's for readers with the workskin switched off - the handle comes from the CSS, so without it they wouldn't know who posted (see <a href="core.html#heading">Character Appearances and Profiles</a> and <a href="core.html#heading">Accessibility</a>):</p>
+
+<div class="mob ig ig-feed theme-auto"><div class="mob ig"><p class="ig-top"><span class="ig-pfp"><span class="pfp pfp-rose"></span></span><span class="handle pfp-rose"><span class="hide">RoseLandry</span></span></p></div></div>
+
+<pre><code>&lt;p class="ig-top"&gt;&lt;span class="ig-pfp"&gt;&lt;span class="pfp pfp-rose"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="handle pfp-rose"&gt;&lt;span class="hide"&gt;RoseLandry&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;</code></pre>
+
+
+<h4>The Photo</h4>
+
+<p>Host the photo somewhere else and put it in an <code>ig-photo</code> box that also has <code>real</code>, with your link in <code>src</code> and a description in <code>alt</code>:</p>
+
+<div class="mob ig ig-feed theme-auto"><div class="mob ig"><p class="ig-photo real"><img src="https://64.media.tumblr.com/c3c4ecb5bfed8fa9f0590c54206ddb30/cff2318529321620-44/s1280x1920/42befcc40a517e1f202dda40783be2ffb95c1d92.pnj" alt="Macklin Celebrini at the IHF Worlds, dressed in his red jersey and black helmet. He's surrounded by sparkles, a red vignette, and hearts containing the Canadian flag"></p></div></div>
+
+<pre><code>&lt;p class="ig-photo real"&gt;&lt;img src="https://64.media.tumblr.com/c3c4ecb5bfed8fa9f0590c54206ddb30/cff2318529321620-44/s1280x1920/42befcc40a517e1f202dda40783be2ffb95c1d92.pnj" alt="Macklin Celebrini at the IHF Worlds, dressed in his red jersey and black helmet. He's surrounded by sparkles, a red vignette, and hearts containing the Canadian flag"&gt;&lt;/p&gt;</code></pre>
+
+<p>If you'd rather not use a picture, a plain <code>&lt;p class=&quot;ig-photo&quot;&gt;</code> makes a grey box, and you can describe the photo inside it in square brackets:</p>
+
+<div class="mob ig ig-feed theme-auto"><div class="mob ig"><p class="ig-photo">[A photo of a very large lasagne, with one corner already missing]</p></div></div>
+
+<pre><code>&lt;p class="ig-photo"&gt;[A photo of a very large lasagne, with one corner already missing]&lt;/p&gt;</code></pre>
+
+<h4>Buttons With Counts</h4>
+
+<p>The row of buttons is a <code>div</code> with <code>ig-actions</code>, and each button is its own paragraph with <code>ig-btn</code>. The symbol goes in a span with <code>ig-icon</code>, and the number in a span with <code>ig-count</code>. The comment bubble is drawn for you with <code>ig-icon cm</code>, and the others are plain symbols (a heart for likes, a circle arrow for repost, an arrow for share). After each number is a <code>hide</code> span with a word in it, like <code>&lt;span class=&quot;hide&quot;&gt; comments&lt;/span&gt;</code>, so readers with the workskin off get "2 comments" rather than a number on its own. The share button has no number, just a hidden "Share". Leave a button out if you don't want it on the post:</p>
+
+<div class="mob ig ig-feed theme-auto"><div class="mob ig"><div class="ig-actions">
+<p class="ig-btn"><span class="ig-icon ic ic-heart">&#9825;</span><span class="hide"> </span><span class="ig-count">312</span><span class="hide"> likes</span></p>
+<p class="ig-btn"><span class="ig-icon cm"></span><span class="ig-count">2</span><span class="hide"> comments</span></p>
+<p class="ig-btn"><span class="ig-icon ic ic-share">&#10148;</span><span class="hide"> Share</span></p>
+</div></div></div>
+
+<pre><code>&lt;div class="ig-actions"&gt;
+&lt;p class="ig-btn"&gt;&lt;span class="ig-icon ic ic-heart"&gt;&amp;#9825;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="ig-count"&gt;312&lt;/span&gt;&lt;span class="hide"&gt; likes&lt;/span&gt;&lt;/p&gt;
+&lt;p class="ig-btn"&gt;&lt;span class="ig-icon cm"&gt;&lt;/span&gt;&lt;span class="ig-count"&gt;2&lt;/span&gt;&lt;span class="hide"&gt; comments&lt;/span&gt;&lt;/p&gt;
+&lt;p class="ig-btn"&gt;&lt;span class="ig-icon ic ic-share"&gt;&amp;#10148;&lt;/span&gt;&lt;span class="hide"&gt; Share&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+
+<h4>Clickable Like and Save Buttons</h4>
+
+<p>Readers can click or tap the heart and the save button to switch them on and off, like on the real app. Use them in place of the plain heart from the last section. The heart turns red and its count goes up by one, and the bookmark fills in. Either one can start already switched on:</p>
+
+<div class="mob ig ig-feed theme-auto"><div class="mob ig"><div class="ig-actions">
+<details class="ig-tog like"><summary><span class="ig-icon off ic ic-heart">&#9825;</span><span class="hide"> </span><span class="ig-count off">2,431</span><span class="hide"> likes (</span><span class="ig-icon on ic ic-heart-red">&#9829;</span><span class="hide"> </span><span class="ig-count on">2,432</span><span class="hide"> when liked)</span></summary></details>
+<p class="ig-btn"><span class="ig-icon cm"></span><span class="ig-count">84</span><span class="hide"> comments</span></p>
+<p class="ig-btn"><span class="ig-icon ic ic-repost">&#8635;</span><span class="hide"> </span><span class="ig-count">12</span><span class="hide"> reposts</span></p>
+<p class="ig-btn"><span class="ig-icon ic ic-share">&#10148;</span><span class="hide"> Share</span></p>
+<details class="ig-tog save"><summary><span class="hide">Save</span><span class="ig-icon bm off"></span><span class="ig-icon bm on"></span></summary></details>
+</div></div></div>
+
+<pre><code>&lt;div class="ig-actions"&gt;
+&lt;details class="ig-tog like"&gt;&lt;summary&gt;&lt;span class="ig-icon off ic ic-heart"&gt;&amp;#9825;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="ig-count off"&gt;2,431&lt;/span&gt;&lt;span class="hide"&gt; likes (&lt;/span&gt;&lt;span class="ig-icon on ic ic-heart-red"&gt;&amp;#9829;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="ig-count on"&gt;2,432&lt;/span&gt;&lt;span class="hide"&gt; when liked)&lt;/span&gt;&lt;/summary&gt;&lt;/details&gt;
+&lt;p class="ig-btn"&gt;&lt;span class="ig-icon cm"&gt;&lt;/span&gt;&lt;span class="ig-count"&gt;84&lt;/span&gt;&lt;span class="hide"&gt; comments&lt;/span&gt;&lt;/p&gt;
+&lt;p class="ig-btn"&gt;&lt;span class="ig-icon ic ic-repost"&gt;&amp;#8635;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="ig-count"&gt;12&lt;/span&gt;&lt;span class="hide"&gt; reposts&lt;/span&gt;&lt;/p&gt;
+&lt;p class="ig-btn"&gt;&lt;span class="ig-icon ic ic-share"&gt;&amp;#10148;&lt;/span&gt;&lt;span class="hide"&gt; Share&lt;/span&gt;&lt;/p&gt;
+&lt;details class="ig-tog save"&gt;&lt;summary&gt;&lt;span class="hide"&gt;Save&lt;/span&gt;&lt;span class="ig-icon bm off"&gt;&lt;/span&gt;&lt;span class="ig-icon bm on"&gt;&lt;/span&gt;&lt;/summary&gt;&lt;/details&gt;
+&lt;/div&gt;</code></pre>
+
+<details>
+<summary>How the clickable buttons work</summary>
+
+<p>They're made with the details and summary tags. Inside the <code>summary</code> are two versions of the same thing: the parts with <code>off</code> show to begin with, and the parts with <code>on</code> swap in after a click. Click again, and it goes back. Because the number is in there too, you can make the likes go up by one. The save button (<code>ig-tog save</code>) sits on its own at the far right.</p>
+
+<ul>
+  <li>Keep each <code>&lt;details&gt;</code> on a single line of code, like above, and put them inside the <code>ig-actions</code> <code>div</code>, not inside a <code>&lt;p&gt;</code>.</li>
+  <li>To start with a button already switched on (a post the character has already liked, say), add <code>open</code>: <code>&lt;details class=&quot;ig-tog like&quot; open&gt;</code>.</li>
+  <li>The clicking only works on AO3 itself, in a browser. In a download (EPUB, PDF and so on) the buttons stay as they started, so I'd recommend not having anything in your story depend on them being clicked.</li>
+  <li>If you don't want a clickable heart, use <code>ig-btn</code> for it instead, as in the last section. They look exactly the same until someone clicks.</li>
+  <li>The <code>hide</code> spans are for readers with the workskin off. Without them the heart reads "&#9825;&#9829;2,4312,432", and with them it reads "&#9825; 2,431 likes (&#9829; 2,432 when liked)". The save button gets a hidden "Save", because its bookmark is drawn by the workskin and disappears with it. You'll still see a small triangle in front of each one with the workskin off - that's the details tag's own marker, and only the workskin can hide it.</li>
+</ul>
+
+</details>
+
+<h4>Liked By, With Faces</h4>
+
+<p><code>ig-likes</code> is the likes line. Add <code>liked-by</code> to it for a "Liked by" line, which puts little overlapping profile pictures in front and keeps the text from being bold unless you put names in <code>&lt;b&gt;</code>. Each face is a span with <code>ig-like-pfp</code>, with the usual <code>pfp</code> and picture tag inside, all inside one <code>ig-like-pfps</code> span. Keep the faces together on one line, with no gaps between them. A picture that's wider than tall needs <code>class=&quot;land&quot;</code> on its picture tag, like the second and third faces here, or it won't fill its circle (see <a href="core.html#heading">Pictures in Boxes and Circles</a>):</p>
+
+<div class="mob ig ig-feed theme-auto"><div class="mob ig"><p class="ig-likes liked-by"><span class="ig-like-pfps"><span class="ig-like-pfp"><span class="pfp"><img src="https://media.istockphoto.com/id/1298570775/photo/rose.jpg?s=1024x1024&w=is&k=20&c=UFPisYCT3g2Vm04F2E5zrhtUWqDtLRLDXZisKb6Xf5s=" alt="Profile picture of shane.h"></span></span><span class="ig-like-pfp"><span class="pfp"><img class="land" src="https://media.istockphoto.com/id/2172051553/photo/asiatic-lily.jpg?s=1024x1024&w=is&k=20&c=3vCuZD234XmkXzrnzWPBdIZM0oJA1B6qe1x-06K_wDo=" alt="Profile picture of scott.h"></span></span><span class="ig-like-pfp"><span class="pfp"><img class="land" src="https://www.shutterstock.com/shutterstock/photos/1100283806/display_1500/stock-photo-beautiful-lavender-flower-in-the-dalat-flower-park-selective-focus-1100283806.jpg" alt="Profile picture of jane_t"></span></span></span>Liked by <b>shane.h</b> and <b>others</b></p></div></div>
+
+<pre><code>&lt;p class="ig-likes liked-by"&gt;&lt;span class="ig-like-pfps"&gt;&lt;span class="ig-like-pfp"&gt;&lt;span class="pfp"&gt;&lt;img src="https://media.istockphoto.com/id/1298570775/photo/rose.jpg?s=1024x1024&amp;w=is&amp;k=20&amp;c=UFPisYCT3g2Vm04F2E5zrhtUWqDtLRLDXZisKb6Xf5s=" alt="Profile picture of shane.h"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="ig-like-pfp"&gt;&lt;span class="pfp"&gt;&lt;img class="land" src="https://media.istockphoto.com/id/2172051553/photo/asiatic-lily.jpg?s=1024x1024&amp;w=is&amp;k=20&amp;c=3vCuZD234XmkXzrnzWPBdIZM0oJA1B6qe1x-06K_wDo=" alt="Profile picture of scott.h"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="ig-like-pfp"&gt;&lt;span class="pfp"&gt;&lt;img class="land" src="https://www.shutterstock.com/shutterstock/photos/1100283806/display_1500/stock-photo-beautiful-lavender-flower-in-the-dalat-flower-park-selective-focus-1100283806.jpg" alt="Profile picture of jane_t"&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;Liked by &lt;b&gt;shane.h&lt;/b&gt; and &lt;b&gt;others&lt;/b&gt;&lt;/p&gt;</code></pre>
+
+<p>The faces work the same three ways as the account picture: initials with a colour class, an uploaded picture, or a profile. Here's one of each - Rose's from her profile, then an uploaded picture, then initials:</p>
+
+<div class="mob ig ig-feed theme-auto"><div class="mob ig"><p class="ig-likes liked-by"><span class="ig-like-pfps"><span class="ig-like-pfp"><span class="pfp pfp-rose"></span></span><span class="ig-like-pfp"><span class="pfp"><img src="https://images.squidge.org/images/2026/11/16/Cat2.jpg" alt="Profile picture of samthecat"></span></span><span class="ig-like-pfp colour3">SC</span></span>Liked by <b><span class="handle pfp-rose"><span class="hide">RoseLandry</span></span></b> and <b>others</b></p></div></div>
+
+<pre><code>&lt;p class="ig-likes liked-by"&gt;&lt;span class="ig-like-pfps"&gt;&lt;span class="ig-like-pfp"&gt;&lt;span class="pfp pfp-rose"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="ig-like-pfp"&gt;&lt;span class="pfp"&gt;&lt;img src="https://images.squidge.org/images/2026/11/16/Cat2.jpg" alt="Profile picture of samthecat"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="ig-like-pfp colour3"&gt;SC&lt;/span&gt;&lt;/span&gt;Liked by &lt;b&gt;&lt;span class="handle pfp-rose"&gt;&lt;span class="hide"&gt;RoseLandry&lt;/span&gt;&lt;/span&gt;&lt;/b&gt; and &lt;b&gt;others&lt;/b&gt;&lt;/p&gt;</code></pre>
+
+<p>For a plain count with no faces, use <code>ig-likes</code> on its own, without <code>liked-by</code>, like the simpler post: <code>&lt;p class=&quot;ig-likes&quot;&gt;312 likes&lt;/p&gt;</code>.</p>
+
+<h4>Caption</h4>
+
+<p><code>ig-caption</code> is the caption, with the poster's name in <code>&lt;b&gt;</code>. To colour a hashtag like Instagram does, wrap it in a span with <code>ig-tag</code>:</p>
+
+<div class="mob ig ig-feed theme-auto"><div class="mob ig"><p class="ig-caption"><b>ilya.r</b> early skate <span class="ig-tag">#nofilter</span></p></div></div>
+
+<pre><code>&lt;p class="ig-caption"&gt;&lt;b&gt;ilya.r&lt;/b&gt; early skate &lt;span class="ig-tag"&gt;#nofilter&lt;/span&gt;&lt;/p&gt;</code></pre>
+
+<p>To show a long caption cut short, like in a feed, stop partway through and end it with "... " and a grey <code>ig-more</code> span:</p>
+
+<div class="mob ig ig-feed theme-auto"><div class="mob ig"><p class="ig-caption"><b>shane.h</b> Here's where things stand at the quarter... <span class="ig-more">more</span></p></div></div>
+
+<pre><code>&lt;p class="ig-caption"&gt;&lt;b&gt;shane.h&lt;/b&gt; Here's where things stand at the quarter... &lt;span class="ig-more"&gt;more&lt;/span&gt;&lt;/p&gt;</code></pre>
+
+<h4>Comments</h4>
+
+<p>Add a grey "View all comments" line with <code>ig-viewall</code>, then each comment as its own <code>ig-comment</code>, with the commenter's name in <code>&lt;b&gt;</code>. Add as many comments as you need:</p>
+
+<div class="mob ig ig-feed theme-auto"><div class="mob ig"><p class="ig-viewall">View all 84 comments</p>
+<p class="ig-comment"><b>shane.h</b> why are you awake</p>
+<p class="ig-comment"><b>scott.h</b> I see you 👀</p></div></div>
+
+<pre><code>&lt;p class="ig-viewall"&gt;View all 84 comments&lt;/p&gt;
+&lt;p class="ig-comment"&gt;&lt;b&gt;shane.h&lt;/b&gt; why are you awake&lt;/p&gt;
+&lt;p class="ig-comment"&gt;&lt;b&gt;scott.h&lt;/b&gt; I see you 👀&lt;/p&gt;</code></pre>
+
+<h4>Time Posted</h4>
+
+<p>The last line is the little grey time at the bottom, <code>ig-time</code>:</p>
+
+<div class="mob ig ig-feed theme-auto"><div class="mob ig"><p class="ig-time">3 hours ago</p></div></div>
+
+<pre><code>&lt;p class="ig-time"&gt;3 hours ago&lt;/p&gt;</code></pre>
+
+<h4>Uploading a Profile Pic</h4>
+
+<p>Profiles are optional, so an account that only turns up once doesn't need one. Put the picture tag in the <code>ig-pfp</code> and type the account name straight after it. The faces in the "Liked by" line work the same way, with a picture tag in each <code>ig-like-pfp</code>, and the names on the caption and comments are typed in <code>&lt;b&gt;</code>:</p>
+
+<div class="mob ig ig-feed theme-auto">
+<div class="mob ig">
+<p class="ig-top"><span class="ig-menu ic ic-more">&#8943;</span><span class="ig-pfp"><span class="pfp"><img src="https://media.istockphoto.com/id/1298570775/photo/rose.jpg?s=1024x1024&w=is&k=20&c=UFPisYCT3g2Vm04F2E5zrhtUWqDtLRLDXZisKb6Xf5s=" alt="Profile picture of Gemma, a close-up photo of a rose"></span></span>gemma_bakes<span class="hide"> - </span><span>Toronto, Ontario</span></p>
+<p class="ig-photo">[A photo of a sourdough loaf shaped like a hockey puck]</p>
+<p class="ig-likes liked-by"><span class="ig-like-pfps"><span class="ig-like-pfp"><span class="pfp"><img src="https://images.squidge.org/images/2026/11/16/Cat2.jpg" alt="Profile picture of Sam, a black and white cat screaming at the camera"></span></span><span class="ig-like-pfp"><span class="pfp"><img class="land" src="https://media.istockphoto.com/id/2172051553/photo/asiatic-lily.jpg?s=1024x1024&w=is&k=20&c=3vCuZD234XmkXzrnzWPBdIZM0oJA1B6qe1x-06K_wDo=" alt="Profile picture of Ash, a close-up photo of an Asiatic lily"></span></span><span class="ig-like-pfp"><span class="pfp"><img class="land" src="https://www.shutterstock.com/shutterstock/photos/1100283806/display_1500/stock-photo-beautiful-lavender-flower-in-the-dalat-flower-park-selective-focus-1100283806.jpg" alt="Profile picture of Mar, a lavender flower"></span></span></span>Liked by <b>samthecat</b> and <b>others</b></p>
+<p class="ig-caption"><b>gemma_bakes</b> it's a puck. it's bread. it's a pread <span class="ig-tag">#sourdough</span></p>
+<p class="ig-comment"><b>ash.lilies</b> please never say pread again</p>
+<p class="ig-comment"><b>marlavender</b> pread 🏒</p>
+<p class="ig-time">1 hour ago</p>
+</div>
+</div>
+
+<pre><code>&lt;p class="ig-top"&gt;&lt;span class="ig-menu ic ic-more"&gt;&amp;#8943;&lt;/span&gt;&lt;span class="ig-pfp"&gt;&lt;span class="pfp"&gt;&lt;img src="https://media.istockphoto.com/id/1298570775/photo/rose.jpg?s=1024x1024&amp;w=is&amp;k=20&amp;c=UFPisYCT3g2Vm04F2E5zrhtUWqDtLRLDXZisKb6Xf5s=" alt="Profile picture of Gemma, a close-up photo of a rose"&gt;&lt;/span&gt;&lt;/span&gt;gemma_bakes&lt;span class="hide"&gt; - &lt;/span&gt;&lt;span&gt;Toronto, Ontario&lt;/span&gt;&lt;/p&gt;
+&lt;p class="ig-photo"&gt;[A photo of a sourdough loaf shaped like a hockey puck]&lt;/p&gt;
+&lt;p class="ig-likes liked-by"&gt;&lt;span class="ig-like-pfps"&gt;&lt;span class="ig-like-pfp"&gt;&lt;span class="pfp"&gt;&lt;img src="https://images.squidge.org/images/2026/11/16/Cat2.jpg" alt="Profile picture of Sam, a black and white cat screaming at the camera"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="ig-like-pfp"&gt;&lt;span class="pfp"&gt;&lt;img class="land" src="https://media.istockphoto.com/id/2172051553/photo/asiatic-lily.jpg?s=1024x1024&amp;w=is&amp;k=20&amp;c=3vCuZD234XmkXzrnzWPBdIZM0oJA1B6qe1x-06K_wDo=" alt="Profile picture of Ash, a close-up photo of an Asiatic lily"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="ig-like-pfp"&gt;&lt;span class="pfp"&gt;&lt;img class="land" src="https://www.shutterstock.com/shutterstock/photos/1100283806/display_1500/stock-photo-beautiful-lavender-flower-in-the-dalat-flower-park-selective-focus-1100283806.jpg" alt="Profile picture of Mar, a lavender flower"&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;Liked by &lt;b&gt;samthecat&lt;/b&gt; and &lt;b&gt;others&lt;/b&gt;&lt;/p&gt;
+&lt;p class="ig-caption"&gt;&lt;b&gt;gemma_bakes&lt;/b&gt; it's a puck. it's bread. it's a pread &lt;span class="ig-tag"&gt;#sourdough&lt;/span&gt;&lt;/p&gt;
+&lt;p class="ig-comment"&gt;&lt;b&gt;ash.lilies&lt;/b&gt; please never say pread again&lt;/p&gt;
+&lt;p class="ig-comment"&gt;&lt;b&gt;marlavender&lt;/b&gt; pread 🏒&lt;/p&gt;
+&lt;p class="ig-time"&gt;1 hour ago&lt;/p&gt;</code></pre>
+
+<ul>
+  <li>The names are typed, so they show whether the workskin is on or off, with no hidden copy needed.</li>
+  <li>A wide picture needs <code>class=&quot;land&quot;</code> on the picture tag, like the second and third faces, or it won't fill its circle.</li>
+  <li>Instagram DMs don't show profile pictures, so in a group DM a stranger only needs their name typed in a <code>who</code> line, and a character with a profile can take theirs from it (see Group Chats, below).</li>
+</ul>
+
+<h4>A Post on Its Own</h4>
+
+<p>If you only want one post in the middle of your fic, with no feed around it, give the post its own theme instead, and leave out the feed. On its own, a post gets a thin grey edge and rounded corners:</p>
+
+<div class="mob ig theme-auto">
+<p class="ig-top"><span class="ig-menu ic ic-more">&#8943;</span><span class="ig-pfp"><span class="pfp pfp-rose"></span></span><span class="handle pfp-rose"><span class="hide">RoseLandry</span></span><span class="hide"> - </span><span>Ottawa, Ontario</span></p>
+<p class="ig-photo">[A photo of a very large lasagne, with one corner already missing]</p>
+<p class="ig-likes">312 likes</p>
+<p class="ig-caption"><b>RoseLandry</b> made enough for the whole committee. nobody came. <span class="ig-tag">#galaprep</span></p>
+<p class="ig-time">20 minutes ago</p>
+</div>
+
+<pre><code>&lt;div class="mob ig theme-auto"&gt;
+[the lines of the post]
+&lt;/div&gt;</code></pre>
+
+<p>A post on its own scrolls once it's taller than <code>700px</code>. A real photo can make it that tall, so add <code>no-scroll</code> to keep the buttons in view (see <a href="core.html#heading">Scrolling Long Chats</a>).</p>
 
 <h3>Instagram DMs</h3>
 
