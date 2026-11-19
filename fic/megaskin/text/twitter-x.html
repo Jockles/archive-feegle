@@ -940,14 +940,14 @@
 &lt;p class="tw-opt"&gt;Boston&lt;/p&gt;
 &lt;p class="tw-pollinfo"&gt;179 votes · 13 minutes left&lt;/p&gt;</code></pre>
 
-<p>To show the results, add <code>res</code> to every option, with the words in a <code>tw-bar</code> span and the percentage in a <code>tw-pct</code> span:</p>
+<p>To show the results, add <code>res</code> to every option, with the words in a <code>tw-bar</code> span and the percentage in a <code>tw-pct</code> span. To show which option your pov character voted for, put a <code>tw-voted</code> tick inside its <code>tw-bar</code>, just after the words. Here they voted Boston:</p>
 
 <div class="mob tw theme-auto"><p class="tw-opt res win p75"><span class="tw-bar">Montreal</span><span class="hide"> </span><span class="tw-pct">75%</span></p>
-<p class="tw-opt res p25"><span class="tw-bar">Boston</span><span class="hide"> </span><span class="tw-pct">25%</span></p>
+<p class="tw-opt res p25"><span class="tw-bar">Boston<span class="hide"> - voted </span><span class="tw-voted">&#10003;</span></span><span class="hide"> </span><span class="tw-pct">25%</span></p>
 <p class="tw-pollinfo">97 votes · Final results</p></div>
 
 <pre><code>&lt;p class="tw-opt res win p75"&gt;&lt;span class="tw-bar"&gt;Montreal&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="tw-pct"&gt;75%&lt;/span&gt;&lt;/p&gt;
-&lt;p class="tw-opt res p25"&gt;&lt;span class="tw-bar"&gt;Boston&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="tw-pct"&gt;25%&lt;/span&gt;&lt;/p&gt;
+&lt;p class="tw-opt res p25"&gt;&lt;span class="tw-bar"&gt;Boston&lt;span class="hide"&gt; - voted &lt;/span&gt;&lt;span class="tw-voted"&gt;&amp;#10003;&lt;/span&gt;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="tw-pct"&gt;25%&lt;/span&gt;&lt;/p&gt;
 &lt;p class="tw-pollinfo"&gt;97 votes · Final results&lt;/p&gt;</code></pre>
 
 <details>
