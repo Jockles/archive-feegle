@@ -25,6 +25,9 @@ Optional settings per work go in _ao3/works.json, keyed by the AO3 work id:
       "skin": "fic/megaskin/megaskin.css",   (work skin CSS to apply, with a
                                               Hide Creator's Style button)
       "hide": true                            (leave this work off the site)
+    },
+    "fandoms": {                              (optional: show several AO3 fandom
+      "Heated Rivalry (TV)": "Some Name"       tags under one name on the site)
     }
   }
 AO3 downloads don't include the work skin, so "skin" is how a skinned work
@@ -41,6 +44,10 @@ FANDOMS = os.path.join(FIC, "fandoms")
 AO3_USER = "https://archiveofourown.org/users/Jockles/works"
 
 e = html.escape
+
+# AO3 writes "Fandoms:", "Characters:" etc. when there's more than one
+PLURALS = {"Fandoms": "Fandom", "Relationships": "Relationship", "Characters": "Character",
+           "Categories": "Category", "Archive Warnings": "Archive Warning"}
 
 
 # ---------------------------------------------------------------- reading
@@ -61,7 +68,7 @@ def labelled_blockquote(container, label):
     """AO3 downloads write <p>Summary</p><blockquote>...</blockquote>."""
     if not container:
         return None
-    for p in container.find_all("p", recursive=False):
+    for p in container.find_all("p"):
         if text(p).rstrip(":").lower() == label.lower():
             bq = p.find_next_sibling()
             if bq is not None and bq.name == "blockquote":
@@ -103,7 +110,8 @@ def parse(path):
         for dt in dl.find_all("dt"):
             dd = dt.find_next_sibling("dd")
             if dd is not None:
-                meta[text(dt).rstrip(":")] = dd
+                label = text(dt).rstrip(":")
+                meta[PLURALS.get(label, label)] = dd
     work["rating"] = ", ".join(tag_list(meta["Rating"])) if "Rating" in meta else "Not Rated"
     for key, name in [("Archive Warning", "warnings"), ("Category", "categories"),
                       ("Fandom", "fandoms"), ("Relationship", "relationships"),
@@ -344,10 +352,11 @@ def blurb(work, up):
             + [("", t) for t in work["characters"]] + [("", t) for t in work["freeforms"]])
     tag_html = "".join(f'<li class="{c}">{e(t)}</li>' if c else f"<li>{e(t)}</li>" for c, t in tags)
     summary = f'\n        <blockquote class="summary">{work["summary"]}</blockquote>' if work["summary"] else ""
+    series = f'\n        <p class="stats">Series: {e(work["series"])}</p>' if work["series"] else ""
     return f"""      <div class="blurb">
         <h3><a href="{up}fic/works/{work["slug"]}/index.html">{e(work["title"])}</a> by {e(work["byline"])}</h3>
         <p class="fandom">{fandom_links(work, up)} &middot; {e(work["rating"])}</p>
-        <ul class="tags">{tag_html}</ul>{summary}
+        <ul class="tags">{tag_html}</ul>{summary}{series}
         <p class="stats">{stats_line(work)}</p>
       </div>"""
 
@@ -363,6 +372,7 @@ def main():
     if os.path.exists(sp):
         with open(sp, encoding="utf-8") as f:
             settings = json.load(f)
+    fandom_names = settings.pop("fandoms", {})
 
     works, problems = [], []
     for name in sorted(os.listdir(SRC)) if os.path.isdir(SRC) else []:
@@ -374,6 +384,13 @@ def main():
             problems.append(f"{name}: {ex}")
             continue
         w.update(settings.get(w["id"], {}))
+        # Fandom names as they appear on the site (see "fandoms" in works.json)
+        names = []
+        for f in w["fandoms"]:
+            f = fandom_names.get(f, f)
+            if f not in names:
+                names.append(f)
+        w["fandoms"] = names
         if w.get("hide"):
             continue
         if "imgur.com" in json.dumps(w["chapter_list"]):
