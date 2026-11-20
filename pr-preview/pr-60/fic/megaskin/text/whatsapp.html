@@ -820,9 +820,7 @@
   &lt;p class="wa-time"&gt;14:07&lt;/p&gt;
 &lt;/div&gt;</code></pre>
 
-<h4>Quoting a Message in a Group</h4>
-
-<p>Quotes in a group work the same as in a one-to-one chat, except the coloured bar on the left takes the colour of the person being quoted. Add the same colour class to the <code>wa-quote</code>:</p>
+<p>In a group, the coloured bar and name in the quote take the colour of the person being quoted, so add their colour class to the <code>wa-quote</code>:</p>
 
 <div class="mob wa theme-auto"><div class="mob-body"><div class="msg out tail">
   <p class="wa-quote colour4"><span class="hide">[Replying to </span><b>Hayden</b><span class="hide">:</span><br>should I bring the kids?<span class="hide">]</span></p>
@@ -836,22 +834,6 @@
   &lt;p class="wa-time"&gt;09:14 &lt;span class="wa-read ic ic-read"&gt;✓✓&lt;/span&gt;&lt;/p&gt;
 &lt;/div&gt;</code></pre>
 
-<p>Replying to a message <em>you</em> sent works the same as in a one-to-one chat, with <code>You</code> in the quote and <code>colour8</code>:</p>
-
-<div class="mob wa theme-auto"><div class="mob-body"><div class="wa-row"><div class="msg in tail">
-  <p class="who colour3">Jane<span class="hide">:</span></p>
-  <p class="wa-quote colour8"><span class="hide">[Replying to </span><b>You</b><span class="hide">:</span><br>yes. they are better company than you<span class="hide">]</span></p>
-  <p>be nice</p>
-  <p class="wa-time">09:15</p>
-</div></div></div></div>
-
-<pre><code>&lt;div class="msg in tail"&gt;
-  &lt;p class="who colour3"&gt;Jane&lt;span class="hide"&gt;:&lt;/span&gt;&lt;/p&gt;
-  &lt;p class="wa-quote colour8"&gt;&lt;span class="hide"&gt;[Replying to &lt;/span&gt;&lt;b&gt;You&lt;/b&gt;&lt;span class="hide"&gt;:&lt;/span&gt;&lt;br&gt;yes. they are better company than you&lt;span class="hide"&gt;]&lt;/span&gt;&lt;/p&gt;
-  &lt;p&gt;be nice&lt;/p&gt;
-  &lt;p class="wa-time"&gt;09:15&lt;/p&gt;
-&lt;/div&gt;</code></pre>
-
 <p>WhatsApp can also show the phone number of someone who isn't in your contacts at the right of their name in a quote. Put it in a span with <code>wa-num</code>, inside the <code>&lt;b&gt;</code>:</p>
 
 <div class="mob wa theme-auto"><div class="mob-body"><div class="msg out tail">
@@ -861,10 +843,15 @@
 </div></div></div>
 
 <pre><code>&lt;div class="msg out tail"&gt;
-  &lt;p class="wa-quote colour1"&gt;&lt;span class="hide"&gt;[Replying to &lt;/span&gt;&lt;b&gt;~ Rose&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="wa-num"&gt;+353 85 123 4567&lt;/span&gt;&lt;/b&gt;&lt;span class="hide"&gt;:&lt;/span&gt;&lt;br&gt;DINNER PARTY. my place, saturday at 7 🥂&lt;span class="hide"&gt;]&lt;/span&gt;&lt;/p&gt;
+  &lt;p class="wa-quote colour1"&gt;&lt;span class="hide"&gt;[Replying to &lt;/span&gt;&lt;b&gt;~ Rose&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="wa-num"&gt;+353 85 123 4567&lt;/span&gt;&lt;/b&gt;&lt;span class="hide"&gt;:&lt;/span&gt;&lt;br&gt;DINNER PARTY. my place, saturday a<details>
+<summary>Phone numbers in a quote</summary>
+
+t 7 🥂&lt;span class="hide"&gt;]&lt;/span&gt;&lt;/p&gt;
   &lt;p&gt;&lt;span class="hide"&gt;&lt;em&gt;Ilya:&lt;/em&gt; &lt;/span&gt;what do we bring?&lt;/p&gt;
   &lt;p class="wa-time"&gt;09:16 &lt;span class="wa-read ic ic-read"&gt;✓✓&lt;/span&gt;&lt;/p&gt;
 &lt;/div&gt;</code></pre>
+
+</details>
 
 <h4>Forwarded Messages</h4>
 
