@@ -1172,27 +1172,39 @@
     h.push('</div><div class="fb-grid">');
     if (wa) {
       h.push("<div>" + field(P + ".header", "Header", { type: "select", re: true, options: [["simple", "Simple"], ["bar", "With picture and icons"], ["none", "None"]] }) + "</div>");
-      h.push("<div>" + field(P + ".bg", "Background", { type: "select", re: true, options: BACKGROUNDS.map(function (x) { return [x, x ? x.charAt(0).toUpperCase() + x.slice(1) : "Default"]; }).concat([["custom", "Custom picture"]]) }) +
-        (b.bg === "custom" ? field(P + ".wall", "Picture link", { type: "url", ph: "https://..." }) : "") + "</div>");
+      h.push("<div>" + field(P + ".bg", "Background", { type: "select", re: true, options: BACKGROUNDS.map(function (x) { return [x, x ? x.charAt(0).toUpperCase() + x.slice(1) : "Default"]; }).concat([["custom", "Custom picture"]]) }) + "</div>");
     }
     h.push("<div>" + field(P + ".bar", "Message bar at the bottom", { type: "select", re: true, options: [["none", "None"], ["empty", "Empty"], ["typed", "Something half-typed"]] }) + "</div>");
     if (dm) h.push("<div>" + field(P + ".nav", "App buttons", { type: "check", re: true }) + (b.nav ? field(P + ".badge", "Notifications number", { ph: "3" }) : "") + "</div>");
-    // then only what fits the choices above
-    h.push('</div><div class="fb-grid">');
+    h.push("</div>");
+    // then what each choice above opens up, each in its own row so it's clear where it came from
     if (!wa || b.header !== "none") {
+      h.push('<div class="fb-acct"><p class="hint">The header</p><div class="fb-grid">');
       h.push("<div>" + field(P + ".title", "Name at the top", { ph: b.group ? "Group chat name" : "The other person's name" }) + "</div>");
       if (!dm) h.push("<div>" + field(P + ".sub", "Smaller line under it", { ph: wa ? "online" : "iMessage" }) + "</div>");
+      h.push("</div>");
+      h.push(groupPicSettings(b, P, wa, dm));
+      h.push("</div>");
     }
-    if (b.bar === "typed") h.push("<div>" + field(P + ".barText", "Half-typed message", {}) + field(P + ".cursor", "Flashing cursor", { type: "check" }) + "</div>");
+    if (wa && b.bg === "custom") h.push('<div class="fb-acct"><p class="hint">The background</p>' + field(P + ".wall", "Picture link", { type: "url", ph: "https://..." }) + "</div>");
+    if (b.bar === "typed") h.push('<div class="fb-acct"><p class="hint">The message bar</p>' + field(P + ".barText", "Half-typed message", {}) + field(P + ".cursor", "Flashing cursor", { type: "check" }) + "</div>");
+    // last row: always these three, side by side
+    h.push('<div class="fb-grid fb-grid3">');
     h.push("<div>" + field(P + ".theme", "Light, dark, or auto", { type: "select", options: [["theme-light", "Light"], ["theme-dark", "Dark"], ["theme-auto", "Auto"]] }) + "</div>");
     h.push("<div>" + field(P + ".width", "Width", { type: "select", options: [["", "Phone width"], ["wide", "Full width"]] }) + "</div>");
     h.push("<div>" + field(P + ".scroll", "Long chats", { type: "select", options: [["", "Scroll inside the phone"], ["no-scroll", "Show it all"]] }) + "</div>");
     h.push("</div>");
+    h.push("</details>");
+    return h.join("");
+  }
+  // the group's picture in the header (WhatsApp with the picture header, and Twitter/X DMs)
+  function groupPicSettings(b, P, wa, dm) {
+    var h = [];
     if (b.group && (dm || (wa && b.header === "bar"))) {
       // the group's picture in the header
       if (!b.gp) b.gp = newGroupPic();
       var G = P + ".gp";
-      h.push('<div class="fb-acct"><p class="hint">The group\'s picture in the header</p>');
+      h.push('<div class="fb-acct"><p class="hint">The group\'s picture</p>');
       // a group picture can come from a profile, like one pasted in, so it can be used in more than one chat or fic
       var profs = S.cast.filter(isProfile);
       if (profs.length) h.push(field(G + ".from", "Picture from a profile", { type: "select", re: true, options: [["", "No, set one up here"]].concat(profs.map(function (c) { return [c.id, nameOf(c)]; })) }));
@@ -1207,7 +1219,6 @@
         h.push(field(G + ".land", "Landscape picture", { type: "check" }) + "</div>");
       }
     }
-    h.push("</details>");
     return h.join("");
   }
   var SCRIPT_HINTS = {
