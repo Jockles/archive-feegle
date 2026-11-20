@@ -3244,6 +3244,15 @@
 #workskin .pov-ilya .name.pfp-ryan::before { content: "Hockey Bear"; }
 #workskin .handle.pfp-ryan::after { content: "PRyan"; }
 
+/* PROFILE: Kip Grady (no picture yet: initials on his usual blue) */
+#workskin .pfp.pfp-kip { background-color: #3b5ea8; }
+#workskin .pfp.pfp-kip::before { content: "KG"; }
+#workskin .wa .who.pfp-kip, #workskin .dc .dc-name.pfp-kip { color: #2f68c8; }
+#workskin .name.pfp-kip::before { content: "Kip Grady"; }
+#workskin .pov-shane .name.pfp-kip::before { content: "Kip"; }
+#workskin .pov-scott .name.pfp-kip::before { content: "Kip"; }
+#workskin .handle.pfp-kip::after { content: "KipGrady"; }
+
 /* Shane (the Megaskin's own profile): a different picture on WhatsApp in this series */
 #workskin .wa .pfp.pfp-shane { background-image: url(https://images.squidge.org/images/2026/11/16/HockeyBlur.png); }
 
