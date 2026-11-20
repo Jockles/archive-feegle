@@ -113,7 +113,7 @@
 }
 
 /* ---- more for the top line (put these inside ig-top) ----
-   ig-menu is the three dots at the far right, so it goes FIRST in the line.
+   ig-menu is the menu at the far right (two lines, or three dots with ic-more), so it goes FIRST in the line.
    ig-tick is the blue verified tick, ig-follow is the "• Follow" link, both go straight after the name.
    Put a song (♫ Artist - Song) or a place in the usual location span underneath. */
 #workskin .ig .ig-top .ig-menu {
@@ -155,7 +155,7 @@
 }
 
 /* an account you don't follow, suggested in the feed: a follow button (ig-add) sits left of the menu,
-   and the menu is two lines instead of three dots. Both go FIRST in the line, menu then follow:
+   Both go FIRST in the line, menu then follow:
    <span class="ig-menu ic ic-ig-lines">&#8801;</span><span class="ig-add ic ic-ig-follow">Follow</span> */
 #workskin .ig .ig-top .ig-add {
   display: block;
@@ -718,6 +718,17 @@
   text-align: left;
   white-space: nowrap;
   vertical-align: -0.15em;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+/* the verified tick is a picture too, in place of the blue circle drawn above */
+#workskin .ig .ig-top .ic.ic-verified {
+  width: 1.5em;
+  height: 1.5em;
+  border-radius: 0;
+  background-color: transparent;
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;

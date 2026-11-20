@@ -155,7 +155,7 @@
   overflow: hidden;
 }</code></pre>
 
-<p>The three dots float right and the picture floats left. A floating thing only moves things that come <em>after</em> it in the code, which is why the menu has to go first in the line: if it came after the name, the name would already be in place and the dots would drop below it.</p>
+<p>The menu floats right and the picture floats left. A floating thing only moves things that come <em>after</em> it in the code, which is why the menu has to go first in the line: if it came after the name, the name would already be in place and the menu would drop below it.</p>
 
 <pre><code>#workskin .ig .ig-top .ig-tick {
   display: inline-block;
@@ -178,7 +178,7 @@
   font-weight: normal;
 }</code></pre>
 
-<p>The verified tick is a ✓ in a small blue circle. The "Follow" link gets its dot added in front with <code>::before</code>: <code>\2022</code> is the bullet •, and <code>\00a0</code> is a space that can't be squashed, so the dot never ends up on a different line from the word.</p>
+<p>The verified tick is a ✓ in a small blue circle, which is what shows if you take the icons out. With the icons in, the Icons section swaps it for the blue badge picture, a little bigger. The "Follow" link gets its dot added in front with <code>::before</code>: <code>\2022</code> is the bullet •, and <code>\00a0</code> is a space that can't be squashed, so the dot never ends up on a different line from the word.</p>
 
 <pre><code>#workskin .ig .ig-top .ig-pfp.story {
   box-sizing: content-box;
@@ -365,7 +365,7 @@
 /* no Follow links */
 #workskin .ig .ig-top .ig-follow { display: none; }
 
-/* no three dots menu */
+/* no menu */
 #workskin .ig .ig-top .ig-menu { display: none; }
 
 /* no verified ticks */
