@@ -588,7 +588,7 @@
 <details>
 <summary>A plain header with no picture or icons</summary>
 
-<p>For a quick chat, a single <code>mob-head</code> paragraph makes a plain green bar with just the name and status, the same as the iMessage header:</p>
+<p>For a quick chat, a single <code>mob-head</code> paragraph makes a plain bar (green in light mode, dark grey in dark mode) with just the name and status, the same as the iMessage header:</p>
 
 <div class="mob wa theme-auto"><p class="mob-head">Lily<span class="hide"> - </span><span>online</span></p></div>
 
@@ -797,7 +797,7 @@
 
 <pre><code>&lt;div class="msg in tail typing-indicator"&gt;&lt;p class="hide"&gt;&lt;em&gt;Lily&lt;/em&gt; is typing...&lt;/p&gt;&lt;p&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;</code></pre>
 
-<p>Use <code>out</code> instead for whoever owns the phone, halfway through writing something, and the dots go on the right in a green bubble:</p>
+<p>Use <code>out</code> instead for whoever owns the phone, halfway through writing something, and the dots go on the right in your own bubble (green in light mode, dark green in dark mode):</p>
 
 <div class="mob wa theme-auto"><div class="mob-body"><div class="msg out tail typing-indicator"><p class="hide"><em>Shane</em> is typing...</p><p><span></span><span></span><span></span></p></div></div></div>
 
@@ -841,7 +841,7 @@
   &lt;p class="wa-time"&gt;23:41&lt;/p&gt;
 &lt;/div&gt;</code></pre>
 
-<p>Same as iMessage, <code>msg in</code> is a white bubble on the left and <code>msg out</code> is a green bubble on the right. The first paragraph is the message itself, and <code>wa-time</code> is the little grey time in the bottom right of the bubble. <code>tail</code> is optional - it adds the little pointy corner to the bubble, and it's meant for the first bubble in a run from one person.</p>
+<p>Same as iMessage, <code>msg in</code> is a white bubble on the left (dark grey in dark mode) and <code>msg out</code> is a green bubble on the right (dark green in dark mode). The first paragraph is the message itself, and <code>wa-time</code> is the little grey time in the bottom right of the bubble. <code>tail</code> is optional - it adds the little pointy corner to the bubble, and it's meant for the first bubble in a run from one person.</p>
 
 <details>
 <summary>Each part of a message, piece by piece</summary>
@@ -866,7 +866,7 @@
 
 <h4>Date Pills</h4>
 
-<p>The little grey pill with the date on it uses the same <code>mob-sys</code> line as iMessage - in WhatsApp, the workskin turns it into a pill for you:</p>
+<p>The little pill with the date on it (white in light mode, dark grey in dark mode) uses the same <code>mob-sys</code> line as iMessage - in WhatsApp, the workskin turns it into a pill for you:</p>
 
 <div class="mob wa theme-auto"><div class="mob-body"><p class="mob-sys">YESTERDAY</p></div></div>
 
