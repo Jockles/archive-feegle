@@ -114,7 +114,7 @@
 
 <p>The core's <code>mob-sys</code> is a full-width centred line. WhatsApp shrinks it to fit its words with <code>display: table</code>, centres it with <code>auto</code> on both sides, and gives it a white background, which turns it into a pill.</p>
 
-<h3>The Group Header</h3>
+<h3>The Header</h3>
 
 <p>The header with the back arrow, picture and icons is a table, because tables are one of the few layouts AO3 never rearranges. (It's the approach from the WhatsApp group chat skin in the credits.)</p>
 
@@ -594,6 +594,40 @@
 
 <p><code>background-size: cover</code> stretches the picture to fill the chat without squashing it, cropping whatever doesn't fit, and <code>center</code> keeps the middle of it in view. For a second picture, copy the whole rule and call it <code>bg-image2</code>.</p>
 
+<p><strong>A one-off wallpaper in the HTML</strong> uses these rules instead:</p>
+
+<pre><code>#workskin .mob.wa { position: relative; }
+
+#workskin .wa .wa-wall {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: 0;
+  overflow: hidden;
+}
+
+#workskin .wa .wa-wall img {
+  position: absolute;
+  top: -9999px;
+  right: -9999px;
+  bottom: -9999px;
+  left: -9999px;
+  margin: auto;
+  min-width: 100%;
+  min-height: 100%;
+  max-width: none;
+  max-height: none;
+}
+
+#workskin .wa .mob-head,
+#workskin .wa .wa-bar,
+#workskin .wa .mob-body,
+#workskin .wa .wa-input { position: relative; }</code></pre>
+
+<p>The <code>wa-wall</code> box is pinned to all four edges of the chat with <code>position: absolute</code>, and <code>overflow: hidden</code> crops anything that sticks out. The picture inside is told to be at least as wide and as tall as the chat, keeping its shape, and the huge minus numbers with <code>margin: auto</code> centre it. The last rule gives the header, messages and message bar a <code>position</code> too, which lifts them on top of the picture.</p>
+
 <details>
 <summary>Picking a theme to go with a wallpaper</summary>
 
@@ -606,7 +640,7 @@
 <p>WhatsApp is a long module, so it's worth trimming if you only use a few parts. These come out cleanly - search for the class names and delete every rule with them in, including in the dark and auto blocks:</p>
 
 <ul>
-  <li><strong>Group header:</strong> <code>wa-bar</code>, <code>wa-back</code>, <code>wa-title</code>, <code>wa-sub</code>, <code>wa-actions</code>. Keep <code>wa-pfp</code> if you use pictures beside messages.</li>
+  <li><strong>Header with a picture and icons:</strong> <code>wa-bar</code>, <code>wa-back</code>, <code>wa-title</code>, <code>wa-sub</code>, <code>wa-actions</code>. Keep <code>wa-pfp</code> if you use pictures beside messages.</li>
   <li><strong>Pictures beside messages:</strong> <code>wa-row</code> and <code>pad</code>, and <code>wa-pfp</code> with its colours if you don't use the group header either.</li>
   <li><strong>Reactions:</strong> <code>wa-reacts</code> and <code>wa-count</code>.</li>
   <li><strong>Message bar:</strong> <code>wa-input</code>, <code>wa-field</code>, <code>wa-ph</code>, <code>wa-mic</code>.</li>
