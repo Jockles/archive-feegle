@@ -1179,15 +1179,19 @@
     h.push("</div>");
     // then what each choice above opens up, each in its own row so it's clear where it came from
     if (!wa || b.header !== "none") {
-      h.push('<div class="fb-acct"><p class="hint">The header</p><div class="fb-grid">');
+      // folded up by default, as it's long
+      h.push('<details class="fb-acct"' + (b.headOpen ? " open" : "") + ' data-open="' + P + '.headOpen"><summary class="hint">The header</summary><div class="fb-grid">');
       h.push("<div>" + field(P + ".title", "Name at the top", { ph: b.group ? "Group chat name" : "The other person's name" }) + "</div>");
       if (!dm) h.push("<div>" + field(P + ".sub", "Smaller line under it", { ph: wa ? "online" : "iMessage" }) + "</div>");
       h.push("</div>");
       h.push(groupPicSettings(b, P, wa, dm));
-      h.push("</div>");
+      h.push("</details>");
     }
-    if (wa && b.bg === "custom") h.push('<div class="fb-acct"><p class="hint">The background</p>' + field(P + ".wall", "Picture link", { type: "url", ph: "https://..." }) + "</div>");
-    if (b.bar === "typed") h.push('<div class="fb-acct"><p class="hint">The message bar</p>' + field(P + ".barText", "Half-typed message", {}) + field(P + ".cursor", "Flashing cursor", { type: "check" }) + "</div>");
+    // these two are short, so they start open, to show what picking the option added
+    if (wa && b.bg === "custom") h.push('<details class="fb-acct"' + (b.bgOpen !== false ? " open" : "") + ' data-open="' + P + '.bgOpen"><summary class="hint">The background</summary>' +
+      field(P + ".wall", "Picture link", { type: "url", ph: "https://..." }) + "</details>");
+    if (b.bar === "typed") h.push('<details class="fb-acct"' + (b.barOpen !== false ? " open" : "") + ' data-open="' + P + '.barOpen"><summary class="hint">The message bar</summary>' +
+      field(P + ".barText", "Half-typed message", {}) + field(P + ".cursor", "Flashing cursor", { type: "check" }) + "</details>");
     // last row: always these three, side by side
     h.push('<div class="fb-grid fb-grid3">');
     h.push("<div>" + field(P + ".theme", "Light, dark, or auto", { type: "select", options: [["theme-light", "Light"], ["theme-dark", "Dark"], ["theme-auto", "Auto"]] }) + "</div>");
@@ -1204,11 +1208,11 @@
       // the group's picture in the header
       if (!b.gp) b.gp = newGroupPic();
       var G = P + ".gp";
-      h.push('<div class="fb-acct"><p class="hint">The group\'s picture</p>');
+      h.push('<details class="fb-acct"' + (b.gpOpen ? " open" : "") + ' data-open="' + P + '.gpOpen"><summary class="hint">The group\'s picture</summary>');
       // a group picture can come from a profile, like one pasted in, so it can be used in more than one chat or fic
       var profs = S.cast.filter(isProfile);
       if (profs.length) h.push(field(G + ".from", "Picture from a profile", { type: "select", re: true, options: [["", "No, set one up here"]].concat(profs.map(function (c) { return [c.id, nameOf(c)]; })) }));
-      if (isProfile(char(b.gp.from))) h.push("</div>");
+      if (isProfile(char(b.gp.from))) h.push("</details>");
       else {
         h.push('<div class="fb-row">' + field(G + ".colour", "", { type: "select", re: true, options: Object.keys(COLOURS).map(function (k) { return [k, "Colour " + k + ": " + COLOUR_NAMES[k]]; }) }) +
           '<span class="fb-swatch" style="background:' + COLOURS[b.gp.colour] + '"></span>' + "</div>");
@@ -1216,7 +1220,7 @@
           (b.gp.showInitials !== false ? field(G + ".initials", "", { ph: (b.title.trim() || "G").charAt(0).toUpperCase() }) : "") + "</div>");
         h.push(field(G + ".pic", "Picture link (optional, replaces the colour and initials)", { type: "url", ph: "https://..." }));
         h.push(field(G + ".alt", "Picture description (optional)", { ph: "Profile picture of " + (b.title.trim() || "the group") }));
-        h.push(field(G + ".land", "Landscape picture", { type: "check" }) + "</div>");
+        h.push(field(G + ".land", "Landscape picture", { type: "check" }) + "</details>");
       }
     }
     return h.join("");
