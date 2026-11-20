@@ -534,7 +534,7 @@
 #workskin .email.pfp-shane::after { content: "shane@example.com"; }
 #workskin .mob.wa.pov-shane { background: #dfeaf6; }
 
-/* PROFILE: Ilya - with two extra Twitter/X accounts, acc-burner and acc-shanewife. Add the
+/* PROFILE: Ilya - with two extra accounts, acc-burner (Twitter/X) and acc-shanewife (Twitter/X and Instagram). Add the
    acc- name: <span class="handle pfp-ilya acc-burner"> */
 #workskin .pfp.pfp-ilya { background-color: #b5433a; background-image: url(https://images.squidge.org/images/2026/11/16/IlyaHelmet.png); }
 #workskin .wa .who.pfp-ilya, #workskin .dc .dc-name.pfp-ilya { color: #d65548; }
@@ -548,10 +548,10 @@
 #workskin .tw .pfp.pfp-ilya.acc-burner, #workskin .tw-reply .pfp.pfp-ilya.acc-burner, #workskin .twdm .pfp.pfp-ilya.acc-burner, #workskin .twc12 .pfp.pfp-ilya.acc-burner, #workskin .twc16 .pfp.pfp-ilya.acc-burner { background-image: url(https://images.squidge.org/images/2026/11/16/IlyaSmoke.png); }
 #workskin .tw .name.pfp-ilya.acc-burner::before, #workskin .tw-reply .name.pfp-ilya.acc-burner::before, #workskin .twdm .name.pfp-ilya.acc-burner::before, #workskin .twc12 .name.pfp-ilya.acc-burner::before, #workskin .twc16 .name.pfp-ilya.acc-burner::before { content: "hockey fan"; }
 #workskin .tw .handle.pfp-ilya.acc-burner::after, #workskin .tw-reply .handle.pfp-ilya.acc-burner::after, #workskin .twdm .handle.pfp-ilya.acc-burner::after, #workskin .twc12 .handle.pfp-ilya.acc-burner::after, #workskin .twc16 .handle.pfp-ilya.acc-burner::after { content: "definitely_not_ilya"; }
-/* his Shane fan account on Twitter/X: acc-shanewife */
-#workskin .tw .pfp.pfp-ilya.acc-shanewife, #workskin .tw-reply .pfp.pfp-ilya.acc-shanewife, #workskin .twdm .pfp.pfp-ilya.acc-shanewife, #workskin .twc12 .pfp.pfp-ilya.acc-shanewife, #workskin .twc16 .pfp.pfp-ilya.acc-shanewife { background-image: url(https://images.squidge.org/images/2026/11/16/WetShane.jpg); }
-#workskin .tw .name.pfp-ilya.acc-shanewife::before, #workskin .tw-reply .name.pfp-ilya.acc-shanewife::before, #workskin .twdm .name.pfp-ilya.acc-shanewife::before, #workskin .twc12 .name.pfp-ilya.acc-shanewife::before, #workskin .twc16 .name.pfp-ilya.acc-shanewife::before { content: "Shane Hollander's Wife"; }
-#workskin .tw .handle.pfp-ilya.acc-shanewife::after, #workskin .tw-reply .handle.pfp-ilya.acc-shanewife::after, #workskin .twdm .handle.pfp-ilya.acc-shanewife::after, #workskin .twc12 .handle.pfp-ilya.acc-shanewife::after, #workskin .twc16 .handle.pfp-ilya.acc-shanewife::after { content: "hollanderswife"; }
+/* his Shane fan account on Twitter/X and Instagram: acc-shanewife */
+#workskin .tw .pfp.pfp-ilya.acc-shanewife, #workskin .tw-reply .pfp.pfp-ilya.acc-shanewife, #workskin .twdm .pfp.pfp-ilya.acc-shanewife, #workskin .twc12 .pfp.pfp-ilya.acc-shanewife, #workskin .twc16 .pfp.pfp-ilya.acc-shanewife, #workskin .ig .pfp.pfp-ilya.acc-shanewife, #workskin .igdm .pfp.pfp-ilya.acc-shanewife { background-image: url(https://images.squidge.org/images/2026/11/16/WetShane.jpg); }
+#workskin .tw .name.pfp-ilya.acc-shanewife::before, #workskin .tw-reply .name.pfp-ilya.acc-shanewife::before, #workskin .twdm .name.pfp-ilya.acc-shanewife::before, #workskin .twc12 .name.pfp-ilya.acc-shanewife::before, #workskin .twc16 .name.pfp-ilya.acc-shanewife::before, #workskin .ig .name.pfp-ilya.acc-shanewife::before, #workskin .igdm .name.pfp-ilya.acc-shanewife::before { content: "Shane Hollander's Wife"; }
+#workskin .tw .handle.pfp-ilya.acc-shanewife::after, #workskin .tw-reply .handle.pfp-ilya.acc-shanewife::after, #workskin .twdm .handle.pfp-ilya.acc-shanewife::after, #workskin .twc12 .handle.pfp-ilya.acc-shanewife::after, #workskin .twc16 .handle.pfp-ilya.acc-shanewife::after, #workskin .ig .handle.pfp-ilya.acc-shanewife::after, #workskin .igdm .handle.pfp-ilya.acc-shanewife::after { content: "hollanderswife"; }
 
 /* ==========================================================
    COLOURS: colour1 to colour10
