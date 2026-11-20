@@ -11,6 +11,8 @@ What it makes:
 - fic/works/<title>/index.html for every work. A one-shot is one page. A
   multi-chapter work gets a front page (details, summary, notes and a chapter
   list) plus chapter-1.html, chapter-2.html and so on, like the Megaskin.
+- fic/series/<series>.html: one page per series, its works in part order.
+  Every work in a series gets Previous Work / Next Work links.
 - fic/fandoms/<fandom>.html: one page per fandom, listing that fandom's works
   as blurbs, most recently updated first. Crossovers appear under every
   fandom they're tagged with.
@@ -41,6 +43,7 @@ SRC = os.path.join(TOP, "_ao3")
 FIC = os.path.join(TOP, "fic")
 WORKS = os.path.join(FIC, "works")
 FANDOMS = os.path.join(FIC, "fandoms")
+SERIES = os.path.join(FIC, "series")
 AO3_USER = "https://archiveofourown.org/users/Jockles/works"
 
 e = html.escape
@@ -119,6 +122,13 @@ def parse(path):
         work[name] = tag_list(meta[key]) if key in meta else []
     work["language"] = text(meta.get("Language"))
     work["series"] = text(meta.get("Series"))
+    # Each series the work is in: "Part 2 of <a href=".../series/123">Name</a>"
+    work["series_list"] = []
+    if meta.get("Series") is not None:
+        for m in re.finditer(r'Part\s+(\d+)\s+of\s+<a[^>]*href="([^"]*/series/(\d+))"[^>]*>(.*?)</a>',
+                             str(meta["Series"]), re.S):
+            work["series_list"].append({"part": int(m.group(1)), "ao3": "https://archiveofourown.org/series/" + m.group(3),
+                                        "name": html.unescape(re.sub(r"<[^>]+>", "", m.group(4))).strip()})
     stats = text(meta.get("Stats"))
     for key in ["Published", "Updated", "Completed", "Words", "Chapters"]:
         m = re.search(key + r":\s*([\d,/?-]+)", stats)
@@ -263,7 +273,7 @@ def work_meta(work, up):
             ("Character", e(", ".join(work["characters"]))),
             ("Additional Tags", e(", ".join(work["freeforms"]))),
             ("Language", e(work["language"])),
-            ("Series", e(work["series"])),
+            ("Series", series_meta(work, up) or e(work["series"])),
             ("Stats", stats_line(work)),
             ("On AO3", f'<a href="{work["ao3"]}">read, comment and leave kudos on AO3</a>')]
     out = ['      <dl class="work-meta">']
@@ -272,6 +282,25 @@ def work_meta(work, up):
             out.append(f"        <dt>{k}:</dt><dd>{v}</dd>")
     out.append("      </dl>")
     return "\n".join(out)
+
+
+def series_meta(work, up):
+    return ", ".join(f'Part {s["part"]} of <a href="{up}fic/series/{s["slug"]}.html">{e(s["name"])}</a>'
+                     for s in work["series_list"])
+
+
+def series_nav(work, up):
+    """Previous / Next Work links for each series the work is in."""
+    out = ""
+    for s in work["series_list"]:
+        bits = []
+        if s.get("prev"):
+            bits.append(f'<a href="{up}fic/works/{s["prev"]["slug"]}/index.html">&larr; Previous Work</a>')
+        bits.append(f'Part {s["part"]} of <a href="{up}fic/series/{s["slug"]}.html">{e(s["name"])}</a>')
+        if s.get("next"):
+            bits.append(f'<a href="{up}fic/works/{s["next"]["slug"]}/index.html">Next Work &rarr;</a>')
+        out += '\n      <p class="chapter-nav series-nav">' + " &middot; ".join(bits) + "</p>"
+    return out
 
 
 def bq(label, content, tag="h3"):
@@ -305,10 +334,11 @@ def build_work(work):
 
     if len(chs) == 1:
         ch = chs[0]
-        main = (work_meta(work, up) + toggle + "\n\n" + top
+        main = (work_meta(work, up) + series_nav(work, up) + toggle + "\n\n" + top
                 + bq("Chapter Notes", ch["notes"]) + "\n        <hr>\n        "
                 + skinned(work, ch["body"]) + bq("Chapter End Notes", ch["end_notes"])
-                + bq("End Notes", work["end_notes"]) + comment_line(work) + "\n      </div>\n\n"
+                + bq("End Notes", work["end_notes"]) + comment_line(work) + "\n      </div>\n"
+                + series_nav(work, up) + "\n\n"
                 + f'      <p><a href="{up}fic/fandoms/{slugify(work["fandoms"][0])}.html">&larr; Back to {e(work["fandoms"][0])}</a></p>')
         write(os.path.join(out_dir, "index.html"), page(work["title"], up, main, head, end))
         return
@@ -316,7 +346,7 @@ def build_work(work):
     # Multi-chapter: front page + one page per chapter
     items = "\n".join(f'          <li><a href="chapter-{i}.html">{e(chapter_name(ch, i))}</a></li>'
                       for i, ch in enumerate(chs, 1))
-    main = (work_meta(work, up) + "\n\n" + top
+    main = (work_meta(work, up) + series_nav(work, up) + "\n\n" + top
             + f'\n\n        <h3>Chapters:</h3>\n        <ol class="chapter-index">\n{items}\n        </ol>\n\n'
             + '        <p class="chapter-nav"><a href="chapter-1.html">Start reading &rarr;</a></p>\n      </div>\n\n'
             + f'      <p><a href="{up}fic/fandoms/{slugify(work["fandoms"][0])}.html">&larr; Back to {e(work["fandoms"][0])}</a></p>')
@@ -338,7 +368,7 @@ def build_work(work):
                 + "\n        <hr>\n        " + skinned(work, ch["body"])
                 + bq("Chapter End Notes", ch["end_notes"], "h4")
                 + (bq("End Notes", work["end_notes"], "h4") + comment_line(work) if last else "")
-                + "\n      </div>\n\n" + nav)
+                + "\n      </div>\n\n" + nav + (series_nav(work, up) if last else ""))
         write(os.path.join(out_dir, f"chapter-{i}.html"),
               page(f'{work["title"]} - {chapter_name(ch, i)}', up, main, head, end))
 
@@ -352,7 +382,8 @@ def blurb(work, up):
             + [("", t) for t in work["characters"]] + [("", t) for t in work["freeforms"]])
     tag_html = "".join(f'<li class="{c}">{e(t)}</li>' if c else f"<li>{e(t)}</li>" for c, t in tags)
     summary = f'\n        <blockquote class="summary">{work["summary"]}</blockquote>' if work["summary"] else ""
-    series = f'\n        <p class="stats">Series: {e(work["series"])}</p>' if work["series"] else ""
+    series = (f'\n        <p class="stats">Series: {series_meta(work, up)}</p>' if work["series_list"]
+              else f'\n        <p class="stats">Series: {e(work["series"])}</p>' if work["series"] else "")
     return f"""      <div class="blurb">
         <h3><a href="{up}fic/works/{work["slug"]}/index.html">{e(work["title"])}</a> by {e(work["byline"])}</h3>
         <p class="fandom">{fandom_links(work, up)} &middot; {e(work["rating"])}</p>
@@ -406,8 +437,20 @@ def main():
         seen[s] = w
         w["slug"] = s
 
+    # Series: put each series' works in part order and link neighbours
+    by_series = {}
+    for w in works:
+        for sr in w["series_list"]:
+            sr["slug"] = slugify(sr["name"])
+            by_series.setdefault(sr["slug"], []).append((sr["part"], w, sr))
+    for parts in by_series.values():
+        parts.sort(key=lambda t: t[0])
+        for i, (_, w, sr) in enumerate(parts):
+            sr["prev"] = parts[i - 1][1] if i > 0 else None
+            sr["next"] = parts[i + 1][1] if i + 1 < len(parts) else None
+
     # Fresh output each time, so removed works disappear
-    for d in (WORKS, FANDOMS):
+    for d in (WORKS, FANDOMS, SERIES):
         shutil.rmtree(d, ignore_errors=True)
         os.makedirs(d)
     for w in works:
@@ -426,6 +469,17 @@ def main():
                 + "\n".join(blurb(w, "../../") for w in ws)
                 + '\n\n      <p><a href="../index.html">&larr; All fandoms</a></p>')
         write(os.path.join(FANDOMS, slugify(f) + ".html"), page(f, "../../", main))
+
+    for slug, parts in by_series.items():
+        sr = parts[0][2]
+        n = len(parts)
+        main = (f"      <h2>{e(sr['name'])}</h2>\n"
+                f'      <p>A series of {n} work{"s" if n != 1 else ""}, in reading order. '
+                f'<a href="{sr["ao3"]}">See the series on AO3</a>.</p>\n\n'
+                + "\n".join(f'      <h3 class="series-part">Part {part}</h3>\n' + blurb(w, "../../")
+                             for part, w, _ in parts)
+                + '\n\n      <p><a href="../index.html">&larr; All fandoms</a></p>')
+        write(os.path.join(SERIES, slug + ".html"), page(sr["name"], "../../", main))
 
     # Fandom list on fic/index.html
     idx = os.path.join(FIC, "index.html")
