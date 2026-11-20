@@ -158,6 +158,13 @@
     var mine = pastedProfiles();
     return mine.concat(EXAMPLES.filter(function (e) { return !mine.some(function (p) { return p[0] === e[0]; }); }));
   }
+  // the "Which one" list: profiles from the profile CSS box, then the skin's examples marked "(example)",
+  // unless "Only use my own profiles" is ticked (a character already using an example keeps it in their list)
+  function profileChoices(c) {
+    var mine = pastedProfiles();
+    var ex = EXAMPLES.filter(function (e) { return !mine.some(function (p) { return p[0] === e[0]; }) && (!S.ownOnly || e[0] === c.example); });
+    return mine.concat(ex.map(function (e) { return [e[0], e[1] + " (example)"]; }));
+  }
   // add any pasted profile that isn't in the cast yet
   function addPasted() {
     pastedProfiles().forEach(function (p) {
@@ -773,14 +780,15 @@
     "cast.N.alt": ALT,
     "cast.N.land": "Tick this if the picture is wider than it is tall, so it isn't squashed.",
     "cast.N.num": "Only for WhatsApp. Someone who isn't saved in the phone shows as a phone number instead of a name. Leave it empty otherwise.",
-    "cast.N.example": "Pick which profile to use.",
+    "cast.N.example": "Pick which profile to use. Your own profiles (from the profile CSS box) come first, then the skin's examples, marked '(example)'.",
+    "ownOnly": "Takes the skin's example profiles, like 'Ilya (example)', out of the 'Which one' lists, so you only pick from the profiles in your profile CSS box.",
     "cast.N.prof.slug": "A short label for this profile that the skin uses to find it. Small letters, numbers and dashes only, no spaces. It's filled in from the name for you.",
     "cast.N.prof.pic": "A picture for their circle in every app. " + PIC,
     "cast.N.prof.piccol": "The circle's colour when there's no picture, or while the picture loads.",
     "cast.N.prof.namecol": "The colour of their name in WhatsApp groups and on Discord.",
     "cast.N.prof.handle": "Their username on apps like Instagram and Tumblr, without the @.",
     "cast.N.prof.email": "Their email address, for the email apps. It doesn't have to be real.",
-    "cast.N.prof.saved.N.as": "What they're saved as on someone else's phone, like 'Mum' or a nickname. Pick whose phone first.",
+    "cast.N.prof.saved.N.as": "What they're saved as on someone else's phone, like 'Mum' or a nickname. Pick whose phone first. For someone who isn't in the cast yet, pick 'New person', type their name and press 'Add them': they get a new profile, which goes in the profile CSS.",
     "cast.N.prof.accounts.N.acc": "A short label for the extra account, like 'burner' or 'work'. Small letters and dashes only. Then pick the app and fill in only what's different.",
     "cast.N.prof.wallcolon": "Tick this to colour the background of WhatsApp chats on their phone, then pick the colour.",
     "cast.N.prof.wallpic": "Or a picture for the background instead. " + PIC,
@@ -823,7 +831,7 @@
     "blocks.N.pov:tw": "Whose phone it is. Their picture goes in the top corner.",
     "blocks.N.tabs:tw": "The tabs along the top are 'For you' and 'Following'. Add any communities after them, one per line.",
     "blocks.N.script:tw": "The quickest way to add tweets. Put each tweet on its own line: the name, a colon, then the tweet, like 'Zim: Reminder to everyone...'. Then press 'Add these tweets', and they're added to the list above.",
-    "blocks.N.msgs.N.from:tw": "The first box chooses who posted it, from the cast list above. The second box is how long ago, like '2h', '5m' or 'Jan 3', and the big box underneath is the tweet itself (#hashtags and @mentions turn blue by themselves). The buttons: 'Extras' has more options (likes, pictures, polls and more), the arrows move the tweet, + adds a new tweet under it, and &times; deletes it.",
+    "blocks.N.msgs.N.from:tw": "The first box chooses who posted it, from the cast list above. The second box is how long ago, like '2h', '5m' or 'Jan 3', and the big box underneath is the tweet itself (#hashtags and @mentions turn blue by themselves). 'Extras' has more options. The buttons let you reorder, insert a new post underneath, and delete each post.",
     "blocks.N.msgs.N.replyTo:tw": "Who this reply answers. It shows as 'Replying to @them' above the reply.",
     "blocks.N.msgs.N.acc:tw": "If this character has more than one Twitter/X account in their profile, pick which one posted this.",
     "blocks.N.msgs.N.replies:tw": "The numbers on the buttons under the tweet. Leave a number empty and the button shows with no number.",
@@ -943,7 +951,7 @@
     } else {
       var Q = P + ".prof";
       if (c.kind === "example") {
-        h.push(field(P + ".example", "Which one", { type: "select", re: true, options: existing() }));
+        h.push(field(P + ".example", "Which one", { type: "select", re: true, options: profileChoices(c) }));
         h.push('<p class="hint">' + (changed(c) ? "<b>Changed.</b> The new version is in the profile CSS to copy: swap it for the old one in your work skin." :
           "Change anything below and the updated profile goes in the profile CSS to copy. Leave it as it is to just use it.") + "</p>");
       } else h.push('<div class="fb-row"><span>pfp-</span>' + field(Q + ".slug", "", { ph: MP.slugify(c.name) || "name" }) + "</div>");
@@ -953,21 +961,28 @@
       h.push('<div class="fb-grid"><div>' + field(Q + ".handle", "Handle", { ph: "no @" }) + "</div><div>" +
         field(Q + ".email", "Email address") + "</div></div>");
       h.push("<details" + (c.more ? " open" : "") + ' data-open="' + P + '.more"><summary>More profile options</summary>');
-      h.push('<p class="hint">Saved as: what other characters have them saved as on their phones, and a different picture on that phone if you want one. This only works in iMessage and WhatsApp messages, and only the name works in Discord DMs. Everywhere else they show the account\'s default.</p>');
-      c.prof.saved.forEach(function (s, k) {
-        h.push('<div class="fb-acct"><div class="fb-row">' + field(Q + ".saved." + k + ".owner", "", { type: "select", options: [["", "On whose phone?"]].concat(S.cast.filter(isProfile).filter(function (x) { return x !== c; }).map(function (x) { return [slugOf(x), nameOf(x)]; })) }) +
-          field(Q + ".saved." + k + ".as", "", { ph: "Saved as" }) + btn("saved-del:" + i + ":" + k, "&times;", "Remove") + "</div>" +
-          field(Q + ".saved." + k + ".pic", "", { type: "url", ph: "Picture on their phone (optional): https://..." }) + "</div>");
-      });
-      h.push(btn("saved-add:" + i, "+ Saved as"));
-      h.push('<p class="hint">Different on one app (only fill in what\'s different):</p>');
+      h.push('<p class="hint">For explainers on all these options, refer to the <a href="profile-maker.html">Profile Maker</a>.</p>');
+      h.push('<h4 class="fb-h">Differences on specific apps</h4><p class="hint">Only fill in what\'s different.</p>');
       MP.APPS.forEach(function (a) {
         h.push('<div class="fb-app"><b>' + a.label + "</b>" + field(Q + ".apps." + a.key + ".pic", "", { type: "url", ph: "Picture link" }) +
           field(Q + ".apps." + a.key + ".name", "", { ph: "Name" }) + (a.key === "gm" ? "" : field(Q + ".apps." + a.key + ".handle", "", { ph: "Handle" })) + "</div>");
       });
       h.push('<div class="fb-row">' + field(Q + ".dccolon", "Different name colour on Discord", { type: "check" }) + field(Q + ".dccol", "", { type: "color" }) + "</div>");
       h.push(field(Q + ".tbsq", "Square Tumblr picture", { type: "check" }));
-      h.push('<p class="hint">Extra accounts: a private Instagram, a burner, a work email.</p>');
+      h.push('<p class="hint">WhatsApp wallpaper on their phone:</p>');
+      h.push('<div class="fb-row">' + field(Q + ".wallcolon", "Colour", { type: "check" }) + field(Q + ".wallcol", "", { type: "color" }) + "</div>");
+      h.push(field(Q + ".wallpic", "", { type: "url", ph: "Or a picture link", wrap: true }));
+      h.push('<h4 class="fb-h">Appearance on other phones</h4>');
+      c.prof.saved.forEach(function (s, k) {
+        var S2 = Q + ".saved." + k;
+        h.push('<div class="fb-acct"><div class="fb-row">' + field(S2 + ".owner", "", { type: "select", re: true, options: [["", "On whose phone?"]].concat(S.cast.filter(isProfile).filter(function (x) { return x !== c; }).map(function (x) { return [slugOf(x), nameOf(x)]; })).concat([["+new", "New person"]]) }) +
+          field(S2 + ".as", "", { ph: "Saved as" }) + btn("saved-del:" + i + ":" + k, "&times;", "Remove") + "</div>" +
+          // someone not in the cast yet: type their name and they're added as a new profile
+          (s.owner === "+new" ? '<div class="fb-row">' + field(S2 + ".newName", "", { ph: "Their name" }) + btn("saved-new:" + i + ":" + k, "Add them") + "</div>" : "") +
+          field(S2 + ".pic", "", { type: "url", ph: "Picture on their phone (optional): https://..." }) + "</div>");
+      });
+      h.push(btn("saved-add:" + i, "+ Saved as"));
+      h.push('<h4 class="fb-h">Extra accounts</h4><p class="hint">A private Instagram, a burner, a work email.</p>');
       c.prof.accounts.forEach(function (x, k) {
         var A = Q + ".accounts." + k;
         h.push('<div class="fb-acct"><div class="fb-row"><span>acc-</span>' + field(A + ".acc", "", { ph: "burner" }) +
@@ -976,9 +991,6 @@
           field(A + ".sq", "Square Tumblr picture", { type: "check" }) + "</div>");
       });
       h.push(btn("acct-add:" + i, "+ Extra account"));
-      h.push('<p class="hint">WhatsApp wallpaper on their phone:</p>');
-      h.push('<div class="fb-row">' + field(Q + ".wallcolon", "Colour", { type: "check" }) + field(Q + ".wallcol", "", { type: "color" }) + "</div>");
-      h.push(field(Q + ".wallpic", "", { type: "url", ph: "Or a picture link", wrap: true }));
       h.push("</details>");
     }
     h.push("</details>");
@@ -1095,7 +1107,10 @@
     h.push('<li class="fb-msg' + (thread && mi === 0 ? " out" : "") + '">');
     if (thread) h.push('<p class="hint"><b>' + (mi === 0 ? "The tweet" : "Reply") + "</b></p>");
     h.push('<div class="fb-row">' + field(P + ".from", "", { type: "select", re: true, options: castOptions() }) +
-      field(P + ".time", "", { ph: "2h", cls: "fb-time" }) + rowTools(bi, mi, m, true) + "</div>");
+      field(P + ".time", "", { ph: "2h", cls: "fb-time" }) +
+      // picked a lot, so they sit on the top row rather than in the extras
+      field(P + ".verified", "Verified", { type: "check" }) + field(P + ".locked", "Private", { type: "check", re: true }) +
+      rowTools(bi, mi, m, true) + "</div>");
     if (thread && mi > 0) {
       // who it's replying to: anyone who posted further up the thread
       var users = [];
@@ -1109,7 +1124,6 @@
       h.push('<div class="fb-extras">' + fmtButtons());
       h.push(accField(P + ".acc", c, "tw"));
       var old = b.era === "tw2020";
-      h.push(field(P + ".verified", "Blue verified tick", { type: "check" }) + " " + field(P + ".locked", "Private account", { type: "check", re: true }));
       if (m.fanMask === undefined) m.fanMask = fanMask(m);
       h.push(field(P + ".fan", "Grey line under the name", { ph: "Fan account" }) + field(P + ".fanMask", "Fan account mask", { type: "check" }));
       h.push(field(P + ".label", "Grey label", {}));
@@ -1392,7 +1406,7 @@
   function renderEditor() {
     helped = {};
     S.cast.forEach(function (c) { if (c.kind === "example" && c.loadedFrom !== c.example) loadProfile(c); });
-    $("fb-cast").innerHTML = S.cast.map(castCard).join("");
+    $("fb-cast").innerHTML = field("ownOnly", "Only use my own profiles", { type: "check", re: true }) + S.cast.map(castCard).join("");
     $("fb-blocks").innerHTML = S.blocks.map(blockCard).join("") || '<p class="hint">Nothing here yet. Add a chat below.</p>';
     if (window.Tutorial && Tutorial.mark) Tutorial.mark();
   }
@@ -1400,12 +1414,13 @@
   // remake the preview and the copy boxes (after every change)
   function refresh() {
     save();
-    var html = allHTML(), css = profilesCSS();
+    var html = allHTML(), css = profilesCSS(), all = allProfilesCSS().trim();
     $("fb-live").textContent = (S.pasted || "") + "\n\n" + css;
     $("workskin").innerHTML = html;
     $("fb-html").value = html;
-    $("fb-css").value = css;
-    $("fb-css-wrap").hidden = !css && !pasteOpen;
+    // the profile CSS box has every profile in use: pasted or opened, and new or changed
+    $("fb-css").value = all;
+    $("fb-css-wrap").hidden = !all && !pasteOpen;
   }
   // "Manually add profile" makes the profile CSS box take pasted profiles too, with no files
   var pasteOpen = false;
@@ -1423,7 +1438,7 @@
     pasteProfiles((e.clipboardData || window.clipboardData).getData("text"));
   });
   $("fb-css").addEventListener("change", function () {
-    if (!this.readOnly && this.value.trim() !== profilesCSS().trim()) pasteProfiles(this.value);
+    if (!this.readOnly && this.value.trim() !== allProfilesCSS().trim()) pasteProfiles(this.value);
   });
   // redraw the boxes on the left too (after adding, removing or moving something)
   function rerender() { renderEditor(); refresh(); }
@@ -1504,6 +1519,15 @@
         if (!confirm("Remove " + nameOf(S.cast[n[0]]) + " from the cast? Their messages will disappear too.")) return;
         S.cast.splice(n[0], 1); break;
       case "saved-add": S.cast[n[0]].prof.saved.push({ owner: "", as: "", pic: "" }); break;
+      case "saved-new": {
+        // a new profile for the phone's owner, named as typed, so it goes in the profile CSS
+        var sv = S.cast[n[0]].prof.saved[n[1]], nm = (sv.newName || "").trim();
+        if (!nm) { alert("Type their name first."); return; }
+        var nc = newChar(nm, "new"); nc.open = false;
+        S.cast.push(nc);
+        sv.owner = slugOf(nc); delete sv.newName;
+        break;
+      }
       case "saved-del": S.cast[n[0]].prof.saved.splice(n[1], 1); break;
       case "acct-add": S.cast[n[0]].prof.accounts.push({ acc: "", app: "ig", pic: "", name: "", handle: "", sq: false }); break;
       case "acct-del": S.cast[n[0]].prof.accounts.splice(n[1], 1); break;
