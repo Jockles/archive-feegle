@@ -3246,3 +3246,7 @@
 
 /* Shane (the Megaskin's own profile): a different picture on WhatsApp in this series */
 #workskin .wa .pfp.pfp-shane { background-image: url(https://images.squidge.org/images/2026/11/16/HockeyBlur.png); }
+
+/* GROUP: the gay hockey players' group chat ("Canada is most gay" / "Canada has best gays").
+   Use <span class="pfp pfp-gc-canada"></span> in the group's header picture. */
+#workskin .pfp.pfp-gc-canada { background-image: url(https://images.squidge.org/images/2026/11/20/canadahockey.jpg); }
