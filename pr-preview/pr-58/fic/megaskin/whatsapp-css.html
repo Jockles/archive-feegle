@@ -25,7 +25,7 @@
   <!-- /site meta -->
   <link rel="stylesheet" href="../../style.css">
   <script src="../../theme.js"></script>
-  <link rel="stylesheet" href="megaskin.css?v=dd20ce60" id="creator-style">
+  <link rel="stylesheet" href="megaskin.css?v=5335c80b" id="creator-style">
 </head>
 <body>
 <header>
@@ -70,13 +70,14 @@
   <li><a href="#s7-12">7.12 The Message Bar</a></li>
   <li><a href="#s7-13">7.13 Link Cards</a></li>
   <li><a href="#s7-14">7.14 Photo Galleries</a></li>
-  <li><a href="#s7-15">7.15 Captions and Links</a></li>
-  <li><a href="#s7-16">7.16 Calls</a></li>
-  <li><a href="#s7-17">7.17 Contact Cards</a></li>
-  <li><a href="#s7-18">7.18 Forwarded Label</a></li>
-  <li><a href="#s7-19">7.19 Dark and Auto Themes</a></li>
-  <li><a href="#s7-20">7.20 Wallpapers</a></li>
-  <li><a href="#s7-21">7.21 Taking Parts Out</a></li>
+  <li><a href="#s7-15">7.15 Photos Without a Caption</a></li>
+  <li><a href="#s7-16">7.16 Captions and Links</a></li>
+  <li><a href="#s7-17">7.17 Calls</a></li>
+  <li><a href="#s7-18">7.18 Contact Cards</a></li>
+  <li><a href="#s7-19">7.19 Forwarded Label</a></li>
+  <li><a href="#s7-20">7.20 Dark and Auto Themes</a></li>
+  <li><a href="#s7-21">7.21 Wallpapers</a></li>
+  <li><a href="#s7-22">7.22 Taking Parts Out</a></li>
 </ul>
 
 <p>This chapter goes through the CSS for the WhatsApp chats in the last chapter. WhatsApp is a much bigger module than iMessage - it has headers, galleries, link cards and wallpapers - but it's built the same way, so if you've read the iMessage CSS chapter, a lot of this will look familiar. Where something works exactly like it does in iMessage, I'll point you back there rather than explain it twice.</p>
@@ -488,7 +489,24 @@
 
 </details>
 
-<h3 id="s7-15">7.15 Captions and Links</h3>
+<h3 id="s7-15">7.15 Photos Without a Caption</h3>
+
+<pre><code>#workskin .wa .msg.gallery { position: relative; }
+
+#workskin .wa .msg.gallery .wa-photos.one + .wa-time {
+  position: absolute;
+  right: 0.25em;
+  bottom: 0.3em;
+  margin: 0;
+  padding: 3em 0.6em 0.35em 6em;
+  border-bottom-right-radius: 6px;
+  background: radial-gradient(farthest-side at 100% 100%, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0));
+  color: #ffffff;
+}</code></pre>
+
+<p>When the time comes straight after a single photo (<code>+</code> means "straight after"), it's pinned to the photo's bottom corner with <code>position: absolute</code>. Its big padding makes room for the fade, a <code>radial-gradient</code> that's dark in the very corner and fades to see-through, so the white time shows up on any picture. With a caption in between, the rule doesn't match, and the time goes back under the caption.</p>
+
+<h3 id="s7-16">7.16 Captions and Links</h3>
 
 <pre><code>#workskin .wa .wa-caption {
   display: block;
@@ -504,7 +522,7 @@
 
 <p>A caption only needs a little padding, to line its text up with the edge of the photo above. Links in the text, <code>wa-ln</code> and <code>fake-link</code> are all WhatsApp's link blue.</p>
 
-<h3 id="s7-16">7.16 Calls</h3>
+<h3 id="s7-17">7.17 Calls</h3>
 
 <pre><code>#workskin .wa .msg.call {
   position: relative;
@@ -557,7 +575,7 @@
 
 <p>A call bubble is a normal bubble with a little padding, and the call itself sits in a slightly darker box inside it, with room kept on its right for the time. The round box floats left, and the words beside it have <code>overflow: hidden</code>, which keeps them lined up beside the box even if they run onto a second line. The time is pinned to the bottom right with <code>position: absolute</code>, so it sits beside the length instead of on a line of its own - the bubble has <code>position: relative</code> so the time knows which box to pin itself to. The last line is from the Icons section: the icon picture is a little smaller than its box, so it sits in the middle of the circle.</p>
 
-<h3 id="s7-17">7.17 Contact Cards</h3>
+<h3 id="s7-18">7.18 Contact Cards</h3>
 
 <pre><code>#workskin .wa .msg.contact {
   width: 70%;
@@ -596,7 +614,7 @@
 
 <p>A contact card has no padding of its own, so the line above the Message button runs right to the edges of the bubble. The picture and name sit side by side with <code>display: flex</code>, and <code>align-items: center</code> lines the name up with the middle of the picture. The picture is the usual <code>wa-pfp</code>, just bigger, with <code>position: static</code> so it stays in the card when the card is in a group, where the sender's own picture is pinned beside the bubble.</p>
 
-<h3 id="s7-18">7.18 Forwarded Label</h3>
+<h3 id="s7-19">7.19 Forwarded Label</h3>
 
 <pre><code>#workskin .wa .wa-fwd {
   display: block;
@@ -609,7 +627,7 @@
 
 <p>Small, grey and italic, with the forward arrow from the icon set made see-through so it matches the grey of the words.</p>
 
-<h3 id="s7-19">7.19 Dark and Auto Themes</h3>
+<h3 id="s7-20">7.20 Dark and Auto Themes</h3>
 
 <p>The dark theme swaps the wallpaper for WhatsApp's dark version (with its near-black underneath), the bubbles for dark grey and dark green, and every bit of grey text for a lighter grey. It also has the lighter set of name colours, and the tails again in the new bubble colours. As in iMessage, the auto theme is the same rules again inside <code>@media (prefers-color-scheme: dark)</code>, so change a dark colour in both places.</p>
 
@@ -623,7 +641,7 @@
 
 #workskin .wa.theme-dark .out.tail::before { border-color: transparent transparent transparent #005c4b; }</code></pre>
 
-<h3 id="s7-20">7.20 Wallpapers</h3>
+<h3 id="s7-21">7.21 Wallpapers</h3>
 
 <pre><code>#workskin .wa.bg-sage { background: #d5e6d0; }
 
@@ -656,7 +674,7 @@
 
 </details>
 
-<h3 id="s7-21">7.21 Taking Parts Out</h3>
+<h3 id="s7-22">7.22 Taking Parts Out</h3>
 
 <p>WhatsApp is a long module, so it's worth trimming if you only use a few parts. These come out cleanly - search for the class names and delete every rule with them in, including in the dark and auto blocks:</p>
 

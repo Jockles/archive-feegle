@@ -524,6 +524,20 @@
   padding: 4em 1em;
 }
 
+/* one photo with no caption: the time sits on the photo, white on a dark fade, the same in every theme */
+#workskin .wa .msg.gallery { position: relative; }
+
+#workskin .wa .msg.gallery .wa-photos.one + .wa-time {
+  position: absolute;
+  right: 0.25em;
+  bottom: 0.3em;
+  margin: 0;
+  padding: 3em 0.6em 0.35em 6em;
+  border-bottom-right-radius: 6px;
+  background: radial-gradient(farthest-side at 100% 100%, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0));
+  color: #ffffff;
+}
+
 /* text under a picture, a gallery or a link card: <p class="wa-caption">...</p>, after the photos or the card and before the time */
 #workskin .wa .wa-caption {
   display: block;
