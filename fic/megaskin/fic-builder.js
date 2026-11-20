@@ -156,6 +156,13 @@
     var mine = pastedProfiles();
     return mine.concat(EXAMPLES.filter(function (e) { return !mine.some(function (p) { return p[0] === e[0]; }); }));
   }
+  // the "Which one" list: profiles from the profile CSS box, then the skin's examples marked "(example)",
+  // unless "Only use my own profiles" is ticked (a character already using an example keeps it in their list)
+  function profileChoices(c) {
+    var mine = pastedProfiles();
+    var ex = EXAMPLES.filter(function (e) { return !mine.some(function (p) { return p[0] === e[0]; }) && (!S.ownOnly || e[0] === c.example); });
+    return mine.concat(ex.map(function (e) { return [e[0], e[1] + " (example)"]; }));
+  }
   // add any pasted profile that isn't in the cast yet
   function addPasted() {
     pastedProfiles().forEach(function (p) {
@@ -770,7 +777,8 @@
     "cast.N.alt": ALT,
     "cast.N.land": "Tick this if the picture is wider than it is tall, so it isn't squashed.",
     "cast.N.num": "Only for WhatsApp. Someone who isn't saved in the phone shows as a phone number instead of a name. Leave it empty otherwise.",
-    "cast.N.example": "Pick which profile to use.",
+    "cast.N.example": "Pick which profile to use. Your own profiles (from the profile CSS box) come first, then the skin's examples, marked '(example)'.",
+    "ownOnly": "Takes the skin's example profiles, like 'Ilya (example)', out of the 'Which one' lists, so you only pick from the profiles in your profile CSS box.",
     "cast.N.prof.slug": "A short label for this profile that the skin uses to find it. Small letters, numbers and dashes only, no spaces. It's filled in from the name for you.",
     "cast.N.prof.pic": "A picture for their circle in every app. " + PIC,
     "cast.N.prof.piccol": "The circle's colour when there's no picture, or while the picture loads.",
@@ -938,7 +946,7 @@
     } else {
       var Q = P + ".prof";
       if (c.kind === "example") {
-        h.push(field(P + ".example", "Which one", { type: "select", re: true, options: existing() }));
+        h.push(field(P + ".example", "Which one", { type: "select", re: true, options: profileChoices(c) }));
         h.push('<p class="hint">' + (changed(c) ? "<b>Changed.</b> The new version is in the profile CSS to copy: swap it for the old one in your work skin." :
           "Change anything below and the updated profile goes in the profile CSS to copy. Leave it as it is to just use it.") + "</p>");
       } else h.push('<div class="fb-row"><span>pfp-</span>' + field(Q + ".slug", "", { ph: MP.slugify(c.name) || "name" }) + "</div>");
@@ -1270,7 +1278,7 @@
   function renderEditor() {
     helped = {};
     S.cast.forEach(function (c) { if (c.kind === "example" && c.loadedFrom !== c.example) loadProfile(c); });
-    $("fb-cast").innerHTML = S.cast.map(castCard).join("");
+    $("fb-cast").innerHTML = field("ownOnly", "Only use my own profiles", { type: "check", re: true }) + S.cast.map(castCard).join("");
     $("fb-blocks").innerHTML = S.blocks.map(blockCard).join("") || '<p class="hint">Nothing here yet. Add a chat below.</p>';
     if (window.Tutorial && Tutorial.mark) Tutorial.mark();
   }
@@ -1278,12 +1286,13 @@
   // remake the preview and the copy boxes (after every change)
   function refresh() {
     save();
-    var html = allHTML(), css = profilesCSS();
+    var html = allHTML(), css = profilesCSS(), all = allProfilesCSS().trim();
     $("fb-live").textContent = (S.pasted || "") + "\n\n" + css;
     $("workskin").innerHTML = html;
     $("fb-html").value = html;
-    $("fb-css").value = css;
-    $("fb-css-wrap").hidden = !css && !pasteOpen;
+    // the profile CSS box has every profile in use: pasted or opened, and new or changed
+    $("fb-css").value = all;
+    $("fb-css-wrap").hidden = !all && !pasteOpen;
   }
   // "Manually add profile" makes the profile CSS box take pasted profiles too, with no files
   var pasteOpen = false;
@@ -1301,7 +1310,7 @@
     pasteProfiles((e.clipboardData || window.clipboardData).getData("text"));
   });
   $("fb-css").addEventListener("change", function () {
-    if (!this.readOnly && this.value.trim() !== profilesCSS().trim()) pasteProfiles(this.value);
+    if (!this.readOnly && this.value.trim() !== allProfilesCSS().trim()) pasteProfiles(this.value);
   });
   // redraw the boxes on the left too (after adding, removing or moving something)
   function rerender() { renderEditor(); refresh(); }
