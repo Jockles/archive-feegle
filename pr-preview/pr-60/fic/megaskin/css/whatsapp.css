@@ -862,6 +862,38 @@
   background-position: center;
 }
 
+/* A ONE-OFF WALLPAPER IN THE HTML: <p class="wa-wall"><img src="..." alt=""></p> as the first thing in the container.
+   The picture sits behind the header, messages and message bar, filling the chat and cropping what doesn't fit. */
+#workskin .mob.wa { position: relative; }
+
+#workskin .wa .wa-wall {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: 0;
+  overflow: hidden;
+}
+
+#workskin .wa .wa-wall img {
+  position: absolute;
+  top: -9999px;
+  right: -9999px;
+  bottom: -9999px;
+  left: -9999px;
+  margin: auto;
+  min-width: 100%;
+  min-height: 100%;
+  max-width: none;
+  max-height: none;
+}
+
+#workskin .wa .mob-head,
+#workskin .wa .wa-bar,
+#workskin .wa .mob-body,
+#workskin .wa .wa-input { position: relative; }
+
 /* ---------- WhatsApp: Icons ----------
    The buttons and ticks are pictures: black in light chats, white in dark ones.
    Each one is a span with "ic" and its name, with the typed symbol inside, which
