@@ -9,7 +9,19 @@
 <h4>A One-to-One Chat</h4>
 
 <div class="mob wa theme-auto">
-  <p class="mob-head">Lily<span class="hide"> - </span><span>online</span></p>
+  <table class="wa-bar">
+    <tbody>
+      <tr>
+        <td rowspan="2" class="wa-back"><span class="ic ic-back">&#8592;</span></td>
+        <td rowspan="2" class="wa-pfp-cell"><p class="wa-pfp colour2">L</p></td>
+        <td class="wa-title">Lily</td>
+        <td rowspan="2" class="wa-actions"><span class="ic ic-video">&#127909;</span> <span class="ic ic-menu">&#8942;</span></td>
+      </tr>
+      <tr>
+        <td class="wa-sub">online</td>
+      </tr>
+    </tbody>
+  </table>
   <div class="mob-body">
     <p class="mob-sys">YESTERDAY</p>
     <div class="msg in tail">
@@ -114,7 +126,19 @@
 <summary>The full HTML for this chat</summary>
 
 <pre><code>&lt;div class="mob wa theme-auto"&gt;
-  &lt;p class="mob-head"&gt;Lily&lt;span class="hide"&gt; - &lt;/span&gt;&lt;span&gt;online&lt;/span&gt;&lt;/p&gt;
+  &lt;table class="wa-bar"&gt;
+    &lt;tbody&gt;
+      &lt;tr&gt;
+        &lt;td rowspan="2" class="wa-back"&gt;&lt;span class="ic ic-back"&gt;&amp;#8592;&lt;/span&gt;&lt;/td&gt;
+        &lt;td rowspan="2" class="wa-pfp-cell"&gt;&lt;p class="wa-pfp colour2"&gt;L&lt;/p&gt;&lt;/td&gt;
+        &lt;td class="wa-title"&gt;Lily&lt;/td&gt;
+        &lt;td rowspan="2" class="wa-actions"&gt;&lt;span class="ic ic-video"&gt;&amp;#127909;&lt;/span&gt; &lt;span class="ic ic-menu"&gt;&amp;#8942;&lt;/span&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td class="wa-sub"&gt;online&lt;/td&gt;
+      &lt;/tr&gt;
+    &lt;/tbody&gt;
+  &lt;/table&gt;
   &lt;div class="mob-body"&gt;
     &lt;p class="mob-sys"&gt;YESTERDAY&lt;/p&gt;
     &lt;div class="msg in tail"&gt;
@@ -462,34 +486,18 @@
 
 <h4>Top</h4>
 
-<p>The header goes first, with the contact's name:</p>
-
-<div class="mob wa theme-auto"><p class="mob-head">Lily<span class="hide"> - </span><span>online</span></p></div>
-
-<pre><code>&lt;p class="mob-head"&gt;Lily&lt;span class="hide"&gt; - &lt;/span&gt;&lt;span&gt;online&lt;/span&gt;&lt;/p&gt;</code></pre>
-
-<p>The header is the green bar. The span underneath is the status line, like "online", "last seen today at 9:41" or "typing...", or the list of people in a group. After the header comes <code>&lt;div class=&quot;mob-body&quot;&gt;</code>, which holds all of the messages. There's a fancier header with a picture and icons too - see <a href="#heading">Group Header with Picture and Icons</a>, below.</p>
-
-<p>The name can be typed, like Lily's above, or it can come from a character's profile. Put a name span in its place, with the name typed inside it in a <code>hide</code> span for readers with the workskin off. Then it's the same in every chat, and it changes to whatever your point-of-view character has them saved as (see <a href="core.html#heading">Their Phone</a>):</p>
-
-<div class="mob wa theme-auto"><p class="mob-head"><span class="name pfp-ilya"><span class="hide">Ilya</span></span><span class="hide"> - </span><span>online</span></p></div>
-
-<pre><code>&lt;p class="mob-head"&gt;&lt;span class="name pfp-ilya"&gt;&lt;span class="hide"&gt;Ilya&lt;/span&gt;&lt;/span&gt;&lt;span class="hide"&gt; - &lt;/span&gt;&lt;span&gt;online&lt;/span&gt;&lt;/p&gt;</code></pre>
-
-<h5>Group Header with Picture and Icons</h5>
-
-<p>For the full group header - back arrow, picture, group name, list of members, and the call and menu icons - use a <code>&lt;table&gt;</code> with the class <code>wa-bar</code> instead of the usual header paragraph. A table is the most reliable way to keep all of that in one neat row on AO3:</p>
+<p>The header goes first. Like the real app, it has a back arrow, the contact's picture, their name with a status line underneath, and the video and menu icons. It's a <code>&lt;table&gt;</code> with the class <code>wa-bar</code>, because a table is the most reliable way to keep all of that in one neat row on AO3:</p>
 
 <div class="mob wa theme-auto"><table class="wa-bar">
   <tbody>
     <tr>
       <td rowspan="2" class="wa-back"><span class="ic ic-back">&#8592;</span></td>
-      <td rowspan="2" class="wa-pfp-cell"><p class="wa-pfp colour5">D</p></td>
-      <td class="wa-title">dinner</td>
+      <td rowspan="2" class="wa-pfp-cell"><p class="wa-pfp colour2">L</p></td>
+      <td class="wa-title">Lily</td>
       <td rowspan="2" class="wa-actions"><span class="ic ic-video">&#127909;</span> <span class="ic ic-menu">&#8942;</span></td>
     </tr>
     <tr>
-      <td class="wa-sub">Rose, Jane, Hayden, You</td>
+      <td class="wa-sub">online</td>
     </tr>
   </tbody>
 </table></div>
@@ -498,21 +506,56 @@
   &lt;tbody&gt;
     &lt;tr&gt;
       &lt;td rowspan="2" class="wa-back"&gt;&lt;span class="ic ic-back"&gt;&amp;#8592;&lt;/span&gt;&lt;/td&gt;
-      &lt;td rowspan="2" class="wa-pfp-cell"&gt;&lt;p class="wa-pfp colour5"&gt;D&lt;/p&gt;&lt;/td&gt;
-      &lt;td class="wa-title"&gt;dinner&lt;/td&gt;
+      &lt;td rowspan="2" class="wa-pfp-cell"&gt;&lt;p class="wa-pfp colour2"&gt;L&lt;/p&gt;&lt;/td&gt;
+      &lt;td class="wa-title"&gt;Lily&lt;/td&gt;
       &lt;td rowspan="2" class="wa-actions"&gt;&lt;span class="ic ic-video"&gt;&amp;#127909;&lt;/span&gt; &lt;span class="ic ic-menu"&gt;&amp;#8942;&lt;/span&gt;&lt;/td&gt;
     &lt;/tr&gt;
     &lt;tr&gt;
-      &lt;td class="wa-sub"&gt;Rose, Jane, Hayden, You&lt;/td&gt;
+      &lt;td class="wa-sub"&gt;online&lt;/td&gt;
     &lt;/tr&gt;
   &lt;/tbody&gt;
 &lt;/table&gt;</code></pre>
 
-<p>The table has two rows. The first row has the back arrow (<code>wa-back</code>), the picture (<code>wa-pfp-cell</code>), the group name (<code>wa-title</code>) and the icons (<code>wa-actions</code>). The back arrow, picture and icons have <code>rowspan=&quot;2&quot;</code>, which stretches them down across both rows. The second row only has the member list (<code>wa-sub</code>), which sits under the name. If the name or the member list is too long, the workskin cuts it short with "..." for you.</p>
+<p>The status line (<code>wa-sub</code>) can say "online", "last seen today at 9:41" or "typing...". After the header comes <code>&lt;div class=&quot;mob-body&quot;&gt;</code>, which holds all of the messages.</p>
 
-<p>The picture is the same <code>wa-pfp</code> circle as in the group messages, so <code>colour1</code> to <code>colour10</code> work here too. You can use this header for a one-to-one chat as well - put "online" or "last seen..." where the member list goes, or "typing..." to show the other person is typing.</p>
+<details>
+<summary>How the header table works</summary>
 
-<p>An uploaded picture works in the header too, in a <code>pfp</code> span, the same as in the messages. For a one-to-one chat with someone who has a profile, put their profile in the circle and a name span in <code>wa-title</code>, so both come from the profile:</p>
+<p>The table has two rows. The first row has the back arrow (<code>wa-back</code>), the picture (<code>wa-pfp-cell</code>), the name (<code>wa-title</code>) and the icons (<code>wa-actions</code>). The back arrow, picture and icons have <code>rowspan=&quot;2&quot;</code>, which stretches them down across both rows. The second row only has the status line (<code>wa-sub</code>), which sits under the name. If the name or the status is too long, the workskin cuts it short with "..." for you.</p>
+
+<p>The picture is the same <code>wa-pfp</code> circle as in group messages, so it shows initials, and <code>colour1</code> to <code>colour10</code> work here too. An uploaded picture works as well, in a <code>pfp</code> span (see <a href="#heading">Uploading a Profile Pic</a>).</p>
+
+</details>
+
+<p><strong>Leaving the picture off:</strong> if you don't want a picture, delete the whole <code>wa-pfp-cell</code> line, and the name moves up next to the back arrow:</p>
+
+<div class="mob wa theme-auto"><table class="wa-bar">
+  <tbody>
+    <tr>
+      <td rowspan="2" class="wa-back"><span class="ic ic-back">&#8592;</span></td>
+      <td class="wa-title">Lily</td>
+      <td rowspan="2" class="wa-actions"><span class="ic ic-video">&#127909;</span> <span class="ic ic-menu">&#8942;</span></td>
+    </tr>
+    <tr>
+      <td class="wa-sub">online</td>
+    </tr>
+  </tbody>
+</table></div>
+
+<pre><code>&lt;table class="wa-bar"&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td rowspan="2" class="wa-back"&gt;&lt;span class="ic ic-back"&gt;&amp;#8592;&lt;/span&gt;&lt;/td&gt;
+      &lt;td class="wa-title"&gt;Lily&lt;/td&gt;
+      &lt;td rowspan="2" class="wa-actions"&gt;&lt;span class="ic ic-video"&gt;&amp;#127909;&lt;/span&gt; &lt;span class="ic ic-menu"&gt;&amp;#8942;&lt;/span&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="wa-sub"&gt;online&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+
+<p><strong>A character with a profile:</strong> put their profile in the circle and a name span in <code>wa-title</code>, with the name typed inside it in a <code>hide</code> span for readers with the workskin off. Then both come from the profile, they're the same in every chat, and they change to whatever your point-of-view character has them saved as (see <a href="core.html#heading">Their Phone</a>):</p>
 
 <div class="mob wa theme-auto"><table class="wa-bar">
   <tbody>
@@ -538,6 +581,51 @@
     &lt;/tr&gt;
     &lt;tr&gt;
       &lt;td class="wa-sub"&gt;online&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+
+<details>
+<summary>A plain header with no picture or icons</summary>
+
+<p>For a quick chat, a single <code>mob-head</code> paragraph makes a plain green bar with just the name and status, the same as the iMessage header:</p>
+
+<div class="mob wa theme-auto"><p class="mob-head">Lily<span class="hide"> - </span><span>online</span></p></div>
+
+<pre><code>&lt;p class="mob-head"&gt;Lily&lt;span class="hide"&gt; - &lt;/span&gt;&lt;span&gt;online&lt;/span&gt;&lt;/p&gt;</code></pre>
+
+<p>The name can be a name span here too, like <code>&lt;span class=&quot;name pfp-ilya&quot;&gt;&lt;span class=&quot;hide&quot;&gt;Ilya&lt;/span&gt;&lt;/span&gt;</code>.</p>
+
+</details>
+
+<h5>Group Header</h5>
+
+<p>A group uses the same header, with the group's picture and name, and the list of members on the status line:</p>
+
+<div class="mob wa theme-auto"><table class="wa-bar">
+  <tbody>
+    <tr>
+      <td rowspan="2" class="wa-back"><span class="ic ic-back">&#8592;</span></td>
+      <td rowspan="2" class="wa-pfp-cell"><p class="wa-pfp colour5">D</p></td>
+      <td class="wa-title">dinner</td>
+      <td rowspan="2" class="wa-actions"><span class="ic ic-video">&#127909;</span> <span class="ic ic-menu">&#8942;</span></td>
+    </tr>
+    <tr>
+      <td class="wa-sub">Rose, Jane, Hayden, You</td>
+    </tr>
+  </tbody>
+</table></div>
+
+<pre><code>&lt;table class="wa-bar"&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td rowspan="2" class="wa-back"&gt;&lt;span class="ic ic-back"&gt;&amp;#8592;&lt;/span&gt;&lt;/td&gt;
+      &lt;td rowspan="2" class="wa-pfp-cell"&gt;&lt;p class="wa-pfp colour5"&gt;D&lt;/p&gt;&lt;/td&gt;
+      &lt;td class="wa-title"&gt;dinner&lt;/td&gt;
+      &lt;td rowspan="2" class="wa-actions"&gt;&lt;span class="ic ic-video"&gt;&amp;#127909;&lt;/span&gt; &lt;span class="ic ic-menu"&gt;&amp;#8942;&lt;/span&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="wa-sub"&gt;Rose, Jane, Hayden, You&lt;/td&gt;
     &lt;/tr&gt;
   &lt;/tbody&gt;
 &lt;/table&gt;</code></pre>
