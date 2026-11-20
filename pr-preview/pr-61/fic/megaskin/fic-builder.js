@@ -957,20 +957,24 @@
         field(Q + ".email", "Email address") + "</div></div>");
       h.push("<details" + (c.more ? " open" : "") + ' data-open="' + P + '.more"><summary>More profile options</summary>');
       h.push('<p class="hint">For explainers on all these options, refer to the <a href="profile-maker.html">Profile Maker</a>.</p>');
-      c.prof.saved.forEach(function (s, k) {
-        h.push('<div class="fb-acct"><div class="fb-row">' + field(Q + ".saved." + k + ".owner", "", { type: "select", options: [["", "On whose phone?"]].concat(S.cast.filter(isProfile).filter(function (x) { return x !== c; }).map(function (x) { return [slugOf(x), nameOf(x)]; })) }) +
-          field(Q + ".saved." + k + ".as", "", { ph: "Saved as" }) + btn("saved-del:" + i + ":" + k, "&times;", "Remove") + "</div>" +
-          field(Q + ".saved." + k + ".pic", "", { type: "url", ph: "Picture on their phone (optional): https://..." }) + "</div>");
-      });
-      h.push(btn("saved-add:" + i, "+ Saved as"));
-      h.push('<p class="hint">Different on one app (only fill in what\'s different):</p>');
+      h.push('<h4 class="fb-h">Differences on specific apps</h4><p class="hint">Only fill in what\'s different.</p>');
       MP.APPS.forEach(function (a) {
         h.push('<div class="fb-app"><b>' + a.label + "</b>" + field(Q + ".apps." + a.key + ".pic", "", { type: "url", ph: "Picture link" }) +
           field(Q + ".apps." + a.key + ".name", "", { ph: "Name" }) + (a.key === "gm" ? "" : field(Q + ".apps." + a.key + ".handle", "", { ph: "Handle" })) + "</div>");
       });
       h.push('<div class="fb-row">' + field(Q + ".dccolon", "Different name colour on Discord", { type: "check" }) + field(Q + ".dccol", "", { type: "color" }) + "</div>");
       h.push(field(Q + ".tbsq", "Square Tumblr picture", { type: "check" }));
-      h.push('<p class="hint">Extra accounts: a private Instagram, a burner, a work email.</p>');
+      h.push('<p class="hint">WhatsApp wallpaper on their phone:</p>');
+      h.push('<div class="fb-row">' + field(Q + ".wallcolon", "Colour", { type: "check" }) + field(Q + ".wallcol", "", { type: "color" }) + "</div>");
+      h.push(field(Q + ".wallpic", "", { type: "url", ph: "Or a picture link", wrap: true }));
+      h.push('<h4 class="fb-h">Appearance on other phones</h4>');
+      c.prof.saved.forEach(function (s, k) {
+        h.push('<div class="fb-acct"><div class="fb-row">' + field(Q + ".saved." + k + ".owner", "", { type: "select", options: [["", "On whose phone?"]].concat(S.cast.filter(isProfile).filter(function (x) { return x !== c; }).map(function (x) { return [slugOf(x), nameOf(x)]; })) }) +
+          field(Q + ".saved." + k + ".as", "", { ph: "Saved as" }) + btn("saved-del:" + i + ":" + k, "&times;", "Remove") + "</div>" +
+          field(Q + ".saved." + k + ".pic", "", { type: "url", ph: "Picture on their phone (optional): https://..." }) + "</div>");
+      });
+      h.push(btn("saved-add:" + i, "+ Saved as"));
+      h.push('<h4 class="fb-h">Extra accounts</h4><p class="hint">A private Instagram, a burner, a work email.</p>');
       c.prof.accounts.forEach(function (x, k) {
         var A = Q + ".accounts." + k;
         h.push('<div class="fb-acct"><div class="fb-row"><span>acc-</span>' + field(A + ".acc", "", { ph: "burner" }) +
@@ -979,9 +983,6 @@
           field(A + ".sq", "Square Tumblr picture", { type: "check" }) + "</div>");
       });
       h.push(btn("acct-add:" + i, "+ Extra account"));
-      h.push('<p class="hint">WhatsApp wallpaper on their phone:</p>');
-      h.push('<div class="fb-row">' + field(Q + ".wallcolon", "Colour", { type: "check" }) + field(Q + ".wallcol", "", { type: "color" }) + "</div>");
-      h.push(field(Q + ".wallpic", "", { type: "url", ph: "Or a picture link", wrap: true }));
       h.push("</details>");
     }
     h.push("</details>");
