@@ -219,18 +219,18 @@ window.FB_EXAMPLES = [
       { name: "Ryan", profile: "ryan" }, { name: "Canada group", profile: "gc-canada" }],
     chats: [
       {
-        chat: { type: "wa", pov: "Ilya", theme: "theme-auto", noTimes: true, group: true, header: "bar", title: "Canada is most gay", sub: "Hockey Bear, Old Man Scott, You", gpFrom: "Canada group", bar: "empty" },
+        chat: { type: "wa", pov: "Ilya", theme: "theme-auto", group: true, header: "bar", title: "Canada is most gay", sub: "Hockey Bear, Old Man Scott, You", gpFrom: "Canada group", bar: "empty" },
         msgs: [
           ["Scott", "Hey Ilya, you mind if I add someone to the chat?"],
-          ["Ilya", "you found another gay hockey player?"],
+          ["Ilya", "you found another gay hockey player?", { tick: "" }],
           ["Scott", "I’m just… I’m hearing things out of a particular locker room that makes me think some things."],
           ["Scott", "You don’t happen to know something you’re not telling me?"],
-          ["Ilya", "I know many things you don’t. how to score goals. how to use twitter. list is very long."],
+          ["Ilya", "I know many things you don’t. how to score goals. how to use twitter. list is very long.", { tick: "" }],
           ["Scott", "I don’t know why I keep expecting you to be serious."]
         ]
       },
       {
-        chat: { type: "wa", pov: "Ilya", theme: "theme-auto", noTimes: true, header: "bar", sub: "", bar: "none" },
+        chat: { type: "wa", pov: "Ilya", theme: "theme-auto", header: "bar", sub: "", bar: "none" },
         msgs: [
           ["Scott", "Heads up, because I know you’re close with Hollander and you might want to bring it up to him."],
           ["Scott", "The AHL guy they brought in to cover Mitty’s injury time reached out and, uh"],
@@ -238,47 +238,47 @@ window.FB_EXAMPLES = [
         ]
       },
       {
-        chat: { type: "wa", pov: "Ilya", theme: "theme-auto", noTimes: true, header: "bar", sub: "", bar: "empty" },
+        chat: { type: "wa", pov: "Ilya", theme: "theme-auto", header: "bar", sub: "", bar: "empty" },
         msgs: [
-          ["Ilya", "I think Scott has heard about your coming out."],
-          ["Ilya", "I also think he has heard that your team sucks."],
-          ["Ilya", "What do you want me to do?"],
+          ["Ilya", "I think Scott has heard about your coming out.", { tick: "" }],
+          ["Ilya", "I also think he has heard that your team sucks.", { tick: "" }],
+          ["Ilya", "What do you want me to do?", { tick: "" }],
           ["Shane", "I’m so tired I don’t know."],
-          ["Ilya", "are you home?"],
+          ["Ilya", "are you home?", { tick: "" }],
           ["Shane", "Nearly."],
-          ["Ilya", "Tell me when you’re home [[любимый|my love]]"]
+          ["Ilya", "Tell me when you’re home [[любимый|my love]]", { tick: "" }]
         ]
       },
       {
-        chat: { type: "wa", pov: "Ilya", theme: "theme-auto", noTimes: true, header: "bar", sub: "", bar: "none" },
+        chat: { type: "wa", pov: "Ilya", theme: "theme-auto", header: "bar", sub: "", bar: "none" },
         msgs: [
-          ["Ilya", "I have spoken to Hollander. I think he will reach out to talk to you soon. Be nice."],
+          ["Ilya", "I have spoken to Hollander. I think he will reach out to talk to you soon. Be nice.", { tick: "" }],
           ["Scott", "I’m always nice, Roz. But I’m not gonna be nice if he’s just letting the room bully one of his teammates."],
-          ["Ilya", "okay"]
+          ["Ilya", "okay", { tick: "" }]
         ]
       },
       {
-        chat: { type: "wa", pov: "Ilya", theme: "theme-auto", noTimes: true, header: "bar", sub: "", bar: "none" },
+        chat: { type: "wa", pov: "Ilya", theme: "theme-auto", header: "bar", sub: "", bar: "none" },
         msgs: [
           ["Scott", "Hey Ilya, call me when you get a minute."]
         ]
       },
       {
-        chat: { type: "wa", pov: "Ilya", theme: "theme-auto", noTimes: true, group: true, header: "bar", title: "Canada is most gay", sub: "Hockey Bear, Old Man Scott, You", gpFrom: "Canada group", bar: "none" },
+        chat: { type: "wa", pov: "Ilya", theme: "theme-auto", group: true, header: "bar", title: "Canada is most gay", sub: "Hockey Bear, Old Man Scott, You", gpFrom: "Canada group", bar: "none" },
         msgs: [
           ["Ryan", "I’m going to Harvey’s funeral. We weren’t close, but I have to."]
         ]
       },
       {
-        chat: { type: "wa", pov: "Ilya", theme: "theme-auto", noTimes: true, group: true, header: "none", bar: "none" },
+        chat: { type: "wa", pov: "Ilya", theme: "theme-auto", group: true, header: "none", bar: "none" },
         msgs: [
           ["Ryan", "Are you?"]
         ]
       },
       {
-        chat: { type: "wa", pov: "Ilya", theme: "theme-auto", noTimes: true, group: true, header: "none", bar: "none" },
+        chat: { type: "wa", pov: "Ilya", theme: "theme-auto", group: true, header: "none", bar: "none" },
         msgs: [
-          ["Ilya", "See you there"],
+          ["Ilya", "See you there", { tick: "" }],
           ["Scott", "See you there"]
         ]
       },
@@ -289,7 +289,7 @@ window.FB_EXAMPLES = [
         ]
       },
       {
-        chat: { type: "wa", pov: "Ilya", theme: "theme-auto", noTimes: true, group: true, header: "bar", title: "Canada is most gay", sub: "Hockey Bear, Old Man Scott, You", gpFrom: "Canada group", bar: "none" },
+        chat: { type: "wa", pov: "Ilya", theme: "theme-auto", group: true, header: "bar", title: "Canada is most gay", sub: "Hockey Bear, Old Man Scott, You", gpFrom: "Canada group", bar: "none" },
         msgs: [
           ["Scott", "Thanks for the captains you sent my way."],
           ["Scott", "Sorry we couldn’t get Toronto on the list"],
