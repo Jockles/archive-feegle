@@ -411,6 +411,23 @@
 
 </details>
 
+<h3>Photos Without a Caption</h3>
+
+<pre><code>#workskin .wa .msg.gallery { position: relative; }
+
+#workskin .wa .msg.gallery .wa-photos.one + .wa-time {
+  position: absolute;
+  right: 0.25em;
+  bottom: 0.3em;
+  margin: 0;
+  padding: 3em 0.6em 0.35em 6em;
+  border-bottom-right-radius: 6px;
+  background: radial-gradient(farthest-side at 100% 100%, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0));
+  color: #ffffff;
+}</code></pre>
+
+<p>When the time comes straight after a single photo (<code>+</code> means "straight after"), it's pinned to the photo's bottom corner with <code>position: absolute</code>. Its big padding makes room for the fade, a <code>radial-gradient</code> that's dark in the very corner and fades to see-through, so the white time shows up on any picture. With a caption in between, the rule doesn't match, and the time goes back under the caption.</p>
+
 <h3>Captions and Links</h3>
 
 <pre><code>#workskin .wa .wa-caption {

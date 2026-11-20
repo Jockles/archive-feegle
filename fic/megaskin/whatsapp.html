@@ -7,7 +7,7 @@
   <title>Megaskin, Chapter 6: WhatsApp | jockles.com</title>
   <link rel="stylesheet" href="../../style.css">
   <script src="../../theme.js"></script>
-  <link rel="stylesheet" href="megaskin.css?v=dd20ce60" id="creator-style">
+  <link rel="stylesheet" href="megaskin.css?v=5335c80b" id="creator-style">
 </head>
 <body>
 <header>
@@ -825,6 +825,18 @@
 
 <p>For one photo on its own, add <code>gallery</code> to the message and use a <code>wa-photos one</code> box with a single <code>wa-photo</code> inside, with the picture tag in it. A single photo isn't cropped into a square, so it keeps its own shape, whether it's tall or wide - a really tall one gets trimmed at the bottom, so it doesn't take over the chat. Don't forget the alt text.</p>
 
+<div class="mob wa theme-auto"><div class="mob-body"><div class="msg in tail gallery"><p class="hide"><em>Lily:</em></p>
+  <p class="wa-photos one"><span class="wa-photo"><img src="https://images.squidge.org/images/2026/11/16/Cat2.jpg" alt="Black and white cat screaming at the camera, on a red patterned rug"></span></p>
+  <p class="wa-time">14:23</p>
+</div></div></div>
+
+<pre><code>&lt;div class="msg in tail gallery"&gt;&lt;p class="hide"&gt;&lt;em&gt;Lily:&lt;/em&gt;&lt;/p&gt;
+  &lt;p class="wa-photos one"&gt;&lt;span class="wa-photo"&gt;&lt;img src="https://images.squidge.org/images/2026/11/16/Cat2.jpg" alt="Black and white cat screaming at the camera, on a red patterned rug"&gt;&lt;/span&gt;&lt;/p&gt;
+  &lt;p class="wa-time"&gt;14:23&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+
+<p>With no caption, the time sits on the bottom corner of the photo, in white on a dark fade so it shows up on any picture, in light and dark mode alike.</p>
+
 <p>To write a message under the photo, the way WhatsApp shows a caption, add a <code>wa-caption</code> paragraph after the photo box, before the time:</p>
 
 <div class="mob wa theme-auto"><div class="mob-body"><div class="msg in tail gallery"><p class="hide"><em>Lily:</em></p>
@@ -1464,7 +1476,7 @@
 <ul>
   <li>Plain colours: <code>bg-beige</code> (WhatsApp's colour without the doodles), <code>bg-white</code>, <code>bg-sage</code>, <code>bg-sky</code>, <code>bg-blush</code>, <code>bg-lilac</code>, <code>bg-slate</code>, <code>bg-navy</code>, <code>bg-forest</code>, <code>bg-plum</code>, <code>bg-black</code></li>
   <li>Gradients: <code>bg-sunset</code>, <code>bg-ocean</code>, <code>bg-night</code>, <code>bg-dusk</code></li>
-  <li>Your own picture: <code>bg-image1</code>. A picture has to be linked from the web, so it's set up in the CSS, and <a href="whatsapp-css.html#s7-20">Wallpapers</a> explains how. Once it's set up, you use it like any of the others: <code>&lt;div class=&quot;mob wa theme-auto bg-image1&quot;&gt;</code></li>
+  <li>Your own picture: <code>bg-image1</code>. A picture has to be linked from the web, so it's set up in the CSS, and <a href="whatsapp-css.html#s7-21">Wallpapers</a> explains how. Once it's set up, you use it like any of the others: <code>&lt;div class=&quot;mob wa theme-auto bg-image1&quot;&gt;</code></li>
 </ul>
 
 <p><strong>Note:</strong> a background class overrides the light and dark theme background, so pick a light or dark one to suit the theme you're using. The bubbles, ticks and text keep their theme colours on top of it.</p>
