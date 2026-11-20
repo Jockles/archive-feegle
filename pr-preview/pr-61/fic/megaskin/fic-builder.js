@@ -785,7 +785,7 @@
     "cast.N.prof.namecol": "The colour of their name in WhatsApp groups and on Discord.",
     "cast.N.prof.handle": "Their username on apps like Instagram and Tumblr, without the @.",
     "cast.N.prof.email": "Their email address, for the email apps. It doesn't have to be real.",
-    "cast.N.prof.saved.N.as": "What they're saved as on someone else's phone, like 'Mum' or a nickname. Pick whose phone first.",
+    "cast.N.prof.saved.N.as": "What they're saved as on someone else's phone, like 'Mum' or a nickname. Pick whose phone first. For someone who isn't in the cast yet, pick 'New person', type their name and press 'Add them': they get a new profile, which goes in the profile CSS.",
     "cast.N.prof.accounts.N.acc": "A short label for the extra account, like 'burner' or 'work'. Small letters and dashes only. Then pick the app and fill in only what's different.",
     "cast.N.prof.wallcolon": "Tick this to colour the background of WhatsApp chats on their phone, then pick the colour.",
     "cast.N.prof.wallpic": "Or a picture for the background instead. " + PIC,
@@ -969,9 +969,12 @@
       h.push(field(Q + ".wallpic", "", { type: "url", ph: "Or a picture link", wrap: true }));
       h.push('<h4 class="fb-h">Appearance on other phones</h4>');
       c.prof.saved.forEach(function (s, k) {
-        h.push('<div class="fb-acct"><div class="fb-row">' + field(Q + ".saved." + k + ".owner", "", { type: "select", options: [["", "On whose phone?"]].concat(S.cast.filter(isProfile).filter(function (x) { return x !== c; }).map(function (x) { return [slugOf(x), nameOf(x)]; })) }) +
-          field(Q + ".saved." + k + ".as", "", { ph: "Saved as" }) + btn("saved-del:" + i + ":" + k, "&times;", "Remove") + "</div>" +
-          field(Q + ".saved." + k + ".pic", "", { type: "url", ph: "Picture on their phone (optional): https://..." }) + "</div>");
+        var S2 = Q + ".saved." + k;
+        h.push('<div class="fb-acct"><div class="fb-row">' + field(S2 + ".owner", "", { type: "select", re: true, options: [["", "On whose phone?"]].concat(S.cast.filter(isProfile).filter(function (x) { return x !== c; }).map(function (x) { return [slugOf(x), nameOf(x)]; })).concat([["+new", "New person"]]) }) +
+          field(S2 + ".as", "", { ph: "Saved as" }) + btn("saved-del:" + i + ":" + k, "&times;", "Remove") + "</div>" +
+          // someone not in the cast yet: type their name and they're added as a new profile
+          (s.owner === "+new" ? '<div class="fb-row">' + field(S2 + ".newName", "", { ph: "Their name" }) + btn("saved-new:" + i + ":" + k, "Add them") + "</div>" : "") +
+          field(S2 + ".pic", "", { type: "url", ph: "Picture on their phone (optional): https://..." }) + "</div>");
       });
       h.push(btn("saved-add:" + i, "+ Saved as"));
       h.push('<h4 class="fb-h">Extra accounts</h4><p class="hint">A private Instagram, a burner, a work email.</p>');
@@ -1392,6 +1395,15 @@
         if (!confirm("Remove " + nameOf(S.cast[n[0]]) + " from the cast? Their messages will disappear too.")) return;
         S.cast.splice(n[0], 1); break;
       case "saved-add": S.cast[n[0]].prof.saved.push({ owner: "", as: "", pic: "" }); break;
+      case "saved-new": {
+        // a new profile for the phone's owner, named as typed, so it goes in the profile CSS
+        var sv = S.cast[n[0]].prof.saved[n[1]], nm = (sv.newName || "").trim();
+        if (!nm) { alert("Type their name first."); return; }
+        var nc = newChar(nm, "new"); nc.open = false;
+        S.cast.push(nc);
+        sv.owner = slugOf(nc); delete sv.newName;
+        break;
+      }
       case "saved-del": S.cast[n[0]].prof.saved.splice(n[1], 1); break;
       case "acct-add": S.cast[n[0]].prof.accounts.push({ acc: "", app: "ig", pic: "", name: "", handle: "", sq: false }); break;
       case "acct-del": S.cast[n[0]].prof.accounts.splice(n[1], 1); break;
