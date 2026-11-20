@@ -62,7 +62,7 @@
   <li><a href="#s7-4">7.4 Bubble Tails</a></li>
   <li><a href="#s7-5">7.5 Time, Ticks and Quotes</a></li>
   <li><a href="#s7-6">7.6 Date Pills and System Notices</a></li>
-  <li><a href="#s7-7">7.7 The Group Header</a></li>
+  <li><a href="#s7-7">7.7 The Header</a></li>
   <li><a href="#s7-8">7.8 Profile Pictures and the Ten Colours</a></li>
   <li><a href="#s7-9">7.9 Group Messages With Pictures</a></li>
   <li><a href="#s7-10">7.10 Reactions and Large Emoji</a></li>
@@ -192,7 +192,7 @@
 
 <p>The core's <code>mob-sys</code> is a full-width centred line. WhatsApp shrinks it to fit its words with <code>display: table</code>, centres it with <code>auto</code> on both sides, and gives it a white background, which turns it into a pill.</p>
 
-<h3 id="s7-7">7.7 The Group Header</h3>
+<h3 id="s7-7">7.7 The Header</h3>
 
 <p>The header with the back arrow, picture and icons is a table, because tables are one of the few layouts AO3 never rearranges. (It's the approach from the WhatsApp group chat skin in the credits.)</p>
 
@@ -718,7 +718,7 @@
 <p>WhatsApp is a long module, so it's worth trimming if you only use a few parts. These come out cleanly - search for the class names and delete every rule with them in, including in the dark and auto blocks:</p>
 
 <ul>
-  <li><strong>Group header:</strong> <code>wa-bar</code>, <code>wa-back</code>, <code>wa-title</code>, <code>wa-sub</code>, <code>wa-actions</code>. Keep <code>wa-pfp</code> if you use pictures beside messages.</li>
+  <li><strong>Header with a picture and icons:</strong> <code>wa-bar</code>, <code>wa-back</code>, <code>wa-title</code>, <code>wa-sub</code>, <code>wa-actions</code>. Keep <code>wa-pfp</code> if you use pictures beside messages.</li>
   <li><strong>Pictures beside messages:</strong> <code>wa-row</code> and <code>pad</code>, and <code>wa-pfp</code> with its colours if you don't use the group header either.</li>
   <li><strong>Reactions:</strong> <code>wa-reacts</code> and <code>wa-count</code>.</li>
   <li><strong>Message bar:</strong> <code>wa-input</code>, <code>wa-field</code>, <code>wa-ph</code>, <code>wa-mic</code>.</li>
