@@ -64,7 +64,7 @@
       acc: "", verified: false, label: "", qName: "", qHandle: "", qText: "", note: "", date: "",
       reposts: "", likes: "", replies: "", liked: false, reposted: false, poll: "", pollinfo: "",
       vUrl: "", vTitle: "", vDesc: "", warn: false,
-      views: "", saved: false, likeClick: true, locked: false, noRepost: false, fan: "", fanMask: false, voice: "", call: "", missed: false, callLen: "", contact: "", fwd: false, pollTap: false, pollVote: "0", pollShowVote: false, pollVoted: "0" };
+      views: "", saved: false, saveClick: false, likeClick: true, locked: false, noRepost: false, fan: "", fanMask: false, voice: "", call: "", missed: false, callLen: "", contact: "", fwd: false, pollTap: false, pollVote: "0", pollShowVote: false, pollVoted: "0" };
   }
   // the group's picture in the WhatsApp header: a one-off circle, set up the same way
   function newGroupPic() { return { colour: "5", showInitials: true, initials: "", pic: "", alt: "", land: false }; }
@@ -91,12 +91,22 @@
       S.cast.push(c);
       ids[p.name] = c.id;
     });
-    var b = newBlock(ex.chat.type);
-    Object.keys(ex.chat).forEach(function (k) { if (k !== "type") b[k] = ex.chat[k]; });
-    b.pov = ids[ex.chat.pov] || (S.cast[0] && S.cast[0].id) || "";
-    if (ex.chat.from) b.from = ids[ex.chat.from];
-    if (ex.chat.faces) b.faces = ex.chat.faces.map(function (n) { return ids[n]; });
-    b.msgs = ex.msgs.map(function (line) {
+    // an example can have its own profiles (pasted in, like a fic's own profile CSS) and more than one chat
+    if (ex.pasted) S.pasted = ex.pasted;
+    (ex.chats || [{ chat: ex.chat, msgs: ex.msgs }]).forEach(function (one, n) {
+      var b = exampleBlock(one.chat, one.msgs, ids);
+      if (n) b.fold = true; // only the first chat starts open
+      S.blocks.push(b);
+    });
+  }
+  function exampleBlock(chat, msgs, ids) {
+    var b = newBlock(chat.type);
+    Object.keys(chat).forEach(function (k) { if (k !== "type" && k !== "gpFrom") b[k] = chat[k]; });
+    b.pov = ids[chat.pov] || (S.cast[0] && S.cast[0].id) || "";
+    if (chat.from) b.from = ids[chat.from];
+    if (chat.faces) b.faces = chat.faces.map(function (n) { return ids[n]; });
+    if (chat.gpFrom) b.gp.from = ids[chat.gpFrom];
+    b.msgs = msgs.map(function (line) {
       var x = line[2] || {};
       var m = newMsg(ids[line[0]] || line[0], line[1], x.time);
       Object.keys(x).forEach(function (k) { if (["reacts", "photos", "link", "reply", "time", "by", "contact"].indexOf(k) < 0) m[k] = x[k]; });
@@ -109,8 +119,8 @@
       return m;
     });
     // a reply: WhatsApp quotes a message, a tweet replies to a person
-    ex.msgs.forEach(function (line, i) { if (line[2] && line[2].reply !== undefined) b.msgs[i].replyTo = b.msgs[line[2].reply][b.type === "twthread" ? "from" : "id"]; });
-    S.blocks.push(b);
+    msgs.forEach(function (line, i) { if (line[2] && line[2].reply !== undefined) b.msgs[i].replyTo = b.msgs[line[2].reply][b.type === "twthread" ? "from" : "id"]; });
+    return b;
   }
   function starter() { loadExample(0); }
 
@@ -131,7 +141,8 @@
   function pastedProfiles(css) {
     css = css || S.pasted || "";
     var out = [];
-    var re = /\.pfp\.pfp-([a-z0-9-]+)/g, m;
+    // a profile's own picture rule (not a rule that only changes it in one app or on one phone)
+    var re = /#workskin \.pfp\.pfp-([a-z0-9-]+)\s*[{,]/g, m;
     while ((m = re.exec(css))) {
       var slug = m[1];
       if (out.some(function (p) { return p[0] === slug; })) continue;
@@ -187,13 +198,19 @@
     if (c.initials.trim()) return c.initials.trim();
     return nameOf(c).split(/\s+/).slice(0, 2).map(function (w) { return w.charAt(0); }).join("").toUpperCase();
   }
+  // whose phone the chat being made is on, so the hidden names match what they have someone saved as
+  var povOwner = "";
+  function shownName(c) {
+    var sv = isProfile(c) && povOwner && c.prof && (c.prof.saved || []).filter(function (x) { return MP.slugify(x.owner) === povOwner && t(x.as); })[0];
+    return sv ? t(sv.as) : nameOf(c);
+  }
   function profileName(c) {
     // a profile's name span, with the typed name inside for readers with the style off
-    return '<span class="name pfp-' + slugOf(c) + '"><span class="hide">' + esc(nameOf(c)) + "</span></span>";
+    return '<span class="name pfp-' + slugOf(c) + '"><span class="hide">' + esc(shownName(c)) + "</span></span>";
   }
   function plainName(c, wa) {
     // the label for readers with the style off
-    return (wa && c && !isProfile(c) && c.num.trim() ? "~ " : "") + nameOf(c);
+    return (wa && c && !isProfile(c) && c.num.trim() ? "~ " : "") + shownName(c);
   }
   function waName(c) {
     // a name as WhatsApp shows it in a group: profile, or typed with a phone number
@@ -324,7 +341,8 @@
     return '<p class="wa-pfp ' + colourClass(c) + '">' + (c.showInitials !== false ? esc(initials(c)) : "") + "</p>";
   }
   function groupPic(b) {
-    var g = b.gp || newGroupPic();
+    var g = b.gp || newGroupPic(), pc = char(g.from);
+    if (isProfile(pc)) return pc; // a group picture made as a profile, so it can be used in more than one chat or fic
     return { kind: "oneoff", name: b.title.trim() || "Group", colour: g.colour, showInitials: g.showInitials,
       initials: g.initials || (b.title.trim() || "G").charAt(0).toUpperCase(), pic: g.pic, alt: g.alt, land: g.land };
   }
@@ -354,7 +372,7 @@
         '      <td class="wa-title">' + headTitle(b) + "</td>",
         '      <td rowspan="2" class="wa-actions"><span class="ic ic-video">&#127909;</span> <span class="ic ic-menu">&#8942;</span></td>',
         "    </tr>", "    <tr>", '      <td class="wa-sub">' + esc(sub) + "</td>", "    </tr>", "  </tbody>", "</table>"], 1));
-    } else L.push("  " + mobHead(b));
+    } else if (b.header !== "none") L.push("  " + mobHead(b));
     L.push('  <div class="mob-body">');
     var body = [];
     b.msgs.forEach(function (m) {
@@ -429,7 +447,7 @@
       }
       var tick = !out || card ? "" : m.tick === "read" ? ' <span class="wa-read ic ic-read">✓✓</span>' :
         m.tick === "delivered" ? ' <span class="ic ic-delivered">✓✓</span>' : m.tick === "sent" ? ' <span class="ic ic-sent">✓</span>' : "";
-      inner.push('<p class="wa-time">' + (m.edited && !card ? "Edited " : "") + esc(m.time.trim()) + tick + "</p>");
+      if (!b.noTimes) inner.push('<p class="wa-time">' + (m.edited && !card ? "Edited " : "") + esc(m.time.trim()) + tick + "</p>");
       if (card === "contact") inner.push('<p class="wa-cbtn">Message</p>');
       var block = [open].concat(ind(inner.join("\n").split("\n"), 1)).concat(["</div>"]);
       if (rows) {
@@ -548,8 +566,8 @@
 
   var POLL_SIZES = [0, 10, 20, 25, 30, 33, 40, 50, 60, 67, 70, 75, 80, 90, 100];
   function twText(text) {
-    // hashtags and @mentions go blue
-    return fmt(text).replace(/(^|[\s(])([#@][A-Za-z0-9_]+)/g, '$1<span class="tw-link">$2</span>');
+    // hashtags and @mentions go blue, and a new line in the box is a new line in the tweet
+    return fmt(t(text)).replace(/(^|[\s(])([#@][A-Za-z0-9_]+)/g, '$1<span class="tw-link">$2</span>').replace(/\n/g, "<br>");
   }
   // the fan account mask: ticked by hand, or (for work saved before the tick box) when the line says Fan account
   function fanMask(m) { return m.fanMask === undefined ? /^fan account$/i.test(t(m.fan)) : !!m.fanMask; }
@@ -632,7 +650,9 @@
       (t(m.likes) ? " " + esc(t(m.likes)) : "") + '</span><span class="hide"> likes (</span><span class="on"> ' + esc(bumpCount(m.likes)) + '</span><span class="hide"> once liked)</span></summary></details>');
     else L.push(stat(m.liked ? " tw-liked" : "", "like", 9825, m.likes, "like", "likes"));
     if (!old && t(m.views) !== "-") L.push(stat("", "views", 128202, m.views, "view", "views"));
-    if (!old) L.push(stat(" tw-end" + (m.saved ? " tw-saved" : ""), "bookmark", 128278, ""));
+    // a bookmark readers can click turns blue
+    if (!old && m.saveClick) L.push('  <details class="tw-stat tw-end tw-tog"' + (m.saved ? " open" : "") + '><summary><span class="ic ic-tw-bookmark">&#128278;</span><span class="hide"> Bookmark</span></summary></details>');
+    else if (!old) L.push(stat(" tw-end" + (m.saved ? " tw-saved" : ""), "bookmark", 128278, ""));
     L.push(stat(" tw-end", "share", 8679, ""));
     return L.concat(["</div>"]);
   }
@@ -670,7 +690,7 @@
     if (has(m, "hasNote") && t(m.note)) L.push('<p class="tw-note">' + esc(t(m.note)) + "</p>");
     if (t(m.date)) L.push('<p class="tw-date">' + esc(t(m.date)) + "</p>");
     L = L.concat(twStats(b, m));
-    var open = kind === "feed" && !b.app ? '<div class="mob tw ' + b.theme + (b.width ? " " + b.width : "") + '">' : kind === "reply" ? '<div class="mob tw-reply">' : '<div class="mob tw">';
+    var open = kind === "feed" && !b.app ? '<div class="mob tw ' + b.theme + (b.width ? " " + b.width : "") + (b.scroll ? " " + b.scroll : "") + '">' : kind === "reply" ? '<div class="mob tw-reply">' : '<div class="mob tw">';
     return [open].concat(ind(L, 1)).concat(["</div>"]);
   }
   function twFeedHTML(b) {
@@ -702,6 +722,8 @@
   function allHTML() {
     tlCount = 0;
     return S.blocks.map(function (b) {
+      var pov = char(b.pov);
+      povOwner = (b.type === "imsg" || b.type === "wa") && isProfile(pov) ? slugOf(pov) : "";
       if (b.type === "imsg") return imsgHTML(b);
       if (b.type === "wa") return waHTML(b);
       if (b.type === "twthread") return twThreadHTML(b);
@@ -762,11 +784,14 @@
     "blocks.N.theme": "A light or dark phone. 'Auto' follows the reader's own light or dark setting.",
     "blocks.N.width": "'Phone width' looks like a phone. 'Full width' fills the page.",
     "blocks.N.scroll": "For a long chat. 'Scroll inside the phone' keeps it phone-sized and readers scroll the messages. 'Show it all' makes the phone as long as the chat.",
-    "blocks.N.header": "'Simple' shows the name. 'With picture and icons' adds their picture and the call buttons, like the real app.",
+        "blocks.N.noTimes": "Leaves out the time and ticks under every message, for a story that doesn't say when things were sent.",
+    "blocks.N.scroll:tw": "A very long tweet scrolls inside its box. 'Show it all' makes the box as long as the tweet.",
+    "blocks.N.header": "'Simple' shows the name. 'With picture and icons' adds their picture and the call buttons, like the real app. 'None' leaves the top off, for when a chat carries on after a bit of story.",
     "blocks.N.bg": "The pattern behind the messages.",
     "blocks.N.bar": "The box at the bottom where you'd type. 'Empty' shows it with nothing in it. 'Something half-typed' shows a message the phone owner hasn't sent yet.",
     "blocks.N.barText": "What the phone owner is halfway through typing.",
     "blocks.N.cursor": "Adds a flashing line at the end of the half-typed message, as if the phone owner is still typing it.",
+    "blocks.N.gp.from": "Use a profile's picture for the group, so the same group can have the same picture in every chat and every fic. Make it in the Profile Maker like a person, or paste one in. Pick 'No, set one up here' to make a one-off picture just for this chat.",
     "blocks.N.gp.colour": "The group's picture works just like a character's: a coloured circle with letters in it, or a picture link, which replaces the circle and letters.",
     "blocks.N.script": "The quickest way to add messages. Put each message on its own line: the name, a colon, then the message, like 'Ilya: are you awake'. Then press 'Add these messages', and they're added to the list above.",
     "blocks.N.msgs.N.from:sys": "Date or notice lines are the small lines in the middle of the chat. The second box is what the line says, like 'Today 11:48 PM' or 'Lily left the group'. The buttons: the arrows move the line, + adds a new message under it, and &times; deletes it. To turn it into a message, change the first box to a character.",
@@ -824,6 +849,7 @@
     "blocks.N.msgs.N.likeClick:tw": "Readers can click the heart to like the tweet: it turns red and the number goes up by one.",
     "blocks.N.msgs.N.liked:tw": "Shows the heart already red, as if the phone owner has liked it. If readers can click it, a click un-likes it.",
     "blocks.N.msgs.N.views:tw": "The number of views at the end of the row of buttons, like '71K' or '0'. Leave it empty for the views button with no number, or type a dash '-' to leave the views button out.",
+    "blocks.N.msgs.N.saveClick:tw": "Readers can click the bookmark button to save the tweet, and it turns blue.",
     "blocks.N.msgs.N.saved:tw": "Turns the bookmark button blue, as if the phone owner has saved the tweet.",
     "blocks.N.msgs.N.date:tw": "The small grey line at the bottom of the tweet. A tweet opened on its own usually shows the exact time and date here, like '8:23 AM · 11 May 23', but you can put any words you like. Leave it empty for a reply or a tweet on a feed, so it looks real.",
     "blocks.N.msgs.N.poll:tw": "One option per line. For a finished or tappable poll, put the percentage after each one, like 'Montreal 58%' or 'Boston 3.2%'. The bar is drawn at the nearest size the skin has.",
@@ -962,7 +988,7 @@
     h.push('<div class="fb-row">' + field(P + ".from", "", { type: "select", re: true, help: m.from === "sys" || m.from === "typing" ? m.from : "", options: speakerOptions(b) }));
     if (m.from === "typing") { typer(b, m); h.push(field(P + ".by", "", { type: "select", re: true, options: S.cast.map(function (c) { return [c.id, nameOf(c) + (c.id === b.pov ? " (phone owner)" : "")]; }) })); }
     else h.push(field(P + ".text", "", { ph: m.from === "sys" ? "Today 11:48 PM" : m.photos.length || m.link ? "(no text, open extras for more)" : "Message", cls: "fb-text" }));
-    if (wa && m.from !== "sys" && m.from !== "typing") h.push(field(P + ".time", "", { ph: "09:15", cls: "fb-time" }));
+    if (wa && !b.noTimes && m.from !== "sys" && m.from !== "typing") h.push(field(P + ".time", "", { ph: "09:15", cls: "fb-time" }));
     h.push('<span class="fb-tools">' + (m.from === "sys" || m.from === "typing" ? "" : btn("msg-more:" + bi + ":" + mi, m.open ? "Less" : "Extras", "Extras for this message")) +
       btn("msg-up:" + bi + ":" + mi, "&uarr;", "Move up") + btn("msg-down:" + bi + ":" + mi, "&darr;", "Move down") +
       btn("msg-ins:" + bi + ":" + mi, "+", "Add a message under this one") + btn("msg-del:" + bi + ":" + mi, "&times;", "Delete this message") + "</span></div>");
@@ -984,7 +1010,7 @@
         h.push(btn("tap-add:" + bi + ":" + mi, "+ Tapback"));
         h.push(field(P + ".status", "Line under it (e.g. Delivered, or Read 11:52 PM)", {}));
       } else {
-        if (m.from === b.pov) h.push(field(P + ".tick", "Ticks", { type: "select", options: [["read", "Read (blue)"], ["delivered", "Delivered (grey)"], ["sent", "Sent (one tick)"], ["", "None"]] }));
+        if (m.from === b.pov && !(wa && b.noTimes)) h.push(field(P + ".tick", "Ticks", { type: "select", options: [["read", "Read (blue)"], ["delivered", "Delivered (grey)"], ["sent", "Sent (one tick)"], ["", "None"]] }));
         h.push(field(P + ".big", "Large emoji", { type: "check" }) + field(P + ".fwd", "Forwarded", { type: "check" }));
         h.push(field(P + ".call", "Call", { type: "select", re: true, options: [["", "Not a call"], ["voice", "Voice call"], ["video", "Video call"]] }));
         if (m.call) h.push(field(P + ".missed", "Missed call", { type: "check", re: true }) + (m.missed ? "" : field(P + ".callLen", "How long", { ph: "44 secs" })));
@@ -1087,7 +1113,7 @@
         field(P + ".likes", "Likes", { ph: "2,614" }) + field(P + ".likeClick", "Clickable like", { type: "check", re: true }) +
         field(P + ".liked", m.likeClick ? "Already liked" : "Liked", { type: "check" }) + "</div>" +
         (old ? "" : "<div>" + field(P + ".views", "Views", { ph: "71K" }) + "</div><div>" +
-          field(P + ".saved", "Bookmarked", { type: "check" }) + "</div>") + "</div>");
+          field(P + ".saveClick", "Clickable bookmark", { type: "check", re: true }) + field(P + ".saved", m.saveClick ? "Already bookmarked" : "Bookmarked", { type: "check" }) + "</div>") + "</div>");
       h.push(field(P + ".date", "Small grey bottom text", { ph: "8:23 AM · 11 May 23" }));
       // the bigger extras only open up when they're ticked
       TW_ADDS.forEach(function (a) { if (m[a[0]] === undefined) m[a[0]] = has(m, a[0]); });
@@ -1143,7 +1169,8 @@
     h.push("<div>" + field(P + ".width", "Width", { type: "select", options: [["", "Phone width"], ["wide", "Full width"]] }) + "</div>");
     h.push("<div>" + field(P + ".scroll", "Long chats", { type: "select", options: [["", "Scroll inside the phone"], ["no-scroll", "Show it all"]] }) + "</div>");
     if (wa) {
-      h.push("<div>" + field(P + ".header", "Header", { type: "select", re: true, options: [["simple", "Simple"], ["bar", "With picture and icons"]] }) + "</div>");
+      h.push("<div>" + field(P + ".header", "Header", { type: "select", re: true, options: [["simple", "Simple"], ["bar", "With picture and icons"], ["none", "None"]] }) + "</div>");
+      h.push("<div>" + field(P + ".noTimes", "No times or ticks", { type: "check", re: true }) + "</div>");
       h.push("<div>" + field(P + ".bg", "Background", { type: "select", options: BACKGROUNDS.map(function (x) { return [x, x ? x.charAt(0).toUpperCase() + x.slice(1) : "Normal"]; }) }) + "</div>");
     }
     {
@@ -1157,13 +1184,19 @@
       if (!b.gp) b.gp = newGroupPic();
       var G = P + ".gp";
       h.push('<div class="fb-acct"><p class="hint">The group\'s picture in the header</p>');
-      h.push('<div class="fb-row">' + field(G + ".colour", "", { type: "select", re: true, options: Object.keys(COLOURS).map(function (k) { return [k, "Colour " + k + ": " + COLOUR_NAMES[k]]; }) }) +
-        '<span class="fb-swatch" style="background:' + COLOURS[b.gp.colour] + '"></span>' + "</div>");
-      h.push('<div class="fb-row">' + field(G + ".showInitials", "Initials in the circle", { type: "check", re: true }) +
-        (b.gp.showInitials !== false ? field(G + ".initials", "", { ph: (b.title.trim() || "G").charAt(0).toUpperCase() }) : "") + "</div>");
-      h.push(field(G + ".pic", "Picture link (optional, replaces the colour and initials)", { type: "url", ph: "https://..." }));
-      h.push(field(G + ".alt", "Picture description (optional)", { ph: "Profile picture of " + (b.title.trim() || "the group") }));
-      h.push(field(G + ".land", "Landscape picture", { type: "check" }) + "</div>");
+      // a group picture can come from a profile, like one pasted in, so it can be used in more than one chat or fic
+      var profs = S.cast.filter(isProfile);
+      if (profs.length) h.push(field(G + ".from", "Picture from a profile", { type: "select", re: true, options: [["", "No, set one up here"]].concat(profs.map(function (c) { return [c.id, nameOf(c)]; })) }));
+      if (isProfile(char(b.gp.from))) h.push("</div>");
+      else {
+        h.push('<div class="fb-row">' + field(G + ".colour", "", { type: "select", re: true, options: Object.keys(COLOURS).map(function (k) { return [k, "Colour " + k + ": " + COLOUR_NAMES[k]]; }) }) +
+          '<span class="fb-swatch" style="background:' + COLOURS[b.gp.colour] + '"></span>' + "</div>");
+        h.push('<div class="fb-row">' + field(G + ".showInitials", "Initials in the circle", { type: "check", re: true }) +
+          (b.gp.showInitials !== false ? field(G + ".initials", "", { ph: (b.title.trim() || "G").charAt(0).toUpperCase() }) : "") + "</div>");
+        h.push(field(G + ".pic", "Picture link (optional, replaces the colour and initials)", { type: "url", ph: "https://..." }));
+        h.push(field(G + ".alt", "Picture description (optional)", { ph: "Profile picture of " + (b.title.trim() || "the group") }));
+        h.push(field(G + ".land", "Landscape picture", { type: "check" }) + "</div>");
+      }
     }
     h.push("</details>");
     return h.join("");
@@ -1192,6 +1225,7 @@
         (b.type === "twthread" ? "<div>" + field(P + ".bar", "Tweet your reply bar", { type: "select", options: [["empty", "Yes"], ["none", "No"]] }) + "</div>" : "") +
         "<div>" + field(P + ".era", "Which look", { type: "select", re: true, options: [["", "X (from mid-2023)"], ["tw2020", "Twitter (2020 to mid-2023)"]] }) + "</div>" +
         (b.type === "twfeed" ? "<div>" + field(P + ".app", "Show the tweets", { type: "select", re: true, options: [["", "On their own"], ["app", "Inside the app screen"]] }) + "</div>" +
+          (b.app ? "" : "<div>" + field(P + ".scroll", "Long tweets", { type: "select", options: [["", "Scroll inside the box"], ["no-scroll", "Show it all"]] }) + "</div>") +
           (b.app ? "<div>" + field(P + ".pov", "Whose phone is it? (their picture goes at the top)", { type: "select", options: castOptions() }) + "</div>" : "") : "") + "</div>");
       if (b.type === "twfeed" && b.app && b.era !== "tw2020") h.push(field(P + ".tabs", "Communities in the tabs, after For you and Following (one per line)", { type: "area", rows: 2, ph: "Metros Fans\nHockey Twitter" }));
     }
