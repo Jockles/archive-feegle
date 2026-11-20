@@ -524,10 +524,133 @@
   padding: 4em 1em;
 }
 
+/* one photo with no caption: the time sits on the photo, white on a dark fade, the same in every theme */
+#workskin .wa .msg.gallery { position: relative; }
+
+#workskin .wa .msg.gallery .wa-photos.one + .wa-time {
+  position: absolute;
+  right: 0.25em;
+  bottom: 0.3em;
+  margin: 0;
+  padding: 3em 0.6em 0.35em 6em;
+  border-bottom-right-radius: 6px;
+  background: radial-gradient(farthest-side at 100% 100%, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0));
+  color: #ffffff;
+}
+/* ticks on the fade are white, and stay white once read */
+#workskin .wa .msg.gallery .wa-photos.one + .wa-time .wa-read { color: #ffffff; }
+#workskin .wa .msg.gallery .wa-photos.one + .wa-time .ic.ic-sent { background-image: url(https://images.squidge.org/images/2026/11/20/tick-white.png); }
+#workskin .wa .msg.gallery .wa-photos.one + .wa-time .ic.ic-delivered,
+#workskin .wa .msg.gallery .wa-photos.one + .wa-time .ic.ic-read { background-image: url(https://images.squidge.org/images/2026/11/20/double-tick-white.png); }
+
 /* text under a picture, a gallery or a link card: <p class="wa-caption">...</p>, after the photos or the card and before the time */
 #workskin .wa .wa-caption {
   display: block;
   padding: 0.3em 0.35em 0 0.35em;
+}
+
+/* ---- CALLS: a voice or video call, in a bubble of its own ----
+   <div class="msg out tail call"><p class="wa-call"><span class="wa-call-ic ic ic-wa-call-out">&#128222;</span><span class="hide"> </span><b>Voice call</b><span class="hide"> - </span><span class="wa-call-len">44 secs</span></p><p class="wa-time">09:47</p></div>
+   The round icon is wa-call-ic, then the kind of call in <b>, then how long it lasted (or "Tap to call back"). */
+#workskin .wa .msg.call {
+  position: relative;
+  min-width: 13em;
+  padding: 0.25em;
+}
+
+/* the call sits in a slightly darker box inside the bubble */
+#workskin .wa .wa-call {
+  display: block;
+  overflow: hidden;
+  padding: 0.4em 3.4em 0.4em 0.4em;
+  border-radius: 6px;
+  background: rgba(0, 0, 0, 0.05);
+  line-height: 1.3;
+}
+
+#workskin .wa .wa-call .wa-call-ic {
+  float: left;
+  width: 2.6em;
+  height: 2.6em;
+  margin: 0 0.65em 0 0;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.06);
+  line-height: 2.6em;
+  text-align: center;
+}
+
+/* overflow: hidden keeps the words beside the icon, even when they run onto two lines */
+#workskin .wa .wa-call b {
+  display: block;
+  overflow: hidden;
+  padding-top: 0.15em;
+}
+
+#workskin .wa .wa-call .wa-call-len {
+  display: block;
+  overflow: hidden;
+  font-size: 0.9em;
+  color: #667781;
+}
+
+/* the time sits beside the length instead of on a line of its own */
+#workskin .wa .msg.call .wa-time {
+  position: absolute;
+  right: 0.85em;
+  bottom: 0.75em;
+  margin: 0;
+}
+
+/* ---- CONTACT CARDS: a shared contact, with a Message button along the bottom ----
+   <div class="msg in tail contact"><p class="hide"><em>Lily:</em></p>
+     <p class="wa-contact"><span class="wa-pfp"><span class="pfp pfp-rose"></span></span>Rose Landry</p>
+     <p class="wa-time">18:03</p>
+     <p class="wa-cbtn">Message</p>
+   </div>
+   The picture works like every other wa-pfp: initials with a colour, a picture, or a profile. */
+#workskin .wa .msg.contact {
+  width: 70%;
+  padding: 0;
+}
+
+#workskin .wa .wa-contact {
+  display: flex;
+  align-items: center;
+  padding: 0.6em 0.7em 0 0.7em;
+  color: #00a884;
+  font-weight: bold;
+}
+
+#workskin .wa .wa-contact .wa-pfp {
+  position: static;
+  flex-shrink: 0;
+  width: 46px;
+  height: 46px;
+  margin-right: 0.7em;
+  font-size: 0.9em;
+}
+
+#workskin .wa .msg.contact .wa-time { padding: 0 0.7em 0.35em 0.7em; }
+
+/* in a group, the sender's name sits at the top of the card */
+#workskin .wa .msg.contact .who { padding: 0.35em 0.7em 0 0.7em; }
+
+#workskin .wa .wa-cbtn {
+  display: block;
+  padding: 0.5em 0.7em;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  color: #00a884;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* ---- FORWARDED: the small grey label at the top of a forwarded message ----
+   <p class="wa-fwd"><span class="ic ic-forward">&#8618;</span> Forwarded</p>, first in the bubble */
+#workskin .wa .wa-fwd {
+  display: block;
+  font-size: 0.8em;
+  font-style: italic;
+  color: #667781;
 }
 
 /* ---------- WhatsApp: Links ---------- */
@@ -584,6 +707,19 @@
 #workskin .wa.theme-dark .wa-ln { color: #53bdeb; }
 
 #workskin .wa.theme-dark .fake-link, #workskin .wa.theme-dark a:not(.tl) { color: #53bdeb; }
+
+#workskin .wa.theme-dark .wa-call { background: rgba(0, 0, 0, 0.18); }
+
+#workskin .wa.theme-dark .wa-call .wa-call-ic { background-color: rgba(255, 255, 255, 0.08); }
+
+#workskin .wa.theme-dark .wa-call .wa-call-len,
+#workskin .wa.theme-dark .wa-fwd { color: #8696a0; }
+
+#workskin .wa.theme-dark .wa-contact,
+#workskin .wa.theme-dark .wa-cbtn { color: #21c063; }
+
+#workskin .wa.theme-dark .wa-cbtn { border-top-color: rgba(255, 255, 255, 0.1); }
+
 
 /* ---------- WhatsApp: Auto theme (theme-auto): light, switching to dark when the reader's device is in dark mode ---------- */
 
@@ -655,6 +791,18 @@
 
   #workskin .wa.theme-auto .wa-link { background: rgba(0, 0, 0, 0.22); }
 
+  #workskin .wa.theme-auto .wa-call { background: rgba(0, 0, 0, 0.18); }
+
+  #workskin .wa.theme-auto .wa-call .wa-call-ic { background-color: rgba(255, 255, 255, 0.08); }
+
+  #workskin .wa.theme-auto .wa-call .wa-call-len,
+  #workskin .wa.theme-auto .wa-fwd { color: #8696a0; }
+
+  #workskin .wa.theme-auto .wa-contact,
+  #workskin .wa.theme-auto .wa-cbtn { color: #21c063; }
+
+  #workskin .wa.theme-auto .wa-cbtn { border-top-color: rgba(255, 255, 255, 0.1); }
+
   #workskin .wa.theme-auto .wa-link-img.text { background: rgba(0, 0, 0, 0.2); color: #8696a0; }
 
   #workskin .wa.theme-auto .wa-link-desc,
@@ -714,6 +862,38 @@
   background-position: center;
 }
 
+/* A ONE-OFF WALLPAPER IN THE HTML: <p class="wa-wall"><img src="..." alt=""></p> as the first thing in the container.
+   The picture sits behind the header, messages and message bar, filling the chat and cropping what doesn't fit. */
+#workskin .mob.wa { position: relative; }
+
+#workskin .wa .wa-wall {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: 0;
+  overflow: hidden;
+}
+
+#workskin .wa .wa-wall img {
+  position: absolute;
+  top: -9999px;
+  right: -9999px;
+  bottom: -9999px;
+  left: -9999px;
+  margin: auto;
+  min-width: 100%;
+  min-height: 100%;
+  max-width: none;
+  max-height: none;
+}
+
+#workskin .wa .mob-head,
+#workskin .wa .wa-bar,
+#workskin .wa .mob-body,
+#workskin .wa .wa-input { position: relative; }
+
 /* ---------- WhatsApp: Icons ----------
    The buttons and ticks are pictures: black in light chats, white in dark ones.
    Each one is a span with "ic" and its name, with the typed symbol inside, which
@@ -764,6 +944,19 @@
 #workskin .wa .ic.ic-wa-mic { background-image: url(https://images.squidge.org/images/2026/11/15/whatsapp-mic.png); }
 #workskin .wa .ic.ic-wa-send { background-image: url(https://images.squidge.org/images/2026/11/15/whatsapp-send.png); }
 
+/* the call icons sit in their round box, a little smaller than it. They're grey (or red for a missed call) in every theme */
+#workskin .wa .wa-call .ic { display: block; float: left; width: 2.6em; height: 2.6em; vertical-align: baseline; background-size: 1.8em; }
+#workskin .wa .ic.ic-wa-call-out { background-image: url(https://images.squidge.org/images/2026/11/20/wa-call-out-grey.png); }
+#workskin .wa .ic.ic-wa-call-in { background-image: url(https://images.squidge.org/images/2026/11/20/wa-call-in-grey.png); }
+#workskin .wa .ic.ic-wa-call-missed { background-image: url(https://images.squidge.org/images/2026/11/20/wa-call-missed-red.png); }
+#workskin .wa .ic.ic-wa-video-out { background-image: url(https://images.squidge.org/images/2026/11/20/wa-video-out-grey.png); }
+#workskin .wa .ic.ic-wa-video-in { background-image: url(https://images.squidge.org/images/2026/11/20/wa-video-in-grey.png); }
+#workskin .wa .ic.ic-wa-video-missed { background-image: url(https://images.squidge.org/images/2026/11/20/wa-video-missed-red.png); }
+
+/* the Forwarded arrow is the same grey as its words */
+#workskin .wa .wa-fwd .ic { opacity: 0.6; }
+#workskin .wa .ic.ic-forward { background-image: url(https://images.squidge.org/images/2026/11/15/forward-black.png); }
+
 /* WhatsApp icons, dark */
 #workskin .wa.theme-dark .ic.ic-emoji { background-image: url(https://images.squidge.org/images/2026/11/15/emoji-white.png); }
 #workskin .wa.theme-dark .ic.ic-paperclip { background-image: url(https://images.squidge.org/images/2026/11/15/paperclip-white.png); }
@@ -771,6 +964,7 @@
 #workskin .wa.theme-dark .wa-link-url::before { background-image: url(https://images.squidge.org/images/2026/11/15/link-white.png); }
 #workskin .wa.theme-dark .ic.ic-sent { background-image: url(https://images.squidge.org/images/2026/11/15/tick-grey-dark.png); }
 #workskin .wa.theme-dark .ic.ic-delivered { background-image: url(https://images.squidge.org/images/2026/11/15/double-tick-grey-dark.png); }
+#workskin .wa.theme-dark .ic.ic-forward { background-image: url(https://images.squidge.org/images/2026/11/15/forward-white.png); }
 
 /* WhatsApp icons, auto: dark when the reader's device is in dark mode */
 @media (prefers-color-scheme: dark) {
@@ -780,6 +974,7 @@
   #workskin .wa.theme-auto .wa-link-url::before { background-image: url(https://images.squidge.org/images/2026/11/15/link-white.png); }
   #workskin .wa.theme-auto .ic.ic-sent { background-image: url(https://images.squidge.org/images/2026/11/15/tick-grey-dark.png); }
   #workskin .wa.theme-auto .ic.ic-delivered { background-image: url(https://images.squidge.org/images/2026/11/15/double-tick-grey-dark.png); }
+  #workskin .wa.theme-auto .ic.ic-forward { background-image: url(https://images.squidge.org/images/2026/11/15/forward-white.png); }
 }
 
 /* the top bar is coloured in every theme, so its icons are white */
