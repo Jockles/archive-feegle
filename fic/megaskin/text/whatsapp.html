@@ -831,6 +831,90 @@
   &lt;p class="wa-time"&gt;09:18&lt;/p&gt;
 &lt;/div&gt;</code></pre>
 
+<h3>Calls</h3>
+
+<p>A call shows up in the chat as a bubble of its own, with a round icon, what kind of call it was, and how long it lasted. Add <code>call</code> to the message, and put the call in a <code>wa-call</code> paragraph:</p>
+
+<div class="mob wa theme-auto"><div class="mob-body">
+<div class="msg out tail call"><p class="wa-call"><span class="wa-call-ic ic ic-wa-call-out">&#128222;</span><span class="hide"> </span><b>Voice call</b><span class="hide"> - </span><span class="wa-call-len">44 secs</span></p><p class="wa-time">09:47</p></div>
+<div class="msg in tail call"><p class="wa-call"><span class="wa-call-ic ic ic-wa-call-in">&#128222;</span><span class="hide"> </span><b>Voice call</b><span class="hide"> - </span><span class="wa-call-len">1 min</span></p><p class="wa-time">18:55</p></div>
+</div></div>
+
+<pre><code>&lt;div class="msg out tail call"&gt;&lt;p class="wa-call"&gt;&lt;span class="wa-call-ic ic ic-wa-call-out"&gt;&amp;#128222;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;b&gt;Voice call&lt;/b&gt;&lt;span class="hide"&gt; - &lt;/span&gt;&lt;span class="wa-call-len"&gt;44 secs&lt;/span&gt;&lt;/p&gt;&lt;p class="wa-time"&gt;09:47&lt;/p&gt;&lt;/div&gt;
+&lt;div class="msg in tail call"&gt;&lt;p class="wa-call"&gt;&lt;span class="wa-call-ic ic ic-wa-call-in"&gt;&amp;#128222;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;b&gt;Voice call&lt;/b&gt;&lt;span class="hide"&gt; - &lt;/span&gt;&lt;span class="wa-call-len"&gt;1 min&lt;/span&gt;&lt;/p&gt;&lt;p class="wa-time"&gt;18:55&lt;/p&gt;&lt;/div&gt;</code></pre>
+
+<p>The icon (<code>wa-call-ic</code>) goes first, then the kind of call in <code>&lt;b&gt;</code>, then the length in <code>wa-call-len</code>. The time sits beside the length on its own. The arrow on the icon shows who rang who: <code>ic-wa-call-out</code> for a call the pov character made, and <code>ic-wa-call-in</code> for one they picked up.</p>
+
+<details>
+<summary>Video calls, missed calls, and the hidden words</summary>
+
+<p>For a missed call, use <code>ic-wa-call-missed</code>, which is red, and put "Missed voice call" and "Tap to call back" in place of the kind and the length. Video calls work the same way, with <code>ic-wa-video-out</code>, <code>ic-wa-video-in</code> and <code>ic-wa-video-missed</code>:</p>
+
+<div class="mob wa theme-auto"><div class="mob-body">
+<div class="msg in tail call"><p class="wa-call"><span class="wa-call-ic ic ic-wa-call-missed">&#128222;</span><span class="hide"> </span><b>Missed voice call</b><span class="hide"> - </span><span class="wa-call-len">Tap to call back</span></p><p class="wa-time">02:14</p></div>
+<div class="msg out tail call"><p class="wa-call"><span class="wa-call-ic ic ic-wa-video-out">&#127909;</span><span class="hide"> </span><b>Video call</b><span class="hide"> - </span><span class="wa-call-len">1 hr</span></p><p class="wa-time">23:02</p></div>
+<div class="msg out tail call"><p class="wa-call"><span class="wa-call-ic ic ic-wa-video-missed">&#127909;</span><span class="hide"> </span><b>Missed video call</b><span class="hide"> - </span><span class="wa-call-len">No answer</span></p><p class="wa-time">23:40</p></div>
+</div></div>
+
+<pre><code>&lt;div class="msg in tail call"&gt;&lt;p class="wa-call"&gt;&lt;span class="wa-call-ic ic ic-wa-call-missed"&gt;&amp;#128222;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;b&gt;Missed voice call&lt;/b&gt;&lt;span class="hide"&gt; - &lt;/span&gt;&lt;span class="wa-call-len"&gt;Tap to call back&lt;/span&gt;&lt;/p&gt;&lt;p class="wa-time"&gt;02:14&lt;/p&gt;&lt;/div&gt;
+&lt;div class="msg out tail call"&gt;&lt;p class="wa-call"&gt;&lt;span class="wa-call-ic ic ic-wa-video-out"&gt;&amp;#127909;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;b&gt;Video call&lt;/b&gt;&lt;span class="hide"&gt; - &lt;/span&gt;&lt;span class="wa-call-len"&gt;1 hr&lt;/span&gt;&lt;/p&gt;&lt;p class="wa-time"&gt;23:02&lt;/p&gt;&lt;/div&gt;
+&lt;div class="msg out tail call"&gt;&lt;p class="wa-call"&gt;&lt;span class="wa-call-ic ic ic-wa-video-missed"&gt;&amp;#127909;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;b&gt;Missed video call&lt;/b&gt;&lt;span class="hide"&gt; - &lt;/span&gt;&lt;span class="wa-call-len"&gt;No answer&lt;/span&gt;&lt;/p&gt;&lt;p class="wa-time"&gt;23:40&lt;/p&gt;&lt;/div&gt;</code></pre>
+
+<ul>
+  <li>The typed symbol inside the icon (&#128222; for a voice call, &#127909; for a video call) is what shows if you take the icons out of your skin.</li>
+  <li>The <code>hide</code> spans are for readers with the workskin off, so the call reads "&#128222; Voice call - 44 secs 09:47" instead of running together. A call has no words from anyone, so it doesn't need a hidden name.</li>
+</ul>
+
+</details>
+
+<h3>Contact Cards</h3>
+
+<p>When someone shares a contact, it shows as a card with the contact's picture and name, the time, and a Message button along the bottom. Add <code>contact</code> to the message, and put the picture and name in a <code>wa-contact</code> paragraph, then the time, then a <code>wa-cbtn</code> paragraph for the button:</p>
+
+<div class="mob wa theme-auto"><div class="mob-body">
+<div class="msg in tail contact"><p class="hide"><em>Lily:</em></p>
+  <p class="wa-contact"><span class="wa-pfp"><span class="pfp pfp-rose"></span></span>Rose Landry</p>
+  <p class="wa-time">18:03</p>
+  <p class="wa-cbtn">Message</p>
+</div>
+<div class="msg out tail contact">
+  <p class="wa-contact"><span class="wa-pfp colour4">HP</span>Hayden Pike</p>
+  <p class="wa-time">18:05</p>
+  <p class="wa-cbtn">Message</p>
+</div>
+</div></div>
+
+<pre><code>&lt;div class="msg in tail contact"&gt;&lt;p class="hide"&gt;&lt;em&gt;Lily:&lt;/em&gt;&lt;/p&gt;
+  &lt;p class="wa-contact"&gt;&lt;span class="wa-pfp"&gt;&lt;span class="pfp pfp-rose"&gt;&lt;/span&gt;&lt;/span&gt;Rose Landry&lt;/p&gt;
+  &lt;p class="wa-time"&gt;18:03&lt;/p&gt;
+  &lt;p class="wa-cbtn"&gt;Message&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="msg out tail contact"&gt;
+  &lt;p class="wa-contact"&gt;&lt;span class="wa-pfp colour4"&gt;HP&lt;/span&gt;Hayden Pike&lt;/p&gt;
+  &lt;p class="wa-time"&gt;18:05&lt;/p&gt;
+  &lt;p class="wa-cbtn"&gt;Message&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+
+<p>The picture is a <code>wa-pfp</code>, the same as the pictures in a group chat, so it can be a profile (like Rose's), initials with a colour (like Hayden's), or an uploaded picture (see <a href="#heading">Profile Pictures in Groups</a>). The <code>hide</code> paragraph at the start holds the hidden name for readers with the workskin off, like a shared link.</p>
+
+<h3>Forwarded Messages</h3>
+
+<p>A forwarded message has a small grey "Forwarded" label at the top of the bubble. Put a <code>wa-fwd</code> paragraph first in the message, before the text:</p>
+
+<div class="mob wa theme-auto"><div class="mob-body">
+<div class="msg out tail">
+  <p class="wa-fwd"><span class="ic ic-forward">&#8618;</span> Forwarded</p>
+  <p>If the lasagne is still going then yes please. Two portions 🙂</p>
+  <p class="wa-time">22:12 <span class="wa-read ic ic-read">✓✓</span></p>
+</div>
+</div></div>
+
+<pre><code>&lt;div class="msg out tail"&gt;
+  &lt;p class="wa-fwd"&gt;&lt;span class="ic ic-forward"&gt;&amp;#8618;&lt;/span&gt; Forwarded&lt;/p&gt;
+  &lt;p&gt;If the lasagne is still going then yes please. Two portions 🙂&lt;/p&gt;
+  &lt;p class="wa-time"&gt;22:12 &lt;span class="wa-read ic ic-read"&gt;✓✓&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+
 <h3>Typing Dots</h3>
 
 <p>To show someone is typing, add <code>typing-indicator</code> to a message bubble from them, and put three empty spans in its last paragraph. It gets the same bubble as their messages, tail and all, just shrunk to fit the dots. The hidden line says who it is for readers with the workskin off:</p>

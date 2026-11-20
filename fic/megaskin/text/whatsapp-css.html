@@ -427,6 +427,104 @@
 
 <p>A caption only needs a little padding, to line its text up with the edge of the photo above. Links in the text, <code>wa-ln</code> and <code>fake-link</code> are all WhatsApp's link blue.</p>
 
+<h3>Calls</h3>
+
+<pre><code>#workskin .wa .msg.call {
+  position: relative;
+  min-width: 13em;
+  padding: 0.45em 3.4em 0.45em 0.45em;
+}
+
+#workskin .wa .wa-call {
+  display: block;
+  overflow: hidden;
+  line-height: 1.3;
+}
+
+#workskin .wa .wa-call .wa-call-ic {
+  float: left;
+  width: 2.6em;
+  height: 2.6em;
+  margin: 0 0.65em 0 0;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.06);
+  line-height: 2.6em;
+  text-align: center;
+}
+
+#workskin .wa .wa-call b {
+  display: block;
+  overflow: hidden;
+  padding-top: 0.15em;
+}
+
+#workskin .wa .wa-call .wa-call-len {
+  display: block;
+  overflow: hidden;
+  font-size: 0.9em;
+  color: #667781;
+}
+
+#workskin .wa .msg.call .wa-time {
+  position: absolute;
+  right: 0.6em;
+  bottom: 0.5em;
+  margin: 0;
+}
+
+#workskin .wa .wa-call .ic { display: block; float: left; width: 2.6em; height: 2.6em; vertical-align: baseline; background-size: 1.8em; }</code></pre>
+
+<p>A call bubble is a normal bubble with room kept on its right for the time. The round box floats left, and the words beside it have <code>overflow: hidden</code>, which keeps them lined up beside the box even if they run onto a second line. The time is pinned to the bottom right with <code>position: absolute</code>, so it sits beside the length instead of on a line of its own - the bubble has <code>position: relative</code> so the time knows which box to pin itself to. The last line is from the Icons section: the icon picture is a little smaller than its box, so it sits in the middle of the circle.</p>
+
+<h3>Contact Cards</h3>
+
+<pre><code>#workskin .wa .msg.contact {
+  width: 70%;
+  padding: 0;
+}
+
+#workskin .wa .wa-contact {
+  display: flex;
+  align-items: center;
+  padding: 0.6em 0.7em 0 0.7em;
+  color: #00a884;
+  font-weight: bold;
+}
+
+#workskin .wa .wa-contact .wa-pfp {
+  flex-shrink: 0;
+  width: 46px;
+  height: 46px;
+  margin-right: 0.7em;
+  font-size: 0.9em;
+}
+
+#workskin .wa .msg.contact .wa-time { padding: 0 0.7em 0.35em 0.7em; }
+
+#workskin .wa .wa-cbtn {
+  display: block;
+  padding: 0.5em 0.7em;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  color: #00a884;
+  font-weight: bold;
+  text-align: center;
+}</code></pre>
+
+<p>A contact card has no padding of its own, so the line above the Message button runs right to the edges of the bubble. The picture and name sit side by side with <code>display: flex</code>, and <code>align-items: center</code> lines the name up with the middle of the picture. The picture is the usual <code>wa-pfp</code>, just bigger.</p>
+
+<h3>Forwarded Label</h3>
+
+<pre><code>#workskin .wa .wa-fwd {
+  display: block;
+  font-size: 0.8em;
+  font-style: italic;
+  color: #667781;
+}
+
+#workskin .wa .wa-fwd .ic { opacity: 0.6; }</code></pre>
+
+<p>Small, grey and italic, with the forward arrow from the icon set made see-through so it matches the grey of the words.</p>
+
 <h3>Dark and Auto Themes</h3>
 
 <p>The dark theme swaps the wallpaper for WhatsApp's dark version (with its near-black underneath), the bubbles for dark grey and dark green, and every bit of grey text for a lighter grey. It also has the lighter set of name colours, and the tails again in the new bubble colours. As in iMessage, the auto theme is the same rules again inside <code>@media (prefers-color-scheme: dark)</code>, so change a dark colour in both places.</p>
@@ -485,6 +583,9 @@
   <li><strong>Message bar:</strong> <code>wa-input</code>, <code>wa-field</code>, <code>wa-ph</code>, <code>wa-mic</code>.</li>
   <li><strong>Link cards:</strong> <code>share</code>, and everything starting <code>wa-link</code>.</li>
   <li><strong>Photos:</strong> <code>gallery</code>, <code>wa-photos</code>, <code>wa-photo</code>, <code>wa-desc</code>.</li>
+  <li><strong>Calls:</strong> <code>call</code>, and everything starting <code>wa-call</code>, including the <code>ic-wa-call</code> and <code>ic-wa-video</code> icons.</li>
+  <li><strong>Contact cards:</strong> <code>contact</code>, <code>wa-contact</code> and <code>wa-cbtn</code>.</li>
+  <li><strong>Forwarded label:</strong> <code>wa-fwd</code> and <code>ic-forward</code>.</li>
   <li><strong>Wallpapers:</strong> any <code>bg-</code> line you don't use.</li>
 </ul>
 
