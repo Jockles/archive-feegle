@@ -25,7 +25,7 @@
   <!-- /site meta -->
   <link rel="stylesheet" href="../../style.css">
   <script src="../../theme.js"></script>
-  <link rel="stylesheet" href="megaskin.css?v=1c52ca92" id="creator-style">
+  <link rel="stylesheet" href="megaskin.css?v=861d9a5f" id="creator-style">
 </head>
 <body>
 <header>
@@ -56,37 +56,75 @@
 <h3 id="contents">Chapter Contents</h3>
 
 <ul class="contents">
-  <li><a href="#s6-1">6.1 A One-to-One Chat</a></li>
-  <li><a href="#s6-2">6.2 A Group Chat</a></li>
-  <li><a href="#s6-3">6.3 WhatsApp Window</a></li>
-  <li><a href="#s6-4">6.4 Simple Messages</a></li>
-  <li><a href="#s6-5">6.5 Date Pills</a></li>
-  <li><a href="#s6-6">6.6 Read Ticks</a></li>
-  <li><a href="#edited">6.7 Edited Messages</a></li>
-  <li><a href="#s6-8">6.8 Replying to a Message</a></li>
-  <li><a href="#s6-9">6.9 Emoji Reactions</a></li>
-  <li><a href="#s6-10">6.10 Large Emoji</a></li>
-  <li><a href="#s6-11">6.11 Shared Links</a></li>
-  <li><a href="#s6-12">6.12 Photos and Captions</a></li>
-  <li><a href="#s6-13">6.13 Photo Galleries</a></li>
-  <li><a href="#s6-14">6.14 Typing Dots</a></li>
-  <li><a href="#s6-15">6.15 The Message Bar</a></li>
-  <li><a href="#s6-16">6.16 Group Chats</a></li>
-  <li><a href="#s6-17">6.17 Phone Numbers and Nicknames</a></li>
-  <li><a href="#s6-18">6.18 Profile Pictures in Groups</a></li>
-  <li><a href="#s6-19">6.19 Uploading a Profile Pic</a></li>
-  <li><a href="#s6-20">6.20 Quoting a Message in a Group</a></li>
-  <li><a href="#s6-21">6.21 System Notices</a></li>
-  <li><a href="#s6-22">6.22 Group Header with Picture and Icons</a></li>
-  <li><a href="#s6-23">6.23 Choosing a Background</a></li>
+  <li><a href="#s6-1">6.1 WhatsApp Chats</a>
+    <ul>
+      <li><a href="#s6-1-1">6.1.1 A One-to-One Chat</a></li>
+      <li><a href="#s6-1-2">6.1.2 A Group Chat</a></li>
+    </ul>
+  </li>
+  <li><a href="#s6-2">6.2 The Container</a>
+    <ul>
+      <li><a href="#s6-2-1">6.2.1 Top</a></li>
+      <li><a href="#s6-2-2">6.2.2 Background</a></li>
+      <li><a href="#s6-2-3">6.2.3 Bottom</a></li>
+    </ul>
+  </li>
+  <li><a href="#s6-3">6.3 Normal Messages</a>
+    <ul>
+      <li><a href="#s6-3-1">6.3.1 Simple Messages</a></li>
+      <li><a href="#s6-3-2">6.3.2 Date Pills</a></li>
+      <li><a href="#s6-3-3">6.3.3 Read Ticks</a></li>
+      <li><a href="#edited">6.3.4 Edited Messages</a></li>
+      <li><a href="#s6-3-5">6.3.5 Replying to a Message</a></li>
+      <li><a href="#s6-3-6">6.3.6 Forwarded Messages</a></li>
+      <li><a href="#s6-3-7">6.3.7 Emoji Reactions</a></li>
+      <li><a href="#s6-3-8">6.3.8 Large Emoji</a></li>
+      <li><a href="#s6-3-9">6.3.9 System Notices</a></li>
+    </ul>
+  </li>
+  <li><a href="#s6-4">6.4 Contacts and Calls</a>
+    <ul>
+      <li><a href="#s6-4-1">6.4.1 Contact Cards</a></li>
+      <li><a href="#s6-4-2">6.4.2 Calls</a></li>
+    </ul>
+  </li>
+  <li><a href="#s6-5">6.5 Images, Videos and Links</a>
+    <ul>
+      <li><a href="#s6-5-1">6.5.1 Photos and Captions</a></li>
+      <li><a href="#s6-5-2">6.5.2 Photo Galleries</a></li>
+      <li><a href="#s6-5-3">6.5.3 Shared Links</a></li>
+    </ul>
+  </li>
+  <li><a href="#s6-6">6.6 Characters</a>
+    <ul>
+      <li><a href="#s6-6-1">6.6.1 Names in Groups</a></li>
+      <li><a href="#s6-6-2">6.6.2 Phone Numbers and Nicknames</a></li>
+      <li><a href="#s6-6-3">6.6.3 Profile Pictures in Groups</a></li>
+      <li><a href="#s6-6-4">6.6.4 Uploading a Profile Pic</a></li>
+    </ul>
+  </li>
 </ul>
 
 <p>Before we begin, here's the two kinds of chat you can build: a chat between two people, or a group chat. The full HTML is underneath each, which you can copy and modify yourself. The rest of the chapter takes the HTML apart so that you can modify all the individual parts to say exactly what you want.</p>
 
-<h3 id="s6-1">6.1 A One-to-One Chat</h3>
+<h3 id="s6-1">6.1 WhatsApp Chats</h3>
+
+<h4 id="s6-1-1">6.1.1 A One-to-One Chat</h4>
 
 <div class="mob wa theme-auto">
-  <p class="mob-head">Lily<span class="hide"> - </span><span>online</span></p>
+  <table class="wa-bar">
+    <tbody>
+      <tr>
+        <td rowspan="2" class="wa-back"><span class="ic ic-back">&#8592;</span></td>
+        <td rowspan="2" class="wa-pfp-cell"><p class="wa-pfp colour2">L</p></td>
+        <td class="wa-title">Lily</td>
+        <td rowspan="2" class="wa-actions"><span class="ic ic-video">&#127909;</span> <span class="ic ic-menu">&#8942;</span></td>
+      </tr>
+      <tr>
+        <td class="wa-sub">online</td>
+      </tr>
+    </tbody>
+  </table>
   <div class="mob-body">
     <p class="mob-sys">YESTERDAY</p>
     <div class="msg in tail">
@@ -191,7 +229,19 @@
 <summary>The full HTML for this chat</summary>
 
 <pre><code>&lt;div class="mob wa theme-auto"&gt;
-  &lt;p class="mob-head"&gt;Lily&lt;span class="hide"&gt; - &lt;/span&gt;&lt;span&gt;online&lt;/span&gt;&lt;/p&gt;
+  &lt;table class="wa-bar"&gt;
+    &lt;tbody&gt;
+      &lt;tr&gt;
+        &lt;td rowspan="2" class="wa-back"&gt;&lt;span class="ic ic-back"&gt;&amp;#8592;&lt;/span&gt;&lt;/td&gt;
+        &lt;td rowspan="2" class="wa-pfp-cell"&gt;&lt;p class="wa-pfp colour2"&gt;L&lt;/p&gt;&lt;/td&gt;
+        &lt;td class="wa-title"&gt;Lily&lt;/td&gt;
+        &lt;td rowspan="2" class="wa-actions"&gt;&lt;span class="ic ic-video"&gt;&amp;#127909;&lt;/span&gt; &lt;span class="ic ic-menu"&gt;&amp;#8942;&lt;/span&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td class="wa-sub"&gt;online&lt;/td&gt;
+      &lt;/tr&gt;
+    &lt;/tbody&gt;
+  &lt;/table&gt;
   &lt;div class="mob-body"&gt;
     &lt;p class="mob-sys"&gt;YESTERDAY&lt;/p&gt;
     &lt;div class="msg in tail"&gt;
@@ -294,7 +344,7 @@
 
 </details>
 
-<h3 id="s6-2">6.2 A Group Chat</h3>
+<h4 id="s6-1-2">6.1.2 A Group Chat</h4>
 
 <div class="mob wa theme-auto">
   <table class="wa-bar">
@@ -384,6 +434,21 @@
     <div class="msg out tail">
       <p><span class="hide"><em>Ilya:</em> </span>Shane will not drink this. more for me</p>
       <p class="wa-time">09:20 <span class="wa-read ic ic-read">✓✓</span></p>
+    </div>
+    <div class="wa-row">
+      <p class="wa-pfp colour4">HP</p>
+      <div class="msg in tail contact">
+        <p class="who colour4">Hayden<span class="hide">:</span></p>
+        <p class="wa-contact"><span class="wa-pfp colour9">JP</span>Jackie Pike</p>
+        <p class="wa-time">09:21</p>
+        <p class="wa-cbtn">Message</p>
+      </div>
+    </div>
+    <div class="wa-row cont">
+      <div class="msg in">
+        <p><span class="hide"><em>Hayden:</em> </span>Jackie wants to bring dessert. message her yourselves, I'm not the middleman</p>
+        <p class="wa-time">09:21</p>
+      </div>
     </div>
   </div>
   <p class="wa-input">
@@ -489,6 +554,21 @@
       &lt;p&gt;&lt;span class="hide"&gt;&lt;em&gt;Ilya:&lt;/em&gt; &lt;/span&gt;Shane will not drink this. more for me&lt;/p&gt;
       &lt;p class="wa-time"&gt;09:20 &lt;span class="wa-read ic ic-read"&gt;✓✓&lt;/span&gt;&lt;/p&gt;
     &lt;/div&gt;
+    &lt;div class="wa-row"&gt;
+      &lt;p class="wa-pfp colour4"&gt;HP&lt;/p&gt;
+      &lt;div class="msg in tail contact"&gt;
+        &lt;p class="who colour4"&gt;Hayden&lt;span class="hide"&gt;:&lt;/span&gt;&lt;/p&gt;
+        &lt;p class="wa-contact"&gt;&lt;span class="wa-pfp colour9"&gt;JP&lt;/span&gt;Jackie Pike&lt;/p&gt;
+        &lt;p class="wa-time"&gt;09:21&lt;/p&gt;
+        &lt;p class="wa-cbtn"&gt;Message&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="wa-row cont"&gt;
+      &lt;div class="msg in"&gt;
+        &lt;p&gt;&lt;span class="hide"&gt;&lt;em&gt;Hayden:&lt;/em&gt; &lt;/span&gt;Jackie wants to bring dessert. message her yourselves, I'm not the middleman&lt;/p&gt;
+        &lt;p class="wa-time"&gt;09:21&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
   &lt;/div&gt;
   &lt;p class="wa-input"&gt;
     &lt;span class="wa-field"&gt;
@@ -503,23 +583,354 @@
 
 </details>
 
-<h3 id="s6-3">6.3 WhatsApp Window</h3>
+<h3 id="s6-2">6.2 The Container</h3>
 
-<p>A WhatsApp chat has the same three parts as iMessage - a container, a header and a body. The only difference is the module class, <code>wa</code>, so the container is <code>&lt;div class=&quot;mob wa theme-auto&quot;&gt;</code> and everything else goes inside it. First comes the header, with the contact's name:</p>
+<p>A WhatsApp chat has the same three parts as iMessage - a container, a header and a body. The only difference is the module class, <code>wa</code>, so the container is <code>&lt;div class=&quot;mob wa theme-auto&quot;&gt;</code> and everything else goes inside it. The top of the chat is the header, the middle is the background with the messages on it, and the bottom can have the message bar and the typing dots.</p>
+
+<h4 id="s6-2-1">6.2.1 Top</h4>
+
+<p>The header goes first. Like the real app, it has a back arrow, the contact's picture, their name with a status line underneath, and the video and menu icons. It's a <code>&lt;table&gt;</code> with the class <code>wa-bar</code>, because a table is the most reliable way to keep all of that in one neat row on AO3:</p>
+
+<div class="mob wa theme-auto"><table class="wa-bar">
+  <tbody>
+    <tr>
+      <td rowspan="2" class="wa-back"><span class="ic ic-back">&#8592;</span></td>
+      <td rowspan="2" class="wa-pfp-cell"><p class="wa-pfp colour2">L</p></td>
+      <td class="wa-title">Lily</td>
+      <td rowspan="2" class="wa-actions"><span class="ic ic-video">&#127909;</span> <span class="ic ic-menu">&#8942;</span></td>
+    </tr>
+    <tr>
+      <td class="wa-sub">online</td>
+    </tr>
+  </tbody>
+</table></div>
+
+<pre><code>&lt;table class="wa-bar"&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td rowspan="2" class="wa-back"&gt;&lt;span class="ic ic-back"&gt;&amp;#8592;&lt;/span&gt;&lt;/td&gt;
+      &lt;td rowspan="2" class="wa-pfp-cell"&gt;&lt;p class="wa-pfp colour2"&gt;L&lt;/p&gt;&lt;/td&gt;
+      &lt;td class="wa-title"&gt;Lily&lt;/td&gt;
+      &lt;td rowspan="2" class="wa-actions"&gt;&lt;span class="ic ic-video"&gt;&amp;#127909;&lt;/span&gt; &lt;span class="ic ic-menu"&gt;&amp;#8942;&lt;/span&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="wa-sub"&gt;online&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+
+<p>The status line (<code>wa-sub</code>) can say "online", "last seen today at 9:41" or "typing...". After the header comes <code>&lt;div class=&quot;mob-body&quot;&gt;</code>, which holds all of the messages.</p>
+
+<details>
+<summary>How the header table works</summary>
+
+<p>The table has two rows. The first row has the back arrow (<code>wa-back</code>), the picture (<code>wa-pfp-cell</code>), the name (<code>wa-title</code>) and the icons (<code>wa-actions</code>). The back arrow, picture and icons have <code>rowspan=&quot;2&quot;</code>, which stretches them down across both rows. The second row only has the status line (<code>wa-sub</code>), which sits under the name. If the name or the status is too long, the workskin cuts it short with "..." for you.</p>
+
+<p>The picture is the same <code>wa-pfp</code> circle as in group messages, so it shows initials, and <code>colour1</code> to <code>colour10</code> work here too. An uploaded picture works as well, in a <code>pfp</code> span (see <a href="#heading">Uploading a Profile Pic</a>).</p>
+
+</details>
+
+<p><strong>Leaving the picture off:</strong> if you don't want a picture, delete the whole <code>wa-pfp-cell</code> line, and the name moves up next to the back arrow:</p>
+
+<div class="mob wa theme-auto"><table class="wa-bar">
+  <tbody>
+    <tr>
+      <td rowspan="2" class="wa-back"><span class="ic ic-back">&#8592;</span></td>
+      <td class="wa-title">Lily</td>
+      <td rowspan="2" class="wa-actions"><span class="ic ic-video">&#127909;</span> <span class="ic ic-menu">&#8942;</span></td>
+    </tr>
+    <tr>
+      <td class="wa-sub">online</td>
+    </tr>
+  </tbody>
+</table></div>
+
+<pre><code>&lt;table class="wa-bar"&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td rowspan="2" class="wa-back"&gt;&lt;span class="ic ic-back"&gt;&amp;#8592;&lt;/span&gt;&lt;/td&gt;
+      &lt;td class="wa-title"&gt;Lily&lt;/td&gt;
+      &lt;td rowspan="2" class="wa-actions"&gt;&lt;span class="ic ic-video"&gt;&amp;#127909;&lt;/span&gt; &lt;span class="ic ic-menu"&gt;&amp;#8942;&lt;/span&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="wa-sub"&gt;online&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+
+<p><strong>A character with a profile:</strong> put their profile in the circle and a name span in <code>wa-title</code>, with the name typed inside it in a <code>hide</code> span for readers with the workskin off. Then both come from the profile, they're the same in every chat, and they change to whatever your point-of-view character has them saved as (see <a href="core.html#s2-4-3-2">Their Phone</a>):</p>
+
+<div class="mob wa theme-auto"><table class="wa-bar">
+  <tbody>
+    <tr>
+      <td rowspan="2" class="wa-back"><span class="ic ic-back">&#8592;</span></td>
+      <td rowspan="2" class="wa-pfp-cell"><p class="wa-pfp"><span class="pfp pfp-shane"></span></p></td>
+      <td class="wa-title"><span class="name pfp-shane"><span class="hide">Shane</span></span></td>
+      <td rowspan="2" class="wa-actions"><span class="ic ic-video">&#127909;</span> <span class="ic ic-menu">&#8942;</span></td>
+    </tr>
+    <tr>
+      <td class="wa-sub">online</td>
+    </tr>
+  </tbody>
+</table></div>
+
+<pre><code>&lt;table class="wa-bar"&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td rowspan="2" class="wa-back"&gt;&lt;span class="ic ic-back"&gt;&amp;#8592;&lt;/span&gt;&lt;/td&gt;
+      &lt;td rowspan="2" class="wa-pfp-cell"&gt;&lt;p class="wa-pfp"&gt;&lt;span class="pfp pfp-shane"&gt;&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;
+      &lt;td class="wa-title"&gt;&lt;span class="name pfp-shane"&gt;&lt;span class="hide"&gt;Shane&lt;/span&gt;&lt;/span&gt;&lt;/td&gt;
+      &lt;td rowspan="2" class="wa-actions"&gt;&lt;span class="ic ic-video"&gt;&amp;#127909;&lt;/span&gt; &lt;span class="ic ic-menu"&gt;&amp;#8942;&lt;/span&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="wa-sub"&gt;online&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+
+<details>
+<summary>A plain header with no picture or icons</summary>
+
+<p>For a quick chat, a single <code>mob-head</code> paragraph makes a plain bar (green in light mode, dark grey in dark mode) with just the name and status, the same as the iMessage header:</p>
 
 <div class="mob wa theme-auto"><p class="mob-head">Lily<span class="hide"> - </span><span>online</span></p></div>
 
 <pre><code>&lt;p class="mob-head"&gt;Lily&lt;span class="hide"&gt; - &lt;/span&gt;&lt;span&gt;online&lt;/span&gt;&lt;/p&gt;</code></pre>
 
-<p>The header is the green bar. The span underneath is the status line, like "online", "last seen today at 9:41" or "typing...", or the list of people in a group. After the header comes <code>&lt;div class=&quot;mob-body&quot;&gt;</code>, which holds all of the messages. There's a fancier header with a picture and icons too, which is in the group chat - see Group Header with Picture and Icons, further down.</p>
+<p>The name can be a name span here too, like <code>&lt;span class=&quot;name pfp-ilya&quot;&gt;&lt;span class=&quot;hide&quot;&gt;Ilya&lt;/span&gt;&lt;/span&gt;</code>.</p>
 
-<p>The name can be typed, like Lily's above, or it can come from a character's profile. Put a name span in its place, with the name typed inside it in a <code>hide</code> span for readers with the workskin off. Then it's the same in every chat, and it changes to whatever your point-of-view character has them saved as (see <a href="core.html#s2-4-3-2">Their Phone</a>):</p>
+</details>
 
-<div class="mob wa theme-auto"><p class="mob-head"><span class="name pfp-ilya"><span class="hide">Ilya</span></span><span class="hide"> - </span><span>online</span></p></div>
+<h5 id="s6-2-1-1">6.2.1.1 Group Header</h5>
 
-<pre><code>&lt;p class="mob-head"&gt;&lt;span class="name pfp-ilya"&gt;&lt;span class="hide"&gt;Ilya&lt;/span&gt;&lt;/span&gt;&lt;span class="hide"&gt; - &lt;/span&gt;&lt;span&gt;online&lt;/span&gt;&lt;/p&gt;</code></pre>
+<p>A group uses the same header, with the group's picture and name, and the list of members on the status line:</p>
 
-<h3 id="s6-4">6.4 Simple Messages</h3>
+<div class="mob wa theme-auto"><table class="wa-bar">
+  <tbody>
+    <tr>
+      <td rowspan="2" class="wa-back"><span class="ic ic-back">&#8592;</span></td>
+      <td rowspan="2" class="wa-pfp-cell"><p class="wa-pfp colour5">D</p></td>
+      <td class="wa-title">dinner</td>
+      <td rowspan="2" class="wa-actions"><span class="ic ic-video">&#127909;</span> <span class="ic ic-menu">&#8942;</span></td>
+    </tr>
+    <tr>
+      <td class="wa-sub">Rose, Jane, Hayden, You</td>
+    </tr>
+  </tbody>
+</table></div>
+
+<pre><code>&lt;table class="wa-bar"&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td rowspan="2" class="wa-back"&gt;&lt;span class="ic ic-back"&gt;&amp;#8592;&lt;/span&gt;&lt;/td&gt;
+      &lt;td rowspan="2" class="wa-pfp-cell"&gt;&lt;p class="wa-pfp colour5"&gt;D&lt;/p&gt;&lt;/td&gt;
+      &lt;td class="wa-title"&gt;dinner&lt;/td&gt;
+      &lt;td rowspan="2" class="wa-actions"&gt;&lt;span class="ic ic-video"&gt;&amp;#127909;&lt;/span&gt; &lt;span class="ic ic-menu"&gt;&amp;#8942;&lt;/span&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class="wa-sub"&gt;Rose, Jane, Hayden, You&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+
+<h4 id="s6-2-2">6.2.2 Background</h4>
+
+
+<p>Every WhatsApp chat can have its own background, picked with a class on the container next to the theme class. Here's the same chat on four different backgrounds. The first one has no background class, so it has the normal background:</p>
+
+<div class="mob wa theme-auto">
+  <p class="mob-head">Mom<span class="hide"> - </span><span>online</span></p>
+  <div class="mob-body">
+    <div class="msg in"><p><span class="hide"><em>Mom:</em> </span>Are you coming Sunday?</p><p class="wa-time">10:02</p></div>
+    <div class="msg out"><p><span class="hide"><em>Shane:</em> </span>Yes!</p><p class="wa-time">10:03 <span class="wa-read ic ic-read">✓✓</span></p></div>
+  </div>
+</div>
+
+<div class="mob wa theme-auto bg-sage">
+  <p class="mob-head">Mom<span class="hide"> - </span><span>online</span></p>
+  <div class="mob-body">
+    <div class="msg in"><p><span class="hide"><em>Mom:</em> </span>Are you coming Sunday?</p><p class="wa-time">10:02</p></div>
+    <div class="msg out"><p><span class="hide"><em>Shane:</em> </span>Yes!</p><p class="wa-time">10:03 <span class="wa-read ic ic-read">✓✓</span></p></div>
+  </div>
+</div>
+
+<div class="mob wa theme-auto bg-blush">
+  <p class="mob-head">Mom<span class="hide"> - </span><span>online</span></p>
+  <div class="mob-body">
+    <div class="msg in"><p><span class="hide"><em>Mom:</em> </span>Are you coming Sunday?</p><p class="wa-time">10:02</p></div>
+    <div class="msg out"><p><span class="hide"><em>Shane:</em> </span>Yes!</p><p class="wa-time">10:03 <span class="wa-read ic ic-read">✓✓</span></p></div>
+  </div>
+</div>
+
+<div class="mob wa theme-auto bg-dusk">
+  <p class="mob-head">Mom<span class="hide"> - </span><span>online</span></p>
+  <div class="mob-body">
+    <div class="msg in"><p><span class="hide"><em>Mom:</em> </span>Are you coming Sunday?</p><p class="wa-time">10:02</p></div>
+    <div class="msg out"><p><span class="hide"><em>Shane:</em> </span>Yes!</p><p class="wa-time">10:03 <span class="wa-read ic ic-read">✓✓</span></p></div>
+  </div>
+</div>
+
+<p><em>The HTML for the second one - only the last class changes:</em></p>
+
+<pre><code>&lt;div class="mob wa theme-auto bg-sage"&gt;
+  &lt;p class="mob-head"&gt;Mom&lt;span class="hide"&gt; - &lt;/span&gt;&lt;span&gt;online&lt;/span&gt;&lt;/p&gt;
+  &lt;div class="mob-body"&gt;
+    &lt;div class="msg in"&gt;&lt;p&gt;&lt;span class="hide"&gt;&lt;em&gt;Mom:&lt;/em&gt; &lt;/span&gt;Are you coming Sunday?&lt;/p&gt;&lt;p class="wa-time"&gt;10:02&lt;/p&gt;&lt;/div&gt;
+    &lt;div class="msg out"&gt;&lt;p&gt;&lt;span class="hide"&gt;&lt;em&gt;Shane:&lt;/em&gt; &lt;/span&gt;Yes!&lt;/p&gt;&lt;p class="wa-time"&gt;10:03 &lt;span class="wa-read ic ic-read"&gt;✓✓&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+<p>Every chat starts with WhatsApp's own doodle wallpaper, in its light or dark version to match the theme. The other backgrounds that come with the workskin are:</p>
+
+<ul>
+  <li>Plain colours: <code>bg-beige</code> (WhatsApp's colour without the doodles), <code>bg-white</code>, <code>bg-sage</code>, <code>bg-sky</code>, <code>bg-blush</code>, <code>bg-lilac</code>, <code>bg-slate</code>, <code>bg-navy</code>, <code>bg-forest</code>, <code>bg-plum</code>, <code>bg-black</code></li>
+  <li>Gradients: <code>bg-sunset</code>, <code>bg-ocean</code>, <code>bg-night</code>, <code>bg-dusk</code></li>
+  <li>Your own picture: <code>bg-image1</code>. A picture has to be linked from the web, so it's set up in the CSS, and <a href="whatsapp-css.html#s7-21">Wallpapers</a> explains how. Once it's set up, you use it like any of the others: <code>&lt;div class=&quot;mob wa theme-auto bg-image1&quot;&gt;</code></li>
+</ul>
+
+<p><strong>Note:</strong> a background class overrides the light and dark theme background, so pick a light or dark one to suit the theme you're using. The bubbles, ticks and text keep their theme colours on top of it.</p>
+
+<details>
+<summary>A one-off wallpaper in the HTML</summary>
+
+<p>For a picture you only want on one chat, you don't need to touch the CSS at all. Put a <code>wa-wall</code> paragraph with your picture tag in it as the very first thing inside the container, before the header:</p>
+
+<div class="mob wa theme-auto">
+  <p class="wa-wall"><img src="https://images.squidge.org/images/2026/11/16/Cat1.jpg" alt=""></p>
+  <p class="mob-head">Mom<span class="hide"> - </span><span>online</span></p>
+  <div class="mob-body">
+    <div class="msg in"><p><span class="hide"><em>Mom:</em> </span>Are you coming Sunday?</p><p class="wa-time">10:02</p></div>
+    <div class="msg out"><p><span class="hide"><em>Shane:</em> </span>Yes!</p><p class="wa-time">10:03 <span class="wa-read ic ic-read">✓✓</span></p></div>
+  </div>
+</div>
+
+<pre><code>&lt;div class="mob wa theme-auto"&gt;
+  &lt;p class="wa-wall"&gt;&lt;img src="https://images.squidge.org/images/2026/11/16/Cat1.jpg" alt=""&gt;&lt;/p&gt;
+  &lt;p class="mob-head"&gt;Mom&lt;span class="hide"&gt; - &lt;/span&gt;&lt;span&gt;online&lt;/span&gt;&lt;/p&gt;
+  &lt;div class="mob-body"&gt;
+    &lt;div class="msg in"&gt;&lt;p&gt;&lt;span class="hide"&gt;&lt;em&gt;Mom:&lt;/em&gt; &lt;/span&gt;Are you coming Sunday?&lt;/p&gt;&lt;p class="wa-time"&gt;10:02&lt;/p&gt;&lt;/div&gt;
+    &lt;div class="msg out"&gt;&lt;p&gt;&lt;span class="hide"&gt;&lt;em&gt;Shane:&lt;/em&gt; &lt;/span&gt;Yes!&lt;/p&gt;&lt;p class="wa-time"&gt;10:03 &lt;span class="wa-read ic ic-read"&gt;✓✓&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+<p>The picture fills the whole chat behind the header, the messages and the message bar, and anything that doesn't fit gets cropped off the edges, keeping the middle of the picture in view. Leave the alt text empty (<code>alt=""</code>), since it's only decoration, and screen readers will skip over it.</p>
+
+</details>
+
+<details>
+<summary>Custom profile wallpaper</summary>
+
+<p>If a chat is on one particular character's phone, you can use their profile instead: add <code>pov-</code> and their name to the container, like <code>pov-shane</code>, and the chat gets the wallpaper set in their profile, so all of their chats look the same (see <a href="core.html#s2-4-3-2">Their Phone</a>).</p>
+
+<p>A profile wallpaper can be a picture, too. Here's the same chat from Yuna's side, on her phone, with her own photo as the background:</p>
+
+<div class="mob wa theme-auto pov-yuna">
+  <p class="mob-head">Shane<span class="hide"> - </span><span>online</span></p>
+  <div class="mob-body">
+    <div class="msg out"><p><span class="hide"><em>Yuna:</em> </span>Are you coming Sunday?</p><p class="wa-time">10:02 <span class="wa-read ic ic-read">✓✓</span></p></div>
+    <div class="msg in"><p><span class="hide"><em>Shane:</em> </span>Yes!</p><p class="wa-time">10:03</p></div>
+  </div>
+</div>
+
+<pre><code>&lt;div class="mob wa theme-auto pov-yuna"&gt;
+  &lt;p class="mob-head"&gt;Shane&lt;span class="hide"&gt; - &lt;/span&gt;&lt;span&gt;online&lt;/span&gt;&lt;/p&gt;
+  &lt;div class="mob-body"&gt;
+    &lt;div class="msg out"&gt;&lt;p&gt;&lt;span class="hide"&gt;&lt;em&gt;Yuna:&lt;/em&gt; &lt;/span&gt;Are you coming Sunday?&lt;/p&gt;&lt;p class="wa-time"&gt;10:02 &lt;span class="wa-read ic ic-read"&gt;✓✓&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+    &lt;div class="msg in"&gt;&lt;p&gt;&lt;span class="hide"&gt;&lt;em&gt;Shane:&lt;/em&gt; &lt;/span&gt;Yes!&lt;/p&gt;&lt;p class="wa-time"&gt;10:03&lt;/p&gt;&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+<p>And the line in Yuna's profile that sets it. The colour shows if the picture doesn't load, <code>background-size: cover</code> fills the whole chat without stretching the picture, and <code>background-position: center</code> keeps the middle of it in view:</p>
+
+<pre><code>#workskin .mob.wa.pov-yuna { background-color: #e8e8e8; background-image: url(https://64.media.tumblr.com/a1c0162c5542c5890e5fd9c13341513e/3b53694384f48caf-98/s1280x1920/8b2fcaaf7deb2b05c418f46c62ee729acb8ff8e4.jpg); background-size: cover; background-position: center; }</code></pre>
+
+</details>
+
+<h4 id="s6-2-3">6.2.3 Bottom</h4>
+
+<h5 id="s6-2-3-1">6.2.3.1 The Message Bar</h5>
+
+<p>To finish off a screenshot-style chat, add the message bar at the bottom of the container, <em>after</em> the <code>mob-body</code>. It has the emoji button, the "Message" placeholder, the paperclip and camera, and the round green microphone:</p>
+
+<div class="mob wa theme-auto"><p class="wa-input">
+  <span class="wa-field">
+    <span class="ic ic-emoji">&#9786;</span>
+    <span class="wa-ph">Message</span>
+    <span class="wa-ic ic ic-paperclip">&#128206;</span>
+    <span class="wa-ic ic ic-camera">&#128247;</span>
+  </span>
+  <span class="wa-mic ic ic-wa-mic">&#127908;</span>
+</p></div>
+
+<pre><code>&lt;p class="wa-input"&gt;
+  &lt;span class="wa-field"&gt;
+    &lt;span class="ic ic-emoji"&gt;&amp;#9786;&lt;/span&gt;
+    &lt;span class="wa-ph"&gt;Message&lt;/span&gt;
+    &lt;span class="wa-ic ic ic-paperclip"&gt;&amp;#128206;&lt;/span&gt;
+    &lt;span class="wa-ic ic ic-camera"&gt;&amp;#128247;&lt;/span&gt;
+  &lt;/span&gt;
+  &lt;span class="wa-mic ic ic-wa-mic"&gt;&amp;#127908;&lt;/span&gt;
+&lt;/p&gt;</code></pre>
+
+<p>For a message someone is halfway through writing, add <code>typed</code> to <code>wa-ph</code> so the words go dark and wrap onto more lines, and swap "Message" for what they're typing. WhatsApp hides the camera while you type and turns the microphone into a send arrow, so take out the camera and put <code>&amp;#10148;</code> in the green circle instead:</p>
+
+<div class="mob wa theme-auto"><p class="wa-input">
+  <span class="wa-field">
+    <span class="ic ic-emoji">&#9786;</span>
+    <span class="wa-ph typed">ok so about last night, I think we need to talk about what happened before your mum</span>
+    <span class="wa-ic ic ic-paperclip">&#128206;</span>
+  </span>
+  <span class="wa-mic ic ic-wa-send">&#10148;</span>
+</p></div>
+
+<pre><code>&lt;p class="wa-input"&gt;
+  &lt;span class="wa-field"&gt;
+    &lt;span class="ic ic-emoji"&gt;&amp;#9786;&lt;/span&gt;
+    &lt;span class="wa-ph typed"&gt;ok so about last night, I think we need to talk about what happened before your mum&lt;/span&gt;
+    &lt;span class="wa-ic ic ic-paperclip"&gt;&amp;#128206;&lt;/span&gt;
+  &lt;/span&gt;
+  &lt;span class="wa-mic ic ic-wa-send"&gt;&amp;#10148;&lt;/span&gt;
+&lt;/p&gt;</code></pre>
+
+<h5 id="s6-2-3-2">6.2.3.2 Typing Dots</h5>
+
+<p>To show someone is typing, add <code>typing-indicator</code> to a message bubble from them, and put three empty spans in its last paragraph. It gets the same bubble as their messages, tail and all, just shrunk to fit the dots. The hidden line says who it is for readers with the workskin off:</p>
+
+<div class="mob wa theme-auto"><div class="mob-body"><div class="msg in tail typing-indicator"><p class="hide"><em>Lily</em> is typing...</p><p><span></span><span></span><span></span></p></div></div></div>
+
+<pre><code>&lt;div class="msg in tail typing-indicator"&gt;&lt;p class="hide"&gt;&lt;em&gt;Lily&lt;/em&gt; is typing...&lt;/p&gt;&lt;p&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;</code></pre>
+
+<p>Use <code>out</code> instead for whoever owns the phone, halfway through writing something, and the dots go on the right in your own bubble (green in light mode, dark green in dark mode):</p>
+
+<div class="mob wa theme-auto"><div class="mob-body"><div class="msg out tail typing-indicator"><p class="hide"><em>Shane</em> is typing...</p><p><span></span><span></span><span></span></p></div></div></div>
+
+<pre><code>&lt;div class="msg out tail typing-indicator"&gt;&lt;p class="hide"&gt;&lt;em&gt;Shane&lt;/em&gt; is typing...&lt;/p&gt;&lt;p&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;</code></pre>
+
+<p>In a group chat, give it the person's picture and name like any of their messages (see <a href="#heading">Profile Pictures in Groups</a>):</p>
+
+<div class="mob wa theme-auto"><div class="mob-body">
+    <div class="wa-row">
+      <p class="wa-pfp colour4">HP</p>
+      <div class="msg in tail typing-indicator">
+        <p class="who colour4">Hayden</p>
+        <p class="hide">is typing...</p>
+        <p><span></span><span></span><span></span></p>
+      </div>
+    </div>
+</div></div>
+
+<pre><code>&lt;div class="wa-row"&gt;
+  &lt;p class="wa-pfp colour4"&gt;HP&lt;/p&gt;
+  &lt;div class="msg in tail typing-indicator"&gt;
+    &lt;p class="who colour4"&gt;Hayden&lt;/p&gt;
+    &lt;p class="hide"&gt;is typing...&lt;/p&gt;
+    &lt;p&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+<h3 id="s6-3">6.3 Normal Messages</h3>
+
+<h4 id="s6-3-1">6.3.1 Simple Messages</h4>
 
 <p>WhatsApp bubbles hold more than one line of text - each one can have a time, ticks and a quoted reply in it. So instead of a single <code>&lt;p&gt;</code>, each message is a <code>&lt;div&gt;</code> with paragraphs inside:</p>
 
@@ -533,7 +944,7 @@
   &lt;p class="wa-time"&gt;23:41&lt;/p&gt;
 &lt;/div&gt;</code></pre>
 
-<p>Same as iMessage, <code>msg in</code> is a white bubble on the left and <code>msg out</code> is a green bubble on the right. The first paragraph is the message itself, and <code>wa-time</code> is the little grey time in the bottom right of the bubble. <code>tail</code> is optional - it adds the little pointy corner to the bubble, and it's meant for the first bubble in a run from one person.</p>
+<p>Same as iMessage, <code>msg in</code> is a white bubble on the left (dark grey in dark mode) and <code>msg out</code> is a green bubble on the right (dark green in dark mode). The first paragraph is the message itself, and <code>wa-time</code> is the little grey time in the bottom right of the bubble. <code>tail</code> is optional - it adds the little pointy corner to the bubble, and it's meant for the first bubble in a run from one person.</p>
 
 <details>
 <summary>Each part of a message, piece by piece</summary>
@@ -556,15 +967,15 @@
 
 </details>
 
-<h3 id="s6-5">6.5 Date Pills</h3>
+<h4 id="s6-3-2">6.3.2 Date Pills</h4>
 
-<p>The little grey pill with the date on it uses the same <code>mob-sys</code> line as iMessage - in WhatsApp, the workskin turns it into a pill for you:</p>
+<p>The little pill with the date on it (white in light mode, dark grey in dark mode) uses the same <code>mob-sys</code> line as iMessage - in WhatsApp, the workskin turns it into a pill for you:</p>
 
 <div class="mob wa theme-auto"><div class="mob-body"><p class="mob-sys">YESTERDAY</p></div></div>
 
 <pre><code>&lt;p class="mob-sys"&gt;YESTERDAY&lt;/p&gt;</code></pre>
 
-<h3 id="s6-6">6.6 Read Ticks</h3>
+<h4 id="s6-3-3">6.3.3 Read Ticks</h4>
 
 <p>To show that a message has been read, add a double tick after the time and wrap it in <code>wa-read</code>:</p>
 
@@ -618,7 +1029,7 @@
   &lt;/div&gt;
 &lt;/div&gt;</code></pre>
 
-<h3 id="edited"><span id="s6-7"></span>6.7 Edited Messages</h3>
+<h4 id="edited"><span id="s6-3-4"></span>6.3.4 Edited Messages</h4>
 
 <p>To show that a message was edited, type <code>Edited</code> before the time, inside the <code>wa-time</code> line:</p>
 
@@ -634,7 +1045,7 @@
 
 <p>It picks up the same small grey text as the time, so there's no extra class to remember.</p>
 
-<h3 id="s6-8">6.8 Replying to a Message</h3>
+<h4 id="s6-3-5">6.3.5 Replying to a Message</h4>
 
 <p>To quote the message someone is replying to, add a paragraph with <code>wa-quote</code> at the top of the bubble, before the reply:</p>
 
@@ -666,7 +1077,58 @@
   &lt;p class="wa-time"&gt;14:07&lt;/p&gt;
 &lt;/div&gt;</code></pre>
 
-<h3 id="s6-9">6.9 Emoji Reactions</h3>
+<p>In a group, the coloured bar and name in the quote take the colour of the person being quoted, so add their colour class to the <code>wa-quote</code>:</p>
+
+<div class="mob wa theme-auto"><div class="mob-body"><div class="msg out tail">
+  <p class="wa-quote colour4"><span class="hide">[Replying to </span><b>Hayden</b><span class="hide">:</span><br>should I bring the kids?<span class="hide">]</span></p>
+  <p><span class="hide"><em>Ilya:</em> </span>yes. they are better company than you</p>
+  <p class="wa-time">09:14 <span class="wa-read ic ic-read">✓✓</span></p>
+</div></div></div>
+
+<pre><code>&lt;div class="msg out tail"&gt;
+  &lt;p class="wa-quote colour4"&gt;&lt;span class="hide"&gt;[Replying to &lt;/span&gt;&lt;b&gt;Hayden&lt;/b&gt;&lt;span class="hide"&gt;:&lt;/span&gt;&lt;br&gt;should I bring the kids?&lt;span class="hide"&gt;]&lt;/span&gt;&lt;/p&gt;
+  &lt;p&gt;&lt;span class="hide"&gt;&lt;em&gt;Ilya:&lt;/em&gt; &lt;/span&gt;yes. they are better company than you&lt;/p&gt;
+  &lt;p class="wa-time"&gt;09:14 &lt;span class="wa-read ic ic-read"&gt;✓✓&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+
+<p>WhatsApp can also show the phone number of someone who isn't in your contacts at the right of their name in a quote. Put it in a span with <code>wa-num</code>, inside the <code>&lt;b&gt;</code>:</p>
+
+<div class="mob wa theme-auto"><div class="mob-body"><div class="msg out tail">
+  <p class="wa-quote colour1"><span class="hide">[Replying to </span><b>~ Rose<span class="hide"> </span><span class="wa-num">+353 85 123 4567</span></b><span class="hide">:</span><br>DINNER PARTY. my place, saturday at 7 🥂<span class="hide">]</span></p>
+  <p><span class="hide"><em>Ilya:</em> </span>what do we bring?</p>
+  <p class="wa-time">09:16 <span class="wa-read ic ic-read">✓✓</span></p>
+</div></div></div>
+
+<pre><code>&lt;div class="msg out tail"&gt;
+  &lt;p class="wa-quote colour1"&gt;&lt;span class="hide"&gt;[Replying to &lt;/span&gt;&lt;b&gt;~ Rose&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="wa-num"&gt;+353 85 123 4567&lt;/span&gt;&lt;/b&gt;&lt;span class="hide"&gt;:&lt;/span&gt;&lt;br&gt;DINNER PARTY. my place, saturday a<details>
+<summary>Phone numbers in a quote</summary>
+
+t 7 🥂&lt;span class="hide"&gt;]&lt;/span&gt;&lt;/p&gt;
+  &lt;p&gt;&lt;span class="hide"&gt;&lt;em&gt;Ilya:&lt;/em&gt; &lt;/span&gt;what do we bring?&lt;/p&gt;
+  &lt;p class="wa-time"&gt;09:16 &lt;span class="wa-read ic ic-read"&gt;✓✓&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+
+</details>
+
+<h4 id="s6-3-6">6.3.6 Forwarded Messages</h4>
+
+<p>A forwarded message has a small grey "Forwarded" label at the top of the bubble. Put a <code>wa-fwd</code> paragraph first in the message, before the text:</p>
+
+<div class="mob wa theme-auto"><div class="mob-body">
+<div class="msg out tail">
+  <p class="wa-fwd"><span class="ic ic-forward">&#8618;</span> Forwarded</p>
+  <p>If the lasagne is still going then yes please. Two portions 🙂</p>
+  <p class="wa-time">22:12 <span class="wa-read ic ic-read">✓✓</span></p>
+</div>
+</div></div>
+
+<pre><code>&lt;div class="msg out tail"&gt;
+  &lt;p class="wa-fwd"&gt;&lt;span class="ic ic-forward"&gt;&amp;#8618;&lt;/span&gt; Forwarded&lt;/p&gt;
+  &lt;p&gt;If the lasagne is still going then yes please. Two portions 🙂&lt;/p&gt;
+  &lt;p class="wa-time"&gt;22:12 &lt;span class="wa-read ic ic-read"&gt;✓✓&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+
+<h4 id="s6-3-7">6.3.7 Emoji Reactions</h4>
 
 <p>When someone reacts to a message, WhatsApp shows a little pill sitting on the bottom edge of the bubble. Add a <code>wa-reacts</code> paragraph straight after the bubble, with the emoji inside:</p>
 
@@ -718,7 +1180,7 @@
 &lt;/div&gt;
 &lt;p class="wa-reacts pad"&gt;&lt;span class="hide"&gt;[Reactions: &lt;/span&gt;🎉 &lt;span class="wa-count"&gt;2&lt;/span&gt;&lt;span class="hide"&gt;]&lt;/span&gt;&lt;/p&gt;</code></pre>
 
-<h3 id="s6-10">6.10 Large Emoji</h3>
+<h4 id="s6-3-8">6.3.8 Large Emoji</h4>
 
 <p>A message that's only an emoji can have the emoji on a line of its own. Put it in its own paragraph above the time, and make it big with the <code>wa-big</code> class:</p>
 
@@ -732,83 +1194,107 @@
   &lt;p class="wa-time"&gt;14:15 &lt;span class="wa-read ic ic-read"&gt;✓✓&lt;/span&gt;&lt;/p&gt;
 &lt;/div&gt;</code></pre>
 
-<h3 id="s6-11">6.11 Shared Links</h3>
+<h4 id="s6-3-9">6.3.9 System Notices</h4>
 
-<p>To show a link the way WhatsApp previews it, add <code>share</code> to the message and put a <code>wa-link</code> card inside it, above the time. The card holds a picture (<code>wa-link-img</code>), the title (<code>wa-link-title</code>), an optional short description (<code>wa-link-desc</code>) and the web address (<code>wa-link-url</code>), which gets a little link symbol in front of it automatically. The <code>hide</code> paragraph at the start holds the hidden label, as there's no message text to put it in. Don't forget the alt text on the picture:</p>
+<p>Notices like "Rose changed this group's icon" or "You were added" use the same <code>mob-sys</code> line as the date pill:</p>
 
-<div class="mob wa theme-auto"><div class="mob-body"><div class="msg in share"><p class="hide"><em>Lily:</em></p>
-  <div class="wa-link">
-    <p class="wa-link-img"><img src="https://64.media.tumblr.com/c3c4ecb5bfed8fa9f0590c54206ddb30/cff2318529321620-44/s1280x1920/42befcc40a517e1f202dda40783be2ffb95c1d92.pnj" alt="Macklin Celebrini at the IHF Worlds, dressed in his red jersey and black helmet. He's surrounded by sparkles, a red vignette, and hearts containing the Canadian flag"></p>
-    <p class="wa-link-title">Captain Mack</p>
-    <p class="wa-link-desc">All the reasons Mack deserves the C</p>
-    <p class="wa-link-url">fakehockeynews.com</p>
-  </div>
-  <p class="wa-time">14:12</p>
-</div></div></div>
+<div class="mob wa theme-auto"><div class="mob-body"><p class="mob-sys">Rose changed this group's icon</p></div></div>
 
-<pre><code>&lt;div class="msg in share"&gt;&lt;p class="hide"&gt;&lt;em&gt;Lily:&lt;/em&gt;&lt;/p&gt;
-  &lt;div class="wa-link"&gt;
-    &lt;p class="wa-link-img"&gt;&lt;img src="https://64.media.tumblr.com/c3c4ecb5bfed8fa9f0590c54206ddb30/cff2318529321620-44/s1280x1920/42befcc40a517e1f202dda40783be2ffb95c1d92.pnj" alt="Macklin Celebrini at the IHF Worlds, dressed in his red jersey and black helmet. He's surrounded by sparkles, a red vignette, and hearts containing the Canadian flag"&gt;&lt;/p&gt;
-    &lt;p class="wa-link-title"&gt;Captain Mack&lt;/p&gt;
-    &lt;p class="wa-link-desc"&gt;All the reasons Mack deserves the C&lt;/p&gt;
-    &lt;p class="wa-link-url"&gt;fakehockeynews.com&lt;/p&gt;
-  &lt;/div&gt;
-  &lt;p class="wa-time"&gt;14:12&lt;/p&gt;
+<pre><code>&lt;p class="mob-sys"&gt;Rose changed this group's icon&lt;/p&gt;</code></pre>
+
+<h3 id="s6-4">6.4 Contacts and Calls</h3>
+
+<h4 id="s6-4-1">6.4.1 Contact Cards</h4>
+
+<p>When someone shares a contact, it shows as a card with the contact's picture and name, the time, and a Message button along the bottom. Add <code>contact</code> to the message, and put the picture and name in a <code>wa-contact</code> paragraph, then the time, then a <code>wa-cbtn</code> paragraph for the button:</p>
+
+<div class="mob wa theme-auto"><div class="mob-body">
+<div class="msg in tail contact"><p class="hide"><em>Lily:</em></p>
+  <p class="wa-contact"><span class="wa-pfp"><span class="pfp pfp-rose"></span></span>Rose Landry</p>
+  <p class="wa-time">18:03</p>
+  <p class="wa-cbtn">Message</p>
+</div>
+<div class="msg out tail contact">
+  <p class="wa-contact"><span class="wa-pfp colour4">HP</span>Hayden Pike</p>
+  <p class="wa-time">18:05</p>
+  <p class="wa-cbtn">Message</p>
+</div>
+</div></div>
+
+<pre><code>&lt;div class="msg in tail contact"&gt;&lt;p class="hide"&gt;&lt;em&gt;Lily:&lt;/em&gt;&lt;/p&gt;
+  &lt;p class="wa-contact"&gt;&lt;span class="wa-pfp"&gt;&lt;span class="pfp pfp-rose"&gt;&lt;/span&gt;&lt;/span&gt;Rose Landry&lt;/p&gt;
+  &lt;p class="wa-time"&gt;18:03&lt;/p&gt;
+  &lt;p class="wa-cbtn"&gt;Message&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="msg out tail contact"&gt;
+  &lt;p class="wa-contact"&gt;&lt;span class="wa-pfp colour4"&gt;HP&lt;/span&gt;Hayden Pike&lt;/p&gt;
+  &lt;p class="wa-time"&gt;18:05&lt;/p&gt;
+  &lt;p class="wa-cbtn"&gt;Message&lt;/p&gt;
 &lt;/div&gt;</code></pre>
 
-<p>To share a video link with the video actually playing in the card, put the embed code from the video site in the picture box, and add <code>video</code> to it. Keep the whole <code>src</code> link, including everything after the <code>?</code>:</p>
+<p>The picture is a <code>wa-pfp</code>, the same as the pictures in a group chat, so it can be a profile (like Rose's), initials with a colour (like Hayden's), or an uploaded picture (see <a href="#heading">Profile Pictures in Groups</a>). The <code>hide</code> paragraph at the start holds the hidden name for readers with the workskin off, like a shared link. In a group chat, use the sender's <code>who</code> line instead, like Hayden sharing Jackie's contact in the group chat example.</p>
 
-<div class="mob wa theme-auto"><div class="mob-body"><div class="msg in share"><p class="hide"><em>Lily:</em></p>
-  <div class="wa-link">
-    <div class="wa-link-img video"><iframe src="https://player.vimeo.com/video/1169167060?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" title="Ilya Rozanov | Come Home"></iframe><p class="vid-desc">[Video: a tribute edit of Ilya Rozanov, made from Heated Rivalry footage and set to "Would You Come Home" by Tyler Blackburn]</p></div>
-    <p class="wa-link-title">Ilya Rozanov | Come Home</p>
-    <p class="wa-link-url">vimeo.com</p>
-  </div>
-  <p class="wa-caption">also someone made me a fan video. I am very handsome in it</p>
-  <p class="wa-time">14:13</p>
-</div></div></div>
+<h4 id="s6-4-2">6.4.2 Calls</h4>
 
-<pre><code>&lt;div class="msg in share"&gt;&lt;p class="hide"&gt;&lt;em&gt;Lily:&lt;/em&gt;&lt;/p&gt;
-  &lt;div class="wa-link"&gt;
-    &lt;div class="wa-link-img video"&gt;&lt;iframe src="https://player.vimeo.com/video/1169167060?badge=0&amp;amp;autopause=0&amp;amp;player_id=0&amp;amp;app_id=58479" frameborder="0" title="Ilya Rozanov | Come Home"&gt;&lt;/iframe&gt;&lt;p class="vid-desc"&gt;[Video: a tribute edit of Ilya Rozanov, made from Heated Rivalry footage and set to "Would You Come Home" by Tyler Blackburn]&lt;/p&gt;&lt;/div&gt;
-    &lt;p class="wa-link-title"&gt;Ilya Rozanov | Come Home&lt;/p&gt;
-    &lt;p class="wa-link-url"&gt;vimeo.com&lt;/p&gt;
-  &lt;/div&gt;
-  &lt;p class="wa-caption"&gt;also someone made me a fan video. I am very handsome in it&lt;/p&gt;
-  &lt;p class="wa-time"&gt;14:13&lt;/p&gt;
-&lt;/div&gt;</code></pre>
+<p>A call shows up in the chat as a bubble of its own, with a round icon, what kind of call it was, and how long it lasted. Add <code>call</code> to the message, and put the call in a <code>wa-call</code> paragraph:</p>
 
-<p>The <code>vid-desc</code> paragraph after the video is its description, for screen readers and for anyone reading with the workskin off - see <a href="core.html#s2-2-5">Video Descriptions</a>.</p>
+<div class="mob wa theme-auto"><div class="mob-body">
+<div class="msg out tail call"><p class="wa-call"><span class="wa-call-ic ic ic-wa-call-out">&#128222;</span><span class="hide"> </span><b>Voice call</b><span class="hide"> - </span><span class="wa-call-len">44 secs</span></p><p class="wa-time">09:47</p></div>
+<div class="msg in tail call"><p class="wa-call"><span class="wa-call-ic ic ic-wa-call-in">&#128222;</span><span class="hide"> </span><b>Voice call</b><span class="hide"> - </span><span class="wa-call-len">1 min</span></p><p class="wa-time">18:55</p></div>
+</div></div>
 
-<p>To write a message under the card in the same bubble, like Lily's here, add a <code>wa-caption</code> paragraph after the card, before the time. It works under any link card, with or without a video.</p>
+<pre><code>&lt;div class="msg out tail call"&gt;&lt;p class="wa-call"&gt;&lt;span class="wa-call-ic ic ic-wa-call-out"&gt;&amp;#128222;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;b&gt;Voice call&lt;/b&gt;&lt;span class="hide"&gt; - &lt;/span&gt;&lt;span class="wa-call-len"&gt;44 secs&lt;/span&gt;&lt;/p&gt;&lt;p class="wa-time"&gt;09:47&lt;/p&gt;&lt;/div&gt;
+&lt;div class="msg in tail call"&gt;&lt;p class="wa-call"&gt;&lt;span class="wa-call-ic ic ic-wa-call-in"&gt;&amp;#128222;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;b&gt;Voice call&lt;/b&gt;&lt;span class="hide"&gt; - &lt;/span&gt;&lt;span class="wa-call-len"&gt;1 min&lt;/span&gt;&lt;/p&gt;&lt;p class="wa-time"&gt;18:55&lt;/p&gt;&lt;/div&gt;</code></pre>
 
-<p>The description is optional, so leave out the <code>wa-link-desc</code> line if you only want a title and an address. If you don't want a picture at all, add <code>text</code> to the picture box and write a description in square brackets. In this one, Shane has also pasted the link into his message, so WhatsApp shows the address in blue above the card. Put that in a span with <code>wa-ln</code> (or <code>fake-link</code>, which looks the same), above the card. The address in the card is just text, so you can make up any address you like there too:</p>
+<p>The icon (<code>wa-call-ic</code>) goes first, then the kind of call in <code>&lt;b&gt;</code>, then the length in <code>wa-call-len</code>. The time sits beside the length on its own. The arrow on the icon shows who rang who: <code>ic-wa-call-out</code> for a call the pov character made, and <code>ic-wa-call-in</code> for one they picked up.</p>
 
-<div class="mob wa theme-auto"><div class="mob-body"><div class="msg out share"><p class="hide"><em>Shane:</em></p>
-  <p><span class="wa-ln">https://recipes.example.com/pierogi</span></p>
-  <div class="wa-link">
-    <p class="wa-link-img text">[The page's picture: a plate of golden fried pierogi with sour cream]</p>
-    <p class="wa-link-title">Pierogi from Scratch</p>
-    <p class="wa-link-desc">Easier than you think</p>
-    <p class="wa-link-url">recipes.example.com</p>
-  </div>
-  <p class="wa-time">14:20 <span class="wa-read ic ic-read">✓✓</span></p>
-</div></div></div>
+<details>
+<summary>Video calls, missed calls, and the hidden words</summary>
 
-<pre><code>&lt;div class="msg out share"&gt;&lt;p class="hide"&gt;&lt;em&gt;Shane:&lt;/em&gt;&lt;/p&gt;
-  &lt;p&gt;&lt;span class="wa-ln"&gt;https://recipes.example.com/pierogi&lt;/span&gt;&lt;/p&gt;
-  &lt;div class="wa-link"&gt;
-    &lt;p class="wa-link-img text"&gt;[The page's picture: a plate of golden fried pierogi with sour cream]&lt;/p&gt;
-    &lt;p class="wa-link-title"&gt;Pierogi from Scratch&lt;/p&gt;
-    &lt;p class="wa-link-desc"&gt;Easier than you think&lt;/p&gt;
-    &lt;p class="wa-link-url"&gt;recipes.example.com&lt;/p&gt;
-  &lt;/div&gt;
-  &lt;p class="wa-time"&gt;14:20 &lt;span class="wa-read ic ic-read"&gt;✓✓&lt;/span&gt;&lt;/p&gt;
-&lt;/div&gt;</code></pre>
+<p>For a missed call, use <code>ic-wa-call-missed</code>, which is red, and put "Missed voice call" and "Tap to call back" in place of the kind and the length. Video calls work the same way, with <code>ic-wa-video-out</code>, <code>ic-wa-video-in</code> and <code>ic-wa-video-missed</code>:</p>
 
-<h3 id="s6-12">6.12 Photos and Captions</h3>
+<div class="mob wa theme-auto"><div class="mob-body">
+<div class="msg in tail call"><p class="wa-call"><span class="wa-call-ic ic ic-wa-call-missed">&#128222;</span><span class="hide"> </span><b>Missed voice call</b><span class="hide"> - </span><span class="wa-call-len">Tap to call back</span></p><p class="wa-time">02:14</p></div>
+<div class="msg out tail call"><p class="wa-call"><span class="wa-call-ic ic ic-wa-video-out">&#127909;</span><span class="hide"> </span><b>Video call</b><span class="hide"> - </span><span class="wa-call-len">1 hr</span></p><p class="wa-time">23:02</p></div>
+<div class="msg in tail call"><p class="wa-call"><span class="wa-call-ic ic ic-wa-video-missed">&#127909;</span><span class="hide"> </span><b>Missed video call</b><span class="hide"> - </span><span class="wa-call-len">Tap to call back</span></p><p class="wa-time">23:40</p></div>
+</div></div>
+
+<pre><code>&lt;div class="msg in tail call"&gt;&lt;p class="wa-call"&gt;&lt;span class="wa-call-ic ic ic-wa-call-missed"&gt;&amp;#128222;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;b&gt;Missed voice call&lt;/b&gt;&lt;span class="hide"&gt; - &lt;/span&gt;&lt;span class="wa-call-len"&gt;Tap to call back&lt;/span&gt;&lt;/p&gt;&lt;p class="wa-time"&gt;02:14&lt;/p&gt;&lt;/div&gt;
+&lt;div class="msg out tail call"&gt;&lt;p class="wa-call"&gt;&lt;span class="wa-call-ic ic ic-wa-video-out"&gt;&amp;#127909;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;b&gt;Video call&lt;/b&gt;&lt;span class="hide"&gt; - &lt;/span&gt;&lt;span class="wa-call-len"&gt;1 hr&lt;/span&gt;&lt;/p&gt;&lt;p class="wa-time"&gt;23:02&lt;/p&gt;&lt;/div&gt;
+&lt;div class="msg in tail call"&gt;&lt;p class="wa-call"&gt;&lt;span class="wa-call-ic ic ic-wa-video-missed"&gt;&amp;#127909;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;b&gt;Missed video call&lt;/b&gt;&lt;span class="hide"&gt; - &lt;/span&gt;&lt;span class="wa-call-len"&gt;Tap to call back&lt;/span&gt;&lt;/p&gt;&lt;p class="wa-time"&gt;23:40&lt;/p&gt;&lt;/div&gt;</code></pre>
+
+<ul>
+  <li>The typed symbol inside the icon (&#128222; for a voice call, &#127909; for a video call) is what shows if you take the icons out of your skin.</li>
+  <li>The <code>hide</code> spans are for readers with the workskin off, so the call reads "&#128222; Voice call - 44 secs 09:47" instead of running together. A call has no words from anyone, so it doesn't need a hidden name.</li>
+</ul>
+
+</details>
+
+<h3 id="s6-5">6.5 Images, Videos and Links</h3>
+
+<h4 id="s6-5-1">6.5.1 Photos and Captions</h4>
 
 <p>For one photo on its own, add <code>gallery</code> to the message and use a <code>wa-photos one</code> box with a single <code>wa-photo</code> inside, with the picture tag in it. A single photo isn't cropped into a square, so it keeps its own shape, whether it's tall or wide - a really tall one gets trimmed at the bottom, so it doesn't take over the chat. Don't forget the alt text.</p>
+
+<div class="mob wa theme-auto"><div class="mob-body"><div class="msg in tail gallery"><p class="hide"><em>Lily:</em></p>
+  <p class="wa-photos one"><span class="wa-photo"><img src="https://images.squidge.org/images/2026/11/16/Cat2.jpg" alt="Black and white cat screaming at the camera, on a red patterned rug"></span></p>
+  <p class="wa-time">14:23</p>
+</div>
+<div class="msg out tail gallery">
+  <p class="wa-photos one"><span class="wa-photo"><img src="https://images.squidge.org/images/2026/11/20/white-photo.png" alt="A plain white picture"></span></p>
+  <p class="wa-time">14:25 <span class="wa-read ic ic-read">✓✓</span></p>
+</div></div></div>
+
+<pre><code>&lt;div class="msg in tail gallery"&gt;&lt;p class="hide"&gt;&lt;em&gt;Lily:&lt;/em&gt;&lt;/p&gt;
+  &lt;p class="wa-photos one"&gt;&lt;span class="wa-photo"&gt;&lt;img src="https://images.squidge.org/images/2026/11/16/Cat2.jpg" alt="Black and white cat screaming at the camera, on a red patterned rug"&gt;&lt;/span&gt;&lt;/p&gt;
+  &lt;p class="wa-time"&gt;14:23&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="msg out tail gallery"&gt;
+  &lt;p class="wa-photos one"&gt;&lt;span class="wa-photo"&gt;&lt;img src="https://images.squidge.org/images/2026/11/20/white-photo.png" alt="A plain white picture"&gt;&lt;/span&gt;&lt;/p&gt;
+  &lt;p class="wa-time"&gt;14:25 &lt;span class="wa-read ic ic-read"&gt;✓✓&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+
+<p>With no caption, the time sits on the bottom corner of the photo, in white on a dark fade so it shows up on any picture, in light and dark mode alike. The ticks on a photo you sent are white too, and they stay white once it's been read.</p>
 
 <p>To write a message under the photo, the way WhatsApp shows a caption, add a <code>wa-caption</code> paragraph after the photo box, before the time:</p>
 
@@ -826,7 +1312,7 @@
 
 <p>The <code>hide</code> paragraph at the start holds the hidden label, the same as for a link card. A caption works the same way under a gallery of two, three or four photos, and <code>wa-desc</code> works in a single photo too, if you'd rather describe it than show it.</p>
 
-<h3 id="s6-13">6.13 Photo Galleries</h3>
+<h4 id="s6-5-2">6.5.2 Photo Galleries</h4>
 
 <p>When several photos are sent together, WhatsApp shows them in one bubble as a grid. Add <code>gallery</code> to the message, put a <code>wa-photos</code> box inside it, and add a <code>wa-photo</code> span for each picture, with the picture tag inside. The box takes <code>two</code>, <code>three</code> or <code>four</code> to match the number of pictures, and every picture needs its alt text:</p>
 
@@ -910,87 +1396,83 @@
   &lt;p class="wa-time"&gt;09:18&lt;/p&gt;
 &lt;/div&gt;</code></pre>
 
-<h3 id="s6-14">6.14 Typing Dots</h3>
+<h4 id="s6-5-3">6.5.3 Shared Links</h4>
 
-<p>To show someone is typing, add <code>typing-indicator</code> to a message bubble from them, and put three empty spans in its last paragraph. It gets the same bubble as their messages, tail and all, just shrunk to fit the dots. The hidden line says who it is for readers with the workskin off:</p>
+<p>To show a link the way WhatsApp previews it, add <code>share</code> to the message and put a <code>wa-link</code> card inside it, above the time. The card holds a picture (<code>wa-link-img</code>), the title (<code>wa-link-title</code>), an optional short description (<code>wa-link-desc</code>) and the web address (<code>wa-link-url</code>), which gets a little link symbol in front of it automatically. The <code>hide</code> paragraph at the start holds the hidden label, as there's no message text to put it in. Don't forget the alt text on the picture:</p>
 
-<div class="mob wa theme-auto"><div class="mob-body"><div class="msg in tail typing-indicator"><p class="hide"><em>Lily</em> is typing...</p><p><span></span><span></span><span></span></p></div></div></div>
+<div class="mob wa theme-auto"><div class="mob-body"><div class="msg in share"><p class="hide"><em>Lily:</em></p>
+  <div class="wa-link">
+    <p class="wa-link-img"><img src="https://64.media.tumblr.com/c3c4ecb5bfed8fa9f0590c54206ddb30/cff2318529321620-44/s1280x1920/42befcc40a517e1f202dda40783be2ffb95c1d92.pnj" alt="Macklin Celebrini at the IHF Worlds, dressed in his red jersey and black helmet. He's surrounded by sparkles, a red vignette, and hearts containing the Canadian flag"></p>
+    <p class="wa-link-title">Captain Mack</p>
+    <p class="wa-link-desc">All the reasons Mack deserves the C</p>
+    <p class="wa-link-url">fakehockeynews.com</p>
+  </div>
+  <p class="wa-time">14:12</p>
+</div></div></div>
 
-<pre><code>&lt;div class="msg in tail typing-indicator"&gt;&lt;p class="hide"&gt;&lt;em&gt;Lily&lt;/em&gt; is typing...&lt;/p&gt;&lt;p&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;</code></pre>
-
-<p>Use <code>out</code> instead for whoever owns the phone, halfway through writing something, and the dots go on the right in a green bubble:</p>
-
-<div class="mob wa theme-auto"><div class="mob-body"><div class="msg out tail typing-indicator"><p class="hide"><em>Shane</em> is typing...</p><p><span></span><span></span><span></span></p></div></div></div>
-
-<pre><code>&lt;div class="msg out tail typing-indicator"&gt;&lt;p class="hide"&gt;&lt;em&gt;Shane&lt;/em&gt; is typing...&lt;/p&gt;&lt;p&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;</code></pre>
-
-<p>In a group chat, give it the person's picture and name like any of their messages (see <a href="#heading">Profile Pictures in Groups</a>):</p>
-
-<div class="mob wa theme-auto"><div class="mob-body">
-    <div class="wa-row">
-      <p class="wa-pfp colour4">HP</p>
-      <div class="msg in tail typing-indicator">
-        <p class="who colour4">Hayden</p>
-        <p class="hide">is typing...</p>
-        <p><span></span><span></span><span></span></p>
-      </div>
-    </div>
-</div></div>
-
-<pre><code>&lt;div class="wa-row"&gt;
-  &lt;p class="wa-pfp colour4"&gt;HP&lt;/p&gt;
-  &lt;div class="msg in tail typing-indicator"&gt;
-    &lt;p class="who colour4"&gt;Hayden&lt;/p&gt;
-    &lt;p class="hide"&gt;is typing...&lt;/p&gt;
-    &lt;p&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/p&gt;
+<pre><code>&lt;div class="msg in share"&gt;&lt;p class="hide"&gt;&lt;em&gt;Lily:&lt;/em&gt;&lt;/p&gt;
+  &lt;div class="wa-link"&gt;
+    &lt;p class="wa-link-img"&gt;&lt;img src="https://64.media.tumblr.com/c3c4ecb5bfed8fa9f0590c54206ddb30/cff2318529321620-44/s1280x1920/42befcc40a517e1f202dda40783be2ffb95c1d92.pnj" alt="Macklin Celebrini at the IHF Worlds, dressed in his red jersey and black helmet. He's surrounded by sparkles, a red vignette, and hearts containing the Canadian flag"&gt;&lt;/p&gt;
+    &lt;p class="wa-link-title"&gt;Captain Mack&lt;/p&gt;
+    &lt;p class="wa-link-desc"&gt;All the reasons Mack deserves the C&lt;/p&gt;
+    &lt;p class="wa-link-url"&gt;fakehockeynews.com&lt;/p&gt;
   &lt;/div&gt;
+  &lt;p class="wa-time"&gt;14:12&lt;/p&gt;
 &lt;/div&gt;</code></pre>
 
-<h3 id="s6-15">6.15 The Message Bar</h3>
+<p>To share a video link with the video actually playing in the card, put the embed code from the video site in the picture box, and add <code>video</code> to it. Keep the whole <code>src</code> link, including everything after the <code>?</code>:</p>
 
-<p>To finish off a screenshot-style chat, add the message bar at the bottom of the container, <em>after</em> the <code>mob-body</code>. It has the emoji button, the "Message" placeholder, the paperclip and camera, and the round green microphone:</p>
+<div class="mob wa theme-auto"><div class="mob-body"><div class="msg in share"><p class="hide"><em>Lily:</em></p>
+  <div class="wa-link">
+    <div class="wa-link-img video"><iframe src="https://player.vimeo.com/video/1169167060?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" title="Ilya Rozanov | Come Home"></iframe><p class="vid-desc">[Video: a tribute edit of Ilya Rozanov, made from Heated Rivalry footage and set to "Would You Come Home" by Tyler Blackburn]</p></div>
+    <p class="wa-link-title">Ilya Rozanov | Come Home</p>
+    <p class="wa-link-url">vimeo.com</p>
+  </div>
+  <p class="wa-caption">also someone made me a fan video. I am very handsome in it</p>
+  <p class="wa-time">14:13</p>
+</div></div></div>
 
-<div class="mob wa theme-auto"><p class="wa-input">
-  <span class="wa-field">
-    <span class="ic ic-emoji">&#9786;</span>
-    <span class="wa-ph">Message</span>
-    <span class="wa-ic ic ic-paperclip">&#128206;</span>
-    <span class="wa-ic ic ic-camera">&#128247;</span>
-  </span>
-  <span class="wa-mic ic ic-wa-mic">&#127908;</span>
-</p></div>
+<pre><code>&lt;div class="msg in share"&gt;&lt;p class="hide"&gt;&lt;em&gt;Lily:&lt;/em&gt;&lt;/p&gt;
+  &lt;div class="wa-link"&gt;
+    &lt;div class="wa-link-img video"&gt;&lt;iframe src="https://player.vimeo.com/video/1169167060?badge=0&amp;amp;autopause=0&amp;amp;player_id=0&amp;amp;app_id=58479" frameborder="0" title="Ilya Rozanov | Come Home"&gt;&lt;/iframe&gt;&lt;p class="vid-desc"&gt;[Video: a tribute edit of Ilya Rozanov, made from Heated Rivalry footage and set to "Would You Come Home" by Tyler Blackburn]&lt;/p&gt;&lt;/div&gt;
+    &lt;p class="wa-link-title"&gt;Ilya Rozanov | Come Home&lt;/p&gt;
+    &lt;p class="wa-link-url"&gt;vimeo.com&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;p class="wa-caption"&gt;also someone made me a fan video. I am very handsome in it&lt;/p&gt;
+  &lt;p class="wa-time"&gt;14:13&lt;/p&gt;
+&lt;/div&gt;</code></pre>
 
-<pre><code>&lt;p class="wa-input"&gt;
-  &lt;span class="wa-field"&gt;
-    &lt;span class="ic ic-emoji"&gt;&amp;#9786;&lt;/span&gt;
-    &lt;span class="wa-ph"&gt;Message&lt;/span&gt;
-    &lt;span class="wa-ic ic ic-paperclip"&gt;&amp;#128206;&lt;/span&gt;
-    &lt;span class="wa-ic ic ic-camera"&gt;&amp;#128247;&lt;/span&gt;
-  &lt;/span&gt;
-  &lt;span class="wa-mic ic ic-wa-mic"&gt;&amp;#127908;&lt;/span&gt;
-&lt;/p&gt;</code></pre>
+<p>The <code>vid-desc</code> paragraph after the video is its description, for screen readers and for anyone reading with the workskin off - see <a href="core.html#s2-2-5">Video Descriptions</a>.</p>
 
-<p>For a message someone is halfway through writing, add <code>typed</code> to <code>wa-ph</code> so the words go dark and wrap onto more lines, and swap "Message" for what they're typing. WhatsApp hides the camera while you type and turns the microphone into a send arrow, so take out the camera and put <code>&amp;#10148;</code> in the green circle instead:</p>
+<p>To write a message under the card in the same bubble, like Lily's here, add a <code>wa-caption</code> paragraph after the card, before the time. It works under any link card, with or without a video.</p>
 
-<div class="mob wa theme-auto"><p class="wa-input">
-  <span class="wa-field">
-    <span class="ic ic-emoji">&#9786;</span>
-    <span class="wa-ph typed">ok so about last night, I think we need to talk about what happened before your mum</span>
-    <span class="wa-ic ic ic-paperclip">&#128206;</span>
-  </span>
-  <span class="wa-mic ic ic-wa-send">&#10148;</span>
-</p></div>
+<p>The description is optional, so leave out the <code>wa-link-desc</code> line if you only want a title and an address. If you don't want a picture at all, add <code>text</code> to the picture box and write a description in square brackets. In this one, Shane has also pasted the link into his message, so WhatsApp shows the address in blue above the card. Put that in a span with <code>wa-ln</code> (or <code>fake-link</code>, which looks the same), above the card. The address in the card is just text, so you can make up any address you like there too:</p>
 
-<pre><code>&lt;p class="wa-input"&gt;
-  &lt;span class="wa-field"&gt;
-    &lt;span class="ic ic-emoji"&gt;&amp;#9786;&lt;/span&gt;
-    &lt;span class="wa-ph typed"&gt;ok so about last night, I think we need to talk about what happened before your mum&lt;/span&gt;
-    &lt;span class="wa-ic ic ic-paperclip"&gt;&amp;#128206;&lt;/span&gt;
-  &lt;/span&gt;
-  &lt;span class="wa-mic ic ic-wa-send"&gt;&amp;#10148;&lt;/span&gt;
-&lt;/p&gt;</code></pre>
+<div class="mob wa theme-auto"><div class="mob-body"><div class="msg out share"><p class="hide"><em>Shane:</em></p>
+  <p><span class="wa-ln">https://recipes.example.com/pierogi</span></p>
+  <div class="wa-link">
+    <p class="wa-link-img text">[The page's picture: a plate of golden fried pierogi with sour cream]</p>
+    <p class="wa-link-title">Pierogi from Scratch</p>
+    <p class="wa-link-desc">Easier than you think</p>
+    <p class="wa-link-url">recipes.example.com</p>
+  </div>
+  <p class="wa-time">14:20 <span class="wa-read ic ic-read">✓✓</span></p>
+</div></div></div>
 
-<h3 id="s6-16">6.16 Group Chats</h3>
+<pre><code>&lt;div class="msg out share"&gt;&lt;p class="hide"&gt;&lt;em&gt;Shane:&lt;/em&gt;&lt;/p&gt;
+  &lt;p&gt;&lt;span class="wa-ln"&gt;https://recipes.example.com/pierogi&lt;/span&gt;&lt;/p&gt;
+  &lt;div class="wa-link"&gt;
+    &lt;p class="wa-link-img text"&gt;[The page's picture: a plate of golden fried pierogi with sour cream]&lt;/p&gt;
+    &lt;p class="wa-link-title"&gt;Pierogi from Scratch&lt;/p&gt;
+    &lt;p class="wa-link-desc"&gt;Easier than you think&lt;/p&gt;
+    &lt;p class="wa-link-url"&gt;recipes.example.com&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;p class="wa-time"&gt;14:20 &lt;span class="wa-read ic ic-read"&gt;✓✓&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+
+<h3 id="s6-6">6.6 Characters</h3>
+
+<h4 id="s6-6-1">6.6.1 Names in Groups</h4>
 
 <p>In a group, add a <code>who</code> paragraph as the first line of a bubble to show who sent it. WhatsApp gives everyone their own name colour, so add one of <code>colour1</code> to <code>colour10</code> as well. Use the same number as the person's picture circle, so their name and picture match:</p>
 
@@ -1024,7 +1506,7 @@
 
 <p>The <code>who</code> name shows at the top of the bubble whether the workskin is on or off, so it doesn't need a hidden label - just the hidden colon after it (<code>&lt;span class=&quot;hide&quot;&gt;:&lt;/span&gt;</code>), so it reads "Hayden:" followed by the message. Your own messages have no <code>who</code> line, so they keep the full hidden label.</p>
 
-<h3 id="s6-17">6.17 Phone Numbers and Nicknames</h3>
+<h4 id="s6-6-2">6.6.2 Phone Numbers and Nicknames</h4>
 
 <p>In a group, anyone who isn't saved in your contacts shows up as a phone number, or as the nickname they've given themselves, which starts with a <code>~</code>. WhatsApp puts the number at the right-hand end of the name line. To do that, put a <code>wa-num</code> span inside the <code>who</code> paragraph:</p>
 
@@ -1042,7 +1524,7 @@
 
 <p>For someone who is saved in your contacts, just write their name and leave the number out. If you want a name in the normal text colour (for yourself, for example), leave the colour class off.</p>
 
-<h3 id="s6-18">6.18 Profile Pictures in Groups</h3>
+<h4 id="s6-6-3">6.6.3 Profile Pictures in Groups</h4>
 
 <p>In a group, the first message in a run from one person has their round profile picture next to it. To add one, wrap the message in a <code>wa-row</code> and put a <code>wa-pfp</code> before the bubble. With no picture, <code>wa-pfp</code> shows the person's initials on a grey circle. To give the circle a colour, add one of <code>colour1</code> to <code>colour10</code>, like <code>wa-pfp colour4</code>. The circle can hold initials, an uploaded picture or a picture from a profile, and there's an example of each below. First, initials:</p>
 
@@ -1122,7 +1604,7 @@
 
 <p>The colours for <code>colour1</code> to <code>colour10</code> are set in the core CSS and shared with every app, so you can change them there.</p>
 
-<h3 id="s6-19">6.19 Uploading a Profile Pic</h3>
+<h4 id="s6-6-4">6.6.4 Uploading a Profile Pic</h4>
 
 <p>Profiles are optional, and in a big group where most people only say a line or two, it's quicker to skip them. For each person, put their picture tag in the <code>wa-pfp</code> and type their name in the <code>who</code> line, with the same colour class on both so the name matches the circle. Every time they start a new run of messages, copy the whole <code>wa-pfp</code> paragraph and <code>who</code> line in again, and use <code>wa-row cont</code> for the messages straight after it, the same as above:</p>
 
@@ -1193,206 +1675,6 @@
   <li>A wide picture needs <code>class=&quot;land&quot;</code> on the picture tag, like Ash's, or it won't fill its circle.</li>
   <li>The same picture tag works in the header's <code>wa-pfp</code>, for a one-to-one chat with someone who doesn't have a profile.</li>
 </ul>
-
-<h3 id="s6-20">6.20 Quoting a Message in a Group</h3>
-
-<p>Quotes in a group work the same as in a one-to-one chat, except the coloured bar on the left takes the colour of the person being quoted. Add the same colour class to the <code>wa-quote</code>:</p>
-
-<div class="mob wa theme-auto"><div class="mob-body"><div class="msg out tail">
-  <p class="wa-quote colour4"><span class="hide">[Replying to </span><b>Hayden</b><span class="hide">:</span><br>should I bring the kids?<span class="hide">]</span></p>
-  <p><span class="hide"><em>Ilya:</em> </span>yes. they are better company than you</p>
-  <p class="wa-time">09:14 <span class="wa-read ic ic-read">✓✓</span></p>
-</div></div></div>
-
-<pre><code>&lt;div class="msg out tail"&gt;
-  &lt;p class="wa-quote colour4"&gt;&lt;span class="hide"&gt;[Replying to &lt;/span&gt;&lt;b&gt;Hayden&lt;/b&gt;&lt;span class="hide"&gt;:&lt;/span&gt;&lt;br&gt;should I bring the kids?&lt;span class="hide"&gt;]&lt;/span&gt;&lt;/p&gt;
-  &lt;p&gt;&lt;span class="hide"&gt;&lt;em&gt;Ilya:&lt;/em&gt; &lt;/span&gt;yes. they are better company than you&lt;/p&gt;
-  &lt;p class="wa-time"&gt;09:14 &lt;span class="wa-read ic ic-read"&gt;✓✓&lt;/span&gt;&lt;/p&gt;
-&lt;/div&gt;</code></pre>
-
-<p>Replying to a message <em>you</em> sent works the same as in a one-to-one chat, with <code>You</code> in the quote and <code>colour8</code>:</p>
-
-<div class="mob wa theme-auto"><div class="mob-body"><div class="wa-row"><div class="msg in tail">
-  <p class="who colour3">Jane<span class="hide">:</span></p>
-  <p class="wa-quote colour8"><span class="hide">[Replying to </span><b>You</b><span class="hide">:</span><br>yes. they are better company than you<span class="hide">]</span></p>
-  <p>be nice</p>
-  <p class="wa-time">09:15</p>
-</div></div></div></div>
-
-<pre><code>&lt;div class="msg in tail"&gt;
-  &lt;p class="who colour3"&gt;Jane&lt;span class="hide"&gt;:&lt;/span&gt;&lt;/p&gt;
-  &lt;p class="wa-quote colour8"&gt;&lt;span class="hide"&gt;[Replying to &lt;/span&gt;&lt;b&gt;You&lt;/b&gt;&lt;span class="hide"&gt;:&lt;/span&gt;&lt;br&gt;yes. they are better company than you&lt;span class="hide"&gt;]&lt;/span&gt;&lt;/p&gt;
-  &lt;p&gt;be nice&lt;/p&gt;
-  &lt;p class="wa-time"&gt;09:15&lt;/p&gt;
-&lt;/div&gt;</code></pre>
-
-<p>WhatsApp can also show the phone number of someone who isn't in your contacts at the right of their name in a quote. Put it in a span with <code>wa-num</code>, inside the <code>&lt;b&gt;</code>:</p>
-
-<div class="mob wa theme-auto"><div class="mob-body"><div class="msg out tail">
-  <p class="wa-quote colour1"><span class="hide">[Replying to </span><b>~ Rose<span class="hide"> </span><span class="wa-num">+353 85 123 4567</span></b><span class="hide">:</span><br>DINNER PARTY. my place, saturday at 7 🥂<span class="hide">]</span></p>
-  <p><span class="hide"><em>Ilya:</em> </span>what do we bring?</p>
-  <p class="wa-time">09:16 <span class="wa-read ic ic-read">✓✓</span></p>
-</div></div></div>
-
-<pre><code>&lt;div class="msg out tail"&gt;
-  &lt;p class="wa-quote colour1"&gt;&lt;span class="hide"&gt;[Replying to &lt;/span&gt;&lt;b&gt;~ Rose&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="wa-num"&gt;+353 85 123 4567&lt;/span&gt;&lt;/b&gt;&lt;span class="hide"&gt;:&lt;/span&gt;&lt;br&gt;DINNER PARTY. my place, saturday at 7 🥂&lt;span class="hide"&gt;]&lt;/span&gt;&lt;/p&gt;
-  &lt;p&gt;&lt;span class="hide"&gt;&lt;em&gt;Ilya:&lt;/em&gt; &lt;/span&gt;what do we bring?&lt;/p&gt;
-  &lt;p class="wa-time"&gt;09:16 &lt;span class="wa-read ic ic-read"&gt;✓✓&lt;/span&gt;&lt;/p&gt;
-&lt;/div&gt;</code></pre>
-
-<h3 id="s6-21">6.21 System Notices</h3>
-
-<p>Notices like "Rose changed this group's icon" or "You were added" use the same <code>mob-sys</code> line as the date pill:</p>
-
-<div class="mob wa theme-auto"><div class="mob-body"><p class="mob-sys">Rose changed this group's icon</p></div></div>
-
-<pre><code>&lt;p class="mob-sys"&gt;Rose changed this group's icon&lt;/p&gt;</code></pre>
-
-<h3 id="s6-22">6.22 Group Header with Picture and Icons</h3>
-
-<p>For the full group header - back arrow, picture, group name, list of members, and the call and menu icons - use a <code>&lt;table&gt;</code> with the class <code>wa-bar</code> instead of the usual header paragraph. A table is the most reliable way to keep all of that in one neat row on AO3:</p>
-
-<div class="mob wa theme-auto"><table class="wa-bar">
-  <tbody>
-    <tr>
-      <td rowspan="2" class="wa-back"><span class="ic ic-back">&#8592;</span></td>
-      <td rowspan="2" class="wa-pfp-cell"><p class="wa-pfp colour5">D</p></td>
-      <td class="wa-title">dinner</td>
-      <td rowspan="2" class="wa-actions"><span class="ic ic-video">&#127909;</span> <span class="ic ic-menu">&#8942;</span></td>
-    </tr>
-    <tr>
-      <td class="wa-sub">Rose, Jane, Hayden, You</td>
-    </tr>
-  </tbody>
-</table></div>
-
-<pre><code>&lt;table class="wa-bar"&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td rowspan="2" class="wa-back"&gt;&lt;span class="ic ic-back"&gt;&amp;#8592;&lt;/span&gt;&lt;/td&gt;
-      &lt;td rowspan="2" class="wa-pfp-cell"&gt;&lt;p class="wa-pfp colour5"&gt;D&lt;/p&gt;&lt;/td&gt;
-      &lt;td class="wa-title"&gt;dinner&lt;/td&gt;
-      &lt;td rowspan="2" class="wa-actions"&gt;&lt;span class="ic ic-video"&gt;&amp;#127909;&lt;/span&gt; &lt;span class="ic ic-menu"&gt;&amp;#8942;&lt;/span&gt;&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td class="wa-sub"&gt;Rose, Jane, Hayden, You&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;</code></pre>
-
-<p>The table has two rows. The first row has the back arrow (<code>wa-back</code>), the picture (<code>wa-pfp-cell</code>), the group name (<code>wa-title</code>) and the icons (<code>wa-actions</code>). The back arrow, picture and icons have <code>rowspan=&quot;2&quot;</code>, which stretches them down across both rows. The second row only has the member list (<code>wa-sub</code>), which sits under the name. If the name or the member list is too long, the workskin cuts it short with "..." for you.</p>
-
-<p>The picture is the same <code>wa-pfp</code> circle as in the group messages, so <code>colour1</code> to <code>colour10</code> work here too. You can use this header for a one-to-one chat as well - put "online" or "last seen..." where the member list goes, or "typing..." to show the other person is typing.</p>
-
-<p>An uploaded picture works in the header too, in a <code>pfp</code> span, the same as in the messages. For a one-to-one chat with someone who has a profile, put their profile in the circle and a name span in <code>wa-title</code>, so both come from the profile:</p>
-
-<div class="mob wa theme-auto"><table class="wa-bar">
-  <tbody>
-    <tr>
-      <td rowspan="2" class="wa-back"><span class="ic ic-back">&#8592;</span></td>
-      <td rowspan="2" class="wa-pfp-cell"><p class="wa-pfp"><span class="pfp pfp-shane"></span></p></td>
-      <td class="wa-title"><span class="name pfp-shane"><span class="hide">Shane</span></span></td>
-      <td rowspan="2" class="wa-actions"><span class="ic ic-video">&#127909;</span> <span class="ic ic-menu">&#8942;</span></td>
-    </tr>
-    <tr>
-      <td class="wa-sub">online</td>
-    </tr>
-  </tbody>
-</table></div>
-
-<pre><code>&lt;table class="wa-bar"&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td rowspan="2" class="wa-back"&gt;&lt;span class="ic ic-back"&gt;&amp;#8592;&lt;/span&gt;&lt;/td&gt;
-      &lt;td rowspan="2" class="wa-pfp-cell"&gt;&lt;p class="wa-pfp"&gt;&lt;span class="pfp pfp-shane"&gt;&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;
-      &lt;td class="wa-title"&gt;&lt;span class="name pfp-shane"&gt;&lt;span class="hide"&gt;Shane&lt;/span&gt;&lt;/span&gt;&lt;/td&gt;
-      &lt;td rowspan="2" class="wa-actions"&gt;&lt;span class="ic ic-video"&gt;&amp;#127909;&lt;/span&gt; &lt;span class="ic ic-menu"&gt;&amp;#8942;&lt;/span&gt;&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td class="wa-sub"&gt;online&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;</code></pre>
-
-<h3 id="s6-23">6.23 Choosing a Background</h3>
-
-<p>Every WhatsApp chat can have its own background, picked with a class on the container next to the theme class. Here's the same chat on four different backgrounds. The first one has no background class, so it has the normal background:</p>
-
-<div class="mob wa theme-auto">
-  <p class="mob-head">Mom<span class="hide"> - </span><span>online</span></p>
-  <div class="mob-body">
-    <div class="msg in"><p><span class="hide"><em>Mom:</em> </span>Are you coming Sunday?</p><p class="wa-time">10:02</p></div>
-    <div class="msg out"><p><span class="hide"><em>Shane:</em> </span>Yes!</p><p class="wa-time">10:03 <span class="wa-read ic ic-read">✓✓</span></p></div>
-  </div>
-</div>
-
-<div class="mob wa theme-auto bg-sage">
-  <p class="mob-head">Mom<span class="hide"> - </span><span>online</span></p>
-  <div class="mob-body">
-    <div class="msg in"><p><span class="hide"><em>Mom:</em> </span>Are you coming Sunday?</p><p class="wa-time">10:02</p></div>
-    <div class="msg out"><p><span class="hide"><em>Shane:</em> </span>Yes!</p><p class="wa-time">10:03 <span class="wa-read ic ic-read">✓✓</span></p></div>
-  </div>
-</div>
-
-<div class="mob wa theme-auto bg-blush">
-  <p class="mob-head">Mom<span class="hide"> - </span><span>online</span></p>
-  <div class="mob-body">
-    <div class="msg in"><p><span class="hide"><em>Mom:</em> </span>Are you coming Sunday?</p><p class="wa-time">10:02</p></div>
-    <div class="msg out"><p><span class="hide"><em>Shane:</em> </span>Yes!</p><p class="wa-time">10:03 <span class="wa-read ic ic-read">✓✓</span></p></div>
-  </div>
-</div>
-
-<div class="mob wa theme-auto bg-dusk">
-  <p class="mob-head">Mom<span class="hide"> - </span><span>online</span></p>
-  <div class="mob-body">
-    <div class="msg in"><p><span class="hide"><em>Mom:</em> </span>Are you coming Sunday?</p><p class="wa-time">10:02</p></div>
-    <div class="msg out"><p><span class="hide"><em>Shane:</em> </span>Yes!</p><p class="wa-time">10:03 <span class="wa-read ic ic-read">✓✓</span></p></div>
-  </div>
-</div>
-
-<p><em>The HTML for the second one - only the last class changes:</em></p>
-
-<pre><code>&lt;div class="mob wa theme-auto bg-sage"&gt;
-  &lt;p class="mob-head"&gt;Mom&lt;span class="hide"&gt; - &lt;/span&gt;&lt;span&gt;online&lt;/span&gt;&lt;/p&gt;
-  &lt;div class="mob-body"&gt;
-    &lt;div class="msg in"&gt;&lt;p&gt;&lt;span class="hide"&gt;&lt;em&gt;Mom:&lt;/em&gt; &lt;/span&gt;Are you coming Sunday?&lt;/p&gt;&lt;p class="wa-time"&gt;10:02&lt;/p&gt;&lt;/div&gt;
-    &lt;div class="msg out"&gt;&lt;p&gt;&lt;span class="hide"&gt;&lt;em&gt;Shane:&lt;/em&gt; &lt;/span&gt;Yes!&lt;/p&gt;&lt;p class="wa-time"&gt;10:03 &lt;span class="wa-read ic ic-read"&gt;✓✓&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
-  &lt;/div&gt;
-&lt;/div&gt;</code></pre>
-
-<p>Every chat starts with WhatsApp's own doodle wallpaper, in its light or dark version to match the theme. The other backgrounds that come with the workskin are:</p>
-
-<ul>
-  <li>Plain colours: <code>bg-beige</code> (WhatsApp's colour without the doodles), <code>bg-white</code>, <code>bg-sage</code>, <code>bg-sky</code>, <code>bg-blush</code>, <code>bg-lilac</code>, <code>bg-slate</code>, <code>bg-navy</code>, <code>bg-forest</code>, <code>bg-plum</code>, <code>bg-black</code></li>
-  <li>Gradients: <code>bg-sunset</code>, <code>bg-ocean</code>, <code>bg-night</code>, <code>bg-dusk</code></li>
-  <li>Your own picture: <code>bg-image1</code>. A picture has to be linked from the web, so it's set up in the CSS, and <a href="whatsapp-css.html#s7-17">Wallpapers</a> explains how. Once it's set up, you use it like any of the others: <code>&lt;div class=&quot;mob wa theme-auto bg-image1&quot;&gt;</code></li>
-</ul>
-
-<p><strong>Note:</strong> a background class overrides the light and dark theme background, so pick a light or dark one to suit the theme you're using. The bubbles, ticks and text keep their theme colours on top of it.</p>
-
-<p>If a chat is on one particular character's phone, you can use their profile instead: add <code>pov-</code> and their name to the container, like <code>pov-shane</code>, and the chat gets the wallpaper set in their profile, so all of their chats look the same (see <a href="core.html#s2-4-3-2">Their Phone</a>).</p>
-
-<p>A profile wallpaper can be a picture, too. Here's the same chat from Yuna's side, on her phone, with her own photo as the background:</p>
-
-<div class="mob wa theme-auto pov-yuna">
-  <p class="mob-head">Shane<span class="hide"> - </span><span>online</span></p>
-  <div class="mob-body">
-    <div class="msg out"><p><span class="hide"><em>Yuna:</em> </span>Are you coming Sunday?</p><p class="wa-time">10:02 <span class="wa-read ic ic-read">✓✓</span></p></div>
-    <div class="msg in"><p><span class="hide"><em>Shane:</em> </span>Yes!</p><p class="wa-time">10:03</p></div>
-  </div>
-</div>
-
-<pre><code>&lt;div class="mob wa theme-auto pov-yuna"&gt;
-  &lt;p class="mob-head"&gt;Shane&lt;span class="hide"&gt; - &lt;/span&gt;&lt;span&gt;online&lt;/span&gt;&lt;/p&gt;
-  &lt;div class="mob-body"&gt;
-    &lt;div class="msg out"&gt;&lt;p&gt;&lt;span class="hide"&gt;&lt;em&gt;Yuna:&lt;/em&gt; &lt;/span&gt;Are you coming Sunday?&lt;/p&gt;&lt;p class="wa-time"&gt;10:02 &lt;span class="wa-read ic ic-read"&gt;✓✓&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
-    &lt;div class="msg in"&gt;&lt;p&gt;&lt;span class="hide"&gt;&lt;em&gt;Shane:&lt;/em&gt; &lt;/span&gt;Yes!&lt;/p&gt;&lt;p class="wa-time"&gt;10:03&lt;/p&gt;&lt;/div&gt;
-  &lt;/div&gt;
-&lt;/div&gt;</code></pre>
-
-<p>And the line in Yuna's profile that sets it. The colour shows if the picture doesn't load, <code>background-size: cover</code> fills the whole chat without stretching the picture, and <code>background-position: center</code> keeps the middle of it in view:</p>
-
-<pre><code>#workskin .mob.wa.pov-yuna { background-color: #e8e8e8; background-image: url(https://64.media.tumblr.com/a1c0162c5542c5890e5fd9c13341513e/3b53694384f48caf-98/s1280x1920/8b2fcaaf7deb2b05c418f46c62ee729acb8ff8e4.jpg); background-size: cover; background-position: center; }</code></pre>
         </div>
       </div>
 

@@ -25,7 +25,7 @@
   <!-- /site meta -->
   <link rel="stylesheet" href="../../style.css">
   <script src="../../theme.js"></script>
-  <link rel="stylesheet" href="megaskin.css?v=1c52ca92" id="creator-style">
+  <link rel="stylesheet" href="megaskin.css?v=861d9a5f" id="creator-style">
 </head>
 <body>
 <header>
@@ -903,6 +903,24 @@
   <li>A profile picture is cropped to fill the circle by itself, so wide pictures don't need <code>land</code>.</li>
   <li>Names, handles and email addresses take on the look of the text around them, so they fit in anywhere.</li>
 </ul>
+
+</details>
+
+<details>
+<summary>Make a profile for your group chat</summary>
+
+<p>Profiles aren't only for characters. If the same group chat turns up again and again, across chapters or even across fics, give the group a profile of its own, so its picture and name stay the same everywhere and you only change them in one place. It's an ordinary profile with just the picture and name lines, named after the group, like <code>gc-dinner</code>:</p>
+
+<pre><code>/* PROFILE: the dinner group chat */
+#workskin .pfp.pfp-gc-dinner { background-image: url(LINK); }
+#workskin .name.pfp-gc-dinner::before { content: "dinner"; }</code></pre>
+
+<p>Then use it in the WhatsApp header, with the picture in the circle and the name in <code>wa-title</code>, typing the name inside a <code>hide</code> span as usual for readers with the workskin off:</p>
+
+<pre><code>&lt;td rowspan="2" class="wa-pfp-cell"&gt;&lt;p class="wa-pfp"&gt;&lt;span class="pfp pfp-gc-dinner"&gt;&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;td class="wa-title"&gt;&lt;span class="name pfp-gc-dinner"&gt;&lt;span class="hide"&gt;dinner&lt;/span&gt;&lt;/span&gt;&lt;/td&gt;</code></pre>
+
+<p>If someone renames the group partway through your story, type the new name into the later chats instead of using the name span, so the earlier chats keep the old one.</p>
 
 </details>
 
