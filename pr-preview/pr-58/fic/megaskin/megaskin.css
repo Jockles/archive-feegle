@@ -1871,6 +1871,7 @@
 }
 
 #workskin .wa .wa-contact .wa-pfp {
+  position: static;
   flex-shrink: 0;
   width: 46px;
   height: 46px;
@@ -1879,6 +1880,9 @@
 }
 
 #workskin .wa .msg.contact .wa-time { padding: 0 0.7em 0.35em 0.7em; }
+
+/* in a group, the sender's name sits at the top of the card */
+#workskin .wa .msg.contact .who { padding: 0.35em 0.7em 0 0.7em; }
 
 #workskin .wa .wa-cbtn {
   display: block;

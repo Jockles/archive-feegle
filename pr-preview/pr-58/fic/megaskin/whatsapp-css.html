@@ -25,7 +25,7 @@
   <!-- /site meta -->
   <link rel="stylesheet" href="../../style.css">
   <script src="../../theme.js"></script>
-  <link rel="stylesheet" href="megaskin.css?v=0e7242f4" id="creator-style">
+  <link rel="stylesheet" href="megaskin.css?v=dd20ce60" id="creator-style">
 </head>
 <body>
 <header>
@@ -573,6 +573,7 @@
 }
 
 #workskin .wa .wa-contact .wa-pfp {
+  position: static;
   flex-shrink: 0;
   width: 46px;
   height: 46px;
@@ -581,6 +582,8 @@
 }
 
 #workskin .wa .msg.contact .wa-time { padding: 0 0.7em 0.35em 0.7em; }
+
+#workskin .wa .msg.contact .who { padding: 0.35em 0.7em 0 0.7em; }
 
 #workskin .wa .wa-cbtn {
   display: block;
@@ -591,7 +594,7 @@
   text-align: center;
 }</code></pre>
 
-<p>A contact card has no padding of its own, so the line above the Message button runs right to the edges of the bubble. The picture and name sit side by side with <code>display: flex</code>, and <code>align-items: center</code> lines the name up with the middle of the picture. The picture is the usual <code>wa-pfp</code>, just bigger.</p>
+<p>A contact card has no padding of its own, so the line above the Message button runs right to the edges of the bubble. The picture and name sit side by side with <code>display: flex</code>, and <code>align-items: center</code> lines the name up with the middle of the picture. The picture is the usual <code>wa-pfp</code>, just bigger, with <code>position: static</code> so it stays in the card when the card is in a group, where the sender's own picture is pinned beside the bubble.</p>
 
 <h3 id="s7-18">7.18 Forwarded Label</h3>
 
