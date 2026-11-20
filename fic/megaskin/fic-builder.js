@@ -258,7 +258,7 @@
 
   function containerClass(b, app) {
     var c = ["mob", app, b.theme];
-    if (app === "wa" && b.bg) c.push("bg-" + b.bg);
+    if (app === "wa" && b.bg && b.bg !== "custom") c.push("bg-" + b.bg);
     if (b.width) c.push(b.width);
     if (b.scroll) c.push(b.scroll);
     var pov = char(b.pov);
@@ -360,6 +360,9 @@
   function waHTML(b) {
     var L = [], last = "", lastSide = "";
     L.push('<div class="' + containerClass(b, "wa") + '">');
+    // a one-off wallpaper picture, just for this chat: it goes first, behind everything else
+    var wall = b.bg === "custom" && picUrl(b.wall || "");
+    if (wall) L.push('  <p class="wa-wall"><img src="' + esc(wall) + '" alt=""></p>');
     if (b.header === "bar") {
       var o = others(b), pc;
       if (b.group) pc = waPfp(groupPic(b));
@@ -787,7 +790,8 @@
     "blocks.N.scroll": "For a long chat. 'Scroll inside the phone' keeps it phone-sized and readers scroll the messages. 'Show it all' makes the phone as long as the chat.",
         "blocks.N.scroll:tw": "A very long tweet scrolls inside its box. 'Show it all' makes the box as long as the tweet.",
     "blocks.N.header": "'Simple' shows the name. 'With picture and icons' adds their picture and the call buttons, like the real app. 'None' leaves the top off, for when a chat carries on after a bit of story.",
-    "blocks.N.bg": "The pattern behind the messages.",
+    "blocks.N.bg": "What's behind the messages. 'Default' is WhatsApp's own wallpaper, or the wallpaper the phone owner has in their profile if they have one. The colours and gradients come with the skin. 'Custom picture' lets you link your own picture for just this chat.",
+    "blocks.N.wall": PIC,
     "blocks.N.bar": "The box at the bottom where you'd type. 'Empty' shows it with nothing in it. 'Something half-typed' shows a message the phone owner hasn't sent yet.",
     "blocks.N.barText": "What the phone owner is halfway through typing.",
     "blocks.N.cursor": "Adds a flashing line at the end of the half-typed message, as if the phone owner is still typing it.",
@@ -1168,7 +1172,8 @@
     h.push('</div><div class="fb-grid">');
     if (wa) {
       h.push("<div>" + field(P + ".header", "Header", { type: "select", re: true, options: [["simple", "Simple"], ["bar", "With picture and icons"], ["none", "None"]] }) + "</div>");
-      h.push("<div>" + field(P + ".bg", "Background", { type: "select", options: BACKGROUNDS.map(function (x) { return [x, x ? x.charAt(0).toUpperCase() + x.slice(1) : "Normal"]; }) }) + "</div>");
+      h.push("<div>" + field(P + ".bg", "Background", { type: "select", re: true, options: BACKGROUNDS.map(function (x) { return [x, x ? x.charAt(0).toUpperCase() + x.slice(1) : "Default"]; }).concat([["custom", "Custom picture"]]) }) +
+        (b.bg === "custom" ? field(P + ".wall", "Picture link", { type: "url", ph: "https://..." }) : "") + "</div>");
     }
     h.push("<div>" + field(P + ".bar", "Message bar at the bottom", { type: "select", re: true, options: [["none", "None"], ["empty", "Empty"], ["typed", "Something half-typed"]] }) + "</div>");
     if (dm) h.push("<div>" + field(P + ".nav", "App buttons", { type: "check", re: true }) + (b.nav ? field(P + ".badge", "Notifications number", { ph: "3" }) : "") + "</div>");
