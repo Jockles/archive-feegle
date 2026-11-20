@@ -3265,3 +3265,11 @@
 #workskin .pov-kip .name.pfp-scott::before { content: "Scott"; }
 #workskin .pov-kip .name.pfp-ilya::before { content: "Ilya"; }
 #workskin .pov-kip .name.pfp-ryan::before { content: "Ryan"; }
+
+/* Shane's phone in this series has the default WhatsApp wallpaper (the Megaskin gives pov-shane a light blue one),
+   light or dark to match the reader's device like any other chat */
+#workskin .mob.wa.pov-shane { background-color: #efeae2; background-image: url(https://images.squidge.org/images/2026/11/18/whatsapp-bck-light.jpg); }
+#workskin .mob.wa.pov-shane.theme-dark { background-color: #0b141a; background-image: url(https://images.squidge.org/images/2026/11/18/whatsapp-bck-dark.png); }
+@media (prefers-color-scheme: dark) {
+  #workskin .mob.wa.pov-shane.theme-auto { background-color: #0b141a; background-image: url(https://images.squidge.org/images/2026/11/18/whatsapp-bck-dark.png); }
+}
