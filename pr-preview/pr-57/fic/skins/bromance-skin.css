@@ -3243,3 +3243,6 @@
 #workskin .name.pfp-ryan::before { content: "Ryan Price"; }
 #workskin .pov-ilya .name.pfp-ryan::before { content: "Hockey Bear"; }
 #workskin .handle.pfp-ryan::after { content: "PRyan"; }
+
+/* Shane (the Megaskin's own profile): a different picture on WhatsApp in this series */
+#workskin .wa .pfp.pfp-shane { background-image: url(https://images.squidge.org/images/2026/11/16/HockeyBlur.png); }
