@@ -1102,7 +1102,10 @@
     h.push('<li class="fb-msg' + (thread && mi === 0 ? " out" : "") + '">');
     if (thread) h.push('<p class="hint"><b>' + (mi === 0 ? "The tweet" : "Reply") + "</b></p>");
     h.push('<div class="fb-row">' + field(P + ".from", "", { type: "select", re: true, options: castOptions() }) +
-      field(P + ".time", "", { ph: "2h", cls: "fb-time" }) + rowTools(bi, mi, m, true) + "</div>");
+      field(P + ".time", "", { ph: "2h", cls: "fb-time" }) +
+      // picked a lot, so they sit on the top row rather than in the extras
+      field(P + ".verified", "Verified", { type: "check" }) + field(P + ".locked", "Private", { type: "check", re: true }) +
+      rowTools(bi, mi, m, true) + "</div>");
     if (thread && mi > 0) {
       // who it's replying to: anyone who posted further up the thread
       var users = [];
@@ -1116,7 +1119,6 @@
       h.push('<div class="fb-extras">' + fmtButtons());
       h.push(accField(P + ".acc", c, "tw"));
       var old = b.era === "tw2020";
-      h.push(field(P + ".verified", "Blue verified tick", { type: "check" }) + " " + field(P + ".locked", "Private account", { type: "check", re: true }));
       if (m.fanMask === undefined) m.fanMask = fanMask(m);
       h.push(field(P + ".fan", "Grey line under the name", { ph: "Fan account" }) + field(P + ".fanMask", "Fan account mask", { type: "check" }));
       h.push(field(P + ".label", "Grey label", {}));
