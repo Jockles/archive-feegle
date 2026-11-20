@@ -33,7 +33,7 @@
     wa: "WhatsApp chat",
     twfeed: "Twitter/X timeline",
     twthread: "Twitter/X tweet and replies",
-    twone: "Twitter/X single tweet",
+    twone: "Twitter/X single tweets",
     twdm: "Twitter/X DM"
   };
   function isChat(b) { return b.type === "imsg" || b.type === "wa" || b.type === "twdm"; }
@@ -124,11 +124,8 @@
     return b;
   }
   function starter() { loadExample(0); }
-  // a timeline saved before timelines always had the app screen: one tweet becomes a single tweet
-  function oldFeed(b) {
-    if (b.type !== "twfeed" || b.app) return;
-    if (b.msgs.length > 1) b.app = "app"; else b.type = "twone";
-  }
+  // a timeline saved before timelines always had the app screen becomes single tweets
+  function oldFeed(b) { if (b.type === "twfeed" && !b.app) b.type = "twone"; }
 
   function save() { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) {} }
   function load() {
@@ -712,7 +709,7 @@
   }
   function twFeedHTML(b) {
     var tweets = b.msgs.map(function (m) { return tweetHTML(b, m, "feed").join("\n"); }).filter(Boolean);
-    if (b.type === "twone") return tweets.slice(0, 1).join("");
+    if (b.type === "twone") return tweets.join("\n\n"); // each tweet in its own box, not in a feed
     // the X app screen: the pov character's picture and the logo, then the tabs, then the tweets
     var me = char(b.pov) || S.cast[0], old = b.era === "tw2020";
     var L = ['<div class="tw-thread app' + (old ? " tw2020" : "") + " " + b.theme + (b.width ? " " + b.width : "") + '">', '  <div class="tw-scroll">',
@@ -1092,10 +1089,10 @@
   }
   function rowTools(bi, mi, m, extras) {
     var ty = S.blocks[bi].type;
-    var plus = ty === "twthread" ? "Add a reply below this" : ty === "twfeed" ? "Add a tweet below this" : "Add a message below this";
+    var plus = ty === "twthread" ? "Add a reply below this" : ty === "twfeed" || ty === "twone" ? "Add a tweet below this" : "Add a message below this";
     return '<span class="fb-tools">' + (extras ? btn("msg-more:" + bi + ":" + mi, m.open ? "Less" : "Extras", "Extras") : "") +
       btn("msg-up:" + bi + ":" + mi, "&uarr;", "Move up") + btn("msg-down:" + bi + ":" + mi, "&darr;", "Move down") +
-      (ty === "twone" ? "" : btn("msg-ins:" + bi + ":" + mi, "+", plus)) + btn("msg-del:" + bi + ":" + mi, "&times;", "Delete") + "</span>";
+      btn("msg-ins:" + bi + ":" + mi, "+", plus) + btn("msg-del:" + bi + ":" + mi, "&times;", "Delete") + "</span>";
   }
   function fmtButtons() {
     return '<p class="hint">Select some words in the text, then: ' + btn("fmt:tl", "Translation") + " " + btn("fmt:egg", "Easter egg") + " " + btn("fmt:link", "Fake link") + "</p>";
@@ -1247,7 +1244,8 @@
   var SCRIPT_HINTS = {
     chat: "One message per line, starting with who's talking and a colon. A line on its own with no name carries on from the last person. Start a line with -- for a date or notice line, and put a time first if you like, like 09:15 Lily: hi. New names are added to the cast.",
     twthread: "One tweet per line, starting with who's posting and a colon. The first one is the tweet, and the rest are replies. Each reply answers the tweet just above it, and you can change who it's replying to in the list. New names are added to the cast.",
-    twfeed: "One tweet per line, starting with who's posting and a colon. New names are added to the cast."
+    twfeed: "One tweet per line, starting with who's posting and a colon. New names are added to the cast.",
+    twone: "One tweet per line, starting with who's posting and a colon. Each tweet gets its own box. New names are added to the cast."
   };
   function blockCard(b, i) {
     var P = "blocks." + i, h = [], chat = isChat(b);
@@ -1275,10 +1273,9 @@
     h.push('<ol class="fb-msgs">' + b.msgs.map(function (m, mi) { return row(b, i, m, mi); }).join("") + "</ol>");
     var ph = chat ? "Ilya: are you awake\nShane: no\n-- Today 11:48 PM" : "Zim: Reminder to everyone...\nHolster: I played all through college...";
     // the add button goes straight under the list, apart from the box for typing lots at once
-    var addOne = btn("msg-add:" + i, chat ? "+ Add a message" : b.type === "twthread" ? (b.msgs.length ? "+ Add a reply" : "+ Add the tweet") : b.type === "twone" ? "+ Add the tweet" : "+ Add a tweet");
-    if (b.type === "twone" && b.msgs.length) { h.push("</section>"); helpKind = ""; return h.join(""); } // one tweet only
+    var addOne = btn("msg-add:" + i, chat ? "+ Add a message" : b.type === "twthread" ? (b.msgs.length ? "+ Add a reply" : "+ Add the tweet") : "+ Add a tweet");
     h.push("<p>" + addOne + "</p>");
-    if (b.type !== "twone") h.push('<div class="fb-script">' + field(P + ".script", chat ? "Type or paste messages" : "Type or paste tweets", { type: "area", rows: 4, ph: ph }) +
+    h.push('<div class="fb-script">' + field(P + ".script", chat ? "Type or paste messages" : "Type or paste tweets", { type: "area", rows: 4, ph: ph }) +
       '<p class="hint">' + (SCRIPT_HINTS[chat ? "chat" : b.type]) + "</p>" +
       btn("script:" + i, chat ? "Add these messages" : "Add these tweets") + "</div>");
     h.push("</section>");
