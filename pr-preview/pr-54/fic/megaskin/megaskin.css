@@ -4882,6 +4882,7 @@
 
 #workskin .ig .ig-like-pfp {
   display: inline-block;
+  position: relative;
   box-sizing: content-box;
   width: 18px;
   height: 18px;

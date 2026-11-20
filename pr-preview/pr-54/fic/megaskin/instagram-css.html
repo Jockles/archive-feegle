@@ -25,7 +25,7 @@
   <!-- /site meta -->
   <link rel="stylesheet" href="../../style.css">
   <script src="../../theme.js"></script>
-  <link rel="stylesheet" href="megaskin.css?v=7dc8aa9b" id="creator-style">
+  <link rel="stylesheet" href="megaskin.css?v=02e6a18f" id="creator-style">
 </head>
 <body>
 <header>
@@ -384,6 +384,7 @@
 
 <pre><code>#workskin .ig .ig-like-pfp {
   display: inline-block;
+  position: relative;
   box-sizing: content-box;
   width: 18px;
   height: 18px;
@@ -396,7 +397,7 @@
 
 #workskin .ig .ig-like-pfp:first-child { margin-left: 0; }</code></pre>
 
-<p>Each face is a tiny circle with a white edge, and the <em>negative</em> left margin pulls each one <code>8px</code> back over the one before, so they overlap. The first one doesn't need pulling back. This is why the faces have to be on one line of code with no gaps: a space between two inline things takes up room, and would push them apart again.</p>
+<p>Each face is a tiny circle with a white edge, and the <em>negative</em> left margin pulls each one <code>8px</code> back over the one before, so they overlap. The first one doesn't need pulling back. <code>position: relative</code> keeps each face's edge on top of the picture before it: the picture inside a <code>pfp</code> span is placed with <code>position</code>, and without it the pictures would be drawn over every edge. This is why the faces have to be on one line of code with no gaps: a space between two inline things takes up room, and would push them apart again.</p>
 
 <h3 id="s13-11">13.11 DMs</h3>
 
