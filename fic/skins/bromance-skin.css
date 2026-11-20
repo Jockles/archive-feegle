@@ -3250,3 +3250,9 @@
 /* GROUP: the gay hockey players' group chat ("Canada is most gay" / "Canada has best gays").
    Use <span class="pfp pfp-gc-canada"></span> in the group's header picture. */
 #workskin .pfp.pfp-gc-canada { background-image: url(https://images.squidge.org/images/2026/11/20/canadahockey.jpg); }
+
+/* On Kip's phone (pov-kip) */
+#workskin .pov-kip .name.pfp-shane::before { content: "Jane"; }
+#workskin .pov-kip .name.pfp-scott::before { content: "Scott"; }
+#workskin .pov-kip .name.pfp-ilya::before { content: "Ilya"; }
+#workskin .pov-kip .name.pfp-ryan::before { content: "Ryan"; }
