@@ -31,6 +31,7 @@
   var KINDS = {
     imsg: "iMessage chat",
     wa: "WhatsApp chat",
+    twone: "Twitter/X single tweet",
     twthread: "Twitter/X tweet and replies",
     twfeed: "Twitter/X timeline",
     twdm: "Twitter/X DM"
@@ -76,7 +77,7 @@
     b.bg = ""; b.pics = true; b.header = "simple"; b.gp = newGroupPic(); b.script = ""; b.msgs = []; b.open = true;
     b.acc = "";
     b.nav = false; b.badge = ""; // Twitter/X DMs: the row of app buttons at the bottom
-    b.era = ""; b.app = ""; b.tabs = ""; // Twitter/X: the 2020 look, and the X app screen around a timeline
+    b.era = ""; b.app = type === "twfeed" ? "app" : ""; b.tabs = ""; // Twitter/X: the 2020 look, and the X app screen around a timeline
     return b;
   }
   // load one of the tutorial's example chats (from fic-builder-examples.js)
@@ -123,12 +124,17 @@
     return b;
   }
   function starter() { loadExample(0); }
+  // a timeline saved before timelines always had the app screen: one tweet becomes a single tweet
+  function oldFeed(b) {
+    if (b.type !== "twfeed" || b.app) return;
+    if (b.msgs.length > 1) b.app = "app"; else b.type = "twone";
+  }
 
   function save() { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) {} }
   function load() {
     try {
       var t = localStorage.getItem(KEY);
-      if (t) { S = JSON.parse(t); if (S && S.cast && S.blocks) return; }
+      if (t) { S = JSON.parse(t); if (S && S.cast && S.blocks) { S.blocks.forEach(oldFeed); return; } }
     } catch (e) {}
     starter();
   }
@@ -706,7 +712,7 @@
   }
   function twFeedHTML(b) {
     var tweets = b.msgs.map(function (m) { return tweetHTML(b, m, "feed").join("\n"); }).filter(Boolean);
-    if (!b.app) return tweets.join("\n\n");
+    if (b.type === "twone") return tweets.slice(0, 1).join("");
     // the X app screen: the pov character's picture and the logo, then the tabs, then the tweets
     var me = char(b.pov) || S.cast[0], old = b.era === "tw2020";
     var L = ['<div class="tw-thread app' + (old ? " tw2020" : "") + " " + b.theme + (b.width ? " " + b.width : "") + '">', '  <div class="tw-scroll">',
@@ -738,7 +744,7 @@
       if (b.type === "imsg") return imsgHTML(b);
       if (b.type === "wa") return waHTML(b);
       if (b.type === "twthread") return twThreadHTML(b);
-      if (b.type === "twfeed") return twFeedHTML(b);
+      if (b.type === "twfeed" || b.type === "twone") return twFeedHTML(b);
       if (b.type === "twdm") return twdmHTML(b);
       return "";
     }).filter(Boolean).join("\n\n");
@@ -824,7 +830,6 @@
     "blocks.N.width:tw": "'Phone width' looks like a phone. 'Full width' fills the page.",
     "blocks.N.bar:tw": "The 'Tweet your reply' box under the last reply.",
     "blocks.N.era:tw": "'X' is how it looks now. 'Twitter' is the 2020 look, with the blue bird, 'Retweets' instead of 'Reposts', and no views.",
-    "blocks.N.app:tw": "'On their own' shows just the tweets. 'Inside the app screen' adds the top of the app: a picture, the logo and the tabs, like scrolling the timeline on a phone.",
     "blocks.N.pov:tw": "Whose phone it is. Their picture goes in the top corner.",
     "blocks.N.tabs:tw": "The tabs along the top are 'For you' and 'Following'. Add any communities after them, one per line.",
     "blocks.N.script:tw": "The quickest way to add tweets. Put each tweet on its own line: the name, a colon, then the tweet, like 'Zim: Reminder to everyone...'. Then press 'Add these tweets', and they're added to the list above.",
@@ -1090,7 +1095,7 @@
     var plus = ty === "twthread" ? "Add a reply below this" : ty === "twfeed" ? "Add a tweet below this" : "Add a message below this";
     return '<span class="fb-tools">' + (extras ? btn("msg-more:" + bi + ":" + mi, m.open ? "Less" : "Extras", "Extras") : "") +
       btn("msg-up:" + bi + ":" + mi, "&uarr;", "Move up") + btn("msg-down:" + bi + ":" + mi, "&darr;", "Move down") +
-      btn("msg-ins:" + bi + ":" + mi, "+", plus) + btn("msg-del:" + bi + ":" + mi, "&times;", "Delete") + "</span>";
+      (ty === "twone" ? "" : btn("msg-ins:" + bi + ":" + mi, "+", plus)) + btn("msg-del:" + bi + ":" + mi, "&times;", "Delete") + "</span>";
   }
   function fmtButtons() {
     return '<p class="hint">Select some words in the text, then: ' + btn("fmt:tl", "Translation") + " " + btn("fmt:egg", "Easter egg") + " " + btn("fmt:link", "Fake link") + "</p>";
@@ -1262,18 +1267,18 @@
         field(P + ".width", "Width", { type: "select", options: [["", "Phone width"], ["wide", "Full width"]] }) + "</div>" +
         (b.type === "twthread" ? "<div>" + field(P + ".bar", "Tweet your reply bar", { type: "select", options: [["empty", "Yes"], ["none", "No"]] }) + "</div>" : "") +
         "<div>" + field(P + ".era", "Which look", { type: "select", re: true, options: [["", "X (from mid-2023)"], ["tw2020", "Twitter (2020 to mid-2023)"]] }) + "</div>" +
-        (b.type === "twfeed" ? "<div>" + field(P + ".app", "Show the tweets", { type: "select", re: true, options: [["", "On their own"], ["app", "Inside the app screen"]] }) + "</div>" +
-          (b.app ? "" : "<div>" + field(P + ".scroll", "Long tweets", { type: "select", options: [["", "Scroll inside the box"], ["no-scroll", "Show it all"]] }) + "</div>") +
-          (b.app ? "<div>" + field(P + ".pov", "Whose phone is it? (their picture goes at the top)", { type: "select", options: castOptions() }) + "</div>" : "") : "") + "</div>");
-      if (b.type === "twfeed" && b.app && b.era !== "tw2020") h.push(field(P + ".tabs", "Communities in the tabs, after For you and Following (one per line)", { type: "area", rows: 2, ph: "Metros Fans\nHockey Twitter" }));
+        (b.type === "twone" ? "<div>" + field(P + ".scroll", "Long tweets", { type: "select", options: [["", "Scroll inside the box"], ["no-scroll", "Show it all"]] }) + "</div>" : "") +
+        (b.type === "twfeed" ? "<div>" + field(P + ".pov", "Whose phone is it? (their picture goes at the top)", { type: "select", options: castOptions() }) + "</div>" : "") + "</div>");
+      if (b.type === "twfeed" && b.era !== "tw2020") h.push(field(P + ".tabs", "Communities in the tabs, after For you and Following (one per line)", { type: "area", rows: 2, ph: "Metros Fans\nHockey Twitter" }));
     }
     var row = chat ? msgRow : tweetRow;
     h.push('<ol class="fb-msgs">' + b.msgs.map(function (m, mi) { return row(b, i, m, mi); }).join("") + "</ol>");
     var ph = chat ? "Ilya: are you awake\nShane: no\n-- Today 11:48 PM" : "Zim: Reminder to everyone...\nHolster: I played all through college...";
     // the add button goes straight under the list, apart from the box for typing lots at once
-    var addOne = btn("msg-add:" + i, chat ? "+ Add a message" : b.type === "twthread" ? (b.msgs.length ? "+ Add a reply" : "+ Add the tweet") : "+ Add a tweet");
+    var addOne = btn("msg-add:" + i, chat ? "+ Add a message" : b.type === "twthread" ? (b.msgs.length ? "+ Add a reply" : "+ Add the tweet") : b.type === "twone" ? "+ Add the tweet" : "+ Add a tweet");
+    if (b.type === "twone" && b.msgs.length) { h.push("</section>"); helpKind = ""; return h.join(""); } // one tweet only
     h.push("<p>" + addOne + "</p>");
-    h.push('<div class="fb-script">' + field(P + ".script", chat ? "Type or paste messages" : "Type or paste tweets", { type: "area", rows: 4, ph: ph }) +
+    if (b.type !== "twone") h.push('<div class="fb-script">' + field(P + ".script", chat ? "Type or paste messages" : "Type or paste tweets", { type: "area", rows: 4, ph: ph }) +
       '<p class="hint">' + (SCRIPT_HINTS[chat ? "chat" : b.type]) + "</p>" +
       btn("script:" + i, chat ? "Add these messages" : "Add these tweets") + "</div>");
     h.push("</section>");
