@@ -47,6 +47,7 @@
     .fb-row > input[type=color] { flex: none; }
     .fb-row label { margin: 0; }
     .fb-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 0 12px; }
+    .fb-grid3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
     .fb-card { border: 1px solid var(--rule, #ccc); border-radius: 6px; padding: 8px 10px; margin: 0 0 10px; background: var(--box-fill, #f4f8f7); }
     .fb-card details, .fb-block details { margin-top: 6px; }
     .fb-card > summary { margin: -2px 0; }
@@ -57,6 +58,8 @@
     .fb-app { display: grid; grid-template-columns: 6em 1fr 1fr 1fr; gap: 4px; align-items: center; font-size: 0.85em; margin: 3px 0; }
     .fb-acct { border-left: 3px solid var(--rule, #ccc); padding: 2px 0 4px 8px; margin: 6px 0; }
     .fb-acct > input, .fb-acct > label { margin-top: 3px; }
+    .fb-acct > summary { margin: 0; }
+    .fb-acct[open] > summary { margin-bottom: 4px; }
     .fb-block { border: 1px solid var(--box-edge, #bbb); border-radius: 6px; padding: 8px 10px; margin: 0 0 14px; }
     .fb-bhead { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; }
     .fb-fold { background: none; border: 0; padding: 2px 0; font: inherit; color: inherit; cursor: pointer; text-align: left; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
@@ -126,7 +129,7 @@
           <tr><th>Download</th><td><button type="button" data-act="save-html">Download the HTML</button> <button type="button" data-act="save-css">Download the CSS</button></td></tr>
           <tr><th><label for="fb-open-html">Open an HTML file</label></th><td><input type="file" id="fb-open-html" accept=".html,.htm,text/html"></td></tr>
           <tr><th><label for="fb-open-css">Open a CSS file</label></th><td><input type="file" id="fb-open-css" class="fb-open-css" accept=".css,text/css,text/plain"></td></tr>
-          <tr><th><label for="fb-example">Load an example from the tutorial</label></th><td class="fb-nowrap"><select id="fb-example"></select> <button type="button" data-act="example">Load it</button></td></tr>
+          <tr><th><label for="fb-example">Load an example</label></th><td class="fb-nowrap"><select id="fb-example"></select> <button type="button" data-act="example">Load it</button></td></tr>
           <tr><th>Start again</th><td><button type="button" data-act="new">Start a new one</button></td></tr>
         </table>
         <p class="hint">The HTML file can be opened here again to carry on editing your chats. The CSS file has every profile you've used, pasted or made here, so you can open it for the next chapter. Only character profiles can be opened or pasted here. Any changes made to the rest of the skin won't show in this preview, so test those in your own AO3 drafts.</p>
@@ -190,8 +193,8 @@
   Made by hand in HTML &amp; CSS. No trackers, no cookies, no ads. &middot; <a href="https://buymeacoffee.com/jockles">Support Me</a>
 </footer>
 <script src="profile-css.js"></script>
-<script src="fic-builder-examples.js?v=6"></script>
-<script src="fic-builder.js?v=24"></script>
+<script src="fic-builder-examples.js?v=9"></script>
+<script src="fic-builder.js?v=34"></script>
 <script src="tutorial.js?v=5"></script>
 <script>
 Tutorial([
