@@ -834,6 +834,24 @@
   &lt;p class="wa-time"&gt;09:16 &lt;span class="wa-read ic ic-read"&gt;✓✓&lt;/span&gt;&lt;/p&gt;
 &lt;/div&gt;</code></pre>
 
+<h4>Forwarded Messages</h4>
+
+<p>A forwarded message has a small grey "Forwarded" label at the top of the bubble. Put a <code>wa-fwd</code> paragraph first in the message, before the text:</p>
+
+<div class="mob wa theme-auto"><div class="mob-body">
+<div class="msg out tail">
+  <p class="wa-fwd"><span class="ic ic-forward">&#8618;</span> Forwarded</p>
+  <p>If the lasagne is still going then yes please. Two portions 🙂</p>
+  <p class="wa-time">22:12 <span class="wa-read ic ic-read">✓✓</span></p>
+</div>
+</div></div>
+
+<pre><code>&lt;div class="msg out tail"&gt;
+  &lt;p class="wa-fwd"&gt;&lt;span class="ic ic-forward"&gt;&amp;#8618;&lt;/span&gt; Forwarded&lt;/p&gt;
+  &lt;p&gt;If the lasagne is still going then yes please. Two portions 🙂&lt;/p&gt;
+  &lt;p class="wa-time"&gt;22:12 &lt;span class="wa-read ic ic-read"&gt;✓✓&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+
 <h4>Emoji Reactions</h4>
 
 <p>When someone reacts to a message, WhatsApp shows a little pill sitting on the bottom edge of the bubble. Add a <code>wa-reacts</code> paragraph straight after the bubble, with the emoji inside:</p>
@@ -900,23 +918,45 @@
   &lt;p class="wa-time"&gt;14:15 &lt;span class="wa-read ic ic-read"&gt;✓✓&lt;/span&gt;&lt;/p&gt;
 &lt;/div&gt;</code></pre>
 
-<h4>Forwarded Messages</h4>
+<h4>System Notices</h4>
 
-<p>A forwarded message has a small grey "Forwarded" label at the top of the bubble. Put a <code>wa-fwd</code> paragraph first in the message, before the text:</p>
+<p>Notices like "Rose changed this group's icon" or "You were added" use the same <code>mob-sys</code> line as the date pill:</p>
+
+<div class="mob wa theme-auto"><div class="mob-body"><p class="mob-sys">Rose changed this group's icon</p></div></div>
+
+<pre><code>&lt;p class="mob-sys"&gt;Rose changed this group's icon&lt;/p&gt;</code></pre>
+
+<h3>Contacts and Calls</h3>
+
+<h4>Contact Cards</h4>
+
+<p>When someone shares a contact, it shows as a card with the contact's picture and name, the time, and a Message button along the bottom. Add <code>contact</code> to the message, and put the picture and name in a <code>wa-contact</code> paragraph, then the time, then a <code>wa-cbtn</code> paragraph for the button:</p>
 
 <div class="mob wa theme-auto"><div class="mob-body">
-<div class="msg out tail">
-  <p class="wa-fwd"><span class="ic ic-forward">&#8618;</span> Forwarded</p>
-  <p>If the lasagne is still going then yes please. Two portions 🙂</p>
-  <p class="wa-time">22:12 <span class="wa-read ic ic-read">✓✓</span></p>
+<div class="msg in tail contact"><p class="hide"><em>Lily:</em></p>
+  <p class="wa-contact"><span class="wa-pfp"><span class="pfp pfp-rose"></span></span>Rose Landry</p>
+  <p class="wa-time">18:03</p>
+  <p class="wa-cbtn">Message</p>
+</div>
+<div class="msg out tail contact">
+  <p class="wa-contact"><span class="wa-pfp colour4">HP</span>Hayden Pike</p>
+  <p class="wa-time">18:05</p>
+  <p class="wa-cbtn">Message</p>
 </div>
 </div></div>
 
-<pre><code>&lt;div class="msg out tail"&gt;
-  &lt;p class="wa-fwd"&gt;&lt;span class="ic ic-forward"&gt;&amp;#8618;&lt;/span&gt; Forwarded&lt;/p&gt;
-  &lt;p&gt;If the lasagne is still going then yes please. Two portions 🙂&lt;/p&gt;
-  &lt;p class="wa-time"&gt;22:12 &lt;span class="wa-read ic ic-read"&gt;✓✓&lt;/span&gt;&lt;/p&gt;
+<pre><code>&lt;div class="msg in tail contact"&gt;&lt;p class="hide"&gt;&lt;em&gt;Lily:&lt;/em&gt;&lt;/p&gt;
+  &lt;p class="wa-contact"&gt;&lt;span class="wa-pfp"&gt;&lt;span class="pfp pfp-rose"&gt;&lt;/span&gt;&lt;/span&gt;Rose Landry&lt;/p&gt;
+  &lt;p class="wa-time"&gt;18:03&lt;/p&gt;
+  &lt;p class="wa-cbtn"&gt;Message&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="msg out tail contact"&gt;
+  &lt;p class="wa-contact"&gt;&lt;span class="wa-pfp colour4"&gt;HP&lt;/span&gt;Hayden Pike&lt;/p&gt;
+  &lt;p class="wa-time"&gt;18:05&lt;/p&gt;
+  &lt;p class="wa-cbtn"&gt;Message&lt;/p&gt;
 &lt;/div&gt;</code></pre>
+
+<p>The picture is a <code>wa-pfp</code>, the same as the pictures in a group chat, so it can be a profile (like Rose's), initials with a colour (like Hayden's), or an uploaded picture (see <a href="#heading">Profile Pictures in Groups</a>). The <code>hide</code> paragraph at the start holds the hidden name for readers with the workskin off, like a shared link. In a group chat, use the sender's <code>who</code> line instead, like Hayden sharing Jackie's contact in the group chat example.</p>
 
 <h4>Calls</h4>
 
@@ -953,44 +993,6 @@
 </ul>
 
 </details>
-
-<h4>Contact Cards</h4>
-
-<p>When someone shares a contact, it shows as a card with the contact's picture and name, the time, and a Message button along the bottom. Add <code>contact</code> to the message, and put the picture and name in a <code>wa-contact</code> paragraph, then the time, then a <code>wa-cbtn</code> paragraph for the button:</p>
-
-<div class="mob wa theme-auto"><div class="mob-body">
-<div class="msg in tail contact"><p class="hide"><em>Lily:</em></p>
-  <p class="wa-contact"><span class="wa-pfp"><span class="pfp pfp-rose"></span></span>Rose Landry</p>
-  <p class="wa-time">18:03</p>
-  <p class="wa-cbtn">Message</p>
-</div>
-<div class="msg out tail contact">
-  <p class="wa-contact"><span class="wa-pfp colour4">HP</span>Hayden Pike</p>
-  <p class="wa-time">18:05</p>
-  <p class="wa-cbtn">Message</p>
-</div>
-</div></div>
-
-<pre><code>&lt;div class="msg in tail contact"&gt;&lt;p class="hide"&gt;&lt;em&gt;Lily:&lt;/em&gt;&lt;/p&gt;
-  &lt;p class="wa-contact"&gt;&lt;span class="wa-pfp"&gt;&lt;span class="pfp pfp-rose"&gt;&lt;/span&gt;&lt;/span&gt;Rose Landry&lt;/p&gt;
-  &lt;p class="wa-time"&gt;18:03&lt;/p&gt;
-  &lt;p class="wa-cbtn"&gt;Message&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="msg out tail contact"&gt;
-  &lt;p class="wa-contact"&gt;&lt;span class="wa-pfp colour4"&gt;HP&lt;/span&gt;Hayden Pike&lt;/p&gt;
-  &lt;p class="wa-time"&gt;18:05&lt;/p&gt;
-  &lt;p class="wa-cbtn"&gt;Message&lt;/p&gt;
-&lt;/div&gt;</code></pre>
-
-<p>The picture is a <code>wa-pfp</code>, the same as the pictures in a group chat, so it can be a profile (like Rose's), initials with a colour (like Hayden's), or an uploaded picture (see <a href="#heading">Profile Pictures in Groups</a>). The <code>hide</code> paragraph at the start holds the hidden name for readers with the workskin off, like a shared link. In a group chat, use the sender's <code>who</code> line instead, like Hayden sharing Jackie's contact in the group chat example.</p>
-
-<h4>System Notices</h4>
-
-<p>Notices like "Rose changed this group's icon" or "You were added" use the same <code>mob-sys</code> line as the date pill:</p>
-
-<div class="mob wa theme-auto"><div class="mob-body"><p class="mob-sys">Rose changed this group's icon</p></div></div>
-
-<pre><code>&lt;p class="mob-sys"&gt;Rose changed this group's icon&lt;/p&gt;</code></pre>
 
 <h3>Images, Videos and Links</h3>
 
