@@ -1804,12 +1804,16 @@
 #workskin .wa .msg.call {
   position: relative;
   min-width: 13em;
-  padding: 0.45em 3.4em 0.45em 0.45em;
+  padding: 0.25em;
 }
 
+/* the call sits in a slightly darker box inside the bubble */
 #workskin .wa .wa-call {
   display: block;
   overflow: hidden;
+  padding: 0.4em 3.4em 0.4em 0.4em;
+  border-radius: 6px;
+  background: rgba(0, 0, 0, 0.05);
   line-height: 1.3;
 }
 
@@ -1841,8 +1845,8 @@
 /* the time sits beside the length instead of on a line of its own */
 #workskin .wa .msg.call .wa-time {
   position: absolute;
-  right: 0.6em;
-  bottom: 0.5em;
+  right: 0.85em;
+  bottom: 0.75em;
   margin: 0;
 }
 
@@ -1949,6 +1953,8 @@
 
 #workskin .wa.theme-dark .fake-link, #workskin .wa.theme-dark a:not(.tl) { color: #53bdeb; }
 
+#workskin .wa.theme-dark .wa-call { background: rgba(0, 0, 0, 0.18); }
+
 #workskin .wa.theme-dark .wa-call .wa-call-ic { background-color: rgba(255, 255, 255, 0.08); }
 
 #workskin .wa.theme-dark .wa-call .wa-call-len,
@@ -2029,6 +2035,8 @@
   #workskin .wa.theme-auto .wa-field .wa-ph.typed { color: #e9edef; }
 
   #workskin .wa.theme-auto .wa-link { background: rgba(0, 0, 0, 0.22); }
+
+  #workskin .wa.theme-auto .wa-call { background: rgba(0, 0, 0, 0.18); }
 
   #workskin .wa.theme-auto .wa-call .wa-call-ic { background-color: rgba(255, 255, 255, 0.08); }
 
