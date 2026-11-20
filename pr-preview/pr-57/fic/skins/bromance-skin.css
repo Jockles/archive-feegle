@@ -3243,6 +3243,9 @@
 #workskin .name.pfp-ryan::before { content: "Ryan Price"; }
 #workskin .pov-ilya .name.pfp-ryan::before { content: "Hockey Bear"; }
 #workskin .handle.pfp-ryan::after { content: "PRyan"; }
+/* the picture Ilya gives him when he saves him as Hockey Bear; "unsaved" on the picture keeps Ryan's own one */
+#workskin .pov-ilya .pfp.pfp-ryan { background-image: url(https://images.squidge.org/images/2026/11/20/BearPrideHeart.png); }
+#workskin .pov-ilya .pfp.pfp-ryan.unsaved { background-image: url(https://images.squidge.org/images/2026/11/20/ryan-price-pfp-1.jpg); }
 
 /* PROFILE: Kip Grady (no picture yet: initials on his usual blue) */
 #workskin .pfp.pfp-kip { background-color: #3b5ea8; }
