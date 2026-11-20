@@ -537,6 +537,11 @@
   background: radial-gradient(farthest-side at 100% 100%, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0));
   color: #ffffff;
 }
+/* ticks on the fade are white, and stay white once read */
+#workskin .wa .msg.gallery .wa-photos.one + .wa-time .wa-read { color: #ffffff; }
+#workskin .wa .msg.gallery .wa-photos.one + .wa-time .ic.ic-sent { background-image: url(https://images.squidge.org/images/2026/11/20/tick-white.png); }
+#workskin .wa .msg.gallery .wa-photos.one + .wa-time .ic.ic-delivered,
+#workskin .wa .msg.gallery .wa-photos.one + .wa-time .ic.ic-read { background-image: url(https://images.squidge.org/images/2026/11/20/double-tick-white.png); }
 
 /* text under a picture, a gallery or a link card: <p class="wa-caption">...</p>, after the photos or the card and before the time */
 #workskin .wa .wa-caption {
