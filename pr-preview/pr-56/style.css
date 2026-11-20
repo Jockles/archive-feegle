@@ -243,3 +243,5 @@ footer a:hover, footer a:focus { color: #a8f5c4; }
 /* Fandom list on the Fic page (made by tools/build-ao3.py) */
 .fandom-list { padding-left: 1.6em; }
 .fandom-list li { margin: 4px 0; }
+.series-nav { margin: 6px 0 14px; }
+.series-part { font-size: 1em; margin: 18px 0 6px; color: var(--muted); }
