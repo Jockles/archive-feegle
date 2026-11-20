@@ -64,7 +64,7 @@
       acc: "", verified: false, label: "", qName: "", qHandle: "", qText: "", note: "", date: "",
       reposts: "", likes: "", replies: "", liked: false, reposted: false, poll: "", pollinfo: "",
       vUrl: "", vTitle: "", vDesc: "", warn: false,
-      views: "", saved: false, likeClick: true, locked: false, noRepost: false, fan: "", fanMask: false, voice: "", pollTap: false, pollVote: "0", pollShowVote: false, pollVoted: "0" };
+      views: "", saved: false, likeClick: true, locked: false, noRepost: false, fan: "", fanMask: false, voice: "", call: "", missed: false, callLen: "", contact: "", fwd: false, pollTap: false, pollVote: "0", pollShowVote: false, pollVoted: "0" };
   }
   // the group's picture in the WhatsApp header: a one-off circle, set up the same way
   function newGroupPic() { return { colour: "5", showInitials: true, initials: "", pic: "", alt: "", land: false }; }
@@ -99,8 +99,9 @@
     b.msgs = ex.msgs.map(function (line) {
       var x = line[2] || {};
       var m = newMsg(ids[line[0]] || line[0], line[1], x.time);
-      Object.keys(x).forEach(function (k) { if (["reacts", "photos", "link", "reply", "time", "by"].indexOf(k) < 0) m[k] = x[k]; });
+      Object.keys(x).forEach(function (k) { if (["reacts", "photos", "link", "reply", "time", "by", "contact"].indexOf(k) < 0) m[k] = x[k]; });
       if (x.by) m.by = ids[x.by];
+      if (x.contact) m.contact = ids[x.contact];
       m.reacts = (x.reacts || []).map(function (r) { return { by: ids[r[0]], emoji: r[1] }; });
       m.photos = (x.photos || []).map(function (p) { return { url: p.url || "", alt: p.alt || "", desc: p.desc || "", land: !!p.land }; });
       if (x.link) m.link = { url: x.link.url || "", showUrl: !!x.link.showUrl, title: x.link.title || "", desc: x.link.desc || "",
@@ -377,15 +378,29 @@
       var rows = b.group && b.pics && !out;
       var photos = (m.photos || []).filter(function (p) { return picUrl(p.url) || p.desc.trim(); });
       var link = m.link && (m.link.title.trim() || m.link.url.trim() || picUrl(m.link.img) || m.link.imgdesc.trim()) ? m.link : null;
-      var cls = "msg " + side + (first ? " tail" : "") + (photos.length ? " gallery" : link ? " share" : "");
+      // a call or a shared contact is a bubble of its own, instead of the words and pictures
+      var card = m.call ? "call" : char(m.contact) ? "contact" : "";
+      if (card) { photos = []; link = null; }
+      var cls = "msg " + side + (first ? " tail" : "") + (card ? " " + card : photos.length ? " gallery" : link ? " share" : "");
       var label = hideLabel(plainName(c, true));
       var inner = [];
       var open = '<div class="' + cls + '">';
+      if (showWho && m.call) showWho = false; // a call has no words from anyone, so no name
       if (showWho) inner.push('<p class="who ' + (isProfile(c) ? "pfp-" + slugOf(c) : colourClass(c)) + '">' + waName(c) + '<span class="hide">:</span></p>');
-      else if (photos.length || link) open += '<p class="hide"><em>' + esc(plainName(c, true)) + ":</em></p>";
-      if (m.replyTo) { var q = waQuote(b, m); if (q) inner.push(q); }
+      else if (photos.length || link || card === "contact") open += '<p class="hide"><em>' + esc(plainName(c, true)) + ":</em></p>";
+      if (m.fwd && !m.call) inner.push('<p class="wa-fwd"><span class="ic ic-forward">&#8618;</span> Forwarded</p>');
+      if (m.replyTo && !card) { var q = waQuote(b, m); if (q) inner.push(q); }
       var lab = showWho ? "" : label;
-      if (photos.length) {
+      if (card === "call") {
+        var video = m.call === "video", miss = m.missed, icon = video ? "&#127909;" : "&#128222;";
+        var what = (miss ? "Missed " : "") + (video ? "video call" : "voice call");
+        inner.push('<p class="wa-call"><span class="wa-call-ic ic ic-wa-' + (video ? "video" : "call") + "-" + (miss ? "missed" : out ? "out" : "in") + '">' + icon +
+          '</span><span class="hide"> </span><b>' + what.charAt(0).toUpperCase() + what.slice(1) + '</b><span class="hide"> - </span><span class="wa-call-len">' +
+          esc(miss ? "Tap to call back" : t(m.callLen)) + "</span></p>");
+      } else if (card === "contact") {
+        var cc = char(m.contact), pf = waPfp(cc);
+        inner.push('<p class="wa-contact"><span' + pf.slice(2, -4) + "</span>" + esc(nameOf(cc)) + "</p>");
+      } else if (photos.length) {
         var n = ["one", "two", "three", "four"][Math.min(photos.length, 4) - 1];
         var ph = photos.slice(0, 4).map(function (p) {
           var u = picUrl(p.url);
@@ -412,9 +427,10 @@
       } else {
         inner.push("<p" + (m.big ? ' class="wa-big"' : "") + ">" + lab + fmt(m.text) + "</p>");
       }
-      var tick = !out ? "" : m.tick === "read" ? ' <span class="wa-read ic ic-read">✓✓</span>' :
+      var tick = !out || card ? "" : m.tick === "read" ? ' <span class="wa-read ic ic-read">✓✓</span>' :
         m.tick === "delivered" ? ' <span class="ic ic-delivered">✓✓</span>' : m.tick === "sent" ? ' <span class="ic ic-sent">✓</span>' : "";
-      inner.push('<p class="wa-time">' + (m.edited ? "Edited " : "") + esc(m.time.trim()) + tick + "</p>");
+      inner.push('<p class="wa-time">' + (m.edited && !card ? "Edited " : "") + esc(m.time.trim()) + tick + "</p>");
+      if (card === "contact") inner.push('<p class="wa-cbtn">Message</p>');
       var block = [open].concat(ind(inner.join("\n").split("\n"), 1)).concat(["</div>"]);
       if (rows) {
         block = ['<div class="wa-row' + (first ? "" : " cont") + '">'].concat(first ? ["  " + waPfp(c)] : []).concat(ind(block, 1)).concat(["</div>"]);
@@ -823,7 +839,12 @@
     "blocks.N.msgs.N.replyTo:dm": "Pick an earlier message to reply to it. It shows 'Replied to' and the name, then that message in an outlined bubble, above this one.",
     "blocks.N.msgs.N.waReacts:dm": "Emoji reactions under the bubble, then how many, like '😂 1' or '👍 😂 3'.",
     "blocks.N.msgs.N.status:dm": "The small word under the phone owner's last message: 'Sent', or 'Seen' once the other person has read it.",
-    "blocks.N.msgs.N.voice:dm": "Adds a voice message bubble, with a play button and sound bars. Type how long it is, like '0:02'."
+    "blocks.N.msgs.N.voice:dm": "Adds a voice message bubble, with a play button and sound bars. Type how long it is, like '0:02'.",
+    "blocks.N.msgs.N.fwd": "Puts a small grey 'Forwarded' label with an arrow at the top of the bubble, as if this message was passed on from another chat.",
+    "blocks.N.msgs.N.call": "Turns the message into a call bubble, with a round phone or video icon. Its arrow shows who rang: out for the phone owner's calls, in for someone else's. The message words aren't used.",
+    "blocks.N.msgs.N.missed": "A red icon and 'Missed voice call' or 'Missed video call', with 'Tap to call back' instead of how long it lasted.",
+    "blocks.N.msgs.N.callLen": "How long the call lasted, like '44 secs', '1 min' or '1 hr'.",
+    "blocks.N.msgs.N.contact": "Shares someone's contact: a card with their picture and name, and a 'Message' button. Pick them from the cast. The message words aren't used."
   };
   var helped = {}, helpKind = ""; // helpKind is "tw" while a Twitter/X block is drawn
   function help(path, kind) {
@@ -964,7 +985,10 @@
         h.push(field(P + ".status", "Line under it (e.g. Delivered, or Read 11:52 PM)", {}));
       } else {
         if (m.from === b.pov) h.push(field(P + ".tick", "Ticks", { type: "select", options: [["read", "Read (blue)"], ["delivered", "Delivered (grey)"], ["sent", "Sent (one tick)"], ["", "None"]] }));
-        h.push(field(P + ".big", "Large emoji", { type: "check" }));
+        h.push(field(P + ".big", "Large emoji", { type: "check" }) + field(P + ".fwd", "Forwarded", { type: "check" }));
+        h.push(field(P + ".call", "Call", { type: "select", re: true, options: [["", "Not a call"], ["voice", "Voice call"], ["video", "Video call"]] }));
+        if (m.call) h.push(field(P + ".missed", "Missed call", { type: "check", re: true }) + (m.missed ? "" : field(P + ".callLen", "How long", { ph: "44 secs" })));
+        h.push(field(P + ".contact", "Shared contact", { type: "select", re: true, options: [["", "None"]].concat(castOptions()) }));
         h.push(replyField(b, P, mi));
         h.push('<div class="fb-row">' + field(P + ".waReacts", "Reactions", { ph: "❤️ 😂" }) + field(P + ".waCount", "Count", { ph: "2", cls: "fb-time" }) + "</div>");
         if (!m.link) h.push(btn("link-add:" + bi + ":" + mi, "+ Link preview"));

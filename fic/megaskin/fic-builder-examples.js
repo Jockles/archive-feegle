@@ -6,7 +6,8 @@
 //          a Twitter/X DM can set nav and badge for the app buttons)
 //   msgs:  one line per message: [who, text, extras]. who is a cast name, "sys" for a
 //          date or notice line, or "typing" for typing dots (by: who is typing). extras can have time, tick, reacts (iMessage
-//          tapbacks: [[who, emoji]]), waReacts, waCount, sms, big, edited, status, voice (a DM voice message's length),
+//          tapbacks: [[who, emoji]]), waReacts, waCount, sms, big, edited, status, fwd, call ("voice" or "video"),
+//          missed, callLen, contact (a cast name: a WhatsApp shared contact), voice (a DM voice message's length),
 //          reply (the number of an earlier message, counting from 0; in a tweet thread, the reply
 //          goes to whoever posted it, and with no reply it goes to the tweet just above), photos, link.
 //          Tweets also take verified, label, date, replies, reposts, reposted, likes, liked, likeClick
@@ -103,7 +104,8 @@ window.FB_EXAMPLES = [
       { name: "Ilya", profile: "ilya" },
       { name: "Rose", profile: "rose" },
       { name: "Hayden", colour: "4", initials: "HP" },
-      { name: "Shane", profile: "shane" } // saved as Jane on Ilya's phone
+      { name: "Shane", profile: "shane" }, // saved as Jane on Ilya's phone
+      { name: "Jackie Pike", colour: "9", initials: "JP" } // only in the chat as a shared contact
     ],
     chat: { type: "wa", pov: "Ilya", group: true, header: "bar", title: "dinner", sub: "Rose, Jane, Hayden, You", bar: "empty" },
     msgs: [
@@ -119,7 +121,9 @@ window.FB_EXAMPLES = [
         { desc: "Photo of the same bottle, held up next to Rose's very pleased face" }] }],
       ["Rose", "", { time: "09:19", photos: [{ url: CAT1, alt: ALT1, land: true }, { url: CAT2, alt: ALT2 }, { url: CAT3, alt: ALT3, land: true }, { url: CAT4, alt: ALT4 }] }],
       ["Rose", "the girls are devastated they're not invited 😿", { time: "09:19" }],
-      ["Ilya", "Shane will not drink this. more for me", { time: "09:20" }]
+      ["Ilya", "Shane will not drink this. more for me", { time: "09:20" }],
+      ["Hayden", "", { time: "09:21", contact: "Jackie Pike" }],
+      ["Hayden", "Jackie wants to bring dessert. message her yourselves, I'm not the middleman", { time: "09:21" }]
     ]
   },
   {
