@@ -31,9 +31,9 @@
   var KINDS = {
     imsg: "iMessage chat",
     wa: "WhatsApp chat",
-    twone: "Twitter/X single tweet",
-    twthread: "Twitter/X tweet and replies",
     twfeed: "Twitter/X timeline",
+    twthread: "Twitter/X tweet and replies",
+    twone: "Twitter/X single tweet",
     twdm: "Twitter/X DM"
   };
   function isChat(b) { return b.type === "imsg" || b.type === "wa" || b.type === "twdm"; }
