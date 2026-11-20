@@ -424,9 +424,14 @@
   border-bottom-right-radius: 6px;
   background: radial-gradient(farthest-side at 100% 100%, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0));
   color: #ffffff;
-}</code></pre>
+}
 
-<p>When the time comes straight after a single photo (<code>+</code> means "straight after"), it's pinned to the photo's bottom corner with <code>position: absolute</code>. Its big padding makes room for the fade, a <code>radial-gradient</code> that's dark in the very corner and fades to see-through, so the white time shows up on any picture. With a caption in between, the rule doesn't match, and the time goes back under the caption.</p>
+#workskin .wa .msg.gallery .wa-photos.one + .wa-time .wa-read { color: #ffffff; }
+#workskin .wa .msg.gallery .wa-photos.one + .wa-time .ic.ic-sent { background-image: url(https://images.squidge.org/images/2026/11/20/tick-white.png); }
+#workskin .wa .msg.gallery .wa-photos.one + .wa-time .ic.ic-delivered,
+#workskin .wa .msg.gallery .wa-photos.one + .wa-time .ic.ic-read { background-image: url(https://images.squidge.org/images/2026/11/20/double-tick-white.png); }</code></pre>
+
+<p>When the time comes straight after a single photo (<code>+</code> means "straight after"), it's pinned to the photo's bottom corner with <code>position: absolute</code>. Its big padding makes room for the fade, a <code>radial-gradient</code> that's dark in the very corner and fades to see-through, so the white time shows up on any picture. With a caption in between, the rule doesn't match, and the time goes back under the caption. The last three rules swap the ticks for white ones, and the read ticks use the white pair too, since WhatsApp doesn't turn them blue on a photo.</p>
 
 <h3>Captions and Links</h3>
 
