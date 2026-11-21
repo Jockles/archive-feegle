@@ -170,7 +170,8 @@ h2 { font-size: 1.6em; border-bottom: 1px solid var(--rule); padding-bottom: 4px
 .blurb .summary { margin: 8px 0 8px 1.5em; }
 .stats { font-size: 0.85em; color: var(--muted); margin: 0; }
 
-.tags { list-style: none; padding: 0; margin: 6px 0; font-size: 0.9em; display: flex; flex-wrap: wrap; }
+.tags { list-style: none; padding: 0; margin: 6px 0; font-size: 0.9em; }
+.tags li { display: inline; }
 .tags li + li::before { content: ",\00a0"; }
 .tags .warning a { font-weight: bold; }
 
@@ -238,3 +239,9 @@ footer a:hover, footer a:focus { color: #a8f5c4; }
   .work-meta { grid-template-columns: 1fr; }
   .work-meta dt { text-align: left; }
 }
+
+/* Fandom list on the Fic page (made by tools/build-ao3.py) */
+.fandom-list { padding-left: 1.6em; }
+.fandom-list li { margin: 4px 0; }
+.series-nav { margin: 6px 0 14px; }
+.series-part { font-size: 1em; margin: 18px 0 6px; color: var(--muted); }
