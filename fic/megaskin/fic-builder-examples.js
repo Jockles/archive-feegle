@@ -1,12 +1,16 @@
 // The tutorial's example chats, for "Load an example" in the Fic Builder.
 // Each one is plain data:
+//   chats: for an example with more than one chat (like a whole chapter), a list of { chat, msgs } in place of chat and msgs.
+//          A chat can set gpFrom (a cast name) for a group picture from a profile.
+//   pasted: profile CSS the example comes with, as if pasted into "Profiles you already have"
 //   cast:  the people in it: profile (a profile from the skin, like "shane"), or name plus
 //          colour, initials, pic, alt, num for one-offs
-//   chat:  the chat settings (type is "imsg", "wa", "twdm", "twthread" or "twfeed"; pov is whose phone it is;
+//   chat:  the chat settings (type is "imsg", "wa", "twdm", "twone", "twthread" or "twfeed"; pov is whose phone it is;
 //          a Twitter/X DM can set nav and badge for the app buttons)
 //   msgs:  one line per message: [who, text, extras]. who is a cast name, "sys" for a
 //          date or notice line, or "typing" for typing dots (by: who is typing). extras can have time, tick, reacts (iMessage
-//          tapbacks: [[who, emoji]]), waReacts, waCount, sms, big, edited, status, voice (a DM voice message's length),
+//          tapbacks: [[who, emoji]]), waReacts, waCount, sms, big, edited, status, fwd, call ("voice" or "video"),
+//          missed, callLen, contact (a cast name: a WhatsApp shared contact), voice (a DM voice message's length),
 //          reply (the number of an earlier message, counting from 0; in a tweet thread, the reply
 //          goes to whoever posted it, and with no reply it goes to the tweet just above), photos, link.
 //          Tweets also take verified, label, date, replies, reposts, reposted, likes, liked, likeClick
@@ -103,7 +107,8 @@ window.FB_EXAMPLES = [
       { name: "Ilya", profile: "ilya" },
       { name: "Rose", profile: "rose" },
       { name: "Hayden", colour: "4", initials: "HP" },
-      { name: "Shane", profile: "shane" } // saved as Jane on Ilya's phone
+      { name: "Shane", profile: "shane" }, // saved as Jane on Ilya's phone
+      { name: "Jackie Pike", colour: "9", initials: "JP" } // only in the chat as a shared contact
     ],
     chat: { type: "wa", pov: "Ilya", group: true, header: "bar", title: "dinner", sub: "Rose, Jane, Hayden, You", bar: "empty" },
     msgs: [
@@ -119,7 +124,9 @@ window.FB_EXAMPLES = [
         { desc: "Photo of the same bottle, held up next to Rose's very pleased face" }] }],
       ["Rose", "", { time: "09:19", photos: [{ url: CAT1, alt: ALT1, land: true }, { url: CAT2, alt: ALT2 }, { url: CAT3, alt: ALT3, land: true }, { url: CAT4, alt: ALT4 }] }],
       ["Rose", "the girls are devastated they're not invited 😿", { time: "09:19" }],
-      ["Ilya", "Shane will not drink this. more for me", { time: "09:20" }]
+      ["Ilya", "Shane will not drink this. more for me", { time: "09:20" }],
+      ["Hayden", "", { time: "09:21", contact: "Jackie Pike" }],
+      ["Hayden", "Jackie wants to bring dessert. message her yourselves, I'm not the middleman", { time: "09:21" }]
     ]
   },
   {
@@ -201,6 +208,95 @@ window.FB_EXAMPLES = [
       ["Shane", "yes. Ilya is paying", { waReacts: "👍 😂 3" }],
       ["Ilya", "I did not agree to this", { reply: 3, status: "Sent" }],
       ["Scott", "you did, actually. there are witnesses"]
+    ]
+  },
+  {
+    // Part 7 of Ilya's Big Gay Bromance: lots of WhatsApp chats on Ilya's phone and a tweet, with the story text left out
+    label: "Many Chats, different types",
+    // the fic's own profiles: they go in the profile CSS box, as if pasted in
+    pasted: "/* PROFILE: Scott Hunter */\n#workskin .pfp.pfp-scott { background-image: url(https://images.squidge.org/images/2026/11/20/scott-hunter-pfp-1.png); }\n#workskin .wa .who.pfp-scott, #workskin .dc .dc-name.pfp-scott { color: #8e5cc7; }\n#workskin .name.pfp-scott::before { content: \"Scott Hunter\"; }\n#workskin .pov-ilya .name.pfp-scott::before { content: \"Old Man Scott\"; }\n#workskin .handle.pfp-scott::after { content: \"HunterScott\"; }\n\n/* PROFILE: Ryan Price */\n#workskin .pfp.pfp-ryan { background-image: url(https://images.squidge.org/images/2026/11/20/ryan-price-pfp-1.jpg); }\n#workskin .wa .who.pfp-ryan, #workskin .dc .dc-name.pfp-ryan { color: #1f9e5a; }\n#workskin .name.pfp-ryan::before { content: \"Ryan Price\"; }\n#workskin .pov-ilya .name.pfp-ryan::before { content: \"Hockey Bear\"; }\n#workskin .handle.pfp-ryan::after { content: \"PRyan\"; }\n/* the picture Ilya gives him when he saves him as Hockey Bear */\n#workskin .pov-ilya .pfp.pfp-ryan { background-image: url(https://images.squidge.org/images/2026/11/20/BearPrideHeart.png); }\n\n/* Shane (the Megaskin's own profile): a different picture on WhatsApp in this series */\n#workskin .wa .pfp.pfp-shane { background-image: url(https://images.squidge.org/images/2026/11/16/HockeyBlur.png); }\n\n/* GROUP: the gay hockey players' group chat (\"Canada is most gay\" / \"Canada has best gays\").\n   Use <span class=\"pfp pfp-gc-canada\"></span> in the group's header picture. */\n#workskin .name.pfp-gc-canada::before { content: \"Canada is most gay\"; }\n#workskin .pfp.pfp-gc-canada { background-image: url(https://images.squidge.org/images/2026/11/20/canadahockey.jpg); }",
+    cast: [{ name: "Ilya", profile: "ilya" }, { name: "Shane", profile: "shane" }, { name: "Scott", profile: "scott" },
+      { name: "Ryan", profile: "ryan" }, { name: "Canada group", profile: "gc-canada" }],
+    chats: [
+      {
+        chat: { type: "wa", pov: "Ilya", theme: "theme-auto", group: true, header: "bar", title: "Canada is most gay", sub: "Hockey Bear, Old Man Scott, You", gpFrom: "Canada group", bar: "empty" },
+        msgs: [
+          ["Scott", "Hey Ilya, you mind if I add someone to the chat?"],
+          ["Ilya", "you found another gay hockey player?", { tick: "" }],
+          ["Scott", "I’m just… I’m hearing things out of a particular locker room that makes me think some things."],
+          ["Scott", "You don’t happen to know something you’re not telling me?"],
+          ["Ilya", "I know many things you don’t. how to score goals. how to use twitter. list is very long.", { tick: "" }],
+          ["Scott", "I don’t know why I keep expecting you to be serious."]
+        ]
+      },
+      {
+        chat: { type: "wa", pov: "Ilya", theme: "theme-auto", header: "bar", sub: "", bar: "none" },
+        msgs: [
+          ["Scott", "Heads up, because I know you’re close with Hollander and you might want to bring it up to him."],
+          ["Scott", "The AHL guy they brought in to cover Mitty’s injury time reached out and, uh"],
+          ["Scott", "The locker room is bad man. He didn’t say much, but there’s an out player on the team and the vibes are rancid."]
+        ]
+      },
+      {
+        chat: { type: "wa", pov: "Ilya", theme: "theme-auto", header: "bar", sub: "", bar: "empty" },
+        msgs: [
+          ["Ilya", "I think Scott has heard about your coming out.", { tick: "" }],
+          ["Ilya", "I also think he has heard that your team sucks.", { tick: "" }],
+          ["Ilya", "What do you want me to do?", { tick: "" }],
+          ["Shane", "I’m so tired I don’t know."],
+          ["Ilya", "are you home?", { tick: "" }],
+          ["Shane", "Nearly."],
+          ["Ilya", "Tell me when you’re home [[любимый|my love]]", { tick: "" }]
+        ]
+      },
+      {
+        chat: { type: "wa", pov: "Ilya", theme: "theme-auto", header: "bar", sub: "", bar: "none" },
+        msgs: [
+          ["Ilya", "I have spoken to Hollander. I think he will reach out to talk to you soon. Be nice.", { tick: "" }],
+          ["Scott", "I’m always nice, Roz. But I’m not gonna be nice if he’s just letting the room bully one of his teammates."],
+          ["Ilya", "okay", { tick: "" }]
+        ]
+      },
+      {
+        chat: { type: "wa", pov: "Ilya", theme: "theme-auto", header: "bar", sub: "", bar: "none" },
+        msgs: [
+          ["Scott", "Hey Ilya, call me when you get a minute."]
+        ]
+      },
+      {
+        chat: { type: "wa", pov: "Ilya", theme: "theme-auto", group: true, header: "bar", title: "Canada is most gay", sub: "Hockey Bear, Old Man Scott, You", gpFrom: "Canada group", bar: "none" },
+        msgs: [
+          ["Ryan", "I’m going to Harvey’s funeral. We weren’t close, but I have to."]
+        ]
+      },
+      {
+        chat: { type: "wa", pov: "Ilya", theme: "theme-auto", group: true, header: "none", bar: "none" },
+        msgs: [
+          ["Ryan", "Are you?"]
+        ]
+      },
+      {
+        chat: { type: "wa", pov: "Ilya", theme: "theme-auto", group: true, header: "none", bar: "none" },
+        msgs: [
+          ["Ilya", "See you there", { tick: "" }],
+          ["Scott", "See you there"]
+        ]
+      },
+      {
+        chat: { type: "twone", theme: "theme-auto", scroll: "no-scroll" },
+        msgs: [
+          ["Scott", "Coming out is not the end of the story.\n\nI am grateful every day to my team, who have treated me with kindness and support. Leading them to a Stanley cup probably helped, but they have been nothing but supportive of me since our win, and my public coming out.\n\nUnfortunately, there are many players across this sport who do not receive that support. From their family, their friends, their team, their coaching staff, and their agents. There are dozens of people required to support a player at every level, and they must all be pulling you, the player, in the same direction.\n\nI’ve been in those locker rooms. I’ve sat down with those coaches. The ones that don’t even realise what they’re saying when they talk down about men who might love other men. And the ones who do, who use that word as a serious insult across the ice.\n\nSo I call upon every player on every team to stand against this. Because being like this can only ever make your game worse. It keeps good players from reaching the top of their game. It stops talented kids from attending their camps. It makes teammates unable to trust each other on the ice.\n\nSo I call on every team, to pledge an end to this kind of locker room talk. I call on every captain to stop it on your ice. From my fellow MLH captains to the peewee coaches. We can help each other to play better hockey, and to be better friends.\n\nThere are teams out there — at all levels of play — that may not have supported me. That might have made the last year hell. I know there are parts of the MLH that still don’t like what I am, and what I stand for.\n\nThank you to the teams that have reached out and already pledged. You are making the sport better for everyone.\n\nWe, the players, are the face of this organisation.\n\nWe can change the game for everyone if we want.\n\n@NYAdmirals @OttawaCentaurs @BostonBears @BuffaloBroads @PhoenixCoyotes @LAQueens @HoustonDrillers @MNNomads @BrooklynScouts", { verified: true, time: "2m", replies: "1.2K", reposts: "8.4K", likes: "41K", views: "2.1M", saveClick: true }]
+        ]
+      },
+      {
+        chat: { type: "wa", pov: "Ilya", theme: "theme-auto", group: true, header: "bar", title: "Canada is most gay", sub: "Hockey Bear, Old Man Scott, You", gpFrom: "Canada group", bar: "none" },
+        msgs: [
+          ["Scott", "Thanks for the captains you sent my way."],
+          ["Scott", "Sorry we couldn’t get Toronto on the list"],
+          ["Ryan", "Honestly I’m not surprised. But it wont matter for long."]
+        ]
+      }
+
     ]
   }
 ];
