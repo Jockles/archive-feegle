@@ -5,7 +5,7 @@
 //   pasted: profile CSS the example comes with, as if pasted into "Profiles you already have"
 //   cast:  the people in it: profile (a profile from the skin, like "shane"), or name plus
 //          colour, initials, pic, alt, num for one-offs
-//   chat:  the chat settings (type is "imsg", "wa", "twdm", "twthread" or "twfeed"; pov is whose phone it is;
+//   chat:  the chat settings (type is "imsg", "wa", "twdm", "twone", "twthread" or "twfeed"; pov is whose phone it is;
 //          a Twitter/X DM can set nav and badge for the app buttons)
 //   msgs:  one line per message: [who, text, extras]. who is a cast name, "sys" for a
 //          date or notice line, or "typing" for typing dots (by: who is typing). extras can have time, tick, reacts (iMessage
@@ -283,7 +283,7 @@ window.FB_EXAMPLES = [
         ]
       },
       {
-        chat: { type: "twfeed", theme: "theme-auto", scroll: "no-scroll" },
+        chat: { type: "twone", theme: "theme-auto", scroll: "no-scroll" },
         msgs: [
           ["Scott", "Coming out is not the end of the story.\n\nI am grateful every day to my team, who have treated me with kindness and support. Leading them to a Stanley cup probably helped, but they have been nothing but supportive of me since our win, and my public coming out.\n\nUnfortunately, there are many players across this sport who do not receive that support. From their family, their friends, their team, their coaching staff, and their agents. There are dozens of people required to support a player at every level, and they must all be pulling you, the player, in the same direction.\n\nI’ve been in those locker rooms. I’ve sat down with those coaches. The ones that don’t even realise what they’re saying when they talk down about men who might love other men. And the ones who do, who use that word as a serious insult across the ice.\n\nSo I call upon every player on every team to stand against this. Because being like this can only ever make your game worse. It keeps good players from reaching the top of their game. It stops talented kids from attending their camps. It makes teammates unable to trust each other on the ice.\n\nSo I call on every team, to pledge an end to this kind of locker room talk. I call on every captain to stop it on your ice. From my fellow MLH captains to the peewee coaches. We can help each other to play better hockey, and to be better friends.\n\nThere are teams out there — at all levels of play — that may not have supported me. That might have made the last year hell. I know there are parts of the MLH that still don’t like what I am, and what I stand for.\n\nThank you to the teams that have reached out and already pledged. You are making the sport better for everyone.\n\nWe, the players, are the face of this organisation.\n\nWe can change the game for everyone if we want.\n\n@NYAdmirals @OttawaCentaurs @BostonBears @BuffaloBroads @PhoenixCoyotes @LAQueens @HoustonDrillers @MNNomads @BrooklynScouts", { verified: true, time: "2m", replies: "1.2K", reposts: "8.4K", likes: "41K", views: "2.1M", saveClick: true }]
         ]
