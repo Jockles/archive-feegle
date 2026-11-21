@@ -570,15 +570,17 @@
 
 <h3>Wallpapers</h3>
 
-<pre><code>#workskin .wa.bg-sage { background: #d5e6d0; }
+<pre><code>#workskin div.mob.wa.bg-sage { background: #d5e6d0; }
 
-#workskin .wa.bg-sunset { background-color: #f6a56d; background-image: linear-gradient(#f6d365, #fda085); }</code></pre>
+#workskin div.mob.wa.bg-sunset { background-color: #f6a56d; background-image: linear-gradient(#f6d365, #fda085); }</code></pre>
 
 <p>Each wallpaper is one line. A plain one is a colour. A gradient fades from the first colour at the top to the second at the bottom, and also has a plain <code>background-color</code> in between the two, which shows in the rare reader that can't do gradients. To make your own, copy a line, give it a new name after <code>bg-</code>, and change the colours.</p>
 
+<p>The <code>div.mob</code> at the start makes a wallpaper stronger than a phone owner's wallpaper, so <code>pov-shane bg-sage</code> shows sage even on Shane's phone. Keep it when you copy a line.</p>
+
 <p><strong>Using your own picture</strong> takes one rule, which is already in the skin waiting for you:</p>
 
-<pre><code>#workskin .wa.bg-image1 {
+<pre><code>#workskin div.mob.wa.bg-image1 {
   background-color: #1c1c1c;
   background-image: url(https://example.com/my-wallpaper.jpg);
   background-size: cover;
