@@ -398,7 +398,7 @@
 
 #workskin .tb .tb-opt.p50 { background-size: 50% 100%; }</code></pre>
 
-<p>This is built on the Twitter poll (see <a href="twitter-x-css.html#s9-6">Polls</a>). Before anyone's voted, each option is a blue outline with round ends and the text in the middle. With <code>res</code> it turns into a grey box with the text on the left, and a darker bar is drawn across it as a background: <code>linear-gradient</code> with the same colour twice is just a block of colour, and <code>background-size</code> sets how wide it is, so <code>p50</code> fills half the box. <code>win</code> swaps the grey bar for blue. There's one line like that for each bar size. The box is a flex row, so <code>margin-left: auto</code> pushes the percentage to the right-hand end.</p>
+<p>This is built on the Twitter poll (see <a href="twitter-x-css.html#s9-8">Polls</a>). Before anyone's voted, each option is a blue outline with round ends and the text in the middle. With <code>res</code> it turns into a grey box with the text on the left, and a darker bar is drawn across it as a background: <code>linear-gradient</code> with the same colour twice is just a block of colour, and <code>background-size</code> sets how wide it is, so <code>p50</code> fills half the box. <code>win</code> swaps the grey bar for blue. There's one line like that for each bar size. The box is a flex row, so <code>margin-left: auto</code> pushes the percentage to the right-hand end.</p>
 
 <p>The <code>.tb-body</code> in the first two rules is there so they win over the body's own paragraph spacing. <code>tb-pollinfo</code> is the small grey centred line underneath. In dark posts the box, the bar and the line are darker.</p>
 
@@ -452,7 +452,7 @@
   margin: auto 0;
 }</code></pre>
 
-<p>Two side by side are squares. A box with no height and <code>padding-top: 50%</code> is as tall as half the row is wide, so it's square, whatever is inside it. The picture is pinned in the middle of the box and anything sticking out of the top and bottom is hidden, the same cropping trick as the Twitter/X photos (see <a href="twitter-x-css.html#s9-8">Pictures and Videos</a>). <code>land</code> swaps it round for a wide picture, so it's as tall as the box and the sides get cropped instead. The grey background only shows while a picture is loading.</p>
+<p>Two side by side are squares. A box with no height and <code>padding-top: 50%</code> is as tall as half the row is wide, so it's square, whatever is inside it. The picture is pinned in the middle of the box and anything sticking out of the top and bottom is hidden, the same cropping trick as the Twitter/X photos (see <a href="twitter-x-css.html#s9-10">Pictures and Videos</a>). <code>land</code> swaps it round for a wide picture, so it's as tall as the box and the sides get cropped instead. The grey background only shows while a picture is loading.</p>
 
 <pre><code>#workskin .tb .tb-body &gt; .tb-photos:first-child,
 #workskin .tb .tb-reblog &gt; .tb-blog + .tb-photos { margin-top: -0.3em; }
