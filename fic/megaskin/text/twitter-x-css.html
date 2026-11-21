@@ -12,6 +12,207 @@
 
 <p>The usual order - the main rules, Links, Dark theme and Auto theme - with a <strong>Scrolling</strong> section before the themes, because tweets and threads scroll differently from the phone-style chats, and Icons at the end. You'll notice that most rules name both <code>.tw</code> and <code>.tw-reply</code>. A reply is its own box rather than something inside a tweet, so every part that can turn up in both has to be given to both.</p>
 
+<h3>The Timeline</h3>
+
+<pre><code>#workskin .tw-thread {
+  width: 380px;
+  max-width: 100%;
+  margin: 1.2em auto;
+  box-sizing: border-box;
+  border: 1px solid #cfd9de;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #ffffff;
+  color: #0f1419;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 0.92em;
+  line-height: 1.35;
+}
+
+#workskin .tw-thread .mob {
+  width: auto;
+  max-width: none;
+  margin: 0;
+  border-width: 0 0 1px 0;
+  border-radius: 0;
+  max-height: none;
+  overflow: visible;
+  background: transparent;
+  color: inherit;
+}</code></pre>
+
+<p>The timeline (<code>tw-thread</code>) is its own phone-sized box, built like the core's <code>mob</code>, and it holds every tweet in the chapter. The second rule takes the tweets inside it apart: no width of their own, no gap around them, no rounded corners, no scrolling, and only a bottom edge, so they stack into one feed with a line between each one. <code>background: transparent</code> and <code>color: inherit</code> make every tweet take the thread's colours, which is how a whole timeline follows one theme.</p>
+
+<pre><code>#workskin .tw-thread .tw-foot {
+  display: block;
+  padding: 0.7em 1em;
+  border-top: 1px solid #eff3f4;
+  color: #536471;
+}
+
+#workskin .tw-thread .tw-foot &gt; p { margin: 0; padding: 0; }
+
+#workskin .tw-thread .tw-foot span {
+  float: right;
+  padding: 0.25em 0.9em;
+  border-radius: 1em;
+  background: #1d9bf0;
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 0.9em;
+}</code></pre>
+
+<p>The "Tweet your reply" bar sits under the scrolling part, so it stays in place. AO3 wraps its text in a paragraph, which the middle rule flattens, and the Reply button floats to the right.</p>
+
+<h3>The Top Bar and Tabs</h3>
+
+<pre><code>#workskin .tw-thread .tw-apptop,
+#workskin .tw-thread .tw-tabs {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  white-space: nowrap;
+}
+
+#workskin .tw-thread .tw-apptop br,
+#workskin .tw-thread .tw-tabs br { display: none; }
+
+#workskin .tw-thread .tw-apptop { padding: 0.8em 1em 0.3em 1em; }
+
+/* the reader's own picture, top left */
+#workskin .tw-thread .tw-me {
+  display: block;
+  flex: none;
+  width: 2.2em;
+  height: 2.2em;
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+/* the X in the middle: the margin on the right balances the picture on the left */
+#workskin .tw-thread .tw-logo {
+  flex: 1;
+  margin-right: 2.2em;
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.9em;
+  font-weight: bold;
+  line-height: 1;
+}
+
+/* the old blue bird instead of the X: &lt;span class="tw-logo bird"&gt;Twitter&lt;/span&gt; */
+#workskin .tw-thread .tw-logo.bird {
+  height: 1em;
+  overflow: hidden;
+  text-indent: -100em;
+  white-space: nowrap;
+  background-image: url(https://images.squidge.org/images/2026/11/17/twitter-logo.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+#workskin .tw-thread .tw-tabs {
+  position: relative;
+  overflow: hidden;
+  padding: 0.6em 2.6em 0 1em;
+  border-bottom: 1px solid #eff3f4;
+  color: #536471;
+  font-weight: bold;
+}
+
+#workskin .tw-thread .tw-tab {
+  position: relative;
+  flex: none;
+  margin-right: 1.6em;
+  padding-bottom: 0.75em;
+}
+
+#workskin .tw-thread .tw-tab.on { color: #0f1419; }
+
+/* the rounded line under the picked tab, as wide as its words, in the same colour */
+#workskin .tw-thread .tw-tab.on::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 4px;
+  border-radius: 2px;
+  background: currentColor;
+}
+
+/* the little down arrow after For you: &lt;span class="tw-drop"&gt;&lt;/span&gt; */
+#workskin .tw-thread .tw-drop {
+  display: inline-block;
+  box-sizing: border-box;
+  width: 0.45em;
+  height: 0.45em;
+  margin: 0 0.15em 0 0.55em;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  vertical-align: 0.3em;
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+/* the + at the far right, for adding a community tab. It stays put, and any tabs too long for the row go under it */
+#workskin .tw-thread .tw-add {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 1px;
+  padding: 0.3em 0.7em 0 0.7em;
+  background: #ffffff;
+  font-size: 1.4em;
+  font-weight: normal;
+  line-height: 1;
+}
+
+/* THE 2020 TWITTER REDESIGN: add "tw2020" to an app screen, &lt;div class="tw-thread app tw2020 theme-auto"&gt;.
+   The bird takes the place of the X with a sparkle on the right, the tabs are hidden,
+   and the tweets lose their bookmark button and the line above their stats, with share spaced out like the rest */
+#workskin .tw-thread.tw2020 .tw-apptop {
+  padding-bottom: 0.6em;
+  border-bottom: 1px solid #eff3f4;
+}
+
+#workskin .tw-thread.tw2020 .tw-logo {
+  height: 1em;
+  margin-right: 0;
+  overflow: hidden;
+  text-indent: -100em;
+  white-space: nowrap;
+  background-image: url(https://images.squidge.org/images/2026/11/17/twitter-logo.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+/* the sparkle, top right, the same width as the picture on the left */
+#workskin .tw-thread.tw2020 .tw-apptop::after {
+  content: "\2726";
+  display: block;
+  flex: none;
+  width: 1.7em;
+  color: #1d9bf0;
+  font-size: 1.3em;
+  line-height: 1;
+  text-align: right;
+}
+
+#workskin .tw-thread.tw2020 .tw-tabs { display: none; }
+
+#workskin .tw-thread.tw2020 .tw-stats { border-top: 0; padding-top: 0.2em; }
+
+#workskin .tw-thread.tw2020 .tw-stat.tw-end { flex: 1 1 0; margin-left: 0; }
+
+#workskin .tw-thread.tw2020 .tw-stat.tw-end:not(:last-child) { display: none; }</code></pre>
+
+<p>The top bar and tabs are just two flex rows at the top of the scrolling part of a timeline. In the top bar, the X gets <code>flex: 1</code> to take up all the room left over, and its <code>margin-right</code> is the same width as the picture on the left, so the X sits in the true middle. The <code>bird</code> version hides the word inside by pushing it far off to the left with <code>text-indent</code>, and shows the logo picture in its place, the same way the icons work. In the tabs, the line under the picked tab is a <code>::after</code> box filled with <code>currentColor</code> (the colour of the words), pinned to the bottom of the tab with <code>position: absolute</code>, stretched from <code>left: 0</code> to <code>right: 0</code> so it's always as wide as the words. The down arrow is just the bottom and right borders of a tiny square, turned 45 degrees with <code>transform: rotate(45deg)</code>. The plus sign is pinned to the right-hand end the same way, with a background the same colour as the screen, so long tabs slide under it instead of pushing it off the edge.</p>
+
+<p>The <code>tw2020</code> rules all start with <code>.tw-thread.tw2020</code>, so they only touch a thread with both classes. The logo gets the same bird as <code>bird</code>, without the margin, because the sparkle now balances the picture: it's an <code>::after</code> box on the top bar with the sparkle character as its <code>content</code>, the same width as the picture. In the stats row, the share button gets <code>flex: 1 1 0</code> back so it spreads out like the others, and <code>:not(:last-of-type)</code> hides every <code>tw-end</code> button that isn't the last one in the row, which is the bookmark.</p>
+
 <h3>The Tweet</h3>
 
 <pre><code>#workskin .tw {
@@ -30,7 +231,7 @@
   padding: 0.7em 1em;
 }</code></pre>
 
-<p>A tweet is a rounded white card. A reply is a square one with no top edge, so a stack of replies under a tweet joins up into one long card, with a single line between each one.</p>
+<p>On its own, a tweet is a rounded card, white in light mode and black in dark mode. In a timeline, the timeline's rule above takes its edge and corners away. A reply is a square card with no top edge, so a stack of replies under a tweet joins up into one long card, with a single line between each one.</p>
 
 <p>The text colours are Twitter/X's own: <code>#0f1419</code> is its near-black, <code>#536471</code> the grey for handles and small print, and <code>#1d9bf0</code> its blue, which is used for links, hashtags, the verified tick and poll outlines.</p>
 
@@ -456,207 +657,6 @@
 }</code></pre>
 
 <p>Floating things don't take up any height, so a box of floated pictures would shrink to nothing, and the stats line would slide up behind the pictures. This adds an invisible empty line after them with <code>clear: both</code>, which means "go below anything floating", so the box stretches down to hold them.</p>
-
-<h3>The Scrolling Thread</h3>
-
-<pre><code>#workskin .tw-thread {
-  width: 380px;
-  max-width: 100%;
-  margin: 1.2em auto;
-  box-sizing: border-box;
-  border: 1px solid #cfd9de;
-  border-radius: 14px;
-  overflow: hidden;
-  background: #ffffff;
-  color: #0f1419;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 0.92em;
-  line-height: 1.35;
-}
-
-#workskin .tw-thread .mob {
-  width: auto;
-  max-width: none;
-  margin: 0;
-  border-width: 0 0 1px 0;
-  border-radius: 0;
-  max-height: none;
-  overflow: visible;
-  background: transparent;
-  color: inherit;
-}</code></pre>
-
-<p>A thread is its own phone-sized box, built like the core's <code>mob</code>. The second rule takes the tweets inside it apart: no width of their own, no gap around them, no rounded corners, no scrolling, and only a bottom edge, so they stack into one feed with a line between each one. <code>background: transparent</code> and <code>color: inherit</code> make every tweet take the thread's colours, which is how a whole thread follows one theme.</p>
-
-<pre><code>#workskin .tw-thread .tw-foot {
-  display: block;
-  padding: 0.7em 1em;
-  border-top: 1px solid #eff3f4;
-  color: #536471;
-}
-
-#workskin .tw-thread .tw-foot &gt; p { margin: 0; padding: 0; }
-
-#workskin .tw-thread .tw-foot span {
-  float: right;
-  padding: 0.25em 0.9em;
-  border-radius: 1em;
-  background: #1d9bf0;
-  color: #ffffff;
-  font-weight: bold;
-  font-size: 0.9em;
-}</code></pre>
-
-<p>The "Tweet your reply" bar sits under the scrolling part, so it stays in place. AO3 wraps its text in a paragraph, which the middle rule flattens, and the Reply button floats to the right.</p>
-
-<h3>The App Screen</h3>
-
-<pre><code>#workskin .tw-thread .tw-apptop,
-#workskin .tw-thread .tw-tabs {
-  display: flex;
-  align-items: center;
-  margin: 0;
-  white-space: nowrap;
-}
-
-#workskin .tw-thread .tw-apptop br,
-#workskin .tw-thread .tw-tabs br { display: none; }
-
-#workskin .tw-thread .tw-apptop { padding: 0.8em 1em 0.3em 1em; }
-
-/* the reader's own picture, top left */
-#workskin .tw-thread .tw-me {
-  display: block;
-  flex: none;
-  width: 2.2em;
-  height: 2.2em;
-  overflow: hidden;
-  border-radius: 50%;
-}
-
-/* the X in the middle: the margin on the right balances the picture on the left */
-#workskin .tw-thread .tw-logo {
-  flex: 1;
-  margin-right: 2.2em;
-  text-align: center;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 1.9em;
-  font-weight: bold;
-  line-height: 1;
-}
-
-/* the old blue bird instead of the X: &lt;span class="tw-logo bird"&gt;Twitter&lt;/span&gt; */
-#workskin .tw-thread .tw-logo.bird {
-  height: 1em;
-  overflow: hidden;
-  text-indent: -100em;
-  white-space: nowrap;
-  background-image: url(https://images.squidge.org/images/2026/11/17/twitter-logo.png);
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-}
-
-#workskin .tw-thread .tw-tabs {
-  position: relative;
-  overflow: hidden;
-  padding: 0.6em 2.6em 0 1em;
-  border-bottom: 1px solid #eff3f4;
-  color: #536471;
-  font-weight: bold;
-}
-
-#workskin .tw-thread .tw-tab {
-  position: relative;
-  flex: none;
-  margin-right: 1.6em;
-  padding-bottom: 0.75em;
-}
-
-#workskin .tw-thread .tw-tab.on { color: #0f1419; }
-
-/* the rounded line under the picked tab, as wide as its words, in the same colour */
-#workskin .tw-thread .tw-tab.on::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 4px;
-  border-radius: 2px;
-  background: currentColor;
-}
-
-/* the little down arrow after For you: &lt;span class="tw-drop"&gt;&lt;/span&gt; */
-#workskin .tw-thread .tw-drop {
-  display: inline-block;
-  box-sizing: border-box;
-  width: 0.45em;
-  height: 0.45em;
-  margin: 0 0.15em 0 0.55em;
-  border-right: 2px solid currentColor;
-  border-bottom: 2px solid currentColor;
-  vertical-align: 0.3em;
-  -webkit-transform: rotate(45deg);
-  transform: rotate(45deg);
-}
-
-/* the + at the far right, for adding a community tab. It stays put, and any tabs too long for the row go under it */
-#workskin .tw-thread .tw-add {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 1px;
-  padding: 0.3em 0.7em 0 0.7em;
-  background: #ffffff;
-  font-size: 1.4em;
-  font-weight: normal;
-  line-height: 1;
-}
-
-/* THE 2020 TWITTER REDESIGN: add "tw2020" to an app screen, &lt;div class="tw-thread app tw2020 theme-auto"&gt;.
-   The bird takes the place of the X with a sparkle on the right, the tabs are hidden,
-   and the tweets lose their bookmark button and the line above their stats, with share spaced out like the rest */
-#workskin .tw-thread.tw2020 .tw-apptop {
-  padding-bottom: 0.6em;
-  border-bottom: 1px solid #eff3f4;
-}
-
-#workskin .tw-thread.tw2020 .tw-logo {
-  height: 1em;
-  margin-right: 0;
-  overflow: hidden;
-  text-indent: -100em;
-  white-space: nowrap;
-  background-image: url(https://images.squidge.org/images/2026/11/17/twitter-logo.png);
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-}
-
-/* the sparkle, top right, the same width as the picture on the left */
-#workskin .tw-thread.tw2020 .tw-apptop::after {
-  content: "\2726";
-  display: block;
-  flex: none;
-  width: 1.7em;
-  color: #1d9bf0;
-  font-size: 1.3em;
-  line-height: 1;
-  text-align: right;
-}
-
-#workskin .tw-thread.tw2020 .tw-tabs { display: none; }
-
-#workskin .tw-thread.tw2020 .tw-stats { border-top: 0; padding-top: 0.2em; }
-
-#workskin .tw-thread.tw2020 .tw-stat.tw-end { flex: 1 1 0; margin-left: 0; }
-
-#workskin .tw-thread.tw2020 .tw-stat.tw-end:not(:last-child) { display: none; }</code></pre>
-
-<p>The app screen is just two flex rows at the top of the scrolling part of a thread. In the top bar, the X gets <code>flex: 1</code> to take up all the room left over, and its <code>margin-right</code> is the same width as the picture on the left, so the X sits in the true middle. The <code>bird</code> version hides the word inside by pushing it far off to the left with <code>text-indent</code>, and shows the logo picture in its place, the same way the icons work. In the tabs, the line under the picked tab is a <code>::after</code> box filled with <code>currentColor</code> (the colour of the words), pinned to the bottom of the tab with <code>position: absolute</code>, stretched from <code>left: 0</code> to <code>right: 0</code> so it's always as wide as the words. The down arrow is just the bottom and right borders of a tiny square, turned 45 degrees with <code>transform: rotate(45deg)</code>. The plus sign is pinned to the right-hand end the same way, with a background the same colour as the screen, so long tabs slide under it instead of pushing it off the edge.</p>
-
-<p>The <code>tw2020</code> rules all start with <code>.tw-thread.tw2020</code>, so they only touch a thread with both classes. The logo gets the same bird as <code>bird</code>, without the margin, because the sparkle now balances the picture: it's an <code>::after</code> box on the top bar with the sparkle character as its <code>content</code>, the same width as the picture. In the stats row, the share button gets <code>flex: 1 1 0</code> back so it spreads out like the others, and <code>:not(:last-of-type)</code> hides every <code>tw-end</code> button that isn't the last one in the row, which is the bookmark.</p>
 
 <h3>Scrolling</h3>
 
