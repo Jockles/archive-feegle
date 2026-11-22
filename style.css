@@ -58,19 +58,19 @@
   color-scheme: dark;
 }
 
-/* A little of the old blue for variety, on the buttons only.
-   It stays the same dark blue in dark mode. */
+/* Buttons: the dark green outline colour, darker still on hover.
+   --button-soft is the pale fill of the Tutorial and Help text buttons. */
 :root {
-  --blue: #0b5563;
-  --blue-dark: #063b45;
-  --blue-text: #ffffff;
-  --tag-bg: #e3f1ec;
-  --tag-ink: #0b5563;
+  --button: #2b3b28;
+  --button-dark: #1c2719;
+  --button-text: #fff8ef;
+  --button-soft: #e3ead9;
+  --button-soft-ink: #2b3b28;
 }
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) { --tag-bg: #0b5563; --tag-ink: #e3f1ec; }
+  :root:not([data-theme="light"]) { --button-soft: #2b3b28; --button-soft-ink: #e3ead9; }
 }
-:root[data-theme="dark"] { --tag-bg: #0b5563; --tag-ink: #e3f1ec; }
+:root[data-theme="dark"] { --button-soft: #2b3b28; --button-soft-ink: #e3ead9; }
 
 /* Tags and the What's new box use the terracotta. */
 :root {
@@ -123,13 +123,13 @@ header p { margin: 2px 0 0; font-size: 0.9em; opacity: 0.85; }
   font: inherit;
   font-size: 0.8em;
   padding: 4px 10px;
-  color: var(--blue-text);
-  background: var(--blue);
-  border: 1px solid var(--blue-dark);
+  color: var(--button-text);
+  background: var(--button);
+  border: 1px solid var(--button-dark);
   border-radius: 3px;
   cursor: pointer;
 }
-.theme-toggle:hover, .theme-toggle:focus-visible { background: var(--blue-dark); }
+.theme-toggle:hover, .theme-toggle:focus-visible { background: var(--button-dark); }
 
 /* Label shown on draft previews only (see theme.js) */
 .draft-banner {
@@ -232,8 +232,8 @@ h6 { font-size: 1.1em; }
 .chapter-title { text-align: center; font-size: 1.8em; }
 .style-toggle { text-align: center; margin: 0 0 6px; }
 .style-toggle button { font: inherit; font-size: 0.85em; padding: 3px 10px; cursor: pointer;
-  background: var(--blue); color: var(--blue-text); border: 1px solid var(--blue-dark); border-radius: 3px; }
-.style-toggle button:hover, .style-toggle button:focus-visible { background: var(--blue-dark); }
+  background: var(--button); color: var(--button-text); border: 1px solid var(--button-dark); border-radius: 3px; }
+.style-toggle button:hover, .style-toggle button:focus-visible { background: var(--button-dark); }
 .chapter-index { padding-left: 1.6em; }
 
 /* Code in tutorials, wrapped so long lines never push the page sideways */

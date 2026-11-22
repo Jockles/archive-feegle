@@ -3,12 +3,12 @@
    under each box shows while help text is on (the help-on class). */
 
 .tut-btn { font: inherit; font-weight: bold; padding: 5px 12px 5px 6px; border-radius: 999px; cursor: pointer;
-  border: 1px solid var(--blue, #0b5563); background: var(--tag-bg, #e3f1ec); color: var(--tag-ink, #0b5563); }
+  border: 1px solid var(--button, #2b3b28); background: var(--button-soft, #e3ead9); color: var(--button-soft-ink, #2b3b28); }
 .tut-btn::before { content: "?"; display: inline-block; width: 1.4em; height: 1.4em; line-height: 1.4em; margin-right: 6px;
-  border-radius: 50%; text-align: center; background: var(--blue, #0b5563); color: var(--header-text, #fff); }
+  border-radius: 50%; text-align: center; background: var(--button, #2b3b28); color: var(--header-text, #fff); }
 .tut-btn[data-helptext]::before { content: "i"; font-family: Georgia, serif; }
-.tut-btn[aria-pressed="true"] { background: var(--blue, #0b5563); color: var(--header-text, #fff); }
-.tut-btn[aria-pressed="true"]::before { background: var(--header-text, #fff); color: var(--blue, #0b5563); }
+.tut-btn[aria-pressed="true"] { background: var(--button, #2b3b28); color: var(--header-text, #fff); }
+.tut-btn[aria-pressed="true"]::before { background: var(--header-text, #fff); color: var(--button, #2b3b28); }
 
 /* the ? icon's colours: the dark green outline colour in both modes, like the rest of the help and tutorial */
 :root { --tut-q-fill: var(--tag-fill, #eedccb); --tut-q-ink: var(--outline, #2b3b28); --tut-q-edge: var(--outline, #2b3b28); }
