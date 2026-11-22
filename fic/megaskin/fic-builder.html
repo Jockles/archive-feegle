@@ -58,6 +58,13 @@
     .fb-emoji { flex: 0 0 5em !important; }
     .fb-extras { padding: 4px 2px 2px; }
     .fb-script { border-top: 1px dashed var(--rule, #ccc); padding-top: 6px; }
+    .fb-story-label { max-width: 20em; }
+    .fb-rte-bar { display: flex; flex-wrap: wrap; gap: 4px; align-items: center; margin: 4px 0; }
+    .fb-rte-bar button { padding: 2px 8px; min-width: 2em; }
+    .fb-rte { min-height: 8em; max-height: 28em; overflow: auto; border: 1px solid var(--rule, #ccc); border-radius: 4px; padding: 6px 10px; background: var(--page); color: var(--ink); line-height: 1.5; }
+    .fb-rte:focus { outline: 2px solid var(--link, #2f68c8); }
+    .fb-rte p, .fb-rte div { margin: 0 0 0.8em; }
+    .fb-rte blockquote { margin: 0 0 0.8em 1.5em; }
     .fb-add h4 { margin: 10px 0 0; font-size: 1.45em; }
     .fb-add ul { list-style: none; margin: 4px 0 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 16px; }
     .fb-add li { display: flex; align-items: center; gap: 8px; margin: 0; }
@@ -139,6 +146,10 @@
         <div id="fb-blocks"></div>
         <div class="fb-add">
           <p class="tut-lab"><b>Add:</b><span class="tut-help" tabindex="0"><span>Each + adds a new, empty chat or post of that kind. You can have as many as you like, and the arrows at the top of each one move it up or down.</span></span></p>
+          <h4>Story</h4>
+          <ul>
+            <li><button type="button" data-act="add:text" aria-label="Add story text">+</button> Story text <span class="tut-help" tabindex="0"><span>A box for the story itself, between the chats. It's much simpler than AO3's text editor, but you can type or paste in basic text, like paragraphs, bold and italics, so you can see and test the full story with its chats if you want to.</span></span></li>
+          </ul>
           <h4>Messaging</h4>
           <ul>
             <li><button type="button" data-act="add:imsg" aria-label="Add an iMessage chat">+</button> iMessage chat</li>
@@ -165,7 +176,7 @@
       <h3>Preview <span class="tut-help" tabindex="0"><span>This is how your chats look with the default megaskin. It changes as you type.</span></span></h3>
       <div class="fb-preview"><div id="workskin"></div></div>
 
-      <h3>3. Copy <span class="tut-help" tabindex="0"><span>'Copy the HTML' copies the code for all your chats in one go, ready to paste. You can also type or paste in the HTML box, like a chapter copied from its 'Edit' page on AO3: the chats made with the Megaskin are read back into the boxes on the left, and everything else is kept just as it was. For best results, open or paste your profiles' CSS before the HTML. The 'Profile CSS' box has every profile you've pasted, opened, made or changed, and only shows up once there is one. The <a href="index.html">tutorial</a> explains where each one goes.</span></span></h3>
+      <h3>3. Copy <span class="tut-help" tabindex="0"><span>'Copy the HTML' copies the code for all your chats in one go, ready to paste. You can also type or paste in the HTML box, like a chapter copied from its 'Edit' page on AO3: story text and the chats made with the Megaskin are read back into the boxes on the left, and everything else is kept just as it was. For best results, open or paste your profiles' CSS before the HTML. The 'Profile CSS' box has every profile you've pasted, opened, made or changed, and only shows up once there is one. The <a href="index.html">tutorial</a> explains where each one goes.</span></span></h3>
       <p id="fb-copy"><button type="button" data-act="copy-html">Copy the HTML</button></p>
       <textarea id="fb-html" aria-label="HTML" spellcheck="false"></textarea>
       <p class="hint" id="fb-html-status" role="status"></p>
@@ -184,7 +195,7 @@
 </footer>
 <script src="profile-css.js"></script>
 <script src="fic-builder-examples.js?v=13"></script>
-<script src="fic-builder.js?v=50"></script>
+<script src="fic-builder.js?v=51"></script>
 <script src="tutorial.js?v=5"></script>
 <script>
 Tutorial([
