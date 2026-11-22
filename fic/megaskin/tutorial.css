@@ -10,12 +10,12 @@
 .tut-btn[aria-pressed="true"] { background: var(--blue, #0b5563); color: var(--header-text, #fff); }
 .tut-btn[aria-pressed="true"]::before { background: var(--header-text, #fff); color: var(--blue, #0b5563); }
 
-/* the ? icon's colours: blue on light pages, mostly white on dark ones */
-:root { --tut-q-fill: var(--tag-bg, #e3f1ec); --tut-q-ink: var(--blue, #0b5563); --tut-q-edge: var(--blue, #0b5563); }
+/* the ? icon's colours: terracotta in both modes, so the help stands out from the buttons */
+:root { --tut-q-fill: var(--tag-fill, #eedccb); --tut-q-ink: #6c392a; --tut-q-edge: #6c392a; }
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) { --tut-q-fill: #fbefe3; --tut-q-ink: #0b5563; --tut-q-edge: #0b5563; }
+  :root:not([data-theme="light"]) { --tut-q-fill: #fbefe3; --tut-q-ink: #6c392a; --tut-q-edge: #6c392a; }
 }
-:root[data-theme="dark"] { --tut-q-fill: #fbefe3; --tut-q-ink: #0b5563; --tut-q-edge: #0b5563; }
+:root[data-theme="dark"] { --tut-q-fill: #fbefe3; --tut-q-ink: #6c392a; --tut-q-edge: #6c392a; }
 
 /* the box with the two buttons, beside the intro (below it on a phone) */
 .tut-intro { display: flex; flex-wrap: wrap; gap: 0 24px; align-items: flex-start; }

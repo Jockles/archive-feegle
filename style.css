@@ -57,7 +57,7 @@
   color-scheme: dark;
 }
 
-/* A little of the old blue for variety: tags, the What's new box and buttons.
+/* A little of the old blue for variety, on the buttons only.
    It stays the same dark blue in dark mode. */
 :root {
   --blue: #0b5563;
@@ -65,12 +65,21 @@
   --blue-text: #ffffff;
   --tag-bg: #e3f1ec;
   --tag-ink: #0b5563;
-  --news-date: #0b5563;
 }
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) { --tag-bg: #0b5563; --tag-ink: #e3f1ec; --news-date: #8fbcc1; }
+  :root:not([data-theme="light"]) { --tag-bg: #0b5563; --tag-ink: #e3f1ec; }
 }
-:root[data-theme="dark"] { --tag-bg: #0b5563; --tag-ink: #e3f1ec; --news-date: #8fbcc1; }
+:root[data-theme="dark"] { --tag-bg: #0b5563; --tag-ink: #e3f1ec; }
+
+/* Tags and the What's new box use the terracotta. */
+:root {
+  --tag-text: #6c392a;
+  --news-date: #6c392a;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) { --tag-text: #fbefe3; --news-date: #f4b942; }
+}
+:root[data-theme="dark"] { --tag-text: #fbefe3; --news-date: #f4b942; }
 
 body {
   margin: 0;
@@ -186,14 +195,14 @@ h6 { font-size: 1.1em; }
 }
 .blurb h3 { margin: 0; font-size: 1.15em; }
 .blurb .fandom { margin: 0 0 6px; color: var(--muted); font-size: 0.9em; }
-.news { border-color: var(--blue); }
+.news { border-color: var(--header); }
 .news b { color: var(--news-date); }
 
 .blurb .summary { margin: 8px 0 8px 1.5em; }
 .stats { font-size: 0.85em; color: var(--muted); margin: 0; }
 
 .tags { list-style: none; padding: 0; margin: 6px 0; font-size: 0.9em; display: flex; flex-wrap: wrap; }
-.tags li { background: var(--tag-bg); color: var(--tag-ink); border: 1px solid var(--blue); border-radius: 3px; padding: 0 6px; margin: 0 6px 6px 0; }
+.tags li { background: var(--tag-fill); color: var(--tag-text); border: 1px solid var(--header); border-radius: 3px; padding: 0 6px; margin: 0 6px 6px 0; }
 .tags li a, .tags li a:visited { color: inherit; }
 .tags .warning a { font-weight: bold; }
 
