@@ -25,7 +25,11 @@ To try it on your own computer, copy the site somewhere and run:
 import html, os, re, sys
 
 SITE = "https://jockles.com/"
-CARD = SITE + "images/social-card.png"
+# Added to the end of every icon and link-preview picture address. Browsers,
+# Discord and the like keep old copies of these for weeks, so change the
+# number whenever the pictures change and they'll fetch the new ones.
+FRESH = "?v=2"
+CARD = SITE + "images/social-card.png" + FRESH
 CARD_ALT = "jockles.com: All the Fannish things I do."
 
 # Pages with their own social card: (path or folder, image, extra line on
@@ -40,7 +44,7 @@ CARDS = [
 def card(rel):
     for start, image, line in CARDS:
         if rel.startswith(start):
-            return SITE + "images/" + image, CARD_ALT + " " + line
+            return SITE + "images/" + image + FRESH, CARD_ALT + " " + line
     return CARD, CARD_ALT
 
 
@@ -95,9 +99,9 @@ def tags(rel, page):
     # Paths from the top of the site, so they also work on the 404 page,
     # which GitHub shows at whatever address was mistyped.
     lines = [
-        '<link rel="icon" href="/favicon.ico" sizes="32x32">',
-        '<link rel="icon" href="/images/favicon.svg" type="image/svg+xml">',
-        '<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">',
+        '<link rel="icon" href="/favicon.ico%s" sizes="32x32">' % FRESH,
+        '<link rel="icon" href="/images/favicon.svg%s" type="image/svg+xml">' % FRESH,
+        '<link rel="apple-touch-icon" href="/images/apple-touch-icon.png%s">' % FRESH,
         '<meta name="theme-color" content="#6c392a">',
     ]
     if rel in ICON_ONLY or re.search(r'<meta name="robots" content="[^"]*noindex', page):
