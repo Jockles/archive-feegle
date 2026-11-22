@@ -10,12 +10,12 @@
 .tut-btn[aria-pressed="true"] { background: var(--blue, #0b5563); color: var(--header-text, #fff); }
 .tut-btn[aria-pressed="true"]::before { background: var(--header-text, #fff); color: var(--blue, #0b5563); }
 
-/* the ? icon's colours: terracotta in both modes, so the help stands out from the buttons */
-:root { --tut-q-fill: var(--tag-fill, #eedccb); --tut-q-ink: #6c392a; --tut-q-edge: #6c392a; }
+/* the ? icon's colours: the dark green outline colour in both modes, like the rest of the help and tutorial */
+:root { --tut-q-fill: var(--tag-fill, #eedccb); --tut-q-ink: var(--outline, #2b3b28); --tut-q-edge: var(--outline, #2b3b28); }
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) { --tut-q-fill: #fbefe3; --tut-q-ink: #6c392a; --tut-q-edge: #6c392a; }
+  :root:not([data-theme="light"]) { --tut-q-fill: #fbefe3; --tut-q-ink: var(--outline, #2b3b28); --tut-q-edge: var(--outline, #2b3b28); }
 }
-:root[data-theme="dark"] { --tut-q-fill: #fbefe3; --tut-q-ink: #6c392a; --tut-q-edge: #6c392a; }
+:root[data-theme="dark"] { --tut-q-fill: #fbefe3; --tut-q-ink: var(--outline, #2b3b28); --tut-q-edge: var(--outline, #2b3b28); }
 
 /* the box with the two buttons, beside the intro (below it on a phone) */
 .tut-intro { display: flex; flex-wrap: wrap; gap: 0 24px; align-items: flex-start; }
@@ -47,18 +47,18 @@ html:not(.help-on) .tut-help:hover > span, html:not(.help-on) .tut-help:focus > 
   html:not(.help-on) .tut-help > span { position: fixed; top: auto !important; bottom: 16px; left: 16px !important; right: 16px; width: auto; max-width: none; margin: 0; font-size: 14px; }
 }
 .help-on .tut-help { display: block; box-sizing: border-box; flex: 1 0 100%; order: 9; margin: 4px 0 8px; padding: 5px 8px; font-size: 0.85rem; font-weight: normal; line-height: 1.4;
-  border-left: 3px solid var(--hover, #1a8f6a); background: var(--tag-fill, #eedccb); border-radius: 0 4px 4px 0; }
+  border-left: 3px solid var(--outline, #2b3b28); background: var(--tag-fill, #eedccb); border-radius: 0 4px 4px 0; }
 .help-on .fb-row { flex-wrap: wrap; }
 
 /* the box the current step is about */
-.tut-here { outline: 3px solid var(--hover, #1a8f6a); outline-offset: 3px; border-radius: 4px; scroll-margin-top: 12px; }
+.tut-here { outline: 3px solid var(--outline, #2b3b28); outline-offset: 3px; border-radius: 4px; scroll-margin-top: 12px; }
 
 /* the panel: a small box in the corner, or a short strip along the bottom on a phone */
 .tut { position: fixed; z-index: 50; right: 16px; bottom: 16px; width: 340px; max-height: 55vh; display: flex; flex-direction: column;
-  background: var(--page, #fff); color: var(--ink, #2a2a2a); border: 2px solid var(--header, #6c392a); border-radius: 8px;
+  background: var(--page, #fff); color: var(--ink, #2a2a2a); border: 2px solid var(--outline, #2b3b28); border-radius: 8px;
   box-shadow: 0 4px 18px rgba(0, 0, 0, 0.25); font-size: 0.95em; }
 .tut[hidden] { display: none; }
-.tut-top { display: flex; align-items: center; gap: 6px; padding: 6px 8px 6px 12px; background: var(--header, #6c392a); color: var(--header-text, #fff); }
+.tut-top { display: flex; align-items: center; gap: 6px; padding: 6px 8px 6px 12px; background: var(--outline, #2b3b28); color: var(--header-text, #fff); }
 .tut-top b { flex: 1; font-size: 0.9em; }
 .tut-top button { font: inherit; line-height: 1; padding: 3px 8px; cursor: pointer; background: none; color: inherit; border: 1px solid currentColor; border-radius: 4px; }
 .tut-body { overflow: auto; padding: 4px 12px; }
