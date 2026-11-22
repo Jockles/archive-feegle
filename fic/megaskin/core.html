@@ -61,7 +61,9 @@
   <li><a href="#together">Putting it together</a>: a chat using both</li>
 </ul>
 
-<h3 id="anatomy"><span id="s2-1"></span>2.1 The Chat Container, and the anatomy of a Module.</h3>
+<p>Each part starts with the simplest version that works. If you want more, the <strong>Options</strong> boxes show the other things that part can do, and the <strong>How it works</strong> boxes explain what each bit of the code is for.</p>
+
+<h3 id="anatomy"><span id="s2-1"></span>2.1 The Chat Container, and the Anatomy of a Module</h3>
 
 <p>The first step for every chat is to create a container for it:</p>
 
@@ -76,7 +78,7 @@
 <ul>
   <li><code>mob</code> sets the phone-sized width and the base text styling. Every chat container except Discord has it.</li>
   <li><code>imsg</code> is the <strong>platform class</strong>. It decides which app the chat looks like. Here it makes an iMessage chat. It can only talk to the css in the iMessage module.</li>
-  <li><code>theme-auto</code> is the <strong>theme class</strong>. It makes the chat light or dark to match the reader's device. Fixing a Chat to Light or Dark, further down this chapter, explains how to lock a chat to light or dark instead.</li>
+  <li><code>theme-auto</code> is the <strong>theme class</strong>. It makes the chat light or dark to match the reader's device. <a href="core.html#s2-3-3-1">Fixing a Chat to Light or Dark</a> explains how to lock a chat to light or dark instead.</li>
 </ul>
 
 <h4 id="s2-1-1">2.1.1 Platform Classes/Modules</h4>
@@ -102,9 +104,6 @@
 
 <p>This section explains every part of the workskin that's there for accessibility, but you don't need to add any of it yourself to get started - every example in this tutorial already has all of it built in, so if you copy them as they are, you're covered. It's here so you know what each bit does, and what to keep when you write your own.</p>
 
-<details>
-<summary>All the accessibility tools (click to expand)</summary>
-
 <p>A workskin only shows on AO3 itself. Anyone who switches off Creator's Style, or downloads your fic to read on an e-reader, sees your chats as plain text: no bubbles, no colours, and no way to tell which side a message was on. Screen readers can't see the pictures either.</p>
 
 <p>The benefit of using a workskin instead of screenshots of an Instagram cloning tool or similar is that it makes it accessible for people who don't read AO3 on the site natively, so this is everything you need to know to make sure your beautiful socmed fic can be read by everyone. There are three tools for it:</p>
@@ -114,6 +113,26 @@
   <li>Alt text, for pictures.</li>
   <li>Video descriptions, for videos.</li>
 </ul>
+
+<details>
+<summary>How it works: everything that's only there for readers with the workskin off</summary>
+
+<ul>
+  <li>Speaker labels at the start of a message: <code>&lt;span class=&quot;hide&quot;&gt;&lt;em&gt;Jane:&lt;/em&gt; &lt;/span&gt;</code>.</li>
+  <li>The colon after a group <code>who</code> name: <code>&lt;span class=&quot;hide&quot;&gt;:&lt;/span&gt;</code>.</li>
+  <li>Separators: <code>&lt;span class=&quot;hide&quot;&gt; - &lt;/span&gt;</code> or <code>&lt;span class=&quot;hide&quot;&gt; &lt;/span&gt;</code>.</li>
+  <li>Hidden copies inside a profile's name, handle or email span.</li>
+  <li>"Replying to", a colon and square brackets around a quoted message in WhatsApp, so it reads "[Replying to Mom: Are you coming Sunday?]".</li>
+  <li>The brackets around a translation, so it reads "Diolch yn fawr (Thank you very much)".</li>
+  <li>Reactions, in square brackets: "[Jane reacted &#128514;]" in iMessage, and "[Reactions: &#10084;&#65039; &#128514; 3]" in WhatsApp and Twitter/X DMs.</li>
+  <li>The <code>#</code> and the colon in a Discord channel header.</li>
+  <li>The words after the counts on Instagram's buttons, like "84 comments", and "likes (" and "when liked)" around the clickable heart's two counts.</li>
+  <li>Video descriptions (<code>vid-desc</code>), which screen readers read out too.</li>
+</ul>
+
+<p>You can even hide whole sentences of narration this way, so a chat reads like a normal scene with the workskin off.</p>
+
+</details>
 
 <h4 id="s2-2-1">2.2.1 Who's Talking</h4>
 
@@ -132,8 +151,12 @@
   <p><em>Ilya:</em> always working I do not rest</p>
 </blockquote>
 
+<p>You only need speaker labels in chats made of bubbles: iMessage, WhatsApp, Twitter/X DMs and Instagram DMs. Tweets, posts, emails and Discord messages have the name written out already.</p>
+
+<p>In a group chat, the name above someone's bubble (the <code>who</code> line) shows whether the workskin is on or off, so it only needs a hidden colon after it: <code>&lt;span class=&quot;hide&quot;&gt;:&lt;/span&gt;</code>. Your own messages have no name above them, so they still need the full label.</p>
+
 <details>
-<summary>The speaker label, piece by piece</summary>
+<summary>How it works: the speaker label, piece by piece</summary>
 
 <ul>
   <li><code>&lt;p class=&quot;msg in&quot;&gt;</code> and <code>&lt;/p&gt;</code> - the bubble. With the workskin off, it's just an ordinary paragraph.</li>
@@ -143,10 +166,6 @@
 </ul>
 
 </details>
-
-<p>You only need speaker labels in chats made of bubbles: iMessage, WhatsApp, Twitter/X DMs and Instagram DMs. Tweets, posts, emails and Discord messages have the name written out already.</p>
-
-<p>In a group chat, the name above someone's bubble (the <code>who</code> line) shows whether the workskin is on or off, so it only needs a hidden colon after it: <code>&lt;span class=&quot;hide&quot;&gt;:&lt;/span&gt;</code>. Your own messages have no name above them, so they still need the full label.</p>
 
 <h4 id="s2-2-2">2.2.2 Profiles</h4>
 
@@ -169,7 +188,7 @@
 <pre><code>&lt;p class="msg out pic"&gt;&lt;span class="hide"&gt;&lt;em&gt;Ilya:&lt;/em&gt; &lt;/span&gt;&lt;img src="https://images.squidge.org/images/2026/11/16/Cat3.jpg" alt="Black and white cat holding out a paw daintily, on a beige and green cat tree. The cat looks to be stepping into the frame from the left"&gt;&lt;/p&gt;</code></pre>
 
 <details>
-<summary>More about alt text</summary>
+<summary>How it works: more about alt text</summary>
 
 <ul>
   <li>You can't see alt text on the page, but you can check it's there. On a computer, right-click the picture and choose <em>Inspect</em> (or <em>Inspect Accessibility Properties</em> in Firefox), then look at the accessibility details for the picture - the alt text shows up as its name. Try it on the cat above.</li>
@@ -192,31 +211,9 @@
 <p>Say who's in it, what happens, and the song if it's an edit. It works anywhere a video can go, and the WhatsApp and Twitter/X video examples already have one.</p>
 
 <details>
-<summary>How video descriptions work</summary>
+<summary>How it works: where the description goes</summary>
 
 <p>You can't see the description with the workskin on, but it isn't hidden the way <code>hide</code> is - it's moved off the edge of the screen instead, so screen readers still read it out. Anyone reading with the workskin switched off, or in a download, sees it as normal text under the video.</p>
-
-</details>
-
-<details>
-<summary>Everything that's only there for readers with the workskin off</summary>
-
-<ul>
-  <li>Speaker labels at the start of a message: <code>&lt;span class=&quot;hide&quot;&gt;&lt;em&gt;Jane:&lt;/em&gt; &lt;/span&gt;</code>.</li>
-  <li>The colon after a group <code>who</code> name: <code>&lt;span class=&quot;hide&quot;&gt;:&lt;/span&gt;</code>.</li>
-  <li>Separators: <code>&lt;span class=&quot;hide&quot;&gt; - &lt;/span&gt;</code> or <code>&lt;span class=&quot;hide&quot;&gt; &lt;/span&gt;</code>.</li>
-  <li>Hidden copies inside a profile's name, handle or email span.</li>
-  <li>"Replying to", a colon and square brackets around a quoted message in WhatsApp, so it reads "[Replying to Mom: Are you coming Sunday?]".</li>
-  <li>The brackets around a translation, so it reads "Diolch yn fawr (Thank you very much)".</li>
-  <li>Reactions, in square brackets: "[Jane reacted &#128514;]" in iMessage, and "[Reactions: &#10084;&#65039; &#128514; 3]" in WhatsApp and Twitter/X DMs.</li>
-  <li>The <code>#</code> and the colon in a Discord channel header.</li>
-  <li>The words after the counts on Instagram's buttons, like "84 comments", and "likes (" and "when liked)" around the clickable heart's two counts.</li>
-  <li>Video descriptions (<code>vid-desc</code>), which screen readers read out too.</li>
-</ul>
-
-<p>You can even hide whole sentences of narration this way, so a chat reads like a normal scene with the workskin off.</p>
-
-</details>
 
 </details>
 
@@ -237,6 +234,11 @@
 
 <div class="mob imsg theme-auto"><div class="mob-body"><p class="msg in"><span class="hide"><em>Jane:</em> </span>phone width</p><p class="msg out"><span class="hide"><em>Ilya:</em> </span>the usual</p></div></div>
 <div class="mob imsg theme-auto wide"><div class="mob-body"><p class="msg in"><span class="hide"><em>Jane:</em> </span>full width</p><p class="msg out"><span class="hide"><em>Ilya:</em> </span>stretches to fit the page</p></div></div>
+
+<p>Each chat container's size is separate, so you can mix phone-width and full-width chats in one fic if that takes your fancy.</p>
+
+<details>
+<summary>Options: Discord at phone width</summary>
 
 <p>Discord goes the other way: it's wide to begin with, and you can add <code>narrow</code> to give it the width of a phone:</p>
 
@@ -269,17 +271,11 @@
   </div>
 </div>
 
-<p>Each chat container's size is separate, so you can mix phone-width and full-width chats in one fic if that takes your fancy.</p>
+</details>
 
 <h4 id="scrolling"><span id="s2-3-2"></span>2.3.2 Scrolling Long Chats</h4>
 
 <p>Every chat, Discord included, stops growing at about the height of a phone screen. A short chat won't notice. A long one gets a slim scroll bar instead, so one long conversation doesn't take over the whole page.</p>
-
-<ul>
-  <li>iMessage, WhatsApp, Twitter/X DMs and Instagram DMs keep the header and the bottom bar where they are, and scroll the messages in between.</li>
-  <li>Twitter/X posts, Instagram posts, Tumblr posts and Gmail emails scroll as a whole.</li>
-  <li>Discord stays wide, and the whole window scrolls, header and message box included.</li>
-</ul>
 
 <p>There's nothing to add - it just happens. Here's an iMessage chat with thirty messages in it:</p>
 
@@ -319,17 +315,38 @@
   </div>
 </div>
 
+<details>
+<summary>Options: switching scrolling off</summary>
+
 <p>To switch scrolling off for one chat, so it grows as tall as it needs to, add <code>no-scroll</code> to the container:</p>
 
 <pre><code>&lt;div class="mob imsg theme-auto no-scroll"&gt;
   [a very long chat goes here]
 &lt;/div&gt;</code></pre>
 
-<h4 id="themes"><span id="s2-3-3"></span>2.3.3 Light, dark and auto themes</h4>
+</details>
+
+<details>
+<summary>How it works: what scrolls in each app</summary>
+
+<ul>
+  <li>iMessage, WhatsApp, Twitter/X DMs and Instagram DMs keep the header and the bottom bar where they are, and scroll the messages in between.</li>
+  <li>Twitter/X posts, Instagram posts, Tumblr posts and Gmail emails scroll as a whole.</li>
+  <li>Discord stays wide, and the whole window scrolls, header and message box included.</li>
+</ul>
+
+</details>
+
+<h4 id="themes"><span id="s2-3-3"></span>2.3.3 Light, Dark and Auto Themes</h4>
 
 <p>Every chat in this tutorial uses <code>theme-auto</code>. It shows the chat in light colours, and switches to dark colours if the reader's phone or browser is set to dark mode. That way everyone gets the version that suits them, and you don't have to do anything extra.</p>
 
+<details>
+<summary>How it works: what auto goes by</summary>
+
 <p>FWIW: AO3 doesn't let a workskin see which AO3 site skin the reader is using, so <code>theme-auto</code> goes by the light or dark setting on their <strong>device or browser</strong> instead.</p>
+
+</details>
 
 <h5 id="s2-3-3-1">2.3.3.1 Fixing a Chat to Light or Dark</h5>
 
@@ -384,11 +401,11 @@
   &lt;/div&gt;
 &lt;/div&gt;</code></pre>
 
-<h5 id="s2-3-3-2">2.3.3.2 Every Module</h5>
+<p><strong>Every Module</strong></p>
 
 <p>Every other module works exactly the same. Each pair below is identical apart from the theme class. The code is for the dark one - swap <code>theme-dark</code> for <code>theme-light</code> to get the light one.</p>
 
-<h5 id="s2-3-3-3">2.3.3.3 WhatsApp</h5>
+<p><strong>WhatsApp</strong></p>
 
 <div class="mob wa theme-dark">
   <p class="mob-head">Mom<span class="hide"> - </span><span>online</span></p>
@@ -416,7 +433,7 @@
   &lt;/div&gt;
 &lt;/div&gt;</code></pre>
 
-<h5 id="s2-3-3-4">2.3.3.4 Twitter/X Post and Reply</h5>
+<p><strong>Twitter/X Post and Reply</strong></p>
 
 <div class="mob tw theme-dark">
   <p class="tw-top"><span class="tw-name">Anna knows Puck</span> <span class="tw-handle">@puckingwhat</span> <span class="tw-time">· 2h</span></p>
@@ -473,7 +490,7 @@
   &lt;p&gt;WHAT DID YOU DO??&lt;/p&gt;
 &lt;/div&gt;</code></pre>
 
-<h5 id="s2-3-3-5">2.3.3.5 Twitter/X DMs</h5>
+<p><strong>Twitter/X DMs</strong></p>
 
 <div class="mob twdm theme-dark">
   <p class="mob-head"><span class="twdm-back"><span class="ic ic-back">&#8592;</span></span><span class="tw-pfp"><span class="pfp pfp-shane"></span></span><span class="twdm-name">Shane Hollander</span><span class="twdm-calls"><span class="ic ic-video">&#127909;</span><span class="ic ic-phone">&#128222;</span></span></p>
@@ -501,7 +518,7 @@
   &lt;/div&gt;
 &lt;/div&gt;</code></pre>
 
-<h5 id="s2-3-3-6">2.3.3.6 Instagram Post</h5>
+<p><strong>Instagram Post</strong></p>
 
 <div class="mob ig theme-dark">
   <p class="ig-top">ilya.r<span class="hide"> - </span><span>Ottawa, Ontario</span></p>
@@ -529,7 +546,7 @@
   &lt;p class="ig-time"&gt;3 hours ago&lt;/p&gt;
 &lt;/div&gt;</code></pre>
 
-<h5 id="s2-3-3-7">2.3.3.7 Instagram DMs</h5>
+<p><strong>Instagram DMs</strong></p>
 
 <div class="mob igdm theme-dark">
   <p class="mob-head">ilya.r<span class="hide"> - </span><span>Active now</span></p>
@@ -557,7 +574,7 @@
   &lt;/div&gt;
 &lt;/div&gt;</code></pre>
 
-<h5 id="s2-3-3-8">2.3.3.8 Tumblr</h5>
+<p><strong>Tumblr</strong></p>
 
 <div class="mob tb theme-dark">
   <p class="tb-header">
@@ -594,7 +611,7 @@
   &lt;p class="tb-tags"&gt;#hockey rpf&lt;/p&gt;
 &lt;/div&gt;</code></pre>
 
-<h5 id="s2-3-3-9">2.3.3.9 Discord</h5>
+<p><strong>Discord</strong></p>
 
 <div class="dc theme-dark">
   <div class="dc-header hashtag">
@@ -682,12 +699,10 @@
   &lt;/div&gt;
 &lt;/div&gt;</code></pre>
 
-<p>On a Mac, the initials can sit a little low in the circle - Mac fonts just sit lower than most, so it's nothing you've done wrong, and they're fine on phones. If you want to move them up or down in your own skin, <a href="core-css.html#s3-7">Round Pictures</a>, in the core CSS, shows you which number to change.</p>
-
 <p>Give each person the same colour every time, so readers can keep track of who's who. Each module chapter shows you where its circle goes:</p>
 
 <details>
-<summary>Where the circle goes in each module</summary>
+<summary>Options: where the circle goes in each module</summary>
 
 <ul>
   <li>WhatsApp: <code>wa-pfp</code>, next to group messages and in the header.</li>
@@ -698,7 +713,19 @@
   <li>Discord: <code>dc-pfp</code>, first thing inside the <code>dc-name</code>. Without it, <code>colour1</code> to <code>colour10</code> give plain coloured circles, the same as in the other apps.</li>
 </ul>
 
+</details>
+
+<details>
+<summary>Options: changing the ten colours</summary>
+
 <p>The colours for <code>colour1</code> to <code>colour10</code> are set once in the core CSS and shared with every app, so you can change them there.</p>
+
+</details>
+
+<details>
+<summary>How it works: initials that sit a little low on a Mac</summary>
+
+<p>On a Mac, the initials can sit a little low in the circle - Mac fonts just sit lower than most, so it's nothing you've done wrong, and they're fine on phones. If you want to move them up or down in your own skin, <a href="core-css.html#s3-7">Round Pictures</a>, in the core CSS, shows you which number to change.</p>
 
 </details>
 
@@ -769,20 +796,7 @@
 <p>The core CSS also has the profiles from this tutorial's examples - Stan, Yuna, Zim, Holster, Rose, Shane and Ilya - plus Luca, who uses every option there is, with a note on each line. They're there to show you how it's done, so make new profiles for your own characters, and delete the examples you don't need.</p>
 
 <details>
-<summary>What each line of a profile does</summary>
-
-<ul>
-  <li><strong>Picture:</strong> the colour or picture in their circle.</li>
-  <li><strong>Name colour:</strong> the colour of their name in WhatsApp groups and on Discord. Pick one that reads on both light and dark backgrounds.</li>
-  <li><strong>Name:</strong> their name, in quotes.</li>
-  <li><strong>Handle:</strong> their handle, in quotes, used on every app. Leave off the @ - Twitter/X adds it for you.</li>
-  <li><strong>Email:</strong> their email address, in quotes, for Gmail and the email window.</li>
-</ul>
-
-</details>
-
-<details>
-<summary>Extras: a different picture, name or handle on one app, nicknames, wallpapers, and more</summary>
+<summary>Options: a different picture, name or handle on one app, nicknames, wallpapers, and more</summary>
 
 <p>Most characters only need the five lines above. These are for characters who are different somewhere, and Luca's profile has an example of each one, so you can see how to add them to your own.</p>
 
@@ -792,7 +806,20 @@
   <li><strong>Initials:</strong> a profile can put initials in the circle instead of a picture. <code>#workskin .pfp.pfp-holster::before { content: &quot;AB&quot;; }</code> gives Holster's circle "AB".</li>
   <li><strong>Their phone:</strong> a wallpaper for WhatsApp chats on their phone - a colour, or a picture with <code>background-image</code>.</li>
   <li><strong>More than one account on the same app:</strong> a private account, a burner, a fan account, or a second email address for work. Give each extra account a name starting with <code>acc-</code>, like <code>acc-private</code> or <code>acc-burner</code>, with its own lines in the profile, and add that name in your HTML whenever that account turns up. Rose has a private Instagram, and Ilya has two extra Twitter/X accounts.</li>
-  <li><strong>Tumblr checkmarks:</strong> the coloured checkmarks after a Tumblr name can go in the profile too, so they follow that blog everywhere. The lines to copy are in <a href="tumblr.html#s14-7">Verified Ticks and the Follow Button</a>.</li>
+  <li><strong>Tumblr checkmarks:</strong> the coloured checkmarks after a Tumblr name can go in the profile too, so they follow that blog everywhere. The lines to copy are in <a href="tumblr.html#s14-2-1-3">Verified Ticks and the Follow Button</a>.</li>
+</ul>
+
+</details>
+
+<details>
+<summary>How it works: what each line of a profile does</summary>
+
+<ul>
+  <li><strong>Picture:</strong> the colour or picture in their circle.</li>
+  <li><strong>Name colour:</strong> the colour of their name in WhatsApp groups and on Discord. Pick one that reads on both light and dark backgrounds.</li>
+  <li><strong>Name:</strong> their name, in quotes.</li>
+  <li><strong>Handle:</strong> their handle, in quotes, used on every app. Leave off the @ - Twitter/X adds it for you.</li>
+  <li><strong>Email:</strong> their email address, in quotes, for Gmail and the email window.</li>
 </ul>
 
 </details>
@@ -879,17 +906,7 @@
 <p>Names, handles and email addresses from a profile come from the CSS, so readers with the workskin switched off won't see them. That's why the examples have a hidden copy typed inside each one - there's more on that in <a href="#accessibility">Accessibility</a>, above.</p>
 
 <details>
-<summary>Good to know</summary>
-
-<ul>
-  <li>A profile picture is cropped to fill the circle by itself, so wide pictures don't need <code>land</code>.</li>
-  <li>Names, handles and email addresses take on the look of the text around them, so they fit in anywhere.</li>
-</ul>
-
-</details>
-
-<details>
-<summary>Make a profile for your group chat</summary>
+<summary>Options: a profile for your group chat</summary>
 
 <p>Profiles aren't only for characters. If the same group chat turns up again and again, across chapters or even across fics, give the group a profile of its own, so its picture and name stay the same everywhere and you only change them in one place. It's an ordinary profile with just the picture and name lines, named after the group, like <code>gc-dinner</code>:</p>
 
@@ -903,6 +920,16 @@
 &lt;td class="wa-title"&gt;&lt;span class="name pfp-gc-dinner"&gt;&lt;span class="hide"&gt;dinner&lt;/span&gt;&lt;/span&gt;&lt;/td&gt;</code></pre>
 
 <p>If someone renames the group partway through your story, type the new name into the later chats instead of using the name span, so the earlier chats keep the old one.</p>
+
+</details>
+
+<details>
+<summary>How it works: good to know</summary>
+
+<ul>
+  <li>A profile picture is cropped to fill the circle by itself, so wide pictures don't need <code>land</code>.</li>
+  <li>Names, handles and email addresses take on the look of the text around them, so they fit in anywhere.</li>
+</ul>
 
 </details>
 
@@ -961,7 +988,7 @@
 <p>A profile can't pick a theme for you, so choose one for each character's phone and stick with it - Shane's is <code>theme-light</code> and Ilya's is <code>theme-dark</code>. With the wallpaper and the theme, readers can tell whose phone it is before they've read a word.</p>
 
 <details>
-<summary>How saved names work</summary>
+<summary>How it works: saved names</summary>
 
 <ul>
   <li>Saved names only show where you've used a name span. A name you've typed out stays as it is.</li>
@@ -1076,7 +1103,12 @@
 
 <pre><code>&lt;p class="wa-pfp colour3"&gt;&lt;span class="pfp"&gt;&lt;img class="land" src="https://www.shutterstock.com/shutterstock/photos/1100283806/display_1500/stock-photo-beautiful-lavender-flower-in-the-dalat-flower-park-selective-focus-1100283806.jpg" alt="Profile picture of Jane, a lavender flower"&gt;&lt;/span&gt;&lt;/p&gt;</code></pre>
 
+<details>
+<summary>How it works: what happens if you forget land</summary>
+
 <p>If you forget <code>land</code>, nothing is squashed or stretched, but a wide picture won't fill its box, so a strip of the box's colour shows above and below it. The tall boxes in two-photo and three-photo galleries always crop the sides, so they never need <code>land</code>.</p>
+
+</details>
 
 <h3 id="fake-links"><span id="s2-6"></span>2.6 Links That Go Nowhere</h3>
 
@@ -1104,14 +1136,6 @@
   <li>The link is what makes the words tappable on a phone, and the <code>#</code> means the page doesn't jump anywhere when someone taps it.</li>
 </ul>
 
-<p>What the rest does:</p>
-
-<ul>
-  <li><code>orig</code> is the text the reader sees first.</li>
-  <li><code>tltn</code> is the translation, shown on hover or tap.</li>
-  <li>The two <code>hide</code> spans add " (" and ")", but only when Creator's Style is off, so readers see "Diolch yn fawr (Thank you very much)" instead of the two run together.</li>
-</ul>
-
 <p>Keep the whole thing on one line of code, like above, because a line break inside it can leave a gap in the middle of your sentence. Here it is in a sentence - hover over or tap the dotted words:</p>
 
 <p>"<a class="tl" href="#t1"><span class="orig">Diolch yn fawr</span><span class="tltn"><span class="hide"> (</span>Thank you very much<span class="hide">)</span></span></a>," he said.</p>
@@ -1119,6 +1143,9 @@
 <p><em>The finished chat looks like this, and here is the full HTML:</em></p>
 
 <pre><code>&lt;p&gt;"&lt;a class="tl" href="#t1"&gt;&lt;span class="orig"&gt;Diolch yn fawr&lt;/span&gt;&lt;span class="tltn"&gt;&lt;span class="hide"&gt; (&lt;/span&gt;Thank you very much&lt;span class="hide"&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/a&gt;," he said.&lt;/p&gt;</code></pre>
+
+<details>
+<summary>Options: translations inside a chat</summary>
 
 <p>In a chat, you just put it in the message text like any other words, with the next number along. This one is in an iMessage, and the next one is in a tweet:</p>
 
@@ -1153,6 +1180,21 @@
   &lt;p class="tw-top"&gt;&lt;span class="tw-name"&gt;Ilya Rozanov&lt;/span&gt; &lt;span class="tw-handle"&gt;@irozanov&lt;/span&gt; &lt;span class="tw-time"&gt;· 7m&lt;/span&gt;&lt;/p&gt;
   &lt;p class="tw-text"&gt;&lt;a class="tl" href="#t3"&gt;&lt;span class="orig"&gt;Bore da&lt;/span&gt;&lt;span class="tltn"&gt;&lt;span class="hide"&gt; (&lt;/span&gt;Good morning&lt;span class="hide"&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/a&gt;! I am learning Welsh now. Do not ask why.&lt;/p&gt;
 &lt;/div&gt;</code></pre>
+
+</details>
+
+<details>
+<summary>How it works: the rest of the code</summary>
+
+<p>What the rest does:</p>
+
+<ul>
+  <li><code>orig</code> is the text the reader sees first.</li>
+  <li><code>tltn</code> is the translation, shown on hover or tap.</li>
+  <li>The two <code>hide</code> spans add " (" and ")", but only when Creator's Style is off, so readers see "Diolch yn fawr (Thank you very much)" instead of the two run together.</li>
+</ul>
+
+</details>
 
 <p>A few things worth knowing:</p>
 
@@ -1198,6 +1240,7 @@
     <p class="msg out"><span class="hide"><em>Ilya:</em> </span>I'm <a class="tl egg" href="#t5"><span class="orig">fine</span><span class="tltn"><span class="hide"> (</span>not fine. not even a little bit<span class="hide">)</span></span></a></p>
     <p class="msg in"><span class="hide"><em>Scott:</em> </span>you're a terrible liar</p>
   </div>
+  <p class="twdm-input"><span class="twdm-plus">+</span><span class="hide"> </span><span class="twdm-field typed"><a class="tl" href="#t6"><span class="orig">blyat</span><span class="tltn"><span class="hide"> (</span>shit<span class="hide">)</span></span></a><span class="cursor">|</span><span class="hide"> </span><span class="ic ic-mic">&#127908;</span></span></p>
 </div>
 
 <p><em>The finished chat looks like this, and here is the full HTML:</em></p>
@@ -1208,6 +1251,7 @@
     &lt;p class="msg out"&gt;&lt;span class="hide"&gt;&lt;em&gt;Ilya:&lt;/em&gt; &lt;/span&gt;I'm &lt;a class="tl egg" href="#t5"&gt;&lt;span class="orig"&gt;fine&lt;/span&gt;&lt;span class="tltn"&gt;&lt;span class="hide"&gt; (&lt;/span&gt;not fine. not even a little bit&lt;span class="hide"&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
     &lt;p class="msg in"&gt;&lt;span class="hide"&gt;&lt;em&gt;Scott:&lt;/em&gt; &lt;/span&gt;you're a terrible liar&lt;/p&gt;
   &lt;/div&gt;
+  &lt;p class="twdm-input"&gt;&lt;span class="twdm-plus"&gt;+&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="twdm-field typed"&gt;&lt;a class="tl" href="#t6"&gt;&lt;span class="orig"&gt;blyat&lt;/span&gt;&lt;span class="tltn"&gt;&lt;span class="hide"&gt; (&lt;/span&gt;shit&lt;span class="hide"&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/a&gt;&lt;span class="cursor"&gt;|&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="ic ic-mic"&gt;&amp;#127908;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
 &lt;/div&gt;</code></pre>
 
 <p>That's all of the HTML for the themes, translations and extras. The CSS behind them is the core of the workskin - the part every module needs - and the CSS chapter after this one explains how it all works.</p>

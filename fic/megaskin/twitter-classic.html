@@ -42,33 +42,35 @@
     <ul>
       <li><a href="#s10-1-1">10.1.1 A 2012-15 Timeline</a></li>
       <li><a href="#s10-1-2">10.1.2 A 2012-15 Tweet and Its Replies</a></li>
-      <li><a href="#s10-1-3">10.1.3 The 2012-15 Tweet</a></li>
-      <li><a href="#s10-1-4">10.1.4 2012-15 Retweets</a></li>
-      <li><a href="#s10-1-5">10.1.5 2012-15 Replies</a></li>
-      <li><a href="#s10-1-6">10.1.6 2012-15 Pictures</a></li>
-      <li><a href="#s10-1-7">10.1.7 2012-15 Buttons</a></li>
-      <li><a href="#s10-1-8">10.1.8 A 2012-15 Opened Tweet</a></li>
-      <li><a href="#s10-1-9">10.1.9 The 2012-15 App Screen</a></li>
+      <li><a href="#s10-1-3">10.1.3 The 2012-15 App Screen</a></li>
+      <li><a href="#s10-1-4">10.1.4 The 2012-15 Tweet</a></li>
+      <li><a href="#s10-1-5">10.1.5 A 2012-15 Opened Tweet</a></li>
+      <li><a href="#s10-1-6">10.1.6 2012-15 Retweets</a></li>
+      <li><a href="#s10-1-7">10.1.7 2012-15 Replies</a></li>
+      <li><a href="#s10-1-8">10.1.8 2012-15 Pictures</a></li>
+      <li><a href="#s10-1-9">10.1.9 2012-15 Buttons</a></li>
     </ul>
   </li>
   <li><a href="#s10-2">10.2 2016 to 2019</a>
     <ul>
       <li><a href="#s10-2-1">10.2.1 A 2016-19 Timeline</a></li>
       <li><a href="#s10-2-2">10.2.2 A 2016-19 Tweet and Its Replies</a></li>
-      <li><a href="#s10-2-3">10.2.3 The 2016-19 Tweet</a></li>
-      <li><a href="#s10-2-4">10.2.4 The Little Arrow</a></li>
-      <li><a href="#s10-2-5">10.2.5 2016-19 Buttons</a></li>
-      <li><a href="#s10-2-6">10.2.6 Retweets and Likes</a></li>
-      <li><a href="#s10-2-7">10.2.7 2016-19 Replies</a></li>
-      <li><a href="#s10-2-8">10.2.8 Quote Tweets</a></li>
-      <li><a href="#s10-2-9">10.2.9 Conversations</a></li>
-      <li><a href="#s10-2-10">10.2.10 2016-19 Pictures</a></li>
-      <li><a href="#s10-2-11">10.2.11 A 2016-19 Opened Tweet</a></li>
-      <li><a href="#s10-2-12">10.2.12 The 2016-19 App Screen</a></li>
-      <li><a href="#s10-2-13">10.2.13 2016-19 Themes</a></li>
+      <li><a href="#s10-2-3">10.2.3 The 2016-19 App Screen</a></li>
+      <li><a href="#s10-2-4">10.2.4 2016-19 Themes</a></li>
+      <li><a href="#s10-2-5">10.2.5 The 2016-19 Tweet</a></li>
+      <li><a href="#s10-2-6">10.2.6 The Little Arrow</a></li>
+      <li><a href="#s10-2-7">10.2.7 A 2016-19 Opened Tweet</a></li>
+      <li><a href="#s10-2-8">10.2.8 Retweets and Likes</a></li>
+      <li><a href="#s10-2-9">10.2.9 2016-19 Replies</a></li>
+      <li><a href="#s10-2-10">10.2.10 Quote Tweets</a></li>
+      <li><a href="#s10-2-11">10.2.11 Conversations</a></li>
+      <li><a href="#s10-2-12">10.2.12 2016-19 Pictures</a></li>
+      <li><a href="#s10-2-13">10.2.13 2016-19 Buttons</a></li>
     </ul>
   </li>
 </ul>
+
+<p>Each part starts with the simplest version that works. If you want more, the <strong>Options</strong> boxes show the other things that part can do, and the <strong>How it works</strong> boxes explain what each bit of the code is for.</p>
 
 <h3 id="s10-1">10.1 2012 to 2015</h3>
 
@@ -192,7 +194,33 @@
 
 </details>
 
-<h4 id="s10-1-3">10.1.3 The 2012-15 Tweet</h4>
+<h4 id="s10-1-3">10.1.3 The 2012-15 App Screen</h4>
+
+<p>To show tweets the way they looked in the app, put them inside a <code>twc12-feed</code>. The tweets inside lose their own borders and sit one under the other with a line between them, and the screen scrolls once it's taller than a phone.</p>
+
+<details>
+<summary>Options: showing every tweet at once</summary>
+
+<p>To show them all at once instead, add <code>no-scroll</code> to the <code>twc12-feed</code>.</p>
+
+</details>
+
+<h5 id="s10-1-3-1">10.1.3.1 Top</h5>
+
+<p>The blue bar along the top, <code>twc-bar</code>, has the page name in <code>twc-title</code>, which always sits in the middle. On the home timeline there's a person button on the left, and on an opened tweet a back arrow instead. The search and write-a-tweet buttons go on the right:</p>
+
+<pre><code>&lt;p class="twc-bar"&gt;&lt;span class="ic ic-tw-me"&gt;&amp;#9786;&lt;/span&gt;&lt;span class="twc-title"&gt;Home&lt;/span&gt;&lt;span class="ic ic-x-search"&gt;&amp;#128269;&lt;/span&gt;&lt;span class="ic ic-tw-compose"&gt;&amp;#9998;&lt;/span&gt;&lt;/p&gt;
+&lt;p class="twc-bar"&gt;&lt;span class="ic ic-back"&gt;&amp;#8592;&lt;/span&gt;&lt;span class="twc-title"&gt;Tweet&lt;/span&gt;&lt;span class="ic ic-x-search"&gt;&amp;#128269;&lt;/span&gt;&lt;span class="ic ic-tw-compose"&gt;&amp;#9998;&lt;/span&gt;&lt;/p&gt;</code></pre>
+
+<h5 id="s10-1-3-2">10.1.3.2 Bottom</h5>
+
+<p>The black row of buttons along the bottom, <code>tw-nav</code>, has Home, Connect, Discover and Me. Each one is a <code>tw-tab</code> with its icon and its name, and <code>on</code> lights up the page you're on:</p>
+
+<pre><code>&lt;p class="tw-nav"&gt;&lt;span class="tw-tab on"&gt;&lt;span class="ic ic-x-home-filled"&gt;&amp;#8962;&lt;/span&gt; Home&lt;/span&gt; &lt;span class="tw-tab"&gt;&lt;span class="ic ic-tw-at"&gt;@&lt;/span&gt; Connect&lt;/span&gt; &lt;span class="tw-tab"&gt;&lt;span class="ic ic-tw-hash"&gt;#&lt;/span&gt; Discover&lt;/span&gt; &lt;span class="tw-tab"&gt;&lt;span class="ic ic-tw-me"&gt;&amp;#9786;&lt;/span&gt; Me&lt;/span&gt;&lt;/p&gt;</code></pre>
+
+<p>Both bars stay put while the tweets scroll between them, and both are optional, so leave either out if you don't want it.</p>
+
+<h4 id="s10-1-4">10.1.4 The 2012-15 Tweet</h4>
 
 <p>A tweet is a container with <code>mob twc12</code>. Inside, the name line goes in <code>tw-top</code> and the words in <code>tw-text</code>. The picture sits in a column of its own on the left, the name and handle go beside it, and the time goes over in the top right corner. Leave the dot off the time, since it doesn't sit next to the handle:</p>
 
@@ -206,61 +234,23 @@
 &lt;p class="tw-text"&gt;Shane Hollander on the ice in practice today. The rookie looks fast &lt;span class="tw-link"&gt;#hockey&lt;/span&gt;&lt;/p&gt;
 </code></pre>
 
+<p>Twitter had no night mode in these years, so this module is always light, whatever theme you put on it.</p>
+
 <details>
-<summary>Pictures, names, links and ticks</summary>
+<summary>Options: pictures, names, links and ticks</summary>
 
 <p>The picture in <code>tw-pfp</code> can be initials with a colour, a picture tag, or a profile, and the name and handle can be typed or come from a profile. Hashtags, @mentions and links go in <code>tw-link</code> to make them blue. A verified tick goes inside the <code>tw-name</code>, after the name: <code>&lt;span class=&quot;ic ic-verified&quot;&gt;&amp;#10004;&lt;/span&gt;</code>.</p>
+
+</details>
+
+<details>
+<summary>Options: names that are too long for the line</summary>
 
 <p>Any name can be too long for its line. When it doesn't fit, the handle shrinks first and can disappear completely, then the name is cut off, tick and all, and the time always stays. Put the name in a plain <code>&lt;span&gt;</code> inside <code>tw-name</code> and it ends in "...". Without the span it stops at the last whole word that fits. On an opened tweet, a long name wraps onto a second line instead.</p>
 
 </details>
 
-<p>Twitter had no night mode in these years, so this module is always light, whatever theme you put on it.</p>
-
-<h4 id="s10-1-4">10.1.4 2012-15 Retweets</h4>
-
-<p>A retweet showed the original tweet with a small grey line under the words saying who retweeted it. Add it after the <code>tw-text</code>:</p>
-
-<pre><code>&lt;p class="tw-label"&gt;&lt;span class="ic ic-tw-repost"&gt;&amp;#8644;&lt;/span&gt; Retweeted by Holster&lt;/p&gt;</code></pre>
-
-<h4 id="s10-1-5">10.1.5 2012-15 Replies</h4>
-
-<p>There was no "Replying to" line back then: a reply was a tweet that started with the @handle of the person it answered, and replying to several people meant a string of @handles at the start. Put each one in a <code>tw-link</code>:</p>
-
-<pre><code>&lt;p class="tw-text"&gt;&lt;span class="tw-link"&gt;@irozanov&lt;/span&gt; &lt;span class="tw-link"&gt;@PuckStan&lt;/span&gt; said the man who fell over at the blue line yesterday&lt;/p&gt;</code></pre>
-
-<details>
-<summary>The "Details" link</summary>
-
-<p>On the website, timeline tweets had a small grey "Details" link under them. To copy that, add <code>&lt;p class=&quot;tw-details&quot;&gt;Details&lt;/p&gt;</code> after the words.</p>
-
-</details>
-
-
-<h4 id="s10-1-6">10.1.6 2012-15 Pictures</h4>
-
-<p>A picture goes under the words in a <code>tw-media</code>, with the corners rounded to match the profile pictures: <code>&lt;p class=&quot;tw-media&quot;&gt;&lt;img src=&quot;...&quot; alt=&quot;...&quot;&gt;&lt;/p&gt;</code>. One picture per tweet.</p>
-
-<h4 id="s10-1-7">10.1.7 2012-15 Buttons</h4>
-
-<p>The buttons were reply (a curved arrow), retweet, favorite (a star) and three dots for more, all in grey with no numbers next to them. In the app they only showed up on an opened tweet, but you can add them to any tweet:</p>
-
-<pre><code>&lt;div class="tw-stats"&gt;
-  &lt;p class="tw-stat"&gt;&lt;span class="ic ic-tw-reply"&gt;&amp;#8617;&lt;/span&gt;&lt;span class="hide"&gt; Reply&lt;/span&gt;&lt;/p&gt;
-  &lt;p class="tw-stat"&gt;&lt;span class="ic ic-tw-repost"&gt;&amp;#8644;&lt;/span&gt;&lt;span class="hide"&gt; Retweet&lt;/span&gt;&lt;/p&gt;
-  &lt;details class="tw-stat tw-tog"&gt;&lt;summary&gt;&lt;span class="ic ic-tw-like"&gt;&amp;#9734;&lt;/span&gt;&lt;span class="hide"&gt; Favorite&lt;/span&gt;&lt;/summary&gt;&lt;/details&gt;
-  &lt;p class="tw-stat"&gt;&lt;span class="ic ic-tw-share"&gt;&amp;#8943;&lt;/span&gt;&lt;span class="hide"&gt; More&lt;/span&gt;&lt;/p&gt;
-&lt;/div&gt;</code></pre>
-
-<details>
-<summary>Clickable stars, and buttons already used</summary>
-
-<p>The star is clickable: readers can tap it to favorite the tweet and it turns gold, and tap it again to take it back. For a favorite or a retweet the account has already made, add <code>tw-liked</code> or <code>tw-rt</code> to that button's <code>tw-stat</code>, which makes it gold or green. The hidden words are for readers with the workskin off, so the row reads "Reply Retweet Favorite More" instead of a row of symbols.</p>
-
-</details>
-
-
-<h4 id="s10-1-8">10.1.8 A 2012-15 Opened Tweet</h4>
+<h4 id="s10-1-5">10.1.5 A 2012-15 Opened Tweet</h4>
 
 <p>Add <code>big</code> to the container for a tweet that's been tapped on and opened. The handle moves under the name, and the words get bigger and switch to a serif font, with the date, the counts, the buttons and a reply box underneath:</p>
 
@@ -293,7 +283,7 @@
 </code></pre>
 
 <details>
-<summary>Each part of an opened tweet, piece by piece</summary>
+<summary>How it works: each part of an opened tweet, piece by piece</summary>
 
 <ul>
   <li><code>tw-date</code> - the date, written the way Twitter did: "8/2/13, 2:26 PM".</li>
@@ -304,32 +294,57 @@
 
 </details>
 
-<p>In the app, the tweet being replied to sat above the opened tweet, and the replies were listed underneath it, all in the usual timeline size. You can see that in <a href="#heading">A 2012-15 Tweet and Its Replies</a>, above.</p>
+<p>In the app, the tweet being replied to sat above the opened tweet, and the replies were listed underneath it, all in the usual timeline size. You can see that in <a href="twitter-classic.html#s10-1-2">A 2012-15 Tweet and Its Replies</a>, above.</p>
 
-<h4 id="s10-1-9">10.1.9 The 2012-15 App Screen</h4>
+<h4 id="s10-1-6">10.1.6 2012-15 Retweets</h4>
 
-<p>To show tweets the way they looked in the app, put them inside a <code>twc12-feed</code>. The tweets inside lose their own borders and sit one under the other with a line between them, and the screen scrolls once it's taller than a phone. To show them all at once instead, add <code>no-scroll</code> to the <code>twc12-feed</code>.</p>
+<p>A retweet showed the original tweet with a small grey line under the words saying who retweeted it. Add it after the <code>tw-text</code>:</p>
+
+<pre><code>&lt;p class="tw-label"&gt;&lt;span class="ic ic-tw-repost"&gt;&amp;#8644;&lt;/span&gt; Retweeted by Holster&lt;/p&gt;</code></pre>
+
+<h4 id="s10-1-7">10.1.7 2012-15 Replies</h4>
+
+<p>There was no "Replying to" line back then: a reply was a tweet that started with the @handle of the person it answered, and replying to several people meant a string of @handles at the start. Put each one in a <code>tw-link</code>:</p>
+
+<pre><code>&lt;p class="tw-text"&gt;&lt;span class="tw-link"&gt;@irozanov&lt;/span&gt; &lt;span class="tw-link"&gt;@PuckStan&lt;/span&gt; said the man who fell over at the blue line yesterday&lt;/p&gt;</code></pre>
 
 <details>
-<summary>The blue bar along the top</summary>
+<summary>Options: the "Details" link</summary>
 
-<p>The blue bar along the top, <code>twc-bar</code>, has the page name in <code>twc-title</code>, which always sits in the middle. On the home timeline there's a person button on the left, and on an opened tweet a back arrow instead. The search and write-a-tweet buttons go on the right:</p>
+<p>On the website, timeline tweets had a small grey "Details" link under them. To copy that, add <code>&lt;p class=&quot;tw-details&quot;&gt;Details&lt;/p&gt;</code> after the words.</p>
 
-<pre><code>&lt;p class="twc-bar"&gt;&lt;span class="ic ic-tw-me"&gt;&amp;#9786;&lt;/span&gt;&lt;span class="twc-title"&gt;Home&lt;/span&gt;&lt;span class="ic ic-x-search"&gt;&amp;#128269;&lt;/span&gt;&lt;span class="ic ic-tw-compose"&gt;&amp;#9998;&lt;/span&gt;&lt;/p&gt;
-&lt;p class="twc-bar"&gt;&lt;span class="ic ic-back"&gt;&amp;#8592;&lt;/span&gt;&lt;span class="twc-title"&gt;Tweet&lt;/span&gt;&lt;span class="ic ic-x-search"&gt;&amp;#128269;&lt;/span&gt;&lt;span class="ic ic-tw-compose"&gt;&amp;#9998;&lt;/span&gt;&lt;/p&gt;</code></pre>
+</details>
+
+<h4 id="s10-1-8">10.1.8 2012-15 Pictures</h4>
+
+<p>A picture goes under the words in a <code>tw-media</code>, with the corners rounded to match the profile pictures: <code>&lt;p class=&quot;tw-media&quot;&gt;&lt;img src=&quot;...&quot; alt=&quot;...&quot;&gt;&lt;/p&gt;</code>. One picture per tweet.</p>
+
+<h4 id="s10-1-9">10.1.9 2012-15 Buttons</h4>
+
+<p>The buttons were reply (a curved arrow), retweet, favorite (a star) and three dots for more, all in grey with no numbers next to them. In the app they only showed up on an opened tweet, but you can add them to any tweet:</p>
+
+<pre><code>&lt;div class="tw-stats"&gt;
+  &lt;p class="tw-stat"&gt;&lt;span class="ic ic-tw-reply"&gt;&amp;#8617;&lt;/span&gt;&lt;span class="hide"&gt; Reply&lt;/span&gt;&lt;/p&gt;
+  &lt;p class="tw-stat"&gt;&lt;span class="ic ic-tw-repost"&gt;&amp;#8644;&lt;/span&gt;&lt;span class="hide"&gt; Retweet&lt;/span&gt;&lt;/p&gt;
+  &lt;details class="tw-stat tw-tog"&gt;&lt;summary&gt;&lt;span class="ic ic-tw-like"&gt;&amp;#9734;&lt;/span&gt;&lt;span class="hide"&gt; Favorite&lt;/span&gt;&lt;/summary&gt;&lt;/details&gt;
+  &lt;p class="tw-stat"&gt;&lt;span class="ic ic-tw-share"&gt;&amp;#8943;&lt;/span&gt;&lt;span class="hide"&gt; More&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+
+<p>The star is clickable: readers can tap it to favorite the tweet and it turns gold, and tap it again to take it back.</p>
+
+<details>
+<summary>Options: buttons already used</summary>
+
+<p>For a favorite or a retweet the account has already made, add <code>tw-liked</code> or <code>tw-rt</code> to that button's <code>tw-stat</code>, which makes it gold or green.</p>
 
 </details>
 
 <details>
-<summary>The black row of buttons along the bottom</summary>
+<summary>How it works: the hidden words</summary>
 
-<p>The black row of buttons along the bottom, <code>tw-nav</code>, has Home, Connect, Discover and Me. Each one is a <code>tw-tab</code> with its icon and its name, and <code>on</code> lights up the page you're on:</p>
-
-<pre><code>&lt;p class="tw-nav"&gt;&lt;span class="tw-tab on"&gt;&lt;span class="ic ic-x-home-filled"&gt;&amp;#8962;&lt;/span&gt; Home&lt;/span&gt; &lt;span class="tw-tab"&gt;&lt;span class="ic ic-tw-at"&gt;@&lt;/span&gt; Connect&lt;/span&gt; &lt;span class="tw-tab"&gt;&lt;span class="ic ic-tw-hash"&gt;#&lt;/span&gt; Discover&lt;/span&gt; &lt;span class="tw-tab"&gt;&lt;span class="ic ic-tw-me"&gt;&amp;#9786;&lt;/span&gt; Me&lt;/span&gt;&lt;/p&gt;</code></pre>
+<p>The hidden words are for readers with the workskin off, so the row reads "Reply Retweet Favorite More" instead of a row of symbols.</p>
 
 </details>
-
-<p>Both bars stay put while the tweets scroll between them, and both are optional, so leave either out if you don't want it.</p>
 
 <h3 id="s10-2">10.2 2016 to 2019</h3>
 
@@ -551,7 +566,37 @@
 
 </details>
 
-<h4 id="s10-2-3">10.2.3 The 2016-19 Tweet</h4>
+<h4 id="s10-2-3">10.2.3 The 2016-19 App Screen</h4>
+
+<p>To show tweets the way they looked in the app, put them inside a <code>twc16-feed</code>. The tweets inside lose their own borders and sit one under the other with a line between them, and the screen scrolls once it's taller than a phone.</p>
+
+<details>
+<summary>Options: showing every tweet at once</summary>
+
+<p>To show them all at once instead, add <code>no-scroll</code> to the <code>twc16-feed</code>.</p>
+
+</details>
+
+<h5 id="s10-2-3-1">10.2.3.1 Top</h5>
+
+<p>The bar along the top, <code>twc-bar</code>, has the page name in <code>twc-title</code>, which always sits in the middle. On the home timeline the pov character's own picture goes on the left, in <code>tw-me</code>, and on an opened tweet a back arrow goes there instead:</p>
+
+<pre><code>&lt;p class="twc-bar"&gt;&lt;span class="tw-me"&gt;&lt;span class="pfp pfp-shane"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="twc-title"&gt;Home&lt;/span&gt;&lt;/p&gt;
+&lt;p class="twc-bar"&gt;&lt;span class="ic ic-back"&gt;&amp;#8592;&lt;/span&gt;&lt;span class="twc-title"&gt;Tweet&lt;/span&gt;&lt;/p&gt;</code></pre>
+
+<h5 id="s10-2-3-2">10.2.3.2 Bottom</h5>
+
+<p>The row of buttons along the bottom, <code>tw-nav</code>, is home, search, notifications and messages. Add <code>on</code> to the page you're on, and use the filled home button for the timeline. For a blue number on a button, like new notifications, wrap the icon and the number in a <code>tw-badged</code>. The circle stretches into a lozenge for longer numbers:</p>
+
+<pre><code>&lt;p class="tw-nav"&gt;&lt;span class="on ic ic-x-home-filled"&gt;&amp;#8962;&lt;/span&gt; &lt;span class="ic ic-x-search"&gt;&amp;#128269;&lt;/span&gt; &lt;span class="tw-badged"&gt;&lt;span class="ic ic-x-bell"&gt;&amp;#128276;&lt;/span&gt;&lt;span class="tw-badge"&gt;&lt;span class="hide"&gt; (&lt;/span&gt;3&lt;span class="hide"&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; &lt;span class="ic ic-tw-mail"&gt;&amp;#9993;&lt;/span&gt;&lt;/p&gt;</code></pre>
+
+<p>Both bars stay put while the tweets scroll between them, and both are optional, so leave either out if you don't want it.</p>
+
+<h4 id="s10-2-4">10.2.4 2016-19 Themes</h4>
+
+<p><code>theme-dark</code> is Twitter's night mode, a dim dark blue rather than black, and <code>theme-auto</code> switches to it when the reader's device is in dark mode, the same as every other app. Put the theme on each tweet on its own, or on the <code>twc16-feed</code> for a whole screen.</p>
+
+<h4 id="s10-2-5">10.2.5 The 2016-19 Tweet</h4>
 
 <p>A tweet is a container with <code>mob twc16</code> and a theme. Inside, the name line goes in <code>tw-top</code>, the words in <code>tw-text</code> and the buttons in <code>tw-stats</code>. The picture sits in a column of its own on the left, and everything else lines up beside it, with the name, handle and time all on one line:</p>
 
@@ -578,72 +623,24 @@
 </code></pre>
 
 <details>
-<summary>Pictures, names, links and ticks</summary>
+<summary>Options: pictures, names, links and ticks</summary>
 
 <p>The picture in <code>tw-pfp</code> can be initials with a colour, a picture tag, or a profile, and the name and handle can be typed or come from a profile. Type the dot before the time yourself. Hashtags, @mentions and links go in <code>tw-link</code> to make them blue, and a verified tick goes inside the <code>tw-name</code>, after the name: <code>&lt;span class=&quot;ic ic-verified&quot;&gt;&amp;#10004;&lt;/span&gt;</code>.</p>
+
+</details>
+
+<details>
+<summary>Options: names that are too long for the line</summary>
 
 <p>Any name can be too long for its line. When it doesn't fit, the handle shrinks first and can disappear completely, then the name is cut off, tick and all, and the time always stays. Put the name in a plain <code>&lt;span&gt;</code> inside <code>tw-name</code> and it ends in "...". Without the span it stops at the last whole word that fits. On an opened tweet, a long name wraps onto a second line instead.</p>
 
 </details>
 
-
-<h4 id="s10-2-4">10.2.4 The Little Arrow</h4>
+<h4 id="s10-2-6">10.2.6 The Little Arrow</h4>
 
 <p>Every tweet had a small grey arrow in its top right corner, for the menu. Add it at the end of the name line, after the time: <code>&lt;span class=&quot;tw-more ic ic-dropdown&quot;&gt;&amp;#8964;&lt;/span&gt;</code>.</p>
 
-<h4 id="s10-2-5">10.2.5 2016-19 Buttons</h4>
-
-<p>The row along the bottom of a tweet is reply, retweet, like and message, with the number after each icon. The like is clickable: readers can tap it to like the tweet, and it turns into a red heart and the number goes up by one. Tap it again to take it back.</p>
-
-<details>
-<summary>Numbers, buttons already used, and the share button</summary>
-
-<p>Leave a number out if it's nought. For a like or a retweet the account has already made, add <code>tw-liked</code> or <code>tw-rt</code> to that button's <code>tw-stat</code>, which makes it red or green:</p>
-
-<pre><code>&lt;p class="tw-stat tw-rt"&gt;&lt;span class="ic ic-tw-repost"&gt;&amp;#8644;&lt;/span&gt; 52&lt;span class="hide"&gt; retweets&lt;/span&gt;&lt;/p&gt;</code></pre>
-
-<p>The phone app had a share button at the end instead of the envelope. To use that, swap the last button for <code>&lt;p class=&quot;tw-stat&quot;&gt;&lt;span class=&quot;ic ic-tw-share&quot;&gt;&amp;#8679;&lt;/span&gt;&lt;span class=&quot;hide&quot;&gt; Share&lt;/span&gt;&lt;/p&gt;</code>.</p>
-
-</details>
-
-<h4 id="s10-2-6">10.2.6 Retweets and Likes</h4>
-
-<p>For a tweet someone else retweeted into the timeline, add a <code>tw-label</code> line at the very top, before the name line. From 2018, Twitter also showed tweets your friends had liked, with the same line and a heart instead:</p>
-
-<pre><code>&lt;p class="tw-label"&gt;&lt;span class="ic ic-tw-repost"&gt;&amp;#8644;&lt;/span&gt; Shane Hollander Retweeted&lt;/p&gt;
-&lt;p class="tw-label"&gt;&lt;span class="ic ic-tw-like"&gt;&amp;#9825;&lt;/span&gt; Rose Landry liked&lt;/p&gt;</code></pre>
-
-<h4 id="s10-2-7">10.2.7 2016-19 Replies</h4>
-
-<p>A reply has a grey "Replying to" line under the name line, before the words: <code>&lt;p class=&quot;tw-replying&quot;&gt;Replying to &lt;span class=&quot;tw-link&quot;&gt;@HolsterInLaw&lt;/span&gt;&lt;/p&gt;</code>. For a reply to several people, put each @handle in its own <code>tw-link</code>.</p>
-
-<h4 id="s10-2-8">10.2.8 Quote Tweets</h4>
-
-<p>A quoted tweet goes in a rounded box under the words, in a <code>tw-quote</code>. Inside it, the name line has just the name and handle, with no picture, and then the quoted words:</p>
-
-<div class="mob twc16 theme-auto">
-<p class="tw-top"><span class="tw-pfp"><span class="pfp pfp-stan"></span></span><span class="hide"> </span><span class="tw-name"><span class="name pfp-stan"><span class="hide">Stan</span></span></span> <span class="tw-handle"><span class="handle pfp-stan"><span class="hide">@PuckStan</span></span></span> <span class="tw-time">· 5h</span> <span class="tw-more ic ic-dropdown">&#8964;</span></p>
-<p class="tw-text">If there's one thing I've learnt it's that you're always right</p>
-<div class="tw-quote"><p class="tw-top"><span class="tw-name">Zim</span> <span class="tw-handle">@ZimBits</span></p><p class="tw-text">Biggest robbery of the season. That was offside and everyone in the building knew it</p></div>
-</div>
-
-<pre><code>
-&lt;p class="tw-top"&gt;&lt;span class="tw-pfp"&gt;&lt;span class="pfp pfp-stan"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="tw-name"&gt;&lt;span class="name pfp-stan"&gt;&lt;span class="hide"&gt;Stan&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; &lt;span class="tw-handle"&gt;&lt;span class="handle pfp-stan"&gt;&lt;span class="hide"&gt;@PuckStan&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; &lt;span class="tw-time"&gt;· 5h&lt;/span&gt; &lt;span class="tw-more ic ic-dropdown"&gt;&amp;#8964;&lt;/span&gt;&lt;/p&gt;
-&lt;p class="tw-text"&gt;If there's one thing I've learnt it's that you're always right&lt;/p&gt;
-&lt;div class="tw-quote"&gt;&lt;p class="tw-top"&gt;&lt;span class="tw-name"&gt;Zim&lt;/span&gt; &lt;span class="tw-handle"&gt;@ZimBits&lt;/span&gt;&lt;/p&gt;&lt;p class="tw-text"&gt;Biggest robbery of the season. That was offside and everyone in the building knew it&lt;/p&gt;&lt;/div&gt;
-</code></pre>
-
-<p>Quoting was also how people answered out loud, so a quote tweet often turns up in a conversation, with the quote box at the same size in an opened tweet as in the timeline.</p>
-
-<h4 id="s10-2-9">10.2.9 Conversations</h4>
-
-<p>In a timeline, a tweet and a reply to it were joined by a grey line between their pictures. Add <code>link</code> to the first tweet's container, <code>&lt;div class=&quot;mob twc16 link&quot;&gt;</code>, and the line runs down from its picture to the picture of the tweet underneath. Chain as many as you like by adding <code>link</code> to each one except the last. Holster and Rose's tweets in the timeline at the start of this section are joined like this.</p>
-
-<h4 id="s10-2-10">10.2.10 2016-19 Pictures</h4>
-
-<p>A picture goes under the words in a <code>tw-media</code>, with rounded corners and a thin border: <code>&lt;p class=&quot;tw-media&quot;&gt;&lt;img src=&quot;...&quot; alt=&quot;...&quot;&gt;&lt;/p&gt;</code>. One picture per tweet.</p>
-
-<h4 id="s10-2-11">10.2.11 A 2016-19 Opened Tweet</h4>
+<h4 id="s10-2-7">10.2.7 A 2016-19 Opened Tweet</h4>
 
 <p>Add <code>big</code> to the container for a tweet that's been tapped on and opened. The handle moves under the name and the words get bigger, with the date, the counts and the buttons underneath:</p>
 
@@ -674,7 +671,14 @@
 </code></pre>
 
 <details>
-<summary>Each part of an opened tweet, piece by piece</summary>
+<summary>Options: the reply box</summary>
+
+<p>Under an opened tweet, the reply box goes on its own line before the replies: <code>&lt;p class=&quot;twc-foot&quot;&gt;&lt;span&gt;Tweet your reply&lt;/span&gt;&lt;/p&gt;</code>.</p>
+
+</details>
+
+<details>
+<summary>How it works: each part of an opened tweet, piece by piece</summary>
 
 <ul>
   <li>The time is left out of the name line, because it moves into the date.</li>
@@ -685,38 +689,64 @@
 
 </details>
 
-<p>In the app, the tweet being answered sat above the opened one, joined by the conversation line, and the replies were listed underneath in the usual timeline size. You can see that in <a href="#heading">A 2016-19 Tweet and Its Replies</a>, above.</p>
+<p>In the app, the tweet being answered sat above the opened one, joined by the conversation line, and the replies were listed underneath in the usual timeline size. You can see that in <a href="twitter-classic.html#s10-2-2">A 2016-19 Tweet and Its Replies</a>, above.</p>
 
-<h4 id="s10-2-12">10.2.12 The 2016-19 App Screen</h4>
+<h4 id="s10-2-8">10.2.8 Retweets and Likes</h4>
 
-<p>To show tweets the way they looked in the app, put them inside a <code>twc16-feed</code>. The tweets inside lose their own borders and sit one under the other with a line between them, and the screen scrolls once it's taller than a phone. To show them all at once instead, add <code>no-scroll</code> to the <code>twc16-feed</code>. The theme goes on the <code>twc16-feed</code>, so you don't need it on each tweet.</p>
+<p>For a tweet someone else retweeted into the timeline, add a <code>tw-label</code> line at the very top, before the name line. From 2018, Twitter also showed tweets your friends had liked, with the same line and a heart instead:</p>
+
+<pre><code>&lt;p class="tw-label"&gt;&lt;span class="ic ic-tw-repost"&gt;&amp;#8644;&lt;/span&gt; Shane Hollander Retweeted&lt;/p&gt;
+&lt;p class="tw-label"&gt;&lt;span class="ic ic-tw-like"&gt;&amp;#9825;&lt;/span&gt; Rose Landry liked&lt;/p&gt;</code></pre>
+
+<h4 id="s10-2-9">10.2.9 2016-19 Replies</h4>
+
+<p>A reply has a grey "Replying to" line under the name line, before the words: <code>&lt;p class=&quot;tw-replying&quot;&gt;Replying to &lt;span class=&quot;tw-link&quot;&gt;@HolsterInLaw&lt;/span&gt;&lt;/p&gt;</code>. For a reply to several people, put each @handle in its own <code>tw-link</code>.</p>
+
+<h4 id="s10-2-10">10.2.10 Quote Tweets</h4>
+
+<p>A quoted tweet goes in a rounded box under the words, in a <code>tw-quote</code>. Inside it, the name line has just the name and handle, with no picture, and then the quoted words:</p>
+
+<div class="mob twc16 theme-auto">
+<p class="tw-top"><span class="tw-pfp"><span class="pfp pfp-stan"></span></span><span class="hide"> </span><span class="tw-name"><span class="name pfp-stan"><span class="hide">Stan</span></span></span> <span class="tw-handle"><span class="handle pfp-stan"><span class="hide">@PuckStan</span></span></span> <span class="tw-time">· 5h</span> <span class="tw-more ic ic-dropdown">&#8964;</span></p>
+<p class="tw-text">If there's one thing I've learnt it's that you're always right</p>
+<div class="tw-quote"><p class="tw-top"><span class="tw-name">Zim</span> <span class="tw-handle">@ZimBits</span></p><p class="tw-text">Biggest robbery of the season. That was offside and everyone in the building knew it</p></div>
+</div>
+
+<pre><code>
+&lt;p class="tw-top"&gt;&lt;span class="tw-pfp"&gt;&lt;span class="pfp pfp-stan"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="tw-name"&gt;&lt;span class="name pfp-stan"&gt;&lt;span class="hide"&gt;Stan&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; &lt;span class="tw-handle"&gt;&lt;span class="handle pfp-stan"&gt;&lt;span class="hide"&gt;@PuckStan&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; &lt;span class="tw-time"&gt;· 5h&lt;/span&gt; &lt;span class="tw-more ic ic-dropdown"&gt;&amp;#8964;&lt;/span&gt;&lt;/p&gt;
+&lt;p class="tw-text"&gt;If there's one thing I've learnt it's that you're always right&lt;/p&gt;
+&lt;div class="tw-quote"&gt;&lt;p class="tw-top"&gt;&lt;span class="tw-name"&gt;Zim&lt;/span&gt; &lt;span class="tw-handle"&gt;@ZimBits&lt;/span&gt;&lt;/p&gt;&lt;p class="tw-text"&gt;Biggest robbery of the season. That was offside and everyone in the building knew it&lt;/p&gt;&lt;/div&gt;
+</code></pre>
+
+<p>Quoting was also how people answered out loud, so a quote tweet often turns up in a conversation, with the quote box at the same size in an opened tweet as in the timeline.</p>
+
+<h4 id="s10-2-11">10.2.11 Conversations</h4>
+
+<p>In a timeline, a tweet and a reply to it were joined by a grey line between their pictures. Add <code>link</code> to the first tweet's container, <code>&lt;div class=&quot;mob twc16 link&quot;&gt;</code>, and the line runs down from its picture to the picture of the tweet underneath. Chain as many as you like by adding <code>link</code> to each one except the last. Holster and Rose's tweets in the timeline at the start of this section are joined like this.</p>
+
+<h4 id="s10-2-12">10.2.12 2016-19 Pictures</h4>
+
+<p>A picture goes under the words in a <code>tw-media</code>, with rounded corners and a thin border: <code>&lt;p class=&quot;tw-media&quot;&gt;&lt;img src=&quot;...&quot; alt=&quot;...&quot;&gt;&lt;/p&gt;</code>. One picture per tweet.</p>
+
+<h4 id="s10-2-13">10.2.13 2016-19 Buttons</h4>
+
+<p>The row along the bottom of a tweet is reply, retweet, like and message, with the number after each icon. The like is clickable: readers can tap it to like the tweet, and it turns into a red heart and the number goes up by one. Tap it again to take it back.</p>
 
 <details>
-<summary>The bar along the top, and the reply box</summary>
+<summary>Options: numbers, and buttons already used</summary>
 
-<p>The bar along the top, <code>twc-bar</code>, has the page name in <code>twc-title</code>, which always sits in the middle. On the home timeline the pov character's own picture goes on the left, in <code>tw-me</code>, and on an opened tweet a back arrow goes there instead:</p>
+<p>Leave a number out if it's nought. For a like or a retweet the account has already made, add <code>tw-liked</code> or <code>tw-rt</code> to that button's <code>tw-stat</code>, which makes it red or green:</p>
 
-<pre><code>&lt;p class="twc-bar"&gt;&lt;span class="tw-me"&gt;&lt;span class="pfp pfp-shane"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="twc-title"&gt;Home&lt;/span&gt;&lt;/p&gt;
-&lt;p class="twc-bar"&gt;&lt;span class="ic ic-back"&gt;&amp;#8592;&lt;/span&gt;&lt;span class="twc-title"&gt;Tweet&lt;/span&gt;&lt;/p&gt;</code></pre>
-
-<p>Under an opened tweet, the reply box goes on its own line before the replies: <code>&lt;p class=&quot;twc-foot&quot;&gt;&lt;span&gt;Tweet your reply&lt;/span&gt;&lt;/p&gt;</code>.</p>
+<pre><code>&lt;p class="tw-stat tw-rt"&gt;&lt;span class="ic ic-tw-repost"&gt;&amp;#8644;&lt;/span&gt; 52&lt;span class="hide"&gt; retweets&lt;/span&gt;&lt;/p&gt;</code></pre>
 
 </details>
 
 <details>
-<summary>The row of buttons along the bottom</summary>
+<summary>Options: the share button</summary>
 
-<p>The row of buttons along the bottom, <code>tw-nav</code>, is home, search, notifications and messages. Add <code>on</code> to the page you're on, and use the filled home button for the timeline. For a blue number on a button, like new notifications, wrap the icon and the number in a <code>tw-badged</code>. The circle stretches into a lozenge for longer numbers:</p>
-
-<pre><code>&lt;p class="tw-nav"&gt;&lt;span class="on ic ic-x-home-filled"&gt;&amp;#8962;&lt;/span&gt; &lt;span class="ic ic-x-search"&gt;&amp;#128269;&lt;/span&gt; &lt;span class="tw-badged"&gt;&lt;span class="ic ic-x-bell"&gt;&amp;#128276;&lt;/span&gt;&lt;span class="tw-badge"&gt;&lt;span class="hide"&gt; (&lt;/span&gt;3&lt;span class="hide"&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; &lt;span class="ic ic-tw-mail"&gt;&amp;#9993;&lt;/span&gt;&lt;/p&gt;</code></pre>
+<p>The phone app had a share button at the end instead of the envelope. To use that, swap the last button for <code>&lt;p class=&quot;tw-stat&quot;&gt;&lt;span class=&quot;ic ic-tw-share&quot;&gt;&amp;#8679;&lt;/span&gt;&lt;span class=&quot;hide&quot;&gt; Share&lt;/span&gt;&lt;/p&gt;</code>.</p>
 
 </details>
-
-<p>Both bars stay put while the tweets scroll between them, and both are optional, so leave either out if you don't want it.</p>
-
-<h4 id="s10-2-13">10.2.13 2016-19 Themes</h4>
-
-<p><code>theme-dark</code> is Twitter's night mode, a dim dark blue rather than black, and <code>theme-auto</code> switches to it when the reader's device is in dark mode, the same as every other app. Put the theme on each tweet on its own, or on the <code>twc16-feed</code> for a whole screen.</p>
         </div>
       </div>
 

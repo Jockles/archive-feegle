@@ -4,6 +4,8 @@
 
 <p>This chapter goes through the CSS for the tweets, threads and DMs in the last chapter. The module has three parts: tweets and replies (<code>tw</code> and <code>tw-reply</code>), the scrolling thread they can sit in (<code>tw-thread</code>), and DMs (<code>twdm</code>). DMs are built just like iMessage, so if you've read that chapter, they'll be quick.</p>
 
+<p>Each part starts with the CSS itself and a line or two on what it does. The <strong>Options</strong> boxes show what you can safely change, and the <strong>How it works</strong> boxes go through the rules a line at a time, if you want to learn how it's put together. The longest bits of CSS are folded away in boxes of their own.</p>
+
 <h3>Getting the CSS</h3>
 
 <p>The Twitter/X CSS is here: <a href="css/twitter-x.css">jockles.com/fic/megaskin/css/twitter-x.css</a>. It needs the core CSS too, so paste the <a href="core-css.html">core</a> into your work skin first and this underneath it.</p>
@@ -12,7 +14,9 @@
 
 <p>The usual order - the main rules, Links, Dark theme and Auto theme - with a <strong>Scrolling</strong> section before the themes, because tweets and threads scroll differently from the phone-style chats, and Icons at the end. You'll notice that most rules name both <code>.tw</code> and <code>.tw-reply</code>. A reply is its own box rather than something inside a tweet, so every part that can turn up in both has to be given to both.</p>
 
-<h3>The Timeline</h3>
+<h3>The Container</h3>
+
+<h4>The Timeline</h4>
 
 <pre><code>#workskin .tw-thread {
   width: 380px;
@@ -41,30 +45,21 @@
   color: inherit;
 }</code></pre>
 
-<p>The timeline (<code>tw-thread</code>) is its own phone-sized box, built like the core's <code>mob</code>, and it holds every tweet in the chapter. The second rule takes the tweets inside it apart: no width of their own, no gap around them, no rounded corners, no scrolling, and only a bottom edge, so they stack into one feed with a line between each one. <code>background: transparent</code> and <code>color: inherit</code> make every tweet take the thread's colours, which is how a whole timeline follows one theme.</p>
+<p>The timeline (<code>tw-thread</code>) is its own phone-sized box, built like the core's <code>mob</code>, and it holds every tweet in the chapter.</p>
 
-<pre><code>#workskin .tw-thread .tw-foot {
-  display: block;
-  padding: 0.7em 1em;
-  border-top: 1px solid #eff3f4;
-  color: #536471;
-}
+<details>
+<summary>How it works: making the tweets into one feed</summary>
 
-#workskin .tw-thread .tw-foot &gt; p { margin: 0; padding: 0; }
+<p>The second rule takes the tweets inside it apart: no width of their own, no gap around them, no rounded corners, no scrolling, and only a bottom edge, so they stack into one feed with a line between each one. <code>background: transparent</code> and <code>color: inherit</code> make every tweet take the thread's colours, which is how a whole timeline follows one theme.</p>
 
-#workskin .tw-thread .tw-foot span {
-  float: right;
-  padding: 0.25em 0.9em;
-  border-radius: 1em;
-  background: #1d9bf0;
-  color: #ffffff;
-  font-weight: bold;
-  font-size: 0.9em;
-}</code></pre>
+</details>
 
-<p>The "Tweet your reply" bar sits under the scrolling part, so it stays in place. AO3 wraps its text in a paragraph, which the middle rule flattens, and the Reply button floats to the right.</p>
+<h4>Top</h4>
 
-<h3>The Top Bar and Tabs</h3>
+<p>The top bar and tabs are just two flex rows at the top of the scrolling part of a timeline.</p>
+
+<details>
+<summary>The full CSS for the top bar and tabs</summary>
 
 <pre><code>#workskin .tw-thread .tw-apptop,
 #workskin .tw-thread .tw-tabs {
@@ -209,11 +204,74 @@
 
 #workskin .tw-thread.tw2020 .tw-stat.tw-end:not(:last-child) { display: none; }</code></pre>
 
-<p>The top bar and tabs are just two flex rows at the top of the scrolling part of a timeline. In the top bar, the X gets <code>flex: 1</code> to take up all the room left over, and its <code>margin-right</code> is the same width as the picture on the left, so the X sits in the true middle. The <code>bird</code> version hides the word inside by pushing it far off to the left with <code>text-indent</code>, and shows the logo picture in its place, the same way the icons work. In the tabs, the line under the picked tab is a <code>::after</code> box filled with <code>currentColor</code> (the colour of the words), pinned to the bottom of the tab with <code>position: absolute</code>, stretched from <code>left: 0</code> to <code>right: 0</code> so it's always as wide as the words. The down arrow is just the bottom and right borders of a tiny square, turned 45 degrees with <code>transform: rotate(45deg)</code>. The plus sign is pinned to the right-hand end the same way, with a background the same colour as the screen, so long tabs slide under it instead of pushing it off the edge.</p>
+</details>
+
+<details>
+<summary>How it works: the X, the tabs, the arrow and the plus sign</summary>
+
+<p>In the top bar, the X gets <code>flex: 1</code> to take up all the room left over, and its <code>margin-right</code> is the same width as the picture on the left, so the X sits in the true middle. The <code>bird</code> version hides the word inside by pushing it far off to the left with <code>text-indent</code>, and shows the logo picture in its place, the same way the icons work. In the tabs, the line under the picked tab is a <code>::after</code> box filled with <code>currentColor</code> (the colour of the words), pinned to the bottom of the tab with <code>position: absolute</code>, stretched from <code>left: 0</code> to <code>right: 0</code> so it's always as wide as the words. The down arrow is just the bottom and right borders of a tiny square, turned 45 degrees with <code>transform: rotate(45deg)</code>. The plus sign is pinned to the right-hand end the same way, with a background the same colour as the screen, so long tabs slide under it instead of pushing it off the edge.</p>
+
+</details>
+
+<details>
+<summary>How it works: the 2020 redesign</summary>
 
 <p>The <code>tw2020</code> rules all start with <code>.tw-thread.tw2020</code>, so they only touch a thread with both classes. The logo gets the same bird as <code>bird</code>, without the margin, because the sparkle now balances the picture: it's an <code>::after</code> box on the top bar with the sparkle character as its <code>content</code>, the same width as the picture. In the stats row, the share button gets <code>flex: 1 1 0</code> back so it spreads out like the others, and <code>:not(:last-of-type)</code> hides every <code>tw-end</code> button that isn't the last one in the row, which is the bookmark.</p>
 
-<h3>The Tweet</h3>
+</details>
+
+<h4>Bottom</h4>
+
+<pre><code>#workskin .tw-thread .tw-foot {
+  display: block;
+  padding: 0.7em 1em;
+  border-top: 1px solid #eff3f4;
+  color: #536471;
+}
+
+#workskin .tw-thread .tw-foot &gt; p { margin: 0; padding: 0; }
+
+#workskin .tw-thread .tw-foot span {
+  float: right;
+  padding: 0.25em 0.9em;
+  border-radius: 1em;
+  background: #1d9bf0;
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 0.9em;
+}</code></pre>
+
+<p>The "Tweet your reply" bar sits under the scrolling part, so it stays in place. AO3 wraps its text in a paragraph, which the middle rule flattens, and the Reply button floats to the right.</p>
+
+<h4>Scrolling</h4>
+
+<pre><code>#workskin .tw-thread .tw-scroll {
+  display: block;
+  max-height: 580px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+#workskin .tw-thread.no-scroll .tw-scroll { max-height: none; overflow-y: visible; }
+
+#workskin .tw {
+  max-height: 700px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}</code></pre>
+
+<p>In a thread, only the <code>tw-scroll</code> part scrolls, at the same height as every other chat.</p>
+
+<details>
+<summary>Options: a tweet on its own, and no scrolling</summary>
+
+<p>A tweet on its own scrolls as a whole, and it's allowed to be taller (<code>700px</code>), because a tweet with a picture is usually taller than a chat window and you'd rather not scroll it if you can help it. Adding <code>no-scroll</code> to a tweet switches its scrolling off, as usual, and adding it to the <code>tw-thread</code> switches off the scrolling inside it.</p>
+
+</details>
+
+<h3>Normal Tweets</h3>
+
+<h4>The Tweet</h4>
 
 <pre><code>#workskin .tw {
   background: #ffffff;
@@ -233,9 +291,337 @@
 
 <p>On its own, a tweet is a rounded card, white in light mode and black in dark mode. In a timeline, the timeline's rule above takes its edge and corners away. A reply is a square card with no top edge, so a stack of replies under a tweet joins up into one long card, with a single line between each one.</p>
 
+<details>
+<summary>Options: the colours</summary>
+
 <p>The text colours are Twitter/X's own: <code>#0f1419</code> is its near-black, <code>#536471</code> the grey for handles and small print, and <code>#1d9bf0</code> its blue, which is used for links, hashtags, the verified tick and poll outlines.</p>
 
-<h3>Name Line and Profile Picture</h3>
+</details>
+
+<h4>Text, Stats, Quotes and Notes</h4>
+
+<pre><code>#workskin .tw .tw-text { display: block; font-size: 1.02em; margin: 0.2em 0 0.4em 0; }
+
+#workskin .tw .tw-stats,
+#workskin .tw-reply .tw-stats {
+  display: flex;
+  align-items: center;
+  margin: 0.5em 0 0 0;
+  padding: 0.55em 0.2em 0 0.2em;
+  border-top: 1px solid #eff3f4;
+  color: #536471;
+  font-size: 0.85em;
+}
+
+/* a reply's row is smaller, with no line above it */
+#workskin .tw-reply .tw-stats { margin-top: 0.3em; padding: 0; border-top: 0; font-size: 0.8em; }
+
+/* AO3 turns line breaks in the row into &lt;br /&gt; tags, and wraps each button in a &lt;p&gt;: keep them flat */
+#workskin .tw .tw-stats br,
+#workskin .tw-reply .tw-stats br { display: none; }
+
+#workskin .tw .tw-stats p,
+#workskin .tw-reply .tw-stats p { display: inline; margin: 0; padding: 0; }
+
+#workskin .tw .tw-stat,
+#workskin .tw-reply .tw-stat { display: block; flex: 1 1 0; margin: 0; padding: 0; white-space: nowrap; }
+
+/* the bookmark and share buttons (tw-end) hug the right-hand edge */
+#workskin .tw .tw-stat.tw-end,
+#workskin .tw-reply .tw-stat.tw-end { flex: none; margin-left: 0.9em; }
+
+#workskin .tw .tw-stats .ic,
+#workskin .tw-reply .tw-stats .ic { width: 1.3em; height: 1.3em; margin-right: 0.3em; vertical-align: -0.3em; }
+
+#workskin .tw .tw-stats .ic.ic-tw-share,
+#workskin .tw-reply .tw-stats .ic.ic-tw-share { margin-right: 0; }
+
+#workskin .tw .tw-quote {
+  display: block;
+  border: 1px solid #cfd9de;
+  border-radius: 12px;
+  padding: 0.5em 0.8em;
+  margin: 0.4em 0;
+  font-size: 0.92em;
+}</code></pre>
+
+<p>Most of the parts of a tweet are simple: a line with its own size, colour and spacing.</p>
+
+<details>
+<summary>How it works: the row of buttons, quotes and notes</summary>
+
+<p>The row of buttons is a flex row, like the bottom of a Tumblr post. <code>flex: 1 1 0</code> gives each button an equal share of the width, so replies, reposts, likes and views spread out evenly. <code>tw-end</code> switches that off with <code>flex: none</code>, so the bookmark and share buttons only take up as much room as they need, and sit together at the right-hand end. The main tweet's row has a pale line above it, and a reply's row is smaller with no line. The buttons themselves are pictures, in the Icons section at the end of the module. A quote tweet is a smaller rounded box inside the tweet. The Community Note (<code>tw-note</code>) and the sensitive content cover (<code>tw-warn</code>) are boxes the same way, with a pale grey background.</p>
+
+</details>
+
+<pre><code>/* ---- a like or bookmark readers can click: &lt;details class="tw-stat tw-tog"&gt;
+   (&lt;details class="tw-stat tw-end tw-tog"&gt; for the bookmark)
+   Inside the &lt;summary&gt;, the "off" count shows at first and the "on" count once clicked.
+   Click again and it goes back. */
+#workskin .tw .tw-tog summary,
+#workskin .tw-reply .tw-tog summary { display: block; list-style: none; cursor: pointer; color: inherit; }
+
+#workskin .tw .tw-tog summary::-webkit-details-marker,
+#workskin .tw-reply .tw-tog summary::-webkit-details-marker { display: none; }
+
+#workskin .tw .tw-tog summary::marker,
+#workskin .tw-reply .tw-tog summary::marker { content: ""; }
+
+#workskin .tw .tw-tog .on,
+#workskin .tw-reply .tw-tog .on { display: none; }
+
+#workskin .tw .tw-tog[open] .on,
+#workskin .tw-reply .tw-tog[open] .on { display: inline; }
+
+#workskin .tw .tw-tog[open] .off,
+#workskin .tw-reply .tw-tog[open] .off { display: none; }
+
+#workskin .tw .tw-stats .tw-liked,
+#workskin .tw-reply .tw-stats .tw-liked,
+#workskin .tw .tw-stats .tw-tog[open],
+#workskin .tw-reply .tw-stats .tw-tog[open] {
+  color: #ed4956;
+}
+
+#workskin .tw .tw-stats .tw-rt,
+#workskin .tw-reply .tw-stats .tw-rt {
+  color: #00ba7c;
+}
+
+#workskin .tw .tw-stats .tw-saved,
+#workskin .tw-reply .tw-stats .tw-saved,
+#workskin .tw .tw-stats .tw-tog.tw-end[open],
+#workskin .tw-reply .tw-stats .tw-tog.tw-end[open] {
+  color: #1d9bf0;
+}
+
+/* a private account's tweets can't be reposted: add tw-locked to the repost's tw-stat to fade it out */
+#workskin .tw .tw-stats .tw-locked,
+#workskin .tw-reply .tw-stats .tw-locked {
+  color: #cfd9de;
+}</code></pre>
+
+<p>A button the account has used turns red for a like, green for a repost or blue for a bookmark, count and all, and a clicked like turns red the same way. A clicked bookmark turns blue: <code>.tw-tog.tw-end</code> picks out the bookmark, and is more specific than the red rule, so it wins. <code>tw-locked</code> fades a private tweet's repost button to pale grey, or dark grey in dark mode. The coloured pictures are in the Icons section too.</p>
+
+<details>
+<summary>How it works: the clickable like and bookmark</summary>
+
+<p>The clickable like and bookmark work the same way as Instagram's heart: the <code>summary</code> holds a count marked <code>off</code> and one marked <code>on</code>, and <code>[open]</code> means "after it's been clicked", which hides the first and shows the second. The little arrow that details normally shows is switched off with <code>list-style</code> and the two <code>marker</code> rules.</p>
+
+</details>
+
+<h3>Polls</h3>
+
+<h4>Open Polls and Results</h4>
+
+<pre><code>#workskin .tw .tw-opt,
+#workskin .tw-reply .tw-opt {
+  display: block;
+  border: 1px solid #1d9bf0;
+  border-radius: 2em;
+  padding: 0.4em 0.7em;
+  margin: 0.35em 0;
+  color: #1d9bf0;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* results: each option is a row, the bar with the option in it, then the percentage at the far right */
+#workskin .tw .tw-opt.res,
+#workskin .tw-reply .tw-opt.res {
+  display: flex;
+  align-items: center;
+  border: 0;
+  padding: 0;
+  color: #0f1419;
+  font-weight: normal;
+  text-align: left;
+}
+
+#workskin .tw .tw-bar,
+#workskin .tw-reply .tw-bar {
+  display: block;
+  flex: 0 1 auto;
+  box-sizing: border-box;
+  min-width: 2.6em;
+  padding: 0.4em 0.7em;
+  border-radius: 6px;
+  background: #cfd9de;
+  white-space: nowrap;
+}
+
+#workskin .tw .tw-opt.win .tw-bar,
+#workskin .tw-reply .tw-opt.win .tw-bar {
+  background: #8ecdf7;
+}
+
+#workskin .tw .tw-opt .tw-pct,
+#workskin .tw-reply .tw-opt .tw-pct {
+  margin-left: auto;
+  padding-left: 0.8em;
+  white-space: nowrap;
+}
+
+#workskin .tw .tw-opt.win,
+#workskin .tw-reply .tw-opt.win {
+  font-weight: bold;
+}
+
+#workskin .tw .tw-opt.p50 .tw-bar, #workskin .tw-reply .tw-opt.p50 .tw-bar { width: 50%; }</code></pre>
+
+<p>An open poll is a blue outline with very round corners and bold blue words in the middle.</p>
+
+<details>
+<summary>Options: where the bar sizes are set, and adding your own</summary>
+
+<p>The bar sizes are these rules near the end of the Twitter/X poll CSS, under the comment <code>/* how long each bar is */</code>. Each one says "an option with this class gets a bar this wide":</p>
+
+<pre><code>/* how long each bar is */
+#workskin .tw .tw-opt.p0 .tw-bar, #workskin .tw-reply .tw-opt.p0 .tw-bar { width: 0%; }
+#workskin .tw .tw-opt.p10 .tw-bar, #workskin .tw-reply .tw-opt.p10 .tw-bar { width: 10%; }
+#workskin .tw .tw-opt.p20 .tw-bar, #workskin .tw-reply .tw-opt.p20 .tw-bar { width: 20%; }
+#workskin .tw .tw-opt.p25 .tw-bar, #workskin .tw-reply .tw-opt.p25 .tw-bar { width: 25%; }
+#workskin .tw .tw-opt.p30 .tw-bar, #workskin .tw-reply .tw-opt.p30 .tw-bar { width: 30%; }
+#workskin .tw .tw-opt.p33 .tw-bar, #workskin .tw-reply .tw-opt.p33 .tw-bar { width: 33%; }
+#workskin .tw .tw-opt.p40 .tw-bar, #workskin .tw-reply .tw-opt.p40 .tw-bar { width: 40%; }
+#workskin .tw .tw-opt.p50 .tw-bar, #workskin .tw-reply .tw-opt.p50 .tw-bar { width: 50%; }
+#workskin .tw .tw-opt.p60 .tw-bar, #workskin .tw-reply .tw-opt.p60 .tw-bar { width: 60%; }
+#workskin .tw .tw-opt.p67 .tw-bar, #workskin .tw-reply .tw-opt.p67 .tw-bar { width: 67%; }
+#workskin .tw .tw-opt.p70 .tw-bar, #workskin .tw-reply .tw-opt.p70 .tw-bar { width: 70%; }
+#workskin .tw .tw-opt.p75 .tw-bar, #workskin .tw-reply .tw-opt.p75 .tw-bar { width: 75%; }
+#workskin .tw .tw-opt.p80 .tw-bar, #workskin .tw-reply .tw-opt.p80 .tw-bar { width: 80%; }
+#workskin .tw .tw-opt.p90 .tw-bar, #workskin .tw-reply .tw-opt.p90 .tw-bar { width: 90%; }
+#workskin .tw .tw-opt.p100 .tw-bar, #workskin .tw-reply .tw-opt.p100 .tw-bar { width: 100%; }</code></pre>
+
+<p>The percentage the reader sees is just the text in <code>tw-pct</code>, so any number can go there. The bar only comes in these sizes, though, and the nearest one is usually close enough. If you want a bar of an exact length, copy one of the rules into your skin, change the three numbers, and give the option that class. For a 58% bar:</p>
+
+<pre><code>#workskin .tw .tw-opt.p58 .tw-bar, #workskin .tw-reply .tw-opt.p58 .tw-bar { width: 58%; }</code></pre>
+
+<p>Then <code>&lt;p class="tw-opt res p58"&gt;</code> gets a bar 58% of the way across. The class name can be anything, but keeping the number in it makes it easy to remember.</p>
+
+</details>
+
+<details>
+<summary>How it works: the results bars</summary>
+
+<p>The results (<code>res</code>) turns the option into a flex row, like the buttons along the bottom of a tweet: the <code>tw-bar</code> span with the option in it, then the percentage pushed to the far right by <code>margin-left: auto</code>. The bar is a grey box with slightly rounded corners, and each <code>p</code> class sets how wide it is. <code>min-width</code> keeps a tiny percentage from shrinking the bar to nothing, and <code>nowrap</code> lets the words run on past the end of a short bar, like the real thing. <code>win</code> swaps the grey bar for a blue one and makes the text bold.</p>
+
+</details>
+
+<h4>Tappable Polls</h4>
+
+<pre><code>/* the tick in a circle on the option the account voted for */
+#workskin .tw .tw-voted,
+#workskin .tw-reply .tw-voted {
+  display: inline-block;
+  width: 1.1em;
+  height: 1.1em;
+  margin-left: 0.4em;
+  border: 1px solid;
+  border-radius: 50%;
+  font-size: 0.75em;
+  font-weight: bold;
+  line-height: 1.1em;
+  text-align: center;
+  vertical-align: 0.15em;
+}
+
+/* TAPPABLE POLL, the short way: &lt;details class="tw-vote"&gt; with the open poll in &lt;summary&gt; (spans with tw-opt,
+   and a tw-pollinfo span), then the results after it, with tw-voted on the pov character's vote.
+   Tapping shows the results instead. */
+#workskin .tw .tw-vote,
+#workskin .tw-reply .tw-vote,
+#workskin .tw .tw-vote &gt; summary,
+#workskin .tw-reply .tw-vote &gt; summary { display: block; }
+
+#workskin .tw .tw-vote &gt; summary,
+#workskin .tw-reply .tw-vote &gt; summary,
+#workskin .tw .tw-pick &gt; summary,
+#workskin .tw-reply .tw-pick &gt; summary { cursor: pointer; list-style: none; }
+
+#workskin .tw .tw-vote &gt; summary::-webkit-details-marker,
+#workskin .tw-reply .tw-vote &gt; summary::-webkit-details-marker,
+#workskin .tw .tw-pick &gt; summary::-webkit-details-marker,
+#workskin .tw-reply .tw-pick &gt; summary::-webkit-details-marker { display: none; }
+
+#workskin .tw .tw-vote &gt; summary::marker,
+#workskin .tw-reply .tw-vote &gt; summary::marker,
+#workskin .tw .tw-pick &gt; summary::marker,
+#workskin .tw-reply .tw-pick &gt; summary::marker { content: ""; }
+
+#workskin .tw .tw-vote[open] &gt; summary,
+#workskin .tw-reply .tw-vote[open] &gt; summary { display: none; }
+
+/* TAPPABLE POLL where the reader picks: &lt;div class="tw-poll"&gt;, then one &lt;details class="tw-pick"&gt; per option,
+   each with &lt;summary class="tw-opt"&gt;Option&lt;/summary&gt; and a &lt;div class="tw-results"&gt; holding the results
+   with tw-voted on that option. The results cover the poll when it's tapped. */
+#workskin .tw .tw-poll,
+#workskin .tw-reply .tw-poll { display: block; position: relative; }
+
+#workskin .tw .tw-pick,
+#workskin .tw-reply .tw-pick { display: block; margin: 0.35em 0; }
+
+#workskin .tw .tw-pick &gt; .tw-opt,
+#workskin .tw-reply .tw-pick &gt; .tw-opt { margin: 0; }
+
+#workskin .tw .tw-pick[open] &gt; summary,
+#workskin .tw-reply .tw-pick[open] &gt; summary { visibility: hidden; }
+
+#workskin .tw .tw-results,
+#workskin .tw-reply .tw-results { display: block; position: absolute; top: -0.35em; left: 0; right: 0; z-index: 1; background: #ffffff; }</code></pre>
+
+<p>The tick is just a tick character in a span with a thin round border: <code>border-radius: 50%</code> turns a square into a circle. With no colour given, the border takes the colour of the words.</p>
+
+<details>
+<summary>How it works: the tappable polls</summary>
+
+<p>The tappable polls work exactly like Tumblr's. In <code>tw-vote</code>, the open poll is the <code>summary</code>, and <code>[open]</code> hides it once it's been tapped, so the results underneath show instead. In the reader-picks version, each option is its own details, and its <code>tw-results</code> box is lifted out of the line with <code>position: absolute</code> so it sits over the whole <code>tw-poll</code> box, starting at the top. The white background (black in dark mode) hides the options underneath, and <code>z-index</code> keeps it on top. The tapped option's own outline is hidden with <code>visibility: hidden</code>, which keeps its space so nothing jumps about.</p>
+
+</details>
+
+<h3>Pictures and Videos</h3>
+
+<pre><code>#workskin .tw .tw-media,
+#workskin .tw-reply .tw-media {
+  display: block;
+  overflow: hidden;
+  border: 1px solid #cfd9de;
+  border-radius: 14px;
+  margin: 0.5em 0;
+  background: #eff3f4;
+  color: #536471;
+  font-style: italic;
+  text-align: center;
+  line-height: 1.3;
+}</code></pre>
+
+<p>One picture fills the rounded box at its own shape, and <code>overflow: hidden</code> rounds off its corners with the box. An embedded video (<code>video</code>) is <code>200px</code> tall, and a description gets padding to make it about the size of a picture.</p>
+
+<details>
+<summary>How it works: two, three and four pictures</summary>
+
+<p>Two, three and four pictures work exactly like WhatsApp's photo galleries - squares made with <code>padding-top</code>, floated into a grid, with <code>land</code> for wide pictures - so see <a href="whatsapp-css.html#heading">Photo Galleries</a> for how. The only differences are the sizes (<code>49.2%</code> squares with a <code>1.2%</code> gap, adding up to <code>99.6%</code>), and this at the end:</p>
+
+<pre><code>#workskin .tw .tw-media.two::after,
+#workskin .tw .tw-media.three::after,
+#workskin .tw .tw-media.four::after {
+  content: "";
+  display: block;
+  clear: both;
+}</code></pre>
+
+<p>Floating things don't take up any height, so a box of floated pictures would shrink to nothing, and the stats line would slide up behind the pictures. This adds an invisible empty line after them with <code>clear: both</code>, which means "go below anything floating", so the box stretches down to hold them.</p>
+
+</details>
+
+<h3>Characters</h3>
+
+<h4>Name Line and Profile Picture</h4>
+
+<p>The name line is a row with the picture, name, handle, padlock and time side by side, all kept on one line however long they are.</p>
+
+<details>
+<summary>The full CSS for the name line and profile picture</summary>
 
 <pre><code>#workskin .tw .tw-top,
 #workskin .tw-reply .tw-top {
@@ -363,6 +749,18 @@
 
 #workskin .tw-thread.app .tw .tw-fan { position: absolute; margin-left: 0.55em; }</code></pre>
 
+</details>
+
+<details>
+<summary>Options: the ten colours</summary>
+
+<p>Initials circles take <code>colour1</code> to <code>colour10</code>, the same ten colours as every other app, which are in the core (see <a href="core-css.html#heading">The Ten Colours</a>).</p>
+
+</details>
+
+<details>
+<summary>How it works: long names, the fan line and opened tweets</summary>
+
 <ul>
   <li>The name line is a flex row, with the picture, name, handle, padlock and time side by side. <code>white-space: nowrap</code> keeps them all on one line, however long they are, and <code>overflow: hidden</code> cuts off anything that still doesn't fit.</li>
   <li>When the row is too long, flex shrinks the boxes in it. <code>flex-shrink</code> (the middle number in <code>flex: 0 100000 auto</code>) says how fast each one shrinks: the handle's is 100000 and the name's is 1, so the handle shrinks a hundred thousand times faster. That's so fast that it's gone completely before the name has shrunk by even a fraction of a pixel, so you never see a cut-off name next to a scrap of handle. <code>min-width: 0</code> is what allows a box to shrink smaller than its words. The time and the padlock get <code>flex: none</code>, so they never shrink at all.</li>
@@ -370,314 +768,13 @@
   <li>A name typed straight in, with no span around it, can't get the "...", so it wraps onto a hidden second line instead: <code>max-height: 1.3em</code>, the same as the <code>line-height</code>, shows the first line and hides the rest.</li>
   <li>The picture is 40px tall, which leaves room under the name for a second line. <code>tw-fan</code> is pinned there with <code>position: absolute</code>, starting just past the picture, so it doesn't push the tweet down.</li>
   <li>The last few rules are for an opened tweet: a <code>tw</code> on its own, or the first tweet of a reply chain. There, the name line goes back to <code>display: block</code>, the picture floats to the left, the name (still a flex box) takes the first line, and the handle and time flow onto the line under it. The fan line goes back to being an ordinary block, under the handle. The rules starting <code>.tw-thread.app</code> switch the one-line layout back on for tweets in a feed.</li>
-  <li>Initials circles take <code>colour1</code> to <code>colour10</code>, the same ten colours as every other app, which are in the core.</li>
 </ul>
-
-<h3>Text, Stats, Quotes and Notes</h3>
-
-<pre><code>#workskin .tw .tw-text { display: block; font-size: 1.02em; margin: 0.2em 0 0.4em 0; }
-
-#workskin .tw .tw-stats,
-#workskin .tw-reply .tw-stats {
-  display: flex;
-  align-items: center;
-  margin: 0.5em 0 0 0;
-  padding: 0.55em 0.2em 0 0.2em;
-  border-top: 1px solid #eff3f4;
-  color: #536471;
-  font-size: 0.85em;
-}
-
-/* a reply's row is smaller, with no line above it */
-#workskin .tw-reply .tw-stats { margin-top: 0.3em; padding: 0; border-top: 0; font-size: 0.8em; }
-
-/* AO3 turns line breaks in the row into &lt;br /&gt; tags, and wraps each button in a &lt;p&gt;: keep them flat */
-#workskin .tw .tw-stats br,
-#workskin .tw-reply .tw-stats br { display: none; }
-
-#workskin .tw .tw-stats p,
-#workskin .tw-reply .tw-stats p { display: inline; margin: 0; padding: 0; }
-
-#workskin .tw .tw-stat,
-#workskin .tw-reply .tw-stat { display: block; flex: 1 1 0; margin: 0; padding: 0; white-space: nowrap; }
-
-/* the bookmark and share buttons (tw-end) hug the right-hand edge */
-#workskin .tw .tw-stat.tw-end,
-#workskin .tw-reply .tw-stat.tw-end { flex: none; margin-left: 0.9em; }
-
-#workskin .tw .tw-stats .ic,
-#workskin .tw-reply .tw-stats .ic { width: 1.3em; height: 1.3em; margin-right: 0.3em; vertical-align: -0.3em; }
-
-#workskin .tw .tw-stats .ic.ic-tw-share,
-#workskin .tw-reply .tw-stats .ic.ic-tw-share { margin-right: 0; }
-
-#workskin .tw .tw-quote {
-  display: block;
-  border: 1px solid #cfd9de;
-  border-radius: 12px;
-  padding: 0.5em 0.8em;
-  margin: 0.4em 0;
-  font-size: 0.92em;
-}</code></pre>
-
-<p>Most of the parts of a tweet are simple: a line with its own size, colour and spacing. The row of buttons is a flex row, like the bottom of a Tumblr post. <code>flex: 1 1 0</code> gives each button an equal share of the width, so replies, reposts, likes and views spread out evenly. <code>tw-end</code> switches that off with <code>flex: none</code>, so the bookmark and share buttons only take up as much room as they need, and sit together at the right-hand end. The main tweet's row has a pale line above it, and a reply's row is smaller with no line. The buttons themselves are pictures, in the Icons section at the end of the module. A quote tweet is a smaller rounded box inside the tweet. The Community Note (<code>tw-note</code>) and the sensitive content cover (<code>tw-warn</code>) are boxes the same way, with a pale grey background.</p>
-
-<pre><code>/* ---- a like or bookmark readers can click: &lt;details class="tw-stat tw-tog"&gt;
-   (&lt;details class="tw-stat tw-end tw-tog"&gt; for the bookmark)
-   Inside the &lt;summary&gt;, the "off" count shows at first and the "on" count once clicked.
-   Click again and it goes back. */
-#workskin .tw .tw-tog summary,
-#workskin .tw-reply .tw-tog summary { display: block; list-style: none; cursor: pointer; color: inherit; }
-
-#workskin .tw .tw-tog summary::-webkit-details-marker,
-#workskin .tw-reply .tw-tog summary::-webkit-details-marker { display: none; }
-
-#workskin .tw .tw-tog summary::marker,
-#workskin .tw-reply .tw-tog summary::marker { content: ""; }
-
-#workskin .tw .tw-tog .on,
-#workskin .tw-reply .tw-tog .on { display: none; }
-
-#workskin .tw .tw-tog[open] .on,
-#workskin .tw-reply .tw-tog[open] .on { display: inline; }
-
-#workskin .tw .tw-tog[open] .off,
-#workskin .tw-reply .tw-tog[open] .off { display: none; }
-
-#workskin .tw .tw-stats .tw-liked,
-#workskin .tw-reply .tw-stats .tw-liked,
-#workskin .tw .tw-stats .tw-tog[open],
-#workskin .tw-reply .tw-stats .tw-tog[open] {
-  color: #ed4956;
-}
-
-#workskin .tw .tw-stats .tw-rt,
-#workskin .tw-reply .tw-stats .tw-rt {
-  color: #00ba7c;
-}
-
-#workskin .tw .tw-stats .tw-saved,
-#workskin .tw-reply .tw-stats .tw-saved,
-#workskin .tw .tw-stats .tw-tog.tw-end[open],
-#workskin .tw-reply .tw-stats .tw-tog.tw-end[open] {
-  color: #1d9bf0;
-}
-
-/* a private account's tweets can't be reposted: add tw-locked to the repost's tw-stat to fade it out */
-#workskin .tw .tw-stats .tw-locked,
-#workskin .tw-reply .tw-stats .tw-locked {
-  color: #cfd9de;
-}</code></pre>
-
-<p>The clickable like and bookmark work the same way as Instagram's heart: the <code>summary</code> holds a count marked <code>off</code> and one marked <code>on</code>, and <code>[open]</code> means "after it's been clicked", which hides the first and shows the second. The little arrow that details normally shows is switched off with <code>list-style</code> and the two <code>marker</code> rules.</p>
-
-<p>A button the account has used turns red for a like, green for a repost or blue for a bookmark, count and all, and a clicked like turns red the same way. A clicked bookmark turns blue: <code>.tw-tog.tw-end</code> picks out the bookmark, and is more specific than the red rule, so it wins. <code>tw-locked</code> fades a private tweet's repost button to pale grey, or dark grey in dark mode. The coloured pictures are in the Icons section too.</p>
-
-<h3>Polls</h3>
-
-<pre><code>#workskin .tw .tw-opt,
-#workskin .tw-reply .tw-opt {
-  display: block;
-  border: 1px solid #1d9bf0;
-  border-radius: 2em;
-  padding: 0.4em 0.7em;
-  margin: 0.35em 0;
-  color: #1d9bf0;
-  font-weight: bold;
-  text-align: center;
-}
-
-/* results: each option is a row, the bar with the option in it, then the percentage at the far right */
-#workskin .tw .tw-opt.res,
-#workskin .tw-reply .tw-opt.res {
-  display: flex;
-  align-items: center;
-  border: 0;
-  padding: 0;
-  color: #0f1419;
-  font-weight: normal;
-  text-align: left;
-}
-
-#workskin .tw .tw-bar,
-#workskin .tw-reply .tw-bar {
-  display: block;
-  flex: 0 1 auto;
-  box-sizing: border-box;
-  min-width: 2.6em;
-  padding: 0.4em 0.7em;
-  border-radius: 6px;
-  background: #cfd9de;
-  white-space: nowrap;
-}
-
-#workskin .tw .tw-opt.win .tw-bar,
-#workskin .tw-reply .tw-opt.win .tw-bar {
-  background: #8ecdf7;
-}
-
-#workskin .tw .tw-opt .tw-pct,
-#workskin .tw-reply .tw-opt .tw-pct {
-  margin-left: auto;
-  padding-left: 0.8em;
-  white-space: nowrap;
-}
-
-#workskin .tw .tw-opt.win,
-#workskin .tw-reply .tw-opt.win {
-  font-weight: bold;
-}
-
-#workskin .tw .tw-opt.p50 .tw-bar, #workskin .tw-reply .tw-opt.p50 .tw-bar { width: 50%; }</code></pre>
-
-<p>An open poll is a blue outline with very round corners and bold blue words in the middle. The results (<code>res</code>) turns the option into a flex row, like the buttons along the bottom of a tweet: the <code>tw-bar</code> span with the option in it, then the percentage pushed to the far right by <code>margin-left: auto</code>. The bar is a grey box with slightly rounded corners, and each <code>p</code> class sets how wide it is. <code>min-width</code> keeps a tiny percentage from shrinking the bar to nothing, and <code>nowrap</code> lets the words run on past the end of a short bar, like the real thing. <code>win</code> swaps the grey bar for a blue one and makes the text bold.</p>
-
-<details>
-<summary>Where the bar sizes are set, and adding your own</summary>
-
-<p>The bar sizes are these rules near the end of the Twitter/X poll CSS, under the comment <code>/* how long each bar is */</code>. Each one says "an option with this class gets a bar this wide":</p>
-
-<pre><code>/* how long each bar is */
-#workskin .tw .tw-opt.p0 .tw-bar, #workskin .tw-reply .tw-opt.p0 .tw-bar { width: 0%; }
-#workskin .tw .tw-opt.p10 .tw-bar, #workskin .tw-reply .tw-opt.p10 .tw-bar { width: 10%; }
-#workskin .tw .tw-opt.p20 .tw-bar, #workskin .tw-reply .tw-opt.p20 .tw-bar { width: 20%; }
-#workskin .tw .tw-opt.p25 .tw-bar, #workskin .tw-reply .tw-opt.p25 .tw-bar { width: 25%; }
-#workskin .tw .tw-opt.p30 .tw-bar, #workskin .tw-reply .tw-opt.p30 .tw-bar { width: 30%; }
-#workskin .tw .tw-opt.p33 .tw-bar, #workskin .tw-reply .tw-opt.p33 .tw-bar { width: 33%; }
-#workskin .tw .tw-opt.p40 .tw-bar, #workskin .tw-reply .tw-opt.p40 .tw-bar { width: 40%; }
-#workskin .tw .tw-opt.p50 .tw-bar, #workskin .tw-reply .tw-opt.p50 .tw-bar { width: 50%; }
-#workskin .tw .tw-opt.p60 .tw-bar, #workskin .tw-reply .tw-opt.p60 .tw-bar { width: 60%; }
-#workskin .tw .tw-opt.p67 .tw-bar, #workskin .tw-reply .tw-opt.p67 .tw-bar { width: 67%; }
-#workskin .tw .tw-opt.p70 .tw-bar, #workskin .tw-reply .tw-opt.p70 .tw-bar { width: 70%; }
-#workskin .tw .tw-opt.p75 .tw-bar, #workskin .tw-reply .tw-opt.p75 .tw-bar { width: 75%; }
-#workskin .tw .tw-opt.p80 .tw-bar, #workskin .tw-reply .tw-opt.p80 .tw-bar { width: 80%; }
-#workskin .tw .tw-opt.p90 .tw-bar, #workskin .tw-reply .tw-opt.p90 .tw-bar { width: 90%; }
-#workskin .tw .tw-opt.p100 .tw-bar, #workskin .tw-reply .tw-opt.p100 .tw-bar { width: 100%; }</code></pre>
-
-<p>The percentage the reader sees is just the text in <code>tw-pct</code>, so any number can go there. The bar only comes in these sizes, though, and the nearest one is usually close enough. If you want a bar of an exact length, copy one of the rules into your skin, change the three numbers, and give the option that class. For a 58% bar:</p>
-
-<pre><code>#workskin .tw .tw-opt.p58 .tw-bar, #workskin .tw-reply .tw-opt.p58 .tw-bar { width: 58%; }</code></pre>
-
-<p>Then <code><code>&lt;p class="tw-opt res p58"&gt;</code>lt;span class="tw-opt res p58"<code>&lt;p class="tw-opt res p58"&gt;</code>gt;</code> gets a bar 58% of the way across. The class name can be anything, but keeping the number in it makes it easy to remember.</p>
 
 </details>
 
-<h3>Tappable Polls</h3>
-
-<pre><code>/* the tick in a circle on the option the account voted for */
-#workskin .tw .tw-voted,
-#workskin .tw-reply .tw-voted {
-  display: inline-block;
-  width: 1.1em;
-  height: 1.1em;
-  margin-left: 0.4em;
-  border: 1px solid;
-  border-radius: 50%;
-  font-size: 0.75em;
-  font-weight: bold;
-  line-height: 1.1em;
-  text-align: center;
-  vertical-align: 0.15em;
-}
-
-/* TAPPABLE POLL, the short way: &lt;details class="tw-vote"&gt; with the open poll in &lt;summary&gt; (spans with tw-opt,
-   and a tw-pollinfo span), then the results after it, with tw-voted on the pov character's vote.
-   Tapping shows the results instead. */
-#workskin .tw .tw-vote,
-#workskin .tw-reply .tw-vote,
-#workskin .tw .tw-vote &gt; summary,
-#workskin .tw-reply .tw-vote &gt; summary { display: block; }
-
-#workskin .tw .tw-vote &gt; summary,
-#workskin .tw-reply .tw-vote &gt; summary,
-#workskin .tw .tw-pick &gt; summary,
-#workskin .tw-reply .tw-pick &gt; summary { cursor: pointer; list-style: none; }
-
-#workskin .tw .tw-vote &gt; summary::-webkit-details-marker,
-#workskin .tw-reply .tw-vote &gt; summary::-webkit-details-marker,
-#workskin .tw .tw-pick &gt; summary::-webkit-details-marker,
-#workskin .tw-reply .tw-pick &gt; summary::-webkit-details-marker { display: none; }
-
-#workskin .tw .tw-vote &gt; summary::marker,
-#workskin .tw-reply .tw-vote &gt; summary::marker,
-#workskin .tw .tw-pick &gt; summary::marker,
-#workskin .tw-reply .tw-pick &gt; summary::marker { content: ""; }
-
-#workskin .tw .tw-vote[open] &gt; summary,
-#workskin .tw-reply .tw-vote[open] &gt; summary { display: none; }
-
-/* TAPPABLE POLL where the reader picks: &lt;div class="tw-poll"&gt;, then one &lt;details class="tw-pick"&gt; per option,
-   each with &lt;summary class="tw-opt"&gt;Option&lt;/summary&gt; and a &lt;div class="tw-results"&gt; holding the results
-   with tw-voted on that option. The results cover the poll when it's tapped. */
-#workskin .tw .tw-poll,
-#workskin .tw-reply .tw-poll { display: block; position: relative; }
-
-#workskin .tw .tw-pick,
-#workskin .tw-reply .tw-pick { display: block; margin: 0.35em 0; }
-
-#workskin .tw .tw-pick &gt; .tw-opt,
-#workskin .tw-reply .tw-pick &gt; .tw-opt { margin: 0; }
-
-#workskin .tw .tw-pick[open] &gt; summary,
-#workskin .tw-reply .tw-pick[open] &gt; summary { visibility: hidden; }
-
-#workskin .tw .tw-results,
-#workskin .tw-reply .tw-results { display: block; position: absolute; top: -0.35em; left: 0; right: 0; z-index: 1; background: #ffffff; }</code></pre>
-
-<p>The tick is just a tick character in a span with a thin round border: <code>border-radius: 50%</code> turns a square into a circle. With no colour given, the border takes the colour of the words.</p>
-
-<p>The tappable polls work exactly like Tumblr's. In <code>tw-vote</code>, the open poll is the <code>summary</code>, and <code>[open]</code> hides it once it's been tapped, so the results underneath show instead. In the reader-picks version, each option is its own details, and its <code>tw-results</code> box is lifted out of the line with <code>position: absolute</code> so it sits over the whole <code>tw-poll</code> box, starting at the top. The white background (black in dark mode) hides the options underneath, and <code>z-index</code> keeps it on top. The tapped option's own outline is hidden with <code>visibility: hidden</code>, which keeps its space so nothing jumps about.</p>
-
-<h3>Pictures and Videos</h3>
-
-<pre><code>#workskin .tw .tw-media,
-#workskin .tw-reply .tw-media {
-  display: block;
-  overflow: hidden;
-  border: 1px solid #cfd9de;
-  border-radius: 14px;
-  margin: 0.5em 0;
-  background: #eff3f4;
-  color: #536471;
-  font-style: italic;
-  text-align: center;
-  line-height: 1.3;
-}</code></pre>
-
-<p>One picture fills the rounded box at its own shape, and <code>overflow: hidden</code> rounds off its corners with the box. An embedded video (<code>video</code>) is <code>200px</code> tall, and a description gets padding to make it about the size of a picture.</p>
-
-<p>Two, three and four pictures work exactly like WhatsApp's photo galleries - squares made with <code>padding-top</code>, floated into a grid, with <code>land</code> for wide pictures - so see <a href="whatsapp-css.html#heading">Photo Galleries</a> for how. The only differences are the sizes (<code>49.2%</code> squares with a <code>1.2%</code> gap, adding up to <code>99.6%</code>), and this at the end:</p>
-
-<pre><code>#workskin .tw .tw-media.two::after,
-#workskin .tw .tw-media.three::after,
-#workskin .tw .tw-media.four::after {
-  content: "";
-  display: block;
-  clear: both;
-}</code></pre>
-
-<p>Floating things don't take up any height, so a box of floated pictures would shrink to nothing, and the stats line would slide up behind the pictures. This adds an invisible empty line after them with <code>clear: both</code>, which means "go below anything floating", so the box stretches down to hold them.</p>
-
-<h3>Scrolling</h3>
-
-<pre><code>#workskin .tw-thread .tw-scroll {
-  display: block;
-  max-height: 580px;
-  overflow-y: auto;
-  overflow-x: hidden;
-}
-
-#workskin .tw-thread.no-scroll .tw-scroll { max-height: none; overflow-y: visible; }
-
-#workskin .tw {
-  max-height: 700px;
-  overflow-y: auto;
-  overflow-x: hidden;
-}</code></pre>
-
-<p>In a thread, only the <code>tw-scroll</code> part scrolls, at the same height as every other chat. A tweet on its own scrolls as a whole, and it's allowed to be taller (<code>700px</code>), because a tweet with a picture is usually taller than a chat window and you'd rather not scroll it if you can help it. Adding <code>no-scroll</code> to a tweet switches its scrolling off, as usual, and adding it to the <code>tw-thread</code> switches off the scrolling inside it.</p>
-
 <h3>DMs</h3>
+
+<h4>The DM Window</h4>
 
 <pre><code>#workskin .twdm .mob-head {
   position: relative;
@@ -703,7 +800,16 @@
 
 #workskin .twdm .twdm-calls { right: 0.9em; }</code></pre>
 
-<p>The header is the usual centred <code>mob-head</code>, with wide padding on both sides to leave room for the buttons. The picture is a tweet's <code>tw-pfp</code>, centred with <code>margin: 0 auto</code>. The back arrow and the call buttons are pulled out of the line with <code>position: absolute</code> and pinned to each side, and <code>top: 50%</code> with <code>translateY(-50%)</code> puts them halfway down, however tall the header is.</p>
+<p>The header is the usual centred <code>mob-head</code>, with wide padding on both sides to leave room for the buttons.</p>
+
+<details>
+<summary>How it works: the picture and the buttons in the header</summary>
+
+<p>The picture is a tweet's <code>tw-pfp</code>, centred with <code>margin: 0 auto</code>. The back arrow and the call buttons are pulled out of the line with <code>position: absolute</code> and pinned to each side, and <code>top: 50%</code> with <code>translateY(-50%)</code> puts them halfway down, however tall the header is.</p>
+
+</details>
+
+<h4>Bubbles</h4>
 
 <pre><code>#workskin .twdm .msg {
   display: table;
@@ -725,7 +831,16 @@
   color: #0f1419;
 }</code></pre>
 
-<p>These are iMessage's bubbles in Twitter/X colours, but fully round, with no tail on any corner. Seen and Sent (<code>twdm-status</code>) work like iMessage's Delivered line, and the dates are the core <code>mob-sys</code> line in grey. Reactions are a pill pulled up under the bubble with a negative margin, like WhatsApp's. A quoted message in a reply (<code>twdm-quote</code>) is a bubble with its background taken away and a thin grey border added.</p>
+<p>These are iMessage's bubbles in Twitter/X colours, but fully round, with no tail on any corner.</p>
+
+<details>
+<summary>How it works: status lines, reactions and quoted messages</summary>
+
+<p>Seen and Sent (<code>twdm-status</code>) work like iMessage's Delivered line, and the dates are the core <code>mob-sys</code> line in grey. Reactions are a pill pulled up under the bubble with a negative margin, like WhatsApp's. A quoted message in a reply (<code>twdm-quote</code>) is a bubble with its background taken away and a thin grey border added.</p>
+
+</details>
+
+<h4>Group Chats</h4>
 
 <pre><code>#workskin .twdm .twdm-row { position: relative; padding-left: 36px; margin: 0.25em 0; }
 
@@ -741,10 +856,18 @@
 
 <p>In a group, the row is pushed in from the left to leave a gap, and the picture is pinned into that gap at the <em>bottom</em> of the row, so it always sits beside the last message, however many there are.</p>
 
-<p>The message bar copies iMessage's (see the iMessage CSS), with Twitter/X's grey outlines. The app buttons along the bottom are a flex row with <code>justify-content: space-around</code>, which spreads them out evenly, and the picked one gets its grey box from <code>box-shadow: 0 0 0 0.35em</code>: a shadow with no blur that spreads out evenly round the icon, so it works like a background that's bigger than the icon itself.</p>
+<h4>Message Bar and App Buttons</h4>
+
+<p>The message bar copies iMessage's (see the iMessage CSS), with Twitter/X's grey outlines.</p>
 
 <details>
-<summary>Voice messages</summary>
+<summary>How it works: the app buttons</summary>
+
+<p>The app buttons along the bottom are a flex row with <code>justify-content: space-around</code>, which spreads them out evenly, and the picked one gets its grey box from <code>box-shadow: 0 0 0 0.35em</code>: a shadow with no blur that spreads out evenly round the icon, so it works like a background that's bigger than the icon itself.</p>
+
+</details>
+
+<h4>Voice Messages</h4>
 
 <pre><code>#workskin .twdm .voice .twdm-wave {
   width: 90px;
@@ -759,7 +882,19 @@
   letter-spacing: 1px;
 }</code></pre>
 
-<p>The sound wave is made of text. Each <code>\258x</code> is a block character - ▃▅▇▆▄▂ - of a different height, and twenty of them in a row look like a wave. (The usual way to draw stripes in CSS is a repeating gradient, but AO3 won't accept one.) To change the shape, change the order of the codes: <code>\2581</code> is the shortest block and <code>\2588</code> the tallest.</p>
+<p>The sound wave is made of text.</p>
+
+<details>
+<summary>Options: changing the shape of the wave</summary>
+
+<p>To change the shape, change the order of the codes: <code>\2581</code> is the shortest block and <code>\2588</code> the tallest.</p>
+
+</details>
+
+<details>
+<summary>How it works: a wave made of block characters</summary>
+
+<p>Each <code>\258x</code> is a block character - ▃▅▇▆▄▂ - of a different height, and twenty of them in a row look like a wave. (The usual way to draw stripes in CSS is a repeating gradient, but AO3 won't accept one.)</p>
 
 </details>
 

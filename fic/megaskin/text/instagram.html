@@ -2,6 +2,8 @@
 
 <!-- contents -->
 
+<p>Each part of this chapter starts with the simplest version that works. If you want more, the <strong>Options</strong> boxes show the other things that part can do, and the <strong>How it works</strong> boxes explain what each bit of the code is for.</p>
+
 <h3>Instagram Posts and the Feed</h3>
 
 <p>An Instagram post is a stack of lines, from the account name at the top down to the time at the bottom, and the posts sit in the feed: the home screen of the app, with the top bar, the row of Stories circles, and posts one after another, all scrolling together. The module class is <code>ig</code>, and the feed adds <code>ig-feed</code>. Before we begin, here's a whole feed with every kind of post the workskin can do. The full HTML is underneath it, which you can copy and modify yourself. The rest of this section takes the HTML apart so that you can modify all the individual parts to say exactly what you want.</p>
@@ -239,7 +241,14 @@
 &lt;div class="mob ig"&gt;another post&lt;/div&gt;
 &lt;/div&gt;</code></pre>
 
+<details>
+<summary>Options: showing the whole feed, and light or dark</summary>
+
 <p>Once the feed is taller than a phone screen it scrolls, and the top bar and Stories scroll away with the posts, like in the app. To show the whole feed at once instead, add <code>no-scroll</code>: <code>&lt;div class="mob ig ig-feed theme-auto no-scroll"&gt;</code>.</p>
+
+<p><code>theme-auto</code> follows the reader's device. Swap it for <code>theme-light</code> or <code>theme-dark</code> to pick one yourself (see <a href="core.html#heading">Light, Dark and Auto Themes</a>).</p>
+
+</details>
 
 <h4>Top</h4>
 
@@ -285,7 +294,7 @@
 &lt;/div&gt;</code></pre>
 
 <details>
-<summary>Ring colours, your own circle, and pictures</summary>
+<summary>Options: ring colours, your own circle, and pictures</summary>
 
 <ul>
   <li>With nothing added, the circle gets the colourful ring of a new story. Add <code>close</code> for the green ring of a Close Friends story, or <code>plain</code> for no ring at all.</li>
@@ -316,7 +325,12 @@
 [the lines of the post]
 &lt;/div&gt;</code></pre>
 
+<details>
+<summary>Options: a tall post on its own</summary>
+
 <p>A post on its own scrolls once it's taller than <code>700px</code>. A real photo can make it that tall, so add <code>no-scroll</code> to keep the buttons in view (see <a href="core.html#heading">Scrolling Long Chats</a>).</p>
+
+</details>
 
 <h3>Normal Posts</h3>
 
@@ -369,15 +383,23 @@
 <pre><code>&lt;details class="ig-tog save"&gt;&lt;summary&gt;&lt;span class="hide"&gt;Save&lt;/span&gt;&lt;span class="ig-icon bm off"&gt;&lt;/span&gt;&lt;span class="ig-icon bm on"&gt;&lt;/span&gt;&lt;/summary&gt;&lt;/details&gt;</code></pre>
 
 <details>
-<summary>How the clickable buttons work</summary>
+<summary>Options: starting switched on, or a heart that doesn't click</summary>
+
+<ul>
+  <li>To start with a button already switched on (a post the character has already liked, say), add <code>open</code>: <code>&lt;details class=&quot;ig-tog like&quot; open&gt;</code>.</li>
+  <li>If you don't want a clickable heart, use <code>ig-btn</code> for it instead, as in the last section. They look exactly the same until someone clicks.</li>
+</ul>
+
+</details>
+
+<details>
+<summary>How it works: the clickable buttons</summary>
 
 <p>They're made with the details and summary tags. Inside the <code>summary</code> are two versions of the same thing: the parts with <code>off</code> show to begin with, and the parts with <code>on</code> swap in after a click. Click again, and it goes back. Because the number is in there too, you can make the likes go up by one. The save button (<code>ig-tog save</code>) sits on its own at the far right.</p>
 
 <ul>
   <li>Keep each <code>&lt;details&gt;</code> on a single line of code, like above, and put them inside the <code>ig-actions</code> <code>div</code>, not inside a <code>&lt;p&gt;</code>.</li>
-  <li>To start with a button already switched on (a post the character has already liked, say), add <code>open</code>: <code>&lt;details class=&quot;ig-tog like&quot; open&gt;</code>.</li>
   <li>The clicking only works on AO3 itself, in a browser. In a download (EPUB, PDF and so on) the buttons stay as they started, so I'd recommend not having anything in your story depend on them being clicked.</li>
-  <li>If you don't want a clickable heart, use <code>ig-btn</code> for it instead, as in the last section. They look exactly the same until someone clicks.</li>
   <li>The <code>hide</code> spans are for readers with the workskin off. Without them the heart reads "&#9825;&#9829;2,4312,432", and with them it reads "&#9825; 2,431 likes (&#9829; 2,432 when liked)". The save button gets a hidden "Save", because its bookmark is drawn by the workskin and disappears with it. You'll still see a small triangle in front of each one with the workskin off - that's the details tag's own marker, and only the workskin can hide it.</li>
 </ul>
 
@@ -391,6 +413,9 @@
 
 <pre><code>&lt;p class="ig-likes liked-by"&gt;&lt;span class="ig-like-pfps"&gt;&lt;span class="ig-like-pfp"&gt;&lt;span class="pfp"&gt;&lt;img src="https://media.istockphoto.com/id/1298570775/photo/rose.jpg?s=1024x1024&amp;w=is&amp;k=20&amp;c=UFPisYCT3g2Vm04F2E5zrhtUWqDtLRLDXZisKb6Xf5s=" alt="Profile picture of shane.h"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="ig-like-pfp"&gt;&lt;span class="pfp"&gt;&lt;img class="land" src="https://media.istockphoto.com/id/2172051553/photo/asiatic-lily.jpg?s=1024x1024&amp;w=is&amp;k=20&amp;c=3vCuZD234XmkXzrnzWPBdIZM0oJA1B6qe1x-06K_wDo=" alt="Profile picture of scott.h"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="ig-like-pfp"&gt;&lt;span class="pfp"&gt;&lt;img class="land" src="https://www.shutterstock.com/shutterstock/photos/1100283806/display_1500/stock-photo-beautiful-lavender-flower-in-the-dalat-flower-park-selective-focus-1100283806.jpg" alt="Profile picture of jane_t"&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;Liked by &lt;b&gt;shane.h&lt;/b&gt; and &lt;b&gt;others&lt;/b&gt;&lt;/p&gt;</code></pre>
 
+<details>
+<summary>Options: faces from an upload or initials, or a plain count</summary>
+
 <p>The faces work the same three ways as the account picture: initials with a colour class, an uploaded picture, or a profile. Here's one of each - Rose's from her profile, then an uploaded picture, then initials:</p>
 
 <div class="mob ig ig-feed theme-auto"><div class="mob ig"><p class="ig-likes liked-by"><span class="ig-like-pfps"><span class="ig-like-pfp"><span class="pfp pfp-rose"></span></span><span class="ig-like-pfp"><span class="pfp"><img src="https://images.squidge.org/images/2026/11/16/Cat2.jpg" alt="Profile picture of samthecat"></span></span><span class="ig-like-pfp colour3">SC</span></span>Liked by <b><span class="handle pfp-rose"><span class="hide">RoseLandry</span></span></b> and <b>others</b></p></div></div>
@@ -399,6 +424,8 @@
 
 <p>For a plain count with no faces, use <code>ig-likes</code> on its own, without <code>liked-by</code>, like Rose's post in the example feed: <code>&lt;p class=&quot;ig-likes&quot;&gt;312 likes&lt;/p&gt;</code>.</p>
 
+</details>
+
 <h4>Caption</h4>
 
 <p><code>ig-caption</code> is the caption, with the poster's name in <code>&lt;b&gt;</code>. To colour a hashtag like Instagram does, wrap it in a span with <code>ig-tag</code>:</p>
@@ -406,6 +433,9 @@
 <div class="mob ig ig-feed theme-auto"><div class="mob ig"><p class="ig-caption"><b>hollanderswife</b> imagine him in this jersey 🥵 <span class="ig-tag">#shanehollander</span></p></div></div>
 
 <pre><code>&lt;p class="ig-caption"&gt;&lt;b&gt;hollanderswife&lt;/b&gt; imagine him in this jersey 🥵 &lt;span class="ig-tag"&gt;#shanehollander&lt;/span&gt;&lt;/p&gt;</code></pre>
+
+<details>
+<summary>Options: a caption cut short, or in paragraphs</summary>
 
 <p>To show a long caption cut short, like in a feed, stop partway through and end it with "... " and a grey <code>ig-more</code> span:</p>
 
@@ -418,6 +448,8 @@
 <div class="mob ig ig-feed theme-auto"><div class="mob ig"><p class="ig-caption"><b>shane.h</b> Thank you to everyone who came out tonight, and to the best teammates anyone could ask for.<br><br>It's been a long season. See you all in the fall. <span class="ig-tag">#gomontreal</span></p></div></div>
 
 <pre><code>&lt;p class="ig-caption"&gt;&lt;b&gt;shane.h&lt;/b&gt; Thank you to everyone who came out tonight, and to the best teammates anyone could ask for.&lt;br&gt;&lt;br&gt;It's been a long season. See you all in the fall. &lt;span class="ig-tag"&gt;#gomontreal&lt;/span&gt;&lt;/p&gt;</code></pre>
+
+</details>
 
 <h4>Comments</h4>
 
@@ -467,12 +499,17 @@
 
 <pre><code>&lt;p class="ig-photo ig-pic-portrait"&gt;[A tall photo of Shane in his kit, ready for the game]&lt;/p&gt;</code></pre>
 
+<details>
+<summary>Options: real photos in a square or tall shape</summary>
+
 <p>With a real photo, it works like the profile picture circles: a picture that's taller than it is wide fills the width and the middle of it shows. If the picture is wider than it is tall, add <code>class="land"</code> to the <code>img</code> so it fills the height instead, and the middle of it shows:</p>
 
 <pre><code>&lt;p class="ig-photo real ig-pic-sq"&gt;&lt;img src="..." alt="..."&gt;&lt;/p&gt;
 &lt;p class="ig-photo real ig-pic-portrait"&gt;&lt;img class="land" src="..." alt="..."&gt;&lt;/p&gt;</code></pre>
 
 <p>In a carousel, give every photo the same shape.</p>
+
+</details>
 
 <h4>A Carousel of Photos</h4>
 
@@ -512,11 +549,18 @@
 &lt;/details&gt;
 &lt;/div&gt;</code></pre>
 
+<details>
+<summary>How it works: the parts of a carousel</summary>
+
 <p>Add <code>real</code> to the carousel and to every photo in it, and use photos that are all the same shape, like Instagram does. The first photo goes in as normal. Every photo after it goes in the <code>&lt;summary&gt;</code> of its own <code>ig-next</code> block, as a <code>span</code> instead of a <code>p</code>, and each <code>ig-next</code> goes <em>inside</em> the one before it. So all the <code>&lt;/details&gt;</code> tags pile up at the end, one for each photo after the first.</p>
 
 <p>After each photo goes its <code>ig-car-info</code> line, with the counter at the top right ("2/3") and the dots underneath the photo. Put the dot for the photo you're on in <code>&lt;b&gt;</code>. The dots are light grey with a blue one in light mode, and dark grey with a blue one in dark mode. The bits in <code>hide</code> put the counter in brackets for anyone reading without the workskin.</p>
 
-<details><summary>Described photos in a carousel</summary>
+</details>
+
+<details>
+<summary>Options: described photos in a carousel</summary>
+
 <p>Leave <code>real</code> off the carousel and the photos, and describe each one in square brackets instead. Add <code>ig-pic-sq</code> to every photo so they're all the original square Instagram shape, and they all line up when they slide in:</p>
 
 <div class="mob ig ig-feed theme-auto"><div class="mob ig"><p class="ig-top"><span class="ig-menu ic ic-ig-lines">&#8801;</span><span class="ig-pfp"><span class="pfp pfp-rose"></span></span><span class="handle pfp-rose"><span class="hide">RoseLandry</span></span><span class="hide"> </span><span class="ig-tick ic ic-verified">&#10003;</span><span class="hide"> - </span><span>Ottawa, Ontario</span></p>
@@ -540,6 +584,7 @@
 &lt;p class="ig-car-info"&gt;&lt;span class="hide"&gt;(&lt;/span&gt;&lt;span class="ig-car-n"&gt;3/3&lt;/span&gt;&lt;span class="hide"&gt;) &lt;/span&gt;&lt;span class="ig-car-dots"&gt;&amp;#8226;&amp;#8226;&lt;b&gt;&amp;#8226;&lt;/b&gt;&lt;/span&gt;&lt;/p&gt;
 &lt;/details&gt;&lt;/details&gt;
 &lt;/div&gt;</code></pre>
+
 </details>
 
 <h4>Tagged People</h4>
@@ -596,12 +641,18 @@
 
 <pre><code>&lt;p class="ig-person"&gt;&lt;span class="ig-fbtn blue"&gt;Follow&lt;/span&gt;&lt;span class="ig-pfp colour4"&gt;SH&lt;/span&gt;&lt;span class="handle"&gt;scott.hunter&lt;/span&gt;&lt;span class="ig-pname"&gt;Scott Hunter&lt;/span&gt;&lt;/p&gt;</code></pre>
 
-<details><summary>More about how the list opens, stretches and scrolls</summary>
+<details>
+<summary>How it works: how the list opens, stretches and scrolls</summary>
+
 <p>While the list is open, the rest of the post goes darker behind it, and the list covers everything from just under the account line down to the bottom of the post. A short post (like one with a described photo and a one-line caption) goes back to its normal size when you close the list, and a post that's already long enough doesn't change size at all. The "In this photo" title and the grab bar above it stay put while the list scrolls, with a solid background so the names don't show through. Click the title to close the list again.</p>
+
 </details>
 
-<details><summary>Colours in light and dark mode</summary>
+<details>
+<summary>How it works: colours in light and dark mode</summary>
+
 <p>The icon is a white person on a dark circle in both modes. The list is white in light mode and dark grey in dark mode, and the "Following" button is light grey in light mode and darker grey in dark mode. The "Follow" button is blue in both.</p>
+
 </details>
 
 <h3>Characters</h3>
@@ -614,15 +665,25 @@
 
 <pre><code>&lt;p class="ig-top"&gt;&lt;span class="ig-menu ic ic-ig-lines"&gt;&amp;#8801;&lt;/span&gt;&lt;span class="ig-pfp story"&gt;&lt;span class="pfp pfp-ilya acc-shanewife"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="handle pfp-ilya acc-shanewife"&gt;&lt;span class="hide"&gt;hollanderswife&lt;/span&gt;&lt;/span&gt;&lt;span class="hide"&gt; - &lt;/span&gt;&lt;span class="ig-follow"&gt;Follow&lt;/span&gt;&lt;span class="hide"&gt; - &lt;/span&gt;&lt;span&gt;&amp;#9835; Boney M. - Rasputin&lt;/span&gt;&lt;/p&gt;</code></pre>
 
+<details>
+<summary>Options: a verified tick</summary>
+
 <p>A verified account gets the blue tick (<code>ig-tick</code>) straight after the name, before the Follow link if there is one. Ilya's fan account isn't verified (alas), but Shane's main account is:</p>
 
 <pre><code>&lt;span class="handle pfp-shane"&gt;&lt;span class="hide"&gt;shanehollanderhockeyplayer&lt;/span&gt;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="ig-tick ic ic-verified"&gt;&amp;#10003;&lt;/span&gt;</code></pre>
+
+</details>
+
+<details>
+<summary>Options: a song or a location under the name</summary>
 
 <p>For a song, start that last span with the music note symbol, <code>&amp;#9835;</code>, then the artist and the song title. For a location, just write the place:</p>
 
 <div class="mob ig ig-feed theme-auto"><div class="mob ig"><p class="ig-top"><span class="ig-menu ic ic-ig-lines">&#8801;</span><span class="ig-pfp"><span class="pfp pfp-rose"></span></span><span class="handle pfp-rose"><span class="hide">RoseLandry</span></span><span class="hide"> </span><span class="ig-tick ic ic-verified">&#10003;</span><span class="hide"> - </span><span>Ottawa, Ontario</span></p></div></div>
 
 <pre><code>&lt;p class="ig-top"&gt;&lt;span class="ig-menu ic ic-ig-lines"&gt;&amp;#8801;&lt;/span&gt;&lt;span class="ig-pfp"&gt;&lt;span class="pfp pfp-rose"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="handle pfp-rose"&gt;&lt;span class="hide"&gt;RoseLandry&lt;/span&gt;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="ig-tick ic ic-verified"&gt;&amp;#10003;&lt;/span&gt;&lt;span class="hide"&gt; - &lt;/span&gt;&lt;span&gt;Ottawa, Ontario&lt;/span&gt;&lt;/p&gt;</code></pre>
+
+</details>
 
 <h4>A Collab Post</h4>
 
@@ -632,6 +693,9 @@
 
 <pre><code>&lt;p class="ig-top"&gt;&lt;span class="ig-menu ic ic-ig-lines"&gt;&amp;#8801;&lt;/span&gt;&lt;span class="ig-collab"&gt;&lt;span class="ig-pfp"&gt;&lt;span class="pfp pfp-shane"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="ig-pfp"&gt;&lt;span class="pfp pfp-ilya"&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="handle pfp-shane"&gt;&lt;span class="hide"&gt;shanehollanderhockeyplayer&lt;/span&gt;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="ig-tick ic ic-verified"&gt;&amp;#10003;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="ig-and"&gt;and&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="handle pfp-ilya"&gt;&lt;span class="hide"&gt;ilya.r&lt;/span&gt;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="ig-tick ic ic-verified"&gt;&amp;#10003;&lt;/span&gt;&lt;span class="hide"&gt; - &lt;/span&gt;&lt;span&gt;Montreal, Quebec&lt;/span&gt;&lt;/p&gt;</code></pre>
 
+<details>
+<summary>Options: more than two accounts, and initials</summary>
+
 <p>A collab can have more than two accounts, but only the first two pictures go in the circle, and the names turn into "and 2 others". Put the other names in a <code>hide</code> span after it, so anyone reading without the workskin still knows who they are:</p>
 
 <div class="mob ig ig-feed theme-auto"><div class="mob ig"><p class="ig-top"><span class="ig-menu ic ic-ig-lines">&#8801;</span><span class="ig-collab"><span class="ig-pfp"><span class="pfp pfp-shane"></span></span><span class="ig-pfp"><span class="pfp pfp-ilya"></span></span></span><span class="handle pfp-shane"><span class="hide">shanehollanderhockeyplayer</span></span><span class="hide"> </span><span class="ig-tick ic ic-verified">&#10003;</span><span class="hide"> </span><span class="ig-and">and</span><span class="hide"> </span>2 others<span class="hide"> (ilya.r, RoseLandry) - </span><span>Montreal, Quebec</span></p></div></div>
@@ -639,6 +703,8 @@
 <pre><code>&lt;p class="ig-top"&gt;&lt;span class="ig-menu ic ic-ig-lines"&gt;&amp;#8801;&lt;/span&gt;&lt;span class="ig-collab"&gt;&lt;span class="ig-pfp"&gt;&lt;span class="pfp pfp-shane"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="ig-pfp"&gt;&lt;span class="pfp pfp-ilya"&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="handle pfp-shane"&gt;&lt;span class="hide"&gt;shanehollanderhockeyplayer&lt;/span&gt;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="ig-tick ic ic-verified"&gt;&amp;#10003;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="ig-and"&gt;and&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;2 others&lt;span class="hide"&gt; (ilya.r, RoseLandry) - &lt;/span&gt;&lt;span&gt;Montreal, Quebec&lt;/span&gt;&lt;/p&gt;</code></pre>
 
 <p>Initials work in the collab circles too, like <code>&lt;span class="ig-pfp colour3"&gt;RL&lt;/span&gt;</code>.</p>
+
+</details>
 
 <h4>An Account You Don't Follow</h4>
 
@@ -844,7 +910,7 @@
 &lt;p class="msg out"&gt;&lt;span class="hide"&gt;&lt;em&gt;Ilya:&lt;/em&gt; &lt;/span&gt;I did not&lt;/p&gt;</code></pre>
 
 <details>
-<summary>Each part of a message, piece by piece</summary>
+<summary>How it works: each part of a message, piece by piece</summary>
 
 <ul>
   <li><code>&lt;p class=&quot;msg in&quot;&gt;</code> - the bubble. <code>in</code> is grey on the left, <code>out</code> is purple on the right.</li>
@@ -891,6 +957,9 @@
 <pre><code>&lt;p class="who"&gt;RoseLandry&lt;span class="hide"&gt;:&lt;/span&gt;&lt;/p&gt;
 &lt;p class="msg in"&gt;the lasagne is still here if anyone wants it&lt;/p&gt;</code></pre>
 
+<details>
+<summary>Options: names from a profile</summary>
+
 <p>For a character with a profile, put a handle span in the <code>who</code> line instead, with the name typed inside it in a <code>hide</code> span. DMs don't show profile pictures, so the name is all a profile adds here, but it keeps them the same as everywhere else:</p>
 
 <div class="mob igdm theme-auto"><div class="mob-body"><p class="who"><span class="handle pfp-rose"><span class="hide">RoseLandry</span></span><span class="hide">:</span></p>
@@ -898,3 +967,5 @@
 
 <pre><code>&lt;p class="who"&gt;&lt;span class="handle pfp-rose"&gt;&lt;span class="hide"&gt;RoseLandry&lt;/span&gt;&lt;/span&gt;&lt;span class="hide"&gt;:&lt;/span&gt;&lt;/p&gt;
 &lt;p class="msg in"&gt;and the garlic bread. I made too much&lt;/p&gt;</code></pre>
+
+</details>

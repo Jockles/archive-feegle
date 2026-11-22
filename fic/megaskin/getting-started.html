@@ -38,8 +38,8 @@
 <h3 id="contents">Chapter Contents</h3>
 
 <ul class="contents">
-  <li><a href="#s1-1">1.1 Setting up your work</a></li>
-  <li><a href="#credits">1.2 Credits and sources</a>
+  <li><a href="#s1-1">1.1 Setting Up Your Work</a></li>
+  <li><a href="#credits">1.2 Credits and Sources</a>
     <ul>
       <li><a href="#s1-2-1">1.2.1 Hover and Tap Translations</a></li>
       <li><a href="#s1-2-2">1.2.2 iMessage</a></li>
@@ -70,6 +70,8 @@
 <p>The whole system is designed to be modular - you can add or remove whatever sections of the skin that are relevant to you, up to and including using the whole thing in a single fic that incorporates many types of digital content from around the internet.</p>
 
 <p>Each chapter explains how to use the HTML of that particular module, how to create the various kinds of posts/containers/whatever for that platform, and what each bit of the code is doing so that you can make your own edits where required. It will then be followed by a chapter that explains the CSS belonging to that module, including a link to the CSS that has everything you need to stick in your own skin.</p>
+
+<p>Each section starts with the simplest version that works, so you can copy it and go. The boxes marked <strong>Options</strong> show the other things that part can do, and the boxes marked <strong>How it works</strong> explain what each bit of the code is for, if you want to learn. You can skip every box and still build a whole fic.</p>
 
 <p>At the very end, there is a link to the full megaskin (used by this fic) so that you can choose to just shove the whole lot in if you don't want to be picky.</p>
 
@@ -105,9 +107,9 @@
   <li>The full megaskin: every module in one skin, at the very end</li>
 </ol>
 
-<h2>Getting started</h2>
+<h2>Getting Started</h2>
 
-<h3 id="s1-1">1.1 Setting up your work</h3>
+<h3 id="s1-1">1.1 Setting Up Your Work</h3>
 
 <p>First you will have to create the workskin for yourself in your own workskin lists. I have a megaskin for myself that has every module, and if you pick only a few modules I'd recommend reminding yourself which ones you've added in the description.</p>
 
@@ -119,17 +121,17 @@
 
 <p>Do the pasting in the HTML tab and switch to Rich Text only at your own risk: Rich Text can quietly strip or rearrange the classes the skin depends on and then it breaks and you're sad.</p>
 
-<p>Whenever a snippet says to put something "inside" another part, it goes between that part's opening and closing tags. (the words inside the <code>&lt;xx&gt;</code> and <code>&lt;/xx&gt;</code>) Every chapter ends with a complete finished chat you can copy and edit, so you don't have to assemble the pieces yourself, but you should know enough at the end of each section to deconstruct it if you wish without breaking anything important.</p>
+<p>Whenever a snippet says to put something "inside" another part, it goes between that part's opening and closing tags. (the words inside the <code>&lt;xx&gt;</code> and <code>&lt;/xx&gt;</code>) Every chapter starts with a complete finished chat you can copy and edit, so you don't have to assemble the pieces yourself, but you should know enough at the end of each section to deconstruct it if you wish without breaking anything important.</p>
 
 <details>
-<summary>One skin for everything, or one for each fic?</summary>
+<summary>Options: one skin for everything, or one for each fic?</summary>
 
 <p>Some parts of the CSS contain places to put things like profile pictures and backgrounds that are likely to be fic specific, so you can choose if you want to have one skin and lots and lots of images defined, or have a different skin for each fic.</p>
 
 </details>
 
 <details>
-<summary>Some quirks of the code that you'll notice</summary>
+<summary>How it works: some quirks of the code that you'll notice</summary>
 
 <p>One thing AO3 does when you paste HTML: if it finds words, spans or pictures sitting loose inside a <code>&lt;div&gt;</code>, it wraps them in a paragraph and turns the line breaks between them into <code>&lt;br /&gt;</code> tags, which can knock a chat out of shape. All of the code in the html examples is written so that never happens - anything that holds text or pictures directly is a <code>&lt;p&gt;</code> - so what you see when you inspect an example on the page should be exactly the code shown under it. If you write your own pieces, do the same. (AO3 also adds <code>rel=&quot;nofollow&quot;</code> to every link, which is normal and doesn't change anything.)</p>
 
@@ -137,7 +139,7 @@
 
 </details>
 
-<h3 id="credits"><span id="s1-2"></span>1.2 Credits and sources</h3>
+<h3 id="credits"><span id="s1-2"></span>1.2 Credits and Sources</h3>
 
 <p>The megaskin stands on the shoulders of the work skins and tutorials below, which I used as references and adapted in many places. Please visit them, leave kudos and thank their creators - I truly couldn't have done it without their guidance and much greater css fuckery skills than mine. Under each one, <strong>Added by me</strong> is the part I built myself.</p>
 

@@ -262,22 +262,23 @@ def heading_ids(text):
 
 # To link to a heading in another chapter, write <a href="core.html#heading">Pictures and
 # Alt Text</a> - the link's text must be the heading's own title, and the build swaps
-# "#heading" for that heading's id.
-XREF = re.compile(r'<a href="([a-z0-9-]+)\.html#heading">(.*?)</a>', re.S)
+# "#heading" for that heading's id. For a heading in the same chapter, leave the file
+# name off: <a href="#heading">Read Ticks</a>.
+XREF = re.compile(r'<a href="(?:([a-z0-9-]+)\.html)?#heading">(.*?)</a>', re.S)
 
 
 def link_headings(texts):
     ids = {slug: heading_ids(text) for slug, text in texts.items()}
 
-    def fix(m):
-        slug, label = m.group(1), m.group(2)
+    def fix(m, here):
+        slug, label = m.group(1) or here, m.group(2)
         key = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", "", label)).strip().lower()
         hits = ids.get(slug, {}).get(key)
         if not hits or len(hits) > 1:
             raise SystemExit("Can't link %r in %s.html (%s)" % (label, slug, "no such heading" if not hits else "more than one"))
         return '<a href="%s.html#%s">%s</a>' % (slug, hits[0], label)
 
-    return {slug: XREF.sub(fix, text) for slug, text in texts.items()}
+    return {slug: XREF.sub(lambda m, here=slug: fix(m, here), text) for slug, text in texts.items()}
 
 
 def build_chapters():

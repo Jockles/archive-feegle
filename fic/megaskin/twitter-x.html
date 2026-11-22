@@ -94,15 +94,15 @@
       <li><a href="#s8-7-5">8.7.5 Dates and Times</a></li>
       <li><a href="#s8-7-6">8.7.6 Seen and Sent</a></li>
       <li><a href="#s8-7-7">8.7.7 Reactions</a></li>
-      <li><a href="#s8-7-8">8.7.8 Replies</a></li>
-      <li><a href="#s8-7-9">8.7.9 Pictures in DMs</a></li>
-      <li><a href="#s8-7-10">8.7.10 Voice Messages</a></li>
-      <li><a href="#s8-7-11">8.7.11 The Message Bar</a></li>
-      <li><a href="#s8-7-12">8.7.12 The App Buttons</a></li>
-      <li><a href="#s8-7-13">8.7.13 Group Chats</a></li>
+      <li><a href="#s8-7-8">8.7.8 Replying to a Message</a></li>
+      <li><a href="#s8-7-9">8.7.9 Voice Messages</a></li>
+      <li><a href="#s8-7-10">8.7.10 Pictures in DMs</a></li>
+      <li><a href="#s8-7-11">8.7.11 Group Chats</a></li>
     </ul>
   </li>
 </ul>
+
+<p>Each part of this chapter starts with the simplest version that works. If you want more, the <strong>Options</strong> boxes show the other things that part can do, and the <strong>How it works</strong> boxes explain what each bit of the code is for.</p>
 
 <h3 id="s8-1">8.1 Twitter/X Tweets and the Timeline</h3>
 
@@ -594,7 +594,16 @@
   &lt;p class="tw-nav"&gt;the app buttons&lt;/p&gt;
 &lt;/div&gt;</code></pre>
 
-<p>Once the timeline is taller than a phone screen (<code>580px</code>) it scrolls, and the top bar and the tabs scroll away with the tweets, like in the app (see <a href="core.html#scrolling">Scrolling Long Chats</a>). To show the whole timeline at once instead, add <code>no-scroll</code> to the <code>tw-thread</code>.</p>
+<p>Once the timeline is taller than a phone screen (<code>580px</code>) it scrolls, and the top bar and the tabs scroll away with the tweets, like in the app (see <a href="core.html#scrolling">Scrolling Long Chats</a>).</p>
+
+<details>
+<summary>Options: showing the whole timeline, and light or dark</summary>
+
+<p>To show the whole timeline at once instead, add <code>no-scroll</code> to the <code>tw-thread</code>.</p>
+
+<p><code>theme-auto</code> follows the reader's device. Swap it for <code>theme-light</code> or <code>theme-dark</code> to pick one yourself (see <a href="core.html#themes">Light, Dark and Auto Themes</a>).</p>
+
+</details>
 
 <h4 id="s8-2-1">8.2.1 Top</h4>
 
@@ -609,14 +618,13 @@
 &lt;p class="tw-tabs"&gt;&lt;span class="tw-tab on"&gt;For you&lt;span class="tw-drop"&gt;&lt;/span&gt;&lt;/span&gt; &lt;span class="tw-tab"&gt;Following&lt;/span&gt; &lt;span class="tw-tab"&gt;Metros Fans&lt;/span&gt; &lt;span class="tw-tab"&gt;Hockey Twitter&lt;/span&gt; &lt;span class="tw-add"&gt;+&lt;/span&gt;&lt;/p&gt;</code></pre>
 
 <details>
-<summary>The top bar and the tabs, piece by piece</summary>
+<summary>How it works: the top bar and the tabs, piece by piece</summary>
 
 <p><code>tw-apptop</code>, with the pov character's own picture in <code>tw-me</code> and the X in <code>tw-logo</code>, then the row of tabs in <code>tw-tabs</code>. The picked tab gets <code>on</code>, which makes it dark (or white in dark mode) with a line under it in the same colour. The little down arrow after For you is an empty <code>tw-drop</code> span. After For you and Following come any communities the character has joined, and the <code>tw-add</code> plus sign goes at the end.</p>
 
 </details>
 
 <h5 id="s8-2-1-1">8.2.1.1 The 2020 Twitter Redesign</h5>
-
 
 <p>For a fic set before mid-2023, when Twitter became X, you can switch the timeline back to Twitter's 2020 redesign, which it kept until then. Add <code>tw2020</code> to the thread, and write <code>Twitter</code> in the <code>tw-logo</code> span instead of the X:</p>
 
@@ -625,7 +633,6 @@
   &lt;p class="tw-apptop"&gt;&lt;span class="tw-me"&gt;&lt;span class="pfp pfp-yuna"&gt;&lt;/span&gt;&lt;/span&gt; &lt;span class="tw-logo"&gt;Twitter&lt;/span&gt;&lt;/p&gt;</code></pre>
 
 <p>Here's how it looks:</p>
-
 
 <div class="tw-thread app tw2020 theme-auto">
   <div class="tw-scroll">
@@ -665,26 +672,30 @@
 </details>
 
 <details>
-<summary>What the switch changes, and the bird on its own</summary>
-
-<p>The old blue bird takes the place of the X, with the sparkle on the right, and the word only shows for readers with the workskin switched off. There were no For you and Following tabs back then, so you can leave them out - if you're switching a screen you've already made, they're hidden anyway. The tweets inside lose the line above their buttons and the bookmark button, and the share button spreads out like the others. Views only arrived in late 2022, so leave the views button out of older tweets yourself.</p>
+<summary>Options: the bird on its own</summary>
 
 <p>If you only want the bird on the new-look screen, add <code>bird</code> to the logo instead: <code>&lt;span class="tw-logo bird"&gt;Twitter&lt;/span&gt;</code>.</p>
 
 </details>
 
+<details>
+<summary>How it works: what the switch changes</summary>
+
+<p>The old blue bird takes the place of the X, with the sparkle on the right, and the word only shows for readers with the workskin switched off. There were no For you and Following tabs back then, so you can leave them out - if you're switching a screen you've already made, they're hidden anyway. The tweets inside lose the line above their buttons and the bookmark button, and the share button spreads out like the others. Views only arrived in late 2022, so leave the views button out of older tweets yourself.</p>
+
+</details>
 
 <h4 id="s8-2-2">8.2.2 Tweets in the Timeline</h4>
 
 <p>Each tweet is its own <code>&lt;div class=&quot;mob tw&quot;&gt;</code> inside the <code>tw-scroll</code>, with no theme of its own: the tweets take their colours from the timeline. Put as many as you like one after another. They lose their own borders and corners, and sit one under the other with a line between them, like in the app.</p>
 
-<p>For a tweet that's been tapped on, with its replies underneath (like the thread at the top of this chapter), leave <code>app</code> off the <code>tw-thread</code>. Then the first tweet is shown opened up, with the handle under the name and the date and time along the bottom (see <a href="#heading">Timestamp Line</a>), and the replies go after it (see <a href="#heading">Replies</a>).</p>
+<p>For a tweet that's been tapped on, with its replies underneath (like the thread at the top of this chapter), leave <code>app</code> off the <code>tw-thread</code>. Then the first tweet is shown opened up, with the handle under the name and the date and time along the bottom (see <a href="twitter-x.html#s8-3-4">Timestamp Line</a>), and the replies go after it (see <a href="twitter-x.html#s8-3-5">Replies</a>).</p>
 
 <h4 id="s8-2-3">8.2.3 Bottom</h4>
 
 <p>Anything after the <code>tw-scroll</code> closes stays put at the bottom while the tweets scroll. On a timeline, that's the row of app buttons:</p>
 
-<p>The row of app buttons along the bottom is optional. It goes last, after the <code>tw-scroll</code> closes, so it stays put while the tweets scroll. It's the same row as in DMs (see <a href="twitter-x.html#s8-7-12">The App Buttons</a>), except that on the timeline the home button is the picked one, with a filled-in house, and the chat button is an outline:</p>
+<p>The row of app buttons along the bottom is optional. It goes last, after the <code>tw-scroll</code> closes, so it stays put while the tweets scroll. It's the same row as in DMs (see <a href="twitter-x.html#s8-7-3-2">The App Buttons</a>), except that on the timeline the home button is the picked one, with a filled-in house, and the chat button is an outline:</p>
 
 <pre><code>&lt;p class="tw-nav"&gt;&lt;span class="on ic ic-x-home-filled"&gt;&amp;#8962;&lt;/span&gt; &lt;span class="ic ic-x-search"&gt;&amp;#128269;&lt;/span&gt; &lt;span class="ic ic-x-grok"&gt;&amp;#8856;&lt;/span&gt; &lt;span class="tw-badged"&gt;&lt;span class="ic ic-x-bell"&gt;&amp;#128276;&lt;/span&gt;&lt;span class="tw-badge"&gt;&lt;span class="hide"&gt; (&lt;/span&gt;3&lt;span class="hide"&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; &lt;span class="ic ic-x-chat-outline"&gt;&amp;#128172;&lt;/span&gt;&lt;/p&gt;</code></pre>
 
@@ -748,11 +759,16 @@
 &lt;/div&gt;</code></pre>
 
 <details>
-<summary>Each part of the stats line, piece by piece</summary>
-
-<p>Each button and its count is a <code>tw-stat</code>: the button, the number, then a <code>hide</code> span saying what the number is, for readers with the workskin switched off. Leave out the number for a button with no count, and leave out any button you don't want. The bookmark and share buttons have no count, and get <code>tw-end</code> as well, which tucks them against the right-hand edge. A reply has the same row, smaller and without the line above it.</p>
+<summary>Options: older tweets with no views</summary>
 
 <p>Views only showed up on Twitter in late 2022, so for an older tweet, leave out the views button and the other three spread out to fill the gap.</p>
+
+</details>
+
+<details>
+<summary>How it works: each part of the stats line, piece by piece</summary>
+
+<p>Each button and its count is a <code>tw-stat</code>: the button, the number, then a <code>hide</code> span saying what the number is, for readers with the workskin switched off. Leave out the number for a button with no count, and leave out any button you don't want. The bookmark and share buttons have no count, and get <code>tw-end</code> as well, which tucks them against the right-hand edge. A reply has the same row, smaller and without the line above it.</p>
 
 </details>
 
@@ -772,7 +788,7 @@
 <pre><code>&lt;details class="tw-stat tw-tog"&gt;&lt;summary&gt;&lt;span class="ic ic-tw-like"&gt;&amp;#9825;&lt;/span&gt;&lt;span class="off"&gt; 13&lt;/span&gt;&lt;span class="hide"&gt; likes (&lt;/span&gt;&lt;span class="on"&gt; 14&lt;/span&gt;&lt;span class="hide"&gt; once liked)&lt;/span&gt;&lt;/summary&gt;&lt;/details&gt;</code></pre>
 
 <details>
-<summary>How the clickable like works</summary>
+<summary>How it works: the clickable like</summary>
 
 <p>It's made with the details and summary tags, like Instagram's heart, and goes in place of the plain like. Inside the <code>summary</code> are two counts: the one with <code>off</code> shows to begin with, and the one with <code>on</code> swaps in after a click.</p>
 
@@ -930,7 +946,7 @@
 &lt;p class="tw-pollinfo"&gt;97 votes · Final results&lt;/p&gt;</code></pre>
 
 <details>
-<summary>Bar sizes and the winning option</summary>
+<summary>Options: bar sizes and the winning option</summary>
 
 <p>The <code>tw-bar</code> becomes the grey bar. The percentage in <code>tw-pct</code> is just text, so you can type any number there, like 58% or 3.2%. The bar can't read that number, though, so each option also gets a bar size class that sets how long its bar is. These are the only bar sizes the skin comes with, so pick the one nearest to the percentage: <code>p0</code>, <code>p10</code>, <code>p20</code>, <code>p25</code>, <code>p30</code>, <code>p33</code>, <code>p40</code>, <code>p50</code>, <code>p60</code>, <code>p67</code>, <code>p70</code>, <code>p75</code>, <code>p80</code>, <code>p90</code> or <code>p100</code>. If you want a bar of an exact length, the CSS chapter shows where these sizes are set and how to add your own. When the poll has finished, the winning option also gets <code>win</code>, which makes its bar blue and its words bold.</p>
 
@@ -957,7 +973,7 @@
 </div></div></div>
 
 <details>
-<summary>How the tappable poll is built</summary>
+<summary>How it works: the tappable poll</summary>
 
 <p>Put the open poll in a <code>&lt;summary&gt;</code>, with each option as a <code>tw-opt</code> span, then the results after it, all inside <code>&lt;details class=&quot;tw-vote&quot;&gt;</code>. You decide which option your pov character votes for, and the tick goes there in a <code>tw-voted</code> span, inside the <code>tw-bar</code> just after the words:</p>
 
@@ -979,7 +995,7 @@
 </details>
 
 <details>
-<summary>Letting the reader pick the option</summary>
+<summary>Options: letting the reader pick the option</summary>
 
 <p>To let the reader choose, each option gets its own <code>&lt;details class=&quot;tw-pick&quot;&gt;</code>, with the option in a <code>&lt;summary class=&quot;tw-opt&quot;&gt;</code> and a full copy of the results in a <code>tw-results</code> box, with the tick on that option. Wrap them all in a <code>tw-poll</code> box, with the votes and time left at the end. Whichever option is tapped, its results cover the poll. It's a lot more HTML, but it's mostly copy and paste - only the tick moves, unless you want the results to change too:</p>
 
@@ -1069,7 +1085,7 @@
 <pre><code>&lt;p class="tw-media"&gt;&lt;span&gt;[Shane Hollander looking tired at a press conference]&lt;/span&gt;&lt;/p&gt;</code></pre>
 
 <details>
-<summary>Videos</summary>
+<summary>Options: videos</summary>
 
 <p>For a video, use the embed code from a video site like Vimeo or YouTube. Add <code>video</code> to the box, which gives the player the right size, and put the embed code inside it. Keep the <strong>whole</strong> <code>src</code> link, including everything after the <code>?</code> (Vimeo needs all of it to play the video), plus <code>frameborder</code> and a <code>title</code> that names the video for screen readers. You can leave out the width and height, because the box sets the size:</p>
 
@@ -1082,7 +1098,7 @@
 </details>
 
 <details>
-<summary>Two, three or four pictures</summary>
+<summary>Options: two, three or four pictures</summary>
 
 <p>For a tweet with several pictures, add <code>two</code>, <code>three</code> or <code>four</code> to the box to match the number of pictures, and put each picture tag in a <code>tw-photo</code> span. The span crops each picture to fit its space without squashing it. For the square spaces (all four in the four-photo layout, and the two small ones in the three-photo layout), add <code>class=&quot;land&quot;</code> to the picture tag of any photo that's wider than it is tall (see <a href="core.html#s2-5-2">Pictures in Boxes and Circles</a>). Two pictures sit side by side, both tall:</p>
 
@@ -1147,7 +1163,7 @@
 <pre><code>&lt;p class="tw-top"&gt;&lt;span class="tw-pfp colour6"&gt;SH&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="tw-name"&gt;Scott Hunter &lt;span class="tw-tick ic ic-verified"&gt;✔&lt;/span&gt;&lt;/span&gt; &lt;span class="tw-handle"&gt;@SHunter&lt;/span&gt; &lt;span class="tw-time"&gt;· 5m&lt;/span&gt;&lt;/p&gt;</code></pre>
 
 <details>
-<summary>Each part of the name line, piece by piece</summary>
+<summary>How it works: each part of the name line, piece by piece</summary>
 
 <ul>
   <li><code>tw-name</code> is the bold display name.</li>
@@ -1156,12 +1172,12 @@
   <li><code>tw-time</code> is the time, with a dot in front.</li>
 </ul>
 
-<p>A tweet on its own, or the first tweet in a reply chain, is shown the way an opened tweet looks on Twitter/X, with the handle and time on a second line under the name. In a timeline (see <a href="#heading">Tweets in the Timeline</a>) and in replies, the name, handle and time all share one line. If they don't fit, the handle gets cut off first, and can disappear completely, then a really long name gets cut off too, tick and all - see Long names, below. The time always stays.</p>
+<p>A tweet on its own, or the first tweet in a reply chain, is shown the way an opened tweet looks on Twitter/X, with the handle and time on a second line under the name. In a timeline (see <a href="twitter-x.html#s8-2-2">Tweets in the Timeline</a>) and in replies, the name, handle and time all share one line. If they don't fit, the handle gets cut off first, and can disappear completely, then a really long name gets cut off too, tick and all - see Long names, below. The time always stays.</p>
 
 </details>
 
 <details>
-<summary>Long names</summary>
+<summary>Options: long names</summary>
 
 <p>Any name can be too long for its line, on any kind of account. When it doesn't all fit, the handle shrinks first and can disappear completely, then the name is cut off at the edge, tick and all. A padlock and the time always stay. Put the name in a plain <code>&lt;span&gt;</code> inside <code>tw-name</code> and it ends in "..." like on Twitter/X. Without the span it still works, but it stops at the last whole word that fits instead:</p>
 
@@ -1177,7 +1193,7 @@
 </details>
 
 <details>
-<summary>A fan account line</summary>
+<summary>Options: a fan account line</summary>
 
 <p>For a grey second line under the name, like "Fan account", add a <code>tw-fan</code> span at the end of the line, after the time. The mask is an <code>ic-tw-fan</code> icon at the start of it. In a timeline it sits under the name, beside the picture, so there it only works on a tweet that has one:</p>
 
@@ -1194,7 +1210,7 @@
 </details>
 
 <details>
-<summary>Names and handles from a profile</summary>
+<summary>Options: names and handles from a profile</summary>
 
 <p>The name and handle can be typed, like Scott's, or they can come from a character's profile. Put a name span in place of the name and a handle span in place of the @handle, each with a copy typed inside it in a <code>hide</code> span for readers with the workskin off. Leave the @ off a profile's handle - Twitter/X adds it for you (see <a href="core.html#character-profiles">Character Profiles</a>):</p>
 
@@ -1203,7 +1219,6 @@
 <pre><code>&lt;p class="tw-top"&gt;&lt;span class="tw-pfp"&gt;&lt;span class="pfp pfp-zim"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="tw-name"&gt;&lt;span class="name pfp-zim"&gt;&lt;span class="hide"&gt;Zim&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; &lt;span class="tw-handle"&gt;&lt;span class="handle pfp-zim"&gt;&lt;span class="hide"&gt;@ZimBits&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; &lt;span class="tw-time"&gt;· 3h&lt;/span&gt;&lt;/p&gt;</code></pre>
 
 </details>
-
 
 <h4 id="s8-6-2">8.6.2 Profile Picture</h4>
 
@@ -1214,7 +1229,7 @@
 <pre><code>&lt;p class="tw-top"&gt;&lt;span class="tw-pfp colour5"&gt;HF&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="tw-name"&gt;Hockey Fan&lt;/span&gt; &lt;span class="tw-handle"&gt;@hockeyfan&lt;/span&gt; &lt;span class="tw-time"&gt;· 2h&lt;/span&gt;&lt;/p&gt;</code></pre>
 
 <details>
-<summary>Using a picture or a profile instead</summary>
+<summary>Options: using a picture or a profile instead</summary>
 
 <p>For a real picture, put the picture tag inside a <code>pfp</code> span inside the <code>tw-pfp</code>:</p>
 
@@ -1231,7 +1246,6 @@
 <p>All three ways work the same in replies - just give the reply's name line the <code>tw-top</code> class, like the replies in the thread. The colours for <code>colour1</code> to <code>colour10</code> are set in the core CSS and shared with every app, so you can change them there.</p>
 
 </details>
-
 
 <h4 id="s8-6-3">8.6.3 Uploading a Profile Pic</h4>
 
@@ -1268,16 +1282,15 @@
 &lt;/div&gt;</code></pre>
 
 <details>
-<summary>More about typed names and pictures</summary>
+<summary>How it works: more about typed names and pictures</summary>
 
 <ul>
   <li>The name and handle are typed, so they show whether the workskin is on or off, with no hidden copy needed.</li>
   <li>A wide picture needs <code>class=&quot;land&quot;</code> on the picture tag, like Mar's, or it won't fill its circle.</li>
-  <li>In a group DM, a stranger's picture goes in the <code>tw-pfp</code> at the start of their <code>twdm-row</code>, the same way, with their name typed in the <code>who</code> line (see <a href="twitter-x.html#s8-7-13">Group Chats</a>, below).</li>
+  <li>In a group DM, a stranger's picture goes in the <code>tw-pfp</code> at the start of their <code>twdm-row</code>, the same way, with their name typed in the <code>who</code> line (see <a href="twitter-x.html#s8-7-11">Group Chats</a>, below).</li>
 </ul>
 
 </details>
-
 
 <h3 id="s8-7">8.7 Twitter/X DMs</h3>
 
@@ -1413,8 +1426,19 @@
 
 <pre><code>&lt;p class="mob-head"&gt;&lt;span class="twdm-back"&gt;&lt;span class="ic ic-back"&gt;&amp;#8592;&lt;/span&gt;&lt;/span&gt;&lt;span class="tw-pfp"&gt;&lt;span class="pfp pfp-shane"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="twdm-name"&gt;Shane Hollander&lt;/span&gt;&lt;span class="twdm-calls"&gt;&lt;span class="ic ic-video"&gt;&amp;#127909;&lt;/span&gt;&lt;span class="ic ic-phone"&gt;&amp;#128222;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;</code></pre>
 
+<p>After the header comes <code>&lt;div class=&quot;mob-body&quot;&gt;</code>, which holds all of the messages.</p>
+
 <details>
-<summary>Each part of the header, piece by piece</summary>
+<summary>Options: a name from a profile</summary>
+
+<p>The name can also come from a profile, in a name span with a hidden copy typed inside it:</p>
+
+<pre><code>&lt;span class="twdm-name"&gt;&lt;span class="name pfp-zim"&gt;&lt;span class="hide"&gt;Zim&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;</code></pre>
+
+</details>
+
+<details>
+<summary>How it works: each part of the header, piece by piece</summary>
 
 <ul>
   <li><code>&lt;span class=&quot;twdm-back&quot;&gt;</code> - the back arrow. The arrow inside it is an <code>ic ic-back</code> icon, which swaps the typed arrow for a picture.</li>
@@ -1423,13 +1447,47 @@
   <li><code>&lt;span class=&quot;twdm-calls&quot;&gt;</code> - the video and call buttons, as two icons.</li>
 </ul>
 
-<p>The name can also come from a profile, in a name span with a hidden copy typed inside it:</p>
+</details>
 
-<pre><code>&lt;span class="twdm-name"&gt;&lt;span class="name pfp-zim"&gt;&lt;span class="hide"&gt;Zim&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;</code></pre>
+<h5 id="s8-7-3-1">8.7.3.1 The Message Bar</h5>
+
+<p>To finish off the window, add the message bar after the body, inside the container. It's built the same way as iMessage's: the round <code>twdm-plus</code> button, then the <code>twdm-field</code> box with the word in it and the microphone at the end. The hide spans keep a space between the parts for readers with the workskin off:</p>
+
+<div class="mob twdm theme-auto"><p class="twdm-input"><span class="twdm-plus">+</span><span class="hide"> </span><span class="twdm-field">Message<span class="hide"> </span><span class="ic ic-mic">&#127908;</span></span></p></div>
+
+<pre><code>&lt;p class="twdm-input"&gt;&lt;span class="twdm-plus"&gt;+&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="twdm-field"&gt;Message&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="ic ic-mic"&gt;&amp;#127908;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;</code></pre>
+
+<details>
+<summary>Options: a half-written message</summary>
+
+<p>For a half-written message, add <code>typed</code> to the <code>twdm-field</code>, write the message instead of "Message", and add the flashing cursor from the core if you like:</p>
+
+<div class="mob twdm theme-auto"><p class="twdm-input"><span class="twdm-plus">+</span><span class="hide"> </span><span class="twdm-field typed">I did not agree<span class="cursor">|</span><span class="hide"> </span><span class="ic ic-mic">&#127908;</span></span></p></div>
+
+<pre><code>&lt;p class="twdm-input"&gt;&lt;span class="twdm-plus"&gt;+&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="twdm-field typed"&gt;I did not agree&lt;span class="cursor"&gt;|&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="ic ic-mic"&gt;&amp;#127908;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;</code></pre>
 
 </details>
 
-<p>After the header comes <code>&lt;div class=&quot;mob-body&quot;&gt;</code>, which holds all of the messages.</p>
+<h5 id="s8-7-3-2">8.7.3.2 The App Buttons</h5>
+
+<p>The row of buttons along the very bottom of the app is optional. Put it last, after the message bar. Each button is an icon, and <code>on</code> gives the chat button its grey box, because that's the part of the app you're in:</p>
+
+<div class="mob twdm theme-auto"><p class="tw-nav"><span class="ic ic-x-home">&#8962;</span> <span class="ic ic-x-search">&#128269;</span> <span class="ic ic-x-grok">&#8856;</span> <span class="tw-badged"><span class="ic ic-x-bell">&#128276;</span><span class="tw-badge"><span class="hide"> (</span>3<span class="hide">)</span></span></span> <span class="on ic ic-x-chat">&#128172;</span></p></div>
+
+<pre><code>&lt;p class="tw-nav"&gt;&lt;span class="ic ic-x-home"&gt;&amp;#8962;&lt;/span&gt; &lt;span class="ic ic-x-search"&gt;&amp;#128269;&lt;/span&gt; &lt;span class="ic ic-x-grok"&gt;&amp;#8856;&lt;/span&gt; &lt;span class="tw-badged"&gt;&lt;span class="ic ic-x-bell"&gt;&amp;#128276;&lt;/span&gt;&lt;span class="tw-badge"&gt;&lt;span class="hide"&gt; (&lt;/span&gt;3&lt;span class="hide"&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; &lt;span class="on ic ic-x-chat"&gt;&amp;#128172;&lt;/span&gt;&lt;/p&gt;</code></pre>
+
+<details>
+<summary>Options: notification numbers</summary>
+
+<p>For new notifications, put the bell and a <code>tw-badge</code> with the number in it together in a <code>tw-badged</code> span, as above. The blue circle stretches into a lozenge for longer numbers. The hidden brackets are for readers with the workskin off:</p>
+
+<div class="mob twdm theme-auto"><p class="tw-nav"><span class="ic ic-x-home">&#8962;</span> <span class="ic ic-x-search">&#128269;</span> <span class="ic ic-x-grok">&#8856;</span> <span class="tw-badged"><span class="ic ic-x-bell">&#128276;</span><span class="tw-badge"><span class="hide"> (</span>1,284<span class="hide">)</span></span></span> <span class="on ic ic-x-chat">&#128172;</span></p></div>
+
+<pre><code>&lt;span class="tw-badged"&gt;&lt;span class="ic ic-x-bell"&gt;&amp;#128276;&lt;/span&gt;&lt;span class="tw-badge"&gt;&lt;span class="hide"&gt; (&lt;/span&gt;1,284&lt;span class="hide"&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;</code></pre>
+
+</details>
+
+<p>The header, the message bar and these buttons stay where they are, and once the chat gets long, the messages in between scroll.</p>
 
 <h4 id="s8-7-4">8.7.4 Simple Messages</h4>
 
@@ -1442,7 +1500,7 @@
 &lt;p class="msg out"&gt;&lt;span class="hide"&gt;&lt;em&gt;Ilya:&lt;/em&gt; &lt;/span&gt;it was meant to be funny&lt;/p&gt;</code></pre>
 
 <details>
-<summary>Each part of a message, piece by piece</summary>
+<summary>How it works: each part of a message, piece by piece</summary>
 
 <ul>
   <li><code>&lt;p class=&quot;msg in&quot;&gt;</code> - the bubble. <code>in</code> is grey on the left, <code>out</code> is blue on the right.</li>
@@ -1497,7 +1555,7 @@
 &lt;p class="msg out"&gt;&lt;span class="hide"&gt;&lt;em&gt;Ilya:&lt;/em&gt; &lt;/span&gt;I am always funny&lt;/p&gt;
 &lt;p class="twdm-reacts out"&gt;&lt;span class="hide"&gt;[Reactions: &lt;/span&gt;&amp;#128580; 1&lt;span class="hide"&gt;]&lt;/span&gt;&lt;/p&gt;</code></pre>
 
-<h4 id="s8-7-8">8.7.8 Replies</h4>
+<h4 id="s8-7-8">8.7.8 Replying to a Message</h4>
 
 <p>When someone replies to a particular message, Twitter/X shows "Replied to" and the name in small grey writing, then the message they're replying to in an outlined bubble, then the reply. The first two get <code>twdm-replied</code> and <code>twdm-quote</code>, and all three get <code>out</code> for one of your own replies. The hidden brackets round the quoted message are for readers with the workskin off:</p>
 
@@ -1509,9 +1567,24 @@
 &lt;p class="msg out twdm-quote"&gt;&lt;span class="hide"&gt;(&lt;/span&gt;it wasn't&lt;span class="hide"&gt;)&lt;/span&gt;&lt;/p&gt;
 &lt;p class="msg out"&gt;&lt;span class="hide"&gt;&lt;em&gt;Ilya:&lt;/em&gt; &lt;/span&gt;you laughed. I heard you&lt;/p&gt;</code></pre>
 
-<p>For someone else's reply, use <code>in</code> instead of <code>out</code> on the bubbles, and leave <code>out</code> off the <code>twdm-replied</code> line. If the quoted message is long, cut it short with "..." the way the app does.</p>
+<details>
+<summary>Options: someone else's reply</summary>
 
-<h4 id="s8-7-9">8.7.9 Pictures in DMs</h4>
+<p>For someone else's reply, use <code>in</code> instead of <code>out</code> on the bubbles, and leave <code>out</code> off the <code>twdm-replied</code> line.</p>
+
+</details>
+
+<p>If the quoted message is long, cut it short with "..." the way the app does.</p>
+
+<h4 id="s8-7-9">8.7.9 Voice Messages</h4>
+
+<p>A voice message is a message with <code>voice</code>, holding a play button in <code>twdm-play</code>, an empty <code>twdm-wave</code> span (the CSS draws the sound bars) and the length in <code>twdm-dur</code>:</p>
+
+<div class="mob twdm theme-auto"><div class="mob-body"><p class="msg out voice"><span class="hide"><em>Ilya:</em> </span><span class="twdm-play ic ic-play">&#9654;</span><span class="twdm-wave"></span><span class="twdm-dur">0:02</span></p></div></div>
+
+<pre><code>&lt;p class="msg out voice"&gt;&lt;span class="hide"&gt;&lt;em&gt;Ilya:&lt;/em&gt; &lt;/span&gt;&lt;span class="twdm-play ic ic-play"&gt;&amp;#9654;&lt;/span&gt;&lt;span class="twdm-wave"&gt;&lt;/span&gt;&lt;span class="twdm-dur"&gt;0:02&lt;/span&gt;&lt;/p&gt;</code></pre>
+
+<h4 id="s8-7-10">8.7.10 Pictures in DMs</h4>
 
 <p>A picture in a DM is a message with <code>pic</code> added. Put a picture tag inside it, or add <code>text</code> as well and describe the picture in words:</p>
 
@@ -1521,56 +1594,7 @@
 <pre><code>&lt;p class="msg in pic"&gt;&lt;span class="hide"&gt;&lt;em&gt;Shane:&lt;/em&gt; &lt;/span&gt;&lt;img src="https://64.media.tumblr.com/c3c4ecb5bfed8fa9f0590c54206ddb30/cff2318529321620-44/s1280x1920/42befcc40a517e1f202dda40783be2ffb95c1d92.pnj" alt="Macklin Celebrini at the IHF Worlds, dressed in his red jersey and black helmet. He's surrounded by sparkles, a red vignette, and hearts containing the Canadian flag"&gt;&lt;/p&gt;
 &lt;p class="msg out pic text"&gt;&lt;span class="hide"&gt;&lt;em&gt;Ilya:&lt;/em&gt; &lt;/span&gt;[A photo of Ilya pulling a face at the camera]&lt;/p&gt;</code></pre>
 
-<h4 id="s8-7-10">8.7.10 Voice Messages</h4>
-
-<p>A voice message is a message with <code>voice</code>, holding a play button in <code>twdm-play</code>, an empty <code>twdm-wave</code> span (the CSS draws the sound bars) and the length in <code>twdm-dur</code>:</p>
-
-<div class="mob twdm theme-auto"><div class="mob-body"><p class="msg out voice"><span class="hide"><em>Ilya:</em> </span><span class="twdm-play ic ic-play">&#9654;</span><span class="twdm-wave"></span><span class="twdm-dur">0:02</span></p></div></div>
-
-<pre><code>&lt;p class="msg out voice"&gt;&lt;span class="hide"&gt;&lt;em&gt;Ilya:&lt;/em&gt; &lt;/span&gt;&lt;span class="twdm-play ic ic-play"&gt;&amp;#9654;&lt;/span&gt;&lt;span class="twdm-wave"&gt;&lt;/span&gt;&lt;span class="twdm-dur"&gt;0:02&lt;/span&gt;&lt;/p&gt;</code></pre>
-
-<h4 id="s8-7-11">8.7.11 The Message Bar</h4>
-
-<p>To finish off the window, add the message bar after the body, inside the container. It's built the same way as iMessage's: the round <code>twdm-plus</code> button, then the <code>twdm-field</code> box with the word in it and the microphone at the end. The hide spans keep a space between the parts for readers with the workskin off:</p>
-
-<div class="mob twdm theme-auto"><p class="twdm-input"><span class="twdm-plus">+</span><span class="hide"> </span><span class="twdm-field">Message<span class="hide"> </span><span class="ic ic-mic">&#127908;</span></span></p></div>
-
-<pre><code>&lt;p class="twdm-input"&gt;&lt;span class="twdm-plus"&gt;+&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="twdm-field"&gt;Message&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="ic ic-mic"&gt;&amp;#127908;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;</code></pre>
-
-<details>
-<summary>A half-written message</summary>
-
-<p>For a half-written message, add <code>typed</code> to the <code>twdm-field</code>, write the message instead of "Message", and add the flashing cursor from the core if you like:</p>
-
-<div class="mob twdm theme-auto"><p class="twdm-input"><span class="twdm-plus">+</span><span class="hide"> </span><span class="twdm-field typed">I did not agree<span class="cursor">|</span><span class="hide"> </span><span class="ic ic-mic">&#127908;</span></span></p></div>
-
-<pre><code>&lt;p class="twdm-input"&gt;&lt;span class="twdm-plus"&gt;+&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="twdm-field typed"&gt;I did not agree&lt;span class="cursor"&gt;|&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="ic ic-mic"&gt;&amp;#127908;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;</code></pre>
-
-</details>
-
-
-<h4 id="s8-7-12">8.7.12 The App Buttons</h4>
-
-<p>The row of buttons along the very bottom of the app is optional. Put it last, after the message bar. Each button is an icon, and <code>on</code> gives the chat button its grey box, because that's the part of the app you're in:</p>
-
-<div class="mob twdm theme-auto"><p class="tw-nav"><span class="ic ic-x-home">&#8962;</span> <span class="ic ic-x-search">&#128269;</span> <span class="ic ic-x-grok">&#8856;</span> <span class="tw-badged"><span class="ic ic-x-bell">&#128276;</span><span class="tw-badge"><span class="hide"> (</span>3<span class="hide">)</span></span></span> <span class="on ic ic-x-chat">&#128172;</span></p></div>
-
-<pre><code>&lt;p class="tw-nav"&gt;&lt;span class="ic ic-x-home"&gt;&amp;#8962;&lt;/span&gt; &lt;span class="ic ic-x-search"&gt;&amp;#128269;&lt;/span&gt; &lt;span class="ic ic-x-grok"&gt;&amp;#8856;&lt;/span&gt; &lt;span class="tw-badged"&gt;&lt;span class="ic ic-x-bell"&gt;&amp;#128276;&lt;/span&gt;&lt;span class="tw-badge"&gt;&lt;span class="hide"&gt; (&lt;/span&gt;3&lt;span class="hide"&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; &lt;span class="on ic ic-x-chat"&gt;&amp;#128172;&lt;/span&gt;&lt;/p&gt;</code></pre>
-
-<details>
-<summary>Notification numbers</summary>
-
-<p>For new notifications, put the bell and a <code>tw-badge</code> with the number in it together in a <code>tw-badged</code> span, as above. The blue circle stretches into a lozenge for longer numbers. The hidden brackets are for readers with the workskin off:</p>
-
-<div class="mob twdm theme-auto"><p class="tw-nav"><span class="ic ic-x-home">&#8962;</span> <span class="ic ic-x-search">&#128269;</span> <span class="ic ic-x-grok">&#8856;</span> <span class="tw-badged"><span class="ic ic-x-bell">&#128276;</span><span class="tw-badge"><span class="hide"> (</span>1,284<span class="hide">)</span></span></span> <span class="on ic ic-x-chat">&#128172;</span></p></div>
-
-<pre><code>&lt;span class="tw-badged"&gt;&lt;span class="ic ic-x-bell"&gt;&amp;#128276;&lt;/span&gt;&lt;span class="tw-badge"&gt;&lt;span class="hide"&gt; (&lt;/span&gt;1,284&lt;span class="hide"&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;</code></pre>
-
-</details>
-
-<p>The header, the message bar and these buttons stay where they are, and once the chat gets long, the messages in between scroll.</p>
-
-<h4 id="s8-7-13">8.7.13 Group Chats</h4>
+<h4 id="s8-7-11">8.7.11 Group Chats</h4>
 
 <p>For a group DM, put the group's name and picture in the header. Then each run of messages from one person goes in a <code>twdm-row</code>, with their round <code>tw-pfp</code> picture first, then their name in a <code>who</code> line, then their messages. The picture sits beside the last message of the run, the way it does in the app:</p>
 
@@ -1589,7 +1613,7 @@
 &lt;/div&gt;</code></pre>
 
 <details>
-<summary>Names, pictures and reactions in a group</summary>
+<summary>Options: names and pictures from a profile, and reactions</summary>
 
 <p>The name shows either way, so the first message only needs a hidden colon after the name, not the full label - the messages after it, and your own messages with no name above them, still need that. The picture can be initials with a colour (<code>colour1</code> to <code>colour10</code>), a picture tag inside a <code>pfp</code> span, or a profile, like Shane's:</p>
 

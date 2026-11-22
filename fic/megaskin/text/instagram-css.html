@@ -4,6 +4,8 @@
 
 <p>This chapter goes through the CSS for the Instagram posts and DMs in the last chapter. Posts (<code>ig</code>) sit in the feed (<code>ig-feed</code>), and they're the interesting part, with the clickable like and save buttons and the icons drawn in CSS. DMs (<code>igdm</code>) are built like iMessage, so they're quick. At the end there's a section on switching parts of every post off for your whole fic, without editing each one.</p>
 
+<p>Each part starts with the CSS itself and a line or two on what it does. The <strong>Options</strong> boxes show what you can safely change, and the <strong>How it works</strong> boxes go through the rules a line at a time, if you want to learn how it's put together. The longest bits of CSS are folded away in boxes of their own.</p>
+
 <h3>Getting the CSS</h3>
 
 <p>The Instagram CSS is here: <a href="css/instagram.css">jockles.com/fic/megaskin/css/instagram.css</a>. It needs the core CSS too, so paste the <a href="core-css.html">core</a> into your work skin first and this underneath it.</p>
@@ -12,7 +14,9 @@
 
 <p>The usual order - the main rules, Links, Dark theme and Auto theme - with a <strong>Scrolling</strong> section before the themes, like Twitter/X, and Icons at the end. A post has no <code>mob-body</code>, so the core's scrolling doesn't reach it, and it gets its own.</p>
 
-<h3>The Feed</h3>
+<h3>The Container</h3>
+
+<h4>The Feed</h4>
 
 <pre><code>#workskin .ig.ig-feed .ig {
   width: auto;
@@ -86,11 +90,23 @@
   text-align: center;
 }</code></pre>
 
-<p>The feed is the default container, so it comes first. A post inside an <code>ig-feed</code> drops its own width, border, rounded corners and scrolling, so the posts sit one after another and only the feed scrolls. The last post keeps only a small gap under it, so a feed with one post fits snugly. Its background is <code>transparent</code> and its colour is <code>inherit</code>, which is how the posts take the feed's theme. The Stories row is a flex row with <code>overflow: hidden</code>, so any circles that don't fit are cut off at the edge.</p>
+<p>The feed is the default container, so it comes first.</p>
+
+<details>
+<summary>How it works: making the posts into one feed</summary>
+
+<p>A post inside an <code>ig-feed</code> drops its own width, border, rounded corners and scrolling, so the posts sit one after another and only the feed scrolls. The last post keeps only a small gap under it, so a feed with one post fits snugly. Its background is <code>transparent</code> and its colour is <code>inherit</code>, which is how the posts take the feed's theme. The Stories row is a flex row with <code>overflow: hidden</code>, so any circles that don't fit are cut off at the edge.</p>
+
+</details>
+
+<details>
+<summary>How it works: the rings on the Stories circles</summary>
 
 <p>The ring is drawn by <code>::before</code>: a gradient circle, set behind the picture with <code>position: absolute</code>. The picture sits on top, slightly smaller, with a border in the background colour, which makes the gap between the picture and the ring. Drawing the ring separately means the colour classes for initials still work on the <code>ig-pfp</code>. <code>close</code> swaps the gradient for green, and <code>plain</code> hides the ring. The + badge on your own circle is an <code>::after</code> on the <code>me</code> story, a small circle placed over the bottom right of the picture.</p>
 
-<h3>The Post</h3>
+</details>
+
+<h4>The Post</h4>
 
 <pre><code>#workskin .ig {
   background: #ffffff;
@@ -114,9 +130,184 @@
   color: #737373;
 }</code></pre>
 
-<p>A post on its own is a card with nearly square corners, white in light mode and nearly black in dark mode, and every line in it is a block with the same <code>0.9em</code> of padding on each side, so they all line up down the left. The last span in the account line drops onto its own line in small grey (a lighter grey in dark mode), for the song or the place. The other lines - <code>ig-likes</code>, <code>ig-caption</code>, <code>ig-comment</code>, <code>ig-viewall</code> and <code>ig-time</code> - are just the same thing with different sizes and greys.</p>
+<p>A post on its own is a card with nearly square corners, white in light mode and nearly black in dark mode, and every line in it is a block with the same <code>0.9em</code> of padding on each side, so they all line up down the left.</p>
 
-<h3>The Photo</h3>
+<details>
+<summary>How it works: the small grey line and the other lines</summary>
+
+<p>The last span in the account line drops onto its own line in small grey (a lighter grey in dark mode), for the song or the place. The other lines - <code>ig-likes</code>, <code>ig-caption</code>, <code>ig-comment</code>, <code>ig-viewall</code> and <code>ig-time</code> - are just the same thing with different sizes and greys.</p>
+
+</details>
+
+<h3>Normal Posts</h3>
+
+<h4>The Buttons</h4>
+
+<pre><code>#workskin .ig .ig-actions {
+  display: block;
+  overflow: hidden;
+  padding: 0.6em 0.9em 0.1em 0.9em;
+  font-size: 1.1em;
+  letter-spacing: 0.4em;
+}
+
+#workskin .ig .ig-actions br { display: none; }
+
+#workskin .ig .ig-actions p:not(.ig-btn) {
+  display: inline;
+  margin: 0;
+  padding: 0;
+}
+
+#workskin .ig .ig-btn,
+#workskin .ig .ig-tog {
+  display: inline-block;
+  margin: 0 0.9em 0 0;
+  letter-spacing: 0;
+  vertical-align: middle;
+}</code></pre>
+
+<p>Each button is a small block sitting in a row, with a gap to its right.</p>
+
+<details>
+<summary>How it works: the line breaks AO3 adds</summary>
+
+<p>AO3 likes to add line breaks and stray paragraphs between them, so the middle two rules flatten those, the same way the WhatsApp message bar does.</p>
+
+</details>
+
+<h4>Clickable Buttons</h4>
+
+<p>This is the part that comes from mystyrust's fic <em>chat, is this real?</em> (see the credits). There's no way to run a script on AO3, so nothing can react to a click - except the <code>&lt;details&gt;</code> tag. A details tag is a box that opens and closes when you click its <code>&lt;summary&gt;</code>, and when it's open, the browser gives it an <code>open</code> attribute. CSS can see that, so it can show one thing when it's closed and another when it's open:</p>
+
+<pre><code>#workskin .ig .ig-tog summary {
+  display: inline-block;
+  list-style: none;
+}
+
+#workskin .ig .ig-tog summary::-webkit-details-marker { display: none; }
+
+#workskin .ig .ig-tog summary::marker { content: ""; }
+
+#workskin .ig .ig-tog .on { display: none; }
+
+#workskin .ig .ig-tog[open] .on { display: inline; }
+
+#workskin .ig .ig-tog[open] .bm.on { display: inline-block; }
+
+#workskin .ig .ig-tog[open] .off { display: none; }</code></pre>
+
+<details>
+<summary>How it works: the rules, one at a time</summary>
+
+<ul>
+  <li>The first three rules hide the little triangle that every details tag has, in every browser - Chrome and Safari call it one thing, Firefox another, so it takes three goes.</li>
+  <li>Then: <code>on</code> parts are hidden. <code>[open]</code> means "when it's been clicked open", so once it's clicked, the <code>on</code> parts show and the <code>off</code> parts hide. Click again, the box closes, and it swaps back.</li>
+  <li>Everything lives inside the <code>summary</code>, which is the part that's always visible, so nothing ever actually opens - it just swaps.</li>
+</ul>
+
+</details>
+
+<pre><code>#workskin .ig .ig-tog.save {
+  float: right;
+  margin-right: 0;
+}
+
+#workskin .ig .ig-tog.like .on.ig-icon { color: #ed4956; }</code></pre>
+
+<p>The save button floats to the far right, and a liked heart is Instagram's red.</p>
+
+<h4>Icons Drawn With CSS</h4>
+
+<p>There's no good comment bubble or bookmark among the emoji and symbols, so these two are drawn from boxes:</p>
+
+<pre><code>#workskin .ig .cm {
+  display: inline-block;
+  box-sizing: border-box;
+  width: 18px;
+  height: 18px;
+  border: 2px solid currentColor;
+  border-radius: 50%;
+  border-bottom-left-radius: 0;
+  vertical-align: middle;
+}</code></pre>
+
+<details>
+<summary>How it works: the comment bubble</summary>
+
+<p>The comment bubble is a circle outline with one corner left square, which makes the little tail. <code>currentColor</code> means "the same colour as the text", so it's dark in light mode and light in dark mode without needing a rule for each.</p>
+
+</details>
+
+<pre><code>#workskin .ig .bm {
+  display: inline-block;
+  position: relative;
+  box-sizing: border-box;
+  width: 14px;
+  height: 18px;
+  border: 2px solid currentColor;
+  border-bottom: 0;
+  vertical-align: middle;
+}
+
+#workskin .ig .bm::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  box-sizing: border-box;
+  width: 7px;
+  height: 7px;
+  margin: 0 0 -3px -3px;
+  border-top: 2px solid currentColor;
+  border-left: 2px solid currentColor;
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+#workskin .ig .bm.on { background: currentColor; }
+
+#workskin .ig .bm.on::after {
+  border: 0;
+  background: #ffffff;
+}</code></pre>
+
+<details>
+<summary>How it works: the bookmark</summary>
+
+<p>The bookmark is a tall box with no bottom edge. The notch at the bottom is a small square with only two edges, turned 45 degrees so they make a V, and pinned in the middle of the open bottom. Saved, the box is filled in, and the notch becomes a solid square the colour of the post, turned on its point, which cuts the V out of the fill.</p>
+
+</details>
+
+<h4>Liked By, With Faces</h4>
+
+<pre><code>#workskin .ig .ig-like-pfp {
+  display: inline-block;
+  position: relative;
+  box-sizing: content-box;
+  width: 18px;
+  height: 18px;
+  margin-left: -8px;
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+  overflow: hidden;
+  vertical-align: middle;
+}
+
+#workskin .ig .ig-like-pfp:first-child { margin-left: 0; }</code></pre>
+
+<p>Each face is a tiny circle with a white edge, and the <em>negative</em> left margin pulls each one <code>8px</code> back over the one before, so they overlap.</p>
+
+<details>
+<summary>How it works: keeping each face's edge on top</summary>
+
+<p>The first one doesn't need pulling back. <code>position: relative</code> keeps each face's edge on top of the picture before it: the picture inside a <code>pfp</code> span is placed with <code>position</code>, and without it the pictures would be drawn over every edge. This is why the faces have to be on one line of code with no gaps: a space between two inline things takes up room, and would push them apart again.</p>
+
+</details>
+
+<h3>Photos</h3>
+
+<h4>The Photo</h4>
 
 <pre><code>#workskin .ig .ig-photo {
   display: block;
@@ -134,163 +325,9 @@
 
 <p>Without <code>real</code>, it's a grey box with lots of padding, for a description. <code>real</code> takes the padding away so the picture goes right to the edges, at its own shape.</p>
 
-<p>The tagged people list is a <code>&lt;details&gt;</code> block, so it opens and closes with a click. Closed, the summary is the icon: a dark see-through circle pulled up into the bottom left corner of the photo with a negative top margin, with a round head (<code>::before</code>) and shoulders (<code>::after</code>) in white. It's the same in light and dark mode. After a carousel it's pulled up further, past the dots, so it still sits on the photo. The title inside it is hidden until it's open. The post gets <code>position: relative</code> so the sheet can be placed inside it.</p>
+<h4>Square and Tall Photos</h4>
 
-<pre><code>#workskin .ig { position: relative; }
-
-#workskin .ig .ig-photo { position: relative; }
-
-#workskin .ig .ig-tagged { display: block; margin: 0; padding: 0; }
-
-#workskin .ig .ig-tagged summary {
-  display: block;
-  position: relative;
-  z-index: 2;
-  width: 26px;
-  height: 26px;
-  margin: -36px 0 10px 10px;
-  border-radius: 50%;
-  background: rgba(0, 0, 0, 0.75);
-  overflow: hidden;
-  cursor: pointer;
-  list-style: none;
-}
-
-#workskin .ig .ig-car + .ig-tagged summary { margin: -60px 0 34px 10px; }
-
-#workskin .ig .ig-tagged summary::-webkit-details-marker { display: none; }
-
-#workskin .ig .ig-tagged summary::marker { content: ""; }
-
-#workskin .ig .ig-tagged summary span { display: none; }
-
-#workskin .ig .ig-tagged summary::before,
-#workskin .ig .ig-tagged summary::after {
-  content: "";
-  position: absolute;
-  background: #ffffff;
-}
-
-#workskin .ig .ig-tagged summary::before {
-  top: 6px;
-  left: 9px;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-}
-
-#workskin .ig .ig-tagged summary::after {
-  top: 15px;
-  left: 7px;
-  width: 12px;
-  height: 6px;
-  border-radius: 6px 6px 1px 1px;
-}</code></pre>
-
-<p>Once it's open, the summary moves up to the top of the sheet, the head turns into the grey grab bar and the title shows, so clicking the top of the sheet closes it again. It has the same solid background as the sheet, so a long list scrolls away underneath it instead of showing through. The sheet is placed over the bottom 85% of the post with rounded top corners. Its huge see-through shadow darkens the rest of the post, and the post's <code>overflow: hidden</code> stops the shadow spilling out. The sheet is white in light mode and dark grey (<code>#262626</code>) in dark mode. Each person line is the picture floated left, the username and the grey name underneath, with the button floated right.</p>
-
-<pre><code>#workskin .ig .ig-tagged[open] summary {
-  position: absolute;
-  z-index: 4;
-  top: 15%;
-  left: 0;
-  right: 0;
-  width: auto;
-  height: auto;
-  margin: 0;
-  padding: 1.4em 0 0.7em 0;
-  border-radius: 16px 16px 0 0;
-  border-bottom: 1px solid #efefef;
-  background: #ffffff;
-  color: inherit;
-  text-align: center;
-  font-weight: bold;
-  font-size: 1.05em;
-}
-
-#workskin .ig .ig-tagged[open] summary span { display: inline; }
-
-#workskin .ig .ig-tagged[open] summary::before {
-  top: 0.5em;
-  left: 50%;
-  width: 36px;
-  height: 4px;
-  margin-left: -18px;
-  border-radius: 2px;
-  background: #c7c7c7;
-}
-
-#workskin .ig .ig-tagged[open] summary::after { display: none; }
-
-/* the sheet covers the bottom of the post, and its shadow darkens the rest */
-#workskin .ig .ig-sheet {
-  position: absolute;
-  z-index: 3;
-  top: 15%;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  padding: 3.6em 0 0.5em 0;
-  border-radius: 16px 16px 0 0;
-  background: #ffffff;
-  box-shadow: 0 0 0 2000px rgba(0, 0, 0, 0.4);
-  overflow-y: auto;
-}
-
-#workskin .ig .ig-person {
-  display: block;
-  overflow: hidden;
-  margin: 0;
-  padding: 0.5em 1em;
-  font-weight: bold;
-}
-
-#workskin .ig .ig-person .ig-pfp {
-  float: left;
-  width: 44px;
-  height: 44px;
-  margin: 0 0.8em 0 0;
-  border-radius: 50%;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #ffffff;
-  font-size: 0.9em;
-  line-height: 1;
-}
-
-#workskin .ig .ig-person .ig-pfp .pfp::before { font-size: 1.2em; }
-
-#workskin .ig .ig-person .handle { display: inline-block; padding-top: 0.2em; }
-
-#workskin .ig .ig-person .ig-pname { display: block; font-weight: normal; color: #737373; }
-
-#workskin .ig .ig-person .ig-fbtn {
-  float: right;
-  margin: 0.4em 0 0 0.6em;
-  padding: 0.35em 1.1em;
-  border-radius: 8px;
-  background: #efefef;
-  color: #000000;
-  font-size: 0.9em;
-}
-
-#workskin .ig .ig-person .ig-fbtn.blue { background: #0095f6; color: #ffffff; }</code></pre>
-
-<p>A short post doesn't leave the list much room, so while it's open the <code>ig-tagged</code> block turns into an invisible float, 300px tall and no width, just under the photo. The post has to stretch to hold it, so a short post grows and a long one stays the same. Posts in a feed get <code>display: flow-root</code>, which makes them hold floats.</p>
-
-<pre><code>#workskin .ig .ig-tagged[open] {
-  float: left;
-  width: 0;
-  height: 300px;
-}
-
-#workskin .ig.ig-feed .ig { display: flow-root; }</code></pre>
-
-<h3>Square and Tall Photos</h3>
-
-<p>The shape comes from <code>aspect-ratio</code>: <code>1</code> for square, and <code>0.75</code> (3 wide by 4 high) for tall. AO3 only keeps a plain number here, so write it as one number rather than <code>3 / 4</code>. The box hides anything that spills out. The picture inside is taken out of the line with <code>position: absolute</code>, made as wide as the box and moved up by half its own height with <code>transform</code>, so the middle of it shows. A <code>land</code> picture is made as tall as the box and moved left instead. Described photos are centred in the box with flex.</p>
+<p>The shape comes from <code>aspect-ratio</code>: <code>1</code> for square, and <code>0.75</code> (3 wide by 4 high) for tall.</p>
 
 <pre><code>#workskin .ig .ig-photo.ig-pic-sq,
 #workskin .ig .ig-photo.ig-pic-portrait {
@@ -325,11 +362,19 @@
   transform: translateX(-50%);
 }</code></pre>
 
-<h3>The Carousel</h3>
+<details>
+<summary>How it works: cutting the picture to fit</summary>
 
-<p>The carousel uses the same trick as the clickable like button: a <code>&lt;details&gt;</code> block that opens when you tap it. Every photo after the first sits inside a <code>&lt;summary&gt;</code>, parked just off the right-hand edge with <code>left: 100%</code>, and the carousel's <code>overflow: hidden</code> keeps it out of sight. When its details opens, <code>left</code> changes to <code>0</code>, and the <code>transition</code> makes it slide in over the photo before it. Close it and it slides back out. Each details sits inside the one before, so the next arrow only shows once you've got to that photo.</p>
+<p>AO3 only keeps a plain number here, so write it as one number rather than <code>3 / 4</code>. The box hides anything that spills out. The picture inside is taken out of the line with <code>position: absolute</code>, made as wide as the box and moved up by half its own height with <code>transform</code>, so the middle of it shows. A <code>land</code> picture is made as tall as the box and moved left instead. Described photos are centred in the box with flex.</p>
 
-<p>The arrow is the summary's <code>::before</code>: a white circle at the right, which moves to the left and turns round once it's open, so the same arrow takes you back. The <code>ig-car-info</code> line lies over the whole photo, so tapping the photo itself does nothing, and holds the counter at the top right and the dots. The carousel has <code>24px</code> of padding at the bottom, and the dots sit in that gap underneath the photo, like on Instagram. The photos after the first stop at <code>bottom: 24px</code> so they don't cover it, and the arrows move up a bit to stay in the middle of the photo. The dots are light grey (<code>#c7c7c7</code>) in light mode and dark grey (<code>#555555</code>) in dark mode, with the current one blue (<code>#0095f6</code>).</p>
+</details>
+
+<h4>The Carousel</h4>
+
+<p>The carousel uses the same trick as the clickable like button: a <code>&lt;details&gt;</code> block that opens when you tap it.</p>
+
+<details>
+<summary>The full CSS for the carousel</summary>
 
 <pre><code>#workskin .ig .ig-car {
   display: block;
@@ -447,7 +492,203 @@
 
 #workskin .ig .ig-car .ig-car-dots b { color: #0095f6; font-weight: normal; }</code></pre>
 
-<h3>The Account Line Extras</h3>
+</details>
+
+<details>
+<summary>How it works: sliding the photos in</summary>
+
+<p>Every photo after the first sits inside a <code>&lt;summary&gt;</code>, parked just off the right-hand edge with <code>left: 100%</code>, and the carousel's <code>overflow: hidden</code> keeps it out of sight. When its details opens, <code>left</code> changes to <code>0</code>, and the <code>transition</code> makes it slide in over the photo before it. Close it and it slides back out. Each details sits inside the one before, so the next arrow only shows once you've got to that photo.</p>
+
+</details>
+
+<details>
+<summary>How it works: the arrows, the counter and the dots</summary>
+
+<p>The arrow is the summary's <code>::before</code>: a white circle at the right, which moves to the left and turns round once it's open, so the same arrow takes you back. The <code>ig-car-info</code> line lies over the whole photo, so tapping the photo itself does nothing, and holds the counter at the top right and the dots. The carousel has <code>24px</code> of padding at the bottom, and the dots sit in that gap underneath the photo, like on Instagram. The photos after the first stop at <code>bottom: 24px</code> so they don't cover it, and the arrows move up a bit to stay in the middle of the photo. The dots are light grey (<code>#c7c7c7</code>) in light mode and dark grey (<code>#555555</code>) in dark mode, with the current one blue (<code>#0095f6</code>).</p>
+
+</details>
+
+<h4>Tagged People</h4>
+
+<p>The tagged people list is a <code>&lt;details&gt;</code> block, so it opens and closes with a click.</p>
+
+<details>
+<summary>The full CSS for the tagged people list</summary>
+
+<pre><code>#workskin .ig { position: relative; }
+
+#workskin .ig .ig-photo { position: relative; }
+
+#workskin .ig .ig-tagged { display: block; margin: 0; padding: 0; }
+
+#workskin .ig .ig-tagged summary {
+  display: block;
+  position: relative;
+  z-index: 2;
+  width: 26px;
+  height: 26px;
+  margin: -36px 0 10px 10px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.75);
+  overflow: hidden;
+  cursor: pointer;
+  list-style: none;
+}
+
+#workskin .ig .ig-car + .ig-tagged summary { margin: -60px 0 34px 10px; }
+
+#workskin .ig .ig-tagged summary::-webkit-details-marker { display: none; }
+
+#workskin .ig .ig-tagged summary::marker { content: ""; }
+
+#workskin .ig .ig-tagged summary span { display: none; }
+
+#workskin .ig .ig-tagged summary::before,
+#workskin .ig .ig-tagged summary::after {
+  content: "";
+  position: absolute;
+  background: #ffffff;
+}
+
+#workskin .ig .ig-tagged summary::before {
+  top: 6px;
+  left: 9px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+#workskin .ig .ig-tagged summary::after {
+  top: 15px;
+  left: 7px;
+  width: 12px;
+  height: 6px;
+  border-radius: 6px 6px 1px 1px;
+}</code></pre>
+
+<pre><code>#workskin .ig .ig-tagged[open] summary {
+  position: absolute;
+  z-index: 4;
+  top: 15%;
+  left: 0;
+  right: 0;
+  width: auto;
+  height: auto;
+  margin: 0;
+  padding: 1.4em 0 0.7em 0;
+  border-radius: 16px 16px 0 0;
+  border-bottom: 1px solid #efefef;
+  background: #ffffff;
+  color: inherit;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.05em;
+}
+
+#workskin .ig .ig-tagged[open] summary span { display: inline; }
+
+#workskin .ig .ig-tagged[open] summary::before {
+  top: 0.5em;
+  left: 50%;
+  width: 36px;
+  height: 4px;
+  margin-left: -18px;
+  border-radius: 2px;
+  background: #c7c7c7;
+}
+
+#workskin .ig .ig-tagged[open] summary::after { display: none; }
+
+/* the sheet covers the bottom of the post, and its shadow darkens the rest */
+#workskin .ig .ig-sheet {
+  position: absolute;
+  z-index: 3;
+  top: 15%;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 3.6em 0 0.5em 0;
+  border-radius: 16px 16px 0 0;
+  background: #ffffff;
+  box-shadow: 0 0 0 2000px rgba(0, 0, 0, 0.4);
+  overflow-y: auto;
+}
+
+#workskin .ig .ig-person {
+  display: block;
+  overflow: hidden;
+  margin: 0;
+  padding: 0.5em 1em;
+  font-weight: bold;
+}
+
+#workskin .ig .ig-person .ig-pfp {
+  float: left;
+  width: 44px;
+  height: 44px;
+  margin: 0 0.8em 0 0;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 0.9em;
+  line-height: 1;
+}
+
+#workskin .ig .ig-person .ig-pfp .pfp::before { font-size: 1.2em; }
+
+#workskin .ig .ig-person .handle { display: inline-block; padding-top: 0.2em; }
+
+#workskin .ig .ig-person .ig-pname { display: block; font-weight: normal; color: #737373; }
+
+#workskin .ig .ig-person .ig-fbtn {
+  float: right;
+  margin: 0.4em 0 0 0.6em;
+  padding: 0.35em 1.1em;
+  border-radius: 8px;
+  background: #efefef;
+  color: #000000;
+  font-size: 0.9em;
+}
+
+#workskin .ig .ig-person .ig-fbtn.blue { background: #0095f6; color: #ffffff; }</code></pre>
+
+<pre><code>#workskin .ig .ig-tagged[open] {
+  float: left;
+  width: 0;
+  height: 300px;
+}
+
+#workskin .ig.ig-feed .ig { display: flow-root; }</code></pre>
+
+</details>
+
+<details>
+<summary>How it works: the icon on the photo</summary>
+
+<p>Closed, the summary is the icon: a dark see-through circle pulled up into the bottom left corner of the photo with a negative top margin, with a round head (<code>::before</code>) and shoulders (<code>::after</code>) in white. It's the same in light and dark mode. After a carousel it's pulled up further, past the dots, so it still sits on the photo. The title inside it is hidden until it's open. The post gets <code>position: relative</code> so the sheet can be placed inside it.</p>
+
+</details>
+
+<details>
+<summary>How it works: the open list</summary>
+
+<p>Once it's open, the summary moves up to the top of the sheet, the head turns into the grey grab bar and the title shows, so clicking the top of the sheet closes it again. It has the same solid background as the sheet, so a long list scrolls away underneath it instead of showing through. The sheet is placed over the bottom 85% of the post with rounded top corners. Its huge see-through shadow darkens the rest of the post, and the post's <code>overflow: hidden</code> stops the shadow spilling out. The sheet is white in light mode and dark grey (<code>#262626</code>) in dark mode. Each person line is the picture floated left, the username and the grey name underneath, with the button floated right.</p>
+
+</details>
+
+<details>
+<summary>How it works: stretching a short post</summary>
+
+<p>A short post doesn't leave the list much room, so while it's open the <code>ig-tagged</code> block turns into an invisible float, 300px tall and no width, just under the photo. The post has to stretch to hold it, so a short post grows and a long one stays the same. Posts in a feed get <code>display: flow-root</code>, which makes them hold floats.</p>
+
+</details>
+
+<h3>Characters</h3>
+
+<h4>The Account Line Extras</h4>
 
 <pre><code>#workskin .ig .ig-top .ig-menu {
   display: block;
@@ -468,7 +709,14 @@
   overflow: hidden;
 }</code></pre>
 
-<p>The menu floats right and the picture floats left. A floating thing only moves things that come <em>after</em> it in the code, which is why the menu has to go first in the line: if it came after the name, the name would already be in place and the menu would drop below it.</p>
+<p>The menu floats right and the picture floats left.</p>
+
+<details>
+<summary>How it works: why the menu goes first</summary>
+
+<p>A floating thing only moves things that come <em>after</em> it in the code, which is why the menu has to go first in the line: if it came after the name, the name would already be in place and the menu would drop below it.</p>
+
+</details>
 
 <pre><code>#workskin .ig .ig-top .ig-tick,
 #workskin .ig .ig-person .ig-tick {
@@ -492,7 +740,16 @@
   font-weight: normal;
 }</code></pre>
 
-<p>The verified tick is a ✓ in a small blue circle, which is what shows if you take the icons out. With the icons in, the Icons section swaps it for the blue badge picture, a little bigger. The "Follow" link gets its dot added in front with <code>::before</code>: <code>\2022</code> is the bullet •, and <code>\00a0</code> is a space that can't be squashed, so the dot never ends up on a different line from the word.</p>
+<p>The verified tick is a ✓ in a small blue circle, which is what shows if you take the icons out.</p>
+
+<details>
+<summary>How it works: the badge picture and the dot on Follow</summary>
+
+<p>With the icons in, the Icons section swaps it for the blue badge picture, a little bigger. The "Follow" link gets its dot added in front with <code>::before</code>: <code>\2022</code> is the bullet •, and <code>\00a0</code> is a space that can't be squashed, so the dot never ends up on a different line from the word.</p>
+
+</details>
+
+<h4>The Stories Ring</h4>
 
 <pre><code>#workskin .ig .ig-top .ig-pfp.story {
   box-sizing: content-box;
@@ -506,9 +763,18 @@
   border: 2px solid #ffffff;
 }</code></pre>
 
-<p>The stories ring is three layers. The circle gets <code>2px</code> of padding with Instagram's rainbow gradient behind it, so the gradient shows as a ring around the edge. Then the picture inside gets a <code>2px</code> white border, which makes the gap between the ring and the photo. <code>45deg</code> sets the direction of the gradient, corner to corner, and the percentages say where each colour sits. In the dark theme, the white gap turns the same dark colour as the post.</p>
+<p>The stories ring is three layers.</p>
 
-<p>A collab post's two pictures sit in a 36px box. Both pictures are taken out of the line with <code>position: absolute</code>: the first goes to the top right and the second to the bottom left, where it comes out in front because it's later in the HTML. The front one has a 2px border in the background colour (white in light mode, nearly black in dark mode), which makes the gap between the two circles. <code>ig-and</code> undoes the bold and the small grey line that every span in the account line gets otherwise.</p>
+<details>
+<summary>How it works: the three layers</summary>
+
+<p>The circle gets <code>2px</code> of padding with Instagram's rainbow gradient behind it, so the gradient shows as a ring around the edge. Then the picture inside gets a <code>2px</code> white border, which makes the gap between the ring and the photo. <code>45deg</code> sets the direction of the gradient, corner to corner, and the percentages say where each colour sits. In the dark theme, the white gap turns the same dark colour as the post.</p>
+
+</details>
+
+<h4>Collab Posts</h4>
+
+<p>A collab post's two pictures sit in a 36px box.</p>
 
 <pre><code>#workskin .ig .ig-top .ig-collab {
   float: left;
@@ -551,35 +817,14 @@
 
 <p>Only two pictures fit in the circle, so if a third one sneaks in, it's hidden.</p>
 
-<h3>The Buttons</h3>
+<details>
+<summary>How it works: placing the two pictures</summary>
 
-<pre><code>#workskin .ig .ig-actions {
-  display: block;
-  overflow: hidden;
-  padding: 0.6em 0.9em 0.1em 0.9em;
-  font-size: 1.1em;
-  letter-spacing: 0.4em;
-}
+<p>Both pictures are taken out of the line with <code>position: absolute</code>: the first goes to the top right and the second to the bottom left, where it comes out in front because it's later in the HTML. The front one has a 2px border in the background colour (white in light mode, nearly black in dark mode), which makes the gap between the two circles. <code>ig-and</code> undoes the bold and the small grey line that every span in the account line gets otherwise.</p>
 
-#workskin .ig .ig-actions br { display: none; }
+</details>
 
-#workskin .ig .ig-actions p:not(.ig-btn) {
-  display: inline;
-  margin: 0;
-  padding: 0;
-}
-
-#workskin .ig .ig-btn,
-#workskin .ig .ig-tog {
-  display: inline-block;
-  margin: 0 0.9em 0 0;
-  letter-spacing: 0;
-  vertical-align: middle;
-}</code></pre>
-
-<p>Each button is a small block sitting in a row, with a gap to its right. AO3 likes to add line breaks and stray paragraphs between them, so the middle two rules flatten those, the same way the WhatsApp message bar does.</p>
-
-<h3>Private Accounts</h3>
+<h4>Private Accounts</h4>
 
 <pre><code>#workskin .ig .ig-top .ig-lock,
 #workskin .ig .ig-person .ig-lock {
@@ -595,114 +840,14 @@
 
 #workskin .ig .ig-actions .ig-btn.ig-locked { opacity: 0.35; }</code></pre>
 
-<p>The padlock is a picture (the same one as Discord's and Twitter/X's): dark grey in light mode and light grey in dark mode, set in the Icons section like the rest. <code>opacity</code> makes the whole repost button see-through, icon and all, so it works in both modes without needing faded copies of the picture.</p>
+<p>The padlock is a picture (the same one as Discord's and Twitter/X's): dark grey in light mode and light grey in dark mode, set in the Icons section like the rest.</p>
 
-<h3>Clickable Buttons</h3>
+<details>
+<summary>How it works: fading the repost button</summary>
 
-<p>This is the part that comes from mystyrust's fic <em>chat, is this real?</em> (see the credits). There's no way to run a script on AO3, so nothing can react to a click - except the <code>&lt;details&gt;</code> tag. A details tag is a box that opens and closes when you click its <code>&lt;summary&gt;</code>, and when it's open, the browser gives it an <code>open</code> attribute. CSS can see that, so it can show one thing when it's closed and another when it's open:</p>
+<p><code>opacity</code> makes the whole repost button see-through, icon and all, so it works in both modes without needing faded copies of the picture.</p>
 
-<pre><code>#workskin .ig .ig-tog summary {
-  display: inline-block;
-  list-style: none;
-}
-
-#workskin .ig .ig-tog summary::-webkit-details-marker { display: none; }
-
-#workskin .ig .ig-tog summary::marker { content: ""; }
-
-#workskin .ig .ig-tog .on { display: none; }
-
-#workskin .ig .ig-tog[open] .on { display: inline; }
-
-#workskin .ig .ig-tog[open] .bm.on { display: inline-block; }
-
-#workskin .ig .ig-tog[open] .off { display: none; }</code></pre>
-
-<ul>
-  <li>The first three rules hide the little triangle that every details tag has, in every browser - Chrome and Safari call it one thing, Firefox another, so it takes three goes.</li>
-  <li>Then: <code>on</code> parts are hidden. <code>[open]</code> means "when it's been clicked open", so once it's clicked, the <code>on</code> parts show and the <code>off</code> parts hide. Click again, the box closes, and it swaps back.</li>
-  <li>Everything lives inside the <code>summary</code>, which is the part that's always visible, so nothing ever actually opens - it just swaps.</li>
-</ul>
-
-<pre><code>#workskin .ig .ig-tog.save {
-  float: right;
-  margin-right: 0;
-}
-
-#workskin .ig .ig-tog.like .on.ig-icon { color: #ed4956; }</code></pre>
-
-<p>The save button floats to the far right, and a liked heart is Instagram's red.</p>
-
-<h3>Icons Drawn With CSS</h3>
-
-<p>There's no good comment bubble or bookmark among the emoji and symbols, so these two are drawn from boxes:</p>
-
-<pre><code>#workskin .ig .cm {
-  display: inline-block;
-  box-sizing: border-box;
-  width: 18px;
-  height: 18px;
-  border: 2px solid currentColor;
-  border-radius: 50%;
-  border-bottom-left-radius: 0;
-  vertical-align: middle;
-}</code></pre>
-
-<p>The comment bubble is a circle outline with one corner left square, which makes the little tail. <code>currentColor</code> means "the same colour as the text", so it's dark in light mode and light in dark mode without needing a rule for each.</p>
-
-<pre><code>#workskin .ig .bm {
-  display: inline-block;
-  position: relative;
-  box-sizing: border-box;
-  width: 14px;
-  height: 18px;
-  border: 2px solid currentColor;
-  border-bottom: 0;
-  vertical-align: middle;
-}
-
-#workskin .ig .bm::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  bottom: 0;
-  box-sizing: border-box;
-  width: 7px;
-  height: 7px;
-  margin: 0 0 -3px -3px;
-  border-top: 2px solid currentColor;
-  border-left: 2px solid currentColor;
-  -webkit-transform: rotate(45deg);
-  transform: rotate(45deg);
-}
-
-#workskin .ig .bm.on { background: currentColor; }
-
-#workskin .ig .bm.on::after {
-  border: 0;
-  background: #ffffff;
-}</code></pre>
-
-<p>The bookmark is a tall box with no bottom edge. The notch at the bottom is a small square with only two edges, turned 45 degrees so they make a V, and pinned in the middle of the open bottom. Saved, the box is filled in, and the notch becomes a solid square the colour of the post, turned on its point, which cuts the V out of the fill.</p>
-
-<h3>Liked By, With Faces</h3>
-
-<pre><code>#workskin .ig .ig-like-pfp {
-  display: inline-block;
-  position: relative;
-  box-sizing: content-box;
-  width: 18px;
-  height: 18px;
-  margin-left: -8px;
-  border: 2px solid #ffffff;
-  border-radius: 50%;
-  overflow: hidden;
-  vertical-align: middle;
-}
-
-#workskin .ig .ig-like-pfp:first-child { margin-left: 0; }</code></pre>
-
-<p>Each face is a tiny circle with a white edge, and the <em>negative</em> left margin pulls each one <code>8px</code> back over the one before, so they overlap. The first one doesn't need pulling back. <code>position: relative</code> keeps each face's edge on top of the picture before it: the picture inside a <code>pfp</code> span is placed with <code>position</code>, and without it the pictures would be drawn over every edge. This is why the faces have to be on one line of code with no gaps: a space between two inline things takes up room, and would push them apart again.</p>
+</details>
 
 <h3>DMs</h3>
 
@@ -715,7 +860,14 @@
 
 #workskin .igdm .in { margin-right: auto; background: #efefef; color: #262626; }</code></pre>
 
-<p>DM bubbles work like iMessage's, with rounder corners and no point. Your own messages are Instagram's purple, fading slightly from top to bottom, with a plain purple underneath in case the gradient doesn't show. <code>igdm-status</code> is the same as iMessage's status line, and <code>igdm-shared</code> is a bubble with an outline instead of a fill.</p>
+<p>DM bubbles work like iMessage's, with rounder corners and no point.</p>
+
+<details>
+<summary>How it works: the purple bubbles and shared posts</summary>
+
+<p>Your own messages are Instagram's purple, fading slightly from top to bottom, with a plain purple underneath in case the gradient doesn't show. <code>igdm-status</code> is the same as iMessage's status line, and <code>igdm-shared</code> is a bubble with an outline instead of a fill.</p>
+
+</details>
 
 <h3>Links, Scrolling and Themes</h3>
 
@@ -727,13 +879,27 @@
   overflow-x: hidden;
 }</code></pre>
 
-<p>Links and hashtags in posts are Instagram's dark blue. A feed scrolls once it's taller than <code>580px</code>, the same height as every other chat, and the posts inside it don't scroll on their own. A post on its own scrolls as a whole once it's taller than <code>700px</code>, which is why a post on its own with a real photo needs <code>no-scroll</code>. The feed's height rule is just as strong as the core's <code>no-scroll</code> rule and comes after it, so the feed has its own <code>no-scroll</code> rule too:</p>
+<p>Links and hashtags in posts are Instagram's dark blue.</p>
+
+<details>
+<summary>How it works: scrolling a feed, and a post on its own</summary>
+
+<p>A feed scrolls once it's taller than <code>580px</code>, the same height as every other chat, and the posts inside it don't scroll on their own. A post on its own scrolls as a whole once it's taller than <code>700px</code>, which is why a post on its own with a real photo needs <code>no-scroll</code>. The feed's height rule is just as strong as the core's <code>no-scroll</code> rule and comes after it, so the feed has its own <code>no-scroll</code> rule too:</p>
 
 <pre><code>#workskin .ig.ig-feed { max-height: 580px; }
 
 #workskin .ig.ig-feed.no-scroll { max-height: none; overflow-y: visible; }</code></pre>
 
-<p>The dark theme is Instagram's very dark blue-black, <code>#0c1014</code>, with <code>#f5f5f5</code> text and <code>#a8a8a8</code> grey. It also turns the white edges dark - the gap in the story ring, the edges of the liked-by faces and the notch in a saved bookmark - because a white edge on a dark post would show. The auto theme is the same rules again inside <code>@media (prefers-color-scheme: dark)</code>.</p>
+</details>
+
+<p>The dark theme is Instagram's very dark blue-black, <code>#0c1014</code>, with <code>#f5f5f5</code> text and <code>#a8a8a8</code> grey.</p>
+
+<details>
+<summary>How it works: the white edges in the dark theme</summary>
+
+<p>It also turns the white edges dark - the gap in the story ring, the edges of the liked-by faces and the notch in a saved bookmark - because a white edge on a dark post would show. The auto theme is the same rules again inside <code>@media (prefers-color-scheme: dark)</code>.</p>
+
+</details>
 
 <h3>Switching Parts Off for the Whole Fic</h3>
 
@@ -763,7 +929,7 @@
 #workskin .ig .ig-time { text-transform: uppercase; font-size: 0.7em; }</code></pre>
 
 <details>
-<summary>Why the counts line has the class three times</summary>
+<summary>How it works: why the counts line has the class three times</summary>
 
 <p>The clickable heart has its own rule that shows its <code>on</code> count once it's clicked, and that rule is quite specific. Repeating the class makes this rule more specific still, so the count stays hidden after a click too - the same trick as <code>hide</code> in the core.</p>
 

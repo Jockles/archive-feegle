@@ -42,8 +42,8 @@
     <ul>
       <li><a href="#s11-1-1">11.1.1 Getting the 2012-15 CSS</a></li>
       <li><a href="#s11-1-2">11.1.2 How the 2012-15 Module is Laid Out</a></li>
-      <li><a href="#s11-1-3">11.1.3 The 2012-15 Picture Column</a></li>
-      <li><a href="#s11-1-4">11.1.4 The 2012-15 Bars</a></li>
+      <li><a href="#s11-1-3">11.1.3 The 2012-15 Bars</a></li>
+      <li><a href="#s11-1-4">11.1.4 The 2012-15 Picture Column</a></li>
       <li><a href="#s11-1-5">11.1.5 Taking Parts Out of 2012-15</a></li>
     </ul>
   </li>
@@ -51,14 +51,16 @@
     <ul>
       <li><a href="#s11-2-1">11.2.1 Getting the 2016-19 CSS</a></li>
       <li><a href="#s11-2-2">11.2.2 How the 2016-19 Module is Laid Out</a></li>
-      <li><a href="#s11-2-3">11.2.3 The 2016-19 Picture Column</a></li>
-      <li><a href="#s11-2-4">11.2.4 The Conversation Line</a></li>
-      <li><a href="#s11-2-5">11.2.5 The 2016-19 Bars</a></li>
-      <li><a href="#s11-2-6">11.2.6 2016-19 Dark and Auto Themes</a></li>
+      <li><a href="#s11-2-3">11.2.3 The 2016-19 Bars</a></li>
+      <li><a href="#s11-2-4">11.2.4 2016-19 Dark and Auto Themes</a></li>
+      <li><a href="#s11-2-5">11.2.5 The 2016-19 Picture Column</a></li>
+      <li><a href="#s11-2-6">11.2.6 The Conversation Line</a></li>
       <li><a href="#s11-2-7">11.2.7 Taking Parts Out of 2016-19</a></li>
     </ul>
   </li>
 </ul>
+
+<p>Each part starts with the CSS itself and a line or two on what it does. The <strong>Options</strong> boxes show what you can safely change, and the <strong>How it works</strong> boxes go through the rules a line at a time, if you want to learn how it's put together.</p>
 
 <h3 id="s11-1">11.1 The 2012-15 CSS</h3>
 
@@ -70,7 +72,47 @@
 
 <p>The tweet comes first, then an opened tweet, then the app screen with its two bars, and Icons at the end. There's no Dark or Auto section, because Twitter had no night mode yet. Every rule starts with <code>.twc12</code> or <code>.twc12-feed</code>, so even though the parts inside have the same names as other Twitter modules (<code>tw-top</code>, <code>tw-stats</code> and so on), nothing gets in anything else's way.</p>
 
-<h4 id="s11-1-3">11.1.3 The 2012-15 Picture Column</h4>
+<h4 id="s11-1-3">11.1.3 The 2012-15 Bars</h4>
+
+<pre><code>#workskin .twc12-feed .twc-bar {
+  display: flex;
+  position: sticky;
+  top: 0;
+  background-color: #3b94d9;
+  background-image: linear-gradient(#6db9ef, #3b92d8 55%, #2f83c8);
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.35);
+}
+
+#workskin .twc12-feed .twc-title {
+  position: absolute;
+  left: 4.5em;
+  right: 4.5em;
+  text-align: center;
+}
+
+#workskin .twc12-feed .twc-title + .ic { margin-left: auto; }</code></pre>
+
+<p>These are the two bars of the app screen: the blue one along the top, and the black row of buttons along the bottom. Both stay put while the tweets scroll between them.</p>
+
+<details>
+<summary>How it works: the shine on the bars</summary>
+
+<p>The shine on the bars comes from <code>linear-gradient</code>, which fades from one colour to the next down the bar. Each colour can have a point to stop at, so the blue bar is lightest at the top and darkens past the middle, and the black bar along the bottom jumps from one shade to a darker one exactly halfway down, which gives it a glassy edge. <code>background-color</code> underneath is a plain colour for anything that can't show the gradient, and the dark <code>text-shadow</code> one pixel above the page name makes it look pressed into the bar. The icons have their shine and shadow drawn into the pictures themselves.</p>
+
+</details>
+
+<details>
+<summary>How it works: keeping the bars in place, and the page name in the middle</summary>
+
+<p><code>position: sticky</code> keeps the bar at the top of the screen while the tweets scroll under it, and the black row of buttons does the same at the bottom with <code>bottom: 0</code>. The page name is taken out of the row and stretched across the middle, so it stays centred whether there's one button on the left and two on the right or anything else, and <code>margin-left: auto</code> pushes the buttons after it over to the right. Each <code>tw-tab</code> in the bottom row has its icon as a block, so the name drops underneath it.</p>
+
+</details>
+
+<p>The screen scrolls once it's taller than a phone, and <code>no-scroll</code> on the <code>twc12-feed</code> switches that off:</p>
+
+<pre><code>#workskin .twc12-feed.no-scroll { max-height: none; overflow-y: visible; }</code></pre>
+
+<h4 id="s11-1-4">11.1.4 The 2012-15 Picture Column</h4>
 
 <pre><code>#workskin .twc12 {
   position: relative;
@@ -92,35 +134,21 @@
   right: 0.8em;
 }</code></pre>
 
-<p>The big left padding on the tweet leaves an empty column down the side, and the picture is pulled out of the line with <code>position: absolute</code> and pinned into it. The time is pinned into the top right corner the same way, and the name line has some padding on the right so a long name never runs underneath it. The <code>border-radius</code> of 5px is what makes the pictures squares with soft corners. An opened tweet (<code>big</code>) takes the left padding away again and gives the name line its own padding instead, so the picture sits beside the name and the words run the whole width underneath.</p>
+<p>The big left padding on the tweet leaves an empty column down the side, and the picture is pulled out of the line with <code>position: absolute</code> and pinned into it. The time is pinned into the top right corner the same way, and the name line has some padding on the right so a long name never runs underneath it.</p>
 
-<h4 id="s11-1-4">11.1.4 The 2012-15 Bars</h4>
+<details>
+<summary>Options: rounder or squarer pictures</summary>
 
-<pre><code>#workskin .twc12-feed .twc-bar {
-  display: flex;
-  position: sticky;
-  top: 0;
-  background-color: #3b94d9;
-  background-image: linear-gradient(#6db9ef, #3b92d8 55%, #2f83c8);
-  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.35);
-}
+<p>The <code>border-radius</code> of 5px is what makes the pictures squares with soft corners. Make it bigger for rounder corners, or <code>0</code> for sharp ones.</p>
 
-#workskin .twc12-feed .twc-title {
-  position: absolute;
-  left: 4.5em;
-  right: 4.5em;
-  text-align: center;
-}
+</details>
 
-#workskin .twc12-feed .twc-title + .ic { margin-left: auto; }</code></pre>
+<details>
+<summary>How it works: an opened tweet</summary>
 
-<p>The shine on the bars comes from <code>linear-gradient</code>, which fades from one colour to the next down the bar. Each colour can have a point to stop at, so the blue bar is lightest at the top and darkens past the middle, and the black bar along the bottom jumps from one shade to a darker one exactly halfway down, which gives it a glassy edge. <code>background-color</code> underneath is a plain colour for anything that can't show the gradient, and the dark <code>text-shadow</code> one pixel above the page name makes it look pressed into the bar. The icons have their shine and shadow drawn into the pictures themselves.</p>
+<p>An opened tweet (<code>big</code>) takes the left padding away again and gives the name line its own padding instead, so the picture sits beside the name and the words run the whole width underneath.</p>
 
-<p><code>position: sticky</code> keeps the bar at the top of the screen while the tweets scroll under it, and the black row of buttons does the same at the bottom with <code>bottom: 0</code>. The page name is taken out of the row and stretched across the middle, so it stays centred whether there's one button on the left and two on the right or anything else, and <code>margin-left: auto</code> pushes the buttons after it over to the right. Each <code>tw-tab</code> in the bottom row has its icon as a block, so the name drops underneath it.</p>
-
-<p>The screen scrolls once it's taller than a phone, and <code>no-scroll</code> on the <code>twc12-feed</code> switches that off:</p>
-
-<pre><code>#workskin .twc12-feed.no-scroll { max-height: none; overflow-y: visible; }</code></pre>
+</details>
 
 <h4 id="s11-1-5">11.1.5 Taking Parts Out of 2012-15</h4>
 
@@ -140,7 +168,26 @@
 
 <p>The tweet comes first, then conversations, an opened tweet, the app screen with its two bars, the Dark and Auto themes, and Icons at the end. Every rule starts with <code>.twc16</code> or <code>.twc16-feed</code>, so even though the parts inside have the same names as other Twitter modules (<code>tw-top</code>, <code>tw-stats</code> and so on), nothing gets in anything else's way.</p>
 
-<h4 id="s11-2-3">11.2.3 The 2016-19 Picture Column</h4>
+<h4 id="s11-2-3">11.2.3 The 2016-19 Bars</h4>
+
+<p>The bars work the same way as the 2012-15 ones: <code>position: sticky</code> keeps them at the top and bottom of the screen while the tweets scroll between them, and the page name is stretched across the middle of the top bar so it always stays centred.</p>
+
+<details>
+<summary>How it works: the blue number on a button</summary>
+
+<p>The blue number on a button is the icon in a <code>tw-badged</code> box, with the number pinned to its top right corner with <code>position: absolute</code>.</p>
+
+</details>
+
+<p>The screen scrolls once it's taller than a phone, and <code>no-scroll</code> on the <code>twc16-feed</code> switches that off:</p>
+
+<pre><code>#workskin .twc16-feed.no-scroll { max-height: none; overflow-y: visible; }</code></pre>
+
+<h4 id="s11-2-4">11.2.4 2016-19 Dark and Auto Themes</h4>
+
+<p>Night mode is <code>#15202b</code> for the background, white for the text, <code>#8899a6</code> for grey and <code>#38444d</code> for the lines. The auto theme is the dark rules again inside <code>@media (prefers-color-scheme: dark)</code>, so change a colour in both places.</p>
+
+<h4 id="s11-2-5">11.2.5 The 2016-19 Picture Column</h4>
 
 <pre><code>#workskin .twc16 {
   position: relative;
@@ -156,9 +203,16 @@
   border-radius: 50%;
 }</code></pre>
 
-<p>The big left padding on the tweet leaves an empty column down the side, and the picture is pulled out of the line with <code>position: absolute</code> and pinned into it. Everything else in the tweet - the label, the name line, the words and the buttons - lines up in the space beside it, with no extra boxes needed. The little arrow is pinned into the top right corner the same way. An opened tweet (<code>big</code>) takes the left padding away again and gives the name line its own padding instead, so the picture sits beside the name and the words run the whole width underneath.</p>
+<p>The big left padding on the tweet leaves an empty column down the side, and the picture is pulled out of the line with <code>position: absolute</code> and pinned into it. Everything else in the tweet - the label, the name line, the words and the buttons - lines up in the space beside it, with no extra boxes needed. The little arrow is pinned into the top right corner the same way.</p>
 
-<h4 id="s11-2-4">11.2.4 The Conversation Line</h4>
+<details>
+<summary>How it works: an opened tweet</summary>
+
+<p>An opened tweet (<code>big</code>) takes the left padding away again and gives the name line its own padding instead, so the picture sits beside the name and the words run the whole width underneath.</p>
+
+</details>
+
+<h4 id="s11-2-6">11.2.6 The Conversation Line</h4>
 
 <pre><code>#workskin .twc16-feed .twc16.link::before,
 #workskin .twc16-feed .twc16.link + .twc16::before {
@@ -174,19 +228,14 @@
 
 #workskin .twc16-feed .twc16.link + .twc16::before { top: 0; height: 0.7em; }</code></pre>
 
+<p>This is the grey line that joins a tweet to the reply underneath it.</p>
+
+<details>
+<summary>How it works: one line in two pieces</summary>
+
 <p>The line is drawn in two pieces. The first runs from just under the linked tweet's picture to the bottom of that tweet, and the second, on the tweet underneath (the <code>+</code> means "the next tweet along"), runs from its top edge down to its picture. Together they look like one line. The 23px <code>margin-left</code> puts the 2px line in the middle of the 48px pictures.</p>
 
-<h4 id="s11-2-5">11.2.5 The 2016-19 Bars</h4>
-
-<p>The bars work the same way as the 2012-15 ones: <code>position: sticky</code> keeps them at the top and bottom of the screen while the tweets scroll between them, and the page name is stretched across the middle of the top bar so it always stays centred. The blue number on a button is the icon in a <code>tw-badged</code> box, with the number pinned to its top right corner with <code>position: absolute</code>.</p>
-
-<p>The screen scrolls once it's taller than a phone, and <code>no-scroll</code> on the <code>twc16-feed</code> switches that off:</p>
-
-<pre><code>#workskin .twc16-feed.no-scroll { max-height: none; overflow-y: visible; }</code></pre>
-
-<h4 id="s11-2-6">11.2.6 2016-19 Dark and Auto Themes</h4>
-
-<p>Night mode is <code>#15202b</code> for the background, white for the text, <code>#8899a6</code> for grey and <code>#38444d</code> for the lines. The auto theme is the dark rules again inside <code>@media (prefers-color-scheme: dark)</code>, so change a colour in both places.</p>
+</details>
 
 <h4 id="s11-2-7">11.2.7 Taking Parts Out of 2016-19</h4>
 
