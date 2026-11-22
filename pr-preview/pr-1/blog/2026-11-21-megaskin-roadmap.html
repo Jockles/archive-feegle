@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-Clacks-Overhead" content="GNU Terry Pratchett">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>What's next for the Megaskin | jockles.com</title>
+  <!-- site meta -->
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="icon" href="/images/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+  <meta name="theme-color" content="#6c392a">
+  <meta name="description" content="So I&#x27;ve been neck-deep in the Megaskin for a few weeks now, and I figured it was time to actually write down where it&#x27;s going, partly so you know what&#x27;s coming and partly so I stop forgetting what...">
+  <link rel="canonical" href="https://jockles.com/blog/2026-11-21-megaskin-roadmap.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="jockles.com">
+  <meta property="og:title" content="What&#x27;s next for the Megaskin">
+  <meta property="og:description" content="So I&#x27;ve been neck-deep in the Megaskin for a few weeks now, and I figured it was time to actually write down where it&#x27;s going, partly so you know what&#x27;s coming and partly so I stop forgetting what...">
+  <meta property="og:url" content="https://jockles.com/blog/2026-11-21-megaskin-roadmap.html">
+  <meta property="og:image" content="https://jockles.com/images/social-card.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="jockles.com: All the Fannish things I do.">
+  <meta name="twitter:card" content="summary_large_image">
+  <!-- /site meta -->
+  <link rel="stylesheet" href="../style.css">
+  <script src="../theme.js"></script>
+</head>
+<body>
+<header>
+  <h1><a href="../index.html">jockles.com</a></h1>
+  <p>All the Fannish things I do.</p>
+</header>
+<nav>
+  <ul>
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../fic/index.html">Fic</a></li>
+    <li><a href="../videos/index.html">Videos</a></li>
+    <li><a href="../blog/index.html">Blog</a></li>
+    <li><a href="../links.html">Links</a></li>
+    <li><a href="../about.html">About</a></li>
+  </ul>
+</nav>
+<main>
+      <h2>What's next for the Megaskin</h2>
+      <p><i>Posted 21-11-2026</i></p>
+
+      <p>So I've been neck-deep in the <a href="../fic/megaskin/index.html">Megaskin</a> for a few weeks now, and I figured it was time to actually write down where it's going, partly so you know what's coming and partly so I stop forgetting what I promised people.</p>
+
+      <h3>Problems I've already beaten</h3>
+
+      <p>First, a bit of gloating, because some of this stuff fought back.</p>
+
+      <h4>The Profile Maker</h4>
+      <p>The Profile Maker actually came before the Fic Builder. After I made the full skin (well, what I later found out was the <i>first draft</i> of the full skin), I realised the profiles were the most complicated bit of code that people would have to deal with directly, and not in a very intuitive way. Unless you've already written your fic and got it up on AO3, it's really hard to imagine what your profiles are going to look like, because they're not there yet. But a lot of the rest of the code <i>relies</i> on the profiles already being set up, so it got too much like hard work pretty fast.</p>
+      <p>So the <a href="../fic/megaskin/profile-maker.html">Profile Maker</a> was born: fill in a little form, see your character's picture, colours and names, and get the CSS to copy. It's completely optional, just a shortcut if you'd rather click than code. It also forced me to finally learn JavaScript, which, unlike HTML and CSS, I had <i>never</i> dabbled in. Honestly, building a simple form like this is probably the easiest possible tutorial I could have made for myself, so good job me.</p>
+
+      <h4>The Fic Builder</h4>
+      <p>Story time. The first (and, I swore, last) time I did a workskin fic, it was a Discord fic I was really proud of, <a href="https://archiveofourown.org/works/53558653"><i>DMs Open</i></a> (Merlin). Writing the fic itself took about three weeks. Doing all the HTML to actually get my fic into the skin took me nearly twice as long. And that was with one single skin that, by the end, I was pretty quick at copy-pasting into place. The fic looked really cool in the end, but I decided right then that I was never doing a workskin fic again.</p>
+      <p>I meant it, too. My Bromance series has loads of texting and Twitter bits in it, and I didn't skin any of it on purpose, because I just couldn't face it.</p>
+      <p>So I built the <a href="../fic/megaskin/fic-builder.html">Fic Builder</a>. The bit that looks the fanciest is adding boxes by hand and then fucking around with all the options to get each chat or tweet looking exactly right, and that's great and all. I've seen several tools floating around over the last few months that do a similar thing, and while I'd like them to give me a bit more visibility into <i>how</i> they build their HTML and CSS, they are great and have encouraged a lot of people that previously never considered using a workskin in AO3 to try it out. But they're still a bit fiddly if you've pretty much already written the thing that you want to put into a texting chain, and I found that none of them felt useful enough to me as a writer.</p>
+      <p>And so, the bit that I love the best is down at the bottom: I paste in my chapter exactly as I wrote it, plain text straight out of Scrivener, and it spits out the whole framework of the chat or feed or whatever I want. It takes me fifteen minutes to fully format a dozen chats instead of (what feels like) three years.</p>
+      <p>And it uses the same profiles I make in the Profile Maker, so my characters look the same everywhere they turn up.</p>
+      <p>That Discord skin is also where the whole idea of character profiles came from. Because it was the skin I knew best, I knew BookKeep's Discord skin already had a profile system, where you set a character up once and every message of theirs just picks up the right picture and colour. Using that as my proof of concept for making it work <i>everywhere</i> was the first big change I made to how all the other skins worked.</p>
+
+      <h3>Why one big skin is better than lots of little ones</h3>
+      <p>The whole reason the Megaskin exists is that AO3 only lets you use one work skin per fic, so if your fic has texts AND tweets AND a Tumblr post, you're stuck stitching skins together yourself. But the bonus I didn't really see coming is how much the apps end up sharing.</p>
+      <p>Once something works in one app, it mostly works in all of them. The coloured initials circles work the same way in every app (I made them all use the same code on purpose, so they line up the same everywhere). One character profile covers someone's picture and colour in every chat they turn up in. Light, dark and auto modes, hover-and-tap translations, alt text, scrolling for long chats - all of that is built once in the core and every app just gets it for free.</p>
+      <p>Every problem I solve for one app is a problem I don't have to solve again for the next one, which is the only reason this roadmap looks doable at all.</p>
+
+      <h4>The carousel</h4>
+      <p>And my favourite example: photo carousels. So many of you asked for these. Instagram posts with more than one photo - sounds simple, right? Alas. Pretty much every carousel tutorial out there uses scripts, animations or buttons, and AO3 quietly strips every single one of those out when you post. You end up with a pile of photos stacked on top of each other and no way to flick between them. Not ideal.</p>
+      <p>The fix hinges entirely on other people's great work. My Instagram posts are built on shysonata's <a href="https://archiveofourown.org/works/79674881"><i>Work Skin - Instagram Image Post</i></a>, the base code the whole skin rests on. The clickable like button came from mystyrust's brilliant HTML fic <a href="https://archiveofourown.org/works/62188714"><i>chat, is this real?</i></a>, which also had its own version of a carousel, and that was my starting point. Each photo is tucked inside a little fold-out box, so tapping the arrow "opens" the next one, and tapping the back arrow closes it again. All I added was a little AO3-friendly animation, so the photo slides in over the top and it feels like you're actually flipping through them.</p>
+      <p>I did try the other way too. Most of the carousels I'd seen in other skins use swiping, with the photos lined up side by side, and I can see why: the code is much simpler for people to edit. But I'd been shown several of them, every time with the complaint that they felt wrong, so I mostly made a swipe version to see if I could figure it out myself, not because I thought anyone would prefer it. Sure enough, AO3 won't let it stop neatly on each photo, so it kept stopping halfway between two, and my testers found their thumbs were too powerful and swiped straight past. Tap arrows won.</p>
+      <p>I tested it on AO3 itself and it works exactly like it does here, which was delightful. I'm so pleased to have cracked it, because now every place a carousel fits can use the same code. It's going into the Instagram feed first, and Twitter has photo carousels too, so that's already half done for later.</p>
+
+      <h3>The roadmap</h3>
+      <p>First, the bits I consider done (though I've already found another part of WhatsApp I haven't skinned, so don't hold me to it):</p>
+      <ul>
+        <li><a href="../fic/megaskin/imessage.html">iMessage</a></li>
+        <li><a href="../fic/megaskin/whatsapp.html">WhatsApp</a></li>
+        <li><a href="../fic/megaskin/twitter-x.html">Twitter/X</a>, and <a href="../fic/megaskin/twitter-classic.html">Classic Twitter</a> from 2012 to 2019</li>
+        <li><a href="../fic/megaskin/discord.html">Discord</a></li>
+        <li><a href="../fic/megaskin/email.html">Email</a>: Gmail and a plain email window</li>
+      </ul>
+      <p>Instagram and Tumblr are in there too, but they're both getting another round of work below.</p>
+      <p>And here's the order I'm planning to go in for the rest. No promises, as I don't know where the hyperfixation will take me.</p>
+      <ol>
+        <li><b>Instagram feed</b> - a proper app screen you can scroll through, like the Twitter/X timeline. I'm in the middle of this one right now, and it's where the shiny new carousel finally gets to live.</li>
+        <li><b>Instagram DMs and group chats</b> - one-to-one DMs already work, but your characters clearly need a group chat to be chaotic in.</li>
+        <li><b>Classic Instagram</b> - for when your fic is set in 2013 and everyone's posting their lunch through a Valencia filter. Two eras, the old blue bar and the 2016 black-and-white one, done the same way as Classic Twitter.</li>
+        <li><b>Tumblr</b> - posts, reblogs, polls and asks already exist, so this is me going back over them with fresh eyes and filling in any gaps.</li>
+        <li><b>Classic Tumblr</b> - a couple of switches for the true old-timers: the indented reblog chains we all scrolled through for years, and all the notes in one big list.</li>
+        <li><b>More email</b> - Gmail's done, so Outlook and Apple Mail are next, for all your passive-aggressive work emails and dramatic 2am confessions.</li>
+        <li><b>Facebook</b> - modern and classic, because sometimes a fic really needs someone's aunt commenting on everything. I'm still looking for existing workskins that show me what Facebook looks like, though. I haven't had an account for nearly five years, and I don't really remember what it looked like in 2020, never mind 2010, so if you've got skins you like, or you're willing to send me an unholy number of screenshots as reference, hmu.</li>
+        <li><b>Reddit</b> - posts, upvotes and those comment threads that go nine replies deep into an argument nobody's winning. I've only got into Reddit recently, so a year ago I'd never have considered it, but now the list just doesn't feel complete without it.</li>
+      </ol>
+      <p>Somewhere in the middle of all that, I'll also be making the full app screens the default for every app, and every new look will get added to the Fic Builder too.</p>
+
+      <h4>Things you've asked for</h4>
+      <p>These are requests from readers, in no particular order yet:</p>
+      <ul>
+        <li><b>YikYak</b> - anonymous local posts and up and down votes, perfect for a campus AU where everyone knows exactly who posted it.</li>
+        <li><b>Snapchat</b> - the chats with the coloured names and no bubbles, and maybe a snap or two.</li>
+        <li><b>Grindr (and maybe Tinder)</b> - profile cards and chats, for all your messy dating app meet-cutes. I've had a lot of requests for Grindr, and it feels like it should be simple, since it's pretty much a recolour of iMessage. Alas, I've discovered I will not rest until I'm sure it's accurate, so this will either take me 20 minutes or a week. Nobody can be sure.</li>
+        <li><b>FetLife</b> - I've already got a skin to work from for this one (with proper credits, of course), so it's a bit less from-scratch than the others.</li>
+      </ul>
+      <p>And yes, I know about Instagram Stories. Several of you have asked. It's closer now that I've cracked carousels, and I don't intend to do a Stories interface at the moment, but then I didn't intend to do half the shit on this list and here I am.</p>
+
+      <h3>Maybe a companion skin?</h3>
+      <p>While I was picking through <i>chat, is this real?</i> again to see what else I could learn from it, I noticed that half of it isn't social media at all: a browser history, breaking-news alerts, an anonymous forum, a computer window with tabs. They're brilliant, but they're not really the Megaskin's job. The Megaskin is for apps where people have profiles and post things, and I want to keep it that way.</p>
+      <p>So I'm toying with a companion skin for all the other kinds of online stuff, built on the same core so the two work together and you could paste both into one fic. Nothing promised yet, but here's roughly how I'd split things:</p>
+      <ul>
+        <li><b>The Megaskin</b> (social media): anything where you've got an account and you're posting. So stories (Snapchat, and maybe Instagram Stories), BeReal, Reddit, YouTube videos and comments, on top of all the texting, Twitter/X and Tumblr bits that are already in.</li>
+        <li><b>The companion skin</b> (the rest of the internet): browser history, news articles and breaking-news alerts, anonymous forums and imageboards, computer windows with tabs, and music players like Spotify.</li>
+      </ul>
+
+      <p>Both the joy and the curse of designing a modular system is that I can keep adding to it forever. Yay???</p>
+
+      <p>If there's an app you'd love to see that isn't here, come and yell at me on <a href="https://multishipperpirateking.tumblr.com">Tumblr</a>.</p>
+
+      <p><a href="index.html">&larr; All posts</a></p>
+</main>
+<footer>
+  Made by hand in HTML &amp; CSS. No trackers, no cookies, no ads. &middot; <a href="https://buymeacoffee.com/jockles">Support Me</a>
+</footer>
+</body>
+</html>
