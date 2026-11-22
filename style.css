@@ -6,6 +6,7 @@
 :root {
   --header: #6c392a;      /* terracotta header band */
   --header-dark: #354732; /* green menu bar and footer */
+  --outline: #2b3b28;     /* dark green for outlines, such as the help pop-ups */
   --header-text: #fff8ef;
   --page: #fbf6ef;
   --ink: #2b2420;

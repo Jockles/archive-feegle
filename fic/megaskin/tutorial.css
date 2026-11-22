@@ -39,8 +39,8 @@ html:not(.help-on) .tut-help { display: inline-block; position: relative; vertic
 html:not(.help-on) .tut-help::before { content: "?"; display: inline-block; width: 10px; height: 10px; line-height: 10px; border-radius: 50%; text-align: center;
   font-size: 8px; font-weight: bold; cursor: help; background: var(--tut-q-fill); color: var(--tut-q-ink); border: 1px solid var(--tut-q-ink); }
 html:not(.help-on) .tut-help > span { display: none; position: fixed; z-index: 60; top: 0; left: 0; width: 280px; max-width: calc(100vw - 32px);
-  padding: 6px 9px; font-size: 13px; line-height: 1.4; font-weight: normal; font-family: "Lucida Grande", "Lucida Sans Unicode", Verdana, Helvetica, sans-serif; text-align: left; background: var(--page, #fff); color: var(--ink, #2a2a2a);
-  border: 1px solid var(--tut-q-edge); border-radius: 6px; box-shadow: 0 3px 12px rgba(0, 0, 0, 0.2); }
+  padding: 6px 9px; font-size: 13px; line-height: 1.4; font-weight: normal; font-family: "Lucida Grande", "Lucida Sans Unicode", Verdana, Helvetica, sans-serif; text-align: left; background: var(--header, #6c392a); color: var(--header-text, #fff8ef);
+  border: 2px solid var(--outline, #2b3b28); border-radius: 6px; box-shadow: 0 3px 12px rgba(0, 0, 0, 0.2); }
 html:not(.help-on) .tut-help:hover > span, html:not(.help-on) .tut-help:focus > span { display: block; }
 @media (max-width: 600px) {
   /* on a phone the help pops up along the bottom of the screen instead */
