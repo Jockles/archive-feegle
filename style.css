@@ -157,6 +157,33 @@ nav a, nav a:visited {
 }
 nav a:hover, nav a:focus { background: var(--header); color: var(--header-text); }
 
+/* Tools: a drop-down in the menu bar. It opens on hover, or when "Tools" is
+   tabbed to or tapped (it can take focus), with no script needed. */
+nav li.menu-drop { position: relative; }
+.menu-drop-label {
+  display: block;
+  padding: 8px 12px;
+  color: var(--header-text);
+  font-size: 0.95em;
+  cursor: pointer;
+}
+.menu-drop-label::after { content: " \25BE"; font-size: 0.8em; }
+.menu-drop:hover > .menu-drop-label, .menu-drop:focus-within > .menu-drop-label { background: var(--header); }
+nav li.menu-drop > ul {
+  display: none;
+  position: absolute;
+  z-index: 40;
+  top: 100%;
+  left: 0;
+  min-width: 14em;
+  flex-direction: column;
+  background: var(--header-dark);
+  border: 1px solid var(--outline);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+}
+nav li.menu-drop:hover > ul, nav li.menu-drop:focus-within > ul { display: flex; }
+nav li.menu-drop > ul a { font-size: 0.95em; white-space: nowrap; }
+
 main {
   max-width: 900px;
   margin: 0 auto;
@@ -270,6 +297,11 @@ footer a:hover, footer a:focus { color: #f4b942; }
   header h1 { font-size: 1.6em; }
   .theme-toggle { top: 12px; right: 12px; }
   nav a { padding: 8px 9px; }
+  .menu-drop-label { padding: 8px 9px; }
+  /* on a phone the drop-down opens as a full-width strip under the menu bar */
+  nav { position: relative; }
+  nav li.menu-drop { position: static; }
+  nav li.menu-drop > ul { left: 12px; right: 12px; min-width: 0; }
   .work-meta { grid-template-columns: 1fr; }
   .work-meta dt { text-align: left; }
 }
