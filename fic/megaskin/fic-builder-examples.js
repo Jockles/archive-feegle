@@ -23,6 +23,10 @@
 //          saved, likesLine ("count", "faces" or "none"), faces (cast names), more, viewAll, comments ("who: comment" lines)
 //          and tags ([who, "following", "follow" or "none", verified]). A feed can set top, myStory and stories.
 //          One-offs can set ighandle, their Instagram username.
+//          Instagram DMs ("igdm") take shared (a shared post, reel or story), status, and reactions: waReacts (the emojis),
+//          faces (cast names: who reacted) and waCount (how many, if not just the faces),
+//          photos, reply, and a shared post card: hasPost, postAcc (a typed username), postImg, postAlt, postDesc, postCap. The chat can set tick, headPic,
+//          and faces (cast names for the header pictures).
 (function () {
 var CAT1 = "https://images.squidge.org/images/2026/11/16/Cat1.jpg";
 var CAT2 = "https://images.squidge.org/images/2026/11/16/Cat2.jpg";
@@ -231,6 +235,38 @@ window.FB_EXAMPLES = [
         photos: [{ desc: "A photo of a smoothie stand with a queue round the block" }], likes: "1,207", liked: true, saved: true, cmCount: "40" }],
       ["Hayden", "game day. the crew is ready, the coffee is not", { time: "1 hour ago", follow: "button", under: "Montreal, Quebec", shape: "sq",
         photos: [{ desc: "Four kids in matching Montreal jerseys, all pulling faces at the camera" }], likes: "3,482", cmCount: "156", more: true }]
+    ]
+  },
+  {
+    label: "Instagram: a one-to-one DM",
+    cast: [{ name: "Ilya", profile: "ilya" }, { name: "Shane", profile: "shane" }],
+    chat: { type: "igdm", pov: "Ilya", sub: "Active now", tick: true },
+    msgs: [
+      ["Shane", "you replied to my story"],
+      ["Ilya", "I did not"],
+      ["Shane", "Shared a story: \"6am skate. Again.\"", { shared: true }],
+      ["Shane", "this story. you replied with a heart"],
+      ["Ilya", "ok maybe I did"],
+      ["Shane", "", { hasPost: true, postAcc: "fakehockeynews", postDesc: "A blurry photo of two hockey players hugging in a car park",
+        postCap: "BREAKING: rivals seen 'sharing a moment' at 6am skate" }],
+      ["Ilya", "they are so bad at this", { waReacts: "😂", faces: ["Shane"] }],
+      ["Shane", "you were the one who hugged me", { reply: 6 }],
+      ["Ilya", "", { photos: [{ desc: "Photo: a screenshot of the same post, with Ilya's comment: 'not me'" }], status: "Seen" }]
+    ]
+  },
+  {
+    label: "Instagram: a group DM",
+    cast: [{ name: "Ilya", profile: "ilya" }, { name: "Rose", profile: "rose" }, { name: "Shane", profile: "shane" },
+      { name: "Hayden", colour: "4", initials: "HP", ighandle: "hayden.pike" }],
+    chat: { type: "igdm", pov: "Ilya", group: true, title: "gala committee 🥂", sub: "Active 2h ago" },
+    msgs: [
+      ["sys", "Today 19:40"],
+      ["Rose", "the lasagne is still here if anyone wants it", { waReacts: "😂", faces: ["Shane", "Hayden"] }],
+      ["Rose", "and the garlic bread. I made too much"],
+      ["Shane", "on my way"],
+      ["Hayden", "save me some"],
+      ["Rose", "bring a tupperware", { reply: 3 }],
+      ["Ilya", "I already ate half of it", { status: "Seen by 3", waReacts: "💀❤️", waCount: "3" }]
     ]
   },
   {

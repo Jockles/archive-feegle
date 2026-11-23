@@ -98,6 +98,7 @@
 /* the grey circle when there's no colour class. It's kept less specific than the colour classes, so they win */
 #workskin .ig-top .ig-pfp,
 #workskin .ig-person .ig-pfp,
+#workskin .igdm .ig-pfp,
 #workskin .ig-like-pfp { background-color: #8a8a8a; }
 
 /* initials instead of a picture: <span class="ig-pfp colour3">RL</span>, and the same in
@@ -709,7 +710,7 @@
 #workskin .igdm .mob-head {
   background: #ffffff;
   color: #262626;
-  border-bottom: 1px solid #efefef;
+  border-bottom: 1px solid transparent;
   font-size: 0.9em;
 }
 
@@ -764,6 +765,263 @@
   font-size: 0.88em;
   color: #737373;
 }
+
+/* ---- pictures in DMs. In the header, put the picture first, before the name:
+   <p class="mob-head"><span class="ig-pfp"><span class="pfp pfp-shane"></span></span>shane.h<span class="hide"> - </span><span>Active now</span></p>
+   For a group, wrap two pictures in an ig-collab span and they overlap, the first at the top left and the second in front of it at the bottom right:
+   <span class="ig-collab"><span class="ig-pfp">...</span><span class="ig-pfp">...</span></span>
+   Initials work too: <span class="ig-pfp colour3">RL</span>. With no colour class the circle is grey. */
+#workskin .igdm .mob-head { display: flow-root; padding: 0.6em 0.9em; text-align: left; }
+
+#workskin .igdm .ig-pfp {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  overflow: hidden;
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 0.72em;
+  line-height: 1;
+}
+
+#workskin .igdm .mob-head .ig-pfp {
+  float: left;
+  width: 36px;
+  height: 36px;
+  margin: 0 0.7em 0 0;
+  color: #ffffff;
+  font-size: 0.8em;
+}
+
+#workskin .igdm .mob-head .ig-collab {
+  display: block;
+  float: left;
+  position: relative;
+  width: 38px;
+  height: 38px;
+  margin: -1px 0.7em -1px 0;
+}
+
+#workskin .igdm .mob-head .ig-collab .ig-pfp {
+  position: absolute;
+  top: 0;
+  left: 0;
+  float: none;
+  width: 26px;
+  height: 26px;
+  margin: 0;
+  font-size: 0.6em;
+}
+
+#workskin .igdm .mob-head .ig-collab .ig-pfp + .ig-pfp {
+  top: auto;
+  left: auto;
+  bottom: 0;
+  right: 0;
+  box-sizing: border-box;
+  width: 28px;
+  height: 28px;
+  border: 2px solid #ffffff;
+}
+
+/* only two pictures fit, so a third one (or more) is hidden */
+#workskin .igdm .mob-head .ig-collab .ig-pfp + .ig-pfp + .ig-pfp { display: none; }
+
+/* ---- a run of messages from one person in a group, with their picture beside the last one.
+   Wrap the run in an igdm-row, picture first, then the who line, then the messages:
+   <div class="igdm-row">
+     <span class="ig-pfp"><span class="pfp pfp-rose"></span></span>
+     <p class="who">RoseLandry<span class="hide">:</span></p>
+     <p class="msg in">the lasagne is still here</p>
+     <p class="msg in"><span class="hide"><em>RoseLandry:</em> </span>if anyone wants it</p>
+   </div>
+   The picture always sits at the bottom, next to the last message. */
+#workskin .igdm .igdm-row {
+  position: relative;
+  padding-left: 36px;
+  margin: 0.2em 0;
+}
+
+#workskin .igdm .igdm-row .ig-pfp {
+  position: absolute;
+  left: 0;
+  bottom: 0.2em;
+}
+
+#workskin .igdm .igdm-row .who { margin-left: 0.9em; }
+
+/* ---- reactions: the little pill hanging off the bottom of a bubble. Add "reacted" to the message, and put the
+   reactions at the end of it, inside the bubble. While everyone has used the same emoji, the pill shows their faces:
+   <p class="msg in reacted">see you there<span class="igdm-reacts"><span class="hide"> [Reactions: </span>❤️<span class="hide"> from Rose and Hayden </span><span class="ig-pfp"><span class="pfp pfp-rose"></span></span><span class="ig-pfp colour4">HP</span><span class="hide">]</span></span></p>
+   Once there are two different emojis, it shows the emojis and a number instead:
+   <span class="igdm-reacts"><span class="hide"> [Reactions: </span>❤️🫒 11<span class="hide">]</span></span>
+   After three faces Instagram adds the rest as a number, like +2: type it straight after the last face. */
+#workskin .igdm .msg.reacted { position: relative; margin-bottom: 1.4em; }
+
+#workskin .igdm .igdm-reacts {
+  position: absolute;
+  left: 0.5em;
+  bottom: -1.3em;
+  display: flex;
+  align-items: center;
+  padding: 0.1em 0.45em;
+  border: 2px solid #ffffff;
+  border-radius: 1em;
+  background: #efefef;
+  color: #262626;
+  font-size: 0.8em;
+  line-height: 1.3;
+  white-space: nowrap;
+}
+
+#workskin .igdm .igdm-reacts .ig-pfp,
+#workskin .igdm .igdm-row .igdm-reacts .ig-pfp {
+  position: static;
+  flex: none;
+  width: 16px;
+  height: 16px;
+  margin: 0 0 0 4px;
+  font-size: 0.55em;
+}
+
+#workskin .igdm .igdm-reacts .ig-pfp + .ig-pfp { margin-left: 3px; }
+
+/* the pill on a photo or a post card works the same: add "reacted" to it and put the pill at the end */
+#workskin .igdm .igdm-post.reacted { position: relative; margin-bottom: 1.4em; }
+
+/* ---- replies: a grey line saying who replied, then the message they replied to, faded, with a bar beside it,
+   then the reply itself. Give the line and the quote the same in or out as the reply. Add "mine" to the quote
+   when the message being replied to was yours, so it fades from purple instead of grey:
+   <p class="igdm-replied in">Rose replied to you</p>
+   <p class="igdm-quote in mine"><span class="hide">[Replying to: </span>what time on saturday?<span class="hide">]</span></p>
+   <p class="msg in"><span class="hide"><em>Rose:</em> </span>7, don't be late</p>
+   In a group, the line goes in the igdm-row in place of the who line. */
+#workskin .igdm .igdm-replied {
+  display: block;
+  font-size: 0.72em;
+  color: #737373;
+  margin: 0.5em 0 0.15em 0.9em;
+}
+
+#workskin .igdm .igdm-replied.out { margin: 0.5em 0.9em 0.15em 0; text-align: right; }
+
+/* in and out only set the side here, not a bubble */
+#workskin .igdm .igdm-replied.in,
+#workskin .igdm .igdm-replied.out { background: none; color: #737373; }
+
+#workskin .igdm .igdm-quote {
+  display: table;
+  position: relative;
+  max-width: 66%;
+  margin: 0 0 0.2em 0.7em;
+  padding: 0.5em 0.9em;
+  border-radius: 18px;
+  background: #f5f5f5;
+  color: #8e8e8e;
+  font-size: 0.92em;
+}
+
+#workskin .igdm .igdm-quote.out { margin: 0 0.7em 0.2em auto; }
+
+#workskin .igdm .igdm-quote.mine { background: #d9c7fb; color: #ffffff; }
+
+/* the grey bar beside the quote */
+#workskin .igdm .igdm-quote::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -0.7em;
+  width: 3px;
+  border-radius: 3px;
+  background: #dbdbdb;
+}
+
+#workskin .igdm .igdm-quote.out::before { left: auto; right: -0.7em; }
+
+/* ---- photos: a message with a picture in it instead of words, rounded, with no bubble behind it
+   <p class="msg in photo"><span class="hide"><em>Rose:</em> </span><img src="..." alt="..."></p>
+   A description instead of a picture: <span class="igdm-desc">[Photo: ...]</span> in place of the img. */
+#workskin .igdm .msg.photo {
+  max-width: 62%;
+  padding: 0;
+  background: none;
+  line-height: 0;
+}
+
+#workskin .igdm .msg.photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 18px;
+}
+
+#workskin .igdm .igdm-desc {
+  display: block;
+  padding: 3em 1em;
+  border-radius: 18px;
+  background: #efefef;
+  color: #737373;
+  font-size: 0.85em;
+  font-style: italic;
+  line-height: 1.35;
+  text-align: center;
+}
+
+/* ---- a shared post as a card: the picture, then the account name in bold and the start of the caption
+   <div class="igdm-post in">
+     <p class="igdm-post-img"><img src="..." alt="..."></p>
+     <p class="igdm-post-cap"><span class="hide"><em>Shane</em> shared a post from </span><b>playbill</b><span class="hide">:</span> Early reviews are in</p>
+   </div>
+   in sits on the left, out on the right. The caption stops after two lines, like the app.
+   The account name can come from a profile too, with the handle span inside the b: <b><span class="handle pfp-rose"><span class="hide">RoseLandry</span></span></b>
+   A description instead of the picture: <p class="igdm-post-img text">[...]</p> */
+#workskin .igdm .igdm-post {
+  display: block;
+  width: 62%;
+  margin: 0.2em auto 0.2em 0;
+  border-radius: 18px;
+  background: #efefef;
+  color: #262626;
+}
+
+#workskin .igdm .igdm-post.out { margin: 0.2em 0 0.2em auto; }
+
+#workskin .igdm .igdm-post-img {
+  display: block;
+  max-height: 260px;
+  overflow: hidden;
+  border-radius: 18px 18px 0 0;
+}
+
+#workskin .igdm .igdm-post-img img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+#workskin .igdm .igdm-post-img.text {
+  padding: 3em 1em;
+  background: #dbdbdb;
+  color: #737373;
+  font-size: 0.85em;
+  font-style: italic;
+  text-align: center;
+}
+
+#workskin .igdm .igdm-post-cap {
+  display: block;
+  max-height: 2.7em;
+  margin: 0.55em 0.9em 0.65em 0.9em;
+  overflow: hidden;
+  font-size: 0.92em;
+  line-height: 1.35;
+}
+
+#workskin .igdm .igdm-post-cap b { font-weight: bold; }
 
 /* ---------- Instagram: Links ---------- */
 
@@ -1038,6 +1296,19 @@
 
 #workskin .igdm.theme-dark .igdm-shared { border-color: #363636; color: #a8a8a8; }
 
+#workskin .igdm.theme-dark .mob-head .ig-collab .ig-pfp + .ig-pfp { border-color: #0c1014; }
+
+#workskin .igdm.theme-dark .igdm-reacts { background: #262626; color: #f5f5f5; border-color: #0c1014; }
+#workskin .igdm.theme-dark .igdm-replied.in,
+  #workskin .igdm.theme-dark .igdm-replied.out { background: none; color: #a8a8a8; }
+#workskin .igdm.theme-dark .igdm-quote { background: #1c1c1c; color: #8e8e8e; }
+#workskin .igdm.theme-dark .igdm-quote.mine { background: #3b2a66; color: #c9b5f2; }
+#workskin .igdm.theme-dark .igdm-quote::before { background: #363636; }
+#workskin .igdm.theme-dark .igdm-desc,
+  #workskin .igdm.theme-dark .igdm-post { background: #262626; color: #f5f5f5; }
+#workskin .igdm.theme-dark .igdm-desc { color: #a8a8a8; }
+#workskin .igdm.theme-dark .igdm-post-img.text { background: #363636; color: #a8a8a8; }
+
 /* ---------- Instagram: Auto theme (theme-auto): light, switching to dark when the reader's device is in dark mode ---------- */
 
 @media (prefers-color-scheme: dark) {
@@ -1104,6 +1375,19 @@
   #workskin .igdm.theme-auto .in { background: #262626; color: #f5f5f5; }
 
   #workskin .igdm.theme-auto .igdm-shared { border-color: #363636; color: #a8a8a8; }
+
+  #workskin .igdm.theme-auto .mob-head .ig-collab .ig-pfp + .ig-pfp { border-color: #0c1014; }
+
+  #workskin .igdm.theme-auto .igdm-reacts { background: #262626; color: #f5f5f5; border-color: #0c1014; }
+  #workskin .igdm.theme-auto .igdm-replied.in,
+    #workskin .igdm.theme-auto .igdm-replied.out { background: none; color: #a8a8a8; }
+  #workskin .igdm.theme-auto .igdm-quote { background: #1c1c1c; color: #8e8e8e; }
+  #workskin .igdm.theme-auto .igdm-quote.mine { background: #3b2a66; color: #c9b5f2; }
+  #workskin .igdm.theme-auto .igdm-quote::before { background: #363636; }
+  #workskin .igdm.theme-auto .igdm-desc,
+    #workskin .igdm.theme-auto .igdm-post { background: #262626; color: #f5f5f5; }
+  #workskin .igdm.theme-auto .igdm-desc { color: #a8a8a8; }
+  #workskin .igdm.theme-auto .igdm-post-img.text { background: #363636; color: #a8a8a8; }
 }
 
 /* ---------- Instagram: Icons ----------

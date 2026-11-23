@@ -37,9 +37,10 @@
     twdm: "Twitter/X DM",
     igfeed: "Instagram feed",
     igone: "Instagram single posts",
+    igdm: "Instagram DM",
     raw: "HTML, as it was"
   };
-  function isChat(b) { return b.type === "imsg" || b.type === "wa" || b.type === "twdm"; }
+  function isChat(b) { return b.type === "imsg" || b.type === "wa" || b.type === "twdm" || b.type === "igdm"; }
 
   // ---------- state ----------
 
@@ -75,13 +76,15 @@
   function newBlock(type) {
     var b = { id: nid("b"), type: type };
     var pov = S.cast[0] ? S.cast[0].id : "";
-    b.pov = pov; b.group = false; b.title = ""; b.sub = type === "imsg" ? "iMessage" : "online";
+    b.pov = pov; b.group = false; b.title = ""; b.sub = type === "imsg" ? "iMessage" : type === "igdm" ? "Active now" : "online";
     b.theme = "theme-auto"; b.width = ""; b.scroll = ""; b.bar = "empty"; b.barText = "";
     b.bg = ""; b.pics = true; b.header = "simple"; b.gp = newGroupPic(); b.script = ""; b.msgs = []; b.open = true;
     b.acc = "";
     b.nav = false; b.badge = ""; // Twitter/X DMs: the row of app buttons at the bottom
     b.era = ""; b.app = type === "twfeed" ? "app" : ""; b.tabs = ""; // Twitter/X: the 2020 look, and the X app screen around a timeline
     b.top = "new"; b.myStory = true; b.stories = ""; // Instagram feed: the top bar and the Stories row
+    // Instagram DMs: pictures in the header (and who's in them), and the blue tick
+    if (type === "igdm") { b.headPic = true; b.faces = []; b.tick = false; b.bar = "none"; }
     return b;
   }
   // load one of the tutorial's example chats (from fic-builder-examples.js)
@@ -711,6 +714,116 @@
     return L.concat(igStories(b), posts, ["</div>"]).join("\n");
   }
 
+  // ---------- Instagram DMs ----------
+
+  // the pictures at the top: the other person's, or two overlapping ones for a group (Instagram only shows two).
+  // Each one is whoever was picked, or else the next person in the chat.
+  function igdmFaces(b) {
+    var n = b.group ? 2 : 1, picked = b.faces || [], auto = others(b), f = [];
+    for (var i = 0; i < n; i++) {
+      var c = char(picked[i]) || auto.filter(function (x) { return f.indexOf(x) < 0 && picked.indexOf(x.id) < 0; })[0];
+      if (c && f.indexOf(c) < 0) f.push(c);
+    }
+    return f;
+  }
+  // the emojis typed in the Reactions box, one per emoji (an emoji can be more than one character, like ❤️)
+  function emojis(v) {
+    v = t(v).replace(/\s+/g, "");
+    if (window.Intl && Intl.Segmenter) return Array.from(new Intl.Segmenter().segment(v), function (x) { return x.segment; });
+    return Array.from(v);
+  }
+  // reactions on a DM: while everyone used the same emoji, it shows the emoji and up to three faces (then +N);
+  // once there's more than one kind, it shows the emojis and how many reacted, with no faces
+  function igdmReacts(m) {
+    var em = emojis(m.waReacts); if (!em.length) return "";
+    var kinds = em.filter(function (e, i) { return em.indexOf(e) === i; });
+    var who = (m.faces || []).map(char).filter(Boolean), total = t(m.waCount) || (who.length ? String(who.length) : "");
+    var inner;
+    if (kinds.length === 1 && who.length) {
+      var names = who.map(nameOf), list = names.length > 1 ? names.slice(0, -1).join(", ") + " and " + names[names.length - 1] : names[0];
+      var more = (+total || who.length) - 3;
+      inner = kinds[0] + '<span class="hide"> from ' + esc(list) + " </span>" + who.slice(0, 3).map(function (f) { return circle("ig-pfp", f, null); }).join("") + (more > 0 ? "+" + more : "");
+    } else inner = esc(kinds.length === 1 ? kinds[0] : em.join("")) + (total ? " " + esc(total) : "");
+    return '<span class="igdm-reacts"><span class="hide"> [Reactions: </span>' + inner + '<span class="hide">]</span></span>';
+  }
+  // what a reply shows of the message it answers
+  function igdmQuote(q) {
+    var s = plain(q.text).trim() || ((q.photos || []).some(function (p) { return picUrl(p.url) || t(p.desc); }) ? "Photo" : q.hasPost ? "Post" : "");
+    return s.length > 60 ? s.slice(0, 57).trim() + "..." : s;
+  }
+  // a post shared into the chat, as a card: its picture, then who posted it and the caption
+  function igdmPost(m, side, sender, r) {
+    var acc = char(m.postBy), u = picUrl(m.postImg || ""), L = ['<div class="igdm-post ' + side + (r ? " reacted" : "") + '">'];
+    if (u) L.push('  <p class="igdm-post-img"><img src="' + esc(u) + '" alt="' + esc(t(m.postAlt)) + '"></p>');
+    else if (t(m.postDesc)) L.push('  <p class="igdm-post-img text">[' + esc(t(m.postDesc)) + "]</p>");
+    L.push('  <p class="igdm-post-cap"><span class="hide"><em>' + esc(sender) + "</em> shared a post from </span><b>" + (acc ? igNameHTML(acc, null) : esc(t(m.postAcc) || "someone")) + "</b>" +
+      (t(m.postCap) ? '<span class="hide">:</span> ' + fmt(m.postCap) : "") + r + "</p>");
+    return L.concat(["</div>"]);
+  }
+  function igdmHTML(b) {
+    var o = others(b), head = "";
+    if (b.headPic !== false) {
+      var f = igdmFaces(b);
+      if (f.length === 2) head += '<span class="ig-collab">' + circle("ig-pfp", f[0], null) + circle("ig-pfp", f[1], null) + "</span>";
+      else if (f.length) head += circle("ig-pfp", f[0], null);
+    }
+    head += t(b.title) ? esc(t(b.title)) : b.group ? "Group chat" : o[0] ? igNameHTML(o[0], null) : "Someone";
+    if (b.tick && !b.group) head += TICK;
+    var L = ['<div class="' + containerClass(b, "igdm") + '">',
+      '  <p class="mob-head">' + head + '<span class="hide"> - </span>' + (t(b.sub) ? "<span>" + esc(t(b.sub)) + "</span>" : "") + "</p>",
+      '  <div class="mob-body">'];
+    // in a group, each run of messages from one person goes in a row: their picture, their name, then the messages.
+    // The name is just above the first one, so only the ones after it need the hidden name.
+    var body = [], row = null;
+    function close() { if (row) body = body.concat(['<div class="igdm-row">'], ind(row.lines, 1), ["</div>"]); row = null; }
+    // names in a group are usernames, and in a chat between two they're the names typed in the cast
+    function nm(x) { return b.group ? igName(x) : nameOf(x); }
+    b.msgs.forEach(function (m) {
+      if (m.from === "sys") { close(); body.push('<p class="mob-sys">' + fmt(m.text) + "</p>"); return; }
+      var c = char(m.from); if (!c) return;
+      var out = m.from === b.pov, grouped = b.group && !out, side = out ? "out" : "in";
+      var q = m.replyTo && b.msgs.filter(function (x) { return x.id === m.replyTo && char(x.from); })[0];
+      if (!grouped || (row && row.from !== m.from)) close();
+      if (grouped && !row) {
+        row = { from: m.from, first: true, lines: b.pics !== false ? [circle("ig-pfp", c, null)] : [] };
+        // a reply's "replied to" line takes the place of the name line
+        if (!q) row.lines.push('<p class="who">' + igNameHTML(c, null) + '<span class="hide">:</span></p>');
+      }
+      var to = grouped ? row.lines : body;
+      if (q) {
+        var mine = q.from === b.pov;
+        var said = out ? (mine ? "You replied to yourself" : "You replied to " + nm(char(q.from))) :
+          mine ? nm(c) + " replied to you" : q.from === m.from ? nm(c) + " replied to themself" : nm(c) + " replied to " + nm(char(q.from));
+        to.push('<p class="igdm-replied ' + side + '">' + esc(said) + (grouped && row.first ? '<span class="hide">:</span>' : "") + "</p>",
+          '<p class="igdm-quote ' + side + (mine ? " mine" : "") + '"><span class="hide">[Replying to: </span>' + esc(igdmQuote(q)) + '<span class="hide">]</span></p>');
+      }
+      // the hidden name: not on the first message under a name in a group, as the name is just above it
+      function label() { var l = grouped ? (row.first ? "" : hideLabel(igName(c))) : hideLabel(nameOf(c)); if (grouped) row.first = false; return l; }
+      // the bubbles: photos, then a shared post card, then the words. Reactions go on the last one.
+      var parts = [];
+      (m.photos || []).forEach(function (ph) {
+        var u = picUrl(ph.url);
+        if (u) parts.push(["msg " + side + " photo", '<img src="' + esc(u) + '" alt="' + esc(t(ph.alt)) + '">']);
+        else if (t(ph.desc)) parts.push(["msg " + side + " photo", '<span class="igdm-desc">[' + esc(t(ph.desc)) + "]</span>"]);
+      });
+      if (m.hasPost) parts.push(["post"]);
+      if (t(m.text)) parts.push([m.shared ? "igdm-shared" : "msg " + side, fmt(m.text)]);
+      var rx = igdmReacts(m), last = -1;
+      parts.forEach(function (x, i) { if (x[0] !== "igdm-shared") last = i; });
+      parts.forEach(function (x, i) {
+        var r = i === last ? rx : "";
+        if (x[0] === "post") { label(); igdmPost(m, side, grouped ? igName(c) : nameOf(c), r).forEach(function (l) { to.push(l); }); }
+        else to.push('<p class="' + x[0] + (r ? " reacted" : "") + '">' + label() + x[1] + r + "</p>");
+      });
+      if (t(m.status)) to.push('<p class="igdm-status">' + esc(t(m.status)) + "</p>");
+    });
+    close();
+    L = L.concat(ind(body, 2));
+    L.push("  </div>");
+    L.push("</div>");
+    return L.join("\n");
+  }
+
   // ---------- Twitter/X posts ----------
 
   var POLL_SIZES = [0, 10, 20, 25, 30, 33, 40, 50, 60, 67, 70, 75, 80, 90, 100];
@@ -1010,6 +1123,23 @@
     "blocks.N.msgs.N.call": "Turns the message into a call bubble, with a round phone or video icon. Its arrow shows who rang: out for the phone owner's calls, in for someone else's. The message words aren't used.",
     "blocks.N.msgs.N.missed": "A red icon and 'Missed voice call' or 'Missed video call', with 'Tap to call back' instead of how long it lasted.",
     "blocks.N.msgs.N.callLen": "How long the call lasted, like '44 secs', '1 min' or '1 hr'.",
+    // Instagram DMs (helpKind "igdm"; anything not here uses the chat help)
+    "blocks.N.group:igdm": "Tick this for a group chat. Each run of messages from one person gets their name above it and their picture beside it.",
+    "blocks.N.pics:igdm": "In a group, puts each person's round picture beside the last of their messages in a row, like the real app.",
+    "blocks.N.headPic:igdm": "Puts a round picture before the name at the top. A group gets two, overlapping, like Instagram does.",
+    "blocks.N.title:igdm": "The name at the top. In a chat between two people, leave it empty to use the other person's username. In a group, it's the group's name.",
+    "blocks.N.sub:igdm": "The small line under the name, like 'Active now' or 'Active 2h ago'. Delete it if you don't want one.",
+    "blocks.N.tick:igdm": "The blue tick after the name, for a verified account.",
+    "blocks.N.faces.N:igdm": "Whose pictures go at the top. Leave it on 'The next person in the chat' and it picks for you, in the order they first send a message.",
+    "blocks.N.msgs.N.from:igdm": "The first box chooses who wrote the message, from the cast list above. You can also change it to a date or notice line. The big box is the message. 'Extras' has shared posts and the Seen line.",
+    "blocks.N.msgs.N.shared:igdm": "Turns the words into an outlined box, for a reel or story sent into the chat. Type what it says in the message box, like 'Shared a story from @shane.h: \"6am skate. Again.\"'. For a post with its picture, use 'Shared post card' instead.",
+    "blocks.N.msgs.N.replyTo:igdm": "Pick an earlier message to reply to it. It shows who replied to who, like 'Shane replied to you', then that message faded, above this one.",
+    "blocks.N.msgs.N.hasPost:igdm": "A post sent into the chat, as a card: its picture, then who posted it and the caption. Pick who posted it, or type the username of someone not in the cast.",
+    "blocks.N.msgs.N.photos.N.url:igdm": "A photo sent in the chat. Each photo is its own bubble, before the words. " + PIC,
+    "blocks.N.msgs.N.waReacts:igdm": "The emoji reactions on the bubble. With one kind of emoji, like '😂', it shows that emoji and the faces of who reacted. Type more than one kind, like '💀❤️', and it shows them all with how many people reacted instead, like Instagram does.",
+    "blocks.N.msgs.N.waCount:igdm": "How many people reacted. Leave it empty to count the people picked below. With one kind of emoji, only three faces fit, so anyone past three shows as '+2' (or however many).",
+    "blocks.N.msgs.N.faces:igdm": "Pick everyone who reacted, from the cast. Their faces go by the emoji, and their names are hidden there for readers with the workskin off.",
+    "blocks.N.msgs.N.status:igdm": "The small grey line under the message: 'Seen', 'Sent', or 'Seen by 3' in a group. Usually only on the phone owner's last message.",
     "blocks.N.pov:ig": "Whose phone it is. Their picture goes first in the Stories row, as 'Your story'.",
     "blocks.N.top:ig": "The top bar: the +, the Instagram logo and the heart. 'With the red dot' adds the little dot that means there's something new.",
     "blocks.N.myStory:ig": "Puts the phone owner's own circle first in the Stories row, with a grey ring and a little +.",
@@ -1042,7 +1172,7 @@
   function help(path, kind) {
     kind = kind || helpKind;
     var base = path.replace(/\.\d+(?=\.|$)/g, ".N"), k = base + (kind ? ":" + kind : "");
-    if (kind === "dm" && !HELP[k]) k = base; // a DM uses the chat help unless it has its own
+    if ((kind === "dm" || kind === "igdm") && !HELP[k]) k = base; // a DM uses the chat help unless it has its own
     if (!HELP[k] || helped[k]) return "";
     helped[k] = true;
     return '<span class="tut-help" tabindex="0"><span>' + HELP[k] + "</span></span>";
@@ -1149,11 +1279,11 @@
 
   function speakerOptions(b) {
     return S.cast.map(function (c) { return [c.id, nameOf(c) + (c.id === b.pov ? " (phone owner)" : "")]; })
-      .concat([["sys", "Date or notice line"]]).concat(b.type === "twdm" ? [] : [["typing", "Typing dots"]]);
+      .concat([["sys", "Date or notice line"]]).concat(b.type === "twdm" || b.type === "igdm" ? [] : [["typing", "Typing dots"]]);
   }
 
   function msgRow(b, bi, m, mi) {
-    var P = "blocks." + bi + ".msgs." + mi, wa = b.type === "wa", dm = b.type === "twdm", h = [];
+    var P = "blocks." + bi + ".msgs." + mi, wa = b.type === "wa", dm = b.type === "twdm", ig = b.type === "igdm", h = [];
     var side = m.from === b.pov ? " out" : m.from === "sys" || m.from === "typing" ? " sys" : "";
     h.push('<li class="fb-msg' + side + '">');
     h.push('<div class="fb-row">' + field(P + ".from", "", { type: "select", re: true, help: m.from === "sys" || m.from === "typing" ? m.from : "", options: speakerOptions(b) }));
@@ -1166,7 +1296,24 @@
     if (m.open && m.from !== "sys" && m.from !== "typing") {
       h.push('<div class="fb-extras">');
       h.push('<p class="hint">Select some words in the message, then: ' + btn("fmt:tl", "Translation") + " " + btn("fmt:egg", "Easter egg") + " " + btn("fmt:link", "Fake link") + "</p>");
-      if (dm) {
+      if (ig) {
+        h.push(replyField(b, P, mi));
+        h.push(field(P + ".shared", "Words in an outlined box (a shared reel or story)", { type: "check" }));
+        h.push(field(P + ".status", "Line under it", { ph: b.group ? "Seen by 3" : "Seen" }));
+        h.push('<div class="fb-row">' + field(P + ".waReacts", "Reactions", { ph: "😂" }) + field(P + ".waCount", "How many", { ph: "2", cls: "fb-time" }) + "</div>");
+        h.push('<p class="hint">Who reacted:' + help(P + ".faces") + "</p>");
+        (m.faces || []).forEach(function (f, k) {
+          h.push('<div class="fb-row">' + field(P + ".faces." + k, "", { type: "select", options: castOptions() }) + btn("face-del:" + bi + ":" + mi + ":" + k, "&times;", "Remove") + "</div>");
+        });
+        h.push(btn("face-add:" + bi + ":" + mi, "+ Someone who reacted"));
+        h.push(field(P + ".hasPost", "Shared post card", { type: "check", re: true }));
+        if (m.hasPost) h.push('<div class="fb-acct">' + field(P + ".postBy", "Posted by", { type: "select", re: true, options: [["", "Someone not in the cast"]].concat(castOptions()) }) +
+          (char(m.postBy) ? "" : field(P + ".postAcc", "", { ph: "Their username", wrap: true })) +
+          field(P + ".postImg", "", { type: "url", ph: "Picture link", wrap: true }) + field(P + ".postAlt", "", { ph: "Describe the picture (alt text)", wrap: true }) +
+          field(P + ".postDesc", "", { ph: "Or, with no picture, describe it in words", wrap: true }) + field(P + ".postCap", "", { ph: "The post's caption", wrap: true }) + "</div>");
+        h.push(pictureRows(P, bi, mi, m, 0, false));
+        h.push("</div></li>"); return h.join("");
+      } else if (dm) {
         h.push(replyField(b, P, mi));
         h.push(field(P + ".waReacts", "Reactions", { ph: "😂 1" }));
         if (m.from === b.pov) h.push(field(P + ".status", "Seen or Sent", { ph: "Seen" }));
@@ -1388,27 +1535,29 @@
   }
   // the settings for a chat: iMessage and WhatsApp
   function chatSettings(b, i) {
-    var P = "blocks." + i, h = [], wa = b.type === "wa", dm = b.type === "twdm";
+    var P = "blocks." + i, h = [], wa = b.type === "wa", dm = b.type === "twdm", ig = b.type === "igdm";
     h.push("<details" + (b.open ? " open" : "") + ' data-open="' + P + '.open"><summary>Chat settings</summary><div class="fb-grid">');
     // first row: whose phone, and whether it's a group
     h.push("<div>" + field(P + ".pov", "Whose phone is it?", { type: "select", re: true, options: castOptions() }) + "</div>");
-    h.push("<div>" + field(P + ".group", "Group chat", { type: "check", re: true }) + (wa && b.group ? field(P + ".pics", "Show pictures by names", { type: "check" }) : "") + "</div>");
+    h.push("<div>" + field(P + ".group", "Group chat", { type: "check", re: true }) + ((wa || ig) && b.group ? field(P + ".pics", "Show pictures by names", { type: "check" }) : "") + "</div>");
     // second row: the top, the background and the bottom
     h.push('</div><div class="fb-grid">');
     if (wa) {
       h.push("<div>" + field(P + ".header", "Header", { type: "select", re: true, options: [["simple", "Simple"], ["bar", "With picture and icons"], ["none", "None"]] }) + "</div>");
       h.push("<div>" + field(P + ".bg", "Background", { type: "select", re: true, options: BACKGROUNDS.map(function (x) { return [x, x ? x.charAt(0).toUpperCase() + x.slice(1) : "Default"]; }).concat([["custom", "Custom picture"]]) }) + "</div>");
     }
-    h.push("<div>" + field(P + ".bar", "Message bar at the bottom", { type: "select", re: true, options: [["none", "None"], ["empty", "Empty"], ["typed", "Something half-typed"]] }) + "</div>");
+    if (!ig) h.push("<div>" + field(P + ".bar", "Message bar at the bottom", { type: "select", re: true, options: [["none", "None"], ["empty", "Empty"], ["typed", "Something half-typed"]] }) + "</div>");
+    if (ig) h.push("<div>" + field(P + ".headPic", "Pictures in the header", { type: "check", re: true }) + "</div>");
     if (dm) h.push("<div>" + field(P + ".nav", "App buttons", { type: "check", re: true }) + (b.nav ? field(P + ".badge", "Notifications number", { ph: "3" }) : "") + "</div>");
     h.push("</div>");
     // then what each choice above opens up, each in its own row so it's clear where it came from
     if (!wa || b.header !== "none") {
       // folded up by default, as it's long
       h.push('<details class="fb-acct"' + (b.headOpen ? " open" : "") + ' data-open="' + P + '.headOpen"><summary class="hint">The header</summary><div class="fb-grid">');
-      h.push("<div>" + field(P + ".title", "Name at the top", { ph: b.group ? "Group chat name" : "The other person's name" }) + "</div>");
-      if (!dm) h.push("<div>" + field(P + ".sub", "Smaller line under it", { ph: wa ? "online" : "iMessage" }) + "</div>");
+      h.push("<div>" + field(P + ".title", "Name at the top", { ph: b.group ? "Group chat name" : ig ? "Their username" : "The other person's name" }) + "</div>");
+      if (!dm) h.push("<div>" + field(P + ".sub", "Smaller line under it", { ph: wa ? "online" : ig ? "Active now" : "iMessage" }) + "</div>");
       h.push("</div>");
+      if (ig) h.push(igdmHeadSettings(b, P));
       h.push(groupPicSettings(b, P, wa, dm));
       h.push("</details>");
     }
@@ -1424,6 +1573,17 @@
     h.push("<div>" + field(P + ".scroll", "Long chats", { type: "select", options: [["", "Scroll inside the phone"], ["no-scroll", "Show it all"]] }) + "</div>");
     h.push("</div>");
     h.push("</details>");
+    return h.join("");
+  }
+  // Instagram DMs: who's in the header pictures (one, or two for a group), and the blue tick
+  function igdmHeadSettings(b, P) {
+    var h = [];
+    if (!b.group) h.push(field(P + ".tick", "Blue tick after the name", { type: "check" }));
+    if (b.headPic === false) return h.join("");
+    if (!b.faces) b.faces = [];
+    var auto = [["", "The next person in the chat"]].concat(S.cast.filter(function (c) { return c.id !== b.pov; }).map(function (c) { return [c.id, nameOf(c)]; }));
+    h.push('<div class="fb-grid"><div>' + field(P + ".faces.0", b.group ? "First picture" : "Picture", { type: "select", options: auto }) + "</div>" +
+      (b.group ? "<div>" + field(P + ".faces.1", "Second picture", { type: "select", options: auto }) + "</div>" : "") + "</div>");
     return h.join("");
   }
   // the group's picture in the header (WhatsApp with the picture header, and Twitter/X DMs)
@@ -1460,7 +1620,7 @@
   };
   function blockCard(b, i) {
     var P = "blocks." + i, h = [], chat = isChat(b);
-    helpKind = b.type === "twdm" ? "dm" : chat ? "" : /^ig/.test(b.type) ? "ig" : "tw";
+    helpKind = b.type === "twdm" ? "dm" : b.type === "igdm" ? "igdm" : chat ? "" : /^ig/.test(b.type) ? "ig" : "tw";
     h.push('<section class="fb-block" data-i="' + i + '">');
     if (b.type === "raw") {
       // HTML that couldn't be read into boxes, kept just as it was
@@ -1982,6 +2142,148 @@
     return b;
   };
 
+  // DM reactions: the emoji, who reacted (hidden names and faces) and +N, or the emojis and a number
+  function reactsBack(m, rx) {
+    var rk = kids(rx), first = rk.shift(), last = rk.pop();
+    if (!is(first, "span.hide") || first.textContent !== " [Reactions: " || !is(last, "span.hide") || last.textContent !== "]") no();
+    if (rk.length === 1 && rk[0].nodeType === 3) {
+      var nm = rk[0].nodeValue.match(/^(\S+?)(?: (\d+))?$/); if (!nm) no();
+      m.waReacts = nm[1]; m.waCount = nm[2] || ""; return;
+    }
+    var em = rk.shift(), from = rk.shift();
+    if (!em || em.nodeType !== 3 || !is(from, "span.hide")) no();
+    var fm = from.textContent.match(/^ from (.+) $/); if (!fm) no();
+    var plus = rk.length && rk[rk.length - 1].nodeType === 3 ? rk.pop().nodeValue.match(/^\+(\d+)$/) : null;
+    rk.forEach(function (f) { if (!is(f, "span.ig-pfp")) no(); });
+    var names = fm[1].split(/, | and /);
+    if (rk.length > Math.min(names.length, 3)) no();
+    m.waReacts = em.nodeValue;
+    m.faces = names.map(function (n, i) {
+      var f = rk[i], sl = f && slugIn(f), c = sl ? personBySlug(sl) : personByName(n, true);
+      looks(c, f); return c.id;
+    });
+    var total = 3 + (plus ? +plus[1] : 0);
+    m.waCount = plus && total !== names.length ? String(total) : "";
+  }
+  // a post card shared in a DM: the picture, then who shared it (hidden), whose post it is, and the caption
+  function cardBack(d, m) {
+    var ks = kids(d), im = is(ks[0], "p.igdm-post-img") ? ks.shift() : null, cap = ks.shift();
+    if (!is(cap, "p.igdm-post-cap") || ks.length) no();
+    m.hasPost = true;
+    if (im) {
+      var img = im.querySelector("img");
+      if (img) { m.postImg = img.getAttribute("src"); m.postAlt = img.getAttribute("alt") || ""; }
+      else if (im.classList.contains("text")) m.postDesc = words(im).replace(/^\[|\]$/g, "");
+      else no();
+    }
+    var ns = inl(cap), h = ns.shift(), em = is(h, "span.hide") && h.querySelector("em");
+    if (!em || h.textContent !== em.textContent + " shared a post from ") no();
+    var acc = ns.shift(); if (!is(acc, "b")) no();
+    if (acc.querySelector("[class*=pfp-]")) m.postBy = igPerson(acc).id; else m.postAcc = words(acc);
+    var rx = is(ns[ns.length - 1], "span.igdm-reacts") ? ns.pop() : null;
+    if (ns.length) { var col = ns.shift(); if (!is(col, "span.hide") || col.textContent !== ":") no(); m.postCap = textBack(ns); }
+    return { name: em.textContent, rx: rx };
+  }
+  READERS.igdm = function (els) {
+    var el = els[0]; if (els.length !== 1) no();
+    var b = newBlock("igdm"); settings(b, el, "igdm");
+    var ks = kids(el), head = ks[0], body = ks[1];
+    if (!is(head, "p.mob-head") || !is(body, "div.mob-body")) no();
+    if (ks[2]) no();
+    // two pictures at the top, or rows with names: a group, even with no one else talking yet
+    b.group = !!(head.querySelector("span.ig-collab") || body.querySelector("div.igdm-row"));
+    // the messages first, so the people in the header pictures are already in the cast
+    var m = null, shared = [], replies = [], quote = null;
+    function line(p, who) {
+      if (is(p, "p.mob-sys")) { if (who || quote) no(); b.msgs.push(m = newMsg("sys", textBack(inl(p)))); return; }
+      if (is(p, "p.igdm-status")) { if (!m || quote) no(); m.status = p.textContent; return; }
+      // a reply: "Shane replied to you", then the message it answers, faded
+      if (is(p, "p.igdm-replied")) { if (quote) no(); quote = { side: p.classList.contains("out") ? "out" : "in" }; return; }
+      if (is(p, "p.igdm-quote")) {
+        if (!quote || quote.text != null || !p.classList.contains(quote.side)) no();
+        quote.mine = p.classList.contains("mine"); quote.text = noHide(p).textContent; return;
+      }
+      var card = is(p, "div.igdm-post"), sh = is(p, "p.igdm-shared"), out = !sh && p.classList.contains("out");
+      if (!card && !sh && !is(p, "p.msg")) no();
+      if (!sh && !out && !p.classList.contains("in")) no();
+      if (quote && (quote.text == null || !sh && quote.side !== (out ? "out" : "in"))) no();
+      m = newMsg("", ""); m.faces = [];
+      var name = "", rx = null;
+      if (card) { var cb = cardBack(p, m); name = cb.name; rx = cb.rx; }
+      else {
+        var ns = inl(p); name = labelOf(ns);
+        rx = is(ns[ns.length - 1], "span.igdm-reacts") ? ns.pop() : null;
+        if (is(p, "p.msg.photo")) {
+          var im = ns.length === 1 ? ns[0] : no();
+          if (is(im, "img")) m.photos = [{ url: im.getAttribute("src"), alt: im.getAttribute("alt") || "", desc: "", land: false }];
+          else if (is(im, "span.igdm-desc")) m.photos = [{ url: "", alt: "", desc: words(im).replace(/^\[|\]$/g, ""), land: false }];
+          else no();
+        } else { m.text = textBack(ns); m.shared = sh; }
+      }
+      if (!!rx !== (!sh && p.classList.contains("reacted"))) no();
+      if (rx) reactsBack(m, rx);
+      if (who) m.from = who.id;
+      else if (out) m.from = owner(b, name).id;
+      else if (!name) no();
+      else if (sh) shared.push([m, name]); // whose it is waits until the phone's owner is known
+      else m.from = personByName(name, true).id;
+      if (quote) { replies.push([m, quote]); quote = null; }
+      b.msgs.push(m);
+    }
+    kids(body).forEach(function (n) {
+      if (!is(n, "div.igdm-row")) { line(n, null); return; }
+      var rk = kids(n), pf = is(rk[0], "span.ig-pfp") ? rk.shift() : null, wp = rk[0], who;
+      if (!pf) b.pics = false;
+      if (is(wp, "p.who")) { rk.shift(); who = igPerson(wp); }
+      else if (is(wp, "p.igdm-replied")) {
+        // a row starting with a reply has no name line: the name is in "RoseLandry replied to ..."
+        var rn = noHide(wp).textContent.match(/^(.+?) replied to /), sl = pf && slugIn(pf); if (!rn) no();
+        who = sl ? personBySlug(sl) : S.cast.filter(function (x) { return igName(x) === rn[1]; })[0];
+        if (!who) { who = freshChar(rn[1]); if (igName(who) !== rn[1]) who.ighandle = rn[1]; }
+      } else no();
+      looks(who, pf);
+      rk.forEach(function (p) { line(p, who); });
+    });
+    if (quote) no();
+    // a shared post outside a row: in a group it's always the phone owner's, and in a chat between two it goes by the hidden name
+    shared.forEach(function (x) {
+      var me = char(b.pov);
+      x[0].from = (me && (b.group || nameOf(me) === x[1]) ? me : b.group ? owner(b, x[1]) : personByName(x[1], true)).id;
+    });
+    // each reply answers the latest message before it that says what the quote says (the wording is checked when it's built again)
+    replies.forEach(function (x) {
+      var before = b.msgs.slice(0, b.msgs.indexOf(x[0])).reverse(), q = x[1];
+      var hit = before.filter(function (y) { return char(y.from) && (y.from === b.pov) === q.mine && igdmQuote(y) === q.text; })[0];
+      if (!hit) no();
+      x[0].replyTo = hit.id;
+    });
+    // the header: the pictures, the name and tick, then the line under it
+    var hk = kids(head), pics = [];
+    if (is(hk[0], "span.ig-collab")) { pics = kids(hk.shift()); if (pics.length !== 2) no(); b.group = true; }
+    else if (is(hk[0], "span.ig-pfp")) pics = [hk.shift()];
+    b.headPic = pics.length > 0;
+    var dash = hk.findIndex(function (n) { return is(n, "span.hide") && n.textContent === " - "; });
+    if (dash < 0) no();
+    var name = hk.slice(0, dash), sub = hk.slice(dash + 1);
+    if (sub.length > 1 || sub.length && !is(sub[0], "span")) no();
+    b.sub = sub.length ? sub[0].textContent : "";
+    if (name.length > 2 && is(name[name.length - 1], "span.ig-tick") && is(name[name.length - 2], "span.hide")) { b.tick = true; name = name.slice(0, -2); }
+    var o = others(b);
+    if (name.length === 1 && is(name[0], "span.handle") && !b.group) { if (igPerson(name[0]) !== o[0]) no(); }
+    else {
+      b.title = name.map(function (n) { return n.textContent; }).join("");
+      // the other person's username: someone new to the cast gets it as their Instagram username
+      if (!b.group && o[0] && !isProfile(o[0]) && (igName(o[0]) === b.title || fresh.indexOf(o[0].id) >= 0)) { if (igName(o[0]) !== b.title) o[0].ighandle = b.title; b.title = ""; }
+      if (b.group && b.title === "Group chat") b.title = "";
+    }
+    if (!b.group && o[0]) looks(o[0], pics[0]);
+    b.faces = pics.map(function (p) { return byCircle(p).id; });
+    // whoever's picked automatically doesn't need picking
+    var auto = igdmFaces(Object.assign({}, b, { faces: [] })).map(function (c) { return c.id; });
+    if (auto.join() === b.faces.join()) b.faces = [];
+    return b;
+  };
+
   // a number on a tweet's button, without its icon and hidden words
   function countOf(el) { var c = el.cloneNode(true); c.querySelectorAll(".hide, .ic, .on").forEach(function (x) { x.remove(); }); return words(c); }
   function noHide(el) { var c = el.cloneNode(true); c.querySelectorAll(".hide").forEach(function (x) { x.remove(); }); return c; }
@@ -2268,6 +2570,7 @@
     if (b.type === "twfeed" || b.type === "twone") return twFeedHTML(b);
     if (b.type === "twdm") return twdmHTML(b);
     if (b.type === "igfeed" || b.type === "igone") return igFeedHTML(b);
+    if (b.type === "igdm") return igdmHTML(b);
     if (b.type === "raw") return t(b.html);
     return "";
   }
@@ -2276,6 +2579,7 @@
     if (is(el, ".mob.imsg")) return "imsg";
     if (is(el, ".mob.wa")) return "wa";
     if (is(el, ".mob.twdm")) return "twdm";
+    if (is(el, ".mob.igdm")) return "igdm";
     if (is(el, ".tw-thread")) return "tw";
     if (is(el, ".mob.tw")) return "twone";
     if (is(el, ".mob.ig")) return "ig";
