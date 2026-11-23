@@ -26,7 +26,7 @@
 //          Instagram DMs ("igdm") take shared (a shared post, reel or story), status, and reactions: waReacts (the emojis),
 //          faces (cast names: who reacted) and waCount (how many, if not just the faces),
 //          photos, reply, and a shared post card: hasPost, postAcc (a typed username), postImg, postAlt, postDesc, postCap. The chat can set tick, headPic,
-//          and faces (cast names for the header pictures).
+//          faces (cast names for the header pictures), app (the app screen) and bar.
 (function () {
 var CAT1 = "https://images.squidge.org/images/2026/11/16/Cat1.jpg";
 var CAT2 = "https://images.squidge.org/images/2026/11/16/Cat2.jpg";
@@ -240,7 +240,7 @@ window.FB_EXAMPLES = [
   {
     label: "Instagram: a one-to-one DM",
     cast: [{ name: "Ilya", profile: "ilya" }, { name: "Shane", profile: "shane" }],
-    chat: { type: "igdm", pov: "Ilya", sub: "Active now", tick: true },
+    chat: { type: "igdm", pov: "Ilya", sub: "Active now", tick: true, app: true, bar: "empty" },
     msgs: [
       ["Shane", "you replied to my story"],
       ["Ilya", "I did not"],
@@ -258,7 +258,7 @@ window.FB_EXAMPLES = [
     label: "Instagram: a group DM",
     cast: [{ name: "Ilya", profile: "ilya" }, { name: "Rose", profile: "rose" }, { name: "Shane", profile: "shane" },
       { name: "Hayden", colour: "4", initials: "HP", ighandle: "hayden.pike" }],
-    chat: { type: "igdm", pov: "Ilya", group: true, title: "gala committee 🥂", sub: "Active 2h ago" },
+    chat: { type: "igdm", pov: "Ilya", group: true, title: "gala committee 🥂", sub: "Active 2h ago", app: true, bar: "empty" },
     msgs: [
       ["sys", "Today 19:40"],
       ["Rose", "the lasagne is still here if anyone wants it", { waReacts: "😂", faces: ["Shane", "Hayden"] }],

@@ -83,7 +83,7 @@
     b.nav = false; b.badge = ""; // Twitter/X DMs: the row of app buttons at the bottom
     b.era = ""; b.app = type === "twfeed" ? "app" : ""; b.tabs = ""; // Twitter/X: the 2020 look, and the X app screen around a timeline
     b.top = "new"; b.myStory = true; b.stories = ""; // Instagram feed: the top bar and the Stories row
-    // Instagram DMs: pictures in the header (and who's in them), and the blue tick
+    // Instagram DMs: pictures in the header (and who's in them), the blue tick, and the app screen around it
     if (type === "igdm") { b.headPic = true; b.faces = []; b.tick = false; b.bar = "none"; }
     return b;
   }
@@ -762,6 +762,8 @@
   }
   function igdmHTML(b) {
     var o = others(b), head = "";
+    if (b.app) head += '<span class="igdm-back"><span class="ic ic-back">&#8592;</span></span><span class="hide"> </span><span class="igdm-calls"><span class="ic ic-phone">&#128222;</span>' +
+      '<span class="hide"> </span><span class="ic ic-video">&#127909;</span></span><span class="hide"> </span>';
     if (b.headPic !== false) {
       var f = igdmFaces(b);
       if (f.length === 2) head += '<span class="ig-collab">' + circle("ig-pfp", f[0], null) + circle("ig-pfp", f[1], null) + "</span>";
@@ -820,6 +822,8 @@
     close();
     L = L.concat(ind(body, 2));
     L.push("  </div>");
+    if (b.bar === "empty" || b.bar === "typed") L.push('  <p class="igdm-input"><span class="igdm-cam ic ic-camera">&#128247;</span><span class="hide"> </span><span class="igdm-field' + (b.bar === "typed" ? " typed\">" + fmt(b.barText) + (b.cursor ? CURSOR : "") : '">Message...') +
+      '<span class="hide"> </span><span class="ic ic-mic">&#127908;</span></span></p>');
     L.push("</div>");
     return L.join("\n");
   }
@@ -1126,11 +1130,13 @@
     // Instagram DMs (helpKind "igdm"; anything not here uses the chat help)
     "blocks.N.group:igdm": "Tick this for a group chat. Each run of messages from one person gets their name above it and their picture beside it.",
     "blocks.N.pics:igdm": "In a group, puts each person's round picture beside the last of their messages in a row, like the real app.",
+    "blocks.N.app:igdm": "Adds the back arrow and the call buttons at the top, like the real app. Pick a message bar too, to finish it off.",
     "blocks.N.headPic:igdm": "Puts a round picture before the name at the top. A group gets two, overlapping, like Instagram does.",
     "blocks.N.title:igdm": "The name at the top. In a chat between two people, leave it empty to use the other person's username. In a group, it's the group's name.",
     "blocks.N.sub:igdm": "The small line under the name, like 'Active now' or 'Active 2h ago'. Delete it if you don't want one.",
     "blocks.N.tick:igdm": "The blue tick after the name, for a verified account.",
     "blocks.N.faces.N:igdm": "Whose pictures go at the top. Leave it on 'The next person in the chat' and it picks for you, in the order they first send a message.",
+    "blocks.N.bar:igdm": "The 'Message...' box at the bottom. 'Something half-typed' shows a message the phone owner hasn't sent yet.",
     "blocks.N.msgs.N.from:igdm": "The first box chooses who wrote the message, from the cast list above. You can also change it to a date or notice line. The big box is the message. 'Extras' has shared posts and the Seen line.",
     "blocks.N.msgs.N.shared:igdm": "Turns the words into an outlined box, for a reel or story sent into the chat. Type what it says in the message box, like 'Shared a story from @shane.h: \"6am skate. Again.\"'. For a post with its picture, use 'Shared post card' instead.",
     "blocks.N.msgs.N.replyTo:igdm": "Pick an earlier message to reply to it. It shows who replied to who, like 'Shane replied to you', then that message faded, above this one.",
@@ -1546,8 +1552,8 @@
       h.push("<div>" + field(P + ".header", "Header", { type: "select", re: true, options: [["simple", "Simple"], ["bar", "With picture and icons"], ["none", "None"]] }) + "</div>");
       h.push("<div>" + field(P + ".bg", "Background", { type: "select", re: true, options: BACKGROUNDS.map(function (x) { return [x, x ? x.charAt(0).toUpperCase() + x.slice(1) : "Default"]; }).concat([["custom", "Custom picture"]]) }) + "</div>");
     }
-    if (!ig) h.push("<div>" + field(P + ".bar", "Message bar at the bottom", { type: "select", re: true, options: [["none", "None"], ["empty", "Empty"], ["typed", "Something half-typed"]] }) + "</div>");
-    if (ig) h.push("<div>" + field(P + ".headPic", "Pictures in the header", { type: "check", re: true }) + "</div>");
+    h.push("<div>" + field(P + ".bar", "Message bar at the bottom", { type: "select", re: true, options: [["none", "None"], ["empty", "Empty"], ["typed", "Something half-typed"]] }) + "</div>");
+    if (ig) h.push("<div>" + field(P + ".app", "App screen", { type: "check" }) + field(P + ".headPic", "Pictures in the header", { type: "check", re: true }) + "</div>");
     if (dm) h.push("<div>" + field(P + ".nav", "App buttons", { type: "check", re: true }) + (b.nav ? field(P + ".badge", "Notifications number", { ph: "3" }) : "") + "</div>");
     h.push("</div>");
     // then what each choice above opens up, each in its own row so it's clear where it came from
@@ -2187,9 +2193,10 @@
   READERS.igdm = function (els) {
     var el = els[0]; if (els.length !== 1) no();
     var b = newBlock("igdm"); settings(b, el, "igdm");
-    var ks = kids(el), head = ks[0], body = ks[1];
+    var ks = kids(el), head = ks[0], body = ks[1], k = 2;
     if (!is(head, "p.mob-head") || !is(body, "div.mob-body")) no();
-    if (ks[2]) no();
+    if (is(ks[k], "p.igdm-input")) { var f = ks[k++].querySelector(".igdm-field"); if (!f) no(); barBack(b, f, 2); }
+    if (ks[k]) no();
     // two pictures at the top, or rows with names: a group, even with no one else talking yet
     b.group = !!(head.querySelector("span.ig-collab") || body.querySelector("div.igdm-row"));
     // the messages first, so the people in the header pictures are already in the cast
@@ -2257,8 +2264,12 @@
       if (!hit) no();
       x[0].replyTo = hit.id;
     });
-    // the header: the pictures, the name and tick, then the line under it
+    // the header: the app screen's buttons, the pictures, the name and tick, then the line under it
     var hk = kids(head), pics = [];
+    if (is(hk[0], "span.igdm-back")) {
+      if (!is(hk[1], "span.hide") || !is(hk[2], "span.igdm-calls") || !is(hk[3], "span.hide")) no();
+      b.app = true; hk = hk.slice(4);
+    }
     if (is(hk[0], "span.ig-collab")) { pics = kids(hk.shift()); if (pics.length !== 2) no(); b.group = true; }
     else if (is(hk[0], "span.ig-pfp")) pics = [hk.shift()];
     b.headPic = pics.length > 0;

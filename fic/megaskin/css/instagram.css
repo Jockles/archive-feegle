@@ -1023,6 +1023,80 @@
 
 #workskin .igdm .igdm-post-cap b { font-weight: bold; }
 
+/* ---- THE APP SCREEN (optional): turn the header into the app's top bar, with a back arrow on the left and
+   call and video buttons on the right, and add the message bar at the bottom. Back and calls go first, before the picture:
+   <p class="mob-head"><span class="igdm-back"><span class="ic ic-back">&#8592;</span></span><span class="igdm-calls"><span class="ic ic-phone">&#128222;</span><span class="ic ic-video">&#127909;</span></span><span class="hide"> </span><span class="ig-pfp"><span class="pfp pfp-shane"></span></span>shane.h<span class="hide"> - </span><span>Active now</span></p>
+   The message bar goes after the mob-body, inside the chat:
+   <p class="igdm-input"><span class="igdm-cam ic ic-camera">&#128247;</span><span class="hide"> </span><span class="igdm-field">Message...<span class="hide"> </span><span class="ic ic-mic">&#127908;</span></span></p>
+   Add "typed" to the igdm-field for a half-written message in full colour. */
+#workskin .igdm .mob-head .igdm-back {
+  display: block;
+  float: left;
+  height: 36px;
+  margin: 0 0.8em 0 -0.2em;
+  line-height: 36px;
+}
+
+#workskin .igdm .mob-head .igdm-calls {
+  display: block;
+  float: right;
+  height: 36px;
+  margin: 0 -0.1em 0 0.6em;
+  line-height: 36px;
+}
+
+#workskin .igdm .mob-head .igdm-back .ic,
+#workskin .igdm .mob-head .igdm-calls .ic {
+  display: inline-block;
+  width: 1.45em;
+  height: 1.45em;
+  vertical-align: middle;
+}
+
+#workskin .igdm .mob-head .igdm-calls .ic ~ .ic { margin-left: 1.2em; }
+
+/* with the back arrow there, a header with two pictures lines up the same as one with one */
+#workskin .igdm .mob-head .igdm-back + .igdm-calls + .ig-collab,
+#workskin .igdm .mob-head .igdm-back + .ig-collab { margin-left: 0; }
+
+#workskin .igdm .igdm-input {
+  display: flex;
+  align-items: center;
+  margin: 0.3em 0.6em 0.6em 0.6em;
+  padding: 0.3em;
+  border-radius: 1.6em;
+  background: #efefef;
+}
+
+#workskin .igdm .igdm-cam.ic {
+  flex: none;
+  width: 2.1em;
+  height: 2.1em;
+  margin-right: 0.6em;
+  border-radius: 50%;
+  background-color: #4a5df9;
+  background-image: url(https://images.squidge.org/images/2026/11/15/camera-white.png);
+  background-size: 1.2em;
+}
+
+#workskin .igdm .igdm-field {
+  flex: 1;
+  position: relative;
+  padding: 0.35em 2.2em 0.35em 0;
+  color: #737373;
+}
+
+#workskin .igdm .igdm-field .ic {
+  position: absolute;
+  right: 0.6em;
+  top: 50%;
+  margin-top: -0.6em;
+  width: 1.2em;
+  height: 1.2em;
+}
+
+#workskin .igdm .igdm-field.typed { color: #262626; }
+
 /* ---------- Instagram: Links ---------- */
 
 #workskin .ig .fake-link, #workskin .ig a:not(.tl) { color: #00376b; }
@@ -1298,6 +1372,9 @@
 
 #workskin .igdm.theme-dark .mob-head .ig-collab .ig-pfp + .ig-pfp { border-color: #0c1014; }
 
+#workskin .igdm.theme-dark .igdm-input { background: #262626; }
+#workskin .igdm.theme-dark .igdm-field { color: #a8a8a8; }
+#workskin .igdm.theme-dark .igdm-field.typed { color: #f5f5f5; }
 #workskin .igdm.theme-dark .igdm-reacts { background: #262626; color: #f5f5f5; border-color: #0c1014; }
 #workskin .igdm.theme-dark .igdm-replied.in,
   #workskin .igdm.theme-dark .igdm-replied.out { background: none; color: #a8a8a8; }
@@ -1378,6 +1455,9 @@
 
   #workskin .igdm.theme-auto .mob-head .ig-collab .ig-pfp + .ig-pfp { border-color: #0c1014; }
 
+  #workskin .igdm.theme-auto .igdm-input { background: #262626; }
+  #workskin .igdm.theme-auto .igdm-field { color: #a8a8a8; }
+  #workskin .igdm.theme-auto .igdm-field.typed { color: #f5f5f5; }
   #workskin .igdm.theme-auto .igdm-reacts { background: #262626; color: #f5f5f5; border-color: #0c1014; }
   #workskin .igdm.theme-auto .igdm-replied.in,
     #workskin .igdm.theme-auto .igdm-replied.out { background: none; color: #a8a8a8; }
@@ -1459,6 +1539,10 @@
 #workskin .ig .ic.ic-share, #workskin .igdm .ic.ic-share { background-image: url(https://images.squidge.org/images/2026/11/15/share-black.png); }
 #workskin .ig .ic.ic-repost, #workskin .igdm .ic.ic-repost { background-image: url(https://images.squidge.org/images/2026/11/15/repost-black.png); }
 #workskin .ig .ic.ic-heart, #workskin .igdm .ic.ic-heart { background-image: url(https://images.squidge.org/images/2026/11/15/heart-black.png); }
+#workskin .igdm .ic.ic-back { background-image: url(https://images.squidge.org/images/2026/11/15/back-black.png); }
+#workskin .igdm .ic.ic-phone { background-image: url(https://images.squidge.org/images/2026/11/15/phone-black.png); }
+#workskin .igdm .ic.ic-video { background-image: url(https://images.squidge.org/images/2026/11/15/video-black.png); }
+#workskin .igdm .ic.ic-mic { background-image: url(https://images.squidge.org/images/2026/11/15/mic-black.png); }
 #workskin .ig .ig-icon.cm { background-image: url(https://images.squidge.org/images/2026/11/15/comment-black.png); }
 #workskin .ig .ig-icon.bm { background-image: url(https://images.squidge.org/images/2026/11/15/bookmark-black.png); }
 #workskin .ig .ig-icon.bm.on { background-image: url(https://images.squidge.org/images/2026/11/15/bookmark-filled-black.png); }
@@ -1473,6 +1557,10 @@
 #workskin .ig.theme-dark .ic.ic-share, #workskin .igdm.theme-dark .ic.ic-share { background-image: url(https://images.squidge.org/images/2026/11/15/share-white.png); }
 #workskin .ig.theme-dark .ic.ic-repost, #workskin .igdm.theme-dark .ic.ic-repost { background-image: url(https://images.squidge.org/images/2026/11/15/repost-white.png); }
 #workskin .ig.theme-dark .ic.ic-heart, #workskin .igdm.theme-dark .ic.ic-heart { background-image: url(https://images.squidge.org/images/2026/11/15/heart-white.png); }
+#workskin .igdm.theme-dark .ic.ic-back { background-image: url(https://images.squidge.org/images/2026/11/15/back-white.png); }
+#workskin .igdm.theme-dark .ic.ic-phone { background-image: url(https://images.squidge.org/images/2026/11/15/phone-white.png); }
+#workskin .igdm.theme-dark .ic.ic-video { background-image: url(https://images.squidge.org/images/2026/11/15/video-white.png); }
+#workskin .igdm.theme-dark .ic.ic-mic { background-image: url(https://images.squidge.org/images/2026/11/15/mic-white.png); }
 #workskin .ig.theme-dark .ig-icon.cm { background-image: url(https://images.squidge.org/images/2026/11/15/comment-white.png); }
 #workskin .ig.theme-dark .ig-icon.bm { background-image: url(https://images.squidge.org/images/2026/11/15/bookmark-white.png); }
 #workskin .ig.theme-dark .ig-icon.bm.on { background-image: url(https://images.squidge.org/images/2026/11/15/bookmark-filled-white.png); }
@@ -1486,6 +1574,10 @@
   #workskin .ig.theme-auto .ic.ic-share, #workskin .igdm.theme-auto .ic.ic-share { background-image: url(https://images.squidge.org/images/2026/11/15/share-white.png); }
   #workskin .ig.theme-auto .ic.ic-repost, #workskin .igdm.theme-auto .ic.ic-repost { background-image: url(https://images.squidge.org/images/2026/11/15/repost-white.png); }
   #workskin .ig.theme-auto .ic.ic-heart, #workskin .igdm.theme-auto .ic.ic-heart { background-image: url(https://images.squidge.org/images/2026/11/15/heart-white.png); }
+  #workskin .igdm.theme-auto .ic.ic-back { background-image: url(https://images.squidge.org/images/2026/11/15/back-white.png); }
+  #workskin .igdm.theme-auto .ic.ic-phone { background-image: url(https://images.squidge.org/images/2026/11/15/phone-white.png); }
+  #workskin .igdm.theme-auto .ic.ic-video { background-image: url(https://images.squidge.org/images/2026/11/15/video-white.png); }
+  #workskin .igdm.theme-auto .ic.ic-mic { background-image: url(https://images.squidge.org/images/2026/11/15/mic-white.png); }
   #workskin .ig.theme-auto .ig-icon.cm { background-image: url(https://images.squidge.org/images/2026/11/15/comment-white.png); }
   #workskin .ig.theme-auto .ig-icon.bm { background-image: url(https://images.squidge.org/images/2026/11/15/bookmark-white.png); }
   #workskin .ig.theme-auto .ig-icon.bm.on { background-image: url(https://images.squidge.org/images/2026/11/15/bookmark-filled-white.png); }
