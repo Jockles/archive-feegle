@@ -6,18 +6,18 @@
 :root {
   --header: #6c392a;      /* terracotta header band */
   --header-dark: #354732; /* green menu bar and footer */
-  --outline: #2b3b28;     /* dark green for outlines, such as the help pop-ups */
-  --header-text: #fff8ef;
-  --page: #fbf6ef;
-  --ink: #2b2420;
-  --muted: #6b5a50;
+  --outline: #2a3828;     /* dark green for outlines, such as the help pop-ups */
+  --header-text: #faf4ec;
+  --page: #f7f3ee;
+  --ink: #2a2522;
+  --muted: #6a5f58;
   --link: #6c392a;
   --visited: #354732;
-  --hover: #471908;       /* dark red on hover */
-  --box-edge: #cdb6a3;
-  --box-fill: #f5ebe1;
-  --tag-fill: #eedccb;
-  --rule: #e2d3c4;
+  --hover: #4a2419;       /* darker terracotta on hover */
+  --box-edge: #cfc3b8;
+  --box-fill: #f0e9e1;
+  --tag-fill: #eadfd4;
+  --rule: #e0d6cc;
 }
 
 /* Dark mode. It follows the reader's device setting until they use the
@@ -27,50 +27,50 @@
   :root:not([data-theme="light"]) {
     --header: #6c392a;
     --header-dark: #354732;
-    --header-text: #fbefe3;
-    --page: #00120a;
-    --ink: #efe3d6;
-    --muted: #bba796;
-    --link: #f4b942;
-    --visited: #b4c39a;
-    --hover: #f9d68a;
-    --box-edge: #44535a;
-    --box-fill: #482912;
-    --tag-fill: #35231d;
-    --rule: #3e2a26;
+    --header-text: #f3ebe1;
+    --page: #121712;
+    --ink: #ece4da;
+    --muted: #b3a79c;
+    --link: #d9b26f;
+    --visited: #a9b79a;
+    --hover: #e8cfa0;
+    --box-edge: #4a3f38;
+    --box-fill: #2e241f;
+    --tag-fill: #2a211d;
+    --rule: #352c27;
     color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
   --header: #6c392a;
   --header-dark: #354732;
-  --header-text: #fbefe3;
-  --page: #00120a;
-  --ink: #efe3d6;
-  --muted: #bba796;
-  --link: #f4b942;
-  --visited: #b4c39a;
-  --hover: #f9d68a;
-  --box-edge: #44535a;
-  --box-fill: #482912;
-  --tag-fill: #35231d;
-  --rule: #3e2a26;
+  --header-text: #f3ebe1;
+  --page: #121712;
+  --ink: #ece4da;
+  --muted: #b3a79c;
+  --link: #d9b26f;
+  --visited: #a9b79a;
+  --hover: #e8cfa0;
+  --box-edge: #4a3f38;
+  --box-fill: #2e241f;
+  --tag-fill: #2a211d;
+  --rule: #352c27;
   color-scheme: dark;
 }
 
 /* Buttons: the dark green outline colour, darker still on hover.
    --button-soft is the pale fill of the Tutorial and Help text buttons. */
 :root {
-  --button: #2b3b28;
-  --button-dark: #1c2719;
-  --button-text: #fff8ef;
-  --button-soft: #e3ead9;
-  --button-soft-ink: #2b3b28;
+  --button: #2a3828;
+  --button-dark: #1d271c;
+  --button-text: #faf4ec;
+  --button-soft: #e2e7dc;
+  --button-soft-ink: #2a3828;
 }
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) { --button-soft: #2b3b28; --button-soft-ink: #e3ead9; }
+  :root:not([data-theme="light"]) { --button-soft: #2a3828; --button-soft-ink: #e2e7dc; }
 }
-:root[data-theme="dark"] { --button-soft: #2b3b28; --button-soft-ink: #e3ead9; }
+:root[data-theme="dark"] { --button-soft: #2a3828; --button-soft-ink: #e2e7dc; }
 
 /* Tags and the What's new box use the terracotta. */
 :root {
@@ -78,9 +78,9 @@
   --news-date: #6c392a;
 }
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) { --tag-text: #fbefe3; --news-date: #f4b942; }
+  :root:not([data-theme="light"]) { --tag-text: #f3ebe1; --news-date: #d9b26f; }
 }
-:root[data-theme="dark"] { --tag-text: #fbefe3; --news-date: #f4b942; }
+:root[data-theme="dark"] { --tag-text: #f3ebe1; --news-date: #d9b26f; }
 
 body {
   margin: 0;
@@ -290,7 +290,7 @@ footer {
   padding: 14px;
 }
 footer a, footer a:visited { color: var(--header-text); }
-footer a:hover, footer a:focus { color: #f4b942; }
+footer a:hover, footer a:focus { color: #e8cfa0; }
 
 @media (max-width: 600px) {
   header { padding: 12px 16px; }
