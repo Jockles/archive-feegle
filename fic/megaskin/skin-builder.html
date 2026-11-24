@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-Clacks-Overhead" content="GNU Terry Pratchett">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Megaskin Basic Skin Builder | jockles.com</title>
+  <link rel="stylesheet" href="../../style.css">
+  <script src="../../theme.js"></script>
+  <link rel="stylesheet" href="tutorial.css?v=17">
+  <style>
+    .sb { display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-start; }
+    .sb-form, .sb-out { flex: 1 1 380px; min-width: 0; }
+    .sb fieldset { border: 1px solid var(--rule, #ccc); border-radius: 6px; margin: 0 0 16px; padding: 10px 14px 12px; }
+    .sb legend { font-weight: bold; padding: 0 4px; }
+    .sb label { display: block; margin: 6px 0; }
+    .sb .hint { font-size: 0.8em; opacity: 0.75; margin: 4px 0; }
+    .sb button { font: inherit; padding: 4px 10px; cursor: pointer; }
+    .sb textarea { width: 100%; box-sizing: border-box; font-family: monospace; font-size: 0.8em; }
+    #profiles { height: 14em; }
+    #skin { height: 26em; }
+    .sb .warn { color: var(--link); font-weight: bold; }
+    .sb .warn:empty, .sb .hint:empty { display: none; }
+  </style>
+</head>
+<body>
+<header>
+  <h1><a href="../../index.html">jockles.com</a></h1>
+  <p>All the Fannish things I do.</p>
+</header>
+<nav>
+  <ul>
+    <li><a href="../../index.html">Home</a></li>
+    <li><a href="../index.html">Fic</a></li>
+    <li><a href="../../videos/index.html">Videos</a></li>
+    <li><a href="../../blog/index.html">Blog</a></li>
+    <li><a href="../../links.html">Links</a></li>
+    <li class="menu-drop"><span class="menu-drop-label" tabindex="0">Tools</span>
+      <ul>
+        <li><a href="../../fic/megaskin/fic-builder.html">Megaskin Fic-Builder</a></li>
+        <li><a href="../../fic/megaskin/profile-maker.html">Megaskin Profile-Builder</a></li>
+        <li><a href="../../fic/megaskin/skin-builder.html">Megaskin Skin-Builder</a></li>
+      </ul>
+    </li>
+    <li><a href="../../about.html">About</a></li>
+  </ul>
+</nav>
+<main>
+  <p class="work-title"><a href="index.html">Megaskin</a> by Jockles</p>
+  <h2>Basic Skin Builder</h2>
+  <div class="tut-intro">
+    <div>
+    <p>Tick the apps you want, paste in your profiles, and this puts together a work skin with only those apps and only your characters. The example profiles from the tutorial are taken out. The core is always in, because every app needs it.</p>
+    <p>Nothing you paste leaves your browser. When you're done, copy the skin or download it, and paste it into the CSS box of a work skin on AO3.</p>
+    <p>Don't need your own profiles yet? Here's the whole thing with no profiles in it: the <a href="megaskin-no-profiles.css">full megaskin</a>, and the <a href="css/core-no-profiles.css">core on its own</a>.</p>
+    </div>
+    <aside class="tut-box">
+      <p><button type="button" class="tut-btn" data-tutorial>Tutorial</button> <button type="button" class="tut-btn" data-helptext>Help text</button></p>
+      <p>New here? 'Tutorial' walks you through making a skin, step by step. 'Help text' shows a short explanation under every box. Without it, hover over or tap any ? to see the help for that box.</p>
+    </aside>
+  </div>
+
+  <div class="sb">
+    <form class="sb-form" autocomplete="off" onsubmit="return false">
+      <fieldset id="apps-box">
+        <legend>Apps <span class="tut-help" tabindex="0"><span>Tick every app you use in your fic. You can come back and make the skin again with more apps later.</span></span></legend>
+        <label><input type="checkbox" checked disabled> Core (always in)</label>
+        <div id="apps"><p class="hint">Loading the apps...</p></div>
+        <p><button type="button" id="all">Tick all</button> <button type="button" id="none">Untick all</button></p>
+      </fieldset>
+
+      <fieldset id="profiles-box">
+        <legend>Your profiles <span class="tut-help" tabindex="0"><span>Paste the CSS for your characters here: the profiles from the Profile Builder, or the CSS file the Fic Builder saves. Leave it empty for a skin with no profiles.</span></span></legend>
+        <textarea id="profiles" aria-label="Your profiles" placeholder="/* PROFILE: Stan */&#10;#workskin .pfp.pfp-stan { ... }"></textarea>
+        <p><label>Or open a CSS file: <input type="file" id="open-css" accept=".css,text/css,text/plain"></label></p>
+        <p class="hint" id="found" role="status"></p>
+        <p class="warn" id="warn" role="alert"></p>
+      </fieldset>
+    </form>
+
+    <div class="sb-out">
+      <h3>Your skin <span class="tut-help" tabindex="0"><span>This is the whole skin, made from what you've picked. It changes as you go. Copy all of it, from the first /* to the last */.</span></span></h3>
+      <p><button type="button" id="copy">Copy the skin</button> <button type="button" id="save">Download the skin</button> <span id="copied"></span></p>
+      <p class="hint" id="size"></p>
+      <textarea id="skin" aria-label="Your skin" readonly></textarea>
+    </div>
+  </div>
+</main>
+<footer>
+  Made by hand in HTML &amp; CSS. No trackers, no cookies, no ads. &middot; <a href="https://buymeacoffee.com/jockles">Support Me</a>
+</footer>
+
+<script src="tutorial.js?v=5"></script>
+<script>
+Tutorial([
+  { title: "Make a skin", target: "#apps-box",
+    text: "<p>This makes a work skin with only the apps you use. Tick each app that's in your fic. The core is always in.</p>" },
+  { title: "Add your profiles", target: "#profiles-box",
+    text: "<p>Paste your characters' profiles into <b>'Your profiles'</b>, or open the CSS file the Fic Builder saved. No profiles yet? Make them in the <a href=\"profile-maker.html\">Profile Builder</a>, or leave this empty.</p>" },
+  { title: "Copy your skin", target: "#copy",
+    text: "<p>Press <b>'Copy the skin'</b> or <b>'Download the skin'</b>.</p><p>On AO3, go to Dashboard &gt; Skins &gt; Create Work Skin, paste it into the CSS box and submit. Then pick it under Associations when you post. That's it!</p>" }
+]);
+</script>
+<script>
+(function () {
+  var $ = function (id) { return document.getElementById(id); };
+  var SKIN = "";
+  var PARTS = []; // { name, label, css } for each app, in skin order
+
+  // the same lines tools/build-megaskin.py uses
+  var START = "/* ---------- EXAMPLE PROFILES (start) ---------- */";
+  var END = "/* ---------- EXAMPLE PROFILES (end) ---------- */";
+  var YOURS = "/* ---------- YOUR PROFILES ---------- */\n";
+  var EMPTY = "/* Paste your own profiles here, from the Profile Builder or the Fic Builder. */\n";
+
+  function block(name) {
+    var a = "/* >>>>>>>>>> " + name + " (start) >>>>>>>>>> */";
+    var b = "/* <<<<<<<<<< " + name + " (end) <<<<<<<<<< */";
+    var i = SKIN.indexOf(a), j = SKIN.indexOf(b);
+    return i < 0 || j < 0 ? "" : SKIN.slice(i, j + b.length);
+  }
+
+  function today() {
+    var d = new Date();
+    var two = function (n) { return (n < 10 ? "0" : "") + n; };
+    return two(d.getDate()) + "-" + two(d.getMonth() + 1) + "-" + d.getFullYear();
+  }
+
+  // takes out every /* ... */ so the checks only look at the rules
+  function noComments(css) { return css.replace(/\/\*[\s\S]*?\*\//g, ""); }
+
+  function checkProfiles(css) {
+    var names = [], m, re = /\.pfp-([a-z0-9-]+)/g;
+    while ((m = re.exec(css))) if (names.indexOf(m[1]) < 0) names.push(m[1]);
+    $("found").textContent = names.length ? "Profiles found: " + names.map(function (n) { return "pfp-" + n; }).join(", ") : "";
+
+    var rules = noComments(css);
+    var open = (rules.match(/\{/g) || []).length, shut = (rules.match(/\}/g) || []).length;
+    var warn = "";
+    if (open !== shut) warn = "There are " + open + " { and " + shut + " } in your profiles. Check you copied all of them.";
+    else {
+      var bad = rules.split("}").map(function (r) { return r.split("{")[0].trim(); }).filter(function (sel) {
+        return sel && sel.charAt(0) !== "@" && sel.split(",").some(function (s) { return s.trim().indexOf("#workskin") !== 0; });
+      });
+      if (bad.length) warn = "Every rule needs to start with #workskin, or AO3 won't take it. This one doesn't: " + bad[0];
+    }
+    $("warn").textContent = warn;
+    return names;
+  }
+
+  function build() {
+    if (!SKIN) return;
+    var picked = PARTS.filter(function (p) { return $("app-" + p.id).checked; });
+    var mine = $("profiles").value.trim();
+    var names = checkProfiles(mine);
+
+    var core = block("CORE");
+    var i = core.indexOf(START), j = core.indexOf(END);
+    if (i >= 0 && j >= 0) {
+      core = core.slice(0, i) + YOURS + (mine ? mine + "\n" : EMPTY) + "\n" + core.slice(j + END.length).replace(/^\n+/, "");
+    }
+
+    var top = "/* Megaskin by Jockles: jockles.com/fic/megaskin\n" +
+      "   Made with the Basic Skin Builder on " + today() + ".\n" +
+      "   Apps: " + (picked.length ? picked.map(function (p) { return p.label; }).join(", ") : "none, just the core") + "\n" +
+      "   Profiles: " + (names.length ? names.join(", ") : "none") + " */\n\n";
+    var head = SKIN.slice(0, SKIN.indexOf("/* >>>>>>>>>> CORE (start)"));
+    var out = top + head + core + "\n\n" + picked.map(function (p) { return p.css; }).join("\n\n");
+    out = out.replace(/\s+$/, "") + "\n";
+    $("skin").value = out;
+    $("size").textContent = "About " + Math.round(out.length / 1000) + " KB, " + out.split("\n").length + " lines.";
+  }
+
+  function setAll(on) {
+    PARTS.forEach(function (p) { $("app-" + p.id).checked = on; });
+    build();
+  }
+
+  function copy() {
+    var ta = $("skin");
+    ta.select();
+    var done = function () { $("copied").textContent = "Copied!"; setTimeout(function () { $("copied").textContent = ""; }, 2000); };
+    if (navigator.clipboard) navigator.clipboard.writeText(ta.value).then(done, function () { document.execCommand("copy"); done(); });
+    else { document.execCommand("copy"); done(); }
+  }
+
+  function save() {
+    var a = document.createElement("a");
+    a.href = URL.createObjectURL(new Blob([$("skin").value], { type: "text/css" }));
+    a.download = "megaskin.css";
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(function () { URL.revokeObjectURL(a.href); }, 1000);
+  }
+
+  $("all").onclick = function () { setAll(true); };
+  $("none").onclick = function () { setAll(false); };
+  $("copy").onclick = copy;
+  $("save").onclick = save;
+  $("profiles").addEventListener("input", build);
+  $("open-css").addEventListener("change", function () {
+    var f = this.files[0], input = this;
+    if (!f) return;
+    var r = new FileReader();
+    r.onload = function () {
+      var box = $("profiles");
+      box.value = (box.value.trim() + "\n\n" + r.result.trim()).trim();
+      input.value = "";
+      build();
+    };
+    r.readAsText(f);
+  });
+
+  // the apps are read from the skin's own start lines, so new ones show up here by themselves
+  fetch("megaskin.css").then(function (r) { return r.text(); }).then(function (t) {
+    SKIN = t;
+    var re = /\/\* >>>>>>>>>> MODULE: (.+?) \(start\) >>>>>>>>>> \*\//g, m;
+    while ((m = re.exec(SKIN))) {
+      var name = "MODULE: " + m[1];
+      PARTS.push({ id: PARTS.length, name: name, label: m[1], css: block(name) });
+    }
+    $("apps").innerHTML = PARTS.map(function (p) {
+      return '<label><input type="checkbox" id="app-' + p.id + '" checked> ' + p.label.replace(/&/g, "&amp;").replace(/</g, "&lt;") + "</label>";
+    }).join("");
+    PARTS.forEach(function (p) { $("app-" + p.id).addEventListener("change", build); });
+    build();
+  }, function () {
+    $("apps").innerHTML = '<p class="warn">The skin didn\'t load. Try the page again in a minute.</p>';
+  });
+})();
+</script>
+</body>
+</html>

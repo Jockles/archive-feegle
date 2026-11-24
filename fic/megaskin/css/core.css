@@ -306,6 +306,8 @@
    profiles used in the tutorial's examples, simplest first. Copy any block for
    each of your characters, change the name after pfp- (and pov-) everywhere in it,
    and fill in or delete the parts you want.
+   The examples sit between the two EXAMPLE PROFILES lines, so you can cut them
+   all out in one go once you have your own.
    In your HTML:
      picture       <span class="pfp pfp-stan"></span> inside any profile circle
                    (wa-pfp, tw-pfp, ig-pfp, ig-like-pfp, tb-pfp, gm-pfp, dc-pfp)
@@ -344,6 +346,8 @@
 #workskin .tw span.handle::before,
 #workskin .tw-reply span.handle::before,
 #workskin .twdm span.handle::before, #workskin .twc12 span.handle::before, #workskin .twc16 span.handle::before { content: "@"; }
+
+/* ---------- EXAMPLE PROFILES (start) ---------- */
 
 /* PROFILE: Luca - every option a profile can have, explained line by line.
    Only the lines with "every profile" need to be in yours; the rest are extras. */
@@ -505,6 +509,8 @@
 #workskin .tw .pfp.pfp-ilya.acc-shanewife, #workskin .tw-reply .pfp.pfp-ilya.acc-shanewife, #workskin .twdm .pfp.pfp-ilya.acc-shanewife, #workskin .twc12 .pfp.pfp-ilya.acc-shanewife, #workskin .twc16 .pfp.pfp-ilya.acc-shanewife, #workskin .ig .pfp.pfp-ilya.acc-shanewife, #workskin .igdm .pfp.pfp-ilya.acc-shanewife { background-image: url(https://images.squidge.org/images/2026/11/16/WetShane.jpg); }
 #workskin .tw .name.pfp-ilya.acc-shanewife::before, #workskin .tw-reply .name.pfp-ilya.acc-shanewife::before, #workskin .twdm .name.pfp-ilya.acc-shanewife::before, #workskin .twc12 .name.pfp-ilya.acc-shanewife::before, #workskin .twc16 .name.pfp-ilya.acc-shanewife::before, #workskin .ig .name.pfp-ilya.acc-shanewife::before, #workskin .igdm .name.pfp-ilya.acc-shanewife::before { content: "Shane Hollander's Wife"; }
 #workskin .tw .handle.pfp-ilya.acc-shanewife::after, #workskin .tw-reply .handle.pfp-ilya.acc-shanewife::after, #workskin .twdm .handle.pfp-ilya.acc-shanewife::after, #workskin .twc12 .handle.pfp-ilya.acc-shanewife::after, #workskin .twc16 .handle.pfp-ilya.acc-shanewife::after, #workskin .ig .handle.pfp-ilya.acc-shanewife::after, #workskin .igdm .handle.pfp-ilya.acc-shanewife::after { content: "hollanderswife"; }
+
+/* ---------- EXAMPLE PROFILES (end) ---------- */
 
 /* ==========================================================
    COLOURS: colour1 to colour10
