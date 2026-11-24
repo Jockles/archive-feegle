@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-Clacks-Overhead" content="GNU Terry Pratchett">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Megaskin Profile Maker | jockles.com</title>
+  <!-- site meta -->
+  <link rel="icon" href="/favicon.ico?v=3" sizes="32x32">
+  <link rel="icon" href="/images/favicon.svg?v=3" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/images/apple-touch-icon.png?v=3">
+  <meta name="theme-color" content="#6c392a">
+  <meta name="description" content="Work In Progress!! Make a character&#x27;s social media profile for the Megaskin AO3 work skin.">
+  <link rel="canonical" href="https://jockles.com/fic/megaskin/profile-maker.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="jockles.com">
+  <meta property="og:title" content="Megaskin Profile Maker">
+  <meta property="og:description" content="Work In Progress!! Make a character&#x27;s social media profile for the Megaskin AO3 work skin.">
+  <meta property="og:url" content="https://jockles.com/fic/megaskin/profile-maker.html">
+  <meta property="og:image" content="https://jockles.com/images/social-card-profile-builder.png?v=3">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="jockles.com: All the Fannish things I do. Megaskin Profile-Builder">
+  <meta name="twitter:card" content="summary_large_image">
+  <!-- /site meta -->
+  <link rel="stylesheet" href="../../style.css">
+  <script src="../../theme.js"></script>
+  <link rel="stylesheet" href="megaskin.css?v=1d6b78fe">
+  <link rel="stylesheet" href="tutorial.css?v=17">
+  <style id="live-profile"></style>
+  <style>
+    .pm { display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-start; }
+    .pm-form, .pm-out { flex: 1 1 380px; min-width: 0; }
+    .pm .acct { border-top: 1px dashed var(--rule, #ccc); margin-top: 10px; padding-top: 6px; }
+    .pm fieldset { border: 1px solid var(--rule, #ccc); border-radius: 6px; margin: 0 0 16px; padding: 10px 14px 12px; }
+    .pm legend { font-weight: bold; padding: 0 4px; }
+    .pm label { display: block; margin: 8px 0 2px; font-size: 0.9em; }
+    .pm input[type=text], .pm input[type=url] { width: 100%; box-sizing: border-box; padding: 5px 7px; font: inherit; }
+    .pm input[type=color] { width: 3em; height: 2em; padding: 0; vertical-align: middle; }
+    .pm .hint { font-size: 0.8em; opacity: 0.75; margin: 2px 0 0; }
+    .pm .row { display: flex; gap: 8px; align-items: center; }
+    .pm .row input[type=text], .pm .row input[type=url] { flex: 1; }
+    .pm table { width: 100%; border-collapse: collapse; font-size: 0.9em; }
+    .pm th, .pm td { text-align: left; padding: 3px 4px; vertical-align: middle; }
+    .pm td input { width: 100%; box-sizing: border-box; padding: 4px 5px; font: inherit; }
+    .pm button { font: inherit; padding: 4px 10px; cursor: pointer; }
+    .pm textarea { width: 100%; box-sizing: border-box; height: 18em; font-family: monospace; font-size: 0.8em; }
+    .pm-preview #workskin > div { margin-bottom: 14px; }
+    .pm .theme-pick { margin: 0 0 10px; }
+  </style>
+</head>
+<body>
+<header>
+  <h1><a href="../../index.html">jockles.com</a></h1>
+  <p>All the Fannish things I do.</p>
+</header>
+<nav>
+  <ul>
+    <li><a href="../../index.html">Home</a></li>
+    <li><a href="../index.html">Fic</a></li>
+    <li><a href="../../videos/index.html">Videos</a></li>
+    <li><a href="../../blog/index.html">Blog</a></li>
+    <li><a href="../../links.html">Links</a></li>
+    <li class="menu-drop"><span class="menu-drop-label" tabindex="0">Tools</span>
+      <ul>
+        <li><a href="../../fic/megaskin/fic-builder.html">Megaskin Fic-Builder</a></li>
+        <li><a href="../../fic/megaskin/profile-maker.html">Megaskin Profile-Builder</a></li>
+        <li><a href="../../fic/megaskin/skin-builder.html">Megaskin Skin-Builder</a></li>
+      </ul>
+    </li>
+    <li><a href="../../about.html">About</a></li>
+  </ul>
+</nav>
+<main>
+  <p class="work-title"><a href="index.html">Megaskin</a> by Jockles</p>
+  <h2>Profile Maker</h2>
+  <div class="tut-intro">
+    <div>
+    <p>Fill in the boxes and the chats on the right update as you type, using the default megaskin. When you're happy, copy the CSS at the bottom and paste it into the PROFILES section of your work skin, next to the other profiles. Nothing you type leaves your browser.</p>
+    <p>Building chats too? The <a href="fic-builder.html">Fic Builder</a> has this built in.</p>
+    <p>To edit a profile you've already made, paste its CSS into the Your CSS box at the bottom (one profile at a time). The boxes fill in from it, and you can carry on from there.</p>
+    <p>Only the first box is essential. Leave anything you don't need empty and it won't go in the CSS. Pictures need a direct link to the image file, usually ending in .jpg or .png, from somewhere like squidge.org or Tumblr.</p>
+    </div>
+    <aside class="tut-box">
+      <p><button type="button" class="tut-btn" data-tutorial>Tutorial</button> <button type="button" class="tut-btn" data-helptext>Help text</button></p>
+      <p>New here? 'Tutorial' walks you through making a character's profile, step by step. 'Help text' shows a short explanation under every box. Without it, hover over or tap any ? to see the help for that box. You can have either one on, or both.</p>
+    </aside>
+  </div>
+
+  <div class="pm">
+    <form class="pm-form" id="pm" autocomplete="off" onsubmit="return false">
+      <fieldset>
+        <legend>The basics</legend>
+        <div class="tut-lab"><label for="name">Name</label> <span class="tut-help" tabindex="0"><span>The character's name, the way you want it to show in the chats.</span></span></div>
+        <input type="text" id="name" value="Stan">
+        <div class="tut-lab"><label for="slug">Profile class</label> <span class="tut-help" tabindex="0"><span>A short label for this profile. It's how the skin knows which character is which, so you'll add it to their messages in your HTML, like 'pfp-stan'. No spaces, and no two characters can have the same one.</span></span></div>
+        <div class="row"><span>pfp-</span><input type="text" id="slug" value="stan"></div>
+        <p class="hint">Small letters, numbers and hyphens only. It's filled in from the name until you change it.</p>
+        <div class="tut-lab"><label for="pic">Picture link</label> <span class="tut-help" tabindex="0"><span>Optional. A picture for their circle in every app. Upload the picture somewhere like squidge.org first, then copy the link to the picture itself (it usually ends in .jpg or .png) and paste it here.</span></span></div>
+        <input type="url" id="pic" placeholder="https://...">
+        <label for="piccol">Circle colour (shows when there's no picture, or while it loads)</label>
+        <div class="tut-row"><input type="color" id="piccol" value="#c06a1f"> <span class="tut-help" tabindex="0"><span>Press the colour to pick a new one. With no picture, the circle shows this colour with their first letter in it.</span></span></div>
+        <label for="namecol">Name colour (WhatsApp group names and Discord usernames)</label>
+        <div class="tut-row"><input type="color" id="namecol" value="#d2782a"> <span class="tut-help" tabindex="0"><span>The colour of their name in WhatsApp groups and on Discord. Pick one that's easy to read on both light and dark backgrounds.</span></span></div>
+        <div class="tut-lab"><label for="handle">Handle (leave off the @)</label> <span class="tut-help" tabindex="0"><span>Their username on apps like Twitter, Instagram and Tumblr. Leave off the @, it's added for you.</span></span></div>
+        <input type="text" id="handle" value="PuckStan">
+        <div class="tut-lab"><label for="email">Email address</label> <span class="tut-help" tabindex="0"><span>Their email address, for the email apps. It doesn't have to be real.</span></span></div>
+        <input type="text" id="email" value="Puckstan@gmail.com">
+      </fieldset>
+
+      <fieldset>
+        <legend>Different on one app <span class="tut-help" tabindex="0"><span>Optional. Maybe they use a different picture on Instagram, or a different name on Discord. Fill in only the boxes that are different, on the app's row. Empty boxes use the basics.</span></span></legend>
+        <p class="hint">Only fill in the ones that are different from the basics.</p>
+        <table>
+          <thead><tr><th>App</th><th>Picture link</th><th>Name</th><th>Handle</th></tr></thead>
+          <tbody id="apps"></tbody>
+        </table>
+        <div class="tut-lab"><label for="dccol">Different name colour on Discord</label> <span class="tut-help" tabindex="0"><span>Tick the box, then pick the colour.</span></span></div>
+        <div class="row"><input type="checkbox" id="dccolon"> <input type="color" id="dccol" value="#e8734a"></div>
+        <label><input type="checkbox" id="tbsq"> Rounded square picture on Tumblr</label>
+        <p class="hint">Tumblr lets each blog show its picture as a circle or a square with rounded corners. Tick this and it's square everywhere on Tumblr: headers, reblogs and asks.</p>
+      </fieldset>
+
+      <fieldset>
+        <legend>Saved as <span class="tut-help" tabindex="0"><span>Optional. For example, if Shane has Stan saved as Stan from the bar, type 'shane' in 'Phone owner' and 'Stan from the bar' in 'Saved as'. Press &times; to remove a row.</span></span></legend>
+        <p class="hint">What other characters have them saved as on their phones, and a different picture on that phone if you want one. The phone owner is the other character's profile class, without pfp-. This only works in iMessage and WhatsApp messages, and only the name works in Discord DMs. Everywhere else they show the account's default.</p>
+        <table>
+          <thead><tr><th>Phone owner</th><th>Saved as</th><th>Picture on their phone (optional)</th><th></th></tr></thead>
+          <tbody id="saved"></tbody>
+        </table>
+        <button type="button" id="addsaved">+ Add a phone</button>
+      </fieldset>
+
+      <fieldset>
+        <legend>Extra accounts <span class="tut-help" tabindex="0"><span>Optional. Press 'Add an account', give it a short name like 'burner' (small letters, no spaces), pick the app, then fill in only what's different.</span></span></legend>
+        <p class="hint">A second account on one app - a private Instagram, a burner, a fan account. Give each one a name, then fill in only what's different from their main account. In your HTML, add the acc- name next to the profile, like <code>pfp-<span class="slugtxt">stan</span> acc-burner</code>.</p>
+        <div id="accts"></div>
+        <button type="button" id="addacct">+ Add an account</button>
+      </fieldset>
+
+      <fieldset>
+        <legend>Their phone <span class="tut-help" tabindex="0"><span>Optional. To colour the background, tick the box and pick a colour. Or use a picture instead. Upload the picture somewhere like squidge.org first, then copy the link to the picture itself (it usually ends in .jpg or .png) and paste it here.</span></span></legend>
+        <p class="hint">The WhatsApp wallpaper for chats on their phone (add pov-<span class="slugtxt">stan</span> to the chat container). Leave both empty for the normal background.</p>
+        <label for="wallcol">Colour</label>
+        <div class="row"><input type="checkbox" id="wallcolon"> <input type="color" id="wallcol" value="#dfeaf6"></div>
+        <label for="wallpic">Or a picture link</label>
+        <input type="url" id="wallpic" placeholder="https://...">
+      </fieldset>
+    </form>
+
+    <div class="pm-out">
+      <h3>Preview <span class="tut-help" tabindex="0"><span>This is how your character looks in each app with the default megaskin. It changes as you type. 'Light' and 'Dark' switch the preview between a light and a dark phone.</span></span></h3>
+      <p class="theme-pick">
+        <label><input type="radio" name="theme" value="theme-light" checked> Light</label>
+        <label><input type="radio" name="theme" value="theme-dark"> Dark</label>
+      </p>
+      <div class="pm-preview"><div id="workskin"></div></div>
+
+      <h3>Your CSS <span class="tut-help" tabindex="0"><span>This is the code for your profile. It's made for you as you fill in the boxes, so you don't need to type anything here. To edit a profile you made before, paste its CSS in here and the boxes fill in from it.</span></span></h3>
+      <p><button type="button" id="copy">Copy the CSS</button> <span id="copied"></span></p>
+      <p class="hint">Or paste a profile here to edit it.</p>
+      <textarea id="css" aria-label="Your CSS"></textarea>
+      <p class="hint" id="pasted" role="status"></p>
+    </div>
+  </div>
+</main>
+<footer>
+  Made by hand in HTML &amp; CSS. No trackers, no cookies, no ads. &middot; <a href="https://buymeacoffee.com/jockles">Support Me</a>
+</footer>
+
+<script src="profile-css.js"></script>
+<script src="tutorial.js?v=5"></script>
+<script>
+Tutorial([
+  { title: "Make a character profile",
+    text: "<p>A profile keeps a character looking the same in every chat and every app. This walks you through the basics, one step at a time. For more about any box, hover over or tap its ?, or press <b>'Help text'</b> at the top of the page.</p><p>Press <b>'Next'</b> to start. You can close it any time with &times;, or make it smaller with &minus; to see more of the page.</p>" },
+  { title: "Their name", target: "#name",
+    text: "<p>Type your character's name in <b>'Name'</b>, over Stan. The <b>'Profile class'</b> under it fills itself in.</p>" },
+  { title: "Their picture", target: "#pic",
+    text: "<p>If you have a picture for them, paste its link in <b>'Picture link'</b>. If not, leave it empty and they get a coloured circle with their first letter.</p>" },
+  { title: "Their colours", target: "#piccol",
+    text: "<p>Press <b>'Circle colour'</b> to pick the colour of their circle, then <b>'Name colour'</b> for their name in group chats.</p>" },
+  { title: "Their accounts", target: "#handle",
+    text: "<p>Type their username in <b>'Handle'</b>, without the @, and their <b>'Email address'</b>. Delete Stan's if you don't need them.</p>" },
+  { title: "Look at the preview", target: ".pm-preview",
+    text: "<p>The preview shows your character in every app, and it changes as you type. 'Light' and 'Dark' above it switch the phone.</p>" },
+  { title: "The extras are optional", target: ".pm-form fieldset:nth-of-type(2)",
+    text: "<p>Everything under the basics is optional: a different look on one app, what other characters have them saved as, extra accounts, and their WhatsApp background. Skip anything you don't need.</p><p>Stan comes with one 'Saved as' row to show how it works. Press &times; on it to remove it.</p>" },
+  { title: "Copy your CSS", target: "#copy",
+    text: "<p>Press <b>'Copy the CSS'</b>, and paste it into the 'PROFILES' section of your work skin, next to the other profiles.</p><p>Keep a copy somewhere safe too. To change the profile later, paste it back into the <b>'Your CSS'</b> box and the boxes fill in again. That's it, you've made a profile!</p>" }
+]);
+</script>
+<script>
+(function () {
+  var APPS = MegaskinProfile.APPS;
+  var $ = function (id) { return document.getElementById(id); };
+  var slugTouched = false;
+
+  // build the per-app rows
+  var apps = $("apps");
+  APPS.forEach(function (a) {
+    var tr = document.createElement("tr");
+    tr.innerHTML = "<td>" + a.label + "</td>" +
+      '<td><input type="url" id="pic-' + a.key + '" placeholder="https://..."></td>' +
+      '<td><input type="text" id="name-' + a.key + '"></td>' +
+      (a.key === "gm" ? "<td></td>" : '<td><input type="text" id="handle-' + a.key + '"></td>');
+    apps.appendChild(tr);
+  });
+
+  function addSaved(owner, as) {
+    var tr = document.createElement("tr");
+    tr.innerHTML = '<td><input type="text" class="sv-owner"></td><td><input type="text" class="sv-as"></td>' +
+      '<td><input type="url" class="sv-pic" placeholder="https://..."></td>' +
+      '<td><button type="button" title="Remove">&times;</button></td>';
+    tr.querySelector(".sv-owner").value = owner || "";
+    tr.querySelector(".sv-as").value = as || "";
+    tr.querySelector("button").onclick = function () { tr.remove(); update(); };
+    $("saved").appendChild(tr);
+  }
+  $("addsaved").onclick = function () { addSaved(); update(); };
+
+  function addAcct(acc, app) {
+    var d = document.createElement("div");
+    d.className = "acct";
+    d.innerHTML = '<label>Account name</label><div class="row"><span>acc-</span><input type="text" class="ac-name"></div>' +
+      '<label>App</label><select class="ac-app">' + APPS.map(function (a) { return '<option value="' + a.key + '">' + a.label + '</option>'; }).join("") + '</select>' +
+      '<label>Picture link</label><input type="url" class="ac-pic" placeholder="https://...">' +
+      '<label>Name</label><input type="text" class="ac-dname">' +
+      '<label>Handle (or email address, for Email)</label><input type="text" class="ac-handle">' +
+      '<label><input type="checkbox" class="ac-sq"> Rounded square picture (Tumblr only)</label>' +
+      '<p><button type="button">Remove this account</button></p>';
+    d.querySelector(".ac-name").value = acc || "";
+    if (app) d.querySelector(".ac-app").value = app;
+    d.querySelector("button").onclick = function () { d.remove(); update(); };
+    $("accts").appendChild(d);
+  }
+  $("addacct").onclick = function () { addAcct(); update(); };
+  function accounts() {
+    var out = [];
+    Array.prototype.forEach.call($("accts").children, function (tr) {
+      var acc = slugify(tr.querySelector(".ac-name").value);
+      var app = APPS.filter(function (a) { return a.key === tr.querySelector(".ac-app").value; })[0];
+      if (!acc || !app) return;
+      out.push({ acc: "acc-" + acc, app: app,
+        pic: tr.querySelector(".ac-pic").value, name: tr.querySelector(".ac-dname").value.trim(),
+        handle: tr.querySelector(".ac-handle").value.trim().replace(/^@/, ""),
+        sq: tr.querySelector(".ac-sq").checked });
+    });
+    return out;
+  }
+  addSaved("shane", "Stan from the bar");
+
+  var slugify = MegaskinProfile.slugify;
+  function esc(v) { return v.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
+
+  function build() {
+    var apps = {};
+    APPS.forEach(function (a) {
+      apps[a.key] = { pic: $("pic-" + a.key).value, name: $("name-" + a.key).value,
+        handle: $("handle-" + a.key) ? $("handle-" + a.key).value : "" };
+    });
+    return MegaskinProfile.css({
+      name: $("name").value, slug: $("slug").value, pic: $("pic").value,
+      piccol: $("piccol").value, namecol: $("namecol").value,
+      handle: $("handle").value, email: $("email").value, apps: apps,
+      dccol: $("dccolon").checked ? $("dccol").value : "", tbsq: $("tbsq").checked,
+      saved: Array.prototype.map.call($("saved").children, function (tr) {
+        return { owner: tr.querySelector(".sv-owner").value, as: tr.querySelector(".sv-as").value, pic: tr.querySelector(".sv-pic").value };
+      }),
+      accounts: Array.prototype.map.call($("accts").children, function (d) {
+        return { acc: d.querySelector(".ac-name").value, app: d.querySelector(".ac-app").value,
+          pic: d.querySelector(".ac-pic").value, name: d.querySelector(".ac-dname").value,
+          handle: d.querySelector(".ac-handle").value, sq: d.querySelector(".ac-sq").checked };
+      }),
+      wallcol: $("wallcolon").checked ? $("wallcol").value : "", wallcolDefault: $("wallcol").value,
+      wallpic: $("wallpic").value
+    });
+  }
+
+  function preview(r) {
+    var t = document.querySelector("input[name=theme]:checked").value;
+    var p = r.p, nm = esc(r.name);
+    var owner = "";
+    var first = $("saved").querySelector(".sv-owner");
+    if (first && slugify(first.value)) owner = slugify(first.value);
+    function blocks(c) {
+      return {
+        wa: '<div class="mob wa ' + t + '"><div class="mob-body"><div class="wa-row">' +
+          '<p class="wa-pfp"><span class="pfp ' + c + '"></span></p>' +
+          '<div class="msg in tail"><p class="who ' + c + '"><span class="name ' + c + '"></span><span class="hide">:</span></p>' +
+          '<p>this is what my messages look like in a group</p><p class="wa-time">09:15</p></div></div></div></div>',
+        tw: '<div class="mob tw ' + t + '"><p class="tw-top"><span class="tw-pfp"><span class="pfp ' + c + '"></span></span>' +
+          '<span class="tw-name"><span class="name ' + c + '"></span></span> <span class="tw-handle"><span class="handle ' + c + '"></span> · 2h</span></p>' +
+          '<p class="tw-text">and this is me on Twitter/X</p></div>',
+        ig: '<div class="mob ig ' + t + '"><p class="ig-top"><span class="ig-pfp"><span class="pfp ' + c + '"></span></span>' +
+          '<span class="handle ' + c + '"></span></p></div>',
+        tb: '<div class="mob tb ' + t + '"><p class="tb-header"><span class="tb-pfp"><span class="pfp ' + c + '"></span></span>' +
+          '<span class="tb-name"><b><span class="handle ' + c + '"></span></b><span class="tb-subline">18m ago</span></span></p>' +
+          '<div class="tb-body"><p>and on Tumblr</p></div></div>',
+        gm: '<div class="mob gm ' + t + '"><div class="gm-msg"><table class="gm-head"><tbody><tr>' +
+          '<td rowspan="2" class="gm-pfp-cell"><span class="gm-pfp"><span class="pfp ' + c + '"></span></span></td>' +
+          '<td class="gm-from"><span class="name ' + c + '"></span> <span class="gm-address">&lt;<span class="email ' + c + '"></span>&gt;</span></td>' +
+          '<td class="gm-date">9:15 AM</td></tr><tr><td class="gm-to">to me &#9662;</td><td class="gm-tools">&#8617; &#8943;</td></tr></tbody></table>' +
+          '<div class="gm-body"><p>and this is me in Gmail</p></div></div></div>' +
+          '<div class="mob mail ' + t + '"><p class="mail-titlebar"><span>_ X</span><span class="hide"> - </span>Hello</p>' +
+          '<p class="mail-field"><b>From:</b> <span class="email ' + c + '"></span></p><p class="mail-field"><b>Subject:</b> Hello</p>' +
+          '<div class="mail-body"><p>and in any other email</p></div></div>',
+        dc: '<div class="dc ' + t + '"><div class="dc-message"><p><b class="dc-name ' + c + '"><span class="dc-pfp"><span class="pfp ' + c + '"></span></span>' +
+          '<span class="name ' + c + '"></span></b> <span class="dc-time">Today at 9:15 AM</span></p>' +
+          '<p><span class="dc-text">and on Discord</span></p></div></div>'
+      };
+    }
+    var b = blocks(p);
+    var html = b.wa + b.tw + b.ig + b.tb + b.gm + b.dc +
+      accounts().map(function (x) {
+        return '<p><em>Extra ' + esc(x.app.label) + ' account (' + esc(x.acc) + '):</em></p>' + blocks(p + " " + x.acc)[x.app.key];
+      }).join("") +
+      (owner ? '<p><em>On ' + esc(owner) + "'s phone (pov-" + esc(owner) + '):</em></p>' +
+        '<div class="mob wa ' + t + ' pov-' + owner + '"><p class="mob-head"><span class="name ' + p + '"></span><span class="hide"> - </span><span>online</span></p>' +
+        '<div class="mob-body"><div class="msg in"><p>hey it\'s me</p><p class="wa-time">10:02</p></div></div></div>' : '') +
+      '<p><em>On ' + nm + "'s own phone (pov-" + esc(r.slug) + '):</em></p>' +
+      '<div class="mob wa ' + t + ' pov-' + r.slug + '"><p class="mob-head">Someone<span class="hide"> - </span><span>online</span></p>' +
+        '<div class="mob-body"><div class="msg out"><p>my wallpaper</p><p class="wa-time">10:03 <span class="wa-read">✓✓</span></p></div></div></div>';
+    $("workskin").innerHTML = html;
+  }
+
+  function update() {
+    if (!slugTouched) $("slug").value = slugify($("name").value);
+    var r = build();
+    $("live-profile").textContent = r.css;
+    $("css").value = r.css;
+    Array.prototype.forEach.call(document.querySelectorAll(".slugtxt"), function (s) { s.textContent = r.slug; });
+    preview(r);
+  }
+
+  // paste a profile into the CSS box to edit it: the boxes are filled in from it
+  function fill(text) {
+    var m = text.replace(/\/\*[\s\S]*?\*\//g, "").match(/\.pfp-([a-z][a-z0-9-]*)/);
+    if (!m) { $("pasted").textContent = "That doesn't look like a profile, so nothing was changed."; return; }
+    var d = MegaskinProfile.parse(text, m[1]);
+    function set(id, v) { $(id).value = v || ""; }
+    set("name", d.name || m[1]); set("slug", m[1]); slugTouched = true;
+    set("pic", d.pic); $("piccol").value = /^#[0-9a-f]{6}$/i.test(d.piccol) ? d.piccol : "#888888";
+    $("namecol").value = /^#[0-9a-f]{6}$/i.test(d.namecol) ? d.namecol : "#666666";
+    set("handle", d.handle); set("email", d.email);
+    APPS.forEach(function (a) {
+      var x = d.apps[a.key] || {};
+      set("pic-" + a.key, x.pic); set("name-" + a.key, x.name);
+      if ($("handle-" + a.key)) set("handle-" + a.key, x.handle);
+    });
+    $("dccolon").checked = !!d.dccol; if (d.dccol) $("dccol").value = d.dccol;
+    $("tbsq").checked = !!d.tbsq;
+    $("saved").innerHTML = "";
+    d.saved.forEach(function (x) { addSaved(x.owner, x.as); $("saved").lastChild.querySelector(".sv-pic").value = x.pic || ""; });
+    $("accts").innerHTML = "";
+    d.accounts.forEach(function (x) {
+      addAcct(x.acc, x.app);
+      var a = $("accts").lastChild;
+      a.querySelector(".ac-pic").value = x.pic || ""; a.querySelector(".ac-dname").value = x.name || "";
+      a.querySelector(".ac-handle").value = x.handle || ""; a.querySelector(".ac-sq").checked = !!x.sq;
+    });
+    $("wallcolon").checked = !!d.wallcol; if (/^#[0-9a-f]{6}$/i.test(d.wallcol)) $("wallcol").value = d.wallcol;
+    set("wallpic", d.wallpic);
+    $("pasted").textContent = "Loaded " + (d.name || m[1]) + "'s profile into the boxes.";
+    update();
+  }
+  // a paste replaces the whole box, so it doesn't matter what was selected
+  $("css").addEventListener("paste", function (e) {
+    var text = e.clipboardData && e.clipboardData.getData("text");
+    if (!text) { var ta = this; setTimeout(function () { fill(ta.value); }, 0); return; }
+    e.preventDefault();
+    fill(text);
+  });
+  $("css").addEventListener("change", function () { fill(this.value); });
+
+  $("slug").addEventListener("input", function () { slugTouched = true; });
+  // the CSS box only changes the boxes when something is pasted in, or when you click away after typing
+  function changed(e) { if (e.target.id !== "css") update(); }
+  document.addEventListener("input", changed);
+  document.addEventListener("change", changed);
+  $("copy").onclick = function () {
+    var ta = $("css");
+    ta.select();
+    var done = function () { $("copied").textContent = "Copied!"; setTimeout(function () { $("copied").textContent = ""; }, 2000); };
+    if (navigator.clipboard) navigator.clipboard.writeText(ta.value).then(done, function () { document.execCommand("copy"); done(); });
+    else { document.execCommand("copy"); done(); }
+  };
+  update();
+})();
+</script>
+</body>
+</html>
