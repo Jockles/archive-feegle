@@ -28,7 +28,7 @@ SITE = "https://jockles.com/"
 # Added to the end of every icon and link-preview picture address. Browsers,
 # Discord and the like keep old copies of these for weeks, so change the
 # number whenever the pictures change and they'll fetch the new ones.
-FRESH = "?v=2"
+FRESH = "?v=3"
 CARD = SITE + "images/social-card.png" + FRESH
 CARD_ALT = "jockles.com: All the Fannish things I do."
 
