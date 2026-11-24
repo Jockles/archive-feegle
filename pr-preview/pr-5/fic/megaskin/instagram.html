@@ -25,7 +25,7 @@
   <!-- /site meta -->
   <link rel="stylesheet" href="../../style.css?v=c31c06ea">
   <script src="../../theme.js?v=c50fd7c2"></script>
-  <link rel="stylesheet" href="megaskin.css?v=c7182acf" id="creator-style">
+  <link rel="stylesheet" href="megaskin.css?v=7a46e89e" id="creator-style">
 </head>
 <body>
 <header>
@@ -1013,28 +1013,50 @@
 <pre><code>&lt;p class="igdm-shared"&gt;&lt;span class="hide"&gt;&lt;em&gt;Shane:&lt;/em&gt; &lt;/span&gt;Shared a story from @shane.h: "6am skate. Again."&lt;/p&gt;</code></pre>
 
 
-<p>To show the post itself as a card, with the picture and the start of the caption under it, use <code>igdm-post</code>. <code>in</code> puts it on the left and <code>out</code> on the right. The account name goes in bold at the start of the caption, and the caption stops after two lines, like in the app:</p>
+<p>To show the post itself as a card, use <code>igdm-post</code>. <code>in</code> puts it on the left and <code>out</code> on the right. The account goes at the top with its picture, then the post's picture, then the account name in bold and the caption, which stops after two lines like in the app. The round share and save buttons float beside the card:</p>
 
 <div class="mob igdm theme-auto"><div class="mob-body"><div class="igdm-post in">
+  <p class="igdm-post-btns"><span class="ic ic-share"></span><span class="ic ic-save"></span></p>
+  <p class="igdm-post-by"><span class="ig-pfp colour3">FH</span><span class="hide"><em>Rose</em> shared a post from </span><b>fakehockeynews</b><span class="hide">:</span></p>
   <p class="igdm-post-img"><img src="https://picsum.photos/id/292/600/600.jpg" alt="Chopped onion and other veg on a wooden board"></p>
-  <p class="igdm-post-cap"><span class="hide"><em>Rose</em> shared a post from </span><b>fakehockeynews</b><span class="hide">:</span> Team dinner before the gala: the captain cooked, and nobody has stopped talking about the lasagne since</p>
+  <p class="igdm-post-cap"><b>fakehockeynews</b> Team dinner before the gala: the captain cooked, and nobody has stopped talking about the lasagne since</p>
 </div></div></div>
 
-<pre><code>&lt;div class="igdm-post in"&gt;
-  &lt;p class="igdm-post-img"&gt;&lt;img src="https://picsum.photos/id/292/600/600.jpg" alt="Chopped onion and other veg on a wooden board"&gt;&lt;/p&gt;
-  &lt;p class="igdm-post-cap"&gt;&lt;span class="hide"&gt;&lt;em&gt;Rose&lt;/em&gt; shared a post from &lt;/span&gt;&lt;b&gt;fakehockeynews&lt;/b&gt;&lt;span class="hide"&gt;:&lt;/span&gt; Team dinner before the gala: the captain cooked, and nobody has stopped talking about the lasagne since&lt;/p&gt;
+<pre><code>&lt;div class=&quot;igdm-post in&quot;&gt;
+  &lt;p class=&quot;igdm-post-btns&quot;&gt;&lt;span class=&quot;ic ic-share&quot;&gt;&lt;/span&gt;&lt;span class=&quot;ic ic-save&quot;&gt;&lt;/span&gt;&lt;/p&gt;
+  &lt;p class=&quot;igdm-post-by&quot;&gt;&lt;span class=&quot;ig-pfp colour3&quot;&gt;FH&lt;/span&gt;&lt;span class=&quot;hide&quot;&gt;&lt;em&gt;Rose&lt;/em&gt; shared a post from &lt;/span&gt;&lt;b&gt;fakehockeynews&lt;/b&gt;&lt;span class=&quot;hide&quot;&gt;:&lt;/span&gt;&lt;/p&gt;
+  &lt;p class=&quot;igdm-post-img&quot;&gt;&lt;img src=&quot;https://picsum.photos/id/292/600/600.jpg&quot; alt=&quot;Chopped onion and other veg on a wooden board&quot;&gt;&lt;/p&gt;
+  &lt;p class=&quot;igdm-post-cap&quot;&gt;&lt;b&gt;fakehockeynews&lt;/b&gt; Team dinner before the gala: the captain cooked, and nobody has stopped talking about the lasagne since&lt;/p&gt;
 &lt;/div&gt;</code></pre>
 
-<p>The account name can come from a profile instead: put a handle span inside the <code>b</code>, with the name typed inside it in a <code>hide</code> span. If you'd rather not use a picture, put a description in an <code>igdm-post-img text</code> paragraph instead:</p>
+<p>For a reel, add <code>reel</code> to the card. It's tall like a phone screen, with the account on top of the video, a play button in the middle and the reel sign in the bottom corner. A reel doesn't need a caption. If your picture is wider than it is tall, add <code>class="land"</code> to the <code>img</code> so it fills the height instead:</p>
 
-<div class="mob igdm theme-auto"><div class="mob-body"><div class="igdm-post out">
-  <p class="igdm-post-img text">[The post's picture: Shane on the ice at 6am, alone, with the arena lights half on]</p>
-  <p class="igdm-post-cap"><span class="hide"><em>Ilya</em> shared a post from </span><b><span class="handle pfp-shane"><span class="hide">shanehollanderhockeyplayer</span></span></b><span class="hide">:</span> 6am skate. Again.</p>
+<div class="mob igdm theme-auto"><div class="mob-body"><div class="igdm-post reel in">
+  <p class="igdm-post-btns"><span class="ic ic-share"></span><span class="ic ic-save"></span></p>
+  <p class="igdm-post-by"><span class="ig-pfp colour5">PD</span><span class="hide"><em>Rose</em> shared a reel from </span><b>puppiesdaily</b><span class="hide">:</span></p>
+  <p class="igdm-post-img"><img src="https://picsum.photos/id/237/540/960.jpg" alt="A black puppy looking up at the camera"></p>
 </div></div></div>
 
-<pre><code>&lt;div class="igdm-post out"&gt;
-  &lt;p class="igdm-post-img text"&gt;[The post's picture: Shane on the ice at 6am, alone, with the arena lights half on]&lt;/p&gt;
-  &lt;p class="igdm-post-cap"&gt;&lt;span class="hide"&gt;&lt;em&gt;Ilya&lt;/em&gt; shared a post from &lt;/span&gt;&lt;b&gt;&lt;span class="handle pfp-shane"&gt;&lt;span class="hide"&gt;shanehollanderhockeyplayer&lt;/span&gt;&lt;/span&gt;&lt;/b&gt;&lt;span class="hide"&gt;:&lt;/span&gt; 6am skate. Again.&lt;/p&gt;
+<pre><code>&lt;div class=&quot;igdm-post reel in&quot;&gt;
+  &lt;p class=&quot;igdm-post-btns&quot;&gt;&lt;span class=&quot;ic ic-share&quot;&gt;&lt;/span&gt;&lt;span class=&quot;ic ic-save&quot;&gt;&lt;/span&gt;&lt;/p&gt;
+  &lt;p class=&quot;igdm-post-by&quot;&gt;&lt;span class=&quot;ig-pfp colour5&quot;&gt;PD&lt;/span&gt;&lt;span class=&quot;hide&quot;&gt;&lt;em&gt;Rose&lt;/em&gt; shared a reel from &lt;/span&gt;&lt;b&gt;puppiesdaily&lt;/b&gt;&lt;span class=&quot;hide&quot;&gt;:&lt;/span&gt;&lt;/p&gt;
+  &lt;p class=&quot;igdm-post-img&quot;&gt;&lt;img src=&quot;https://picsum.photos/id/237/540/960.jpg&quot; alt=&quot;A black puppy looking up at the camera&quot;&gt;&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+
+<p>The account can come from a profile instead: put a handle span inside the <code>b</code>, with the name typed inside it in a <code>hide</code> span. If you'd rather not use a picture, put a description in an <code>igdm-post-img text</code> paragraph. Leave out any button you don't want, or the whole <code>igdm-post-btns</code> line. The buttons are empty, so they aren't there at all with the workskin off:</p>
+
+<div class="mob igdm theme-auto"><div class="mob-body"><div class="igdm-post out">
+  <p class="igdm-post-btns"><span class="ic ic-share"></span></p>
+  <p class="igdm-post-by"><span class="ig-pfp"><span class="pfp pfp-shane"></span></span><span class="hide"><em>Ilya</em> shared a post from </span><b><span class="handle pfp-shane"><span class="hide">shanehollanderhockeyplayer</span></span></b><span class="hide">:</span></p>
+  <p class="igdm-post-img text">[The post's picture: Shane on the ice at 6am, alone, with the arena lights half on]</p>
+  <p class="igdm-post-cap"><b><span class="handle pfp-shane"><span class="hide">shanehollanderhockeyplayer</span></span></b> 6am skate. Again.</p>
+</div></div></div>
+
+<pre><code>&lt;div class=&quot;igdm-post out&quot;&gt;
+  &lt;p class=&quot;igdm-post-btns&quot;&gt;&lt;span class=&quot;ic ic-share&quot;&gt;&lt;/span&gt;&lt;/p&gt;
+  &lt;p class=&quot;igdm-post-by&quot;&gt;&lt;span class=&quot;ig-pfp&quot;&gt;&lt;span class=&quot;pfp pfp-shane&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;hide&quot;&gt;&lt;em&gt;Ilya&lt;/em&gt; shared a post from &lt;/span&gt;&lt;b&gt;&lt;span class=&quot;handle pfp-shane&quot;&gt;&lt;span class=&quot;hide&quot;&gt;shanehollanderhockeyplayer&lt;/span&gt;&lt;/span&gt;&lt;/b&gt;&lt;span class=&quot;hide&quot;&gt;:&lt;/span&gt;&lt;/p&gt;
+  &lt;p class=&quot;igdm-post-img text&quot;&gt;[The post's picture: Shane on the ice at 6am, alone, with the arena lights half on]&lt;/p&gt;
+  &lt;p class=&quot;igdm-post-cap&quot;&gt;&lt;b&gt;&lt;span class=&quot;handle pfp-shane&quot;&gt;&lt;span class=&quot;hide&quot;&gt;shanehollanderhockeyplayer&lt;/span&gt;&lt;/span&gt;&lt;/b&gt; 6am skate. Again.&lt;/p&gt;
 &lt;/div&gt;</code></pre>
 
 <h4 id="s12-6-6">12.6.6 Photos</h4>
@@ -1081,6 +1103,24 @@
 <pre><code>&lt;p class="igdm-replied out"&gt;You replied to Shane&lt;/p&gt;
 &lt;p class="igdm-quote out"&gt;&lt;span class="hide"&gt;[Replying to: &lt;/span&gt;7. don't be late&lt;span class="hide"&gt;]&lt;/span&gt;&lt;/p&gt;
 &lt;p class="msg out"&gt;&lt;span class="hide"&gt;&lt;em&gt;Ilya:&lt;/em&gt; &lt;/span&gt;I am never late&lt;/p&gt;</code></pre>
+
+<p>Replying to a shared post or reel works the same way, but the card itself is the faded quote: copy the card, add <code>quoted</code> to it, and use it in place of the <code>igdm-quote</code>. Its share and save buttons disappear. In the app, the line just says "You replied" or "Shane replied":</p>
+
+<div class="mob igdm theme-auto"><div class="mob-body"><p class="igdm-replied out">You replied</p>
+<div class="igdm-post out quoted">
+  <p class="igdm-post-by"><span class="ig-pfp colour3">FH</span><span class="hide">[Replying to a post from </span><b>fakehockeynews</b><span class="hide">]</span></p>
+  <p class="igdm-post-img"><img src="https://picsum.photos/id/292/600/600.jpg" alt="Chopped onion and other veg on a wooden board"></p>
+  <p class="igdm-post-cap"><b>fakehockeynews</b> Team dinner before the gala: the captain cooked, and nobody has stopped talking about the lasagne since</p>
+</div>
+<p class="msg out"><span class="hide"><em>Ilya:</em> </span>he's never cooked for me</p></div></div>
+
+<pre><code>&lt;p class=&quot;igdm-replied out&quot;&gt;You replied&lt;/p&gt;
+&lt;div class=&quot;igdm-post out quoted&quot;&gt;
+  &lt;p class=&quot;igdm-post-by&quot;&gt;&lt;span class=&quot;ig-pfp colour3&quot;&gt;FH&lt;/span&gt;&lt;span class=&quot;hide&quot;&gt;[Replying to a post from &lt;/span&gt;&lt;b&gt;fakehockeynews&lt;/b&gt;&lt;span class=&quot;hide&quot;&gt;]&lt;/span&gt;&lt;/p&gt;
+  &lt;p class=&quot;igdm-post-img&quot;&gt;&lt;img src=&quot;https://picsum.photos/id/292/600/600.jpg&quot; alt=&quot;Chopped onion and other veg on a wooden board&quot;&gt;&lt;/p&gt;
+  &lt;p class=&quot;igdm-post-cap&quot;&gt;&lt;b&gt;fakehockeynews&lt;/b&gt; Team dinner before the gala: the captain cooked, and nobody has stopped talking about the lasagne since&lt;/p&gt;
+&lt;/div&gt;
+&lt;p class=&quot;msg out&quot;&gt;&lt;span class=&quot;hide&quot;&gt;&lt;em&gt;Ilya:&lt;/em&gt; &lt;/span&gt;he's never cooked for me&lt;/p&gt;</code></pre>
 
 <p>In a group, the replied line goes in the <code>igdm-row</code> in place of the <code>who</code> line, because it already says who's talking:</p>
 
