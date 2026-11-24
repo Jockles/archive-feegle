@@ -5569,6 +5569,18 @@
    Initials work too: <span class="ig-pfp colour3">RL</span>. With no colour class the circle is grey. */
 #workskin .igdm .mob-head { display: flow-root; padding: 0.6em 0.9em; text-align: left; }
 
+/* the little arrow after the name that opens the chat's details: an empty igdm-chev span straight after the name.
+   It's drawn by the skin, so it isn't there at all with the workskin off */
+#workskin .igdm .mob-head .igdm-chev {
+  display: inline;
+  margin-left: 0.3em;
+  font-size: 1.15em;
+  font-weight: normal;
+  color: #737373;
+}
+
+#workskin .igdm .mob-head .igdm-chev::before { content: "\203A"; }
+
 #workskin .igdm .ig-pfp {
   display: flex;
   align-items: center;
