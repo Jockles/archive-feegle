@@ -9,6 +9,9 @@ What it does:
 - Splits fic/megaskin/megaskin.css into one file per module in
   fic/megaskin/css/, using the ">>>>>>>>>> ... (start)" and
   "<<<<<<<<<< ... (end)" lines in the skin.
+- Makes copies of the full skin and the core with the example profiles
+  taken out (megaskin-no-profiles.css and css/core-no-profiles.css), using
+  the two EXAMPLE PROFILES lines in the skin.
 - Rewrites the chapter list on fic/megaskin/index.html, and the word and
   chapter counts there and on fic/index.html.
 
@@ -70,6 +73,7 @@ NAV = """<nav>
       <ul>
         <li><a href="../../fic/megaskin/fic-builder.html">Megaskin Fic-Builder</a></li>
         <li><a href="../../fic/megaskin/profile-maker.html">Megaskin Profile-Builder</a></li>
+        <li><a href="../../fic/megaskin/skin-builder.html">Megaskin Skin-Builder</a></li>
       </ul>
     </li>
     <li><a href="../../about.html">About</a></li>
@@ -312,6 +316,25 @@ def build_css():
         open(os.path.join(ROOT, "css", fname), "w", encoding="utf-8").write(skin[a:b] + "\n")
 
 
+# what goes where the example profiles were. The Basic Skin Builder uses the same words.
+NO_PROFILES = ("/* ---------- YOUR PROFILES ---------- */\n"
+               "/* Paste your own profiles here, from the Profile Builder or the Fic Builder. */\n")
+
+
+def no_profiles(css):
+    start = "/* ---------- EXAMPLE PROFILES (start) ---------- */"
+    end = "/* ---------- EXAMPLE PROFILES (end) ---------- */"
+    a, b = css.index(start), css.index(end) + len(end)
+    return css[:a] + NO_PROFILES + "\n" + css[b:].lstrip("\n")
+
+
+def build_no_profiles():
+    skin = open(os.path.join(ROOT, "megaskin.css"), encoding="utf-8").read()
+    open(os.path.join(ROOT, "megaskin-no-profiles.css"), "w", encoding="utf-8").write(no_profiles(skin))
+    core = open(os.path.join(ROOT, "css", "core.css"), encoding="utf-8").read()
+    open(os.path.join(ROOT, "css", "core-no-profiles.css"), "w", encoding="utf-8").write(no_profiles(core))
+
+
 def build_index():
     path = os.path.join(ROOT, "index.html")
     page = open(path, encoding="utf-8").read()
@@ -346,6 +369,7 @@ def update_stats():
 
 build_chapters()
 build_css()
+build_no_profiles()
 build_index()
 update_stats()
 print("Built %d chapters." % len(CHAPTERS))

@@ -63,6 +63,7 @@ DESCRIPTIONS = {
     "about.html": "About me, and how you can use my stuff in your own fannish works.",
     "fic/megaskin/fic-builder.html": "Build the HTML for social media chats in your fic, for the Megaskin AO3 work skin, without writing code.",
     "fic/megaskin/profile-maker.html": "Make a character's social media profile for the Megaskin AO3 work skin.",
+    "fic/megaskin/skin-builder.html": "Make a Megaskin AO3 work skin with only the apps and profiles you need.",
 }
 
 # Works still in progress that live on the public site. Every page under
