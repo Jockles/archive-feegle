@@ -5725,7 +5725,8 @@
 
 #workskin .igdm .igdm-reacts .ig-pfp + .ig-pfp { margin-left: 3px; }
 
-/* the pill on a photo or a post card works the same: add "reacted" to it and put the pill at the end */
+/* the pill on a photo works the same: add "reacted" to it and put the pill at the end.
+   On a post card, add "reacted" to the card and put the pill straight inside the card, after its last line */
 #workskin .igdm .igdm-post.reacted { position: relative; margin-bottom: 1.4em; }
 
 /* ---- replies: a grey line saying who replied, then the message they replied to, faded, with a bar beside it,
@@ -5867,7 +5868,7 @@
 #workskin .igdm .igdm-post-img:first-child,
 #workskin .igdm .igdm-post-btns + .igdm-post-img { border-radius: 18px 18px 0 0; }
 
-#workskin .igdm .igdm-post-img:last-child { border-bottom-left-radius: 18px; border-bottom-right-radius: 18px; }
+#workskin .igdm .igdm-post-img:last-of-type { border-bottom-left-radius: 18px; border-bottom-right-radius: 18px; }
 
 #workskin .igdm .igdm-post-img img {
   display: block;
@@ -5954,7 +5955,7 @@
 #workskin .igdm .igdm-post.reel .igdm-post-img.text { padding: 1em; color: #a8a8a8; }
 
 #workskin .igdm .igdm-post.reel .igdm-post-cap + .igdm-post-img,
-#workskin .igdm .igdm-post.reel .igdm-post-img:not(:last-child) { border-radius: 18px 18px 0 0; }
+#workskin .igdm .igdm-post.reel .igdm-post-img:not(:last-of-type) { border-radius: 18px 18px 0 0; }
 
 #workskin .igdm .igdm-post.reel .igdm-post-cap { color: #f5f5f5; }
 
