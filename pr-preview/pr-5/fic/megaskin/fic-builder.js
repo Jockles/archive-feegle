@@ -765,8 +765,7 @@
     if (u) L.push('<p class="igdm-post-img"><img ' + (m.postLand ? 'class="land" ' : "") + 'src="' + esc(u) + '" alt="' + esc(t(m.postAlt)) + '"></p>');
     else if (t(m.postDesc)) L.push('<p class="igdm-post-img text">[' + esc(t(m.postDesc)) + "]</p>");
     if (t(m.postCap)) L.push('<p class="igdm-post-cap"><b>' + who + "</b> " + fmt(m.postCap) + "</p>");
-    // reactions go at the end of the card's last line
-    if (r) L[L.length - 1] = L[L.length - 1].replace(/<\/p>$/, r + "</p>");
+    if (r) L.push(r); // reactions go last, straight inside the card
     return ['<div class="igdm-post ' + (reel ? "reel " : "") + side + (quoted ? " quoted" : "") + (r ? " reacted" : "") + '">'].concat(ind(L, 1), ["</div>"]);
   }
   function igdmHTML(b) {
@@ -2207,8 +2206,7 @@
       if (quoted) no();
       kids(ks.shift()).forEach(function (x) { if (is(x, "span.ic-share")) m.postShare = true; else if (is(x, "span.ic-save")) m.postSave = true; else no(); });
     }
-    var last = ks[ks.length - 1], lk = last && inl(last);
-    if (lk && is(lk[lk.length - 1], "span.igdm-reacts")) { rx = lk[lk.length - 1]; rx.remove(); }
+    if (is(ks[ks.length - 1], "span.igdm-reacts")) rx = ks.pop();
     var by = ks.shift(); if (!is(by, "p.igdm-post-by")) no();
     var bk = kids(by), pf = bk.shift(), h = bk.shift(), acc = bk.shift(), end = bk.shift();
     if (!is(pf, "span.ig-pfp") || !is(h, "span.hide") || !is(acc, "b") || !is(end, "span.hide") || bk.length) no();

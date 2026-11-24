@@ -249,7 +249,7 @@ window.FB_EXAMPLES = [
       ["Shane", "this story. you replied with a heart"],
       ["Ilya", "ok maybe I did"],
       ["Shane", "", { hasPost: true, postAcc: "fakehockeynews", postIni: "FH", postCol: "3", postDesc: "A blurry photo of two hockey players hugging in a car park",
-        postCap: "BREAKING: rivals seen 'sharing a moment' at 6am skate" }],
+        postCap: "BREAKING: rivals seen 'sharing a moment' at 6am skate", waReacts: "💀", faces: ["Ilya"] }],
       ["Ilya", "they are so bad at this", { reply: 5, waReacts: "😂", faces: ["Shane"] }],
       ["Shane", "you were the one who hugged me", { reply: 6 }],
       ["Ilya", "", { photos: [{ desc: "Photo: a screenshot of the same post, with Ilya's comment: 'not me'" }], status: "Seen" }]
