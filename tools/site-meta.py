@@ -11,6 +11,9 @@ For each page it adds, just after the <title>:
   Bluesky, Mastodon, iMessage and so on show a title, a description and
   images/social-card.png
 
+It also adds a version number to the style.css and theme.js links, so
+browsers fetch the new copy as soon as either file changes.
+
 The description comes from, in order:
 1. a <meta name="description"> already written in the page (left as it is)
 2. the DESCRIPTIONS list below
@@ -22,7 +25,7 @@ to stay away, only get the icon. Redirect pages are skipped.
 To try it on your own computer, copy the site somewhere and run:
     python3 tools/site-meta.py <that folder>
 """
-import html, os, re, sys
+import hashlib, html, os, re, sys
 
 SITE = "https://jockles.com/"
 # Added to the end of every icon and link-preview picture address. Browsers,
@@ -146,6 +149,18 @@ def tags(rel, page):
     return lines
 
 
+def fresh_links(root, page):
+    # style.css and theme.js are on every page. Browsers keep their old copies
+    # for a while, which can leave a new page with the old look, so each link
+    # gets a number taken from the file itself. It changes whenever the file does.
+    for name in ("style.css", "theme.js"):
+        path = os.path.join(root, name)
+        if os.path.exists(path):
+            v = hashlib.md5(open(path, "rb").read()).hexdigest()[:8]
+            page = re.sub(r'((?:href|src)="(?:\.\./)*' + re.escape(name) + r')(\?v=[^"]*)?"', r'\1?v=' + v + '"', page)
+    return page
+
+
 def add_meta(root):
     done = 0
     for folder, dirs, files in os.walk(root):
@@ -163,6 +178,7 @@ def add_meta(root):
             indent = m.group(1)
             block = "".join(indent + line + "\n" for line in [START] + tags(rel, page) + [END])
             page = page[: m.end()] + block + page[m.end():]
+            page = fresh_links(root, page)
             open(path, "w", encoding="utf-8").write(page)
             done += 1
     print("Added site meta to %d pages." % done)
