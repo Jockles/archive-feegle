@@ -771,6 +771,7 @@
     }
     head += t(b.title) ? esc(t(b.title)) : b.group ? "Group chat" : o[0] ? igNameHTML(o[0], null) : "Someone";
     if (b.tick && !b.group) head += TICK;
+    if (b.group && b.chev !== false) head += '<span class="igdm-chev"></span>'; // the little > after a group's name, drawn by the skin
     var L = ['<div class="' + containerClass(b, "igdm") + '">',
       '  <p class="mob-head">' + head + '<span class="hide"> - </span>' + (t(b.sub) ? "<span>" + esc(t(b.sub)) + "</span>" : "") + "</p>",
       '  <div class="mob-body">'];
@@ -1133,7 +1134,8 @@
     "blocks.N.app:igdm": "Adds the back arrow and the call buttons at the top, like the real app. Pick a message bar too, to finish it off.",
     "blocks.N.headPic:igdm": "Puts a round picture before the name at the top. A group gets two, overlapping, like Instagram does.",
     "blocks.N.title:igdm": "The name at the top. In a chat between two people, leave it empty to use the other person's username. In a group, it's the group's name.",
-    "blocks.N.sub:igdm": "The small line under the name, like 'Active now' or 'Active 2h ago'. Delete it if you don't want one.",
+    "blocks.N.sub:igdm": "The small line under the name, like 'Active now' or 'Active 2h ago'. In a group it's like '2 active 2h ago' or 'rose.landry was active 2h ago'. Delete it if you don't want one.",
+    "blocks.N.chev:igdm": "The little > after a group's name, which opens the group's details in the real app.",
     "blocks.N.tick:igdm": "The blue tick after the name, for a verified account.",
     "blocks.N.faces.N:igdm": "Whose pictures go at the top. Leave it on 'The next person in the chat' and it picks for you, in the order they first send a message.",
     "blocks.N.bar:igdm": "The 'Message...' box at the bottom. 'Something half-typed' shows a message the phone owner hasn't sent yet.",
@@ -1561,7 +1563,7 @@
       // folded up by default, as it's long
       h.push('<details class="fb-acct"' + (b.headOpen ? " open" : "") + ' data-open="' + P + '.headOpen"><summary class="hint">The header</summary><div class="fb-grid">');
       h.push("<div>" + field(P + ".title", "Name at the top", { ph: b.group ? "Group chat name" : ig ? "Their username" : "The other person's name" }) + "</div>");
-      if (!dm) h.push("<div>" + field(P + ".sub", "Smaller line under it", { ph: wa ? "online" : ig ? "Active now" : "iMessage" }) + "</div>");
+      if (!dm) h.push("<div>" + field(P + ".sub", "Smaller line under it", { ph: wa ? "online" : ig ? (b.group ? "2 active 2h ago" : "Active now") : "iMessage" }) + "</div>");
       h.push("</div>");
       if (ig) h.push(igdmHeadSettings(b, P));
       h.push(groupPicSettings(b, P, wa, dm));
@@ -1585,6 +1587,7 @@
   function igdmHeadSettings(b, P) {
     var h = [];
     if (!b.group) h.push(field(P + ".tick", "Blue tick after the name", { type: "check" }));
+    else { if (b.chev === undefined) b.chev = true; h.push(field(P + ".chev", "Little arrow after the name", { type: "check" })); }
     if (b.headPic === false) return h.join("");
     if (!b.faces) b.faces = [];
     var auto = [["", "The next person in the chat"]].concat(S.cast.filter(function (c) { return c.id !== b.pov; }).map(function (c) { return [c.id, nameOf(c)]; }));
@@ -2278,6 +2281,8 @@
     var name = hk.slice(0, dash), sub = hk.slice(dash + 1);
     if (sub.length > 1 || sub.length && !is(sub[0], "span")) no();
     b.sub = sub.length ? sub[0].textContent : "";
+    if (is(name[name.length - 1], "span.igdm-chev")) { if (!b.group || kids(name.pop()).length) no(); }
+    else if (b.group) b.chev = false;
     if (name.length > 2 && is(name[name.length - 1], "span.ig-tick") && is(name[name.length - 2], "span.hide")) { b.tick = true; name = name.slice(0, -2); }
     var o = others(b);
     if (name.length === 1 && is(name[0], "span.handle") && !b.group) { if (igPerson(name[0]) !== o[0]) no(); }

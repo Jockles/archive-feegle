@@ -258,7 +258,7 @@ window.FB_EXAMPLES = [
     label: "Instagram: a group DM",
     cast: [{ name: "Ilya", profile: "ilya" }, { name: "Rose", profile: "rose" }, { name: "Shane", profile: "shane" },
       { name: "Hayden", colour: "4", initials: "HP", ighandle: "hayden.pike" }],
-    chat: { type: "igdm", pov: "Ilya", group: true, title: "gala committee 🥂", sub: "Active 2h ago", app: true, bar: "empty" },
+    chat: { type: "igdm", pov: "Ilya", group: true, title: "gala committee 🥂", sub: "2 active 2h ago", app: true, bar: "empty" },
     msgs: [
       ["sys", "Today 19:40"],
       ["Rose", "the lasagne is still here if anyone wants it", { waReacts: "😂", faces: ["Shane", "Hayden"] }],
