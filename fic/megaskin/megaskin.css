@@ -5581,6 +5581,15 @@
 
 #workskin .igdm .mob-head .igdm-chev::before { content: "\203A"; }
 
+/* the verified tick after the name, on the same line as it, never on a line of its own */
+#workskin .igdm .mob-head .ig-tick {
+  display: inline-block;
+  width: 0.9em;
+  height: 0.9em;
+  margin-left: 0.3em;
+  vertical-align: -0.1em;
+}
+
 #workskin .igdm .ig-pfp {
   display: flex;
   align-items: center;
