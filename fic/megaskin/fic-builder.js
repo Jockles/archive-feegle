@@ -752,13 +752,22 @@
     return s.length > 60 ? s.slice(0, 57).trim() + "..." : s;
   }
   // a post shared into the chat, as a card: its picture, then who posted it and the caption
-  function igdmPost(m, side, sender, r) {
-    var acc = char(m.postBy), u = picUrl(m.postImg || ""), L = ['<div class="igdm-post ' + side + (r ? " reacted" : "") + '">'];
-    if (u) L.push('  <p class="igdm-post-img"><img src="' + esc(u) + '" alt="' + esc(t(m.postAlt)) + '"></p>');
-    else if (t(m.postDesc)) L.push('  <p class="igdm-post-img text">[' + esc(t(m.postDesc)) + "]</p>");
-    L.push('  <p class="igdm-post-cap"><span class="hide"><em>' + esc(sender) + "</em> shared a post from </span><b>" + (acc ? igNameHTML(acc, null) : esc(t(m.postAcc) || "someone")) + "</b>" +
-      (t(m.postCap) ? '<span class="hide">:</span> ' + fmt(m.postCap) : "") + r + "</p>");
-    return L.concat(["</div>"]);
+  // a post or reel shared into the chat, as a card: the share and save buttons, the account with its picture,
+  // the picture, then the caption. As the faded quote above a reply, it has no buttons and says what's being replied to.
+  function igdmPost(m, side, sender, r, quoted) {
+    var acc = char(m.postBy), u = picUrl(m.postImg || ""), reel = m.postReel;
+    var who = acc ? igNameHTML(acc, null) : esc(t(m.postAcc) || "someone");
+    var pic = acc ? circle("ig-pfp", acc, null) : '<span class="ig-pfp' + (m.postCol ? " colour" + m.postCol : "") + '">' + esc(t(m.postIni) || (t(m.postAcc) || "s").charAt(0).toUpperCase()) + "</span>";
+    var L = [], btns = quoted ? "" : (m.postShare !== false ? '<span class="ic ic-share"></span>' : "") + (m.postSave !== false ? '<span class="ic ic-save"></span>' : "");
+    if (btns) L.push('<p class="igdm-post-btns">' + btns + "</p>");
+    L.push('<p class="igdm-post-by">' + pic + (quoted ? '<span class="hide">[Replying to a ' + (reel ? "reel" : "post") + " from </span><b>" + who + '</b><span class="hide">]</span>' :
+      '<span class="hide"><em>' + esc(sender) + "</em> shared a " + (reel ? "reel" : "post") + " from </span><b>" + who + '</b><span class="hide">:</span>') + "</p>");
+    if (u) L.push('<p class="igdm-post-img"><img ' + (m.postLand ? 'class="land" ' : "") + 'src="' + esc(u) + '" alt="' + esc(t(m.postAlt)) + '"></p>');
+    else if (t(m.postDesc)) L.push('<p class="igdm-post-img text">[' + esc(t(m.postDesc)) + "]</p>");
+    if (t(m.postCap)) L.push('<p class="igdm-post-cap"><b>' + who + "</b> " + fmt(m.postCap) + "</p>");
+    // reactions go at the end of the card's last line
+    if (r) L[L.length - 1] = L[L.length - 1].replace(/<\/p>$/, r + "</p>");
+    return ['<div class="igdm-post ' + (reel ? "reel " : "") + side + (quoted ? " quoted" : "") + (r ? " reacted" : "") + '">'].concat(ind(L, 1), ["</div>"]);
   }
   function igdmHTML(b) {
     var o = others(b), head = "";
@@ -793,7 +802,11 @@
         if (!q) row.lines.push('<p class="who">' + igNameHTML(c, null) + '<span class="hide">:</span></p>');
       }
       var to = grouped ? row.lines : body;
-      if (q) {
+      if (q && q.hasPost) {
+        // a reply to a shared post: "You replied" or "Shane replied", then the card itself, faded
+        to.push('<p class="igdm-replied ' + side + '">' + (out ? "You" : esc(nm(c))) + " replied" + (grouped && row.first ? '<span class="hide">:</span>' : "") + "</p>");
+        igdmPost(q, side, "", "", true).forEach(function (l) { to.push(l); });
+      } else if (q) {
         var mine = q.from === b.pov;
         var said = out ? (mine ? "You replied to yourself" : "You replied to " + nm(char(q.from))) :
           mine ? nm(c) + " replied to you" : q.from === m.from ? nm(c) + " replied to themself" : nm(c) + " replied to " + nm(char(q.from));
@@ -1142,7 +1155,9 @@
     "blocks.N.msgs.N.from:igdm": "The first box chooses who wrote the message, from the cast list above. You can also change it to a date or notice line. The big box is the message. 'Extras' has shared posts and the Seen line.",
     "blocks.N.msgs.N.shared:igdm": "Turns the words into an outlined box, for a reel or story sent into the chat. Type what it says in the message box, like 'Shared a story from @shane.h: \"6am skate. Again.\"'. For a post with its picture, use 'Shared post card' instead.",
     "blocks.N.msgs.N.replyTo:igdm": "Pick an earlier message to reply to it. It shows who replied to who, like 'Shane replied to you', then that message faded, above this one.",
-    "blocks.N.msgs.N.hasPost:igdm": "A post sent into the chat, as a card: its picture, then who posted it and the caption. Pick who posted it, or type the username of someone not in the cast.",
+    "blocks.N.msgs.N.hasPost:igdm": "A post or reel sent into the chat, as a card: the account and its picture, the post's picture, then the caption. Pick who posted it, or type the username of someone not in the cast, with the letters and colour for their circle.",
+    "blocks.N.msgs.N.postReel:igdm": "Makes the card tall like a phone screen, with a play button and the reel sign. The share and save buttons are the round buttons beside the card.",
+    "blocks.N.msgs.N.postLand:igdm": "Tick this if the picture is wider than it is tall, so it fills a reel's height instead of being squashed.",
     "blocks.N.msgs.N.photos.N.url:igdm": "A photo sent in the chat. Each photo is its own bubble, before the words. " + PIC,
     "blocks.N.msgs.N.waReacts:igdm": "The emoji reactions on the bubble. With one kind of emoji, like '😂', it shows that emoji and the faces of who reacted. Type more than one kind, like '💀❤️', and it shows them all with how many people reacted instead, like Instagram does.",
     "blocks.N.msgs.N.waCount:igdm": "How many people reacted. Leave it empty to count the people picked below. With one kind of emoji, only three faces fit, so anyone past three shows as '+2' (or however many).",
@@ -1315,10 +1330,18 @@
         });
         h.push(btn("face-add:" + bi + ":" + mi, "+ Someone who reacted"));
         h.push(field(P + ".hasPost", "Shared post card", { type: "check", re: true }));
-        if (m.hasPost) h.push('<div class="fb-acct">' + field(P + ".postBy", "Posted by", { type: "select", re: true, options: [["", "Someone not in the cast"]].concat(castOptions()) }) +
-          (char(m.postBy) ? "" : field(P + ".postAcc", "", { ph: "Their username", wrap: true })) +
-          field(P + ".postImg", "", { type: "url", ph: "Picture link", wrap: true }) + field(P + ".postAlt", "", { ph: "Describe the picture (alt text)", wrap: true }) +
-          field(P + ".postDesc", "", { ph: "Or, with no picture, describe it in words", wrap: true }) + field(P + ".postCap", "", { ph: "The post's caption", wrap: true }) + "</div>");
+        if (m.hasPost) {
+          if (m.postShare === undefined) m.postShare = true;
+          if (m.postSave === undefined) m.postSave = true;
+          h.push('<div class="fb-acct"><div class="fb-row">' + field(P + ".postReel", "It's a reel", { type: "check" }) + field(P + ".postShare", "Share button", { type: "check" }) +
+            field(P + ".postSave", "Save button", { type: "check" }) + "</div>" +
+            field(P + ".postBy", "Posted by", { type: "select", re: true, options: [["", "Someone not in the cast"]].concat(castOptions()) }) +
+            (char(m.postBy) ? "" : '<div class="fb-row">' + field(P + ".postAcc", "", { ph: "Their username" }) + field(P + ".postIni", "", { ph: (t(m.postAcc) || "s").charAt(0).toUpperCase(), cls: "fb-time" }) +
+              field(P + ".postCol", "", { type: "select", options: [["", "Grey"]].concat(Object.keys(COLOURS).map(function (k) { return [k, "Colour " + k + ": " + COLOUR_NAMES[k]]; })) }) + "</div>") +
+            field(P + ".postImg", "", { type: "url", ph: "Picture link", wrap: true }) + field(P + ".postAlt", "", { ph: "Describe the picture (alt text)", wrap: true }) +
+            field(P + ".postLand", "Landscape picture", { type: "check" }) +
+            field(P + ".postDesc", "", { ph: "Or, with no picture, describe it in words", wrap: true }) + field(P + ".postCap", "", { ph: "The caption (reels usually have none)", wrap: true }) + "</div>");
+        }
         h.push(pictureRows(P, bi, mi, m, 0, false));
         h.push("</div></li>"); return h.join("");
       } else if (dm) {
@@ -2174,24 +2197,39 @@
     var total = 3 + (plus ? +plus[1] : 0);
     m.waCount = plus && total !== names.length ? String(total) : "";
   }
-  // a post card shared in a DM: the picture, then who shared it (hidden), whose post it is, and the caption
-  function cardBack(d, m) {
-    var ks = kids(d), im = is(ks[0], "p.igdm-post-img") ? ks.shift() : null, cap = ks.shift();
-    if (!is(cap, "p.igdm-post-cap") || ks.length) no();
-    m.hasPost = true;
-    if (im) {
-      var img = im.querySelector("img");
-      if (img) { m.postImg = img.getAttribute("src"); m.postAlt = img.getAttribute("alt") || ""; }
+  // a post or reel card in a DM: the buttons, the account line (with who shared it hidden), the picture and the caption.
+  // quoted: the faded card above a reply, which says what's being replied to instead.
+  function cardBack(d, m, quoted) {
+    var ks = kids(d), reel = d.classList.contains("reel"), rx = null;
+    if (d.classList.contains("quoted") !== !!quoted) no();
+    m.hasPost = true; m.postReel = reel; m.postShare = m.postSave = false;
+    if (is(ks[0], "p.igdm-post-btns")) {
+      if (quoted) no();
+      kids(ks.shift()).forEach(function (x) { if (is(x, "span.ic-share")) m.postShare = true; else if (is(x, "span.ic-save")) m.postSave = true; else no(); });
+    }
+    var last = ks[ks.length - 1], lk = last && inl(last);
+    if (lk && is(lk[lk.length - 1], "span.igdm-reacts")) { rx = lk[lk.length - 1]; rx.remove(); }
+    var by = ks.shift(); if (!is(by, "p.igdm-post-by")) no();
+    var bk = kids(by), pf = bk.shift(), h = bk.shift(), acc = bk.shift(), end = bk.shift();
+    if (!is(pf, "span.ig-pfp") || !is(h, "span.hide") || !is(acc, "b") || !is(end, "span.hide") || bk.length) no();
+    var kind = reel ? "reel" : "post", em = h.querySelector("em"), name = "";
+    if (quoted) { if (h.textContent !== "[Replying to a " + kind + " from " || end.textContent !== "]") no(); }
+    else { if (!em || h.textContent !== em.textContent + " shared a " + kind + " from " || end.textContent !== ":") no(); name = em.textContent; }
+    if (acc.querySelector("[class*=pfp-]")) m.postBy = igPerson(acc).id;
+    else {
+      m.postAcc = words(acc);
+      var col = pf.className.match(/(?:^|\s)colour(\d+)/); m.postCol = col ? col[1] : "";
+      m.postIni = words(pf) === m.postAcc.charAt(0).toUpperCase() ? "" : words(pf);
+    }
+    if (is(ks[0], "p.igdm-post-img")) {
+      var im = ks.shift(), img = im.querySelector("img");
+      if (img) { m.postImg = img.getAttribute("src"); m.postAlt = img.getAttribute("alt") || ""; m.postLand = img.classList.contains("land"); }
       else if (im.classList.contains("text")) m.postDesc = words(im).replace(/^\[|\]$/g, "");
       else no();
     }
-    var ns = inl(cap), h = ns.shift(), em = is(h, "span.hide") && h.querySelector("em");
-    if (!em || h.textContent !== em.textContent + " shared a post from ") no();
-    var acc = ns.shift(); if (!is(acc, "b")) no();
-    if (acc.querySelector("[class*=pfp-]")) m.postBy = igPerson(acc).id; else m.postAcc = words(acc);
-    var rx = is(ns[ns.length - 1], "span.igdm-reacts") ? ns.pop() : null;
-    if (ns.length) { var col = ns.shift(); if (!is(col, "span.hide") || col.textContent !== ":") no(); m.postCap = textBack(ns); }
-    return { name: em.textContent, rx: rx };
+    if (is(ks[0], "p.igdm-post-cap")) { var cn = inl(ks.shift()); if (!is(cn[0], "b")) no(); cn.shift(); m.postCap = textBack(cn); }
+    if (ks.length) no();
+    return { name: name, rx: rx };
   }
   READERS.igdm = function (els) {
     var el = els[0]; if (els.length !== 1) no();
@@ -2209,6 +2247,10 @@
       if (is(p, "p.igdm-status")) { if (!m || quote) no(); m.status = p.textContent; return; }
       // a reply: "Shane replied to you", then the message it answers, faded
       if (is(p, "p.igdm-replied")) { if (quote) no(); quote = { side: p.classList.contains("out") ? "out" : "in" }; return; }
+      if (is(p, "div.igdm-post.quoted")) {
+        if (!quote || quote.text != null || !p.classList.contains(quote.side)) no();
+        var qp = newMsg("", ""); cardBack(p, qp, true); quote.post = qp; quote.text = ""; return;
+      }
       if (is(p, "p.igdm-quote")) {
         if (!quote || quote.text != null || !p.classList.contains(quote.side)) no();
         quote.mine = p.classList.contains("mine"); quote.text = noHide(p).textContent; return;
@@ -2247,7 +2289,7 @@
       if (is(wp, "p.who")) { rk.shift(); who = igPerson(wp); }
       else if (is(wp, "p.igdm-replied")) {
         // a row starting with a reply has no name line: the name is in "RoseLandry replied to ..."
-        var rn = noHide(wp).textContent.match(/^(.+?) replied to /), sl = pf && slugIn(pf); if (!rn) no();
+        var rn = noHide(wp).textContent.match(/^(.+?) replied(?: to |$)/), sl = pf && slugIn(pf); if (!rn) no();
         who = sl ? personBySlug(sl) : S.cast.filter(function (x) { return igName(x) === rn[1]; })[0];
         if (!who) { who = freshChar(rn[1]); if (igName(who) !== rn[1]) who.ighandle = rn[1]; }
       } else no();
@@ -2263,7 +2305,8 @@
     // each reply answers the latest message before it that says what the quote says (the wording is checked when it's built again)
     replies.forEach(function (x) {
       var before = b.msgs.slice(0, b.msgs.indexOf(x[0])).reverse(), q = x[1];
-      var hit = before.filter(function (y) { return char(y.from) && (y.from === b.pov) === q.mine && igdmQuote(y) === q.text; })[0];
+      var same = function (y) { return ["postBy", "postAcc", "postImg", "postDesc", "postCap"].every(function (k) { return t(y[k]) === t(q.post[k]); }) && !y.postReel === !q.post.postReel; };
+      var hit = before.filter(function (y) { return char(y.from) && (q.post ? y.hasPost && same(y) : (y.from === b.pov) === q.mine && igdmQuote(y) === q.text); })[0];
       if (!hit) no();
       x[0].replyTo = hit.id;
     });

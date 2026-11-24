@@ -25,7 +25,8 @@
 //          One-offs can set ighandle, their Instagram username.
 //          Instagram DMs ("igdm") take shared (a shared post, reel or story), status, and reactions: waReacts (the emojis),
 //          faces (cast names: who reacted) and waCount (how many, if not just the faces),
-//          photos, reply, and a shared post card: hasPost, postAcc (a typed username), postImg, postAlt, postDesc, postCap. The chat can set tick, headPic,
+//          photos, reply, and a shared post card: hasPost, postReel, postShare, postSave, postAcc (a typed username), postIni, postCol,
+//          postImg, postAlt, postLand, postDesc, postCap. The chat can set tick, headPic,
 //          faces (cast names for the header pictures), app (the app screen) and bar.
 (function () {
 var CAT1 = "https://images.squidge.org/images/2026/11/16/Cat1.jpg";
@@ -247,9 +248,9 @@ window.FB_EXAMPLES = [
       ["Shane", "Shared a story: \"6am skate. Again.\"", { shared: true }],
       ["Shane", "this story. you replied with a heart"],
       ["Ilya", "ok maybe I did"],
-      ["Shane", "", { hasPost: true, postAcc: "fakehockeynews", postDesc: "A blurry photo of two hockey players hugging in a car park",
+      ["Shane", "", { hasPost: true, postAcc: "fakehockeynews", postIni: "FH", postCol: "3", postDesc: "A blurry photo of two hockey players hugging in a car park",
         postCap: "BREAKING: rivals seen 'sharing a moment' at 6am skate" }],
-      ["Ilya", "they are so bad at this", { waReacts: "😂", faces: ["Shane"] }],
+      ["Ilya", "they are so bad at this", { reply: 5, waReacts: "😂", faces: ["Shane"] }],
       ["Shane", "you were the one who hugged me", { reply: 6 }],
       ["Ilya", "", { photos: [{ desc: "Photo: a screenshot of the same post, with Ilya's comment: 'not me'" }], status: "Seen" }]
     ]
