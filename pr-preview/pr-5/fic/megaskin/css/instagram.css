@@ -766,12 +766,13 @@
   color: #737373;
 }
 
-/* ---- pictures in DMs. In the header, put the picture first, before the name:
+/* ---- pictures in DMs. The picture sits in the middle of the header, with the name and status under it.
+   Put the picture first, before the name:
    <p class="mob-head"><span class="ig-pfp"><span class="pfp pfp-shane"></span></span>shane.h<span class="hide"> - </span><span>Active now</span></p>
    For a group, wrap two pictures in an ig-collab span and they overlap, the first at the top left and the second in front of it at the bottom right:
    <span class="ig-collab"><span class="ig-pfp">...</span><span class="ig-pfp">...</span></span>
    Initials work too: <span class="ig-pfp colour3">RL</span>. With no colour class the circle is grey. */
-#workskin .igdm .mob-head { display: flow-root; padding: 0.6em 0.9em; text-align: left; }
+#workskin .igdm .mob-head { position: relative; padding: 0.6em 0.9em; text-align: center; }
 
 #workskin .igdm .ig-pfp {
   display: flex;
@@ -788,32 +789,29 @@
 }
 
 #workskin .igdm .mob-head .ig-pfp {
-  float: left;
-  width: 36px;
-  height: 36px;
-  margin: 0 0.7em 0 0;
+  width: 44px;
+  height: 44px;
+  margin: 0 auto 0.3em auto;
   color: #ffffff;
   font-size: 0.8em;
 }
 
 #workskin .igdm .mob-head .ig-collab {
   display: block;
-  float: left;
   position: relative;
-  width: 38px;
-  height: 38px;
-  margin: -1px 0.7em -1px 0;
+  width: 46px;
+  height: 46px;
+  margin: 0 auto 0.3em auto;
 }
 
 #workskin .igdm .mob-head .ig-collab .ig-pfp {
   position: absolute;
   top: 0;
   left: 0;
-  float: none;
-  width: 26px;
-  height: 26px;
+  width: 32px;
+  height: 32px;
   margin: 0;
-  font-size: 0.6em;
+  font-size: 0.65em;
 }
 
 #workskin .igdm .mob-head .ig-collab .ig-pfp + .ig-pfp {
@@ -822,8 +820,8 @@
   bottom: 0;
   right: 0;
   box-sizing: border-box;
-  width: 28px;
-  height: 28px;
+  width: 34px;
+  height: 34px;
   border: 2px solid #ffffff;
 }
 
@@ -1029,21 +1027,18 @@
    The message bar goes after the mob-body, inside the chat:
    <p class="igdm-input"><span class="igdm-cam ic ic-camera">&#128247;</span><span class="hide"> </span><span class="igdm-field">Message...<span class="hide"> </span><span class="ic ic-mic">&#127908;</span></span></p>
    Add "typed" to the igdm-field for a half-written message in full colour. */
-#workskin .igdm .mob-head .igdm-back {
-  display: block;
-  float: left;
-  height: 36px;
-  margin: 0 0.8em 0 -0.2em;
-  line-height: 36px;
-}
-
+#workskin .igdm .mob-head .igdm-back,
 #workskin .igdm .mob-head .igdm-calls {
   display: block;
-  float: right;
-  height: 36px;
-  margin: 0 -0.1em 0 0.6em;
-  line-height: 36px;
+  position: absolute;
+  top: 50%;
+  margin-top: -0.75em;
+  line-height: 1;
 }
+
+#workskin .igdm .mob-head .igdm-back { left: 0.8em; }
+
+#workskin .igdm .mob-head .igdm-calls { right: 0.9em; }
 
 #workskin .igdm .mob-head .igdm-back .ic,
 #workskin .igdm .mob-head .igdm-calls .ic {
@@ -1054,10 +1049,6 @@
 }
 
 #workskin .igdm .mob-head .igdm-calls .ic ~ .ic { margin-left: 1.2em; }
-
-/* with the back arrow there, a header with two pictures lines up the same as one with one */
-#workskin .igdm .mob-head .igdm-back + .igdm-calls + .ig-collab,
-#workskin .igdm .mob-head .igdm-back + .ig-collab { margin-left: 0; }
 
 #workskin .igdm .igdm-input {
   display: flex;
