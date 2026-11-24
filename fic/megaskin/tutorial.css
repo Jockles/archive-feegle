@@ -17,10 +17,18 @@
 }
 :root[data-theme="dark"] { --tut-q-fill: #fbefe3; --tut-q-ink: var(--outline, #2b3b28); --tut-q-edge: var(--outline, #2b3b28); }
 
+/* the help notes and the Tutorial/Help text box: deep green in dark mode, so they stand apart
+   from the profile and fic boxes they sit beside or inside */
+:root { --help-fill: var(--tag-fill, #eedccb); --help-box: var(--box-fill, #f4f8f7); }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) { --help-fill: #223024; --help-box: #223024; }
+}
+:root[data-theme="dark"] { --help-fill: #223024; --help-box: #223024; }
+
 /* the box with the two buttons, beside the intro (below it on a phone) */
 .tut-intro { display: flex; flex-wrap: wrap; gap: 0 24px; align-items: flex-start; }
 .tut-intro > div { flex: 1 1 420px; min-width: 0; }
-.tut-box { flex: 0 1 260px; margin: 1em 0; padding: 10px 12px; font-size: 0.9em; border: 1px solid var(--box-edge, #bbb); border-radius: 6px; background: var(--box-fill, #f4f8f7); }
+.tut-box { flex: 0 1 260px; margin: 1em 0; padding: 10px 12px; font-size: 0.9em; border: 1px solid var(--box-edge, #bbb); border-radius: 6px; background: var(--help-box); }
 .tut-box p { margin: 0 0 8px; }
 .tut-box p:last-child { margin: 0; }
 .tut-box .tut-btn { margin: 0 4px 4px 0; }
@@ -47,7 +55,7 @@ html:not(.help-on) .tut-help:hover > span, html:not(.help-on) .tut-help:focus > 
   html:not(.help-on) .tut-help > span { position: fixed; top: auto !important; bottom: 16px; left: 16px !important; right: 16px; width: auto; max-width: none; margin: 0; font-size: 14px; }
 }
 .help-on .tut-help { display: block; box-sizing: border-box; flex: 1 0 100%; order: 9; margin: 4px 0 8px; padding: 5px 8px; font-size: 0.85rem; font-weight: normal; line-height: 1.4;
-  border-left: 3px solid var(--outline, #2b3b28); background: var(--tag-fill, #eedccb); border-radius: 0 4px 4px 0; }
+  border-left: 3px solid var(--outline, #2b3b28); background: var(--help-fill); border-radius: 0 4px 4px 0; }
 .help-on .fb-row { flex-wrap: wrap; }
 
 /* the box the current step is about */
