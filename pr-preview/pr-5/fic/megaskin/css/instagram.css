@@ -794,6 +794,25 @@
   vertical-align: -0.1em;
 }
 
+/* a long username shortens with … like in the app, so the tick always fits beside it.
+   The room left for it takes away the picture (46px) and the back arrow and call buttons (72px) when they're there */
+#workskin .igdm .mob-head span.handle.handle.handle.handle {
+  display: inline-block;
+  max-width: calc(100% - 1.2em);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  vertical-align: top;
+}
+
+#workskin .igdm .mob-head .ig-pfp ~ span.handle.handle.handle.handle,
+#workskin .igdm .mob-head .ig-collab ~ span.handle.handle.handle.handle { max-width: calc(100% - 46px - 1.2em); }
+
+#workskin .igdm .mob-head .igdm-back ~ span.handle.handle.handle.handle { max-width: calc(100% - 72px - 1.2em); }
+
+#workskin .igdm .mob-head .igdm-back ~ .ig-pfp ~ span.handle.handle.handle.handle,
+#workskin .igdm .mob-head .igdm-back ~ .ig-collab ~ span.handle.handle.handle.handle { max-width: calc(100% - 118px - 1.2em); }
+
 #workskin .igdm .ig-pfp {
   display: flex;
   align-items: center;
