@@ -594,6 +594,8 @@
     return noAt(c.ighandle) || nameOf(c).toLowerCase().replace(/\s+/g, ".");
   }
   // the username, from the profile (with a typed copy for readers with the style off) or typed
+  // a name cut short with "…" (which counts as one) when it's longer than n, as the app does; AO3 won't let the skin do it
+  function cutTo(s, n) { var ch = Array.from(s); return ch.length > n ? ch.slice(0, n - 1).join("") + "…" : s; }
   function igNameHTML(c, a) { return isProfile(c) ? pSpan("handle", c, a, igName(c, a)) : esc(igName(c)); }
   var TICK = '<span class="hide"> </span><span class="ig-tick ic ic-verified">&#10003;</span>';
   var LOCK = '<span class="hide"> </span><span class="ig-lock ic ic-lock">&#128274;</span>';
@@ -656,13 +658,23 @@
     var a = accOf(c, m.acc, "ig"), cos = collabsOf(m).filter(function (g) { return char(g.who); }), L = [];
     // the account line: the menu goes first (it sits at the far right), then a Follow button for a suggested post
     var top = '<span class="ig-menu ic ic-ig-lines">&#8801;</span>' + (m.follow === "button" ? '<span class="ig-add ic ic-ig-follow">Follow</span>' : "");
+    // the name: the username, or the name typed in, cut short with "…" if it won't fit on one line at phone width
+    var fullA = t(m.nameAs) || igName(c, a), lenA = Array.from(fullA).length;
+    function shown(full, typed, n, html) { var x = cutTo(full, n); return typed || x !== full ? esc(x) : html; }
     if (cos.length) {
       // a collab: only the first two pictures show, and with three or more it says "and 2 others"
       var co = char(cos[0].who), and = '<span class="hide"> </span><span class="ig-and">and</span><span class="hide"> </span>';
-      top += '<span class="ig-collab">' + circle("ig-pfp", c, a) + circle("ig-pfp", co, null) + "</span>" + igNameHTML(c, a) + (m.verified ? TICK : "") + (m.locked ? LOCK : "") + and;
-      if (cos.length === 1) top += igNameHTML(co, null) + (cos[0].tick ? TICK : "");
+      var nA = lenA, nB = 0, fullB = "";
+      if (cos.length === 1) {
+        // both names share the line: the longer one is cut first, but neither goes below 6
+        fullB = t(cos[0].as) || igName(co); nB = Array.from(fullB).length;
+        var room = 19 - (m.verified ? 2 : 0) - (cos[0].tick ? 2 : 0);
+        while (nA + nB > room && (nA > 6 || nB > 6)) { if (nA >= nB && nA > 6 || nB <= 6) nA--; else nB--; }
+      }
+      top += '<span class="ig-collab">' + circle("ig-pfp", c, a) + circle("ig-pfp", co, null) + "</span>" + shown(fullA, t(m.nameAs), Math.max(nA, 6), igNameHTML(c, a)) + (m.verified ? TICK : "") + (m.locked ? LOCK : "") + and;
+      if (cos.length === 1) top += shown(fullB, t(cos[0].as), Math.max(nB, 6), igNameHTML(co, null)) + (cos[0].tick ? TICK : "");
       else top += cos.length + " others" + '<span class="hide"> (' + cos.map(function (g) { return esc(igName(char(g.who))); }).join(", ") + ")</span>";
-    } else top += circle("ig-pfp" + (m.story ? " story" : ""), c, a) + igNameHTML(c, a) + (m.verified ? TICK : "") + (m.locked ? LOCK : "");
+    } else top += circle("ig-pfp" + (m.story ? " story" : ""), c, a) + shown(fullA, t(m.nameAs), m.follow === "link" ? 20 : m.verified ? 24 : 27, igNameHTML(c, a)) + (m.verified ? TICK : "") + (m.locked ? LOCK : "");
     if (m.follow === "link") top += '<span class="hide"> - </span><span class="ig-follow">Follow</span>';
     if (t(m.under)) top += '<span class="hide"> - </span><span>' + (m.song ? "&#9835; " : "") + esc(t(m.under)) + "</span>";
     L.push('<p class="ig-top">' + top + "</p>");
@@ -1143,6 +1155,7 @@
     "blocks.N.msgs.N.link.showUrl": "Shows the web address as its own line above the preview card, like when you paste a link and send it.",
     "blocks.N.msgs.N.photos.N.land": "Tick this if the picture is wider than it is tall, so it isn't squashed.",
     "blocks.N.msgs.N.link.land": "Tick this if the picture is wider than it is tall, so it isn't squashed.",
+    "blocks.N.msgs.N.nameAs": "Leave it empty to show their username. A name too long to fit on one line at phone width is cut short with \"…\" for you, the way the app does.",
     "blocks.N.msgs.N.verified:tw": "The blue tick after the name, for a verified account.",
     "blocks.N.msgs.N.locked:tw": "A padlock after the name, for an account only its followers can see. Private tweets can't be reposted, so the repost button fades out.",
     "blocks.N.msgs.N.fan:tw": "A small grey line under the name, like a label the account gives itself. Tick 'Fan account mask' to put the theatre mask before it, the way X marks fan accounts.",
@@ -1498,12 +1511,13 @@
       h.push('<div class="fb-extras">' + fmtButtons());
       h.push(accField(P + ".acc", c, "ig"));
       h.push('<h4 class="fb-h">The account line</h4><div class="fb-grid"><div>' +
+        field(P + ".nameAs", "Name shown", { ph: igName(c, accOf(c, m.acc, "ig")) }) +
         field(P + ".under", "Under the name", { ph: "Ottawa, Ontario" }) + field(P + ".song", "It's a song", { type: "check" }) + "</div><div>" +
         field(P + ".follow", "Follow button", { type: "select", options: [["", "None"], ["link", "Follow link after the name"], ["button", "Suggested post: Follow button"]] }) + "</div></div>");
       h.push('<p class="hint">Collab with:' + help(P + ".collabs") + "</p>");
       collabsOf(m).forEach(function (g, k) {
         var G = P + ".collabs." + k;
-        h.push('<div class="fb-row">' + field(G + ".who", "", { type: "select", options: castOptions() }) + field(G + ".tick", "Verified", { type: "check" }) +
+        h.push('<div class="fb-row">' + field(G + ".who", "", { type: "select", options: castOptions() }) + field(G + ".as", "", { ph: "Name shown" }) + field(G + ".tick", "Verified", { type: "check" }) +
           btn("collab-del:" + bi + ":" + mi + ":" + k, "&times;", "Remove") + "</div>");
       });
       h.push(btn("collab-add:" + bi + ":" + mi, "+ Collaborator"));
@@ -2598,7 +2612,8 @@
     var col = take("span.ig-collab"), pic = col ? col.querySelector(".ig-pfp") : take("span.ig-pfp"); if (!pic) no();
     m.story = pic.classList.contains("story");
     var nm = ns[k++]; if (!nm) no();
-    var c = nm.nodeType === 3 ? (function () { var x = S.cast.filter(function (x) { return x.kind === "oneoff" && igName(x) === nm.nodeValue.trim(); })[0]; if (!x) { x = freshChar(nm.nodeValue.trim()); if (igName(x) !== nm.nodeValue.trim()) x.ighandle = nm.nodeValue.trim(); } return x; })() : igPerson(nm);
+    // a name typed over a profile's picture (often cut short with "…") belongs to that profile
+    var c = nm.nodeType === 3 && slugIn(pic) ? (m.nameAs = nm.nodeValue.trim(), personBySlug(slugIn(pic))) : nm.nodeType === 3 ? (function () { var x = S.cast.filter(function (x) { return x.kind === "oneoff" && igName(x) === nm.nodeValue.trim(); })[0]; if (!x) { x = freshChar(nm.nodeValue.trim()); if (igName(x) !== nm.nodeValue.trim()) x.ighandle = nm.nodeValue.trim(); } return x; })() : igPerson(nm);
     var acc = nm.nodeType === 1 && nm.className.match(/(?:^|\s)acc-([a-z0-9-]+)/); m.acc = acc ? acc[1] : "";
     looks(c, pic); m.from = c.id;
     var mk = marks(); m.verified = mk.tick; m.locked = mk.lock;
@@ -2616,9 +2631,10 @@
         });
         looks(char(m.collabs[0].who), pics[1]);
       } else {
-        var co = rest.nodeType === 3 ? (function () { var n = rest.nodeValue.trim(), x = S.cast.filter(function (y) { return y.kind === "oneoff" && igName(y) === n; })[0]; if (!x) { x = freshChar(n); if (igName(x) !== n) x.ighandle = n; } return x; })() : igPerson(rest);
+        var cas = rest.nodeType === 3 && slugIn(pics[1]) ? rest.nodeValue.trim() : "";
+        var co = cas ? personBySlug(slugIn(pics[1])) : rest.nodeType === 3 ? (function () { var n = rest.nodeValue.trim(), x = S.cast.filter(function (y) { return y.kind === "oneoff" && igName(y) === n; })[0]; if (!x) { x = freshChar(n); if (igName(x) !== n) x.ighandle = n; } return x; })() : igPerson(rest);
         looks(co, pics[1]);
-        m.collabs = [{ who: co.id, tick: marks().tick }];
+        m.collabs = [{ who: co.id, tick: marks().tick, as: cas }];
       }
     }
     if (is(ns[k], "span.hide") && is(ns[k + 1], "span.ig-follow")) { m.follow = "link"; k += 2; }
