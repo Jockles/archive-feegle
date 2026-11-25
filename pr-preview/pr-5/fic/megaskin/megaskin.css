@@ -5618,30 +5618,26 @@
 /* the verified tick after the name, on the same line as it, never on a line of its own */
 #workskin .igdm .mob-head .ig-tick {
   display: inline-block;
+  position: absolute;
   width: 0.9em;
   height: 0.9em;
   margin-left: 0.3em;
   vertical-align: -0.1em;
 }
 
-/* a long username shortens with … like in the app, so the tick always fits beside it.
-   The room left for it takes away the picture (46px) and the back arrow and call buttons (72px) when they're there */
+/* the name line stays on one line: a long group name ends in "...", and a long username breaks
+   onto the next line instead, so the tick always stays right after it */
+#workskin .igdm .mob-head { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+/* the padding keeps room at the end of the name's last line, and the tick sits in it, so it can't drop to a line of its own */
 #workskin .igdm .mob-head span.handle.handle.handle.handle {
-  display: inline-block;
-  max-width: calc(100% - 1.2em);
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  vertical-align: top;
+  padding-right: 1.4em;
+  margin-right: -1.4em;
+  white-space: normal;
+  word-break: break-all;
 }
 
-#workskin .igdm .mob-head .ig-pfp ~ span.handle.handle.handle.handle,
-#workskin .igdm .mob-head .ig-collab ~ span.handle.handle.handle.handle { max-width: calc(100% - 46px - 1.2em); }
-
-#workskin .igdm .mob-head .igdm-back ~ span.handle.handle.handle.handle { max-width: calc(100% - 72px - 1.2em); }
-
-#workskin .igdm .mob-head .igdm-back ~ .ig-pfp ~ span.handle.handle.handle.handle,
-#workskin .igdm .mob-head .igdm-back ~ .ig-collab ~ span.handle.handle.handle.handle { max-width: calc(100% - 118px - 1.2em); }
+#workskin .igdm .mob-head > span:last-child { overflow: hidden; text-overflow: ellipsis; }
 
 #workskin .igdm .ig-pfp {
   display: flex;
