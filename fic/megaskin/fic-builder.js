@@ -236,7 +236,7 @@
     // a name as WhatsApp shows it in a group: profile, or typed with a phone number
     if (isProfile(c)) return profileName(c);
     var n = esc(nameOf(c));
-    if (c.num.trim()) return "~ " + n + '<span class="hide"> </span><span class="wa-num">' + esc(c.num.trim()) + "</span>";
+    if (c.num.trim()) return "~ " + n + '<span class="hide"> </span><span class="wa-no">' + esc(c.num.trim()) + "</span>";
     return n;
   }
   // a one-off's colour class: colour1 to colour10 from the skin
@@ -327,8 +327,8 @@
       if (m.text.trim()) bubbles.push({ cls: "msg " + side + (m.sms ? " sms" : ""), inner: fmt(m.text) });
       (m.photos || []).forEach(function (ph) {
         var u = picUrl(ph.url);
-        if (u) bubbles.push({ cls: "msg " + side + " pic", inner: '<img src="' + esc(u) + '" alt="' + esc(ph.alt) + '">' });
-        else if (ph.desc.trim()) bubbles.push({ cls: "msg " + side + " pic text", inner: "[" + esc(ph.desc.trim()) + "]" });
+        if (u) bubbles.push({ cls: "msg " + side + " photo", inner: '<img src="' + esc(u) + '" alt="' + esc(ph.alt) + '">' });
+        else if (ph.desc.trim()) bubbles.push({ cls: "msg " + side + " photo text", inner: "[" + esc(ph.desc.trim()) + "]" });
       });
       var taps = (m.reacts || []).filter(function (r) { return r.emoji.trim(); });
       bubbles.forEach(function (bb, i) {
@@ -357,7 +357,7 @@
   function waPfp(c) {
     if (isProfile(c)) return '<p class="wa-pfp"><span class="pfp pfp-' + slugOf(c) + '"></span></p>';
     var u = picUrl(c.pic);
-    if (u) return '<p class="wa-pfp ' + colourClass(c) + '"><span class="pfp"><img ' + (c.land ? 'class="land" ' : "") + 'src="' + esc(u) + '" alt="' + esc(c.alt.trim() || ("Profile picture of " + nameOf(c))) + '"></span></p>';
+    if (u) return '<p class="wa-pfp ' + colourClass(c) + '"><span class="pfp"><img ' + (c.land ? 'class="landscape" ' : "") + 'src="' + esc(u) + '" alt="' + esc(c.alt.trim() || ("Profile picture of " + nameOf(c))) + '"></span></p>';
     return '<p class="wa-pfp ' + colourClass(c) + '">' + (c.showInitials !== false ? esc(initials(c)) : "") + "</p>";
   }
   function groupPic(b) {
@@ -394,7 +394,7 @@
         '      <td rowspan="2" class="wa-pfp-cell">' + pc + "</td>",
         '      <td class="wa-title">' + headTitle(b) + "</td>",
         '      <td rowspan="2" class="wa-actions"><span class="ic ic-video">&#127909;</span> <span class="ic ic-menu">&#8942;</span></td>',
-        "    </tr>", "    <tr>", '      <td class="wa-sub">' + esc(sub) + "</td>", "    </tr>", "  </tbody>", "</table>"], 1));
+        "    </tr>", "    <tr>", '      <td class="wa-status">' + esc(sub) + "</td>", "    </tr>", "  </tbody>", "</table>"], 1));
     } else if (b.header !== "none") L.push("  " + mobHead(b));
     L.push('  <div class="mob-body">');
     var body = [];
@@ -445,14 +445,14 @@
         var n = ["one", "two", "three", "four"][Math.min(photos.length, 4) - 1];
         var ph = photos.slice(0, 4).map(function (p) {
           var u = picUrl(p.url);
-          return '<span class="wa-photo">' + (u ? '<img ' + (p.land ? 'class="land" ' : "") + 'src="' + esc(u) + '" alt="' + esc(p.alt) + '">' :
+          return '<span class="wa-photo">' + (u ? '<img ' + (p.land ? 'class="landscape" ' : "") + 'src="' + esc(u) + '" alt="' + esc(p.alt) + '">' :
             '<span class="wa-desc">[' + esc(p.desc.trim()) + "]</span>") + "</span>";
         });
         if (ph.length === 1) inner.push('<p class="wa-photos one">' + ph[0] + "</p>");
         else inner.push('<p class="wa-photos ' + n + '">', ind(ph, 1).join("\n"), "</p>");
         if (m.text.trim()) inner.push('<p class="wa-caption">' + fmt(m.text) + "</p>");
       } else if (link) {
-        if (link.url.trim() && link.showUrl) inner.push('<p><span class="wa-ln">' + esc(link.url.trim()) + "</span></p>");
+        if (link.url.trim() && link.showUrl) inner.push('<p><span class="wa-link-text">' + esc(link.url.trim()) + "</span></p>");
         var lk = ['<div class="wa-link">'];
         var li = picUrl(link.img), vid = picUrl(link.video || "");
         if (vid) lk.push('  <div class="wa-link-img video"><iframe src="' + esc(vid) + '" frameborder="0" title="' + esc(link.title.trim()) + '"></iframe>' +
@@ -472,7 +472,7 @@
         m.tick === "delivered" ? ' <span class="ic ic-delivered">✓✓</span>' : m.tick === "sent" ? ' <span class="ic ic-sent">✓</span>' : "";
       // a blank time with no ticks leaves the line out
       if (m.time.trim() || tick || (m.edited && !card)) inner.push('<p class="wa-time">' + (m.edited && !card ? "Edited " : "") + esc(m.time.trim()) + tick + "</p>");
-      if (card === "contact") inner.push('<p class="wa-cbtn">Message</p>');
+      if (card === "contact") inner.push('<p class="wa-contact-btn">Message</p>');
       var block = [open].concat(ind(inner.join("\n").split("\n"), 1)).concat(["</div>"]);
       if (rows) {
         block = ['<div class="wa-row' + (first ? "" : " cont") + '">'].concat(first ? ["  " + waPfp(c)] : []).concat(ind(block, 1)).concat(["</div>"]);
@@ -490,7 +490,7 @@
     if (b.bar === "empty" || b.bar === "typed") {
       var typed = b.bar === "typed";
       L = L.concat(ind(['<p class="wa-input">', '  <span class="wa-field">', '    <span class="ic ic-emoji">&#9786;</span>',
-        typed ? '    <span class="wa-ph typed">' + fmt(b.barText) + (b.cursor ? CURSOR : "") + "</span>" : '    <span class="wa-ph">Message</span>',
+        typed ? '    <span class="wa-placeholder typed">' + fmt(b.barText) + (b.cursor ? CURSOR : "") + "</span>" : '    <span class="wa-placeholder">Message</span>',
         '    <span class="wa-ic ic ic-paperclip">&#128206;</span>'].concat(typed ? [] : ['    <span class="wa-ic ic ic-camera">&#128247;</span>'])
         .concat(["  </span>", typed ? '  <span class="wa-mic ic ic-wa-send">&#10148;</span>' : '  <span class="wa-mic ic ic-wa-mic">&#127908;</span>', "</p>"]), 1));
     }
@@ -530,8 +530,8 @@
       var bubbles = [];
       (m.photos || []).forEach(function (ph) {
         var u = picUrl(ph.url);
-        if (u) bubbles.push([side + " pic", '<img src="' + esc(u) + '" alt="' + esc(ph.alt) + '">']);
-        else if (t(ph.desc)) bubbles.push([side + " pic text", "[" + esc(t(ph.desc)) + "]"]);
+        if (u) bubbles.push([side + " photo", '<img src="' + esc(u) + '" alt="' + esc(ph.alt) + '">']);
+        else if (t(ph.desc)) bubbles.push([side + " photo text", "[" + esc(t(ph.desc)) + "]"]);
       });
       if (t(m.text)) bubbles.push([side, fmt(m.text)]);
       if (t(m.voice)) bubbles.push([side + " voice", '<span class="twdm-play ic ic-play">&#9654;</span><span class="twdm-wave"></span><span class="twdm-dur">' + esc(t(m.voice)) + "</span>"]);
@@ -549,7 +549,7 @@
     if (b.bar === "empty") L.push('  <p class="twdm-input"><span class="twdm-plus">+</span><span class="hide"> </span><span class="twdm-field">Message<span class="hide"> </span><span class="ic ic-mic">&#127908;</span></span></p>');
     if (b.bar === "typed") L.push('  <p class="twdm-input"><span class="twdm-plus">+</span><span class="hide"> </span><span class="twdm-field typed">' + fmt(b.barText) + (b.cursor ? CURSOR : "") + '<span class="hide"> </span><span class="ic ic-mic">&#127908;</span></span></p>');
     if (b.nav) L.push('  <p class="tw-nav"><span class="ic ic-x-home">&#8962;</span> <span class="ic ic-x-search">&#128269;</span> <span class="ic ic-x-grok">&#8856;</span> ' +
-      (t(b.badge) ? '<span class="tw-badged"><span class="ic ic-x-bell">&#128276;</span><span class="tw-badge"><span class="hide"> (</span>' + esc(t(b.badge)) + '<span class="hide">)</span></span></span>' : '<span class="ic ic-x-bell">&#128276;</span>') +
+      (t(b.badge) ? '<span class="badged"><span class="ic ic-x-bell">&#128276;</span><span class="tw-badge"><span class="hide"> (</span>' + esc(t(b.badge)) + '<span class="hide">)</span></span></span>' : '<span class="ic ic-x-bell">&#128276;</span>') +
       ' <span class="on ic ic-x-chat">&#128172;</span></p>');
     L.push("</div>");
     return L.join("\n");
@@ -581,7 +581,7 @@
   function circle(cls, c, a) {
     if (isProfile(c)) return '<span class="' + cls + '"><span class="pfp pfp-' + slugOf(c) + accCls(a) + '"></span></span>';
     var u = picUrl(c.pic);
-    if (u) return '<span class="' + cls + '"><span class="pfp"><img ' + (c.land ? 'class="land" ' : "") + 'src="' + esc(u) + '" alt="' + esc(t(c.alt) || ("Profile picture of " + nameOf(c))) + '"></span></span>';
+    if (u) return '<span class="' + cls + '"><span class="pfp"><img ' + (c.land ? 'class="landscape" ' : "") + 'src="' + esc(u) + '" alt="' + esc(t(c.alt) || ("Profile picture of " + nameOf(c))) + '"></span></span>';
     return '<span class="' + cls + " " + colourClass(c) + '">' + (c.showInitials !== false ? esc(initials(c)) : "") + "</span>";
   }
   function plural(n, one, many) { return t(n) === "1" ? one : many; }
@@ -601,7 +601,7 @@
   var LOCK = '<span class="hide"> </span><span class="ig-lock ic ic-lock">&#128274;</span>';
   function igCaption(text) {
     // #hashtags go blue, and a new line in the box is a new line in the caption
-    return fmt(t(text)).replace(/(^|[\s(])(#[A-Za-z0-9_]+)/g, '$1<span class="ig-tag">$2</span>').replace(/\n/g, "<br>");
+    return fmt(t(text)).replace(/(^|[\s(])(#[A-Za-z0-9_]+)/g, '$1<span class="ig-link">$2</span>').replace(/\n/g, "<br>");
   }
   // a comment line: "name: what they said", with the name from the cast if it's someone in it
   function igComment(line) {
@@ -612,20 +612,20 @@
   }
   function igPhoto(ph, cls, tag) {
     var u = picUrl(ph.url);
-    if (u) return "<" + tag + ' class="ig-photo real' + cls + '"><img ' + (ph.land ? 'class="land" ' : "") + 'src="' + esc(u) + '" alt="' + esc(t(ph.alt)) + '"></' + tag + ">";
+    if (u) return "<" + tag + ' class="ig-photo real' + cls + '"><img ' + (ph.land ? 'class="landscape" ' : "") + 'src="' + esc(u) + '" alt="' + esc(t(ph.alt)) + '"></' + tag + ">";
     return "<" + tag + ' class="ig-photo' + cls + '">[' + esc(t(ph.desc) || "A photo") + "]</" + tag + ">";
   }
   // one photo, or a carousel: each photo after the first goes inside the one before it
   function igPhotos(m) {
-    var ps = m.photos || [], cls = m.shape ? " ig-pic-" + m.shape : "";
+    var ps = m.photos || [], cls = m.shape ? " " + ({ sq: "square", portrait: "portrait" }[m.shape] || "") : "";
     if (!ps.length) return [];
     if (ps.length === 1) return [igPhoto(ps[0], cls, "p")];
     var real = ps.every(function (ph) { return picUrl(ph.url); }), n = ps.length;
     var info = function (i) {
       var dots = ps.map(function (x, j) { return j === i ? "<b>&#8226;</b>" : "&#8226;"; }).join("");
-      return '<p class="ig-car-info"><span class="hide">(</span><span class="ig-car-n">' + (i + 1) + "/" + n + '</span><span class="hide">) </span><span class="ig-car-dots">' + dots + "</span></p>";
+      return '<p class="ig-carousel-info"><span class="hide">(</span><span class="ig-carousel-count">' + (i + 1) + "/" + n + '</span><span class="hide">) </span><span class="ig-carousel-dots">' + dots + "</span></p>";
     };
-    var L = ['<div class="ig-car' + (real ? " real" : "") + '">', igPhoto(ps[0], cls, "p"), info(0)];
+    var L = ['<div class="ig-carousel' + (real ? " real" : "") + '">', igPhoto(ps[0], cls, "p"), info(0)];
     ps.slice(1).forEach(function (ph, i) { L.push('<details class="ig-next"><summary>' + igPhoto(ph, cls, "span") + "</summary>", info(i + 1)); });
     L.push(new Array(n).join("</details>"), "</div>");
     return L;
@@ -637,16 +637,16 @@
     var L = ['<details class="ig-tagged"><summary><span>In this photo</span></summary><div class="ig-sheet">'];
     tags.forEach(function (g) {
       var c = char(g.who), fol = g.who === b.pov ? "none" : g.fol;
-      var bt = fol === "follow" ? '<span class="ig-fbtn blue">Follow</span>' : fol === "none" ? "" : '<span class="ig-fbtn">Following</span>';
+      var bt = fol === "follow" ? '<span class="ig-following blue">Follow</span>' : fol === "none" ? "" : '<span class="ig-following">Following</span>';
       var nm = isProfile(c) ? appBit(c, "ig", "name") || nameOf(c) : nameOf(c);
       L.push('<p class="ig-person">' + bt + circle("ig-pfp", c, null) + (isProfile(c) ? igNameHTML(c, null) : '<span class="handle">' + esc(igName(c)) + "</span>") +
-        (g.tick ? TICK : "") + (g.lock ? LOCK : "") + '<span class="ig-pname">' + esc(nm) + "</span></p>");
+        (g.tick ? TICK : "") + (g.lock ? LOCK : "") + '<span class="ig-person-name">' + esc(nm) + "</span></p>");
     });
     L.push("</div></details>");
     return L;
   }
   function igCount(icon, n, one, many) {
-    return '<p class="ig-btn">' + icon + '<span class="hide"> </span><span class="ig-count">' + esc(t(n)) + '</span><span class="hide"> ' + plural(n, one, many) + "</span></p>";
+    return '<p class="ig-stat">' + icon + '<span class="hide"> </span><span class="ig-count">' + esc(t(n)) + '</span><span class="hide"> ' + plural(n, one, many) + "</span></p>";
   }
   // the other accounts on a collab post (posts saved before this had just one, in m.collab)
   function collabsOf(m) {
@@ -684,15 +684,15 @@
     if (m.likeClick !== false && !t(m.likes)) btns.push('<details class="ig-tog like"' + (m.liked ? " open" : "") + '><summary><span class="ig-icon off ic ic-heart">&#9825;</span><span class="ig-icon on ic ic-heart-red">&#9829;</span><span class="hide"> Like</span></summary></details>');
     else if (m.likeClick !== false) btns.push('<details class="ig-tog like"' + (m.liked ? " open" : "") + '><summary><span class="ig-icon off ic ic-heart">&#9825;</span><span class="hide"> </span><span class="ig-count off">' + esc(t(m.likes)) +
       '</span><span class="hide"> likes (</span><span class="ig-icon on ic ic-heart-red">&#9829;</span><span class="hide"> </span><span class="ig-count on">' + esc(bumpCount(m.likes)) + '</span><span class="hide"> when liked)</span></summary></details>');
-    else btns.push(t(m.likes) ? igCount('<span class="ig-icon ic ic-heart">&#9825;</span>', m.likes, "like", "likes") : '<p class="ig-btn"><span class="ig-icon ic ic-heart">&#9825;</span><span class="hide"> Like</span></p>');
-    btns.push(t(m.cmCount) ? igCount('<span class="ig-icon cm"></span>', m.cmCount, "comment", "comments").replace('<span class="hide"> </span>', "") : '<p class="ig-btn"><span class="ig-icon cm"></span><span class="hide"> Comment</span></p>');
+    else btns.push(t(m.likes) ? igCount('<span class="ig-icon ic ic-heart">&#9825;</span>', m.likes, "like", "likes") : '<p class="ig-stat"><span class="ig-icon ic ic-heart">&#9825;</span><span class="hide"> Like</span></p>');
+    btns.push(t(m.cmCount) ? igCount('<span class="ig-icon comment"></span>', m.cmCount, "comment", "comments").replace('<span class="hide"> </span>', "") : '<p class="ig-stat"><span class="ig-icon comment"></span><span class="hide"> Comment</span></p>');
     // a private post can't be reposted, so its repost button is faded out
-    if (m.locked) btns.push(t(m.reposts) ? igCount('<span class="ig-icon ic ic-repost">&#8635;</span>', m.reposts, "repost", "reposts").replace('"ig-btn"', '"ig-btn ig-locked"') :
-      '<p class="ig-btn ig-locked"><span class="ig-icon ic ic-repost">&#8635;</span><span class="hide"> (can\'t be reposted)</span></p>');
+    if (m.locked) btns.push(t(m.reposts) ? igCount('<span class="ig-icon ic ic-repost">&#8635;</span>', m.reposts, "repost", "reposts").replace('"ig-stat"', '"ig-stat locked"') :
+      '<p class="ig-stat locked"><span class="ig-icon ic ic-repost">&#8635;</span><span class="hide"> (can\'t be reposted)</span></p>');
     else if (t(m.reposts)) btns.push(igCount('<span class="ig-icon ic ic-repost">&#8635;</span>', m.reposts, "repost", "reposts"));
-    btns.push('<p class="ig-btn"><span class="ig-icon ic ic-share">&#10148;</span><span class="hide"> Share</span></p>');
-    btns.push('<details class="ig-tog save"' + (m.saved ? " open" : "") + '><summary><span class="hide">Save</span><span class="ig-icon bm off"></span><span class="ig-icon bm on"></span></summary></details>');
-    L = L.concat(['<div class="ig-actions">'], btns, ["</div>"]);
+    btns.push('<p class="ig-stat"><span class="ig-icon ic ic-share">&#10148;</span><span class="hide"> Share</span></p>');
+    btns.push('<details class="ig-tog save"' + (m.saved ? " open" : "") + '><summary><span class="hide">Save</span><span class="ig-icon bookmark off"></span><span class="ig-icon bookmark on"></span></summary></details>');
+    L = L.concat(['<div class="ig-stats">'], btns, ["</div>"]);
     var faces = (m.faces || []).map(char).filter(Boolean);
     if (m.likesLine === "faces" && faces.length) L.push('<p class="ig-likes liked-by"><span class="ig-like-pfps">' + faces.map(function (f) { return circle("ig-like-pfp", f, null); }).join("") +
       "</span>Liked by <b>" + igNameHTML(faces[0], null) + "</b> and <b>others</b></p>");
@@ -707,13 +707,13 @@
   // the Stories row: "Your story" first if ticked, then one circle per line ("close" for a green ring, "seen" for none)
   function igStories(b) {
     var me = char(b.pov), L = [];
-    if (b.myStory && me) L.push('<p class="ig-story me">' + circle("ig-pfp", me, null) + '<span class="ig-sname">Your story</span></p>');
+    if (b.myStory && me) L.push('<p class="ig-story me">' + circle("ig-pfp", me, null) + '<span class="ig-story-name">Your story</span></p>');
     t(b.stories).split(/\n/).map(t).filter(Boolean).forEach(function (line) {
       var ring = "", k = line.match(/^(.*?)\s*\((close|seen)\)$/i);
       if (k) { line = k[1]; ring = k[2].toLowerCase() === "close" ? " close" : " plain"; }
       var c = findChar(line);
-      L.push('<p class="ig-story' + ring + '">' + (c ? circle("ig-pfp", c, null) + '<span class="ig-sname">' + esc(igName(c)) + "</span>" :
-        '<span class="ig-pfp">' + esc(line.charAt(0).toUpperCase()) + '</span><span class="ig-sname">' + esc(line) + "</span>") + "</p>");
+      L.push('<p class="ig-story' + ring + '">' + (c ? circle("ig-pfp", c, null) + '<span class="ig-story-name">' + esc(igName(c)) + "</span>" :
+        '<span class="ig-pfp">' + esc(line.charAt(0).toUpperCase()) + '</span><span class="ig-story-name">' + esc(line) + "</span>") + "</p>");
     });
     return L.length ? ['<div class="ig-stories">'].concat(L, ["</div>"]) : [];
   }
@@ -722,7 +722,7 @@
     if (b.type === "igone") return posts.join("\n\n");
     var L = ['<div class="mob ig ig-feed ' + b.theme + (b.width ? " " + b.width : "") + (b.scroll ? " " + b.scroll : "") + '">'];
     if (b.top !== "none") L.push('<p class="ig-apptop"><span class="ig-new">+</span><span class="ig-logo">Instagram</span><span class="ig-notif ic ic-heart">&#9825;</span>' +
-      (b.top === "new" ? '<span class="ig-dot"><span class="hide"> (new)</span></span>' : "") + "</p>");
+      (b.top === "new" ? '<span class="ig-badge"><span class="hide"> (new)</span></span>' : "") + "</p>");
     return L.concat(igStories(b), posts, ["</div>"]).join("\n");
   }
 
@@ -778,9 +778,9 @@
     var more = reel ? [] : (m.postMore || []).filter(function (x) { return picUrl(x.url) || t(x.desc); });
     // more than one picture: a carousel, the same as a feed post's
     if (more.length) L = L.concat(igPhotos({ photos: [{ url: u, alt: m.postAlt || "", desc: m.postDesc || "", land: !!m.postLand }].concat(more), shape: "" }));
-    else if (u) L.push('<p class="igdm-post-img"><img ' + (m.postLand && !reel ? 'class="land" ' : "") + 'src="' + esc(u) + '" alt="' + esc(t(m.postAlt)) + '"></p>');
+    else if (u) L.push('<p class="igdm-post-img"><img ' + (m.postLand && !reel ? 'class="landscape" ' : "") + 'src="' + esc(u) + '" alt="' + esc(t(m.postAlt)) + '"></p>');
     else if (t(m.postDesc)) L.push('<p class="igdm-post-img text">[' + esc(t(m.postDesc)) + "]</p>");
-    if (t(m.postCap)) L.push('<p class="igdm-post-cap"><b>' + who + "</b> " + fmt(m.postCap) + "</p>");
+    if (t(m.postCap)) L.push('<p class="igdm-post-caption"><b>' + who + "</b> " + fmt(m.postCap) + "</p>");
     if (r) L.push(r); // reactions go last, straight inside the card
     return ['<div class="igdm-post ' + (reel ? "reel " : "") + side + (quoted ? " quoted" : "") + (r ? " reacted" : "") + '">'].concat(ind(L, 1), ["</div>"]);
   }
@@ -919,7 +919,7 @@
       var pct = pcts[i], size = POLL_SIZES.reduce(function (a, b) { return Math.abs(b - pct) < Math.abs(a - pct) ? b : a; });
       var win = !tap && !won && pct === top; if (win) won = true;
       var voted = (tap || tick) && i === vote ? '<span class="hide"> - voted </span><span class="tw-voted">&#10003;</span>' : "";
-      return '<p class="tw-opt res' + (win ? " win" : "") + " p" + size + '"><span class="tw-bar">' + esc(o.text) + voted + '</span><span class="hide"> </span><span class="tw-pct">' + pct + "%</span></p>";
+      return '<p class="tw-opt results' + (win ? " win" : "") + " p" + size + '"><span class="tw-bar">' + esc(o.text) + voted + '</span><span class="hide"> </span><span class="tw-pct">' + pct + "%</span></p>";
     });
   }
   function pollKind(m) {
@@ -954,13 +954,13 @@
   }
   function twMedia(m, video, pics) {
     var v = video ? picUrl(m.vUrl) : "";
-    if (v) return ['<div class="tw-media video"><iframe src="' + esc(v) + '" frameborder="0" title="' + esc(t(m.vTitle) || "Video") + '"></iframe>' +
+    if (v) return ['<div class="tw-photos video"><iframe src="' + esc(v) + '" frameborder="0" title="' + esc(t(m.vTitle) || "Video") + '"></iframe>' +
       (t(m.vDesc) ? '<p class="vid-desc">[' + esc(t(m.vDesc)) + "]</p>" : "") + "</div>"];
     var ph = pics ? (m.photos || []).filter(function (p) { return picUrl(p.url) || t(p.desc); }).slice(0, 4) : [];
     if (!ph.length) return [];
-    function img(p) { return '<img ' + (p.land ? 'class="land" ' : "") + 'src="' + esc(picUrl(p.url)) + '" alt="' + esc(p.alt) + '">'; }
-    if (ph.length === 1) return ['<p class="tw-media">' + (picUrl(ph[0].url) ? img(ph[0]) : "<span>[" + esc(t(ph[0].desc)) + "]</span>") + "</p>"];
-    return ['<p class="tw-media ' + ["two", "three", "four"][ph.length - 2] + '">'].concat(ph.map(function (p) {
+    function img(p) { return '<img ' + (p.land ? 'class="landscape" ' : "") + 'src="' + esc(picUrl(p.url)) + '" alt="' + esc(p.alt) + '">'; }
+    if (ph.length === 1) return ['<p class="tw-photos">' + (picUrl(ph[0].url) ? img(ph[0]) : "<span>[" + esc(t(ph[0].desc)) + "]</span>") + "</p>"];
+    return ['<p class="tw-photos ' + ["two", "three", "four"][ph.length - 2] + '">'].concat(ph.map(function (p) {
       return '  <span class="tw-photo">' + (picUrl(p.url) ? img(p) : '<span class="tw-desc">[' + esc(t(p.desc)) + "]</span>") + "</span>";
     })).concat(["</p>"]);
   }
@@ -972,16 +972,16 @@
         (t(n) ? " " + esc(t(n)) + '<span class="hide"> ' + plural(n, one, many) + "</span>" : "") + "</p>";
     }
     var L = ['<div class="tw-stats">', stat("", "reply", 9993, m.replies, "reply", "replies")];
-    if (m.locked || m.noRepost) L.push(stat(" tw-locked", "repost", 8644, ""));
-    else L.push(stat(m.reposted ? " tw-rt" : "", "repost", 8644, m.reposts, old ? "retweet" : "repost", old ? "retweets" : "reposts"));
+    if (m.locked || m.noRepost) L.push(stat(" locked", "repost", 8644, ""));
+    else L.push(stat(m.reposted ? " reposted" : "", "repost", 8644, m.reposts, old ? "retweet" : "repost", old ? "retweets" : "reposts"));
     // a like readers can click goes up by one, and turns red
     if (m.likeClick) L.push('  <details class="tw-stat tw-tog"' + (m.liked ? " open" : "") + '><summary><span class="ic ic-tw-like">&#9825;</span><span class="off">' +
       (t(m.likes) ? " " + esc(t(m.likes)) : "") + '</span><span class="hide"> likes (</span><span class="on"> ' + esc(bumpCount(m.likes)) + '</span><span class="hide"> once liked)</span></summary></details>');
-    else L.push(stat(m.liked ? " tw-liked" : "", "like", 9825, m.likes, "like", "likes"));
+    else L.push(stat(m.liked ? " liked" : "", "like", 9825, m.likes, "like", "likes"));
     if (!old && t(m.views) !== "-") L.push(stat("", "views", 128202, m.views, "view", "views"));
     // a bookmark readers can click turns blue
     if (!old && m.saveClick) L.push('  <details class="tw-stat tw-end tw-tog"' + (m.saved ? " open" : "") + '><summary><span class="ic ic-tw-bookmark">&#128278;</span><span class="hide"> Bookmark</span></summary></details>');
-    else if (!old) L.push(stat(" tw-end" + (m.saved ? " tw-saved" : ""), "bookmark", 128278, ""));
+    else if (!old) L.push(stat(" tw-end" + (m.saved ? " saved" : ""), "bookmark", 128278, ""));
     L.push(stat(" tw-end", "share", 8679, ""));
     return L.concat(["</div>"]);
   }
@@ -1904,7 +1904,7 @@
         return n.classList.contains("egg") ? "{{" + o.textContent + "|" + c.textContent + "}}" : "[[" + o.textContent + "|" + c.textContent + "]]";
       }
       if (is(n, "span.fake-link")) return "<<" + n.textContent + ">>";
-      if (is(n, "span.tw-link, span.ig-tag")) return n.textContent; // a hashtag or @mention goes blue by itself
+      if (is(n, "span.tw-link, span.ig-link")) return n.textContent; // a hashtag or @mention goes blue by itself
       if (is(n, "br")) return "\n";
       return no();
     }).join("").replace(/^\s+|\s+$/g, "");
@@ -2019,7 +2019,7 @@
         taps.unshift({ by: (tap.classList.contains("me") ? char(b.pov) || no() : personByName(r[1], true)).id, emoji: tap.textContent.replace(h.textContent, "").replace(/\]$/, "") });
       }
       m.reacts = taps;
-      if (cl.contains("pic")) {
+      if (cl.contains("photo")) {
         var img = ns.length === 1 && is(ns[0], "img") ? ns[0] : null;
         if (img) m.photos = [{ url: img.getAttribute("src"), alt: img.getAttribute("alt") || "", desc: "", land: false }];
         else m.photos = [{ url: "", alt: "", desc: ns.map(function (n) { return n.textContent; }).join("").replace(/^\[|\]$/g, ""), land: false }];
@@ -2036,7 +2036,7 @@
     var col = el.className.match(/(?:^|\s)colour(\d+)/); if (col) c.colour = col[1];
     if (!is(el, ".wa-pfp, .tw-pfp, .ig-pfp, [class*=-pfp]")) return;
     var img = el.querySelector("img");
-    if (img) { c.pic = img.getAttribute("src"); c.alt = img.getAttribute("alt") || ""; c.land = img.classList.contains("land"); if (c.alt === "Profile picture of " + nameOf(c)) c.alt = ""; return; }
+    if (img) { c.pic = img.getAttribute("src"); c.alt = img.getAttribute("alt") || ""; c.land = img.classList.contains("landscape"); if (c.alt === "Profile picture of " + nameOf(c)) c.alt = ""; return; }
     var txt = words(el);
     c.showInitials = !!txt;
     if (txt) c.initials = txt === initials(Object.assign({}, c, { initials: "" })) ? "" : txt;
@@ -2045,8 +2045,8 @@
   // a WhatsApp group name: a profile, or typed (with "~ " and a phone number for someone not saved)
   function waWho(p) {
     if (p.querySelector("span.name[class*=pfp-]")) return personIn(p);
-    var c = p.cloneNode(true), num = c.querySelector(".wa-num");
-    c.querySelectorAll(".hide, .wa-num").forEach(function (x) { x.remove(); });
+    var c = p.cloneNode(true), num = c.querySelector(".wa-no");
+    c.querySelectorAll(".hide, .wa-no").forEach(function (x) { x.remove(); });
     var name = words(c).replace(/^~ /, ""), who = S.cast.filter(function (x) { return x.kind === "oneoff" && nameOf(x) === name; })[0] || freshChar(name);
     if (num && fresh.indexOf(who.id) >= 0) who.num = words(num);
     looks(who, p);
@@ -2062,13 +2062,13 @@
     var bar = null;
     if (is(ks[k], "table.wa-bar")) {
       bar = ks[k++]; b.header = "bar";
-      var tt = bar.querySelector("td.wa-title"), st = bar.querySelector("td.wa-sub"); if (!tt || !st) no();
+      var tt = bar.querySelector("td.wa-title"), st = bar.querySelector("td.wa-status"); if (!tt || !st) no();
       b.title = tt.querySelector("span.name") ? "" : tt.textContent; b.sub = st.textContent;
     } else if (is(ks[k], "p.mob-head")) { b.header = "simple"; headBack(b, ks[k++]); }
     else b.header = "none";
     var body = ks[k++]; if (!is(body, "div.mob-body")) no();
     b.bar = "none";
-    if (is(ks[k], "p.wa-input")) { var ph = ks[k++].querySelector(".wa-ph"); if (!ph) no(); b.bar = ph.classList.contains("typed") ? "typed" : "empty";
+    if (is(ks[k], "p.wa-input")) { var ph = ks[k++].querySelector(".wa-placeholder"); if (!ph) no(); b.bar = ph.classList.contains("typed") ? "typed" : "empty";
       if (b.bar === "typed") { var pn = inl(ph); if (is(pn[pn.length - 1], "span.cursor")) { b.cursor = true; pn.pop(); } b.barText = textBack(pn); } }
     if (ks[k]) no();
     var m = null, lastIn = null, rowless = false;
@@ -2112,15 +2112,15 @@
         var cslug = cp.className.match(/(?:^|\s)pfp-([a-z0-9-]+)/) || (cp.querySelector("[class*=pfp-]") || {}).className && cp.querySelector("[class*=pfp-]").className.match(/(?:^|\s)pfp-([a-z0-9-]+)/);
         var cc = cslug ? personBySlug(cslug[1]) : (function () { var x = main.cloneNode(true); x.querySelector("span").remove(); var nm = words(x); return S.cast.filter(function (c) { return c.kind === "oneoff" && nameOf(c) === nm; })[0] || freshChar(nm); })();
         looks(cc, cp); m.contact = cc.id;
-        if (!is(ns[ns.length - 1], "p.wa-cbtn")) no();
+        if (!is(ns[ns.length - 1], "p.wa-contact-btn")) no();
         ns.pop();
       } else if (is(main, "p.wa-photos")) {
         m.photos = Array.prototype.map.call(main.querySelectorAll(".wa-photo"), function (s) {
           var img = s.querySelector("img");
-          return img ? { url: img.getAttribute("src"), alt: img.getAttribute("alt") || "", desc: "", land: img.classList.contains("land") } : { url: "", alt: "", desc: words(s).replace(/^\[|\]$/g, ""), land: false };
+          return img ? { url: img.getAttribute("src"), alt: img.getAttribute("alt") || "", desc: "", land: img.classList.contains("landscape") } : { url: "", alt: "", desc: words(s).replace(/^\[|\]$/g, ""), land: false };
         });
         if (is(ns[0], "p.wa-caption")) m.text = textBack(inl(ns.shift()));
-      } else if (is(main, "div.wa-link") || is(main, "p") && main.querySelector(".wa-ln")) {
+      } else if (is(main, "div.wa-link") || is(main, "p") && main.querySelector(".wa-link-text")) {
         var lk = { url: "", title: "", desc: "", img: "", alt: "", imgdesc: "", video: "", showUrl: false };
         if (!is(main, "div.wa-link")) { lk.url = words(main); lk.showUrl = true; main = ns.shift(); if (!is(main, "div.wa-link")) no(); }
         kids(main).forEach(function (x) {
@@ -2175,7 +2175,7 @@
         else {
           var col = gp.className.match(/colour(\d+)/), gi = gp.querySelector("img");
           if (col) b.gp.colour = col[1];
-          if (gi) { b.gp.pic = gi.getAttribute("src"); b.gp.alt = gi.getAttribute("alt") || ""; b.gp.land = gi.classList.contains("land"); }
+          if (gi) { b.gp.pic = gi.getAttribute("src"); b.gp.alt = gi.getAttribute("alt") || ""; b.gp.land = gi.classList.contains("landscape"); }
           else { b.gp.showInitials = !!words(gp); b.gp.initials = words(gp); }
         }
       } else looks(others(b)[0], gp);
@@ -2189,7 +2189,7 @@
     if (gs) { b.gp.from = personBySlug(gs).id; return; }
     var col = el.className.match(/colour(\d+)/), gi = el.querySelector("img");
     if (col) b.gp.colour = col[1];
-    if (gi) { b.gp.pic = gi.getAttribute("src"); b.gp.alt = gi.getAttribute("alt") || ""; b.gp.land = gi.classList.contains("land"); }
+    if (gi) { b.gp.pic = gi.getAttribute("src"); b.gp.alt = gi.getAttribute("alt") || ""; b.gp.land = gi.classList.contains("landscape"); }
     else { b.gp.showInitials = !!words(el); b.gp.initials = words(el); }
   }
   READERS.twdm = function (els) {
@@ -2221,7 +2221,7 @@
         var from = out ? owner(b, name) : name ? personByName(name, true) : who;
         if (!from) no();
         m = newMsg(from.id, "");
-        if (cl.contains("pic")) {
+        if (cl.contains("photo")) {
           var img = ns.length === 1 && is(ns[0], "img") ? ns[0] : null;
           m.photos = [img ? { url: img.getAttribute("src"), alt: img.getAttribute("alt") || "", desc: "", land: false } : { url: "", alt: "", desc: ns.map(function (n) { return n.textContent; }).join("").replace(/^\[|\]$/g, ""), land: false }];
         } else if (cl.contains("voice")) {
@@ -2298,20 +2298,20 @@
       var col = pf.className.match(/(?:^|\s)colour(\d+)/); m.postCol = col ? col[1] : "";
       m.postIni = words(pf) === m.postAcc.charAt(0).toUpperCase() ? "" : words(pf);
     }
-    if (is(ks[0], "div.ig-car")) {
+    if (is(ks[0], "div.ig-carousel")) {
       var phs = Array.prototype.map.call(ks.shift().querySelectorAll(".ig-photo"), function (x) {
         var img = x.querySelector("img");
-        return img ? { url: img.getAttribute("src"), alt: img.getAttribute("alt") || "", desc: "", land: img.classList.contains("land") } : { url: "", alt: "", desc: words(x).replace(/^\[|\]$/g, ""), land: false };
+        return img ? { url: img.getAttribute("src"), alt: img.getAttribute("alt") || "", desc: "", land: img.classList.contains("landscape") } : { url: "", alt: "", desc: words(x).replace(/^\[|\]$/g, ""), land: false };
       });
       if (phs.length < 2) no();
       var f = phs.shift(); m.postImg = f.url; m.postAlt = f.alt; m.postDesc = f.desc; m.postLand = f.land; m.postMore = phs;
     } else if (is(ks[0], "p.igdm-post-img")) {
       var im = ks.shift(), img = im.querySelector("img");
-      if (img) { m.postImg = img.getAttribute("src"); m.postAlt = img.getAttribute("alt") || ""; m.postLand = img.classList.contains("land"); }
+      if (img) { m.postImg = img.getAttribute("src"); m.postAlt = img.getAttribute("alt") || ""; m.postLand = img.classList.contains("landscape"); }
       else if (im.classList.contains("text")) m.postDesc = words(im).replace(/^\[|\]$/g, "");
       else no();
     }
-    if (is(ks[0], "p.igdm-post-cap")) { var cn = inl(ks.shift()); if (!is(cn[0], "b")) no(); cn.shift(); m.postCap = textBack(cn); }
+    if (is(ks[0], "p.igdm-post-caption")) { var cn = inl(ks.shift()); if (!is(cn[0], "b")) no(); cn.shift(); m.postCap = textBack(cn); }
     if (ks.length) no();
     return { name: name, rx: rx };
   }
@@ -2497,7 +2497,7 @@
     // a poll: still open, or with its results
     if (is(ks[0], "p.tw-opt")) {
       m.hasPoll = true;
-      var lines = [], res = ks[0].classList.contains("res");
+      var lines = [], res = ks[0].classList.contains("results");
       while (is(ks[0], "p.tw-opt")) {
         var o = ks.shift();
         if (!res) { lines.push(o.textContent); continue; }
@@ -2519,16 +2519,16 @@
         return noHide(bar).textContent.replace(/\s*✓$/, "") + " " + pct.textContent;
       }).join("\n");
     }
-    if (is(ks[0], "div.tw-media.video")) {
+    if (is(ks[0], "div.tw-photos.video")) {
       m.hasVideo = true; var f = ks[0].querySelector("iframe"); if (!f) no();
       m.vUrl = f.getAttribute("src"); m.vTitle = f.getAttribute("title") || "";
       var vd = ks.shift().querySelector(".vid-desc"); if (vd) m.vDesc = words(vd).replace(/^\[|\]$/g, "");
-    } else if (is(ks[0], "p.tw-media")) {
+    } else if (is(ks[0], "p.tw-photos")) {
       m.hasPics = true;
       var med = ks.shift(), cells = med.querySelectorAll(".tw-photo");
       m.photos = (cells.length ? Array.prototype.slice.call(cells) : [med]).map(function (cell) {
         var img = cell.querySelector("img");
-        return img ? { url: img.getAttribute("src"), alt: img.getAttribute("alt") || "", desc: "", land: img.classList.contains("land") } : { url: "", alt: "", desc: words(cell).replace(/^\[|\]$/g, ""), land: false };
+        return img ? { url: img.getAttribute("src"), alt: img.getAttribute("alt") || "", desc: "", land: img.classList.contains("landscape") } : { url: "", alt: "", desc: words(cell).replace(/^\[|\]$/g, ""), land: false };
       });
     }
     if (is(ks[0], "p.tw-warn")) { m.warn = true; ks.shift(); }
@@ -2547,12 +2547,12 @@
     kids(st).forEach(function (x) {
       var ic = x.querySelector(".ic"), what = ic ? (ic.className.match(/ic-tw-(\w+)/) || [])[1] : ""; if (!what) no();
       if (what === "reply") m.replies = countOf(x);
-      else if (what === "repost") { if (x.classList.contains("tw-locked")) { if (!m.locked) m.noRepost = true; } else { m.reposted = x.classList.contains("tw-rt"); m.reposts = countOf(x); } }
+      else if (what === "repost") { if (x.classList.contains("locked")) { if (!m.locked) m.noRepost = true; } else { m.reposted = x.classList.contains("reposted"); m.reposts = countOf(x); } }
       else if (what === "like") {
         if (is(x, "details")) { m.likeClick = true; m.liked = x.open; var off = x.querySelector(".off"); m.likes = off ? words(off) : ""; }
-        else { m.liked = x.classList.contains("tw-liked"); m.likes = countOf(x); }
+        else { m.liked = x.classList.contains("liked"); m.likes = countOf(x); }
       } else if (what === "views") m.views = countOf(x);
-      else if (what === "bookmark") { if (is(x, "details")) { m.saveClick = true; m.saved = x.open; } else m.saved = x.classList.contains("tw-saved"); }
+      else if (what === "bookmark") { if (is(x, "details")) { m.saveClick = true; m.saved = x.open; } else m.saved = x.classList.contains("saved"); }
       else if (what !== "share") no();
     });
     return m;
@@ -2652,18 +2652,18 @@
     if (is(ns[k], "span.hide") && is(ns[k + 1], "span")) { var u = ns[k + 1].textContent; m.song = /^♫ /.test(u); m.under = u.replace(/^♫ /, ""); k += 2; }
     if (k !== ns.length) no();
     // the photo, or a carousel of them
-    if (is(ks[0], "p.ig-photo, div.ig-car")) {
+    if (is(ks[0], "p.ig-photo, div.ig-carousel")) {
       var pe = ks.shift(), phs = is(pe, "p") ? [pe] : Array.prototype.slice.call(pe.querySelectorAll(".ig-photo"));
-      var shape = (phs[0].className.match(/ig-pic-(\w+)/) || [])[1]; m.shape = shape || "";
+      var shape = (phs[0].className.match(/(?:^|\s)(square|portrait)(?:\s|$)/) || [])[1]; m.shape = shape === "square" ? "sq" : shape || "";
       m.photos = phs.map(function (x) {
         var img = x.querySelector("img");
-        return img ? { url: img.getAttribute("src"), alt: img.getAttribute("alt") || "", desc: "", land: img.classList.contains("land") } : { url: "", alt: "", desc: words(x).replace(/^\[|\]$/g, ""), land: false };
+        return img ? { url: img.getAttribute("src"), alt: img.getAttribute("alt") || "", desc: "", land: img.classList.contains("landscape") } : { url: "", alt: "", desc: words(x).replace(/^\[|\]$/g, ""), land: false };
       });
     }
     if (is(ks[0], "details.ig-tagged")) {
       m.tags = Array.prototype.map.call(ks.shift().querySelectorAll("p.ig-person"), function (p) {
-        var fb = p.querySelector(".ig-fbtn"), pc = p.querySelector(".ig-pfp"), hn = p.querySelector(".handle"); if (!pc || !hn) no();
-        var pn = p.querySelector(".ig-pname"), who;
+        var fb = p.querySelector(".ig-following"), pc = p.querySelector(".ig-pfp"), hn = p.querySelector(".handle"); if (!pc || !hn) no();
+        var pn = p.querySelector(".ig-person-name"), who;
         if (hn.querySelector("[class*=pfp-]") || is(hn, "[class*=pfp-]") || !pn) who = igPerson(hn);
         else { // a one-off: their name, and their username if it isn't the usual one made from it
           var h = words(hn), n = words(pn);
@@ -2674,13 +2674,13 @@
         return { who: who.id, fol: !fb ? "none" : fb.classList.contains("blue") ? "follow" : "following", tick: !!p.querySelector(".ig-tick"), lock: !!p.querySelector(".ig-lock") };
       });
     }
-    var act = ks.shift(); if (!is(act, "div.ig-actions")) no();
+    var act = ks.shift(); if (!is(act, "div.ig-stats")) no();
     kids(act).forEach(function (x) {
       var cnt = x.querySelector(".ig-count:not(.on)");
       if (is(x, "details.like")) { m.likeClick = true; m.liked = x.open; m.likes = cnt ? cnt.textContent : ""; }
       else if (is(x, "details.save")) m.saved = x.open;
       else if (x.querySelector(".ic-heart")) { m.likeClick = false; m.likes = cnt ? cnt.textContent : ""; }
-      else if (x.querySelector(".cm")) m.cmCount = cnt ? cnt.textContent : "";
+      else if (x.querySelector(".comment")) m.cmCount = cnt ? cnt.textContent : "";
       else if (x.querySelector(".ic-repost")) m.reposts = cnt ? cnt.textContent : "";
       else if (!x.querySelector(".ic-share")) no();
     });
@@ -2716,10 +2716,10 @@
     settings(b, els[0], "ig", function (c) { return c === "ig-feed"; });
     var ks = kids(els[0]);
     b.top = "none"; b.myStory = false;
-    if (is(ks[0], "p.ig-apptop")) b.top = ks.shift().querySelector(".ig-dot") ? "new" : "plain";
+    if (is(ks[0], "p.ig-apptop")) b.top = ks.shift().querySelector(".ig-badge") ? "new" : "plain";
     if (is(ks[0], "div.ig-stories")) {
       b.stories = Array.prototype.map.call(ks.shift().querySelectorAll("p.ig-story"), function (p) {
-        var pc = p.querySelector(".ig-pfp"), sn = p.querySelector(".ig-sname"); if (!pc || !sn) no();
+        var pc = p.querySelector(".ig-pfp"), sn = p.querySelector(".ig-story-name"); if (!pc || !sn) no();
         if (p.classList.contains("me")) { b.myStory = true; b.pov = byCircle(pc).id; return ""; }
         var ring = p.classList.contains("close") ? " (close)" : p.classList.contains("plain") ? " (seen)" : "";
         var c = S.cast.filter(function (x) { return igName(x) === sn.textContent; })[0];
@@ -2777,6 +2777,22 @@
     S.cast = JSON.parse(keep);
     return null;
   }
+  // a chat made before the skin's class names changed: the same chat with each old name swapped for its new one
+  // (from class-names.js), or null if it has none of the old names
+  function renamedEls(els) {
+    var map = {}, hit = false;
+    (typeof MEGASKIN_RENAMES !== "undefined" ? MEGASKIN_RENAMES : []).forEach(function (r) { map[r[0]] = r[1]; });
+    var out = els.map(function (e) {
+      var c = e.cloneNode(true);
+      [c].concat(Array.prototype.slice.call(c.querySelectorAll("[class]"))).forEach(function (x) {
+        if (!x.getAttribute("class")) return;
+        var cls = x.getAttribute("class").split(/\s+/).map(function (k) { if (map.hasOwnProperty(k)) { hit = true; return map[k]; } return k; });
+        x.setAttribute("class", cls.join(" "));
+      });
+      return c;
+    });
+    return hit ? out : null;
+  }
   // a whole chapter's HTML into blocks; chats that haven't changed keep their boxes just as they were
   function readPieces(text, skip) {
     var box = document.createElement("div");
@@ -2803,7 +2819,8 @@
     flush();
     return pieces.map(function (p) {
       var html = p.html || p.els.map(function (e) { return e.outerHTML; }).join("\n");
-      return old(html) || p.els && readChat(p.els) || rawBlock(html);
+      var older = p.els && renamedEls(p.els);
+      return old(html) || p.els && (readChat(p.els) || older && readChat(older)) || rawBlock(html);
     });
   }
   // fromBox: typed or pasted in the HTML box, so it's the same work, just changed
