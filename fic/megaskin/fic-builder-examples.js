@@ -23,7 +23,7 @@
 //          saved, likesLine ("count", "faces" or "none"), faces (cast names), more, viewAll, comments ("who: comment" lines)
 //          and tags ([who, "following", "follow" or "none", verified]). A feed can set top, myStory and stories.
 //          One-offs can set ighandle, their Instagram username.
-//          Instagram DMs ("igdm") take shared (a shared post, reel or story), status, and reactions: waReacts (the emojis),
+//          Instagram DMs ("igdm") take shared and storyText (a shared story in an outlined box, with the text as the words sent with it), status, and reactions: waReacts (the emojis),
 //          faces (cast names: who reacted) and waCount (how many, if not just the faces),
 //          photos, reply, and a shared post card: hasPost, postReel, postShare, postSave, postAcc (a typed username), postIni, postCol,
 //          postImg, postAlt, postLand, postDesc, postMore (more pictures for a carousel: url, alt, desc, land), postCap,
@@ -246,7 +246,7 @@ window.FB_EXAMPLES = [
     msgs: [
       ["Shane", "you replied to my story"],
       ["Ilya", "I did not"],
-      ["Shane", "Shared a story: \"6am skate. Again.\"", { shared: true }],
+      ["Shane", "remember this one?", { shared: true, storyText: "Shared a story: \"6am skate. Again.\"" }],
       ["Shane", "this story. you replied with a heart"],
       ["Ilya", "ok maybe I did"],
       ["Shane", "", { hasPost: true, postAcc: "fakehockeynews", postIni: "FH", postCol: "3", postDesc: "A blurry photo of two hockey players hugging in a car park",
