@@ -806,6 +806,16 @@
     function nm(x) { return b.group ? igName(x) : nameOf(x); }
     b.msgs.forEach(function (m) {
       if (m.from === "sys") { close(); body.push('<p class="mob-sys">' + fmt(m.text) + "</p>"); return; }
+      if (m.from === "typing") {
+        // typing dots: a message from whoever is typing, so in a group they go in that person's row
+        var tc = typer(b, m); if (!tc) return;
+        var tOut = tc.id === b.pov, tg = b.group && !tOut;
+        if (!tg || (row && row.from !== tc.id)) close();
+        if (tg && !row) row = { from: tc.id, first: true, lines: (b.pics !== false ? [circle("ig-pfp", tc, null)] : []).concat(['<p class="who">' + igNameHTML(tc, null) + '<span class="hide">:</span></p>']) };
+        if (tg) row.first = false;
+        (tg ? row.lines : body).push('<p class="msg ' + (tOut ? "out" : "in") + ' typing-indicator"><span class="hide">' + typingHide(tc, true) + "</span><span></span><span></span><span></span></p>");
+        return;
+      }
       var c = char(m.from); if (!c) return;
       var out = m.from === b.pov, grouped = b.group && !out, side = out ? "out" : "in";
       var q = m.replyTo && b.msgs.filter(function (x) { return x.id === m.replyTo && char(x.from); })[0];
@@ -1320,7 +1330,7 @@
 
   function speakerOptions(b) {
     return S.cast.map(function (c) { return [c.id, nameOf(c) + (c.id === b.pov ? " (phone owner)" : "")]; })
-      .concat([["sys", "Date or notice line"]]).concat(b.type === "twdm" || b.type === "igdm" ? [] : [["typing", "Typing dots"]]);
+      .concat([["sys", "Date or notice line"]]).concat(b.type === "twdm" ? [] : [["typing", "Typing dots"]]);
   }
 
   function msgRow(b, bi, m, mi) {
@@ -2313,6 +2323,11 @@
       if (is(p, "p.igdm-quote")) {
         if (!quote || quote.text != null || !p.classList.contains(quote.side)) no();
         quote.mine = p.classList.contains("mine"); quote.text = noHide(p).textContent; return;
+      }
+      if (is(p, "p.msg.typing-indicator")) {
+        var tem = p.querySelector("span.hide em"), tout = p.classList.contains("out"); if (quote || !tem) no();
+        var tby = who || (tout ? owner(b, tem.textContent) : personByName(tem.textContent, true)); if (!tby) no();
+        b.msgs.push(m = newMsg("typing", "")); m.by = tby.id; return;
       }
       var card = is(p, "div.igdm-post"), lnk = is(p, "div.igdm-link"), sh = is(p, "p.igdm-shared"), out = !sh && p.classList.contains("out");
       if (!card && !lnk && !sh && !is(p, "p.msg")) no();
