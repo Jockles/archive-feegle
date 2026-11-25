@@ -1,19 +1,6 @@
 /* >>>>>>>>>> MODULE: Discord (start) >>>>>>>>>> */
 
-/* ==========================================================
-   MODULE: DISCORD   (classes: dc)
-   Discord (dc). Adapted from "Discord Work Skin & Tutorial" by BookKeep
-   (https://archiveofourown.org/works/42027846). Please credit them in your author's
-   notes if you post with this module.
-   Differences from the original: every rule is scoped under #workskin .dc (the original
-   used .window), and the parts are renamed to match the other apps: every part starts
-   with dc- (dc-message, dc-name, dc-time, dc-text...). Themes: theme-auto (follows the
-   reader's device), theme-dark, theme-light. Add colour1-colour10 to a dc-name for its
-   name and circle colour, or a profile from the CORE for a picture and name colour.
-   Discord doesn't use the mob box: it is its own wide window, but it does use the
-   CORE hidden text and translations.
-   Needs the CORE block.
-   ========================================================== */
+/* ---------- MODULE: DISCORD   (classes: dc) ---------- */
 
 #workskin .dc.narrow {
   width: 380px;
@@ -186,16 +173,9 @@
   padding: 0.125rem 0 0.125rem 0;
 }
 
-/* --- colours: add colour1 to colour10 to the dc-name, like <b class="dc-name colour3">Name</b> ---
-   One class colours both the name and the round picture. The colours themselves are in the
-   COLOURS section of the CORE, shared with every other app. With no colour class, the name is
-   plain and the circle is Discord blue. colour1-colour10 also work on any other text in a
-   message, like a name in a welcome line. */
+/* --- colours: add colour1 to colour10 to the dc-name, like <b class="dc-name colour3">Name</b> --- */
 
-/* --- profile pictures, the same way as every other module ---
-   Put a dc-pfp span first inside the username, with a profile or a picture tag in it:
-   <b class="dc-name pfp-shane"><span class="dc-pfp"><span class="pfp pfp-shane"></span></span>Shane</b>
-   It sits exactly where the coloured circle is, in messages and in replies. */
+/* --- profile pictures, the same way as every other module --- */
 #workskin .dc .dc-pfp {
   display: inline-block; /* inline, like the plain circle, so Firefox keeps it level with the name */
   position: absolute;

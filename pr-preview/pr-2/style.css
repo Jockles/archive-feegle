@@ -6,17 +6,18 @@
 :root {
   --header: #6c392a;      /* terracotta header band */
   --header-dark: #354732; /* green menu bar and footer */
-  --header-text: #fff8ef;
-  --page: #fbf6ef;
-  --ink: #2b2420;
-  --muted: #6b5a50;
+  --outline: #2a3828;     /* dark green for outlines, such as the help pop-ups */
+  --header-text: #faf4ec;
+  --page: #f7f3ee;
+  --ink: #2a2522;
+  --muted: #6a5f58;
   --link: #6c392a;
   --visited: #354732;
-  --hover: #471908;       /* dark red on hover */
-  --box-edge: #cdb6a3;
-  --box-fill: #f5ebe1;
-  --tag-fill: #eedccb;
-  --rule: #e2d3c4;
+  --hover: #4a2419;       /* darker terracotta on hover */
+  --box-edge: #cfc3b8;
+  --box-fill: #f0e9e1;
+  --tag-fill: #eadfd4;
+  --rule: #e0d6cc;
 }
 
 /* Dark mode. It follows the reader's device setting until they use the
@@ -26,51 +27,60 @@
   :root:not([data-theme="light"]) {
     --header: #6c392a;
     --header-dark: #354732;
-    --header-text: #fbefe3;
-    --page: #241414;
-    --ink: #efe3d6;
-    --muted: #bba796;
-    --link: #e68274;
-    --visited: #b4c39a;
-    --hover: #f6b8ae;
-    --box-edge: #44535a;
-    --box-fill: #273033;
-    --tag-fill: #471908;
-    --rule: #3e2a26;
+    --header-text: #f3ebe1;
+    --page: #121712;
+    --ink: #ece4da;
+    --muted: #b3a79c;
+    --link: #d9b26f;
+    --visited: #a9b79a;
+    --hover: #e8cfa0;
+    --box-edge: #4a3f38;
+    --box-fill: #3a241c;
+    --tag-fill: #2a211d;
+    --rule: #352c27;
     color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
   --header: #6c392a;
   --header-dark: #354732;
-  --header-text: #fbefe3;
-  --page: #241414;
-  --ink: #efe3d6;
-  --muted: #bba796;
-  --link: #e68274;
-  --visited: #b4c39a;
-  --hover: #f6b8ae;
-  --box-edge: #44535a;
-  --box-fill: #273033;
-  --tag-fill: #471908;
-  --rule: #3e2a26;
+  --header-text: #f3ebe1;
+  --page: #121712;
+  --ink: #ece4da;
+  --muted: #b3a79c;
+  --link: #d9b26f;
+  --visited: #a9b79a;
+  --hover: #e8cfa0;
+  --box-edge: #4a3f38;
+  --box-fill: #3a241c;
+  --tag-fill: #2a211d;
+  --rule: #352c27;
   color-scheme: dark;
 }
 
-/* A little of the old blue for variety: tags, the What's new box and buttons.
-   It stays the same dark blue in dark mode. */
+/* Buttons: the dark green outline colour, darker still on hover.
+   --button-soft is the pale fill of the Tutorial and Help text buttons. */
 :root {
-  --blue: #0b5563;
-  --blue-dark: #063b45;
-  --blue-text: #ffffff;
-  --tag-bg: #e3f1ec;
-  --tag-ink: #0b5563;
-  --news-date: #0b5563;
+  --button: #2a3828;
+  --button-dark: #1d271c;
+  --button-text: #faf4ec;
+  --button-soft: #e2e7dc;
+  --button-soft-ink: #2a3828;
 }
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) { --tag-bg: #0b5563; --tag-ink: #e3f1ec; --news-date: #8fbcc1; }
+  :root:not([data-theme="light"]) { --button-soft: #2a3828; --button-soft-ink: #e2e7dc; }
 }
-:root[data-theme="dark"] { --tag-bg: #0b5563; --tag-ink: #e3f1ec; --news-date: #8fbcc1; }
+:root[data-theme="dark"] { --button-soft: #2a3828; --button-soft-ink: #e2e7dc; }
+
+/* Tags and the What's new box use the terracotta. */
+:root {
+  --tag-text: #6c392a;
+  --news-date: #6c392a;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) { --tag-text: #f3ebe1; --news-date: #d9b26f; }
+}
+:root[data-theme="dark"] { --tag-text: #f3ebe1; --news-date: #d9b26f; }
 
 body {
   margin: 0;
@@ -113,13 +123,13 @@ header p { margin: 2px 0 0; font-size: 0.9em; opacity: 0.85; }
   font: inherit;
   font-size: 0.8em;
   padding: 4px 10px;
-  color: var(--blue-text);
-  background: var(--blue);
-  border: 1px solid var(--blue-dark);
+  color: var(--button-text);
+  background: var(--button);
+  border: 1px solid var(--button-dark);
   border-radius: 3px;
   cursor: pointer;
 }
-.theme-toggle:hover, .theme-toggle:focus-visible { background: var(--blue-dark); }
+.theme-toggle:hover, .theme-toggle:focus-visible { background: var(--button-dark); }
 
 /* Label shown on draft previews only (see theme.js) */
 .draft-banner {
@@ -146,6 +156,33 @@ nav a, nav a:visited {
   font-size: 0.95em;
 }
 nav a:hover, nav a:focus { background: var(--header); color: var(--header-text); }
+
+/* Tools: a drop-down in the menu bar. It opens on hover, or when "Tools" is
+   tabbed to or tapped (it can take focus), with no script needed. */
+nav li.menu-drop { position: relative; }
+.menu-drop-label {
+  display: block;
+  padding: 8px 12px;
+  color: var(--header-text);
+  font-size: 0.95em;
+  cursor: pointer;
+}
+.menu-drop-label::after { content: " \25BE"; font-size: 0.8em; }
+.menu-drop:hover > .menu-drop-label, .menu-drop:focus-within > .menu-drop-label { background: var(--header); }
+nav li.menu-drop > ul {
+  display: none;
+  position: absolute;
+  z-index: 40;
+  top: 100%;
+  left: 0;
+  min-width: 14em;
+  flex-direction: column;
+  background: var(--header-dark);
+  border: 1px solid var(--outline);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+}
+nav li.menu-drop:hover > ul, nav li.menu-drop:focus-within > ul { display: flex; }
+nav li.menu-drop > ul a { font-size: 0.95em; white-space: nowrap; }
 
 main {
   max-width: 900px;
@@ -186,14 +223,14 @@ h6 { font-size: 1.1em; }
 }
 .blurb h3 { margin: 0; font-size: 1.15em; }
 .blurb .fandom { margin: 0 0 6px; color: var(--muted); font-size: 0.9em; }
-.news { border-color: var(--blue); }
+.news { border-color: var(--header); }
 .news b { color: var(--news-date); }
 
 .blurb .summary { margin: 8px 0 8px 1.5em; }
 .stats { font-size: 0.85em; color: var(--muted); margin: 0; }
 
 .tags { list-style: none; padding: 0; margin: 6px 0; font-size: 0.9em; display: flex; flex-wrap: wrap; }
-.tags li { background: var(--tag-bg); color: var(--tag-ink); border: 1px solid var(--blue); border-radius: 3px; padding: 0 6px; margin: 0 6px 6px 0; }
+.tags li { background: var(--tag-fill); color: var(--tag-text); border: 1px solid var(--header); border-radius: 3px; padding: 0 6px; margin: 0 6px 6px 0; }
 .tags li a, .tags li a:visited { color: inherit; }
 .tags .warning a { font-weight: bold; }
 
@@ -222,8 +259,8 @@ h6 { font-size: 1.1em; }
 .chapter-title { text-align: center; font-size: 1.8em; }
 .style-toggle { text-align: center; margin: 0 0 6px; }
 .style-toggle button { font: inherit; font-size: 0.85em; padding: 3px 10px; cursor: pointer;
-  background: var(--blue); color: var(--blue-text); border: 1px solid var(--blue-dark); border-radius: 3px; }
-.style-toggle button:hover, .style-toggle button:focus-visible { background: var(--blue-dark); }
+  background: var(--button); color: var(--button-text); border: 1px solid var(--button-dark); border-radius: 3px; }
+.style-toggle button:hover, .style-toggle button:focus-visible { background: var(--button-dark); }
 .chapter-index { padding-left: 1.6em; }
 
 /* Code in tutorials, wrapped so long lines never push the page sideways */
@@ -253,13 +290,18 @@ footer {
   padding: 14px;
 }
 footer a, footer a:visited { color: var(--header-text); }
-footer a:hover, footer a:focus { color: #e68274; }
+footer a:hover, footer a:focus { color: #e8cfa0; }
 
 @media (max-width: 600px) {
   header { padding: 12px 16px; }
   header h1 { font-size: 1.6em; }
   .theme-toggle { top: 12px; right: 12px; }
   nav a { padding: 8px 9px; }
+  .menu-drop-label { padding: 8px 9px; }
+  /* on a phone the drop-down opens as a full-width strip under the menu bar */
+  nav { position: relative; }
+  nav li.menu-drop { position: static; }
+  nav li.menu-drop > ul { left: 12px; right: 12px; min-width: 0; }
   .work-meta { grid-template-columns: 1fr; }
   .work-meta dt { text-align: left; }
 }

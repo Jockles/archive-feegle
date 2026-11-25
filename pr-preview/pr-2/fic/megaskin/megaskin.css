@@ -1,74 +1,23 @@
 /* ==========================================================
-   SOCIAL MEDIA WORK SKIN FOR AO3 (the "megaskin")
-   Chats and posts for: iMessage, WhatsApp, Twitter/X (posts,
-   replies, DMs), Instagram (posts, comments, DMs), Tumblr,
-   Gmail, a generic email window, and Discord.
+   MEGASKIN: a social media work skin for AO3, by Jockles
+   iMessage, WhatsApp, Twitter/X, Instagram, Tumblr, email and Discord.
 
-   HOW TO USE
-   Paste this whole file into: Dashboard > Skins > Create Work
-   Skin > CSS. Then pick the skin under "Associations" when you
-   post, and use the HTML from the tutorial in the chapter text.
+   Paste all of this into Dashboard > Skins > Create Work Skin, then
+   pick the skin under Associations when you post your fic.
 
-   HOW IT IS ORGANISED
-   - Every rule starts with #workskin, as AO3 requires.
-   - No variables or @import (AO3 doesn't support them).
-   - CORE comes first. Every module needs it (the chat box, the
-     width, scrolling, hidden text, round pictures, translations,
-     profiles and the ten shared colours).
-   - Then one MODULE per platform, in the same order as the
-     tutorial: iMessage, WhatsApp, Twitter/X, Instagram, Tumblr,
-     Email (Gmail + generic), Discord.
-   - Each module is complete in itself apart from CORE. It holds
-     its own layout and colours, link colours, scrolling, dark
-     theme and auto theme (and WhatsApp's wallpapers), then the
-     pictures for its buttons and ticks in an Icons section. Each one
-     runs from its ">>>>>>>>>> MODULE" line to its "<<<<<<<<<< MODULE"
-     line, so you can keep CORE plus only the modules you use.
-   - Every chat takes a module class (imsg, wa, tw, ...) and a
-     theme class (theme-auto, theme-light or theme-dark). Add
-     "wide" for full width at any size; Discord is wide by
-     default and takes "narrow".
-   - Long chats stop at about the height of a phone screen and
-     scroll. Add "no-scroll" to a chat to switch that off.
-   - NAMES: a part that belongs to one app starts with that
-     app's class, like tw-name, tb-header or dc-time, so two
-     apps can never clash. The shared pieces have the same
-     name in every app: msg, in, out, who, pfp, hide, me,
-     colour1-colour10, the theme classes, wide and no-scroll.
-     Small extra words that change a part (like tapped, cont,
-     save or green, added next to the part's own class) stay
-     plain words, because they only work alongside that part.
-   - ADDING AN APP: give it a short class (like tw), start its
-     parts with that class, build it light by default, and
-     follow the same order as the others: main rules, Links,
-     Scrolling, Dark theme, Auto theme. Then it slots in
-     between the other modules and needs nothing but the CORE.
+   The full tutorial, with all the HTML for every app, is on AO3:
+   https://archiveofourown.org/works/95456766
+   and on jockles.com: https://jockles.com/fic/megaskin/
+
+   Only using some apps? Keep CORE, plus each app's block from its
+   ">>>>>>>>>> MODULE" line to its "<<<<<<<<<< MODULE" line.
    ========================================================== */
 
 /* >>>>>>>>>> CORE (start) >>>>>>>>>> */
 
-/* ==========================================================
-   >>> CORE: needed by every module <<<
-   The chat box and its parts, the width classes, scrolling,
-   hidden text, video descriptions, round pictures, the flashing cursor,
-   link basics, hover/tap translations, character profiles and the ten
-   shared colours (colour1 to colour10). Keep this block whichever modules you use.
-   ========================================================== */
+/* ---------- CORE: needed by every module ---------- */
 
-/* ==========================================================
-   THEMES: AUTO / LIGHT / DARK
-   Every module has its own dark theme and auto theme, near the end of its block.
-   Add ONE theme class to each chat's container:
-     theme-auto   follows the READER's device or browser setting:
-                  dark if they use dark mode, light if not
-     theme-light  always light
-     theme-dark   always dark
-   e.g. <div class="mob imsg theme-auto">
-   With no theme class a chat is light, the same as theme-light, so the
-   normal rules of each module are its light theme.
-   AO3 doesn't let a work skin read the reader's AO3 site skin, so
-   "auto" uses their device/browser light-dark setting instead.
-   ========================================================== */
+/* ---------- THEMES: AUTO / LIGHT / DARK ---------- */
 
 /* ---------- The box every chat sits in, and its parts ---------- */
 
@@ -100,28 +49,14 @@
   opacity: 0.75;
 }
 
-/* ==========================================================
-   Width: phone (the default) or full width
-   Phone width is what every chat is designed for, and is recommended.
-   Add "wide" to a chat's container to let it fill the page instead,
-   e.g. <div class="mob imsg theme-auto wide">. The Twitter and Tumblr
-   modules add the same for their thread and feed boxes.
-   Discord is already wide; its module adds "narrow" for phone width.
-   ========================================================== */
+/* ---------- Width: phone (the default) or full width ---------- */
 
 #workskin .mob.wide {
   width: auto;
   max-width: none;
 }
 
-/* ==========================================================
-   Scrolling
-   Every chat is held to about the height of a phone screen (the width is 380px).
-   Chats with a header and a footer keep those in place and scroll the messages;
-   the rest scroll as a whole. Shorter chats are not affected.
-   To switch it off for one chat, add the class no-scroll to its container.
-   (Each module adds the scrolling for its own posts.)
-   ========================================================== */
+/* ---------- Scrolling ---------- */
 
 #workskin .mob-body { max-height: 580px; overflow-y: auto; overflow-x: hidden; }
 
@@ -147,12 +82,7 @@
 
 /* ---------- Small helpers: hidden text, video descriptions, round pictures, flashing cursor ---------- */
 
-/* a real profile picture inside any round picture circle (WhatsApp wa-pfp, Tumblr tb-pfp,
-   Gmail gm-pfp, Instagram ig-pfp, Discord dc-pfp): wrap the picture tag in a span with pfp, e.g.
-   <span class="wa-pfp colour1"><span class="pfp"><img src="..." alt="..."></span></span>
-   A normal picture (taller than wide, or square) is made as wide as the circle and the top of the
-   photo is kept in view, so faces aren't cut off. If the picture is wider than tall, add class="land"
-   to it: it is made as tall as the circle and centred from side to side instead. */
+/* a real profile picture inside any round picture circle (WhatsApp wa-pfp, Tumblr tb-pfp, Gmail gm-pfp, Instagram ig-pfp, Discord dc-pfp): wrap the picture tag in a span with pfp */
 #workskin .pfp {
   display: block;
   position: relative;
@@ -207,14 +137,10 @@
   margin: 0 auto;
 }
 
-/* text that only shows when the reader has "Hide Creator's Style" on, or in a download.
-   Use it to spell out who is speaking, or to describe an emoji or picture (see the tutorial).
-   The class is repeated so that nothing else in the workskin can make it show by mistake. */
+/* text that only shows when the reader has "Hide Creator's Style" on, or in a download. */
 #workskin .hide.hide.hide.hide { display: none; }
 
-/* video descriptions: <span class="vid-desc">[Video: what happens in the video]</span>
-   Put it straight after a video. It's moved off-screen rather than hidden, so screen
-   readers still read it out, and it shows as normal text when the workskin is off. */
+/* video descriptions */
 #workskin .vid-desc {
   position: absolute;
   left: -9999px;
@@ -261,13 +187,7 @@
 
 /* ---------- Hover and tap translations ---------- */
 
-/* ---- hover / tap translations ----
-   <a class="tl" href="#t1"><span class="orig">Croeso</span><span class="tltn"><span class="hide"> (</span>Welcome<span class="hide">)</span></span></a>
-   The reader sees "orig" with a dotted line under it. Hovering (computer) or tapping (phone) swaps in "tltn".
-   It works in ordinary text and inside any chat or post: the text takes on the colour of whatever it sits in,
-   including the light, dark and auto themes, and it is not styled like the chat links above.
-   (The selectors are a little long on purpose, so that no chat rule can override them.)
-   If the skin is off, the two "hide" spans show, so the reader gets: Croeso (Welcome) */
+/* ---- hover / tap translations ---- */
 #workskin a.tl,
 #workskin a.tl:link,
 #workskin a.tl:visited,
@@ -301,9 +221,7 @@
 
 #workskin a.tl span.hide { display: none; }
 
-/* on hover (computer) or focus (a tap on a phone): swap them over.
-   The original stays in place, invisible and with no height, so the link never gets narrower than it was.
-   (If it did, the pointer would fall off the end of a short translation, and the words would flicker.) */
+/* on hover (computer) or focus (a tap on a phone): swap them over. */
 #workskin a.tl:hover,
 #workskin a.tl:focus {
   display: inline-block;
@@ -322,9 +240,7 @@
   display: block;
 }
 
-/* ---- easter eggs: <a class="tl egg" href="#t4"> ----
-   Works exactly like a translation, but with no dotted line, so the words look like the
-   text around them (colour, bold, italics and all) until someone hovers over or taps them. */
+/* ---- easter eggs: <a class="tl egg" href="#t4"> ---- */
 #workskin a.tl.egg,
 #workskin a.tl.egg:link,
 #workskin a.tl.egg:visited,
@@ -342,34 +258,7 @@
 #workskin a.tl.egg:focus,
 #workskin a.tl.egg:active { cursor: text; }
 
-/* ==========================================================
-   PROFILES: one character, set once, used in every module
-   A profile holds everything about one character: their picture, a different
-   picture for any app if you like, their name colour, their name (and what other
-   characters have them saved as), their handle, their email address, and the
-   WhatsApp wallpaper for chats on their phone. One line each is enough; add extra
-   lines only where someone uses a different picture, name or handle on one app.
-   Luca's profile (the first one) shows every option, explained. The others are the
-   profiles used in the tutorial's examples, simplest first. Copy any block for
-   each of your characters, change the name after pfp- (and pov-) everywhere in it,
-   and fill in or delete the parts you want.
-   In your HTML:
-     picture       <span class="pfp pfp-stan"></span> inside any profile circle
-                   (wa-pfp, tw-pfp, ig-pfp, ig-like-pfp, tb-pfp, gm-pfp, dc-pfp)
-     name colour   add pfp-stan to a WhatsApp who line or a Discord username
-     handle        <span class="handle pfp-stan"></span> wherever the handle goes;
-                   it shows the one for the app it's in, and Twitter/X adds the @.
-                   Handles come from the CSS, so they aren't there when the style
-                   is switched off.
-     email         <span class="email pfp-stan"></span> wherever the address goes
-     name          <span class="name pfp-shane"></span> wherever their name goes.
-                   In a chat with pov-ilya on the container, it shows what Ilya
-                   has him saved as. Put <span class="hide">Jane</span> inside it
-                   for readers with the style switched off.
-     their phone   add pov-shane to the container of any chat on Shane's phone
-   Profiles grew out of the one-class-per-character Discord users in BookKeep's
-   Discord Work Skin & Tutorial (https://archiveofourown.org/works/42027846).
-   ========================================================== */
+/* ---------- PROFILES: one character, set once, used in every module ---------- */
 
 /* a handle, name or email address looks like the text around it, whatever it sits inside */
 #workskin .mob span.handle.handle.handle.handle,
@@ -419,10 +308,7 @@
 #workskin .ig .name.pfp-luca::before, #workskin .igdm .name.pfp-luca::before { content: "Luca and the Cats"; }
 #workskin .dc .name.pfp-luca::before { content: "lucaaa"; }
 
-/* 7. Saved as: what he's called on another character's phone, in any chat with
-   that character's pov- class on the container. One line per phone. It works on any
-   container with pov-, but real apps only let you rename people in iMessage,
-   WhatsApp and Discord DMs (and change their picture in iMessage and WhatsApp). */
+/* 7. Saved as: what he's called on another character's phone, in any chat with that character's pov- class on the container. */
 #workskin .pov-shane .name.pfp-luca::before { content: "Luca (cat pictures)"; }
 #workskin .pov-ilya .name.pfp-luca::before { content: "Cat Guy"; }
 #workskin .pov-rose .name.pfp-luca::before { content: "Cat Luca"; }
@@ -451,11 +337,7 @@
 #workskin .tb .handle.pfp-luca.acc-art::after { content: "gremlin-sketches"; }
 #workskin .tb .pfp.pfp-luca.acc-rpf { background-image: url(https://images.squidge.org/images/2026/11/16/Hollanov1.png); }
 #workskin .tb .handle.pfp-luca.acc-rpf::after { content: "rink-rivals-rpf"; }
-/* 14. Tumblr checkmarks after the blog's name. Pick the picture with 2, 4, 6, 8, 10 or 12 checkmarks and the
-   padding that goes with it: tb-checks-2.png 2.15em, tb-checks-4.png 3.95em, tb-checks-6.png 5.75em,
-   tb-checks-8.png 7.55em, tb-checks-10.png 9.35em, tb-checks-12.png 11.15em,
-   or tb-checks-blue.png 2.15em for two blue ones.
-   An acc- account has its own line, or it gets the main blog's checkmarks. */
+/* 14. Tumblr checkmarks after the blog's name. */
 #workskin .tb .handle.pfp-luca::after { background-image: url(https://images.squidge.org/images/2026/11/16/tb-checks-2.png); padding-right: 2.15em; }
 #workskin .tb .handle.pfp-luca.acc-art::after { background-image: url(https://images.squidge.org/images/2026/11/16/tb-checks-6.png); padding-right: 5.75em; }
 #workskin .tb .handle.pfp-luca.acc-rpf::after { background-image: url(https://images.squidge.org/images/2026/11/16/tb-checks-4.png); padding-right: 3.95em; }
@@ -504,9 +386,7 @@
 #workskin .handle.pfp-holster::after { content: "HolsterInLaw"; }
 #workskin .email.pfp-holster::after { content: "birka@samwellU.edu"; }
 
-/* PROFILE: Rose - her public accounts (Twitter/X and Instagram) use her full name, and she has a
-   private second account on Instagram, acc-private. Add the acc- name:
-   <span class="handle pfp-rose acc-private"> */
+/* PROFILE: Rose - her public accounts (Twitter/X and Instagram) use her full name, and she has a private second account on Instagram, acc-private. */
 #workskin .pfp.pfp-rose { background-color: #c2416b; background-image: url(https://images.squidge.org/images/2026/11/16/RoseHeadshot.jpg); }
 #workskin .wa .who.pfp-rose, #workskin .dc .dc-name.pfp-rose { color: #d6336c; }
 #workskin .name.pfp-rose::before { content: "Rose"; }
@@ -553,22 +433,7 @@
 #workskin .tw .name.pfp-ilya.acc-shanewife::before, #workskin .tw-reply .name.pfp-ilya.acc-shanewife::before, #workskin .twdm .name.pfp-ilya.acc-shanewife::before, #workskin .twc12 .name.pfp-ilya.acc-shanewife::before, #workskin .twc16 .name.pfp-ilya.acc-shanewife::before, #workskin .ig .name.pfp-ilya.acc-shanewife::before, #workskin .igdm .name.pfp-ilya.acc-shanewife::before { content: "Shane Hollander's Wife"; }
 #workskin .tw .handle.pfp-ilya.acc-shanewife::after, #workskin .tw-reply .handle.pfp-ilya.acc-shanewife::after, #workskin .twdm .handle.pfp-ilya.acc-shanewife::after, #workskin .twc12 .handle.pfp-ilya.acc-shanewife::after, #workskin .twc16 .handle.pfp-ilya.acc-shanewife::after, #workskin .ig .handle.pfp-ilya.acc-shanewife::after, #workskin .igdm .handle.pfp-ilya.acc-shanewife::after { content: "hollanderswife"; }
 
-/* ==========================================================
-   COLOURS: colour1 to colour10
-   One set of ten colours for every app. Add colour1 to colour10 to a picture
-   circle (wa-pfp, tw-pfp, ig-pfp, ig-like-pfp, tb-pfp, tb-ask-pfp, gm-pfp) or a name (WhatsApp who,
-   Discord dc-name) to colour it. Use the same number for a person everywhere.
-   Change a colour here and it changes in every app.
-   Each rule lists the class names for all the apps. If you've left some apps
-   out, keep the whole list anyway: a name for an app you don't use just
-   doesn't match anything, so it does no harm.
-   A note on spelling: I'm British, so I've spelled colour the British way in
-   the class names - colour1, not color1. If you forget the u and the skin
-   doesn't work, you'll understand my pain, because I've had to take the u out
-   of colour every time I've used someone else's code and couldn't figure out
-   why it wasn't working. (The CSS property itself is still color, with no u -
-   that one's not up to me.)
-   ========================================================== */
+/* ---------- COLOURS: colour1 to colour10 ---------- */
 
 /* picture circles (the same in light and dark) */
 #workskin .wa .wa-pfp.colour1,
@@ -897,11 +762,7 @@
 
 /* >>>>>>>>>> MODULE: iMessage (start) >>>>>>>>>> */
 
-/* ==========================================================
-   MODULE: IMESSAGE   (classes: imsg)
-   iMessage: <div class="mob imsg theme-auto">
-   Needs the CORE block.
-   ========================================================== */
+/* ---------- MODULE: IMESSAGE   (classes: imsg) ---------- */
 
 #workskin .imsg {
   background: #ffffff;
@@ -977,10 +838,7 @@
 
 #workskin .imsg .imsg-edited-in { text-align: left; margin: 0.1em 0 0.4em 0.4em; }
 
-/* tapbacks: a reaction bubble on the top corner of a message.
-   <p class="msg in tapped">message<span class="imsg-tap me">&#128077;</span></p>
-   "tapped" makes room above the message; "me" makes it blue (your own reaction),
-   without "me" it's grey (someone else's). Any emoji works - one per person. */
+/* tapbacks: a reaction bubble on the top corner of a message. */
 #workskin .imsg .msg.tapped {
   position: relative;
   margin-top: 1.7em;
@@ -1088,9 +946,7 @@
 
 #workskin .imsg .msg.pic.text { padding: 2.5em 1em; font-style: italic; text-align: center; }
 
-/* the three typing dots, in a message bubble from whoever is typing (out for the phone's owner, in for anyone else,
-   with a who line above it in a group, like any message):
-   <p class="msg in typing-indicator"><span class="hide">is typing...</span><span></span><span></span><span></span></p> */
+/* the three typing dots, in a message bubble from whoever is typing (out for the phone's owner, in for anyone else, with a who line above it in a group, like any message) */
 #workskin .imsg .typing-indicator { padding: 0.6em 0.8em; line-height: 1; }
 
 #workskin .imsg .typing-indicator span {
@@ -1109,9 +965,7 @@
 
 #workskin .imsg .out.typing-indicator span { background: #ffffff; }
 
-/* the message bar at the bottom: goes after the mob-body, inside the chat, all on one line
-   <p class="imsg-input"><span class="imsg-plus">+</span><span class="hide"> </span><span class="imsg-field">iMessage<span class="hide"> </span><span class="imsg-mic">&#127908;</span></span></p>
-   The hide spans keep a space between the parts for readers with the workskin off. */
+/* the message bar at the bottom: goes after the mob-body, inside the chat, all on one line */
 #workskin .imsg .imsg-input {
   display: flex;
   align-items: center;
@@ -1232,10 +1086,7 @@
   #workskin .imsg.theme-auto .imsg-field.typed { color: #ffffff; }
 }
 
-/* ---------- iMessage: Icons ----------
-   The buttons and ticks are pictures: black in light chats, white in dark ones.
-   Each one is a span with "ic" and its name, with the typed symbol inside, which
-   this hides. Delete this whole section to get the typed symbols back. */
+/* ---------- iMessage: Icons ---------- */
 #workskin .imsg .ic {
   display: inline-block;
   width: 1em;
@@ -1268,12 +1119,7 @@
 
 /* >>>>>>>>>> MODULE: WhatsApp (start) >>>>>>>>>> */
 
-/* ==========================================================
-   MODULE: WHATSAPP   (classes: wa)
-   WhatsApp: <div class="mob wa theme-auto">
-   Includes the wallpapers (bg classes) at the end of the block.
-   Needs the CORE block.
-   ========================================================== */
+/* ---------- MODULE: WHATSAPP   (classes: wa) ---------- */
 
 #workskin .wa {
   background-color: #efeae2;
@@ -1516,9 +1362,7 @@
 
 #workskin .wa .wa-reacts.pad { margin-left: 46px; }
 
-/* the three typing dots, in a message bubble from whoever is typing (out for the phone's owner, in for anyone else,
-   with the wa-row picture and who line in a group, like any message):
-   <div class="msg in tail typing-indicator"><p class="hide"><em>Lily</em> is typing...</p><p><span></span><span></span><span></span></p></div> */
+/* the three typing dots, in a message bubble from whoever is typing (out for the phone's owner, in for anyone else, with the wa-row picture and who line in a group, like any message) */
 #workskin .wa .msg.typing-indicator { min-width: 0; }
 
 #workskin .wa .typing-indicator p:last-child { margin: 0.35em 0 0.25em 0; line-height: 1; }
@@ -1670,9 +1514,7 @@
   text-decoration: underline;
 }
 
-/* photos: <p class="wa-photos one|two|three|four"> then one <span class="wa-photo"> per picture.
-   Each photo is a square (or, for the tall ones, two squares high) and the picture fills it, cropped
-   to fit, never stretched. The widths add up to 99%, not 100%, so rounding can't push a photo down. */
+/* photos */
 #workskin .wa .wa-photos {
   display: block;
   overflow: hidden;
@@ -1706,11 +1548,7 @@
 
 #workskin .wa .wa-photo:nth-of-type(n+3) { margin-bottom: 0; }
 
-/* the picture. AO3 can't crop pictures automatically, so the skin needs to know which way the picture runs:
-   - normal (taller than wide, or square): it is made as wide as the box, and the top and bottom are cropped evenly
-   - add class="land" to the img if it is wider than tall: it is made as tall as the box, and the sides are cropped evenly
-   The tall boxes (two pictures; the left one of three) always use the second way, as nearly any photo fits them that way.
-   (The huge offsets plus auto margins do the centring, so no transform is needed.) */
+/* the picture: a tall or square one fills the width; add class="land" to a wide one */
 #workskin .wa .wa-photo img {
   position: absolute;
   top: -9999px;
@@ -1817,9 +1655,7 @@
   padding: 0.3em 0.35em 0 0.35em;
 }
 
-/* ---- CALLS: a voice or video call, in a bubble of its own ----
-   <div class="msg out tail call"><p class="wa-call"><span class="wa-call-ic ic ic-wa-call-out">&#128222;</span><span class="hide"> </span><b>Voice call</b><span class="hide"> - </span><span class="wa-call-len">44 secs</span></p><p class="wa-time">09:47</p></div>
-   The round icon is wa-call-ic, then the kind of call in <b>, then how long it lasted (or "Tap to call back"). */
+/* ---- CALLS: a voice or video call, in a bubble of its own ---- */
 #workskin .wa .msg.call {
   position: relative;
   min-width: 13em;
@@ -1869,13 +1705,7 @@
   margin: 0;
 }
 
-/* ---- CONTACT CARDS: a shared contact, with a Message button along the bottom ----
-   <div class="msg in tail contact"><p class="hide"><em>Lily:</em></p>
-     <p class="wa-contact"><span class="wa-pfp"><span class="pfp pfp-rose"></span></span>Rose Landry</p>
-     <p class="wa-time">18:03</p>
-     <p class="wa-cbtn">Message</p>
-   </div>
-   The picture works like every other wa-pfp: initials with a colour, a picture, or a profile. */
+/* ---- CONTACT CARDS: a shared contact, with a Message button along the bottom ---- */
 #workskin .wa .msg.contact {
   width: 70%;
   padding: 0;
@@ -2120,11 +1950,7 @@
 
 #workskin div.mob.wa.bg-dusk { background-color: #4b3a6e; background-image: linear-gradient(#7b5ea7, #2c2145); }
 
-/* YOUR OWN WALLPAPER (a photo or pattern from the web)
-   1. Upload the picture somewhere that gives a direct link (an image host such as squidge.org).
-   2. Replace the example link in the rule below with yours (the colour shows if the picture fails).
-   3. Use the class on any chat: <div class="mob wa theme-auto bg-image1">
-   4. For another wallpaper, copy the rule again and rename bg-image1 to bg-image2, etc. */
+/* YOUR OWN WALLPAPER (a photo or pattern from the web) */
 #workskin div.mob.wa.bg-image1 {
   background-color: #1c1c1c;
   background-image: url(https://example.com/my-wallpaper.jpg);
@@ -2164,10 +1990,7 @@
 #workskin .wa .mob-body,
 #workskin .wa .wa-input { position: relative; }
 
-/* ---------- WhatsApp: Icons ----------
-   The buttons and ticks are pictures: black in light chats, white in dark ones.
-   Each one is a span with "ic" and its name, with the typed symbol inside, which
-   this hides. Delete this whole section to get the typed symbols back. */
+/* ---------- WhatsApp: Icons ---------- */
 #workskin .wa .ic {
   display: inline-block;
   width: 1em;
@@ -2256,12 +2079,7 @@
 
 /* >>>>>>>>>> MODULE: Twitter/X (posts, replies, DMs) (start) >>>>>>>>>> */
 
-/* ==========================================================
-   MODULE: TWITTER/X (POSTS, REPLIES, DMS)   (classes: tw, tw-reply, tw-thread, twdm)
-   Twitter/X posts, replies, quotes, polls, picture and video tweets, scrollable threads (tw, tw-reply, tw-thread)
-   and Twitter/X DMs (twdm).
-   Needs the CORE block.
-   ========================================================== */
+/* ---------- MODULE: TWITTER/X (POSTS, REPLIES, DMS)   (classes: tw, tw-reply, tw-thread, twdm) ---------- */
 
 #workskin .tw-thread.wide {
   width: auto;
@@ -2292,14 +2110,8 @@
 /* a private account's padlock: add <span class="tw-lock ic ic-tw-lock">&#128274;</span> between the handle and the time */
 #workskin .tw .tw-lock, #workskin .tw-reply .tw-lock { flex: none; margin: 0.15em 0 0 0.3em; }
 
-/* profile picture: the first thing in the tw-top line.
-   Initials: <span class="tw-pfp colour1">JD</span>
-   A picture: <span class="tw-pfp"><span class="pfp"><img src="..." alt="..."></span></span>
-   A profile (set in the core section): <span class="tw-pfp"><span class="pfp pfp-shane"></span></span>
-   colour1-colour10 are the colours. */
-/* the name line is a flex row: the picture, the name with any tick, the @handle, any padlock, then the time.
-   When it doesn't all fit, the handle shrinks first and can disappear completely, then the name and its
-   tick are cut off. The padlock and the time always stay. */
+/* profile picture: the first thing in the tw-top line. */
+/* the name line is a flex row: the picture, the name with any tick, the @handle, any padlock, then the time. */
 #workskin .tw .tw-top,
 #workskin .tw-reply .tw-top {
   display: flex;
@@ -2334,9 +2146,7 @@
   font-weight: bold;
 }
 
-/* a long name ends in "..." when it's typed in a plain span:
-   <span class="tw-name"><span>A really long name</span></span>
-   Without the span it stops at the last whole word that fits */
+/* a long name ends in "..." when it's typed in a plain span */
 #workskin .tw .tw-name,
 #workskin .tw-reply .tw-name {
   display: flex;
@@ -2405,9 +2215,7 @@
 #workskin .tw .tw-fan .ic,
 #workskin .tw-reply .tw-fan .ic { margin-right: 0.2em; }
 
-/* a tweet on its own, or the first tweet of a reply chain, is an opened tweet: its @handle and time go on a
-   second line under the name, and a fan account line goes under them. In a feed (a tw-thread with app)
-   and in replies, they stay on one line */
+/* a tweet on its own, or the first tweet of a reply chain, is an opened tweet: its @handle and time go on a second line under the name, and a fan account line goes under them. */
 #workskin .tw .tw-top {
   display: block;
   text-overflow: ellipsis;
@@ -2473,10 +2281,7 @@
 #workskin .tw .tw-stats .ic.ic-tw-share,
 #workskin .tw-reply .tw-stats .ic.ic-tw-share { margin-right: 0; }
 
-/* ---- a like or bookmark readers can click: <details class="tw-stat tw-tog">
-   (<details class="tw-stat tw-end tw-tog"> for the bookmark)
-   Inside the <summary>, the "off" count shows at first and the "on" count once clicked.
-   Click again and it goes back. */
+/* ---- a like or bookmark readers can click */
 #workskin .tw .tw-tog summary,
 #workskin .tw-reply .tw-tog summary { display: block; list-style: none; cursor: pointer; color: inherit; }
 
@@ -2598,10 +2403,7 @@
   color: #cfd9de;
 }
 
-/* polls: an OPEN poll is <p class="tw-opt">Option</p> for each option (a blue outline).
-   RESULTS: <p class="tw-opt res p75"><span class="tw-bar">Option</span><span class="tw-pct">75%</span></p>
-   with a bar size p0 to p100 (p25 p75 p33 p67 also exist); add "win" for the winner of a finished poll.
-   The option the account voted for gets <span class="tw-voted">&#10003;</span> after its words, inside the tw-bar. */
+/* polls: open, closed and voted */
 #workskin .tw .tw-opt,
 #workskin .tw-reply .tw-opt {
   display: block;
@@ -2671,9 +2473,7 @@
   vertical-align: 0.15em;
 }
 
-/* TAPPABLE POLL, the short way: <details class="tw-vote"> with the open poll in <summary> (spans with tw-opt,
-   and a tw-pollinfo span), then the results after it, with tw-voted on the pov character's vote.
-   Tapping shows the results instead. */
+/* TAPPABLE POLL, the short way */
 #workskin .tw .tw-vote,
 #workskin .tw-reply .tw-vote,
 #workskin .tw .tw-vote > summary,
@@ -2697,9 +2497,7 @@
 #workskin .tw .tw-vote[open] > summary,
 #workskin .tw-reply .tw-vote[open] > summary { display: none; }
 
-/* TAPPABLE POLL where the reader picks: <div class="tw-poll">, then one <details class="tw-pick"> per option,
-   each with <summary class="tw-opt">Option</summary> and a <div class="tw-results"> holding the results
-   with tw-voted on that option. The results cover the poll when it's tapped. */
+/* TAPPABLE POLL where the reader picks */
 #workskin .tw .tw-poll,
 #workskin .tw-reply .tw-poll { display: block; position: relative; }
 
@@ -2785,9 +2583,7 @@
   padding: 3em 1.2em;
 }
 
-/* several pictures: <div class="tw-media two|three|four"> with one <span class="tw-photo"> for each.
-   Each photo is a square (or two squares high, for the tall ones) and the picture fills it, cropped
-   to fit, never stretched. The widths add up to 99.6%, not 100%, so rounding can't push a photo down. */
+/* several pictures */
 #workskin .tw .tw-media .tw-photo,
 #workskin .tw-reply .tw-media .tw-photo {
   display: block;
@@ -2811,9 +2607,7 @@
   margin-bottom: 0;
 }
 
-/* the picture: normal pictures are made as wide as the box and cropped top and bottom; add class="land"
-   to a picture that is wider than tall to make it as tall as the box and crop the sides instead.
-   The tall boxes (two pictures; the left one of three) always use the second way. */
+/* the picture: normal pictures are made as wide as the box and cropped top and bottom; add class="land" to a picture that is wider than tall to make it as tall as the box and crop the sides instead. */
 #workskin .tw .tw-media .tw-photo img,
 #workskin .tw-reply .tw-media .tw-photo img {
   position: absolute;
@@ -2894,11 +2688,7 @@
   clear: both;
 }
 
-/* a thread that scrolls, with a "Tweet your reply" bar that stays at the bottom:
-   <div class="tw-thread theme-auto">
-     <div class="tw-scroll"> tweet + replies </div>
-     <div class="tw-foot">...</div>
-   </div> */
+/* a thread that scrolls, with a "Tweet your reply" bar that stays at the bottom */
 #workskin .tw-thread {
   width: 380px;
   max-width: 100%;
@@ -2946,13 +2736,7 @@
   font-size: 0.9em;
 }
 
-/* THE APP SCREEN (optional): add "app" to a tw-thread for X's bar along the top, with the tabs under it.
-   <div class="tw-thread app theme-auto"><div class="tw-scroll">
-     <p class="tw-apptop"><span class="tw-me"><span class="pfp pfp-name"></span></span> <span class="tw-logo">X</span></p>
-     <p class="tw-tabs"><span class="tw-tab on">For you</span> <span class="tw-tab">Following</span> <span class="tw-add">+</span></p>
-     tweets
-   </div></div>
-   The bar is inside the scrolling part, so it scrolls away with the tweets, like in the app. */
+/* THE APP SCREEN (optional): add "app" to a tw-thread for X's bar along the top, with the tabs under it. */
 #workskin .tw-thread .tw-apptop,
 #workskin .tw-thread .tw-tabs {
   display: flex;
@@ -3056,9 +2840,7 @@
   line-height: 1;
 }
 
-/* THE 2020 TWITTER REDESIGN: add "tw2020" to an app screen, <div class="tw-thread app tw2020 theme-auto">.
-   The bird takes the place of the X with a sparkle on the right, the tabs are hidden,
-   and the tweets lose their bookmark button and the line above their stats, with share spaced out like the rest */
+/* THE 2020 TWITTER REDESIGN: add "tw2020" to an app screen */
 #workskin .tw-thread.tw2020 .tw-apptop {
   padding-bottom: 0.6em;
   border-bottom: 1px solid #eff3f4;
@@ -3105,9 +2887,7 @@
   border-radius: 14px;
 }
 
-/* the top bar: a back arrow on the left, the picture and name in the middle, video and call buttons on the right
-   <p class="mob-head"><span class="twdm-back"><span class="ic ic-back">&#8592;</span></span><span class="tw-pfp"><span class="pfp pfp-shane"></span></span><span class="twdm-name">Shane Hollander</span><span class="twdm-calls"><span class="ic ic-video">&#127909;</span><span class="ic ic-phone">&#128222;</span></span></p>
-   The picture works like a tweet's tw-pfp: initials, a picture tag or a profile. */
+/* the top bar: a back arrow on the left, the picture and name in the middle, video and call buttons on the right */
 #workskin .twdm .mob-head {
   position: relative;
   padding: 0.55em 5.6em 0.45em 5.6em;
@@ -3207,10 +2987,7 @@
   font-size: 0.65em;
 }
 
-/* replying to a message: a small "Replied to" line, then the message being replied to in an outlined bubble, then the reply
-   <p class="twdm-replied out">Replied to Shane</p>
-   <p class="msg out twdm-quote"><span class="hide">(</span>the message being replied to<span class="hide">)</span></p>
-   Leave "out" off both for a reply from someone else. */
+/* replying to a message: a small "Replied to" line, then the message being replied to in an outlined bubble, then the reply */
 #workskin .twdm .twdm-replied {
   display: block;
   margin: 0.7em 0.95em 0.15em 0.95em;
@@ -3268,9 +3045,7 @@
 
 #workskin .twdm .voice .twdm-dur { margin-left: 0.5em; font-size: 0.85em; }
 
-/* the message bar at the bottom: goes after the mob-body, inside the chat, all on one line
-   <p class="twdm-input"><span class="twdm-plus">+</span><span class="hide"> </span><span class="twdm-field">Message<span class="hide"> </span><span class="ic ic-mic">&#127908;</span></span></p>
-   Add "typed" to the twdm-field for a half-written message in dark text. */
+/* the message bar at the bottom: goes after the mob-body, inside the chat, all on one line */
 #workskin .twdm .twdm-input {
   display: flex;
   align-items: center;
@@ -3313,9 +3088,7 @@
 
 #workskin .twdm .twdm-field.typed { color: #0f1419; }
 
-/* the app's buttons along the very bottom (optional), in DMs and on the app screen. "on" gives the picked one its grey box.
-   <p class="tw-nav"><span class="ic ic-x-home">&#8962;</span> <span class="ic ic-x-search">&#128269;</span> <span class="ic ic-x-grok">&#8856;</span> <span class="ic ic-x-bell">&#128276;</span> <span class="on ic ic-x-chat">&#128172;</span></p>
-   On the app screen, use ic-x-home-filled with "on" for the home button, and ic-x-chat-outline for the chat button. */
+/* the app's buttons along the very bottom (optional), in DMs and on the app screen. */
 #workskin .twdm .tw-nav,
 #workskin .tw-thread .tw-nav {
   display: flex;
@@ -3330,9 +3103,7 @@
 #workskin .twdm .tw-nav br,
 #workskin .tw-thread .tw-nav br { display: none; }
 
-/* a blue number on a button, like new notifications: wrap the icon and the number in a tw-badged span.
-   <span class="tw-badged"><span class="ic ic-x-bell">&#128276;</span><span class="tw-badge"><span class="hide"> (</span>3<span class="hide">)</span></span></span>
-   The circle stretches into a lozenge for longer numbers. */
+/* a blue number on a button, like new notifications: wrap the icon and the number in a tw-badged span. */
 #workskin .twdm .tw-nav .tw-badged,
 #workskin .tw-thread .tw-nav .tw-badged { position: relative; display: block; line-height: 1; }
 
@@ -3729,10 +3500,7 @@
   #workskin .twdm.theme-auto .msg.twdm-quote { background: transparent; color: #71767b; border-color: #2f3336; }
 }
 
-/* ---------- Twitter/X: Icons ----------
-   The buttons and ticks are pictures: black in light chats, white in dark ones.
-   Each one is a span with "ic" and its name, with the typed symbol inside, which
-   this hides. Delete this whole section to get the typed symbols back. */
+/* ---------- Twitter/X: Icons ---------- */
 #workskin .tw .ic, #workskin .tw-reply .ic, #workskin .twdm .ic, #workskin .tw-thread .tw-nav .ic {
   display: inline-block;
   width: 1em;
@@ -3838,14 +3606,7 @@
 
 /* >>>>>>>>>> MODULE: Classic Twitter 2012-15 (start) >>>>>>>>>> */
 
-/* ==========================================================
-   MODULE: CLASSIC TWITTER 2012-15   (classes: twc12, twc12-feed)
-   Twitter as it looked from 2012 to 2015: square pictures, stars, serif opened tweets, a blue bar
-   along the top and a black row of buttons along the bottom.
-   Single tweets (twc12), opened tweets (twc12 big) and the app screen (twc12-feed).
-   Twitter had no night mode back then, so this module is always light, whatever theme you give it.
-   Needs the CORE block. It doesn't need any other Twitter module.
-   ========================================================== */
+/* ---------- MODULE: CLASSIC TWITTER 2012-15   (classes: twc12, twc12-feed) ---------- */
 
 /* one tweet: <div class="mob twc12"> ... </div>
    The picture sits in a column of its own on the left, and everything else lines up to the right of it. */
@@ -3888,10 +3649,7 @@
 
 #workskin .twc12 .tw-name .ic { width: 1em; height: 1em; margin-left: 0.2em; vertical-align: -0.15em; }
 
-/* a long name: the name line is a flex row, so when it doesn't all fit, the handle shrinks first and can
-   disappear completely, then the name is cut off, tick and all. The time always stays.
-   A name typed in a plain span ends in "...": <span class="tw-name"><span>A really long name</span></span>
-   Without the span it stops at the last whole word that fits */
+/* a long name: the name line is a flex row, so when it doesn't all fit, the handle shrinks first and can disappear completely, then the name is cut off, tick and all. */
 #workskin .twc12 .tw-top { display: flex; align-items: flex-start; line-height: 1.3; }
 
 #workskin .twc12 .tw-name {
@@ -3998,17 +3756,7 @@
 
 #workskin .twc12 .tw-stats .tw-rt { color: #5c913b; }
 
-/* ---------- Classic Twitter 2012-15: an opened tweet ----------
-   Add "big" for a tweet on its own page: the @handle goes under the name, the words are bigger and in a
-   serif font, and the date, the counts and the buttons get lines of their own.
-   <div class="mob twc12 big">
-     <p class="tw-top"> ... </p>
-     <p class="tw-text"> ... </p>
-     <p class="tw-date">8/2/13, 2:26 PM</p>
-     <p class="tw-counts"><b>11</b> Retweets <b>17</b> Favorites</p>
-     <div class="tw-stats"> the buttons </div>
-     <p class="twc-foot"><span>Reply to Name</span></p>
-   </div> */
+/* ---------- Classic Twitter 2012-15: an opened tweet ---------- */
 #workskin .twc12.big { padding: 0.8em 0.8em 0 0.8em; }
 
 #workskin .twc12.big .tw-top { min-height: 48px; padding: 0 0 0 58px; white-space: normal; }
@@ -4076,14 +3824,7 @@
   color: #b0b0b0;
 }
 
-/* ---------- Classic Twitter 2012-15: the app screen ----------
-   <div class="twc12-feed">
-     <p class="twc-bar"> the blue bar along the top </p>
-     <div class="mob twc12"> ... </div>
-     <div class="mob twc12"> ... </div>
-     <p class="tw-nav"> the black row of buttons along the bottom </p>
-   </div>
-   The tweets inside lose their borders and sit one under the other, and the screen scrolls between the bars. */
+/* ---------- Classic Twitter 2012-15: the app screen ---------- */
 #workskin .twc12-feed {
   width: 360px;
   max-width: 100%;
@@ -4231,13 +3972,7 @@
 
 /* >>>>>>>>>> MODULE: Classic Twitter 2016-19 (start) >>>>>>>>>> */
 
-/* ==========================================================
-   MODULE: CLASSIC TWITTER 2016-19   (classes: twc16, twc16-feed)
-   Twitter as it looked from 2016 to 2019: round pictures, hearts, the little grey arrow, a white bar
-   along the top with your own picture in it, and a row of outline buttons along the bottom.
-   Single tweets (twc16), opened tweets (twc16 big) and the app screen (twc16-feed), with Twitter's dim blue night mode.
-   Needs the CORE block. It doesn't need any other Twitter module.
-   ========================================================== */
+/* ---------- MODULE: CLASSIC TWITTER 2016-19   (classes: twc16, twc16-feed) ---------- */
 
 /* one tweet: <div class="mob twc16 theme-auto"> ... </div>
    The picture sits in a column of its own on the left, and everything else lines up to the right of it. */
@@ -4285,10 +4020,7 @@
 
 #workskin .twc16 .tw-name .ic { width: 1em; height: 1em; margin-left: 0.2em; vertical-align: -0.15em; }
 
-/* a long name: the name line is a flex row, so when it doesn't all fit, the handle shrinks first and can
-   disappear completely, then the name is cut off, tick and all. The time always stays.
-   A name typed in a plain span ends in "...": <span class="tw-name"><span>A really long name</span></span>
-   Without the span it stops at the last whole word that fits */
+/* a long name: the name line is a flex row, so when it doesn't all fit, the handle shrinks first and can disappear completely, then the name is cut off, tick and all. */
 #workskin .twc16 .tw-top { display: flex; align-items: flex-start; line-height: 1.3; }
 
 #workskin .twc16 .tw-name {
@@ -4430,16 +4162,7 @@
 
 #workskin .twc16-feed .twc16.link + .twc16::before { top: 0; height: 0.7em; }
 
-/* ---------- Classic Twitter 2016-19: an opened tweet ----------
-   Add "big" for a tweet on its own page: the @handle goes under the name, the words are bigger,
-   and the date, the counts and the buttons get lines of their own.
-   <div class="mob twc16 big theme-auto">
-     <p class="tw-top"> ... </p>
-     <p class="tw-text"> ... </p>
-     <p class="tw-date">11:04 PM · 10/20/18 · Twitter for iPhone</p>
-     <p class="tw-counts"><b>12</b> Retweets <b>45</b> Likes</p>
-     <div class="tw-stats"> the buttons, with no numbers </div>
-   </div> */
+/* ---------- Classic Twitter 2016-19: an opened tweet ---------- */
 #workskin .twc16.big { padding: 0.8em 1em 0.2em 1em; }
 
 #workskin .twc16.big .tw-top { min-height: 48px; padding-left: 58px; white-space: normal; }
@@ -4485,14 +4208,7 @@
 
 #workskin .twc16.big .tw-stats .ic { width: 1.5em; height: 1.5em; margin-right: 0; }
 
-/* ---------- Classic Twitter 2016-19: the app screen ----------
-   <div class="twc16-feed theme-auto">
-     <p class="twc-bar"> the bar along the top </p>
-     <div class="mob twc16"> ... </div>
-     <div class="mob twc16"> ... </div>
-     <p class="tw-nav"> the row of buttons along the bottom </p>
-   </div>
-   The tweets inside lose their borders and sit one under the other, and the screen scrolls between the bars. */
+/* ---------- Classic Twitter 2016-19: the app screen ---------- */
 #workskin .twc16-feed {
   width: 380px;
   max-width: 100%;
@@ -4596,9 +4312,7 @@
 
 #workskin .twc16-feed .tw-nav .on { opacity: 1; }
 
-/* a blue number on a button, like new notifications: wrap the icon and the number in a tw-badged span.
-   <span class="tw-badged"><span class="ic ic-x-bell">&#128276;</span><span class="tw-badge"><span class="hide"> (</span>3<span class="hide">)</span></span></span>
-   The circle stretches into a lozenge for longer numbers. */
+/* a blue number on a button, like new notifications: wrap the icon and the number in a tw-badged span. */
 #workskin .twc16-feed .tw-nav .tw-badged { position: relative; display: block; line-height: 1; }
 
 #workskin .twc16-feed .tw-nav .tw-badge {
@@ -4786,12 +4500,7 @@
 /* <<<<<<<<<< MODULE: Classic Twitter 2016-19 (end) <<<<<<<<<< */
 /* >>>>>>>>>> MODULE: Instagram (posts, comments, DMs) (start) >>>>>>>>>> */
 
-/* ==========================================================
-   MODULE: INSTAGRAM (POSTS, COMMENTS, DMS)   (classes: ig, ig-feed, igdm)
-   Instagram posts and comments (ig), including the clickable like and save buttons,
-   the scrolling home feed with Stories (ig-feed), and Instagram DMs (igdm).
-   Needs the CORE block.
-   ========================================================== */
+/* ---------- MODULE: INSTAGRAM (POSTS, COMMENTS, DMS)   (classes: ig, ig-feed, igdm) ---------- */
 
 #workskin .ig {
   background: #ffffff;
@@ -4831,11 +4540,7 @@
 
 #workskin .ig .ig-photo img { display: block; width: 100%; height: auto; }
 
-/* photo shapes, cut to fit. Add ig-pic-sq for a square photo, how Instagram used to be, or ig-pic-portrait
-   for a tall one (3 wide by 4 high), how it is now, nearly filling the phone:
-   <p class="ig-photo real ig-pic-sq"><img src="..." alt="..."></p>
-   Like the pfp circles, a picture taller than wide is made as wide as the box and centred up and down.
-   If it's wider than tall, add class="land" to the img: it's made as tall as the box and centred side to side. */
+/* photo shapes, cut to fit. Add ig-pic-sq for a square photo, how Instagram used to be, or ig-pic-portrait for a tall one (3 wide by 4 high), how it is now, nearly filling the phone */
 #workskin .ig .ig-photo.ig-pic-sq,
 #workskin .ig .ig-photo.ig-pic-portrait {
   display: flex;
@@ -4869,9 +4574,7 @@
   transform: translateX(-50%);
 }
 
-/* a profile picture beside the account name:
-   <span class="ig-pfp"><span class="pfp"><img src="..." alt="..."></span></span>
-   as the first thing in ig-top (pfp is explained in the CORE) */
+/* a profile picture beside the account name */
 #workskin .ig .ig-top .ig-pfp {
   float: left;
   width: 32px;
@@ -4937,10 +4640,7 @@
   font-size: 0.8em;
 }
 
-/* ---- more for the top line (put these inside ig-top) ----
-   ig-menu is the menu at the far right (two lines, or three dots with ic-more), so it goes FIRST in the line.
-   ig-tick is the blue verified tick, ig-follow is the "• Follow" link, both go straight after the name.
-   Put a song (♫ Artist - Song) or a place in the usual location span underneath. */
+/* ---- more for the top line (put these inside ig-top) ---- */
 #workskin .ig .ig-top .ig-menu {
   display: block;
   float: right;
@@ -4980,9 +4680,7 @@
   font-weight: normal;
 }
 
-/* an account you don't follow, suggested in the feed: a follow button (ig-add) sits left of the menu,
-   Both go FIRST in the line, menu then follow:
-   <span class="ig-menu ic ic-ig-lines">&#8801;</span><span class="ig-add ic ic-ig-follow">Follow</span> */
+/* an account you don't follow, suggested in the feed: a follow button (ig-add) sits left of the menu. Both go FIRST in the line, menu then follow */
 #workskin .ig .ig-top .ig-add {
   display: block;
   float: right;
@@ -5006,11 +4704,7 @@
   border: 2px solid #ffffff;
 }
 
-/* a post made by two accounts together (a collab): wrap both pictures in an ig-collab span, as the
-   first picture in the line. The first account's picture sits at the top right and the second at the
-   bottom left, in front of it, with a gap in the background colour around it:
-   <span class="ig-collab"><span class="ig-pfp">...</span><span class="ig-pfp">...</span></span>
-   Then put both names in the line with <span class="ig-and">and</span> between them, which isn't bold. */
+/* a post made by two accounts together (a collab): wrap both pictures in an ig-collab span, as the first picture in the line. */
 #workskin .ig .ig-top .ig-collab {
   float: left;
   position: relative;
@@ -5051,12 +4745,7 @@
 /* only two pictures fit in the circle, so a third one (or more) is hidden */
 #workskin .ig .ig-top .ig-collab .ig-pfp + .ig-pfp + .ig-pfp { display: none; }
 
-/* ---- tagged people: the person icon in the bottom left corner of a photo. Click it and the
-   "In this photo" sheet slides up over the post, listing who's tagged. Put it straight after the photo:
-   <details class="ig-tagged"><summary><span>In this photo</span></summary><div class="ig-sheet">
-     <p class="ig-person"><span class="ig-fbtn">Following</span><span class="ig-pfp">...</span><span class="handle pfp-shane">...</span><span class="ig-pname">Shane Hollander</span></p>
-   </div></details>
-   ig-fbtn is a grey "Following" button, add "blue" for a blue "Follow". Leave it off for your own account. */
+/* ---- tagged people: the person icon in the bottom left corner of a photo. */
 #workskin .ig { position: relative; }
 
 #workskin .ig .ig-photo { position: relative; }
@@ -5143,9 +4832,7 @@
 
 #workskin .ig .ig-tagged[open] summary::after { display: none; }
 
-/* a short post grows while the list is open, so the list has room. The open block becomes an invisible
-   float 300px tall under the photo, and the post stretches to fit it. A post that's already long enough
-   doesn't change. Posts in a feed need display: flow-root to hold the float. */
+/* a short post grows while the list is open, so the list has room. */
 #workskin .ig .ig-tagged[open] {
   float: left;
   width: 0;
@@ -5210,16 +4897,7 @@
 
 #workskin .ig .ig-person .ig-fbtn.blue { background: #0095f6; color: #ffffff; }
 
-/* ---- CAROUSEL: a post with more than one photo ----
-   Readers tap the arrows and the next photo slides in. No scripts, so it works on AO3.
-   How it works: photo 1 sits in the post as normal. Every photo after it goes inside the <summary> of a
-   <details class="ig-next">, waiting off to the right, and each details sits INSIDE the one before it.
-   The arrow belongs to the summary: tap it and the details opens, its photo slides over the one before,
-   and the arrow moves to the left as the "back" arrow.
-   Each photo is followed by an ig-car-info line with its "2/3" counter and dots. It also lies over the
-   photo so that tapping the photo itself does nothing. The dots sit underneath the photo, like on Instagram.
-   All the photos should be the same shape (Instagram crops them that way too).
-   With real photos, add real to the carousel too: <div class="ig-car real">. */
+/* ---- CAROUSEL: a post with more than one photo ---- */
 #workskin .ig .ig-car {
   display: block;
   position: relative;
@@ -5329,9 +5007,7 @@
   line-height: 1.2;
 }
 
-/* the dots under the photo, the one you're on in <b>:
-   <span class="ig-car-dots">&#8226;<b>&#8226;</b>&#8226;</span>
-   Light mode: grey #c7c7c7, blue #0095f6. Dark mode: grey #555555, blue #0095f6. */
+/* the dots under the photo, with the one you're on in bold */
 #workskin .ig .ig-car .ig-car-dots {
   display: block;
   position: absolute;
@@ -5347,9 +5023,7 @@
 
 #workskin .ig .ig-car .ig-car-dots b { color: #0095f6; font-weight: normal; }
 
-/* ---- the row of buttons with counts: <div class="ig-actions"> holding any of these ----
-   ig-btn   a button that just sits there: <div class="ig-btn"><span class="ig-icon cm"></span><span class="ig-count">93</span></div>
-   ig-tog  a button you can click (see below) */
+/* ---- the row of buttons with counts: <div class="ig-actions"> holding any of these ---- */
 #workskin .ig .ig-actions br { display: none; }
 
 /* AO3 sometimes wraps loose bits in a <p>; keep those from breaking the row */
@@ -5379,9 +5053,7 @@
   vertical-align: middle;
 }
 
-/* ---- clickable buttons: <details class="ig-tog like"> or "ig-tog save" ----
-   Inside is a <summary> holding two versions of the same thing: "off" parts (shown at first)
-   and "on" parts (shown once clicked). Click again and it goes back. */
+/* ---- clickable buttons: <details class="ig-tog like"> or "ig-tog save" ---- */
 #workskin .ig .ig-tog summary {
   display: inline-block;
   list-style: none;
@@ -5456,9 +5128,7 @@
   background: #ffffff;
 }
 
-/* ---- "Liked by" with little overlapping faces ----
-   <p class="ig-likes liked-by"><span class="ig-like-pfps"><span class="ig-like-pfp"><span class="pfp"><img ...></span></span> ...</span>
-   Liked by <b>name</b> and <b>others</b></p>   (keep the faces on one line of code, with no gaps) */
+/* ---- "Liked by" with little overlapping faces ---- */
 #workskin .ig .ig-likes.liked-by { font-weight: normal; }
 
 #workskin .ig .ig-like-pfps {
@@ -5576,20 +5246,7 @@
   border-radius: 6px;
 }
 
-/* ---- THE FEED (the default container for posts): a scrolling Instagram home screen, with the top bar and the Stories row,
-   then posts one after another. Add "ig-feed" to an ig container and put the posts inside it:
-   <div class="mob ig ig-feed theme-auto">
-     <p class="ig-apptop"><span class="ig-new">+</span><span class="ig-logo">Instagram</span><span class="ig-notif ic ic-heart">&#9825;</span><span class="ig-dot"><span class="hide"> (new)</span></span></p>
-     <div class="ig-stories">
-       <p class="ig-story me"><span class="ig-pfp"><span class="pfp pfp-name"></span></span><span class="ig-sname">Your story</span></p>
-       <p class="ig-story"><span class="ig-pfp colour3">RL</span><span class="ig-sname">rose.landry</span></p>
-     </div>
-     <div class="mob ig"> a post </div>
-     <div class="mob ig"> another post </div>
-   </div>
-   The top bar and Stories scroll away with the posts, like in the app. The posts take their colours
-   from the feed, so only the feed needs a theme. A post can also go on its own, with no feed,
-   as <div class="mob ig theme-auto">. */
+/* ---- THE FEED (the default container for posts): a scrolling Instagram home screen, with the top bar and the Stories row, then posts one after another. */
 #workskin .ig.ig-feed { max-height: 580px; }
 
 /* the core no-scroll rule is no stronger than the one above, so the feed needs its own */
@@ -5892,10 +5549,7 @@
   #workskin .igdm.theme-auto .igdm-shared { border-color: #363636; color: #a8a8a8; }
 }
 
-/* ---------- Instagram: Icons ----------
-   The buttons and ticks are pictures: black in light chats, white in dark ones.
-   Each one is a span with "ic" and its name, with the typed symbol inside, which
-   this hides. Delete this whole section to get the typed symbols back. */
+/* ---------- Instagram: Icons ---------- */
 #workskin .ig .ic, #workskin .igdm .ic {
   display: inline-block;
   width: 1em;
@@ -5998,11 +5652,7 @@
 
 /* >>>>>>>>>> MODULE: Tumblr (start) >>>>>>>>>> */
 
-/* ==========================================================
-   MODULE: TUMBLR   (classes: tb, tb-feed)
-   Tumblr posts, reblog chains, asks, quote and chat posts, polls, and the feed background (tb, tb-feed).
-   Needs the CORE block.
-   ========================================================== */
+/* ---------- MODULE: TUMBLR   (classes: tb, tb-feed) ---------- */
 
 #workskin .tb-feed.wide {
   width: auto;
@@ -6101,10 +5751,7 @@
   font-weight: bold;
 }
 
-/* checkmarks beside a name, in pairs, up to twelve: <span class="tb-check">&#10003;</span><span class="tb-check">&#10003;</span>
-   They always run in the same order, and the colours are added for you: blue, green, lime, yellow, amber, orange,
-   then dark orange, red, pink, magenta, purple and violet.
-   On Tumblr these are bought for fun, so they don't mean a blog is verified. */
+/* checkmarks beside a name, in pairs, up to twelve */
 #workskin .tb .tb-check {
   display: inline-flex;
   align-items: center;
@@ -6150,9 +5797,7 @@
 #workskin .tb .tb-check.blue { background: #52b5f9; }
 
 /* checkmarks from a profile: the profile adds the picture and the padding to make room for it */
-/* checkmarks as one picture, for a blog without a profile: <span class="tb-checks ic ic-checks-2">&#10003;&#10003;</span>
-   straight after the name, with ic-checks-2, -4, -6, -8, -10 or -12. The picture is in the Icons section;
-   without it, the typed checkmarks show in blue. */
+/* checkmarks as one picture, for a blog without a profile */
 #workskin .tb .tb-checks { margin-left: 0.25em; color: #52b5f9; font-size: 0.85em; }
 
 #workskin .tb .handle::after { background-repeat: no-repeat; background-position: right center; background-size: auto 0.9em; }
@@ -6194,13 +5839,7 @@
   border-radius: 4px;
 }
 
-/* PICTURES AND GIFS: a picture post goes edge to edge across the card. Each row is a tb-row:
-   one picture at its own shape, or "two" for two side by side, cropped to squares. Stack rows for a photoset:
-   <div class="tb-photos">
-     <p class="tb-row"><span class="tb-photo"><img src="..." alt="..."></span></p>
-     <p class="tb-row two"><span class="tb-photo"><img src="..." alt="..."></span><span class="tb-photo"><img src="..." alt="..."></span></p>
-   </div>
-   In a two row, add class="land" to a picture that's wider than tall, so the sides get cropped instead of the top and bottom. */
+/* PICTURES AND GIFS: a picture post goes edge to edge across the card. */
 #workskin .tb .tb-photos { display: block; margin: 0.6em 0; }
 
 /* pictures at the very start of a post sit right up against the header */
@@ -6329,11 +5968,7 @@
   font-weight: bold;
 }
 
-/* ROUNDED SQUARE PICTURES: on Tumblr, each blog picks a circle or a rounded square for its picture,
-   and it's the same everywhere that blog shows up. For a blog without a profile, add sq to its
-   picture every time: <span class="tb-pfp sq colour6">PB</span> or <span class="tb-ask-pfp sq colour6">PB</span>
-   For a profile, add a line to the profile instead, e.g.
-   #workskin .tb .pfp.pfp-luca.acc-art { border-radius: 15%; } */
+/* ROUNDED SQUARE PICTURES: on Tumblr, each blog picks a circle or a rounded square for its picture, and it's the same everywhere that blog shows up. */
 #workskin .tb .tb-pfp.sq,
 #workskin .tb .tb-ask-pfp.sq,
 #workskin .tb .sq .pfp { border-radius: 15%; }
@@ -6393,10 +6028,7 @@
 
 #workskin .tb .tb-chat b { font-weight: bold; }
 
-/* poll: in tb-body, the question as a paragraph, then each option as <p class="tb-opt">Option<span class="tb-pct">50%</span></p>
-   and <p class="tb-pollinfo">votes &middot; time left</p> underneath.
-   An OPEN poll: just tb-opt (blue outlines). RESULTS: add "res" and a bar size, p0 to p100 in tens (p5 p25 p33 p67 p75 also exist),
-   and "win" for the winner of a finished poll. */
+/* polls */
 #workskin .tb .tb-body .tb-opt {
   display: flex;
   align-items: center;
@@ -6445,9 +6077,7 @@
 
 #workskin .tb .tb-body .tb-pollinfo { display: block; margin: 0.6em 0; text-align: center; color: #555555; font-size: 0.85em; }
 
-/* TAPPABLE POLL, the short way: <details class="tb-vote"> with the open poll in <summary> (spans with tb-opt,
-   and a tb-pollinfo span), then the results after it. Tapping shows the results instead.
-   The voter's picture: <span class="tb-voter"><span class="pfp pfp-name"></span></span> before the tb-pct. */
+/* TAPPABLE POLL, the short way */
 #workskin .tb .tb-vote,
 #workskin .tb .tb-vote > summary { display: block; }
 
@@ -6462,9 +6092,7 @@
 
 #workskin .tb .tb-vote[open] > summary { display: none; }
 
-/* TAPPABLE POLL where the reader picks: <div class="tb-poll">, then one <details class="tb-pick"> per option,
-   each with <summary class="tb-opt">Option</summary> and a <div class="tb-results"> holding the results
-   with the voter's picture on that option. The results cover the poll when it's tapped. */
+/* TAPPABLE POLL where the reader picks */
 #workskin .tb .tb-poll { display: block; position: relative; }
 
 #workskin .tb .tb-pick { display: block; margin: 0.45em 0; }
@@ -6479,11 +6107,7 @@
 
 #workskin .tb .tb-opt .tb-voter + .tb-pct { margin-left: 0; }
 
-/* THE FEED BEHIND THE CARDS (optional): put one or more .tb posts inside <div class="tb-feed">
-   THE FEED COLOUR is the background line below: navy (#001935) by default, Tumblr's True Blue light mode.
-   Add theme-auto to make it black when the reader's device is in dark mode, the same as the posts,
-   or theme-dark to make it always black. "black" and "classic" (the old Tumblr blue) are fixed colours.
-   To use any other colour, change the background line here. */
+/* THE FEED BEHIND THE CARDS (optional): a tb-feed around the posts */
 #workskin .tb-feed {
   width: 380px;
   max-width: 100%;
@@ -6505,9 +6129,7 @@
   #workskin .tb-feed.theme-auto { background: #000000; }
 }
 
-/* THE APP SCREEN (optional): add "app" to the feed for Tumblr's bar along the top and the buttons along the bottom.
-   <div class="tb-feed app"><div class="tb-screen"> top bar, tabs, posts </div><p class="tb-nav"> buttons </p></div>
-   The screen scrolls, so the top bar scrolls away with the posts, and the buttons below it stay put. */
+/* THE APP SCREEN (optional): add "app" to the feed for Tumblr's bar along the top and the buttons along the bottom. */
 #workskin .tb-feed.app { padding: 0; overflow: hidden; }
 
 #workskin .tb-feed .tb-screen {
@@ -6714,10 +6336,7 @@
   #workskin .tb.theme-auto .tb-ask::after { border-left-color: #272727; }
 }
 
-/* ---------- Tumblr: Icons ----------
-   The buttons and ticks are pictures: black in light chats, white in dark ones.
-   Each one is a span with "ic" and its name, with the typed symbol inside, which
-   this hides. Delete this whole section to get the typed symbols back. */
+/* ---------- Tumblr: Icons ---------- */
 #workskin .tb .ic {
   display: inline-block;
   width: 1em;
@@ -6805,14 +6424,7 @@
 
 /* >>>>>>>>>> MODULE: Email (Gmail and generic email window) (start) >>>>>>>>>> */
 
-/* ==========================================================
-   MODULE: EMAIL (GMAIL AND GENERIC EMAIL WINDOW)   (classes: gm, mail)
-   Gmail emails (gm): subject line, one block per email in the thread, reply buttons.
-   The header rows are real <table>s, which AO3 handles reliably.
-   Generic email window (mail): a plain email program window with a title bar, From/To/Subject
-   fields, a body, and a Reply / Forward / Delete bar.
-   Needs the CORE block.
-   ========================================================== */
+/* ---------- MODULE: EMAIL (GMAIL AND GENERIC EMAIL WINDOW)   (classes: gm, mail) ---------- */
 
 #workskin .gm {
   background: #ffffff;
@@ -7138,10 +6750,7 @@
   #workskin .gm.theme-auto table.gm-actions td { border-color: #5f6368; color: #bdc1c6; }
 }
 
-/* ---------- Email: Icons ----------
-   The buttons and ticks are pictures: black in light chats, white in dark ones.
-   Each one is a span with "ic" and its name, with the typed symbol inside, which
-   this hides. Delete this whole section to get the typed symbols back. */
+/* ---------- Email: Icons ---------- */
 #workskin .gm .ic, #workskin .mail .ic {
   display: inline-block;
   width: 1em;
@@ -7205,20 +6814,7 @@
 
 /* >>>>>>>>>> MODULE: Discord (start) >>>>>>>>>> */
 
-/* ==========================================================
-   MODULE: DISCORD   (classes: dc)
-   Discord (dc). Adapted from "Discord Work Skin & Tutorial" by BookKeep
-   (https://archiveofourown.org/works/42027846). Please credit them in your author's
-   notes if you post with this module.
-   Differences from the original: every rule is scoped under #workskin .dc (the original
-   used .window), and the parts are renamed to match the other apps: every part starts
-   with dc- (dc-message, dc-name, dc-time, dc-text...). Themes: theme-auto (follows the
-   reader's device), theme-dark, theme-light. Add colour1-colour10 to a dc-name for its
-   name and circle colour, or a profile from the CORE for a picture and name colour.
-   Discord doesn't use the mob box: it is its own wide window, but it does use the
-   CORE hidden text and translations.
-   Needs the CORE block.
-   ========================================================== */
+/* ---------- MODULE: DISCORD   (classes: dc) ---------- */
 
 #workskin .dc.narrow {
   width: 380px;
@@ -7391,16 +6987,9 @@
   padding: 0.125rem 0 0.125rem 0;
 }
 
-/* --- colours: add colour1 to colour10 to the dc-name, like <b class="dc-name colour3">Name</b> ---
-   One class colours both the name and the round picture. The colours themselves are in the
-   COLOURS section of the CORE, shared with every other app. With no colour class, the name is
-   plain and the circle is Discord blue. colour1-colour10 also work on any other text in a
-   message, like a name in a welcome line. */
+/* --- colours: add colour1 to colour10 to the dc-name, like <b class="dc-name colour3">Name</b> --- */
 
-/* --- profile pictures, the same way as every other module ---
-   Put a dc-pfp span first inside the username, with a profile or a picture tag in it:
-   <b class="dc-name pfp-shane"><span class="dc-pfp"><span class="pfp pfp-shane"></span></span>Shane</b>
-   It sits exactly where the coloured circle is, in messages and in replies. */
+/* --- profile pictures, the same way as every other module --- */
 #workskin .dc .dc-pfp {
   display: inline-block; /* inline, like the plain circle, so Firefox keeps it level with the name */
   position: absolute;

@@ -1,27 +1,8 @@
 /* >>>>>>>>>> CORE (start) >>>>>>>>>> */
 
-/* ==========================================================
-   >>> CORE: needed by every module <<<
-   The chat box and its parts, the width classes, scrolling,
-   hidden text, video descriptions, round pictures, the flashing cursor,
-   link basics, hover/tap translations, character profiles and the ten
-   shared colours (colour1 to colour10). Keep this block whichever modules you use.
-   ========================================================== */
+/* ---------- CORE: needed by every module ---------- */
 
-/* ==========================================================
-   THEMES: AUTO / LIGHT / DARK
-   Every module has its own dark theme and auto theme, near the end of its block.
-   Add ONE theme class to each chat's container:
-     theme-auto   follows the READER's device or browser setting:
-                  dark if they use dark mode, light if not
-     theme-light  always light
-     theme-dark   always dark
-   e.g. <div class="mob imsg theme-auto">
-   With no theme class a chat is light, the same as theme-light, so the
-   normal rules of each module are its light theme.
-   AO3 doesn't let a work skin read the reader's AO3 site skin, so
-   "auto" uses their device/browser light-dark setting instead.
-   ========================================================== */
+/* ---------- THEMES: AUTO / LIGHT / DARK ---------- */
 
 /* ---------- The box every chat sits in, and its parts ---------- */
 
@@ -53,28 +34,14 @@
   opacity: 0.75;
 }
 
-/* ==========================================================
-   Width: phone (the default) or full width
-   Phone width is what every chat is designed for, and is recommended.
-   Add "wide" to a chat's container to let it fill the page instead,
-   e.g. <div class="mob imsg theme-auto wide">. The Twitter and Tumblr
-   modules add the same for their thread and feed boxes.
-   Discord is already wide; its module adds "narrow" for phone width.
-   ========================================================== */
+/* ---------- Width: phone (the default) or full width ---------- */
 
 #workskin .mob.wide {
   width: auto;
   max-width: none;
 }
 
-/* ==========================================================
-   Scrolling
-   Every chat is held to about the height of a phone screen (the width is 380px).
-   Chats with a header and a footer keep those in place and scroll the messages;
-   the rest scroll as a whole. Shorter chats are not affected.
-   To switch it off for one chat, add the class no-scroll to its container.
-   (Each module adds the scrolling for its own posts.)
-   ========================================================== */
+/* ---------- Scrolling ---------- */
 
 #workskin .mob-body { max-height: 580px; overflow-y: auto; overflow-x: hidden; }
 
@@ -100,12 +67,7 @@
 
 /* ---------- Small helpers: hidden text, video descriptions, round pictures, flashing cursor ---------- */
 
-/* a real profile picture inside any round picture circle (WhatsApp wa-pfp, Tumblr tb-pfp,
-   Gmail gm-pfp, Instagram ig-pfp, Discord dc-pfp): wrap the picture tag in a span with pfp, e.g.
-   <span class="wa-pfp colour1"><span class="pfp"><img src="..." alt="..."></span></span>
-   A normal picture (taller than wide, or square) is made as wide as the circle and the top of the
-   photo is kept in view, so faces aren't cut off. If the picture is wider than tall, add class="land"
-   to it: it is made as tall as the circle and centred from side to side instead. */
+/* a real profile picture inside any round picture circle (WhatsApp wa-pfp, Tumblr tb-pfp, Gmail gm-pfp, Instagram ig-pfp, Discord dc-pfp): wrap the picture tag in a span with pfp */
 #workskin .pfp {
   display: block;
   position: relative;
@@ -160,14 +122,10 @@
   margin: 0 auto;
 }
 
-/* text that only shows when the reader has "Hide Creator's Style" on, or in a download.
-   Use it to spell out who is speaking, or to describe an emoji or picture (see the tutorial).
-   The class is repeated so that nothing else in the workskin can make it show by mistake. */
+/* text that only shows when the reader has "Hide Creator's Style" on, or in a download. */
 #workskin .hide.hide.hide.hide { display: none; }
 
-/* video descriptions: <span class="vid-desc">[Video: what happens in the video]</span>
-   Put it straight after a video. It's moved off-screen rather than hidden, so screen
-   readers still read it out, and it shows as normal text when the workskin is off. */
+/* video descriptions */
 #workskin .vid-desc {
   position: absolute;
   left: -9999px;
@@ -214,13 +172,7 @@
 
 /* ---------- Hover and tap translations ---------- */
 
-/* ---- hover / tap translations ----
-   <a class="tl" href="#t1"><span class="orig">Croeso</span><span class="tltn"><span class="hide"> (</span>Welcome<span class="hide">)</span></span></a>
-   The reader sees "orig" with a dotted line under it. Hovering (computer) or tapping (phone) swaps in "tltn".
-   It works in ordinary text and inside any chat or post: the text takes on the colour of whatever it sits in,
-   including the light, dark and auto themes, and it is not styled like the chat links above.
-   (The selectors are a little long on purpose, so that no chat rule can override them.)
-   If the skin is off, the two "hide" spans show, so the reader gets: Croeso (Welcome) */
+/* ---- hover / tap translations ---- */
 #workskin a.tl,
 #workskin a.tl:link,
 #workskin a.tl:visited,
@@ -254,9 +206,7 @@
 
 #workskin a.tl span.hide { display: none; }
 
-/* on hover (computer) or focus (a tap on a phone): swap them over.
-   The original stays in place, invisible and with no height, so the link never gets narrower than it was.
-   (If it did, the pointer would fall off the end of a short translation, and the words would flicker.) */
+/* on hover (computer) or focus (a tap on a phone): swap them over. */
 #workskin a.tl:hover,
 #workskin a.tl:focus {
   display: inline-block;
@@ -275,9 +225,7 @@
   display: block;
 }
 
-/* ---- easter eggs: <a class="tl egg" href="#t4"> ----
-   Works exactly like a translation, but with no dotted line, so the words look like the
-   text around them (colour, bold, italics and all) until someone hovers over or taps them. */
+/* ---- easter eggs: <a class="tl egg" href="#t4"> ---- */
 #workskin a.tl.egg,
 #workskin a.tl.egg:link,
 #workskin a.tl.egg:visited,
@@ -295,34 +243,7 @@
 #workskin a.tl.egg:focus,
 #workskin a.tl.egg:active { cursor: text; }
 
-/* ==========================================================
-   PROFILES: one character, set once, used in every module
-   A profile holds everything about one character: their picture, a different
-   picture for any app if you like, their name colour, their name (and what other
-   characters have them saved as), their handle, their email address, and the
-   WhatsApp wallpaper for chats on their phone. One line each is enough; add extra
-   lines only where someone uses a different picture, name or handle on one app.
-   Luca's profile (the first one) shows every option, explained. The others are the
-   profiles used in the tutorial's examples, simplest first. Copy any block for
-   each of your characters, change the name after pfp- (and pov-) everywhere in it,
-   and fill in or delete the parts you want.
-   In your HTML:
-     picture       <span class="pfp pfp-stan"></span> inside any profile circle
-                   (wa-pfp, tw-pfp, ig-pfp, ig-like-pfp, tb-pfp, gm-pfp, dc-pfp)
-     name colour   add pfp-stan to a WhatsApp who line or a Discord username
-     handle        <span class="handle pfp-stan"></span> wherever the handle goes;
-                   it shows the one for the app it's in, and Twitter/X adds the @.
-                   Handles come from the CSS, so they aren't there when the style
-                   is switched off.
-     email         <span class="email pfp-stan"></span> wherever the address goes
-     name          <span class="name pfp-shane"></span> wherever their name goes.
-                   In a chat with pov-ilya on the container, it shows what Ilya
-                   has him saved as. Put <span class="hide">Jane</span> inside it
-                   for readers with the style switched off.
-     their phone   add pov-shane to the container of any chat on Shane's phone
-   Profiles grew out of the one-class-per-character Discord users in BookKeep's
-   Discord Work Skin & Tutorial (https://archiveofourown.org/works/42027846).
-   ========================================================== */
+/* ---------- PROFILES: one character, set once, used in every module ---------- */
 
 /* a handle, name or email address looks like the text around it, whatever it sits inside */
 #workskin .mob span.handle.handle.handle.handle,
@@ -372,10 +293,7 @@
 #workskin .ig .name.pfp-luca::before, #workskin .igdm .name.pfp-luca::before { content: "Luca and the Cats"; }
 #workskin .dc .name.pfp-luca::before { content: "lucaaa"; }
 
-/* 7. Saved as: what he's called on another character's phone, in any chat with
-   that character's pov- class on the container. One line per phone. It works on any
-   container with pov-, but real apps only let you rename people in iMessage,
-   WhatsApp and Discord DMs (and change their picture in iMessage and WhatsApp). */
+/* 7. Saved as: what he's called on another character's phone, in any chat with that character's pov- class on the container. */
 #workskin .pov-shane .name.pfp-luca::before { content: "Luca (cat pictures)"; }
 #workskin .pov-ilya .name.pfp-luca::before { content: "Cat Guy"; }
 #workskin .pov-rose .name.pfp-luca::before { content: "Cat Luca"; }
@@ -404,11 +322,7 @@
 #workskin .tb .handle.pfp-luca.acc-art::after { content: "gremlin-sketches"; }
 #workskin .tb .pfp.pfp-luca.acc-rpf { background-image: url(https://images.squidge.org/images/2026/11/16/Hollanov1.png); }
 #workskin .tb .handle.pfp-luca.acc-rpf::after { content: "rink-rivals-rpf"; }
-/* 14. Tumblr checkmarks after the blog's name. Pick the picture with 2, 4, 6, 8, 10 or 12 checkmarks and the
-   padding that goes with it: tb-checks-2.png 2.15em, tb-checks-4.png 3.95em, tb-checks-6.png 5.75em,
-   tb-checks-8.png 7.55em, tb-checks-10.png 9.35em, tb-checks-12.png 11.15em,
-   or tb-checks-blue.png 2.15em for two blue ones.
-   An acc- account has its own line, or it gets the main blog's checkmarks. */
+/* 14. Tumblr checkmarks after the blog's name. */
 #workskin .tb .handle.pfp-luca::after { background-image: url(https://images.squidge.org/images/2026/11/16/tb-checks-2.png); padding-right: 2.15em; }
 #workskin .tb .handle.pfp-luca.acc-art::after { background-image: url(https://images.squidge.org/images/2026/11/16/tb-checks-6.png); padding-right: 5.75em; }
 #workskin .tb .handle.pfp-luca.acc-rpf::after { background-image: url(https://images.squidge.org/images/2026/11/16/tb-checks-4.png); padding-right: 3.95em; }
@@ -457,9 +371,7 @@
 #workskin .handle.pfp-holster::after { content: "HolsterInLaw"; }
 #workskin .email.pfp-holster::after { content: "birka@samwellU.edu"; }
 
-/* PROFILE: Rose - her public accounts (Twitter/X and Instagram) use her full name, and she has a
-   private second account on Instagram, acc-private. Add the acc- name:
-   <span class="handle pfp-rose acc-private"> */
+/* PROFILE: Rose - her public accounts (Twitter/X and Instagram) use her full name, and she has a private second account on Instagram, acc-private. */
 #workskin .pfp.pfp-rose { background-color: #c2416b; background-image: url(https://images.squidge.org/images/2026/11/16/RoseHeadshot.jpg); }
 #workskin .wa .who.pfp-rose, #workskin .dc .dc-name.pfp-rose { color: #d6336c; }
 #workskin .name.pfp-rose::before { content: "Rose"; }
@@ -506,22 +418,7 @@
 #workskin .tw .name.pfp-ilya.acc-shanewife::before, #workskin .tw-reply .name.pfp-ilya.acc-shanewife::before, #workskin .twdm .name.pfp-ilya.acc-shanewife::before, #workskin .twc12 .name.pfp-ilya.acc-shanewife::before, #workskin .twc16 .name.pfp-ilya.acc-shanewife::before, #workskin .ig .name.pfp-ilya.acc-shanewife::before, #workskin .igdm .name.pfp-ilya.acc-shanewife::before { content: "Shane Hollander's Wife"; }
 #workskin .tw .handle.pfp-ilya.acc-shanewife::after, #workskin .tw-reply .handle.pfp-ilya.acc-shanewife::after, #workskin .twdm .handle.pfp-ilya.acc-shanewife::after, #workskin .twc12 .handle.pfp-ilya.acc-shanewife::after, #workskin .twc16 .handle.pfp-ilya.acc-shanewife::after, #workskin .ig .handle.pfp-ilya.acc-shanewife::after, #workskin .igdm .handle.pfp-ilya.acc-shanewife::after { content: "hollanderswife"; }
 
-/* ==========================================================
-   COLOURS: colour1 to colour10
-   One set of ten colours for every app. Add colour1 to colour10 to a picture
-   circle (wa-pfp, tw-pfp, ig-pfp, ig-like-pfp, tb-pfp, tb-ask-pfp, gm-pfp) or a name (WhatsApp who,
-   Discord dc-name) to colour it. Use the same number for a person everywhere.
-   Change a colour here and it changes in every app.
-   Each rule lists the class names for all the apps. If you've left some apps
-   out, keep the whole list anyway: a name for an app you don't use just
-   doesn't match anything, so it does no harm.
-   A note on spelling: I'm British, so I've spelled colour the British way in
-   the class names - colour1, not color1. If you forget the u and the skin
-   doesn't work, you'll understand my pain, because I've had to take the u out
-   of colour every time I've used someone else's code and couldn't figure out
-   why it wasn't working. (The CSS property itself is still color, with no u -
-   that one's not up to me.)
-   ========================================================== */
+/* ---------- COLOURS: colour1 to colour10 ---------- */
 
 /* picture circles (the same in light and dark) */
 #workskin .wa .wa-pfp.colour1,
