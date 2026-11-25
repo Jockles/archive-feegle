@@ -767,6 +767,7 @@
   // a post or reel shared into the chat, as a card: the share and save buttons, the account with its picture,
   // the picture, then the caption. As the faded quote above a reply, it has no buttons and says what's being replied to.
   function igdmPost(m, side, sender, r, quoted) {
+    // a reel is one picture (a still from the video): the skin adds the play button and the reel sign
     var acc = char(m.postBy), u = picUrl(m.postImg || ""), reel = m.postReel;
     var who = acc ? igNameHTML(acc, null) : esc(t(m.postAcc) || "someone");
     var pic = acc ? circle("ig-pfp", acc, null) : '<span class="ig-pfp' + (m.postCol ? " colour" + m.postCol : "") + '">' + esc(t(m.postIni) || (t(m.postAcc) || "s").charAt(0).toUpperCase()) + "</span>";
@@ -774,10 +775,10 @@
     if (btns) L.push('<p class="igdm-post-btns">' + btns + "</p>");
     L.push('<p class="igdm-post-by">' + pic + (quoted ? '<span class="hide">[Replying to a ' + (reel ? "reel" : "post") + " from </span><b>" + who + '</b><span class="hide">]</span>' :
       '<span class="hide"><em>' + esc(sender) + "</em> shared a " + (reel ? "reel" : "post") + " from </span><b>" + who + '</b><span class="hide">:</span>') + "</p>");
-    var more = (m.postMore || []).filter(function (x) { return picUrl(x.url) || t(x.desc); });
+    var more = reel ? [] : (m.postMore || []).filter(function (x) { return picUrl(x.url) || t(x.desc); });
     // more than one picture: a carousel, the same as a feed post's
     if (more.length) L = L.concat(igPhotos({ photos: [{ url: u, alt: m.postAlt || "", desc: m.postDesc || "", land: !!m.postLand }].concat(more), shape: "" }));
-    else if (u) L.push('<p class="igdm-post-img"><img ' + (m.postLand ? 'class="land" ' : "") + 'src="' + esc(u) + '" alt="' + esc(t(m.postAlt)) + '"></p>');
+    else if (u) L.push('<p class="igdm-post-img"><img ' + (m.postLand && !reel ? 'class="land" ' : "") + 'src="' + esc(u) + '" alt="' + esc(t(m.postAlt)) + '"></p>');
     else if (t(m.postDesc)) L.push('<p class="igdm-post-img text">[' + esc(t(m.postDesc)) + "]</p>");
     if (t(m.postCap)) L.push('<p class="igdm-post-cap"><b>' + who + "</b> " + fmt(m.postCap) + "</p>");
     if (r) L.push(r); // reactions go last, straight inside the card
@@ -867,7 +868,10 @@
       });
       if (m.hasPost) parts.push(["post"]);
       if (m.link) parts.push(["link"]);
-      if (t(m.text)) parts.push([m.shared ? "igdm-shared" : "msg " + side, fmt(m.text)]);
+      // a shared story: the story in an outlined box, then the words sent with it (work saved before had only the box, in the text)
+      var story = m.shared ? (m.storyText === undefined ? m.text : m.storyText) : "", said = m.shared && m.storyText === undefined ? "" : m.text;
+      if (t(story)) parts.push(["igdm-shared", fmt(story)]);
+      if (t(said)) parts.push(["msg " + side, fmt(said)]);
       var rx = igdmReacts(m), last = -1;
       parts.forEach(function (x, i) { if (x[0] !== "igdm-shared") last = i; });
       parts.forEach(function (x, i) {
@@ -1379,24 +1383,30 @@
         h.push('<p class="hint fb-attach">Shared in this message:' + help(P + ".attach") + " " + [["", "Nothing"], ["post", "Picture post"], ["reel", "Reel"], ["link", "Link"], ["story", "Story"]].map(function (o) {
           return '<label class="ck"><input type="radio" name="att-' + bi + "-" + mi + '" data-act="attach:' + bi + ":" + mi + ":" + o[0] + '"' + (kind === o[0] ? " checked" : "") + "> " + o[1] + "</label>";
         }).join(" ") + "</p>");
-        if (kind === "story") h.push('<p class="hint">Type what the story says in the message box, like \'Shared a story from @shane.h: "6am skate. Again."\'. It goes in an outlined box.</p>');
+        if (kind === "story") {
+          if (m.storyText === undefined) { m.storyText = m.text; m.text = ""; }
+          h.push('<div class="fb-acct">' + field(P + ".storyText", "The story", { ph: 'Shared a story from @shane.h: "6am skate. Again."', wrap: true }) +
+            '<p class="hint">It goes in an outlined box. Anything typed in the message box goes under it, as the words sent with the story.</p></div>');
+        }
         if (m.hasPost) {
           if (m.postShare === undefined) m.postShare = true;
           if (m.postSave === undefined) m.postSave = true;
+          var reelOnly = m.postReel;
           h.push('<div class="fb-acct"><div class="fb-row">' + field(P + ".postShare", "Share button", { type: "check" }) +
             field(P + ".postSave", "Save button", { type: "check" }) + "</div>" +
             field(P + ".postBy", "Posted by", { type: "select", re: true, options: [["", "Someone not in the cast"]].concat(castOptions()) }) +
             (char(m.postBy) ? "" : '<div class="fb-row">' + field(P + ".postAcc", "", { ph: "Their username" }) + field(P + ".postIni", "", { ph: (t(m.postAcc) || "s").charAt(0).toUpperCase(), cls: "fb-time" }) +
               field(P + ".postCol", "", { type: "select", options: [["", "Grey"]].concat(Object.keys(COLOURS).map(function (k) { return [k, "Colour " + k + ": " + COLOUR_NAMES[k]]; })) }) + "</div>") +
-            field(P + ".postImg", "", { type: "url", ph: "Picture link", wrap: true }) + field(P + ".postAlt", "", { ph: "Describe the picture (alt text)", wrap: true }) +
-            field(P + ".postLand", "Landscape picture", { type: "check" }) +
-            field(P + ".postDesc", "", { ph: "Or, with no picture, describe it in words", wrap: true }) +
-            (m.postMore || []).map(function (x, k) {
+            (reelOnly ? '<p class="hint">A reel is one picture, a still from the video. The play button and the reel sign go on it for you.</p>' : "") +
+            field(P + ".postImg", "", { type: "url", ph: reelOnly ? "Video still link" : "Picture link", wrap: true }) + field(P + ".postAlt", "", { ph: reelOnly ? "Describe the video still (alt text)" : "Describe the picture (alt text)", wrap: true }) +
+            (reelOnly ? "" : field(P + ".postLand", "Landscape picture", { type: "check" })) +
+            field(P + ".postDesc", "", { ph: reelOnly ? "Or, with no picture, describe the video in words" : "Or, with no picture, describe it in words", wrap: true }) +
+            (reelOnly ? "" : (m.postMore || []).map(function (x, k) {
               var K = P + ".postMore." + k;
               return '<div class="fb-acct"><div class="fb-row">' + field(K + ".url", "", { type: "url", ph: "Next picture link" }) + btn("ppic-del:" + bi + ":" + mi + ":" + k, "&times;", "Remove") + "</div>" +
                 field(K + ".alt", "", { ph: "Describe the picture (alt text)", wrap: true }) + field(K + ".desc", "", { ph: "Or, with no picture, describe it in words", wrap: true }) +
                 field(K + ".land", "Landscape picture", { type: "check" }) + "</div>";
-            }).join("") + btn("ppic-add:" + bi + ":" + mi, "+ Another picture (a carousel)") +
+            }).join("") + btn("ppic-add:" + bi + ":" + mi, "+ Another picture (a carousel)")) +
             field(P + ".postCap", "", { ph: "The caption (reels usually have none)", wrap: true }) + "</div>");
         }
         if (m.link) {
@@ -2367,7 +2377,8 @@
           if (is(im, "img")) m.photos = [{ url: im.getAttribute("src"), alt: im.getAttribute("alt") || "", desc: "", land: false }];
           else if (is(im, "span.igdm-desc")) m.photos = [{ url: "", alt: "", desc: words(im).replace(/^\[|\]$/g, ""), land: false }];
           else no();
-        } else { m.text = textBack(ns); m.shared = sh; }
+        } else if (sh) { m.shared = true; m.storyText = textBack(ns); }
+        else m.text = textBack(ns);
       }
       if (!!rx !== (!sh && p.classList.contains("reacted"))) no();
       if (rx) reactsBack(m, rx);
