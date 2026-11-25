@@ -206,6 +206,12 @@ def page(title, up, main, extra_head="", extra_end=""):
     <li><a href="{up}videos/index.html">Videos</a></li>
     <li><a href="{up}blog/index.html">Blog</a></li>
     <li><a href="{up}links.html">Links</a></li>
+    <li class="menu-drop"><span class="menu-drop-label" tabindex="0">Tools</span>
+      <ul>
+        <li><a href="{up}fic/megaskin/fic-builder.html">Megaskin Fic-Builder</a></li>
+        <li><a href="{up}fic/megaskin/profile-maker.html">Megaskin Profile-Builder</a></li>
+      </ul>
+    </li>
     <li><a href="{up}about.html">About</a></li>
   </ul>
 </nav>
