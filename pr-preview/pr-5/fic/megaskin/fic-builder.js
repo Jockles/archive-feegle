@@ -870,10 +870,10 @@
       if (m.link) parts.push(["link"]);
       // a shared story: the story in an outlined box, then the words sent with it (work saved before had only the box, in the text)
       var story = m.shared ? (m.storyText === undefined ? m.text : m.storyText) : "", said = m.shared && m.storyText === undefined ? "" : m.text;
-      if (t(story)) parts.push(["igdm-shared", fmt(story)]);
+      if (t(story)) parts.push(["igdm-shared" + (out ? " mine" : ""), fmt(story)]); // the phone owner's story box goes on the right
       if (t(said)) parts.push(["msg " + side, fmt(said)]);
       var rx = igdmReacts(m), last = -1;
-      parts.forEach(function (x, i) { if (x[0] !== "igdm-shared") last = i; });
+      parts.forEach(function (x, i) { if (x[0].indexOf("igdm-shared") < 0) last = i; });
       parts.forEach(function (x, i) {
         var r = i === last ? rx : "";
         if (x[0] === "link") igdmLink(m, side, label(), r).forEach(function (l) { to.push(l); });
@@ -2361,7 +2361,7 @@
         var tby = who || (tout ? owner(b, tem.textContent) : personByName(tem.textContent, true)); if (!tby) no();
         b.msgs.push(m = newMsg("typing", "")); m.by = tby.id; return;
       }
-      var card = is(p, "div.igdm-post"), lnk = is(p, "div.igdm-link"), sh = is(p, "p.igdm-shared"), out = !sh && p.classList.contains("out");
+      var card = is(p, "div.igdm-post"), lnk = is(p, "div.igdm-link"), sh = is(p, "p.igdm-shared"), out = p.classList.contains(sh ? "mine" : "out");
       if (!card && !lnk && !sh && !is(p, "p.msg")) no();
       if (!sh && !out && !p.classList.contains("in")) no();
       if (quote && (quote.text == null || !sh && quote.side !== (out ? "out" : "in"))) no();
