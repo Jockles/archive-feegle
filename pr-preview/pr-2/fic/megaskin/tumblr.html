@@ -23,9 +23,9 @@
   <meta property="og:image:alt" content="jockles.com: All the Fannish things I do. Social Media AO3 Skin">
   <meta name="twitter:card" content="summary_large_image">
   <!-- /site meta -->
-  <link rel="stylesheet" href="../../style.css">
-  <script src="../../theme.js"></script>
-  <link rel="stylesheet" href="megaskin.css?v=ab2732b1" id="creator-style">
+  <link rel="stylesheet" href="../../style.css?v=c31c06ea">
+  <script src="../../theme.js?v=c50fd7c2"></script>
+  <link rel="stylesheet" href="megaskin.css?v=2a55347f" id="creator-style">
 </head>
 <body>
 <header>
@@ -521,6 +521,27 @@
 <summary>How it works: why the dots come before the name</summary>
 
 <p>Anything on the right-hand side, like the dots or a Follow button, has to come <em>before</em> the name in the code, so the name fits in beside it.</p>
+
+</details>
+
+<details>
+<summary>Names that are too long</summary>
+
+<p>The name stays on one line, so at phone width a long one is cut off at the edge, part way through a letter. In the app it ends in "…", but AO3 won't let the skin add that for you, so view your chapter at phone width and check the name fits. If it doesn't, type the name in yourself, cut short with "…". With a name from a profile, swap the handle span for the typed name.</p>
+
+<div class="mob tb theme-auto"><p class="tb-header">
+  <span class="tb-pfp colour2">FE</span>
+  <span class="tb-menu">&#8226;&#8226;&#8226;</span>
+  <span class="tb-name"><b>the-fridge-enthusiast-…</b>
+    <span class="tb-subline">2h ago</span></span>
+</p></div>
+
+<pre><code>&lt;p class="tb-header"&gt;
+  &lt;span class="tb-pfp colour2"&gt;FE&lt;/span&gt;
+  &lt;span class="tb-menu"&gt;&amp;#8226;&amp;#8226;&amp;#8226;&lt;/span&gt;
+  &lt;span class="tb-name"&gt;&lt;b&gt;the-fridge-enthusiast-…&lt;/b&gt;
+    &lt;span class="tb-subline"&gt;2h ago&lt;/span&gt;&lt;/span&gt;
+&lt;/p&gt;</code></pre>
 
 </details>
 

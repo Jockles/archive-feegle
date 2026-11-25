@@ -429,7 +429,7 @@
 
 #workskin .wa .wa-photo:nth-of-type(n+3) { margin-bottom: 0; }
 
-/* the picture: a tall or square one fills the width; add class="land" to a wide one */
+/* the picture. AO3 can't crop pictures automatically, so the skin needs to know which way the picture runs: - normal (taller than wide, or square): it is made as wide as the box, and the top and bottom are cropped evenly - add class="land" to the img if it is wider than tall: it is made as tall as the box, and the sides are cropped evenly The tall boxes (two pictures; the left one of three) always use the second way, as nearly any photo fits them that way. */
 #workskin .wa .wa-photo img {
   position: absolute;
   top: -9999px;
@@ -831,7 +831,7 @@
 
 #workskin div.mob.wa.bg-dusk { background-color: #4b3a6e; background-image: linear-gradient(#7b5ea7, #2c2145); }
 
-/* YOUR OWN WALLPAPER (a photo or pattern from the web) */
+/* YOUR OWN WALLPAPER (a photo or pattern from the web) 1. */
 #workskin div.mob.wa.bg-image1 {
   background-color: #1c1c1c;
   background-image: url(https://example.com/my-wallpaper.jpg);
