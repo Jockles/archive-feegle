@@ -1,11 +1,6 @@
 /* >>>>>>>>>> MODULE: WhatsApp (start) >>>>>>>>>> */
 
-/* ==========================================================
-   MODULE: WHATSAPP   (classes: wa)
-   WhatsApp: <div class="mob wa theme-auto">
-   Includes the wallpapers (bg classes) at the end of the block.
-   Needs the CORE block.
-   ========================================================== */
+/* ---------- MODULE: WHATSAPP   (classes: wa) ---------- */
 
 #workskin .wa {
   background-color: #efeae2;
@@ -248,9 +243,7 @@
 
 #workskin .wa .wa-reacts.pad { margin-left: 46px; }
 
-/* the three typing dots, in a message bubble from whoever is typing (out for the phone's owner, in for anyone else,
-   with the wa-row picture and who line in a group, like any message):
-   <div class="msg in tail typing-indicator"><p class="hide"><em>Lily</em> is typing...</p><p><span></span><span></span><span></span></p></div> */
+/* the three typing dots, in a message bubble from whoever is typing (out for the phone's owner, in for anyone else, with the wa-row picture and who line in a group, like any message) */
 #workskin .wa .msg.typing-indicator { min-width: 0; }
 
 #workskin .wa .typing-indicator p:last-child { margin: 0.35em 0 0.25em 0; line-height: 1; }
@@ -402,9 +395,7 @@
   text-decoration: underline;
 }
 
-/* photos: <p class="wa-photos one|two|three|four"> then one <span class="wa-photo"> per picture.
-   Each photo is a square (or, for the tall ones, two squares high) and the picture fills it, cropped
-   to fit, never stretched. The widths add up to 99%, not 100%, so rounding can't push a photo down. */
+/* photos */
 #workskin .wa .wa-photos {
   display: block;
   overflow: hidden;
@@ -438,11 +429,7 @@
 
 #workskin .wa .wa-photo:nth-of-type(n+3) { margin-bottom: 0; }
 
-/* the picture. AO3 can't crop pictures automatically, so the skin needs to know which way the picture runs:
-   - normal (taller than wide, or square): it is made as wide as the box, and the top and bottom are cropped evenly
-   - add class="land" to the img if it is wider than tall: it is made as tall as the box, and the sides are cropped evenly
-   The tall boxes (two pictures; the left one of three) always use the second way, as nearly any photo fits them that way.
-   (The huge offsets plus auto margins do the centring, so no transform is needed.) */
+/* the picture: a tall or square one fills the width; add class="land" to a wide one */
 #workskin .wa .wa-photo img {
   position: absolute;
   top: -9999px;
@@ -549,9 +536,7 @@
   padding: 0.3em 0.35em 0 0.35em;
 }
 
-/* ---- CALLS: a voice or video call, in a bubble of its own ----
-   <div class="msg out tail call"><p class="wa-call"><span class="wa-call-ic ic ic-wa-call-out">&#128222;</span><span class="hide"> </span><b>Voice call</b><span class="hide"> - </span><span class="wa-call-len">44 secs</span></p><p class="wa-time">09:47</p></div>
-   The round icon is wa-call-ic, then the kind of call in <b>, then how long it lasted (or "Tap to call back"). */
+/* ---- CALLS: a voice or video call, in a bubble of its own ---- */
 #workskin .wa .msg.call {
   position: relative;
   min-width: 13em;
@@ -601,13 +586,7 @@
   margin: 0;
 }
 
-/* ---- CONTACT CARDS: a shared contact, with a Message button along the bottom ----
-   <div class="msg in tail contact"><p class="hide"><em>Lily:</em></p>
-     <p class="wa-contact"><span class="wa-pfp"><span class="pfp pfp-rose"></span></span>Rose Landry</p>
-     <p class="wa-time">18:03</p>
-     <p class="wa-cbtn">Message</p>
-   </div>
-   The picture works like every other wa-pfp: initials with a colour, a picture, or a profile. */
+/* ---- CONTACT CARDS: a shared contact, with a Message button along the bottom ---- */
 #workskin .wa .msg.contact {
   width: 70%;
   padding: 0;
@@ -852,11 +831,7 @@
 
 #workskin div.mob.wa.bg-dusk { background-color: #4b3a6e; background-image: linear-gradient(#7b5ea7, #2c2145); }
 
-/* YOUR OWN WALLPAPER (a photo or pattern from the web)
-   1. Upload the picture somewhere that gives a direct link (an image host such as squidge.org).
-   2. Replace the example link in the rule below with yours (the colour shows if the picture fails).
-   3. Use the class on any chat: <div class="mob wa theme-auto bg-image1">
-   4. For another wallpaper, copy the rule again and rename bg-image1 to bg-image2, etc. */
+/* YOUR OWN WALLPAPER (a photo or pattern from the web) */
 #workskin div.mob.wa.bg-image1 {
   background-color: #1c1c1c;
   background-image: url(https://example.com/my-wallpaper.jpg);
@@ -896,10 +871,7 @@
 #workskin .wa .mob-body,
 #workskin .wa .wa-input { position: relative; }
 
-/* ---------- WhatsApp: Icons ----------
-   The buttons and ticks are pictures: black in light chats, white in dark ones.
-   Each one is a span with "ic" and its name, with the typed symbol inside, which
-   this hides. Delete this whole section to get the typed symbols back. */
+/* ---------- WhatsApp: Icons ---------- */
 #workskin .wa .ic {
   display: inline-block;
   width: 1em;

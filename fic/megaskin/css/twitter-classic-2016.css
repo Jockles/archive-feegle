@@ -1,12 +1,6 @@
 /* >>>>>>>>>> MODULE: Classic Twitter 2016-19 (start) >>>>>>>>>> */
 
-/* ==========================================================
-   MODULE: CLASSIC TWITTER 2016-19   (classes: twc16, twc16-feed)
-   Twitter as it looked from 2016 to 2019: round pictures, hearts, the little grey arrow, a white bar
-   along the top with your own picture in it, and a row of outline buttons along the bottom.
-   Single tweets (twc16), opened tweets (twc16 big) and the app screen (twc16-feed), with Twitter's dim blue night mode.
-   Needs the CORE block. It doesn't need any other Twitter module.
-   ========================================================== */
+/* ---------- MODULE: CLASSIC TWITTER 2016-19   (classes: twc16, twc16-feed) ---------- */
 
 /* one tweet: <div class="mob twc16 theme-auto"> ... </div>
    The picture sits in a column of its own on the left, and everything else lines up to the right of it. */
@@ -54,10 +48,7 @@
 
 #workskin .twc16 .tw-name .ic { width: 1em; height: 1em; margin-left: 0.2em; vertical-align: -0.15em; }
 
-/* a long name: the name line is a flex row, so when it doesn't all fit, the handle shrinks first and can
-   disappear completely, then the name is cut off, tick and all. The time always stays.
-   A name typed in a plain span ends in "...": <span class="tw-name"><span>A really long name</span></span>
-   Without the span it stops at the last whole word that fits */
+/* a long name: the name line is a flex row, so when it doesn't all fit, the handle shrinks first and can disappear completely, then the name is cut off, tick and all. */
 #workskin .twc16 .tw-top { display: flex; align-items: flex-start; line-height: 1.3; }
 
 #workskin .twc16 .tw-name {
@@ -199,16 +190,7 @@
 
 #workskin .twc16-feed .twc16.link + .twc16::before { top: 0; height: 0.7em; }
 
-/* ---------- Classic Twitter 2016-19: an opened tweet ----------
-   Add "big" for a tweet on its own page: the @handle goes under the name, the words are bigger,
-   and the date, the counts and the buttons get lines of their own.
-   <div class="mob twc16 big theme-auto">
-     <p class="tw-top"> ... </p>
-     <p class="tw-text"> ... </p>
-     <p class="tw-date">11:04 PM · 10/20/18 · Twitter for iPhone</p>
-     <p class="tw-counts"><b>12</b> Retweets <b>45</b> Likes</p>
-     <div class="tw-stats"> the buttons, with no numbers </div>
-   </div> */
+/* ---------- Classic Twitter 2016-19: an opened tweet ---------- */
 #workskin .twc16.big { padding: 0.8em 1em 0.2em 1em; }
 
 #workskin .twc16.big .tw-top { min-height: 48px; padding-left: 58px; white-space: normal; }
@@ -254,14 +236,7 @@
 
 #workskin .twc16.big .tw-stats .ic { width: 1.5em; height: 1.5em; margin-right: 0; }
 
-/* ---------- Classic Twitter 2016-19: the app screen ----------
-   <div class="twc16-feed theme-auto">
-     <p class="twc-bar"> the bar along the top </p>
-     <div class="mob twc16"> ... </div>
-     <div class="mob twc16"> ... </div>
-     <p class="tw-nav"> the row of buttons along the bottom </p>
-   </div>
-   The tweets inside lose their borders and sit one under the other, and the screen scrolls between the bars. */
+/* ---------- Classic Twitter 2016-19: the app screen ---------- */
 #workskin .twc16-feed {
   width: 380px;
   max-width: 100%;
@@ -365,9 +340,7 @@
 
 #workskin .twc16-feed .tw-nav .on { opacity: 1; }
 
-/* a blue number on a button, like new notifications: wrap the icon and the number in a tw-badged span.
-   <span class="tw-badged"><span class="ic ic-x-bell">&#128276;</span><span class="tw-badge"><span class="hide"> (</span>3<span class="hide">)</span></span></span>
-   The circle stretches into a lozenge for longer numbers. */
+/* a blue number on a button, like new notifications: wrap the icon and the number in a tw-badged span. */
 #workskin .twc16-feed .tw-nav .tw-badged { position: relative; display: block; line-height: 1; }
 
 #workskin .twc16-feed .tw-nav .tw-badge {

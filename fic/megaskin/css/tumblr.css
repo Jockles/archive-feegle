@@ -1,10 +1,6 @@
 /* >>>>>>>>>> MODULE: Tumblr (start) >>>>>>>>>> */
 
-/* ==========================================================
-   MODULE: TUMBLR   (classes: tb, tb-feed)
-   Tumblr posts, reblog chains, asks, quote and chat posts, polls, and the feed background (tb, tb-feed).
-   Needs the CORE block.
-   ========================================================== */
+/* ---------- MODULE: TUMBLR   (classes: tb, tb-feed) ---------- */
 
 #workskin .tb-feed.wide {
   width: auto;
@@ -103,10 +99,7 @@
   font-weight: bold;
 }
 
-/* checkmarks beside a name, in pairs, up to twelve: <span class="tb-check">&#10003;</span><span class="tb-check">&#10003;</span>
-   They always run in the same order, and the colours are added for you: blue, green, lime, yellow, amber, orange,
-   then dark orange, red, pink, magenta, purple and violet.
-   On Tumblr these are bought for fun, so they don't mean a blog is verified. */
+/* checkmarks beside a name, in pairs, up to twelve */
 #workskin .tb .tb-check {
   display: inline-flex;
   align-items: center;
@@ -152,9 +145,7 @@
 #workskin .tb .tb-check.blue { background: #52b5f9; }
 
 /* checkmarks from a profile: the profile adds the picture and the padding to make room for it */
-/* checkmarks as one picture, for a blog without a profile: <span class="tb-checks ic ic-checks-2">&#10003;&#10003;</span>
-   straight after the name, with ic-checks-2, -4, -6, -8, -10 or -12. The picture is in the Icons section;
-   without it, the typed checkmarks show in blue. */
+/* checkmarks as one picture, for a blog without a profile */
 #workskin .tb .tb-checks { margin-left: 0.25em; color: #52b5f9; font-size: 0.85em; }
 
 #workskin .tb .handle::after { background-repeat: no-repeat; background-position: right center; background-size: auto 0.9em; }
@@ -196,13 +187,7 @@
   border-radius: 4px;
 }
 
-/* PICTURES AND GIFS: a picture post goes edge to edge across the card. Each row is a tb-row:
-   one picture at its own shape, or "two" for two side by side, cropped to squares. Stack rows for a photoset:
-   <div class="tb-photos">
-     <p class="tb-row"><span class="tb-photo"><img src="..." alt="..."></span></p>
-     <p class="tb-row two"><span class="tb-photo"><img src="..." alt="..."></span><span class="tb-photo"><img src="..." alt="..."></span></p>
-   </div>
-   In a two row, add class="land" to a picture that's wider than tall, so the sides get cropped instead of the top and bottom. */
+/* PICTURES AND GIFS: a picture post goes edge to edge across the card. */
 #workskin .tb .tb-photos { display: block; margin: 0.6em 0; }
 
 /* pictures at the very start of a post sit right up against the header */
@@ -331,11 +316,7 @@
   font-weight: bold;
 }
 
-/* ROUNDED SQUARE PICTURES: on Tumblr, each blog picks a circle or a rounded square for its picture,
-   and it's the same everywhere that blog shows up. For a blog without a profile, add sq to its
-   picture every time: <span class="tb-pfp sq colour6">PB</span> or <span class="tb-ask-pfp sq colour6">PB</span>
-   For a profile, add a line to the profile instead, e.g.
-   #workskin .tb .pfp.pfp-luca.acc-art { border-radius: 15%; } */
+/* ROUNDED SQUARE PICTURES: on Tumblr, each blog picks a circle or a rounded square for its picture, and it's the same everywhere that blog shows up. */
 #workskin .tb .tb-pfp.sq,
 #workskin .tb .tb-ask-pfp.sq,
 #workskin .tb .sq .pfp { border-radius: 15%; }
@@ -395,10 +376,7 @@
 
 #workskin .tb .tb-chat b { font-weight: bold; }
 
-/* poll: in tb-body, the question as a paragraph, then each option as <p class="tb-opt">Option<span class="tb-pct">50%</span></p>
-   and <p class="tb-pollinfo">votes &middot; time left</p> underneath.
-   An OPEN poll: just tb-opt (blue outlines). RESULTS: add "res" and a bar size, p0 to p100 in tens (p5 p25 p33 p67 p75 also exist),
-   and "win" for the winner of a finished poll. */
+/* polls */
 #workskin .tb .tb-body .tb-opt {
   display: flex;
   align-items: center;
@@ -447,9 +425,7 @@
 
 #workskin .tb .tb-body .tb-pollinfo { display: block; margin: 0.6em 0; text-align: center; color: #555555; font-size: 0.85em; }
 
-/* TAPPABLE POLL, the short way: <details class="tb-vote"> with the open poll in <summary> (spans with tb-opt,
-   and a tb-pollinfo span), then the results after it. Tapping shows the results instead.
-   The voter's picture: <span class="tb-voter"><span class="pfp pfp-name"></span></span> before the tb-pct. */
+/* TAPPABLE POLL, the short way */
 #workskin .tb .tb-vote,
 #workskin .tb .tb-vote > summary { display: block; }
 
@@ -464,9 +440,7 @@
 
 #workskin .tb .tb-vote[open] > summary { display: none; }
 
-/* TAPPABLE POLL where the reader picks: <div class="tb-poll">, then one <details class="tb-pick"> per option,
-   each with <summary class="tb-opt">Option</summary> and a <div class="tb-results"> holding the results
-   with the voter's picture on that option. The results cover the poll when it's tapped. */
+/* TAPPABLE POLL where the reader picks */
 #workskin .tb .tb-poll { display: block; position: relative; }
 
 #workskin .tb .tb-pick { display: block; margin: 0.45em 0; }
@@ -481,11 +455,7 @@
 
 #workskin .tb .tb-opt .tb-voter + .tb-pct { margin-left: 0; }
 
-/* THE FEED BEHIND THE CARDS (optional): put one or more .tb posts inside <div class="tb-feed">
-   THE FEED COLOUR is the background line below: navy (#001935) by default, Tumblr's True Blue light mode.
-   Add theme-auto to make it black when the reader's device is in dark mode, the same as the posts,
-   or theme-dark to make it always black. "black" and "classic" (the old Tumblr blue) are fixed colours.
-   To use any other colour, change the background line here. */
+/* THE FEED BEHIND THE CARDS (optional): a tb-feed around the posts */
 #workskin .tb-feed {
   width: 380px;
   max-width: 100%;
@@ -507,9 +477,7 @@
   #workskin .tb-feed.theme-auto { background: #000000; }
 }
 
-/* THE APP SCREEN (optional): add "app" to the feed for Tumblr's bar along the top and the buttons along the bottom.
-   <div class="tb-feed app"><div class="tb-screen"> top bar, tabs, posts </div><p class="tb-nav"> buttons </p></div>
-   The screen scrolls, so the top bar scrolls away with the posts, and the buttons below it stay put. */
+/* THE APP SCREEN (optional): add "app" to the feed for Tumblr's bar along the top and the buttons along the bottom. */
 #workskin .tb-feed.app { padding: 0; overflow: hidden; }
 
 #workskin .tb-feed .tb-screen {
@@ -716,10 +684,7 @@
   #workskin .tb.theme-auto .tb-ask::after { border-left-color: #272727; }
 }
 
-/* ---------- Tumblr: Icons ----------
-   The buttons and ticks are pictures: black in light chats, white in dark ones.
-   Each one is a span with "ic" and its name, with the typed symbol inside, which
-   this hides. Delete this whole section to get the typed symbols back. */
+/* ---------- Tumblr: Icons ---------- */
 #workskin .tb .ic {
   display: inline-block;
   width: 1em;

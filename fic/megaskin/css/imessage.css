@@ -1,10 +1,6 @@
 /* >>>>>>>>>> MODULE: iMessage (start) >>>>>>>>>> */
 
-/* ==========================================================
-   MODULE: IMESSAGE   (classes: imsg)
-   iMessage: <div class="mob imsg theme-auto">
-   Needs the CORE block.
-   ========================================================== */
+/* ---------- MODULE: IMESSAGE   (classes: imsg) ---------- */
 
 #workskin .imsg {
   background: #ffffff;
@@ -80,10 +76,7 @@
 
 #workskin .imsg .imsg-edited-in { text-align: left; margin: 0.1em 0 0.4em 0.4em; }
 
-/* tapbacks: a reaction bubble on the top corner of a message.
-   <p class="msg in tapped">message<span class="imsg-tap me">&#128077;</span></p>
-   "tapped" makes room above the message; "me" makes it blue (your own reaction),
-   without "me" it's grey (someone else's). Any emoji works - one per person. */
+/* tapbacks: a reaction bubble on the top corner of a message. */
 #workskin .imsg .msg.tapped {
   position: relative;
   margin-top: 1.7em;
@@ -191,9 +184,7 @@
 
 #workskin .imsg .msg.pic.text { padding: 2.5em 1em; font-style: italic; text-align: center; }
 
-/* the three typing dots, in a message bubble from whoever is typing (out for the phone's owner, in for anyone else,
-   with a who line above it in a group, like any message):
-   <p class="msg in typing-indicator"><span class="hide">is typing...</span><span></span><span></span><span></span></p> */
+/* the three typing dots, in a message bubble from whoever is typing (out for the phone's owner, in for anyone else, with a who line above it in a group, like any message) */
 #workskin .imsg .typing-indicator { padding: 0.6em 0.8em; line-height: 1; }
 
 #workskin .imsg .typing-indicator span {
@@ -212,9 +203,7 @@
 
 #workskin .imsg .out.typing-indicator span { background: #ffffff; }
 
-/* the message bar at the bottom: goes after the mob-body, inside the chat, all on one line
-   <p class="imsg-input"><span class="imsg-plus">+</span><span class="hide"> </span><span class="imsg-field">iMessage<span class="hide"> </span><span class="imsg-mic">&#127908;</span></span></p>
-   The hide spans keep a space between the parts for readers with the workskin off. */
+/* the message bar at the bottom: goes after the mob-body, inside the chat, all on one line */
 #workskin .imsg .imsg-input {
   display: flex;
   align-items: center;
@@ -335,10 +324,7 @@
   #workskin .imsg.theme-auto .imsg-field.typed { color: #ffffff; }
 }
 
-/* ---------- iMessage: Icons ----------
-   The buttons and ticks are pictures: black in light chats, white in dark ones.
-   Each one is a span with "ic" and its name, with the typed symbol inside, which
-   this hides. Delete this whole section to get the typed symbols back. */
+/* ---------- iMessage: Icons ---------- */
 #workskin .imsg .ic {
   display: inline-block;
   width: 1em;

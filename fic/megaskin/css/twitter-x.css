@@ -1,11 +1,6 @@
 /* >>>>>>>>>> MODULE: Twitter/X (posts, replies, DMs) (start) >>>>>>>>>> */
 
-/* ==========================================================
-   MODULE: TWITTER/X (POSTS, REPLIES, DMS)   (classes: tw, tw-reply, tw-thread, twdm)
-   Twitter/X posts, replies, quotes, polls, picture and video tweets, scrollable threads (tw, tw-reply, tw-thread)
-   and Twitter/X DMs (twdm).
-   Needs the CORE block.
-   ========================================================== */
+/* ---------- MODULE: TWITTER/X (POSTS, REPLIES, DMS)   (classes: tw, tw-reply, tw-thread, twdm) ---------- */
 
 #workskin .tw-thread.wide {
   width: auto;
@@ -36,14 +31,8 @@
 /* a private account's padlock: add <span class="tw-lock ic ic-tw-lock">&#128274;</span> between the handle and the time */
 #workskin .tw .tw-lock, #workskin .tw-reply .tw-lock { flex: none; margin: 0.15em 0 0 0.3em; }
 
-/* profile picture: the first thing in the tw-top line.
-   Initials: <span class="tw-pfp colour1">JD</span>
-   A picture: <span class="tw-pfp"><span class="pfp"><img src="..." alt="..."></span></span>
-   A profile (set in the core section): <span class="tw-pfp"><span class="pfp pfp-shane"></span></span>
-   colour1-colour10 are the colours. */
-/* the name line is a flex row: the picture, the name with any tick, the @handle, any padlock, then the time.
-   When it doesn't all fit, the handle shrinks first and can disappear completely, then the name and its
-   tick are cut off. The padlock and the time always stay. */
+/* profile picture: the first thing in the tw-top line. */
+/* the name line is a flex row: the picture, the name with any tick, the @handle, any padlock, then the time. */
 #workskin .tw .tw-top,
 #workskin .tw-reply .tw-top {
   display: flex;
@@ -78,9 +67,7 @@
   font-weight: bold;
 }
 
-/* a long name ends in "..." when it's typed in a plain span:
-   <span class="tw-name"><span>A really long name</span></span>
-   Without the span it stops at the last whole word that fits */
+/* a long name ends in "..." when it's typed in a plain span */
 #workskin .tw .tw-name,
 #workskin .tw-reply .tw-name {
   display: flex;
@@ -149,9 +136,7 @@
 #workskin .tw .tw-fan .ic,
 #workskin .tw-reply .tw-fan .ic { margin-right: 0.2em; }
 
-/* a tweet on its own, or the first tweet of a reply chain, is an opened tweet: its @handle and time go on a
-   second line under the name, and a fan account line goes under them. In a feed (a tw-thread with app)
-   and in replies, they stay on one line */
+/* a tweet on its own, or the first tweet of a reply chain, is an opened tweet: its @handle and time go on a second line under the name, and a fan account line goes under them. */
 #workskin .tw .tw-top {
   display: block;
   text-overflow: ellipsis;
@@ -217,10 +202,7 @@
 #workskin .tw .tw-stats .ic.ic-tw-share,
 #workskin .tw-reply .tw-stats .ic.ic-tw-share { margin-right: 0; }
 
-/* ---- a like or bookmark readers can click: <details class="tw-stat tw-tog">
-   (<details class="tw-stat tw-end tw-tog"> for the bookmark)
-   Inside the <summary>, the "off" count shows at first and the "on" count once clicked.
-   Click again and it goes back. */
+/* ---- a like or bookmark readers can click */
 #workskin .tw .tw-tog summary,
 #workskin .tw-reply .tw-tog summary { display: block; list-style: none; cursor: pointer; color: inherit; }
 
@@ -342,10 +324,7 @@
   color: #cfd9de;
 }
 
-/* polls: an OPEN poll is <p class="tw-opt">Option</p> for each option (a blue outline).
-   RESULTS: <p class="tw-opt res p75"><span class="tw-bar">Option</span><span class="tw-pct">75%</span></p>
-   with a bar size p0 to p100 (p25 p75 p33 p67 also exist); add "win" for the winner of a finished poll.
-   The option the account voted for gets <span class="tw-voted">&#10003;</span> after its words, inside the tw-bar. */
+/* polls: open, closed and voted */
 #workskin .tw .tw-opt,
 #workskin .tw-reply .tw-opt {
   display: block;
@@ -415,9 +394,7 @@
   vertical-align: 0.15em;
 }
 
-/* TAPPABLE POLL, the short way: <details class="tw-vote"> with the open poll in <summary> (spans with tw-opt,
-   and a tw-pollinfo span), then the results after it, with tw-voted on the pov character's vote.
-   Tapping shows the results instead. */
+/* TAPPABLE POLL, the short way */
 #workskin .tw .tw-vote,
 #workskin .tw-reply .tw-vote,
 #workskin .tw .tw-vote > summary,
@@ -441,9 +418,7 @@
 #workskin .tw .tw-vote[open] > summary,
 #workskin .tw-reply .tw-vote[open] > summary { display: none; }
 
-/* TAPPABLE POLL where the reader picks: <div class="tw-poll">, then one <details class="tw-pick"> per option,
-   each with <summary class="tw-opt">Option</summary> and a <div class="tw-results"> holding the results
-   with tw-voted on that option. The results cover the poll when it's tapped. */
+/* TAPPABLE POLL where the reader picks */
 #workskin .tw .tw-poll,
 #workskin .tw-reply .tw-poll { display: block; position: relative; }
 
@@ -529,9 +504,7 @@
   padding: 3em 1.2em;
 }
 
-/* several pictures: <div class="tw-media two|three|four"> with one <span class="tw-photo"> for each.
-   Each photo is a square (or two squares high, for the tall ones) and the picture fills it, cropped
-   to fit, never stretched. The widths add up to 99.6%, not 100%, so rounding can't push a photo down. */
+/* several pictures */
 #workskin .tw .tw-media .tw-photo,
 #workskin .tw-reply .tw-media .tw-photo {
   display: block;
@@ -555,9 +528,7 @@
   margin-bottom: 0;
 }
 
-/* the picture: normal pictures are made as wide as the box and cropped top and bottom; add class="land"
-   to a picture that is wider than tall to make it as tall as the box and crop the sides instead.
-   The tall boxes (two pictures; the left one of three) always use the second way. */
+/* the picture: normal pictures are made as wide as the box and cropped top and bottom; add class="land" to a picture that is wider than tall to make it as tall as the box and crop the sides instead. */
 #workskin .tw .tw-media .tw-photo img,
 #workskin .tw-reply .tw-media .tw-photo img {
   position: absolute;
@@ -638,11 +609,7 @@
   clear: both;
 }
 
-/* a thread that scrolls, with a "Tweet your reply" bar that stays at the bottom:
-   <div class="tw-thread theme-auto">
-     <div class="tw-scroll"> tweet + replies </div>
-     <div class="tw-foot">...</div>
-   </div> */
+/* a thread that scrolls, with a "Tweet your reply" bar that stays at the bottom */
 #workskin .tw-thread {
   width: 380px;
   max-width: 100%;
@@ -690,13 +657,7 @@
   font-size: 0.9em;
 }
 
-/* THE APP SCREEN (optional): add "app" to a tw-thread for X's bar along the top, with the tabs under it.
-   <div class="tw-thread app theme-auto"><div class="tw-scroll">
-     <p class="tw-apptop"><span class="tw-me"><span class="pfp pfp-name"></span></span> <span class="tw-logo">X</span></p>
-     <p class="tw-tabs"><span class="tw-tab on">For you</span> <span class="tw-tab">Following</span> <span class="tw-add">+</span></p>
-     tweets
-   </div></div>
-   The bar is inside the scrolling part, so it scrolls away with the tweets, like in the app. */
+/* THE APP SCREEN (optional): add "app" to a tw-thread for X's bar along the top, with the tabs under it. */
 #workskin .tw-thread .tw-apptop,
 #workskin .tw-thread .tw-tabs {
   display: flex;
@@ -800,9 +761,7 @@
   line-height: 1;
 }
 
-/* THE 2020 TWITTER REDESIGN: add "tw2020" to an app screen, <div class="tw-thread app tw2020 theme-auto">.
-   The bird takes the place of the X with a sparkle on the right, the tabs are hidden,
-   and the tweets lose their bookmark button and the line above their stats, with share spaced out like the rest */
+/* THE 2020 TWITTER REDESIGN: add "tw2020" to an app screen */
 #workskin .tw-thread.tw2020 .tw-apptop {
   padding-bottom: 0.6em;
   border-bottom: 1px solid #eff3f4;
@@ -849,9 +808,7 @@
   border-radius: 14px;
 }
 
-/* the top bar: a back arrow on the left, the picture and name in the middle, video and call buttons on the right
-   <p class="mob-head"><span class="twdm-back"><span class="ic ic-back">&#8592;</span></span><span class="tw-pfp"><span class="pfp pfp-shane"></span></span><span class="twdm-name">Shane Hollander</span><span class="twdm-calls"><span class="ic ic-video">&#127909;</span><span class="ic ic-phone">&#128222;</span></span></p>
-   The picture works like a tweet's tw-pfp: initials, a picture tag or a profile. */
+/* the top bar: a back arrow on the left, the picture and name in the middle, video and call buttons on the right */
 #workskin .twdm .mob-head {
   position: relative;
   padding: 0.55em 5.6em 0.45em 5.6em;
@@ -951,10 +908,7 @@
   font-size: 0.65em;
 }
 
-/* replying to a message: a small "Replied to" line, then the message being replied to in an outlined bubble, then the reply
-   <p class="twdm-replied out">Replied to Shane</p>
-   <p class="msg out twdm-quote"><span class="hide">(</span>the message being replied to<span class="hide">)</span></p>
-   Leave "out" off both for a reply from someone else. */
+/* replying to a message: a small "Replied to" line, then the message being replied to in an outlined bubble, then the reply */
 #workskin .twdm .twdm-replied {
   display: block;
   margin: 0.7em 0.95em 0.15em 0.95em;
@@ -1012,9 +966,7 @@
 
 #workskin .twdm .voice .twdm-dur { margin-left: 0.5em; font-size: 0.85em; }
 
-/* the message bar at the bottom: goes after the mob-body, inside the chat, all on one line
-   <p class="twdm-input"><span class="twdm-plus">+</span><span class="hide"> </span><span class="twdm-field">Message<span class="hide"> </span><span class="ic ic-mic">&#127908;</span></span></p>
-   Add "typed" to the twdm-field for a half-written message in dark text. */
+/* the message bar at the bottom: goes after the mob-body, inside the chat, all on one line */
 #workskin .twdm .twdm-input {
   display: flex;
   align-items: center;
@@ -1057,9 +1009,7 @@
 
 #workskin .twdm .twdm-field.typed { color: #0f1419; }
 
-/* the app's buttons along the very bottom (optional), in DMs and on the app screen. "on" gives the picked one its grey box.
-   <p class="tw-nav"><span class="ic ic-x-home">&#8962;</span> <span class="ic ic-x-search">&#128269;</span> <span class="ic ic-x-grok">&#8856;</span> <span class="ic ic-x-bell">&#128276;</span> <span class="on ic ic-x-chat">&#128172;</span></p>
-   On the app screen, use ic-x-home-filled with "on" for the home button, and ic-x-chat-outline for the chat button. */
+/* the app's buttons along the very bottom (optional), in DMs and on the app screen. */
 #workskin .twdm .tw-nav,
 #workskin .tw-thread .tw-nav {
   display: flex;
@@ -1074,9 +1024,7 @@
 #workskin .twdm .tw-nav br,
 #workskin .tw-thread .tw-nav br { display: none; }
 
-/* a blue number on a button, like new notifications: wrap the icon and the number in a tw-badged span.
-   <span class="tw-badged"><span class="ic ic-x-bell">&#128276;</span><span class="tw-badge"><span class="hide"> (</span>3<span class="hide">)</span></span></span>
-   The circle stretches into a lozenge for longer numbers. */
+/* a blue number on a button, like new notifications: wrap the icon and the number in a tw-badged span. */
 #workskin .twdm .tw-nav .tw-badged,
 #workskin .tw-thread .tw-nav .tw-badged { position: relative; display: block; line-height: 1; }
 
@@ -1473,10 +1421,7 @@
   #workskin .twdm.theme-auto .msg.twdm-quote { background: transparent; color: #71767b; border-color: #2f3336; }
 }
 
-/* ---------- Twitter/X: Icons ----------
-   The buttons and ticks are pictures: black in light chats, white in dark ones.
-   Each one is a span with "ic" and its name, with the typed symbol inside, which
-   this hides. Delete this whole section to get the typed symbols back. */
+/* ---------- Twitter/X: Icons ---------- */
 #workskin .tw .ic, #workskin .tw-reply .ic, #workskin .twdm .ic, #workskin .tw-thread .tw-nav .ic {
   display: inline-block;
   width: 1em;
