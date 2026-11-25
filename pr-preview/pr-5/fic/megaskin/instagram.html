@@ -964,11 +964,19 @@
 
 <pre><code>&lt;p class="mob-head"&gt;&lt;span class="ig-pfp"&gt;&lt;span class="pfp pfp-shane"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="handle pfp-shane"&gt;&lt;span class="hide"&gt;shanehollanderhockeyplayer&lt;/span&gt;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="ig-tick ic ic-verified"&gt;&amp;#10003;&lt;/span&gt;&lt;span class="hide"&gt; - &lt;/span&gt;&lt;span&gt;Active now&lt;/span&gt;&lt;/p&gt;</code></pre>
 
-<p><strong>Check long usernames at phone width.</strong> In the app, a name that's too long for the header ends in "…", but AO3 won't let the skin do that for you. So the name carries on onto a second line instead, with the tick after it. If you want it all on one line, view your chapter at phone width, and if the name doesn't fit, type it in yourself, cut short with "…", in place of the handle span. The Fic Builder does this for you:</p>
+<p><strong>Check long usernames at phone width.</strong> In the app, a name that's too long for the header ends in "…", but AO3 won't let the skin do that for you. So the name carries on onto a second line instead, with the tick after it. If you want it all on one line, view your chapter at phone width and check the name fits. The Fic Builder does this for you.</p>
+
+<p>A name from a profile is filled in by the skin, from the handle span, so you can't shorten it inside the span. Swap the whole handle span for the name typed out, cut short with "…". Keep the picture span, so the picture still comes from the profile. Here's Shane's header with the name from his profile:</p>
+
+<pre><code>&lt;p class="mob-head"&gt;&lt;span class="ig-pfp"&gt;&lt;span class="pfp pfp-shane"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="handle pfp-shane"&gt;&lt;span class="hide"&gt;shanehollanderhockeyplayer&lt;/span&gt;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="ig-tick ic ic-verified"&gt;&amp;#10003;&lt;/span&gt;&lt;span class="hide"&gt; - &lt;/span&gt;&lt;span&gt;Active now&lt;/span&gt;&lt;/p&gt;</code></pre>
+
+<p>And here it is with the handle span swapped for the shortened name:</p>
 
 <div class="mob igdm theme-auto"><p class="mob-head"><span class="ig-pfp"><span class="pfp pfp-shane"></span></span>shanehollanderh…<span class="hide"> </span><span class="ig-tick ic ic-verified">&#10003;</span><span class="hide"> - </span><span>Active now</span></p></div>
 
 <pre><code>&lt;p class="mob-head"&gt;&lt;span class="ig-pfp"&gt;&lt;span class="pfp pfp-shane"&gt;&lt;/span&gt;&lt;/span&gt;shanehollanderh…&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="ig-tick ic ic-verified"&gt;&amp;#10003;&lt;/span&gt;&lt;span class="hide"&gt; - &lt;/span&gt;&lt;span&gt;Active now&lt;/span&gt;&lt;/p&gt;</code></pre>
+
+<p>A typed name is shortened the same way: just cut it short and add "…" at the end.</p>
 
 <p>For a group, wrap two pictures in an <code>ig-collab</code> span and they overlap, the first at the top left and the second in front of it at the bottom right. Instagram only ever shows two, so a third is hidden. If someone hasn't got a picture, type their initials in the <code>ig-pfp</code> span instead and add a colour from colour1 to colour10:</p>
 
