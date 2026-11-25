@@ -912,6 +912,36 @@
   &lt;p class=&quot;igdm-post-cap&quot;&gt;&lt;b&gt;fakehockeynews&lt;/b&gt; Team dinner before the gala: the captain cooked, and nobody has stopped talking about the lasagne since&lt;/p&gt;
 &lt;/div&gt;</code></pre>
 
+<p>A post with more than one photo works too: put a carousel in place of the <code>igdm-post-img</code> line, written exactly like the one in <a href="#s12-4-3">A Carousel of Photos</a>. The arrows move through the photos the same way:</p>
+
+<div class="mob igdm theme-auto"><div class="mob-body"><div class="igdm-post in">
+  <p class="igdm-post-btns"><span class="ic ic-share"></span><span class="ic ic-save"></span></p>
+  <p class="igdm-post-by"><span class="ig-pfp"><span class="pfp pfp-rose"></span></span><span class="hide"><em>Rose</em> shared a post from </span><b><span class="handle pfp-rose"><span class="hide">RoseLandry</span></span></b><span class="hide">:</span></p>
+  <div class="ig-car real">
+  <p class="ig-photo real"><img src="https://picsum.photos/id/292/600/600.jpg" alt="Chopped onion and other veg on a wooden board"></p>
+  <p class="ig-car-info"><span class="hide">(</span><span class="ig-car-n">1/2</span><span class="hide">) </span><span class="ig-car-dots"><b>&#8226;</b>&#8226;</span></p>
+  <details class="ig-next"><summary><span class="ig-photo real"><img src="https://picsum.photos/id/429/600/600.jpg" alt="A white bowl full of raspberries"></span></summary>
+  <p class="ig-car-info"><span class="hide">(</span><span class="ig-car-n">2/2</span><span class="hide">) </span><span class="ig-car-dots">&#8226;<b>&#8226;</b></span></p>
+  </details>
+  </div>
+  <p class="igdm-post-cap"><b><span class="handle pfp-rose"><span class="hide">RoseLandry</span></span></b> cooking for the whole committee again</p>
+</div></div></div>
+
+<details><summary>The full HTML for this example</summary>
+<pre><code>&lt;div class=&quot;igdm-post in&quot;&gt;
+  &lt;p class=&quot;igdm-post-btns&quot;&gt;&lt;span class=&quot;ic ic-share&quot;&gt;&lt;/span&gt;&lt;span class=&quot;ic ic-save&quot;&gt;&lt;/span&gt;&lt;/p&gt;
+  &lt;p class=&quot;igdm-post-by&quot;&gt;&lt;span class=&quot;ig-pfp&quot;&gt;&lt;span class=&quot;pfp pfp-rose&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;hide&quot;&gt;&lt;em&gt;Rose&lt;/em&gt; shared a post from &lt;/span&gt;&lt;b&gt;&lt;span class=&quot;handle pfp-rose&quot;&gt;&lt;span class=&quot;hide&quot;&gt;RoseLandry&lt;/span&gt;&lt;/span&gt;&lt;/b&gt;&lt;span class=&quot;hide&quot;&gt;:&lt;/span&gt;&lt;/p&gt;
+  &lt;div class=&quot;ig-car real&quot;&gt;
+  &lt;p class=&quot;ig-photo real&quot;&gt;&lt;img src=&quot;https://picsum.photos/id/292/600/600.jpg&quot; alt=&quot;Chopped onion and other veg on a wooden board&quot;&gt;&lt;/p&gt;
+  &lt;p class=&quot;ig-car-info&quot;&gt;&lt;span class=&quot;hide&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ig-car-n&quot;&gt;1/2&lt;/span&gt;&lt;span class=&quot;hide&quot;&gt;) &lt;/span&gt;&lt;span class=&quot;ig-car-dots&quot;&gt;&lt;b&gt;&amp;#8226;&lt;/b&gt;&amp;#8226;&lt;/span&gt;&lt;/p&gt;
+  &lt;details class=&quot;ig-next&quot;&gt;&lt;summary&gt;&lt;span class=&quot;ig-photo real&quot;&gt;&lt;img src=&quot;https://picsum.photos/id/429/600/600.jpg&quot; alt=&quot;A white bowl full of raspberries&quot;&gt;&lt;/span&gt;&lt;/summary&gt;
+  &lt;p class=&quot;ig-car-info&quot;&gt;&lt;span class=&quot;hide&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ig-car-n&quot;&gt;2/2&lt;/span&gt;&lt;span class=&quot;hide&quot;&gt;) &lt;/span&gt;&lt;span class=&quot;ig-car-dots&quot;&gt;&amp;#8226;&lt;b&gt;&amp;#8226;&lt;/b&gt;&lt;/span&gt;&lt;/p&gt;
+  &lt;/details&gt;
+  &lt;/div&gt;
+  &lt;p class=&quot;igdm-post-cap&quot;&gt;&lt;b&gt;&lt;span class=&quot;handle pfp-rose&quot;&gt;&lt;span class=&quot;hide&quot;&gt;RoseLandry&lt;/span&gt;&lt;/span&gt;&lt;/b&gt; cooking for the whole committee again&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+</details>
+
 <p>For a reel, add <code>reel</code> to the card. It's tall like a phone screen, with the account on top of the video, a play button in the middle and the reel sign in the bottom corner. A reel doesn't need a caption. If your picture is wider than it is tall, add <code>class="land"</code> to the <code>img</code> so it fills the height instead:</p>
 
 <div class="mob igdm theme-auto"><div class="mob-body"><div class="igdm-post reel in">
@@ -940,6 +970,40 @@
   &lt;p class=&quot;igdm-post-by&quot;&gt;&lt;span class=&quot;ig-pfp&quot;&gt;&lt;span class=&quot;pfp pfp-shane&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;hide&quot;&gt;&lt;em&gt;Ilya&lt;/em&gt; shared a post from &lt;/span&gt;&lt;b&gt;&lt;span class=&quot;handle pfp-shane&quot;&gt;&lt;span class=&quot;hide&quot;&gt;shanehollanderhockeyplayer&lt;/span&gt;&lt;/span&gt;&lt;/b&gt;&lt;span class=&quot;hide&quot;&gt;:&lt;/span&gt;&lt;/p&gt;
   &lt;p class=&quot;igdm-post-img text&quot;&gt;[The post's picture: Shane on the ice at 6am, alone, with the arena lights half on]&lt;/p&gt;
   &lt;p class=&quot;igdm-post-cap&quot;&gt;&lt;b&gt;&lt;span class=&quot;handle pfp-shane&quot;&gt;&lt;span class=&quot;hide&quot;&gt;shanehollanderhockeyplayer&lt;/span&gt;&lt;/span&gt;&lt;/b&gt; 6am skate. Again.&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+
+<h4>Links</h4>
+
+<p>A link someone sends shows as a card with <code>igdm-link</code>: the page's picture, its title in bold, and the website underneath with a little globe. <code>in</code> puts it on the left and <code>out</code> on the right. The title stops after three lines, like the app, and the round info and share buttons float beside it. Put the hidden label at the start of the title:</p>
+
+<div class="mob igdm theme-auto"><div class="mob-body"><div class="igdm-link out">
+  <p class="igdm-post-btns"><span class="ic ic-info"></span><span class="ic ic-share"></span></p>
+  <p class="igdm-link-img"><img src="https://picsum.photos/id/1058/800/450.jpg" alt="An empty ice rink under bright lights"></p>
+  <p class="igdm-link-title"><span class="hide"><em>Ilya:</em> </span>Captain Mack: all the reasons he deserves the C | Fake Hockey News</p>
+  <p class="igdm-link-url">fakehockeynews.com</p>
+</div></div></div>
+
+<pre><code>&lt;div class=&quot;igdm-link out&quot;&gt;
+  &lt;p class=&quot;igdm-post-btns&quot;&gt;&lt;span class=&quot;ic ic-info&quot;&gt;&lt;/span&gt;&lt;span class=&quot;ic ic-share&quot;&gt;&lt;/span&gt;&lt;/p&gt;
+  &lt;p class=&quot;igdm-link-img&quot;&gt;&lt;img src=&quot;https://picsum.photos/id/1058/800/450.jpg&quot; alt=&quot;An empty ice rink under bright lights&quot;&gt;&lt;/p&gt;
+  &lt;p class=&quot;igdm-link-title&quot;&gt;&lt;span class=&quot;hide&quot;&gt;&lt;em&gt;Ilya:&lt;/em&gt; &lt;/span&gt;Captain Mack: all the reasons he deserves the C | Fake Hockey News&lt;/p&gt;
+  &lt;p class=&quot;igdm-link-url&quot;&gt;fakehockeynews.com&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+
+<p>The picture is optional. Leave it out, or describe it in an <code>igdm-link-img text</code> paragraph. Leave out any button you don't want, or the whole <code>igdm-post-btns</code> line:</p>
+
+<div class="mob igdm theme-auto"><div class="mob-body"><div class="igdm-link in">
+  <p class="igdm-post-btns"><span class="ic ic-info"></span><span class="ic ic-share"></span></p>
+  <p class="igdm-link-img text">[The page's picture: a tray of lasagne, fresh out of the oven]</p>
+  <p class="igdm-link-title"><span class="hide"><em>Rose:</em> </span>The only lasagne recipe you'll ever need</p>
+  <p class="igdm-link-url">grandmaskitchen.com</p>
+</div></div></div>
+
+<pre><code>&lt;div class=&quot;igdm-link in&quot;&gt;
+  &lt;p class=&quot;igdm-post-btns&quot;&gt;&lt;span class=&quot;ic ic-info&quot;&gt;&lt;/span&gt;&lt;span class=&quot;ic ic-share&quot;&gt;&lt;/span&gt;&lt;/p&gt;
+  &lt;p class=&quot;igdm-link-img text&quot;&gt;[The page's picture: a tray of lasagne, fresh out of the oven]&lt;/p&gt;
+  &lt;p class=&quot;igdm-link-title&quot;&gt;&lt;span class=&quot;hide&quot;&gt;&lt;em&gt;Rose:&lt;/em&gt; &lt;/span&gt;The only lasagne recipe you'll ever need&lt;/p&gt;
+  &lt;p class=&quot;igdm-link-url&quot;&gt;grandmaskitchen.com&lt;/p&gt;
 &lt;/div&gt;</code></pre>
 
 <h4>Photos</h4>

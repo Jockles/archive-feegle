@@ -4826,7 +4826,8 @@
 }
 
 /* stands in for the photo: describe the image in here */
-#workskin .ig .ig-photo {
+#workskin .ig .ig-photo,
+#workskin .igdm .igdm-post .ig-photo {
   display: block;
   background: #efefef;
   color: #737373;
@@ -4837,9 +4838,9 @@
 }
 
 /* a real photo instead: <div class="ig-photo real"><img src="..."></div> */
-#workskin .ig .ig-photo.real { padding: 0; }
+#workskin .ig .ig-photo.real, #workskin .igdm .igdm-post .ig-photo.real { padding: 0; }
 
-#workskin .ig .ig-photo img { display: block; width: 100%; height: auto; }
+#workskin .ig .ig-photo img, #workskin .igdm .igdm-post .ig-photo img { display: block; width: 100%; height: auto; }
 
 /* photo shapes, cut to fit. Add ig-pic-sq for a square photo, how Instagram used to be, or ig-pic-portrait
    for a tall one (3 wide by 4 high), how it is now, nearly filling the phone:
@@ -4847,7 +4848,9 @@
    Like the pfp circles, a picture taller than wide is made as wide as the box and centred up and down.
    If it's wider than tall, add class="land" to the img: it's made as tall as the box and centred side to side. */
 #workskin .ig .ig-photo.ig-pic-sq,
-#workskin .ig .ig-photo.ig-pic-portrait {
+#workskin .igdm .igdm-post .ig-photo.ig-pic-sq,
+#workskin .ig .ig-photo.ig-pic-portrait,
+#workskin .igdm .igdm-post .ig-photo.ig-pic-portrait {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -4855,12 +4858,14 @@
   overflow: hidden;
 }
 
-#workskin .ig .ig-photo.ig-pic-sq { aspect-ratio: 1; }
+#workskin .ig .ig-photo.ig-pic-sq, #workskin .igdm .igdm-post .ig-photo.ig-pic-sq { aspect-ratio: 1; }
 
-#workskin .ig .ig-photo.ig-pic-portrait { aspect-ratio: 0.75; }
+#workskin .ig .ig-photo.ig-pic-portrait, #workskin .igdm .igdm-post .ig-photo.ig-pic-portrait { aspect-ratio: 0.75; }
 
 #workskin .ig .ig-photo.ig-pic-sq img,
-#workskin .ig .ig-photo.ig-pic-portrait img {
+#workskin .igdm .igdm-post .ig-photo.ig-pic-sq img,
+#workskin .ig .ig-photo.ig-pic-portrait img,
+#workskin .igdm .igdm-post .ig-photo.ig-pic-portrait img {
   position: absolute;
   top: 50%;
   left: 0;
@@ -4871,7 +4876,9 @@
 }
 
 #workskin .ig .ig-photo.ig-pic-sq img.land,
-#workskin .ig .ig-photo.ig-pic-portrait img.land {
+#workskin .igdm .igdm-post .ig-photo.ig-pic-sq img.land,
+#workskin .ig .ig-photo.ig-pic-portrait img.land,
+#workskin .igdm .igdm-post .ig-photo.ig-pic-portrait img.land {
   top: 0;
   left: 50%;
   width: auto;
@@ -5070,7 +5077,7 @@
    ig-fbtn is a grey "Following" button, add "blue" for a blue "Follow". Leave it off for your own account. */
 #workskin .ig { position: relative; }
 
-#workskin .ig .ig-photo { position: relative; }
+#workskin .ig .ig-photo, #workskin .igdm .igdm-post .ig-photo { position: relative; }
 
 #workskin .ig .ig-tagged { display: block; margin: 0; padding: 0; }
 
@@ -5231,7 +5238,8 @@
    photo so that tapping the photo itself does nothing. The dots sit underneath the photo, like on Instagram.
    All the photos should be the same shape (Instagram crops them that way too).
    With real photos, add real to the carousel too: <div class="ig-car real">. */
-#workskin .ig .ig-car {
+#workskin .ig .ig-car,
+#workskin .igdm .igdm-post .ig-car {
   display: block;
   position: relative;
   z-index: 0;
@@ -5241,7 +5249,9 @@
 
 /* the details and summaries take no space themselves */
 #workskin .ig .ig-car details,
-#workskin .ig .ig-car summary {
+#workskin .igdm .igdm-post .ig-car details,
+#workskin .ig .ig-car summary,
+#workskin .igdm .igdm-post .ig-car summary {
   display: block;
   margin: 0;
   padding: 0;
@@ -5250,15 +5260,16 @@
   list-style: none;
 }
 
-#workskin .ig .ig-car summary::-webkit-details-marker { display: none; }
-#workskin .ig .ig-car summary::marker { content: ""; }
+#workskin .ig .ig-car summary::-webkit-details-marker, #workskin .igdm .igdm-post .ig-car summary::-webkit-details-marker { display: none; }
+#workskin .ig .ig-car summary::marker, #workskin .igdm .igdm-post .ig-car summary::marker { content: ""; }
 
 /* room at the sides of a described photo, so the words don't run under the arrows */
-#workskin .ig .ig-car .ig-photo { padding-left: 44px; padding-right: 44px; }
-#workskin .ig .ig-car .ig-photo.real { padding: 0; }
+#workskin .ig .ig-car .ig-photo, #workskin .igdm .igdm-post .ig-car .ig-photo { padding-left: 44px; padding-right: 44px; }
+#workskin .ig .ig-car .ig-photo.real, #workskin .igdm .igdm-post .ig-car .ig-photo.real { padding: 0; }
 
 /* every photo after the first waits just off the right-hand edge */
-#workskin .ig .ig-car summary .ig-photo {
+#workskin .ig .ig-car summary .ig-photo,
+#workskin .igdm .igdm-post .ig-car summary .ig-photo {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -5274,13 +5285,14 @@
   transition: left 0.35s ease;
 }
 
-#workskin .ig .ig-car summary .ig-photo.real { display: block; }
+#workskin .ig .ig-car summary .ig-photo.real, #workskin .igdm .igdm-post .ig-car summary .ig-photo.real { display: block; }
 
 /* tapped: it slides in over the photo before it (and back out again when closed) */
-#workskin .ig .ig-car .ig-next[open] > summary .ig-photo { left: 0; }
+#workskin .ig .ig-car .ig-next[open] > summary .ig-photo, #workskin .igdm .igdm-post .ig-car .ig-next[open] > summary .ig-photo { left: 0; }
 
 /* the arrows */
-#workskin .ig .ig-car .ig-next > summary::before {
+#workskin .ig .ig-car .ig-next > summary::before,
+#workskin .igdm .igdm-post .ig-car .ig-next > summary::before {
   content: "›";
   display: flex;
   align-items: center;
@@ -5306,7 +5318,8 @@
 }
 
 /* once tapped, the same arrow moves left and points back */
-#workskin .ig .ig-car .ig-next[open] > summary::before {
+#workskin .ig .ig-car .ig-next[open] > summary::before,
+#workskin .igdm .igdm-post .ig-car .ig-next[open] > summary::before {
   content: "‹";
   right: auto;
   left: 10px;
@@ -5314,7 +5327,8 @@
 }
 
 /* the counter and dots for each photo, lying over it */
-#workskin .ig .ig-car .ig-car-info {
+#workskin .ig .ig-car .ig-car-info,
+#workskin .igdm .igdm-post .ig-car .ig-car-info {
   display: block;
   position: absolute;
   top: 0;
@@ -5326,7 +5340,8 @@
 }
 
 /* the "2/3" counter at the top right: <span class="ig-car-n">2/3</span> */
-#workskin .ig .ig-car .ig-car-n {
+#workskin .ig .ig-car .ig-car-n,
+#workskin .igdm .igdm-post .ig-car .ig-car-n {
   display: block;
   position: absolute;
   top: 10px;
@@ -5343,7 +5358,8 @@
 /* the dots under the photo, the one you're on in <b>:
    <span class="ig-car-dots">&#8226;<b>&#8226;</b>&#8226;</span>
    Light mode: grey #c7c7c7, blue #0095f6. Dark mode: grey #555555, blue #0095f6. */
-#workskin .ig .ig-car .ig-car-dots {
+#workskin .ig .ig-car .ig-car-dots,
+#workskin .igdm .igdm-post .ig-car .ig-car-dots {
   display: block;
   position: absolute;
   bottom: 3px;
@@ -5356,7 +5372,7 @@
   letter-spacing: 2px;
 }
 
-#workskin .ig .ig-car .ig-car-dots b { color: #0095f6; font-weight: normal; }
+#workskin .ig .ig-car .ig-car-dots b, #workskin .igdm .igdm-post .ig-car .ig-car-dots b { color: #0095f6; font-weight: normal; }
 
 /* ---- the row of buttons with counts: <div class="ig-actions"> holding any of these ----
    ig-btn   a button that just sits there: <div class="ig-btn"><span class="ig-icon cm"></span><span class="ig-count">93</span></div>
@@ -5820,6 +5836,7 @@
    Leave out the ones you don't want, or the whole igdm-post-btns line.
    The account name can come from a profile too, with the handle span inside the b: <b><span class="handle pfp-rose"><span class="hide">RoseLandry</span></span></b>
    A description instead of the picture: <p class="igdm-post-img text">[...]</p>
+   A post with more than one photo: put an ig-car carousel, the same as in the feed, in place of the igdm-post-img line.
    A reel: add reel to the card, and leave out the caption if you like. It's tall, with the account on top of the video,
    a play button in the middle and the reel sign in the bottom corner */
 #workskin .igdm .igdm-post {
@@ -5906,7 +5923,8 @@
   transform: translateY(-50%);
 }
 
-#workskin .igdm .igdm-post.out .igdm-post-btns { left: auto; right: 100%; margin: 0 0.6em 0 0; }
+#workskin .igdm .igdm-post.out .igdm-post-btns,
+#workskin .igdm .igdm-link.out .igdm-post-btns { left: auto; right: 100%; margin: 0 0.6em 0 0; }
 
 #workskin .igdm .igdm-post-btns .ic {
   display: block;
@@ -5991,6 +6009,102 @@
   background-color: #ffffff;
   background-image: url(https://images.squidge.org/images/2026/11/15/play-black.png);
   background-size: 0.8em;
+}
+
+/* ---- a link someone sends: a card with the page's picture, its title in bold and the website underneath
+   <div class="igdm-link out">
+     <p class="igdm-post-btns"><span class="ic ic-info"></span><span class="ic ic-share"></span></p>
+     <p class="igdm-link-img"><img src="..." alt="..."></p>
+     <p class="igdm-link-title"><span class="hide"><em>Ilya</em> sent a link: </span>Ten Seconds - Janekfan - The Magnus Archives (Podcast) [Archive of Our Own]</p>
+     <p class="igdm-link-url">archiveofourown.org</p>
+   </div>
+   The picture is optional, or describe it: <p class="igdm-link-img text">[...]</p>. The info and share buttons float beside it, like on a post card.
+   The title stops after three lines, like the app */
+#workskin .igdm .igdm-link {
+  display: block;
+  position: relative;
+  width: 62%;
+  margin: 0.2em auto 0.2em 0;
+  border-radius: 18px;
+  background: #efefef;
+  color: #262626;
+}
+
+#workskin .igdm .igdm-link.out { margin: 0.2em 0 0.2em auto; }
+
+#workskin .igdm .igdm-link.reacted { margin-bottom: 1.4em; }
+
+#workskin .igdm .igdm-link-img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-height: 200px;
+  margin: 0;
+  overflow: hidden;
+  border-radius: 18px 18px 0 0;
+  background: #ffffff;
+}
+
+#workskin .igdm .igdm-link-img img { display: block; width: 100%; height: auto; }
+
+#workskin .igdm .igdm-link-img.text {
+  display: block;
+  padding: 3em 1em;
+  background: #dbdbdb;
+  color: #737373;
+  font-size: 0.85em;
+  font-style: italic;
+  text-align: center;
+}
+
+#workskin .igdm .igdm-link-title {
+  display: block;
+  max-height: 4.05em;
+  margin: 0.7em 0.9em 0.3em 0.9em;
+  overflow: hidden;
+  font-weight: bold;
+  font-size: 0.92em;
+  line-height: 1.35;
+}
+
+#workskin .igdm .igdm-link-url {
+  display: block;
+  margin: 0 0.9em 0.75em 0.9em;
+  color: #737373;
+  font-size: 0.85em;
+}
+
+/* the little globe before the website */
+#workskin .igdm .igdm-link-url::before {
+  content: "";
+  display: inline-block;
+  box-sizing: border-box;
+  width: 1.05em;
+  height: 1.05em;
+  margin-right: 0.45em;
+  vertical-align: -0.15em;
+  border: 1.5px solid #737373;
+  border-radius: 50%;
+  background-image: linear-gradient(transparent 42%, #737373 42%, #737373 58%, transparent 58%);
+}
+
+/* the info button: an i in a circle, drawn by the skin */
+#workskin .igdm .igdm-post-btns .ic.ic-info::before {
+  content: "i";
+  display: block;
+  box-sizing: border-box;
+  width: 1.15em;
+  height: 1.15em;
+  margin: 0.575em auto 0 auto;
+  border: 1.5px solid #262626;
+  border-radius: 50%;
+  color: #262626;
+  font-family: Georgia, serif;
+  font-weight: bold;
+  font-size: 1em;
+  line-height: 1;
+  text-align: center;
+  text-indent: 0;
 }
 
 /* ---- THE APP SCREEN (optional): turn the header into the app's top bar, with a back arrow on the left and
@@ -6288,7 +6402,7 @@
   color: #a8a8a8;
 }
 
-#workskin .ig.theme-dark .ig-photo { background: #1c1c1c; color: #a8a8a8; border-bottom-color: #262626; }
+#workskin .ig.theme-dark .ig-photo, #workskin .igdm.theme-dark .igdm-post .ig-photo { background: #1c1c1c; color: #a8a8a8; border-bottom-color: #262626; }
 
 #workskin .ig.theme-dark .ig-tag { color: #e0f1ff; }
 
@@ -6307,7 +6421,7 @@
 #workskin .ig.theme-dark .ig-person .ig-pname { color: #a8a8a8; }
 #workskin .ig.theme-dark .ig-person .ig-fbtn { background: #363636; color: #f5f5f5; }
 #workskin .ig.theme-dark .ig-person .ig-fbtn.blue { background: #0095f6; color: #ffffff; }
-#workskin .ig.theme-dark .ig-car .ig-car-dots { color: #555555; }
+#workskin .ig.theme-dark .ig-car .ig-car-dots, #workskin .igdm.theme-dark .igdm-post .ig-car .ig-car-dots { color: #555555; }
 
 #workskin .ig.theme-dark .ig-tog.like .on.ig-icon { color: #ff3040; }
 
@@ -6357,6 +6471,11 @@
 #workskin .igdm.theme-dark .igdm-post-img.text { background: #363636; color: #a8a8a8; }
 #workskin .igdm.theme-dark .igdm-post.reel { background: #000000; }
 #workskin .igdm.theme-dark .igdm-post-btns .ic { background-color: #262626; }
+#workskin .igdm.theme-dark .igdm-link { background: #262626; color: #f5f5f5; }
+#workskin .igdm.theme-dark .igdm-link-img.text { background: #363636; color: #a8a8a8; }
+#workskin .igdm.theme-dark .igdm-link-url { color: #a8a8a8; }
+#workskin .igdm.theme-dark .igdm-link-url::before { border-color: #a8a8a8; background-image: linear-gradient(transparent 42%, #a8a8a8 42%, #a8a8a8 58%, transparent 58%); }
+#workskin .igdm.theme-dark .igdm-post-btns .ic.ic-info::before { border-color: #f5f5f5; color: #f5f5f5; }
 #workskin .igdm.theme-dark .ic.ic-save { background-image: url(https://images.squidge.org/images/2026/11/15/bookmark-white.png); }
 
 /* ---------- Instagram: Auto theme (theme-auto): light, switching to dark when the reader's device is in dark mode ---------- */
@@ -6374,7 +6493,7 @@
       color: #a8a8a8;
     }
 
-  #workskin .ig.theme-auto .ig-photo { background: #1c1c1c; color: #a8a8a8; border-bottom-color: #262626; }
+  #workskin .ig.theme-auto .ig-photo, #workskin .igdm.theme-auto .igdm-post .ig-photo { background: #1c1c1c; color: #a8a8a8; border-bottom-color: #262626; }
 
   #workskin .ig.theme-auto .ig-tag { color: #e0f1ff; }
 
@@ -6393,7 +6512,7 @@
   #workskin .ig.theme-auto .ig-person .ig-pname { color: #a8a8a8; }
   #workskin .ig.theme-auto .ig-person .ig-fbtn { background: #363636; color: #f5f5f5; }
   #workskin .ig.theme-auto .ig-person .ig-fbtn.blue { background: #0095f6; color: #ffffff; }
-  #workskin .ig.theme-auto .ig-car .ig-car-dots { color: #555555; }
+  #workskin .ig.theme-auto .ig-car .ig-car-dots, #workskin .igdm.theme-auto .igdm-post .ig-car .ig-car-dots { color: #555555; }
 
   #workskin .ig.theme-auto .ig-tog.like .on.ig-icon { color: #ff3040; }
 
@@ -6443,6 +6562,11 @@
   #workskin .igdm.theme-auto .igdm-post-img.text { background: #363636; color: #a8a8a8; }
   #workskin .igdm.theme-auto .igdm-post.reel { background: #000000; }
   #workskin .igdm.theme-auto .igdm-post-btns .ic { background-color: #262626; }
+  #workskin .igdm.theme-auto .igdm-link { background: #262626; color: #f5f5f5; }
+  #workskin .igdm.theme-auto .igdm-link-img.text { background: #363636; color: #a8a8a8; }
+  #workskin .igdm.theme-auto .igdm-link-url { color: #a8a8a8; }
+  #workskin .igdm.theme-auto .igdm-link-url::before { border-color: #a8a8a8; background-image: linear-gradient(transparent 42%, #a8a8a8 42%, #a8a8a8 58%, transparent 58%); }
+  #workskin .igdm.theme-auto .igdm-post-btns .ic.ic-info::before { border-color: #f5f5f5; color: #f5f5f5; }
   #workskin .igdm.theme-auto .ic.ic-save { background-image: url(https://images.squidge.org/images/2026/11/15/bookmark-white.png); }
 }
 
