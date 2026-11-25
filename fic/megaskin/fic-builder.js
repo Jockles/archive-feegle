@@ -772,6 +772,8 @@
     return ['<div class="igdm-post ' + (reel ? "reel " : "") + side + (quoted ? " quoted" : "") + (r ? " reacted" : "") + '">'].concat(ind(L, 1), ["</div>"]);
   }
   // a link sent in the chat, as a card: the info and share buttons, the page's picture, its title and the website
+  // which one thing a DM message shares, if any
+  function igdmKind(m) { return m.link ? "link" : m.hasPost ? (m.postReel ? "reel" : "post") : m.shared ? "story" : ""; }
   function igdmLink(m, side, label, r) {
     var k = m.link, u = picUrl(k.img || ""), L = [];
     var btns = (m.linkInfo !== false ? '<span class="ic ic-info"></span>' : "") + (m.linkShare !== false ? '<span class="ic ic-share"></span>' : "");
@@ -1179,12 +1181,10 @@
     "blocks.N.faces.N:igdm": "Whose pictures go at the top. Leave it on 'The next person in the chat' and it picks for you, in the order they first send a message.",
     "blocks.N.bar:igdm": "The 'Message...' box at the bottom. 'Something half-typed' shows a message the phone owner hasn't sent yet.",
     "blocks.N.msgs.N.from:igdm": "The first box chooses who wrote the message, from the cast list above. You can also change it to a date or notice line. The big box is the message. 'Extras' has shared posts and the Seen line.",
-    "blocks.N.msgs.N.shared:igdm": "Turns the words into an outlined box, for a reel or story sent into the chat. Type what it says in the message box, like 'Shared a story from @shane.h: \"6am skate. Again.\"'. For a post with its picture, use 'Shared post card' instead.",
     "blocks.N.msgs.N.replyTo:igdm": "Pick an earlier message to reply to it. It shows who replied to who, like 'Shane replied to you', then that message faded, above this one.",
-    "blocks.N.msgs.N.hasPost:igdm": "A post or reel sent into the chat, as a card: the account and its picture, the post's picture, then the caption. Pick who posted it, or type the username of someone not in the cast, with the letters and colour for their circle.",
     "blocks.N.msgs.N.link.url:igdm": "A link sent in the chat, as a card: the page's picture, its title in bold, and the website under it. Only the website's name shows, so the rest of the address can be anything. The picture is optional.",
     "blocks.N.msgs.N.postMore.N.url:igdm": "Another picture in the post makes it a carousel, with dots and arrows to slide through them, like in the feed. " + PIC,
-    "blocks.N.msgs.N.postReel:igdm": "Makes the card tall like a phone screen, with a play button and the reel sign. The share and save buttons are the round buttons beside the card.",
+    "blocks.N.msgs.N.attach:igdm": "A message can share one thing: a picture post or a reel (a card with the account, the picture and the caption; a reel is tall like a phone screen, with a play button), a link (a card with the page's picture, title and web address), or a story (the message's words in an outlined box). Pick one and its boxes appear.",
     "blocks.N.msgs.N.postLand:igdm": "Tick this if the picture is wider than it is tall, so it fills a reel's height instead of being squashed.",
     "blocks.N.msgs.N.photos.N.url:igdm": "A photo sent in the chat. Each photo is its own bubble, before the words. " + PIC,
     "blocks.N.msgs.N.waReacts:igdm": "The emoji reactions on the bubble. With one kind of emoji, like '😂', it shows that emoji and the faces of who reacted. Type more than one kind, like '💀❤️', and it shows them all with how many people reacted instead, like Instagram does.",
@@ -1349,7 +1349,6 @@
       h.push('<p class="hint">Select some words in the message, then: ' + btn("fmt:tl", "Translation") + " " + btn("fmt:egg", "Easter egg") + " " + btn("fmt:link", "Fake link") + "</p>");
       if (ig) {
         h.push(replyField(b, P, mi));
-        h.push(field(P + ".shared", "Words in an outlined box (a shared reel or story)", { type: "check" }));
         h.push(field(P + ".status", "Line under it", { ph: b.group ? "Seen by 3" : "Seen" }));
         h.push('<div class="fb-row">' + field(P + ".waReacts", "Reactions", { ph: "😂" }) + field(P + ".waCount", "How many", { ph: "2", cls: "fb-time" }) + "</div>");
         h.push('<p class="hint">Who reacted:' + help(P + ".faces") + "</p>");
@@ -1357,11 +1356,16 @@
           h.push('<div class="fb-row">' + field(P + ".faces." + k, "", { type: "select", options: castOptions() }) + btn("face-del:" + bi + ":" + mi + ":" + k, "&times;", "Remove") + "</div>");
         });
         h.push(btn("face-add:" + bi + ":" + mi, "+ Someone who reacted"));
-        h.push(field(P + ".hasPost", "Shared post card", { type: "check", re: true }));
+        // what's shared in the message: only one of these, and picking one brings up its boxes
+        var kind = igdmKind(m);
+        h.push('<p class="hint fb-attach">Shared in this message:' + help(P + ".attach") + " " + [["", "Nothing"], ["post", "Picture post"], ["reel", "Reel"], ["link", "Link"], ["story", "Story"]].map(function (o) {
+          return '<label class="ck"><input type="radio" name="att-' + bi + "-" + mi + '" data-act="attach:' + bi + ":" + mi + ":" + o[0] + '"' + (kind === o[0] ? " checked" : "") + "> " + o[1] + "</label>";
+        }).join(" ") + "</p>");
+        if (kind === "story") h.push('<p class="hint">Type what the story says in the message box, like \'Shared a story from @shane.h: "6am skate. Again."\'. It goes in an outlined box.</p>');
         if (m.hasPost) {
           if (m.postShare === undefined) m.postShare = true;
           if (m.postSave === undefined) m.postSave = true;
-          h.push('<div class="fb-acct"><div class="fb-row">' + field(P + ".postReel", "It's a reel", { type: "check" }) + field(P + ".postShare", "Share button", { type: "check" }) +
+          h.push('<div class="fb-acct"><div class="fb-row">' + field(P + ".postShare", "Share button", { type: "check" }) +
             field(P + ".postSave", "Save button", { type: "check" }) + "</div>" +
             field(P + ".postBy", "Posted by", { type: "select", re: true, options: [["", "Someone not in the cast"]].concat(castOptions()) }) +
             (char(m.postBy) ? "" : '<div class="fb-row">' + field(P + ".postAcc", "", { ph: "Their username" }) + field(P + ".postIni", "", { ph: (t(m.postAcc) || "s").charAt(0).toUpperCase(), cls: "fb-time" }) +
@@ -1377,12 +1381,11 @@
             }).join("") + btn("ppic-add:" + bi + ":" + mi, "+ Another picture (a carousel)") +
             field(P + ".postCap", "", { ph: "The caption (reels usually have none)", wrap: true }) + "</div>");
         }
-        if (!m.link) h.push("<p>" + btn("link-add:" + bi + ":" + mi, "+ Link card") + "</p>");
-        else {
+        if (m.link) {
           if (m.linkInfo === undefined) m.linkInfo = true;
           if (m.linkShare === undefined) m.linkShare = true;
           var K = P + ".link";
-          h.push('<div class="fb-acct"><p class="hint">Link card: ' + btn("link-del:" + bi + ":" + mi, "Remove") + help(P + ".link.url") + "</p>" +
+          h.push('<div class="fb-acct"><p class="hint">Link card:' + help(P + ".link.url") + "</p>" +
             '<div class="fb-row">' + field(P + ".linkInfo", "Info button", { type: "check" }) + field(P + ".linkShare", "Share button", { type: "check" }) + "</div>" +
             field(K + ".url", "", { ph: "Web address", wrap: true }) + field(K + ".title", "", { ph: "The page's title", wrap: true }) +
             field(K + ".img", "", { type: "url", ph: "Picture link", wrap: true }) + field(K + ".alt", "", { ph: "Describe the picture (alt text)", wrap: true }) +
@@ -2892,6 +2895,15 @@
       case "tag-del": m.tags.splice(n[2], 1); break;
       case "link-add": m.link = { url: "", showUrl: false, title: "", desc: "", img: "", alt: "", video: "", imgdesc: "" }; break;
       case "link-del": m.link = null; break;
+      case "attach": {
+        // one shared thing per message: a picture post, a reel, a link or a story
+        var k = a[3] || "";
+        m.hasPost = k === "post" || k === "reel"; if (m.hasPost) m.postReel = k === "reel";
+        m.shared = k === "story";
+        if (k === "link") { if (!m.link) m.link = { url: "", showUrl: false, title: "", desc: "", img: "", alt: "", video: "", imgdesc: "" }; }
+        else m.link = null;
+        break;
+      }
       case "ppic-add": (m.postMore = m.postMore || []).push({ url: "", alt: "", desc: "", land: false }); break;
       case "ppic-del": m.postMore.splice(n[2], 1); break;
       case "copy-html": copy("fb-html", t); return;
