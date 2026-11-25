@@ -789,12 +789,17 @@
     var o = others(b), head = "";
     if (b.app) head += '<span class="igdm-back"><span class="ic ic-back">&#8592;</span></span><span class="hide"> </span><span class="igdm-calls"><span class="ic ic-phone">&#128222;</span>' +
       '<span class="hide"> </span><span class="ic ic-video">&#127909;</span></span><span class="hide"> </span>';
+    var pic = false;
     if (b.headPic !== false) {
-      var f = igdmFaces(b);
+      var f = igdmFaces(b); pic = f.length > 0;
       if (f.length === 2) head += '<span class="ig-collab">' + circle("ig-pfp", f[0], null) + circle("ig-pfp", f[1], null) + "</span>";
       else if (f.length) head += circle("ig-pfp", f[0], null);
     }
-    head += t(b.title) ? esc(t(b.title)) : b.group ? "Group chat" : o[0] ? igNameHTML(o[0], null) : "Someone";
+    // a long name in a chat between two is cut short with "…" to fit on one line at phone width (AO3 won't let the skin do it)
+    var full = Array.from(t(b.title) || (b.group ? "Group chat" : o[0] ? igName(o[0]) : "Someone"));
+    var room = (b.app ? (pic ? 18 : 25) : pic ? 28 : 34) + (b.tick ? 0 : 2);
+    if (!b.group && full.length > room) head += esc(full.slice(0, room - 1).join("") + "…");
+    else head += t(b.title) ? esc(t(b.title)) : b.group ? "Group chat" : o[0] ? igNameHTML(o[0], null) : "Someone";
     if (b.tick && !b.group) head += TICK;
     if (b.group && b.chev !== false) head += '<span class="igdm-chev"></span>'; // the little > after a group's name, drawn by the skin
     var L = ['<div class="' + containerClass(b, "igdm") + '">',
@@ -2410,7 +2415,7 @@
     else {
       b.title = name.map(function (n) { return n.textContent; }).join("");
       // the other person's username: someone new to the cast gets it as their Instagram username
-      if (!b.group && o[0] && !isProfile(o[0]) && (igName(o[0]) === b.title || fresh.indexOf(o[0].id) >= 0)) { if (igName(o[0]) !== b.title) o[0].ighandle = b.title; b.title = ""; }
+      if (!b.group && o[0] && !isProfile(o[0]) && !/…$/.test(b.title) && (igName(o[0]) === b.title || fresh.indexOf(o[0].id) >= 0)) { if (igName(o[0]) !== b.title) o[0].ighandle = b.title; b.title = ""; }
       if (b.group && b.title === "Group chat") b.title = "";
     }
     if (!b.group && o[0]) looks(o[0], pics[0]);
