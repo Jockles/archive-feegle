@@ -7,7 +7,7 @@
   <title>Megaskin, Chapter 5: iMessage CSS | jockles.com</title>
   <link rel="stylesheet" href="../../style.css">
   <script src="../../theme.js"></script>
-  <link rel="stylesheet" href="megaskin.css?v=2a55347f" id="creator-style">
+  <link rel="stylesheet" href="megaskin.css?v=e0be4b81" id="creator-style">
 </head>
 <body>
 <header>
@@ -465,17 +465,17 @@
 
 <h3 id="s5-5">5.5 Pictures</h3>
 
-<pre><code>#workskin .imsg .msg.pic { width: 55%; padding: 0.2em; overflow: hidden; }
-#workskin .imsg .msg.pic.tapped { overflow: visible; }
+<pre><code>#workskin .imsg .msg.photo { width: 55%; padding: 0.2em; overflow: hidden; }
+#workskin .imsg .msg.photo.tapped { overflow: visible; }
 
-#workskin .imsg .msg.pic img {
+#workskin .imsg .msg.photo img {
   display: block;
   width: 100%;
   height: auto;
   border-radius: 15px;
 }
 
-#workskin .imsg .msg.pic.text { padding: 2.5em 1em; font-style: italic; text-align: center; }</code></pre>
+#workskin .imsg .msg.photo.text { padding: 2.5em 1em; font-style: italic; text-align: center; }</code></pre>
 
 <p>A picture bubble is a fixed <code>55%</code> of the chat wide, whatever size the picture is, and the picture fills it. With <code>text</code>, the description gets lots of padding so it's about the size of a photo.</p>
 
@@ -539,7 +539,7 @@
 <ul>
   <li><strong>Tapbacks:</strong> everything with <code>tapped</code> or <code>imsg-tap</code> in it, including the lines in the dark and auto blocks.</li>
   <li><strong>Green bubbles:</strong> the <code>.out.sms</code> line.</li>
-  <li><strong>Pictures:</strong> the three <code>.msg.pic</code> rules.</li>
+  <li><strong>Pictures:</strong> the three <code>.msg.photo</code> rules.</li>
   <li><strong>Typing dots:</strong> the four <code>typing-indicator</code> rules, and <code>.out.typing-indicator</code>.</li>
   <li><strong>Message bar:</strong> everything with <code>imsg-input</code>, <code>imsg-plus</code>, <code>imsg-field</code> or <code>imsg-mic</code> in it.</li>
 </ul>

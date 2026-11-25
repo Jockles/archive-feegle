@@ -124,7 +124,7 @@
   text-overflow: ellipsis;
 }
 
-#workskin .wa table.wa-bar .wa-sub {
+#workskin .wa table.wa-bar .wa-status {
   padding: 0 0.4em 0.55em 0.4em;
   font-size: 0.8em;
   line-height: 1.2;
@@ -179,9 +179,9 @@
 /* later messages from the same person: no picture, but still indented */
 #workskin .wa .wa-row.cont { padding-left: 38px; }
 
-/* sender name with the phone number at the right: <p class="who colour1">~ Name<span class="wa-num">+353...</span></p>
+/* sender name with the phone number at the right: <p class="who colour1">~ Name<span class="wa-no">+353...</span></p>
    also works inside a quote's <b> */
-#workskin .wa .wa-num {
+#workskin .wa .wa-no {
   float: right;
   margin-left: 1em;
   font-weight: normal;
@@ -288,10 +288,10 @@
 
 #workskin .wa .wa-field span:first-child { padding-left: 0; }
 
-#workskin .wa .wa-field .wa-ph { width: auto; padding-left: 0.5em; }
+#workskin .wa .wa-field .wa-placeholder { width: auto; padding-left: 0.5em; }
 
 /* a half-typed message: dark text that wraps onto more lines */
-#workskin .wa .wa-field .wa-ph.typed { white-space: normal; color: #111b21; }
+#workskin .wa .wa-field .wa-placeholder.typed { white-space: normal; color: #111b21; }
 
 /* a flashing cursor in the typed message stays in the line of words, not a cell of its own */
 #workskin .wa .wa-field .cursor { display: inline-block; width: 0.2em; padding: 0; }
@@ -389,8 +389,8 @@
   margin-right: 0.4em;
 }
 
-/* the link written out in the message text itself: <span class="wa-ln">example.com</span> */
-#workskin .wa .wa-ln {
+/* the link written out in the message text itself: <span class="wa-link-text">example.com</span> */
+#workskin .wa .wa-link-text {
   color: #027eb5;
   text-decoration: underline;
 }
@@ -429,7 +429,7 @@
 
 #workskin .wa .wa-photo:nth-of-type(n+3) { margin-bottom: 0; }
 
-/* the picture. AO3 can't crop pictures automatically, so the skin needs to know which way the picture runs: - normal (taller than wide, or square): it is made as wide as the box, and the top and bottom are cropped evenly - add class="land" to the img if it is wider than tall: it is made as tall as the box, and the sides are cropped evenly The tall boxes (two pictures; the left one of three) always use the second way, as nearly any photo fits them that way. */
+/* the picture. AO3 can't crop pictures automatically, so the skin needs to know which way the picture runs: - normal (taller than wide, or square): it is made as wide as the box, and the top and bottom are cropped evenly - add class="landscape" to the img if it is wider than tall: it is made as tall as the box, and the sides are cropped evenly The tall boxes (two pictures; the left one of three) always use the second way, as nearly any photo fits them that way. */
 #workskin .wa .wa-photo img {
   position: absolute;
   top: -9999px;
@@ -445,7 +445,7 @@
   margin: auto 0;
 }
 
-#workskin .wa .wa-photo img.land,
+#workskin .wa .wa-photo img.landscape,
 #workskin .wa .wa-photos.two .wa-photo img,
 #workskin .wa .wa-photos.three .wa-photo:first-of-type img {
   top: 0;
@@ -614,7 +614,7 @@
 /* in a group, the sender's name sits at the top of the card */
 #workskin .wa .msg.contact .who { padding: 0.35em 0.7em 0 0.7em; }
 
-#workskin .wa .wa-cbtn {
+#workskin .wa .wa-contact-btn {
   display: block;
   padding: 0.5em 0.7em;
   border-top: 1px solid rgba(0, 0, 0, 0.1);
@@ -655,7 +655,7 @@
 
 #workskin .wa.theme-dark .mob-sys { background: #182229; color: #8696a0; }
 
-#workskin .wa.theme-dark .wa-num { color: #8696a0; }
+#workskin .wa.theme-dark .wa-no { color: #8696a0; }
 
 #workskin .wa.theme-dark .in.tail::before { border-color: transparent #202c33 transparent transparent; }
 
@@ -671,7 +671,7 @@
 
 #workskin .wa.theme-dark .wa-field { background: #202c33; color: #8696a0; }
 
-#workskin .wa.theme-dark .wa-field .wa-ph.typed { color: #e9edef; }
+#workskin .wa.theme-dark .wa-field .wa-placeholder.typed { color: #e9edef; }
 
 #workskin .wa.theme-dark .wa-link { background: rgba(0, 0, 0, 0.22); }
 
@@ -683,7 +683,7 @@
 
 #workskin .wa.theme-dark .wa-photo { background: rgba(0, 0, 0, 0.3); }
 
-#workskin .wa.theme-dark .wa-ln { color: #53bdeb; }
+#workskin .wa.theme-dark .wa-link-text { color: #53bdeb; }
 
 #workskin .wa.theme-dark .fake-link, #workskin .wa.theme-dark a:not(.tl) { color: #53bdeb; }
 
@@ -695,9 +695,9 @@
 #workskin .wa.theme-dark .wa-fwd { color: #8696a0; }
 
 #workskin .wa.theme-dark .wa-contact,
-#workskin .wa.theme-dark .wa-cbtn { color: #21c063; }
+#workskin .wa.theme-dark .wa-contact-btn { color: #21c063; }
 
-#workskin .wa.theme-dark .wa-cbtn { border-top-color: rgba(255, 255, 255, 0.1); }
+#workskin .wa.theme-dark .wa-contact-btn { border-top-color: rgba(255, 255, 255, 0.1); }
 
 
 /* ---------- WhatsApp: Auto theme (theme-auto): light, switching to dark when the reader's device is in dark mode ---------- */
@@ -720,7 +720,7 @@
 
   #workskin .wa.theme-auto .mob-sys { background: #182229; color: #8696a0; }
 
-  #workskin .wa.theme-auto .wa-num { color: #8696a0; }
+  #workskin .wa.theme-auto .wa-no { color: #8696a0; }
 
   
   
@@ -766,7 +766,7 @@
 
   #workskin .wa.theme-auto .wa-field { background: #202c33; color: #8696a0; }
 
-  #workskin .wa.theme-auto .wa-field .wa-ph.typed { color: #e9edef; }
+  #workskin .wa.theme-auto .wa-field .wa-placeholder.typed { color: #e9edef; }
 
   #workskin .wa.theme-auto .wa-link { background: rgba(0, 0, 0, 0.22); }
 
@@ -778,9 +778,9 @@
   #workskin .wa.theme-auto .wa-fwd { color: #8696a0; }
 
   #workskin .wa.theme-auto .wa-contact,
-  #workskin .wa.theme-auto .wa-cbtn { color: #21c063; }
+  #workskin .wa.theme-auto .wa-contact-btn { color: #21c063; }
 
-  #workskin .wa.theme-auto .wa-cbtn { border-top-color: rgba(255, 255, 255, 0.1); }
+  #workskin .wa.theme-auto .wa-contact-btn { border-top-color: rgba(255, 255, 255, 0.1); }
 
   #workskin .wa.theme-auto .wa-link-img.text { background: rgba(0, 0, 0, 0.2); color: #8696a0; }
 
@@ -790,7 +790,7 @@
 
   #workskin .wa.theme-auto .wa-photo { background: rgba(0, 0, 0, 0.3); }
 
-  #workskin .wa.theme-auto .wa-ln { color: #53bdeb; }
+  #workskin .wa.theme-auto .wa-link-text { color: #53bdeb; }
 
   #workskin .wa.theme-auto .fake-link, #workskin .wa.theme-auto a:not(.tl) { color: #53bdeb; }
 }

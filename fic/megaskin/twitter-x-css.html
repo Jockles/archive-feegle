@@ -7,7 +7,7 @@
   <title>Megaskin, Chapter 9: Twitter/X CSS | jockles.com</title>
   <link rel="stylesheet" href="../../style.css">
   <script src="../../theme.js"></script>
-  <link rel="stylesheet" href="megaskin.css?v=2a55347f" id="creator-style">
+  <link rel="stylesheet" href="megaskin.css?v=e0be4b81" id="creator-style">
 </head>
 <body>
 <header>
@@ -460,32 +460,32 @@
 #workskin .tw .tw-tog[open] .off,
 #workskin .tw-reply .tw-tog[open] .off { display: none; }
 
-#workskin .tw .tw-stats .tw-liked,
-#workskin .tw-reply .tw-stats .tw-liked,
+#workskin .tw .tw-stats .liked,
+#workskin .tw-reply .tw-stats .liked,
 #workskin .tw .tw-stats .tw-tog[open],
 #workskin .tw-reply .tw-stats .tw-tog[open] {
   color: #ed4956;
 }
 
-#workskin .tw .tw-stats .tw-rt,
-#workskin .tw-reply .tw-stats .tw-rt {
+#workskin .tw .tw-stats .reposted,
+#workskin .tw-reply .tw-stats .reposted {
   color: #00ba7c;
 }
 
-#workskin .tw .tw-stats .tw-saved,
-#workskin .tw-reply .tw-stats .tw-saved,
+#workskin .tw .tw-stats .saved,
+#workskin .tw-reply .tw-stats .saved,
 #workskin .tw .tw-stats .tw-tog.tw-end[open],
 #workskin .tw-reply .tw-stats .tw-tog.tw-end[open] {
   color: #1d9bf0;
 }
 
-/* a private account's tweets can't be reposted: add tw-locked to the repost's tw-stat to fade it out */
-#workskin .tw .tw-stats .tw-locked,
-#workskin .tw-reply .tw-stats .tw-locked {
+/* a private account's tweets can't be reposted: add locked to the repost's tw-stat to fade it out */
+#workskin .tw .tw-stats .locked,
+#workskin .tw-reply .tw-stats .locked {
   color: #cfd9de;
 }</code></pre>
 
-<p>A button the account has used turns red for a like, green for a repost or blue for a bookmark, count and all, and a clicked like turns red the same way. A clicked bookmark turns blue: <code>.tw-tog.tw-end</code> picks out the bookmark, and is more specific than the red rule, so it wins. <code>tw-locked</code> fades a private tweet's repost button to pale grey, or dark grey in dark mode. The coloured pictures are in the Icons section too.</p>
+<p>A button the account has used turns red for a like, green for a repost or blue for a bookmark, count and all, and a clicked like turns red the same way. A clicked bookmark turns blue: <code>.tw-tog.tw-end</code> picks out the bookmark, and is more specific than the red rule, so it wins. <code>locked</code> fades a private tweet's repost button to pale grey, or dark grey in dark mode. The coloured pictures are in the Icons section too.</p>
 
 <details>
 <summary>How it works: the clickable like and bookmark</summary>
@@ -511,8 +511,8 @@
 }
 
 /* results: each option is a row, the bar with the option in it, then the percentage at the far right */
-#workskin .tw .tw-opt.res,
-#workskin .tw-reply .tw-opt.res {
+#workskin .tw .tw-opt.results,
+#workskin .tw-reply .tw-opt.results {
   display: flex;
   align-items: center;
   border: 0;
@@ -581,14 +581,14 @@
 
 <pre><code>#workskin .tw .tw-opt.p58 .tw-bar, #workskin .tw-reply .tw-opt.p58 .tw-bar { width: 58%; }</code></pre>
 
-<p>Then <code>&lt;p class="tw-opt res p58"&gt;</code> gets a bar 58% of the way across. The class name can be anything, but keeping the number in it makes it easy to remember.</p>
+<p>Then <code>&lt;p class="tw-opt results p58"&gt;</code> gets a bar 58% of the way across. The class name can be anything, but keeping the number in it makes it easy to remember.</p>
 
 </details>
 
 <details>
 <summary>How it works: the results bars</summary>
 
-<p>The results (<code>res</code>) turns the option into a flex row, like the buttons along the bottom of a tweet: the <code>tw-bar</code> span with the option in it, then the percentage pushed to the far right by <code>margin-left: auto</code>. The bar is a grey box with slightly rounded corners, and each <code>p</code> class sets how wide it is. <code>min-width</code> keeps a tiny percentage from shrinking the bar to nothing, and <code>nowrap</code> lets the words run on past the end of a short bar, like the real thing. <code>win</code> swaps the grey bar for a blue one and makes the text bold.</p>
+<p>The results (<code>results</code>) turns the option into a flex row, like the buttons along the bottom of a tweet: the <code>tw-bar</code> span with the option in it, then the percentage pushed to the far right by <code>margin-left: auto</code>. The bar is a grey box with slightly rounded corners, and each <code>p</code> class sets how wide it is. <code>min-width</code> keeps a tiny percentage from shrinking the bar to nothing, and <code>nowrap</code> lets the words run on past the end of a short bar, like the real thing. <code>win</code> swaps the grey bar for a blue one and makes the text bold.</p>
 
 </details>
 
@@ -665,8 +665,8 @@
 
 <h3 id="s9-6">9.6 Pictures and Videos</h3>
 
-<pre><code>#workskin .tw .tw-media,
-#workskin .tw-reply .tw-media {
+<pre><code>#workskin .tw .tw-photos,
+#workskin .tw-reply .tw-photos {
   display: block;
   overflow: hidden;
   border: 1px solid #cfd9de;
@@ -684,11 +684,11 @@
 <details>
 <summary>How it works: two, three and four pictures</summary>
 
-<p>Two, three and four pictures work exactly like WhatsApp's photo galleries - squares made with <code>padding-top</code>, floated into a grid, with <code>land</code> for wide pictures - so see <a href="whatsapp-css.html#s7-6-2">Photo Galleries</a> for how. The only differences are the sizes (<code>49.2%</code> squares with a <code>1.2%</code> gap, adding up to <code>99.6%</code>), and this at the end:</p>
+<p>Two, three and four pictures work exactly like WhatsApp's photo galleries - squares made with <code>padding-top</code>, floated into a grid, with <code>landscape</code> for wide pictures - so see <a href="whatsapp-css.html#s7-6-2">Photo Galleries</a> for how. The only differences are the sizes (<code>49.2%</code> squares with a <code>1.2%</code> gap, adding up to <code>99.6%</code>), and this at the end:</p>
 
-<pre><code>#workskin .tw .tw-media.two::after,
-#workskin .tw .tw-media.three::after,
-#workskin .tw .tw-media.four::after {
+<pre><code>#workskin .tw .tw-photos.two::after,
+#workskin .tw .tw-photos.three::after,
+#workskin .tw .tw-photos.four::after {
   content: "";
   display: block;
   clear: both;
@@ -1018,8 +1018,8 @@
   <li><strong>DMs:</strong> everything starting <code>.twdm</code>, and anything with <code>twdm-</code> in it.</li>
   <li><strong>Threads:</strong> everything starting <code>.tw-thread</code>, and <code>tw-scroll</code> and <code>tw-foot</code>.</li>
   <li><strong>Polls:</strong> <code>tw-opt</code>, <code>tw-pct</code> and <code>tw-pollinfo</code>, which is also the biggest saving, since there are 15 bar sizes.</li>
-  <li><strong>Picture galleries:</strong> <code>tw-photo</code> and <code>tw-desc</code>, and the <code>two</code>, <code>three</code> and <code>four</code> rules. Keep <code>tw-media</code> for single pictures.</li>
-  <li><strong>Extras:</strong> <code>tw-note</code>, <code>tw-warn</code>, <code>tw-label</code>, <code>tw-liked</code> and <code>tw-rt</code> each come out on their own.</li>
+  <li><strong>Picture galleries:</strong> <code>tw-photo</code> and <code>tw-desc</code>, and the <code>two</code>, <code>three</code> and <code>four</code> rules. Keep <code>tw-photos</code> for single pictures.</li>
+  <li><strong>Extras:</strong> <code>tw-note</code>, <code>tw-warn</code>, <code>tw-label</code>, <code>liked</code> and <code>reposted</code> each come out on their own.</li>
 </ul>
 
 <p>Keep the tweet, name line, text and stats, and <code>tw-reply</code> if you use replies anywhere.</p>

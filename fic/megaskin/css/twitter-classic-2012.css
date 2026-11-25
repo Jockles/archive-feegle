@@ -16,7 +16,7 @@
 /* AO3 turns line breaks in your code into <br> tags: hide them in the rows */
 #workskin .twc12 .tw-top br,
 #workskin .twc12 .tw-stats br,
-#workskin .twc12-feed .twc-bar br,
+#workskin .twc12-feed .twc-apptop br,
 #workskin .twc12-feed .tw-nav br { display: none; }
 
 /* the name line: picture, name and @handle, with the time in the top right corner.
@@ -104,10 +104,10 @@
 /* the grey "Details" under a tweet: <p class="tw-details">Details</p> */
 #workskin .twc12 .tw-details { display: block; margin: 0.15em 0 0 0; color: #8899a6; font-size: 0.8em; }
 
-/* a picture in a tweet: <p class="tw-media"><img src="..." alt="..."></p> */
-#workskin .twc12 .tw-media { display: block; margin: 0.5em 0 0.3em 0; }
+/* a picture in a tweet: <p class="tw-photos"><img src="..." alt="..."></p> */
+#workskin .twc12 .tw-photos { display: block; margin: 0.5em 0 0.3em 0; }
 
-#workskin .twc12 .tw-media img {
+#workskin .twc12 .tw-photos img {
   display: block;
   max-width: 100%;
   height: auto;
@@ -144,11 +144,11 @@
 
 #workskin .twc12 .tw-tog[open] .off { display: none; }
 
-/* a gold star and a green retweet for buttons the account has used: add tw-liked or tw-rt to the tw-stat */
-#workskin .twc12 .tw-stats .tw-liked,
+/* a gold star and a green retweet for buttons the account has used: add liked or reposted to the tw-stat */
+#workskin .twc12 .tw-stats .liked,
 #workskin .twc12 .tw-stats .tw-tog[open] { color: #ffac33; }
 
-#workskin .twc12 .tw-stats .tw-rt { color: #5c913b; }
+#workskin .twc12 .tw-stats .reposted { color: #5c913b; }
 
 /* ---------- Classic Twitter 2012-15: an opened tweet ---------- */
 #workskin .twc12.big { padding: 0.8em 0.8em 0 0.8em; }
@@ -249,8 +249,8 @@
 }
 
 /* the blue bar along the top: a back arrow or the page's buttons, the page name in the middle, search and write a tweet on the right.
-   <p class="twc-bar"><span class="ic ic-back">&#8592;</span><span class="twc-title">Tweet</span><span class="ic ic-x-search">&#128269;</span><span class="ic ic-tw-compose">&#9998;</span></p> */
-#workskin .twc12-feed .twc-bar {
+   <p class="twc-apptop"><span class="ic ic-back">&#8592;</span><span class="twc-title">Tweet</span><span class="ic ic-x-search">&#128269;</span><span class="ic ic-tw-compose">&#9998;</span></p> */
+#workskin .twc12-feed .twc-apptop {
   display: flex;
   position: sticky;
   top: 0;
@@ -276,11 +276,11 @@
   font-size: 1.15em;
 }
 
-#workskin .twc12-feed .twc-bar .ic { flex: none; width: 1.4em; height: 1.4em; }
+#workskin .twc12-feed .twc-apptop .ic { flex: none; width: 1.4em; height: 1.4em; }
 
 #workskin .twc12-feed .twc-title + .ic { margin-left: auto; }
 
-#workskin .twc12-feed .twc-bar .ic + .ic { margin-left: 0.8em; }
+#workskin .twc12-feed .twc-apptop .ic + .ic { margin-left: 0.8em; }
 
 /* the black row of buttons along the bottom, each with its name under it. "on" lights up the page you're on.
    <p class="tw-nav"><span class="tw-tab on"><span class="ic ic-x-home-filled">&#8962;</span> Home</span> <span class="tw-tab"><span class="ic ic-tw-at">@</span> Connect</span> <span class="tw-tab"><span class="ic ic-tw-hash">#</span> Discover</span> <span class="tw-tab"><span class="ic ic-tw-me">&#9786;</span> Me</span></p> */
@@ -343,10 +343,10 @@
 #workskin .twc12 .ic.ic-tw-repost { background-image: url(https://images.squidge.org/images/2026/11/19/tw12-retweet-grey.png); }
 #workskin .twc12 .ic.ic-tw-like { background-image: url(https://images.squidge.org/images/2026/11/19/tw12-star-grey.png); }
 #workskin .twc12 .ic.ic-tw-share { background-image: url(https://images.squidge.org/images/2026/11/19/tw12-more-grey.png); }
-#workskin .twc12-feed .twc-bar .ic.ic-back { background-image: url(https://images.squidge.org/images/2026/11/19/tw12-back-white.png); }
-#workskin .twc12-feed .twc-bar .ic.ic-x-search { background-image: url(https://images.squidge.org/images/2026/11/19/tw12-search-white.png); }
-#workskin .twc12-feed .twc-bar .ic.ic-tw-compose { background-image: url(https://images.squidge.org/images/2026/11/19/tw12-compose-white.png); }
-#workskin .twc12-feed .twc-bar .ic.ic-tw-me { background-image: url(https://images.squidge.org/images/2026/11/19/tw12-me-white.png); }
+#workskin .twc12-feed .twc-apptop .ic.ic-back { background-image: url(https://images.squidge.org/images/2026/11/19/tw12-back-white.png); }
+#workskin .twc12-feed .twc-apptop .ic.ic-x-search { background-image: url(https://images.squidge.org/images/2026/11/19/tw12-search-white.png); }
+#workskin .twc12-feed .twc-apptop .ic.ic-tw-compose { background-image: url(https://images.squidge.org/images/2026/11/19/tw12-compose-white.png); }
+#workskin .twc12-feed .twc-apptop .ic.ic-tw-me { background-image: url(https://images.squidge.org/images/2026/11/19/tw12-me-white.png); }
 #workskin .twc12-feed .tw-nav .ic.ic-x-home-filled { background-image: url(https://images.squidge.org/images/2026/11/19/tw12-home-grey.png); }
 #workskin .twc12-feed .tw-nav .ic.ic-tw-at { background-image: url(https://images.squidge.org/images/2026/11/19/tw12-at-grey.png); }
 #workskin .twc12-feed .tw-nav .ic.ic-tw-hash { background-image: url(https://images.squidge.org/images/2026/11/19/tw12-hash-grey.png); }
@@ -359,7 +359,7 @@
 #workskin .twc12-feed .tw-nav .on .ic.ic-tw-me { background-image: url(https://images.squidge.org/images/2026/11/19/tw12-me-blue.png); }
 
 /* a gold star and a green retweet for buttons the account has used */
-#workskin .twc12 .tw-stats .tw-liked .ic.ic-tw-like, #workskin .twc12 .tw-stats .tw-tog[open] .ic.ic-tw-like { background-image: url(https://images.squidge.org/images/2026/11/19/tw12-star-gold.png); }
-#workskin .twc12 .tw-stats .tw-rt .ic.ic-tw-repost { background-image: url(https://images.squidge.org/images/2026/11/19/tw12-retweet-green.png); }
+#workskin .twc12 .tw-stats .liked .ic.ic-tw-like, #workskin .twc12 .tw-stats .tw-tog[open] .ic.ic-tw-like { background-image: url(https://images.squidge.org/images/2026/11/19/tw12-star-gold.png); }
+#workskin .twc12 .tw-stats .reposted .ic.ic-tw-repost { background-image: url(https://images.squidge.org/images/2026/11/19/tw12-retweet-green.png); }
 
 /* <<<<<<<<<< MODULE: Classic Twitter 2012-15 (end) <<<<<<<<<< */

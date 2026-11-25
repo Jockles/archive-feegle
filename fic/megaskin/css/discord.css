@@ -89,7 +89,7 @@
   white-space: nowrap;
 }
 
-#workskin .dc .dc-description {
+#workskin .dc .dc-desc {
   display: inline;
   margin-left: 0.5rem;
   font-size: 0.875rem;
@@ -113,14 +113,14 @@
   background-color: rgb(235, 237, 239);
 }
 
-#workskin .dc .dc-input-text {
+#workskin .dc .dc-field {
   display: contents;
   position: absolute;
   top: 50%;
   transform: translate(0%, -50%);
 }
 
-#workskin .dc .dc-input-text::before {
+#workskin .dc .dc-field::before {
   content: '';
   background-repeat: no-repeat;
   background-size: contain;
@@ -196,7 +196,7 @@
 
 #workskin .dc .dc-name:has(.dc-pfp)::before { display: none; }
 
-#workskin .dc .dc-image { border-radius: 0.1875rem; max-width: 360px; width: 100%; }
+#workskin .dc .dc-photo { border-radius: 0.1875rem; max-width: 360px; width: 100%; }
 
 #workskin .dc .dc-emoji {
   width: 3rem;
@@ -302,7 +302,7 @@
 
 #workskin .dc .dc-embed-text { margin-top: 0.5rem; font-size: 0.875rem; }
 
-#workskin .dc .dc-embed-image { margin-top: 1rem; border-radius: 0.25rem; max-width: 100%; }
+#workskin .dc .dc-embed-img { margin-top: 1rem; border-radius: 0.25rem; max-width: 100%; }
 
 #workskin .dc .dc-quote { display: table; }
 
@@ -545,7 +545,7 @@
 }
 
 #workskin .dc .dc-reply,
-#workskin .dc .dc-description {
+#workskin .dc .dc-desc {
   color: rgb(79, 86, 96);
 }
 
@@ -636,7 +636,7 @@
 #workskin .dc.theme-dark a:not(.tl):hover { color: rgb(0, 175, 244); text-decoration: underline; }
 
 #workskin .dc.theme-dark .dc-reply,
-#workskin .dc.theme-dark .dc-description {
+#workskin .dc.theme-dark .dc-desc {
   color: rgb(185, 187, 190);
 }
 
@@ -684,7 +684,7 @@
 
 #workskin .dc.theme-dark .at-symbol::before { background-image: url(https://images.squidge.org/images/2026/11/15/dc-at-dark.png); }
 
-#workskin .dc.theme-dark .dc-input-text::before { background-image: url(https://images.squidge.org/images/2026/11/15/dc-plus-dark.png); }
+#workskin .dc.theme-dark .dc-field::before { background-image: url(https://images.squidge.org/images/2026/11/15/dc-plus-dark.png); }
 
 /* spoilers, dark: hidden until clicked */
 #workskin .dc.theme-dark .dc-spoiler-text {
@@ -743,7 +743,7 @@
   #workskin .dc.theme-auto a:not(.tl):hover { color: rgb(0, 175, 244); text-decoration: underline; }
 
   #workskin .dc.theme-auto .dc-reply,
-    #workskin .dc.theme-auto .dc-description {
+    #workskin .dc.theme-auto .dc-desc {
       color: rgb(185, 187, 190);
     }
 
@@ -802,7 +802,7 @@
 
   #workskin .dc.theme-auto .at-symbol::before { background-image: url(https://images.squidge.org/images/2026/11/15/dc-at-dark.png); }
 
-  #workskin .dc.theme-auto .dc-input-text::before { background-image: url(https://images.squidge.org/images/2026/11/15/dc-plus-dark.png); }
+  #workskin .dc.theme-auto .dc-field::before { background-image: url(https://images.squidge.org/images/2026/11/15/dc-plus-dark.png); }
 
   /* spoilers, dark: hidden until clicked */
   #workskin .dc.theme-auto .dc-spoiler-text {

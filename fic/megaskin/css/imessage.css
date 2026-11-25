@@ -170,19 +170,19 @@
 
 #workskin .imsg .mob-sys { color: #8e8e93; opacity: 1; }
 
-/* a picture sent in a message: <p class="msg out pic"><img src="..."></p>
-   or, for a description instead: <p class="msg out pic text">[A photo of the rink]</p> */
-#workskin .imsg .msg.pic { width: 55%; padding: 0.2em; overflow: hidden; }
-#workskin .imsg .msg.pic.tapped { overflow: visible; }
+/* a picture sent in a message: <p class="msg out photo"><img src="..."></p>
+   or, for a description instead: <p class="msg out photo text">[A photo of the rink]</p> */
+#workskin .imsg .msg.photo { width: 55%; padding: 0.2em; overflow: hidden; }
+#workskin .imsg .msg.photo.tapped { overflow: visible; }
 
-#workskin .imsg .msg.pic img {
+#workskin .imsg .msg.photo img {
   display: block;
   width: 100%;
   height: auto;
   border-radius: 15px;
 }
 
-#workskin .imsg .msg.pic.text { padding: 2.5em 1em; font-style: italic; text-align: center; }
+#workskin .imsg .msg.photo.text { padding: 2.5em 1em; font-style: italic; text-align: center; }
 
 /* the three typing dots, in a message bubble from whoever is typing (out for the phone's owner, in for anyone else, with a who line above it in a group, like any message) */
 #workskin .imsg .typing-indicator { padding: 0.6em 0.8em; line-height: 1; }
