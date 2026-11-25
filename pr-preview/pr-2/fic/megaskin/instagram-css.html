@@ -25,7 +25,7 @@
   <!-- /site meta -->
   <link rel="stylesheet" href="../../style.css?v=c31c06ea">
   <script src="../../theme.js?v=c50fd7c2"></script>
-  <link rel="stylesheet" href="megaskin.css?v=2a55347f" id="creator-style">
+  <link rel="stylesheet" href="megaskin.css?v=e0be4b81" id="creator-style">
 </head>
 <body>
 <header>
@@ -241,7 +241,7 @@
 
 <h4 id="s13-4-1">13.4.1 The Buttons</h4>
 
-<pre><code>#workskin .ig .ig-actions {
+<pre><code>#workskin .ig .ig-stats {
   display: block;
   overflow: hidden;
   padding: 0.6em 0.9em 0.1em 0.9em;
@@ -249,15 +249,15 @@
   letter-spacing: 0.4em;
 }
 
-#workskin .ig .ig-actions br { display: none; }
+#workskin .ig .ig-stats br { display: none; }
 
-#workskin .ig .ig-actions p:not(.ig-btn) {
+#workskin .ig .ig-stats p:not(.ig-stat) {
   display: inline;
   margin: 0;
   padding: 0;
 }
 
-#workskin .ig .ig-btn,
+#workskin .ig .ig-stat,
 #workskin .ig .ig-tog {
   display: inline-block;
   margin: 0 0.9em 0 0;
@@ -291,7 +291,7 @@
 
 #workskin .ig .ig-tog[open] .on { display: inline; }
 
-#workskin .ig .ig-tog[open] .bm.on { display: inline-block; }
+#workskin .ig .ig-tog[open] .bookmark.on { display: inline-block; }
 
 #workskin .ig .ig-tog[open] .off { display: none; }</code></pre>
 
@@ -319,7 +319,7 @@
 
 <p>There's no good comment bubble or bookmark among the emoji and symbols, so these two are drawn from boxes:</p>
 
-<pre><code>#workskin .ig .cm {
+<pre><code>#workskin .ig .comment {
   display: inline-block;
   box-sizing: border-box;
   width: 18px;
@@ -337,7 +337,7 @@
 
 </details>
 
-<pre><code>#workskin .ig .bm {
+<pre><code>#workskin .ig .bookmark {
   display: inline-block;
   position: relative;
   box-sizing: border-box;
@@ -348,7 +348,7 @@
   vertical-align: middle;
 }
 
-#workskin .ig .bm::after {
+#workskin .ig .bookmark::after {
   content: "";
   position: absolute;
   left: 50%;
@@ -363,9 +363,9 @@
   transform: rotate(45deg);
 }
 
-#workskin .ig .bm.on { background: currentColor; }
+#workskin .ig .bookmark.on { background: currentColor; }
 
-#workskin .ig .bm.on::after {
+#workskin .ig .bookmark.on::after {
   border: 0;
   background: #ffffff;
 }</code></pre>
@@ -427,8 +427,8 @@
 
 <p>The shape comes from <code>aspect-ratio</code>: <code>1</code> for square, and <code>0.75</code> (3 wide by 4 high) for tall.</p>
 
-<pre><code>#workskin .ig .ig-photo.ig-pic-sq,
-#workskin .ig .ig-photo.ig-pic-portrait {
+<pre><code>#workskin .ig .ig-photo.square,
+#workskin .ig .ig-photo.portrait {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -436,12 +436,12 @@
   overflow: hidden;
 }
 
-#workskin .ig .ig-photo.ig-pic-sq { aspect-ratio: 1; }
+#workskin .ig .ig-photo.square { aspect-ratio: 1; }
 
-#workskin .ig .ig-photo.ig-pic-portrait { aspect-ratio: 0.75; }
+#workskin .ig .ig-photo.portrait { aspect-ratio: 0.75; }
 
-#workskin .ig .ig-photo.ig-pic-sq img,
-#workskin .ig .ig-photo.ig-pic-portrait img {
+#workskin .ig .ig-photo.square img,
+#workskin .ig .ig-photo.portrait img {
   position: absolute;
   top: 50%;
   left: 0;
@@ -451,8 +451,8 @@
   transform: translateY(-50%);
 }
 
-#workskin .ig .ig-photo.ig-pic-sq img.land,
-#workskin .ig .ig-photo.ig-pic-portrait img.land {
+#workskin .ig .ig-photo.square img.landscape,
+#workskin .ig .ig-photo.portrait img.landscape {
   top: 0;
   left: 50%;
   width: auto;
@@ -463,7 +463,7 @@
 <details>
 <summary>How it works: cutting the picture to fit</summary>
 
-<p>AO3 only keeps a plain number here, so write it as one number rather than <code>3 / 4</code>. The box hides anything that spills out. The picture inside is taken out of the line with <code>position: absolute</code>, made as wide as the box and moved up by half its own height with <code>transform</code>, so the middle of it shows. A <code>land</code> picture is made as tall as the box and moved left instead. Described photos are centred in the box with flex.</p>
+<p>AO3 only keeps a plain number here, so write it as one number rather than <code>3 / 4</code>. The box hides anything that spills out. The picture inside is taken out of the line with <code>position: absolute</code>, made as wide as the box and moved up by half its own height with <code>transform</code>, so the middle of it shows. A <code>landscape</code> picture is made as tall as the box and moved left instead. Described photos are centred in the box with flex.</p>
 
 </details>
 
@@ -474,7 +474,7 @@
 <details>
 <summary>The full CSS for the carousel</summary>
 
-<pre><code>#workskin .ig .ig-car {
+<pre><code>#workskin .ig .ig-carousel {
   display: block;
   position: relative;
   z-index: 0;
@@ -482,8 +482,8 @@
   overflow: hidden;
 }
 
-#workskin .ig .ig-car details,
-#workskin .ig .ig-car summary {
+#workskin .ig .ig-carousel details,
+#workskin .ig .ig-carousel summary {
   display: block;
   margin: 0;
   padding: 0;
@@ -492,13 +492,13 @@
   list-style: none;
 }
 
-#workskin .ig .ig-car summary::-webkit-details-marker { display: none; }
-#workskin .ig .ig-car summary::marker { content: ""; }
+#workskin .ig .ig-carousel summary::-webkit-details-marker { display: none; }
+#workskin .ig .ig-carousel summary::marker { content: ""; }
 
-#workskin .ig .ig-car .ig-photo { padding-left: 44px; padding-right: 44px; }
-#workskin .ig .ig-car .ig-photo.real { padding: 0; }
+#workskin .ig .ig-carousel .ig-photo { padding-left: 44px; padding-right: 44px; }
+#workskin .ig .ig-carousel .ig-photo.real { padding: 0; }
 
-#workskin .ig .ig-car summary .ig-photo {
+#workskin .ig .ig-carousel summary .ig-photo {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -514,11 +514,11 @@
   transition: left 0.35s ease;
 }
 
-#workskin .ig .ig-car summary .ig-photo.real { display: block; }
+#workskin .ig .ig-carousel summary .ig-photo.real { display: block; }
 
-#workskin .ig .ig-car .ig-next[open] &gt; summary .ig-photo { left: 0; }
+#workskin .ig .ig-carousel .ig-next[open] &gt; summary .ig-photo { left: 0; }
 
-#workskin .ig .ig-car .ig-next &gt; summary::before {
+#workskin .ig .ig-carousel .ig-next &gt; summary::before {
   content: "›";
   display: flex;
   align-items: center;
@@ -543,14 +543,14 @@
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
-#workskin .ig .ig-car .ig-next[open] &gt; summary::before {
+#workskin .ig .ig-carousel .ig-next[open] &gt; summary::before {
   content: "‹";
   right: auto;
   left: 10px;
   padding: 0 1px 3px 0;
 }
 
-#workskin .ig .ig-car .ig-car-info {
+#workskin .ig .ig-carousel .ig-carousel-info {
   display: block;
   position: absolute;
   top: 0;
@@ -561,7 +561,7 @@
   z-index: 1;
 }
 
-#workskin .ig .ig-car .ig-car-n {
+#workskin .ig .ig-carousel .ig-carousel-count {
   display: block;
   position: absolute;
   top: 10px;
@@ -575,7 +575,7 @@
   line-height: 1.2;
 }
 
-#workskin .ig .ig-car .ig-car-dots {
+#workskin .ig .ig-carousel .ig-carousel-dots {
   display: block;
   position: absolute;
   bottom: 3px;
@@ -588,7 +588,7 @@
   letter-spacing: 2px;
 }
 
-#workskin .ig .ig-car .ig-car-dots b { color: #0095f6; font-weight: normal; }</code></pre>
+#workskin .ig .ig-carousel .ig-carousel-dots b { color: #0095f6; font-weight: normal; }</code></pre>
 
 </details>
 
@@ -602,7 +602,7 @@
 <details>
 <summary>How it works: the arrows, the counter and the dots</summary>
 
-<p>The arrow is the summary's <code>::before</code>: a white circle at the right, which moves to the left and turns round once it's open, so the same arrow takes you back. The <code>ig-car-info</code> line lies over the whole photo, so tapping the photo itself does nothing, and holds the counter at the top right and the dots. The carousel has <code>24px</code> of padding at the bottom, and the dots sit in that gap underneath the photo, like on Instagram. The photos after the first stop at <code>bottom: 24px</code> so they don't cover it, and the arrows move up a bit to stay in the middle of the photo. The dots are light grey (<code>#c7c7c7</code>) in light mode and dark grey (<code>#555555</code>) in dark mode, with the current one blue (<code>#0095f6</code>).</p>
+<p>The arrow is the summary's <code>::before</code>: a white circle at the right, which moves to the left and turns round once it's open, so the same arrow takes you back. The <code>ig-carousel-info</code> line lies over the whole photo, so tapping the photo itself does nothing, and holds the counter at the top right and the dots. The carousel has <code>24px</code> of padding at the bottom, and the dots sit in that gap underneath the photo, like on Instagram. The photos after the first stop at <code>bottom: 24px</code> so they don't cover it, and the arrows move up a bit to stay in the middle of the photo. The dots are light grey (<code>#c7c7c7</code>) in light mode and dark grey (<code>#555555</code>) in dark mode, with the current one blue (<code>#0095f6</code>).</p>
 
 </details>
 
@@ -633,7 +633,7 @@
   list-style: none;
 }
 
-#workskin .ig .ig-car + .ig-tagged summary { margin: -60px 0 34px 10px; }
+#workskin .ig .ig-carousel + .ig-tagged summary { margin: -60px 0 34px 10px; }
 
 #workskin .ig .ig-tagged summary::-webkit-details-marker { display: none; }
 
@@ -739,9 +739,9 @@
 
 #workskin .ig .ig-person .handle { display: inline-block; padding-top: 0.2em; }
 
-#workskin .ig .ig-person .ig-pname { display: block; font-weight: normal; color: #737373; }
+#workskin .ig .ig-person .ig-person-name { display: block; font-weight: normal; color: #737373; }
 
-#workskin .ig .ig-person .ig-fbtn {
+#workskin .ig .ig-person .ig-following {
   float: right;
   margin: 0.4em 0 0 0.6em;
   padding: 0.35em 1.1em;
@@ -751,7 +751,7 @@
   font-size: 0.9em;
 }
 
-#workskin .ig .ig-person .ig-fbtn.blue { background: #0095f6; color: #ffffff; }</code></pre>
+#workskin .ig .ig-person .ig-following.blue { background: #0095f6; color: #ffffff; }</code></pre>
 
 <pre><code>#workskin .ig .ig-tagged[open] {
   float: left;
@@ -936,7 +936,7 @@
   background-size: contain;
 }
 
-#workskin .ig .ig-actions .ig-btn.ig-locked { opacity: 0.35; }</code></pre>
+#workskin .ig .ig-stats .ig-stat.locked { opacity: 0.35; }</code></pre>
 
 <p>The padlock is a picture (the same one as Discord's and Twitter/X's): dark grey in light mode and light grey in dark mode, set in the Icons section like the rest.</p>
 
@@ -1004,7 +1004,7 @@
 <p>You can leave anything out of a single post's HTML. But if you never want something on <em>any</em> post, it's quicker to switch it off once in the CSS. Paste any of these at the very bottom of your work skin - below everything else, so they win:</p>
 
 <pre><code>/* no numbers beside the buttons */
-#workskin .ig .ig-actions .ig-count.ig-count.ig-count { display: none; }
+#workskin .ig .ig-stats .ig-count.ig-count.ig-count { display: none; }
 
 /* no Follow links */
 #workskin .ig .ig-top .ig-follow { display: none; }
@@ -1041,8 +1041,8 @@
 
 <ul>
   <li><strong>DMs:</strong> everything starting <code>.igdm</code>.</li>
-  <li><strong>The top bar and Stories row:</strong> <code>ig-apptop</code>, <code>ig-new</code>, <code>ig-logo</code>, <code>ig-notif</code>, <code>ig-dot</code>, <code>ig-stories</code>, <code>ig-story</code> and <code>ig-sname</code>. Keep the <code>ig-feed</code> rules, because they hold the posts.</li>
-  <li><strong>Clickable buttons:</strong> <code>ig-tog</code>, <code>bm</code>, and the <code>.on</code> and <code>.off</code> rules. Keep <code>ig-btn</code> for plain buttons.</li>
+  <li><strong>The top bar and Stories row:</strong> <code>ig-apptop</code>, <code>ig-new</code>, <code>ig-logo</code>, <code>ig-notif</code>, <code>ig-badge</code>, <code>ig-stories</code>, <code>ig-story</code> and <code>ig-story-name</code>. Keep the <code>ig-feed</code> rules, because they hold the posts.</li>
+  <li><strong>Clickable buttons:</strong> <code>ig-tog</code>, <code>bookmark</code>, and the <code>.on</code> and <code>.off</code> rules. Keep <code>ig-stat</code> for plain buttons.</li>
   <li><strong>Liked-by faces:</strong> <code>liked-by</code>, <code>ig-like-pfps</code> and <code>ig-like-pfp</code>.</li>
   <li><strong>Stories ring:</strong> the two <code>.story</code> rules.</li>
   <li><strong>Account line extras:</strong> <code>ig-menu</code>, <code>ig-tick</code>, <code>ig-follow</code> and <code>ig-add</code> each come out on their own.</li>

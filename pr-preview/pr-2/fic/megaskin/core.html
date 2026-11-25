@@ -25,7 +25,7 @@
   <!-- /site meta -->
   <link rel="stylesheet" href="../../style.css?v=c31c06ea">
   <script src="../../theme.js?v=c50fd7c2"></script>
-  <link rel="stylesheet" href="megaskin.css?v=2a55347f" id="creator-style">
+  <link rel="stylesheet" href="megaskin.css?v=e0be4b81" id="creator-style">
 </head>
 <body>
 <header>
@@ -78,7 +78,7 @@
       <li><a href="#character-profiles">Character profiles</a> (<code>pfp-</code>), and <code>pov-</code> for a character's phone</li>
     </ul>
   </li>
-  <li><a href="#pictures">Pictures and formatting</a>: pictures, and cropping them to fit boxes and circles (<code>land</code>)</li>
+  <li><a href="#pictures">Pictures and formatting</a>: pictures, and cropping them to fit boxes and circles (<code>landscape</code>)</li>
   <li><a href="#fake-links">Links that go nowhere</a> (<code>fake-link</code>)</li>
   <li><a href="#translations">Hover and tap translations</a>, and hidden easter eggs (<code>egg</code>), which also work in ordinary text outside a chat</li>
   <li><a href="#cursor">A flashing cursor</a> (<code>cursor</code>)</li>
@@ -207,9 +207,9 @@
 
 <p>Every picture needs alt text: a short description of what's in it. Screen readers read it out, and it shows in place of the picture if the picture doesn't load, whether the workskin is on or off. It goes on the picture tag itself, in <code>alt</code>. Describe the picture in a sentence or two, the way you'd describe it to someone over the phone:</p>
 
-<div class="mob imsg theme-auto"><div class="mob-body"><p class="msg out pic"><span class="hide"><em>Ilya:</em> </span><img src="https://images.squidge.org/images/2026/11/16/Cat3.jpg" alt="Black and white cat holding out a paw daintily, on a beige and green cat tree. The cat looks to be stepping into the frame from the left"></p></div></div>
+<div class="mob imsg theme-auto"><div class="mob-body"><p class="msg out photo"><span class="hide"><em>Ilya:</em> </span><img src="https://images.squidge.org/images/2026/11/16/Cat3.jpg" alt="Black and white cat holding out a paw daintily, on a beige and green cat tree. The cat looks to be stepping into the frame from the left"></p></div></div>
 
-<pre><code>&lt;p class="msg out pic"&gt;&lt;span class="hide"&gt;&lt;em&gt;Ilya:&lt;/em&gt; &lt;/span&gt;&lt;img src="https://images.squidge.org/images/2026/11/16/Cat3.jpg" alt="Black and white cat holding out a paw daintily, on a beige and green cat tree. The cat looks to be stepping into the frame from the left"&gt;&lt;/p&gt;</code></pre>
+<pre><code>&lt;p class="msg out photo"&gt;&lt;span class="hide"&gt;&lt;em&gt;Ilya:&lt;/em&gt; &lt;/span&gt;&lt;img src="https://images.squidge.org/images/2026/11/16/Cat3.jpg" alt="Black and white cat holding out a paw daintily, on a beige and green cat tree. The cat looks to be stepping into the frame from the left"&gt;&lt;/p&gt;</code></pre>
 
 <details>
 <summary>How it works: more about alt text</summary>
@@ -228,9 +228,9 @@
 
 <p>AO3 doesn't give videos an alt text option, so the workskin has a class for it instead. Put a paragraph with <code>vid-desc</code> straight after the video, with a description of what happens in it in square brackets:</p>
 
-<div class="mob tw theme-auto"><p class="tw-top"><span class="tw-name">Jockles</span> <span class="tw-handle">@jockles25</span> <span class="tw-time">· 2h</span></p><p class="tw-text">Ilya Rozanov you will always be famous to me</p><div class="tw-media video"><iframe src="https://player.vimeo.com/video/1169167060?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" title="Ilya Rozanov | Come Home"></iframe><p class="vid-desc">[Video: a tribute edit of Ilya Rozanov, made from Heated Rivalry footage and set to "Would You Come Home" by Tyler Blackburn]</p></div></div>
+<div class="mob tw theme-auto"><p class="tw-top"><span class="tw-name">Jockles</span> <span class="tw-handle">@jockles25</span> <span class="tw-time">· 2h</span></p><p class="tw-text">Ilya Rozanov you will always be famous to me</p><div class="tw-photos video"><iframe src="https://player.vimeo.com/video/1169167060?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" title="Ilya Rozanov | Come Home"></iframe><p class="vid-desc">[Video: a tribute edit of Ilya Rozanov, made from Heated Rivalry footage and set to "Would You Come Home" by Tyler Blackburn]</p></div></div>
 
-<pre><code>&lt;div class="tw-media video"&gt;&lt;iframe src="https://player.vimeo.com/video/1169167060?badge=0&amp;amp;autopause=0&amp;amp;player_id=0&amp;amp;app_id=58479" frameborder="0" title="Ilya Rozanov | Come Home"&gt;&lt;/iframe&gt;&lt;p class="vid-desc"&gt;[Video: a tribute edit of Ilya Rozanov, made from Heated Rivalry footage and set to "Would You Come Home" by Tyler Blackburn]&lt;/p&gt;&lt;/div&gt;</code></pre>
+<pre><code>&lt;div class="tw-photos video"&gt;&lt;iframe src="https://player.vimeo.com/video/1169167060?badge=0&amp;amp;autopause=0&amp;amp;player_id=0&amp;amp;app_id=58479" frameborder="0" title="Ilya Rozanov | Come Home"&gt;&lt;/iframe&gt;&lt;p class="vid-desc"&gt;[Video: a tribute edit of Ilya Rozanov, made from Heated Rivalry footage and set to "Would You Come Home" by Tyler Blackburn]&lt;/p&gt;&lt;/div&gt;</code></pre>
 
 <p>Say who's in it, what happens, and the song if it's an edit. It works anywhere a video can go, and the WhatsApp and Twitter/X video examples already have one.</p>
 
@@ -601,37 +601,37 @@
 <p><strong>Tumblr</strong></p>
 
 <div class="mob tb theme-dark">
-  <p class="tb-header">
-    <span class="tb-pfp rb colour4">PL</span>
+  <p class="tb-top">
+    <span class="tb-pfp reblog colour4">PL</span>
     <span class="tb-menu">&#8226;&#8226;&#8226;</span>
     <span class="tb-name"><b>puckontheline</b>
       <span class="tb-subline">Reblogged <b>metrosstan</b> &middot; 2h ago</span></span>
   </p>
-  <div class="tb-body"><p>I need to start a rumour.</p></div>
+  <div class="tb-text"><p>I need to start a rumour.</p></div>
   <p class="tb-tags">#hockey rpf</p>
 </div>
 
 <div class="mob tb theme-light">
-  <p class="tb-header">
-    <span class="tb-pfp rb colour4">PL</span>
+  <p class="tb-top">
+    <span class="tb-pfp reblog colour4">PL</span>
     <span class="tb-menu">&#8226;&#8226;&#8226;</span>
     <span class="tb-name"><b>puckontheline</b>
       <span class="tb-subline">Reblogged <b>metrosstan</b> · 2h ago</span></span>
   </p>
-  <div class="tb-body"><p>I need to start a rumour.</p></div>
+  <div class="tb-text"><p>I need to start a rumour.</p></div>
   <p class="tb-tags">#hockey rpf</p>
 </div>
 
 <p><em>The HTML for the dark version:</em></p>
 
 <pre><code>&lt;div class="mob tb theme-dark"&gt;
-  &lt;p class="tb-header"&gt;
-    &lt;span class="tb-pfp rb colour4"&gt;PL&lt;/span&gt;
+  &lt;p class="tb-top"&gt;
+    &lt;span class="tb-pfp reblog colour4"&gt;PL&lt;/span&gt;
     &lt;span class="tb-menu"&gt;&amp;#8226;&amp;#8226;&amp;#8226;&lt;/span&gt;
     &lt;span class="tb-name"&gt;&lt;b&gt;puckontheline&lt;/b&gt;
       &lt;span class="tb-subline"&gt;Reblogged &lt;b&gt;metrosstan&lt;/b&gt; &amp;middot; 2h ago&lt;/span&gt;&lt;/span&gt;
   &lt;/p&gt;
-  &lt;div class="tb-body"&gt;&lt;p&gt;I need to start a rumour.&lt;/p&gt;&lt;/div&gt;
+  &lt;div class="tb-text"&gt;&lt;p&gt;I need to start a rumour.&lt;/p&gt;&lt;/div&gt;
   &lt;p class="tb-tags"&gt;#hockey rpf&lt;/p&gt;
 &lt;/div&gt;</code></pre>
 
@@ -649,7 +649,7 @@
     <p><span class="dc-text">Jackie, you there?</span></p>
   </div>
   <div class="dc-input">
-    <p><span class="dc-input-text">Message #general</span></p>
+    <p><span class="dc-field">Message #general</span></p>
   </div>
 </div>
 
@@ -665,7 +665,7 @@
     <p><span class="dc-text">Jackie, you there?</span></p>
   </div>
   <div class="dc-input">
-    <p><span class="dc-input-text">Message #general</span></p>
+    <p><span class="dc-field">Message #general</span></p>
   </div>
 </div>
 
@@ -683,7 +683,7 @@
     &lt;p&gt;&lt;span class="dc-text"&gt;Jackie, you there?&lt;/span&gt;&lt;/p&gt;
   &lt;/div&gt;
   &lt;div class="dc-input"&gt;
-    &lt;p&gt;&lt;span class="dc-input-text"&gt;Message #general&lt;/span&gt;&lt;/p&gt;
+    &lt;p&gt;&lt;span class="dc-field"&gt;Message #general&lt;/span&gt;&lt;/p&gt;
   &lt;/div&gt;
 &lt;/div&gt;</code></pre>
 
@@ -759,7 +759,7 @@
 
 <ol>
   <li>Upload the picture somewhere (there's more on that in <a href="#pictures">Pictures and Formatting</a>, below) and copy its link.</li>
-  <li>Put a picture tag, with that link and some alt text, inside a <code>pfp</code> span, and put that inside the app's circle: <code>&lt;span class=&quot;pfp&quot;&gt;&lt;img src=&quot;LINK&quot; alt=&quot;Profile picture of Sam&quot;&gt;&lt;/span&gt;</code>. If the picture is wider than it is tall, add <code>class=&quot;land&quot;</code> to the picture tag.</li>
+  <li>Put a picture tag, with that link and some alt text, inside a <code>pfp</code> span, and put that inside the app's circle: <code>&lt;span class=&quot;pfp&quot;&gt;&lt;img src=&quot;LINK&quot; alt=&quot;Profile picture of Sam&quot;&gt;&lt;/span&gt;</code>. If the picture is wider than it is tall, add <code>class=&quot;landscape&quot;</code> to the picture tag.</li>
   <li>Type their name, handle or email address wherever it goes in that app, like any other text.</li>
   <li>Copy the picture and name onto every message or post from that person. Without a profile, the picture only shows where you've put it.</li>
 </ol>
@@ -775,7 +775,7 @@
   </div>
 </div>
 <div class="wa-row">
-  <p class="wa-pfp colour2"><span class="pfp"><img class="land" src="https://media.istockphoto.com/id/2172051553/photo/asiatic-lily.jpg?s=1024x1024&w=is&k=20&c=3vCuZD234XmkXzrnzWPBdIZM0oJA1B6qe1x-06K_wDo=" alt="Profile picture of Ash, a close-up photo of an Asiatic lily"></span></p>
+  <p class="wa-pfp colour2"><span class="pfp"><img class="landscape" src="https://media.istockphoto.com/id/2172051553/photo/asiatic-lily.jpg?s=1024x1024&w=is&k=20&c=3vCuZD234XmkXzrnzWPBdIZM0oJA1B6qe1x-06K_wDo=" alt="Profile picture of Ash, a close-up photo of an Asiatic lily"></span></p>
   <div class="msg in tail">
     <p class="who colour2">Ash<span class="hide">:</span></p>
     <p>not me, I'm bringing the dog</p>
@@ -792,7 +792,7 @@
   &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="wa-row"&gt;
-  &lt;p class="wa-pfp colour2"&gt;&lt;span class="pfp"&gt;&lt;img class="land" src="https://media.istockphoto.com/id/2172051553/photo/asiatic-lily.jpg?s=1024x1024&amp;w=is&amp;k=20&amp;c=3vCuZD234XmkXzrnzWPBdIZM0oJA1B6qe1x-06K_wDo=" alt="Profile picture of Ash, a close-up photo of an Asiatic lily"&gt;&lt;/span&gt;&lt;/p&gt;
+  &lt;p class="wa-pfp colour2"&gt;&lt;span class="pfp"&gt;&lt;img class="landscape" src="https://media.istockphoto.com/id/2172051553/photo/asiatic-lily.jpg?s=1024x1024&amp;w=is&amp;k=20&amp;c=3vCuZD234XmkXzrnzWPBdIZM0oJA1B6qe1x-06K_wDo=" alt="Profile picture of Ash, a close-up photo of an Asiatic lily"&gt;&lt;/span&gt;&lt;/p&gt;
   &lt;div class="msg in tail"&gt;
     &lt;p class="who colour2"&gt;Ash&lt;span class="hide"&gt;:&lt;/span&gt;&lt;/p&gt;
     &lt;p&gt;not me, I'm bringing the dog&lt;/p&gt;
@@ -951,7 +951,7 @@
 <summary>How it works: good to know</summary>
 
 <ul>
-  <li>A profile picture is cropped to fill the circle by itself, so wide pictures don't need <code>land</code>.</li>
+  <li>A profile picture is cropped to fill the circle by itself, so wide pictures don't need <code>landscape</code>.</li>
   <li>Names, handles and email addresses take on the look of the text around them, so they fit in anywhere.</li>
 </ul>
 
@@ -1038,10 +1038,10 @@
 
 <ul>
   <li>A picture that is <strong>taller than wide, or square</strong> needs nothing. It's made as wide as the box, and the extra top and bottom is cropped away evenly. (In profile pictures the top of the photo is kept, so faces don't get cut off.)</li>
-  <li>A picture that is <strong>wider than tall</strong> needs <code>class=&quot;land&quot;</code> on the picture tag. It's made as tall as the box, and the extra sides are cropped away evenly.</li>
+  <li>A picture that is <strong>wider than tall</strong> needs <code>class=&quot;landscape&quot;</code> on the picture tag. It's made as tall as the box, and the extra sides are cropped away evenly.</li>
 </ul>
 
-<p>Here's a WhatsApp four-photo gallery with two landscape cat pictures in it (top left and bottom left), first without <code>land</code> and then with it, followed by the code:</p>
+<p>Here's a WhatsApp four-photo gallery with two landscape cat pictures in it (top left and bottom left), first without <code>landscape</code> and then with it, followed by the code:</p>
 
 <p><em>Without land:</em></p>
 
@@ -1059,9 +1059,9 @@
 
 <div class="mob wa theme-auto"><div class="mob-body"><div class="msg out gallery"><p class="hide"><em>Yuna:</em></p>
   <p class="wa-photos four">
-    <span class="wa-photo"><img class="land" src="https://images.squidge.org/images/2026/11/16/Cat1.jpg" alt="Black and white cat staring through a gap between a screen and a desk, with blurred cables hanging down around and blue sky behind"></span>
+    <span class="wa-photo"><img class="landscape" src="https://images.squidge.org/images/2026/11/16/Cat1.jpg" alt="Black and white cat staring through a gap between a screen and a desk, with blurred cables hanging down around and blue sky behind"></span>
     <span class="wa-photo"><img src="https://images.squidge.org/images/2026/11/16/Cat2.jpg" alt="Black and white cat screaming at the camera, on a red patterned rug"></span>
-    <span class="wa-photo"><img class="land" src="https://images.squidge.org/images/2026/11/16/Cat3.jpg" alt="Black and white cat holding out a paw daintily, on a beige and green cat tree. The cat looks to be stepping into the frame from the left"></span>
+    <span class="wa-photo"><img class="landscape" src="https://images.squidge.org/images/2026/11/16/Cat3.jpg" alt="Black and white cat holding out a paw daintily, on a beige and green cat tree. The cat looks to be stepping into the frame from the left"></span>
     <span class="wa-photo"><img src="https://images.squidge.org/images/2026/11/16/Cat4.jpg" alt="Black and white cat sitting in an opened red suitcase, carry on size, on the floor behind a white door, and on a red patterned rug"></span>
   </p>
   <p class="wa-time">12:26 <span class="wa-read ic ic-read">✓✓</span></p>
@@ -1069,15 +1069,15 @@
 
 <pre><code>&lt;div class="msg out gallery"&gt;&lt;p class="hide"&gt;&lt;em&gt;Yuna:&lt;/em&gt;&lt;/p&gt;
   &lt;p class="wa-photos four"&gt;
-    &lt;span class="wa-photo"&gt;&lt;img class="land" src="https://images.squidge.org/images/2026/11/16/Cat1.jpg" alt="Black and white cat staring through a gap between a screen and a desk, with blurred cables hanging down around and blue sky behind"&gt;&lt;/span&gt;
+    &lt;span class="wa-photo"&gt;&lt;img class="landscape" src="https://images.squidge.org/images/2026/11/16/Cat1.jpg" alt="Black and white cat staring through a gap between a screen and a desk, with blurred cables hanging down around and blue sky behind"&gt;&lt;/span&gt;
     &lt;span class="wa-photo"&gt;&lt;img src="https://images.squidge.org/images/2026/11/16/Cat2.jpg" alt="Black and white cat screaming at the camera, on a red patterned rug"&gt;&lt;/span&gt;
-    &lt;span class="wa-photo"&gt;&lt;img class="land" src="https://images.squidge.org/images/2026/11/16/Cat3.jpg" alt="Black and white cat holding out a paw daintily, on a beige and green cat tree. The cat looks to be stepping into the frame from the left"&gt;&lt;/span&gt;
+    &lt;span class="wa-photo"&gt;&lt;img class="landscape" src="https://images.squidge.org/images/2026/11/16/Cat3.jpg" alt="Black and white cat holding out a paw daintily, on a beige and green cat tree. The cat looks to be stepping into the frame from the left"&gt;&lt;/span&gt;
     &lt;span class="wa-photo"&gt;&lt;img src="https://images.squidge.org/images/2026/11/16/Cat4.jpg" alt="Black and white cat sitting in an opened red suitcase, carry on size, on the floor behind a white door, and on a red patterned rug"&gt;&lt;/span&gt;
   &lt;/p&gt;
   &lt;p class="wa-time"&gt;12:26 &lt;span class="wa-read ic ic-read"&gt;✓✓&lt;/span&gt;&lt;/p&gt;
 &lt;/div&gt;</code></pre>
 
-<p>It works the same way for profile pictures. Jane's and Lily's pictures are both landscape, so here they are first without <code>land</code> and then with it, followed by the code for one of them:</p>
+<p>It works the same way for profile pictures. Jane's and Lily's pictures are both landscape, so here they are first without <code>landscape</code> and then with it, followed by the code for one of them:</p>
 
 <p><em>Without land:</em></p>
 
@@ -1107,7 +1107,7 @@
 <div class="mob wa theme-auto">
   <div class="mob-body">
     <div class="wa-row">
-      <p class="wa-pfp colour3"><span class="pfp"><img class="land" src="https://www.shutterstock.com/shutterstock/photos/1100283806/display_1500/stock-photo-beautiful-lavender-flower-in-the-dalat-flower-park-selective-focus-1100283806.jpg" alt="Profile picture of Jane, a lavender flower"></span></p>
+      <p class="wa-pfp colour3"><span class="pfp"><img class="landscape" src="https://www.shutterstock.com/shutterstock/photos/1100283806/display_1500/stock-photo-beautiful-lavender-flower-in-the-dalat-flower-park-selective-focus-1100283806.jpg" alt="Profile picture of Jane, a lavender flower"></span></p>
       <div class="msg in tail">
         <p class="who colour3">Jane<span class="hide">:</span></p>
         <p>that is much better</p>
@@ -1115,7 +1115,7 @@
       </div>
     </div>
     <div class="wa-row">
-      <p class="wa-pfp colour2"><span class="pfp"><img class="land" src="https://media.istockphoto.com/id/2172051553/photo/asiatic-lily.jpg?s=1024x1024&amp;w=is&amp;k=20&amp;c=3vCuZD234XmkXzrnzWPBdIZM0oJA1B6qe1x-06K_wDo=" alt="Profile picture of Lily, a close-up photo of an Asiatic lily"></span></p>
+      <p class="wa-pfp colour2"><span class="pfp"><img class="landscape" src="https://media.istockphoto.com/id/2172051553/photo/asiatic-lily.jpg?s=1024x1024&amp;w=is&amp;k=20&amp;c=3vCuZD234XmkXzrnzWPBdIZM0oJA1B6qe1x-06K_wDo=" alt="Profile picture of Lily, a close-up photo of an Asiatic lily"></span></p>
       <div class="msg in tail">
         <p class="who colour2">Lily<span class="hide">:</span></p>
         <p>mine fills the circle now too</p>
@@ -1125,12 +1125,12 @@
   </div>
 </div>
 
-<pre><code>&lt;p class="wa-pfp colour3"&gt;&lt;span class="pfp"&gt;&lt;img class="land" src="https://www.shutterstock.com/shutterstock/photos/1100283806/display_1500/stock-photo-beautiful-lavender-flower-in-the-dalat-flower-park-selective-focus-1100283806.jpg" alt="Profile picture of Jane, a lavender flower"&gt;&lt;/span&gt;&lt;/p&gt;</code></pre>
+<pre><code>&lt;p class="wa-pfp colour3"&gt;&lt;span class="pfp"&gt;&lt;img class="landscape" src="https://www.shutterstock.com/shutterstock/photos/1100283806/display_1500/stock-photo-beautiful-lavender-flower-in-the-dalat-flower-park-selective-focus-1100283806.jpg" alt="Profile picture of Jane, a lavender flower"&gt;&lt;/span&gt;&lt;/p&gt;</code></pre>
 
 <details>
 <summary>How it works: what happens if you forget land</summary>
 
-<p>If you forget <code>land</code>, nothing is squashed or stretched, but a wide picture won't fill its box, so a strip of the box's colour shows above and below it. The tall boxes in two-photo and three-photo galleries always crop the sides, so they never need <code>land</code>.</p>
+<p>If you forget <code>landscape</code>, nothing is squashed or stretched, but a wide picture won't fill its box, so a strip of the box's colour shows above and below it. The tall boxes in two-photo and three-photo galleries always crop the sides, so they never need <code>landscape</code>.</p>
 
 </details>
 

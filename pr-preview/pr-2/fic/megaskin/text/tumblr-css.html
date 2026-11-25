@@ -28,9 +28,9 @@
   line-height: 1.5;
 }
 
-#workskin .tb .tb-body { display: block; padding: 0.3em 0 0.8em 0; }
+#workskin .tb .tb-text { display: block; padding: 0.3em 0 0.8em 0; }
 
-#workskin .tb .tb-body p { margin: 0.5em 0; padding: 0 0.9em; }</code></pre>
+#workskin .tb .tb-text p { margin: 0.5em 0; padding: 0 0.9em; }</code></pre>
 
 <p>A white card with rounded corners, like the mobile app.</p>
 
@@ -62,7 +62,7 @@
 
 <h5>The Header</h5>
 
-<pre><code>#workskin .tb .tb-header,
+<pre><code>#workskin .tb .tb-top,
 #workskin .tb .tb-blog {
   display: block;
   overflow: hidden;
@@ -70,7 +70,7 @@
   font-weight: normal;
 }
 
-#workskin .tb .tb-header { padding-bottom: 0.8em; border-bottom: 1px solid #eeeeee; }
+#workskin .tb .tb-top { padding-bottom: 0.8em; border-bottom: 1px solid #eeeeee; }
 
 #workskin .tb .tb-name { display: block; min-height: 38px; margin-left: 48px; overflow: hidden; }
 
@@ -80,7 +80,7 @@
 
 #workskin .tb .tb-subline { display: block; font-size: 0.85em; color: #6c7a8b; }</code></pre>
 
-<p>The post's header (<code>tb-header</code>) and each reblog's header (<code>tb-blog</code>) are built the same, except the post's header has a line under it.</p>
+<p>The post's header (<code>tb-top</code>) and each reblog's header (<code>tb-blog</code>) are built the same, except the post's header has a line under it.</p>
 
 <details>
 <summary>How it works: the picture, the name and long names</summary>
@@ -117,7 +117,7 @@
 
 <h5>The Reblog Badge</h5>
 
-<pre><code>#workskin .tb .tb-pfp.rb::after {
+<pre><code>#workskin .tb .tb-pfp.reblog::after {
   content: '\21C4';
   position: absolute;
   right: -6px;
@@ -306,7 +306,7 @@
 
 <h5>Tags and the Bottom Row</h5>
 
-<pre><code>#workskin .tb .tb-footer {
+<pre><code>#workskin .tb .tb-stats {
   display: flex;
   align-items: center;
   padding: 0.6em 0.9em 0.9em 0.9em;
@@ -327,7 +327,7 @@
   vertical-align: -0.15em;
 }
 
-#workskin .tb .tb-footer &gt; .tb-icon { margin-right: 0; }</code></pre>
+#workskin .tb .tb-stats &gt; .tb-icon { margin-right: 0; }</code></pre>
 
 <p><code>display: flex</code> lines the bottom row up.</p>
 
@@ -349,7 +349,7 @@
   border-top: 1px solid #eeeeee;
 }
 
-#workskin .tb .tb-body &gt; .tb-reblog:first-child { border-top: 0; }</code></pre>
+#workskin .tb .tb-text &gt; .tb-reblog:first-child { border-top: 0; }</code></pre>
 
 <p>Each reblog has a thin line along its top, and the first one in the chain doesn't, because the post's header already has a line under it.</p>
 
@@ -429,7 +429,7 @@
 
 <h4>Polls</h4>
 
-<pre><code>#workskin .tb .tb-body .tb-opt {
+<pre><code>#workskin .tb .tb-text .tb-opt {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -445,7 +445,7 @@
   line-height: 1.3;
 }
 
-#workskin .tb .tb-body .tb-opt.res {
+#workskin .tb .tb-text .tb-opt.results {
   justify-content: flex-start;
   border-color: transparent;
   border-radius: 8px;
@@ -454,7 +454,7 @@
   background-image: linear-gradient(#dcdcdc, #dcdcdc);
 }
 
-#workskin .tb .tb-body .tb-opt.res.win { background-image: linear-gradient(#a6d9ec, #a6d9ec); }
+#workskin .tb .tb-text .tb-opt.results.win { background-image: linear-gradient(#a6d9ec, #a6d9ec); }
 
 #workskin .tb .tb-opt .tb-pct { margin-left: auto; padding-left: 0.8em; font-weight: normal; white-space: nowrap; }
 
@@ -465,9 +465,9 @@
 <details>
 <summary>How it works: the results bars</summary>
 
-<p>With <code>res</code> it turns into a grey box with the text on the left, and a darker bar is drawn across it as a background: <code>linear-gradient</code> with the same colour twice is just a block of colour, and <code>background-size</code> sets how wide it is, so <code>p50</code> fills half the box. <code>win</code> swaps the grey bar for blue. There's one line like that for each bar size. The box is a flex row, so <code>margin-left: auto</code> pushes the percentage to the right-hand end.</p>
+<p>With <code>results</code> it turns into a grey box with the text on the left, and a darker bar is drawn across it as a background: <code>linear-gradient</code> with the same colour twice is just a block of colour, and <code>background-size</code> sets how wide it is, so <code>p50</code> fills half the box. <code>win</code> swaps the grey bar for blue. There's one line like that for each bar size. The box is a flex row, so <code>margin-left: auto</code> pushes the percentage to the right-hand end.</p>
 
-<p>The <code>.tb-body</code> in the first two rules is there so they win over the body's own paragraph spacing. <code>tb-pollinfo</code> is the small grey centred line underneath. In dark posts the box, the bar and the line are darker.</p>
+<p>The <code>.tb-text</code> in the first two rules is there so they win over the body's own paragraph spacing. <code>tb-pollinfo</code> is the small grey centred line underneath. In dark posts the box, the bar and the line are darker.</p>
 
 </details>
 
@@ -484,13 +484,13 @@
 <details>
 <summary>How it works: hiding the open poll, and the reader-picks version</summary>
 
-<p>In <code>tb-vote</code>, the open poll is the <code>&lt;summary&gt;</code>, and once it's tapped it's hidden, so only the results show. In the reader-picks version, each option is its own <code>&lt;details&gt;</code>, and its results are lifted out with <code>position: absolute</code> to sit over the whole <code>tb-poll</code> box, with the card's colour behind them so the blank boxes don't show through. The other lines hide the little triangle a <code>&lt;summary&gt;</code> normally has, and <code>tb-voter</code> is the small picture, pushed to the right next to the percentage.</p>
+<p>In <code>tb-vote</code>, the open poll is the <code>&lt;summary&gt;</code>, and once it's tapped it's hidden, so only the results show. In the reader-picks version, each option is its own <code>&lt;details&gt;</code>, and its results are lifted out with <code>position: absolute</code> to sit over the whole <code>tb-poll</code> box, with the card's colour behind them so the blank boxes don't show through. The other lines hide the little triangle a <code>&lt;summary&gt;</code> normally has, and <code>tb-voted</code> is the small picture, pushed to the right next to the percentage.</p>
 
 </details>
 
 <h3>Pictures and Gifs</h3>
 
-<pre><code>#workskin .tb .tb-body .tb-row {
+<pre><code>#workskin .tb .tb-text .tb-row {
   display: flex;
   margin: 0 0 4px 0;
   padding: 0;
@@ -540,11 +540,11 @@
 <details>
 <summary>How it works: making a square and cropping the picture</summary>
 
-<p>A box with no height and <code>padding-top: 50%</code> is as tall as half the row is wide, so it's square, whatever is inside it. The picture is pinned in the middle of the box and anything sticking out of the top and bottom is hidden, the same cropping trick as the Twitter/X photos (see <a href="twitter-x-css.html#heading">Pictures and Videos</a>). <code>land</code> swaps it round for a wide picture, so it's as tall as the box and the sides get cropped instead. The grey background only shows while a picture is loading.</p>
+<p>A box with no height and <code>padding-top: 50%</code> is as tall as half the row is wide, so it's square, whatever is inside it. The picture is pinned in the middle of the box and anything sticking out of the top and bottom is hidden, the same cropping trick as the Twitter/X photos (see <a href="twitter-x-css.html#heading">Pictures and Videos</a>). <code>landscape</code> swaps it round for a wide picture, so it's as tall as the box and the sides get cropped instead. The grey background only shows while a picture is loading.</p>
 
 </details>
 
-<pre><code>#workskin .tb .tb-body &gt; .tb-photos:first-child,
+<pre><code>#workskin .tb .tb-text &gt; .tb-photos:first-child,
 #workskin .tb .tb-reblog &gt; .tb-blog + .tb-photos { margin-top: -0.3em; }
 
 #workskin .tb .tb-at { color: #3a5f86; }</code></pre>
@@ -593,11 +593,11 @@
 
 <h4>Round or Square Pictures</h4>
 
-<pre><code>#workskin .tb .tb-pfp.sq,
-#workskin .tb .tb-ask-pfp.sq,
-#workskin .tb .sq .pfp { border-radius: 15%; }</code></pre>
+<pre><code>#workskin .tb .tb-pfp.square,
+#workskin .tb .tb-ask-pfp.square,
+#workskin .tb .square .pfp { border-radius: 15%; }</code></pre>
 
-<p><code>sq</code> swaps the circle for a square with rounded corners, on either kind of picture and on a <code>pfp</code> picture inside one.</p>
+<p><code>square</code> swaps the circle for a square with rounded corners, on either kind of picture and on a <code>pfp</code> picture inside one.</p>
 
 <details>
 <summary>How it works: the rounded corners</summary>
@@ -624,13 +624,13 @@
   <li><strong>Asks:</strong> <code>tb-ask</code>, <code>tb-answer</code>, <code>tb-asker</code> and <code>tb-ask-pfp</code>.</li>
   <li><strong>Quote posts:</strong> <code>tb-quote</code> and <code>tb-source</code>.</li>
   <li><strong>Chat posts:</strong> <code>tb-chat</code>.</li>
-  <li><strong>Polls:</strong> <code>tb-opt</code>, <code>tb-pct</code>, <code>tb-pollinfo</code>, <code>tb-vote</code>, <code>tb-pick</code>, <code>tb-poll</code>, <code>tb-results</code> and <code>tb-voter</code>.</li>
+  <li><strong>Polls:</strong> <code>tb-opt</code>, <code>tb-pct</code>, <code>tb-pollinfo</code>, <code>tb-vote</code>, <code>tb-pick</code>, <code>tb-poll</code>, <code>tb-results</code> and <code>tb-voted</code>.</li>
   <li><strong>Pictures and gifs:</strong> <code>tb-photos</code>, <code>tb-row</code> and <code>tb-photo</code>.</li>
   <li><strong>Mentions:</strong> <code>tb-at</code>.</li>
   <li><strong>Checkmarks:</strong> <code>tb-check</code>, <code>tb-checks</code> and the <code>ic-checks</code> lines in the Icons section.</li>
-  <li><strong>Bottom row:</strong> <code>tb-footer</code>, <code>tb-stat</code> and <code>tb-icon</code>.</li>
+  <li><strong>Bottom row:</strong> <code>tb-stats</code>, <code>tb-stat</code> and <code>tb-icon</code>.</li>
   <li><strong>The feed:</strong> everything starting <code>.tb-feed</code>.</li>
-  <li><strong>Just the app screen:</strong> the rules with <code>.tb-feed.app</code>, <code>tb-screen</code>, <code>tb-top</code>, <code>tb-logo</code>, <code>tb-topicon</code>, <code>tb-tabs</code>, <code>tb-tab</code>, <code>tb-nav</code> and <code>ic-tb-</code> in them.</li>
+  <li><strong>Just the app screen:</strong> the rules with <code>.tb-feed.app</code>, <code>tb-screen</code>, <code>tb-apptop</code>, <code>tb-logo</code>, <code>tb-topicon</code>, <code>tb-tabs</code>, <code>tb-tab</code>, <code>tb-nav</code> and <code>ic-tb-</code> in them.</li>
 </ul>
 
 <p>Keep the card, the header, the name, the picture and the body, which every post uses.</p>

@@ -18,8 +18,8 @@
 }
 
 /* Header row of a post or of one reblog: picture, name + small grey line, optional Follow, dots.
-   Use <div class="tb-header"> for the post, <div class="tb-blog"> inside each reblog. */
-#workskin .tb .tb-header,
+   Use <div class="tb-top"> for the post, <div class="tb-blog"> inside each reblog. */
+#workskin .tb .tb-top,
 #workskin .tb .tb-blog {
   display: block;
   overflow: hidden;
@@ -28,20 +28,20 @@
 }
 
 /* thin line under a post's header (the reblog headers sit inside the body and don't get one) */
-#workskin .tb .tb-header { padding-bottom: 0.8em; border-bottom: 1px solid #eeeeee; }
+#workskin .tb .tb-top { padding-bottom: 0.8em; border-bottom: 1px solid #eeeeee; }
 
 /* a reblog header is a paragraph inside the post body, so undo the body's paragraph spacing */
-#workskin .tb .tb-body .tb-blog { margin: 0; padding: 0.8em 0.9em 0.3em 0.9em; }
+#workskin .tb .tb-text .tb-blog { margin: 0; padding: 0.8em 0.9em 0.3em 0.9em; }
 
 /* AO3 turns line breaks in your HTML into <br /> tags: keep them out of the header rows and the counts row */
-#workskin .tb .tb-header br,
+#workskin .tb .tb-top br,
 #workskin .tb .tb-blog br,
-#workskin .tb .tb-footer br { display: none; }
+#workskin .tb .tb-stats br { display: none; }
 
 /* ...and the paragraph AO3 wraps around a header row's pieces */
-#workskin .tb .tb-header > p,
-#workskin .tb .tb-body .tb-blog > p,
-#workskin .tb .tb-footer > p { margin: 0; padding: 0; }
+#workskin .tb .tb-top > p,
+#workskin .tb .tb-text .tb-blog > p,
+#workskin .tb .tb-stats > p { margin: 0; padding: 0; }
 
 #workskin .tb .tb-name { display: block; min-height: 38px; margin-left: 48px; overflow: hidden; }
 
@@ -78,7 +78,7 @@
   font-weight: bold;
 }
 
-#workskin .tb .tb-pfp.rb::after {
+#workskin .tb .tb-pfp.reblog::after {
   content: '\21C4';
   position: absolute;
   right: -6px;
@@ -175,9 +175,9 @@
   font-size: 0.8em;
 }
 
-#workskin .tb .tb-body { display: block; padding: 0.3em 0 0.8em 0; }
+#workskin .tb .tb-text { display: block; padding: 0.3em 0 0.8em 0; }
 
-#workskin .tb .tb-body p { margin: 0.5em 0; padding: 0 0.9em; }
+#workskin .tb .tb-text p { margin: 0.5em 0; padding: 0 0.9em; }
 
 #workskin .tb :not(.pfp) > img {
   display: block;
@@ -191,19 +191,19 @@
 #workskin .tb .tb-photos { display: block; margin: 0.6em 0; }
 
 /* pictures at the very start of a post sit right up against the header */
-#workskin .tb .tb-body > .tb-photos:first-child,
+#workskin .tb .tb-text > .tb-photos:first-child,
 #workskin .tb .tb-reblog > .tb-blog + .tb-photos { margin-top: -0.3em; }
 
 /* a mention of another blog in the text of a post: <span class="tb-at">@rinkrat</span> */
 #workskin .tb .tb-at { color: #3a5f86; }
 
-#workskin .tb .tb-body .tb-row {
+#workskin .tb .tb-text .tb-row {
   display: flex;
   margin: 0 0 4px 0;
   padding: 0;
 }
 
-#workskin .tb .tb-body .tb-row:last-child { margin-bottom: 0; }
+#workskin .tb .tb-text .tb-row:last-child { margin-bottom: 0; }
 
 #workskin .tb .tb-row br { display: none; }
 
@@ -240,7 +240,7 @@
   margin: auto 0;
 }
 
-#workskin .tb .tb-row.two .tb-photo img.land {
+#workskin .tb .tb-row.two .tb-photo img.landscape {
   top: 0;
   bottom: auto;
   right: -9999px;
@@ -258,7 +258,7 @@
   border-top: 1px solid #eeeeee;
 }
 
-#workskin .tb .tb-body > .tb-reblog:first-child { border-top: 0; }
+#workskin .tb .tb-text > .tb-reblog:first-child { border-top: 0; }
 
 /* the ask and answer boxes: <div class="tb-ask"> or <div class="tb-ask tb-answer"> */
 #workskin .tb .tb-ask {
@@ -317,9 +317,9 @@
 }
 
 /* ROUNDED SQUARE PICTURES: on Tumblr, each blog picks a circle or a rounded square for its picture, and it's the same everywhere that blog shows up. */
-#workskin .tb .tb-pfp.sq,
-#workskin .tb .tb-ask-pfp.sq,
-#workskin .tb .sq .pfp { border-radius: 15%; }
+#workskin .tb .tb-pfp.square,
+#workskin .tb .tb-ask-pfp.square,
+#workskin .tb .square .pfp { border-radius: 15%; }
 
 #workskin .tb .tb-tags {
   display: block;
@@ -330,8 +330,8 @@
 }
 
 /* the bottom row: replies, reblogs and likes, each with its own count, then share on the far right
-   <p class="tb-footer"><span class="tb-stat"><span class="tb-icon ic ic-comment">&#9993;</span> 7<span class="hide"> replies</span></span> ... </p> */
-#workskin .tb .tb-footer {
+   <p class="tb-stats"><span class="tb-stat"><span class="tb-icon ic ic-comment">&#9993;</span> 7<span class="hide"> replies</span></span> ... </p> */
+#workskin .tb .tb-stats {
   display: flex;
   align-items: center;
   padding: 0.6em 0.9em 0.9em 0.9em;
@@ -353,7 +353,7 @@
   vertical-align: -0.15em;
 }
 
-#workskin .tb .tb-footer > .tb-icon { margin-right: 0; }
+#workskin .tb .tb-stats > .tb-icon { margin-right: 0; }
 
 /* quote post: <p class="tb-quote">text</p><p class="tb-source">&mdash; someone</p> */
 #workskin .tb .tb-quote { font-family: Georgia, serif; font-size: 1.9em; line-height: 1.25; }
@@ -376,8 +376,8 @@
 
 #workskin .tb .tb-chat b { font-weight: bold; }
 
-/* poll: in tb-body, the question as a paragraph, then each option as */
-#workskin .tb .tb-body .tb-opt {
+/* poll: in tb-text, the question as a paragraph, then each option as */
+#workskin .tb .tb-text .tb-opt {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -393,7 +393,7 @@
   line-height: 1.3;
 }
 
-#workskin .tb .tb-body .tb-opt.res {
+#workskin .tb .tb-text .tb-opt.results {
   justify-content: flex-start;
   border-color: transparent;
   border-radius: 8px;
@@ -402,7 +402,7 @@
   background-image: linear-gradient(#dcdcdc, #dcdcdc);
 }
 
-#workskin .tb .tb-body .tb-opt.res.win { background-image: linear-gradient(#a6d9ec, #a6d9ec); }
+#workskin .tb .tb-text .tb-opt.results.win { background-image: linear-gradient(#a6d9ec, #a6d9ec); }
 
 #workskin .tb .tb-opt .tb-pct { margin-left: auto; padding-left: 0.8em; font-weight: normal; white-space: nowrap; }
 
@@ -423,7 +423,7 @@
 #workskin .tb .tb-opt.p90 { background-size: 90% 100%; }
 #workskin .tb .tb-opt.p100 { background-size: 100% 100%; }
 
-#workskin .tb .tb-body .tb-pollinfo { display: block; margin: 0.6em 0; text-align: center; color: #555555; font-size: 0.85em; }
+#workskin .tb .tb-text .tb-pollinfo { display: block; margin: 0.6em 0; text-align: center; color: #555555; font-size: 0.85em; }
 
 /* TAPPABLE POLL, the short way */
 #workskin .tb .tb-vote,
@@ -445,15 +445,15 @@
 
 #workskin .tb .tb-pick { display: block; margin: 0.45em 0; }
 
-#workskin .tb .tb-body .tb-pick > .tb-opt { margin: 0 0.9em; }
+#workskin .tb .tb-text .tb-pick > .tb-opt { margin: 0 0.9em; }
 
 #workskin .tb .tb-pick[open] > summary { visibility: hidden; }
 
 #workskin .tb .tb-results { display: block; position: absolute; top: 0; left: 0; right: 0; z-index: 1; background: #ffffff; }
 
-#workskin .tb .tb-voter { display: block; flex: none; width: 1.3em; height: 1.3em; margin-left: auto; }
+#workskin .tb .tb-voted { display: block; flex: none; width: 1.3em; height: 1.3em; margin-left: auto; }
 
-#workskin .tb .tb-opt .tb-voter + .tb-pct { margin-left: 0; }
+#workskin .tb .tb-opt .tb-voted + .tb-pct { margin-left: 0; }
 
 /* THE FEED BEHIND THE CARDS (optional): put one or more .tb posts inside */
 #workskin .tb-feed {
@@ -493,7 +493,7 @@
 
 #workskin .tb-screen .tb { max-height: none; overflow: visible; }
 
-#workskin .tb-feed .tb-top,
+#workskin .tb-feed .tb-apptop,
 #workskin .tb-feed .tb-tabs,
 #workskin .tb-feed .tb-nav {
   display: flex;
@@ -502,11 +502,11 @@
   font-family: Arial, Helvetica, sans-serif;
 }
 
-#workskin .tb-feed .tb-top br,
+#workskin .tb-feed .tb-apptop br,
 #workskin .tb-feed .tb-tabs br,
 #workskin .tb-feed .tb-nav br { display: none; }
 
-#workskin .tb-feed .tb-top { padding: 0.9em 1em 0.3em 1em; }
+#workskin .tb-feed .tb-apptop { padding: 0.9em 1em 0.3em 1em; }
 
 #workskin .tb-feed .tb-logo {
   margin-right: auto;
@@ -598,7 +598,7 @@
 
 #workskin .tb.theme-dark .tb-subline b { color: #cfcfcf; }
 
-#workskin .tb.theme-dark .tb-footer { color: #bdbdbd; }
+#workskin .tb.theme-dark .tb-stats { color: #bdbdbd; }
 
 #workskin .tb.theme-dark .tb-follow span { background: #2e2e2e; }
 
@@ -606,19 +606,19 @@
 
 #workskin .tb.theme-dark .tb-at { color: #c3d4e8; }
 
-#workskin .tb.theme-dark .tb-pfp.rb::after { border-color: #1f1f1f; }
+#workskin .tb.theme-dark .tb-pfp.reblog::after { border-color: #1f1f1f; }
 
 #workskin .tb.theme-dark .tb-reblog { border-top-color: #2c2c2c; }
 
 #workskin .tb.theme-dark .tb-ask { background: #272727; }
 
-#workskin .tb.theme-dark .tb-body .tb-opt.res { background-color: #2a2a2a; }
+#workskin .tb.theme-dark .tb-text .tb-opt.results { background-color: #2a2a2a; }
 
-#workskin .tb.theme-dark .tb-body .tb-opt.res { background-image: linear-gradient(#404040, #404040); }
+#workskin .tb.theme-dark .tb-text .tb-opt.results { background-image: linear-gradient(#404040, #404040); }
 
-#workskin .tb.theme-dark .tb-body .tb-opt.res.win { background-image: linear-gradient(#19637e, #19637e); }
+#workskin .tb.theme-dark .tb-text .tb-opt.results.win { background-image: linear-gradient(#19637e, #19637e); }
 
-#workskin .tb.theme-dark .tb-body .tb-pollinfo { color: #bdbdbd; }
+#workskin .tb.theme-dark .tb-text .tb-pollinfo { color: #bdbdbd; }
 
 #workskin .tb.theme-dark .tb-results { background: #1f1f1f; }
 
@@ -629,7 +629,7 @@
 
 
 
-#workskin .tb.theme-dark .tb-header { border-bottom-color: #2c2c2c; }
+#workskin .tb.theme-dark .tb-top { border-bottom-color: #2c2c2c; }
 
 #workskin .tb.theme-dark .tb-ask::after { border-left-color: #272727; }
 
@@ -648,7 +648,7 @@
 
   #workskin .tb.theme-auto .tb-subline b { color: #cfcfcf; }
 
-  #workskin .tb.theme-auto .tb-footer { color: #bdbdbd; }
+  #workskin .tb.theme-auto .tb-stats { color: #bdbdbd; }
 
   #workskin .tb.theme-auto .tb-follow span { background: #2e2e2e; }
 
@@ -656,19 +656,19 @@
 
   #workskin .tb.theme-auto .tb-at { color: #c3d4e8; }
 
-  #workskin .tb.theme-auto .tb-pfp.rb::after { border-color: #1f1f1f; }
+  #workskin .tb.theme-auto .tb-pfp.reblog::after { border-color: #1f1f1f; }
 
   #workskin .tb.theme-auto .tb-reblog { border-top-color: #2c2c2c; }
 
   #workskin .tb.theme-auto .tb-ask { background: #272727; }
 
-  #workskin .tb.theme-auto .tb-body .tb-opt.res { background-color: #2a2a2a; }
+  #workskin .tb.theme-auto .tb-text .tb-opt.results { background-color: #2a2a2a; }
 
-  #workskin .tb.theme-auto .tb-body .tb-opt.res { background-image: linear-gradient(#404040, #404040); }
+  #workskin .tb.theme-auto .tb-text .tb-opt.results { background-image: linear-gradient(#404040, #404040); }
 
-  #workskin .tb.theme-auto .tb-body .tb-opt.res.win { background-image: linear-gradient(#19637e, #19637e); }
+  #workskin .tb.theme-auto .tb-text .tb-opt.results.win { background-image: linear-gradient(#19637e, #19637e); }
 
-  #workskin .tb.theme-auto .tb-body .tb-pollinfo { color: #bdbdbd; }
+  #workskin .tb.theme-auto .tb-text .tb-pollinfo { color: #bdbdbd; }
 
   #workskin .tb.theme-auto .tb-results { background: #1f1f1f; }
 
@@ -679,7 +679,7 @@
 
 
 
-  #workskin .tb.theme-auto .tb-header { border-bottom-color: #2c2c2c; }
+  #workskin .tb.theme-auto .tb-top { border-bottom-color: #2c2c2c; }
 
   #workskin .tb.theme-auto .tb-ask::after { border-left-color: #272727; }
 }
@@ -705,7 +705,7 @@
 #workskin .tb .ic.ic-heart { background-image: url(https://images.squidge.org/images/2026/11/15/heart-black.png); }
 
 /* the app screen's top bar and bottom buttons. They always sit on the feed colour, so they don't change with the theme. */
-#workskin .tb-feed .tb-top .ic,
+#workskin .tb-feed .tb-apptop .ic,
 #workskin .tb-feed .tb-tabs .ic,
 #workskin .tb-feed .tb-nav .ic {
   display: inline-block;
@@ -746,7 +746,7 @@
 #workskin .tb .ic.ic-checks-blue { width: 2.15em; background-image: url(https://images.squidge.org/images/2026/11/16/tb-checks-blue.png); }
 
 /* the green reblog badge on a picture: the white reblog picture instead of the typed arrows */
-#workskin .tb .tb-pfp.rb::after {
+#workskin .tb .tb-pfp.reblog::after {
   content: '';
   background-image: url(https://images.squidge.org/images/2026/11/15/reblog-white.png);
   background-repeat: no-repeat;

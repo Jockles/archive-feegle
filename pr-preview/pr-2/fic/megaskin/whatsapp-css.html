@@ -25,7 +25,7 @@
   <!-- /site meta -->
   <link rel="stylesheet" href="../../style.css?v=c31c06ea">
   <script src="../../theme.js?v=c50fd7c2"></script>
-  <link rel="stylesheet" href="megaskin.css?v=2a55347f" id="creator-style">
+  <link rel="stylesheet" href="megaskin.css?v=e0be4b81" id="creator-style">
 </head>
 <body>
 <header>
@@ -201,7 +201,7 @@
 
 <p>These three lines are how a long name gets cut off with "..." like on a phone: <code>nowrap</code> keeps it on one line, <code>overflow: hidden</code> hides what doesn't fit, and <code>text-overflow: ellipsis</code> adds the dots.</p>
 
-<p>The member list (<code>wa-sub</code>) does the same. The back arrow, picture and icons cells have set widths in pixels, and the title takes whatever room is left.</p>
+<p>The member list (<code>wa-status</code>) does the same. The back arrow, picture and icons cells have set widths in pixels, and the title takes whatever room is left.</p>
 
 </details>
 
@@ -315,7 +315,7 @@
   padding-left: 0.5em;
 }
 
-#workskin .wa .wa-field .wa-ph { width: auto; padding-left: 0.5em; }
+#workskin .wa .wa-field .wa-placeholder { width: auto; padding-left: 0.5em; }
 
 #workskin .wa .wa-mic {
   position: absolute;
@@ -338,7 +338,7 @@
 
 <ul>
   <li><code>br { display: none; }</code> is there because AO3 turns line breaks in your HTML into <code>&lt;br /&gt;</code> tags, and inside the bar they'd split it onto two lines. This rule just ignores them.</li>
-  <li>The white box is another table, and each icon is a cell. <code>width: 1%</code> on the icons is a trick: a table cell can't be narrower than what's inside it, so asking for 1% makes it exactly as wide as its icon. The placeholder (<code>wa-ph</code>) is set back to <code>auto</code>, so it takes all the room that's left.</li>
+  <li>The white box is another table, and each icon is a cell. <code>width: 1%</code> on the icons is a trick: a table cell can't be narrower than what's inside it, so asking for 1% makes it exactly as wide as its icon. The placeholder (<code>wa-placeholder</code>) is set back to <code>auto</code>, so it takes all the room that's left.</li>
   <li>The green microphone circle is pinned in the space on the right, which the bar's <code>3.4em</code> of right padding keeps clear. It's centred top to bottom with <code>top: 50%</code> and a negative margin of half its height.</li>
 </ul>
 
@@ -349,7 +349,7 @@
 
 <p>For a half-typed message, <code>typed</code> undoes the <code>nowrap</code> so long messages wrap, and makes the words dark (light in dark mode):</p>
 
-<pre><code>#workskin .wa .wa-field .wa-ph.typed { white-space: normal; color: #111b21; }
+<pre><code>#workskin .wa .wa-field .wa-placeholder.typed { white-space: normal; color: #111b21; }
 
 #workskin .wa .wa-field .cursor { display: inline-block; width: 0.2em; padding: 0; }</code></pre>
 
@@ -578,7 +578,7 @@
 
 #workskin .wa .msg.contact .who { padding: 0.35em 0.7em 0 0.7em; }
 
-#workskin .wa .wa-cbtn {
+#workskin .wa .wa-contact-btn {
   display: block;
   padding: 0.5em 0.7em;
   border-top: 1px solid rgba(0, 0, 0, 0.1);
@@ -729,7 +729,7 @@
   margin: auto 0;
 }
 
-#workskin .wa .wa-photo img.land,
+#workskin .wa .wa-photo img.landscape,
 #workskin .wa .wa-photos.two .wa-photo img,
 #workskin .wa .wa-photos.three .wa-photo:first-of-type img {
   top: 0;
@@ -746,7 +746,7 @@
 <details>
 <summary>How it works: centring a picture in its box</summary>
 
-<p>This is the same centring trick as round pictures in the core, but from top to bottom: the picture is made as wide as the square and given an enormous space above and below, and <code>margin: auto</code> puts it in the middle, so the extra top and bottom are cropped evenly. <code>land</code> turns it on its side. The tall boxes always use the <code>land</code> way, because almost every photo is wider than a box two squares tall.</p>
+<p>This is the same centring trick as round pictures in the core, but from top to bottom: the picture is made as wide as the square and given an enormous space above and below, and <code>margin: auto</code> puts it in the middle, so the extra top and bottom are cropped evenly. <code>landscape</code> turns it on its side. The tall boxes always use the <code>landscape</code> way, because almost every photo is wider than a box two squares tall.</p>
 
 </details>
 
@@ -787,14 +787,14 @@
   padding: 0.3em 0.35em 0 0.35em;
 }
 
-#workskin .wa .wa-ln {
+#workskin .wa .wa-link-text {
   color: #027eb5;
   text-decoration: underline;
 }
 
 #workskin .wa .fake-link, #workskin .wa a:not(.tl) { color: #027eb5; }</code></pre>
 
-<p>A caption only needs a little padding, to line its text up with the edge of the photo above. Links in the text, <code>wa-ln</code> and <code>fake-link</code> are all WhatsApp's link blue.</p>
+<p>A caption only needs a little padding, to line its text up with the edge of the photo above. Links in the text, <code>wa-link-text</code> and <code>fake-link</code> are all WhatsApp's link blue.</p>
 
 <h4 id="s7-6-4">7.6.4 Link Cards</h4>
 
@@ -888,7 +888,7 @@
 
 <p>A <code>wa-row</code> leaves a <code>38px</code> gap down its left side, and the picture is pinned into that gap at the top. <code>cont</code> keeps the gap but has no picture in it, so later messages from the same person still line up.</p>
 
-<pre><code>#workskin .wa .wa-num {
+<pre><code>#workskin .wa .wa-no {
   float: right;
   margin-left: 1em;
   font-weight: normal;
@@ -916,14 +916,14 @@
 <p>WhatsApp is a long module, so it's worth trimming if you only use a few parts. These come out cleanly - search for the class names and delete every rule with them in, including in the dark and auto blocks:</p>
 
 <ul>
-  <li><strong>Header with a picture and icons:</strong> <code>wa-bar</code>, <code>wa-back</code>, <code>wa-title</code>, <code>wa-sub</code>, <code>wa-actions</code>. Keep <code>wa-pfp</code> if you use pictures beside messages.</li>
+  <li><strong>Header with a picture and icons:</strong> <code>wa-bar</code>, <code>wa-back</code>, <code>wa-title</code>, <code>wa-status</code>, <code>wa-actions</code>. Keep <code>wa-pfp</code> if you use pictures beside messages.</li>
   <li><strong>Pictures beside messages:</strong> <code>wa-row</code> and <code>pad</code>, and <code>wa-pfp</code> with its colours if you don't use the group header either.</li>
   <li><strong>Reactions:</strong> <code>wa-reacts</code> and <code>wa-count</code>.</li>
-  <li><strong>Message bar:</strong> <code>wa-input</code>, <code>wa-field</code>, <code>wa-ph</code>, <code>wa-mic</code>.</li>
+  <li><strong>Message bar:</strong> <code>wa-input</code>, <code>wa-field</code>, <code>wa-placeholder</code>, <code>wa-mic</code>.</li>
   <li><strong>Link cards:</strong> <code>share</code>, and everything starting <code>wa-link</code>.</li>
   <li><strong>Photos:</strong> <code>gallery</code>, <code>wa-photos</code>, <code>wa-photo</code>, <code>wa-desc</code>.</li>
   <li><strong>Calls:</strong> <code>call</code>, and everything starting <code>wa-call</code>, including the <code>ic-wa-call</code> and <code>ic-wa-video</code> icons.</li>
-  <li><strong>Contact cards:</strong> <code>contact</code>, <code>wa-contact</code> and <code>wa-cbtn</code>.</li>
+  <li><strong>Contact cards:</strong> <code>contact</code>, <code>wa-contact</code> and <code>wa-contact-btn</code>.</li>
   <li><strong>Forwarded label:</strong> <code>wa-fwd</code> and <code>ic-forward</code>.</li>
   <li><strong>Wallpapers:</strong> any <code>bg-</code> line you don't use.</li>
 </ul>

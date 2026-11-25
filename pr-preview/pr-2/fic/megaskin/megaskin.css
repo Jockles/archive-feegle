@@ -129,7 +129,7 @@
   margin: 0;
 }
 
-#workskin .pfp img.land {
+#workskin .pfp img.landscape {
   right: -9999px;
   left: -9999px;
   width: auto;
@@ -942,19 +942,19 @@
 
 #workskin .imsg .mob-sys { color: #8e8e93; opacity: 1; }
 
-/* a picture sent in a message: <p class="msg out pic"><img src="..."></p>
-   or, for a description instead: <p class="msg out pic text">[A photo of the rink]</p> */
-#workskin .imsg .msg.pic { width: 55%; padding: 0.2em; overflow: hidden; }
-#workskin .imsg .msg.pic.tapped { overflow: visible; }
+/* a picture sent in a message: <p class="msg out photo"><img src="..."></p>
+   or, for a description instead: <p class="msg out photo text">[A photo of the rink]</p> */
+#workskin .imsg .msg.photo { width: 55%; padding: 0.2em; overflow: hidden; }
+#workskin .imsg .msg.photo.tapped { overflow: visible; }
 
-#workskin .imsg .msg.pic img {
+#workskin .imsg .msg.photo img {
   display: block;
   width: 100%;
   height: auto;
   border-radius: 15px;
 }
 
-#workskin .imsg .msg.pic.text { padding: 2.5em 1em; font-style: italic; text-align: center; }
+#workskin .imsg .msg.photo.text { padding: 2.5em 1em; font-style: italic; text-align: center; }
 
 /* the three typing dots, in a message bubble from whoever is typing (out for the phone's owner, in for anyone else, with a who line above it in a group, like any message) */
 #workskin .imsg .typing-indicator { padding: 0.6em 0.8em; line-height: 1; }
@@ -1253,7 +1253,7 @@
   text-overflow: ellipsis;
 }
 
-#workskin .wa table.wa-bar .wa-sub {
+#workskin .wa table.wa-bar .wa-status {
   padding: 0 0.4em 0.55em 0.4em;
   font-size: 0.8em;
   line-height: 1.2;
@@ -1308,9 +1308,9 @@
 /* later messages from the same person: no picture, but still indented */
 #workskin .wa .wa-row.cont { padding-left: 38px; }
 
-/* sender name with the phone number at the right: <p class="who colour1">~ Name<span class="wa-num">+353...</span></p>
+/* sender name with the phone number at the right: <p class="who colour1">~ Name<span class="wa-no">+353...</span></p>
    also works inside a quote's <b> */
-#workskin .wa .wa-num {
+#workskin .wa .wa-no {
   float: right;
   margin-left: 1em;
   font-weight: normal;
@@ -1417,10 +1417,10 @@
 
 #workskin .wa .wa-field span:first-child { padding-left: 0; }
 
-#workskin .wa .wa-field .wa-ph { width: auto; padding-left: 0.5em; }
+#workskin .wa .wa-field .wa-placeholder { width: auto; padding-left: 0.5em; }
 
 /* a half-typed message: dark text that wraps onto more lines */
-#workskin .wa .wa-field .wa-ph.typed { white-space: normal; color: #111b21; }
+#workskin .wa .wa-field .wa-placeholder.typed { white-space: normal; color: #111b21; }
 
 /* a flashing cursor in the typed message stays in the line of words, not a cell of its own */
 #workskin .wa .wa-field .cursor { display: inline-block; width: 0.2em; padding: 0; }
@@ -1518,8 +1518,8 @@
   margin-right: 0.4em;
 }
 
-/* the link written out in the message text itself: <span class="wa-ln">example.com</span> */
-#workskin .wa .wa-ln {
+/* the link written out in the message text itself: <span class="wa-link-text">example.com</span> */
+#workskin .wa .wa-link-text {
   color: #027eb5;
   text-decoration: underline;
 }
@@ -1558,7 +1558,7 @@
 
 #workskin .wa .wa-photo:nth-of-type(n+3) { margin-bottom: 0; }
 
-/* the picture. AO3 can't crop pictures automatically, so the skin needs to know which way the picture runs: - normal (taller than wide, or square): it is made as wide as the box, and the top and bottom are cropped evenly - add class="land" to the img if it is wider than tall: it is made as tall as the box, and the sides are cropped evenly The tall boxes (two pictures; the left one of three) always use the second way, as nearly any photo fits them that way. */
+/* the picture. AO3 can't crop pictures automatically, so the skin needs to know which way the picture runs: - normal (taller than wide, or square): it is made as wide as the box, and the top and bottom are cropped evenly - add class="landscape" to the img if it is wider than tall: it is made as tall as the box, and the sides are cropped evenly The tall boxes (two pictures; the left one of three) always use the second way, as nearly any photo fits them that way. */
 #workskin .wa .wa-photo img {
   position: absolute;
   top: -9999px;
@@ -1574,7 +1574,7 @@
   margin: auto 0;
 }
 
-#workskin .wa .wa-photo img.land,
+#workskin .wa .wa-photo img.landscape,
 #workskin .wa .wa-photos.two .wa-photo img,
 #workskin .wa .wa-photos.three .wa-photo:first-of-type img {
   top: 0;
@@ -1743,7 +1743,7 @@
 /* in a group, the sender's name sits at the top of the card */
 #workskin .wa .msg.contact .who { padding: 0.35em 0.7em 0 0.7em; }
 
-#workskin .wa .wa-cbtn {
+#workskin .wa .wa-contact-btn {
   display: block;
   padding: 0.5em 0.7em;
   border-top: 1px solid rgba(0, 0, 0, 0.1);
@@ -1784,7 +1784,7 @@
 
 #workskin .wa.theme-dark .mob-sys { background: #182229; color: #8696a0; }
 
-#workskin .wa.theme-dark .wa-num { color: #8696a0; }
+#workskin .wa.theme-dark .wa-no { color: #8696a0; }
 
 #workskin .wa.theme-dark .in.tail::before { border-color: transparent #202c33 transparent transparent; }
 
@@ -1800,7 +1800,7 @@
 
 #workskin .wa.theme-dark .wa-field { background: #202c33; color: #8696a0; }
 
-#workskin .wa.theme-dark .wa-field .wa-ph.typed { color: #e9edef; }
+#workskin .wa.theme-dark .wa-field .wa-placeholder.typed { color: #e9edef; }
 
 #workskin .wa.theme-dark .wa-link { background: rgba(0, 0, 0, 0.22); }
 
@@ -1812,7 +1812,7 @@
 
 #workskin .wa.theme-dark .wa-photo { background: rgba(0, 0, 0, 0.3); }
 
-#workskin .wa.theme-dark .wa-ln { color: #53bdeb; }
+#workskin .wa.theme-dark .wa-link-text { color: #53bdeb; }
 
 #workskin .wa.theme-dark .fake-link, #workskin .wa.theme-dark a:not(.tl) { color: #53bdeb; }
 
@@ -1824,9 +1824,9 @@
 #workskin .wa.theme-dark .wa-fwd { color: #8696a0; }
 
 #workskin .wa.theme-dark .wa-contact,
-#workskin .wa.theme-dark .wa-cbtn { color: #21c063; }
+#workskin .wa.theme-dark .wa-contact-btn { color: #21c063; }
 
-#workskin .wa.theme-dark .wa-cbtn { border-top-color: rgba(255, 255, 255, 0.1); }
+#workskin .wa.theme-dark .wa-contact-btn { border-top-color: rgba(255, 255, 255, 0.1); }
 
 
 /* ---------- WhatsApp: Auto theme (theme-auto): light, switching to dark when the reader's device is in dark mode ---------- */
@@ -1849,7 +1849,7 @@
 
   #workskin .wa.theme-auto .mob-sys { background: #182229; color: #8696a0; }
 
-  #workskin .wa.theme-auto .wa-num { color: #8696a0; }
+  #workskin .wa.theme-auto .wa-no { color: #8696a0; }
 
   
   
@@ -1895,7 +1895,7 @@
 
   #workskin .wa.theme-auto .wa-field { background: #202c33; color: #8696a0; }
 
-  #workskin .wa.theme-auto .wa-field .wa-ph.typed { color: #e9edef; }
+  #workskin .wa.theme-auto .wa-field .wa-placeholder.typed { color: #e9edef; }
 
   #workskin .wa.theme-auto .wa-link { background: rgba(0, 0, 0, 0.22); }
 
@@ -1907,9 +1907,9 @@
   #workskin .wa.theme-auto .wa-fwd { color: #8696a0; }
 
   #workskin .wa.theme-auto .wa-contact,
-  #workskin .wa.theme-auto .wa-cbtn { color: #21c063; }
+  #workskin .wa.theme-auto .wa-contact-btn { color: #21c063; }
 
-  #workskin .wa.theme-auto .wa-cbtn { border-top-color: rgba(255, 255, 255, 0.1); }
+  #workskin .wa.theme-auto .wa-contact-btn { border-top-color: rgba(255, 255, 255, 0.1); }
 
   #workskin .wa.theme-auto .wa-link-img.text { background: rgba(0, 0, 0, 0.2); color: #8696a0; }
 
@@ -1919,7 +1919,7 @@
 
   #workskin .wa.theme-auto .wa-photo { background: rgba(0, 0, 0, 0.3); }
 
-  #workskin .wa.theme-auto .wa-ln { color: #53bdeb; }
+  #workskin .wa.theme-auto .wa-link-text { color: #53bdeb; }
 
   #workskin .wa.theme-auto .fake-link, #workskin .wa.theme-auto a:not(.tl) { color: #53bdeb; }
 }
@@ -2097,8 +2097,8 @@
 }
 
 /* AO3 turns line breaks in your code into <br> tags; inside a grid they would push photos down */
-#workskin .tw .tw-media br,
-#workskin .tw-reply .tw-media br {
+#workskin .tw .tw-photos br,
+#workskin .tw-reply .tw-photos br {
   display: none;
 }
 
@@ -2386,30 +2386,30 @@
   font-size: 0.85em;
 }
 
-/* buttons the account has used: add tw-liked to the like's tw-stat, tw-rt to the repost's, or tw-saved to the bookmark's.
+/* buttons the account has used: add liked to the like's tw-stat, reposted to the repost's, or saved to the bookmark's.
    A clicked tw-tog like turns red too, and a clicked bookmark blue. */
-#workskin .tw .tw-stats .tw-liked,
-#workskin .tw-reply .tw-stats .tw-liked,
+#workskin .tw .tw-stats .liked,
+#workskin .tw-reply .tw-stats .liked,
 #workskin .tw .tw-stats .tw-tog[open],
 #workskin .tw-reply .tw-stats .tw-tog[open] {
   color: #ed4956;
 }
 
-#workskin .tw .tw-stats .tw-rt,
-#workskin .tw-reply .tw-stats .tw-rt {
+#workskin .tw .tw-stats .reposted,
+#workskin .tw-reply .tw-stats .reposted {
   color: #00ba7c;
 }
 
-#workskin .tw .tw-stats .tw-saved,
-#workskin .tw-reply .tw-stats .tw-saved,
+#workskin .tw .tw-stats .saved,
+#workskin .tw-reply .tw-stats .saved,
 #workskin .tw .tw-stats .tw-tog.tw-end[open],
 #workskin .tw-reply .tw-stats .tw-tog.tw-end[open] {
   color: #1d9bf0;
 }
 
-/* a private account's tweets can't be reposted: add tw-locked to the repost's tw-stat to fade it out */
-#workskin .tw .tw-stats .tw-locked,
-#workskin .tw-reply .tw-stats .tw-locked {
+/* a private account's tweets can't be reposted: add locked to the repost's tw-stat to fade it out */
+#workskin .tw .tw-stats .locked,
+#workskin .tw-reply .tw-stats .locked {
   color: #cfd9de;
 }
 
@@ -2427,8 +2427,8 @@
 }
 
 /* results: each option is a row, the bar with the option in it, then the percentage at the far right */
-#workskin .tw .tw-opt.res,
-#workskin .tw-reply .tw-opt.res {
+#workskin .tw .tw-opt.results,
+#workskin .tw-reply .tw-opt.results {
   display: flex;
   align-items: center;
   border: 0;
@@ -2548,10 +2548,10 @@
   margin: 0.3em 0;
 }
 
-/* pictures and videos in a tweet: <div class="tw-media"> with one <img>, an embedded video, or a [description].
+/* pictures and videos in a tweet: <div class="tw-photos"> with one <img>, an embedded video, or a [description].
    For several pictures see the "tw-photo" rules further down. */
-#workskin .tw .tw-media,
-#workskin .tw-reply .tw-media {
+#workskin .tw .tw-photos,
+#workskin .tw-reply .tw-photos {
   display: block;
   overflow: hidden;
   border: 1px solid #cfd9de;
@@ -2564,10 +2564,10 @@
   line-height: 1.3;
 }
 
-#workskin .tw .tw-media img,
-#workskin .tw .tw-media video,
-#workskin .tw-reply .tw-media img,
-#workskin .tw-reply .tw-media video {
+#workskin .tw .tw-photos img,
+#workskin .tw .tw-photos video,
+#workskin .tw-reply .tw-photos img,
+#workskin .tw-reply .tw-photos video {
   display: block;
   width: 100%;
   height: auto;
@@ -2576,9 +2576,9 @@
 }
 
 /* an embedded video player (such as Vimeo or YouTube): add "video" to the box,
-   <div class="tw-media video"><iframe src="..."></iframe></div> */
-#workskin .tw .tw-media.video iframe,
-#workskin .tw-reply .tw-media.video iframe {
+   <div class="tw-photos video"><iframe src="..."></iframe></div> */
+#workskin .tw .tw-photos.video iframe,
+#workskin .tw-reply .tw-photos.video iframe {
   display: block;
   width: 100%;
   height: 200px;
@@ -2587,15 +2587,15 @@
 }
 
 /* a description standing in for a picture */
-#workskin .tw .tw-media span,
-#workskin .tw-reply .tw-media span {
+#workskin .tw .tw-photos span,
+#workskin .tw-reply .tw-photos span {
   display: block;
   padding: 3em 1.2em;
 }
 
 /* several pictures */
-#workskin .tw .tw-media .tw-photo,
-#workskin .tw-reply .tw-media .tw-photo {
+#workskin .tw .tw-photos .tw-photo,
+#workskin .tw-reply .tw-photos .tw-photo {
   display: block;
   position: relative;
   float: left;
@@ -2607,19 +2607,19 @@
   background: #e1e8ec;
 }
 
-#workskin .tw .tw-media .tw-photo:nth-of-type(2n),
-#workskin .tw-reply .tw-media .tw-photo:nth-of-type(2n) {
+#workskin .tw .tw-photos .tw-photo:nth-of-type(2n),
+#workskin .tw-reply .tw-photos .tw-photo:nth-of-type(2n) {
   margin-right: 0;
 }
 
-#workskin .tw .tw-media .tw-photo:nth-of-type(n+3),
-#workskin .tw-reply .tw-media .tw-photo:nth-of-type(n+3) {
+#workskin .tw .tw-photos .tw-photo:nth-of-type(n+3),
+#workskin .tw-reply .tw-photos .tw-photo:nth-of-type(n+3) {
   margin-bottom: 0;
 }
 
-/* the picture: normal pictures are made as wide as the box and cropped top and bottom; add class="land" to a picture that is wider than tall to make it as tall as the box and crop the sides instead. */
-#workskin .tw .tw-media .tw-photo img,
-#workskin .tw-reply .tw-media .tw-photo img {
+/* the picture: normal pictures are made as wide as the box and cropped top and bottom; add class="landscape" to a picture that is wider than tall to make it as tall as the box and crop the sides instead. */
+#workskin .tw .tw-photos .tw-photo img,
+#workskin .tw-reply .tw-photos .tw-photo img {
   position: absolute;
   top: -9999px;
   bottom: -9999px;
@@ -2634,12 +2634,12 @@
   margin: auto 0;
 }
 
-#workskin .tw .tw-media .tw-photo img.land,
-#workskin .tw-reply .tw-media .tw-photo img.land,
-#workskin .tw .tw-media.two .tw-photo img,
-#workskin .tw-reply .tw-media.two .tw-photo img,
-#workskin .tw .tw-media.three .tw-photo:first-of-type img,
-#workskin .tw-reply .tw-media.three .tw-photo:first-of-type img {
+#workskin .tw .tw-photos .tw-photo img.landscape,
+#workskin .tw-reply .tw-photos .tw-photo img.landscape,
+#workskin .tw .tw-photos.two .tw-photo img,
+#workskin .tw-reply .tw-photos.two .tw-photo img,
+#workskin .tw .tw-photos.three .tw-photo:first-of-type img,
+#workskin .tw-reply .tw-photos.three .tw-photo:first-of-type img {
   top: 0;
   bottom: auto;
   right: -9999px;
@@ -2650,8 +2650,8 @@
 }
 
 /* a description standing in for a picture: <span class="tw-photo"><span class="tw-desc">[...]</span></span> */
-#workskin .tw .tw-media .tw-photo .tw-desc,
-#workskin .tw-reply .tw-media .tw-photo .tw-desc {
+#workskin .tw .tw-photos .tw-photo .tw-desc,
+#workskin .tw-reply .tw-photos .tw-photo .tw-desc {
   position: absolute;
   top: 0;
   left: 0;
@@ -2663,36 +2663,36 @@
 }
 
 /* two pictures: side by side, each one tall */
-#workskin .tw .tw-media.two .tw-photo,
-#workskin .tw-reply .tw-media.two .tw-photo {
+#workskin .tw .tw-photos.two .tw-photo,
+#workskin .tw-reply .tw-photos.two .tw-photo {
   padding-top: 99.6%;
   margin-bottom: 0;
 }
 
 /* three pictures: one tall on the left, two stacked on the right */
-#workskin .tw .tw-media.three .tw-photo:first-of-type,
-#workskin .tw-reply .tw-media.three .tw-photo:first-of-type {
+#workskin .tw .tw-photos.three .tw-photo:first-of-type,
+#workskin .tw-reply .tw-photos.three .tw-photo:first-of-type {
   padding-top: 99.6%;
   margin-bottom: 0;
 }
 
-#workskin .tw .tw-media.three .tw-photo:nth-of-type(2),
-#workskin .tw-reply .tw-media.three .tw-photo:nth-of-type(2) {
+#workskin .tw .tw-photos.three .tw-photo:nth-of-type(2),
+#workskin .tw-reply .tw-photos.three .tw-photo:nth-of-type(2) {
   margin-bottom: 1.2%;
 }
 
-#workskin .tw .tw-media.three .tw-photo:nth-of-type(3),
-#workskin .tw-reply .tw-media.three .tw-photo:nth-of-type(3) {
+#workskin .tw .tw-photos.three .tw-photo:nth-of-type(3),
+#workskin .tw-reply .tw-photos.three .tw-photo:nth-of-type(3) {
   margin-right: 0;
 }
 
 /* clear the floats after a group of pictures */
-#workskin .tw .tw-media.two::after,
-#workskin .tw .tw-media.three::after,
-#workskin .tw .tw-media.four::after,
-#workskin .tw-reply .tw-media.two::after,
-#workskin .tw-reply .tw-media.three::after,
-#workskin .tw-reply .tw-media.four::after {
+#workskin .tw .tw-photos.two::after,
+#workskin .tw .tw-photos.three::after,
+#workskin .tw .tw-photos.four::after,
+#workskin .tw-reply .tw-photos.two::after,
+#workskin .tw-reply .tw-photos.three::after,
+#workskin .tw-reply .tw-photos.four::after {
   content: "";
   display: block;
   clear: both;
@@ -3009,22 +3009,22 @@
 
 #workskin .twdm .msg.twdm-quote { background: transparent; color: #536471; border: 1px solid #cfd9de; margin-bottom: 0.2em; }
 
-/* a picture in a DM: <p class="msg in pic"><img src="..."></p> or a [description] */
-#workskin .twdm .msg.pic {
+/* a picture in a DM: <p class="msg in photo"><img src="..."></p> or a [description] */
+#workskin .twdm .msg.photo {
   padding: 0.25em;
   min-width: 55%;
   font-style: italic;
   text-align: center;
 }
 
-#workskin .twdm .msg.pic img {
+#workskin .twdm .msg.photo img {
   display: block;
   max-width: 100%;
   height: auto;
   border-radius: 1.1em;
 }
 
-#workskin .twdm .msg.pic.text { padding: 2.5em 1.5em; }
+#workskin .twdm .msg.photo.text { padding: 2.5em 1.5em; }
 
 /* a voice message:
    <p class="msg out voice"><span class="twdm-play ic ic-play">&#9654;</span><span class="twdm-wave"></span><span class="twdm-dur">0:02</span></p> */
@@ -3113,9 +3113,9 @@
 #workskin .twdm .tw-nav br,
 #workskin .tw-thread .tw-nav br { display: none; }
 
-/* a blue number on a button, like new notifications: wrap the icon and the number in a tw-badged span. */
-#workskin .twdm .tw-nav .tw-badged,
-#workskin .tw-thread .tw-nav .tw-badged { position: relative; display: block; line-height: 1; }
+/* a blue number on a button, like new notifications: wrap the icon and the number in a badged span. */
+#workskin .twdm .tw-nav .badged,
+#workskin .tw-thread .tw-nav .badged { position: relative; display: block; line-height: 1; }
 
 #workskin .twdm .tw-nav .tw-badge,
 #workskin .tw-thread .tw-nav .tw-badge {
@@ -3194,9 +3194,9 @@
   color: #e7e9ea;
 }
 
-#workskin .tw-thread.theme-dark .tw-media { background: #16181c; border-color: #2f3336; color: #71767b; }
+#workskin .tw-thread.theme-dark .tw-photos { background: #16181c; border-color: #2f3336; color: #71767b; }
 
-#workskin .tw-thread.theme-dark .tw-media span { background: #202327; }
+#workskin .tw-thread.theme-dark .tw-photos span { background: #202327; }
 
 #workskin .tw-thread.theme-dark .tw-handle,
 
@@ -3236,7 +3236,7 @@
 
 #workskin .tw.theme-dark .tw-warn { background: #16181c; border-color: #2f3336; }
 
-#workskin .tw.theme-dark .tw-opt.res { color: #e7e9ea; }
+#workskin .tw.theme-dark .tw-opt.results { color: #e7e9ea; }
 
 #workskin .tw.theme-dark .tw-results { background: #000000; }
 
@@ -3252,7 +3252,7 @@
 
 #workskin .tw-reply.theme-dark .tw-warn { background: #16181c; border-color: #2f3336; }
 
-#workskin .tw-reply.theme-dark .tw-opt.res { color: #e7e9ea; }
+#workskin .tw-reply.theme-dark .tw-opt.results { color: #e7e9ea; }
 
 #workskin .tw-reply.theme-dark .tw-results { background: #000000; }
 
@@ -3262,15 +3262,15 @@
 
 #workskin .twdm.theme-dark .twdm-reacts { background: #16181c; border-color: #2f3336; color: #e7e9ea; }
 
-#workskin .tw.theme-dark .tw-media,
-#workskin .tw-reply.theme-dark .tw-media {
+#workskin .tw.theme-dark .tw-photos,
+#workskin .tw-reply.theme-dark .tw-photos {
   background: #16181c;
   border-color: #2f3336;
   color: #71767b;
 }
 
-#workskin .tw.theme-dark .tw-media span,
-#workskin .tw-reply.theme-dark .tw-media span {
+#workskin .tw.theme-dark .tw-photos span,
+#workskin .tw-reply.theme-dark .tw-photos span {
   background: #202327;
 }
 
@@ -3299,7 +3299,7 @@
 #workskin .tw-thread.theme-dark .tw-note,
 #workskin .tw-thread.theme-dark .tw-warn { background: #16181c; border-color: #2f3336; }
 
-#workskin .tw-thread.theme-dark .tw-opt.res { color: #e7e9ea; }
+#workskin .tw-thread.theme-dark .tw-opt.results { color: #e7e9ea; }
 
 #workskin .tw-thread.theme-dark .tw-results { background: #000000; }
 
@@ -3376,7 +3376,7 @@
 
   #workskin .tw.theme-auto .tw-warn { background: #16181c; border-color: #2f3336; }
 
-  #workskin .tw.theme-auto .tw-opt.res { color: #e7e9ea; }
+  #workskin .tw.theme-auto .tw-opt.results { color: #e7e9ea; }
 
   #workskin .tw.theme-auto .tw-results { background: #000000; }
 
@@ -3392,7 +3392,7 @@
 
   #workskin .tw-reply.theme-auto .tw-warn { background: #16181c; border-color: #2f3336; }
 
-  #workskin .tw-reply.theme-auto .tw-opt.res { color: #e7e9ea; }
+  #workskin .tw-reply.theme-auto .tw-opt.results { color: #e7e9ea; }
 
   #workskin .tw-reply.theme-auto .tw-results { background: #000000; }
 
@@ -3402,15 +3402,15 @@
 
   #workskin .twdm.theme-auto .twdm-reacts { background: #16181c; border-color: #2f3336; color: #e7e9ea; }
 
-  #workskin .tw.theme-auto .tw-media,
-    #workskin .tw-reply.theme-auto .tw-media {
+  #workskin .tw.theme-auto .tw-photos,
+    #workskin .tw-reply.theme-auto .tw-photos {
       background: #16181c;
       border-color: #2f3336;
       color: #71767b;
     }
 
-  #workskin .tw.theme-auto .tw-media span,
-    #workskin .tw-reply.theme-auto .tw-media span {
+  #workskin .tw.theme-auto .tw-photos span,
+    #workskin .tw-reply.theme-auto .tw-photos span {
       background: #202327;
     }
 
@@ -3439,7 +3439,7 @@
   #workskin .tw-thread.theme-auto .tw-note,
     #workskin .tw-thread.theme-auto .tw-warn { background: #16181c; border-color: #2f3336; }
 
-  #workskin .tw-thread.theme-auto .tw-opt.res { color: #e7e9ea; }
+  #workskin .tw-thread.theme-auto .tw-opt.results { color: #e7e9ea; }
 
   #workskin .tw-thread.theme-auto .tw-results { background: #000000; }
 
@@ -3455,9 +3455,9 @@
       color: #e7e9ea;
     }
 
-  #workskin .tw-thread.theme-auto .tw-media { background: #16181c; border-color: #2f3336; color: #71767b; }
+  #workskin .tw-thread.theme-auto .tw-photos { background: #16181c; border-color: #2f3336; color: #71767b; }
 
-  #workskin .tw-thread.theme-auto .tw-media span { background: #202327; }
+  #workskin .tw-thread.theme-auto .tw-photos span { background: #202327; }
 
   #workskin .tw-thread.theme-auto .tw-handle,
 
@@ -3543,8 +3543,8 @@
 #workskin .tw.theme-dark .ic.ic-tw-lock, #workskin .tw-reply.theme-dark .ic.ic-tw-lock, #workskin .tw-thread.theme-dark .ic.ic-tw-lock { background-image: url(https://images.squidge.org/images/2026/11/15/dc-lock-dark.png); }
 #workskin .tw.theme-dark .ic.ic-tw-reply, #workskin .tw-reply.theme-dark .ic.ic-tw-reply, #workskin .tw-thread.theme-dark .ic.ic-tw-reply { background-image: url(https://images.squidge.org/images/2026/11/15/comment-white.png); }
 #workskin .tw.theme-dark .ic.ic-tw-repost, #workskin .tw-reply.theme-dark .ic.ic-tw-repost, #workskin .tw-thread.theme-dark .ic.ic-tw-repost { background-image: url(https://images.squidge.org/images/2026/11/17/repost-tw-white.png); }
-#workskin .tw.theme-dark .tw-stats .tw-locked .ic.ic-tw-repost, #workskin .tw-reply.theme-dark .tw-stats .tw-locked .ic.ic-tw-repost, #workskin .tw-thread.theme-dark .tw-stats .tw-locked .ic.ic-tw-repost { background-image: url(https://images.squidge.org/images/2026/11/17/repost-tw-faded-dark.png); }
-#workskin .tw.theme-dark .tw-stats .tw-locked, #workskin .tw-reply.theme-dark .tw-stats .tw-locked, #workskin .tw-thread.theme-dark .tw-stats .tw-locked { color: #3a3b3e; }
+#workskin .tw.theme-dark .tw-stats .locked .ic.ic-tw-repost, #workskin .tw-reply.theme-dark .tw-stats .locked .ic.ic-tw-repost, #workskin .tw-thread.theme-dark .tw-stats .locked .ic.ic-tw-repost { background-image: url(https://images.squidge.org/images/2026/11/17/repost-tw-faded-dark.png); }
+#workskin .tw.theme-dark .tw-stats .locked, #workskin .tw-reply.theme-dark .tw-stats .locked, #workskin .tw-thread.theme-dark .tw-stats .locked { color: #3a3b3e; }
 #workskin .tw.theme-dark .ic.ic-tw-like, #workskin .tw-reply.theme-dark .ic.ic-tw-like, #workskin .tw-thread.theme-dark .ic.ic-tw-like { background-image: url(https://images.squidge.org/images/2026/11/15/heart-white.png); }
 #workskin .tw.theme-dark .ic.ic-tw-views, #workskin .tw-reply.theme-dark .ic.ic-tw-views, #workskin .tw-thread.theme-dark .ic.ic-tw-views { background-image: url(https://images.squidge.org/images/2026/11/17/views-white.png); }
 #workskin .tw.theme-dark .ic.ic-tw-bookmark, #workskin .tw-reply.theme-dark .ic.ic-tw-bookmark, #workskin .tw-thread.theme-dark .ic.ic-tw-bookmark { background-image: url(https://images.squidge.org/images/2026/11/15/bookmark-white.png); }
@@ -3556,8 +3556,8 @@
   #workskin .tw.theme-auto .ic.ic-tw-lock, #workskin .tw-reply.theme-auto .ic.ic-tw-lock, #workskin .tw-thread.theme-auto .ic.ic-tw-lock { background-image: url(https://images.squidge.org/images/2026/11/15/dc-lock-dark.png); }
   #workskin .tw.theme-auto .ic.ic-tw-reply, #workskin .tw-reply.theme-auto .ic.ic-tw-reply, #workskin .tw-thread.theme-auto .ic.ic-tw-reply { background-image: url(https://images.squidge.org/images/2026/11/15/comment-white.png); }
   #workskin .tw.theme-auto .ic.ic-tw-repost, #workskin .tw-reply.theme-auto .ic.ic-tw-repost, #workskin .tw-thread.theme-auto .ic.ic-tw-repost { background-image: url(https://images.squidge.org/images/2026/11/17/repost-tw-white.png); }
-  #workskin .tw.theme-auto .tw-stats .tw-locked .ic.ic-tw-repost, #workskin .tw-reply.theme-auto .tw-stats .tw-locked .ic.ic-tw-repost, #workskin .tw-thread.theme-auto .tw-stats .tw-locked .ic.ic-tw-repost { background-image: url(https://images.squidge.org/images/2026/11/17/repost-tw-faded-dark.png); }
-  #workskin .tw.theme-auto .tw-stats .tw-locked, #workskin .tw-reply.theme-auto .tw-stats .tw-locked, #workskin .tw-thread.theme-auto .tw-stats .tw-locked { color: #3a3b3e; }
+  #workskin .tw.theme-auto .tw-stats .locked .ic.ic-tw-repost, #workskin .tw-reply.theme-auto .tw-stats .locked .ic.ic-tw-repost, #workskin .tw-thread.theme-auto .tw-stats .locked .ic.ic-tw-repost { background-image: url(https://images.squidge.org/images/2026/11/17/repost-tw-faded-dark.png); }
+  #workskin .tw.theme-auto .tw-stats .locked, #workskin .tw-reply.theme-auto .tw-stats .locked, #workskin .tw-thread.theme-auto .tw-stats .locked { color: #3a3b3e; }
   #workskin .tw.theme-auto .ic.ic-tw-like, #workskin .tw-reply.theme-auto .ic.ic-tw-like, #workskin .tw-thread.theme-auto .ic.ic-tw-like { background-image: url(https://images.squidge.org/images/2026/11/15/heart-white.png); }
   #workskin .tw.theme-auto .ic.ic-tw-views, #workskin .tw-reply.theme-auto .ic.ic-tw-views, #workskin .tw-thread.theme-auto .ic.ic-tw-views { background-image: url(https://images.squidge.org/images/2026/11/17/views-white.png); }
   #workskin .tw.theme-auto .ic.ic-tw-bookmark, #workskin .tw-reply.theme-auto .ic.ic-tw-bookmark, #workskin .tw-thread.theme-auto .ic.ic-tw-bookmark { background-image: url(https://images.squidge.org/images/2026/11/15/bookmark-white.png); }
@@ -3565,10 +3565,10 @@
 }
 
 /* a red heart, a green repost and a blue bookmark for buttons the account has used, in every theme */
-#workskin .tw .tw-stats .tw-liked .ic.ic-tw-like, #workskin .tw-reply .tw-stats .tw-liked .ic.ic-tw-like, #workskin .tw .tw-stats .tw-tog[open] .ic.ic-tw-like, #workskin .tw-reply .tw-stats .tw-tog[open] .ic.ic-tw-like { background-image: url(https://images.squidge.org/images/2026/11/15/heart-filled-red.png); }
-#workskin .tw .tw-stats .tw-saved .ic.ic-tw-bookmark, #workskin .tw-reply .tw-stats .tw-saved .ic.ic-tw-bookmark, #workskin .tw .tw-stats .tw-tog[open] .ic.ic-tw-bookmark, #workskin .tw-reply .tw-stats .tw-tog[open] .ic.ic-tw-bookmark { background-image: url(https://images.squidge.org/images/2026/11/17/tw-bookmark-blue.png); }
-#workskin .tw .tw-stats .tw-rt .ic.ic-tw-repost, #workskin .tw-reply .tw-stats .tw-rt .ic.ic-tw-repost { background-image: url(https://images.squidge.org/images/2026/11/17/repost-tw-green.png); }
-#workskin .tw .tw-stats .tw-locked .ic.ic-tw-repost, #workskin .tw-reply .tw-stats .tw-locked .ic.ic-tw-repost { background-image: url(https://images.squidge.org/images/2026/11/17/repost-tw-faded-light.png); }
+#workskin .tw .tw-stats .liked .ic.ic-tw-like, #workskin .tw-reply .tw-stats .liked .ic.ic-tw-like, #workskin .tw .tw-stats .tw-tog[open] .ic.ic-tw-like, #workskin .tw-reply .tw-stats .tw-tog[open] .ic.ic-tw-like { background-image: url(https://images.squidge.org/images/2026/11/15/heart-filled-red.png); }
+#workskin .tw .tw-stats .saved .ic.ic-tw-bookmark, #workskin .tw-reply .tw-stats .saved .ic.ic-tw-bookmark, #workskin .tw .tw-stats .tw-tog[open] .ic.ic-tw-bookmark, #workskin .tw-reply .tw-stats .tw-tog[open] .ic.ic-tw-bookmark { background-image: url(https://images.squidge.org/images/2026/11/17/tw-bookmark-blue.png); }
+#workskin .tw .tw-stats .reposted .ic.ic-tw-repost, #workskin .tw-reply .tw-stats .reposted .ic.ic-tw-repost { background-image: url(https://images.squidge.org/images/2026/11/17/repost-tw-green.png); }
+#workskin .tw .tw-stats .locked .ic.ic-tw-repost, #workskin .tw-reply .tw-stats .locked .ic.ic-tw-repost { background-image: url(https://images.squidge.org/images/2026/11/17/repost-tw-faded-light.png); }
 
 /* a voice note you sent sits in a blue bubble, so its play button is always white */
 #workskin .twdm .msg.out .ic.ic-play { background-image: url(https://images.squidge.org/images/2026/11/15/play-white.png); }
@@ -3632,7 +3632,7 @@
 /* AO3 turns line breaks in your code into <br> tags: hide them in the rows */
 #workskin .twc12 .tw-top br,
 #workskin .twc12 .tw-stats br,
-#workskin .twc12-feed .twc-bar br,
+#workskin .twc12-feed .twc-apptop br,
 #workskin .twc12-feed .tw-nav br { display: none; }
 
 /* the name line: picture, name and @handle, with the time in the top right corner.
@@ -3720,10 +3720,10 @@
 /* the grey "Details" under a tweet: <p class="tw-details">Details</p> */
 #workskin .twc12 .tw-details { display: block; margin: 0.15em 0 0 0; color: #8899a6; font-size: 0.8em; }
 
-/* a picture in a tweet: <p class="tw-media"><img src="..." alt="..."></p> */
-#workskin .twc12 .tw-media { display: block; margin: 0.5em 0 0.3em 0; }
+/* a picture in a tweet: <p class="tw-photos"><img src="..." alt="..."></p> */
+#workskin .twc12 .tw-photos { display: block; margin: 0.5em 0 0.3em 0; }
 
-#workskin .twc12 .tw-media img {
+#workskin .twc12 .tw-photos img {
   display: block;
   max-width: 100%;
   height: auto;
@@ -3760,11 +3760,11 @@
 
 #workskin .twc12 .tw-tog[open] .off { display: none; }
 
-/* a gold star and a green retweet for buttons the account has used: add tw-liked or tw-rt to the tw-stat */
-#workskin .twc12 .tw-stats .tw-liked,
+/* a gold star and a green retweet for buttons the account has used: add liked or reposted to the tw-stat */
+#workskin .twc12 .tw-stats .liked,
 #workskin .twc12 .tw-stats .tw-tog[open] { color: #ffac33; }
 
-#workskin .twc12 .tw-stats .tw-rt { color: #5c913b; }
+#workskin .twc12 .tw-stats .reposted { color: #5c913b; }
 
 /* ---------- Classic Twitter 2012-15: an opened tweet ---------- */
 #workskin .twc12.big { padding: 0.8em 0.8em 0 0.8em; }
@@ -3865,8 +3865,8 @@
 }
 
 /* the blue bar along the top: a back arrow or the page's buttons, the page name in the middle, search and write a tweet on the right.
-   <p class="twc-bar"><span class="ic ic-back">&#8592;</span><span class="twc-title">Tweet</span><span class="ic ic-x-search">&#128269;</span><span class="ic ic-tw-compose">&#9998;</span></p> */
-#workskin .twc12-feed .twc-bar {
+   <p class="twc-apptop"><span class="ic ic-back">&#8592;</span><span class="twc-title">Tweet</span><span class="ic ic-x-search">&#128269;</span><span class="ic ic-tw-compose">&#9998;</span></p> */
+#workskin .twc12-feed .twc-apptop {
   display: flex;
   position: sticky;
   top: 0;
@@ -3892,11 +3892,11 @@
   font-size: 1.15em;
 }
 
-#workskin .twc12-feed .twc-bar .ic { flex: none; width: 1.4em; height: 1.4em; }
+#workskin .twc12-feed .twc-apptop .ic { flex: none; width: 1.4em; height: 1.4em; }
 
 #workskin .twc12-feed .twc-title + .ic { margin-left: auto; }
 
-#workskin .twc12-feed .twc-bar .ic + .ic { margin-left: 0.8em; }
+#workskin .twc12-feed .twc-apptop .ic + .ic { margin-left: 0.8em; }
 
 /* the black row of buttons along the bottom, each with its name under it. "on" lights up the page you're on.
    <p class="tw-nav"><span class="tw-tab on"><span class="ic ic-x-home-filled">&#8962;</span> Home</span> <span class="tw-tab"><span class="ic ic-tw-at">@</span> Connect</span> <span class="tw-tab"><span class="ic ic-tw-hash">#</span> Discover</span> <span class="tw-tab"><span class="ic ic-tw-me">&#9786;</span> Me</span></p> */
@@ -3959,10 +3959,10 @@
 #workskin .twc12 .ic.ic-tw-repost { background-image: url(https://images.squidge.org/images/2026/11/19/tw12-retweet-grey.png); }
 #workskin .twc12 .ic.ic-tw-like { background-image: url(https://images.squidge.org/images/2026/11/19/tw12-star-grey.png); }
 #workskin .twc12 .ic.ic-tw-share { background-image: url(https://images.squidge.org/images/2026/11/19/tw12-more-grey.png); }
-#workskin .twc12-feed .twc-bar .ic.ic-back { background-image: url(https://images.squidge.org/images/2026/11/19/tw12-back-white.png); }
-#workskin .twc12-feed .twc-bar .ic.ic-x-search { background-image: url(https://images.squidge.org/images/2026/11/19/tw12-search-white.png); }
-#workskin .twc12-feed .twc-bar .ic.ic-tw-compose { background-image: url(https://images.squidge.org/images/2026/11/19/tw12-compose-white.png); }
-#workskin .twc12-feed .twc-bar .ic.ic-tw-me { background-image: url(https://images.squidge.org/images/2026/11/19/tw12-me-white.png); }
+#workskin .twc12-feed .twc-apptop .ic.ic-back { background-image: url(https://images.squidge.org/images/2026/11/19/tw12-back-white.png); }
+#workskin .twc12-feed .twc-apptop .ic.ic-x-search { background-image: url(https://images.squidge.org/images/2026/11/19/tw12-search-white.png); }
+#workskin .twc12-feed .twc-apptop .ic.ic-tw-compose { background-image: url(https://images.squidge.org/images/2026/11/19/tw12-compose-white.png); }
+#workskin .twc12-feed .twc-apptop .ic.ic-tw-me { background-image: url(https://images.squidge.org/images/2026/11/19/tw12-me-white.png); }
 #workskin .twc12-feed .tw-nav .ic.ic-x-home-filled { background-image: url(https://images.squidge.org/images/2026/11/19/tw12-home-grey.png); }
 #workskin .twc12-feed .tw-nav .ic.ic-tw-at { background-image: url(https://images.squidge.org/images/2026/11/19/tw12-at-grey.png); }
 #workskin .twc12-feed .tw-nav .ic.ic-tw-hash { background-image: url(https://images.squidge.org/images/2026/11/19/tw12-hash-grey.png); }
@@ -3975,8 +3975,8 @@
 #workskin .twc12-feed .tw-nav .on .ic.ic-tw-me { background-image: url(https://images.squidge.org/images/2026/11/19/tw12-me-blue.png); }
 
 /* a gold star and a green retweet for buttons the account has used */
-#workskin .twc12 .tw-stats .tw-liked .ic.ic-tw-like, #workskin .twc12 .tw-stats .tw-tog[open] .ic.ic-tw-like { background-image: url(https://images.squidge.org/images/2026/11/19/tw12-star-gold.png); }
-#workskin .twc12 .tw-stats .tw-rt .ic.ic-tw-repost { background-image: url(https://images.squidge.org/images/2026/11/19/tw12-retweet-green.png); }
+#workskin .twc12 .tw-stats .liked .ic.ic-tw-like, #workskin .twc12 .tw-stats .tw-tog[open] .ic.ic-tw-like { background-image: url(https://images.squidge.org/images/2026/11/19/tw12-star-gold.png); }
+#workskin .twc12 .tw-stats .reposted .ic.ic-tw-repost { background-image: url(https://images.squidge.org/images/2026/11/19/tw12-retweet-green.png); }
 
 /* <<<<<<<<<< MODULE: Classic Twitter 2012-15 (end) <<<<<<<<<< */
 
@@ -3998,7 +3998,7 @@
 /* AO3 turns line breaks in your code into <br> tags: hide them in the rows */
 #workskin .twc16 .tw-top br,
 #workskin .twc16 .tw-stats br,
-#workskin .twc16-feed .twc-bar br,
+#workskin .twc16-feed .twc-apptop br,
 #workskin .twc16-feed .tw-nav br { display: none; }
 
 /* "Shane Retweeted" or "Rose liked" above a tweet:
@@ -4014,7 +4014,7 @@
 #workskin .twc16 .tw-label .ic { width: 1.1em; height: 1.1em; margin-right: 0.3em; vertical-align: -0.2em; }
 
 /* the name line: picture, name, @handle and time, all on one line, and the little grey arrow in the corner.
-   <p class="tw-top"><span class="tw-pfp">...</span><span class="hide"> </span><span class="tw-name">Name</span> <span class="tw-handle">@handle</span> <span class="tw-time">· 3h</span> <span class="tw-more ic ic-dropdown">&#8964;</span></p> */
+   <p class="tw-top"><span class="tw-pfp">...</span><span class="hide"> </span><span class="tw-name">Name</span> <span class="tw-handle">@handle</span> <span class="tw-time">· 3h</span> <span class="tw-menu ic ic-dropdown">&#8964;</span></p> */
 #workskin .twc16 .tw-top {
   display: block;
   margin: 0;
@@ -4051,7 +4051,7 @@
 
 #workskin .twc16 .tw-time { flex: none; margin-left: 0.25em; }
 
-#workskin .twc16 .tw-more { position: absolute; top: 0.8em; right: 1em; opacity: 0.45; }
+#workskin .twc16 .tw-menu { position: absolute; top: 0.8em; right: 1em; opacity: 0.45; }
 
 /* the picture: a circle. Initials, a picture tag in a pfp span, or a profile. */
 #workskin .twc16 .tw-pfp {
@@ -4101,10 +4101,10 @@
 
 #workskin .twc16 .tw-quote .tw-text.tw-text.tw-text { margin: 0.15em 0 0 0; font-size: 1em; line-height: 1.35; }
 
-/* a picture in a tweet: <p class="tw-media"><img src="..." alt="..."></p> */
-#workskin .twc16 .tw-media { display: block; margin: 0.5em 0; }
+/* a picture in a tweet: <p class="tw-photos"><img src="..." alt="..."></p> */
+#workskin .twc16 .tw-photos { display: block; margin: 0.5em 0; }
 
-#workskin .twc16 .tw-media img {
+#workskin .twc16 .tw-photos img {
   display: block;
   max-width: 100%;
   height: auto;
@@ -4144,15 +4144,15 @@
 
 #workskin .twc16 .tw-tog[open] .off { display: none; }
 
-/* a red heart and a green retweet for buttons the account has used: add tw-liked or tw-rt to the tw-stat */
-#workskin .twc16 .tw-stats .tw-liked,
+/* a red heart and a green retweet for buttons the account has used: add liked or reposted to the tw-stat */
+#workskin .twc16 .tw-stats .liked,
 #workskin .twc16 .tw-stats .tw-tog[open] { color: #e0245e; }
 
-#workskin .twc16 .tw-stats .tw-rt { color: #17bf63; }
+#workskin .twc16 .tw-stats .reposted { color: #17bf63; }
 
-#workskin .twc16 .tw-stats .tw-liked .ic,
+#workskin .twc16 .tw-stats .liked .ic,
 #workskin .twc16 .tw-stats .tw-tog[open] .ic,
-#workskin .twc16 .tw-stats .tw-rt .ic { opacity: 1; }
+#workskin .twc16 .tw-stats .reposted .ic { opacity: 1; }
 
 /* ---------- Classic Twitter 2016-19: conversations ----------
    Add "link" to a tweet in a timeline, and a grey line joins its picture to the next tweet's. */
@@ -4249,8 +4249,8 @@
 }
 
 /* the bar along the top: your own picture (or a back arrow) on the left, the page name in the middle.
-   <p class="twc-bar"><span class="tw-me"><span class="pfp pfp-name"></span></span><span class="twc-title">Home</span></p> */
-#workskin .twc16-feed .twc-bar {
+   <p class="twc-apptop"><span class="tw-me"><span class="pfp pfp-name"></span></span><span class="twc-title">Home</span></p> */
+#workskin .twc16-feed .twc-apptop {
   display: flex;
   position: sticky;
   top: 0;
@@ -4281,7 +4281,7 @@
   font-size: 1.1em;
 }
 
-#workskin .twc16-feed .twc-bar .ic { flex: none; width: 1.4em; height: 1.4em; }
+#workskin .twc16-feed .twc-apptop .ic { flex: none; width: 1.4em; height: 1.4em; }
 
 #workskin .twc16-feed .twc-title + .ic { margin-left: auto; }
 
@@ -4322,8 +4322,8 @@
 
 #workskin .twc16-feed .tw-nav .on { opacity: 1; }
 
-/* a blue number on a button, like new notifications: wrap the icon and the number in a tw-badged span. */
-#workskin .twc16-feed .tw-nav .tw-badged { position: relative; display: block; line-height: 1; }
+/* a blue number on a button, like new notifications: wrap the icon and the number in a badged span. */
+#workskin .twc16-feed .tw-nav .badged { position: relative; display: block; line-height: 1; }
 
 #workskin .twc16-feed .tw-nav .tw-badge {
   position: absolute;
@@ -4353,7 +4353,7 @@
 #workskin .twc16.theme-dark,
 #workskin .twc16-feed.theme-dark,
 #workskin .twc16-feed.theme-dark .twc16,
-#workskin .twc16-feed.theme-dark .twc-bar,
+#workskin .twc16-feed.theme-dark .twc-apptop,
 #workskin .twc16-feed.theme-dark .tw-nav {
   background: #15202b;
   color: #ffffff;
@@ -4377,8 +4377,8 @@
   color: #8899a6;
 }
 
-#workskin .twc16.theme-dark .tw-media img,
-#workskin .twc16-feed.theme-dark .tw-media img,
+#workskin .twc16.theme-dark .tw-photos img,
+#workskin .twc16-feed.theme-dark .tw-photos img,
 #workskin .twc16.theme-dark .tw-counts,
 #workskin .twc16-feed.theme-dark .tw-counts,
 #workskin .twc16.theme-dark .tw-quote,
@@ -4402,7 +4402,7 @@
   #workskin .twc16.theme-auto,
   #workskin .twc16-feed.theme-auto,
   #workskin .twc16-feed.theme-auto .twc16,
-  #workskin .twc16-feed.theme-auto .twc-bar,
+  #workskin .twc16-feed.theme-auto .twc-apptop,
   #workskin .twc16-feed.theme-auto .tw-nav {
     background: #15202b;
     color: #ffffff;
@@ -4426,8 +4426,8 @@
     color: #8899a6;
   }
 
-  #workskin .twc16.theme-auto .tw-media img,
-  #workskin .twc16-feed.theme-auto .tw-media img,
+  #workskin .twc16.theme-auto .tw-photos img,
+  #workskin .twc16-feed.theme-auto .tw-photos img,
   #workskin .twc16.theme-auto .tw-counts,
   #workskin .twc16-feed.theme-auto .tw-counts,
   #workskin .twc16.theme-auto .tw-quote,
@@ -4504,8 +4504,8 @@
 }
 
 /* a red heart and a green retweet for buttons the account has used, in every theme */
-#workskin .twc16 .tw-stats .tw-liked .ic.ic-tw-like, #workskin .twc16 .tw-stats .tw-tog[open] .ic.ic-tw-like { background-image: url(https://images.squidge.org/images/2026/11/15/heart-filled-red.png); }
-#workskin .twc16 .tw-stats .tw-rt .ic.ic-tw-repost { background-image: url(https://images.squidge.org/images/2026/11/17/repost-tw-green.png); }
+#workskin .twc16 .tw-stats .liked .ic.ic-tw-like, #workskin .twc16 .tw-stats .tw-tog[open] .ic.ic-tw-like { background-image: url(https://images.squidge.org/images/2026/11/15/heart-filled-red.png); }
+#workskin .twc16 .tw-stats .reposted .ic.ic-tw-repost { background-image: url(https://images.squidge.org/images/2026/11/17/repost-tw-green.png); }
 
 /* <<<<<<<<<< MODULE: Classic Twitter 2016-19 (end) <<<<<<<<<< */
 /* >>>>>>>>>> MODULE: Instagram (posts, comments, DMs) (start) >>>>>>>>>> */
@@ -4551,11 +4551,11 @@
 
 #workskin .ig .ig-photo img, #workskin .igdm .igdm-post .ig-photo img { display: block; width: 100%; height: auto; }
 
-/* photo shapes, cut to fit. Add ig-pic-sq for a square photo, how Instagram used to be, or ig-pic-portrait for a tall one (3 wide by 4 high), how it is now, nearly filling the phone */
-#workskin .ig .ig-photo.ig-pic-sq,
-#workskin .igdm .igdm-post .ig-photo.ig-pic-sq,
-#workskin .ig .ig-photo.ig-pic-portrait,
-#workskin .igdm .igdm-post .ig-photo.ig-pic-portrait {
+/* photo shapes, cut to fit. Add square for a square photo, how Instagram used to be, or portrait for a tall one (3 wide by 4 high), how it is now, nearly filling the phone */
+#workskin .ig .ig-photo.square,
+#workskin .igdm .igdm-post .ig-photo.square,
+#workskin .ig .ig-photo.portrait,
+#workskin .igdm .igdm-post .ig-photo.portrait {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -4563,14 +4563,14 @@
   overflow: hidden;
 }
 
-#workskin .ig .ig-photo.ig-pic-sq, #workskin .igdm .igdm-post .ig-photo.ig-pic-sq { aspect-ratio: 1; }
+#workskin .ig .ig-photo.square, #workskin .igdm .igdm-post .ig-photo.square { aspect-ratio: 1; }
 
-#workskin .ig .ig-photo.ig-pic-portrait, #workskin .igdm .igdm-post .ig-photo.ig-pic-portrait { aspect-ratio: 0.75; }
+#workskin .ig .ig-photo.portrait, #workskin .igdm .igdm-post .ig-photo.portrait { aspect-ratio: 0.75; }
 
-#workskin .ig .ig-photo.ig-pic-sq img,
-#workskin .igdm .igdm-post .ig-photo.ig-pic-sq img,
-#workskin .ig .ig-photo.ig-pic-portrait img,
-#workskin .igdm .igdm-post .ig-photo.ig-pic-portrait img {
+#workskin .ig .ig-photo.square img,
+#workskin .igdm .igdm-post .ig-photo.square img,
+#workskin .ig .ig-photo.portrait img,
+#workskin .igdm .igdm-post .ig-photo.portrait img {
   position: absolute;
   top: 50%;
   left: 0;
@@ -4580,10 +4580,10 @@
   transform: translateY(-50%);
 }
 
-#workskin .ig .ig-photo.ig-pic-sq img.land,
-#workskin .igdm .igdm-post .ig-photo.ig-pic-sq img.land,
-#workskin .ig .ig-photo.ig-pic-portrait img.land,
-#workskin .igdm .igdm-post .ig-photo.ig-pic-portrait img.land {
+#workskin .ig .ig-photo.square img.landscape,
+#workskin .igdm .igdm-post .ig-photo.square img.landscape,
+#workskin .ig .ig-photo.portrait img.landscape,
+#workskin .igdm .igdm-post .ig-photo.portrait img.landscape {
   top: 0;
   left: 50%;
   width: auto;
@@ -4620,7 +4620,7 @@
   line-height: 1;
 }
 
-#workskin .ig .ig-actions {
+#workskin .ig .ig-stats {
   display: block;
   overflow: hidden;
   padding: 0.6em 0.9em 0.1em 0.9em;
@@ -4639,7 +4639,7 @@
 
 #workskin .ig .ig-comment { display: block; padding: 0.1em 0.9em; }
 
-#workskin .ig .ig-tag { color: #00376b; }
+#workskin .ig .ig-link { color: #00376b; }
 
 /* a long caption cut short, ending in a grey "more": put "... " and <span class="ig-more">more</span> at the end */
 #workskin .ig .ig-more { color: #737373; }
@@ -4785,7 +4785,7 @@
 }
 
 /* after a carousel, hop over the dots so the icon still sits on the photo */
-#workskin .ig .ig-car + .ig-tagged summary { margin: -60px 0 34px 10px; }
+#workskin .ig .ig-carousel + .ig-tagged summary { margin: -60px 0 34px 10px; }
 
 #workskin .ig .ig-tagged summary::-webkit-details-marker { display: none; }
 
@@ -4901,9 +4901,9 @@
 
 #workskin .ig .ig-person .handle { display: inline-block; padding-top: 0.2em; }
 
-#workskin .ig .ig-person .ig-pname { display: block; font-weight: normal; color: #737373; }
+#workskin .ig .ig-person .ig-person-name { display: block; font-weight: normal; color: #737373; }
 
-#workskin .ig .ig-person .ig-fbtn {
+#workskin .ig .ig-person .ig-following {
   float: right;
   margin: 0.4em 0 0 0.6em;
   padding: 0.35em 1.1em;
@@ -4913,11 +4913,11 @@
   font-size: 0.9em;
 }
 
-#workskin .ig .ig-person .ig-fbtn.blue { background: #0095f6; color: #ffffff; }
+#workskin .ig .ig-person .ig-following.blue { background: #0095f6; color: #ffffff; }
 
 /* ---- CAROUSEL: a post with more than one photo ---- */
-#workskin .ig .ig-car,
-#workskin .igdm .igdm-post .ig-car {
+#workskin .ig .ig-carousel,
+#workskin .igdm .igdm-post .ig-carousel {
   display: block;
   position: relative;
   z-index: 0;
@@ -4926,10 +4926,10 @@
 }
 
 /* the details and summaries take no space themselves */
-#workskin .ig .ig-car details,
-#workskin .igdm .igdm-post .ig-car details,
-#workskin .ig .ig-car summary,
-#workskin .igdm .igdm-post .ig-car summary {
+#workskin .ig .ig-carousel details,
+#workskin .igdm .igdm-post .ig-carousel details,
+#workskin .ig .ig-carousel summary,
+#workskin .igdm .igdm-post .ig-carousel summary {
   display: block;
   margin: 0;
   padding: 0;
@@ -4938,16 +4938,16 @@
   list-style: none;
 }
 
-#workskin .ig .ig-car summary::-webkit-details-marker, #workskin .igdm .igdm-post .ig-car summary::-webkit-details-marker { display: none; }
-#workskin .ig .ig-car summary::marker, #workskin .igdm .igdm-post .ig-car summary::marker { content: ""; }
+#workskin .ig .ig-carousel summary::-webkit-details-marker, #workskin .igdm .igdm-post .ig-carousel summary::-webkit-details-marker { display: none; }
+#workskin .ig .ig-carousel summary::marker, #workskin .igdm .igdm-post .ig-carousel summary::marker { content: ""; }
 
 /* room at the sides of a described photo, so the words don't run under the arrows */
-#workskin .ig .ig-car .ig-photo, #workskin .igdm .igdm-post .ig-car .ig-photo { padding-left: 44px; padding-right: 44px; }
-#workskin .ig .ig-car .ig-photo.real, #workskin .igdm .igdm-post .ig-car .ig-photo.real { padding: 0; }
+#workskin .ig .ig-carousel .ig-photo, #workskin .igdm .igdm-post .ig-carousel .ig-photo { padding-left: 44px; padding-right: 44px; }
+#workskin .ig .ig-carousel .ig-photo.real, #workskin .igdm .igdm-post .ig-carousel .ig-photo.real { padding: 0; }
 
 /* every photo after the first waits just off the right-hand edge */
-#workskin .ig .ig-car summary .ig-photo,
-#workskin .igdm .igdm-post .ig-car summary .ig-photo {
+#workskin .ig .ig-carousel summary .ig-photo,
+#workskin .igdm .igdm-post .ig-carousel summary .ig-photo {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -4963,14 +4963,14 @@
   transition: left 0.35s ease;
 }
 
-#workskin .ig .ig-car summary .ig-photo.real, #workskin .igdm .igdm-post .ig-car summary .ig-photo.real { display: block; }
+#workskin .ig .ig-carousel summary .ig-photo.real, #workskin .igdm .igdm-post .ig-carousel summary .ig-photo.real { display: block; }
 
 /* tapped: it slides in over the photo before it (and back out again when closed) */
-#workskin .ig .ig-car .ig-next[open] > summary .ig-photo, #workskin .igdm .igdm-post .ig-car .ig-next[open] > summary .ig-photo { left: 0; }
+#workskin .ig .ig-carousel .ig-next[open] > summary .ig-photo, #workskin .igdm .igdm-post .ig-carousel .ig-next[open] > summary .ig-photo { left: 0; }
 
 /* the arrows */
-#workskin .ig .ig-car .ig-next > summary::before,
-#workskin .igdm .igdm-post .ig-car .ig-next > summary::before {
+#workskin .ig .ig-carousel .ig-next > summary::before,
+#workskin .igdm .igdm-post .ig-carousel .ig-next > summary::before {
   content: "›";
   display: flex;
   align-items: center;
@@ -4996,8 +4996,8 @@
 }
 
 /* once tapped, the same arrow moves left and points back */
-#workskin .ig .ig-car .ig-next[open] > summary::before,
-#workskin .igdm .igdm-post .ig-car .ig-next[open] > summary::before {
+#workskin .ig .ig-carousel .ig-next[open] > summary::before,
+#workskin .igdm .igdm-post .ig-carousel .ig-next[open] > summary::before {
   content: "‹";
   right: auto;
   left: 10px;
@@ -5005,8 +5005,8 @@
 }
 
 /* the counter and dots for each photo, lying over it */
-#workskin .ig .ig-car .ig-car-info,
-#workskin .igdm .igdm-post .ig-car .ig-car-info {
+#workskin .ig .ig-carousel .ig-carousel-info,
+#workskin .igdm .igdm-post .ig-carousel .ig-carousel-info {
   display: block;
   position: absolute;
   top: 0;
@@ -5017,9 +5017,9 @@
   z-index: 1;
 }
 
-/* the "2/3" counter at the top right: <span class="ig-car-n">2/3</span> */
-#workskin .ig .ig-car .ig-car-n,
-#workskin .igdm .igdm-post .ig-car .ig-car-n {
+/* the "2/3" counter at the top right: <span class="ig-carousel-count">2/3</span> */
+#workskin .ig .ig-carousel .ig-carousel-count,
+#workskin .igdm .igdm-post .ig-carousel .ig-carousel-count {
   display: block;
   position: absolute;
   top: 10px;
@@ -5034,8 +5034,8 @@
 }
 
 /* the dots under the photo, the one you're on in */
-#workskin .ig .ig-car .ig-car-dots,
-#workskin .igdm .igdm-post .ig-car .ig-car-dots {
+#workskin .ig .ig-carousel .ig-carousel-dots,
+#workskin .igdm .igdm-post .ig-carousel .ig-carousel-dots {
   display: block;
   position: absolute;
   bottom: 3px;
@@ -5048,19 +5048,19 @@
   letter-spacing: 2px;
 }
 
-#workskin .ig .ig-car .ig-car-dots b, #workskin .igdm .igdm-post .ig-car .ig-car-dots b { color: #0095f6; font-weight: normal; }
+#workskin .ig .ig-carousel .ig-carousel-dots b, #workskin .igdm .igdm-post .ig-carousel .ig-carousel-dots b { color: #0095f6; font-weight: normal; }
 
-/* ---- the row of buttons with counts: <div class="ig-actions"> holding any of these ---- */
-#workskin .ig .ig-actions br { display: none; }
+/* ---- the row of buttons with counts: <div class="ig-stats"> holding any of these ---- */
+#workskin .ig .ig-stats br { display: none; }
 
 /* AO3 sometimes wraps loose bits in a <p>; keep those from breaking the row */
-#workskin .ig .ig-actions p:not(.ig-btn) {
+#workskin .ig .ig-stats p:not(.ig-stat) {
   display: inline;
   margin: 0;
   padding: 0;
 }
 
-#workskin .ig .ig-btn,
+#workskin .ig .ig-stat,
 #workskin .ig .ig-tog {
   display: inline-block;
   margin: 0 0.9em 0 0;
@@ -5068,12 +5068,12 @@
   vertical-align: middle;
 }
 
-#workskin .ig .ig-actions .ig-icon {
+#workskin .ig .ig-stats .ig-icon {
   font-size: 1.25em;
   vertical-align: middle;
 }
 
-#workskin .ig .ig-actions .ig-count {
+#workskin .ig .ig-stats .ig-count {
   margin-left: 0.35em;
   font-size: 0.8em;
   font-weight: bold;
@@ -5096,7 +5096,7 @@
 
 #workskin .ig .ig-tog[open] .on { display: inline; }
 
-#workskin .ig .ig-tog[open] .bm.on { display: inline-block; }
+#workskin .ig .ig-tog[open] .bookmark.on { display: inline-block; }
 
 #workskin .ig .ig-tog[open] .off { display: none; }
 
@@ -5109,8 +5109,8 @@
 /* a liked heart is red */
 #workskin .ig .ig-tog.like .on.ig-icon { color: #ed4956; }
 
-/* a bookmark drawn with CSS: <span class="ig-icon bm off"></span> (outline) and <span class="ig-icon bm on"></span> (filled) */
-#workskin .ig .bm {
+/* a bookmark drawn with CSS: <span class="ig-icon bookmark off"></span> (outline) and <span class="ig-icon bookmark on"></span> (filled) */
+#workskin .ig .bookmark {
   display: inline-block;
   position: relative;
   box-sizing: border-box;
@@ -5121,7 +5121,7 @@
   vertical-align: middle;
 }
 
-#workskin .ig .bm::after {
+#workskin .ig .bookmark::after {
   content: "";
   position: absolute;
   left: 50%;
@@ -5136,10 +5136,10 @@
   transform: rotate(45deg);
 }
 
-#workskin .ig .bm.on { background: currentColor; }
+#workskin .ig .bookmark.on { background: currentColor; }
 
-/* a comment bubble drawn with CSS: <span class="ig-icon cm"></span> */
-#workskin .ig .cm {
+/* a comment bubble drawn with CSS: <span class="ig-icon comment"></span> */
+#workskin .ig .comment {
   display: inline-block;
   box-sizing: border-box;
   width: 18px;
@@ -5150,7 +5150,7 @@
   vertical-align: middle;
 }
 
-#workskin .ig .bm.on::after {
+#workskin .ig .bookmark.on::after {
   border: 0;
   background: #ffffff;
 }
@@ -5549,7 +5549,7 @@
   text-align: center;
 }
 
-#workskin .igdm .igdm-post-cap {
+#workskin .igdm .igdm-post-caption {
   display: block;
   max-height: 2.7em;
   margin: 0.55em 0.9em 0.65em 0.9em;
@@ -5558,7 +5558,7 @@
   line-height: 1.35;
 }
 
-#workskin .igdm .igdm-post-cap b { font-weight: bold; }
+#workskin .igdm .igdm-post-caption b { font-weight: bold; }
 
 /* the round share and save buttons floating beside the card, halfway down */
 #workskin .igdm .igdm-post-btns {
@@ -5619,13 +5619,13 @@
 
 #workskin .igdm .igdm-post.reel .igdm-post-img.text { padding: 1em; color: #a8a8a8; }
 
-#workskin .igdm .igdm-post.reel .igdm-post-cap + .igdm-post-img,
+#workskin .igdm .igdm-post.reel .igdm-post-caption + .igdm-post-img,
 #workskin .igdm .igdm-post.reel .igdm-post-img:not(:last-of-type) { border-radius: 18px 18px 0 0; }
 
-#workskin .igdm .igdm-post.reel .igdm-post-cap { color: #f5f5f5; }
+#workskin .igdm .igdm-post.reel .igdm-post-caption { color: #f5f5f5; }
 
-/* a picture wider than it is tall: add class="land" to the img and it fills the height instead */
-#workskin .igdm .igdm-post.reel .igdm-post-img img.land { width: auto; height: 100%; max-width: none; }
+/* a picture wider than it is tall: add class="landscape" to the img and it fills the height instead */
+#workskin .igdm .igdm-post.reel .igdm-post-img img.landscape { width: auto; height: 100%; max-width: none; }
 
 /* the play button in the middle and the reel sign in the bottom corner */
 #workskin .igdm .igdm-post.reel .igdm-post-img::before,
@@ -5906,7 +5906,7 @@
 }
 
 /* the little red dot on the heart: leave it out when there's nothing new */
-#workskin .ig .ig-dot {
+#workskin .ig .ig-badge {
   flex: none;
   width: 0.42em;
   height: 0.42em;
@@ -5980,7 +5980,7 @@
 #workskin .ig .ig-story.me::before { background-image: none; background-color: #dbdbdb; }
 
 /* the name under each circle, cut off with "..." if it's too long */
-#workskin .ig .ig-sname {
+#workskin .ig .ig-story-name {
   display: block;
   margin-top: 0.3em;
   overflow: hidden;
@@ -5990,7 +5990,7 @@
 }
 
 /* your own circle comes first, with "me": it gets the + badge, and grey words */
-#workskin .ig .ig-story.me .ig-sname { color: #737373; }
+#workskin .ig .ig-story.me .ig-story-name { color: #737373; }
 
 #workskin .ig .ig-story.me::after {
   content: "+";
@@ -6025,7 +6025,7 @@
 
 #workskin .ig.theme-dark .ig-photo, #workskin .igdm.theme-dark .igdm-post .ig-photo { background: #1c1c1c; color: #a8a8a8; border-bottom-color: #262626; }
 
-#workskin .ig.theme-dark .ig-tag { color: #e0f1ff; }
+#workskin .ig.theme-dark .ig-link { color: #e0f1ff; }
 
 #workskin .ig.theme-dark .ig-more { color: #a8a8a8; }
 
@@ -6039,14 +6039,14 @@
 #workskin .ig.theme-dark .ig-sheet { background: #262626; }
 #workskin .ig.theme-dark .ig-tagged[open] summary { border-bottom-color: #363636; background: #262626; }
 #workskin .ig.theme-dark .ig-tagged[open] summary::before { background: #555555; }
-#workskin .ig.theme-dark .ig-person .ig-pname { color: #a8a8a8; }
-#workskin .ig.theme-dark .ig-person .ig-fbtn { background: #363636; color: #f5f5f5; }
-#workskin .ig.theme-dark .ig-person .ig-fbtn.blue { background: #0095f6; color: #ffffff; }
-#workskin .ig.theme-dark .ig-car .ig-car-dots, #workskin .igdm.theme-dark .igdm-post .ig-car .ig-car-dots { color: #555555; }
+#workskin .ig.theme-dark .ig-person .ig-person-name { color: #a8a8a8; }
+#workskin .ig.theme-dark .ig-person .ig-following { background: #363636; color: #f5f5f5; }
+#workskin .ig.theme-dark .ig-person .ig-following.blue { background: #0095f6; color: #ffffff; }
+#workskin .ig.theme-dark .ig-carousel .ig-carousel-dots, #workskin .igdm.theme-dark .igdm-post .ig-carousel .ig-carousel-dots { color: #555555; }
 
 #workskin .ig.theme-dark .ig-tog.like .on.ig-icon { color: #ff3040; }
 
-#workskin .ig.theme-dark .bm.on::after { background: #0c1014; }
+#workskin .ig.theme-dark .bookmark.on::after { background: #0c1014; }
 
 #workskin .ig.theme-dark .ig-stories { border-bottom-color: #262626; }
 
@@ -6055,7 +6055,7 @@
 
 
 
-#workskin .ig.theme-dark .ig-story.me .ig-sname { color: #a8a8a8; }
+#workskin .ig.theme-dark .ig-story.me .ig-story-name { color: #a8a8a8; }
 
 #workskin .ig.theme-dark .ig-story.me::before { background-color: #737373; }
 
@@ -6117,7 +6117,7 @@
 
   #workskin .ig.theme-auto .ig-photo, #workskin .igdm.theme-auto .igdm-post .ig-photo { background: #1c1c1c; color: #a8a8a8; border-bottom-color: #262626; }
 
-  #workskin .ig.theme-auto .ig-tag { color: #e0f1ff; }
+  #workskin .ig.theme-auto .ig-link { color: #e0f1ff; }
 
   #workskin .ig.theme-auto .ig-more { color: #a8a8a8; }
 
@@ -6131,14 +6131,14 @@
   #workskin .ig.theme-auto .ig-sheet { background: #262626; }
   #workskin .ig.theme-auto .ig-tagged[open] summary { border-bottom-color: #363636; background: #262626; }
   #workskin .ig.theme-auto .ig-tagged[open] summary::before { background: #555555; }
-  #workskin .ig.theme-auto .ig-person .ig-pname { color: #a8a8a8; }
-  #workskin .ig.theme-auto .ig-person .ig-fbtn { background: #363636; color: #f5f5f5; }
-  #workskin .ig.theme-auto .ig-person .ig-fbtn.blue { background: #0095f6; color: #ffffff; }
-  #workskin .ig.theme-auto .ig-car .ig-car-dots, #workskin .igdm.theme-auto .igdm-post .ig-car .ig-car-dots { color: #555555; }
+  #workskin .ig.theme-auto .ig-person .ig-person-name { color: #a8a8a8; }
+  #workskin .ig.theme-auto .ig-person .ig-following { background: #363636; color: #f5f5f5; }
+  #workskin .ig.theme-auto .ig-person .ig-following.blue { background: #0095f6; color: #ffffff; }
+  #workskin .ig.theme-auto .ig-carousel .ig-carousel-dots, #workskin .igdm.theme-auto .igdm-post .ig-carousel .ig-carousel-dots { color: #555555; }
 
   #workskin .ig.theme-auto .ig-tog.like .on.ig-icon { color: #ff3040; }
 
-  #workskin .ig.theme-auto .bm.on::after { background: #0c1014; }
+  #workskin .ig.theme-auto .bookmark.on::after { background: #0c1014; }
 
   #workskin .ig.theme-auto .ig-stories { border-bottom-color: #262626; }
 
@@ -6147,7 +6147,7 @@
 
 
 
-  #workskin .ig.theme-auto .ig-story.me .ig-sname { color: #a8a8a8; }
+  #workskin .ig.theme-auto .ig-story.me .ig-story-name { color: #a8a8a8; }
 
   #workskin .ig.theme-auto .ig-story.me::before { background-color: #737373; }
 
@@ -6234,14 +6234,14 @@
   background-size: contain;
 }
 
-/* a private account's posts can't be reposted: add ig-locked to the repost's ig-btn to fade it out */
-#workskin .ig .ig-actions .ig-btn.ig-locked { opacity: 0.35; }
+/* a private account's posts can't be reposted: add locked to the repost's ig-stat to fade it out */
+#workskin .ig .ig-stats .ig-stat.locked { opacity: 0.35; }
 
 /* the liked heart shows when the button is clicked */
 #workskin .ig .ig-tog[open] .ic.on { display: inline-block; }
 
 /* the comment bubble and bookmark are pictures too, in place of the CSS drawings above */
-#workskin .ig .ig-icon.cm, #workskin .ig .ig-icon.bm {
+#workskin .ig .ig-icon.comment, #workskin .ig .ig-icon.bookmark {
   width: 1em;
   height: 1em;
   border: 0;
@@ -6251,7 +6251,7 @@
   background-position: center;
   background-size: contain;
 }
-#workskin .ig .ig-icon.bm::after { display: none; }
+#workskin .ig .ig-icon.bookmark::after { display: none; }
 
 #workskin .ig .ic.ic-more, #workskin .igdm .ic.ic-more { background-image: url(https://images.squidge.org/images/2026/11/15/menu-horizontal-black.png); }
 #workskin .ig .ic.ic-ig-lines { background-image: url(https://images.squidge.org/images/2026/11/19/ig-lines-black.png); }
@@ -6263,9 +6263,9 @@
 #workskin .igdm .ic.ic-phone { background-image: url(https://images.squidge.org/images/2026/11/15/phone-black.png); }
 #workskin .igdm .ic.ic-video { background-image: url(https://images.squidge.org/images/2026/11/15/video-black.png); }
 #workskin .igdm .ic.ic-mic { background-image: url(https://images.squidge.org/images/2026/11/15/mic-black.png); }
-#workskin .ig .ig-icon.cm { background-image: url(https://images.squidge.org/images/2026/11/15/comment-black.png); }
-#workskin .ig .ig-icon.bm { background-image: url(https://images.squidge.org/images/2026/11/15/bookmark-black.png); }
-#workskin .ig .ig-icon.bm.on { background-image: url(https://images.squidge.org/images/2026/11/15/bookmark-filled-black.png); }
+#workskin .ig .ig-icon.comment { background-image: url(https://images.squidge.org/images/2026/11/15/comment-black.png); }
+#workskin .ig .ig-icon.bookmark { background-image: url(https://images.squidge.org/images/2026/11/15/bookmark-black.png); }
+#workskin .ig .ig-icon.bookmark.on { background-image: url(https://images.squidge.org/images/2026/11/15/bookmark-filled-black.png); }
 #workskin .ig .ic.ic-verified, #workskin .igdm .ic.ic-verified { background-image: url(https://images.squidge.org/images/2026/11/15/verified-blue.png); }
 #workskin .ig .ic.ic-lock { background-image: url(https://images.squidge.org/images/2026/11/15/dc-lock-light.png); }
 #workskin .ig .ic.ic-heart-red, #workskin .igdm .ic.ic-heart-red { background-image: url(https://images.squidge.org/images/2026/11/15/heart-filled-red.png); }
@@ -6281,9 +6281,9 @@
 #workskin .igdm.theme-dark .ic.ic-phone { background-image: url(https://images.squidge.org/images/2026/11/15/phone-white.png); }
 #workskin .igdm.theme-dark .ic.ic-video { background-image: url(https://images.squidge.org/images/2026/11/15/video-white.png); }
 #workskin .igdm.theme-dark .ic.ic-mic { background-image: url(https://images.squidge.org/images/2026/11/15/mic-white.png); }
-#workskin .ig.theme-dark .ig-icon.cm { background-image: url(https://images.squidge.org/images/2026/11/15/comment-white.png); }
-#workskin .ig.theme-dark .ig-icon.bm { background-image: url(https://images.squidge.org/images/2026/11/15/bookmark-white.png); }
-#workskin .ig.theme-dark .ig-icon.bm.on { background-image: url(https://images.squidge.org/images/2026/11/15/bookmark-filled-white.png); }
+#workskin .ig.theme-dark .ig-icon.comment { background-image: url(https://images.squidge.org/images/2026/11/15/comment-white.png); }
+#workskin .ig.theme-dark .ig-icon.bookmark { background-image: url(https://images.squidge.org/images/2026/11/15/bookmark-white.png); }
+#workskin .ig.theme-dark .ig-icon.bookmark.on { background-image: url(https://images.squidge.org/images/2026/11/15/bookmark-filled-white.png); }
 #workskin .ig.theme-dark .ic.ic-lock { background-image: url(https://images.squidge.org/images/2026/11/15/dc-lock-dark.png); }
 
 /* Instagram icons, auto: dark when the reader's device is in dark mode */
@@ -6298,9 +6298,9 @@
   #workskin .igdm.theme-auto .ic.ic-phone { background-image: url(https://images.squidge.org/images/2026/11/15/phone-white.png); }
   #workskin .igdm.theme-auto .ic.ic-video { background-image: url(https://images.squidge.org/images/2026/11/15/video-white.png); }
   #workskin .igdm.theme-auto .ic.ic-mic { background-image: url(https://images.squidge.org/images/2026/11/15/mic-white.png); }
-  #workskin .ig.theme-auto .ig-icon.cm { background-image: url(https://images.squidge.org/images/2026/11/15/comment-white.png); }
-  #workskin .ig.theme-auto .ig-icon.bm { background-image: url(https://images.squidge.org/images/2026/11/15/bookmark-white.png); }
-  #workskin .ig.theme-auto .ig-icon.bm.on { background-image: url(https://images.squidge.org/images/2026/11/15/bookmark-filled-white.png); }
+  #workskin .ig.theme-auto .ig-icon.comment { background-image: url(https://images.squidge.org/images/2026/11/15/comment-white.png); }
+  #workskin .ig.theme-auto .ig-icon.bookmark { background-image: url(https://images.squidge.org/images/2026/11/15/bookmark-white.png); }
+  #workskin .ig.theme-auto .ig-icon.bookmark.on { background-image: url(https://images.squidge.org/images/2026/11/15/bookmark-filled-white.png); }
   #workskin .ig.theme-auto .ic.ic-lock { background-image: url(https://images.squidge.org/images/2026/11/15/dc-lock-dark.png); }
 }
 
@@ -6326,8 +6326,8 @@
 }
 
 /* Header row of a post or of one reblog: picture, name + small grey line, optional Follow, dots.
-   Use <div class="tb-header"> for the post, <div class="tb-blog"> inside each reblog. */
-#workskin .tb .tb-header,
+   Use <div class="tb-top"> for the post, <div class="tb-blog"> inside each reblog. */
+#workskin .tb .tb-top,
 #workskin .tb .tb-blog {
   display: block;
   overflow: hidden;
@@ -6336,20 +6336,20 @@
 }
 
 /* thin line under a post's header (the reblog headers sit inside the body and don't get one) */
-#workskin .tb .tb-header { padding-bottom: 0.8em; border-bottom: 1px solid #eeeeee; }
+#workskin .tb .tb-top { padding-bottom: 0.8em; border-bottom: 1px solid #eeeeee; }
 
 /* a reblog header is a paragraph inside the post body, so undo the body's paragraph spacing */
-#workskin .tb .tb-body .tb-blog { margin: 0; padding: 0.8em 0.9em 0.3em 0.9em; }
+#workskin .tb .tb-text .tb-blog { margin: 0; padding: 0.8em 0.9em 0.3em 0.9em; }
 
 /* AO3 turns line breaks in your HTML into <br /> tags: keep them out of the header rows and the counts row */
-#workskin .tb .tb-header br,
+#workskin .tb .tb-top br,
 #workskin .tb .tb-blog br,
-#workskin .tb .tb-footer br { display: none; }
+#workskin .tb .tb-stats br { display: none; }
 
 /* ...and the paragraph AO3 wraps around a header row's pieces */
-#workskin .tb .tb-header > p,
-#workskin .tb .tb-body .tb-blog > p,
-#workskin .tb .tb-footer > p { margin: 0; padding: 0; }
+#workskin .tb .tb-top > p,
+#workskin .tb .tb-text .tb-blog > p,
+#workskin .tb .tb-stats > p { margin: 0; padding: 0; }
 
 #workskin .tb .tb-name { display: block; min-height: 38px; margin-left: 48px; overflow: hidden; }
 
@@ -6386,7 +6386,7 @@
   font-weight: bold;
 }
 
-#workskin .tb .tb-pfp.rb::after {
+#workskin .tb .tb-pfp.reblog::after {
   content: '\21C4';
   position: absolute;
   right: -6px;
@@ -6483,9 +6483,9 @@
   font-size: 0.8em;
 }
 
-#workskin .tb .tb-body { display: block; padding: 0.3em 0 0.8em 0; }
+#workskin .tb .tb-text { display: block; padding: 0.3em 0 0.8em 0; }
 
-#workskin .tb .tb-body p { margin: 0.5em 0; padding: 0 0.9em; }
+#workskin .tb .tb-text p { margin: 0.5em 0; padding: 0 0.9em; }
 
 #workskin .tb :not(.pfp) > img {
   display: block;
@@ -6499,19 +6499,19 @@
 #workskin .tb .tb-photos { display: block; margin: 0.6em 0; }
 
 /* pictures at the very start of a post sit right up against the header */
-#workskin .tb .tb-body > .tb-photos:first-child,
+#workskin .tb .tb-text > .tb-photos:first-child,
 #workskin .tb .tb-reblog > .tb-blog + .tb-photos { margin-top: -0.3em; }
 
 /* a mention of another blog in the text of a post: <span class="tb-at">@rinkrat</span> */
 #workskin .tb .tb-at { color: #3a5f86; }
 
-#workskin .tb .tb-body .tb-row {
+#workskin .tb .tb-text .tb-row {
   display: flex;
   margin: 0 0 4px 0;
   padding: 0;
 }
 
-#workskin .tb .tb-body .tb-row:last-child { margin-bottom: 0; }
+#workskin .tb .tb-text .tb-row:last-child { margin-bottom: 0; }
 
 #workskin .tb .tb-row br { display: none; }
 
@@ -6548,7 +6548,7 @@
   margin: auto 0;
 }
 
-#workskin .tb .tb-row.two .tb-photo img.land {
+#workskin .tb .tb-row.two .tb-photo img.landscape {
   top: 0;
   bottom: auto;
   right: -9999px;
@@ -6566,7 +6566,7 @@
   border-top: 1px solid #eeeeee;
 }
 
-#workskin .tb .tb-body > .tb-reblog:first-child { border-top: 0; }
+#workskin .tb .tb-text > .tb-reblog:first-child { border-top: 0; }
 
 /* the ask and answer boxes: <div class="tb-ask"> or <div class="tb-ask tb-answer"> */
 #workskin .tb .tb-ask {
@@ -6625,9 +6625,9 @@
 }
 
 /* ROUNDED SQUARE PICTURES: on Tumblr, each blog picks a circle or a rounded square for its picture, and it's the same everywhere that blog shows up. */
-#workskin .tb .tb-pfp.sq,
-#workskin .tb .tb-ask-pfp.sq,
-#workskin .tb .sq .pfp { border-radius: 15%; }
+#workskin .tb .tb-pfp.square,
+#workskin .tb .tb-ask-pfp.square,
+#workskin .tb .square .pfp { border-radius: 15%; }
 
 #workskin .tb .tb-tags {
   display: block;
@@ -6638,8 +6638,8 @@
 }
 
 /* the bottom row: replies, reblogs and likes, each with its own count, then share on the far right
-   <p class="tb-footer"><span class="tb-stat"><span class="tb-icon ic ic-comment">&#9993;</span> 7<span class="hide"> replies</span></span> ... </p> */
-#workskin .tb .tb-footer {
+   <p class="tb-stats"><span class="tb-stat"><span class="tb-icon ic ic-comment">&#9993;</span> 7<span class="hide"> replies</span></span> ... </p> */
+#workskin .tb .tb-stats {
   display: flex;
   align-items: center;
   padding: 0.6em 0.9em 0.9em 0.9em;
@@ -6661,7 +6661,7 @@
   vertical-align: -0.15em;
 }
 
-#workskin .tb .tb-footer > .tb-icon { margin-right: 0; }
+#workskin .tb .tb-stats > .tb-icon { margin-right: 0; }
 
 /* quote post: <p class="tb-quote">text</p><p class="tb-source">&mdash; someone</p> */
 #workskin .tb .tb-quote { font-family: Georgia, serif; font-size: 1.9em; line-height: 1.25; }
@@ -6684,8 +6684,8 @@
 
 #workskin .tb .tb-chat b { font-weight: bold; }
 
-/* poll: in tb-body, the question as a paragraph, then each option as */
-#workskin .tb .tb-body .tb-opt {
+/* poll: in tb-text, the question as a paragraph, then each option as */
+#workskin .tb .tb-text .tb-opt {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -6701,7 +6701,7 @@
   line-height: 1.3;
 }
 
-#workskin .tb .tb-body .tb-opt.res {
+#workskin .tb .tb-text .tb-opt.results {
   justify-content: flex-start;
   border-color: transparent;
   border-radius: 8px;
@@ -6710,7 +6710,7 @@
   background-image: linear-gradient(#dcdcdc, #dcdcdc);
 }
 
-#workskin .tb .tb-body .tb-opt.res.win { background-image: linear-gradient(#a6d9ec, #a6d9ec); }
+#workskin .tb .tb-text .tb-opt.results.win { background-image: linear-gradient(#a6d9ec, #a6d9ec); }
 
 #workskin .tb .tb-opt .tb-pct { margin-left: auto; padding-left: 0.8em; font-weight: normal; white-space: nowrap; }
 
@@ -6731,7 +6731,7 @@
 #workskin .tb .tb-opt.p90 { background-size: 90% 100%; }
 #workskin .tb .tb-opt.p100 { background-size: 100% 100%; }
 
-#workskin .tb .tb-body .tb-pollinfo { display: block; margin: 0.6em 0; text-align: center; color: #555555; font-size: 0.85em; }
+#workskin .tb .tb-text .tb-pollinfo { display: block; margin: 0.6em 0; text-align: center; color: #555555; font-size: 0.85em; }
 
 /* TAPPABLE POLL, the short way */
 #workskin .tb .tb-vote,
@@ -6753,15 +6753,15 @@
 
 #workskin .tb .tb-pick { display: block; margin: 0.45em 0; }
 
-#workskin .tb .tb-body .tb-pick > .tb-opt { margin: 0 0.9em; }
+#workskin .tb .tb-text .tb-pick > .tb-opt { margin: 0 0.9em; }
 
 #workskin .tb .tb-pick[open] > summary { visibility: hidden; }
 
 #workskin .tb .tb-results { display: block; position: absolute; top: 0; left: 0; right: 0; z-index: 1; background: #ffffff; }
 
-#workskin .tb .tb-voter { display: block; flex: none; width: 1.3em; height: 1.3em; margin-left: auto; }
+#workskin .tb .tb-voted { display: block; flex: none; width: 1.3em; height: 1.3em; margin-left: auto; }
 
-#workskin .tb .tb-opt .tb-voter + .tb-pct { margin-left: 0; }
+#workskin .tb .tb-opt .tb-voted + .tb-pct { margin-left: 0; }
 
 /* THE FEED BEHIND THE CARDS (optional): put one or more .tb posts inside */
 #workskin .tb-feed {
@@ -6801,7 +6801,7 @@
 
 #workskin .tb-screen .tb { max-height: none; overflow: visible; }
 
-#workskin .tb-feed .tb-top,
+#workskin .tb-feed .tb-apptop,
 #workskin .tb-feed .tb-tabs,
 #workskin .tb-feed .tb-nav {
   display: flex;
@@ -6810,11 +6810,11 @@
   font-family: Arial, Helvetica, sans-serif;
 }
 
-#workskin .tb-feed .tb-top br,
+#workskin .tb-feed .tb-apptop br,
 #workskin .tb-feed .tb-tabs br,
 #workskin .tb-feed .tb-nav br { display: none; }
 
-#workskin .tb-feed .tb-top { padding: 0.9em 1em 0.3em 1em; }
+#workskin .tb-feed .tb-apptop { padding: 0.9em 1em 0.3em 1em; }
 
 #workskin .tb-feed .tb-logo {
   margin-right: auto;
@@ -6906,7 +6906,7 @@
 
 #workskin .tb.theme-dark .tb-subline b { color: #cfcfcf; }
 
-#workskin .tb.theme-dark .tb-footer { color: #bdbdbd; }
+#workskin .tb.theme-dark .tb-stats { color: #bdbdbd; }
 
 #workskin .tb.theme-dark .tb-follow span { background: #2e2e2e; }
 
@@ -6914,19 +6914,19 @@
 
 #workskin .tb.theme-dark .tb-at { color: #c3d4e8; }
 
-#workskin .tb.theme-dark .tb-pfp.rb::after { border-color: #1f1f1f; }
+#workskin .tb.theme-dark .tb-pfp.reblog::after { border-color: #1f1f1f; }
 
 #workskin .tb.theme-dark .tb-reblog { border-top-color: #2c2c2c; }
 
 #workskin .tb.theme-dark .tb-ask { background: #272727; }
 
-#workskin .tb.theme-dark .tb-body .tb-opt.res { background-color: #2a2a2a; }
+#workskin .tb.theme-dark .tb-text .tb-opt.results { background-color: #2a2a2a; }
 
-#workskin .tb.theme-dark .tb-body .tb-opt.res { background-image: linear-gradient(#404040, #404040); }
+#workskin .tb.theme-dark .tb-text .tb-opt.results { background-image: linear-gradient(#404040, #404040); }
 
-#workskin .tb.theme-dark .tb-body .tb-opt.res.win { background-image: linear-gradient(#19637e, #19637e); }
+#workskin .tb.theme-dark .tb-text .tb-opt.results.win { background-image: linear-gradient(#19637e, #19637e); }
 
-#workskin .tb.theme-dark .tb-body .tb-pollinfo { color: #bdbdbd; }
+#workskin .tb.theme-dark .tb-text .tb-pollinfo { color: #bdbdbd; }
 
 #workskin .tb.theme-dark .tb-results { background: #1f1f1f; }
 
@@ -6937,7 +6937,7 @@
 
 
 
-#workskin .tb.theme-dark .tb-header { border-bottom-color: #2c2c2c; }
+#workskin .tb.theme-dark .tb-top { border-bottom-color: #2c2c2c; }
 
 #workskin .tb.theme-dark .tb-ask::after { border-left-color: #272727; }
 
@@ -6956,7 +6956,7 @@
 
   #workskin .tb.theme-auto .tb-subline b { color: #cfcfcf; }
 
-  #workskin .tb.theme-auto .tb-footer { color: #bdbdbd; }
+  #workskin .tb.theme-auto .tb-stats { color: #bdbdbd; }
 
   #workskin .tb.theme-auto .tb-follow span { background: #2e2e2e; }
 
@@ -6964,19 +6964,19 @@
 
   #workskin .tb.theme-auto .tb-at { color: #c3d4e8; }
 
-  #workskin .tb.theme-auto .tb-pfp.rb::after { border-color: #1f1f1f; }
+  #workskin .tb.theme-auto .tb-pfp.reblog::after { border-color: #1f1f1f; }
 
   #workskin .tb.theme-auto .tb-reblog { border-top-color: #2c2c2c; }
 
   #workskin .tb.theme-auto .tb-ask { background: #272727; }
 
-  #workskin .tb.theme-auto .tb-body .tb-opt.res { background-color: #2a2a2a; }
+  #workskin .tb.theme-auto .tb-text .tb-opt.results { background-color: #2a2a2a; }
 
-  #workskin .tb.theme-auto .tb-body .tb-opt.res { background-image: linear-gradient(#404040, #404040); }
+  #workskin .tb.theme-auto .tb-text .tb-opt.results { background-image: linear-gradient(#404040, #404040); }
 
-  #workskin .tb.theme-auto .tb-body .tb-opt.res.win { background-image: linear-gradient(#19637e, #19637e); }
+  #workskin .tb.theme-auto .tb-text .tb-opt.results.win { background-image: linear-gradient(#19637e, #19637e); }
 
-  #workskin .tb.theme-auto .tb-body .tb-pollinfo { color: #bdbdbd; }
+  #workskin .tb.theme-auto .tb-text .tb-pollinfo { color: #bdbdbd; }
 
   #workskin .tb.theme-auto .tb-results { background: #1f1f1f; }
 
@@ -6987,7 +6987,7 @@
 
 
 
-  #workskin .tb.theme-auto .tb-header { border-bottom-color: #2c2c2c; }
+  #workskin .tb.theme-auto .tb-top { border-bottom-color: #2c2c2c; }
 
   #workskin .tb.theme-auto .tb-ask::after { border-left-color: #272727; }
 }
@@ -7013,7 +7013,7 @@
 #workskin .tb .ic.ic-heart { background-image: url(https://images.squidge.org/images/2026/11/15/heart-black.png); }
 
 /* the app screen's top bar and bottom buttons. They always sit on the feed colour, so they don't change with the theme. */
-#workskin .tb-feed .tb-top .ic,
+#workskin .tb-feed .tb-apptop .ic,
 #workskin .tb-feed .tb-tabs .ic,
 #workskin .tb-feed .tb-nav .ic {
   display: inline-block;
@@ -7054,7 +7054,7 @@
 #workskin .tb .ic.ic-checks-blue { width: 2.15em; background-image: url(https://images.squidge.org/images/2026/11/16/tb-checks-blue.png); }
 
 /* the green reblog badge on a picture: the white reblog picture instead of the typed arrows */
-#workskin .tb .tb-pfp.rb::after {
+#workskin .tb .tb-pfp.reblog::after {
   content: '';
   background-image: url(https://images.squidge.org/images/2026/11/15/reblog-white.png);
   background-repeat: no-repeat;
@@ -7559,7 +7559,7 @@
   white-space: nowrap;
 }
 
-#workskin .dc .dc-description {
+#workskin .dc .dc-desc {
   display: inline;
   margin-left: 0.5rem;
   font-size: 0.875rem;
@@ -7583,14 +7583,14 @@
   background-color: rgb(235, 237, 239);
 }
 
-#workskin .dc .dc-input-text {
+#workskin .dc .dc-field {
   display: contents;
   position: absolute;
   top: 50%;
   transform: translate(0%, -50%);
 }
 
-#workskin .dc .dc-input-text::before {
+#workskin .dc .dc-field::before {
   content: '';
   background-repeat: no-repeat;
   background-size: contain;
@@ -7666,7 +7666,7 @@
 
 #workskin .dc .dc-name:has(.dc-pfp)::before { display: none; }
 
-#workskin .dc .dc-image { border-radius: 0.1875rem; max-width: 360px; width: 100%; }
+#workskin .dc .dc-photo { border-radius: 0.1875rem; max-width: 360px; width: 100%; }
 
 #workskin .dc .dc-emoji {
   width: 3rem;
@@ -7772,7 +7772,7 @@
 
 #workskin .dc .dc-embed-text { margin-top: 0.5rem; font-size: 0.875rem; }
 
-#workskin .dc .dc-embed-image { margin-top: 1rem; border-radius: 0.25rem; max-width: 100%; }
+#workskin .dc .dc-embed-img { margin-top: 1rem; border-radius: 0.25rem; max-width: 100%; }
 
 #workskin .dc .dc-quote { display: table; }
 
@@ -8015,7 +8015,7 @@
 }
 
 #workskin .dc .dc-reply,
-#workskin .dc .dc-description {
+#workskin .dc .dc-desc {
   color: rgb(79, 86, 96);
 }
 
@@ -8106,7 +8106,7 @@
 #workskin .dc.theme-dark a:not(.tl):hover { color: rgb(0, 175, 244); text-decoration: underline; }
 
 #workskin .dc.theme-dark .dc-reply,
-#workskin .dc.theme-dark .dc-description {
+#workskin .dc.theme-dark .dc-desc {
   color: rgb(185, 187, 190);
 }
 
@@ -8154,7 +8154,7 @@
 
 #workskin .dc.theme-dark .at-symbol::before { background-image: url(https://images.squidge.org/images/2026/11/15/dc-at-dark.png); }
 
-#workskin .dc.theme-dark .dc-input-text::before { background-image: url(https://images.squidge.org/images/2026/11/15/dc-plus-dark.png); }
+#workskin .dc.theme-dark .dc-field::before { background-image: url(https://images.squidge.org/images/2026/11/15/dc-plus-dark.png); }
 
 /* spoilers, dark: hidden until clicked */
 #workskin .dc.theme-dark .dc-spoiler-text {
@@ -8213,7 +8213,7 @@
   #workskin .dc.theme-auto a:not(.tl):hover { color: rgb(0, 175, 244); text-decoration: underline; }
 
   #workskin .dc.theme-auto .dc-reply,
-    #workskin .dc.theme-auto .dc-description {
+    #workskin .dc.theme-auto .dc-desc {
       color: rgb(185, 187, 190);
     }
 
@@ -8272,7 +8272,7 @@
 
   #workskin .dc.theme-auto .at-symbol::before { background-image: url(https://images.squidge.org/images/2026/11/15/dc-at-dark.png); }
 
-  #workskin .dc.theme-auto .dc-input-text::before { background-image: url(https://images.squidge.org/images/2026/11/15/dc-plus-dark.png); }
+  #workskin .dc.theme-auto .dc-field::before { background-image: url(https://images.squidge.org/images/2026/11/15/dc-plus-dark.png); }
 
   /* spoilers, dark: hidden until clicked */
   #workskin .dc.theme-auto .dc-spoiler-text {

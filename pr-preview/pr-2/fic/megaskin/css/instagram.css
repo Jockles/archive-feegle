@@ -41,11 +41,11 @@
 
 #workskin .ig .ig-photo img, #workskin .igdm .igdm-post .ig-photo img { display: block; width: 100%; height: auto; }
 
-/* photo shapes, cut to fit. Add ig-pic-sq for a square photo, how Instagram used to be, or ig-pic-portrait for a tall one (3 wide by 4 high), how it is now, nearly filling the phone */
-#workskin .ig .ig-photo.ig-pic-sq,
-#workskin .igdm .igdm-post .ig-photo.ig-pic-sq,
-#workskin .ig .ig-photo.ig-pic-portrait,
-#workskin .igdm .igdm-post .ig-photo.ig-pic-portrait {
+/* photo shapes, cut to fit. Add square for a square photo, how Instagram used to be, or portrait for a tall one (3 wide by 4 high), how it is now, nearly filling the phone */
+#workskin .ig .ig-photo.square,
+#workskin .igdm .igdm-post .ig-photo.square,
+#workskin .ig .ig-photo.portrait,
+#workskin .igdm .igdm-post .ig-photo.portrait {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -53,14 +53,14 @@
   overflow: hidden;
 }
 
-#workskin .ig .ig-photo.ig-pic-sq, #workskin .igdm .igdm-post .ig-photo.ig-pic-sq { aspect-ratio: 1; }
+#workskin .ig .ig-photo.square, #workskin .igdm .igdm-post .ig-photo.square { aspect-ratio: 1; }
 
-#workskin .ig .ig-photo.ig-pic-portrait, #workskin .igdm .igdm-post .ig-photo.ig-pic-portrait { aspect-ratio: 0.75; }
+#workskin .ig .ig-photo.portrait, #workskin .igdm .igdm-post .ig-photo.portrait { aspect-ratio: 0.75; }
 
-#workskin .ig .ig-photo.ig-pic-sq img,
-#workskin .igdm .igdm-post .ig-photo.ig-pic-sq img,
-#workskin .ig .ig-photo.ig-pic-portrait img,
-#workskin .igdm .igdm-post .ig-photo.ig-pic-portrait img {
+#workskin .ig .ig-photo.square img,
+#workskin .igdm .igdm-post .ig-photo.square img,
+#workskin .ig .ig-photo.portrait img,
+#workskin .igdm .igdm-post .ig-photo.portrait img {
   position: absolute;
   top: 50%;
   left: 0;
@@ -70,10 +70,10 @@
   transform: translateY(-50%);
 }
 
-#workskin .ig .ig-photo.ig-pic-sq img.land,
-#workskin .igdm .igdm-post .ig-photo.ig-pic-sq img.land,
-#workskin .ig .ig-photo.ig-pic-portrait img.land,
-#workskin .igdm .igdm-post .ig-photo.ig-pic-portrait img.land {
+#workskin .ig .ig-photo.square img.landscape,
+#workskin .igdm .igdm-post .ig-photo.square img.landscape,
+#workskin .ig .ig-photo.portrait img.landscape,
+#workskin .igdm .igdm-post .ig-photo.portrait img.landscape {
   top: 0;
   left: 50%;
   width: auto;
@@ -110,7 +110,7 @@
   line-height: 1;
 }
 
-#workskin .ig .ig-actions {
+#workskin .ig .ig-stats {
   display: block;
   overflow: hidden;
   padding: 0.6em 0.9em 0.1em 0.9em;
@@ -129,7 +129,7 @@
 
 #workskin .ig .ig-comment { display: block; padding: 0.1em 0.9em; }
 
-#workskin .ig .ig-tag { color: #00376b; }
+#workskin .ig .ig-link { color: #00376b; }
 
 /* a long caption cut short, ending in a grey "more": put "... " and <span class="ig-more">more</span> at the end */
 #workskin .ig .ig-more { color: #737373; }
@@ -275,7 +275,7 @@
 }
 
 /* after a carousel, hop over the dots so the icon still sits on the photo */
-#workskin .ig .ig-car + .ig-tagged summary { margin: -60px 0 34px 10px; }
+#workskin .ig .ig-carousel + .ig-tagged summary { margin: -60px 0 34px 10px; }
 
 #workskin .ig .ig-tagged summary::-webkit-details-marker { display: none; }
 
@@ -391,9 +391,9 @@
 
 #workskin .ig .ig-person .handle { display: inline-block; padding-top: 0.2em; }
 
-#workskin .ig .ig-person .ig-pname { display: block; font-weight: normal; color: #737373; }
+#workskin .ig .ig-person .ig-person-name { display: block; font-weight: normal; color: #737373; }
 
-#workskin .ig .ig-person .ig-fbtn {
+#workskin .ig .ig-person .ig-following {
   float: right;
   margin: 0.4em 0 0 0.6em;
   padding: 0.35em 1.1em;
@@ -403,11 +403,11 @@
   font-size: 0.9em;
 }
 
-#workskin .ig .ig-person .ig-fbtn.blue { background: #0095f6; color: #ffffff; }
+#workskin .ig .ig-person .ig-following.blue { background: #0095f6; color: #ffffff; }
 
 /* ---- CAROUSEL: a post with more than one photo ---- */
-#workskin .ig .ig-car,
-#workskin .igdm .igdm-post .ig-car {
+#workskin .ig .ig-carousel,
+#workskin .igdm .igdm-post .ig-carousel {
   display: block;
   position: relative;
   z-index: 0;
@@ -416,10 +416,10 @@
 }
 
 /* the details and summaries take no space themselves */
-#workskin .ig .ig-car details,
-#workskin .igdm .igdm-post .ig-car details,
-#workskin .ig .ig-car summary,
-#workskin .igdm .igdm-post .ig-car summary {
+#workskin .ig .ig-carousel details,
+#workskin .igdm .igdm-post .ig-carousel details,
+#workskin .ig .ig-carousel summary,
+#workskin .igdm .igdm-post .ig-carousel summary {
   display: block;
   margin: 0;
   padding: 0;
@@ -428,16 +428,16 @@
   list-style: none;
 }
 
-#workskin .ig .ig-car summary::-webkit-details-marker, #workskin .igdm .igdm-post .ig-car summary::-webkit-details-marker { display: none; }
-#workskin .ig .ig-car summary::marker, #workskin .igdm .igdm-post .ig-car summary::marker { content: ""; }
+#workskin .ig .ig-carousel summary::-webkit-details-marker, #workskin .igdm .igdm-post .ig-carousel summary::-webkit-details-marker { display: none; }
+#workskin .ig .ig-carousel summary::marker, #workskin .igdm .igdm-post .ig-carousel summary::marker { content: ""; }
 
 /* room at the sides of a described photo, so the words don't run under the arrows */
-#workskin .ig .ig-car .ig-photo, #workskin .igdm .igdm-post .ig-car .ig-photo { padding-left: 44px; padding-right: 44px; }
-#workskin .ig .ig-car .ig-photo.real, #workskin .igdm .igdm-post .ig-car .ig-photo.real { padding: 0; }
+#workskin .ig .ig-carousel .ig-photo, #workskin .igdm .igdm-post .ig-carousel .ig-photo { padding-left: 44px; padding-right: 44px; }
+#workskin .ig .ig-carousel .ig-photo.real, #workskin .igdm .igdm-post .ig-carousel .ig-photo.real { padding: 0; }
 
 /* every photo after the first waits just off the right-hand edge */
-#workskin .ig .ig-car summary .ig-photo,
-#workskin .igdm .igdm-post .ig-car summary .ig-photo {
+#workskin .ig .ig-carousel summary .ig-photo,
+#workskin .igdm .igdm-post .ig-carousel summary .ig-photo {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -453,14 +453,14 @@
   transition: left 0.35s ease;
 }
 
-#workskin .ig .ig-car summary .ig-photo.real, #workskin .igdm .igdm-post .ig-car summary .ig-photo.real { display: block; }
+#workskin .ig .ig-carousel summary .ig-photo.real, #workskin .igdm .igdm-post .ig-carousel summary .ig-photo.real { display: block; }
 
 /* tapped: it slides in over the photo before it (and back out again when closed) */
-#workskin .ig .ig-car .ig-next[open] > summary .ig-photo, #workskin .igdm .igdm-post .ig-car .ig-next[open] > summary .ig-photo { left: 0; }
+#workskin .ig .ig-carousel .ig-next[open] > summary .ig-photo, #workskin .igdm .igdm-post .ig-carousel .ig-next[open] > summary .ig-photo { left: 0; }
 
 /* the arrows */
-#workskin .ig .ig-car .ig-next > summary::before,
-#workskin .igdm .igdm-post .ig-car .ig-next > summary::before {
+#workskin .ig .ig-carousel .ig-next > summary::before,
+#workskin .igdm .igdm-post .ig-carousel .ig-next > summary::before {
   content: "›";
   display: flex;
   align-items: center;
@@ -486,8 +486,8 @@
 }
 
 /* once tapped, the same arrow moves left and points back */
-#workskin .ig .ig-car .ig-next[open] > summary::before,
-#workskin .igdm .igdm-post .ig-car .ig-next[open] > summary::before {
+#workskin .ig .ig-carousel .ig-next[open] > summary::before,
+#workskin .igdm .igdm-post .ig-carousel .ig-next[open] > summary::before {
   content: "‹";
   right: auto;
   left: 10px;
@@ -495,8 +495,8 @@
 }
 
 /* the counter and dots for each photo, lying over it */
-#workskin .ig .ig-car .ig-car-info,
-#workskin .igdm .igdm-post .ig-car .ig-car-info {
+#workskin .ig .ig-carousel .ig-carousel-info,
+#workskin .igdm .igdm-post .ig-carousel .ig-carousel-info {
   display: block;
   position: absolute;
   top: 0;
@@ -507,9 +507,9 @@
   z-index: 1;
 }
 
-/* the "2/3" counter at the top right: <span class="ig-car-n">2/3</span> */
-#workskin .ig .ig-car .ig-car-n,
-#workskin .igdm .igdm-post .ig-car .ig-car-n {
+/* the "2/3" counter at the top right: <span class="ig-carousel-count">2/3</span> */
+#workskin .ig .ig-carousel .ig-carousel-count,
+#workskin .igdm .igdm-post .ig-carousel .ig-carousel-count {
   display: block;
   position: absolute;
   top: 10px;
@@ -524,8 +524,8 @@
 }
 
 /* the dots under the photo, the one you're on in */
-#workskin .ig .ig-car .ig-car-dots,
-#workskin .igdm .igdm-post .ig-car .ig-car-dots {
+#workskin .ig .ig-carousel .ig-carousel-dots,
+#workskin .igdm .igdm-post .ig-carousel .ig-carousel-dots {
   display: block;
   position: absolute;
   bottom: 3px;
@@ -538,19 +538,19 @@
   letter-spacing: 2px;
 }
 
-#workskin .ig .ig-car .ig-car-dots b, #workskin .igdm .igdm-post .ig-car .ig-car-dots b { color: #0095f6; font-weight: normal; }
+#workskin .ig .ig-carousel .ig-carousel-dots b, #workskin .igdm .igdm-post .ig-carousel .ig-carousel-dots b { color: #0095f6; font-weight: normal; }
 
-/* ---- the row of buttons with counts: <div class="ig-actions"> holding any of these ---- */
-#workskin .ig .ig-actions br { display: none; }
+/* ---- the row of buttons with counts: <div class="ig-stats"> holding any of these ---- */
+#workskin .ig .ig-stats br { display: none; }
 
 /* AO3 sometimes wraps loose bits in a <p>; keep those from breaking the row */
-#workskin .ig .ig-actions p:not(.ig-btn) {
+#workskin .ig .ig-stats p:not(.ig-stat) {
   display: inline;
   margin: 0;
   padding: 0;
 }
 
-#workskin .ig .ig-btn,
+#workskin .ig .ig-stat,
 #workskin .ig .ig-tog {
   display: inline-block;
   margin: 0 0.9em 0 0;
@@ -558,12 +558,12 @@
   vertical-align: middle;
 }
 
-#workskin .ig .ig-actions .ig-icon {
+#workskin .ig .ig-stats .ig-icon {
   font-size: 1.25em;
   vertical-align: middle;
 }
 
-#workskin .ig .ig-actions .ig-count {
+#workskin .ig .ig-stats .ig-count {
   margin-left: 0.35em;
   font-size: 0.8em;
   font-weight: bold;
@@ -586,7 +586,7 @@
 
 #workskin .ig .ig-tog[open] .on { display: inline; }
 
-#workskin .ig .ig-tog[open] .bm.on { display: inline-block; }
+#workskin .ig .ig-tog[open] .bookmark.on { display: inline-block; }
 
 #workskin .ig .ig-tog[open] .off { display: none; }
 
@@ -599,8 +599,8 @@
 /* a liked heart is red */
 #workskin .ig .ig-tog.like .on.ig-icon { color: #ed4956; }
 
-/* a bookmark drawn with CSS: <span class="ig-icon bm off"></span> (outline) and <span class="ig-icon bm on"></span> (filled) */
-#workskin .ig .bm {
+/* a bookmark drawn with CSS: <span class="ig-icon bookmark off"></span> (outline) and <span class="ig-icon bookmark on"></span> (filled) */
+#workskin .ig .bookmark {
   display: inline-block;
   position: relative;
   box-sizing: border-box;
@@ -611,7 +611,7 @@
   vertical-align: middle;
 }
 
-#workskin .ig .bm::after {
+#workskin .ig .bookmark::after {
   content: "";
   position: absolute;
   left: 50%;
@@ -626,10 +626,10 @@
   transform: rotate(45deg);
 }
 
-#workskin .ig .bm.on { background: currentColor; }
+#workskin .ig .bookmark.on { background: currentColor; }
 
-/* a comment bubble drawn with CSS: <span class="ig-icon cm"></span> */
-#workskin .ig .cm {
+/* a comment bubble drawn with CSS: <span class="ig-icon comment"></span> */
+#workskin .ig .comment {
   display: inline-block;
   box-sizing: border-box;
   width: 18px;
@@ -640,7 +640,7 @@
   vertical-align: middle;
 }
 
-#workskin .ig .bm.on::after {
+#workskin .ig .bookmark.on::after {
   border: 0;
   background: #ffffff;
 }
@@ -1039,7 +1039,7 @@
   text-align: center;
 }
 
-#workskin .igdm .igdm-post-cap {
+#workskin .igdm .igdm-post-caption {
   display: block;
   max-height: 2.7em;
   margin: 0.55em 0.9em 0.65em 0.9em;
@@ -1048,7 +1048,7 @@
   line-height: 1.35;
 }
 
-#workskin .igdm .igdm-post-cap b { font-weight: bold; }
+#workskin .igdm .igdm-post-caption b { font-weight: bold; }
 
 /* the round share and save buttons floating beside the card, halfway down */
 #workskin .igdm .igdm-post-btns {
@@ -1109,13 +1109,13 @@
 
 #workskin .igdm .igdm-post.reel .igdm-post-img.text { padding: 1em; color: #a8a8a8; }
 
-#workskin .igdm .igdm-post.reel .igdm-post-cap + .igdm-post-img,
+#workskin .igdm .igdm-post.reel .igdm-post-caption + .igdm-post-img,
 #workskin .igdm .igdm-post.reel .igdm-post-img:not(:last-of-type) { border-radius: 18px 18px 0 0; }
 
-#workskin .igdm .igdm-post.reel .igdm-post-cap { color: #f5f5f5; }
+#workskin .igdm .igdm-post.reel .igdm-post-caption { color: #f5f5f5; }
 
-/* a picture wider than it is tall: add class="land" to the img and it fills the height instead */
-#workskin .igdm .igdm-post.reel .igdm-post-img img.land { width: auto; height: 100%; max-width: none; }
+/* a picture wider than it is tall: add class="landscape" to the img and it fills the height instead */
+#workskin .igdm .igdm-post.reel .igdm-post-img img.landscape { width: auto; height: 100%; max-width: none; }
 
 /* the play button in the middle and the reel sign in the bottom corner */
 #workskin .igdm .igdm-post.reel .igdm-post-img::before,
@@ -1396,7 +1396,7 @@
 }
 
 /* the little red dot on the heart: leave it out when there's nothing new */
-#workskin .ig .ig-dot {
+#workskin .ig .ig-badge {
   flex: none;
   width: 0.42em;
   height: 0.42em;
@@ -1470,7 +1470,7 @@
 #workskin .ig .ig-story.me::before { background-image: none; background-color: #dbdbdb; }
 
 /* the name under each circle, cut off with "..." if it's too long */
-#workskin .ig .ig-sname {
+#workskin .ig .ig-story-name {
   display: block;
   margin-top: 0.3em;
   overflow: hidden;
@@ -1480,7 +1480,7 @@
 }
 
 /* your own circle comes first, with "me": it gets the + badge, and grey words */
-#workskin .ig .ig-story.me .ig-sname { color: #737373; }
+#workskin .ig .ig-story.me .ig-story-name { color: #737373; }
 
 #workskin .ig .ig-story.me::after {
   content: "+";
@@ -1515,7 +1515,7 @@
 
 #workskin .ig.theme-dark .ig-photo, #workskin .igdm.theme-dark .igdm-post .ig-photo { background: #1c1c1c; color: #a8a8a8; border-bottom-color: #262626; }
 
-#workskin .ig.theme-dark .ig-tag { color: #e0f1ff; }
+#workskin .ig.theme-dark .ig-link { color: #e0f1ff; }
 
 #workskin .ig.theme-dark .ig-more { color: #a8a8a8; }
 
@@ -1529,14 +1529,14 @@
 #workskin .ig.theme-dark .ig-sheet { background: #262626; }
 #workskin .ig.theme-dark .ig-tagged[open] summary { border-bottom-color: #363636; background: #262626; }
 #workskin .ig.theme-dark .ig-tagged[open] summary::before { background: #555555; }
-#workskin .ig.theme-dark .ig-person .ig-pname { color: #a8a8a8; }
-#workskin .ig.theme-dark .ig-person .ig-fbtn { background: #363636; color: #f5f5f5; }
-#workskin .ig.theme-dark .ig-person .ig-fbtn.blue { background: #0095f6; color: #ffffff; }
-#workskin .ig.theme-dark .ig-car .ig-car-dots, #workskin .igdm.theme-dark .igdm-post .ig-car .ig-car-dots { color: #555555; }
+#workskin .ig.theme-dark .ig-person .ig-person-name { color: #a8a8a8; }
+#workskin .ig.theme-dark .ig-person .ig-following { background: #363636; color: #f5f5f5; }
+#workskin .ig.theme-dark .ig-person .ig-following.blue { background: #0095f6; color: #ffffff; }
+#workskin .ig.theme-dark .ig-carousel .ig-carousel-dots, #workskin .igdm.theme-dark .igdm-post .ig-carousel .ig-carousel-dots { color: #555555; }
 
 #workskin .ig.theme-dark .ig-tog.like .on.ig-icon { color: #ff3040; }
 
-#workskin .ig.theme-dark .bm.on::after { background: #0c1014; }
+#workskin .ig.theme-dark .bookmark.on::after { background: #0c1014; }
 
 #workskin .ig.theme-dark .ig-stories { border-bottom-color: #262626; }
 
@@ -1545,7 +1545,7 @@
 
 
 
-#workskin .ig.theme-dark .ig-story.me .ig-sname { color: #a8a8a8; }
+#workskin .ig.theme-dark .ig-story.me .ig-story-name { color: #a8a8a8; }
 
 #workskin .ig.theme-dark .ig-story.me::before { background-color: #737373; }
 
@@ -1607,7 +1607,7 @@
 
   #workskin .ig.theme-auto .ig-photo, #workskin .igdm.theme-auto .igdm-post .ig-photo { background: #1c1c1c; color: #a8a8a8; border-bottom-color: #262626; }
 
-  #workskin .ig.theme-auto .ig-tag { color: #e0f1ff; }
+  #workskin .ig.theme-auto .ig-link { color: #e0f1ff; }
 
   #workskin .ig.theme-auto .ig-more { color: #a8a8a8; }
 
@@ -1621,14 +1621,14 @@
   #workskin .ig.theme-auto .ig-sheet { background: #262626; }
   #workskin .ig.theme-auto .ig-tagged[open] summary { border-bottom-color: #363636; background: #262626; }
   #workskin .ig.theme-auto .ig-tagged[open] summary::before { background: #555555; }
-  #workskin .ig.theme-auto .ig-person .ig-pname { color: #a8a8a8; }
-  #workskin .ig.theme-auto .ig-person .ig-fbtn { background: #363636; color: #f5f5f5; }
-  #workskin .ig.theme-auto .ig-person .ig-fbtn.blue { background: #0095f6; color: #ffffff; }
-  #workskin .ig.theme-auto .ig-car .ig-car-dots, #workskin .igdm.theme-auto .igdm-post .ig-car .ig-car-dots { color: #555555; }
+  #workskin .ig.theme-auto .ig-person .ig-person-name { color: #a8a8a8; }
+  #workskin .ig.theme-auto .ig-person .ig-following { background: #363636; color: #f5f5f5; }
+  #workskin .ig.theme-auto .ig-person .ig-following.blue { background: #0095f6; color: #ffffff; }
+  #workskin .ig.theme-auto .ig-carousel .ig-carousel-dots, #workskin .igdm.theme-auto .igdm-post .ig-carousel .ig-carousel-dots { color: #555555; }
 
   #workskin .ig.theme-auto .ig-tog.like .on.ig-icon { color: #ff3040; }
 
-  #workskin .ig.theme-auto .bm.on::after { background: #0c1014; }
+  #workskin .ig.theme-auto .bookmark.on::after { background: #0c1014; }
 
   #workskin .ig.theme-auto .ig-stories { border-bottom-color: #262626; }
 
@@ -1637,7 +1637,7 @@
 
 
 
-  #workskin .ig.theme-auto .ig-story.me .ig-sname { color: #a8a8a8; }
+  #workskin .ig.theme-auto .ig-story.me .ig-story-name { color: #a8a8a8; }
 
   #workskin .ig.theme-auto .ig-story.me::before { background-color: #737373; }
 
@@ -1724,14 +1724,14 @@
   background-size: contain;
 }
 
-/* a private account's posts can't be reposted: add ig-locked to the repost's ig-btn to fade it out */
-#workskin .ig .ig-actions .ig-btn.ig-locked { opacity: 0.35; }
+/* a private account's posts can't be reposted: add locked to the repost's ig-stat to fade it out */
+#workskin .ig .ig-stats .ig-stat.locked { opacity: 0.35; }
 
 /* the liked heart shows when the button is clicked */
 #workskin .ig .ig-tog[open] .ic.on { display: inline-block; }
 
 /* the comment bubble and bookmark are pictures too, in place of the CSS drawings above */
-#workskin .ig .ig-icon.cm, #workskin .ig .ig-icon.bm {
+#workskin .ig .ig-icon.comment, #workskin .ig .ig-icon.bookmark {
   width: 1em;
   height: 1em;
   border: 0;
@@ -1741,7 +1741,7 @@
   background-position: center;
   background-size: contain;
 }
-#workskin .ig .ig-icon.bm::after { display: none; }
+#workskin .ig .ig-icon.bookmark::after { display: none; }
 
 #workskin .ig .ic.ic-more, #workskin .igdm .ic.ic-more { background-image: url(https://images.squidge.org/images/2026/11/15/menu-horizontal-black.png); }
 #workskin .ig .ic.ic-ig-lines { background-image: url(https://images.squidge.org/images/2026/11/19/ig-lines-black.png); }
@@ -1753,9 +1753,9 @@
 #workskin .igdm .ic.ic-phone { background-image: url(https://images.squidge.org/images/2026/11/15/phone-black.png); }
 #workskin .igdm .ic.ic-video { background-image: url(https://images.squidge.org/images/2026/11/15/video-black.png); }
 #workskin .igdm .ic.ic-mic { background-image: url(https://images.squidge.org/images/2026/11/15/mic-black.png); }
-#workskin .ig .ig-icon.cm { background-image: url(https://images.squidge.org/images/2026/11/15/comment-black.png); }
-#workskin .ig .ig-icon.bm { background-image: url(https://images.squidge.org/images/2026/11/15/bookmark-black.png); }
-#workskin .ig .ig-icon.bm.on { background-image: url(https://images.squidge.org/images/2026/11/15/bookmark-filled-black.png); }
+#workskin .ig .ig-icon.comment { background-image: url(https://images.squidge.org/images/2026/11/15/comment-black.png); }
+#workskin .ig .ig-icon.bookmark { background-image: url(https://images.squidge.org/images/2026/11/15/bookmark-black.png); }
+#workskin .ig .ig-icon.bookmark.on { background-image: url(https://images.squidge.org/images/2026/11/15/bookmark-filled-black.png); }
 #workskin .ig .ic.ic-verified, #workskin .igdm .ic.ic-verified { background-image: url(https://images.squidge.org/images/2026/11/15/verified-blue.png); }
 #workskin .ig .ic.ic-lock { background-image: url(https://images.squidge.org/images/2026/11/15/dc-lock-light.png); }
 #workskin .ig .ic.ic-heart-red, #workskin .igdm .ic.ic-heart-red { background-image: url(https://images.squidge.org/images/2026/11/15/heart-filled-red.png); }
@@ -1771,9 +1771,9 @@
 #workskin .igdm.theme-dark .ic.ic-phone { background-image: url(https://images.squidge.org/images/2026/11/15/phone-white.png); }
 #workskin .igdm.theme-dark .ic.ic-video { background-image: url(https://images.squidge.org/images/2026/11/15/video-white.png); }
 #workskin .igdm.theme-dark .ic.ic-mic { background-image: url(https://images.squidge.org/images/2026/11/15/mic-white.png); }
-#workskin .ig.theme-dark .ig-icon.cm { background-image: url(https://images.squidge.org/images/2026/11/15/comment-white.png); }
-#workskin .ig.theme-dark .ig-icon.bm { background-image: url(https://images.squidge.org/images/2026/11/15/bookmark-white.png); }
-#workskin .ig.theme-dark .ig-icon.bm.on { background-image: url(https://images.squidge.org/images/2026/11/15/bookmark-filled-white.png); }
+#workskin .ig.theme-dark .ig-icon.comment { background-image: url(https://images.squidge.org/images/2026/11/15/comment-white.png); }
+#workskin .ig.theme-dark .ig-icon.bookmark { background-image: url(https://images.squidge.org/images/2026/11/15/bookmark-white.png); }
+#workskin .ig.theme-dark .ig-icon.bookmark.on { background-image: url(https://images.squidge.org/images/2026/11/15/bookmark-filled-white.png); }
 #workskin .ig.theme-dark .ic.ic-lock { background-image: url(https://images.squidge.org/images/2026/11/15/dc-lock-dark.png); }
 
 /* Instagram icons, auto: dark when the reader's device is in dark mode */
@@ -1788,9 +1788,9 @@
   #workskin .igdm.theme-auto .ic.ic-phone { background-image: url(https://images.squidge.org/images/2026/11/15/phone-white.png); }
   #workskin .igdm.theme-auto .ic.ic-video { background-image: url(https://images.squidge.org/images/2026/11/15/video-white.png); }
   #workskin .igdm.theme-auto .ic.ic-mic { background-image: url(https://images.squidge.org/images/2026/11/15/mic-white.png); }
-  #workskin .ig.theme-auto .ig-icon.cm { background-image: url(https://images.squidge.org/images/2026/11/15/comment-white.png); }
-  #workskin .ig.theme-auto .ig-icon.bm { background-image: url(https://images.squidge.org/images/2026/11/15/bookmark-white.png); }
-  #workskin .ig.theme-auto .ig-icon.bm.on { background-image: url(https://images.squidge.org/images/2026/11/15/bookmark-filled-white.png); }
+  #workskin .ig.theme-auto .ig-icon.comment { background-image: url(https://images.squidge.org/images/2026/11/15/comment-white.png); }
+  #workskin .ig.theme-auto .ig-icon.bookmark { background-image: url(https://images.squidge.org/images/2026/11/15/bookmark-white.png); }
+  #workskin .ig.theme-auto .ig-icon.bookmark.on { background-image: url(https://images.squidge.org/images/2026/11/15/bookmark-filled-white.png); }
   #workskin .ig.theme-auto .ic.ic-lock { background-image: url(https://images.squidge.org/images/2026/11/15/dc-lock-dark.png); }
 }
 
