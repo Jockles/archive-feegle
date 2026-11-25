@@ -389,7 +389,7 @@
       else pc = o[0] ? waPfp(o[0]) : '<p class="wa-pfp colour5">?</p>';
       var sub = b.sub.trim();
       if (b.group && !sub) sub = o.map(nameOf).concat(["You"]).join(", ");
-      L = L.concat(ind(['<table class="wa-bar">', "  <tbody>", "    <tr>",
+      L = L.concat(ind(['<table class="wa-top">', "  <tbody>", "    <tr>",
         '      <td rowspan="2" class="wa-back"><span class="ic ic-back">&#8592;</span></td>',
         '      <td rowspan="2" class="wa-pfp-cell">' + pc + "</td>",
         '      <td class="wa-title">' + headTitle(b) + "</td>",
@@ -475,12 +475,12 @@
       if (card === "contact") inner.push('<p class="wa-contact-btn">Message</p>');
       var block = [open].concat(ind(inner.join("\n").split("\n"), 1)).concat(["</div>"]);
       if (rows) {
-        block = ['<div class="wa-row' + (first ? "" : " cont") + '">'].concat(first ? ["  " + waPfp(c)] : []).concat(ind(block, 1)).concat(["</div>"]);
+        block = ['<div class="wa-row' + (first ? "" : " same") + '">'].concat(first ? ["  " + waPfp(c)] : []).concat(ind(block, 1)).concat(["</div>"]);
       }
       body = body.concat(block);
       var r = (m.waReacts || "").trim();
       if (r) {
-        body.push('<p class="wa-reacts' + (out ? " out" : rows ? " pad" : "") + '"><span class="hide">[Reactions: </span>' + esc(r) +
+        body.push('<p class="wa-reacts' + (out ? " out" : rows ? " indent" : "") + '"><span class="hide">[Reactions: </span>' + esc(r) +
           (m.waCount.trim() ? ' <span class="wa-count">' + esc(m.waCount.trim()) + "</span>" : "") + '<span class="hide">]</span></p>');
       }
       lastSide = side;
@@ -491,7 +491,7 @@
       var typed = b.bar === "typed";
       L = L.concat(ind(['<p class="wa-input">', '  <span class="wa-field">', '    <span class="ic ic-emoji">&#9786;</span>',
         typed ? '    <span class="wa-placeholder typed">' + fmt(b.barText) + (b.cursor ? CURSOR : "") + "</span>" : '    <span class="wa-placeholder">Message</span>',
-        '    <span class="wa-ic ic ic-paperclip">&#128206;</span>'].concat(typed ? [] : ['    <span class="wa-ic ic ic-camera">&#128247;</span>'])
+        '    <span class="ic ic-paperclip">&#128206;</span>'].concat(typed ? [] : ['    <span class="ic ic-camera">&#128247;</span>'])
         .concat(["  </span>", typed ? '  <span class="wa-mic ic ic-wa-send">&#10148;</span>' : '  <span class="wa-mic ic ic-wa-mic">&#127908;</span>', "</p>"]), 1));
     }
     L.push("</div>");
@@ -657,7 +657,7 @@
     var c = char(m.from); if (!c) return [];
     var a = accOf(c, m.acc, "ig"), cos = collabsOf(m).filter(function (g) { return char(g.who); }), L = [];
     // the account line: the menu goes first (it sits at the far right), then a Follow button for a suggested post
-    var top = '<span class="ig-menu ic ic-ig-lines">&#8801;</span>' + (m.follow === "button" ? '<span class="ig-add ic ic-ig-follow">Follow</span>' : "");
+    var top = '<span class="ig-menu ic ic-ig-lines">&#8801;</span>' + (m.follow === "button" ? '<span class="ig-follow-btn ic ic-ig-follow">Follow</span>' : "");
     // the name: the username, or the name typed in, cut short with "…" if it won't fit on one line at phone width
     var fullA = t(m.nameAs) || igName(c, a), lenA = Array.from(fullA).length;
     function shown(full, typed, n, html) { var x = cutTo(full, n); return typed || x !== full ? esc(x) : html; }
@@ -721,7 +721,7 @@
     var posts = b.msgs.map(function (m) { return igPostHTML(b, m).join("\n"); }).filter(Boolean);
     if (b.type === "igone") return posts.join("\n\n");
     var L = ['<div class="mob ig ig-feed ' + b.theme + (b.width ? " " + b.width : "") + (b.scroll ? " " + b.scroll : "") + '">'];
-    if (b.top !== "none") L.push('<p class="ig-apptop"><span class="ig-new">+</span><span class="ig-logo">Instagram</span><span class="ig-notif ic ic-heart">&#9825;</span>' +
+    if (b.top !== "none") L.push('<p class="ig-apptop"><span class="ig-add">+</span><span class="ig-logo">Instagram</span><span class="ig-notif ic ic-heart">&#9825;</span>' +
       (b.top === "new" ? '<span class="ig-badge"><span class="hide"> (new)</span></span>' : "") + "</p>");
     return L.concat(igStories(b), posts, ["</div>"]).join("\n");
   }
@@ -1027,14 +1027,14 @@
     if (b.type === "twone") return tweets.join("\n\n"); // each tweet in its own box, not in a feed
     // the X app screen: the pov character's picture and the logo, then the tabs, then the tweets
     var me = char(b.pov) || S.cast[0], old = b.era === "tw2020";
-    var L = ['<div class="tw-thread app' + (old ? " tw2020" : "") + " " + b.theme + (b.width ? " " + b.width : "") + (b.scroll ? " " + b.scroll : "") + '">', '  <div class="tw-scroll">',
+    var L = ['<div class="tw-feed app' + (old ? " tw2020" : "") + " " + b.theme + (b.width ? " " + b.width : "") + (b.scroll ? " " + b.scroll : "") + '">', '  <div class="tw-scroll">',
       '  <p class="tw-apptop">' + (me ? circle("tw-me", me) + " " : "") + '<span class="tw-logo">' + (old ? "Twitter" : "X") + "</span></p>"];
     if (!old) L.push('  <p class="tw-tabs"><span class="tw-tab on">For you<span class="tw-drop"></span></span> <span class="tw-tab">Following</span>' +
       t(b.tabs).split(/\n/).map(t).filter(Boolean).map(function (x) { return ' <span class="tw-tab">' + esc(x) + "</span>"; }).join("") + ' <span class="tw-add">+</span></p>');
     return L.concat(ind(tweets.join("\n\n").split("\n"), 1)).concat(["  </div>", "</div>"]).join("\n").replace(/\n  \n/g, "\n\n");
   }
   function twThreadHTML(b) {
-    var L = ['<div class="tw-thread' + (b.era === "tw2020" ? " tw2020" : "") + " " + b.theme + (b.width ? " " + b.width : "") + (b.scroll ? " " + b.scroll : "") + '">', '  <div class="tw-scroll">'];
+    var L = ['<div class="tw-feed' + (b.era === "tw2020" ? " tw2020" : "") + " " + b.theme + (b.width ? " " + b.width : "") + (b.scroll ? " " + b.scroll : "") + '">', '  <div class="tw-scroll">'];
     b.msgs.forEach(function (m, i) { L = L.concat(ind(tweetHTML(b, m, i ? "reply" : "main"), 2)); });
     L.push("  </div>");
     if (b.bar !== "none") L.push('  <p class="tw-foot"><span>Reply</span><span class="hide"> - </span>Tweet your reply</p>');
@@ -2060,7 +2060,7 @@
     var ks = kids(el), k = 0;
     if (is(ks[k], "p.wa-wall")) { var w = ks[k++].querySelector("img"); if (!w) no(); b.bg = "custom"; b.wall = w.getAttribute("src"); }
     var bar = null;
-    if (is(ks[k], "table.wa-bar")) {
+    if (is(ks[k], "table.wa-top")) {
       bar = ks[k++]; b.header = "bar";
       var tt = bar.querySelector("td.wa-title"), st = bar.querySelector("td.wa-status"); if (!tt || !st) no();
       b.title = tt.querySelector("span.name") ? "" : tt.textContent; b.sub = st.textContent;
@@ -2566,7 +2566,7 @@
   READERS.tw = function (els) {
     var el = els[0]; if (els.length !== 1) no();
     var app = el.classList.contains("app"), b = newBlock(app ? "twfeed" : "twthread");
-    settings(b, el, "tw-thread", function (c) { return twLook(b, c) || app && c === "app"; });
+    settings(b, el, "tw-feed", function (c) { return twLook(b, c) || app && c === "app"; });
     var ks = kids(el), sc = ks.shift(); if (!is(sc, "div.tw-scroll")) no();
     var inner = kids(sc), me = null;
     if (app) {
@@ -2619,7 +2619,7 @@
       return { tick: tick, lock: lock };
     }
     if (!take("span.ig-menu")) no();
-    if (take("span.ig-add")) m.follow = "button";
+    if (take("span.ig-follow-btn")) m.follow = "button";
     var col = take("span.ig-collab"), pic = col ? col.querySelector(".ig-pfp") : take("span.ig-pfp"); if (!pic) no();
     m.story = pic.classList.contains("story");
     var nm = ns[k++]; if (!nm) no();
@@ -2749,7 +2749,7 @@
     if (is(el, ".mob.wa")) return "wa";
     if (is(el, ".mob.twdm")) return "twdm";
     if (is(el, ".mob.igdm")) return "igdm";
-    if (is(el, ".tw-thread")) return "tw";
+    if (is(el, ".tw-feed")) return "tw";
     if (is(el, ".mob.tw")) return "twone";
     if (is(el, ".mob.ig")) return "ig";
     return "";
@@ -2780,14 +2780,16 @@
   // a chat made before the skin's class names changed: the same chat with each old name swapped for its new one
   // (from class-names.js), or null if it has none of the old names
   function renamedEls(els) {
-    var map = {}, hit = false;
+    var map = {}, gone = typeof MEGASKIN_REMOVED !== "undefined" ? MEGASKIN_REMOVED : [], hit = false;
     (typeof MEGASKIN_RENAMES !== "undefined" ? MEGASKIN_RENAMES : []).forEach(function (r) { map[r[0]] = r[1]; });
     var out = els.map(function (e) {
       var c = e.cloneNode(true);
       [c].concat(Array.prototype.slice.call(c.querySelectorAll("[class]"))).forEach(function (x) {
         if (!x.getAttribute("class")) return;
-        var cls = x.getAttribute("class").split(/\s+/).map(function (k) { if (map.hasOwnProperty(k)) { hit = true; return map[k]; } return k; });
-        x.setAttribute("class", cls.join(" "));
+        // classes that were taken out go, and the rest are swapped in one go
+        var cls = x.getAttribute("class").trim().split(/\s+/).filter(function (k) { if (gone.indexOf(k) >= 0) { hit = true; return false; } return true; })
+          .map(function (k) { if (map.hasOwnProperty(k)) { hit = true; return map[k]; } return k; });
+        if (cls.length) x.setAttribute("class", cls.join(" ")); else x.removeAttribute("class");
       });
       return c;
     });
@@ -2808,7 +2810,8 @@
     var pieces = [], rest = "";
     function flush() { if (rest.trim()) pieces.push({ html: rest }); rest = ""; }
     box.childNodes.forEach(function (n) {
-      var app = n.nodeType === 1 && appOf(n), last = pieces[pieces.length - 1];
+      // a chat from before a container's class was renamed is found by its new name
+      var app = n.nodeType === 1 && (appOf(n) || appOf((renamedEls([n]) || [n])[0])), last = pieces[pieces.length - 1];
       if (app && READERS[app]) {
         // single tweets and single posts are a run of boxes, one after another
         if ((app === "twone" || app === "ig" && !n.classList.contains("ig-feed")) && !rest.trim() && last && last.els && appOf(last.els[0]) === app && !last.els[0].classList.contains("ig-feed")) last.els.push(n);
