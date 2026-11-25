@@ -25,7 +25,7 @@
   <!-- /site meta -->
   <link rel="stylesheet" href="../../style.css?v=c31c06ea">
   <script src="../../theme.js?v=c50fd7c2"></script>
-  <link rel="stylesheet" href="megaskin.css?v=20f029da" id="creator-style">
+  <link rel="stylesheet" href="megaskin.css?v=b450b5e6" id="creator-style">
 </head>
 <body>
 <header>
@@ -115,7 +115,8 @@
       <li><a href="#s12-6-9">12.6.9 Seen Status</a></li>
       <li><a href="#s12-6-10">12.6.10 Group Chats</a></li>
       <li><a href="#s12-6-11">12.6.11 Reactions</a></li>
-      <li><a href="#s12-6-12">12.6.12 The App Screen</a></li>
+      <li><a href="#s12-6-12">12.6.12 Typing</a></li>
+      <li><a href="#s12-6-13">12.6.13 The App Screen</a></li>
     </ul>
   </li>
 </ul>
@@ -1023,11 +1024,11 @@
   <p class="igdm-post-cap"><b>fakehockeynews</b> Team dinner before the gala: the captain cooked, and nobody has stopped talking about the lasagne since</p>
 </div></div></div>
 
-<pre><code>&lt;div class=&quot;igdm-post in&quot;&gt;
-  &lt;p class=&quot;igdm-post-btns&quot;&gt;&lt;span class=&quot;ic ic-share&quot;&gt;&lt;/span&gt;&lt;span class=&quot;ic ic-save&quot;&gt;&lt;/span&gt;&lt;/p&gt;
-  &lt;p class=&quot;igdm-post-by&quot;&gt;&lt;span class=&quot;ig-pfp colour3&quot;&gt;FH&lt;/span&gt;&lt;span class=&quot;hide&quot;&gt;&lt;em&gt;Rose&lt;/em&gt; shared a post from &lt;/span&gt;&lt;b&gt;fakehockeynews&lt;/b&gt;&lt;span class=&quot;hide&quot;&gt;:&lt;/span&gt;&lt;/p&gt;
-  &lt;p class=&quot;igdm-post-img&quot;&gt;&lt;img src=&quot;https://picsum.photos/id/292/600/600.jpg&quot; alt=&quot;Chopped onion and other veg on a wooden board&quot;&gt;&lt;/p&gt;
-  &lt;p class=&quot;igdm-post-cap&quot;&gt;&lt;b&gt;fakehockeynews&lt;/b&gt; Team dinner before the gala: the captain cooked, and nobody has stopped talking about the lasagne since&lt;/p&gt;
+<pre><code>&lt;div class="igdm-post in"&gt;
+  &lt;p class="igdm-post-btns"&gt;&lt;span class="ic ic-share"&gt;&lt;/span&gt;&lt;span class="ic ic-save"&gt;&lt;/span&gt;&lt;/p&gt;
+  &lt;p class="igdm-post-by"&gt;&lt;span class="ig-pfp colour3"&gt;FH&lt;/span&gt;&lt;span class="hide"&gt;&lt;em&gt;Rose&lt;/em&gt; shared a post from &lt;/span&gt;&lt;b&gt;fakehockeynews&lt;/b&gt;&lt;span class="hide"&gt;:&lt;/span&gt;&lt;/p&gt;
+  &lt;p class="igdm-post-img"&gt;&lt;img src="https://picsum.photos/id/292/600/600.jpg" alt="Chopped onion and other veg on a wooden board"&gt;&lt;/p&gt;
+  &lt;p class="igdm-post-cap"&gt;&lt;b&gt;fakehockeynews&lt;/b&gt; Team dinner before the gala: the captain cooked, and nobody has stopped talking about the lasagne since&lt;/p&gt;
 &lt;/div&gt;</code></pre>
 
 <p>A post with more than one photo works too: put a carousel in place of the <code>igdm-post-img</code> line, written exactly like the one in <a href="#s12-4-3">A Carousel of Photos</a>. The arrows move through the photos the same way:</p>
@@ -1046,17 +1047,17 @@
 </div></div></div>
 
 <details><summary>The full HTML for this example</summary>
-<pre><code>&lt;div class=&quot;igdm-post in&quot;&gt;
-  &lt;p class=&quot;igdm-post-btns&quot;&gt;&lt;span class=&quot;ic ic-share&quot;&gt;&lt;/span&gt;&lt;span class=&quot;ic ic-save&quot;&gt;&lt;/span&gt;&lt;/p&gt;
-  &lt;p class=&quot;igdm-post-by&quot;&gt;&lt;span class=&quot;ig-pfp&quot;&gt;&lt;span class=&quot;pfp pfp-rose&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;hide&quot;&gt;&lt;em&gt;Rose&lt;/em&gt; shared a post from &lt;/span&gt;&lt;b&gt;&lt;span class=&quot;handle pfp-rose&quot;&gt;&lt;span class=&quot;hide&quot;&gt;RoseLandry&lt;/span&gt;&lt;/span&gt;&lt;/b&gt;&lt;span class=&quot;hide&quot;&gt;:&lt;/span&gt;&lt;/p&gt;
-  &lt;div class=&quot;ig-car real&quot;&gt;
-  &lt;p class=&quot;ig-photo real&quot;&gt;&lt;img src=&quot;https://picsum.photos/id/292/600/600.jpg&quot; alt=&quot;Chopped onion and other veg on a wooden board&quot;&gt;&lt;/p&gt;
-  &lt;p class=&quot;ig-car-info&quot;&gt;&lt;span class=&quot;hide&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ig-car-n&quot;&gt;1/2&lt;/span&gt;&lt;span class=&quot;hide&quot;&gt;) &lt;/span&gt;&lt;span class=&quot;ig-car-dots&quot;&gt;&lt;b&gt;&amp;#8226;&lt;/b&gt;&amp;#8226;&lt;/span&gt;&lt;/p&gt;
-  &lt;details class=&quot;ig-next&quot;&gt;&lt;summary&gt;&lt;span class=&quot;ig-photo real&quot;&gt;&lt;img src=&quot;https://picsum.photos/id/429/600/600.jpg&quot; alt=&quot;A white bowl full of raspberries&quot;&gt;&lt;/span&gt;&lt;/summary&gt;
-  &lt;p class=&quot;ig-car-info&quot;&gt;&lt;span class=&quot;hide&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ig-car-n&quot;&gt;2/2&lt;/span&gt;&lt;span class=&quot;hide&quot;&gt;) &lt;/span&gt;&lt;span class=&quot;ig-car-dots&quot;&gt;&amp;#8226;&lt;b&gt;&amp;#8226;&lt;/b&gt;&lt;/span&gt;&lt;/p&gt;
+<pre><code>&lt;div class="igdm-post in"&gt;
+  &lt;p class="igdm-post-btns"&gt;&lt;span class="ic ic-share"&gt;&lt;/span&gt;&lt;span class="ic ic-save"&gt;&lt;/span&gt;&lt;/p&gt;
+  &lt;p class="igdm-post-by"&gt;&lt;span class="ig-pfp"&gt;&lt;span class="pfp pfp-rose"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="hide"&gt;&lt;em&gt;Rose&lt;/em&gt; shared a post from &lt;/span&gt;&lt;b&gt;&lt;span class="handle pfp-rose"&gt;&lt;span class="hide"&gt;RoseLandry&lt;/span&gt;&lt;/span&gt;&lt;/b&gt;&lt;span class="hide"&gt;:&lt;/span&gt;&lt;/p&gt;
+  &lt;div class="ig-car real"&gt;
+  &lt;p class="ig-photo real"&gt;&lt;img src="https://picsum.photos/id/292/600/600.jpg" alt="Chopped onion and other veg on a wooden board"&gt;&lt;/p&gt;
+  &lt;p class="ig-car-info"&gt;&lt;span class="hide"&gt;(&lt;/span&gt;&lt;span class="ig-car-n"&gt;1/2&lt;/span&gt;&lt;span class="hide"&gt;) &lt;/span&gt;&lt;span class="ig-car-dots"&gt;&lt;b&gt;&amp;#8226;&lt;/b&gt;&amp;#8226;&lt;/span&gt;&lt;/p&gt;
+  &lt;details class="ig-next"&gt;&lt;summary&gt;&lt;span class="ig-photo real"&gt;&lt;img src="https://picsum.photos/id/429/600/600.jpg" alt="A white bowl full of raspberries"&gt;&lt;/span&gt;&lt;/summary&gt;
+  &lt;p class="ig-car-info"&gt;&lt;span class="hide"&gt;(&lt;/span&gt;&lt;span class="ig-car-n"&gt;2/2&lt;/span&gt;&lt;span class="hide"&gt;) &lt;/span&gt;&lt;span class="ig-car-dots"&gt;&amp;#8226;&lt;b&gt;&amp;#8226;&lt;/b&gt;&lt;/span&gt;&lt;/p&gt;
   &lt;/details&gt;
   &lt;/div&gt;
-  &lt;p class=&quot;igdm-post-cap&quot;&gt;&lt;b&gt;&lt;span class=&quot;handle pfp-rose&quot;&gt;&lt;span class=&quot;hide&quot;&gt;RoseLandry&lt;/span&gt;&lt;/span&gt;&lt;/b&gt; cooking for the whole committee again&lt;/p&gt;
+  &lt;p class="igdm-post-cap"&gt;&lt;b&gt;&lt;span class="handle pfp-rose"&gt;&lt;span class="hide"&gt;RoseLandry&lt;/span&gt;&lt;/span&gt;&lt;/b&gt; cooking for the whole committee again&lt;/p&gt;
 &lt;/div&gt;</code></pre>
 </details>
 
@@ -1068,10 +1069,10 @@
   <p class="igdm-post-img"><img src="https://picsum.photos/id/237/540/960.jpg" alt="A black puppy looking up at the camera"></p>
 </div></div></div>
 
-<pre><code>&lt;div class=&quot;igdm-post reel in&quot;&gt;
-  &lt;p class=&quot;igdm-post-btns&quot;&gt;&lt;span class=&quot;ic ic-share&quot;&gt;&lt;/span&gt;&lt;span class=&quot;ic ic-save&quot;&gt;&lt;/span&gt;&lt;/p&gt;
-  &lt;p class=&quot;igdm-post-by&quot;&gt;&lt;span class=&quot;ig-pfp colour5&quot;&gt;PD&lt;/span&gt;&lt;span class=&quot;hide&quot;&gt;&lt;em&gt;Rose&lt;/em&gt; shared a reel from &lt;/span&gt;&lt;b&gt;puppiesdaily&lt;/b&gt;&lt;span class=&quot;hide&quot;&gt;:&lt;/span&gt;&lt;/p&gt;
-  &lt;p class=&quot;igdm-post-img&quot;&gt;&lt;img src=&quot;https://picsum.photos/id/237/540/960.jpg&quot; alt=&quot;A black puppy looking up at the camera&quot;&gt;&lt;/p&gt;
+<pre><code>&lt;div class="igdm-post reel in"&gt;
+  &lt;p class="igdm-post-btns"&gt;&lt;span class="ic ic-share"&gt;&lt;/span&gt;&lt;span class="ic ic-save"&gt;&lt;/span&gt;&lt;/p&gt;
+  &lt;p class="igdm-post-by"&gt;&lt;span class="ig-pfp colour5"&gt;PD&lt;/span&gt;&lt;span class="hide"&gt;&lt;em&gt;Rose&lt;/em&gt; shared a reel from &lt;/span&gt;&lt;b&gt;puppiesdaily&lt;/b&gt;&lt;span class="hide"&gt;:&lt;/span&gt;&lt;/p&gt;
+  &lt;p class="igdm-post-img"&gt;&lt;img src="https://picsum.photos/id/237/540/960.jpg" alt="A black puppy looking up at the camera"&gt;&lt;/p&gt;
 &lt;/div&gt;</code></pre>
 
 <p>The account can come from a profile instead: put a handle span inside the <code>b</code>, with the name typed inside it in a <code>hide</code> span. If you'd rather not use a picture, put a description in an <code>igdm-post-img text</code> paragraph. Leave out any button you don't want, or the whole <code>igdm-post-btns</code> line. The buttons are empty, so they aren't there at all with the workskin off:</p>
@@ -1083,11 +1084,11 @@
   <p class="igdm-post-cap"><b><span class="handle pfp-shane"><span class="hide">shanehollanderhockeyplayer</span></span></b> 6am skate. Again.</p>
 </div></div></div>
 
-<pre><code>&lt;div class=&quot;igdm-post out&quot;&gt;
-  &lt;p class=&quot;igdm-post-btns&quot;&gt;&lt;span class=&quot;ic ic-share&quot;&gt;&lt;/span&gt;&lt;/p&gt;
-  &lt;p class=&quot;igdm-post-by&quot;&gt;&lt;span class=&quot;ig-pfp&quot;&gt;&lt;span class=&quot;pfp pfp-shane&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;hide&quot;&gt;&lt;em&gt;Ilya&lt;/em&gt; shared a post from &lt;/span&gt;&lt;b&gt;&lt;span class=&quot;handle pfp-shane&quot;&gt;&lt;span class=&quot;hide&quot;&gt;shanehollanderhockeyplayer&lt;/span&gt;&lt;/span&gt;&lt;/b&gt;&lt;span class=&quot;hide&quot;&gt;:&lt;/span&gt;&lt;/p&gt;
-  &lt;p class=&quot;igdm-post-img text&quot;&gt;[The post's picture: Shane on the ice at 6am, alone, with the arena lights half on]&lt;/p&gt;
-  &lt;p class=&quot;igdm-post-cap&quot;&gt;&lt;b&gt;&lt;span class=&quot;handle pfp-shane&quot;&gt;&lt;span class=&quot;hide&quot;&gt;shanehollanderhockeyplayer&lt;/span&gt;&lt;/span&gt;&lt;/b&gt; 6am skate. Again.&lt;/p&gt;
+<pre><code>&lt;div class="igdm-post out"&gt;
+  &lt;p class="igdm-post-btns"&gt;&lt;span class="ic ic-share"&gt;&lt;/span&gt;&lt;/p&gt;
+  &lt;p class="igdm-post-by"&gt;&lt;span class="ig-pfp"&gt;&lt;span class="pfp pfp-shane"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="hide"&gt;&lt;em&gt;Ilya&lt;/em&gt; shared a post from &lt;/span&gt;&lt;b&gt;&lt;span class="handle pfp-shane"&gt;&lt;span class="hide"&gt;shanehollanderhockeyplayer&lt;/span&gt;&lt;/span&gt;&lt;/b&gt;&lt;span class="hide"&gt;:&lt;/span&gt;&lt;/p&gt;
+  &lt;p class="igdm-post-img text"&gt;[The post's picture: Shane on the ice at 6am, alone, with the arena lights half on]&lt;/p&gt;
+  &lt;p class="igdm-post-cap"&gt;&lt;b&gt;&lt;span class="handle pfp-shane"&gt;&lt;span class="hide"&gt;shanehollanderhockeyplayer&lt;/span&gt;&lt;/span&gt;&lt;/b&gt; 6am skate. Again.&lt;/p&gt;
 &lt;/div&gt;</code></pre>
 
 <h4 id="s12-6-6">12.6.6 Links</h4>
@@ -1101,11 +1102,11 @@
   <p class="igdm-link-url">fakehockeynews.com</p>
 </div></div></div>
 
-<pre><code>&lt;div class=&quot;igdm-link out&quot;&gt;
-  &lt;p class=&quot;igdm-post-btns&quot;&gt;&lt;span class=&quot;ic ic-info&quot;&gt;&lt;/span&gt;&lt;span class=&quot;ic ic-share&quot;&gt;&lt;/span&gt;&lt;/p&gt;
-  &lt;p class=&quot;igdm-link-img&quot;&gt;&lt;img src=&quot;https://picsum.photos/id/1058/800/450.jpg&quot; alt=&quot;An empty ice rink under bright lights&quot;&gt;&lt;/p&gt;
-  &lt;p class=&quot;igdm-link-title&quot;&gt;&lt;span class=&quot;hide&quot;&gt;&lt;em&gt;Ilya:&lt;/em&gt; &lt;/span&gt;Captain Mack: all the reasons he deserves the C | Fake Hockey News&lt;/p&gt;
-  &lt;p class=&quot;igdm-link-url&quot;&gt;fakehockeynews.com&lt;/p&gt;
+<pre><code>&lt;div class="igdm-link out"&gt;
+  &lt;p class="igdm-post-btns"&gt;&lt;span class="ic ic-info"&gt;&lt;/span&gt;&lt;span class="ic ic-share"&gt;&lt;/span&gt;&lt;/p&gt;
+  &lt;p class="igdm-link-img"&gt;&lt;img src="https://picsum.photos/id/1058/800/450.jpg" alt="An empty ice rink under bright lights"&gt;&lt;/p&gt;
+  &lt;p class="igdm-link-title"&gt;&lt;span class="hide"&gt;&lt;em&gt;Ilya:&lt;/em&gt; &lt;/span&gt;Captain Mack: all the reasons he deserves the C | Fake Hockey News&lt;/p&gt;
+  &lt;p class="igdm-link-url"&gt;fakehockeynews.com&lt;/p&gt;
 &lt;/div&gt;</code></pre>
 
 <p>The picture is optional. Leave it out, or describe it in an <code>igdm-link-img text</code> paragraph. Leave out any button you don't want, or the whole <code>igdm-post-btns</code> line:</p>
@@ -1117,11 +1118,11 @@
   <p class="igdm-link-url">grandmaskitchen.com</p>
 </div></div></div>
 
-<pre><code>&lt;div class=&quot;igdm-link in&quot;&gt;
-  &lt;p class=&quot;igdm-post-btns&quot;&gt;&lt;span class=&quot;ic ic-info&quot;&gt;&lt;/span&gt;&lt;span class=&quot;ic ic-share&quot;&gt;&lt;/span&gt;&lt;/p&gt;
-  &lt;p class=&quot;igdm-link-img text&quot;&gt;[The page's picture: a tray of lasagne, fresh out of the oven]&lt;/p&gt;
-  &lt;p class=&quot;igdm-link-title&quot;&gt;&lt;span class=&quot;hide&quot;&gt;&lt;em&gt;Rose:&lt;/em&gt; &lt;/span&gt;The only lasagne recipe you'll ever need&lt;/p&gt;
-  &lt;p class=&quot;igdm-link-url&quot;&gt;grandmaskitchen.com&lt;/p&gt;
+<pre><code>&lt;div class="igdm-link in"&gt;
+  &lt;p class="igdm-post-btns"&gt;&lt;span class="ic ic-info"&gt;&lt;/span&gt;&lt;span class="ic ic-share"&gt;&lt;/span&gt;&lt;/p&gt;
+  &lt;p class="igdm-link-img text"&gt;[The page's picture: a tray of lasagne, fresh out of the oven]&lt;/p&gt;
+  &lt;p class="igdm-link-title"&gt;&lt;span class="hide"&gt;&lt;em&gt;Rose:&lt;/em&gt; &lt;/span&gt;The only lasagne recipe you'll ever need&lt;/p&gt;
+  &lt;p class="igdm-link-url"&gt;grandmaskitchen.com&lt;/p&gt;
 &lt;/div&gt;</code></pre>
 
 <h4 id="s12-6-7">12.6.7 Photos</h4>
@@ -1179,13 +1180,13 @@
 </div>
 <p class="msg out"><span class="hide"><em>Ilya:</em> </span>he's never cooked for me</p></div></div>
 
-<pre><code>&lt;p class=&quot;igdm-replied out&quot;&gt;You replied&lt;/p&gt;
-&lt;div class=&quot;igdm-post out quoted&quot;&gt;
-  &lt;p class=&quot;igdm-post-by&quot;&gt;&lt;span class=&quot;ig-pfp colour3&quot;&gt;FH&lt;/span&gt;&lt;span class=&quot;hide&quot;&gt;[Replying to a post from &lt;/span&gt;&lt;b&gt;fakehockeynews&lt;/b&gt;&lt;span class=&quot;hide&quot;&gt;]&lt;/span&gt;&lt;/p&gt;
-  &lt;p class=&quot;igdm-post-img&quot;&gt;&lt;img src=&quot;https://picsum.photos/id/292/600/600.jpg&quot; alt=&quot;Chopped onion and other veg on a wooden board&quot;&gt;&lt;/p&gt;
-  &lt;p class=&quot;igdm-post-cap&quot;&gt;&lt;b&gt;fakehockeynews&lt;/b&gt; Team dinner before the gala: the captain cooked, and nobody has stopped talking about the lasagne since&lt;/p&gt;
+<pre><code>&lt;p class="igdm-replied out"&gt;You replied&lt;/p&gt;
+&lt;div class="igdm-post out quoted"&gt;
+  &lt;p class="igdm-post-by"&gt;&lt;span class="ig-pfp colour3"&gt;FH&lt;/span&gt;&lt;span class="hide"&gt;[Replying to a post from &lt;/span&gt;&lt;b&gt;fakehockeynews&lt;/b&gt;&lt;span class="hide"&gt;]&lt;/span&gt;&lt;/p&gt;
+  &lt;p class="igdm-post-img"&gt;&lt;img src="https://picsum.photos/id/292/600/600.jpg" alt="Chopped onion and other veg on a wooden board"&gt;&lt;/p&gt;
+  &lt;p class="igdm-post-cap"&gt;&lt;b&gt;fakehockeynews&lt;/b&gt; Team dinner before the gala: the captain cooked, and nobody has stopped talking about the lasagne since&lt;/p&gt;
 &lt;/div&gt;
-&lt;p class=&quot;msg out&quot;&gt;&lt;span class=&quot;hide&quot;&gt;&lt;em&gt;Ilya:&lt;/em&gt; &lt;/span&gt;he's never cooked for me&lt;/p&gt;</code></pre>
+&lt;p class="msg out"&gt;&lt;span class="hide"&gt;&lt;em&gt;Ilya:&lt;/em&gt; &lt;/span&gt;he's never cooked for me&lt;/p&gt;</code></pre>
 
 <p>In a group, the replied line goes in the <code>igdm-row</code> in place of the <code>who</code> line, because it already says who's talking:</p>
 
@@ -1269,7 +1270,31 @@
 
 <pre><code>&lt;span class="igdm-reacts"&gt;&lt;span class="hide"&gt; [Reactions: &lt;/span&gt;💀❤️ 3&lt;span class="hide"&gt;]&lt;/span&gt;&lt;/span&gt;</code></pre>
 
-<h4 id="s12-6-12">12.6.12 The App Screen</h4>
+<h4 id="s12-6-12">12.6.12 Typing</h4>
+
+<p>The three dots that show someone is typing are a message with three empty spans in it, so they belong to whoever is typing. Add <code>typing-indicator</code> to a message with <code>in</code>, and put the hidden label first:</p>
+
+<div class="mob igdm theme-auto"><div class="mob-body"><p class="msg out"><span class="hide"><em>Ilya:</em> </span>are you coming or not</p>
+<p class="msg in typing-indicator"><span class="hide"><em>Shane</em> is typing...</span><span></span><span></span><span></span></p></div></div>
+
+<pre><code>&lt;p class="msg out"&gt;&lt;span class="hide"&gt;&lt;em&gt;Ilya:&lt;/em&gt; &lt;/span&gt;are you coming or not&lt;/p&gt;
+&lt;p class="msg in typing-indicator"&gt;&lt;span class="hide"&gt;&lt;em&gt;Shane&lt;/em&gt; is typing...&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/p&gt;</code></pre>
+
+<p>In a group, put it in the typing person's <code>igdm-row</code>, so their picture sits beside it:</p>
+
+<div class="mob igdm theme-auto"><div class="mob-body"><div class="igdm-row">
+  <span class="ig-pfp"><span class="pfp pfp-rose"></span></span>
+  <p class="who"><span class="handle pfp-rose"><span class="hide">RoseLandry</span></span><span class="hide">:</span></p>
+  <p class="msg in typing-indicator"><span class="hide"><em>Rose</em> is typing...</span><span></span><span></span><span></span></p>
+</div></div></div>
+
+<pre><code>&lt;div class="igdm-row"&gt;
+  &lt;span class="ig-pfp"&gt;&lt;span class="pfp pfp-rose"&gt;&lt;/span&gt;&lt;/span&gt;
+  &lt;p class="who"&gt;&lt;span class="handle pfp-rose"&gt;&lt;span class="hide"&gt;RoseLandry&lt;/span&gt;&lt;/span&gt;&lt;span class="hide"&gt;:&lt;/span&gt;&lt;/p&gt;
+  &lt;p class="msg in typing-indicator"&gt;&lt;span class="hide"&gt;&lt;em&gt;Rose&lt;/em&gt; is typing...&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+
+<h4 id="s12-6-13">12.6.13 The App Screen</h4>
 
 <p>To make the chat look like the whole DM screen in the app, add the top bar buttons to the header and the message bar to the bottom. Both are optional, and the chat works the same without them:</p>
 
