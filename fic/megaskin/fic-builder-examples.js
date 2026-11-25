@@ -26,7 +26,8 @@
 //          Instagram DMs ("igdm") take shared (a shared post, reel or story), status, and reactions: waReacts (the emojis),
 //          faces (cast names: who reacted) and waCount (how many, if not just the faces),
 //          photos, reply, and a shared post card: hasPost, postReel, postShare, postSave, postAcc (a typed username), postIni, postCol,
-//          postImg, postAlt, postLand, postDesc, postCap. The chat can set tick, headPic,
+//          postImg, postAlt, postLand, postDesc, postMore (more pictures for a carousel: url, alt, desc, land), postCap,
+//          and link cards (link: url, title, img, alt, imgdesc; linkInfo and linkShare for the buttons). The chat can set tick, headPic,
 //          faces (cast names for the header pictures), app (the app screen) and bar.
 (function () {
 var CAT1 = "https://images.squidge.org/images/2026/11/16/Cat1.jpg";
@@ -267,6 +268,10 @@ window.FB_EXAMPLES = [
       ["Shane", "on my way"],
       ["Hayden", "save me some"],
       ["Rose", "bring a tupperware", { reply: 3 }],
+      ["Rose", "", { hasPost: true, postAcc: "grandmaskitchen", postIni: "GK", postCol: "9", postDesc: "A tray of lasagne, fresh out of the oven",
+        postMore: [{ desc: "The same lasagne, cut into squares" }, { desc: "One square on a plate, with a fork" }], postCap: "Sunday lasagne, step by step" }],
+      ["Shane", "", { link: { url: "https://fakehockeynews.com/captain-mack", title: "Captain Mack: all the reasons he deserves the C | Fake Hockey News",
+        imgdesc: "An empty ice rink under bright lights" } }],
       ["Ilya", "I already ate half of it", { status: "Seen by 3", waReacts: "💀❤️", waCount: "3" }]
     ]
   },

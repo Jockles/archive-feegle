@@ -748,7 +748,7 @@
   }
   // what a reply shows of the message it answers
   function igdmQuote(q) {
-    var s = plain(q.text).trim() || ((q.photos || []).some(function (p) { return picUrl(p.url) || t(p.desc); }) ? "Photo" : q.hasPost ? "Post" : "");
+    var s = plain(q.text).trim() || ((q.photos || []).some(function (p) { return picUrl(p.url) || t(p.desc); }) ? "Photo" : q.hasPost ? "Post" : q.link ? t(q.link.title) || "Link" : "");
     return s.length > 60 ? s.slice(0, 57).trim() + "..." : s;
   }
   // a post shared into the chat, as a card: its picture, then who posted it and the caption
@@ -762,11 +762,26 @@
     if (btns) L.push('<p class="igdm-post-btns">' + btns + "</p>");
     L.push('<p class="igdm-post-by">' + pic + (quoted ? '<span class="hide">[Replying to a ' + (reel ? "reel" : "post") + " from </span><b>" + who + '</b><span class="hide">]</span>' :
       '<span class="hide"><em>' + esc(sender) + "</em> shared a " + (reel ? "reel" : "post") + " from </span><b>" + who + '</b><span class="hide">:</span>') + "</p>");
-    if (u) L.push('<p class="igdm-post-img"><img ' + (m.postLand ? 'class="land" ' : "") + 'src="' + esc(u) + '" alt="' + esc(t(m.postAlt)) + '"></p>');
+    var more = (m.postMore || []).filter(function (x) { return picUrl(x.url) || t(x.desc); });
+    // more than one picture: a carousel, the same as a feed post's
+    if (more.length) L = L.concat(igPhotos({ photos: [{ url: u, alt: m.postAlt || "", desc: m.postDesc || "", land: !!m.postLand }].concat(more), shape: "" }));
+    else if (u) L.push('<p class="igdm-post-img"><img ' + (m.postLand ? 'class="land" ' : "") + 'src="' + esc(u) + '" alt="' + esc(t(m.postAlt)) + '"></p>');
     else if (t(m.postDesc)) L.push('<p class="igdm-post-img text">[' + esc(t(m.postDesc)) + "]</p>");
     if (t(m.postCap)) L.push('<p class="igdm-post-cap"><b>' + who + "</b> " + fmt(m.postCap) + "</p>");
     if (r) L.push(r); // reactions go last, straight inside the card
     return ['<div class="igdm-post ' + (reel ? "reel " : "") + side + (quoted ? " quoted" : "") + (r ? " reacted" : "") + '">'].concat(ind(L, 1), ["</div>"]);
+  }
+  // a link sent in the chat, as a card: the info and share buttons, the page's picture, its title and the website
+  function igdmLink(m, side, label, r) {
+    var k = m.link, u = picUrl(k.img || ""), L = [];
+    var btns = (m.linkInfo !== false ? '<span class="ic ic-info"></span>' : "") + (m.linkShare !== false ? '<span class="ic ic-share"></span>' : "");
+    if (btns) L.push('<p class="igdm-post-btns">' + btns + "</p>");
+    if (u) L.push('<p class="igdm-link-img"><img src="' + esc(u) + '" alt="' + esc(t(k.alt)) + '"></p>');
+    else if (t(k.imgdesc)) L.push('<p class="igdm-link-img text">[' + esc(t(k.imgdesc)) + "]</p>");
+    L.push('<p class="igdm-link-title">' + label + esc(t(k.title)) + "</p>");
+    L.push('<p class="igdm-link-url">' + esc(t(k.url).replace(/^https?:\/\//, "").replace(/\/.*$/, "")) + "</p>");
+    if (r) L.push(r);
+    return ['<div class="igdm-link ' + side + (r ? " reacted" : "") + '">'].concat(ind(L, 1), ["</div>"]);
   }
   function igdmHTML(b) {
     var o = others(b), head = "";
@@ -822,12 +837,14 @@
         else if (t(ph.desc)) parts.push(["msg " + side + " photo", '<span class="igdm-desc">[' + esc(t(ph.desc)) + "]</span>"]);
       });
       if (m.hasPost) parts.push(["post"]);
+      if (m.link) parts.push(["link"]);
       if (t(m.text)) parts.push([m.shared ? "igdm-shared" : "msg " + side, fmt(m.text)]);
       var rx = igdmReacts(m), last = -1;
       parts.forEach(function (x, i) { if (x[0] !== "igdm-shared") last = i; });
       parts.forEach(function (x, i) {
         var r = i === last ? rx : "";
-        if (x[0] === "post") { label(); igdmPost(m, side, grouped ? igName(c) : nameOf(c), r).forEach(function (l) { to.push(l); }); }
+        if (x[0] === "link") igdmLink(m, side, label(), r).forEach(function (l) { to.push(l); });
+        else if (x[0] === "post") { label(); igdmPost(m, side, grouped ? igName(c) : nameOf(c), r).forEach(function (l) { to.push(l); }); }
         else to.push('<p class="' + x[0] + (r ? " reacted" : "") + '">' + label() + x[1] + r + "</p>");
       });
       if (t(m.status)) to.push('<p class="igdm-status">' + esc(t(m.status)) + "</p>");
@@ -1155,6 +1172,8 @@
     "blocks.N.msgs.N.shared:igdm": "Turns the words into an outlined box, for a reel or story sent into the chat. Type what it says in the message box, like 'Shared a story from @shane.h: \"6am skate. Again.\"'. For a post with its picture, use 'Shared post card' instead.",
     "blocks.N.msgs.N.replyTo:igdm": "Pick an earlier message to reply to it. It shows who replied to who, like 'Shane replied to you', then that message faded, above this one.",
     "blocks.N.msgs.N.hasPost:igdm": "A post or reel sent into the chat, as a card: the account and its picture, the post's picture, then the caption. Pick who posted it, or type the username of someone not in the cast, with the letters and colour for their circle.",
+    "blocks.N.msgs.N.link.url:igdm": "A link sent in the chat, as a card: the page's picture, its title in bold, and the website under it. Only the website's name shows, so the rest of the address can be anything. The picture is optional.",
+    "blocks.N.msgs.N.postMore.N.url:igdm": "Another picture in the post makes it a carousel, with dots and arrows to slide through them, like in the feed. " + PIC,
     "blocks.N.msgs.N.postReel:igdm": "Makes the card tall like a phone screen, with a play button and the reel sign. The share and save buttons are the round buttons beside the card.",
     "blocks.N.msgs.N.postLand:igdm": "Tick this if the picture is wider than it is tall, so it fills a reel's height instead of being squashed.",
     "blocks.N.msgs.N.photos.N.url:igdm": "A photo sent in the chat. Each photo is its own bubble, before the words. " + PIC,
@@ -1339,7 +1358,25 @@
               field(P + ".postCol", "", { type: "select", options: [["", "Grey"]].concat(Object.keys(COLOURS).map(function (k) { return [k, "Colour " + k + ": " + COLOUR_NAMES[k]]; })) }) + "</div>") +
             field(P + ".postImg", "", { type: "url", ph: "Picture link", wrap: true }) + field(P + ".postAlt", "", { ph: "Describe the picture (alt text)", wrap: true }) +
             field(P + ".postLand", "Landscape picture", { type: "check" }) +
-            field(P + ".postDesc", "", { ph: "Or, with no picture, describe it in words", wrap: true }) + field(P + ".postCap", "", { ph: "The caption (reels usually have none)", wrap: true }) + "</div>");
+            field(P + ".postDesc", "", { ph: "Or, with no picture, describe it in words", wrap: true }) +
+            (m.postMore || []).map(function (x, k) {
+              var K = P + ".postMore." + k;
+              return '<div class="fb-acct"><div class="fb-row">' + field(K + ".url", "", { type: "url", ph: "Next picture link" }) + btn("ppic-del:" + bi + ":" + mi + ":" + k, "&times;", "Remove") + "</div>" +
+                field(K + ".alt", "", { ph: "Describe the picture (alt text)", wrap: true }) + field(K + ".desc", "", { ph: "Or, with no picture, describe it in words", wrap: true }) +
+                field(K + ".land", "Landscape picture", { type: "check" }) + "</div>";
+            }).join("") + btn("ppic-add:" + bi + ":" + mi, "+ Another picture (a carousel)") +
+            field(P + ".postCap", "", { ph: "The caption (reels usually have none)", wrap: true }) + "</div>");
+        }
+        if (!m.link) h.push("<p>" + btn("link-add:" + bi + ":" + mi, "+ Link card") + "</p>");
+        else {
+          if (m.linkInfo === undefined) m.linkInfo = true;
+          if (m.linkShare === undefined) m.linkShare = true;
+          var K = P + ".link";
+          h.push('<div class="fb-acct"><p class="hint">Link card: ' + btn("link-del:" + bi + ":" + mi, "Remove") + help(P + ".link.url") + "</p>" +
+            '<div class="fb-row">' + field(P + ".linkInfo", "Info button", { type: "check" }) + field(P + ".linkShare", "Share button", { type: "check" }) + "</div>" +
+            field(K + ".url", "", { ph: "Web address", wrap: true }) + field(K + ".title", "", { ph: "The page's title", wrap: true }) +
+            field(K + ".img", "", { type: "url", ph: "Picture link", wrap: true }) + field(K + ".alt", "", { ph: "Describe the picture (alt text)", wrap: true }) +
+            field(K + ".imgdesc", "", { ph: "Or, with no picture, describe it in words", wrap: true }) + "</div>");
         }
         h.push(pictureRows(P, bi, mi, m, 0, false));
         h.push("</div></li>"); return h.join("");
@@ -2219,7 +2256,14 @@
       var col = pf.className.match(/(?:^|\s)colour(\d+)/); m.postCol = col ? col[1] : "";
       m.postIni = words(pf) === m.postAcc.charAt(0).toUpperCase() ? "" : words(pf);
     }
-    if (is(ks[0], "p.igdm-post-img")) {
+    if (is(ks[0], "div.ig-car")) {
+      var phs = Array.prototype.map.call(ks.shift().querySelectorAll(".ig-photo"), function (x) {
+        var img = x.querySelector("img");
+        return img ? { url: img.getAttribute("src"), alt: img.getAttribute("alt") || "", desc: "", land: img.classList.contains("land") } : { url: "", alt: "", desc: words(x).replace(/^\[|\]$/g, ""), land: false };
+      });
+      if (phs.length < 2) no();
+      var f = phs.shift(); m.postImg = f.url; m.postAlt = f.alt; m.postDesc = f.desc; m.postLand = f.land; m.postMore = phs;
+    } else if (is(ks[0], "p.igdm-post-img")) {
       var im = ks.shift(), img = im.querySelector("img");
       if (img) { m.postImg = img.getAttribute("src"); m.postAlt = img.getAttribute("alt") || ""; m.postLand = img.classList.contains("land"); }
       else if (im.classList.contains("text")) m.postDesc = words(im).replace(/^\[|\]$/g, "");
@@ -2227,6 +2271,23 @@
     }
     if (is(ks[0], "p.igdm-post-cap")) { var cn = inl(ks.shift()); if (!is(cn[0], "b")) no(); cn.shift(); m.postCap = textBack(cn); }
     if (ks.length) no();
+    return { name: name, rx: rx };
+  }
+  // a link card in a DM: the buttons, the page's picture, the title (with the hidden name) and the website
+  function linkBack(d, m) {
+    var ks = kids(d), rx = is(ks[ks.length - 1], "span.igdm-reacts") ? ks.pop() : null;
+    m.link = { url: "", showUrl: false, title: "", desc: "", img: "", alt: "", video: "", imgdesc: "" }; m.linkInfo = m.linkShare = false;
+    if (is(ks[0], "p.igdm-post-btns")) kids(ks.shift()).forEach(function (x) { if (is(x, "span.ic-info")) m.linkInfo = true; else if (is(x, "span.ic-share")) m.linkShare = true; else no(); });
+    if (is(ks[0], "p.igdm-link-img")) {
+      var im = ks.shift(), img = im.querySelector("img");
+      if (img) { m.link.img = img.getAttribute("src"); m.link.alt = img.getAttribute("alt") || ""; }
+      else if (im.classList.contains("text")) m.link.imgdesc = words(im).replace(/^\[|\]$/g, "");
+      else no();
+    }
+    var ti = ks.shift(), ur = ks.shift(); if (!is(ti, "p.igdm-link-title") || !is(ur, "p.igdm-link-url") || ks.length) no();
+    var ns = inl(ti), name = labelOf(ns);
+    m.link.title = ns.map(function (n) { return n.nodeType === 3 ? n.nodeValue : no(); }).join("").trim();
+    m.link.url = words(ur);
     return { name: name, rx: rx };
   }
   READERS.igdm = function (els) {
@@ -2253,13 +2314,14 @@
         if (!quote || quote.text != null || !p.classList.contains(quote.side)) no();
         quote.mine = p.classList.contains("mine"); quote.text = noHide(p).textContent; return;
       }
-      var card = is(p, "div.igdm-post"), sh = is(p, "p.igdm-shared"), out = !sh && p.classList.contains("out");
-      if (!card && !sh && !is(p, "p.msg")) no();
+      var card = is(p, "div.igdm-post"), lnk = is(p, "div.igdm-link"), sh = is(p, "p.igdm-shared"), out = !sh && p.classList.contains("out");
+      if (!card && !lnk && !sh && !is(p, "p.msg")) no();
       if (!sh && !out && !p.classList.contains("in")) no();
       if (quote && (quote.text == null || !sh && quote.side !== (out ? "out" : "in"))) no();
       m = newMsg("", ""); m.faces = [];
       var name = "", rx = null;
       if (card) { var cb = cardBack(p, m); name = cb.name; rx = cb.rx; }
+      else if (lnk) { var lb = linkBack(p, m); name = lb.name; rx = lb.rx; }
       else {
         var ns = inl(p); name = labelOf(ns);
         rx = is(ns[ns.length - 1], "span.igdm-reacts") ? ns.pop() : null;
@@ -2815,6 +2877,8 @@
       case "tag-del": m.tags.splice(n[2], 1); break;
       case "link-add": m.link = { url: "", showUrl: false, title: "", desc: "", img: "", alt: "", video: "", imgdesc: "" }; break;
       case "link-del": m.link = null; break;
+      case "ppic-add": (m.postMore = m.postMore || []).push({ url: "", alt: "", desc: "", land: false }); break;
+      case "ppic-del": m.postMore.splice(n[2], 1); break;
       case "copy-html": copy("fb-html", t); return;
       case "copy-css": copy("fb-css", t); return;
       case "save-html": saveHTML(); return;
