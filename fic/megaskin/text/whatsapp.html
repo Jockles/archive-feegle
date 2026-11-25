@@ -1729,3 +1729,23 @@
   <li>A wide picture needs <code>class=&quot;landscape&quot;</code> on the picture tag, like Ash's, or it won't fill its circle.</li>
   <li>The same picture tag works in the header's <code>wa-pfp</code>, for a one-to-one chat with someone who doesn't have a profile.</li>
 </ul>
+
+<h3>A Part on Its Own</h3>
+
+<p>You don't need a whole chat. Any part works by itself inside its container. Here's one message in a small box, using <code>loose</code>:</p>
+
+<div class="mob wa loose theme-auto">
+  <div class="msg in tail">
+    <p><span class="hide"><em>Lily:</em> </span>are you still up?</p>
+    <p class="wa-time">23:41</p>
+  </div>
+</div>
+
+<pre><code>&lt;div class="mob wa loose theme-auto"&gt;
+  &lt;div class="msg in tail"&gt;
+    &lt;p&gt;&lt;span class="hide"&gt;&lt;em&gt;Lily:&lt;/em&gt; &lt;/span&gt;are you still up?&lt;/p&gt;
+    &lt;p class="wa-time"&gt;23:41&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+<p>There's more on this in <a href="core.html#heading">A Part on Its Own</a>, in the Core chapter.</p>

@@ -7,7 +7,7 @@
   <title>Megaskin, Chapter 12: Instagram | jockles.com</title>
   <link rel="stylesheet" href="../../style.css">
   <script src="../../theme.js"></script>
-  <link rel="stylesheet" href="megaskin.css?v=e62baa43" id="creator-style">
+  <link rel="stylesheet" href="megaskin.css?v=0fbf0eaf" id="creator-style">
 </head>
 <body>
 <header>
@@ -101,6 +101,7 @@
       <li><a href="#s12-6-13">12.6.13 The App Screen</a></li>
     </ul>
   </li>
+  <li><a href="#s12-7">12.7 A Part on Its Own</a></li>
 </ul>
 
 <p>Each part of this chapter starts with the simplest version that works. If you want more, the <strong>Options</strong> boxes show the other things that part can do, and the <strong>How it works</strong> boxes explain what each bit of the code is for.</p>
@@ -508,7 +509,7 @@
 
 <h4 id="s12-3-3">12.3.3 Liked By, With Faces</h4>
 
-<p><code>ig-likes</code> is the likes line. Add <code>liked-by</code> to it for a "Liked by" line, which puts little overlapping profile pictures in front and keeps the text from being bold unless you put names in <code>&lt;b&gt;</code>. Each face is a span with <code>ig-like-pfp</code>, with the usual <code>pfp</code> and picture tag inside, all inside one <code>ig-like-pfps</code> span. Keep the faces together on one line, with no gaps between them. A picture that's wider than tall needs <code>class=&quot;landscape&quot;</code> on its picture tag, like the second and third faces here, or it won't fill its circle (see <a href="core.html#s2-5-2">Pictures in Boxes and Circles</a>):</p>
+<p><code>ig-likes</code> is the likes line. Add <code>liked-by</code> to it for a "Liked by" line, which puts little overlapping profile pictures in front and keeps the text from being bold unless you put names in <code>&lt;b&gt;</code>. Each face is a span with <code>ig-like-pfp</code>, with the usual <code>pfp</code> and picture tag inside, all inside one <code>ig-like-pfps</code> span. Keep the faces together on one line, with no gaps between them. A picture that's wider than tall needs <code>class=&quot;landscape&quot;</code> on its picture tag, like the second and third faces here, or it won't fill its circle (see <a href="core.html#s2-6-2">Pictures in Boxes and Circles</a>):</p>
 
 <div class="mob ig ig-feed theme-auto"><div class="mob ig"><p class="ig-likes liked-by"><span class="ig-like-pfps"><span class="ig-like-pfp"><span class="pfp"><img src="https://media.istockphoto.com/id/1298570775/photo/rose.jpg?s=1024x1024&w=is&k=20&c=UFPisYCT3g2Vm04F2E5zrhtUWqDtLRLDXZisKb6Xf5s=" alt="Profile picture of shane.h"></span></span><span class="ig-like-pfp"><span class="pfp"><img class="landscape" src="https://media.istockphoto.com/id/2172051553/photo/asiatic-lily.jpg?s=1024x1024&w=is&k=20&c=3vCuZD234XmkXzrnzWPBdIZM0oJA1B6qe1x-06K_wDo=" alt="Profile picture of scott.h"></span></span><span class="ig-like-pfp"><span class="pfp"><img class="landscape" src="https://www.shutterstock.com/shutterstock/photos/1100283806/display_1500/stock-photo-beautiful-lavender-flower-in-the-dalat-flower-park-selective-focus-1100283806.jpg" alt="Profile picture of jane_t"></span></span></span>Liked by <b>shane.h</b> and <b>others</b></p></div></div>
 
@@ -876,7 +877,7 @@
 
 <pre><code>&lt;p class="ig-top"&gt;&lt;span class="ig-pfp colour3"&gt;SC&lt;/span&gt;scott.h&lt;/p&gt;</code></pre>
 
-<p>For an uploaded picture, put the picture tag inside a span with <code>pfp</code>, inside a span with <code>ig-pfp</code>. The <code>pfp</code> span crops the picture into a circle without squashing it, and the alt text should describe the picture (for example, "Profile picture of ilya.r"). If the picture is wider than it is tall, add <code>class=&quot;landscape&quot;</code> to the picture tag (see <a href="core.html#s2-5-2">Pictures in Boxes and Circles</a>). To show that the account has a story up, add <code>story</code> to the <code>ig-pfp</code> span, which draws the colourful ring around the picture:</p>
+<p>For an uploaded picture, put the picture tag inside a span with <code>pfp</code>, inside a span with <code>ig-pfp</code>. The <code>pfp</code> span crops the picture into a circle without squashing it, and the alt text should describe the picture (for example, "Profile picture of ilya.r"). If the picture is wider than it is tall, add <code>class=&quot;landscape&quot;</code> to the picture tag (see <a href="core.html#s2-6-2">Pictures in Boxes and Circles</a>). To show that the account has a story up, add <code>story</code> to the <code>ig-pfp</code> span, which draws the colourful ring around the picture:</p>
 
 <div class="mob ig ig-feed theme-auto"><div class="mob ig"><p class="ig-top"><span class="ig-pfp story"><span class="pfp"><img src="https://64.media.tumblr.com/2f5204e07f5dc3467a42508584f56c7d/188bbfab996df056-77/s400x600/e139f3e69f9be02470797bbd3505a69cc26def70.pnj" alt="Profile picture of ilya.r"></span></span></p></div></div>
 
@@ -1427,6 +1428,30 @@
 <div class="mob igdm theme-auto"><p class="igdm-input"><span class="igdm-cam ic ic-camera">&#128247;</span><span class="hide"> </span><span class="igdm-field typed">wait who said there was garlic bread<span class="hide"> </span><span class="ic ic-mic">&#127908;</span></span></p></div>
 
 <pre><code>&lt;span class="igdm-field typed"&gt;wait who said there was garlic bread&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="ic ic-mic"&gt;&amp;#127908;&lt;/span&gt;&lt;/span&gt;</code></pre>
+
+<h3 id="s12-7">12.7 A Part on Its Own</h3>
+
+<p>You don't need a whole post or a whole chat. Any part works by itself inside its container. Here are two stray comments, and a DM message bar with a message that never got sent:</p>
+
+<div class="mob ig theme-auto">
+  <p class="ig-comment"><b>ilya.r</b> I am coming now</p>
+  <p class="ig-comment"><b>shane.h</b> you said that an hour ago</p>
+</div>
+
+<pre><code>&lt;div class="mob ig theme-auto"&gt;
+  &lt;p class="ig-comment"&gt;&lt;b&gt;ilya.r&lt;/b&gt; I am coming now&lt;/p&gt;
+  &lt;p class="ig-comment"&gt;&lt;b&gt;shane.h&lt;/b&gt; you said that an hour ago&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+
+<div class="mob igdm theme-auto">
+  <p class="igdm-input"><span class="igdm-cam ic ic-camera">&#128247;</span><span class="hide"> </span><span class="igdm-field typed">wait who said there was garlic bread<span class="hide"> </span><span class="ic ic-mic">&#127908;</span></span></p>
+</div>
+
+<pre><code>&lt;div class="mob igdm theme-auto"&gt;
+  &lt;p class="igdm-input"&gt;&lt;span class="igdm-cam ic ic-camera"&gt;&amp;#128247;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="igdm-field typed"&gt;wait who said there was garlic bread&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="ic ic-mic"&gt;&amp;#127908;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+
+<p>There's more on this in <a href="core.html#alone">A Part on Its Own</a>, in the Core chapter.</p>
         </div>
       </div>
 

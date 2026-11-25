@@ -7,7 +7,7 @@
   <title>Megaskin, Chapter 8: Twitter/X | jockles.com</title>
   <link rel="stylesheet" href="../../style.css">
   <script src="../../theme.js"></script>
-  <link rel="stylesheet" href="megaskin.css?v=e62baa43" id="creator-style">
+  <link rel="stylesheet" href="megaskin.css?v=0fbf0eaf" id="creator-style">
 </head>
 <body>
 <header>
@@ -106,6 +106,7 @@
       <li><a href="#s8-7-11">8.7.11 Group Chats</a></li>
     </ul>
   </li>
+  <li><a href="#s8-8">8.8 A Part on Its Own</a></li>
 </ul>
 
 <p>Each part of this chapter starts with the simplest version that works. If you want more, the <strong>Options</strong> boxes show the other things that part can do, and the <strong>How it works</strong> boxes explain what each bit of the code is for.</p>
@@ -1106,7 +1107,7 @@
 <details>
 <summary>Options: two, three or four pictures</summary>
 
-<p>For a tweet with several pictures, add <code>two</code>, <code>three</code> or <code>four</code> to the box to match the number of pictures, and put each picture tag in a <code>tw-photo</code> span. The span crops each picture to fit its space without squashing it. For the square spaces (all four in the four-photo layout, and the two small ones in the three-photo layout), add <code>class=&quot;landscape&quot;</code> to the picture tag of any photo that's wider than it is tall (see <a href="core.html#s2-5-2">Pictures in Boxes and Circles</a>). Two pictures sit side by side, both tall:</p>
+<p>For a tweet with several pictures, add <code>two</code>, <code>three</code> or <code>four</code> to the box to match the number of pictures, and put each picture tag in a <code>tw-photo</code> span. The span crops each picture to fit its space without squashing it. For the square spaces (all four in the four-photo layout, and the two small ones in the three-photo layout), add <code>class=&quot;landscape&quot;</code> to the picture tag of any photo that's wider than it is tall (see <a href="core.html#s2-6-2">Pictures in Boxes and Circles</a>). Two pictures sit side by side, both tall:</p>
 
 <div class="tw-feed theme-auto"><div class="tw-scroll"><div class="mob tw-reply"><p class="tw-photos two">
   <span class="tw-photo"><img src="https://images.squidge.org/images/2026/11/16/Cat1.jpg" alt="Black and white cat staring through a gap between a screen and a desk, with blurred cables hanging down around and blue sky behind"></span>
@@ -1652,6 +1653,32 @@
 <p>A reaction can have more than one emoji in it, and it goes inside the row, after the message it belongs to.</p>
 
 </details>
+
+<h3 id="s8-8">8.8 A Part on Its Own</h3>
+
+<p>You don't need a whole thread. Any part works by itself inside its container. Here's a reply with no tweet above it, for when there's prose in between, and a DM message bar by itself:</p>
+
+<div class="mob tw-reply theme-auto">
+  <p class="tw-replying">Replying to <span class="tw-link">@ZimBits</span></p>
+  <p class="tw-top"><span class="tw-pfp colour4">HL</span><span class="hide"> </span><span class="tw-name">Holster</span> <span class="tw-handle">@HolsterInLaw</span> <span class="tw-time">· 2h</span></p>
+  <p class="tw-text">I said what I said</p>
+</div>
+
+<pre><code>&lt;div class="mob tw-reply theme-auto"&gt;
+  &lt;p class="tw-replying"&gt;Replying to &lt;span class="tw-link"&gt;@ZimBits&lt;/span&gt;&lt;/p&gt;
+  &lt;p class="tw-top"&gt;&lt;span class="tw-pfp colour4"&gt;HL&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="tw-name"&gt;Holster&lt;/span&gt; &lt;span class="tw-handle"&gt;@HolsterInLaw&lt;/span&gt; &lt;span class="tw-time"&gt;· 2h&lt;/span&gt;&lt;/p&gt;
+  &lt;p class="tw-text"&gt;I said what I said&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+
+<div class="mob twdm theme-auto">
+  <p class="twdm-input"><span class="twdm-plus">+</span><span class="hide"> </span><span class="twdm-field">Message<span class="hide"> </span><span class="ic ic-mic">&#127908;</span></span></p>
+</div>
+
+<pre><code>&lt;div class="mob twdm theme-auto"&gt;
+  &lt;p class="twdm-input"&gt;&lt;span class="twdm-plus"&gt;+&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="twdm-field"&gt;Message&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="ic ic-mic"&gt;&amp;#127908;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+
+<p>There's more on this in <a href="core.html#alone">A Part on Its Own</a>, in the Core chapter.</p>
         </div>
       </div>
 

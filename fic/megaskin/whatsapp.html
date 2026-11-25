@@ -7,7 +7,7 @@
   <title>Megaskin, Chapter 6: WhatsApp | jockles.com</title>
   <link rel="stylesheet" href="../../style.css">
   <script src="../../theme.js"></script>
-  <link rel="stylesheet" href="megaskin.css?v=e62baa43" id="creator-style">
+  <link rel="stylesheet" href="megaskin.css?v=0fbf0eaf" id="creator-style">
 </head>
 <body>
 <header>
@@ -91,6 +91,7 @@
       <li><a href="#s6-6-4">6.6.4 Uploading a Profile Pic</a></li>
     </ul>
   </li>
+  <li><a href="#s6-7">6.7 A Part on Its Own</a></li>
 </ul>
 
 <p>Each part of this chapter starts with the simplest version that works. If you want more, the <strong>Options</strong> boxes show the other things that part can do, and the <strong>How it works</strong> boxes explain what each bit of the code is for.</p>
@@ -660,7 +661,7 @@
 <details>
 <summary>Options: a character with a profile</summary>
 
-<p><strong>A character with a profile:</strong> put their profile in the circle and a name span in <code>wa-title</code>, with the name typed inside it in a <code>hide</code> span for readers with the workskin off. Then both come from the profile, they're the same in every chat, and they change to whatever your point-of-view character has them saved as (see <a href="core.html#s2-4-3-2">Their Phone</a>):</p>
+<p><strong>A character with a profile:</strong> put their profile in the circle and a name span in <code>wa-title</code>, with the name typed inside it in a <code>hide</code> span for readers with the workskin off. Then both come from the profile, they're the same in every chat, and they change to whatever your point-of-view character has them saved as (see <a href="core.html#s2-5-3-2">Their Phone</a>):</p>
 
 <div class="mob wa theme-auto"><table class="wa-top">
   <tbody>
@@ -843,7 +844,7 @@
 <details>
 <summary>Options: a character's own wallpaper</summary>
 
-<p>If a chat is on one particular character's phone, you can use their profile instead: add <code>pov-</code> and their name to the container, like <code>pov-shane</code>, and the chat gets the wallpaper set in their profile, so all of their chats look the same (see <a href="core.html#s2-4-3-2">Their Phone</a>).</p>
+<p>If a chat is on one particular character's phone, you can use their profile instead: add <code>pov-</code> and their name to the container, like <code>pov-shane</code>, and the chat gets the wallpaper set in their profile, so all of their chats look the same (see <a href="core.html#s2-5-3-2">Their Phone</a>).</p>
 
 <p>A profile wallpaper can be a picture, too. Here's the same chat from Yuna's side, on her phone, with her own photo as the background:</p>
 
@@ -1433,7 +1434,7 @@
   &lt;p class="wa-time"&gt;14:22 &lt;span class="wa-read ic ic-read"&gt;✓✓&lt;/span&gt;&lt;/p&gt;
 &lt;/div&gt;</code></pre>
 
-<p>Each photo is cropped to fit its space without getting squashed. In the four-photo layout, and for the two small photos in the three-photo layout, add <code>class=&quot;landscape&quot;</code> to the picture tag of any photo that's wider than it is tall (see <a href="core.html#s2-5-2">Pictures in Boxes and Circles</a>). WhatsApp only has these layouts, so if you want more than four photos, send a second gallery.</p>
+<p>Each photo is cropped to fit its space without getting squashed. In the four-photo layout, and for the two small photos in the three-photo layout, add <code>class=&quot;landscape&quot;</code> to the picture tag of any photo that's wider than it is tall (see <a href="core.html#s2-6-2">Pictures in Boxes and Circles</a>). WhatsApp only has these layouts, so if you want more than four photos, send a second gallery.</p>
 
 <details>
 <summary>Options: three photos</summary>
@@ -1820,6 +1821,26 @@
   <li>A wide picture needs <code>class=&quot;landscape&quot;</code> on the picture tag, like Ash's, or it won't fill its circle.</li>
   <li>The same picture tag works in the header's <code>wa-pfp</code>, for a one-to-one chat with someone who doesn't have a profile.</li>
 </ul>
+
+<h3 id="s6-7">6.7 A Part on Its Own</h3>
+
+<p>You don't need a whole chat. Any part works by itself inside its container. Here's one message in a small box, using <code>loose</code>:</p>
+
+<div class="mob wa loose theme-auto">
+  <div class="msg in tail">
+    <p><span class="hide"><em>Lily:</em> </span>are you still up?</p>
+    <p class="wa-time">23:41</p>
+  </div>
+</div>
+
+<pre><code>&lt;div class="mob wa loose theme-auto"&gt;
+  &lt;div class="msg in tail"&gt;
+    &lt;p&gt;&lt;span class="hide"&gt;&lt;em&gt;Lily:&lt;/em&gt; &lt;/span&gt;are you still up?&lt;/p&gt;
+    &lt;p class="wa-time"&gt;23:41&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+<p>There's more on this in <a href="core.html#alone">A Part on Its Own</a>, in the Core chapter.</p>
         </div>
       </div>
 

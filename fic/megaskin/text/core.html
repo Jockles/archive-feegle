@@ -12,6 +12,7 @@
       <li><a href="#themes">Light, dark and auto themes</a></li>
     </ul>
   </li>
+  <li><a href="#alone">A part on its own</a>: one comment, one reply or one typing bar, without the rest (<code>loose</code> for a smaller box)</li>
   <li><a href="#profiles">Character appearances and profiles</a>
     <ul>
       <li><a href="#initials">Initials in a coloured circle</a></li>
@@ -627,6 +628,68 @@
     &lt;p&gt;&lt;span class="dc-field"&gt;Message #general&lt;/span&gt;&lt;/p&gt;
   &lt;/div&gt;
 &lt;/div&gt;</code></pre>
+
+</details>
+
+<h3 id="alone">A Part on Its Own</h3>
+
+<p>You don't have to build a whole chat or a whole post. Sometimes the story only needs one piece: a single comment, a reply after a bit of prose, a typing bar with a message nobody sent. Any part works by itself, as long as it's inside its app's container. The container is what tells the skin which app it is, and whether it's light or dark.</p>
+
+<p>Here are two Instagram comments with no post above them:</p>
+
+<div class="mob ig theme-auto">
+  <p class="ig-comment"><b>ilya.r</b> I am coming now</p>
+  <p class="ig-comment"><b>shane.h</b> you said that an hour ago</p>
+</div>
+
+<pre><code>&lt;div class="mob ig theme-auto"&gt;
+  &lt;p class="ig-comment"&gt;&lt;b&gt;ilya.r&lt;/b&gt; I am coming now&lt;/p&gt;
+  &lt;p class="ig-comment"&gt;&lt;b&gt;shane.h&lt;/b&gt; you said that an hour ago&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+
+<p>A message bar by itself, with something half typed in it:</p>
+
+<div class="mob imsg theme-auto">
+  <p class="imsg-input"><span class="imsg-plus">+</span><span class="hide"> </span><span class="imsg-field typed">I miss<span class="hide"> </span><span class="imsg-mic ic ic-mic">&#127908;</span></span></p>
+</div>
+
+<pre><code>&lt;div class="mob imsg theme-auto"&gt;
+  &lt;p class="imsg-input"&gt;&lt;span class="imsg-plus"&gt;+&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="imsg-field typed"&gt;I miss&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="imsg-mic ic ic-mic"&gt;&amp;#127908;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+
+<p>You can leave parts out, or put them in a different order, too. A tweet with no name at the top, a caption above its photo, a typing bar above the messages - they all still work. The skin copies the apps, but it's your story, so bend the rules whenever it helps.</p>
+
+<details>
+<summary>Options: a smaller box with loose</summary>
+
+<p>A container is as wide as a phone, which can look too big around one small thing. Add <code>loose</code> to the container and it shrinks to fit whatever's inside it:</p>
+
+<div class="mob ig loose theme-auto">
+  <p class="ig-comment"><b>ilya.r</b> I am coming now</p>
+</div>
+
+<pre><code>&lt;div class="mob ig loose theme-auto"&gt;
+  &lt;p class="ig-comment"&gt;&lt;b&gt;ilya.r&lt;/b&gt; I am coming now&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+
+<div class="mob imsg loose theme-auto">
+  <p class="msg in"><span class="hide"><em>Ilya:</em> </span>are you awake</p>
+</div>
+
+<pre><code>&lt;div class="mob imsg loose theme-auto"&gt;
+  &lt;p class="msg in"&gt;&lt;span class="hide"&gt;&lt;em&gt;Ilya:&lt;/em&gt; &lt;/span&gt;are you awake&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+
+</details>
+
+<details>
+<summary>How it works: what doesn't work</summary>
+
+<ul>
+  <li>A part with no container at all shows up as plain text, because the skin can't tell which app it belongs to.</li>
+  <li>A part inside a different app's container - an Instagram comment inside a tweet, say - shows up as plain text too. Use two containers, one after the other.</li>
+  <li>The very small pieces need the part they belong to: a verified tick needs a name, a reaction needs its message, one photo needs its grid.</li>
+</ul>
 
 </details>
 

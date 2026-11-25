@@ -7,7 +7,7 @@
   <title>Megaskin, Chapter 4: iMessage | jockles.com</title>
   <link rel="stylesheet" href="../../style.css">
   <script src="../../theme.js"></script>
-  <link rel="stylesheet" href="megaskin.css?v=e62baa43" id="creator-style">
+  <link rel="stylesheet" href="megaskin.css?v=0fbf0eaf" id="creator-style">
 </head>
 <body>
 <header>
@@ -73,6 +73,7 @@
       <li><a href="#s4-5-2">4.5.2 Names in a Group Chat</a></li>
     </ul>
   </li>
+  <li><a href="#s4-6">4.6 A Part on Its Own</a></li>
 </ul>
 
 <p>Before we begin, here's the two kinds of chat you can build: a message between two people, or a group chat. The full HTML is underneath each, which you can copy and modify yourself. The rest of the chapter takes the HTML apart so that you can modify all the individual parts to say exactly what you want.</p>
@@ -504,7 +505,7 @@
 
 <h3 id="s4-4">4.4 Pictures</h3>
 
-<p>To send a picture, add <code>photo</code> to a message and put a picture tag inside it. The corners are rounded for you. The picture has to be hosted somewhere else (see <a href="core.html#s2-5-1">Pictures and Alt Text</a>), and your link goes in <code>src</code>, with your description in <code>alt</code>:</p>
+<p>To send a picture, add <code>photo</code> to a message and put a picture tag inside it. The corners are rounded for you. The picture has to be hosted somewhere else (see <a href="core.html#s2-6-1">Pictures and Alt Text</a>), and your link goes in <code>src</code>, with your description in <code>alt</code>:</p>
 
 <div class="mob imsg theme-auto"><div class="mob-body"><p class="msg in photo"><span class="hide"><em>Ilya:</em> </span><img src="https://images.squidge.org/images/2026/11/16/Cat4.jpg" alt="A cat curled up inside an open suitcase"></p></div></div>
 
@@ -547,7 +548,7 @@
 <details>
 <summary>Options: a name from a profile</summary>
 
-<p>Put a name span in its place, with the name typed inside it in a <code>hide</code> span for readers with the workskin off. The name then comes from the character's profile, so it's the same in every chat, and it changes to whatever your point-of-view character has them saved as (see <a href="core.html#s2-4-3-2">Their Phone</a>):</p>
+<p>Put a name span in its place, with the name typed inside it in a <code>hide</code> span for readers with the workskin off. The name then comes from the character's profile, so it's the same in every chat, and it changes to whatever your point-of-view character has them saved as (see <a href="core.html#s2-5-3-2">Their Phone</a>):</p>
 
 <div class="mob imsg theme-auto"><p class="mob-head"><span class="name pfp-ilya"><span class="hide">Ilya</span></span><span class="hide"> - </span><span>iMessage</span></p></div>
 
@@ -592,6 +593,28 @@
 <p>The <code>who</code> line shows whether the workskin is on or off, so it only needs a hidden colon after the name, to read "Hayden:" followed by the message.</p>
 
 </details>
+
+<h3 id="s4-6">4.6 A Part on Its Own</h3>
+
+<p>You don't need a whole chat. Any part works by itself inside its container. Here's a message bar with a half-typed message, and one bubble in a small box, using <code>loose</code>:</p>
+
+<div class="mob imsg theme-auto">
+  <p class="imsg-input"><span class="imsg-plus">+</span><span class="hide"> </span><span class="imsg-field typed">I miss<span class="hide"> </span><span class="imsg-mic ic ic-mic">&#127908;</span></span></p>
+</div>
+
+<pre><code>&lt;div class="mob imsg theme-auto"&gt;
+  &lt;p class="imsg-input"&gt;&lt;span class="imsg-plus"&gt;+&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="imsg-field typed"&gt;I miss&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="imsg-mic ic ic-mic"&gt;&amp;#127908;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+
+<div class="mob imsg loose theme-auto">
+  <p class="msg in"><span class="hide"><em>Ilya:</em> </span>are you awake</p>
+</div>
+
+<pre><code>&lt;div class="mob imsg loose theme-auto"&gt;
+  &lt;p class="msg in"&gt;&lt;span class="hide"&gt;&lt;em&gt;Ilya:&lt;/em&gt; &lt;/span&gt;are you awake&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+
+<p>There's more on this in <a href="core.html#alone">A Part on Its Own</a>, in the Core chapter.</p>
         </div>
       </div>
 
