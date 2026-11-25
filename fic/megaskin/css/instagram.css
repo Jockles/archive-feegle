@@ -188,8 +188,8 @@
   font-weight: normal;
 }
 
-/* an account you don't follow, suggested in the feed: a follow button (ig-add) sits left of the menu, Both go FIRST in the line, menu then follow */
-#workskin .ig .ig-top .ig-add {
+/* an account you don't follow, suggested in the feed: a follow button (ig-follow-btn) sits left of the menu, Both go FIRST in the line, menu then follow */
+#workskin .ig .ig-top .ig-follow-btn {
   display: block;
   float: right;
   margin: 0 0.3em 0 0.6em;
@@ -1362,7 +1362,7 @@
 
 #workskin .ig .ig-apptop br { display: none; }
 
-#workskin .ig .ig-new {
+#workskin .ig .ig-add {
   flex: none;
   width: 1.1em;
   font-size: 1.9em;

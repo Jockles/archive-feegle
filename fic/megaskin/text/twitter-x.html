@@ -12,7 +12,7 @@
 
 <p>This is a timeline on Ilya's phone, with the X app's top bar and tabs, and the app buttons along the bottom:</p>
 
-<div class="tw-thread app pov-ilya theme-auto">
+<div class="tw-feed app pov-ilya theme-auto">
   <div class="tw-scroll">
   <p class="tw-apptop"><span class="tw-me"><span class="pfp pfp-ilya"></span></span> <span class="tw-logo">X</span></p>
   <p class="tw-tabs"><span class="tw-tab on">For you<span class="tw-drop"></span></span> <span class="tw-tab">Following</span> <span class="tw-tab">Metros Fans</span> <span class="tw-tab">Hockey Twitter</span> <span class="tw-add">+</span></p>
@@ -143,7 +143,7 @@
 <details>
 <summary>The full HTML for these tweets</summary>
 
-<pre><code>&lt;div class="tw-thread app pov-ilya theme-auto"&gt;
+<pre><code>&lt;div class="tw-feed app pov-ilya theme-auto"&gt;
   &lt;div class="tw-scroll"&gt;
   &lt;p class="tw-apptop"&gt;&lt;span class="tw-me"&gt;&lt;span class="pfp pfp-ilya"&gt;&lt;/span&gt;&lt;/span&gt; &lt;span class="tw-logo"&gt;X&lt;/span&gt;&lt;/p&gt;
   &lt;p class="tw-tabs"&gt;&lt;span class="tw-tab on"&gt;For you&lt;span class="tw-drop"&gt;&lt;/span&gt;&lt;/span&gt; &lt;span class="tw-tab"&gt;Following&lt;/span&gt; &lt;span class="tw-tab"&gt;Metros Fans&lt;/span&gt; &lt;span class="tw-tab"&gt;Hockey Twitter&lt;/span&gt; &lt;span class="tw-add"&gt;+&lt;/span&gt;&lt;/p&gt;
@@ -275,7 +275,7 @@
 
 <h4>A Tweet and Its Replies</h4>
 
-<div class="tw-thread theme-auto">
+<div class="tw-feed theme-auto">
   <div class="tw-scroll">
     <div class="mob tw">
       <p class="tw-top"><span class="tw-pfp"><span class="pfp pfp-zim"></span></span><span class="hide"> </span><span class="tw-name"><span class="name pfp-zim"><span class="hide">Zim</span></span></span> <span class="tw-handle"><span class="handle pfp-zim"><span class="hide">@ZimBits</span></span></span> <span class="tw-time">· 3h</span></p>
@@ -378,7 +378,7 @@
 <details>
 <summary>The full HTML for this thread</summary>
 
-<pre><code>&lt;div class="tw-thread theme-auto"&gt;
+<pre><code>&lt;div class="tw-feed theme-auto"&gt;
   &lt;div class="tw-scroll"&gt;
     &lt;div class="mob tw"&gt;
       &lt;p class="tw-top"&gt;&lt;span class="tw-pfp"&gt;&lt;span class="pfp pfp-zim"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="tw-name"&gt;&lt;span class="name pfp-zim"&gt;&lt;span class="hide"&gt;Zim&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; &lt;span class="tw-handle"&gt;&lt;span class="handle pfp-zim"&gt;&lt;span class="hide"&gt;@ZimBits&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; &lt;span class="tw-time"&gt;· 3h&lt;/span&gt;&lt;/p&gt;
@@ -482,9 +482,9 @@
 
 <h3>The Container</h3>
 
-<p>Every tweet in this chapter sits in a timeline, a <code>tw-thread</code> box with a theme, with a <code>tw-scroll</code> box inside it that holds everything that scrolls. Add <code>app</code> to the <code>tw-thread</code> for the timeline look, where each tweet's name, handle and time sit on one line. Inside go the top bar, the tabs and the tweets, in that order, then the app buttons after the <code>tw-scroll</code> closes. The top bar, the tabs and the app buttons are all optional, so leave them out if you only want the tweets:</p>
+<p>Every tweet in this chapter sits in a timeline, a <code>tw-feed</code> box with a theme, with a <code>tw-scroll</code> box inside it that holds everything that scrolls. Add <code>app</code> to the <code>tw-feed</code> for the timeline look, where each tweet's name, handle and time sit on one line. Inside go the top bar, the tabs and the tweets, in that order, then the app buttons after the <code>tw-scroll</code> closes. The top bar, the tabs and the app buttons are all optional, so leave them out if you only want the tweets:</p>
 
-<pre><code>&lt;div class="tw-thread app theme-auto"&gt;
+<pre><code>&lt;div class="tw-feed app theme-auto"&gt;
   &lt;div class="tw-scroll"&gt;
     &lt;p class="tw-apptop"&gt;the top bar&lt;/p&gt;
     &lt;p class="tw-tabs"&gt;the tabs&lt;/p&gt;
@@ -499,7 +499,7 @@
 <details>
 <summary>Options: showing the whole timeline, and light or dark</summary>
 
-<p>To show the whole timeline at once instead, add <code>no-scroll</code> to the <code>tw-thread</code>.</p>
+<p>To show the whole timeline at once instead, add <code>no-scroll</code> to the <code>tw-feed</code>.</p>
 
 <p><code>theme-auto</code> follows the reader's device. Swap it for <code>theme-light</code> or <code>theme-dark</code> to pick one yourself (see <a href="core.html#heading">Light, Dark and Auto Themes</a>).</p>
 
@@ -509,7 +509,7 @@
 
 <p>At the top go two lines: <code>tw-apptop</code>, with the pov character's own picture and the X, then the row of tabs:</p>
 
-<div class="tw-thread app pov-ilya theme-auto"><div class="tw-scroll">
+<div class="tw-feed app pov-ilya theme-auto"><div class="tw-scroll">
   <p class="tw-apptop"><span class="tw-me"><span class="pfp pfp-ilya"></span></span> <span class="tw-logo">X</span></p>
   <p class="tw-tabs"><span class="tw-tab on">For you<span class="tw-drop"></span></span> <span class="tw-tab">Following</span> <span class="tw-tab">Metros Fans</span> <span class="tw-tab">Hockey Twitter</span> <span class="tw-add">+</span></p>
 </div></div>
@@ -528,13 +528,13 @@
 
 <p>For a fic set before mid-2023, when Twitter became X, you can switch the timeline back to Twitter's 2020 redesign, which it kept until then. Add <code>tw2020</code> to the thread, and write <code>Twitter</code> in the <code>tw-logo</code> span instead of the X:</p>
 
-<pre><code>&lt;div class="tw-thread app tw2020 theme-auto"&gt;
+<pre><code>&lt;div class="tw-feed app tw2020 theme-auto"&gt;
   &lt;div class="tw-scroll"&gt;
   &lt;p class="tw-apptop"&gt;&lt;span class="tw-me"&gt;&lt;span class="pfp pfp-yuna"&gt;&lt;/span&gt;&lt;/span&gt; &lt;span class="tw-logo"&gt;Twitter&lt;/span&gt;&lt;/p&gt;</code></pre>
 
 <p>Here's how it looks:</p>
 
-<div class="tw-thread app tw2020 theme-auto">
+<div class="tw-feed app tw2020 theme-auto">
   <div class="tw-scroll">
   <p class="tw-apptop"><span class="tw-me"><span class="pfp pfp-yuna"></span></span> <span class="tw-logo">Twitter</span></p>
   <div class="mob tw">
@@ -553,7 +553,7 @@
 <details>
 <summary>The full HTML for this example</summary>
 
-<pre><code>&lt;div class="tw-thread app tw2020 theme-auto"&gt;
+<pre><code>&lt;div class="tw-feed app tw2020 theme-auto"&gt;
   &lt;div class="tw-scroll"&gt;
   &lt;p class="tw-apptop"&gt;&lt;span class="tw-me"&gt;&lt;span class="pfp pfp-yuna"&gt;&lt;/span&gt;&lt;/span&gt; &lt;span class="tw-logo"&gt;Twitter&lt;/span&gt;&lt;/p&gt;
   &lt;div class="mob tw"&gt;
@@ -589,7 +589,7 @@
 
 <p>Each tweet is its own <code>&lt;div class=&quot;mob tw&quot;&gt;</code> inside the <code>tw-scroll</code>, with no theme of its own: the tweets take their colours from the timeline. Put as many as you like one after another. They lose their own borders and corners, and sit one under the other with a line between them, like in the app.</p>
 
-<p>For a tweet that's been tapped on, with its replies underneath (like the thread at the top of this chapter), leave <code>app</code> off the <code>tw-thread</code>. Then the first tweet is shown opened up, with the handle under the name and the date and time along the bottom (see <a href="#heading">Timestamp Line</a>), and the replies go after it (see <a href="#heading">Replies</a>).</p>
+<p>For a tweet that's been tapped on, with its replies underneath (like the thread at the top of this chapter), leave <code>app</code> off the <code>tw-feed</code>. Then the first tweet is shown opened up, with the handle under the name and the date and time along the bottom (see <a href="#heading">Timestamp Line</a>), and the replies go after it (see <a href="#heading">Replies</a>).</p>
 
 <h4>Bottom</h4>
 
@@ -601,13 +601,13 @@
 
 <p>Under a tweet with its replies, it's the "Tweet your reply" bar instead, a <code>tw-foot</code> line:</p>
 
-<div class="tw-thread theme-auto"><p class="tw-foot"><span>Reply</span><span class="hide"> - </span>Tweet your reply</p></div>
+<div class="tw-feed theme-auto"><p class="tw-foot"><span>Reply</span><span class="hide"> - </span>Tweet your reply</p></div>
 
 <pre><code>&lt;p class="tw-foot"&gt;&lt;span&gt;Reply&lt;/span&gt;&lt;span class="hide"&gt; - &lt;/span&gt;Tweet your reply&lt;/p&gt;</code></pre>
 
 <h4>A Tweet on Its Own</h4>
 
-<p>If you only want one tweet in the middle of your fic, with no timeline around it, give the tweet its own theme instead, and leave out the <code>tw-thread</code> and <code>tw-scroll</code>. On its own, a tweet is shown opened up, with a thin grey edge and rounded corners:</p>
+<p>If you only want one tweet in the middle of your fic, with no timeline around it, give the tweet its own theme instead, and leave out the <code>tw-feed</code> and <code>tw-scroll</code>. On its own, a tweet is shown opened up, with a thin grey edge and rounded corners:</p>
 
 <div class="mob tw theme-auto">
   <p class="tw-top"><span class="tw-pfp colour5">HF</span><span class="hide"> </span><span class="tw-name">Hockey Fan</span> <span class="tw-handle">@hockeyfan</span> <span class="tw-time">· 2h</span></p>
@@ -632,7 +632,7 @@
 
 <p>The text of the tweet goes in <code>tw-text</code>. To make a hashtag, an @mention or a link blue, wrap it in a span with <code>tw-link</code>:</p>
 
-<div class="tw-thread theme-auto"><div class="tw-scroll"><div class="mob tw"><p class="tw-text">Reminder to everyone that there could be (and likely are) queer players on many of the teams that didn't pledge. Thoughts go out to them. <span class="tw-link">#HunterShortlist</span> <span class="tw-link">@SHunter</span></p></div></div></div>
+<div class="tw-feed theme-auto"><div class="tw-scroll"><div class="mob tw"><p class="tw-text">Reminder to everyone that there could be (and likely are) queer players on many of the teams that didn't pledge. Thoughts go out to them. <span class="tw-link">#HunterShortlist</span> <span class="tw-link">@SHunter</span></p></div></div></div>
 
 <pre><code>&lt;p class="tw-text"&gt;Reminder to everyone that there could be (and likely are) queer players on many of the teams that didn't pledge. Thoughts go out to them. &lt;span class="tw-link"&gt;#HunterShortlist&lt;/span&gt; &lt;span class="tw-link"&gt;@SHunter&lt;/span&gt;&lt;/p&gt;</code></pre>
 
@@ -640,7 +640,7 @@
 
 <p>The row of buttons along the bottom is <code>tw-stats</code>: replies, reposts, likes, views, then the bookmark and share buttons, each with its count:</p>
 
-<div class="tw-thread app theme-auto"><div class="tw-scroll"><div class="mob tw"><div class="tw-stats">
+<div class="tw-feed app theme-auto"><div class="tw-scroll"><div class="mob tw"><div class="tw-stats">
   <p class="tw-stat"><span class="ic ic-tw-reply">&#9993;</span> 1<span class="hide"> reply</span></p>
   <p class="tw-stat"><span class="ic ic-tw-repost">&#8644;</span> 3<span class="hide"> reposts</span></p>
   <p class="tw-stat"><span class="ic ic-tw-like">&#9825;</span> 13<span class="hide"> likes</span></p>
@@ -676,7 +676,7 @@
 
 <p>Readers can click or tap a like to switch it on and off, like on the real app: the heart and its count turn red and go up by one, and another click puts it back. Try it here:</p>
 
-<div class="tw-thread app theme-auto"><div class="tw-scroll"><div class="mob tw"><div class="tw-stats">
+<div class="tw-feed app theme-auto"><div class="tw-scroll"><div class="mob tw"><div class="tw-stats">
   <p class="tw-stat"><span class="ic ic-tw-reply">&#9993;</span> 1<span class="hide"> reply</span></p>
   <p class="tw-stat"><span class="ic ic-tw-repost">&#8644;</span> 3<span class="hide"> reposts</span></p>
   <details class="tw-stat tw-tog"><summary><span class="ic ic-tw-like">&#9825;</span><span class="off"> 13</span><span class="hide"> likes (</span><span class="on"> 14</span><span class="hide"> once liked)</span></summary></details>
@@ -709,7 +709,7 @@
 
 <p>A tweet opened on its own page also shows the exact time and date above the counts. Add it with <code>tw-date</code>, just before the stats line:</p>
 
-<div class="tw-thread theme-auto"><div class="tw-scroll"><div class="mob tw"><p class="tw-date">8:23 AM · 11 May 23</p></div></div></div>
+<div class="tw-feed theme-auto"><div class="tw-scroll"><div class="mob tw"><p class="tw-date">8:23 AM · 11 May 23</p></div></div></div>
 
 <pre><code>&lt;p class="tw-date"&gt;8:23 AM · 11 May 23&lt;/p&gt;</code></pre>
 
@@ -717,7 +717,7 @@
 
 <p>A reply is its own container, with the class <code>tw-reply</code> instead of <code>tw</code>. Put it straight underneath the tweet and the two join up into a thread:</p>
 
-<div class="tw-thread theme-auto"><div class="tw-scroll"><div class="mob tw-reply">
+<div class="tw-feed theme-auto"><div class="tw-scroll"><div class="mob tw-reply">
   <p class="tw-replying">Replying to <span class="tw-link">@ZimBits</span></p>
   <p class="tw-top"><span class="tw-pfp"><span class="pfp pfp-holster"></span></span><span class="hide"> </span><span class="tw-name"><span class="name pfp-holster"><span class="hide">Holster</span></span></span> <span class="tw-handle"><span class="handle pfp-holster"><span class="hide">@HolsterInLaw</span></span></span> <span class="tw-time">· 2h</span></p>
   <p>I played all through college with a guy whose boyfriend was also on the team. That man now plays professionally. This is not the whole story of queer hockey.</p>
@@ -735,7 +735,7 @@
 
 <p>To quote another tweet inside a tweet, add a paragraph with <code>tw-quote</code> after the text:</p>
 
-<div class="tw-thread app theme-auto"><div class="tw-scroll"><div class="mob tw"><p class="tw-quote"><b>Reporter</b> <span class="tw-handle">@sportsdesk</span><br>Sources say the trade is happening.</p></div></div></div>
+<div class="tw-feed app theme-auto"><div class="tw-scroll"><div class="mob tw"><p class="tw-quote"><b>Reporter</b> <span class="tw-handle">@sportsdesk</span><br>Sources say the trade is happening.</p></div></div></div>
 
 <pre><code>&lt;p class="tw-quote"&gt;&lt;b&gt;Reporter&lt;/b&gt; &lt;span class="tw-handle"&gt;@sportsdesk&lt;/span&gt;&lt;br&gt;Sources say the trade is happening.&lt;/p&gt;</code></pre>
 
@@ -745,7 +745,7 @@
 
 <p>For the grey "Readers added context" box at the bottom of a tweet, use <code>tw-note</code>:</p>
 
-<div class="tw-thread app theme-auto"><div class="tw-scroll"><div class="mob tw"><p class="tw-note">Readers added context: the trade has not been confirmed.</p></div></div></div>
+<div class="tw-feed app theme-auto"><div class="tw-scroll"><div class="mob tw"><p class="tw-note">Readers added context: the trade has not been confirmed.</p></div></div></div>
 
 <pre><code>&lt;p class="tw-note"&gt;Readers added context: the trade has not been confirmed.&lt;/p&gt;</code></pre>
 
@@ -753,7 +753,7 @@
 
 <p>When the account has liked, reposted or bookmarked the tweet, Twitter colours that button and its count. These stay as they are, so readers can't click them. Add <code>liked</code> to the like's <code>tw-stat</code> for a red heart, <code>reposted</code> to the repost's for green, or <code>saved</code> to the bookmark's for a blue one:</p>
 
-<div class="tw-thread theme-auto"><div class="tw-scroll"><div class="mob tw"><p class="tw-date">8:23 AM · 11 May 23</p>
+<div class="tw-feed theme-auto"><div class="tw-scroll"><div class="mob tw"><p class="tw-date">8:23 AM · 11 May 23</p>
 <div class="tw-stats">
   <p class="tw-stat"><span class="ic ic-tw-reply">&#9993;</span> 10<span class="hide"> replies</span></p>
   <p class="tw-stat reposted"><span class="ic ic-tw-repost">&#8644;</span> 580<span class="hide"> reposts</span></p>
@@ -777,7 +777,7 @@
 
 <p>For a little grey line like "Promoted", or the notice on a Twitter Circle tweet, use <code>tw-label</code>:</p>
 
-<div class="tw-thread app theme-auto"><div class="tw-scroll"><div class="mob tw"><p class="tw-label">Only people in @MetrosMomager's Twitter Circle can see this Tweet.</p></div></div></div>
+<div class="tw-feed app theme-auto"><div class="tw-scroll"><div class="mob tw"><p class="tw-label">Only people in @MetrosMomager's Twitter Circle can see this Tweet.</p></div></div></div>
 
 <pre><code>&lt;p class="tw-label"&gt;Only people in @MetrosMomager's Twitter Circle can see this Tweet.&lt;/p&gt;</code></pre>
 
@@ -785,7 +785,7 @@
 
 <p>To cover a tweet's picture with the sensitive content warning, use <code>tw-warn</code>, with the heading in <code>&lt;b&gt;</code>:</p>
 
-<div class="tw-thread app theme-auto"><div class="tw-scroll"><div class="mob tw"><p class="tw-warn"><b>Content warning: Sensitive content</b><br>The Tweet author flagged this Tweet as showing sensitive content.</p></div></div></div>
+<div class="tw-feed app theme-auto"><div class="tw-scroll"><div class="mob tw"><p class="tw-warn"><b>Content warning: Sensitive content</b><br>The Tweet author flagged this Tweet as showing sensitive content.</p></div></div></div>
 
 <pre><code>&lt;p class="tw-warn"&gt;&lt;b&gt;Content warning: Sensitive content&lt;/b&gt;&lt;br&gt;The Tweet author flagged this Tweet as showing sensitive content.&lt;/p&gt;</code></pre>
 
@@ -793,7 +793,7 @@
 
 <p>A private account has a little padlock next to the time. Add a <code>tw-lock</code> span between the handle and the time. Its tweets can't be reposted either, so Twitter fades the repost button out - add <code>locked</code> to the repost's <code>tw-stat</code> to do the same, and leave its number out:</p>
 
-<div class="tw-thread app theme-auto"><div class="tw-scroll"><div class="mob tw">
+<div class="tw-feed app theme-auto"><div class="tw-scroll"><div class="mob tw">
   <p class="tw-top"><span class="tw-pfp colour4">HP</span><span class="hide"> </span><span class="tw-name">Hayden</span> <span class="tw-handle">@hpitt_private</span> <span class="tw-lock ic ic-tw-lock">&#128274;</span> <span class="tw-time">· 1h</span></p>
   <p class="tw-text">nobody from the team knows about this account and I'd like to keep it that way</p>
   <div class="tw-stats">
@@ -827,7 +827,7 @@
 
 <p>A poll is a set of <code>tw-opt</code> options, with a <code>tw-pollinfo</code> line for the number of votes and the time left. While a poll is still open, each option is just a blue outline. Polls work in a <code>tw-reply</code> as well as a tweet, like Stan's:</p>
 
-<div class="tw-thread theme-auto"><div class="tw-scroll"><div class="mob tw-reply"><p class="tw-opt">Montreal</p>
+<div class="tw-feed theme-auto"><div class="tw-scroll"><div class="mob tw-reply"><p class="tw-opt">Montreal</p>
 <p class="tw-opt">Boston</p>
 <p class="tw-pollinfo">179 votes · 13 minutes left</p></div></div></div>
 
@@ -837,7 +837,7 @@
 
 <p>To show the results, add <code>results</code> to every option, with the words in a <code>tw-bar</code> span and the percentage in a <code>tw-pct</code> span. To show which option your pov character voted for, put a <code>tw-voted</code> tick inside its <code>tw-bar</code>, just after the words. Here they voted Boston:</p>
 
-<div class="tw-thread app theme-auto"><div class="tw-scroll"><div class="mob tw"><p class="tw-opt results win p75"><span class="tw-bar">Montreal</span><span class="hide"> </span><span class="tw-pct">75%</span></p>
+<div class="tw-feed app theme-auto"><div class="tw-scroll"><div class="mob tw"><p class="tw-opt results win p75"><span class="tw-bar">Montreal</span><span class="hide"> </span><span class="tw-pct">75%</span></p>
 <p class="tw-opt results p25"><span class="tw-bar">Boston<span class="hide"> - voted </span><span class="tw-voted">&#10003;</span></span><span class="hide"> </span><span class="tw-pct">25%</span></p>
 <p class="tw-pollinfo">97 votes · Final results</p></div></div></div>
 
@@ -856,7 +856,7 @@
 
 <p>A poll can be tappable too, like on Twitter: it starts as blue outlines, and tapping it votes and shows the results, with a tick on the option that was picked. Tap this one to vote:</p>
 
-<div class="tw-thread app theme-auto"><div class="tw-scroll"><div class="mob tw">
+<div class="tw-feed app theme-auto"><div class="tw-scroll"><div class="mob tw">
 <p class="tw-text">Who's got the cup this year?</p>
 <details class="tw-vote">
 <summary>
@@ -899,7 +899,7 @@
 
 <p>To let the reader choose, each option gets its own <code>&lt;details class=&quot;tw-pick&quot;&gt;</code>, with the option in a <code>&lt;summary class=&quot;tw-opt&quot;&gt;</code> and a full copy of the results in a <code>tw-results</code> box, with the tick on that option. Wrap them all in a <code>tw-poll</code> box, with the votes and time left at the end. Whichever option is tapped, its results cover the poll. It's a lot more HTML, but it's mostly copy and paste - only the tick moves, unless you want the results to change too:</p>
 
-<div class="tw-thread app theme-auto"><div class="tw-scroll"><div class="mob tw">
+<div class="tw-feed app theme-auto"><div class="tw-scroll"><div class="mob tw">
 <p class="tw-text">Who's got the cup this year?</p>
 <div class="tw-poll">
 <details class="tw-pick">
@@ -974,13 +974,13 @@
 
 <p>To add a picture or a video to a tweet, put it in a <code>tw-photos</code> box, with a normal picture or video tag inside. Your own link goes in <code>src</code>, and a description of the picture goes in <code>alt</code>:</p>
 
-<div class="tw-thread app theme-auto"><div class="tw-scroll"><div class="mob tw"><p class="tw-photos"><img src="https://64.media.tumblr.com/c3c4ecb5bfed8fa9f0590c54206ddb30/cff2318529321620-44/s1280x1920/42befcc40a517e1f202dda40783be2ffb95c1d92.pnj" alt="Macklin Celebrini at the IHF Worlds, dressed in his red jersey and black helmet. He's surrounded by sparkles, a red vignette, and hearts containing the Canadian flag"></p></div></div></div>
+<div class="tw-feed app theme-auto"><div class="tw-scroll"><div class="mob tw"><p class="tw-photos"><img src="https://64.media.tumblr.com/c3c4ecb5bfed8fa9f0590c54206ddb30/cff2318529321620-44/s1280x1920/42befcc40a517e1f202dda40783be2ffb95c1d92.pnj" alt="Macklin Celebrini at the IHF Worlds, dressed in his red jersey and black helmet. He's surrounded by sparkles, a red vignette, and hearts containing the Canadian flag"></p></div></div></div>
 
 <pre><code>&lt;p class="tw-photos"&gt;&lt;img src="https://64.media.tumblr.com/c3c4ecb5bfed8fa9f0590c54206ddb30/cff2318529321620-44/s1280x1920/42befcc40a517e1f202dda40783be2ffb95c1d92.pnj" alt="Macklin Celebrini at the IHF Worlds, dressed in his red jersey and black helmet. He's surrounded by sparkles, a red vignette, and hearts containing the Canadian flag"&gt;&lt;/p&gt;</code></pre>
 
 <p>If you'd rather not host a picture, you can describe it in a <code>span</code> instead, in square brackets:</p>
 
-<div class="tw-thread app theme-auto"><div class="tw-scroll"><div class="mob tw"><p class="tw-photos"><span>[Shane Hollander looking tired at a press conference]</span></p></div></div></div>
+<div class="tw-feed app theme-auto"><div class="tw-scroll"><div class="mob tw"><p class="tw-photos"><span>[Shane Hollander looking tired at a press conference]</span></p></div></div></div>
 
 <pre><code>&lt;p class="tw-photos"&gt;&lt;span&gt;[Shane Hollander looking tired at a press conference]&lt;/span&gt;&lt;/p&gt;</code></pre>
 
@@ -989,7 +989,7 @@
 
 <p>For a video, use the embed code from a video site like Vimeo or YouTube. Add <code>video</code> to the box, which gives the player the right size, and put the embed code inside it. Keep the <strong>whole</strong> <code>src</code> link, including everything after the <code>?</code> (Vimeo needs all of it to play the video), plus <code>frameborder</code> and a <code>title</code> that names the video for screen readers. You can leave out the width and height, because the box sets the size:</p>
 
-<div class="tw-thread app theme-auto"><div class="tw-scroll"><div class="mob tw"><div class="tw-photos video"><iframe src="https://player.vimeo.com/video/1169167060?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" title="Ilya Rozanov | Come Home"></iframe><p class="vid-desc">[Video: a tribute edit of Ilya Rozanov, made from Heated Rivalry footage and set to "Would You Come Home" by Tyler Blackburn]</p></div></div></div></div>
+<div class="tw-feed app theme-auto"><div class="tw-scroll"><div class="mob tw"><div class="tw-photos video"><iframe src="https://player.vimeo.com/video/1169167060?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" title="Ilya Rozanov | Come Home"></iframe><p class="vid-desc">[Video: a tribute edit of Ilya Rozanov, made from Heated Rivalry footage and set to "Would You Come Home" by Tyler Blackburn]</p></div></div></div></div>
 
 <pre><code>&lt;div class="tw-photos video"&gt;&lt;iframe src="https://player.vimeo.com/video/1169167060?badge=0&amp;amp;autopause=0&amp;amp;player_id=0&amp;amp;app_id=58479" frameborder="0" title="Ilya Rozanov | Come Home"&gt;&lt;/iframe&gt;&lt;p class="vid-desc"&gt;[Video: a tribute edit of Ilya Rozanov, made from Heated Rivalry footage and set to "Would You Come Home" by Tyler Blackburn]&lt;/p&gt;&lt;/div&gt;</code></pre>
 
@@ -1002,7 +1002,7 @@
 
 <p>For a tweet with several pictures, add <code>two</code>, <code>three</code> or <code>four</code> to the box to match the number of pictures, and put each picture tag in a <code>tw-photo</code> span. The span crops each picture to fit its space without squashing it. For the square spaces (all four in the four-photo layout, and the two small ones in the three-photo layout), add <code>class=&quot;landscape&quot;</code> to the picture tag of any photo that's wider than it is tall (see <a href="core.html#heading">Pictures in Boxes and Circles</a>). Two pictures sit side by side, both tall:</p>
 
-<div class="tw-thread theme-auto"><div class="tw-scroll"><div class="mob tw-reply"><p class="tw-photos two">
+<div class="tw-feed theme-auto"><div class="tw-scroll"><div class="mob tw-reply"><p class="tw-photos two">
   <span class="tw-photo"><img src="https://images.squidge.org/images/2026/11/16/Cat1.jpg" alt="Black and white cat staring through a gap between a screen and a desk, with blurred cables hanging down around and blue sky behind"></span>
   <span class="tw-photo"><img src="https://images.squidge.org/images/2026/11/16/Cat2.jpg" alt="Black and white cat screaming at the camera, on a red patterned rug"></span>
 </p></div></div></div>
@@ -1014,7 +1014,7 @@
 
 <p>Three pictures have one tall picture on the left and two stacked on the right:</p>
 
-<div class="tw-thread app theme-auto"><div class="tw-scroll"><div class="mob tw"><p class="tw-top"><span class="tw-name">Yuna</span> <span class="tw-handle">@MetrosMomager</span> <span class="tw-time">· 2h</span></p><p class="tw-text">Cat Sitting Again.</p><p class="tw-photos three">
+<div class="tw-feed app theme-auto"><div class="tw-scroll"><div class="mob tw"><p class="tw-top"><span class="tw-name">Yuna</span> <span class="tw-handle">@MetrosMomager</span> <span class="tw-time">· 2h</span></p><p class="tw-text">Cat Sitting Again.</p><p class="tw-photos three">
   <span class="tw-photo"><img src="https://images.squidge.org/images/2026/11/16/Cat1.jpg" alt="Black and white cat staring through a gap between a screen and a desk, with blurred cables hanging down around and blue sky behind"></span>
   <span class="tw-photo"><img src="https://images.squidge.org/images/2026/11/16/Cat2.jpg" alt="Black and white cat screaming at the camera, on a red patterned rug"></span>
   <span class="tw-photo"><img class="landscape" src="https://images.squidge.org/images/2026/11/16/Cat3.jpg" alt="Black and white cat holding out a paw daintily, on a beige and green cat tree. The cat looks to be stepping into the frame from the left"></span>
@@ -1028,7 +1028,7 @@
 
 <p>Four pictures make a grid of two rows:</p>
 
-<div class="tw-thread app theme-auto"><div class="tw-scroll"><div class="mob tw"><p class="tw-photos four">
+<div class="tw-feed app theme-auto"><div class="tw-scroll"><div class="mob tw"><p class="tw-photos four">
   <span class="tw-photo"><img class="landscape" src="https://images.squidge.org/images/2026/11/16/Cat1.jpg" alt="Black and white cat staring through a gap between a screen and a desk, with blurred cables hanging down around and blue sky behind"></span>
   <span class="tw-photo"><img src="https://images.squidge.org/images/2026/11/16/Cat2.jpg" alt="Black and white cat screaming at the camera, on a red patterned rug"></span>
   <span class="tw-photo"><img class="landscape" src="https://images.squidge.org/images/2026/11/16/Cat3.jpg" alt="Black and white cat holding out a paw daintily, on a beige and green cat tree. The cat looks to be stepping into the frame from the left"></span>
@@ -1044,7 +1044,7 @@
 
 <p>To describe a picture instead of showing it, put a span with <code>tw-desc</code> inside the <code>tw-photo</code>, with the description in square brackets:</p>
 
-<div class="tw-thread app theme-auto"><div class="tw-scroll"><div class="mob tw"><p class="tw-photos two"><span class="tw-photo"><span class="tw-desc">[A photo of the empty rink at night]</span></span><span class="tw-photo"><span class="tw-desc">[A photo of the same rink at 6am, full of children in helmets]</span></span></p></div></div></div>
+<div class="tw-feed app theme-auto"><div class="tw-scroll"><div class="mob tw"><p class="tw-photos two"><span class="tw-photo"><span class="tw-desc">[A photo of the empty rink at night]</span></span><span class="tw-photo"><span class="tw-desc">[A photo of the same rink at 6am, full of children in helmets]</span></span></p></div></div></div>
 
 <pre><code>&lt;p class="tw-photos two"&gt;&lt;span class="tw-photo"&gt;&lt;span class="tw-desc"&gt;[A photo of the empty rink at night]&lt;/span&gt;&lt;/span&gt;&lt;span class="tw-photo"&gt;&lt;span class="tw-desc"&gt;[A photo of the same rink at 6am, full of children in helmets]&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;</code></pre>
 
@@ -1058,7 +1058,7 @@
 
 <p>The first line, <code>tw-top</code>, has the account's picture, name, handle and the time:</p>
 
-<div class="tw-thread app theme-auto"><div class="tw-scroll"><div class="mob tw"><p class="tw-top"><span class="tw-pfp colour6">SH</span><span class="hide"> </span><span class="tw-name">Scott Hunter <span class="tw-tick ic ic-verified">✔</span></span> <span class="tw-handle">@SHunter</span> <span class="tw-time">· 5m</span></p></div></div></div>
+<div class="tw-feed app theme-auto"><div class="tw-scroll"><div class="mob tw"><p class="tw-top"><span class="tw-pfp colour6">SH</span><span class="hide"> </span><span class="tw-name">Scott Hunter <span class="tw-tick ic ic-verified">✔</span></span> <span class="tw-handle">@SHunter</span> <span class="tw-time">· 5m</span></p></div></div></div>
 
 <pre><code>&lt;p class="tw-top"&gt;&lt;span class="tw-pfp colour6"&gt;SH&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="tw-name"&gt;Scott Hunter &lt;span class="tw-tick ic ic-verified"&gt;✔&lt;/span&gt;&lt;/span&gt; &lt;span class="tw-handle"&gt;@SHunter&lt;/span&gt; &lt;span class="tw-time"&gt;· 5m&lt;/span&gt;&lt;/p&gt;</code></pre>
 
@@ -1081,7 +1081,7 @@
 
 <p>Any name can be too long for its line, on any kind of account. When it doesn't all fit, the handle shrinks first and can disappear completely, then the name is cut off at the edge, tick and all. A padlock and the time always stay. Put the name in a plain <code>&lt;span&gt;</code> inside <code>tw-name</code> and it ends in "..." like on Twitter/X. Without the span it still works, but it stops at the last whole word that fits instead:</p>
 
-<div class="tw-thread app theme-auto"><div class="tw-scroll"><div class="mob tw">
+<div class="tw-feed app theme-auto"><div class="tw-scroll"><div class="mob tw">
   <p class="tw-top"><span class="tw-pfp colour2">RL</span><span class="hide"> </span><span class="tw-name"><span>Rose Landry (on set, slow to reply, sorry in advance)</span> <span class="tw-tick ic ic-verified">&#10004;</span></span> <span class="tw-handle">@RoseLandry</span> <span class="tw-time">· 2h</span></p>
   <p class="tw-text">call sheet says 5am. who decided this</p>
 </div></div></div>
@@ -1097,7 +1097,7 @@
 
 <p>For a grey second line under the name, like "Fan account", add a <code>tw-fan</code> span at the end of the line, after the time. The mask is an <code>ic-tw-fan</code> icon at the start of it. In a timeline it sits under the name, beside the picture, so there it only works on a tweet that has one:</p>
 
-<div class="tw-thread app theme-auto"><div class="tw-scroll"><div class="mob tw">
+<div class="tw-feed app theme-auto"><div class="tw-scroll"><div class="mob tw">
   <p class="tw-top"><span class="tw-pfp colour2">H</span><span class="hide"> </span><span class="tw-name">hayley <span class="tw-tick ic ic-verified">&#10004;</span></span> <span class="tw-handle">@hockeyhayley</span> <span class="tw-time">· 18h</span> <span class="tw-fan"><span class="ic ic-tw-fan">&#127917;</span> Fan account</span></p>
   <p class="tw-text">the happiest person to play hockey ever his pure joy</p>
 </div></div></div>
@@ -1114,7 +1114,7 @@
 
 <p>The name and handle can be typed, like Scott's, or they can come from a character's profile. Put a name span in place of the name and a handle span in place of the @handle, each with a copy typed inside it in a <code>hide</code> span for readers with the workskin off. Leave the @ off a profile's handle - Twitter/X adds it for you (see <a href="core.html#heading">Character Profiles</a>):</p>
 
-<div class="tw-thread app theme-auto"><div class="tw-scroll"><div class="mob tw"><p class="tw-top"><span class="tw-pfp"><span class="pfp pfp-zim"></span></span><span class="hide"> </span><span class="tw-name"><span class="name pfp-zim"><span class="hide">Zim</span></span></span> <span class="tw-handle"><span class="handle pfp-zim"><span class="hide">@ZimBits</span></span></span> <span class="tw-time">· 3h</span></p></div></div></div>
+<div class="tw-feed app theme-auto"><div class="tw-scroll"><div class="mob tw"><p class="tw-top"><span class="tw-pfp"><span class="pfp pfp-zim"></span></span><span class="hide"> </span><span class="tw-name"><span class="name pfp-zim"><span class="hide">Zim</span></span></span> <span class="tw-handle"><span class="handle pfp-zim"><span class="hide">@ZimBits</span></span></span> <span class="tw-time">· 3h</span></p></div></div></div>
 
 <pre><code>&lt;p class="tw-top"&gt;&lt;span class="tw-pfp"&gt;&lt;span class="pfp pfp-zim"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="tw-name"&gt;&lt;span class="name pfp-zim"&gt;&lt;span class="hide"&gt;Zim&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; &lt;span class="tw-handle"&gt;&lt;span class="handle pfp-zim"&gt;&lt;span class="hide"&gt;@ZimBits&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; &lt;span class="tw-time"&gt;· 3h&lt;/span&gt;&lt;/p&gt;</code></pre>
 
@@ -1124,7 +1124,7 @@
 
 <p>Every tweet has the account's round profile picture at the start of the name line. It can show initials, an uploaded picture or a picture from a profile. For initials, put a <code>tw-pfp</code> span first in the <code>tw-top</code> line, with the initials inside it, and add <code>colour1</code> to <code>colour10</code> for a colour. When there's a picture, the handle moves under the name, like it does in the app:</p>
 
-<div class="tw-thread app theme-auto"><div class="tw-scroll"><div class="mob tw"><p class="tw-top"><span class="tw-pfp colour5">HF</span><span class="hide"> </span><span class="tw-name">Hockey Fan</span> <span class="tw-handle">@hockeyfan</span> <span class="tw-time">· 2h</span></p></div></div></div>
+<div class="tw-feed app theme-auto"><div class="tw-scroll"><div class="mob tw"><p class="tw-top"><span class="tw-pfp colour5">HF</span><span class="hide"> </span><span class="tw-name">Hockey Fan</span> <span class="tw-handle">@hockeyfan</span> <span class="tw-time">· 2h</span></p></div></div></div>
 
 <pre><code>&lt;p class="tw-top"&gt;&lt;span class="tw-pfp colour5"&gt;HF&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="tw-name"&gt;Hockey Fan&lt;/span&gt; &lt;span class="tw-handle"&gt;@hockeyfan&lt;/span&gt; &lt;span class="tw-time"&gt;· 2h&lt;/span&gt;&lt;/p&gt;</code></pre>
 
@@ -1133,13 +1133,13 @@
 
 <p>For a real picture, put the picture tag inside a <code>pfp</code> span inside the <code>tw-pfp</code>:</p>
 
-<div class="tw-thread theme-auto"><div class="tw-scroll"><div class="mob tw-reply"><p class="tw-top"><span class="tw-pfp"><span class="pfp"><img src="https://images.squidge.org/images/2026/11/16/Cat2.jpg" alt="Profile picture of samthecat, a black and white cat screaming at the camera"></span></span><span class="hide"> </span><span class="tw-name">Sam</span> <span class="tw-handle">@samthecat</span> <span class="tw-time">· 1h</span></p></div></div></div>
+<div class="tw-feed theme-auto"><div class="tw-scroll"><div class="mob tw-reply"><p class="tw-top"><span class="tw-pfp"><span class="pfp"><img src="https://images.squidge.org/images/2026/11/16/Cat2.jpg" alt="Profile picture of samthecat, a black and white cat screaming at the camera"></span></span><span class="hide"> </span><span class="tw-name">Sam</span> <span class="tw-handle">@samthecat</span> <span class="tw-time">· 1h</span></p></div></div></div>
 
 <pre><code>&lt;p class="tw-top"&gt;&lt;span class="tw-pfp"&gt;&lt;span class="pfp"&gt;&lt;img src="https://images.squidge.org/images/2026/11/16/Cat2.jpg" alt="Profile picture of samthecat, a black and white cat screaming at the camera"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="tw-name"&gt;Sam&lt;/span&gt; &lt;span class="tw-handle"&gt;@samthecat&lt;/span&gt; &lt;span class="tw-time"&gt;· 1h&lt;/span&gt;&lt;/p&gt;</code></pre>
 
 <p>Or use a profile, so the same person has the same picture everywhere. Put an empty <code>pfp</code> span with their profile name in the <code>tw-pfp</code>, with no colour class needed (see <a href="core.html#heading">Character Appearances and Profiles</a>):</p>
 
-<div class="tw-thread app theme-auto"><div class="tw-scroll"><div class="mob tw"><p class="tw-top"><span class="tw-pfp"><span class="pfp pfp-holster"></span></span><span class="hide"> </span><span class="tw-name"><span class="name pfp-holster"><span class="hide">Holster</span></span></span> <span class="tw-handle"><span class="handle pfp-holster"><span class="hide">@HolsterInLaw</span></span></span> <span class="tw-time">· 2h</span></p></div></div></div>
+<div class="tw-feed app theme-auto"><div class="tw-scroll"><div class="mob tw"><p class="tw-top"><span class="tw-pfp"><span class="pfp pfp-holster"></span></span><span class="hide"> </span><span class="tw-name"><span class="name pfp-holster"><span class="hide">Holster</span></span></span> <span class="tw-handle"><span class="handle pfp-holster"><span class="hide">@HolsterInLaw</span></span></span> <span class="tw-time">· 2h</span></p></div></div></div>
 
 <pre><code>&lt;p class="tw-top"&gt;&lt;span class="tw-pfp"&gt;&lt;span class="pfp pfp-holster"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="tw-name"&gt;&lt;span class="name pfp-holster"&gt;&lt;span class="hide"&gt;Holster&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; &lt;span class="tw-handle"&gt;&lt;span class="handle pfp-holster"&gt;&lt;span class="hide"&gt;@HolsterInLaw&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; &lt;span class="tw-time"&gt;· 2h&lt;/span&gt;&lt;/p&gt;</code></pre>
 
@@ -1151,7 +1151,7 @@
 
 <p>Profiles are optional, and a thread full of random accounts is the perfect place to skip them. For each tweet, put the picture tag in the <code>tw-pfp</code>, type the name in <code>tw-name</code>, and type the handle in <code>tw-handle</code>, with the @. Copy all three onto every tweet or reply from that account:</p>
 
-<div class="tw-thread theme-auto"><div class="tw-scroll"><div class="mob tw">
+<div class="tw-feed theme-auto"><div class="tw-scroll"><div class="mob tw">
   <p class="tw-top"><span class="tw-pfp"><span class="pfp"><img src="https://media.istockphoto.com/id/1298570775/photo/rose.jpg?s=1024x1024&w=is&k=20&c=UFPisYCT3g2Vm04F2E5zrhtUWqDtLRLDXZisKb6Xf5s=" alt="Profile picture of Gemma, a close-up photo of a rose"></span></span><span class="hide"> </span><span class="tw-name">Gemma</span> <span class="tw-handle">@gemma_bakes</span> <span class="tw-time">· 2h</span></p>
   <p class="tw-text">just saw a man carry a full size hockey net onto the bus. respect</p>
 </div>

@@ -7,7 +7,7 @@
   <title>Megaskin, Chapter 9: Twitter/X CSS | jockles.com</title>
   <link rel="stylesheet" href="../../style.css">
   <script src="../../theme.js"></script>
-  <link rel="stylesheet" href="megaskin.css?v=e0be4b81" id="creator-style">
+  <link rel="stylesheet" href="megaskin.css?v=e62baa43" id="creator-style">
 </head>
 <body>
 <header>
@@ -86,7 +86,7 @@
   <li><a href="#s9-11">9.11 Taking Parts Out</a></li>
 </ul>
 
-<p>This chapter goes through the CSS for the tweets, threads and DMs in the last chapter. The module has three parts: tweets and replies (<code>tw</code> and <code>tw-reply</code>), the scrolling thread they can sit in (<code>tw-thread</code>), and DMs (<code>twdm</code>). DMs are built just like iMessage, so if you've read that chapter, they'll be quick.</p>
+<p>This chapter goes through the CSS for the tweets, threads and DMs in the last chapter. The module has three parts: tweets and replies (<code>tw</code> and <code>tw-reply</code>), the scrolling thread they can sit in (<code>tw-feed</code>), and DMs (<code>twdm</code>). DMs are built just like iMessage, so if you've read that chapter, they'll be quick.</p>
 
 <p>Each part starts with the CSS itself and a line or two on what it does. The <strong>Options</strong> boxes show what you can safely change, and the <strong>How it works</strong> boxes go through the rules a line at a time, if you want to learn how it's put together. The longest bits of CSS are folded away in boxes of their own.</p>
 
@@ -102,7 +102,7 @@
 
 <h4 id="s9-3-1">9.3.1 The Timeline</h4>
 
-<pre><code>#workskin .tw-thread {
+<pre><code>#workskin .tw-feed {
   width: 380px;
   max-width: 100%;
   margin: 1.2em auto;
@@ -117,7 +117,7 @@
   line-height: 1.35;
 }
 
-#workskin .tw-thread .mob {
+#workskin .tw-feed .mob {
   width: auto;
   max-width: none;
   margin: 0;
@@ -129,7 +129,7 @@
   color: inherit;
 }</code></pre>
 
-<p>The timeline (<code>tw-thread</code>) is its own phone-sized box, built like the core's <code>mob</code>, and it holds every tweet in the chapter.</p>
+<p>The timeline (<code>tw-feed</code>) is its own phone-sized box, built like the core's <code>mob</code>, and it holds every tweet in the chapter.</p>
 
 <details>
 <summary>How it works: making the tweets into one feed</summary>
@@ -145,21 +145,21 @@
 <details>
 <summary>The full CSS for the top bar and tabs</summary>
 
-<pre><code>#workskin .tw-thread .tw-apptop,
-#workskin .tw-thread .tw-tabs {
+<pre><code>#workskin .tw-feed .tw-apptop,
+#workskin .tw-feed .tw-tabs {
   display: flex;
   align-items: center;
   margin: 0;
   white-space: nowrap;
 }
 
-#workskin .tw-thread .tw-apptop br,
-#workskin .tw-thread .tw-tabs br { display: none; }
+#workskin .tw-feed .tw-apptop br,
+#workskin .tw-feed .tw-tabs br { display: none; }
 
-#workskin .tw-thread .tw-apptop { padding: 0.8em 1em 0.3em 1em; }
+#workskin .tw-feed .tw-apptop { padding: 0.8em 1em 0.3em 1em; }
 
 /* the reader's own picture, top left */
-#workskin .tw-thread .tw-me {
+#workskin .tw-feed .tw-me {
   display: block;
   flex: none;
   width: 2.2em;
@@ -169,7 +169,7 @@
 }
 
 /* the X in the middle: the margin on the right balances the picture on the left */
-#workskin .tw-thread .tw-logo {
+#workskin .tw-feed .tw-logo {
   flex: 1;
   margin-right: 2.2em;
   text-align: center;
@@ -180,7 +180,7 @@
 }
 
 /* the old blue bird instead of the X: &lt;span class="tw-logo bird"&gt;Twitter&lt;/span&gt; */
-#workskin .tw-thread .tw-logo.bird {
+#workskin .tw-feed .tw-logo.bird {
   height: 1em;
   overflow: hidden;
   text-indent: -100em;
@@ -191,7 +191,7 @@
   background-size: contain;
 }
 
-#workskin .tw-thread .tw-tabs {
+#workskin .tw-feed .tw-tabs {
   position: relative;
   overflow: hidden;
   padding: 0.6em 2.6em 0 1em;
@@ -200,17 +200,17 @@
   font-weight: bold;
 }
 
-#workskin .tw-thread .tw-tab {
+#workskin .tw-feed .tw-tab {
   position: relative;
   flex: none;
   margin-right: 1.6em;
   padding-bottom: 0.75em;
 }
 
-#workskin .tw-thread .tw-tab.on { color: #0f1419; }
+#workskin .tw-feed .tw-tab.on { color: #0f1419; }
 
 /* the rounded line under the picked tab, as wide as its words, in the same colour */
-#workskin .tw-thread .tw-tab.on::after {
+#workskin .tw-feed .tw-tab.on::after {
   content: "";
   position: absolute;
   left: 0;
@@ -222,7 +222,7 @@
 }
 
 /* the little down arrow after For you: &lt;span class="tw-drop"&gt;&lt;/span&gt; */
-#workskin .tw-thread .tw-drop {
+#workskin .tw-feed .tw-drop {
   display: inline-block;
   box-sizing: border-box;
   width: 0.45em;
@@ -236,7 +236,7 @@
 }
 
 /* the + at the far right, for adding a community tab. It stays put, and any tabs too long for the row go under it */
-#workskin .tw-thread .tw-add {
+#workskin .tw-feed .tw-add {
   position: absolute;
   top: 0;
   right: 0;
@@ -248,15 +248,15 @@
   line-height: 1;
 }
 
-/* THE 2020 TWITTER REDESIGN: add "tw2020" to an app screen, &lt;div class="tw-thread app tw2020 theme-auto"&gt;.
+/* THE 2020 TWITTER REDESIGN: add "tw2020" to an app screen, &lt;div class="tw-feed app tw2020 theme-auto"&gt;.
    The bird takes the place of the X with a sparkle on the right, the tabs are hidden,
    and the tweets lose their bookmark button and the line above their stats, with share spaced out like the rest */
-#workskin .tw-thread.tw2020 .tw-apptop {
+#workskin .tw-feed.tw2020 .tw-apptop {
   padding-bottom: 0.6em;
   border-bottom: 1px solid #eff3f4;
 }
 
-#workskin .tw-thread.tw2020 .tw-logo {
+#workskin .tw-feed.tw2020 .tw-logo {
   height: 1em;
   margin-right: 0;
   overflow: hidden;
@@ -269,7 +269,7 @@
 }
 
 /* the sparkle, top right, the same width as the picture on the left */
-#workskin .tw-thread.tw2020 .tw-apptop::after {
+#workskin .tw-feed.tw2020 .tw-apptop::after {
   content: "\2726";
   display: block;
   flex: none;
@@ -280,13 +280,13 @@
   text-align: right;
 }
 
-#workskin .tw-thread.tw2020 .tw-tabs { display: none; }
+#workskin .tw-feed.tw2020 .tw-tabs { display: none; }
 
-#workskin .tw-thread.tw2020 .tw-stats { border-top: 0; padding-top: 0.2em; }
+#workskin .tw-feed.tw2020 .tw-stats { border-top: 0; padding-top: 0.2em; }
 
-#workskin .tw-thread.tw2020 .tw-stat.tw-end { flex: 1 1 0; margin-left: 0; }
+#workskin .tw-feed.tw2020 .tw-stat.tw-end { flex: 1 1 0; margin-left: 0; }
 
-#workskin .tw-thread.tw2020 .tw-stat.tw-end:not(:last-child) { display: none; }</code></pre>
+#workskin .tw-feed.tw2020 .tw-stat.tw-end:not(:last-child) { display: none; }</code></pre>
 
 </details>
 
@@ -300,22 +300,22 @@
 <details>
 <summary>How it works: the 2020 redesign</summary>
 
-<p>The <code>tw2020</code> rules all start with <code>.tw-thread.tw2020</code>, so they only touch a thread with both classes. The logo gets the same bird as <code>bird</code>, without the margin, because the sparkle now balances the picture: it's an <code>::after</code> box on the top bar with the sparkle character as its <code>content</code>, the same width as the picture. In the stats row, the share button gets <code>flex: 1 1 0</code> back so it spreads out like the others, and <code>:not(:last-of-type)</code> hides every <code>tw-end</code> button that isn't the last one in the row, which is the bookmark.</p>
+<p>The <code>tw2020</code> rules all start with <code>.tw-feed.tw2020</code>, so they only touch a thread with both classes. The logo gets the same bird as <code>bird</code>, without the margin, because the sparkle now balances the picture: it's an <code>::after</code> box on the top bar with the sparkle character as its <code>content</code>, the same width as the picture. In the stats row, the share button gets <code>flex: 1 1 0</code> back so it spreads out like the others, and <code>:not(:last-of-type)</code> hides every <code>tw-end</code> button that isn't the last one in the row, which is the bookmark.</p>
 
 </details>
 
 <h4 id="s9-3-3">9.3.3 Bottom</h4>
 
-<pre><code>#workskin .tw-thread .tw-foot {
+<pre><code>#workskin .tw-feed .tw-foot {
   display: block;
   padding: 0.7em 1em;
   border-top: 1px solid #eff3f4;
   color: #536471;
 }
 
-#workskin .tw-thread .tw-foot &gt; p { margin: 0; padding: 0; }
+#workskin .tw-feed .tw-foot &gt; p { margin: 0; padding: 0; }
 
-#workskin .tw-thread .tw-foot span {
+#workskin .tw-feed .tw-foot span {
   float: right;
   padding: 0.25em 0.9em;
   border-radius: 1em;
@@ -329,14 +329,14 @@
 
 <h4 id="s9-3-4">9.3.4 Scrolling</h4>
 
-<pre><code>#workskin .tw-thread .tw-scroll {
+<pre><code>#workskin .tw-feed .tw-scroll {
   display: block;
   max-height: 580px;
   overflow-y: auto;
   overflow-x: hidden;
 }
 
-#workskin .tw-thread.no-scroll .tw-scroll { max-height: none; overflow-y: visible; }
+#workskin .tw-feed.no-scroll .tw-scroll { max-height: none; overflow-y: visible; }
 
 #workskin .tw {
   max-height: 700px;
@@ -349,7 +349,7 @@
 <details>
 <summary>Options: a tweet on its own, and no scrolling</summary>
 
-<p>A tweet on its own scrolls as a whole, and it's allowed to be taller (<code>700px</code>), because a tweet with a picture is usually taller than a chat window and you'd rather not scroll it if you can help it. Adding <code>no-scroll</code> to a tweet switches its scrolling off, as usual, and adding it to the <code>tw-thread</code> switches off the scrolling inside it.</p>
+<p>A tweet on its own scrolls as a whole, and it's allowed to be taller (<code>700px</code>), because a tweet with a picture is usually taller than a chat window and you'd rather not scroll it if you can help it. Adding <code>no-scroll</code> to a tweet switches its scrolling off, as usual, and adding it to the <code>tw-feed</code> switches off the scrolling inside it.</p>
 
 </details>
 
@@ -812,7 +812,7 @@
 #workskin .tw-reply .tw-fan .ic { margin-right: 0.2em; }
 
 /* a tweet on its own, or the first tweet of a reply chain, is an opened tweet: its @handle and time go on a
-   second line under the name, and a fan account line goes under them. In a feed (a tw-thread with app)
+   second line under the name, and a fan account line goes under them. In a feed (a tw-feed with app)
    and in replies, they stay on one line */
 #workskin .tw .tw-top {
   display: block;
@@ -826,12 +826,12 @@
 
 #workskin .tw .tw-fan { display: block; position: static; margin-left: 0; }
 
-#workskin .tw-thread.app .tw .tw-top { display: flex; }
+#workskin .tw-feed.app .tw .tw-top { display: flex; }
 
-#workskin .tw-thread.app .tw .tw-handle,
-#workskin .tw-thread.app .tw .tw-time { margin-left: 0.25em; }
+#workskin .tw-feed.app .tw .tw-handle,
+#workskin .tw-feed.app .tw .tw-time { margin-left: 0.25em; }
 
-#workskin .tw-thread.app .tw .tw-fan { position: absolute; margin-left: 0.55em; }</code></pre>
+#workskin .tw-feed.app .tw .tw-fan { position: absolute; margin-left: 0.55em; }</code></pre>
 
 </details>
 
@@ -851,7 +851,7 @@
   <li><code>text-overflow: ellipsis</code> puts "..." where the handle or the name is cut. The name is a flex row too, so its tick can shrink away before the name does. The tick's <code>background-size</code> is fixed, so it gets cut off instead of squashed.</li>
   <li>A name typed straight in, with no span around it, can't get the "...", so it wraps onto a hidden second line instead: <code>max-height: 1.3em</code>, the same as the <code>line-height</code>, shows the first line and hides the rest.</li>
   <li>The picture is 40px tall, which leaves room under the name for a second line. <code>tw-fan</code> is pinned there with <code>position: absolute</code>, starting just past the picture, so it doesn't push the tweet down.</li>
-  <li>The last few rules are for an opened tweet: a <code>tw</code> on its own, or the first tweet of a reply chain. There, the name line goes back to <code>display: block</code>, the picture floats to the left, the name (still a flex box) takes the first line, and the handle and time flow onto the line under it. The fan line goes back to being an ordinary block, under the handle. The rules starting <code>.tw-thread.app</code> switch the one-line layout back on for tweets in a feed.</li>
+  <li>The last few rules are for an opened tweet: a <code>tw</code> on its own, or the first tweet of a reply chain. There, the name line goes back to <code>display: block</code>, the picture floats to the left, the name (still a flex box) takes the first line, and the handle and time flow onto the line under it. The fan line goes back to being an ordinary block, under the handle. The rules starting <code>.tw-feed.app</code> switch the one-line layout back on for tweets in a feed.</li>
 </ul>
 
 </details>
@@ -997,16 +997,16 @@
 
 <pre><code>#workskin .tw.theme-dark { background: #000000; color: #e7e9ea; border-color: #2f3336; }
 
-#workskin .tw-thread.theme-dark { background: #000000; color: #e7e9ea; border-color: #2f3336; }
+#workskin .tw-feed.theme-dark { background: #000000; color: #e7e9ea; border-color: #2f3336; }
 
-#workskin .tw-thread.theme-dark .tw-replying,
-#workskin .tw-thread.theme-dark .tw-date,
-#workskin .tw-thread.theme-dark .tw-label,
-#workskin .tw-thread.theme-dark .tw-pollinfo {
+#workskin .tw-feed.theme-dark .tw-replying,
+#workskin .tw-feed.theme-dark .tw-date,
+#workskin .tw-feed.theme-dark .tw-label,
+#workskin .tw-feed.theme-dark .tw-pollinfo {
   color: #71767b;
 }</code></pre>
 
-<p>Twitter/X's dark mode is black, with <code>#e7e9ea</code> for text and <code>#71767b</code> for grey. Tweets, replies and DMs each have their own dark rules, as you'd expect. Threads have a second set: every part of a tweet again, but starting <code>.tw-thread.theme-dark</code>. That's what lets you put <code>theme-dark</code> on the thread once instead of on every tweet inside it - the tweets don't have a theme of their own, so they need to be told by the thread.</p>
+<p>Twitter/X's dark mode is black, with <code>#e7e9ea</code> for text and <code>#71767b</code> for grey. Tweets, replies and DMs each have their own dark rules, as you'd expect. Threads have a second set: every part of a tweet again, but starting <code>.tw-feed.theme-dark</code>. That's what lets you put <code>theme-dark</code> on the thread once instead of on every tweet inside it - the tweets don't have a theme of their own, so they need to be told by the thread.</p>
 
 <p>The auto theme is the whole lot again inside <code>@media (prefers-color-scheme: dark)</code>, so change a dark colour in both places.</p>
 
@@ -1016,7 +1016,7 @@
 
 <ul>
   <li><strong>DMs:</strong> everything starting <code>.twdm</code>, and anything with <code>twdm-</code> in it.</li>
-  <li><strong>Threads:</strong> everything starting <code>.tw-thread</code>, and <code>tw-scroll</code> and <code>tw-foot</code>.</li>
+  <li><strong>Threads:</strong> everything starting <code>.tw-feed</code>, and <code>tw-scroll</code> and <code>tw-foot</code>.</li>
   <li><strong>Polls:</strong> <code>tw-opt</code>, <code>tw-pct</code> and <code>tw-pollinfo</code>, which is also the biggest saving, since there are 15 bar sizes.</li>
   <li><strong>Picture galleries:</strong> <code>tw-photo</code> and <code>tw-desc</code>, and the <code>two</code>, <code>three</code> and <code>four</code> rules. Keep <code>tw-photos</code> for single pictures.</li>
   <li><strong>Extras:</strong> <code>tw-note</code>, <code>tw-warn</code>, <code>tw-label</code>, <code>liked</code> and <code>reposted</code> each come out on their own.</li>

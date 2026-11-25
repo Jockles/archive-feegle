@@ -260,7 +260,7 @@
 
 #workskin .tb .tb-text > .tb-reblog:first-child { border-top: 0; }
 
-/* the ask and answer boxes: <div class="tb-ask"> or <div class="tb-ask tb-answer"> */
+/* the ask and answer boxes: <div class="tb-ask"> */
 #workskin .tb .tb-ask {
   display: block;
   position: relative;
