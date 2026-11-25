@@ -253,7 +253,8 @@ window.FB_EXAMPLES = [
         postCap: "BREAKING: rivals seen 'sharing a moment' at 6am skate", waReacts: "💀", faces: ["Ilya"] }],
       ["Ilya", "they are so bad at this", { reply: 5, waReacts: "😂", faces: ["Shane"] }],
       ["Shane", "you were the one who hugged me", { reply: 6 }],
-      ["Ilya", "", { photos: [{ desc: "Photo: a screenshot of the same post, with Ilya's comment: 'not me'" }], status: "Seen" }]
+      ["Ilya", "", { photos: [{ desc: "Photo: a screenshot of the same post, with Ilya's comment: 'not me'" }], status: "Seen" }],
+      ["typing", "", { by: "Shane" }]
     ]
   },
   {
@@ -272,7 +273,8 @@ window.FB_EXAMPLES = [
         postMore: [{ desc: "The same lasagne, cut into squares" }, { desc: "One square on a plate, with a fork" }], postCap: "Sunday lasagne, step by step" }],
       ["Shane", "", { link: { url: "https://fakehockeynews.com/captain-mack", title: "Captain Mack: all the reasons he deserves the C | Fake Hockey News",
         imgdesc: "An empty ice rink under bright lights" } }],
-      ["Ilya", "I already ate half of it", { status: "Seen by 3", waReacts: "💀❤️", waCount: "3" }]
+      ["Ilya", "I already ate half of it", { status: "Seen by 3", waReacts: "💀❤️", waCount: "3" }],
+      ["typing", "", { by: "Rose" }]
     ]
   },
   {
