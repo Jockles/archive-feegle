@@ -25,7 +25,7 @@
   <!-- /site meta -->
   <link rel="stylesheet" href="../../style.css?v=c31c06ea">
   <script src="../../theme.js?v=c50fd7c2"></script>
-  <link rel="stylesheet" href="megaskin.css?v=e62baa43" id="creator-style">
+  <link rel="stylesheet" href="megaskin.css?v=0fbf0eaf" id="creator-style">
 </head>
 <body>
 <header>
@@ -105,6 +105,7 @@
       <li><a href="#s18-5-3">18.5.3 Using a Profile</a></li>
     </ul>
   </li>
+  <li><a href="#s18-6">18.6 A Part on Its Own</a></li>
 </ul>
 
 <p>Each part of this chapter starts with the simplest version that works. If you want more, the <strong>Options</strong> boxes show the other things that part can do, and the <strong>How it works</strong> boxes explain what each bit of the code is for.</p>
@@ -538,7 +539,7 @@
 <details>
 <summary>Options: a DM on one character's account</summary>
 
-<p>If the DM is on one character's account, add <code>pov-</code> and their profile name to the container, like <code>&lt;div class=&quot;dc theme-auto pov-shane&quot;&gt;</code>, and anyone with a profile shows up under whatever nickname Shane has given them. Their pictures stay the same - Discord doesn't let you change someone else's (see <a href="core.html#s2-4-3-2">Their Phone</a>).</p>
+<p>If the DM is on one character's account, add <code>pov-</code> and their profile name to the container, like <code>&lt;div class=&quot;dc theme-auto pov-shane&quot;&gt;</code>, and anyone with a profile shows up under whatever nickname Shane has given them. Their pictures stay the same - Discord doesn't let you change someone else's (see <a href="core.html#s2-5-3-2">Their Phone</a>).</p>
 
 </details>
 
@@ -1144,6 +1145,32 @@
 <p>The name can come from their profile as well - here it's Shane's Discord username, with the <code>hide</code> span so readers with the workskin off still know who's talking. Or just type their name in.</p>
 
 </details>
+
+<h3 id="s18-6">18.6 A Part on Its Own</h3>
+
+<p>You don't need a whole channel. Any part works by itself inside its container. Here's one message with no header and no message box:</p>
+
+<div class="dc theme-auto">
+  <div class="dc-message">
+    <p>
+      <b class="dc-name colour1">mackattack</b>
+      <span class="dc-time">Today at 9:12 AM</span>
+    </p>
+    <p><span class="dc-text">who has the aux at practice</span></p>
+  </div>
+</div>
+
+<pre><code>&lt;div class="dc theme-auto"&gt;
+  &lt;div class="dc-message"&gt;
+    &lt;p&gt;
+      &lt;b class="dc-name colour1"&gt;mackattack&lt;/b&gt;
+      &lt;span class="dc-time"&gt;Today at 9:12 AM&lt;/span&gt;
+    &lt;/p&gt;
+    &lt;p&gt;&lt;span class="dc-text"&gt;who has the aux at practice&lt;/span&gt;&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+<p>There's more on this in <a href="core.html#alone">A Part on Its Own</a>, in the Core chapter.</p>
         </div>
       </div>
 
