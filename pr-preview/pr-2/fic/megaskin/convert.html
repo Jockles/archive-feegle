@@ -46,7 +46,7 @@
 <main class="cv">
   <p class="work-title"><a href="index.html">Megaskin</a> by Jockles</p>
   <h2>Converter</h2>
-  <p>Some of the Megaskin's class names have changed to make them easier to read. If you posted a fic with the old names, paste your HTML here and it swaps them for the new ones. Nothing else in your fic is touched: it only changes names inside <code>class="..."</code>.</p>
+  <p>Some of the Megaskin's class names have changed to make them easier to read. If you posted a fic with the old names, paste your HTML here and it swaps them for the new ones. Nothing else in your fic is touched: it only changes names inside <code>class="..."</code>. A few names that never did anything are taken out.</p>
 
   <h3>1. Your chapter HTML</h3>
   <textarea id="html-in" placeholder="Paste a chapter's HTML here"></textarea>
@@ -77,12 +77,18 @@
     var n = 0;
     var out = text.replace(/(class\s*=\s*)("[^"]*"|'[^']*')/gi, function (all, start, value) {
       var q = value.charAt(0);
-      var names = value.slice(1, -1).split(/(\s+)/).map(function (w) {
+      var names = value.slice(1, -1).split(/\s+/).filter(function (w) {
+        // names that did nothing are taken out
+        if (MEGASKIN_REMOVED.indexOf(w) > -1) { n++; return false; }
+        return w !== "";
+      }).map(function (w) {
         if (Object.prototype.hasOwnProperty.call(map, w)) { n++; return map[w]; }
         return w;
       });
-      return start + q + names.join("") + q;
+      return start + q + names.join(" ") + q;
     });
+    // a class list left empty goes altogether
+    out = out.replace(/\s+class\s*=\s*(""|'')/gi, "");
     return [out, n];
   }
   // swap whole class names after a dot, as in .tw-media
@@ -106,6 +112,11 @@
   MEGASKIN_RENAMES.forEach(function (r) {
     var tr = document.createElement("tr");
     r.forEach(function (x) { var td = document.createElement("td"); td.textContent = x; tr.appendChild(td); });
+    $("names").appendChild(tr);
+  });
+  MEGASKIN_REMOVED.forEach(function (x) {
+    var tr = document.createElement("tr");
+    [x, "(taken out)"].forEach(function (y) { var td = document.createElement("td"); td.textContent = y; tr.appendChild(td); });
     $("names").appendChild(tr);
   });
 })();

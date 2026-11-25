@@ -25,7 +25,7 @@
   <!-- /site meta -->
   <link rel="stylesheet" href="../../style.css?v=c31c06ea">
   <script src="../../theme.js?v=c50fd7c2"></script>
-  <link rel="stylesheet" href="megaskin.css?v=e0be4b81" id="creator-style">
+  <link rel="stylesheet" href="megaskin.css?v=e62baa43" id="creator-style">
 </head>
 <body>
 <header>
@@ -90,7 +90,7 @@
 <h4 id="s16-1-1">16.1.1 A Gmail Thread</h4>
 
 <div class="mob gm theme-auto">
-  <table class="gm-subject">
+  <table>
     <tbody>
       <tr>
         <td class="gm-title">Sunday dinner <span class="gm-label">Inbox</span></td>
@@ -99,7 +99,7 @@
     </tbody>
   </table>
   <div class="gm-msg">
-    <table class="gm-head">
+    <table>
       <tbody>
         <tr>
           <td rowspan="2" class="gm-pfp-cell"><span class="gm-pfp"><span class="pfp pfp-yuna"></span></span></td>
@@ -119,7 +119,7 @@
     </div>
   </div>
   <div class="gm-msg">
-    <table class="gm-head">
+    <table>
       <tbody>
         <tr>
           <td rowspan="2" class="gm-pfp-cell"><span class="gm-pfp"><span class="pfp"><img src="https://64.media.tumblr.com/2f5204e07f5dc3467a42508584f56c7d/188bbfab996df056-77/s400x600/e139f3e69f9be02470797bbd3505a69cc26def70.pnj" alt="Profile picture of Ilya Rozanov"></span></span></td>
@@ -138,7 +138,7 @@
     </div>
   </div>
   <div class="gm-msg">
-    <table class="gm-head">
+    <table>
       <tbody>
         <tr>
           <td rowspan="2" class="gm-pfp-cell"><span class="gm-pfp colour5">SH</span></td>
@@ -173,7 +173,7 @@
 <summary>The full HTML for this thread</summary>
 
 <pre><code>&lt;div class="mob gm theme-auto"&gt;
-  &lt;table class="gm-subject"&gt;
+  &lt;table&gt;
     &lt;tbody&gt;
       &lt;tr&gt;
         &lt;td class="gm-title"&gt;Sunday dinner &lt;span class="gm-label"&gt;Inbox&lt;/span&gt;&lt;/td&gt;
@@ -182,7 +182,7 @@
     &lt;/tbody&gt;
   &lt;/table&gt;
   &lt;div class="gm-msg"&gt;
-    &lt;table class="gm-head"&gt;
+    &lt;table&gt;
       &lt;tbody&gt;
         &lt;tr&gt;
           &lt;td rowspan="2" class="gm-pfp-cell"&gt;&lt;span class="gm-pfp"&gt;&lt;span class="pfp pfp-yuna"&gt;&lt;/span&gt;&lt;/span&gt;&lt;/td&gt;
@@ -202,7 +202,7 @@
     &lt;/div&gt;
   &lt;/div&gt;
   &lt;div class="gm-msg"&gt;
-    &lt;table class="gm-head"&gt;
+    &lt;table&gt;
       &lt;tbody&gt;
         &lt;tr&gt;
           &lt;td rowspan="2" class="gm-pfp-cell"&gt;&lt;span class="gm-pfp"&gt;&lt;span class="pfp"&gt;&lt;img src="https://64.media.tumblr.com/2f5204e07f5dc3467a42508584f56c7d/188bbfab996df056-77/s400x600/e139f3e69f9be02470797bbd3505a69cc26def70.pnj" alt="Profile picture of Ilya Rozanov"&gt;&lt;/span&gt;&lt;/span&gt;&lt;/td&gt;
@@ -221,7 +221,7 @@
     &lt;/div&gt;
   &lt;/div&gt;
   &lt;div class="gm-msg"&gt;
-    &lt;table class="gm-head"&gt;
+    &lt;table&gt;
       &lt;tbody&gt;
         &lt;tr&gt;
           &lt;td rowspan="2" class="gm-pfp-cell"&gt;&lt;span class="gm-pfp colour5"&gt;SH&lt;/span&gt;&lt;/td&gt;
@@ -295,7 +295,7 @@
 
 <p>The subject line at the top is a table with a <code>gm-title</code> cell for the subject and a <code>gm-star</code> cell for the star. A <code>gm-label</code> span after the subject adds the little grey label, like "Inbox" - you can leave it out if you like:</p>
 
-<div class="mob gm theme-auto"><table class="gm-subject">
+<div class="mob gm theme-auto"><table>
   <tbody>
     <tr>
       <td class="gm-title">Sunday dinner <span class="gm-label">Inbox</span></td>
@@ -304,7 +304,7 @@
   </tbody>
 </table></div>
 
-<pre><code>&lt;table class="gm-subject"&gt;
+<pre><code>&lt;table&gt;
   &lt;tbody&gt;
     &lt;tr&gt;
       &lt;td class="gm-title"&gt;Sunday dinner &lt;span class="gm-label"&gt;Inbox&lt;/span&gt;&lt;/td&gt;
@@ -353,7 +353,7 @@
 
 <p>Each email starts with a header, which has two rows. The first row has the sender and the date, and the second row has the "to" line and the little reply and menu symbols:</p>
 
-<div class="mob gm theme-auto"><div class="gm-msg"><table class="gm-head">
+<div class="mob gm theme-auto"><div class="gm-msg"><table>
   <tbody>
     <tr>
       <td rowspan="2" class="gm-pfp-cell"><span class="gm-pfp colour5">SH</span></td>
@@ -367,7 +367,7 @@
   </tbody>
 </table></div></div>
 
-<pre><code>&lt;table class="gm-head"&gt;
+<pre><code>&lt;table&gt;
   &lt;tbody&gt;
     &lt;tr&gt;
       &lt;td rowspan="2" class="gm-pfp-cell"&gt;&lt;span class="gm-pfp colour5"&gt;SH&lt;/span&gt;&lt;/td&gt;
@@ -401,7 +401,7 @@
 <p>The text of the email goes in a <code>gm-body</code>, as ordinary paragraphs, and you can use bold, italics, links and line breaks as normal. The header and the body together make one email, wrapped in <code>gm-msg</code>, which also draws the thin line between one email and the next:</p>
 
 <div class="mob gm theme-auto"><div class="gm-msg">
-  <table class="gm-head">
+  <table>
     <tbody>
       <tr>
         <td rowspan="2" class="gm-pfp-cell"><span class="gm-pfp colour5">SH</span></td>
@@ -421,7 +421,7 @@
 </div></div>
 
 <pre><code>&lt;div class="gm-msg"&gt;
-  &lt;table class="gm-head"&gt;
+  &lt;table&gt;
     &lt;tbody&gt;
       &lt;tr&gt;
         &lt;td rowspan="2" class="gm-pfp-cell"&gt;&lt;span class="gm-pfp colour5"&gt;SH&lt;/span&gt;&lt;/td&gt;
@@ -462,7 +462,7 @@
 
 <p>For a real picture, put the picture tag inside a <code>pfp</code> span inside the <code>gm-pfp</code>:</p>
 
-<div class="mob gm theme-auto"><div class="gm-msg"><table class="gm-head">
+<div class="mob gm theme-auto"><div class="gm-msg"><table>
   <tbody>
     <tr>
       <td rowspan="2" class="gm-pfp-cell"><span class="gm-pfp"><span class="pfp"><img src="https://64.media.tumblr.com/2f5204e07f5dc3467a42508584f56c7d/188bbfab996df056-77/s400x600/e139f3e69f9be02470797bbd3505a69cc26def70.pnj" alt="Profile picture of Ilya Rozanov"></span></span></td>
@@ -476,7 +476,7 @@
   </tbody>
 </table></div></div>
 
-<pre><code>&lt;table class="gm-head"&gt;
+<pre><code>&lt;table&gt;
   &lt;tbody&gt;
     &lt;tr&gt;
       &lt;td rowspan="2" class="gm-pfp-cell"&gt;&lt;span class="gm-pfp"&gt;&lt;span class="pfp"&gt;&lt;img src="https://64.media.tumblr.com/2f5204e07f5dc3467a42508584f56c7d/188bbfab996df056-77/s400x600/e139f3e69f9be02470797bbd3505a69cc26def70.pnj" alt="Profile picture of Ilya Rozanov"&gt;&lt;/span&gt;&lt;/span&gt;&lt;/td&gt;
@@ -497,7 +497,7 @@
 
 <div class="mob gm theme-auto">
 <div class="gm-msg">
-  <table class="gm-head">
+  <table>
     <tbody>
       <tr>
         <td rowspan="2" class="gm-pfp-cell"><span class="gm-pfp"><span class="pfp"><img src="https://media.istockphoto.com/id/1298570775/photo/rose.jpg?s=1024x1024&w=is&k=20&c=UFPisYCT3g2Vm04F2E5zrhtUWqDtLRLDXZisKb6Xf5s=" alt="Profile picture of Gemma, a close-up photo of a rose"></span></span></td>
@@ -515,7 +515,7 @@
   </div>
 </div>
 <div class="gm-msg">
-  <table class="gm-head">
+  <table>
     <tbody>
       <tr>
         <td rowspan="2" class="gm-pfp-cell"><span class="gm-pfp"><span class="pfp"><img class="landscape" src="https://www.shutterstock.com/shutterstock/photos/1100283806/display_1500/stock-photo-beautiful-lavender-flower-in-the-dalat-flower-park-selective-focus-1100283806.jpg" alt="Profile picture of Mar, a lavender flower"></span></span></td>
@@ -535,7 +535,7 @@
 </div>
 
 <pre><code>&lt;div class="gm-msg"&gt;
-  &lt;table class="gm-head"&gt;
+  &lt;table&gt;
     &lt;tbody&gt;
       &lt;tr&gt;
         &lt;td rowspan="2" class="gm-pfp-cell"&gt;&lt;span class="gm-pfp"&gt;&lt;span class="pfp"&gt;&lt;img src="https://media.istockphoto.com/id/1298570775/photo/rose.jpg?s=1024x1024&amp;w=is&amp;k=20&amp;c=UFPisYCT3g2Vm04F2E5zrhtUWqDtLRLDXZisKb6Xf5s=" alt="Profile picture of Gemma, a close-up photo of a rose"&gt;&lt;/span&gt;&lt;/span&gt;&lt;/td&gt;
@@ -553,7 +553,7 @@
   &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="gm-msg"&gt;
-  &lt;table class="gm-head"&gt;
+  &lt;table&gt;
     &lt;tbody&gt;
       &lt;tr&gt;
         &lt;td rowspan="2" class="gm-pfp-cell"&gt;&lt;span class="gm-pfp"&gt;&lt;span class="pfp"&gt;&lt;img class="landscape" src="https://www.shutterstock.com/shutterstock/photos/1100283806/display_1500/stock-photo-beautiful-lavender-flower-in-the-dalat-flower-park-selective-focus-1100283806.jpg" alt="Profile picture of Mar, a lavender flower"&gt;&lt;/span&gt;&lt;/span&gt;&lt;/td&gt;
@@ -583,7 +583,7 @@
 
 <p>Use a profile, so the same person has the same picture everywhere, like Yuna's. The email address can come from her profile too, with the address typed inside in a <code>hide</code> span for readers with the workskin off:</p>
 
-<div class="mob gm theme-auto"><div class="gm-msg"><table class="gm-head">
+<div class="mob gm theme-auto"><div class="gm-msg"><table>
   <tbody>
     <tr>
       <td rowspan="2" class="gm-pfp-cell"><span class="gm-pfp"><span class="pfp pfp-yuna"></span></span></td>
@@ -597,7 +597,7 @@
   </tbody>
 </table></div></div>
 
-<pre><code>&lt;table class="gm-head"&gt;
+<pre><code>&lt;table&gt;
   &lt;tbody&gt;
     &lt;tr&gt;
       &lt;td rowspan="2" class="gm-pfp-cell"&gt;&lt;span class="gm-pfp"&gt;&lt;span class="pfp pfp-yuna"&gt;&lt;/span&gt;&lt;/span&gt;&lt;/td&gt;

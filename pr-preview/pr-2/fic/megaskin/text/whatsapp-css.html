@@ -50,7 +50,7 @@
 
 <p>The header with the back arrow, picture and icons is a table, because tables are one of the few layouts AO3 never rearranges. (It's the approach from the WhatsApp group chat skin in the credits.)</p>
 
-<pre><code>#workskin .wa table.wa-bar {
+<pre><code>#workskin .wa table.wa-top {
   width: 100%;
   table-layout: fixed;
   border-collapse: collapse;
@@ -61,7 +61,7 @@
   text-align: left;
 }
 
-#workskin .wa table.wa-bar td {
+#workskin .wa table.wa-top td {
   margin: 0;
   padding: 0;
   border: 0;
@@ -81,7 +81,7 @@
 
 </details>
 
-<pre><code>#workskin .wa table.wa-bar .wa-title {
+<pre><code>#workskin .wa table.wa-top .wa-title {
   padding: 0.55em 0.4em 0 0.4em;
   font-weight: bold;
   line-height: 1.2;
@@ -177,7 +177,7 @@
 }
 
 #workskin .wa .mob-head,
-#workskin .wa .wa-bar,
+#workskin .wa .wa-top,
 #workskin .wa .mob-body,
 #workskin .wa .wa-input { position: relative; }</code></pre>
 
@@ -418,11 +418,11 @@
 
 #workskin .wa .wa-reacts.out { margin-left: auto; margin-right: 0.7em; }
 
-#workskin .wa .wa-reacts.pad { margin-left: 46px; }
+#workskin .wa .wa-reacts.indent { margin-left: 46px; }
 
 #workskin .wa .wa-big { font-size: 2.2em; line-height: 1.2; }</code></pre>
 
-<p>The reactions sit on the bottom edge of the bubble. <code>out</code> moves them to the right, and <code>pad</code> moves them past a profile picture.</p>
+<p>The reactions sit on the bottom edge of the bubble. <code>out</code> moves them to the right, and <code>indent</code> moves them past a profile picture.</p>
 
 <details>
 <summary>How it works: overlapping the bubble</summary>
@@ -780,9 +780,9 @@
 
 #workskin .wa .wa-row .msg { margin: 0; }
 
-#workskin .wa .wa-row.cont { padding-left: 38px; }</code></pre>
+#workskin .wa .wa-row.same { padding-left: 38px; }</code></pre>
 
-<p>A <code>wa-row</code> leaves a <code>38px</code> gap down its left side, and the picture is pinned into that gap at the top. <code>cont</code> keeps the gap but has no picture in it, so later messages from the same person still line up.</p>
+<p>A <code>wa-row</code> leaves a <code>38px</code> gap down its left side, and the picture is pinned into that gap at the top. <code>same</code> keeps the gap but has no picture in it, so later messages from the same person still line up.</p>
 
 <pre><code>#workskin .wa .wa-no {
   float: right;
@@ -812,8 +812,8 @@
 <p>WhatsApp is a long module, so it's worth trimming if you only use a few parts. These come out cleanly - search for the class names and delete every rule with them in, including in the dark and auto blocks:</p>
 
 <ul>
-  <li><strong>Header with a picture and icons:</strong> <code>wa-bar</code>, <code>wa-back</code>, <code>wa-title</code>, <code>wa-status</code>, <code>wa-actions</code>. Keep <code>wa-pfp</code> if you use pictures beside messages.</li>
-  <li><strong>Pictures beside messages:</strong> <code>wa-row</code> and <code>pad</code>, and <code>wa-pfp</code> with its colours if you don't use the group header either.</li>
+  <li><strong>Header with a picture and icons:</strong> <code>wa-top</code>, <code>wa-back</code>, <code>wa-title</code>, <code>wa-status</code>, <code>wa-actions</code>. Keep <code>wa-pfp</code> if you use pictures beside messages.</li>
+  <li><strong>Pictures beside messages:</strong> <code>wa-row</code> and <code>indent</code>, and <code>wa-pfp</code> with its colours if you don't use the group header either.</li>
   <li><strong>Reactions:</strong> <code>wa-reacts</code> and <code>wa-count</code>.</li>
   <li><strong>Message bar:</strong> <code>wa-input</code>, <code>wa-field</code>, <code>wa-placeholder</code>, <code>wa-mic</code>.</li>
   <li><strong>Link cards:</strong> <code>share</code>, and everything starting <code>wa-link</code>.</li>

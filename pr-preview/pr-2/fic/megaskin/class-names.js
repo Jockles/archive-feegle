@@ -43,5 +43,14 @@ var MEGASKIN_RENAMES = [
   ["res", "results"],
   ["land", "landscape"],
   ["cm", "comment"],
-  ["bm", "bookmark"]
+  ["bm", "bookmark"],
+  ["ig-add", "ig-follow-btn"],
+  ["ig-new", "ig-add"],
+  ["tw-thread", "tw-feed"],
+  ["wa-bar", "wa-top"],
+  ["cont", "same"],
+  ["pad", "indent"]
 ];
+
+// Names that did nothing and were taken out.
+var MEGASKIN_REMOVED = ["gm-head", "gm-subject", "tb-answer", "wa-ic"];
