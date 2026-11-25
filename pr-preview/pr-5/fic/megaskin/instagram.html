@@ -743,6 +743,17 @@
 
 <pre><code>&lt;p class="ig-top"&gt;&lt;span class="ig-menu ic ic-ig-lines"&gt;&amp;#8801;&lt;/span&gt;&lt;span class="ig-pfp"&gt;&lt;span class="pfp pfp-rose"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="handle pfp-rose"&gt;&lt;span class="hide"&gt;RoseLandry&lt;/span&gt;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="ig-tick ic ic-verified"&gt;&amp;#10003;&lt;/span&gt;&lt;span class="hide"&gt; - &lt;/span&gt;&lt;span&gt;Ottawa, Ontario&lt;/span&gt;&lt;/p&gt;</code></pre>
 
+<details>
+<summary>Names that are too long</summary>
+
+<p>At phone width, a long account name runs off the edge of the post, and the tick drops onto a line of its own. In the app it ends in "…" instead, but AO3 won't let the skin do that for you, so view your chapter at phone width and check the name fits. If it doesn't, swap the handle span for the name typed out, cut short with "…". Keep the picture span, so the picture still comes from the profile. The same goes for both names in a collab post. The Fic Builder does this for you.</p>
+
+<div class="mob ig ig-feed theme-auto"><div class="mob ig"><p class="ig-top"><span class="ig-menu ic ic-ig-lines">&#8801;</span><span class="ig-pfp"><span class="pfp pfp-shane"></span></span>shanehollanderhoc…<span class="hide"> </span><span class="ig-tick ic ic-verified">&#10003;</span><span class="hide"> - </span><span>Ottawa, Ontario</span></p></div></div>
+
+<pre><code>&lt;p class="ig-top"&gt;&lt;span class="ig-menu ic ic-ig-lines"&gt;&amp;#8801;&lt;/span&gt;&lt;span class="ig-pfp"&gt;&lt;span class="pfp pfp-shane"&gt;&lt;/span&gt;&lt;/span&gt;shanehollanderhoc…&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="ig-tick ic ic-verified"&gt;&amp;#10003;&lt;/span&gt;&lt;span class="hide"&gt; - &lt;/span&gt;&lt;span&gt;Ottawa, Ontario&lt;/span&gt;&lt;/p&gt;</code></pre>
+
+</details>
+
 <h4 id="s12-5-2">12.5.2 A Collab Post</h4>
 
 <p>When two accounts make a post together, both pictures go in the circle, stuck together: the first account's at the top right, and the second's at the bottom left, in front. Wrap the two <code>ig-pfp</code> pictures in an <code>ig-collab</code> span, then put both names with <code>ig-and</code> between them, so the "and" isn't bold. The gap around the front picture is white in light mode and nearly black in dark mode, so it always matches the post:</p>
@@ -964,7 +975,10 @@
 
 <pre><code>&lt;p class="mob-head"&gt;&lt;span class="ig-pfp"&gt;&lt;span class="pfp pfp-shane"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="handle pfp-shane"&gt;&lt;span class="hide"&gt;shanehollanderhockeyplayer&lt;/span&gt;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="ig-tick ic ic-verified"&gt;&amp;#10003;&lt;/span&gt;&lt;span class="hide"&gt; - &lt;/span&gt;&lt;span&gt;Active now&lt;/span&gt;&lt;/p&gt;</code></pre>
 
-<p><strong>Check long usernames at phone width.</strong> In the app, a name that's too long for the header ends in "…", but AO3 won't let the skin do that for you. So the name carries on onto a second line instead, with the tick after it. If you want it all on one line, view your chapter at phone width and check the name fits. The Fic Builder does this for you.</p>
+<details>
+<summary>Names that are too long</summary>
+
+<p>In the app, a name that's too long for the header ends in "…", but AO3 won't let the skin do that for you. So the name carries on onto a second line instead, with the tick after it. If you want it all on one line, view your chapter at phone width and check the name fits. The Fic Builder does this for you.</p>
 
 <p>A name from a profile is filled in by the skin, from the handle span, so you can't shorten it inside the span. Swap the whole handle span for the name typed out, cut short with "…". Keep the picture span, so the picture still comes from the profile. Here's Shane's header with the name from his profile:</p>
 
@@ -977,6 +991,7 @@
 <pre><code>&lt;p class="mob-head"&gt;&lt;span class="ig-pfp"&gt;&lt;span class="pfp pfp-shane"&gt;&lt;/span&gt;&lt;/span&gt;shanehollanderh…&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="ig-tick ic ic-verified"&gt;&amp;#10003;&lt;/span&gt;&lt;span class="hide"&gt; - &lt;/span&gt;&lt;span&gt;Active now&lt;/span&gt;&lt;/p&gt;</code></pre>
 
 <p>A typed name is shortened the same way: just cut it short and add "…" at the end.</p>
+</details>
 
 <p>For a group, wrap two pictures in an <code>ig-collab</code> span and they overlap, the first at the top left and the second in front of it at the bottom right. Instagram only ever shows two, so a third is hidden. If someone hasn't got a picture, type their initials in the <code>ig-pfp</code> span instead and add a colour from colour1 to colour10:</p>
 
