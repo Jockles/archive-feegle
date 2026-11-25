@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-Clacks-Overhead" content="GNU Terry Pratchett">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Megaskin Converter | jockles.com</title>
+  <!-- site meta -->
+  <link rel="icon" href="/favicon.ico?v=3" sizes="32x32">
+  <link rel="icon" href="/images/favicon.svg?v=3" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/images/apple-touch-icon.png?v=3">
+  <meta name="theme-color" content="#6c392a">
+  <!-- /site meta -->
+  <link rel="stylesheet" href="../../style.css?v=c31c06ea">
+  <script src="../../theme.js?v=c50fd7c2"></script>
+  <style>
+    .cv textarea { width: 100%; box-sizing: border-box; height: 14em; font-family: monospace; font-size: 0.8em; }
+    .cv button { font: inherit; padding: 4px 10px; cursor: pointer; margin: 6px 0; }
+    .cv table { border-collapse: collapse; font-size: 0.9em; }
+    .cv th, .cv td { text-align: left; padding: 2px 14px 2px 0; }
+    .cv .note { font-size: 0.85em; opacity: 0.8; }
+  </style>
+</head>
+<body>
+<header>
+  <h1><a href="../../index.html">jockles.com</a></h1>
+  <p>All the Fannish things I do.</p>
+</header>
+<nav>
+  <ul>
+    <li><a href="../../index.html">Home</a></li>
+    <li><a href="../index.html">Fic</a></li>
+    <li><a href="../../videos/index.html">Videos</a></li>
+    <li><a href="../../blog/index.html">Blog</a></li>
+    <li><a href="../../links.html">Links</a></li>
+    <li class="menu-drop"><span class="menu-drop-label" tabindex="0">Tools</span>
+      <ul>
+        <li><a href="../../fic/megaskin/fic-builder.html">Megaskin Fic-Builder</a></li>
+        <li><a href="../../fic/megaskin/profile-maker.html">Megaskin Profile-Builder</a></li>
+      </ul>
+    </li>
+    <li><a href="../../about.html">About</a></li>
+  </ul>
+</nav>
+<main class="cv">
+  <p class="work-title"><a href="index.html">Megaskin</a> by Jockles</p>
+  <h2>Converter</h2>
+  <p>Some of the Megaskin's class names have changed to make them easier to read. If you posted a fic with the old names, paste your HTML here and it swaps them for the new ones. Nothing else in your fic is touched: it only changes names inside <code>class="..."</code>.</p>
+
+  <h3>1. Your chapter HTML</h3>
+  <textarea id="html-in" placeholder="Paste a chapter's HTML here"></textarea>
+  <p><button id="html-go">Convert</button> <span id="html-count" class="note"></span></p>
+  <textarea id="html-out" readonly placeholder="The new HTML shows up here"></textarea>
+  <p><button id="html-copy">Copy</button></p>
+
+  <h3>2. Your work skin</h3>
+  <p>Paste the new Megaskin over the old one in your work skin, and keep your own PROFILES section. Profiles don't use any of the names that changed, so they work as they are. If you added CSS of your own, paste it here to swap the names in it too.</p>
+  <textarea id="css-in" placeholder="Paste your own CSS here"></textarea>
+  <p><button id="css-go">Convert</button> <span id="css-count" class="note"></span></p>
+  <textarea id="css-out" readonly placeholder="The new CSS shows up here"></textarea>
+  <p><button id="css-copy">Copy</button></p>
+
+  <details>
+    <summary>Every name that changed</summary>
+    <table id="names"><tr><th>Old</th><th>New</th></tr></table>
+  </details>
+</main>
+<script src="class-names.js"></script>
+<script>
+(function () {
+  var map = {};
+  MEGASKIN_RENAMES.forEach(function (r) { map[r[0]] = r[1]; });
+  function $(id) { return document.getElementById(id); }
+  // swap whole class names inside class="..." or class='...'
+  function html(text) {
+    var n = 0;
+    var out = text.replace(/(class\s*=\s*)("[^"]*"|'[^']*')/gi, function (all, start, value) {
+      var q = value.charAt(0);
+      var names = value.slice(1, -1).split(/(\s+)/).map(function (w) {
+        if (Object.prototype.hasOwnProperty.call(map, w)) { n++; return map[w]; }
+        return w;
+      });
+      return start + q + names.join("") + q;
+    });
+    return [out, n];
+  }
+  // swap whole class names after a dot, as in .tw-media
+  function css(text) {
+    var n = 0;
+    var out = text.replace(/\.(-?[A-Za-z_][\w-]*)/g, function (all, name) {
+      if (Object.prototype.hasOwnProperty.call(map, name)) { n++; return "." + map[name]; }
+      return all;
+    });
+    return [out, n];
+  }
+  function wire(kind, fn) {
+    $(kind + "-go").onclick = function () {
+      var r = fn($(kind + "-in").value);
+      $(kind + "-out").value = r[0];
+      $(kind + "-count").textContent = r[1] === 1 ? "1 name changed." : r[1] + " names changed.";
+    };
+    $(kind + "-copy").onclick = function () { $(kind + "-out").select(); document.execCommand("copy"); };
+  }
+  wire("html", html); wire("css", css);
+  MEGASKIN_RENAMES.forEach(function (r) {
+    var tr = document.createElement("tr");
+    r.forEach(function (x) { var td = document.createElement("td"); td.textContent = x; tr.appendChild(td); });
+    $("names").appendChild(tr);
+  });
+})();
+</script>
+</body>
+</html>
