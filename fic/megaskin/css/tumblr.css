@@ -376,7 +376,7 @@
 
 #workskin .tb .tb-chat b { font-weight: bold; }
 
-/* polls */
+/* poll: in tb-body, the question as a paragraph, then each option as */
 #workskin .tb .tb-body .tb-opt {
   display: flex;
   align-items: center;
@@ -455,7 +455,7 @@
 
 #workskin .tb .tb-opt .tb-voter + .tb-pct { margin-left: 0; }
 
-/* THE FEED BEHIND THE CARDS (optional): a tb-feed around the posts */
+/* THE FEED BEHIND THE CARDS (optional): put one or more .tb posts inside */
 #workskin .tb-feed {
   width: 380px;
   max-width: 100%;
