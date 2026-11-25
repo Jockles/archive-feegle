@@ -25,7 +25,7 @@
   <!-- /site meta -->
   <link rel="stylesheet" href="../../style.css?v=c31c06ea">
   <script src="../../theme.js?v=c50fd7c2"></script>
-  <link rel="stylesheet" href="megaskin.css?v=be8f07cf" id="creator-style">
+  <link rel="stylesheet" href="megaskin.css?v=09fb48f3" id="creator-style">
 </head>
 <body>
 <header>
@@ -1037,11 +1037,13 @@
 
 <h4 id="s12-6-5">12.6.5 Shared Posts and Reels</h4>
 
-<p>When someone sends a post, a reel or a story into the chat, show it with <code>igdm-shared</code>, which makes an outlined box. It gets the hidden label too, so readers with the workskin off know who shared it:</p>
+<p>When someone sends a post, a reel or a story into the chat, show it with <code>igdm-shared</code>, which makes an outlined box. It goes on the left. Add <code>mine</code> when the phone's owner shared it, and it goes on the right. It gets the hidden label too, so readers with the workskin off know who shared it:</p>
 
-<div class="mob igdm theme-auto"><div class="mob-body"><p class="igdm-shared"><span class="hide"><em>Shane:</em> </span>Shared a story from @shane.h: "6am skate. Again."</p></div></div>
+<div class="mob igdm theme-auto"><div class="mob-body"><p class="igdm-shared"><span class="hide"><em>Shane:</em> </span>Shared a story from @shane.h: "6am skate. Again."</p>
+<p class="igdm-shared mine"><span class="hide"><em>Ilya:</em> </span>Shared a story from @ilya.r: "Morning skate. Better than yours."</p></div></div>
 
-<pre><code>&lt;p class="igdm-shared"&gt;&lt;span class="hide"&gt;&lt;em&gt;Shane:&lt;/em&gt; &lt;/span&gt;Shared a story from @shane.h: "6am skate. Again."&lt;/p&gt;</code></pre>
+<pre><code>&lt;p class="igdm-shared"&gt;&lt;span class="hide"&gt;&lt;em&gt;Shane:&lt;/em&gt; &lt;/span&gt;Shared a story from @shane.h: "6am skate. Again."&lt;/p&gt;
+&lt;p class="igdm-shared mine"&gt;&lt;span class="hide"&gt;&lt;em&gt;Ilya:&lt;/em&gt; &lt;/span&gt;Shared a story from @ilya.r: "Morning skate. Better than yours."&lt;/p&gt;</code></pre>
 
 
 <p>To show the post itself as a card, use <code>igdm-post</code>. <code>in</code> puts it on the left and <code>out</code> on the right. The account goes at the top with its picture, then the post's picture, then the account name in bold and the caption, which stops after two lines like in the app. The round share and save buttons float beside the card:</p>

@@ -5596,6 +5596,8 @@
   color: #737373;
 }
 
+/* add "mine" when the phone's owner shared it, and it goes on the right */
+#workskin .igdm .igdm-shared.mine { margin: 0.2em 0 0.2em auto; }
 /* ---- pictures in DMs. In the header, put the picture first, before the name:
    <p class="mob-head"><span class="ig-pfp"><span class="pfp pfp-shane"></span></span>shane.h<span class="hide"> - </span><span>Active now</span></p>
    For a group, wrap two pictures in an ig-collab span and they overlap, the first at the top left and the second in front of it at the bottom right:
