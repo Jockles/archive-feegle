@@ -917,7 +917,7 @@
   margin: 0.2em 0;
 }
 
-#workskin .igdm .igdm-row .ig-pfp {
+#workskin .igdm .igdm-row > .ig-pfp {
   position: absolute;
   left: 0;
   bottom: 0.2em;
@@ -1197,8 +1197,13 @@
 
 #workskin .igdm .igdm-post.reel .igdm-post-cap { color: #f5f5f5; }
 
-/* a picture wider than it is tall: add class="land" to the img and it fills the height instead */
-#workskin .igdm .igdm-post.reel .igdm-post-img img.land { width: auto; height: 100%; max-width: none; }
+/* the video still fills the height of the card, and anything wider is trimmed off at the sides */
+#workskin .igdm .igdm-post.reel .igdm-post-img img {
+  flex: none;
+  width: auto;
+  max-width: none;
+  height: 100%;
+}
 
 /* the play button in the middle and the reel sign in the bottom corner */
 #workskin .igdm .igdm-post.reel .igdm-post-img::before,
