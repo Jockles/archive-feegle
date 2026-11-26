@@ -653,6 +653,7 @@
     if (!m.collabs) m.collabs = m.collab ? [{ who: m.collab, tick: !!m.collabTick }] : [];
     return m.collabs;
   }
+  var OLD_LIKES = false; // the "312 likes" line, kept for an older Instagram look
   function igPostHTML(b, m) {
     var c = char(m.from); if (!c) return [];
     var a = accOf(c, m.acc, "ig"), cos = collabsOf(m).filter(function (g) { return char(g.who); }), L = [];
@@ -696,7 +697,8 @@
     var faces = (m.faces || []).map(char).filter(Boolean);
     if (m.likesLine === "faces" && faces.length) L.push('<p class="ig-likes liked-by"><span class="ig-like-pfps">' + faces.map(function (f) { return circle("ig-like-pfp", f, null); }).join("") +
       "</span>Liked by <b>" + igNameHTML(faces[0], null) + "</b> and <b>others</b></p>");
-    else if ((m.likesLine || "count") === "count" && t(m.likes)) L.push('<p class="ig-likes">' + esc(t(m.likes)) + " " + plural(m.likes, "like", "likes") + "</p>");
+    // "312 likes" under the buttons is from an older Instagram, so the builder leaves it out for now (OLD_LIKES)
+    else if (OLD_LIKES && (m.likesLine || "count") === "count" && t(m.likes)) L.push('<p class="ig-likes">' + esc(t(m.likes)) + " " + plural(m.likes, "like", "likes") + "</p>");
     if (t(m.text)) L.push('<p class="ig-caption"><b>' + igNameHTML(c, a) + "</b> " + igCaption(m.text) + (m.more ? '... <span class="ig-more">more</span>' : "") + "</p>");
     if (m.viewAll && t(m.cmCount)) L.push('<p class="ig-viewall">View all ' + esc(t(m.cmCount)) + " comments</p>");
     t(m.comments).split(/\n/).map(t).filter(Boolean).forEach(function (line) { L.push(igComment(line)); });
@@ -1233,7 +1235,7 @@
     "blocks.N.msgs.N.likes:ig": "The numbers by the buttons. The share and save buttons are always there. Leave a number empty to show the button with no number, or for reposts, no button at all.",
     "blocks.N.msgs.N.likeClick:ig": "Readers can click the heart to like the post: it turns red and the number goes up by one.",
     "blocks.N.msgs.N.saved:ig": "Readers can always click the bookmark to save the post. Tick this to start it already saved.",
-    "blocks.N.msgs.N.likesLine:ig": "'The number of likes' writes it out, like '312 likes'. 'Liked by, with faces' shows up to three little pictures and 'Liked by' the first one 'and others'.",
+    "blocks.N.msgs.N.likesLine:ig": "'Liked by, with faces' shows up to three little pictures and 'Liked by' the first one 'and others'.",
     "blocks.N.msgs.N.more:ig": "Ends the caption with '... more' in grey, like a long caption cut short in the feed. Type only the part that shows.",
     "blocks.N.msgs.N.viewAll:ig": "A grey 'View all 84 comments' line above the comments, using the number of comments from the buttons.",
     "blocks.N.msgs.N.comments:ig": "One comment per line, starting with who's commenting and a colon. A name from the cast uses their username, and any other name is typed as it is.",
@@ -1536,8 +1538,8 @@
         (m.likeClick !== false ? field(P + ".liked", "Already liked", { type: "check" }) : "") + "</div><div>" +
         field(P + ".cmCount", "Comments", { ph: "84" }) + "</div><div>" + field(P + ".reposts", "Reposts", { ph: "12" }) + "</div><div>" +
         field(P + ".saved", "Already saved", { type: "check" }) + "</div></div>");
-      if (!m.likesLine) m.likesLine = "count";
-      h.push(field(P + ".likesLine", "Line under the buttons", { type: "select", re: true, options: [["count", "The number of likes"], ["faces", "Liked by, with faces"], ["none", "Nothing"]] }));
+      if (!m.likesLine || m.likesLine === "count" && !OLD_LIKES) m.likesLine = "none";
+      h.push(field(P + ".likesLine", "Line under the buttons", { type: "select", re: true, options: (OLD_LIKES ? [["count", "The number of likes"]] : []).concat([["faces", "Liked by, with faces"], ["none", "Nothing"]]) }));
       if (m.likesLine === "faces") {
         if (!m.faces) m.faces = [];
         m.faces.forEach(function (f, k) {
