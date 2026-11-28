@@ -7,7 +7,7 @@
   <title>Megaskin, Chapter 7: WhatsApp CSS | jockles.com</title>
   <link rel="stylesheet" href="../../style.css">
   <script src="../../theme.js"></script>
-  <link rel="stylesheet" href="megaskin.css?v=1f27e124" id="creator-style">
+  <link rel="stylesheet" href="megaskin.css?v=dd17aa21" id="creator-style">
 </head>
 <body>
 <header>
@@ -134,56 +134,51 @@
 
 <p>This is the plain header, with only a name in it. <code>#008069</code> is WhatsApp's green.</p>
 
-<p>The header with the back arrow, picture and icons is a table, because tables are one of the few layouts AO3 never rearranges. (It's the approach from the WhatsApp group chat skin in the credits.)</p>
+<p>The header with the back arrow, picture and icons is the same paragraph with more parts in it:</p>
 
-<pre><code>#workskin .wa table.wa-header {
-  width: 100%;
-  table-layout: fixed;
-  border-collapse: collapse;
-  border-spacing: 0;
-  margin: 0;
-  background: #008069;
-  color: #ffffff;
-  text-align: left;
+<pre><code>#workskin .wa .mob-header &gt; .back {
+  float: left;
+  height: 38px;
+  margin-right: 0.6em;
+  font-size: 1.3em;
+  line-height: 38px;
+  opacity: 1;
 }
 
-#workskin .wa table.wa-header td {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  background: transparent;
-  color: inherit;
-  font: inherit;
-  vertical-align: middle;
-}</code></pre>
-
-<details>
-<summary>How it works: the header table</summary>
-
-<ul>
-  <li>AO3, and some site skins, give tables borders, stripes and padding. The second rule wipes all of that off every cell.</li>
-  <li><code>table-layout: fixed</code> makes the columns keep the widths they're given, instead of stretching to fit whatever's in them. Without it, a long group name would squash the icons.</li>
-</ul>
-
-</details>
-
-<pre><code>#workskin .wa table.wa-header .chat-name {
-  padding: 0.55em 0.4em 0 0.4em;
+#workskin .wa .mob-header &gt; .wa-pfp {
+  display: flex;
+  float: left;
+  width: 38px;
+  height: 38px;
+  margin-right: 0.6em;
+  font-size: 0.85em;
   font-weight: bold;
-  line-height: 1.2;
-  white-space: nowrap;
+  opacity: 1;
+}
+
+#workskin .wa .mob-header &gt; .chat-name,
+#workskin .wa .mob-header &gt; .chat-name ~ span {
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+#workskin .wa .mob-header &gt; .btns {
+  position: absolute;
+  top: 50%;
+  right: 0.8em;
+  margin-top: -0.6em;
+  font-size: 1em;
+  opacity: 1;
 }</code></pre>
 
-<p>A long name gets cut off with "..." like on a phone.</p>
-
 <details>
-<summary>How it works: cutting off a long name</summary>
+<summary>How it works: the parts of the header</summary>
 
-<p>These three lines are how a long name gets cut off with "..." like on a phone: <code>nowrap</code> keeps it on one line, <code>overflow: hidden</code> hides what doesn't fit, and <code>text-overflow: ellipsis</code> adds the dots.</p>
-
-<p>The member list (<code>wa-status</code>) does the same. The back arrow, picture and icons cells have set widths in pixels, and the title takes whatever room is left.</p>
+<ul>
+  <li><code>float: left</code> moves the back arrow and the picture to the left edge, one after the other, and lets the name and the status line sit beside them.</li>
+  <li>The icons are pinned to the right edge with <code>position: absolute</code>, so it doesn't matter that they come last in the code.</li>
+  <li>A long name or member list gets cut off with "..." like on a phone: <code>nowrap</code> (on the header) keeps it on one line, <code>overflow: hidden</code> hides what doesn't fit, and <code>text-overflow: ellipsis</code> adds the dots.</li>
+</ul>
 
 </details>
 
@@ -263,7 +258,6 @@
 }
 
 #workskin .wa .mob-header,
-#workskin .wa .wa-header,
 #workskin .wa .mob-body,
 #workskin .wa .footer { position: relative; }</code></pre>
 
@@ -872,7 +866,7 @@
 <p>WhatsApp is a long module, so it's worth trimming if you only use a few parts. These come out cleanly - search for the class names and delete every rule with them in, including in the dark and auto blocks:</p>
 
 <ul>
-  <li><strong>Header with a picture and icons:</strong> <code>wa-header</code>, <code>back</code>, <code>chat-name</code>, <code>wa-status</code>, <code>btns</code>. Keep <code>wa-pfp</code> if you use pictures beside messages.</li>
+  <li><strong>Header with a picture and icons:</strong> the <code>mob-header</code> rules with <code>back</code>, <code>chat-name</code> or <code>btns</code> in them. Keep <code>wa-pfp</code> if you use pictures beside messages.</li>
   <li><strong>Pictures beside messages:</strong> <code>row</code> and <code>indent</code>, and <code>wa-pfp</code> with its colours if you don't use the group header either.</li>
   <li><strong>Reactions:</strong> <code>reacts</code> and <code>count</code>.</li>
   <li><strong>Message bar:</strong> <code>footer</code>, <code>msgbar</code>, <code>wa-placeholder</code>, <code>mic</code>.</li>
