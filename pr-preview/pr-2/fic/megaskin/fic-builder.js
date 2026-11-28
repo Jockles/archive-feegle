@@ -731,7 +731,7 @@
     if (m.viewAll && t(m.cmCount)) L.push('<p class="ig-view-all">View all ' + esc(t(m.cmCount)) + " comments</p>");
     t(m.comments).split(/\n/).map(t).filter(Boolean).forEach(function (line) { L.push(igComment(line)); });
     if (t(m.time)) L.push('<p class="ig-time">' + esc(t(m.time)) + "</p>");
-    var open = b.type === "igone" ? '<div class="mob ig ' + b.theme + (b.width ? " " + b.width : "") + (b.scroll ? " " + b.scroll : "") + '">' : '<div class="mob ig">';
+    var open = b.type === "igone" ? '<div class="mob ig ' + b.theme + (b.width ? " " + b.width : "") + (b.scroll ? " " + b.scroll : "") + '">' : '<div class="mob ig ' + b.theme + '">'; // a post in a feed has the feed's colours too
     return [open].concat(L, ["</div>"]);
   }
   // the Stories row: "Your story" first if ticked, then one circle per line ("close" for a green ring, "seen" for none)
@@ -750,10 +750,10 @@
   function igFeedHTML(b) {
     var posts = b.msgs.map(function (m) { return igPostHTML(b, m).join("\n"); }).filter(Boolean);
     if (b.type === "igone") return posts.join("\n\n");
-    var L = ['<div class="mob ig ig-feed ' + b.theme + (b.width ? " " + b.width : "") + (b.scroll ? " " + b.scroll : "") + '">'];
+    var L = ['<div class="ig-feed app ' + b.theme + (b.width ? " " + b.width : "") + (b.scroll ? " " + b.scroll : "") + '">', '<div class="app-screen">'];
     if (b.top !== "none") L.push('<p class="ig-header"><span class="ig-add">+</span><span class="ig-logo">Instagram</span><span class="ig-icon ic ic-heart">&#9825;</span>' +
       (b.top === "new" ? '<span class="ig-badge"><span class="hide"> (new)</span></span>' : "") + "</p>");
-    return L.concat(igStories(b), posts, ["</div>"]).join("\n");
+    return L.concat(igStories(b), posts, ["</div>", "</div>"]).join("\n");
   }
 
   // ---------- Instagram DMs ----------
@@ -1055,14 +1055,14 @@
     if (b.type === "twone") return tweets.join("\n\n"); // each tweet in its own box, not in a feed
     // the X app screen: the pov character's picture and the logo, then the tabs, then the tweets
     var me = char(b.pov) || S.cast[0], old = b.era === "tw2020";
-    var L = ['<div class="tw-feed app' + (old ? " twc20" : "") + " " + b.theme + (b.width ? " " + b.width : "") + (b.scroll ? " " + b.scroll : "") + '">', '  <div class="tw-scroll">',
+    var L = ['<div class="tw-feed app' + (old ? " twc20" : "") + " " + b.theme + (b.width ? " " + b.width : "") + (b.scroll ? " " + b.scroll : "") + '">', '  <div class="app-screen">',
       '  <p class="tw-header">' + (me ? circle("tw-me", me) + " " : "") + '<span class="tw-logo">' + (old ? "Twitter" : "X") + "</span></p>"];
     if (!old) L.push('  <p class="tw-tabs"><span class="tw-tab on">For you<span class="tw-drop"></span></span> <span class="tw-tab">Following</span>' +
       t(b.tabs).split(/\n/).map(t).filter(Boolean).map(function (x) { return ' <span class="tw-tab">' + esc(x) + "</span>"; }).join("") + ' <span class="tw-add">+</span></p>');
     return L.concat(ind(tweets.join("\n\n").split("\n"), 1)).concat(["  </div>", "</div>"]).join("\n").replace(/\n  \n/g, "\n\n");
   }
   function twThreadHTML(b) {
-    var L = ['<div class="tw-feed' + (b.era === "tw2020" ? " twc20" : "") + " " + b.theme + (b.width ? " " + b.width : "") + (b.scroll ? " " + b.scroll : "") + '">', '  <div class="tw-scroll">'];
+    var L = ['<div class="tw-feed' + (b.era === "tw2020" ? " twc20" : "") + " " + b.theme + (b.width ? " " + b.width : "") + (b.scroll ? " " + b.scroll : "") + '">', '  <div class="app-screen">'];
     b.msgs.forEach(function (m, i) { L = L.concat(ind(tweetHTML(b, m, i ? "reply" : "main"), 2)); });
     L.push("  </div>");
     if (b.bar !== "none") L.push('  <p class="tw-reply-bar"><span>Reply</span><span class="hide"> - </span>Tweet your reply</p>');
@@ -2652,7 +2652,7 @@
     var el = els[0]; if (els.length !== 1) no();
     var app = el.classList.contains("app"), b = newBlock(app ? "twfeed" : "twthread");
     settings(b, el, "tw-feed", function (c) { return twLook(b, c) || app && c === "app"; });
-    var ks = kids(el), sc = ks.shift(); if (!is(sc, "div.tw-scroll")) no();
+    var ks = kids(el), sc = ks.shift(); if (!is(sc, "div.app-screen")) no();
     var inner = kids(sc), me = null;
     if (app) {
       var top = inner.shift(); if (!is(top, "p.tw-header")) no();
@@ -2807,8 +2807,9 @@
       return b;
     }
     if (els.length !== 1) no();
-    settings(b, els[0], "ig", function (c) { return c === "ig-feed"; });
-    var ks = kids(els[0]);
+    settings(b, els[0], "ig-feed", function (c) { return c === "app"; });
+    var ks = kids(els[0]); if (ks.length !== 1 || !is(ks[0], "div.app-screen")) no();
+    ks = kids(ks[0]);
     b.top = "none"; b.myStory = false;
     if (is(ks[0], "p.ig-header")) b.top = ks.shift().querySelector(".ig-badge") ? "new" : "plain";
     if (is(ks[0], "div.ig-stories")) {
@@ -2917,7 +2918,7 @@
     if (is(el, ".mob.igdm")) return "igdm";
     if (is(el, ".tw-feed")) return "tw";
     if (is(el, ".mob.tw")) return "twone";
-    if (is(el, ".mob.ig")) return "ig";
+    if (is(el, ".mob.ig, .ig-feed")) return "ig";
     return "";
   }
   function rawBlock(html) { var b = newBlock("raw"); b.html = html.trim(); return b; }
@@ -2957,6 +2958,16 @@
           .map(function (k) { renames.forEach(function (r) { if (k === r[0]) { hit = true; k = r[1]; } }); return k; });
         if (cls.length) x.setAttribute("class", cls.join(" ")); else x.removeAttribute("class");
       });
+      // an Instagram feed was a "mob ig" box with the posts straight inside: now it's an app box with an app-screen inside,
+      // and each post has the feed's colours on it too
+      if (c.matches("div.mob.ig.ig-feed")) {
+        var th = (c.className.match(/(?:^|\s)(theme-[a-z]+)/) || [])[1], scr = document.createElement("div");
+        c.classList.remove("mob", "ig"); c.classList.add("app"); scr.className = "app-screen";
+        while (c.firstChild) scr.appendChild(c.firstChild);
+        c.appendChild(scr);
+        Array.prototype.forEach.call(scr.children, function (x) { if (th && x.matches("div.mob.ig") && !/(?:^|\s)theme-/.test(x.className)) x.classList.add(th); });
+        hit = true;
+      }
       // old WhatsApp typing dots were a div with p's (and a name line in a group); now they're one p like every other app
       [c].concat(Array.prototype.slice.call(c.querySelectorAll("div.msg.typing-indicator"))).forEach(function (d) {
         if (!d.matches("div.msg.typing-indicator") || !d.parentNode) return;
