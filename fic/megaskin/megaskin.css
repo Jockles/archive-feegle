@@ -302,10 +302,10 @@
 #workskin .dc .pfp.pfp-luca { background-image: linear-gradient(135deg, #8e7cc3, #6fa8dc); }
 
 /* 3. Name colour (every profile): for WhatsApp group names and Discord usernames */
-#workskin .wa .who.pfp-luca, #workskin .dc .dc-name.pfp-luca { color: #1f9e89; }
+#workskin .wa .who.pfp-luca, #workskin .dc .who.pfp-luca { color: #1f9e89; }
 
 /* 4. A different name colour for one app */
-#workskin .dc .dc-name.pfp-luca { color: #e8734a; }
+#workskin .dc .who.pfp-luca { color: #e8734a; }
 
 /* 5. Name (every profile) */
 #workskin .name.pfp-luca::before { content: "Luca"; }
@@ -353,7 +353,7 @@
 
 /* PROFILE: Stan */
 #workskin .pfp.pfp-stan { background-image: url(https://images.squidge.org/images/2026/11/15/GayCrosedHockeySticks.png); }
-#workskin .wa .who.pfp-stan, #workskin .dc .dc-name.pfp-stan { color: #d2782a; }
+#workskin .wa .who.pfp-stan, #workskin .dc .who.pfp-stan { color: #d2782a; }
 #workskin .name.pfp-stan::before { content: "Stan"; }
 #workskin .handle.pfp-stan::after { content: "PuckStan"; }
 #workskin .email.pfp-stan::after { content: "Puckstan@gmail.com"; }
@@ -361,7 +361,7 @@
 /* PROFILE: Yuna - with a second email address for work, acc-work. Add the acc- name:
    <span class="email pfp-yuna acc-work"> */
 #workskin .pfp.pfp-yuna { background-color: #7d4fb0; }
-#workskin .wa .who.pfp-yuna, #workskin .dc .dc-name.pfp-yuna { color: #9a62d0; }
+#workskin .wa .who.pfp-yuna, #workskin .dc .who.pfp-yuna { color: #9a62d0; }
 #workskin .name.pfp-yuna::before { content: "Yuna"; }
 #workskin .pov-shane .name.pfp-yuna::before { content: "Mom"; }
 #workskin .handle.pfp-yuna::after { content: "MetrosMomager"; }
@@ -372,7 +372,7 @@
 
 /* PROFILE: Zim */
 #workskin .pfp.pfp-zim { background-color: #4a6a8f; }
-#workskin .wa .who.pfp-zim, #workskin .dc .dc-name.pfp-zim { color: #5d84b3; }
+#workskin .wa .who.pfp-zim, #workskin .dc .who.pfp-zim { color: #5d84b3; }
 #workskin .name.pfp-zim::before { content: "Jack Zimmerman"; }
 #workskin .tw .name.pfp-zim::before, #workskin .tw-reply .name.pfp-zim::before, #workskin .twdm .name.pfp-zim::before, #workskin .twc12 .name.pfp-zim::before, #workskin .twc16 .name.pfp-zim::before { content: "Zim"; }
 #workskin .handle.pfp-zim::after { content: "JackZim"; }
@@ -388,14 +388,14 @@
 #workskin .ig .pfp.pfp-holster, #workskin .igdm .pfp.pfp-holster { background-color: #c13584; }
 #workskin .tb .pfp.pfp-holster { background-color: #35465c; }
 #workskin .dc .pfp.pfp-holster { background-color: #5865f2; }
-#workskin .wa .who.pfp-holster, #workskin .dc .dc-name.pfp-holster { color: #1aa386; }
+#workskin .wa .who.pfp-holster, #workskin .dc .who.pfp-holster { color: #1aa386; }
 #workskin .name.pfp-holster::before { content: "Holster"; }
 #workskin .handle.pfp-holster::after { content: "HolsterInLaw"; }
 #workskin .email.pfp-holster::after { content: "birka@samwellU.edu"; }
 
 /* PROFILE: Rose - her public accounts (Twitter/X and Instagram) use her full name, and she has a private second account on Instagram, acc-private. */
 #workskin .pfp.pfp-rose { background-color: #c2416b; background-image: url(https://images.squidge.org/images/2026/11/16/RoseHeadshot.jpg); }
-#workskin .wa .who.pfp-rose, #workskin .dc .dc-name.pfp-rose { color: #d6336c; }
+#workskin .wa .who.pfp-rose, #workskin .dc .who.pfp-rose { color: #d6336c; }
 #workskin .name.pfp-rose::before { content: "Rose"; }
 #workskin .tw .name.pfp-rose::before, #workskin .tw-reply .name.pfp-rose::before, #workskin .twdm .name.pfp-rose::before, #workskin .ig .name.pfp-rose::before, #workskin .igdm .name.pfp-rose::before, #workskin .twc12 .name.pfp-rose::before, #workskin .twc16 .name.pfp-rose::before { content: "Rose Landry"; }
 #workskin .handle.pfp-rose::after { content: "PoseyRosey"; }
@@ -411,7 +411,7 @@
 
 /* PROFILE: Shane */
 #workskin .pfp.pfp-shane { background-image: url(https://images.squidge.org/images/2026/11/16/ShaneHockey.png); }
-#workskin .wa .who.pfp-shane, #workskin .dc .dc-name.pfp-shane { color: #3a7bd5; }
+#workskin .wa .who.pfp-shane, #workskin .dc .who.pfp-shane { color: #3a7bd5; }
 #workskin .name.pfp-shane::before { content: "Shane"; }
 #workskin .pov-ilya .name.pfp-shane::before { content: "Jane"; }
 #workskin .handle.pfp-shane::after { content: "ShaneHollanderHockeyPlayer"; }
@@ -424,7 +424,7 @@
 /* PROFILE: Ilya - with two extra accounts, acc-burner (Twitter/X) and acc-shanewife (Twitter/X and Instagram). Add the
    acc- name: <span class="handle pfp-ilya acc-burner"> */
 #workskin .pfp.pfp-ilya { background-color: #b5433a; background-image: url(https://images.squidge.org/images/2026/11/16/IlyaHelmet.png); }
-#workskin .wa .who.pfp-ilya, #workskin .dc .dc-name.pfp-ilya { color: #d65548; }
+#workskin .wa .who.pfp-ilya, #workskin .dc .who.pfp-ilya { color: #d65548; }
 #workskin .name.pfp-ilya::before { content: "Ilya"; }
 #workskin .pov-shane .name.pfp-ilya::before { content: "Lily"; }
 #workskin .handle.pfp-ilya::after { content: "irozanov"; }
@@ -453,8 +453,7 @@
 #workskin .gm .gm-pfp.colour1,
 #workskin .ig .ig-pfp.colour1,
 #workskin .ig-feed .ig-pfp.colour1,
-#workskin .ig .ig-like-pfp.colour1,
-#workskin .dc .dc-name.colour1::before { background-color: #b5733a; }
+#workskin .ig .ig-like-pfp.colour1 { background-color: #b5733a; }
 
 #workskin .mob .avatar.colour2,
 #workskin .tw .tw-pfp.colour2,
@@ -466,8 +465,7 @@
 #workskin .gm .gm-pfp.colour2,
 #workskin .ig .ig-pfp.colour2,
 #workskin .ig-feed .ig-pfp.colour2,
-#workskin .ig .ig-like-pfp.colour2,
-#workskin .dc .dc-name.colour2::before { background-color: #3a3a3c; }
+#workskin .ig .ig-like-pfp.colour2 { background-color: #3a3a3c; }
 
 #workskin .mob .avatar.colour3,
 #workskin .tw .tw-pfp.colour3,
@@ -479,8 +477,7 @@
 #workskin .gm .gm-pfp.colour3,
 #workskin .ig .ig-pfp.colour3,
 #workskin .ig-feed .ig-pfp.colour3,
-#workskin .ig .ig-like-pfp.colour3,
-#workskin .dc .dc-name.colour3::before { background-color: #7a2b4e; }
+#workskin .ig .ig-like-pfp.colour3 { background-color: #7a2b4e; }
 
 #workskin .mob .avatar.colour4,
 #workskin .tw .tw-pfp.colour4,
@@ -492,8 +489,7 @@
 #workskin .gm .gm-pfp.colour4,
 #workskin .ig .ig-pfp.colour4,
 #workskin .ig-feed .ig-pfp.colour4,
-#workskin .ig .ig-like-pfp.colour4,
-#workskin .dc .dc-name.colour4::before { background-color: #2f7d6b; }
+#workskin .ig .ig-like-pfp.colour4 { background-color: #2f7d6b; }
 
 #workskin .mob .avatar.colour5,
 #workskin .tw .tw-pfp.colour5,
@@ -505,8 +501,7 @@
 #workskin .gm .gm-pfp.colour5,
 #workskin .ig .ig-pfp.colour5,
 #workskin .ig-feed .ig-pfp.colour5,
-#workskin .ig .ig-like-pfp.colour5,
-#workskin .dc .dc-name.colour5::before { background-color: #3b5ea8; }
+#workskin .ig .ig-like-pfp.colour5 { background-color: #3b5ea8; }
 
 #workskin .mob .avatar.colour6,
 #workskin .tw .tw-pfp.colour6,
@@ -518,8 +513,7 @@
 #workskin .gm .gm-pfp.colour6,
 #workskin .ig .ig-pfp.colour6,
 #workskin .ig-feed .ig-pfp.colour6,
-#workskin .ig .ig-like-pfp.colour6,
-#workskin .dc .dc-name.colour6::before { background-color: #6b4fa0; }
+#workskin .ig .ig-like-pfp.colour6 { background-color: #6b4fa0; }
 
 #workskin .mob .avatar.colour7,
 #workskin .tw .tw-pfp.colour7,
@@ -531,8 +525,7 @@
 #workskin .gm .gm-pfp.colour7,
 #workskin .ig .ig-pfp.colour7,
 #workskin .ig-feed .ig-pfp.colour7,
-#workskin .ig .ig-like-pfp.colour7,
-#workskin .dc .dc-name.colour7::before { background-color: #a8383b; }
+#workskin .ig .ig-like-pfp.colour7 { background-color: #a8383b; }
 
 #workskin .mob .avatar.colour8,
 #workskin .tw .tw-pfp.colour8,
@@ -544,8 +537,7 @@
 #workskin .gm .gm-pfp.colour8,
 #workskin .ig .ig-pfp.colour8,
 #workskin .ig-feed .ig-pfp.colour8,
-#workskin .ig .ig-like-pfp.colour8,
-#workskin .dc .dc-name.colour8::before { background-color: #4e7a2c; }
+#workskin .ig .ig-like-pfp.colour8 { background-color: #4e7a2c; }
 
 #workskin .mob .avatar.colour9,
 #workskin .tw .tw-pfp.colour9,
@@ -557,8 +549,7 @@
 #workskin .gm .gm-pfp.colour9,
 #workskin .ig .ig-pfp.colour9,
 #workskin .ig-feed .ig-pfp.colour9,
-#workskin .ig .ig-like-pfp.colour9,
-#workskin .dc .dc-name.colour9::before { background-color: #8c6d1f; }
+#workskin .ig .ig-like-pfp.colour9 { background-color: #8c6d1f; }
 
 #workskin .mob .avatar.colour10,
 #workskin .tw .tw-pfp.colour10,
@@ -570,8 +561,7 @@
 #workskin .gm .gm-pfp.colour10,
 #workskin .ig .ig-pfp.colour10,
 #workskin .ig-feed .ig-pfp.colour10,
-#workskin .ig .ig-like-pfp.colour10,
-#workskin .dc .dc-name.colour10::before { background-color: #2a7390; }
+#workskin .ig .ig-like-pfp.colour10 { background-color: #2a7390; }
 
 /* names: a bit brighter than the circles, so they are easy to read as text.
    In a WhatsApp quoted reply, the colour goes on the line down the side and the name. */
@@ -697,7 +687,7 @@
 #workskin .wa.theme-dark .quote.colour10 { border-left-color: #53bdeb; }
 
 /* Discord's dark grey would hide the colour2 circle, so it is a little lighter there */
-#workskin .dc.theme-dark .dc-name.colour2::before { background-color: #5c5c60; }
+#workskin .dc.theme-dark .avatar.colour2 { background-color: #5c5c60; }
 
 /* names in the auto theme: the dark shades when the reader's device is in dark mode */
 @media (prefers-color-scheme: dark) {
@@ -762,7 +752,7 @@
   #workskin .wa.theme-auto .quote.colour10 { border-left-color: #53bdeb; }
 
   /* Discord's dark grey would hide the colour2 circle, so it is a little lighter there */
-  #workskin .dc.theme-auto .dc-name.colour2::before { background-color: #5c5c60; }
+  #workskin .dc.theme-auto .avatar.colour2 { background-color: #5c5c60; }
 }
 
 /* ---- typing dots: a message from whoever is typing, ending in three empty spans. The same in every chat app:
@@ -952,8 +942,7 @@
 #workskin .twdm .edited.out { text-align: right; }
 
 /* the message being replied to */
-#workskin .imsg .quote,
-#workskin .dc .quote {
+#workskin .imsg .quote {
   display: table;
   max-width: 70%;
   margin: 0.2em 0;
@@ -965,8 +954,7 @@
   opacity: 0.8;
 }
 
-#workskin .imsg .quote.out,
-#workskin .dc .quote.out { margin-left: auto; }
+#workskin .imsg .quote.out { margin-left: auto; }
 
 /* in iMessage and WhatsApp "in" and "out" colour a bubble, and these lines are not bubbles */
 #workskin .imsg p.reply.in,
@@ -1074,6 +1062,27 @@
 #workskin .imsg .row { position: relative; padding-left: 34px; }
 
 #workskin .imsg .row > .avatar { position: absolute; left: 0; bottom: 0.2em; }
+
+/* the time after a name, the Discord way */
+#workskin .imsg .who .time,
+#workskin .wa .who .time,
+#workskin .igdm .who .time,
+#workskin .twdm .who .time {
+  display: inline;
+  float: none;
+  position: static;
+  margin: 0 0 0 0.4em;
+  padding: 0;
+  font-size: 0.9em;
+  font-weight: normal;
+  opacity: 0.7;
+}
+
+/* the little picture in a Discord reply */
+#workskin .imsg .reply .avatar,
+#workskin .wa .reply .avatar,
+#workskin .igdm .reply .avatar,
+#workskin .twdm .reply .avatar { display: none; }
 
 /* link cards */
 #workskin .imsg .link-card,
@@ -7924,161 +7933,145 @@
   border: 0;
 }
 
-#workskin .dc .dc-header {
+/* ---------- Discord: Header ---------- */
+
+/* the channel or DM name: <p class="mob-header hashtag"><span class="chat-name">general</span></p>
+   hashtag for a channel, locked for a private channel, at-symbol for a DM */
+#workskin .dc .mob-header {
+  position: relative;
   z-index: 100;
-  min-width: 0;
-  width: 100%;
-  height: 48px;
-  padding: 0 8px;
-  font-size: 16px;
-  line-height: 20px;
-  display: inline;
-  position: relative;
-}
-
-#workskin .dc .dc-header::before {
-  content: '';
-  background-repeat: no-repeat;
-  background-size: contain;
-  position: absolute;
-  left: 1rem;
-  top: 1rem;
-  height: 1.5rem;
-  width: 1.5rem;
-}
-
-#workskin .dc .dc-header::after {
-  content: "";
-  position: relative;
-  display: block;
-  top: 18px;
-  left: 0;
-  right: 0;
-  height: 1px;
+  height: 56px;
+  box-sizing: border-box;
+  padding: 0 1rem 0 3rem;
+  font-size: 1rem;
+  font-weight: normal;
+  line-height: 56px;
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   box-shadow:
     rgba(4, 4, 5, 0.2) 0px 1px 0px 0px,
     rgba(6, 6, 7, 0.05) 0px 1.5px 0px 0px,
     rgba(4, 4, 5, 0.05) 0px 2px 0px 0px;
-  z-index: 1;
 }
 
-/* the channel or DM name: <p class="dc-channel">general</p> */
-#workskin .dc .dc-channel {
-  padding: 0 3rem;
-  font-family: "ABC Ginto Normal", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 1.0625rem;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  color: rgb(6, 6, 7);
-}
-
-#workskin .dc .dc-topic {
-  display: inline;
-  margin-left: 0.5rem;
-  font-size: 0.875rem;
-  line-height: 1.125rem;
-}
-
-#workskin .dc .dc-header-divider {
-  border-left: 1px solid;
-  display: inline;
-  margin: 0 0.5rem 0 1rem;
-  height: 24px;
-  border-color: rgb(46, 51, 56);
-}
-
-#workskin .dc .footer {
-  margin: 1.5rem 1rem 0;
-  padding: 1rem 3.5rem;
-  border-radius: 0.5rem;
-  position: relative;
-  min-height: 1.5rem;
-  background-color: rgb(235, 237, 239);
-}
-
-#workskin .dc .msgbar {
-  display: contents;
-  position: absolute;
-  top: 50%;
-  transform: translate(0%, -50%);
-}
-
-#workskin .dc .msgbar::before {
+#workskin .dc .mob-header::before {
   content: '';
   background-repeat: no-repeat;
   background-size: contain;
   position: absolute;
   left: 1rem;
+  top: 16px;
   height: 1.5rem;
   width: 1.5rem;
+}
+
+#workskin .dc .mob-header .chat-name {
+  font-family: "ABC Ginto Normal", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 1.0625rem;
+  color: rgb(6, 6, 7);
+}
+
+/* the channel description, after a dividing line */
+#workskin .dc .mob-header > span:not([class]) {
+  margin-left: 1rem;
+  padding-left: 0.5rem;
+  border-left: 1px solid rgb(46, 51, 56);
+  font-size: 0.875rem;
+  line-height: 1.125rem;
+}
+
+/* ---------- Discord: Footer ---------- */
+
+#workskin .dc .footer {
+  position: relative;
+  min-height: 1.5rem;
+  margin: 1.5rem 1rem 0;
+  padding: 1rem 1rem 1rem 3.5rem;
+  border-radius: 0.5rem;
+  background-color: rgb(235, 237, 239);
+}
+
+/* the round + on the left of the message box */
+#workskin .dc .footer .plus {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  margin-top: -0.75rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  overflow: hidden;
+  text-indent: -100em;
+  background-repeat: no-repeat;
+  background-size: contain;
   background-image: url(https://images.squidge.org/images/2026/11/15/dc-plus-light.png);
 }
 
-#workskin .dc .msg { min-height: 2.75rem; margin-top: 1.0625rem; padding: 0.125rem 3rem 0.125rem 4.5rem; }
+/* ---------- Discord: Messages ---------- */
 
-#workskin .dc .dc-name {
+#workskin .dc .mob-body { padding: 0 0 0.5rem 0; }
+
+/* one person's messages: their picture, their name and the time, then the messages */
+#workskin .dc .row {
+  position: relative;
+  min-height: 2.75rem;
+  margin-top: 1.0625rem;
+  padding: 0.125rem 3rem 0.125rem 4.5rem;
+}
+
+/* flex, so the name line looks the same with its parts on one line or on several */
+#workskin .dc .who {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  margin: 0;
   font-size: 1rem;
   font-weight: 500;
   line-height: 1.375rem;
-  white-space: break-spaces;
   word-wrap: break-word;
-  margin-right: 0.25rem;
 }
 
-/* avatar circle; background-color shows until you add an image */
-#workskin .dc .dc-name::before {
-  content: '';
-  background-color: rgb(88, 101, 242);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  position: absolute;
-  border-radius: 50%;
-  margin-top: 0.125rem;
-  left: 1.25rem;
-  height: 2.5rem;
-  width: 2.5rem;
+#workskin .dc .msg {
+  margin: 0;
+  padding: 0;
+  font-size: 1rem;
+  line-height: 1.375rem;
+  word-wrap: break-word;
 }
+
+#workskin .dc p.msg { white-space: break-spaces; }
 
 #workskin .dc .time,
 #workskin .dc .edited {
   margin-left: 0.25rem;
   font-size: 0.75rem;
+  font-weight: normal;
   line-height: 1.375rem;
   white-space: nowrap;
 }
 
-#workskin .dc .dc-text {
-  font-size: 1rem;
-  line-height: 1.375rem;
-  white-space: break-spaces;
-  word-wrap: break-word;
-  padding: 0.125rem 0 0.125rem 0;
-}
-
-/* --- colours: add colour1 to colour10 to the dc-name, like <b class="dc-name colour3">Name</b> --- */
-
-/* --- profile pictures, the same way as every other module --- */
+/* the round picture: a plain Discord blue circle, a colour from colour1 to colour10, or a pfp span inside it */
 #workskin .dc .avatar {
-  display: inline-block; /* inline, like the plain circle, so Firefox keeps it level with the name */
-  position: absolute;
-  left: 1.25rem;
-  margin-top: 0.125rem;
+  display: block;
   width: 2.5rem;
   height: 2.5rem;
   border-radius: 50%;
   overflow: hidden;
+  background-color: rgb(88, 101, 242);
+  color: #ffffff;
 }
 
-#workskin .dc .reply .avatar {
-  left: -1.25rem;
-  margin-top: 0.3125rem;
-  width: 1rem;
-  height: 1rem;
-}
+#workskin .dc .who .time { margin-left: 0.5rem; }
 
-#workskin .dc .dc-name:has(.avatar)::before { display: none; }
+/* the picture sits beside the name line, wherever that is (a reply goes above it) */
+#workskin .dc .avatar:has(> .pfp) { background-color: transparent; }
+
+#workskin .dc .row > .avatar {
+  position: absolute;
+  left: 1.25rem;
+  margin-top: 0.125rem;
+}
 
 /* a picture in a message (see CHAT PHOTOS in the Core part) */
 #workskin .dc .photos { max-width: 360px; border-radius: 0.1875rem; }
@@ -8120,42 +8113,36 @@
   padding-left: 0.1rem;
 }
 
-#workskin .dc .reply { margin-bottom: 0.25rem; line-height: 1.125rem; position: relative; }
-
-#workskin .dc .reply .dc-name {
+/* a reply: <p class="reply"> with the little picture and the name, then <p class="quote"> with the start of their message, both before the picture */
+#workskin .dc .reply,
+#workskin .dc .quote {
+  display: inline-block;
   position: relative;
-  left: 1.25rem;
+  margin-bottom: 0.25rem;
   font-size: 0.875rem;
   line-height: 1.125rem;
-  height: 1.125rem;
+  vertical-align: top;
 }
 
-#workskin .dc .reply .dc-name::before {
-  content: '';
-  background-repeat: no-repeat;
-  background-size: contain;
-  position: absolute;
-  left: -1.25rem;
-  border-radius: 50%;
-  margin-right: 0.25rem;
-  margin-top: 0.3125rem;
-  height: 1rem;
+/* the reply floats, so the quote sits right beside it whether or not there's a space between them in the code */
+#workskin .dc .reply { float: left; }
+
+#workskin .dc .reply b { font-weight: 500; }
+
+#workskin .dc .reply .avatar {
+  display: inline-block;
   width: 1rem;
+  height: 1rem;
+  margin-right: 0.25rem;
+  vertical-align: -0.2rem;
 }
 
-#workskin .dc .reply .dc-text {
-  position: relative;
-  left: 1rem;
-  font-size: 0.875rem;
-  height: 1.125rem;
-  padding: 0;
-  line-height: 1.125rem;
+#workskin .dc .quote {
+  max-width: 40%;
+  margin-left: 0.25rem;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  display: inline-block;
-  max-width: 80%;
-  transform: translate(0%, 25%);
 }
 
 /* the curved line linking a reply to its parent */
@@ -8166,7 +8153,7 @@
   box-sizing: border-box;
   top: 0.625rem;
   right: 100%;
-  bottom: 0;
+  bottom: -0.25rem;
   left: -2.25rem;
   margin: -0.0625rem 0.25rem -0.125rem -0.0625rem;
   border-style: solid;
@@ -8192,20 +8179,11 @@
 
 #workskin .dc .link-img img { display: block; max-width: 100%; border-radius: 0.25rem; }
 
-#workskin .dc .dc-quote { display: table; }
-
-#workskin .dc .dc-quote-line {
-  display: table-cell;
-  width: 0.25rem;
-  border-radius: 0.25rem;
-  background-color: rgb(199, 204, 209);
-}
-
-#workskin .dc .dc-quote-text {
-  display: table-cell;
+/* a blockquote: <p class="msg in dc-quote"> */
+#workskin .dc .dc-quote {
   padding: 0 0.5rem 0 0.75rem;
-  box-sizing: border-box;
-  text-indent: 0;
+  border-left: 0.25rem solid rgb(199, 204, 209);
+  border-radius: 0.25rem;
 }
 
 #workskin .dc .dc-code {
@@ -8289,41 +8267,44 @@
   padding: 0 2px;
 }
 
-#workskin .dc .dc-divider {
-  z-index: 1;
-  height: 0;
-  border-top: thin solid rgba(79, 84, 92, 0.48);
-  position: relative;
-  box-sizing: border-box;
+/* a date across the chat: <p class="mob-sys">October 2, 2022</p> */
+#workskin .dc .mob-sys {
+  display: flex;
+  align-items: center;
   margin: 1.5rem 0.875rem 0.5rem 1rem;
-}
-
-#workskin .dc .dc-divider-label {
-  padding: 0.125rem 0.25rem;
-  line-height: 0.8125rem;
   font-size: 0.75rem;
   font-weight: 600;
-  border-radius: 0.5rem;
-  display: block;
-  position: absolute;
-  right: 50%;
-  top: 50%;
-  transform: translate(50%, -50%);
-  z-index: 5;
-  background-color: rgb(255, 255, 255);
+  line-height: 0.8125rem;
+  opacity: 1;
 }
 
-#workskin .dc .dc-new-divider {
-  z-index: 1;
-  height: 0;
-  position: relative;
-  border-top-width: thin;
-  border-top-style: solid;
-  margin: 0.5rem 0.875rem 0.5rem 1rem;
-  border-top-color: rgb(216, 60, 62);
+#workskin .dc .mob-sys::before,
+#workskin .dc .mob-sys::after {
+  content: "";
+  flex: 1;
+  border-top: thin solid rgba(79, 84, 92, 0.48);
 }
+
+#workskin .dc .mob-sys::before { margin-right: 0.25rem; }
+
+#workskin .dc .mob-sys::after { margin-left: 0.25rem; }
+
+/* the red NEW line: <p class="mob-sys dc-new"><span class="dc-new-tag">New</span></p> */
+#workskin .dc .dc-new { margin-top: 0.5rem; }
+
+#workskin .dc .dc-new::before,
+#workskin .dc .dc-new::after { border-top-color: rgb(216, 60, 62); }
+
+#workskin .dc .dc-new::before { margin-right: 0; }
+
+#workskin .dc .dc-new::after { margin-left: 0; margin-right: 0.3rem; }
+
+/* a date on the NEW line goes in a plain span, so it gets its own space */
+#workskin .dc .dc-new > span:not([class]) { padding: 0 0.25rem; }
 
 #workskin .dc .dc-new-tag {
+  order: 2;
+  position: relative;
   padding: 0 0.25rem 0 0.25rem;
   line-height: 0.75rem;
   height: 0.75rem;
@@ -8331,12 +8312,6 @@
   font-weight: 700;
   text-transform: uppercase;
   border-radius: 0.1rem 0.25rem 0.25rem 0.1rem;
-  display: block;
-  position: absolute;
-  right: 0.875rem;
-  top: 50%;
-  transform: translate(50%, -50%);
-  z-index: 5;
   background-color: rgb(216, 60, 62);
   color: rgb(255, 255, 255);
 }
@@ -8355,20 +8330,37 @@
   border-bottom-color: rgb(255, 255, 255);
 }
 
-#workskin .dc .dc-new-user::before {
+/* someone joining: <p class="mob-sys dc-new-user"> */
+#workskin .dc .mob-sys.dc-new-user.dc-new-user {
+  display: block;
+  color: inherit;
+  position: relative;
+  margin: 1.0625rem 0 0 0;
+  padding: 0.125rem 3rem 0.125rem 4.5rem;
+  font-size: 1rem;
+  font-weight: normal;
+  line-height: 1.375rem;
+  text-align: left;
+}
+
+#workskin .dc .mob-sys.dc-new-user::after { display: none; }
+
+#workskin .dc .mob-sys.dc-new-user::before {
   content: '';
+  border: 0;
   background-image: url(https://images.squidge.org/images/2026/11/15/dc-new-user.png);
   background-repeat: no-repeat;
   background-size: contain;
   position: absolute;
   border-radius: 50%;
-  margin-top: 0.125rem;
+  top: 0.375rem;
   left: 2rem;
   height: 1rem;
   width: 1rem;
+  margin: 0;
 }
 
-#workskin .dc .dc-bot { position: relative; margin-right: 3rem; }
+#workskin .dc .dc-bot { position: relative; align-self: center; margin: 0 3rem 0 0.25rem; }
 
 #workskin .dc .dc-bot::before {
   content: '\00a0\00a0\00a0\00a0 BOT';
@@ -8415,7 +8407,7 @@
   background-color: rgb(242, 243, 245);
 }
 
-#workskin .dc .time, #workskin .dc .edited, #workskin .dc .dc-divider-label { color: rgb(94, 103, 114); }
+#workskin .dc .time, #workskin .dc .edited, #workskin .dc .mob-sys { color: rgb(94, 103, 114); }
 
 #workskin .dc a:not(.tl),
 #workskin .dc .fake-link,
@@ -8428,7 +8420,7 @@
 #workskin .dc .fake-link { text-decoration: none; }
 
 #workskin .dc .reply,
-#workskin .dc .dc-topic {
+#workskin .dc .mob-header > span:not([class]) {
   color: rgb(79, 86, 96);
 }
 
@@ -8445,11 +8437,13 @@
 }
 
 #workskin .dc .msg:has(.dc-mention.me) {
+  margin: 0 -3rem 0 -4.5rem;
+  padding: 0 3rem 0 4.375rem;
   background-color: rgba(250, 168, 26, 0.1);
   border-left: 2px solid rgb(170, 114, 18);
 }
 
-#workskin .dc .dc-new-divider .dc-divider-label { color: rgb(216, 60, 62); }
+#workskin .dc .dc-new { color: rgb(216, 60, 62); }
 
 #workskin .dc .hashtag::before { background-image: url(https://images.squidge.org/images/2026/11/15/dc-hashtag-light.png); }
 
@@ -8469,23 +8463,37 @@
 
 #workskin .dc a:not(.tl):hover { color: rgb(0, 104, 224); text-decoration: underline; }
 
-/* ---------- Discord: Scrolling ---------- */
+/* ---------- Discord: Parts from the other chat apps ---------- */
 
-#workskin .dc { max-height: 640px; overflow-y: auto; overflow-x: hidden; }
+/* a message on its own, with no row around it: the hidden name shows as the name line */
+#workskin .dc .mob-body > .msg { margin-top: 1.0625rem; padding: 0.125rem 3rem 0.125rem 4.5rem; }
 
-#workskin .dc.no-scroll {
-  max-height: none;
-  overflow-y: visible;
+#workskin .dc .mob-body > .msg > .hide.hide.hide.hide:first-child,
+#workskin .dc .mob-body > .msg > p.hide.hide.hide.hide:first-child {
+  display: block;
+  font-weight: 500;
 }
 
-#workskin .dc::-webkit-scrollbar {
-  width: 6px;
-}
+#workskin .dc .mob-body > .msg > .hide em { font-style: normal; }
 
-#workskin .dc::-webkit-scrollbar-thumb {
-  background: rgba(128, 128, 128, 0.5);
-  border-radius: 6px;
-}
+/* anything else between the messages (reactions, a reply line, typing dots) lines up with the messages */
+#workskin .dc .mob-body > :not(.row):not(.msg):not(.mob-sys) { padding: 0.25rem 3rem 0 4.5rem; }
+
+#workskin .dc .mob-body > .typing-indicator { margin-top: 1.0625rem; padding: 0.125rem 3rem 0.125rem 4.5rem; }
+
+#workskin .dc .msg.typing-indicator { white-space: normal; }
+
+#workskin .dc .msg.typing-indicator span:empty { float: none; display: inline-block; }
+
+/* a video in a link card fits the card */
+#workskin .dc .link-img iframe { max-width: 100%; }
+
+/* the header's picture, back arrow and buttons, and the message bar's icons */
+#workskin .dc .mob-header .avatar,
+#workskin .dc .mob-header .back,
+#workskin .dc .mob-header .btns,
+#workskin .dc .footer .ic,
+#workskin .dc .footer .mic { display: none; }
 
 /* ---------- Discord: Dark theme (theme-dark) ---------- */
 
@@ -8495,20 +8503,19 @@
   border-color: rgb(54, 57, 63);
 }
 
-#workskin .dc.theme-dark .dc-channel { color: rgb(255, 255, 255); }
+#workskin .dc.theme-dark .mob-header .chat-name { color: rgb(255, 255, 255); }
 
-#workskin .dc.theme-dark .dc-header-divider { border-color: rgb(220, 221, 222); }
+#workskin .dc.theme-dark .mob-header > span:not([class]) { border-color: rgb(220, 221, 222); }
 
 #workskin .dc.theme-dark .dc-code,
 #workskin .dc.theme-dark .link-card {
   background-color: rgb(47, 49, 54);
 }
 
-#workskin .dc.theme-dark .time, #workskin .dc.theme-dark .edited, #workskin .dc.theme-dark .dc-divider-label { color: rgb(163, 166, 170); }
+#workskin .dc.theme-dark .time, #workskin .dc.theme-dark .edited, #workskin .dc.theme-dark .mob-sys { color: rgb(163, 166, 170); }
 
-#workskin .dc.theme-dark .dc-divider-label { background-color: rgb(54, 57, 63); }
 
-#workskin .dc.theme-dark .dc-quote-line { background-color: rgb(79, 84, 92); }
+#workskin .dc.theme-dark .dc-quote { border-color: rgb(79, 84, 92); }
 
 #workskin .dc.theme-dark a:not(.tl),
 #workskin .dc.theme-dark .fake-link,
@@ -8519,7 +8526,7 @@
 #workskin .dc.theme-dark a:not(.tl):hover { color: rgb(0, 175, 244); text-decoration: underline; }
 
 #workskin .dc.theme-dark .reply,
-#workskin .dc.theme-dark .dc-topic {
+#workskin .dc.theme-dark .mob-header > span:not([class]) {
   color: rgb(185, 187, 190);
 }
 
@@ -8545,9 +8552,10 @@
   border-left: 2px solid rgb(250, 168, 26);
 }
 
-#workskin .dc.theme-dark .dc-new-divider { border-top-color: rgb(237, 66, 67); }
+#workskin .dc.theme-dark .dc-new::before,
+#workskin .dc.theme-dark .dc-new::after { border-top-color: rgb(237, 66, 67); }
 
-#workskin .dc.theme-dark .dc-new-divider .dc-divider-label { color: rgb(237, 66, 67); }
+#workskin .dc.theme-dark .dc-new { color: rgb(237, 66, 67); }
 
 #workskin .dc.theme-dark .dc-new-tag { background-color: rgb(237, 66, 67); color: rgb(255, 255, 255); }
 
@@ -8567,7 +8575,7 @@
 
 #workskin .dc.theme-dark .at-symbol::before { background-image: url(https://images.squidge.org/images/2026/11/15/dc-at-dark.png); }
 
-#workskin .dc.theme-dark .msgbar::before { background-image: url(https://images.squidge.org/images/2026/11/15/dc-plus-dark.png); }
+#workskin .dc.theme-dark .footer .plus { background-image: url(https://images.squidge.org/images/2026/11/15/dc-plus-dark.png); }
 
 /* spoilers, dark: hidden until clicked */
 #workskin .dc.theme-dark .dc-spoiler-text {
@@ -8602,20 +8610,19 @@
       border-color: rgb(54, 57, 63);
     }
 
-  #workskin .dc.theme-auto .dc-channel { color: rgb(255, 255, 255); }
+  #workskin .dc.theme-auto .mob-header .chat-name { color: rgb(255, 255, 255); }
 
-  #workskin .dc.theme-auto .dc-header-divider { border-color: rgb(220, 221, 222); }
+  #workskin .dc.theme-auto .mob-header > span:not([class]) { border-color: rgb(220, 221, 222); }
 
   #workskin .dc.theme-auto .dc-code,
     #workskin .dc.theme-auto .link-card {
       background-color: rgb(47, 49, 54);
     }
 
-  #workskin .dc.theme-auto .time, #workskin .dc.theme-auto .edited, #workskin .dc.theme-auto .dc-divider-label { color: rgb(163, 166, 170); }
+  #workskin .dc.theme-auto .time, #workskin .dc.theme-auto .edited, #workskin .dc.theme-auto .mob-sys { color: rgb(163, 166, 170); }
 
-  #workskin .dc.theme-auto .dc-divider-label { background-color: rgb(54, 57, 63); }
 
-  #workskin .dc.theme-auto .dc-quote-line { background-color: rgb(79, 84, 92); }
+  #workskin .dc.theme-auto .dc-quote { border-color: rgb(79, 84, 92); }
 
     #workskin .dc.theme-auto a:not(.tl),
     #workskin .dc.theme-auto .fake-link,
@@ -8626,7 +8633,7 @@
   #workskin .dc.theme-auto a:not(.tl):hover { color: rgb(0, 175, 244); text-decoration: underline; }
 
   #workskin .dc.theme-auto .reply,
-    #workskin .dc.theme-auto .dc-topic {
+    #workskin .dc.theme-auto .mob-header > span:not([class]) {
       color: rgb(185, 187, 190);
     }
 
@@ -8652,9 +8659,10 @@
       border-left: 2px solid rgb(250, 168, 26);
     }
 
-  #workskin .dc.theme-auto .dc-new-divider { border-top-color: rgb(237, 66, 67); }
+  #workskin .dc.theme-auto .dc-new::before,
+    #workskin .dc.theme-auto .dc-new::after { border-top-color: rgb(237, 66, 67); }
 
-  #workskin .dc.theme-auto .dc-new-divider .dc-divider-label { color: rgb(237, 66, 67); }
+  #workskin .dc.theme-auto .dc-new { color: rgb(237, 66, 67); }
 
   #workskin .dc.theme-auto .dc-new-tag { background-color: rgb(237, 66, 67); color: rgb(255, 255, 255); }
 
@@ -8685,7 +8693,7 @@
 
   #workskin .dc.theme-auto .at-symbol::before { background-image: url(https://images.squidge.org/images/2026/11/15/dc-at-dark.png); }
 
-  #workskin .dc.theme-auto .msgbar::before { background-image: url(https://images.squidge.org/images/2026/11/15/dc-plus-dark.png); }
+  #workskin .dc.theme-auto .footer .plus { background-image: url(https://images.squidge.org/images/2026/11/15/dc-plus-dark.png); }
 
   /* spoilers, dark: hidden until clicked */
   #workskin .dc.theme-auto .dc-spoiler-text {
