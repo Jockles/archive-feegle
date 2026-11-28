@@ -25,7 +25,7 @@
   <!-- /site meta -->
   <link rel="stylesheet" href="../../style.css?v=c31c06ea">
   <script src="../../theme.js?v=c50fd7c2"></script>
-  <link rel="stylesheet" href="megaskin.css?v=251baefb" id="creator-style">
+  <link rel="stylesheet" href="megaskin.css?v=c6eef061" id="creator-style">
 </head>
 <body>
 <header>
@@ -128,13 +128,16 @@
 <details>
 <summary>How it works: keeping the bars in place, and the page name in the middle</summary>
 
-<p><code>position: sticky</code> keeps the bar at the top of the screen while the tweets scroll under it, and the black row of buttons does the same at the bottom with <code>bottom: 0</code>. The page name is taken out of the row and stretched across the middle, so it stays centred whether there's one button on the left and two on the right or anything else, and <code>margin-left: auto</code> pushes the buttons after it over to the right. Each <code>tw-tab</code> in the bottom row has its icon as a block, so the name drops underneath it.</p>
+<p><code>position: sticky</code> keeps the bar at the top of the screen while the tweets scroll under it. The black row of buttons goes after the <code>app-screen</code> box, so it never scrolls at all. The page name is taken out of the row and stretched across the middle, so it stays centred whether there's one button on the left and two on the right or anything else, and <code>margin-left: auto</code> pushes the buttons after it over to the right. Each <code>tw-tab</code> in the bottom row has its icon as a block, so the name drops underneath it.</p>
 
 </details>
 
-<p>The screen scrolls once it's taller than a phone, and <code>no-scroll</code> on the <code>twc12-feed</code> switches that off:</p>
+<p>The <code>app-screen</code> box inside the feed scrolls once it's taller than a phone, and <code>no-scroll</code> on the <code>twc12-feed</code> switches that off:</p>
 
-<pre><code>#workskin .twc12-feed.no-scroll { max-height: none; overflow-y: visible; }</code></pre>
+<pre><code>/* the part that scrolls: the top bar and the tweets. The row of buttons goes after it, so it stays put */
+#workskin .twc12-feed .app-screen { max-height: 575px; overflow-y: auto; overflow-x: hidden; }
+
+#workskin .twc12-feed.no-scroll .app-screen { max-height: none; overflow-y: visible; }</code></pre>
 
 <h4 id="s11-1-4">11.1.4 The 2012-15 Picture Column</h4>
 
@@ -194,7 +197,7 @@
 
 <h4 id="s11-2-3">11.2.3 The 2016-19 Bars</h4>
 
-<p>The bars work the same way as the 2012-15 ones: <code>position: sticky</code> keeps them at the top and bottom of the screen while the tweets scroll between them, and the page name is stretched across the middle of the top bar so it always stays centred.</p>
+<p>The bars work the same way as the 2012-15 ones: <code>position: sticky</code> keeps the top bar in place while the tweets scroll under it, the row of buttons sits after the <code>app-screen</code> box, and the page name is stretched across the middle of the top bar so it always stays centred.</p>
 
 <details>
 <summary>How it works: the blue number on a button</summary>
@@ -203,9 +206,12 @@
 
 </details>
 
-<p>The screen scrolls once it's taller than a phone, and <code>no-scroll</code> on the <code>twc16-feed</code> switches that off:</p>
+<p>The <code>app-screen</code> box inside the feed scrolls once it's taller than a phone, and <code>no-scroll</code> on the <code>twc16-feed</code> switches that off:</p>
 
-<pre><code>#workskin .twc16-feed.no-scroll { max-height: none; overflow-y: visible; }</code></pre>
+<pre><code>/* the part that scrolls: the top bar and the tweets. The row of buttons goes after it, so it stays put */
+#workskin .twc16-feed .app-screen { max-height: 595px; overflow-y: auto; overflow-x: hidden; }
+
+#workskin .twc16-feed.no-scroll .app-screen { max-height: none; overflow-y: visible; }</code></pre>
 
 <h4 id="s11-2-4">11.2.4 2016-19 Dark and Auto Themes</h4>
 
