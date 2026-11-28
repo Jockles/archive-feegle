@@ -25,7 +25,7 @@
   <!-- /site meta -->
   <link rel="stylesheet" href="../../style.css?v=c31c06ea">
   <script src="../../theme.js?v=c50fd7c2"></script>
-  <link rel="stylesheet" href="megaskin.css?v=2e7a16bb" id="creator-style">
+  <link rel="stylesheet" href="megaskin.css?v=9c9f7b74" id="creator-style">
 </head>
 <body>
 <header>
@@ -163,18 +163,18 @@
 <details>
 <summary>The full CSS for the top bar and tabs</summary>
 
-<pre><code>#workskin .tw-feed .tw-header,
-#workskin .tw-feed .tw-tabs {
+<pre><code>#workskin .tw-feed .header,
+#workskin .tw-feed .tabs {
   display: flex;
   align-items: center;
   margin: 0;
   white-space: nowrap;
 }
 
-#workskin .tw-feed .tw-header br,
-#workskin .tw-feed .tw-tabs br { display: none; }
+#workskin .tw-feed .header br,
+#workskin .tw-feed .tabs br { display: none; }
 
-#workskin .tw-feed .tw-header { padding: 0.8em 1em 0.3em 1em; }
+#workskin .tw-feed .header { padding: 0.8em 1em 0.3em 1em; }
 
 /* the reader's own picture, top left */
 #workskin .tw-feed .tw-me {
@@ -187,7 +187,7 @@
 }
 
 /* the X in the middle: the margin on the right balances the picture on the left */
-#workskin .tw-feed .tw-logo {
+#workskin .tw-feed .logo {
   flex: 1;
   margin-right: 2.2em;
   text-align: center;
@@ -197,8 +197,8 @@
   line-height: 1;
 }
 
-/* the old blue bird instead of the X: &lt;span class="tw-logo bird"&gt;Twitter&lt;/span&gt; */
-#workskin .tw-feed .tw-logo.bird {
+/* the old blue bird instead of the X: &lt;span class="logo bird"&gt;Twitter&lt;/span&gt; */
+#workskin .tw-feed .logo.bird {
   height: 1em;
   overflow: hidden;
   text-indent: -100em;
@@ -209,7 +209,7 @@
   background-size: contain;
 }
 
-#workskin .tw-feed .tw-tabs {
+#workskin .tw-feed .tabs {
   position: relative;
   overflow: hidden;
   padding: 0.6em 2.6em 0 1em;
@@ -218,17 +218,17 @@
   font-weight: bold;
 }
 
-#workskin .tw-feed .tw-tab {
+#workskin .tw-feed .tab {
   position: relative;
   flex: none;
   margin-right: 1.6em;
   padding-bottom: 0.75em;
 }
 
-#workskin .tw-feed .tw-tab.on { color: #0f1419; }
+#workskin .tw-feed .tab.on { color: #0f1419; }
 
 /* the rounded line under the picked tab, as wide as its words, in the same colour */
-#workskin .tw-feed .tw-tab.on::after {
+#workskin .tw-feed .tab.on::after {
   content: "";
   position: absolute;
   left: 0;
@@ -254,7 +254,7 @@
 }
 
 /* the + at the far right, for adding a community tab. It stays put, and any tabs too long for the row go under it */
-#workskin .tw-feed .tw-add {
+#workskin .tw-feed .add {
   position: absolute;
   top: 0;
   right: 0;
@@ -269,12 +269,12 @@
 /* THE 2020 TWITTER REDESIGN: add "twc20" to an app screen, &lt;div class="tw-feed app twc20 theme-auto"&gt;.
    The bird takes the place of the X with a sparkle on the right, the tabs are hidden,
    and the tweets lose their bookmark button and the line above their stats, with share spaced out like the rest */
-#workskin .tw-feed.twc20 .tw-header {
+#workskin .tw-feed.twc20 .header {
   padding-bottom: 0.6em;
   border-bottom: 1px solid #eff3f4;
 }
 
-#workskin .tw-feed.twc20 .tw-logo {
+#workskin .tw-feed.twc20 .logo {
   height: 1em;
   margin-right: 0;
   overflow: hidden;
@@ -287,7 +287,7 @@
 }
 
 /* the sparkle, top right, the same width as the picture on the left */
-#workskin .tw-feed.twc20 .tw-header::after {
+#workskin .tw-feed.twc20 .header::after {
   content: "\2726";
   display: block;
   flex: none;
@@ -298,13 +298,13 @@
   text-align: right;
 }
 
-#workskin .tw-feed.twc20 .tw-tabs { display: none; }
+#workskin .tw-feed.twc20 .tabs { display: none; }
 
-#workskin .tw-feed.twc20 .tw-stats { border-top: 0; padding-top: 0.2em; }
+#workskin .tw-feed.twc20 .stats { border-top: 0; padding-top: 0.2em; }
 
-#workskin .tw-feed.twc20 .tw-stat.right { flex: 1 1 0; margin-left: 0; }
+#workskin .tw-feed.twc20 .stat.right { flex: 1 1 0; margin-left: 0; }
 
-#workskin .tw-feed.twc20 .tw-stat.right:not(:last-child) { display: none; }</code></pre>
+#workskin .tw-feed.twc20 .stat.right:not(:last-child) { display: none; }</code></pre>
 
 </details>
 
@@ -324,16 +324,16 @@
 
 <h4 id="s9-3-3">9.3.3 Footer</h4>
 
-<pre><code>#workskin .tw-feed .tw-reply-bar {
+<pre><code>#workskin .tw-feed .reply-bar {
   display: block;
   padding: 0.7em 1em;
   border-top: 1px solid #eff3f4;
   color: #536471;
 }
 
-#workskin .tw-feed .tw-reply-bar &gt; p { margin: 0; padding: 0; }
+#workskin .tw-feed .reply-bar &gt; p { margin: 0; padding: 0; }
 
-#workskin .tw-feed .tw-reply-bar span {
+#workskin .tw-feed .reply-bar span {
   float: right;
   padding: 0.25em 0.9em;
   border-radius: 1em;
@@ -402,10 +402,10 @@
 
 <h4 id="s9-4-2">9.4.2 Text, Stats, Quotes and Notes</h4>
 
-<pre><code>#workskin .tw .tw-text { display: block; font-size: 1.02em; margin: 0.2em 0 0.4em 0; }
+<pre><code>#workskin .tw .text { display: block; font-size: 1.02em; margin: 0.2em 0 0.4em 0; }
 
-#workskin .tw .tw-stats,
-#workskin .tw-reply .tw-stats {
+#workskin .tw .stats,
+#workskin .tw-reply .stats {
   display: flex;
   align-items: center;
   margin: 0.5em 0 0 0;
@@ -416,29 +416,29 @@
 }
 
 /* a reply's row is smaller, with no line above it */
-#workskin .tw-reply .tw-stats { margin-top: 0.3em; padding: 0; border-top: 0; font-size: 0.8em; }
+#workskin .tw-reply .stats { margin-top: 0.3em; padding: 0; border-top: 0; font-size: 0.8em; }
 
 /* AO3 turns line breaks in the row into &lt;br /&gt; tags, and wraps each button in a &lt;p&gt;: keep them flat */
-#workskin .tw .tw-stats br,
-#workskin .tw-reply .tw-stats br { display: none; }
+#workskin .tw .stats br,
+#workskin .tw-reply .stats br { display: none; }
 
-#workskin .tw .tw-stats p,
-#workskin .tw-reply .tw-stats p { display: inline; margin: 0; padding: 0; }
+#workskin .tw .stats p,
+#workskin .tw-reply .stats p { display: inline; margin: 0; padding: 0; }
 
-#workskin .tw .tw-stat,
-#workskin .tw-reply .tw-stat { display: block; flex: 1 1 0; margin: 0; padding: 0; white-space: nowrap; }
+#workskin .tw .stat,
+#workskin .tw-reply .stat { display: block; flex: 1 1 0; margin: 0; padding: 0; white-space: nowrap; }
 
 /* the bookmark and share buttons (right) hug the right-hand edge */
-#workskin .tw .tw-stat.right,
-#workskin .tw-reply .tw-stat.right { flex: none; margin-left: 0.9em; }
+#workskin .tw .stat.right,
+#workskin .tw-reply .stat.right { flex: none; margin-left: 0.9em; }
 
-#workskin .tw .tw-stats .ic,
-#workskin .tw-reply .tw-stats .ic { width: 1.3em; height: 1.3em; margin-right: 0.3em; vertical-align: -0.3em; }
+#workskin .tw .stats .ic,
+#workskin .tw-reply .stats .ic { width: 1.3em; height: 1.3em; margin-right: 0.3em; vertical-align: -0.3em; }
 
-#workskin .tw .tw-stats .ic.ic-tw-share,
-#workskin .tw-reply .tw-stats .ic.ic-tw-share { margin-right: 0; }
+#workskin .tw .stats .ic.ic-tw-share,
+#workskin .tw-reply .stats .ic.ic-tw-share { margin-right: 0; }
 
-#workskin .tw .tw-quote {
+#workskin .tw .quote {
   display: block;
   border: 1px solid #cfd9de;
   border-radius: 12px;
@@ -456,54 +456,54 @@
 
 </details>
 
-<pre><code>/* ---- a like or bookmark readers can click: &lt;details class="tw-stat tw-tog"&gt;
-   (&lt;details class="tw-stat right tw-tog"&gt; for the bookmark)
+<pre><code>/* ---- a like or bookmark readers can click: &lt;details class="stat likes tog"&gt;
+   (&lt;details class="stat bookmarks right tog"&gt; for the bookmark)
    Inside the &lt;summary&gt;, the "off" count shows at first and the "on" count once clicked.
    Click again and it goes back. */
-#workskin .tw .tw-tog summary,
-#workskin .tw-reply .tw-tog summary { display: block; list-style: none; cursor: pointer; color: inherit; }
+#workskin .tw .tog summary,
+#workskin .tw-reply .tog summary { display: block; list-style: none; cursor: pointer; color: inherit; }
 
-#workskin .tw .tw-tog summary::-webkit-details-marker,
-#workskin .tw-reply .tw-tog summary::-webkit-details-marker { display: none; }
+#workskin .tw .tog summary::-webkit-details-marker,
+#workskin .tw-reply .tog summary::-webkit-details-marker { display: none; }
 
-#workskin .tw .tw-tog summary::marker,
-#workskin .tw-reply .tw-tog summary::marker { content: ""; }
+#workskin .tw .tog summary::marker,
+#workskin .tw-reply .tog summary::marker { content: ""; }
 
-#workskin .tw .tw-tog .on,
-#workskin .tw-reply .tw-tog .on { display: none; }
+#workskin .tw .tog .on,
+#workskin .tw-reply .tog .on { display: none; }
 
-#workskin .tw .tw-tog[open] .on,
-#workskin .tw-reply .tw-tog[open] .on { display: inline; }
+#workskin .tw .tog[open] .on,
+#workskin .tw-reply .tog[open] .on { display: inline; }
 
-#workskin .tw .tw-tog[open] .off,
-#workskin .tw-reply .tw-tog[open] .off { display: none; }
+#workskin .tw .tog[open] .off,
+#workskin .tw-reply .tog[open] .off { display: none; }
 
-#workskin .tw .tw-stats .liked,
-#workskin .tw-reply .tw-stats .liked,
-#workskin .tw .tw-stats .tw-tog[open],
-#workskin .tw-reply .tw-stats .tw-tog[open] {
+#workskin .tw .stats .liked,
+#workskin .tw-reply .stats .liked,
+#workskin .tw .stats .tog[open],
+#workskin .tw-reply .stats .tog[open] {
   color: #ed4956;
 }
 
-#workskin .tw .tw-stats .reposted,
-#workskin .tw-reply .tw-stats .reposted {
+#workskin .tw .stats .reposted,
+#workskin .tw-reply .stats .reposted {
   color: #00ba7c;
 }
 
-#workskin .tw .tw-stats .saved,
-#workskin .tw-reply .tw-stats .saved,
-#workskin .tw .tw-stats .tw-tog.right[open],
-#workskin .tw-reply .tw-stats .tw-tog.right[open] {
+#workskin .tw .stats .saved,
+#workskin .tw-reply .stats .saved,
+#workskin .tw .stats .tog.right[open],
+#workskin .tw-reply .stats .tog.right[open] {
   color: #1d9bf0;
 }
 
-/* a private account's tweets can't be reposted: add locked to the repost's tw-stat to fade it out */
-#workskin .tw .tw-stats .locked,
-#workskin .tw-reply .tw-stats .locked {
+/* a private account's tweets can't be reposted: add locked to the repost's stat to fade it out */
+#workskin .tw .stats .locked,
+#workskin .tw-reply .stats .locked {
   color: #cfd9de;
 }</code></pre>
 
-<p>A button the account has used turns red for a like, green for a repost or blue for a bookmark, count and all, and a clicked like turns red the same way. A clicked bookmark turns blue: <code>.tw-tog.right</code> picks out the bookmark, and is more specific than the red rule, so it wins. <code>locked</code> fades a private tweet's repost button to pale grey, or dark grey in dark mode. The coloured pictures are in the Icons section too.</p>
+<p>A button the account has used turns red for a like, green for a repost or blue for a bookmark, count and all, and a clicked like turns red the same way. A clicked bookmark turns blue: <code>.tog.right</code> picks out the bookmark, and is more specific than the red rule, so it wins. <code>locked</code> fades a private tweet's repost button to pale grey, or dark grey in dark mode. The coloured pictures are in the Icons section too.</p>
 
 <details>
 <summary>How it works: the clickable like and bookmark</summary>
@@ -516,8 +516,8 @@
 
 <h4 id="s9-5-1">9.5.1 Open Polls and Results</h4>
 
-<pre><code>#workskin .tw .tw-opt,
-#workskin .tw-reply .tw-opt {
+<pre><code>#workskin .tw .opt,
+#workskin .tw-reply .opt {
   display: block;
   border: 1px solid #1d9bf0;
   border-radius: 2em;
@@ -529,8 +529,8 @@
 }
 
 /* results: each option is a row, the bar with the option in it, then the percentage at the far right */
-#workskin .tw .tw-opt.results,
-#workskin .tw-reply .tw-opt.results {
+#workskin .tw .opt.results,
+#workskin .tw-reply .opt.results {
   display: flex;
   align-items: center;
   border: 0;
@@ -552,24 +552,24 @@
   white-space: nowrap;
 }
 
-#workskin .tw .tw-opt.win .tw-bar,
-#workskin .tw-reply .tw-opt.win .tw-bar {
+#workskin .tw .opt.win .tw-bar,
+#workskin .tw-reply .opt.win .tw-bar {
   background: #8ecdf7;
 }
 
-#workskin .tw .tw-opt .tw-pct,
-#workskin .tw-reply .tw-opt .tw-pct {
+#workskin .tw .opt .pct,
+#workskin .tw-reply .opt .pct {
   margin-left: auto;
   padding-left: 0.8em;
   white-space: nowrap;
 }
 
-#workskin .tw .tw-opt.win,
-#workskin .tw-reply .tw-opt.win {
+#workskin .tw .opt.win,
+#workskin .tw-reply .opt.win {
   font-weight: bold;
 }
 
-#workskin .tw .tw-opt.p50 .tw-bar, #workskin .tw-reply .tw-opt.p50 .tw-bar { width: 50%; }</code></pre>
+#workskin .tw .opt.p50 .tw-bar, #workskin .tw-reply .opt.p50 .tw-bar { width: 50%; }</code></pre>
 
 <p>An open poll is a blue outline with very round corners and bold blue words in the middle.</p>
 
@@ -579,27 +579,27 @@
 <p>The bar sizes are these rules near the end of the Twitter/X poll CSS, under the comment <code>/* how long each bar is */</code>. Each one says "an option with this class gets a bar this wide":</p>
 
 <pre><code>/* how long each bar is */
-#workskin .tw .tw-opt.p0 .tw-bar, #workskin .tw-reply .tw-opt.p0 .tw-bar { width: 0%; }
-#workskin .tw .tw-opt.p10 .tw-bar, #workskin .tw-reply .tw-opt.p10 .tw-bar { width: 10%; }
-#workskin .tw .tw-opt.p20 .tw-bar, #workskin .tw-reply .tw-opt.p20 .tw-bar { width: 20%; }
-#workskin .tw .tw-opt.p25 .tw-bar, #workskin .tw-reply .tw-opt.p25 .tw-bar { width: 25%; }
-#workskin .tw .tw-opt.p30 .tw-bar, #workskin .tw-reply .tw-opt.p30 .tw-bar { width: 30%; }
-#workskin .tw .tw-opt.p33 .tw-bar, #workskin .tw-reply .tw-opt.p33 .tw-bar { width: 33%; }
-#workskin .tw .tw-opt.p40 .tw-bar, #workskin .tw-reply .tw-opt.p40 .tw-bar { width: 40%; }
-#workskin .tw .tw-opt.p50 .tw-bar, #workskin .tw-reply .tw-opt.p50 .tw-bar { width: 50%; }
-#workskin .tw .tw-opt.p60 .tw-bar, #workskin .tw-reply .tw-opt.p60 .tw-bar { width: 60%; }
-#workskin .tw .tw-opt.p67 .tw-bar, #workskin .tw-reply .tw-opt.p67 .tw-bar { width: 67%; }
-#workskin .tw .tw-opt.p70 .tw-bar, #workskin .tw-reply .tw-opt.p70 .tw-bar { width: 70%; }
-#workskin .tw .tw-opt.p75 .tw-bar, #workskin .tw-reply .tw-opt.p75 .tw-bar { width: 75%; }
-#workskin .tw .tw-opt.p80 .tw-bar, #workskin .tw-reply .tw-opt.p80 .tw-bar { width: 80%; }
-#workskin .tw .tw-opt.p90 .tw-bar, #workskin .tw-reply .tw-opt.p90 .tw-bar { width: 90%; }
-#workskin .tw .tw-opt.p100 .tw-bar, #workskin .tw-reply .tw-opt.p100 .tw-bar { width: 100%; }</code></pre>
+#workskin .tw .opt.p0 .tw-bar, #workskin .tw-reply .opt.p0 .tw-bar { width: 0%; }
+#workskin .tw .opt.p10 .tw-bar, #workskin .tw-reply .opt.p10 .tw-bar { width: 10%; }
+#workskin .tw .opt.p20 .tw-bar, #workskin .tw-reply .opt.p20 .tw-bar { width: 20%; }
+#workskin .tw .opt.p25 .tw-bar, #workskin .tw-reply .opt.p25 .tw-bar { width: 25%; }
+#workskin .tw .opt.p30 .tw-bar, #workskin .tw-reply .opt.p30 .tw-bar { width: 30%; }
+#workskin .tw .opt.p33 .tw-bar, #workskin .tw-reply .opt.p33 .tw-bar { width: 33%; }
+#workskin .tw .opt.p40 .tw-bar, #workskin .tw-reply .opt.p40 .tw-bar { width: 40%; }
+#workskin .tw .opt.p50 .tw-bar, #workskin .tw-reply .opt.p50 .tw-bar { width: 50%; }
+#workskin .tw .opt.p60 .tw-bar, #workskin .tw-reply .opt.p60 .tw-bar { width: 60%; }
+#workskin .tw .opt.p67 .tw-bar, #workskin .tw-reply .opt.p67 .tw-bar { width: 67%; }
+#workskin .tw .opt.p70 .tw-bar, #workskin .tw-reply .opt.p70 .tw-bar { width: 70%; }
+#workskin .tw .opt.p75 .tw-bar, #workskin .tw-reply .opt.p75 .tw-bar { width: 75%; }
+#workskin .tw .opt.p80 .tw-bar, #workskin .tw-reply .opt.p80 .tw-bar { width: 80%; }
+#workskin .tw .opt.p90 .tw-bar, #workskin .tw-reply .opt.p90 .tw-bar { width: 90%; }
+#workskin .tw .opt.p100 .tw-bar, #workskin .tw-reply .opt.p100 .tw-bar { width: 100%; }</code></pre>
 
-<p>The percentage the reader sees is just the text in <code>tw-pct</code>, so any number can go there. The bar only comes in these sizes, though, and the nearest one is usually close enough. If you want a bar of an exact length, copy one of the rules into your skin, change the three numbers, and give the option that class. For a 58% bar:</p>
+<p>The percentage the reader sees is just the text in <code>pct</code>, so any number can go there. The bar only comes in these sizes, though, and the nearest one is usually close enough. If you want a bar of an exact length, copy one of the rules into your skin, change the three numbers, and give the option that class. For a 58% bar:</p>
 
-<pre><code>#workskin .tw .tw-opt.p58 .tw-bar, #workskin .tw-reply .tw-opt.p58 .tw-bar { width: 58%; }</code></pre>
+<pre><code>#workskin .tw .opt.p58 .tw-bar, #workskin .tw-reply .opt.p58 .tw-bar { width: 58%; }</code></pre>
 
-<p>Then <code>&lt;p class="tw-opt results p58"&gt;</code> gets a bar 58% of the way across. The class name can be anything, but keeping the number in it makes it easy to remember.</p>
+<p>Then <code>&lt;p class="opt results p58"&gt;</code> gets a bar 58% of the way across. The class name can be anything, but keeping the number in it makes it easy to remember.</p>
 
 </details>
 
@@ -613,8 +613,8 @@
 <h4 id="s9-5-2">9.5.2 Tappable Polls</h4>
 
 <pre><code>/* the tick in a circle on the option the account voted for */
-#workskin .tw .tw-voted,
-#workskin .tw-reply .tw-voted {
+#workskin .tw .voted,
+#workskin .tw-reply .voted {
   display: inline-block;
   width: 1.1em;
   height: 1.1em;
@@ -628,63 +628,63 @@
   vertical-align: 0.15em;
 }
 
-/* TAPPABLE POLL, the short way: &lt;details class="tw-vote"&gt; with the open poll in &lt;summary&gt; (spans with tw-opt,
-   and a tw-pollinfo span), then the results after it, with tw-voted on the pov character's vote.
+/* TAPPABLE POLL, the short way: &lt;details class="vote"&gt; with the open poll in &lt;summary&gt; (spans with opt,
+   and a pollinfo span), then the results after it, with voted on the pov character's vote.
    Tapping shows the results instead. */
-#workskin .tw .tw-vote,
-#workskin .tw-reply .tw-vote,
-#workskin .tw .tw-vote &gt; summary,
-#workskin .tw-reply .tw-vote &gt; summary { display: block; }
+#workskin .tw .vote,
+#workskin .tw-reply .vote,
+#workskin .tw .vote &gt; summary,
+#workskin .tw-reply .vote &gt; summary { display: block; }
 
-#workskin .tw .tw-vote &gt; summary,
-#workskin .tw-reply .tw-vote &gt; summary,
-#workskin .tw .tw-pick &gt; summary,
-#workskin .tw-reply .tw-pick &gt; summary { cursor: pointer; list-style: none; }
+#workskin .tw .vote &gt; summary,
+#workskin .tw-reply .vote &gt; summary,
+#workskin .tw .pick &gt; summary,
+#workskin .tw-reply .pick &gt; summary { cursor: pointer; list-style: none; }
 
-#workskin .tw .tw-vote &gt; summary::-webkit-details-marker,
-#workskin .tw-reply .tw-vote &gt; summary::-webkit-details-marker,
-#workskin .tw .tw-pick &gt; summary::-webkit-details-marker,
-#workskin .tw-reply .tw-pick &gt; summary::-webkit-details-marker { display: none; }
+#workskin .tw .vote &gt; summary::-webkit-details-marker,
+#workskin .tw-reply .vote &gt; summary::-webkit-details-marker,
+#workskin .tw .pick &gt; summary::-webkit-details-marker,
+#workskin .tw-reply .pick &gt; summary::-webkit-details-marker { display: none; }
 
-#workskin .tw .tw-vote &gt; summary::marker,
-#workskin .tw-reply .tw-vote &gt; summary::marker,
-#workskin .tw .tw-pick &gt; summary::marker,
-#workskin .tw-reply .tw-pick &gt; summary::marker { content: ""; }
+#workskin .tw .vote &gt; summary::marker,
+#workskin .tw-reply .vote &gt; summary::marker,
+#workskin .tw .pick &gt; summary::marker,
+#workskin .tw-reply .pick &gt; summary::marker { content: ""; }
 
-#workskin .tw .tw-vote[open] &gt; summary,
-#workskin .tw-reply .tw-vote[open] &gt; summary { display: none; }
+#workskin .tw .vote[open] &gt; summary,
+#workskin .tw-reply .vote[open] &gt; summary { display: none; }
 
-/* TAPPABLE POLL where the reader picks: &lt;div class="tw-poll"&gt;, then one &lt;details class="tw-pick"&gt; per option,
-   each with &lt;summary class="tw-opt"&gt;Option&lt;/summary&gt; and a &lt;div class="tw-results"&gt; holding the results
-   with tw-voted on that option. The results cover the poll when it's tapped. */
-#workskin .tw .tw-poll,
-#workskin .tw-reply .tw-poll { display: block; position: relative; }
+/* TAPPABLE POLL where the reader picks: &lt;div class="poll"&gt;, then one &lt;details class="pick"&gt; per option,
+   each with &lt;summary class="opt"&gt;Option&lt;/summary&gt; and a &lt;div class="poll-results"&gt; holding the results
+   with voted on that option. The results cover the poll when it's tapped. */
+#workskin .tw .poll,
+#workskin .tw-reply .poll { display: block; position: relative; }
 
-#workskin .tw .tw-pick,
-#workskin .tw-reply .tw-pick { display: block; margin: 0.35em 0; }
+#workskin .tw .pick,
+#workskin .tw-reply .pick { display: block; margin: 0.35em 0; }
 
-#workskin .tw .tw-pick &gt; .tw-opt,
-#workskin .tw-reply .tw-pick &gt; .tw-opt { margin: 0; }
+#workskin .tw .pick &gt; .opt,
+#workskin .tw-reply .pick &gt; .opt { margin: 0; }
 
-#workskin .tw .tw-pick[open] &gt; summary,
-#workskin .tw-reply .tw-pick[open] &gt; summary { visibility: hidden; }
+#workskin .tw .pick[open] &gt; summary,
+#workskin .tw-reply .pick[open] &gt; summary { visibility: hidden; }
 
-#workskin .tw .tw-results,
-#workskin .tw-reply .tw-results { display: block; position: absolute; top: -0.35em; left: 0; right: 0; z-index: 1; background: #ffffff; }</code></pre>
+#workskin .tw .poll-results,
+#workskin .tw-reply .poll-results { display: block; position: absolute; top: -0.35em; left: 0; right: 0; z-index: 1; background: #ffffff; }</code></pre>
 
 <p>The tick is just a tick character in a span with a thin round border: <code>border-radius: 50%</code> turns a square into a circle. With no colour given, the border takes the colour of the words.</p>
 
 <details>
 <summary>How it works: the tappable polls</summary>
 
-<p>The tappable polls work exactly like Tumblr's. In <code>tw-vote</code>, the open poll is the <code>summary</code>, and <code>[open]</code> hides it once it's been tapped, so the results underneath show instead. In the reader-picks version, each option is its own details, and its <code>tw-results</code> box is lifted out of the line with <code>position: absolute</code> so it sits over the whole <code>tw-poll</code> box, starting at the top. The white background (black in dark mode) hides the options underneath, and <code>z-index</code> keeps it on top. The tapped option's own outline is hidden with <code>visibility: hidden</code>, which keeps its space so nothing jumps about.</p>
+<p>The tappable polls work exactly like Tumblr's. In <code>vote</code>, the open poll is the <code>summary</code>, and <code>[open]</code> hides it once it's been tapped, so the results underneath show instead. In the reader-picks version, each option is its own details, and its <code>poll-results</code> box is lifted out of the line with <code>position: absolute</code> so it sits over the whole <code>poll</code> box, starting at the top. The white background (black in dark mode) hides the options underneath, and <code>z-index</code> keeps it on top. The tapped option's own outline is hidden with <code>visibility: hidden</code>, which keeps its space so nothing jumps about.</p>
 
 </details>
 
 <h3 id="s9-6">9.6 Pictures and Videos</h3>
 
-<pre><code>#workskin .tw .tw-photos,
-#workskin .tw-reply .tw-photos {
+<pre><code>#workskin .tw .photos,
+#workskin .tw-reply .photos {
   display: block;
   overflow: hidden;
   border: 1px solid #cfd9de;
@@ -704,9 +704,9 @@
 
 <p>Two, three and four pictures work exactly like WhatsApp's photo galleries - squares made with <code>padding-top</code>, floated into a grid, with <code>landscape</code> for wide pictures - so see <a href="whatsapp-css.html#s7-6-2">Photo Galleries</a> for how. The only differences are the sizes (<code>49.2%</code> squares with a <code>1.2%</code> gap, adding up to <code>99.6%</code>), and this at the end:</p>
 
-<pre><code>#workskin .tw .tw-photos.two::after,
-#workskin .tw .tw-photos.three::after,
-#workskin .tw .tw-photos.four::after {
+<pre><code>#workskin .tw .photos.two::after,
+#workskin .tw .photos.three::after,
+#workskin .tw .photos.four::after {
   content: "";
   display: block;
   clear: both;
@@ -725,8 +725,8 @@
 <details>
 <summary>The full CSS for the name line and profile picture</summary>
 
-<pre><code>#workskin .tw .tw-top,
-#workskin .tw-reply .tw-top {
+<pre><code>#workskin .tw .top,
+#workskin .tw-reply .top {
   display: flex;
   align-items: flex-start;
   position: relative;
@@ -736,11 +736,11 @@
 }
 
 /* AO3 can add line breaks between the spans: hide them */
-#workskin .tw .tw-top br,
-#workskin .tw-reply .tw-top br { display: none; }
+#workskin .tw .top br,
+#workskin .tw-reply .top br { display: none; }
 
-#workskin .tw .tw-pfp,
-#workskin .tw-reply .tw-pfp {
+#workskin .tw .avatar,
+#workskin .tw-reply .avatar {
   display: flex;
   flex: none;
   align-items: center;
@@ -759,10 +759,10 @@
 }
 
 /* a long name ends in "..." when it's typed in a plain span:
-   &lt;span class="tw-name"&gt;&lt;span&gt;A really long name&lt;/span&gt;&lt;/span&gt;
+   &lt;span class="who"&gt;&lt;span&gt;A really long name&lt;/span&gt;&lt;/span&gt;
    Without the span it stops at the last whole word that fits */
-#workskin .tw .tw-name,
-#workskin .tw-reply .tw-name {
+#workskin .tw .who,
+#workskin .tw-reply .who {
   display: flex;
   flex: 0 1 auto;
   align-items: flex-start;
@@ -772,8 +772,8 @@
   max-height: 1.3em;
 }
 
-#workskin .tw .tw-name &gt; span,
-#workskin .tw-reply .tw-name &gt; span {
+#workskin .tw .who &gt; span,
+#workskin .tw-reply .who &gt; span {
   min-width: 0;
   overflow: hidden;
   white-space: nowrap;
@@ -781,14 +781,14 @@
 }
 
 /* an icon in the name never shrinks; the tick is cut off before the name is */
-#workskin .tw .tw-name &gt; .ic,
-#workskin .tw-reply .tw-name &gt; .ic {
+#workskin .tw .who &gt; .ic,
+#workskin .tw-reply .who &gt; .ic {
   flex: none;
   margin: 0.15em 0 0 0.25em;
 }
 
-#workskin .tw .tw-name &gt; .tw-tick,
-#workskin .tw-reply .tw-name &gt; .tw-tick {
+#workskin .tw .who &gt; .tick,
+#workskin .tw-reply .who &gt; .tick {
   flex: 0 100000 auto;
   background-size: 1em 1em;
   background-position: left center;
@@ -804,16 +804,16 @@
   text-overflow: ellipsis;
 }
 
-/* the time after the handle: &lt;span class="tw-time"&gt;· 5m&lt;/span&gt;. It never shrinks */
-#workskin .tw .tw-time,
-#workskin .tw-reply .tw-time {
+/* the time after the handle: &lt;span class="time"&gt;· 5m&lt;/span&gt;. It never shrinks */
+#workskin .tw .time,
+#workskin .tw-reply .time {
   flex: none;
   margin-left: 0.25em;
   color: #536471;
 }
 
 /* a second grey line under the name, like "Fan account":
-   &lt;span class="tw-account-label"&gt;&lt;span class="ic ic-tw-fan"&gt;&amp;#127917;&lt;/span&gt; Fan account&lt;/span&gt; at the end of tw-top. It sits under the name, beside the picture */
+   &lt;span class="tw-account-label"&gt;&lt;span class="ic ic-tw-fan"&gt;&amp;#127917;&lt;/span&gt; Fan account&lt;/span&gt; at the end of top. It sits under the name, beside the picture */
 #workskin .tw .tw-account-label,
 #workskin .tw-reply .tw-account-label {
   position: absolute;
@@ -830,23 +830,23 @@
 #workskin .tw-reply .tw-account-label .ic { margin-right: 0.2em; }
 
 /* a tweet on its own, or the first tweet of a reply chain, is an opened tweet: the row wraps, so the name takes the whole first line, the @handle and time go on a second line under it, and a fan account line goes under them. The picture is pinned to the left of all three. */
-#workskin .tw .tw-top {
+#workskin .tw .top {
   flex-wrap: wrap;
   align-content: flex-start;
 }
 
-#workskin .tw .tw-top:has(&gt; .tw-pfp) {
+#workskin .tw .top:has(&gt; .avatar) {
   min-height: 40px;
   padding-left: 40px;
 }
 
-#workskin .tw .tw-pfp {
+#workskin .tw .avatar {
   position: absolute;
   top: 0;
   left: 0;
 }
 
-#workskin .tw .tw-name { flex-basis: 100%; }
+#workskin .tw .who { flex-basis: 100%; }
 
 #workskin .tw .tw-handle { margin-left: 0; }
 
@@ -857,25 +857,25 @@
 }
 
 /* the gap between the picture and the words */
-#workskin .tw .tw-top:has(&gt; .tw-pfp) &gt; .tw-name,
-#workskin .tw .tw-top:has(&gt; .tw-pfp) &gt; .tw-handle,
-#workskin .tw .tw-top:has(&gt; .tw-pfp) &gt; .tw-account-label { margin-left: 0.55em; }
+#workskin .tw .top:has(&gt; .avatar) &gt; .who,
+#workskin .tw .top:has(&gt; .avatar) &gt; .tw-handle,
+#workskin .tw .top:has(&gt; .avatar) &gt; .tw-account-label { margin-left: 0.55em; }
 
 /* on the app screen every tweet is one line again */
-#workskin .tw-feed.app .tw .tw-top {
+#workskin .tw-feed.app .tw .top {
   flex-wrap: nowrap;
   min-height: 0;
   padding-left: 0;
 }
 
-#workskin .tw-feed.app .tw .tw-pfp { position: static; }
+#workskin .tw-feed.app .tw .avatar { position: static; }
 
-#workskin .tw-feed.app .tw .tw-name,
+#workskin .tw-feed.app .tw .who,
 #workskin .tw-feed.app .tw .tw-account-label { flex-basis: auto; }
 
-#workskin .tw-feed.app .tw .tw-top:has(&gt; .tw-pfp) &gt; .tw-name { margin-left: 0; }
+#workskin .tw-feed.app .tw .top:has(&gt; .avatar) &gt; .who { margin-left: 0; }
 
-#workskin .tw-feed.app .tw .tw-top:has(&gt; .tw-pfp) &gt; .tw-handle,
+#workskin .tw-feed.app .tw .top:has(&gt; .avatar) &gt; .tw-handle,
 #workskin .tw-feed.app .tw .tw-handle { margin-left: 0.25em; }
 
 #workskin .tw-feed.app .tw .tw-account-label { position: absolute; margin-left: 0.55em; }</code></pre>
@@ -936,7 +936,7 @@
 <details>
 <summary>How it works: the picture and the buttons in the header</summary>
 
-<p>The picture is a tweet's <code>tw-pfp</code>, centred with <code>margin: 0 auto</code>. The back arrow and the call buttons are pulled out of the line with <code>position: absolute</code> and pinned to each side, and <code>top: 50%</code> with <code>translateY(-50%)</code> puts them halfway down, however tall the header is.</p>
+<p>The picture is a tweet's <code>avatar</code>, centred with <code>margin: 0 auto</code>. The back arrow and the call buttons are pulled out of the line with <code>position: absolute</code> and pinned to each side, and <code>top: 50%</code> with <code>translateY(-50%)</code> puts them halfway down, however tall the header is.</p>
 
 </details>
 
@@ -1039,7 +1039,7 @@
 
 #workskin .twdm .out .fake-link, #workskin .twdm .out a:not(.tl) { color: #ffffff; }</code></pre>
 
-<p>Blue everywhere, except in your own blue DM bubbles, where links are white so they show up. <code>tw-link</code>, for hashtags and @mentions, is the same blue.</p>
+<p>Blue everywhere, except in your own blue DM bubbles, where links are white so they show up. <code>fake-link</code>, for hashtags and @mentions, is the same blue.</p>
 
 <h3 id="s9-10">9.10 Dark and Auto Themes</h3>
 
@@ -1050,7 +1050,7 @@
 #workskin .tw-feed.theme-dark .tw-replying,
 #workskin .tw-feed.theme-dark .tw-date,
 #workskin .tw-feed.theme-dark .tw-label,
-#workskin .tw-feed.theme-dark .tw-pollinfo {
+#workskin .tw-feed.theme-dark .pollinfo {
   color: #71767b;
 }</code></pre>
 
@@ -1060,13 +1060,13 @@
 
 <h3 id="s9-11">9.11 Taking Parts Out</h3>
 
-<p>Search for the class names and delete every rule with them in, including in the dark and auto blocks:</p>
+<p>Search the Twitter/X part of the skin for the class names and delete every rule with them in, including in the dark and auto blocks. Names like <code>photo</code> and <code>poll</code> are shared with other apps, so only delete the Twitter/X rules:</p>
 
 <ul>
   <li><strong>DMs:</strong> everything starting <code>.twdm</code>, and anything with <code>twdm-</code> in it.</li>
-  <li><strong>Threads:</strong> everything starting <code>.tw-feed</code>, and <code>app-screen</code> and <code>tw-reply-bar</code>.</li>
-  <li><strong>Polls:</strong> <code>tw-opt</code>, <code>tw-pct</code> and <code>tw-pollinfo</code>, which is also the biggest saving, since there are 15 bar sizes.</li>
-  <li><strong>Picture galleries:</strong> <code>tw-photo</code> and <code>img-desc</code>, and the <code>two</code>, <code>three</code> and <code>four</code> rules. Keep <code>tw-photos</code> for single pictures.</li>
+  <li><strong>Threads:</strong> everything starting <code>.tw-feed</code>, and <code>app-screen</code> and <code>reply-bar</code>.</li>
+  <li><strong>Polls:</strong> <code>opt</code>, <code>pct</code> and <code>pollinfo</code>, which is also the biggest saving, since there are 15 bar sizes.</li>
+  <li><strong>Picture galleries:</strong> <code>photo</code> and <code>img-desc</code>, and the <code>two</code>, <code>three</code> and <code>four</code> rules. Keep <code>photos</code> for single pictures.</li>
   <li><strong>Extras:</strong> <code>tw-note</code>, <code>tw-warn</code>, <code>tw-label</code>, <code>liked</code> and <code>reposted</code> each come out on their own.</li>
 </ul>
 

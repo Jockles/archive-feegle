@@ -25,7 +25,7 @@
   <!-- /site meta -->
   <link rel="stylesheet" href="../../style.css?v=c31c06ea">
   <script src="../../theme.js?v=c50fd7c2"></script>
-  <link rel="stylesheet" href="megaskin.css?v=2e7a16bb" id="creator-style">
+  <link rel="stylesheet" href="megaskin.css?v=9c9f7b74" id="creator-style">
 </head>
 <body>
 <header>
@@ -94,11 +94,11 @@
 
 <h4 id="s11-1-2">11.1.2 How the 2012-15 Module is Laid Out</h4>
 
-<p>The tweet comes first, then an opened tweet, then the app screen with its two bars, and Icons at the end. There's no Dark or Auto section, because Twitter had no night mode yet. Every rule starts with <code>.twc12</code> or <code>.twc12-feed</code>, so even though the parts inside have the same names as other Twitter modules (<code>tw-top</code>, <code>tw-stats</code> and so on), nothing gets in anything else's way.</p>
+<p>The tweet comes first, then an opened tweet, then the app screen with its two bars, and Icons at the end. There's no Dark or Auto section, because Twitter had no night mode yet. Every rule starts with <code>.twc12</code> or <code>.twc12-feed</code>, so even though the parts inside have the same names as other Twitter modules (<code>top</code>, <code>stats</code> and so on), nothing gets in anything else's way.</p>
 
 <h4 id="s11-1-3">11.1.3 The 2012-15 Bars</h4>
 
-<pre><code>#workskin .twc12-feed .twc-header {
+<pre><code>#workskin .twc12-feed .header {
   display: flex;
   position: sticky;
   top: 0;
@@ -114,7 +114,7 @@
   text-align: center;
 }
 
-#workskin .twc12-feed .twc-title + .twc-icon { margin-left: auto; }</code></pre>
+#workskin .twc12-feed .twc-title + .icon { margin-left: auto; }</code></pre>
 
 <p>These are the two bars of the app screen: the blue one along the top, and the black row of buttons along the bottom. Both stay put while the tweets scroll between them.</p>
 
@@ -128,7 +128,7 @@
 <details>
 <summary>How it works: keeping the bars in place, and the page name in the middle</summary>
 
-<p><code>position: sticky</code> keeps the bar at the top of the screen while the tweets scroll under it. The black row of buttons goes after the <code>app-screen</code> box, so it never scrolls at all. The page name is taken out of the row and stretched across the middle, so it stays centred whether there's one button on the left and two on the right or anything else, and <code>margin-left: auto</code> pushes the buttons after it over to the right. Each <code>tw-tab</code> in the bottom row has its icon as a block, so the name drops underneath it.</p>
+<p><code>position: sticky</code> keeps the bar at the top of the screen while the tweets scroll under it. The black row of buttons goes after the <code>app-screen</code> box, so it never scrolls at all. The page name is taken out of the row and stretched across the middle, so it stays centred whether there's one button on the left and two on the right or anything else, and <code>margin-left: auto</code> pushes the buttons after it over to the right. Each <code>tab</code> in the bottom row has its icon as a block, so the name drops underneath it.</p>
 
 </details>
 
@@ -146,7 +146,7 @@
   padding: 0.65em 0.8em 0.6em 4.6em;
 }
 
-#workskin .twc12 .tw-pfp {
+#workskin .twc12 .avatar {
   position: absolute;
   top: 0.75em;
   left: 0.8em;
@@ -155,7 +155,7 @@
   border-radius: 5px;
 }
 
-#workskin .twc12 .tw-time {
+#workskin .twc12 .time {
   position: absolute;
   top: 0.75em;
   right: 0.8em;
@@ -181,7 +181,7 @@
 
 <ul>
   <li><strong>The app screen:</strong> everything starting <code>.twc12-feed</code>.</li>
-  <li><strong>Opened tweets:</strong> the rules with <code>.big</code>, <code>tw-date</code>, <code>tw-counts</code> and <code>twc-reply-bar</code>.</li>
+  <li><strong>Opened tweets:</strong> the rules with <code>.big</code>, <code>tw-date</code>, <code>counts</code> and <code>reply-bar</code>.</li>
   <li><strong>Details:</strong> the <code>tw-details</code> rule.</li>
 </ul>
 
@@ -193,7 +193,7 @@
 
 <h4 id="s11-2-2">11.2.2 How the 2016-19 Module is Laid Out</h4>
 
-<p>The tweet comes first, then conversations, an opened tweet, the app screen with its two bars, the Dark and Auto themes, and Icons at the end. Every rule starts with <code>.twc16</code> or <code>.twc16-feed</code>, so even though the parts inside have the same names as other Twitter modules (<code>tw-top</code>, <code>tw-stats</code> and so on), nothing gets in anything else's way.</p>
+<p>The tweet comes first, then conversations, an opened tweet, the app screen with its two bars, the Dark and Auto themes, and Icons at the end. Every rule starts with <code>.twc16</code> or <code>.twc16-feed</code>, so even though the parts inside have the same names as other Twitter modules (<code>top</code>, <code>stats</code> and so on), nothing gets in anything else's way.</p>
 
 <h4 id="s11-2-3">11.2.3 The 2016-19 Bars</h4>
 
@@ -224,7 +224,7 @@
   padding: 0.65em 1em 0.5em 4.75em;
 }
 
-#workskin .twc16 .tw-pfp {
+#workskin .twc16 .avatar {
   position: absolute;
   top: 0.75em;
   left: 1em;
@@ -271,8 +271,8 @@
 
 <ul>
   <li><strong>The app screen:</strong> everything starting <code>.twc16-feed</code>.</li>
-  <li><strong>Opened tweets:</strong> the rules with <code>.big</code>, <code>tw-date</code> and <code>tw-counts</code>.</li>
-  <li><strong>The little arrow:</strong> the rules with <code>tw-menu</code> and <code>ic-dropdown</code>.</li>
+  <li><strong>Opened tweets:</strong> the rules with <code>.big</code>, <code>tw-date</code> and <code>counts</code>.</li>
+  <li><strong>The little arrow:</strong> the rules with <code>menu</code> and <code>ic-dropdown</code>.</li>
   <li><strong>Themes:</strong> the Dark and Auto sections, and the dark and auto parts of the Icons section.</li>
 </ul>
         </div>

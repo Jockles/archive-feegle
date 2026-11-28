@@ -142,16 +142,16 @@
 
 <p>It won't always be a perfect copy of the other app, but everything still shows up and nothing breaks. For example, Discord shows who's typing in a line under the message bar, and the other apps show the dots as a bubble at the end of the chat. If you swap one for the other, the typing line stays where you wrote it, so it won't be quite where the new app would put it.</p>
 
-<p><strong>Everything else is the app's name and one plain word.</strong> A part that only one chat app has keeps that app's name, like <code>wa-call</code> for a WhatsApp call, and so does everything in posts: <code>tw-photo</code> is a photo on Twitter/X. The same word still means the same thing in every app:</p>
+<p><strong>In a feed, the parts have plain names too.</strong> Every feed app (<code>tw</code>, <code>twc12</code>, <code>twc16</code>, <code>ig</code> and <code>tb</code>) calls one post a <code>post</code>, so a tweet is <code>mob tw post</code> and an Instagram post is <code>mob ig post</code>. Inside it:</p>
 
 <ul>
-  <li><code>-top</code>: the top line of a post, and <code>-stats</code>: the row of buttons under it, with each button a <code>-stat</code>.</li>
-  <li><code>-name</code> and <code>-time</code>: who it is and when.</li>
-  <li><code>-pfp</code>: a profile picture.</li>
-  <li><code>-text</code> and <code>-caption</code>: the words.</li>
-  <li><code>-photos</code>: a set of photos, with each one a <code>-photo</code>.</li>
-  <li><code>-icon</code>: a button that's just an icon.</li>
+  <li><code>top</code>: the top line, with <code>avatar</code> for the picture, <code>who</code> for the name, <code>time</code>, and <code>menu</code> for the three dots.</li>
+  <li><code>text</code>: the words, with <code>photos</code> and <code>photo</code>, <code>quote</code> and <code>poll</code> the same as in a chat. <code>fake-link</code> is a link or hashtag.</li>
+  <li><code>stats</code>: the row of buttons under it, with each button a <code>stat</code> and a word for what it counts: <code>comments</code>, <code>reposts</code>, <code>likes</code>, <code>shares</code>, <code>bookmarks</code> or <code>views</code>. Tumblr keeps its own word, <code>reblogs</code>. Not every app has every stat, so just leave out the ones it doesn't have.</li>
+  <li>On an app screen, <code>header</code> is the bar at the top, with <code>logo</code> and <code>icon</code> buttons, and <code>tabs</code> and <code>nav</code> are the rows of tabs and buttons.</li>
 </ul>
+
+<p><strong>Everything else is the app's name and one plain word.</strong> A part that only one app has keeps that app's name, like <code>wa-call</code> for a WhatsApp call or <code>tb-ask</code> for a Tumblr ask.</p>
 
 <p><strong>A plain word next to a class is a setting.</strong> The pieces every app shares have plain names too: <code>mob</code>, <code>hide</code>, <code>pfp</code>, <code>ic</code> (an icon), and <code>img-desc</code> and <code>video-desc</code> (a picture or video described in words). The settings are plain words you add next to a class to change it: <code>in</code> and <code>out</code> for whose message it is, <code>me</code> for something you did, <code>right</code> to push something to the right, <code>on</code> for the tab that's picked, <code>liked</code> for a red heart, <code>wide</code> and <code>no-scroll</code> for the container.</p>
 
@@ -279,20 +279,16 @@
 
 <p>AO3 doesn't give videos an alt text option, so the workskin has a class for it instead. Put a paragraph with <code>video-desc</code> straight after the video, with a description of what happens in it in square brackets:</p>
 
-<div class="mob tw theme-auto">
-  <p class="tw-top">
-    <span class="tw-name">Jockles</span>
-    <span class="tw-handle">@jockles25</span>
-    <span class="tw-time">· 2h</span>
-  </p>
-  <p class="tw-text">Ilya Rozanov you will always be famous to me</p>
-  <div class="tw-photos video">
+<div class="mob tw post theme-auto">
+  <p class="top"><span class="who">Jockles</span> <span class="tw-handle">@jockles25</span> <span class="time">· 2h</span></p>
+  <p class="text">Ilya Rozanov you will always be famous to me</p>
+  <div class="photos video">
     <iframe src="https://player.vimeo.com/video/1169167060?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" title="Ilya Rozanov | Come Home"></iframe>
     <p class="video-desc">[Video: a tribute edit of Ilya Rozanov, made from Heated Rivalry footage and set to "Would You Come Home" by Tyler Blackburn]</p>
   </div>
 </div>
 
-<pre><code>&lt;div class="tw-photos video"&gt;
+<pre><code>&lt;div class="photos video"&gt;
   &lt;iframe src="https://player.vimeo.com/video/1169167060?badge=0&amp;amp;autopause=0&amp;amp;player_id=0&amp;amp;app_id=58479" frameborder="0" title="Ilya Rozanov | Come Home"&gt;&lt;/iframe&gt;
   &lt;p class="video-desc"&gt;[Video: a tribute edit of Ilya Rozanov, made from Heated Rivalry footage and set to "Would You Come Home" by Tyler Blackburn]&lt;/p&gt;
 &lt;/div&gt;</code></pre>
@@ -554,88 +550,64 @@
 
 <p><strong>Twitter/X Post and Reply</strong></p>
 
-<div class="mob tw theme-dark">
-  <p class="tw-top">
-    <span class="tw-name">Anna knows Puck</span>
-    <span class="tw-handle">@puckingwhat</span>
-    <span class="tw-time">· 2h</span>
-  </p>
-  <p class="tw-text">Can't believe that overtime goal.</p>
-  <div class="tw-stats">
-    <p class="tw-stat">
-      <span class="ic ic-tw-reply">&#9993;</span>
-    </p>
-    <p class="tw-stat"><span class="ic ic-tw-repost">&#8644;</span> 180<span class="hide"> reposts</span></p>
-    <p class="tw-stat"><span class="ic ic-tw-like">&#9825;</span> 1k<span class="hide"> likes</span></p>
-    <p class="tw-stat"><span class="ic ic-tw-views">&#128202;</span> 27K<span class="hide"> views</span></p>
-    <details class="tw-stat right tw-tog">
+<div class="mob tw post theme-dark">
+  <p class="top"><span class="who">Anna knows Puck</span> <span class="tw-handle">@puckingwhat</span> <span class="time">· 2h</span></p>
+  <p class="text">Can't believe that overtime goal.</p>
+  <div class="stats">
+    <p class="stat comments"><span class="ic ic-tw-reply">&#9993;</span></p>
+    <p class="stat reposts"><span class="ic ic-tw-repost">&#8644;</span> 180<span class="hide"> reposts</span></p>
+    <p class="stat likes"><span class="ic ic-tw-like">&#9825;</span> 1k<span class="hide"> likes</span></p>
+    <p class="stat views"><span class="ic ic-tw-views">&#128202;</span> 27K<span class="hide"> views</span></p>
+    <details class="stat bookmarks right tog">
       <summary><span class="ic ic-tw-bookmark">&#128278;</span><span class="hide"> Bookmark</span></summary>
     </details>
-    <p class="tw-stat right">
-      <span class="ic ic-tw-share">&#8679;</span>
-    </p>
+    <p class="stat shares right"><span class="ic ic-tw-share">&#8679;</span></p>
   </div>
 </div>
 
-<div class="mob tw-reply theme-dark">
-  <p><span class="tw-name">Denis</span> <span class="tw-handle">@motherpucker</span> <span class="tw-time">· 1h</span></p>
+<div class="mob tw-reply post theme-dark">
+  <p><span class="who">Denis</span> <span class="tw-handle">@motherpucker</span> <span class="time">· 1h</span></p>
   <p>best game all season</p>
 </div>
 
-<div class="mob tw theme-light">
-  <p class="tw-top">
-    <span class="tw-name">Anna knows Puck</span>
-    <span class="tw-handle">@puckingwhat</span>
-    <span class="tw-time">· 2h</span>
-  </p>
-  <p class="tw-text">Can't believe that overtime goal.</p>
-  <div class="tw-stats">
-    <p class="tw-stat">
-      <span class="ic ic-tw-reply">&#9993;</span>
-    </p>
-    <p class="tw-stat"><span class="ic ic-tw-repost">&#8644;</span> 4,312<span class="hide"> reposts</span></p>
-    <p class="tw-stat"><span class="ic ic-tw-like">&#9825;</span> 18.2K<span class="hide"> likes</span></p>
-    <p class="tw-stat"><span class="ic ic-tw-views">&#128202;</span> 491K<span class="hide"> views</span></p>
-    <details class="tw-stat right tw-tog">
+<div class="mob tw post theme-light">
+  <p class="top"><span class="who">Anna knows Puck</span> <span class="tw-handle">@puckingwhat</span> <span class="time">· 2h</span></p>
+  <p class="text">Can't believe that overtime goal.</p>
+  <div class="stats">
+    <p class="stat comments"><span class="ic ic-tw-reply">&#9993;</span></p>
+    <p class="stat reposts"><span class="ic ic-tw-repost">&#8644;</span> 4,312<span class="hide"> reposts</span></p>
+    <p class="stat likes"><span class="ic ic-tw-like">&#9825;</span> 18.2K<span class="hide"> likes</span></p>
+    <p class="stat views"><span class="ic ic-tw-views">&#128202;</span> 491K<span class="hide"> views</span></p>
+    <details class="stat bookmarks right tog">
       <summary><span class="ic ic-tw-bookmark">&#128278;</span><span class="hide"> Bookmark</span></summary>
     </details>
-    <p class="tw-stat right">
-      <span class="ic ic-tw-share">&#8679;</span>
-    </p>
+    <p class="stat shares right"><span class="ic ic-tw-share">&#8679;</span></p>
   </div>
 </div>
 
-<div class="mob tw-reply theme-light">
-  <p><span class="tw-name">Denis</span> <span class="tw-handle">@motherpucker</span> <span class="tw-time">· 1h</span></p>
+<div class="mob tw-reply post theme-light">
+  <p><span class="who">Denis</span> <span class="tw-handle">@motherpucker</span> <span class="time">· 1h</span></p>
   <p>best game all season</p>
 </div>
 
 <p><em>The HTML for the dark version:</em></p>
 
-<pre><code>&lt;div class="mob tw theme-dark"&gt;
-  &lt;p class="tw-top"&gt;
-    &lt;span class="tw-name"&gt;Holster&lt;/span&gt;
-    &lt;span class="tw-handle"&gt;@HolsterInLaw&lt;/span&gt;
-    &lt;span class="tw-time"&gt;· 2h&lt;/span&gt;
-  &lt;/p&gt;
-  &lt;p class="tw-text"&gt;I need everyone to get really cool about a lot of stuff really fast&lt;/p&gt;
-  &lt;div class="tw-stats"&gt;
-    &lt;p class="tw-stat"&gt;
-      &lt;span class="ic ic-tw-reply"&gt;&amp;#9993;&lt;/span&gt;
-    &lt;/p&gt;
-    &lt;p class="tw-stat"&gt;&lt;span class="ic ic-tw-repost"&gt;&amp;#8644;&lt;/span&gt; 1&lt;span class="hide"&gt; repost&lt;/span&gt;&lt;/p&gt;
-    &lt;p class="tw-stat"&gt;&lt;span class="ic ic-tw-like"&gt;&amp;#9825;&lt;/span&gt; 12&lt;span class="hide"&gt; likes&lt;/span&gt;&lt;/p&gt;
-    &lt;p class="tw-stat"&gt;&lt;span class="ic ic-tw-views"&gt;&amp;#128202;&lt;/span&gt; 324&lt;span class="hide"&gt; views&lt;/span&gt;&lt;/p&gt;
-    &lt;details class="tw-stat right tw-tog"&gt;
+<pre><code>&lt;div class="mob tw post theme-dark"&gt;
+  &lt;p class="top"&gt;&lt;span class="who"&gt;Holster&lt;/span&gt; &lt;span class="tw-handle"&gt;@HolsterInLaw&lt;/span&gt; &lt;span class="time"&gt;· 2h&lt;/span&gt;&lt;/p&gt;
+  &lt;p class="text"&gt;I need everyone to get really cool about a lot of stuff really fast&lt;/p&gt;
+  &lt;div class="stats"&gt;
+    &lt;p class="stat comments"&gt;&lt;span class="ic ic-tw-reply"&gt;&amp;#9993;&lt;/span&gt;&lt;/p&gt;
+    &lt;p class="stat reposts"&gt;&lt;span class="ic ic-tw-repost"&gt;&amp;#8644;&lt;/span&gt; 1&lt;span class="hide"&gt; repost&lt;/span&gt;&lt;/p&gt;
+    &lt;p class="stat likes"&gt;&lt;span class="ic ic-tw-like"&gt;&amp;#9825;&lt;/span&gt; 12&lt;span class="hide"&gt; likes&lt;/span&gt;&lt;/p&gt;
+    &lt;p class="stat views"&gt;&lt;span class="ic ic-tw-views"&gt;&amp;#128202;&lt;/span&gt; 324&lt;span class="hide"&gt; views&lt;/span&gt;&lt;/p&gt;
+    &lt;details class="stat bookmarks right tog"&gt;
       &lt;summary&gt;&lt;span class="ic ic-tw-bookmark"&gt;&amp;#128278;&lt;/span&gt;&lt;span class="hide"&gt; Bookmark&lt;/span&gt;&lt;/summary&gt;
     &lt;/details&gt;
-    &lt;p class="tw-stat right"&gt;
-      &lt;span class="ic ic-tw-share"&gt;&amp;#8679;&lt;/span&gt;
-    &lt;/p&gt;
+    &lt;p class="stat shares right"&gt;&lt;span class="ic ic-tw-share"&gt;&amp;#8679;&lt;/span&gt;&lt;/p&gt;
   &lt;/div&gt;
 &lt;/div&gt;
-&lt;div class="mob tw-reply theme-dark"&gt;
-  &lt;p&gt;&lt;span class="tw-name"&gt;Zim&lt;/span&gt; &lt;span class="tw-handle"&gt;@ZimBits&lt;/span&gt; &lt;span class="tw-time"&gt;· 1h&lt;/span&gt;&lt;/p&gt;
+&lt;div class="mob tw-reply post theme-dark"&gt;
+  &lt;p&gt;&lt;span class="who"&gt;Zim&lt;/span&gt; &lt;span class="tw-handle"&gt;@ZimBits&lt;/span&gt; &lt;span class="time"&gt;· 1h&lt;/span&gt;&lt;/p&gt;
   &lt;p&gt;WHAT DID YOU DO??&lt;/p&gt;
 &lt;/div&gt;</code></pre>
 
@@ -696,39 +668,30 @@
 
 <p><strong>Instagram Post</strong></p>
 
-<div class="mob ig theme-dark">
-  <p class="ig-top">
-    <span class="ig-name">ilya.r</span><span class="hide"> - </span>
-    <span>Ottawa, Ontario</span>
-  </p>
-  <p class="ig-photo"><span class="img-desc">[A photo of a small dog, Anya, in a Christmas sweater.]</span></p>
-  <p class="ig-likes">2,431 likes</p>
+<div class="mob ig post theme-dark">
+  <p class="top"><span class="who">ilya.r</span><span class="hide"> - </span> <span>Ottawa, Ontario</span></p>
+  <p class="photo"><span class="img-desc">[A photo of a small dog, Anya, in a Christmas sweater.]</span></p>
+  <p class="counts">2,431 likes</p>
   <p class="ig-caption"><b>ilya.r</b> my child is cuter than you</p>
-  <p class="ig-time">3 hours ago</p>
+  <p class="time">3 hours ago</p>
 </div>
 
-<div class="mob ig theme-light">
-  <p class="ig-top">
-    <span class="ig-name">ilya.r</span><span class="hide"> - </span>
-    <span>Ottawa, Ontario</span>
-  </p>
-  <p class="ig-photo"><span class="img-desc">[A photo of a small dog, Anya, in a Christmas sweater.]</span></p>
-  <p class="ig-likes">2,431 likes</p>
+<div class="mob ig post theme-light">
+  <p class="top"><span class="who">ilya.r</span><span class="hide"> - </span> <span>Ottawa, Ontario</span></p>
+  <p class="photo"><span class="img-desc">[A photo of a small dog, Anya, in a Christmas sweater.]</span></p>
+  <p class="counts">2,431 likes</p>
   <p class="ig-caption"><b>ilya.r</b> my child is cuter than you</p>
-  <p class="ig-time">3 hours ago</p>
+  <p class="time">3 hours ago</p>
 </div>
 
 <p><em>The HTML for the dark version:</em></p>
 
-<pre><code>&lt;div class="mob ig theme-dark"&gt;
-  &lt;p class="ig-top"&gt;
-    &lt;span class="ig-name"&gt;ilya.r&lt;/span&gt;&lt;span class="hide"&gt; - &lt;/span&gt;
-    &lt;span&gt;Ottawa, Ontario&lt;/span&gt;
-  &lt;/p&gt;
-  &lt;p class="ig-photo"&gt;&lt;span class="img-desc"&gt;[A photo of a small dog, Anya, in a Christmas sweater.]&lt;/span&gt;&lt;/p&gt;
-  &lt;p class="ig-likes"&gt;2,431 likes&lt;/p&gt;
+<pre><code>&lt;div class="mob ig post theme-dark"&gt;
+  &lt;p class="top"&gt;&lt;span class="who"&gt;ilya.r&lt;/span&gt;&lt;span class="hide"&gt; - &lt;/span&gt; &lt;span&gt;Ottawa, Ontario&lt;/span&gt;&lt;/p&gt;
+  &lt;p class="photo"&gt;&lt;span class="img-desc"&gt;[A photo of a small dog, Anya, in a Christmas sweater.]&lt;/span&gt;&lt;/p&gt;
+  &lt;p class="counts"&gt;2,431 likes&lt;/p&gt;
   &lt;p class="ig-caption"&gt;&lt;b&gt;ilya.r&lt;/b&gt; my child is cuter than you&lt;/p&gt;
-  &lt;p class="ig-time"&gt;3 hours ago&lt;/p&gt;
+  &lt;p class="time"&gt;3 hours ago&lt;/p&gt;
 &lt;/div&gt;</code></pre>
 
 <p><strong>Instagram DMs</strong></p>
@@ -770,31 +733,17 @@
 
 <p><strong>Tumblr</strong></p>
 
-<div class="mob tb theme-dark">
-  <p class="tb-top">
-    <span class="tb-pfp reblog colour4">PL</span>
-    <span class="tb-menu ic ic-more">&#8226;&#8226;&#8226;</span>
-    <span class="tb-name">
-      <b>puckontheline</b>
-      <span class="tb-detail">Reblogged <b>metrosstan</b> &middot; 2h ago</span>
-    </span>
-  </p>
-  <div class="tb-text">
+<div class="mob tb post theme-dark">
+  <p class="top"><span class="avatar reblog colour4">PL</span> <span class="menu ic ic-more">&#8226;&#8226;&#8226;</span> <span class="who"> <b>puckontheline</b> <span class="tb-detail">Reblogged <b>metrosstan</b> &middot; 2h ago</span> </span></p>
+  <div class="text">
     <p>I need to start a rumour.</p>
   </div>
   <p class="tb-tags">#hockey rpf</p>
 </div>
 
-<div class="mob tb theme-light">
-  <p class="tb-top">
-    <span class="tb-pfp reblog colour4">PL</span>
-    <span class="tb-menu ic ic-more">&#8226;&#8226;&#8226;</span>
-    <span class="tb-name">
-      <b>puckontheline</b>
-      <span class="tb-detail">Reblogged <b>metrosstan</b> · 2h ago</span>
-    </span>
-  </p>
-  <div class="tb-text">
+<div class="mob tb post theme-light">
+  <p class="top"><span class="avatar reblog colour4">PL</span> <span class="menu ic ic-more">&#8226;&#8226;&#8226;</span> <span class="who"> <b>puckontheline</b> <span class="tb-detail">Reblogged <b>metrosstan</b> · 2h ago</span> </span></p>
+  <div class="text">
     <p>I need to start a rumour.</p>
   </div>
   <p class="tb-tags">#hockey rpf</p>
@@ -802,16 +751,9 @@
 
 <p><em>The HTML for the dark version:</em></p>
 
-<pre><code>&lt;div class="mob tb theme-dark"&gt;
-  &lt;p class="tb-top"&gt;
-    &lt;span class="tb-pfp reblog colour4"&gt;PL&lt;/span&gt;
-    &lt;span class="tb-menu ic ic-more"&gt;&amp;#8226;&amp;#8226;&amp;#8226;&lt;/span&gt;
-    &lt;span class="tb-name"&gt;
-      &lt;b&gt;puckontheline&lt;/b&gt;
-      &lt;span class="tb-detail"&gt;Reblogged &lt;b&gt;metrosstan&lt;/b&gt; &amp;middot; 2h ago&lt;/span&gt;
-    &lt;/span&gt;
-  &lt;/p&gt;
-  &lt;div class="tb-text"&gt;
+<pre><code>&lt;div class="mob tb post theme-dark"&gt;
+  &lt;p class="top"&gt;&lt;span class="avatar reblog colour4"&gt;PL&lt;/span&gt; &lt;span class="menu ic ic-more"&gt;&amp;#8226;&amp;#8226;&amp;#8226;&lt;/span&gt; &lt;span class="who"&gt; &lt;b&gt;puckontheline&lt;/b&gt; &lt;span class="tb-detail"&gt;Reblogged &lt;b&gt;metrosstan&lt;/b&gt; &amp;middot; 2h ago&lt;/span&gt; &lt;/span&gt;&lt;/p&gt;
+  &lt;div class="text"&gt;
     &lt;p&gt;I need to start a rumour.&lt;/p&gt;
   &lt;/div&gt;
   &lt;p class="tb-tags"&gt;#hockey rpf&lt;/p&gt;
@@ -874,12 +816,12 @@
 
 <p>Here are two Instagram comments with no post above them:</p>
 
-<div class="mob ig theme-auto">
+<div class="mob ig post theme-auto">
   <p class="ig-comment"><b>ilya.r</b> I am coming now</p>
   <p class="ig-comment"><b>shane.h</b> you said that an hour ago</p>
 </div>
 
-<pre><code>&lt;div class="mob ig theme-auto"&gt;
+<pre><code>&lt;div class="mob ig post theme-auto"&gt;
   &lt;p class="ig-comment"&gt;&lt;b&gt;ilya.r&lt;/b&gt; I am coming now&lt;/p&gt;
   &lt;p class="ig-comment"&gt;&lt;b&gt;shane.h&lt;/b&gt; you said that an hour ago&lt;/p&gt;
 &lt;/div&gt;</code></pre>
@@ -907,11 +849,11 @@
 
 <p>A container is as wide as a phone, which can look too big around one small thing. Add <code>loose</code> to the container and it shrinks to fit whatever's inside it:</p>
 
-<div class="mob ig loose theme-auto">
+<div class="mob ig post loose theme-auto">
   <p class="ig-comment"><b>ilya.r</b> I am coming now</p>
 </div>
 
-<pre><code>&lt;div class="mob ig loose theme-auto"&gt;
+<pre><code>&lt;div class="mob ig post loose theme-auto"&gt;
   &lt;p class="ig-comment"&gt;&lt;b&gt;ilya.r&lt;/b&gt; I am coming now&lt;/p&gt;
 &lt;/div&gt;</code></pre>
 
@@ -980,12 +922,9 @@
 <summary>Options: where the circle goes in each module</summary>
 
 <ul>
-  <li>Chats (WhatsApp, Instagram DMs, Twitter/X DMs): <code>avatar</code>, next to group messages and in the header.</li>
-  <li>Tweets: <code>tw-pfp</code>, at the start of the name line.</li>
-  <li>Instagram posts: <code>ig-pfp</code> beside the account name, and <code>ig-like-pfp</code> for the little faces in the "Liked by" line.</li>
-  <li>Tumblr: <code>tb-pfp</code>, at the start of the header.</li>
+  <li>Chats: <code>avatar</code>, next to group messages and in the header. In Discord it's first in each <code>row</code>.</li>
+  <li>Posts: <code>avatar</code>, at the start of the <code>top</code> line. Instagram also has <code>ig-like-pfp</code> for the little faces in the "Liked by" line.</li>
   <li>Gmail: <code>gm-pfp</code>, beside the sender.</li>
-  <li>Discord: <code>avatar</code>, first thing in each <code>row</code>, the same as the chat apps. Without a profile, <code>colour1</code> to <code>colour10</code> give plain coloured circles, the same as in the other apps.</li>
 </ul>
 
 </details>
@@ -1147,26 +1086,13 @@
   </div>
 </div>
 
-<div class="mob tw theme-auto">
-  <p class="tw-top">
-    <span class="tw-pfp">
-      <span class="pfp pfp-stan"></span>
-    </span>
-    <span class="tw-name">Stan</span>
-    <span class="tw-handle"><span class="handle pfp-stan"><span class="hide">@PuckStan</span></span></span>
-    <span class="tw-time">· 2h</span>
-  </p>
-  <p class="tw-text">same picture everywhere now</p>
+<div class="mob tw post theme-auto">
+  <p class="top"><span class="avatar"> <span class="pfp pfp-stan"></span> </span> <span class="who">Stan</span> <span class="tw-handle"><span class="handle pfp-stan"><span class="hide">@PuckStan</span></span></span> <span class="time">· 2h</span></p>
+  <p class="text">same picture everywhere now</p>
 </div>
 
-<div class="mob ig theme-auto">
-  <p class="ig-top">
-    <span class="ig-pfp">
-      <span class="pfp pfp-stan"></span>
-    </span>
-    <span class="ig-name"><span class="handle pfp-stan"><span class="hide">PuckStan</span></span></span><span class="hide"> - </span>
-    <span>Montreal, Quebec</span>
-  </p>
+<div class="mob ig post theme-auto">
+  <p class="top"><span class="avatar"> <span class="pfp pfp-stan"></span> </span> <span class="who"><span class="handle pfp-stan"><span class="hide">PuckStan</span></span></span><span class="hide"> - </span> <span>Montreal, Quebec</span></p>
 </div>
 
 <div class="mob gm theme-auto">
@@ -1211,13 +1137,13 @@
 &lt;/p&gt;
 &lt;p class="who pfp-stan"&gt;Stan&lt;span class="hide"&gt;:&lt;/span&gt;&lt;/p&gt;
 
-&lt;span class="tw-pfp"&gt;
+&lt;span class="avatar"&gt;
   &lt;span class="pfp pfp-stan"&gt;&lt;/span&gt;
 &lt;/span&gt;
 &lt;span class="tw-handle"&gt;&lt;span class="handle pfp-stan"&gt;&lt;span class="hide"&gt;@PuckStan&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
-&lt;span class="tw-time"&gt;· 2h&lt;/span&gt;
+&lt;span class="time"&gt;· 2h&lt;/span&gt;
 
-&lt;span class="ig-pfp"&gt;
+&lt;span class="avatar"&gt;
   &lt;span class="pfp pfp-stan"&gt;&lt;/span&gt;
 &lt;/span&gt;
 &lt;span class="handle pfp-stan"&gt;&lt;span class="hide"&gt;PuckStan&lt;/span&gt;&lt;/span&gt;
@@ -1545,24 +1471,16 @@
   &lt;/div&gt;
 &lt;/div&gt;</code></pre>
 
-<div class="mob tw theme-auto">
-  <p class="tw-top">
-    <span class="tw-name">Ilya Rozanov</span>
-    <span class="tw-handle">@irozanov</span>
-    <span class="tw-time">· 7m</span>
-  </p>
-  <p class="tw-text"><a class="tl" href="#t3"><span class="orig">Bore da</span><span class="tltn"><span class="hide"> (</span>Good morning<span class="hide">)</span></span></a>! I am learning Welsh now. Do not ask why.</p>
+<div class="mob tw post theme-auto">
+  <p class="top"><span class="who">Ilya Rozanov</span> <span class="tw-handle">@irozanov</span> <span class="time">· 7m</span></p>
+  <p class="text"><a class="tl" href="#t3"><span class="orig">Bore da</span><span class="tltn"><span class="hide"> (</span>Good morning<span class="hide">)</span></span></a>! I am learning Welsh now. Do not ask why.</p>
 </div>
 
 <p><em>The finished chat looks like this, and here is the full HTML:</em></p>
 
-<pre><code>&lt;div class="mob tw theme-auto"&gt;
-  &lt;p class="tw-top"&gt;
-    &lt;span class="tw-name"&gt;Ilya Rozanov&lt;/span&gt;
-    &lt;span class="tw-handle"&gt;@irozanov&lt;/span&gt;
-    &lt;span class="tw-time"&gt;· 7m&lt;/span&gt;
-  &lt;/p&gt;
-  &lt;p class="tw-text"&gt;&lt;a class="tl" href="#t3"&gt;&lt;span class="orig"&gt;Bore da&lt;/span&gt;&lt;span class="tltn"&gt;&lt;span class="hide"&gt; (&lt;/span&gt;Good morning&lt;span class="hide"&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/a&gt;! I am learning Welsh now. Do not ask why.&lt;/p&gt;
+<pre><code>&lt;div class="mob tw post theme-auto"&gt;
+  &lt;p class="top"&gt;&lt;span class="who"&gt;Ilya Rozanov&lt;/span&gt; &lt;span class="tw-handle"&gt;@irozanov&lt;/span&gt; &lt;span class="time"&gt;· 7m&lt;/span&gt;&lt;/p&gt;
+  &lt;p class="text"&gt;&lt;a class="tl" href="#t3"&gt;&lt;span class="orig"&gt;Bore da&lt;/span&gt;&lt;span class="tltn"&gt;&lt;span class="hide"&gt; (&lt;/span&gt;Good morning&lt;span class="hide"&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/a&gt;! I am learning Welsh now. Do not ask why.&lt;/p&gt;
 &lt;/div&gt;</code></pre>
 
 </details>
