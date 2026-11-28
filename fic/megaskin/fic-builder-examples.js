@@ -137,7 +137,8 @@ window.FB_EXAMPLES = [
       ["Rose", "the girls are devastated they're not invited 😿", { time: "09:19" }],
       ["Ilya", "Shane will not drink this. more for me", { time: "09:20" }],
       ["Hayden", "", { time: "09:21", contact: "Jackie Pike" }],
-      ["Hayden", "Jackie wants to bring dessert. message her yourselves, I'm not the middleman", { time: "09:21" }]
+      ["Hayden", "Jackie wants to bring dessert. message her yourselves, I'm not the middleman", { time: "09:21" }],
+      ["typing", "", { by: "Rose" }]
     ]
   },
   {
@@ -204,7 +205,8 @@ window.FB_EXAMPLES = [
       ["sys", "Today 09:02"],
       ["Shane", "", { photos: [{ url: MACK, alt: MACKALT }] }],
       ["Ilya", "you laughed. I heard you", { reply: 3 }],
-      ["Ilya", "", { voice: "0:02", status: "Seen" }]
+      ["Ilya", "", { voice: "0:02", status: "Seen" }],
+      ["typing", "", { by: "Shane" }]
     ]
   },
   {
@@ -218,7 +220,8 @@ window.FB_EXAMPLES = [
       ["Hayden", "Jackie says I'm allowed"],
       ["Shane", "yes. Ilya is paying", { waReacts: "👍 😂 3" }],
       ["Ilya", "I did not agree to this", { reply: 3, status: "Sent" }],
-      ["Scott", "you did, actually. there are witnesses"]
+      ["Scott", "you did, actually. there are witnesses"],
+      ["typing", "", { by: "Hayden" }]
     ]
   },
   {
@@ -227,11 +230,11 @@ window.FB_EXAMPLES = [
       { name: "Scott", colour: "6", initials: "SH", ighandle: "scott.h" }, { name: "Hayden", colour: "4", initials: "HP", ighandle: "hayden.pike" }],
     chat: { type: "igfeed", pov: "Ilya", top: "new", myStory: true, stories: "Rose (close)\nShane\nScott" },
     msgs: [
-      ["Rose", "made enough for the whole committee. nobody came. #galaprep", { time: "20 minutes ago", verified: true, under: "Ottawa, Ontario",
+      ["Rose", "made enough for the whole committee. nobody came. #galaprep", { time: "20 minutes ago", under: "Ottawa, Ontario",
         photos: [{ desc: "A photo of a very large lasagne, with one corner already missing" }], likes: "312", likeClick: false, cmCount: "2", comments: "Ilya: I am coming now" }],
-      ["Shane", "the best night", { time: "2 hours ago", verified: true, collabs: [["Ilya", true]], under: "Montreal, Quebec",
+      ["Shane", "the best night", { time: "2 hours ago", verified: true, collabs: [["Ilya"]], under: "Montreal, Quebec",
         photos: [{ desc: "Shane and Ilya on the ice after a game, arms round each other" }, { desc: "Rose pulling a face at the camera over a glass of wine" }],
-        tags: [["Shane", "following", true], ["Ilya", "none", true], ["Rose", "following", true], ["Hayden", "follow"]],
+        tags: [["Shane", "following"], ["Ilya", "none"], ["Rose", "following"], ["Hayden", "follow"]],
         likes: "2,431", cmCount: "84", reposts: "12", likesLine: "faces", faces: ["Rose", "Scott"], viewAll: true, comments: "Scott: I see you 👀" }],
       ["Scott", "opening day. thank you all for coming", { time: "2 hours ago", under: "New York, New York",
         photos: [{ desc: "A photo of a smoothie stand with a queue round the block" }], likes: "1,207", liked: true, saved: true, cmCount: "40" }],

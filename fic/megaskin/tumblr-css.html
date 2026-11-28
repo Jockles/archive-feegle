@@ -7,7 +7,7 @@
   <title>Megaskin, Chapter 15: Tumblr CSS | jockles.com</title>
   <link rel="stylesheet" href="../../style.css">
   <script src="../../theme.js"></script>
-  <link rel="stylesheet" href="megaskin.css?v=09fb48f3" id="creator-style">
+  <link rel="stylesheet" href="megaskin.css?v=9c9f7b74" id="creator-style">
 </head>
 <body>
 <header>
@@ -46,27 +46,38 @@
 <ul class="contents">
   <li><a href="#s15-1">15.1 Getting the CSS</a></li>
   <li><a href="#s15-2">15.2 How the Module is Laid Out</a></li>
-  <li><a href="#s15-3">15.3 The Card</a></li>
-  <li><a href="#s15-4">15.4 The Header</a></li>
-  <li><a href="#s15-5">15.5 Pictures and the Reblog Badge</a></li>
-  <li><a href="#s15-6">15.6 Checkmarks</a></li>
-  <li><a href="#s15-7">15.7 Reblog Chains</a></li>
-  <li><a href="#s15-8">15.8 Asks</a></li>
-  <li><a href="#s15-9">15.9 Quote and Chat Posts</a></li>
-  <li><a href="#s15-10">15.10 Polls</a>
+  <li><a href="#s15-3">15.3 The Container</a>
     <ul>
-      <li><a href="#s15-10-1">15.10.1 Tappable Polls</a></li>
+      <li><a href="#s15-3-1">15.3.1 The Card</a></li>
+      <li><a href="#s15-3-2">15.3.2 Header</a></li>
+      <li><a href="#s15-3-3">15.3.3 Background</a></li>
+      <li><a href="#s15-3-4">15.3.4 Footer</a></li>
     </ul>
   </li>
-  <li><a href="#s15-11">15.11 Pictures and Gifs</a></li>
-  <li><a href="#s15-12">15.12 Tags and the Bottom Row</a></li>
-  <li><a href="#s15-13">15.13 The Feed</a></li>
-  <li><a href="#s15-14">15.14 The App Screen</a></li>
-  <li><a href="#s15-15">15.15 Links and Themes</a></li>
-  <li><a href="#s15-16">15.16 Taking Parts Out</a></li>
+  <li><a href="#s15-4">15.4 Normal Posts</a>
+    <ul>
+      <li><a href="#s15-4-1">15.4.1 Reblog Chains</a></li>
+      <li><a href="#s15-4-2">15.4.2 Asks</a></li>
+      <li><a href="#s15-4-3">15.4.3 Quote and Chat Posts</a></li>
+      <li><a href="#s15-4-4">15.4.4 Polls</a></li>
+      <li><a href="#s15-4-5">15.4.5 Tappable Polls</a></li>
+    </ul>
+  </li>
+  <li><a href="#s15-5">15.5 Pictures and Gifs</a></li>
+  <li><a href="#s15-6">15.6 Characters</a>
+    <ul>
+      <li><a href="#s15-6-1">15.6.1 Profile Pictures</a></li>
+      <li><a href="#s15-6-2">15.6.2 Round or Square Pictures</a></li>
+    </ul>
+  </li>
+  <li><a href="#s15-7">15.7 Links</a></li>
+  <li><a href="#s15-8">15.8 Dark and Auto Themes</a></li>
+  <li><a href="#s15-9">15.9 Taking Parts Out</a></li>
 </ul>
 
 <p>This chapter goes through the CSS for the Tumblr posts in the last chapter: the card, the header with its picture and checkmarks, reblog chains, asks, quote and chat posts, the bottom row, and the feed behind the cards.</p>
+
+<p>Each part starts with the CSS itself and a line or two on what it does. The <strong>Options</strong> boxes show what you can safely change, and the <strong>How it works</strong> boxes go through the rules a line at a time, if you want to learn how it's put together.</p>
 
 <h3 id="s15-1">15.1 Getting the CSS</h3>
 
@@ -76,7 +87,9 @@
 
 <p>The usual order - the main rules, Links, Scrolling, Dark theme, Auto theme and Icons. Like a tweet or an Instagram post, a Tumblr post has no <code>mob-body</code>, so it scrolls as a whole once it's taller than <code>700px</code>.</p>
 
-<h3 id="s15-3">15.3 The Card</h3>
+<h3 id="s15-3">15.3 The Container</h3>
+
+<h4 id="s15-3-1">15.3.1 The Card</h4>
 
 <pre><code>#workskin .tb {
   background: #ffffff;
@@ -88,11 +101,18 @@
   line-height: 1.5;
 }
 
-#workskin .tb .tb-body { display: block; padding: 0.3em 0 0.8em 0; }
+#workskin .tb .text { display: block; padding: 0.3em 0 0.8em 0; }
 
-#workskin .tb .tb-body p { margin: 0.5em 0; padding: 0 0.9em; }</code></pre>
+#workskin .tb .text p { margin: 0.5em 0; padding: 0 0.9em; }</code></pre>
 
-<p>A white card with rounded corners, like the mobile app. Tumblr posts are more spaced out than chats, so the lines are taller (<code>1.5</code>), and paragraphs in the body get their gaps back - the core takes them away from every chat, but a post needs them.</p>
+<p>A white card with rounded corners, like the mobile app.</p>
+
+<details>
+<summary>How it works: taller lines and paragraph gaps</summary>
+
+<p>Tumblr posts are more spaced out than chats, so the lines are taller (<code>1.5</code>), and paragraphs in the body get their gaps back - the core takes them away from every chat, but a post needs them.</p>
+
+</details>
 
 <pre><code>#workskin .tb :not(.pfp) &gt; img {
   display: block;
@@ -102,11 +122,20 @@
   border-radius: 4px;
 }</code></pre>
 
-<p>This one catches every picture in a post, but not profile pictures: <code>:not(.pfp) &gt; img</code> means "a picture whose box isn't a <code>pfp</code>". The picture is centred, with a little space either side, and never wider than the card.</p>
+<p>This one catches every picture in a post, but not profile pictures.</p>
 
-<h3 id="s15-4">15.4 The Header</h3>
+<details>
+<summary>How it works: every picture except profile pictures</summary>
 
-<pre><code>#workskin .tb .tb-header,
+<p><code>:not(.pfp) &gt; img</code> means "a picture whose box isn't a <code>pfp</code>". The picture is centred, with a little space either side, and never wider than the card.</p>
+
+</details>
+
+<h4 id="s15-3-2">15.3.2 Header</h4>
+
+<h5 id="s15-3-2-1">15.3.2.1 The Header</h5>
+
+<pre><code>#workskin .tb .top,
 #workskin .tb .tb-blog {
   display: block;
   overflow: hidden;
@@ -114,18 +143,22 @@
   font-weight: normal;
 }
 
-#workskin .tb .tb-header { padding-bottom: 0.8em; border-bottom: 1px solid #eeeeee; }
+#workskin .tb .top { padding-bottom: 0.8em; border-bottom: 1px solid #eeeeee; }
 
-#workskin .tb .tb-name { display: block; min-height: 38px; margin-left: 48px; overflow: hidden; }
+#workskin .tb .who { display: block; min-height: 38px; margin-left: 48px; overflow: hidden; }
 
-#workskin .tb .tb-name &gt; b { display: block; overflow: hidden; white-space: nowrap; font-weight: bold; line-height: 1.3; }
+#workskin .tb .who &gt; b { display: block; overflow: hidden; white-space: nowrap; font-weight: bold; line-height: 1.3; }
 
-#workskin .tb .tb-name &gt; b:only-child { line-height: 38px; }
+#workskin .tb .who &gt; b:only-child { line-height: 38px; }
 
-#workskin .tb .tb-subline { display: block; font-size: 0.85em; color: #6c7a8b; }</code></pre>
+#workskin .tb .tb-detail { display: block; font-size: 0.85em; color: #6c7a8b; }</code></pre>
+
+<p>The post's header (<code>top</code>) and each reblog's header (<code>tb-blog</code>) are built the same, except the post's header has a line under it.</p>
+
+<details>
+<summary>How it works: the picture, the name and long names</summary>
 
 <ul>
-  <li>The post's header (<code>tb-header</code>) and each reblog's header (<code>tb-blog</code>) are built the same, except the post's header has a line under it.</li>
   <li>The picture floats left, and the name is pushed <code>48px</code> in from the left to clear it - the picture's <code>38px</code> and a gap. <code>min-height</code> makes the name block at least as tall as the picture, so the next thing always starts below both.</li>
   <li><code>:only-child</code> catches a name with no grey line under it, and makes its line as tall as the picture, which centres it from top to bottom beside the picture.</li>
   <li>The name never wraps onto a second line (<code>nowrap</code>), and <code>overflow: hidden</code> on both cuts off anything that doesn't fit. That's for blogs with lots of checkmarks: like the app, they run up to the Follow button or the three dots and get cut off sharply there, however wide the screen is.</li>
@@ -133,12 +166,24 @@
 
 <p>The header code is written over several lines, and AO3 turns line breaks into <code>&lt;br /&gt;</code> tags, so a couple of rules hide those and flatten the paragraph AO3 wraps around it, as in WhatsApp's message bar.</p>
 
+</details>
+
 <details>
-<summary>The right-hand side: Follow and the three dots</summary>
+<summary>How it works: the right-hand side, Follow and the three dots</summary>
 
-<pre><code>#workskin .tb .tb-follow { display: block; float: right; margin: 2px 0 0 0.5em; }
+<pre><code>#workskin .tb .follow {
+  display: block;
+  float: right;
+  margin: 2px 0 0 0.55em;
+  padding: 0 1.1em;
+  line-height: 34px;
+  border-radius: 2em;
+  background: #ececec;
+  font-weight: bold;
+  font-size: 0.9em;
+}
 
-#workskin .tb .tb-menu {
+#workskin .tb .menu {
   display: block;
   float: right;
   height: 38px;
@@ -147,43 +192,21 @@
   color: #777777;
   letter-spacing: 0.05em;
   font-size: 0.8em;
+}
+
+#workskin .tb .menu.ic {
+  width: 1.9em;
+  height: 38px;
+  opacity: 0.55;
 }</code></pre>
 
-<p>Both float right, which is why they come before the name in the code (see <a href="instagram-css.html#s13-8">The Account Line Extras</a>). The first one in the code goes furthest right, so the dots go first and the Follow button second, to end up in the right order.</p>
+<p>The dots are a black picture, faded to grey with <code>opacity</code>. Both float right, which is why they come before the name in the code (see <a href="instagram-css.html#s13-6-1">The Account Line Extras</a>). The first one in the code goes furthest right, so the dots go first and the Follow button second, to end up in the right order.</p>
 
 </details>
 
-<h3 id="s15-5">15.5 Pictures and the Reblog Badge</h3>
+<h5 id="s15-3-2-2">15.3.2.2 The Reblog Badge</h5>
 
-<pre><code>#workskin .tb .tb-pfp {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  float: left;
-  position: relative;
-  width: 38px;
-  height: 38px;
-  line-height: 1;
-  text-align: center;
-  border-radius: 50%;
-  background-color: #8a8a8a;
-  font-family: Arial, Helvetica, sans-serif;
-  background-size: cover;
-  background-position: center;
-  color: #ffffff;
-  font-size: 0.85em;
-  font-weight: bold;
-}</code></pre>
-
-<p>The circle works like the other modules', with initials or a picture inside and <code>colour1</code> to <code>colour10</code> for the colours. It uses <code>display: flex</code> to centre the initials, the same as every app's circle: <code>align-items</code> centres them top to bottom, and <code>justify-content</code> side to side.</p>
-
-<pre><code>#workskin .tb .tb-pfp.sq,
-#workskin .tb .tb-ask-pfp.sq,
-#workskin .tb .sq .pfp { border-radius: 15%; }</code></pre>
-
-<p><code>sq</code> swaps the circle for a square with rounded corners, on either kind of picture and on a <code>pfp</code> picture inside one. <code>15%</code> rounds the corners by the same amount whatever the size of the square. A profile does the same thing with its own <code>border-radius</code> line (see <a href="tumblr.html#s14-5">Round or Square Pictures</a>).</p>
-
-<pre><code>#workskin .tb .tb-pfp.rb::after {
+<pre><code>#workskin .tb .avatar.reblog::after {
   content: '\21C4';
   position: absolute;
   right: -6px;
@@ -204,9 +227,16 @@
   font-weight: bold;
 }</code></pre>
 
-<p>The reblog badge is added with <code>::after</code> and pinned off the bottom right of the circle. <code>\21C4</code> is the ⇄ arrows, in white on Tumblr's green, with a white edge to separate it from the picture. With the icons on, the Icons section swaps the arrows for the white reblog picture (see <a href="icons.html#s20-6">Taking the Icons Out</a>).</p>
+<p>The reblog badge is added with <code>::after</code> and pinned off the bottom right of the circle.</p>
 
-<h3 id="s15-6">15.6 Checkmarks</h3>
+<details>
+<summary>How it works: the arrows and the white edge</summary>
+
+<p><code>\21C4</code> is the ⇄ arrows, in white on Tumblr's green, with a white edge to separate it from the picture. With the icons on, the Icons section swaps the arrows for the white reblog picture (see <a href="icons.html#s20-3">Taking the Icons Out</a>).</p>
+
+</details>
+
+<h5 id="s15-3-2-3">15.3.2.3 Checkmarks</h5>
 
 <pre><code>#workskin .tb .tb-check {
   display: inline-flex;
@@ -251,7 +281,14 @@
 
 #workskin .tb .tb-check.blue { background: #52b5f9; }</code></pre>
 
-<p>Every checkmark starts blue. Then the same <code>+</code> trick as iMessage's stacked tapbacks counts them: <code>.tb-check + .tb-check</code> is the second, and each extra <code>+ .tb-check</code> is one further along, so the second is green, the third lime, and so on round to violet for the twelfth. The <code>blue</code> line comes last, so it wins over the counting and keeps that checkmark blue wherever it is. That's how the colours always come out in the right order, without you having to say which is which.</p>
+<p>These are the checkmarks drawn with CSS. Every checkmark starts blue, and each one after it gets the next colour along.</p>
+
+<details>
+<summary>How it works: counting the checkmarks</summary>
+
+<p>Then the same <code>+</code> trick as iMessage's stacked tapbacks counts them: <code>.tb-check + .tb-check</code> is the second, and each extra <code>+ .tb-check</code> is one further along, so the second is green, the third lime, and so on round to violet for the twelfth. The <code>blue</code> line comes last, so it wins over the counting and keeps that checkmark blue wherever it is. That's how the colours always come out in the right order, without you having to say which is which.</p>
+
+</details>
 
 <pre><code>#workskin .tb .handle::after { background-repeat: no-repeat; background-position: right center; background-size: auto 0.9em; }</code></pre>
 
@@ -273,7 +310,129 @@
 
 <p>In the Icons section, the span becomes the picture, at just under the height of the name. Each number of checkmarks has its own width, the same as the padding a profile uses, so the gap after the name comes out the same either way.</p>
 
-<h3 id="s15-7">15.7 Reblog Chains</h3>
+<h4 id="s15-3-3">15.3.3 Background</h4>
+
+<h5 id="s15-3-3-1">15.3.3.1 The Feed</h5>
+
+<pre><code>#workskin .tb-feed {
+  width: 380px;
+  max-width: 100%;
+  margin: 1.2em auto;
+  padding: 0.5em 0;
+  background: #001935;
+  box-sizing: border-box;
+  border-radius: 14px;
+}
+
+#workskin .tb-feed.black { background: #000000; }
+
+#workskin .tb-feed.classic { background: #435874; }
+
+/* the feed follows the theme too: theme-dark is always black, and theme-auto turns black in dark mode */
+#workskin .tb-feed.theme-dark { background: #000000; }
+
+@media (prefers-color-scheme: dark) {
+  #workskin .tb-feed.theme-auto { background: #000000; }
+}
+
+#workskin .tb-feed .mob {
+  width: auto;
+  max-width: none;
+  margin: 0.5em 0;
+  border-color: transparent;
+  border-radius: 14px;
+}</code></pre>
+
+<p>The feed is a phone-sized navy box, Tumblr's own colour.</p>
+
+<details>
+<summary>Options: changing the feed colour</summary>
+
+<p><strong>Changing the feed colour:</strong> the colour is the <code>background</code> line in <code>#workskin .tb-feed</code> (<code>#001935</code>). Swap it for any colour you like, and every feed without <code>black</code>, <code>classic</code> or a dark theme changes with it. There's a note at that line in the CSS too.</p>
+
+</details>
+
+<details>
+<summary>How it works: the posts inside the feed, and its themes</summary>
+
+<p>The posts inside it lose their own width and fill the feed instead, with a small gap between each one and no visible edge, so they look like cards laid on the background. <code>black</code> swaps the navy for black, and <code>classic</code> for the old Tumblr blue. The feed also takes the same themes as the posts: <code>theme-dark</code> makes it black, and <code>theme-auto</code> keeps it navy until the reader's device is in dark mode, then turns it black, the same as Tumblr's own dark mode. It's the same <code>@media</code> trick the posts use for <code>theme-auto</code>. Give the feed the same theme as the posts inside it so they match.</p>
+
+</details>
+
+<h5 id="s15-3-3-2">15.3.3.2 The App Screen</h5>
+
+<pre><code>#workskin .tb-feed.app { padding: 0; overflow: hidden; }
+
+#workskin .tb-feed .app-screen {
+  display: block;
+  max-height: 640px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 0 0 0.5em 0;
+}
+
+#workskin .tb-feed.no-scroll .app-screen { max-height: none; overflow-y: visible; }
+
+#workskin .app-screen .tb { max-height: none; overflow: visible; }</code></pre>
+
+<p>With <code>app</code>, the feed itself doesn't scroll - the <code>app-screen</code> inside it does, up to <code>640px</code> tall.</p>
+
+<details>
+<summary>How it works: what scrolls and what stays put</summary>
+
+<p>The buttons along the bottom come after the screen, outside it, so they stay where they are while everything in the screen scrolls past, and the top bar is inside the screen, so it scrolls away. The posts inside the screen lose their own scrolling, so there's only one scroll bar. Adding <code>no-scroll</code> to the <code>tb-feed</code> switches the screen's scrolling off too.</p>
+
+</details>
+
+<details>
+<summary>How it works: the top bar, the tabs and the bottom buttons</summary>
+
+<p>The top bar, the tabs and the bottom buttons are flex rows like the bottom of a post. They have no background of their own, so they're always the feed colour, which is why the feed's <code>black</code> and <code>classic</code> work on them too. The picked tab is white with a short blue line under it, made with <code>::after</code> the same way as the reblog badge, and the other tabs and buttons are grey. The Tumblr logo is just a bold "t". The icons are pictures, in the Icons section with the rest, and they're the same in every theme because they always sit on the feed.</p>
+
+</details>
+
+<h4 id="s15-3-4">15.3.4 Footer</h4>
+
+<h5 id="s15-3-4-1">15.3.4.1 Tags and the Bottom Row</h5>
+
+<pre><code>#workskin .tb .stats {
+  display: flex;
+  align-items: center;
+  padding: 0.6em 0.9em 0.9em 0.9em;
+  color: #555555;
+}
+
+#workskin .tb .stat {
+  display: block;
+  flex: 1 1 0;
+  margin: 0;
+  white-space: nowrap;
+}
+
+#workskin .tb .stat.right { flex: none; }
+
+#workskin .tb .stats .ic {
+  display: inline-block;
+  margin-right: 0.3em;
+  font-size: 1.3em;
+  line-height: 1;
+  vertical-align: -0.15em;
+}
+
+#workskin .tb .stat.right .ic { margin-right: 0; }</code></pre>
+
+<p><code>display: flex</code> lines the bottom row up.</p>
+
+<details>
+<summary>How it works: sharing out the width</summary>
+
+<p>Each <code>stat</code> has <code>flex: 1 1 0</code>, which means "start from nothing and take an equal share of the spare room", so replies, reblogs and likes get a third each, however long their numbers are. The share button has no <code>flex</code>, so it only takes the room it needs, and that leaves it at the right-hand end. <code>white-space: nowrap</code> keeps a button and its count on the same line. The buttons are a little bigger than the counts, with a small gap before the number, and the share button doesn't need the gap because nothing comes after it.</p>
+
+</details>
+
+<h3 id="s15-4">15.4 Normal Posts</h3>
+
+<h4 id="s15-4-1">15.4.1 Reblog Chains</h4>
 
 <pre><code>#workskin .tb .tb-reblog {
   display: block;
@@ -282,11 +441,11 @@
   border-top: 1px solid #eeeeee;
 }
 
-#workskin .tb .tb-body &gt; .tb-reblog:first-child { border-top: 0; }</code></pre>
+#workskin .tb .text &gt; .tb-reblog:first-child { border-top: 0; }</code></pre>
 
 <p>Each reblog has a thin line along its top, and the first one in the chain doesn't, because the post's header already has a line under it.</p>
 
-<h3 id="s15-8">15.8 Asks</h3>
+<h4 id="s15-4-2">15.4.2 Asks</h4>
 
 <pre><code>#workskin .tb .tb-ask {
   display: block;
@@ -330,19 +489,26 @@
   font-weight: bold;
 }</code></pre>
 
+<p>An ask is a grey box with a little pointer on its right, aimed at the asker's picture, which sits outside the box.</p>
+
+<details>
+<summary>How it works: the box, the pointer and the picture</summary>
+
 <ul>
   <li>The ask box is grey with a <code>50px</code> margin on its right, leaving room for the picture outside it and a gap between the picture and the edge of the post.</li>
   <li>The pointer is a CSS triangle - the same border trick as WhatsApp's bubble tails - pinned to the right edge, pointing at the picture.</li>
   <li>The picture is pinned outside the box with <code>right: -36px</code>. It's a circle like the header picture, and it has its own <code>colour1</code> to <code>colour10</code>.</li>
 </ul>
 
-<h3 id="s15-9">15.9 Quote and Chat Posts</h3>
+</details>
 
-<pre><code>#workskin .tb .tb-quote { font-family: Georgia, serif; font-size: 1.9em; line-height: 1.25; }
+<h4 id="s15-4-3">15.4.3 Quote and Chat Posts</h4>
 
-#workskin .tb .tb-quote::before { content: "\201C"; }
+<pre><code>#workskin .tb .quote { font-family: Georgia, serif; font-size: 1.9em; line-height: 1.25; }
 
-#workskin .tb .tb-quote::after { content: "\201D"; }
+#workskin .tb .quote::before { content: "\201C"; }
+
+#workskin .tb .quote::after { content: "\201D"; }
 
 #workskin .tb .tb-chat {
   display: block;
@@ -353,9 +519,9 @@
 
 <p>The quote is big and in a serif font, and the curly quotation marks are added before and after it - <code>\201C</code> is “ and <code>\201D</code> is ”. The chat post is in a typewriter font.</p>
 
-<h3 id="s15-10">15.10 Polls</h3>
+<h4 id="s15-4-4">15.4.4 Polls</h4>
 
-<pre><code>#workskin .tb .tb-body .tb-opt {
+<pre><code>#workskin .tb .text .opt {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -371,7 +537,7 @@
   line-height: 1.3;
 }
 
-#workskin .tb .tb-body .tb-opt.res {
+#workskin .tb .text .opt.results {
   justify-content: flex-start;
   border-color: transparent;
   border-radius: 8px;
@@ -380,35 +546,49 @@
   background-image: linear-gradient(#dcdcdc, #dcdcdc);
 }
 
-#workskin .tb .tb-body .tb-opt.res.win { background-image: linear-gradient(#a6d9ec, #a6d9ec); }
+#workskin .tb .text .opt.results.win { background-image: linear-gradient(#a6d9ec, #a6d9ec); }
 
-#workskin .tb .tb-opt .tb-pct { margin-left: auto; padding-left: 0.8em; font-weight: normal; white-space: nowrap; }
+#workskin .tb .opt .pct { margin-left: auto; padding-left: 0.8em; font-weight: normal; white-space: nowrap; }
 
-#workskin .tb .tb-opt.p50 { background-size: 50% 100%; }</code></pre>
+#workskin .tb .opt.p50 { background-size: 50% 100%; }</code></pre>
 
-<p>This is built on the Twitter poll (see <a href="twitter-x-css.html#s9-8">Polls</a>). Before anyone's voted, each option is a blue outline with round ends and the text in the middle. With <code>res</code> it turns into a grey box with the text on the left, and a darker bar is drawn across it as a background: <code>linear-gradient</code> with the same colour twice is just a block of colour, and <code>background-size</code> sets how wide it is, so <code>p50</code> fills half the box. <code>win</code> swaps the grey bar for blue. There's one line like that for each bar size. The box is a flex row, so <code>margin-left: auto</code> pushes the percentage to the right-hand end.</p>
+<p>This is built on the Twitter poll (see <a href="twitter-x-css.html#s9-5">Polls</a>). Before anyone's voted, each option is a blue outline with round ends and the text in the middle.</p>
 
-<p>The <code>.tb-body</code> in the first two rules is there so they win over the body's own paragraph spacing. <code>tb-pollinfo</code> is the small grey centred line underneath. In dark posts the box, the bar and the line are darker.</p>
+<details>
+<summary>How it works: the results bars</summary>
 
-<h4 id="s15-10-1">15.10.1 Tappable Polls</h4>
+<p>With <code>results</code> it turns into a grey box with the text on the left, and a darker bar is drawn across it as a background: <code>linear-gradient</code> with the same colour twice is just a block of colour, and <code>background-size</code> sets how wide it is, so <code>p50</code> fills half the box. <code>win</code> swaps the grey bar for blue. There's one line like that for each bar size. The box is a flex row, so <code>margin-left: auto</code> pushes the percentage to the right-hand end.</p>
 
-<pre><code>#workskin .tb .tb-vote[open] &gt; summary { display: none; }
+<p>The <code>.text</code> in the first two rules is there so they win over the body's own paragraph spacing. <code>pollinfo</code> is the small grey centred line underneath. In dark posts the box, the bar and the line are darker.</p>
 
-#workskin .tb .tb-pick[open] &gt; summary { visibility: hidden; }
+</details>
 
-#workskin .tb .tb-results { display: block; position: absolute; top: 0; left: 0; right: 0; z-index: 1; background: #ffffff; }</code></pre>
+<h4 id="s15-4-5">15.4.5 Tappable Polls</h4>
 
-<p>A <code>&lt;details&gt;</code> box opens when it's tapped, the same trick as Instagram's like and save buttons (see <a href="instagram-css.html#s13-11">Clickable Buttons</a>). In <code>tb-vote</code>, the open poll is the <code>&lt;summary&gt;</code>, and once it's tapped it's hidden, so only the results show. In the reader-picks version, each option is its own <code>&lt;details&gt;</code>, and its results are lifted out with <code>position: absolute</code> to sit over the whole <code>tb-poll</code> box, with the card's colour behind them so the blank boxes don't show through. The other lines hide the little triangle a <code>&lt;summary&gt;</code> normally has, and <code>tb-voter</code> is the small picture, pushed to the right next to the percentage.</p>
+<pre><code>#workskin .tb .vote[open] &gt; summary { display: none; }
 
-<h3 id="s15-11">15.11 Pictures and Gifs</h3>
+#workskin .tb .pick[open] &gt; summary { visibility: hidden; }
 
-<pre><code>#workskin .tb .tb-body .tb-row {
+#workskin .tb .poll-results { display: block; position: absolute; top: 0; left: 0; right: 0; z-index: 1; background: #ffffff; }</code></pre>
+
+<p>A <code>&lt;details&gt;</code> box opens when it's tapped, the same trick as Instagram's like and save buttons (see <a href="instagram-css.html#s13-4-2">Clickable Buttons</a>).</p>
+
+<details>
+<summary>How it works: hiding the open poll, and the reader-picks version</summary>
+
+<p>In <code>vote</code>, the open poll is the <code>&lt;summary&gt;</code>, and once it's tapped it's hidden, so only the results show. In the reader-picks version, each option is its own <code>&lt;details&gt;</code>, and its results are lifted out with <code>position: absolute</code> to sit over the whole <code>poll</code> box, with the card's colour behind them so the blank boxes don't show through. The other lines hide the little triangle a <code>&lt;summary&gt;</code> normally has, and <code>voted</code> is the small picture, pushed to the right next to the percentage.</p>
+
+</details>
+
+<h3 id="s15-5">15.5 Pictures and Gifs</h3>
+
+<pre><code>#workskin .tb .text .tb-row {
   display: flex;
   margin: 0 0 4px 0;
   padding: 0;
 }
 
-#workskin .tb .tb-photo {
+#workskin .tb .photo {
   display: block;
   position: relative;
   flex: 1 1 0;
@@ -416,7 +596,7 @@
   background: #e8e8e8;
 }
 
-#workskin .tb .tb-photo img {
+#workskin .tb .photo img {
   display: block;
   width: 100%;
   max-width: none;
@@ -425,14 +605,21 @@
   border-radius: 0;
 }</code></pre>
 
+<p>Pictures go in rows, edge to edge across the card.</p>
+
+<details>
+<summary>How it works: the rows</summary>
+
 <p>Each row is a flex row with a <code>4px</code> gap under it, and each picture in it takes an equal share of the width (the same <code>flex: 1 1 0</code> as the bottom row). The row is a paragraph so that AO3 doesn't add one of its own, which is why it needs <code>padding: 0</code> to undo the body's paragraph padding. The picture fills its box, with the rounded corners and the gap round it that ordinary pictures in a post get taken off, so it goes edge to edge.</p>
 
-<pre><code>#workskin .tb .tb-row.two .tb-photo {
+</details>
+
+<pre><code>#workskin .tb .tb-row.two .photo {
   height: 0;
   padding: 50% 0 0 0;
 }
 
-#workskin .tb .tb-row.two .tb-photo img {
+#workskin .tb .tb-row.two .photo img {
   position: absolute;
   top: -9999px;
   bottom: -9999px;
@@ -440,118 +627,99 @@
   margin: auto 0;
 }</code></pre>
 
-<p>Two side by side are squares. A box with no height and <code>padding-top: 50%</code> is as tall as half the row is wide, so it's square, whatever is inside it. The picture is pinned in the middle of the box and anything sticking out of the top and bottom is hidden, the same cropping trick as the Twitter/X photos (see <a href="twitter-x-css.html#s9-10">Pictures and Videos</a>). <code>land</code> swaps it round for a wide picture, so it's as tall as the box and the sides get cropped instead. The grey background only shows while a picture is loading.</p>
+<p>Two side by side are squares.</p>
 
-<pre><code>#workskin .tb .tb-body &gt; .tb-photos:first-child,
-#workskin .tb .tb-reblog &gt; .tb-blog + .tb-photos { margin-top: -0.3em; }
+<details>
+<summary>How it works: making a square and cropping the picture</summary>
 
-#workskin .tb .tb-at { color: #3a5f86; }</code></pre>
+<p>A box with no height and <code>padding-top: 50%</code> is as tall as half the row is wide, so it's square, whatever is inside it. The picture is pinned in the middle of the box and anything sticking out of the top and bottom is hidden, the same cropping trick as the Twitter/X photos (see <a href="twitter-x-css.html#s9-6">Pictures and Videos</a>). <code>landscape</code> swaps it round for a wide picture, so it's as tall as the box and the sides get cropped instead. The grey background only shows while a picture is loading.</p>
 
-<p>Pictures at the very start of a post, or straight after a reblog's header, get a small negative margin to cancel out the gap at the top of the body, so they sit right up against the header. <code>&gt;</code> means "directly inside", and <code>+</code> means "straight after". The <code>tb-at</code> mentions are a dusty blue, just different enough from the text to stand out (the dark theme makes them a pale blue instead).</p>
+</details>
 
-<h3 id="s15-12">15.12 Tags and the Bottom Row</h3>
+<pre><code>#workskin .tb .text &gt; .photos:first-child,
+#workskin .tb .tb-reblog &gt; .tb-blog + .photos { margin-top: -0.3em; }</code></pre>
 
-<pre><code>#workskin .tb .tb-footer {
+<p>Pictures at the very start of a post, or straight after a reblog's header, get a small negative margin to cancel out the gap at the top of the body, so they sit right up against the header.</p>
+
+<details>
+<summary>How it works: directly inside and straight after</summary>
+
+<p><code>&gt;</code> means "directly inside", and <code>+</code> means "straight after".</p>
+
+</details>
+
+<h3 id="s15-6">15.6 Characters</h3>
+
+<h4 id="s15-6-1">15.6.1 Profile Pictures</h4>
+
+<pre><code>#workskin .tb .avatar {
   display: flex;
   align-items: center;
-  padding: 0.6em 0.9em 0.9em 0.9em;
-  color: #555555;
-}
-
-#workskin .tb .tb-stat {
-  display: block;
-  flex: 1 1 0;
-  white-space: nowrap;
-}
-
-#workskin .tb .tb-icon {
-  display: inline-block;
-  margin-right: 0.3em;
-  font-size: 1.3em;
+  justify-content: center;
+  float: left;
+  position: relative;
+  width: 38px;
+  height: 38px;
   line-height: 1;
-  vertical-align: -0.15em;
-}
-
-#workskin .tb .tb-footer &gt; .tb-icon { margin-right: 0; }</code></pre>
-
-<p><code>display: flex</code> lines the bottom row up. Each <code>tb-stat</code> has <code>flex: 1 1 0</code>, which means "start from nothing and take an equal share of the spare room", so replies, reblogs and likes get a third each, however long their numbers are. The share button has no <code>flex</code>, so it only takes the room it needs, and that leaves it at the right-hand end. <code>white-space: nowrap</code> keeps a button and its count on the same line. The buttons are a little bigger than the counts, with a small gap before the number, and the share button doesn't need the gap because nothing comes after it.</p>
-
-<h3 id="s15-13">15.13 The Feed</h3>
-
-<pre><code>#workskin .tb-feed {
-  width: 380px;
-  max-width: 100%;
-  margin: 1.2em auto;
-  padding: 0.5em 0;
-  background: #001935;
-  box-sizing: border-box;
-  border-radius: 14px;
-}
-
-#workskin .tb-feed.black { background: #000000; }
-
-#workskin .tb-feed.classic { background: #435874; }
-
-/* the feed follows the theme too: theme-dark is always black, and theme-auto turns black in dark mode */
-#workskin .tb-feed.theme-dark { background: #000000; }
-
-@media (prefers-color-scheme: dark) {
-  #workskin .tb-feed.theme-auto { background: #000000; }
-}
-
-#workskin .tb-feed .mob {
-  width: auto;
-  max-width: none;
-  margin: 0.5em 0;
-  border-color: transparent;
-  border-radius: 14px;
+  text-align: center;
+  border-radius: 50%;
+  background-color: #8a8a8a;
+  font-family: Arial, Helvetica, sans-serif;
+  background-size: cover;
+  background-position: center;
+  color: #ffffff;
+  font-size: 0.85em;
+  font-weight: bold;
 }</code></pre>
 
-<p>The feed is a phone-sized navy box, Tumblr's own colour. The posts inside it lose their own width and fill the feed instead, with a small gap between each one and no visible edge, so they look like cards laid on the background. <code>black</code> swaps the navy for black, and <code>classic</code> for the old Tumblr blue. The feed also takes the same themes as the posts: <code>theme-dark</code> makes it black, and <code>theme-auto</code> keeps it navy until the reader's device is in dark mode, then turns it black, the same as Tumblr's own dark mode. It's the same <code>@media</code> trick the posts use for <code>theme-auto</code>. Give the feed the same theme as the posts inside it so they match.</p>
+<p>The circle works like the other modules', with initials or a picture inside and <code>colour1</code> to <code>colour10</code> for the colours.</p>
 
-<p><strong>Changing the feed colour:</strong> the colour is the <code>background</code> line in <code>#workskin .tb-feed</code> (<code>#001935</code>). Swap it for any colour you like, and every feed without <code>black</code>, <code>classic</code> or a dark theme changes with it. There's a note at that line in the CSS too.</p>
+<details>
+<summary>How it works: initials in the middle of the circle</summary>
 
-<h3 id="s15-14">15.14 The App Screen</h3>
+<p>It uses <code>display: flex</code> to centre the initials, the same as every app's circle: <code>align-items</code> centres them top to bottom, and <code>justify-content</code> side to side.</p>
 
-<pre><code>#workskin .tb-feed.app { padding: 0; overflow: hidden; }
+</details>
 
-#workskin .tb-feed .tb-screen {
-  display: block;
-  max-height: 640px;
-  overflow-y: auto;
-  overflow-x: hidden;
-  padding: 0 0 0.5em 0;
-}
+<h4 id="s15-6-2">15.6.2 Round or Square Pictures</h4>
 
-#workskin .tb-feed.no-scroll .tb-screen { max-height: none; overflow-y: visible; }
+<pre><code>#workskin .tb .avatar.square,
+#workskin .tb .tb-ask-pfp.square,
+#workskin .tb .square .pfp { border-radius: 15%; }</code></pre>
 
-#workskin .tb-screen .tb { max-height: none; overflow: visible; }</code></pre>
+<p><code>square</code> swaps the circle for a square with rounded corners, on either kind of picture and on a <code>pfp</code> picture inside one.</p>
 
-<p>With <code>app</code>, the feed itself doesn't scroll - the <code>tb-screen</code> inside it does, up to <code>640px</code> tall. The buttons along the bottom come after the screen, outside it, so they stay where they are while everything in the screen scrolls past, and the top bar is inside the screen, so it scrolls away. The posts inside the screen lose their own scrolling, so there's only one scroll bar. Adding <code>no-scroll</code> to the <code>tb-feed</code> switches the screen's scrolling off too.</p>
+<details>
+<summary>How it works: the rounded corners</summary>
 
-<p>The top bar, the tabs and the bottom buttons are flex rows like the bottom of a post. They have no background of their own, so they're always the feed colour, which is why the feed's <code>black</code> and <code>classic</code> work on them too. The picked tab is white with a short blue line under it, made with <code>::after</code> the same way as the reblog badge, and the other tabs and buttons are grey. The Tumblr logo is just a bold "t". The icons are pictures, in the Icons section with the rest, and they're the same in every theme because they always sit on the feed.</p>
+<p><code>15%</code> rounds the corners by the same amount whatever the size of the square. A profile does the same thing with its own <code>border-radius</code> line (see <a href="tumblr.html#s14-5-4">Round or Square Pictures</a>).</p>
 
-<h3 id="s15-15">15.15 Links and Themes</h3>
+</details>
+
+<h3 id="s15-7">15.7 Links</h3>
 
 <pre><code>#workskin .tb .fake-link, #workskin .tb a:not(.tl) { color: #0070b8; }</code></pre>
 
-<p>Links are Tumblr's blue. The dark theme makes the card dark grey (<code>#1f1f1f</code>) with light text, turns all the small print and the ask boxes darker, and gives links a brighter blue (<code>#00b8ff</code>) so they show up. The white edges round the reblog badge become the card colour. As always, the auto theme is the same again inside <code>@media (prefers-color-scheme: dark)</code>.</p>
+<p>Links and mentions of other blogs are Tumblr's blue.</p>
 
-<h3 id="s15-16">15.16 Taking Parts Out</h3>
+<h3 id="s15-8">15.8 Dark and Auto Themes</h3>
 
-<p>Search for the class names and delete every rule with them in, including in the dark and auto blocks:</p>
+<p>The dark theme makes the card dark grey (<code>#1f1f1f</code>) with light text, turns all the small print and the ask boxes darker, and gives links a brighter blue (<code>#00b8ff</code>) so they show up. The white edges round the reblog badge become the card colour. As always, the auto theme is the same again inside <code>@media (prefers-color-scheme: dark)</code>.</p>
+
+<h3 id="s15-9">15.9 Taking Parts Out</h3>
+
+<p>Search the Tumblr part of the skin for the class names and delete every rule with them in, including in the dark and auto blocks. Some names, like <code>stats</code> and <code>poll</code>, are shared with other apps, so only delete the rules that start <code>#workskin .tb</code>:</p>
 
 <ul>
-  <li><strong>Asks:</strong> <code>tb-ask</code>, <code>tb-answer</code>, <code>tb-asker</code> and <code>tb-ask-pfp</code>.</li>
-  <li><strong>Quote posts:</strong> <code>tb-quote</code> and <code>tb-source</code>.</li>
+  <li><strong>Asks:</strong> <code>tb-ask</code>, <code>tb-asker</code> and <code>tb-ask-pfp</code>.</li>
+  <li><strong>Quote posts:</strong> <code>quote</code> and <code>tb-source</code>.</li>
   <li><strong>Chat posts:</strong> <code>tb-chat</code>.</li>
-  <li><strong>Polls:</strong> <code>tb-opt</code>, <code>tb-pct</code>, <code>tb-pollinfo</code>, <code>tb-vote</code>, <code>tb-pick</code>, <code>tb-poll</code>, <code>tb-results</code> and <code>tb-voter</code>.</li>
-  <li><strong>Pictures and gifs:</strong> <code>tb-photos</code>, <code>tb-row</code> and <code>tb-photo</code>.</li>
-  <li><strong>Mentions:</strong> <code>tb-at</code>.</li>
+  <li><strong>Polls:</strong> <code>opt</code>, <code>pct</code>, <code>pollinfo</code>, <code>vote</code>, <code>pick</code>, <code>poll</code>, <code>poll-results</code> and <code>voted</code>.</li>
+  <li><strong>Pictures and gifs:</strong> <code>photos</code>, <code>tb-row</code> and <code>photo</code>.</li>
   <li><strong>Checkmarks:</strong> <code>tb-check</code>, <code>tb-checks</code> and the <code>ic-checks</code> lines in the Icons section.</li>
-  <li><strong>Bottom row:</strong> <code>tb-footer</code>, <code>tb-stat</code> and <code>tb-icon</code>.</li>
+  <li><strong>Bottom row:</strong> <code>stats</code> and <code>stat</code>.</li>
   <li><strong>The feed:</strong> everything starting <code>.tb-feed</code>.</li>
-  <li><strong>Just the app screen:</strong> the rules with <code>.tb-feed.app</code>, <code>tb-screen</code>, <code>tb-top</code>, <code>tb-logo</code>, <code>tb-topicon</code>, <code>tb-tabs</code>, <code>tb-tab</code>, <code>tb-nav</code> and <code>ic-tb-</code> in them.</li>
+  <li><strong>Just the app screen:</strong> the rules with <code>.tb-feed.app</code>, <code>app-screen</code>, <code>header</code>, <code>logo</code>, <code>icon</code>, <code>tabs</code>, <code>tab</code>, <code>nav</code> and <code>ic-tb-</code> in them.</li>
 </ul>
 
 <p>Keep the card, the header, the name, the picture and the body, which every post uses.</p>

@@ -1,10 +1,6 @@
 /* >>>>>>>>>> MODULE: Tumblr (start) >>>>>>>>>> */
 
-/* ==========================================================
-   MODULE: TUMBLR   (classes: tb, tb-feed)
-   Tumblr posts, reblog chains, asks, quote and chat posts, polls, and the feed background (tb, tb-feed).
-   Needs the CORE block.
-   ========================================================== */
+/* ---------- MODULE: TUMBLR   (classes: tb, tb-feed) ---------- */
 
 #workskin .tb-feed.wide {
   width: auto;
@@ -22,8 +18,8 @@
 }
 
 /* Header row of a post or of one reblog: picture, name + small grey line, optional Follow, dots.
-   Use <div class="tb-header"> for the post, <div class="tb-blog"> inside each reblog. */
-#workskin .tb .tb-header,
+   Use <div class="top"> for the post, <div class="tb-blog"> inside each reblog. */
+#workskin .tb .top,
 #workskin .tb .tb-blog {
   display: block;
   overflow: hidden;
@@ -32,37 +28,37 @@
 }
 
 /* thin line under a post's header (the reblog headers sit inside the body and don't get one) */
-#workskin .tb .tb-header { padding-bottom: 0.8em; border-bottom: 1px solid #eeeeee; }
+#workskin .tb .top { padding-bottom: 0.8em; border-bottom: 1px solid #eeeeee; }
 
 /* a reblog header is a paragraph inside the post body, so undo the body's paragraph spacing */
-#workskin .tb .tb-body .tb-blog { margin: 0; padding: 0.8em 0.9em 0.3em 0.9em; }
+#workskin .tb .text .tb-blog { margin: 0; padding: 0.8em 0.9em 0.3em 0.9em; }
 
 /* AO3 turns line breaks in your HTML into <br /> tags: keep them out of the header rows and the counts row */
-#workskin .tb .tb-header br,
+#workskin .tb .top br,
 #workskin .tb .tb-blog br,
-#workskin .tb .tb-footer br { display: none; }
+#workskin .tb .stats br { display: none; }
 
 /* ...and the paragraph AO3 wraps around a header row's pieces */
-#workskin .tb .tb-header > p,
-#workskin .tb .tb-body .tb-blog > p,
-#workskin .tb .tb-footer > p { margin: 0; padding: 0; }
+#workskin .tb .top > p,
+#workskin .tb .text .tb-blog > p,
+#workskin .tb .stats > p { margin: 0; padding: 0; }
 
-#workskin .tb .tb-name { display: block; min-height: 38px; margin-left: 48px; overflow: hidden; }
+#workskin .tb .who { display: block; min-height: 38px; margin-left: 48px; overflow: hidden; }
 
 /* the name stays on one line, and checkmarks that run out of room are cut off where the menu starts, like the app */
-#workskin .tb .tb-name > b { display: block; overflow: hidden; white-space: nowrap; font-weight: bold; line-height: 1.3; }
+#workskin .tb .who > b { display: block; overflow: hidden; white-space: nowrap; font-weight: bold; line-height: 1.3; }
 
 /* a name with no line under it sits level with the middle of the picture */
-#workskin .tb .tb-name > b:only-child { line-height: 38px; }
+#workskin .tb .who > b:only-child { line-height: 38px; }
 
-#workskin .tb .tb-subline { display: block; font-size: 0.85em; color: #6c7a8b; }
+#workskin .tb .tb-detail { display: block; font-size: 0.85em; color: #6c7a8b; }
 
-#workskin .tb .tb-subline b { color: #555555; }
+#workskin .tb .tb-detail b { color: #555555; }
 
 /* round profile picture (initials), colour1-colour10 for colours; add "rb" for the green reblog badge */
 /* initials by default; colour1-colour10 are the colours (set in the CORE), or put a picture
    or a profile inside it with a pfp span */
-#workskin .tb .tb-pfp {
+#workskin .tb .avatar {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -82,7 +78,7 @@
   font-weight: bold;
 }
 
-#workskin .tb .tb-pfp.rb::after {
+#workskin .tb .avatar.reblog::after {
   content: '\21C4';
   position: absolute;
   right: -6px;
@@ -103,10 +99,7 @@
   font-weight: bold;
 }
 
-/* checkmarks beside a name, in pairs, up to twelve: <span class="tb-check">&#10003;</span><span class="tb-check">&#10003;</span>
-   They always run in the same order, and the colours are added for you: blue, green, lime, yellow, amber, orange,
-   then dark orange, red, pink, magenta, purple and violet.
-   On Tumblr these are bought for fun, so they don't mean a blog is verified. */
+/* checkmarks beside a name, in pairs, up to twelve */
 #workskin .tb .tb-check {
   display: inline-flex;
   align-items: center;
@@ -152,19 +145,17 @@
 #workskin .tb .tb-check.blue { background: #52b5f9; }
 
 /* checkmarks from a profile: the profile adds the picture and the padding to make room for it */
-/* checkmarks as one picture, for a blog without a profile: <span class="tb-checks ic ic-checks-2">&#10003;&#10003;</span>
-   straight after the name, with ic-checks-2, -4, -6, -8, -10 or -12. The picture is in the Icons section;
-   without it, the typed checkmarks show in blue. */
+/* checkmarks as one picture, for a blog without a profile */
 #workskin .tb .tb-checks { margin-left: 0.25em; color: #52b5f9; font-size: 0.85em; }
 
 #workskin .tb .handle::after { background-repeat: no-repeat; background-position: right center; background-size: auto 0.9em; }
 
 /* Follow button (optional) on a reblog header, for a blog you don't follow. It doesn't go on the post's top header:
    you already follow the blog whose post is on your dash. */
-#workskin .tb .tb-follow { display: block; float: right; margin: 2px 0 0 0.5em; }
-
-#workskin .tb .tb-follow span {
-  display: inline-block;
+#workskin .tb .follow {
+  display: block;
+  float: right;
+  margin: 2px 0 0 0.55em;
   padding: 0 1.1em;
   line-height: 34px;
   border-radius: 2em;
@@ -173,7 +164,7 @@
   font-size: 0.9em;
 }
 
-#workskin .tb .tb-menu {
+#workskin .tb .menu {
   display: block;
   float: right;
   height: 38px;
@@ -184,9 +175,16 @@
   font-size: 0.8em;
 }
 
-#workskin .tb .tb-body { display: block; padding: 0.3em 0 0.8em 0; }
+/* the three dots are a picture: <span class="menu ic ic-more">&#8226;&#8226;&#8226;</span> */
+#workskin .tb .menu.ic {
+  width: 1.9em;
+  height: 38px;
+  opacity: 0.55;
+}
 
-#workskin .tb .tb-body p { margin: 0.5em 0; padding: 0 0.9em; }
+#workskin .tb .text { display: block; padding: 0.3em 0 0.8em 0; }
+
+#workskin .tb .text p { margin: 0.5em 0; padding: 0 0.9em; }
 
 #workskin .tb :not(.pfp) > img {
   display: block;
@@ -196,33 +194,24 @@
   border-radius: 4px;
 }
 
-/* PICTURES AND GIFS: a picture post goes edge to edge across the card. Each row is a tb-row:
-   one picture at its own shape, or "two" for two side by side, cropped to squares. Stack rows for a photoset:
-   <div class="tb-photos">
-     <p class="tb-row"><span class="tb-photo"><img src="..." alt="..."></span></p>
-     <p class="tb-row two"><span class="tb-photo"><img src="..." alt="..."></span><span class="tb-photo"><img src="..." alt="..."></span></p>
-   </div>
-   In a two row, add class="land" to a picture that's wider than tall, so the sides get cropped instead of the top and bottom. */
-#workskin .tb .tb-photos { display: block; margin: 0.6em 0; }
+/* PICTURES AND GIFS: a picture post goes edge to edge across the card. */
+#workskin .tb .photos { display: block; margin: 0.6em 0; }
 
 /* pictures at the very start of a post sit right up against the header */
-#workskin .tb .tb-body > .tb-photos:first-child,
-#workskin .tb .tb-reblog > .tb-blog + .tb-photos { margin-top: -0.3em; }
+#workskin .tb .text > .photos:first-child,
+#workskin .tb .tb-reblog > .tb-blog + .photos { margin-top: -0.3em; }
 
-/* a mention of another blog in the text of a post: <span class="tb-at">@rinkrat</span> */
-#workskin .tb .tb-at { color: #3a5f86; }
-
-#workskin .tb .tb-body .tb-row {
+#workskin .tb .text .tb-row {
   display: flex;
   margin: 0 0 4px 0;
   padding: 0;
 }
 
-#workskin .tb .tb-body .tb-row:last-child { margin-bottom: 0; }
+#workskin .tb .text .tb-row:last-child { margin-bottom: 0; }
 
 #workskin .tb .tb-row br { display: none; }
 
-#workskin .tb .tb-photo {
+#workskin .tb .photo {
   display: block;
   position: relative;
   flex: 1 1 0;
@@ -230,7 +219,7 @@
   background: #e8e8e8;
 }
 
-#workskin .tb .tb-photo img {
+#workskin .tb .photo img {
   display: block;
   width: 100%;
   max-width: none;
@@ -240,14 +229,14 @@
 }
 
 /* two side by side: each is a square box, with a small gap between */
-#workskin .tb .tb-row.two .tb-photo {
+#workskin .tb .tb-row.two .photo {
   height: 0;
   padding: 50% 0 0 0;
 }
 
-#workskin .tb .tb-row.two .tb-photo + .tb-photo { margin-left: 4px; }
+#workskin .tb .tb-row.two .photo ~ .photo { margin-left: 4px; }
 
-#workskin .tb .tb-row.two .tb-photo img {
+#workskin .tb .tb-row.two .photo img {
   position: absolute;
   top: -9999px;
   bottom: -9999px;
@@ -255,7 +244,7 @@
   margin: auto 0;
 }
 
-#workskin .tb .tb-row.two .tb-photo img.land {
+#workskin .tb .tb-row.two .photo img.landscape {
   top: 0;
   bottom: auto;
   right: -9999px;
@@ -273,9 +262,9 @@
   border-top: 1px solid #eeeeee;
 }
 
-#workskin .tb .tb-body > .tb-reblog:first-child { border-top: 0; }
+#workskin .tb .text > .tb-reblog:first-child { border-top: 0; }
 
-/* the ask and answer boxes: <div class="tb-ask"> or <div class="tb-ask tb-answer"> */
+/* the ask and answer boxes: <div class="tb-ask"> */
 #workskin .tb .tb-ask {
   display: block;
   position: relative;
@@ -331,14 +320,10 @@
   font-weight: bold;
 }
 
-/* ROUNDED SQUARE PICTURES: on Tumblr, each blog picks a circle or a rounded square for its picture,
-   and it's the same everywhere that blog shows up. For a blog without a profile, add sq to its
-   picture every time: <span class="tb-pfp sq colour6">PB</span> or <span class="tb-ask-pfp sq colour6">PB</span>
-   For a profile, add a line to the profile instead, e.g.
-   #workskin .tb .pfp.pfp-luca.acc-art { border-radius: 15%; } */
-#workskin .tb .tb-pfp.sq,
-#workskin .tb .tb-ask-pfp.sq,
-#workskin .tb .sq .pfp { border-radius: 15%; }
+/* ROUNDED SQUARE PICTURES: on Tumblr, each blog picks a circle or a rounded square for its picture, and it's the same everywhere that blog shows up. */
+#workskin .tb .avatar.square,
+#workskin .tb .tb-ask-pfp.square,
+#workskin .tb .square .pfp { border-radius: 15%; }
 
 #workskin .tb .tb-tags {
   display: block;
@@ -349,8 +334,8 @@
 }
 
 /* the bottom row: replies, reblogs and likes, each with its own count, then share on the far right
-   <p class="tb-footer"><span class="tb-stat"><span class="tb-icon ic ic-comment">&#9993;</span> 7<span class="hide"> replies</span></span> ... </p> */
-#workskin .tb .tb-footer {
+   <div class="stats"><p class="stat comments"><span class="ic ic-comment">&#9993;</span> 7<span class="hide"> replies</span></p> ... </div> */
+#workskin .tb .stats {
   display: flex;
   align-items: center;
   padding: 0.6em 0.9em 0.9em 0.9em;
@@ -358,13 +343,17 @@
 }
 
 /* each button and its count takes an equal share of the row */
-#workskin .tb .tb-stat {
+#workskin .tb .stat {
   display: block;
   flex: 1 1 0;
+  margin: 0;
   white-space: nowrap;
 }
 
-#workskin .tb .tb-icon {
+/* the share button only takes the room it needs, at the right-hand end: add right to its stat */
+#workskin .tb .stat.right { flex: none; }
+
+#workskin .tb .stats .ic {
   display: inline-block;
   margin-right: 0.3em;
   font-size: 1.3em;
@@ -372,14 +361,14 @@
   vertical-align: -0.15em;
 }
 
-#workskin .tb .tb-footer > .tb-icon { margin-right: 0; }
+#workskin .tb .stat.right .ic { margin-right: 0; }
 
-/* quote post: <p class="tb-quote">text</p><p class="tb-source">&mdash; someone</p> */
-#workskin .tb .tb-quote { font-family: Georgia, serif; font-size: 1.9em; line-height: 1.25; }
+/* quote post: <p class="quote">text</p><p class="tb-source">&mdash; someone</p> */
+#workskin .tb .quote { font-family: Georgia, serif; font-size: 1.9em; line-height: 1.25; }
 
-#workskin .tb .tb-quote::before { content: "\201C"; }
+#workskin .tb .quote::before { content: "\201C"; }
 
-#workskin .tb .tb-quote::after { content: "\201D"; }
+#workskin .tb .quote::after { content: "\201D"; }
 
 #workskin .tb .tb-source { font-size: 0.9em; }
 
@@ -395,11 +384,8 @@
 
 #workskin .tb .tb-chat b { font-weight: bold; }
 
-/* poll: in tb-body, the question as a paragraph, then each option as <p class="tb-opt">Option<span class="tb-pct">50%</span></p>
-   and <p class="tb-pollinfo">votes &middot; time left</p> underneath.
-   An OPEN poll: just tb-opt (blue outlines). RESULTS: add "res" and a bar size, p0 to p100 in tens (p5 p25 p33 p67 p75 also exist),
-   and "win" for the winner of a finished poll. */
-#workskin .tb .tb-body .tb-opt {
+/* poll: in text, the question as a paragraph, then each option as */
+#workskin .tb .text .opt {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -415,7 +401,8 @@
   line-height: 1.3;
 }
 
-#workskin .tb .tb-body .tb-opt.res {
+/* a finished poll: <p class="opt results win p50"><span class="tb-bar">the words</span><span class="hide"> - </span><span class="pct">52%</span></p> */
+#workskin .tb .text .opt.results {
   justify-content: flex-start;
   border-color: transparent;
   border-radius: 8px;
@@ -424,68 +411,60 @@
   background-image: linear-gradient(#dcdcdc, #dcdcdc);
 }
 
-#workskin .tb .tb-body .tb-opt.res.win { background-image: linear-gradient(#a6d9ec, #a6d9ec); }
+#workskin .tb .text .opt.results.win { background-image: linear-gradient(#a6d9ec, #a6d9ec); }
 
-#workskin .tb .tb-opt .tb-pct { margin-left: auto; padding-left: 0.8em; font-weight: normal; white-space: nowrap; }
+#workskin .tb .opt .pct { margin-left: auto; padding-left: 0.8em; font-weight: normal; white-space: nowrap; }
 
-#workskin .tb .tb-opt.p0 { background-size: 0% 100%; }
-#workskin .tb .tb-opt.p5 { background-size: 5% 100%; }
-#workskin .tb .tb-opt.p10 { background-size: 10% 100%; }
-#workskin .tb .tb-opt.p20 { background-size: 20% 100%; }
-#workskin .tb .tb-opt.p25 { background-size: 25% 100%; }
-#workskin .tb .tb-opt.p30 { background-size: 30% 100%; }
-#workskin .tb .tb-opt.p33 { background-size: 33% 100%; }
-#workskin .tb .tb-opt.p40 { background-size: 40% 100%; }
-#workskin .tb .tb-opt.p50 { background-size: 50% 100%; }
-#workskin .tb .tb-opt.p60 { background-size: 60% 100%; }
-#workskin .tb .tb-opt.p67 { background-size: 67% 100%; }
-#workskin .tb .tb-opt.p70 { background-size: 70% 100%; }
-#workskin .tb .tb-opt.p75 { background-size: 75% 100%; }
-#workskin .tb .tb-opt.p80 { background-size: 80% 100%; }
-#workskin .tb .tb-opt.p90 { background-size: 90% 100%; }
-#workskin .tb .tb-opt.p100 { background-size: 100% 100%; }
+#workskin .tb .opt.p0 { background-size: 0% 100%; }
+#workskin .tb .opt.p5 { background-size: 5% 100%; }
+#workskin .tb .opt.p10 { background-size: 10% 100%; }
+#workskin .tb .opt.p20 { background-size: 20% 100%; }
+#workskin .tb .opt.p25 { background-size: 25% 100%; }
+#workskin .tb .opt.p30 { background-size: 30% 100%; }
+#workskin .tb .opt.p33 { background-size: 33% 100%; }
+#workskin .tb .opt.p40 { background-size: 40% 100%; }
+#workskin .tb .opt.p50 { background-size: 50% 100%; }
+#workskin .tb .opt.p60 { background-size: 60% 100%; }
+#workskin .tb .opt.p67 { background-size: 67% 100%; }
+#workskin .tb .opt.p70 { background-size: 70% 100%; }
+#workskin .tb .opt.p75 { background-size: 75% 100%; }
+#workskin .tb .opt.p80 { background-size: 80% 100%; }
+#workskin .tb .opt.p90 { background-size: 90% 100%; }
+#workskin .tb .opt.p100 { background-size: 100% 100%; }
 
-#workskin .tb .tb-body .tb-pollinfo { display: block; margin: 0.6em 0; text-align: center; color: #555555; font-size: 0.85em; }
+#workskin .tb .text .pollinfo { display: block; margin: 0.6em 0; text-align: center; color: #555555; font-size: 0.85em; }
 
-/* TAPPABLE POLL, the short way: <details class="tb-vote"> with the open poll in <summary> (spans with tb-opt,
-   and a tb-pollinfo span), then the results after it. Tapping shows the results instead.
-   The voter's picture: <span class="tb-voter"><span class="pfp pfp-name"></span></span> before the tb-pct. */
-#workskin .tb .tb-vote,
-#workskin .tb .tb-vote > summary { display: block; }
+/* TAPPABLE POLL, the short way */
+#workskin .tb .vote,
+#workskin .tb .vote > summary { display: block; }
 
-#workskin .tb .tb-vote > summary,
-#workskin .tb .tb-pick > summary { cursor: pointer; list-style: none; }
+#workskin .tb .vote > summary,
+#workskin .tb .pick > summary { cursor: pointer; list-style: none; }
 
-#workskin .tb .tb-vote > summary::-webkit-details-marker,
-#workskin .tb .tb-pick > summary::-webkit-details-marker { display: none; }
+#workskin .tb .vote > summary::-webkit-details-marker,
+#workskin .tb .pick > summary::-webkit-details-marker { display: none; }
 
-#workskin .tb .tb-vote > summary::marker,
-#workskin .tb .tb-pick > summary::marker { content: ""; }
+#workskin .tb .vote > summary::marker,
+#workskin .tb .pick > summary::marker { content: ""; }
 
-#workskin .tb .tb-vote[open] > summary { display: none; }
+#workskin .tb .vote[open] > summary { display: none; }
 
-/* TAPPABLE POLL where the reader picks: <div class="tb-poll">, then one <details class="tb-pick"> per option,
-   each with <summary class="tb-opt">Option</summary> and a <div class="tb-results"> holding the results
-   with the voter's picture on that option. The results cover the poll when it's tapped. */
-#workskin .tb .tb-poll { display: block; position: relative; }
+/* TAPPABLE POLL where the reader picks */
+#workskin .tb .poll { display: block; position: relative; }
 
-#workskin .tb .tb-pick { display: block; margin: 0.45em 0; }
+#workskin .tb .pick { display: block; margin: 0.45em 0; }
 
-#workskin .tb .tb-body .tb-pick > .tb-opt { margin: 0 0.9em; }
+#workskin .tb .text .pick > .opt { margin: 0 0.9em; }
 
-#workskin .tb .tb-pick[open] > summary { visibility: hidden; }
+#workskin .tb .pick[open] > summary { visibility: hidden; }
 
-#workskin .tb .tb-results { display: block; position: absolute; top: 0; left: 0; right: 0; z-index: 1; background: #ffffff; }
+#workskin .tb .poll-results { display: block; position: absolute; top: 0; left: 0; right: 0; z-index: 1; background: #ffffff; }
 
-#workskin .tb .tb-voter { display: block; flex: none; width: 1.3em; height: 1.3em; margin-left: auto; }
+#workskin .tb .voted { display: block; flex: none; width: 1.3em; height: 1.3em; margin-left: auto; }
 
-#workskin .tb .tb-opt .tb-voter + .tb-pct { margin-left: 0; }
+#workskin .tb .opt .voted + .pct { margin-left: 0; }
 
-/* THE FEED BEHIND THE CARDS (optional): put one or more .tb posts inside <div class="tb-feed">
-   THE FEED COLOUR is the background line below: navy (#001935) by default, Tumblr's True Blue light mode.
-   Add theme-auto to make it black when the reader's device is in dark mode, the same as the posts,
-   or theme-dark to make it always black. "black" and "classic" (the old Tumblr blue) are fixed colours.
-   To use any other colour, change the background line here. */
+/* THE FEED BEHIND THE CARDS (optional): put one or more .tb posts inside */
 #workskin .tb-feed {
   width: 380px;
   max-width: 100%;
@@ -507,12 +486,10 @@
   #workskin .tb-feed.theme-auto { background: #000000; }
 }
 
-/* THE APP SCREEN (optional): add "app" to the feed for Tumblr's bar along the top and the buttons along the bottom.
-   <div class="tb-feed app"><div class="tb-screen"> top bar, tabs, posts </div><p class="tb-nav"> buttons </p></div>
-   The screen scrolls, so the top bar scrolls away with the posts, and the buttons below it stay put. */
+/* THE APP SCREEN (optional): add "app" to the feed for Tumblr's bar along the top and the buttons along the bottom. */
 #workskin .tb-feed.app { padding: 0; overflow: hidden; }
 
-#workskin .tb-feed .tb-screen {
+#workskin .tb-feed .app-screen {
   display: block;
   max-height: 640px;
   overflow-y: auto;
@@ -521,26 +498,26 @@
 }
 
 /* no-scroll switches the screen's scrolling off */
-#workskin .tb-feed.no-scroll .tb-screen { max-height: none; overflow-y: visible; }
+#workskin .tb-feed.no-scroll .app-screen { max-height: none; overflow-y: visible; }
 
-#workskin .tb-screen .tb { max-height: none; overflow: visible; }
+#workskin .app-screen .tb { max-height: none; overflow: visible; }
 
-#workskin .tb-feed .tb-top,
-#workskin .tb-feed .tb-tabs,
-#workskin .tb-feed .tb-nav {
+#workskin .tb-feed .header,
+#workskin .tb-feed .tabs,
+#workskin .tb-feed .nav {
   display: flex;
   align-items: center;
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
 }
 
-#workskin .tb-feed .tb-top br,
-#workskin .tb-feed .tb-tabs br,
-#workskin .tb-feed .tb-nav br { display: none; }
+#workskin .tb-feed .header br,
+#workskin .tb-feed .tabs br,
+#workskin .tb-feed .nav br { display: none; }
 
-#workskin .tb-feed .tb-top { padding: 0.9em 1em 0.3em 1em; }
+#workskin .tb-feed .header { padding: 0.9em 1em 0.3em 1em; }
 
-#workskin .tb-feed .tb-logo {
+#workskin .tb-feed .logo {
   margin-right: auto;
   color: #ffffff;
   font-family: "Arial Black", Arial, Helvetica, sans-serif;
@@ -549,21 +526,21 @@
   line-height: 1;
 }
 
-#workskin .tb-feed .tb-topicon { margin-left: 0.8em; font-size: 1.5em; line-height: 1; }
+#workskin .tb-feed .icon { margin-left: 0.8em; font-size: 1.5em; line-height: 1; }
 
-#workskin .tb-feed .tb-tabs {
+#workskin .tb-feed .tabs {
   padding: 0.6em 1em 0.9em 1em;
   color: #6f7e93;
   font-size: 1.05em;
   font-weight: bold;
 }
 
-#workskin .tb-feed .tb-tab { position: relative; margin-right: 1.3em; white-space: nowrap; }
+#workskin .tb-feed .tab { position: relative; margin-right: 1.3em; white-space: nowrap; }
 
-#workskin .tb-feed .tb-tab.on { color: #ffffff; }
+#workskin .tb-feed .tab.on { color: #ffffff; }
 
 /* the short blue line under the picked tab */
-#workskin .tb-feed .tb-tab.on::after {
+#workskin .tb-feed .tab.on::after {
   content: "";
   position: absolute;
   left: 50%;
@@ -575,9 +552,9 @@
   background: #00b8ff;
 }
 
-#workskin .tb-feed .tb-tabs .tb-topicon { margin-left: auto; font-size: 1.3em; }
+#workskin .tb-feed .tabs .icon { margin-left: auto; font-size: 1.3em; }
 
-#workskin .tb-feed .tb-nav {
+#workskin .tb-feed .nav {
   justify-content: space-around;
   padding: 0.7em 0.4em 0.9em 0.4em;
   color: #717e8f;
@@ -585,7 +562,7 @@
   line-height: 1;
 }
 
-#workskin .tb-feed .tb-nav .on { color: #ffffff; }
+#workskin .tb-feed .nav .on { color: #ffffff; }
 
 #workskin .tb-feed .mob {
   width: auto;
@@ -597,6 +574,7 @@
 
 /* ---------- Tumblr: Links ---------- */
 
+/* links and mentions of other blogs, eg <span class="fake-link">@rinkrat</span> */
 #workskin .tb .fake-link, #workskin .tb a:not(.tl) { color: #0070b8; }
 
 /* ---------- Tumblr: Scrolling ---------- */
@@ -622,37 +600,35 @@
 
 #workskin .tb.theme-dark { background: #1f1f1f; color: #e8e8e8; border-color: #1f1f1f; }
 
-#workskin .tb.theme-dark .tb-subline,
-#workskin .tb.theme-dark .tb-menu,
+#workskin .tb.theme-dark .tb-detail,
+#workskin .tb.theme-dark .menu,
 #workskin .tb.theme-dark .tb-tags {
   color: #9a9a9a;
 }
 
-#workskin .tb.theme-dark .tb-subline b { color: #cfcfcf; }
+#workskin .tb.theme-dark .tb-detail b { color: #cfcfcf; }
 
-#workskin .tb.theme-dark .tb-footer { color: #bdbdbd; }
+#workskin .tb.theme-dark .stats { color: #bdbdbd; }
 
-#workskin .tb.theme-dark .tb-follow span { background: #2e2e2e; }
+#workskin .tb.theme-dark .follow { background: #2e2e2e; }
 
-#workskin .tb.theme-dark .tb-photo { background: #2e2e2e; }
+#workskin .tb.theme-dark .photo { background: #2e2e2e; }
 
-#workskin .tb.theme-dark .tb-at { color: #c3d4e8; }
-
-#workskin .tb.theme-dark .tb-pfp.rb::after { border-color: #1f1f1f; }
+#workskin .tb.theme-dark .avatar.reblog::after { border-color: #1f1f1f; }
 
 #workskin .tb.theme-dark .tb-reblog { border-top-color: #2c2c2c; }
 
 #workskin .tb.theme-dark .tb-ask { background: #272727; }
 
-#workskin .tb.theme-dark .tb-body .tb-opt.res { background-color: #2a2a2a; }
+#workskin .tb.theme-dark .text .opt.results { background-color: #2a2a2a; }
 
-#workskin .tb.theme-dark .tb-body .tb-opt.res { background-image: linear-gradient(#404040, #404040); }
+#workskin .tb.theme-dark .text .opt.results { background-image: linear-gradient(#404040, #404040); }
 
-#workskin .tb.theme-dark .tb-body .tb-opt.res.win { background-image: linear-gradient(#19637e, #19637e); }
+#workskin .tb.theme-dark .text .opt.results.win { background-image: linear-gradient(#19637e, #19637e); }
 
-#workskin .tb.theme-dark .tb-body .tb-pollinfo { color: #bdbdbd; }
+#workskin .tb.theme-dark .text .pollinfo { color: #bdbdbd; }
 
-#workskin .tb.theme-dark .tb-results { background: #1f1f1f; }
+#workskin .tb.theme-dark .poll-results { background: #1f1f1f; }
 
 #workskin .tb.theme-dark .tb-asker,
 #workskin .tb.theme-dark .tb-asker b {
@@ -661,7 +637,7 @@
 
 
 
-#workskin .tb.theme-dark .tb-header { border-bottom-color: #2c2c2c; }
+#workskin .tb.theme-dark .top { border-bottom-color: #2c2c2c; }
 
 #workskin .tb.theme-dark .tb-ask::after { border-left-color: #272727; }
 
@@ -672,37 +648,35 @@
 
   #workskin .tb.theme-auto { background: #1f1f1f; color: #e8e8e8; border-color: #1f1f1f; }
 
-  #workskin .tb.theme-auto .tb-subline,
-    #workskin .tb.theme-auto .tb-menu,
+  #workskin .tb.theme-auto .tb-detail,
+    #workskin .tb.theme-auto .menu,
     #workskin .tb.theme-auto .tb-tags {
       color: #9a9a9a;
     }
 
-  #workskin .tb.theme-auto .tb-subline b { color: #cfcfcf; }
+  #workskin .tb.theme-auto .tb-detail b { color: #cfcfcf; }
 
-  #workskin .tb.theme-auto .tb-footer { color: #bdbdbd; }
+  #workskin .tb.theme-auto .stats { color: #bdbdbd; }
 
-  #workskin .tb.theme-auto .tb-follow span { background: #2e2e2e; }
+  #workskin .tb.theme-auto .follow { background: #2e2e2e; }
 
-  #workskin .tb.theme-auto .tb-photo { background: #2e2e2e; }
+  #workskin .tb.theme-auto .photo { background: #2e2e2e; }
 
-  #workskin .tb.theme-auto .tb-at { color: #c3d4e8; }
-
-  #workskin .tb.theme-auto .tb-pfp.rb::after { border-color: #1f1f1f; }
+  #workskin .tb.theme-auto .avatar.reblog::after { border-color: #1f1f1f; }
 
   #workskin .tb.theme-auto .tb-reblog { border-top-color: #2c2c2c; }
 
   #workskin .tb.theme-auto .tb-ask { background: #272727; }
 
-  #workskin .tb.theme-auto .tb-body .tb-opt.res { background-color: #2a2a2a; }
+  #workskin .tb.theme-auto .text .opt.results { background-color: #2a2a2a; }
 
-  #workskin .tb.theme-auto .tb-body .tb-opt.res { background-image: linear-gradient(#404040, #404040); }
+  #workskin .tb.theme-auto .text .opt.results { background-image: linear-gradient(#404040, #404040); }
 
-  #workskin .tb.theme-auto .tb-body .tb-opt.res.win { background-image: linear-gradient(#19637e, #19637e); }
+  #workskin .tb.theme-auto .text .opt.results.win { background-image: linear-gradient(#19637e, #19637e); }
 
-  #workskin .tb.theme-auto .tb-body .tb-pollinfo { color: #bdbdbd; }
+  #workskin .tb.theme-auto .text .pollinfo { color: #bdbdbd; }
 
-  #workskin .tb.theme-auto .tb-results { background: #1f1f1f; }
+  #workskin .tb.theme-auto .poll-results { background: #1f1f1f; }
 
   #workskin .tb.theme-auto .tb-asker,
     #workskin .tb.theme-auto .tb-asker b {
@@ -711,15 +685,12 @@
 
 
 
-  #workskin .tb.theme-auto .tb-header { border-bottom-color: #2c2c2c; }
+  #workskin .tb.theme-auto .top { border-bottom-color: #2c2c2c; }
 
   #workskin .tb.theme-auto .tb-ask::after { border-left-color: #272727; }
 }
 
-/* ---------- Tumblr: Icons ----------
-   The buttons and ticks are pictures: black in light chats, white in dark ones.
-   Each one is a span with "ic" and its name, with the typed symbol inside, which
-   this hides. Delete this whole section to get the typed symbols back. */
+/* ---------- Tumblr: Icons ---------- */
 #workskin .tb .ic {
   display: inline-block;
   width: 1em;
@@ -738,11 +709,12 @@
 #workskin .tb .ic.ic-comment { background-image: url(https://images.squidge.org/images/2026/11/15/comment-black.png); }
 #workskin .tb .ic.ic-reblog { background-image: url(https://images.squidge.org/images/2026/11/15/reblog-black.png); }
 #workskin .tb .ic.ic-heart { background-image: url(https://images.squidge.org/images/2026/11/15/heart-black.png); }
+#workskin .tb .ic.ic-more { background-image: url(https://images.squidge.org/images/2026/11/15/menu-horizontal-black.png); }
 
 /* the app screen's top bar and bottom buttons. They always sit on the feed colour, so they don't change with the theme. */
-#workskin .tb-feed .tb-top .ic,
-#workskin .tb-feed .tb-tabs .ic,
-#workskin .tb-feed .tb-nav .ic {
+#workskin .tb-feed .header .ic,
+#workskin .tb-feed .tabs .ic,
+#workskin .tb-feed .nav .ic {
   display: inline-block;
   width: 1em;
   height: 1em;
@@ -781,7 +753,7 @@
 #workskin .tb .ic.ic-checks-blue { width: 2.15em; background-image: url(https://images.squidge.org/images/2026/11/16/tb-checks-blue.png); }
 
 /* the green reblog badge on a picture: the white reblog picture instead of the typed arrows */
-#workskin .tb .tb-pfp.rb::after {
+#workskin .tb .avatar.reblog::after {
   content: '';
   background-image: url(https://images.squidge.org/images/2026/11/15/reblog-white.png);
   background-repeat: no-repeat;
@@ -794,6 +766,7 @@
 #workskin .tb.theme-dark .ic.ic-comment { background-image: url(https://images.squidge.org/images/2026/11/15/comment-white.png); }
 #workskin .tb.theme-dark .ic.ic-reblog { background-image: url(https://images.squidge.org/images/2026/11/15/reblog-white.png); }
 #workskin .tb.theme-dark .ic.ic-heart { background-image: url(https://images.squidge.org/images/2026/11/15/heart-white.png); }
+#workskin .tb.theme-dark .ic.ic-more { background-image: url(https://images.squidge.org/images/2026/11/15/menu-horizontal-white.png); }
 
 /* Tumblr icons, auto: dark when the reader's device is in dark mode */
 @media (prefers-color-scheme: dark) {
@@ -801,6 +774,7 @@
   #workskin .tb.theme-auto .ic.ic-comment { background-image: url(https://images.squidge.org/images/2026/11/15/comment-white.png); }
   #workskin .tb.theme-auto .ic.ic-reblog { background-image: url(https://images.squidge.org/images/2026/11/15/reblog-white.png); }
   #workskin .tb.theme-auto .ic.ic-heart { background-image: url(https://images.squidge.org/images/2026/11/15/heart-white.png); }
+  #workskin .tb.theme-auto .ic.ic-more { background-image: url(https://images.squidge.org/images/2026/11/15/menu-horizontal-white.png); }
 }
 
 /* <<<<<<<<<< MODULE: Tumblr (end) <<<<<<<<<< */
