@@ -460,8 +460,8 @@
         inner = inner.concat(photoLines("wa", photos));
         if (m.text.trim()) inner.push('<p class="wa-caption">' + fmt(m.text) + "</p>");
       } else if (link) {
-        if (link.url.trim() && link.showUrl) inner.push('<p><span class="wa-link-text">' + esc(link.url.trim()) + "</span></p>");
-        var lk = ['<div class="wa-link">'];
+        if (link.url.trim() && link.showUrl) inner.push('<p><span class="wa-link">' + esc(link.url.trim()) + "</span></p>");
+        var lk = ['<div class="wa-link-card">'];
         var li = picUrl(link.img), vid = picUrl(link.video || "");
         if (vid) lk.push('  <div class="wa-link-img video"><iframe src="' + esc(vid) + '" frameborder="0" title="' + esc(link.title.trim()) + '"></iframe>' +
           (link.imgdesc.trim() ? '<p class="video-desc">[' + esc(link.imgdesc.trim()) + "]</p>" : "") + "</div>");
@@ -564,8 +564,8 @@
     L.push("  </div>");
     if (b.bar === "empty") L.push('  <p class="twdm-footer"><span class="twdm-plus">+</span><span class="hide"> </span><span class="twdm-field">Message<span class="hide"> </span><span class="ic ic-mic">&#127908;</span></span></p>');
     if (b.bar === "typed") L.push('  <p class="twdm-footer"><span class="twdm-plus">+</span><span class="hide"> </span><span class="twdm-field typed">' + fmt(b.barText) + (b.cursor ? CURSOR : "") + '<span class="hide"> </span><span class="ic ic-mic">&#127908;</span></span></p>');
-    if (b.nav) L.push('  <p class="tw-nav"><span class="ic ic-x-home">&#8962;</span> <span class="ic ic-x-search">&#128269;</span> <span class="ic ic-x-grok">&#8856;</span> ' +
-      '<span class="ic ic-x-bell">&#128276;</span>' + (t(b.badge) ? '<span class="tw-badge"><span class="hide"> (</span>' + esc(t(b.badge)) + '<span class="hide">)</span></span>' : "") +
+    if (b.nav) L.push('  <p class="tw-nav"><span class="ic ic-tw-home">&#8962;</span> <span class="ic ic-tw-search">&#128269;</span> <span class="ic ic-x-grok">&#8856;</span> ' +
+      '<span class="ic ic-tw-bell">&#128276;</span>' + (t(b.badge) ? '<span class="tw-badge"><span class="hide"> (</span>' + esc(t(b.badge)) + '<span class="hide">)</span></span>' : "") +
       ' <span class="on ic ic-x-chat">&#128172;</span></p>');
     L.push("</div>");
     return L.join("\n");
@@ -824,7 +824,7 @@
     else if (t(k.imgdesc)) L.push('<p class="igdm-link-img text">[' + esc(t(k.imgdesc)) + "]</p>");
     L.push('<p class="igdm-link-title">' + label + esc(t(k.title)) + "</p>");
     L.push('<p class="igdm-link-url">' + esc(t(k.url).replace(/^https?:\/\//, "").replace(/\/.*$/, "")) + "</p>");
-    return ['<div class="igdm-link ' + side + '">'].concat(ind(L, 1), ["</div>"]);
+    return ['<div class="igdm-link-card ' + side + '">'].concat(ind(L, 1), ["</div>"]);
   }
   function igdmHTML(b) {
     var o = others(b), head = "";
@@ -2202,9 +2202,9 @@
       } else if (is(main, "p.wa-photos")) {
         m.photos = photosBack(main, "wa");
         if (is(ns[0], "p.wa-caption")) m.text = textBack(inl(ns.shift()));
-      } else if (is(main, "div.wa-link") || is(main, "p") && main.querySelector(".wa-link-text")) {
+      } else if (is(main, "div.wa-link-card") || is(main, "p") && main.querySelector(".wa-link")) {
         var lk = { url: "", title: "", desc: "", img: "", alt: "", imgdesc: "", video: "", showUrl: false };
-        if (!is(main, "div.wa-link")) { lk.url = words(main); lk.showUrl = true; main = ns.shift(); if (!is(main, "div.wa-link")) no(); }
+        if (!is(main, "div.wa-link-card")) { lk.url = words(main); lk.showUrl = true; main = ns.shift(); if (!is(main, "div.wa-link-card")) no(); }
         kids(main).forEach(function (x) {
           if (is(x, ".wa-link-img.video")) { var f = x.querySelector("iframe"); if (!f) no(); lk.video = f.getAttribute("src"); var vd = x.querySelector(".video-desc"); if (vd) lk.imgdesc = words(vd).replace(/^\[|\]$/g, ""); }
           else if (is(x, "p.wa-link-img.text")) lk.imgdesc = words(x).replace(/^\[|\]$/g, "");
@@ -2452,7 +2452,7 @@
         var tby = who || (tout ? owner(b, tem.textContent) : personByName(tem.textContent, true)); if (!tby) no();
         b.msgs.push(m = newMsg("typing", "")); m.by = tby.id; return;
       }
-      var card = is(p, "div.igdm-post"), lnk = is(p, "div.igdm-link"), sh = is(p, "p.igdm-shared"), out = p.classList.contains(sh ? "me" : "out");
+      var card = is(p, "div.igdm-post"), lnk = is(p, "div.igdm-link-card"), sh = is(p, "p.igdm-shared"), out = p.classList.contains(sh ? "me" : "out");
       var gal = is(p, "div.msg.gallery") ? galleryBack(p, "igdm") : null;
       if (!card && !lnk && !sh && !gal && !is(p, "p.msg")) no();
       if (!sh && !out && !p.classList.contains("in")) no();
