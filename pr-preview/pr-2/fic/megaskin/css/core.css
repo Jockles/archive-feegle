@@ -1008,6 +1008,46 @@
 
 #workskin .igdm .footer > .plus { flex: none; margin: 0 0.4em; font-size: 1.3em; }
 
+/* the header: a status line under the name in Twitter DMs */
+#workskin .twdm .mob-header > span {
+  display: block;
+  font-size: 0.85em;
+  font-weight: normal;
+  opacity: 0.7;
+}
+
+#workskin .twdm .mob-header > .back,
+#workskin .twdm .mob-header > .btns,
+#workskin .twdm .mob-header > .tw-pfp,
+#workskin .twdm .mob-header > .chat-name { font-size: 1em; font-weight: bold; opacity: 1; }
+
+#workskin .twdm .mob-header > .tw-pfp { display: flex; font-size: 0.85em; }
+
+/* the header: a back arrow, a name span and buttons in iMessage */
+#workskin .imsg .mob-header:has(> .back),
+#workskin .imsg .mob-header:has(> .btns) { position: relative; }
+
+#workskin .imsg .mob-header .chat-name { color: inherit; font-size: 1.18em; font-weight: bold; }
+
+#workskin .imsg .mob-header .back,
+#workskin .imsg .mob-header .btns {
+  position: absolute;
+  top: 50%;
+  margin-top: -0.6em;
+  color: #0a84ff;
+  font-size: 1.2em;
+  line-height: 1.2;
+}
+
+#workskin .imsg .mob-header .back { left: 0.8em; }
+
+#workskin .imsg .mob-header .btns { right: 0.8em; }
+
+#workskin .imsg .mob-header .back span,
+#workskin .imsg .mob-header .btns span { display: inline; color: inherit; font-size: 1em; }
+
+#workskin .imsg .mob-header .btns span ~ span { margin-left: 0.5em; }
+
 /* link cards */
 #workskin .imsg .link-card,
 #workskin .twdm .link-card {
