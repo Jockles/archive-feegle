@@ -637,7 +637,7 @@
   color: inherit;
 }
 
-#workskin .tw-feed .tw-footer {
+#workskin .tw-feed .tw-reply-bar {
   display: block;
   padding: 0.7em 1em;
   border-top: 1px solid #eff3f4;
@@ -645,9 +645,9 @@
 }
 
 /* the paragraph AO3 wraps around the bar's text */
-#workskin .tw-feed .tw-footer > p { margin: 0; padding: 0; }
+#workskin .tw-feed .tw-reply-bar > p { margin: 0; padding: 0; }
 
-#workskin .tw-feed .tw-footer span {
+#workskin .tw-feed .tw-reply-bar span {
   float: right;
   padding: 0.25em 0.9em;
   border-radius: 1em;
@@ -1195,7 +1195,7 @@
 
 #workskin .tw-feed.theme-dark.tw2020 .tw-header { border-bottom-color: #2f3336; }
 
-#workskin .tw-feed.theme-dark .tw-footer { border-top-color: #2f3336; color: #71767b; }
+#workskin .tw-feed.theme-dark .tw-reply-bar { border-top-color: #2f3336; color: #71767b; }
 
 /* the tweets inside a thread take the thread's theme */
 #workskin .tw-feed.theme-dark .tw-replying,
@@ -1335,7 +1335,7 @@
 
   #workskin .tw-feed.theme-auto.tw2020 .tw-header { border-bottom-color: #2f3336; }
 
-  #workskin .tw-feed.theme-auto .tw-footer { border-top-color: #2f3336; color: #71767b; }
+  #workskin .tw-feed.theme-auto .tw-reply-bar { border-top-color: #2f3336; color: #71767b; }
 
   /* the tweets inside a thread take the thread's theme */
   #workskin .tw-feed.theme-auto .tw-replying,
