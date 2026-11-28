@@ -777,4 +777,196 @@
 
 #workskin .typing-indicator span:empty + span:empty + span:empty { opacity: 1; margin-right: 0; }
 
+/* ---- CHAT PHOTOS: pictures sent in a message. They are built the same way in every chat app, with the app's own first word (imsg-, wa-, igdm-, twdm-, dc-):
+   <div class="msg in gallery">
+     <p class="imsg-photos one">
+       <span class="imsg-photo"><img src="..." alt="..."></span>
+     </p>
+   </div>
+   The word after photos says how many pictures there are: one, two or three. Leave it out for four. ---- */
+#workskin .imsg-photos,
+#workskin .wa-photos,
+#workskin .igdm-photos,
+#workskin .twdm-photos,
+#workskin .dc-photos {
+  display: block;
+  overflow: hidden;
+  border-radius: 6px;
+}
+
+/* AO3 turns line breaks in your code into <br> tags; inside a grid they would push photos down */
+#workskin .imsg-photos br,
+#workskin .wa-photos br,
+#workskin .igdm-photos br,
+#workskin .twdm-photos br,
+#workskin .dc-photos br {
+  display: none;
+}
+
+#workskin .imsg-photos::after,
+#workskin .wa-photos::after,
+#workskin .igdm-photos::after,
+#workskin .twdm-photos::after,
+#workskin .dc-photos::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+#workskin .imsg-photo,
+#workskin .wa-photo,
+#workskin .igdm-photo,
+#workskin .twdm-photo,
+#workskin .dc-photo {
+  display: block;
+  position: relative;
+  float: left;
+  width: 49%;
+  height: 0;
+  padding: 49% 0 0 0;
+  margin: 0 1% 1% 0;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.12);
+}
+
+#workskin .imsg-photo:nth-of-type(2n),
+#workskin .wa-photo:nth-of-type(2n),
+#workskin .igdm-photo:nth-of-type(2n),
+#workskin .twdm-photo:nth-of-type(2n),
+#workskin .dc-photo:nth-of-type(2n) { margin-right: 0; }
+
+#workskin .imsg-photo:nth-of-type(n+3),
+#workskin .wa-photo:nth-of-type(n+3),
+#workskin .igdm-photo:nth-of-type(n+3),
+#workskin .twdm-photo:nth-of-type(n+3),
+#workskin .dc-photo:nth-of-type(n+3) { margin-bottom: 0; }
+
+/* the picture. AO3 can't crop pictures automatically, so the skin needs to know which way the picture runs: - normal (taller than wide, or square): it is made as wide as the box, and the top and bottom are cropped evenly - add class="landscape" to the img if it is wider than tall: it is made as tall as the box, and the sides are cropped evenly The tall boxes (two pictures; the left one of three) always use the second way, as nearly any photo fits them that way. */
+#workskin .imsg-photo img,
+#workskin .wa-photo img,
+#workskin .igdm-photo img,
+#workskin .twdm-photo img,
+#workskin .dc-photo img {
+  position: absolute;
+  top: -9999px;
+  bottom: -9999px;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: auto;
+  min-width: 0;
+  min-height: 0;
+  max-width: none;
+  max-height: none;
+  margin: auto 0;
+}
+
+#workskin .imsg-photo img.landscape,
+#workskin .wa-photo img.landscape,
+#workskin .igdm-photo img.landscape,
+#workskin .twdm-photo img.landscape,
+#workskin .dc-photo img.landscape,
+#workskin .imsg-photos.two .imsg-photo img,
+#workskin .wa-photos.two .wa-photo img,
+#workskin .igdm-photos.two .igdm-photo img,
+#workskin .twdm-photos.two .twdm-photo img,
+#workskin .dc-photos.two .dc-photo img,
+#workskin .imsg-photos.three .imsg-photo:first-of-type img,
+#workskin .wa-photos.three .wa-photo:first-of-type img,
+#workskin .igdm-photos.three .igdm-photo:first-of-type img,
+#workskin .twdm-photos.three .twdm-photo:first-of-type img,
+#workskin .dc-photos.three .dc-photo:first-of-type img {
+  top: 0;
+  bottom: auto;
+  right: -9999px;
+  left: -9999px;
+  width: auto;
+  height: 100%;
+  margin: 0 auto;
+}
+
+/* a description standing in for a picture: <span class="imsg-photo"><span class="img-desc">[...]</span></span> */
+#workskin .imsg-photo .img-desc,
+#workskin .wa-photo .img-desc,
+#workskin .igdm-photo .img-desc,
+#workskin .twdm-photo .img-desc,
+#workskin .dc-photo .img-desc {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 1em 0.5em;
+  font-size: 0.8em;
+  font-style: italic;
+  text-align: center;
+}
+
+/* two pictures: side by side, each one tall */
+#workskin .imsg-photos.two .imsg-photo,
+#workskin .wa-photos.two .wa-photo,
+#workskin .igdm-photos.two .igdm-photo,
+#workskin .twdm-photos.two .twdm-photo,
+#workskin .dc-photos.two .dc-photo {
+  padding-top: 99%;
+  margin-bottom: 0;
+}
+
+/* three pictures: one tall on the left, two small ones stacked on the right */
+#workskin .imsg-photos.three .imsg-photo:first-of-type,
+#workskin .wa-photos.three .wa-photo:first-of-type,
+#workskin .igdm-photos.three .igdm-photo:first-of-type,
+#workskin .twdm-photos.three .twdm-photo:first-of-type,
+#workskin .dc-photos.three .dc-photo:first-of-type {
+  padding-top: 99%;
+  margin-bottom: 0;
+}
+
+#workskin .imsg-photos.three .imsg-photo:nth-of-type(2),
+#workskin .wa-photos.three .wa-photo:nth-of-type(2),
+#workskin .igdm-photos.three .igdm-photo:nth-of-type(2),
+#workskin .twdm-photos.three .twdm-photo:nth-of-type(2),
+#workskin .dc-photos.three .dc-photo:nth-of-type(2) { margin-bottom: 1%; }
+
+#workskin .imsg-photos.three .imsg-photo:nth-of-type(3),
+#workskin .wa-photos.three .wa-photo:nth-of-type(3),
+#workskin .igdm-photos.three .igdm-photo:nth-of-type(3),
+#workskin .twdm-photos.three .twdm-photo:nth-of-type(3),
+#workskin .dc-photos.three .dc-photo:nth-of-type(3) { margin-right: 0; }
+
+/* one picture on its own isn't cropped into a square, so it keeps its own shape. A very tall one is trimmed at the bottom. */
+#workskin .imsg-photos.one .imsg-photo,
+#workskin .wa-photos.one .wa-photo,
+#workskin .igdm-photos.one .igdm-photo,
+#workskin .twdm-photos.one .twdm-photo,
+#workskin .dc-photos.one .dc-photo {
+  float: none;
+  width: 100%;
+  height: auto;
+  max-height: 26em;
+  padding: 0;
+  margin: 0;
+}
+
+#workskin .imsg-photos.one .imsg-photo img,
+#workskin .wa-photos.one .wa-photo img,
+#workskin .igdm-photos.one .igdm-photo img,
+#workskin .twdm-photos.one .twdm-photo img,
+#workskin .dc-photos.one .dc-photo img {
+  position: static;
+  width: 100%;
+  height: auto;
+  margin: 0;
+}
+
+#workskin .imsg-photos.one .imsg-photo .img-desc,
+#workskin .wa-photos.one .wa-photo .img-desc,
+#workskin .igdm-photos.one .igdm-photo .img-desc,
+#workskin .twdm-photos.one .twdm-photo .img-desc,
+#workskin .dc-photos.one .dc-photo .img-desc {
+  position: static;
+  padding: 4em 1em;
+}
+
 /* <<<<<<<<<< CORE (end) <<<<<<<<<< */

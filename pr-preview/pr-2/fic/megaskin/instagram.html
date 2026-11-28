@@ -25,7 +25,7 @@
   <!-- /site meta -->
   <link rel="stylesheet" href="../../style.css?v=c31c06ea">
   <script src="../../theme.js?v=c50fd7c2"></script>
-  <link rel="stylesheet" href="megaskin.css?v=67369e80" id="creator-style">
+  <link rel="stylesheet" href="megaskin.css?v=325e2e04" id="creator-style">
 </head>
 <body>
 <header>
@@ -1549,25 +1549,45 @@
 
 <h4 id="s12-6-7">12.6.7 Photos</h4>
 
-<p>A photo is a message with a picture in it instead of words. Add <code>photo</code> to the message, and put the picture where the words would go. It's rounded with no bubble behind it, like the app, and it keeps the hidden label:</p>
+<p>A photo is a message with a picture in it instead of words. It's built the same way in every chat app: add <code>gallery</code> to the message, then put an <code>igdm-photos one</code> line inside it, with one <code>igdm-photo</code> holding the picture tag. It's rounded with no bubble behind it, like the app, and the hidden label goes in a <code>hide</code> line at the start:</p>
 
 <div class="mob igdm theme-auto">
   <div class="mob-body">
-    <p class="msg in photo"><span class="hide"><em>Shane:</em> </span><img src="https://picsum.photos/id/429/600/600.jpg" alt="A white bowl full of raspberries"></p>
+    <div class="msg in gallery">
+      <p class="hide"><em>Shane:</em></p>
+      <p class="igdm-photos one">
+        <span class="igdm-photo"><img src="https://picsum.photos/id/429/600/600.jpg" alt="A white bowl full of raspberries"></span>
+      </p>
+    </div>
   </div>
 </div>
 
-<pre><code>&lt;p class="msg in photo"&gt;&lt;span class="hide"&gt;&lt;em&gt;Shane:&lt;/em&gt; &lt;/span&gt;&lt;img src="https://picsum.photos/id/429/600/600.jpg" alt="A white bowl full of raspberries"&gt;&lt;/p&gt;</code></pre>
+<pre><code>&lt;div class="msg in gallery"&gt;
+  &lt;p class="hide"&gt;&lt;em&gt;Shane:&lt;/em&gt;&lt;/p&gt;
+  &lt;p class="igdm-photos one"&gt;
+    &lt;span class="igdm-photo"&gt;&lt;img src="https://picsum.photos/id/429/600/600.jpg" alt="A white bowl full of raspberries"&gt;&lt;/span&gt;
+  &lt;/p&gt;
+&lt;/div&gt;</code></pre>
 
-<p>If you'd rather describe the photo than show it, put the description in an <code>igdm-desc</code> span instead of the picture:</p>
+<p>If you'd rather describe the photo than show it, put the description in an <code>img-desc</code> span instead of the picture:</p>
 
 <div class="mob igdm theme-auto">
   <div class="mob-body">
-    <p class="msg out photo"><span class="hide"><em>Ilya:</em> </span><span class="igdm-desc">[Photo: an empty lasagne dish with one fork left in it]</span></p>
+    <div class="msg out gallery">
+      <p class="hide"><em>Ilya:</em></p>
+      <p class="igdm-photos one">
+        <span class="igdm-photo"><span class="img-desc">[Photo: an empty lasagne dish with one fork left in it]</span></span>
+      </p>
+    </div>
   </div>
 </div>
 
-<pre><code>&lt;p class="msg out photo"&gt;&lt;span class="hide"&gt;&lt;em&gt;Ilya:&lt;/em&gt; &lt;/span&gt;&lt;span class="igdm-desc"&gt;[Photo: an empty lasagne dish with one fork left in it]&lt;/span&gt;&lt;/p&gt;</code></pre>
+<pre><code>&lt;div class="msg out gallery"&gt;
+  &lt;p class="hide"&gt;&lt;em&gt;Ilya:&lt;/em&gt;&lt;/p&gt;
+  &lt;p class="igdm-photos one"&gt;
+    &lt;span class="igdm-photo"&gt;&lt;span class="img-desc"&gt;[Photo: an empty lasagne dish with one fork left in it]&lt;/span&gt;&lt;/span&gt;
+  &lt;/p&gt;
+&lt;/div&gt;</code></pre>
 
 <h4 id="s12-6-8">12.6.8 Replies</h4>
 

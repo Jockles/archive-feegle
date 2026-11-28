@@ -951,32 +951,24 @@
 
 #workskin .igdm .igdm-quote.out::before { left: auto; right: -0.7em; }
 
-/* ---- photos: a message with a picture in it instead of words, rounded, with no bubble behind it */
-#workskin .igdm .msg.photo {
-  max-width: 62%;
+/* ---- photos: a message with a picture in it instead of words, rounded, with no bubble behind it (see CHAT PHOTOS in the Core part) */
+#workskin .igdm .msg.gallery {
+  width: 62%;
   padding: 0;
   background: none;
-  line-height: 0;
 }
 
-#workskin .igdm .msg.photo img {
-  display: block;
-  width: 100%;
-  height: auto;
-  border-radius: 18px;
-}
+#workskin .igdm .igdm-photos { border-radius: 18px; }
 
-#workskin .igdm .igdm-desc {
-  display: block;
-  padding: 3em 1em;
-  border-radius: 18px;
-  background: #efefef;
+#workskin .igdm .igdm-photo { background: #efefef; }
+
+#workskin .igdm .igdm-photo .img-desc {
   color: #737373;
   font-size: 0.85em;
-  font-style: italic;
   line-height: 1.35;
-  text-align: center;
 }
+
+#workskin .igdm .igdm-photos.one .igdm-photo .img-desc { padding: 3em 1em; }
 
 /* ---- a shared post as a card: the account at the top, then the picture, then the account name in bold and the start of the caption */
 #workskin .igdm .igdm-post {
@@ -1577,9 +1569,9 @@
 #workskin .igdm.theme-dark .igdm-quote { background: #1c1c1c; color: #8e8e8e; }
 #workskin .igdm.theme-dark .igdm-quote.mine { background: #3b2a66; color: #c9b5f2; }
 #workskin .igdm.theme-dark .igdm-quote::before { background: #363636; }
-#workskin .igdm.theme-dark .igdm-desc,
+#workskin .igdm.theme-dark .igdm-photo,
   #workskin .igdm.theme-dark .igdm-post { background: #262626; color: #f5f5f5; }
-#workskin .igdm.theme-dark .igdm-desc { color: #a8a8a8; }
+#workskin .igdm.theme-dark .igdm-photo .img-desc { color: #a8a8a8; }
 #workskin .igdm.theme-dark .igdm-post-img.text { background: #363636; color: #a8a8a8; }
 #workskin .igdm.theme-dark .igdm-post.reel { background: #000000; }
 #workskin .igdm.theme-dark .igdm-post-btns .ic { background-color: #262626; }
@@ -1669,9 +1661,9 @@
   #workskin .igdm.theme-auto .igdm-quote { background: #1c1c1c; color: #8e8e8e; }
   #workskin .igdm.theme-auto .igdm-quote.mine { background: #3b2a66; color: #c9b5f2; }
   #workskin .igdm.theme-auto .igdm-quote::before { background: #363636; }
-  #workskin .igdm.theme-auto .igdm-desc,
+  #workskin .igdm.theme-auto .igdm-photo,
     #workskin .igdm.theme-auto .igdm-post { background: #262626; color: #f5f5f5; }
-  #workskin .igdm.theme-auto .igdm-desc { color: #a8a8a8; }
+  #workskin .igdm.theme-auto .igdm-photo .img-desc { color: #a8a8a8; }
   #workskin .igdm.theme-auto .igdm-post-img.text { background: #363636; color: #a8a8a8; }
   #workskin .igdm.theme-auto .igdm-post.reel { background: #000000; }
   #workskin .igdm.theme-auto .igdm-post-btns .ic { background-color: #262626; }

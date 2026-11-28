@@ -929,21 +929,16 @@
 
 #workskin .twdm .typing-indicator span:empty { background: #536471; }
 
-#workskin .twdm .msg.photo {
-  padding: 0.25em;
-  min-width: 55%;
-  font-style: italic;
-  text-align: center;
-}
+/* a picture sent in a message (see CHAT PHOTOS in the Core part) */
+#workskin .twdm .msg.gallery { min-width: 55%; padding: 0.25em; }
 
-#workskin .twdm .msg.photo img {
-  display: block;
-  max-width: 100%;
-  height: auto;
-  border-radius: 1.1em;
-}
+#workskin .twdm .twdm-photos { border-radius: 1.1em; }
 
-#workskin .twdm .msg.photo.text { padding: 2.5em 1.5em; }
+#workskin .twdm .twdm-photo { background: none; }
+
+#workskin .twdm .twdm-photo .img-desc { font-size: 1em; }
+
+#workskin .twdm .twdm-photos.one .twdm-photo .img-desc { padding: 2.25em 1.25em; }
 
 /* a voice message:
    <p class="msg out voice"><span class="twdm-play ic ic-play">&#9654;</span><span class="twdm-wave"></span><span class="twdm-dur">0:02</span></p> */

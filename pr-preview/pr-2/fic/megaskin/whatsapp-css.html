@@ -25,7 +25,7 @@
   <!-- /site meta -->
   <link rel="stylesheet" href="../../style.css?v=c31c06ea">
   <script src="../../theme.js?v=c50fd7c2"></script>
-  <link rel="stylesheet" href="megaskin.css?v=67369e80" id="creator-style">
+  <link rel="stylesheet" href="megaskin.css?v=325e2e04" id="creator-style">
 </head>
 <body>
 <header>
@@ -668,9 +668,9 @@
 
 <h4 id="s7-6-2">7.6.2 Photo Galleries</h4>
 
-<p>Galleries are the trickiest part of the module, because every photo has to be a perfect square, whatever shape the picture is.</p>
+<p>Galleries are the trickiest part of the skin, because every photo has to be a perfect square, whatever shape the picture is. Every chat app builds its photos this way, so these rules live in Core, under Chat Photos, and each one lists the same class for every app (<code>imsg-photo</code>, <code>wa-photo</code>, <code>igdm-photo</code>, <code>twdm-photo</code>, <code>dc-photo</code>). Only the WhatsApp line is shown here.</p>
 
-<pre><code>#workskin .wa .wa-photo {
+<pre><code>#workskin .wa-photo {
   display: block;
   position: relative;
   float: left;
@@ -693,7 +693,7 @@
 
 </details>
 
-<pre><code>#workskin .wa .wa-photo img {
+<pre><code>#workskin .wa-photo img {
   position: absolute;
   top: -9999px;
   bottom: -9999px;
@@ -708,9 +708,9 @@
   margin: auto 0;
 }
 
-#workskin .wa .wa-photo img.landscape,
-#workskin .wa .wa-photos.two .wa-photo img,
-#workskin .wa .wa-photos.three .wa-photo:first-of-type img {
+#workskin .wa-photo img.landscape,
+#workskin .wa-photos.two .wa-photo img,
+#workskin .wa-photos.three .wa-photo:first-of-type img {
   top: 0;
   bottom: auto;
   right: -9999px;
@@ -732,17 +732,17 @@
 <details>
 <summary>How it works: two, three and one photos</summary>
 
-<pre><code>#workskin .wa .wa-photos.two .wa-photo {
+<pre><code>#workskin .wa-photos.two .wa-photo {
   padding-top: 99%;
   margin-bottom: 0;
 }
 
-#workskin .wa .wa-photos.three .wa-photo:first-of-type {
+#workskin .wa-photos.three .wa-photo:first-of-type {
   padding-top: 99%;
   margin-bottom: 0;
 }
 
-#workskin .wa .wa-photos.one .wa-photo {
+#workskin .wa-photos.one .wa-photo {
   float: none;
   width: 100%;
   height: auto;
@@ -900,7 +900,7 @@
   <li><strong>Reactions:</strong> <code>wa-reacts</code> and <code>wa-count</code>.</li>
   <li><strong>Message bar:</strong> <code>wa-footer</code>, <code>wa-field</code>, <code>wa-placeholder</code>, <code>wa-mic</code>.</li>
   <li><strong>Link cards:</strong> <code>share</code>, and everything starting <code>wa-link</code>.</li>
-  <li><strong>Photos:</strong> <code>gallery</code>, <code>wa-photos</code>, <code>wa-photo</code>, <code>wa-desc</code>.</li>
+  <li><strong>Photos:</strong> <code>gallery</code>, <code>wa-photos</code>, <code>wa-photo</code>, <code>img-desc</code>.</li>
   <li><strong>Calls:</strong> <code>call</code>, and everything starting <code>wa-call</code>, including the <code>ic-wa-call</code> and <code>ic-wa-video</code> icons.</li>
   <li><strong>Contact cards:</strong> <code>contact</code>, <code>wa-contact</code> and <code>wa-contact-btn</code>.</li>
   <li><strong>Forwarded label:</strong> <code>wa-fwd</code> and <code>ic-forward</code>.</li>

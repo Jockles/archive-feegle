@@ -25,7 +25,7 @@
   <!-- /site meta -->
   <link rel="stylesheet" href="../../style.css?v=c31c06ea">
   <script src="../../theme.js?v=c50fd7c2"></script>
-  <link rel="stylesheet" href="megaskin.css?v=67369e80" id="creator-style">
+  <link rel="stylesheet" href="megaskin.css?v=325e2e04" id="creator-style">
 </head>
 <body>
 <header>
@@ -212,11 +212,21 @@
 
 <div class="mob imsg theme-auto">
   <div class="mob-body">
-    <p class="msg out photo"><span class="hide"><em>Ilya:</em> </span><img src="https://images.squidge.org/images/2026/11/16/Cat3.jpg" alt="Black and white cat holding out a paw daintily, on a beige and green cat tree. The cat looks to be stepping into the frame from the left"></p>
+    <div class="msg out gallery">
+      <p class="hide"><em>Ilya:</em></p>
+      <p class="imsg-photos one">
+        <span class="imsg-photo"><img src="https://images.squidge.org/images/2026/11/16/Cat3.jpg" alt="Black and white cat holding out a paw daintily, on a beige and green cat tree. The cat looks to be stepping into the frame from the left"></span>
+      </p>
+    </div>
   </div>
 </div>
 
-<pre><code>&lt;p class="msg out photo"&gt;&lt;span class="hide"&gt;&lt;em&gt;Ilya:&lt;/em&gt; &lt;/span&gt;&lt;img src="https://images.squidge.org/images/2026/11/16/Cat3.jpg" alt="Black and white cat holding out a paw daintily, on a beige and green cat tree. The cat looks to be stepping into the frame from the left"&gt;&lt;/p&gt;</code></pre>
+<pre><code>&lt;div class="msg out gallery"&gt;
+  &lt;p class="hide"&gt;&lt;em&gt;Ilya:&lt;/em&gt;&lt;/p&gt;
+  &lt;p class="imsg-photos one"&gt;
+    &lt;span class="imsg-photo"&gt;&lt;img src="https://images.squidge.org/images/2026/11/16/Cat3.jpg" alt="Black and white cat holding out a paw daintily, on a beige and green cat tree. The cat looks to be stepping into the frame from the left"&gt;&lt;/span&gt;
+  &lt;/p&gt;
+&lt;/div&gt;</code></pre>
 
 <details>
 <summary>How it works: more about alt text</summary>
