@@ -175,6 +175,13 @@
   font-size: 0.8em;
 }
 
+/* the three dots are a picture: <span class="tb-menu ic ic-more">&#8226;&#8226;&#8226;</span> */
+#workskin .tb .tb-menu.ic {
+  width: 1.9em;
+  height: 38px;
+  opacity: 0.55;
+}
+
 #workskin .tb .tb-text { display: block; padding: 0.3em 0 0.8em 0; }
 
 #workskin .tb .tb-text p { margin: 0.5em 0; padding: 0 0.9em; }
@@ -707,6 +714,7 @@
 #workskin .tb .ic.ic-comment { background-image: url(https://images.squidge.org/images/2026/11/15/comment-black.png); }
 #workskin .tb .ic.ic-reblog { background-image: url(https://images.squidge.org/images/2026/11/15/reblog-black.png); }
 #workskin .tb .ic.ic-heart { background-image: url(https://images.squidge.org/images/2026/11/15/heart-black.png); }
+#workskin .tb .ic.ic-more { background-image: url(https://images.squidge.org/images/2026/11/15/menu-horizontal-black.png); }
 
 /* the app screen's top bar and bottom buttons. They always sit on the feed colour, so they don't change with the theme. */
 #workskin .tb-feed .tb-header .ic,
@@ -763,6 +771,7 @@
 #workskin .tb.theme-dark .ic.ic-comment { background-image: url(https://images.squidge.org/images/2026/11/15/comment-white.png); }
 #workskin .tb.theme-dark .ic.ic-reblog { background-image: url(https://images.squidge.org/images/2026/11/15/reblog-white.png); }
 #workskin .tb.theme-dark .ic.ic-heart { background-image: url(https://images.squidge.org/images/2026/11/15/heart-white.png); }
+#workskin .tb.theme-dark .ic.ic-more { background-image: url(https://images.squidge.org/images/2026/11/15/menu-horizontal-white.png); }
 
 /* Tumblr icons, auto: dark when the reader's device is in dark mode */
 @media (prefers-color-scheme: dark) {
@@ -770,6 +779,7 @@
   #workskin .tb.theme-auto .ic.ic-comment { background-image: url(https://images.squidge.org/images/2026/11/15/comment-white.png); }
   #workskin .tb.theme-auto .ic.ic-reblog { background-image: url(https://images.squidge.org/images/2026/11/15/reblog-white.png); }
   #workskin .tb.theme-auto .ic.ic-heart { background-image: url(https://images.squidge.org/images/2026/11/15/heart-white.png); }
+  #workskin .tb.theme-auto .ic.ic-more { background-image: url(https://images.squidge.org/images/2026/11/15/menu-horizontal-white.png); }
 }
 
 /* <<<<<<<<<< MODULE: Tumblr (end) <<<<<<<<<< */
