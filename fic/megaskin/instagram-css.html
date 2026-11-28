@@ -7,7 +7,7 @@
   <title>Megaskin, Chapter 13: Instagram CSS | jockles.com</title>
   <link rel="stylesheet" href="../../style.css">
   <script src="../../theme.js"></script>
-  <link rel="stylesheet" href="megaskin.css?v=b72f9581" id="creator-style">
+  <link rel="stylesheet" href="megaskin.css?v=80e20858" id="creator-style">
 </head>
 <body>
 <header>
@@ -56,8 +56,7 @@
     <ul>
       <li><a href="#s13-4-1">13.4.1 The Buttons</a></li>
       <li><a href="#s13-4-2">13.4.2 Clickable Buttons</a></li>
-      <li><a href="#s13-4-3">13.4.3 Icons Drawn With CSS</a></li>
-      <li><a href="#s13-4-4">13.4.4 Liked By, With Faces</a></li>
+      <li><a href="#s13-4-3">13.4.3 Liked By, With Faces</a></li>
     </ul>
   </li>
   <li><a href="#s13-5">13.5 Photos</a>
@@ -239,15 +238,23 @@
   padding: 0;
 }
 
-#workskin .ig .ig-stat,
-#workskin .ig .ig-tog {
+#workskin .ig .ig-stat {
   display: inline-block;
-  margin: 0 0.9em 0 0;
+  margin: 0 1.125em 0 0;
+  font-size: 0.8em;
+  font-weight: bold;
   letter-spacing: 0;
+  vertical-align: middle;
+}
+
+#workskin .ig .ig-stats .ic {
+  width: 1.5625em;
+  height: 1.5625em;
+  margin-right: 0.15em;
   vertical-align: middle;
 }</code></pre>
 
-<p>Each button is a small block sitting in a row, with a gap to its right.</p>
+<p>Each button is a small block sitting in a row, with a gap to its right. The number is small and bold, and the picture is made bigger to make up for the small text.</p>
 
 <details>
 <summary>How it works: the line breaks AO3 adds</summary>
@@ -263,6 +270,8 @@
 <pre><code>#workskin .ig .ig-tog summary {
   display: inline-block;
   list-style: none;
+  cursor: pointer;
+  color: inherit;
 }
 
 #workskin .ig .ig-tog summary::-webkit-details-marker { display: none; }
@@ -272,8 +281,6 @@
 #workskin .ig .ig-tog .on { display: none; }
 
 #workskin .ig .ig-tog[open] .on { display: inline; }
-
-#workskin .ig .ig-tog[open] .bookmark.on { display: inline-block; }
 
 #workskin .ig .ig-tog[open] .off { display: none; }</code></pre>
 
@@ -288,78 +295,20 @@
 
 </details>
 
-<pre><code>#workskin .ig .ig-tog.save {
+<pre><code>#workskin .ig .ig-stat.right {
   float: right;
   margin-right: 0;
 }
 
-#workskin .ig .ig-tog.like .on.ig-icon { color: #ed4956; }</code></pre>
+#workskin .ig .ig-stat.liked .ic.ic-heart,
+#workskin .ig .ig-tog[open] .ic.ic-heart { background-image: url(https://images.squidge.org/images/2026/11/15/heart-filled-red.png); }
 
-<p>The save button floats to the far right, and a liked heart is Instagram's red.</p>
+#workskin .ig .ig-stat.saved .ic.ic-save,
+#workskin .ig .ig-tog[open] .ic.ic-save { background-image: url(https://images.squidge.org/images/2026/11/15/bookmark-filled-black.png); }</code></pre>
 
-<h4 id="s13-4-3">13.4.3 Icons Drawn With CSS</h4>
+<p>The save button floats to the far right. A liked heart swaps its picture for Instagram's red one, and a saved bookmark for a filled-in one, either when the reader clicks or when the button has <code>liked</code> or <code>saved</code> on it.</p>
 
-<p>There's no good comment bubble or bookmark among the emoji and symbols, so these two are drawn from boxes:</p>
-
-<pre><code>#workskin .ig .comment {
-  display: inline-block;
-  box-sizing: border-box;
-  width: 18px;
-  height: 18px;
-  border: 2px solid currentColor;
-  border-radius: 50%;
-  border-bottom-left-radius: 0;
-  vertical-align: middle;
-}</code></pre>
-
-<details>
-<summary>How it works: the comment bubble</summary>
-
-<p>The comment bubble is a circle outline with one corner left square, which makes the little tail. <code>currentColor</code> means "the same colour as the text", so it's dark in light mode and light in dark mode without needing a rule for each.</p>
-
-</details>
-
-<pre><code>#workskin .ig .bookmark {
-  display: inline-block;
-  position: relative;
-  box-sizing: border-box;
-  width: 14px;
-  height: 18px;
-  border: 2px solid currentColor;
-  border-bottom: 0;
-  vertical-align: middle;
-}
-
-#workskin .ig .bookmark::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  bottom: 0;
-  box-sizing: border-box;
-  width: 7px;
-  height: 7px;
-  margin: 0 0 -3px -3px;
-  border-top: 2px solid currentColor;
-  border-left: 2px solid currentColor;
-  -webkit-transform: rotate(45deg);
-  transform: rotate(45deg);
-}
-
-#workskin .ig .bookmark.on { background: currentColor; }
-
-#workskin .ig .bookmark.on::after {
-  border: 0;
-  background: #ffffff;
-}</code></pre>
-
-<details>
-<summary>How it works: the bookmark</summary>
-
-<p>The bookmark is a tall box with no bottom edge. The notch at the bottom is a small square with only two edges, turned 45 degrees so they make a V, and pinned in the middle of the open bottom. Saved, the box is filled in, and the notch becomes a solid square the colour of the post, turned on its point, which cuts the V out of the fill.</p>
-
-</details>
-
-<h4 id="s13-4-4">13.4.4 Liked By, With Faces</h4>
+<h4 id="s13-4-3">13.4.3 Liked By, With Faces</h4>
 
 <pre><code>#workskin .ig .ig-like-pfp {
   display: inline-block;
@@ -977,7 +926,7 @@
 <details>
 <summary>How it works: the white edges in the dark theme</summary>
 
-<p>It also turns the white edges dark - the gap in the story ring, the edges of the liked-by faces and the notch in a saved bookmark - because a white edge on a dark post would show. The auto theme is the same rules again inside <code>@media (prefers-color-scheme: dark)</code>.</p>
+<p>It also turns the white edges dark - the gap in the story ring and the edges of the liked-by faces - because a white edge on a dark post would show. The auto theme is the same rules again inside <code>@media (prefers-color-scheme: dark)</code>.</p>
 
 </details>
 
@@ -985,10 +934,7 @@
 
 <p>You can leave anything out of a single post's HTML. But if you never want something on <em>any</em> post, it's quicker to switch it off once in the CSS. Paste any of these at the very bottom of your work skin - below everything else, so they win:</p>
 
-<pre><code>/* no numbers beside the buttons */
-#workskin .ig .ig-stats .ig-count.ig-count.ig-count { display: none; }
-
-/* no Follow links */
+<pre><code>/* no Follow links */
 #workskin .ig .ig-top .ig-follow { display: none; }
 
 /* no menu */
@@ -1024,7 +970,7 @@
 <ul>
   <li><strong>DMs:</strong> everything starting <code>.igdm</code>.</li>
   <li><strong>The top bar and Stories row:</strong> <code>ig-header</code>, <code>ig-add</code>, <code>ig-logo</code>, <code>ig-notif</code>, <code>ig-badge</code>, <code>ig-stories</code>, <code>ig-story</code> and <code>ig-story-name</code>. Keep the <code>ig-feed</code> rules, because they hold the posts.</li>
-  <li><strong>Clickable buttons:</strong> <code>ig-tog</code>, <code>bookmark</code>, and the <code>.on</code> and <code>.off</code> rules. Keep <code>ig-stat</code> for plain buttons.</li>
+  <li><strong>Clickable buttons:</strong> <code>ig-tog</code>, and the <code>.on</code> and <code>.off</code> rules. Keep <code>ig-stat</code> for plain buttons.</li>
   <li><strong>Liked-by faces:</strong> <code>liked-by</code>, <code>ig-like-pfps</code> and <code>ig-like-pfp</code>.</li>
   <li><strong>Stories ring:</strong> the two <code>.story</code> rules.</li>
   <li><strong>Account line extras:</strong> <code>ig-menu</code>, <code>ig-tick</code>, <code>ig-follow</code> and <code>ig-follow-btn</code> each come out on their own.</li>
