@@ -891,6 +891,17 @@
 
 #workskin .igdm .reacts.out { margin-left: auto; }
 
+/* a reacts line written the iMessage way (first inside the message) hangs off the bottom of the bubble as well */
+#workskin .igdm .msg:has(> .reacts) { position: relative; margin-bottom: 1.6em; }
+
+#workskin .igdm .msg > .reacts { position: absolute; top: 100%; left: 0; margin: -0.5em 0 0 0; white-space: nowrap; }
+
+#workskin .igdm .msg.out > .reacts { left: auto; right: 0; }
+
+#workskin .igdm .msg > .reacts + .reacts { left: 2.6em; }
+
+#workskin .igdm .msg.out > .reacts + .reacts { left: auto; right: 2.6em; }
+
 #workskin .igdm .reacts .ig-pfp,
 #workskin .igdm .row .reacts .ig-pfp {
   display: inline-flex;

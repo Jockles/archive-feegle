@@ -76,21 +76,28 @@
 
 #workskin .imsg .imsg-edited-in { text-align: left; margin: 0.1em 0 0.4em 0.4em; }
 
-/* tapbacks: a reaction bubble on the top corner of a message. */
-#workskin .imsg .msg.tapped {
+/* tapbacks: a reaction bubble on the top corner of a message.
+   <div class="msg in">
+     <p class="reacts"><span class="hide">[Shane reacted </span>😂<span class="hide">]</span></p>
+     <p>the message</p>
+   </div> */
+#workskin .imsg div.msg > p { margin: 0; }
+
+#workskin .imsg .msg:has(> .reacts) {
   position: relative;
   margin-top: 1.7em;
 }
 
 /* in a group, keep the sender's name right above a message with a tapback:
    the room for the tapback goes above the name instead of between the name and the message */
-#workskin .imsg .who + .msg.tapped { margin-top: 0.18em; }
+#workskin .imsg .who + .msg:has(> .reacts) { margin-top: 0.18em; }
 
-#workskin .imsg .who:has(+ .msg.tapped) { margin-top: 1.5em; }
+#workskin .imsg .who:has(+ .msg > .reacts) { margin-top: 1.5em; }
 
-#workskin .imsg .imsg-tap {
+#workskin .imsg .reacts {
   position: absolute;
   top: -1.75em;
+  margin: 0;
   right: -0.95em;
   min-width: 2.15em;
   height: 2.15em;
@@ -107,15 +114,15 @@
 }
 
 /* the two little tail dots, trailing off the outside corner */
-#workskin .imsg .imsg-tap::before,
-#workskin .imsg .imsg-tap::after {
+#workskin .imsg .reacts::before,
+#workskin .imsg .reacts::after {
   content: "";
   position: absolute;
   border-radius: 50%;
   background: #e9e9eb;
 }
 
-#workskin .imsg .imsg-tap::before {
+#workskin .imsg .reacts::before {
   right: -0.2em;
   bottom: -0.2em;
   width: 0.5em;
@@ -123,7 +130,7 @@
   border: 2px solid #ffffff;
 }
 
-#workskin .imsg .imsg-tap::after {
+#workskin .imsg .reacts::after {
   right: -0.55em;
   bottom: -0.5em;
   width: 0.25em;
@@ -131,42 +138,60 @@
 }
 
 /* on your own messages it sits on the left corner instead, with the tail on the left */
-#workskin .imsg .out .imsg-tap { right: auto; left: -0.95em; }
+#workskin .imsg .out .reacts { right: auto; left: -0.95em; }
 
-#workskin .imsg .out .imsg-tap::before { right: auto; left: -0.2em; }
+#workskin .imsg .out .reacts::before { right: auto; left: -0.2em; }
 
-#workskin .imsg .out .imsg-tap::after { right: auto; left: -0.55em; }
+#workskin .imsg .out .reacts::after { right: auto; left: -0.55em; }
 
 /* your own reaction is blue */
-#workskin .imsg .imsg-tap.me { background: #0a84ff; color: #ffffff; }
+#workskin .imsg .reacts.me { background: #0a84ff; color: #ffffff; }
 
-#workskin .imsg .imsg-tap.me::before,
-#workskin .imsg .imsg-tap.me::after { background: #0a84ff; }
+#workskin .imsg .reacts.me::before,
+#workskin .imsg .reacts.me::after { background: #0a84ff; }
 
-/* several people reacting: put the imsg-tap spans one after another and they stack,
+/* several people reacting: put the reacts lines one after another and they stack,
    each one stepping in from the corner, with the tail only on the first */
-#workskin .imsg .imsg-tap { z-index: 4; }
+#workskin .imsg .reacts { z-index: 4; }
 
-#workskin .imsg .imsg-tap + .imsg-tap { z-index: 3; }
+#workskin .imsg .reacts + .reacts { z-index: 3; }
 
-#workskin .imsg .imsg-tap + .imsg-tap + .imsg-tap { z-index: 2; }
+#workskin .imsg .reacts + .reacts + .reacts { z-index: 2; }
 
-#workskin .imsg .imsg-tap + .imsg-tap + .imsg-tap + .imsg-tap { z-index: 1; }
+#workskin .imsg .reacts + .reacts + .reacts + .reacts { z-index: 1; }
 
-#workskin .imsg .imsg-tap + .imsg-tap { right: 0.5em; }
+#workskin .imsg .reacts + .reacts { right: 0.5em; }
 
-#workskin .imsg .imsg-tap + .imsg-tap + .imsg-tap { right: 1.95em; }
+#workskin .imsg .reacts + .reacts + .reacts { right: 1.95em; }
 
-#workskin .imsg .imsg-tap + .imsg-tap + .imsg-tap + .imsg-tap { right: 3.4em; }
+#workskin .imsg .reacts + .reacts + .reacts + .reacts { right: 3.4em; }
 
-#workskin .imsg .out .imsg-tap + .imsg-tap { right: auto; left: 0.5em; }
+#workskin .imsg .out .reacts + .reacts { right: auto; left: 0.5em; }
 
-#workskin .imsg .out .imsg-tap + .imsg-tap + .imsg-tap { right: auto; left: 1.95em; }
+#workskin .imsg .out .reacts + .reacts + .reacts { right: auto; left: 1.95em; }
 
-#workskin .imsg .out .imsg-tap + .imsg-tap + .imsg-tap + .imsg-tap { right: auto; left: 3.4em; }
+#workskin .imsg .out .reacts + .reacts + .reacts + .reacts { right: auto; left: 3.4em; }
 
-#workskin .imsg .imsg-tap + .imsg-tap::before,
-#workskin .imsg .imsg-tap + .imsg-tap::after { display: none; }
+#workskin .imsg .reacts + .reacts::before,
+#workskin .imsg .reacts + .reacts::after { display: none; }
+
+/* a reacts line written the way the other chat apps do it (a line of its own after the message) is a small bubble under it */
+#workskin .imsg :not(.msg) > .reacts {
+  display: table;
+  position: relative;
+  top: auto;
+  right: auto;
+  left: auto;
+  height: auto;
+  margin: -0.5em 0 0.3em 0.6em;
+  font-size: 0.85em;
+  line-height: 1.6;
+}
+
+#workskin .imsg :not(.msg) > .reacts.out { margin-left: auto; margin-right: 0.6em; }
+
+#workskin .imsg :not(.msg) > .reacts::before,
+#workskin .imsg :not(.msg) > .reacts::after { display: none; }
 
 #workskin .imsg .mob-sys { color: #8e8e93; opacity: 1; }
 
@@ -266,13 +291,13 @@
   color: #ffffff;
 }
 
-#workskin .imsg.theme-dark .imsg-tap,
-#workskin .imsg.theme-dark .imsg-tap::before,
-#workskin .imsg.theme-dark .imsg-tap::after { border-color: #000000; background: #3a3a3c; color: #aeaeb2; }
+#workskin .imsg.theme-dark .reacts,
+#workskin .imsg.theme-dark .reacts::before,
+#workskin .imsg.theme-dark .reacts::after { border-color: #000000; background: #3a3a3c; color: #aeaeb2; }
 
-#workskin .imsg.theme-dark .imsg-tap.me,
-#workskin .imsg.theme-dark .imsg-tap.me::before,
-#workskin .imsg.theme-dark .imsg-tap.me::after { background: #0a84ff; color: #ffffff; }
+#workskin .imsg.theme-dark .reacts.me,
+#workskin .imsg.theme-dark .reacts.me::before,
+#workskin .imsg.theme-dark .reacts.me::after { background: #0a84ff; color: #ffffff; }
 
 #workskin .imsg.theme-dark .plus { border-color: #757579; background: #2c2c2e; color: #ffffff; }
 
@@ -292,13 +317,13 @@
       color: #ffffff;
     }
 
-  #workskin .imsg.theme-auto .imsg-tap,
-    #workskin .imsg.theme-auto .imsg-tap::before,
-    #workskin .imsg.theme-auto .imsg-tap::after { border-color: #000000; background: #3a3a3c; color: #aeaeb2; }
+  #workskin .imsg.theme-auto .reacts,
+    #workskin .imsg.theme-auto .reacts::before,
+    #workskin .imsg.theme-auto .reacts::after { border-color: #000000; background: #3a3a3c; color: #aeaeb2; }
 
-  #workskin .imsg.theme-auto .imsg-tap.me,
-    #workskin .imsg.theme-auto .imsg-tap.me::before,
-    #workskin .imsg.theme-auto .imsg-tap.me::after { background: #0a84ff; color: #ffffff; }
+  #workskin .imsg.theme-auto .reacts.me,
+    #workskin .imsg.theme-auto .reacts.me::before,
+    #workskin .imsg.theme-auto .reacts.me::after { background: #0a84ff; color: #ffffff; }
 
   #workskin .imsg.theme-auto .plus { border-color: #757579; background: #2c2c2e; color: #ffffff; }
 
