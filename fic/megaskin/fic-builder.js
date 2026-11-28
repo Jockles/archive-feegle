@@ -1385,6 +1385,14 @@
       h.push('<div class="fb-extras">');
       h.push('<p class="hint">Select some words in the message, then: ' + btn("fmt:tl", "Translation") + " " + btn("fmt:egg", "Easter egg") + " " + btn("fmt:link", "Fake link") + "</p>");
       // above the bubble
+      if (imsg) {
+        h.push('<p class="hint">Tapbacks (one emoji per person):</p>');
+        m.reacts.forEach(function (r, k) {
+          h.push('<div class="fb-row">' + field(P + ".reacts." + k + ".by", "", { type: "select", options: S.cast.map(function (c) { return [c.id, nameOf(c)]; }) }) +
+            field(P + ".reacts." + k + ".emoji", "", { ph: "❤️", cls: "fb-emoji" }) + btn("tap-del:" + bi + ":" + mi + ":" + k, "&times;", "Remove") + "</div>");
+        });
+        h.push(btn("tap-add:" + bi + ":" + mi, "+ Tapback"));
+      }
       if (wa) h.push(field(P + ".fwd", "Forwarded", { type: "check" }));
       if (!imsg) h.push(replyField(b, P, mi));
       // the bubble
@@ -1462,15 +1470,7 @@
       // under the bubble
       if (!dm && !ig) h.push(field(P + ".edited", "Edited", { type: "check" }));
       if (wa && me) h.push(field(P + ".tick", "Ticks", { type: "select", options: [["read", "Read (blue)"], ["delivered", "Delivered (grey)"], ["sent", "Sent (one tick)"], ["", "None"]] }));
-      if (imsg) {
-        h.push('<p class="hint">Tapbacks (one emoji per person):</p>');
-        m.reacts.forEach(function (r, k) {
-          h.push('<div class="fb-row">' + field(P + ".reacts." + k + ".by", "", { type: "select", options: S.cast.map(function (c) { return [c.id, nameOf(c)]; }) }) +
-            field(P + ".reacts." + k + ".emoji", "", { ph: "❤️", cls: "fb-emoji" }) + btn("tap-del:" + bi + ":" + mi + ":" + k, "&times;", "Remove") + "</div>");
-        });
-        h.push(btn("tap-add:" + bi + ":" + mi, "+ Tapback"));
-        h.push(field(P + ".status", "Line under it (e.g. Delivered, or Read 11:52 PM)", {}));
-      }
+      if (imsg) h.push(field(P + ".status", "Line under it (e.g. Delivered, or Read 11:52 PM)", {}));
       if (wa) h.push('<div class="fb-row">' + field(P + ".waReacts", "Reactions", { ph: "❤️ 😂" }) + field(P + ".waCount", "Count", { ph: "2", cls: "fb-time" }) + "</div>");
       if (dm) {
         h.push(field(P + ".waReacts", "Reactions", { ph: "😂 1" }));
@@ -1684,23 +1684,23 @@
     h.push("<div>" + field(P + ".width", "Width", { type: "select", options: [["", "Phone width"], ["wide", "Full width"]] }) + "</div>");
     h.push("<div>" + field(P + ".scroll", "Long chats", { type: "select", options: [["", "Scroll inside the phone"], ["no-scroll", "Show it all"]] }) + "</div>");
     h.push("</div>");
-    // the header
+    // the header: folded up by default, as it's long
+    h.push('<details class="fb-acct"' + (b.headOpen ? " open" : "") + ' data-open="' + P + '.headOpen"><summary class="hint">Header</summary>');
     if (wa || ig) {
       h.push('<div class="fb-grid">');
-      if (wa) h.push("<div>" + field(P + ".header", "Header", { type: "select", re: true, options: [["simple", "Simple"], ["bar", "With picture and icons"], ["none", "None"]] }) + "</div>");
+      if (wa) h.push("<div>" + field(P + ".header", "Style", { type: "select", re: true, options: [["simple", "Simple"], ["bar", "With picture and icons"], ["none", "None"]] }) + "</div>");
       if (ig) h.push("<div>" + field(P + ".app", "App screen", { type: "check" }) + field(P + ".headPic", "Pictures in the header", { type: "check", re: true }) + "</div>");
       h.push("</div>");
     }
     if (!wa || b.header !== "none") {
-      // folded up by default, as it's long
-      h.push('<details class="fb-acct"' + (b.headOpen ? " open" : "") + ' data-open="' + P + '.headOpen"><summary class="hint">The header</summary><div class="fb-grid">');
+      h.push('<div class="fb-grid">');
       h.push("<div>" + field(P + ".title", "Name at the top", { ph: b.group ? "Group chat name" : ig ? "Their username" : "The other person's name" }) + "</div>");
       if (!dm) h.push("<div>" + field(P + ".sub", "Smaller line under it", { ph: wa ? "online" : ig ? (b.group ? "2 active 2h ago" : "Active now") : "iMessage" }) + "</div>");
       h.push("</div>");
       if (ig) h.push(igdmHeadSettings(b, P));
       h.push(groupPicSettings(b, P, wa, dm));
-      h.push("</details>");
     }
+    h.push("</details>");
     // the body: the background, and pictures by the names in a group
     if (wa || (ig && b.group)) {
       h.push('<div class="fb-grid">');
@@ -1714,10 +1714,10 @@
     h.push("</details>");
     return h.join("");
   }
-  // the bottom of a chat's screen, after the messages: the message bar, then (Twitter/X DMs) the app buttons
+  // the footer of a chat's screen, after the messages: the message bar, then (Twitter/X DMs) the app buttons
   function chatFooter(b, i) {
     var P = "blocks." + i, h = [], dm = b.type === "twdm";
-    h.push('<details class="fb-foot"' + (b.footOpen !== false ? " open" : "") + ' data-open="' + P + '.footOpen"><summary>Bottom of the screen</summary><div class="fb-grid">');
+    h.push('<details class="fb-foot"' + (b.footOpen !== false ? " open" : "") + ' data-open="' + P + '.footOpen"><summary>Footer</summary><div class="fb-grid">');
     h.push("<div>" + field(P + ".bar", "Message bar", { type: "select", re: true, options: [["none", "None"], ["empty", "Empty"], ["typed", "Something half-typed"]] }) + "</div>");
     if (dm) h.push("<div>" + field(P + ".nav", "App buttons", { type: "check", re: true }) + (b.nav ? field(P + ".badge", "Notifications number", { ph: "3" }) : "") + "</div>");
     h.push("</div>");
@@ -1824,7 +1824,7 @@
     h.push('<div class="fb-script">' + field(P + ".script", chat ? "Type or paste messages" : /^ig/.test(b.type) ? "Type or paste posts" : "Type or paste tweets", { type: "area", rows: 4, ph: ph }) +
       '<p class="hint">' + (SCRIPT_HINTS[chat ? "chat" : b.type]) + "</p>" +
       btn("script:" + i, chat ? "Add these messages" : /^ig/.test(b.type) ? "Add these posts" : "Add these tweets") + "</div>");
-    // the bottom of the screen comes after everything in it
+    // the footer comes after everything in it
     if (chat) h.push(chatFooter(b, i));
     if (b.type === "twthread") h.push('<div class="fb-grid"><div>' + field(P + ".bar", "Tweet your reply bar at the bottom", { type: "select", options: [["empty", "Yes"], ["none", "No"]] }) + "</div></div>");
     h.push("</section>");
