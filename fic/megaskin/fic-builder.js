@@ -754,7 +754,7 @@
   }
   // reactions on a DM: while everyone used the same emoji, it shows the emoji and up to three faces (then +N);
   // once there's more than one kind, it shows the emojis and how many reacted, with no faces
-  function igdmReacts(m) {
+  function igdmReacts(m, side) {
     var em = emojis(m.waReacts); if (!em.length) return "";
     var kinds = em.filter(function (e, i) { return em.indexOf(e) === i; });
     var who = (m.faces || []).map(char).filter(Boolean), total = t(m.waCount) || (who.length ? String(who.length) : "");
@@ -764,7 +764,7 @@
       var more = (+total || who.length) - 3;
       inner = kinds[0] + '<span class="hide"> from ' + esc(list) + " </span>" + who.slice(0, 3).map(function (f) { return circle("ig-pfp", f, null); }).join("") + (more > 0 ? "+" + more : "");
     } else inner = esc(kinds.length === 1 ? kinds[0] : em.join("")) + (total ? " " + esc(total) : "");
-    return '<span class="igdm-reacts"><span class="hide"> [Reactions: </span>' + inner + '<span class="hide">]</span></span>';
+    return '<p class="igdm-reacts' + (side === "out" ? " out" : "") + '"><span class="hide">[Reactions: </span>' + inner + '<span class="hide">]</span></p>';
   }
   // what a reply shows of the message it answers
   function igdmQuote(q) {
@@ -774,7 +774,7 @@
   // a post shared into the chat, as a card: its picture, then who posted it and the caption
   // a post or reel shared into the chat, as a card: the share and save buttons, the account with its picture,
   // the picture, then the caption. As the faded quote above a reply, it has no buttons and says what's being replied to.
-  function igdmPost(m, side, sender, r, quoted) {
+  function igdmPost(m, side, sender, quoted) {
     // a reel is one picture (a still from the video): the skin adds the play button and the reel sign
     var acc = char(m.postBy), u = picUrl(m.postImg || ""), reel = m.postReel;
     var who = acc ? igNameHTML(acc, null) : esc(t(m.postAcc) || "someone");
@@ -789,13 +789,12 @@
     else if (u) L.push('<p class="igdm-post-img"><img ' + (m.postLand && !reel ? 'class="landscape" ' : "") + 'src="' + esc(u) + '" alt="' + esc(t(m.postAlt)) + '"></p>');
     else if (t(m.postDesc)) L.push('<p class="igdm-post-img text">[' + esc(t(m.postDesc)) + "]</p>");
     if (t(m.postCap)) L.push('<p class="igdm-post-caption"><b>' + who + "</b> " + fmt(m.postCap) + "</p>");
-    if (r) L.push(r); // reactions go last, straight inside the card
-    return ['<div class="igdm-post ' + (reel ? "reel " : "") + side + (quoted ? " quoted" : "") + (r ? " reacted" : "") + '">'].concat(ind(L, 1), ["</div>"]);
+    return ['<div class="igdm-post ' + (reel ? "reel " : "") + side + (quoted ? " quoted" : "") + '">'].concat(ind(L, 1), ["</div>"]);
   }
   // a link sent in the chat, as a card: the info and share buttons, the page's picture, its title and the website
   // which one thing a DM message shares, if any
   function igdmKind(m) { return m.link ? "link" : m.hasPost ? (m.postReel ? "reel" : "post") : m.shared ? "story" : ""; }
-  function igdmLink(m, side, label, r) {
+  function igdmLink(m, side, label) {
     var k = m.link, u = picUrl(k.img || ""), L = [];
     var btns = (m.linkInfo !== false ? '<span class="ic ic-info"></span>' : "") + (m.linkShare !== false ? '<span class="ic ic-share"></span>' : "");
     if (btns) L.push('<p class="igdm-post-btns">' + btns + "</p>");
@@ -803,8 +802,7 @@
     else if (t(k.imgdesc)) L.push('<p class="igdm-link-img text">[' + esc(t(k.imgdesc)) + "]</p>");
     L.push('<p class="igdm-link-title">' + label + esc(t(k.title)) + "</p>");
     L.push('<p class="igdm-link-url">' + esc(t(k.url).replace(/^https?:\/\//, "").replace(/\/.*$/, "")) + "</p>");
-    if (r) L.push(r);
-    return ['<div class="igdm-link ' + side + (r ? " reacted" : "") + '">'].concat(ind(L, 1), ["</div>"]);
+    return ['<div class="igdm-link ' + side + '">'].concat(ind(L, 1), ["</div>"]);
   }
   function igdmHTML(b) {
     var o = others(b), head = "";
@@ -857,7 +855,7 @@
       if (q && q.hasPost) {
         // a reply to a shared post: "You replied" or "Shane replied", then the card itself, faded
         to.push('<p class="igdm-replied ' + side + '">' + (out ? "You" : esc(nm(c))) + " replied" + (grouped && row.first ? '<span class="hide">:</span>' : "") + "</p>");
-        igdmPost(q, side, "", "", true).forEach(function (l) { to.push(l); });
+        igdmPost(q, side, "", true).forEach(function (l) { to.push(l); });
       } else if (q) {
         var mine = q.from === b.pov;
         var said = out ? (mine ? "You replied to yourself" : "You replied to " + nm(char(q.from))) :
@@ -880,13 +878,14 @@
       var story = m.shared ? (m.storyText === undefined ? m.text : m.storyText) : "", said = m.shared && m.storyText === undefined ? "" : m.text;
       if (t(story)) parts.push(["igdm-shared" + (out ? " mine" : ""), fmt(story)]); // the phone owner's story box goes on the right
       if (t(said)) parts.push(["msg " + side, fmt(said)]);
-      var rx = igdmReacts(m), last = -1;
+      // the reactions pill is a line of its own, straight after the last bubble (or card)
+      var rx = igdmReacts(m, side), last = -1;
       parts.forEach(function (x, i) { if (x[0].indexOf("igdm-shared") < 0) last = i; });
       parts.forEach(function (x, i) {
-        var r = i === last ? rx : "";
-        if (x[0] === "link") igdmLink(m, side, label(), r).forEach(function (l) { to.push(l); });
-        else if (x[0] === "post") { label(); igdmPost(m, side, grouped ? igName(c) : nameOf(c), r).forEach(function (l) { to.push(l); }); }
-        else to.push('<p class="' + x[0] + (r ? " reacted" : "") + '">' + label() + x[1] + r + "</p>");
+        if (x[0] === "link") igdmLink(m, side, label()).forEach(function (l) { to.push(l); });
+        else if (x[0] === "post") { label(); igdmPost(m, side, grouped ? igName(c) : nameOf(c)).forEach(function (l) { to.push(l); }); }
+        else to.push('<p class="' + x[0] + '">' + label() + x[1] + "</p>");
+        if (i === last && rx) to.push(rx);
       });
       if (t(m.status)) to.push('<p class="igdm-status">' + esc(t(m.status)) + "</p>");
     });
@@ -2278,7 +2277,7 @@
   // DM reactions: the emoji, who reacted (hidden names and faces) and +N, or the emojis and a number
   function reactsBack(m, rx) {
     var rk = kids(rx), first = rk.shift(), last = rk.pop();
-    if (!is(first, "span.hide") || first.textContent !== " [Reactions: " || !is(last, "span.hide") || last.textContent !== "]") no();
+    if (!is(first, "span.hide") || first.textContent !== "[Reactions: " || !is(last, "span.hide") || last.textContent !== "]") no();
     if (rk.length === 1 && rk[0].nodeType === 3) {
       var nm = rk[0].nodeValue.match(/^(\S+?)(?: (\d+))?$/); if (!nm) no();
       m.waReacts = nm[1]; m.waCount = nm[2] || ""; return;
@@ -2301,14 +2300,13 @@
   // a post or reel card in a DM: the buttons, the account line (with who shared it hidden), the picture and the caption.
   // quoted: the faded card above a reply, which says what's being replied to instead.
   function cardBack(d, m, quoted) {
-    var ks = kids(d), reel = d.classList.contains("reel"), rx = null;
+    var ks = kids(d), reel = d.classList.contains("reel");
     if (d.classList.contains("quoted") !== !!quoted) no();
     m.hasPost = true; m.postReel = reel; m.postShare = m.postSave = false;
     if (is(ks[0], "p.igdm-post-btns")) {
       if (quoted) no();
       kids(ks.shift()).forEach(function (x) { if (is(x, "span.ic-share")) m.postShare = true; else if (is(x, "span.ic-save")) m.postSave = true; else no(); });
     }
-    if (is(ks[ks.length - 1], "span.igdm-reacts")) rx = ks.pop();
     var by = ks.shift(); if (!is(by, "p.igdm-post-by")) no();
     var bk = kids(by), pf = bk.shift(), h = bk.shift(), acc = bk.shift(), end = bk.shift();
     if (!is(pf, "span.ig-pfp") || !is(h, "span.hide") || !is(acc, "b") || !is(end, "span.hide") || bk.length) no();
@@ -2336,11 +2334,11 @@
     }
     if (is(ks[0], "p.igdm-post-caption")) { var cn = inl(ks.shift()); if (!is(cn[0], "b")) no(); cn.shift(); m.postCap = textBack(cn); }
     if (ks.length) no();
-    return { name: name, rx: rx };
+    return name;
   }
   // a link card in a DM: the buttons, the page's picture, the title (with the hidden name) and the website
   function linkBack(d, m) {
-    var ks = kids(d), rx = is(ks[ks.length - 1], "span.igdm-reacts") ? ks.pop() : null;
+    var ks = kids(d);
     m.link = { url: "", showUrl: false, title: "", desc: "", img: "", alt: "", video: "", imgdesc: "" }; m.linkInfo = m.linkShare = false;
     if (is(ks[0], "p.igdm-post-btns")) kids(ks.shift()).forEach(function (x) { if (is(x, "span.ic-info")) m.linkInfo = true; else if (is(x, "span.ic-share")) m.linkShare = true; else no(); });
     if (is(ks[0], "p.igdm-link-img")) {
@@ -2353,7 +2351,7 @@
     var ns = inl(ti), name = labelOf(ns);
     m.link.title = ns.map(function (n) { return n.nodeType === 3 ? n.nodeValue : no(); }).join("").trim();
     m.link.url = words(ur);
-    return { name: name, rx: rx };
+    return name;
   }
   READERS.igdm = function (els) {
     var el = els[0]; if (els.length !== 1) no();
@@ -2365,8 +2363,14 @@
     // two pictures at the top, or rows with names: a group, even with no one else talking yet
     b.group = !!(head.querySelector("span.ig-collab") || body.querySelector("div.igdm-row"));
     // the messages first, so the people in the header pictures are already in the cast
-    var m = null, shared = [], replies = [], quote = null;
+    var m = null, shared = [], replies = [], quote = null, lastBubble = null;
     function line(p, who) {
+      // a reactions pill belongs to the bubble (or card) just before it, on the same side
+      if (is(p, "p.igdm-reacts")) {
+        if (!lastBubble || quote || p.classList.contains("out") !== lastBubble.out) no();
+        reactsBack(lastBubble.m, p); lastBubble = null; return;
+      }
+      lastBubble = null;
       if (is(p, "p.mob-sys")) { if (who || quote) no(); b.msgs.push(m = newMsg("sys", textBack(inl(p)))); return; }
       if (is(p, "p.igdm-status")) { if (!m || quote) no(); m.status = p.textContent; return; }
       // a reply: "Shane replied to you", then the message it answers, faded
@@ -2389,12 +2393,11 @@
       if (!sh && !out && !p.classList.contains("in")) no();
       if (quote && (quote.text == null || !sh && quote.side !== (out ? "out" : "in"))) no();
       m = newMsg("", ""); m.faces = [];
-      var name = "", rx = null;
-      if (card) { var cb = cardBack(p, m); name = cb.name; rx = cb.rx; }
-      else if (lnk) { var lb = linkBack(p, m); name = lb.name; rx = lb.rx; }
+      var name = "";
+      if (card) name = cardBack(p, m);
+      else if (lnk) name = linkBack(p, m);
       else {
         var ns = inl(p); name = labelOf(ns);
-        rx = is(ns[ns.length - 1], "span.igdm-reacts") ? ns.pop() : null;
         if (is(p, "p.msg.photo")) {
           var im = ns.length === 1 ? ns[0] : no();
           if (is(im, "img")) m.photos = [{ url: im.getAttribute("src"), alt: im.getAttribute("alt") || "", desc: "", land: false }];
@@ -2403,8 +2406,7 @@
         } else if (sh) { m.shared = true; m.storyText = textBack(ns); }
         else m.text = textBack(ns);
       }
-      if (!!rx !== (!sh && p.classList.contains("reacted"))) no();
-      if (rx) reactsBack(m, rx);
+      if (!sh) lastBubble = { m: m, out: out };
       if (who) m.from = who.id;
       else if (out) m.from = owner(b, name).id;
       else if (!name) no();
@@ -2893,6 +2895,16 @@
         p.className = d.className;
         p.innerHTML = '<span class="hide">' + (who ? "<em>" + esc(who.textContent) + "</em> " : "") + (hide ? hide.innerHTML : "") + "</span><span></span><span></span><span></span>";
         d.parentNode.replaceChild(p, d); hit = true;
+      });
+      // old Instagram DM reactions were a span at the end of a "reacted" bubble or card; now they're a line of their own after it
+      Array.prototype.slice.call(c.querySelectorAll("span.igdm-reacts")).forEach(function (r) {
+        var host = r.parentNode, p = document.createElement("p"), h = r.querySelector(":scope > span.hide");
+        if (!host || !host.parentNode) return;
+        host.classList.remove("reacted"); if (!host.getAttribute("class")) host.removeAttribute("class");
+        p.className = "igdm-reacts" + (host.classList.contains("out") ? " out" : "");
+        if (h) h.textContent = h.textContent.replace(/^ /, "");
+        while (r.firstChild) p.appendChild(r.firstChild);
+        host.removeChild(r); host.parentNode.insertBefore(p, host.nextSibling); hit = true;
       });
       return c;
     });
