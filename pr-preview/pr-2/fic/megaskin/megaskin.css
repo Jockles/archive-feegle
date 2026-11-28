@@ -2326,23 +2326,54 @@
 #workskin .tw .tw-account-label .ic,
 #workskin .tw-reply .tw-account-label .ic { margin-right: 0.2em; }
 
-/* a tweet on its own, or the first tweet of a reply chain, is an opened tweet: its @handle and time go on a second line under the name, and a fan account line goes under them. */
+/* a tweet on its own, or the first tweet of a reply chain, is an opened tweet: the row wraps, so the name takes the whole first line, the @handle and time go on a second line under it, and a fan account line goes under them. The picture is pinned to the left of all three. */
 #workskin .tw .tw-top {
-  display: block;
-  text-overflow: ellipsis;
+  flex-wrap: wrap;
+  align-content: flex-start;
 }
 
-#workskin .tw .tw-pfp { float: left; }
+#workskin .tw .tw-top:has(> .tw-pfp) {
+  min-height: 40px;
+  padding-left: 40px;
+}
 
-#workskin .tw .tw-handle,
-#workskin .tw .tw-time { margin-left: 0; }
+#workskin .tw .tw-pfp {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
 
-#workskin .tw .tw-account-label { display: block; position: static; margin-left: 0; }
+#workskin .tw .tw-name { flex-basis: 100%; }
 
-#workskin .tw-feed.app .tw .tw-top { display: flex; }
+#workskin .tw .tw-handle { margin-left: 0; }
 
-#workskin .tw-feed.app .tw .tw-handle,
-#workskin .tw-feed.app .tw .tw-time { margin-left: 0.25em; }
+#workskin .tw .tw-account-label {
+  flex-basis: 100%;
+  position: static;
+  margin-left: 0;
+}
+
+/* the gap between the picture and the words */
+#workskin .tw .tw-top:has(> .tw-pfp) > .tw-name,
+#workskin .tw .tw-top:has(> .tw-pfp) > .tw-handle,
+#workskin .tw .tw-top:has(> .tw-pfp) > .tw-account-label { margin-left: 0.55em; }
+
+/* on the app screen every tweet is one line again */
+#workskin .tw-feed.app .tw .tw-top {
+  flex-wrap: nowrap;
+  min-height: 0;
+  padding-left: 0;
+}
+
+#workskin .tw-feed.app .tw .tw-pfp { position: static; }
+
+#workskin .tw-feed.app .tw .tw-name,
+#workskin .tw-feed.app .tw .tw-account-label { flex-basis: auto; }
+
+#workskin .tw-feed.app .tw .tw-top:has(> .tw-pfp) > .tw-name { margin-left: 0; }
+
+#workskin .tw-feed.app .tw .tw-top:has(> .tw-pfp) > .tw-handle,
+#workskin .tw-feed.app .tw .tw-handle { margin-left: 0.25em; }
 
 #workskin .tw-feed.app .tw .tw-account-label { position: absolute; margin-left: 0.55em; }
 
