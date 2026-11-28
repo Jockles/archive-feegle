@@ -788,9 +788,9 @@
   opacity: 0.5;
 }
 
-#workskin .typing-indicator span:empty + span:empty { opacity: 0.7; }
+#workskin .typing-indicator span:empty ~ span:empty { opacity: 0.7; }
 
-#workskin .typing-indicator span:empty + span:empty + span:empty { opacity: 1; margin-right: 0; }
+#workskin .typing-indicator span:empty ~ span:empty ~ span:empty { opacity: 1; margin-right: 0; }
 
 /* ---- CHAT PHOTOS: pictures sent in a message. They are built the same way in every chat app, with the app's own first word (imsg-, wa-, igdm-, twdm-, dc-):
    <div class="msg in gallery">
@@ -982,6 +982,35 @@
 #workskin .dc-photos.one .dc-photo .img-desc {
   position: static;
   padding: 4em 1em;
+}
+
+/* ---- ONE PART PER LINE: AO3 turns the line breaks in your code into <br> tags. Between the parts of these rows a line break is never wanted, so it is hidden, and the code can be written with each part on its own line. ---- */
+#workskin .igdm-row > br,
+#workskin .ig-carousel-info > br,
+#workskin .igdm-footer > br,
+#workskin .igdm-post-btns > br,
+#workskin .igdm-post-by > br,
+#workskin .imsg-footer > br,
+#workskin .typing-indicator > br,
+#workskin .msg.voice > br,
+#workskin .tb-row > br,
+#workskin .twdm-footer > br,
+#workskin .wa-call > br,
+#workskin .who > br,
+#workskin .ig-collab > br,
+#workskin .ig-pfp > br,
+#workskin .ig-photo > br,
+#workskin .igdm-back > br,
+#workskin .tb-photo > br,
+#workskin .tb-voted > br,
+#workskin .twdm-back > br,
+#workskin .wa-field > br,
+#workskin .gm-btns > br,
+#workskin .gm-pfp-cell > br,
+#workskin .wa-back > br,
+#workskin .wa-btns > br,
+#workskin .wa-name > br {
+  display: none;
 }
 
 /* <<<<<<<<<< CORE (end) <<<<<<<<<< */
@@ -1600,7 +1629,7 @@
   padding-left: 0.5em;
 }
 
-#workskin .wa .wa-field span:first-child { padding-left: 0; }
+#workskin .wa .wa-field span:first-of-type { padding-left: 0; }
 
 #workskin .wa .wa-field .wa-placeholder { width: auto; padding-left: 0.5em; }
 
@@ -5331,9 +5360,9 @@
   opacity: 0.45;
 }
 
-#workskin .igdm .typing-indicator span:empty + span:empty { opacity: 0.7; }
+#workskin .igdm .typing-indicator span:empty ~ span:empty { opacity: 0.7; }
 
-#workskin .igdm .typing-indicator span:empty + span:empty + span:empty { opacity: 1; margin-right: 0; }
+#workskin .igdm .typing-indicator span:empty ~ span:empty ~ span:empty { opacity: 1; margin-right: 0; }
 
 /* shared post / reel / story reply inside a DM */
 #workskin .igdm .igdm-shared {
@@ -6614,7 +6643,7 @@
   padding: 50% 0 0 0;
 }
 
-#workskin .tb .tb-row.two .tb-photo + .tb-photo { margin-left: 4px; }
+#workskin .tb .tb-row.two .tb-photo ~ .tb-photo { margin-left: 4px; }
 
 #workskin .tb .tb-row.two .tb-photo img {
   position: absolute;
@@ -8061,9 +8090,9 @@
   transform: scale(0.6, 0.6);
 }
 
-#workskin .dc .typing-indicator span:empty + span:empty { opacity: 0.6; transform: scale(0.8, 0.8); }
+#workskin .dc .typing-indicator span:empty ~ span:empty { opacity: 0.6; transform: scale(0.8, 0.8); }
 
-#workskin .dc .typing-indicator span:empty + span:empty + span:empty {
+#workskin .dc .typing-indicator span:empty ~ span:empty ~ span:empty {
   margin-right: 0.75rem;
   opacity: 0.9;
   transform: scale(1, 1);

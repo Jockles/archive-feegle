@@ -738,9 +738,9 @@
   opacity: 0.45;
 }
 
-#workskin .igdm .typing-indicator span:empty + span:empty { opacity: 0.7; }
+#workskin .igdm .typing-indicator span:empty ~ span:empty { opacity: 0.7; }
 
-#workskin .igdm .typing-indicator span:empty + span:empty + span:empty { opacity: 1; margin-right: 0; }
+#workskin .igdm .typing-indicator span:empty ~ span:empty ~ span:empty { opacity: 1; margin-right: 0; }
 
 /* shared post / reel / story reply inside a DM */
 #workskin .igdm .igdm-shared {

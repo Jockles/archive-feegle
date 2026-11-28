@@ -357,9 +357,9 @@
   opacity: 0.5;
 }
 
-#workskin .typing-indicator span:empty + span:empty { opacity: 0.7; }
+#workskin .typing-indicator span:empty ~ span:empty { opacity: 0.7; }
 
-#workskin .typing-indicator span:empty + span:empty + span:empty { opacity: 1; margin-right: 0; }</code></pre>
+#workskin .typing-indicator span:empty ~ span:empty ~ span:empty { opacity: 1; margin-right: 0; }</code></pre>
 
 <p>The three dots that show someone is typing are three empty spans at the end of a message with <code>typing-indicator</code> on it. It's the same in every chat app, so the dots live here, and each app only adds its own colour and spacing.</p>
 

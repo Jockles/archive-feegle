@@ -25,7 +25,7 @@
   <!-- /site meta -->
   <link rel="stylesheet" href="../../style.css?v=c31c06ea">
   <script src="../../theme.js?v=c50fd7c2"></script>
-  <link rel="stylesheet" href="megaskin.css?v=b6277436" id="creator-style">
+  <link rel="stylesheet" href="megaskin.css?v=b72f9581" id="creator-style">
 </head>
 <body>
 <header>
@@ -780,11 +780,17 @@
 <p>A message bar by itself, with something half typed in it:</p>
 
 <div class="mob imsg theme-auto">
-  <p class="imsg-footer"><span class="imsg-plus">+</span><span class="hide"> </span><span class="imsg-field typed">I miss<span class="hide"> </span><span class="imsg-mic ic ic-mic">&#127908;</span></span></p>
+  <p class="imsg-footer">
+    <span class="imsg-plus">+</span><span class="hide"> </span>
+    <span class="imsg-field typed">I miss<span class="hide"> </span><span class="imsg-mic ic ic-mic">&#127908;</span></span>
+  </p>
 </div>
 
 <pre><code>&lt;div class="mob imsg theme-auto"&gt;
-  &lt;p class="imsg-footer"&gt;&lt;span class="imsg-plus"&gt;+&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="imsg-field typed"&gt;I miss&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="imsg-mic ic ic-mic"&gt;&amp;#127908;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+  &lt;p class="imsg-footer"&gt;
+    &lt;span class="imsg-plus"&gt;+&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;
+    &lt;span class="imsg-field typed"&gt;I miss&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="imsg-mic ic ic-mic"&gt;&amp;#127908;&lt;/span&gt;&lt;/span&gt;
+  &lt;/p&gt;
 &lt;/div&gt;</code></pre>
 
 <p>You can leave parts out, or put them in a different order, too. A tweet with no name at the top, a caption above its photo, a typing bar above the messages - they all still work. The skin copies the apps, but it's your story, so bend the rules whenever it helps.</p>
@@ -1046,13 +1052,20 @@
     <table>
       <tbody>
         <tr>
-          <td rowspan="2" class="gm-pfp-cell"><span class="gm-pfp"><span class="pfp pfp-stan"></span></span></td>
+          <td rowspan="2" class="gm-pfp-cell">
+            <span class="gm-pfp">
+              <span class="pfp pfp-stan"></span>
+            </span>
+          </td>
           <td class="gm-from">Stan <span class="gm-address">&lt;<span class="email pfp-stan"><span class="hide">Puckstan@gmail.com</span></span>&gt;</span></td>
           <td class="gm-date">9:15 AM</td>
         </tr>
         <tr>
           <td class="gm-to">to me <span class="ic ic-dropdown">&#9662;</span></td>
-          <td class="gm-btns"><span class="ic ic-reply">&#8617;</span> <span class="ic ic-more">&#8943;</span></td>
+          <td class="gm-btns">
+            <span class="ic ic-reply">&#8617;</span>
+            <span class="ic ic-more">&#8943;</span>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -1077,7 +1090,9 @@
 &lt;span class="tw-handle"&gt;&lt;span class="handle pfp-stan"&gt;&lt;span class="hide"&gt;@PuckStan&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
 &lt;span class="tw-time"&gt;· 2h&lt;/span&gt;
 
-&lt;span class="ig-pfp"&gt;&lt;span class="pfp pfp-stan"&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class="ig-pfp"&gt;
+  &lt;span class="pfp pfp-stan"&gt;&lt;/span&gt;
+&lt;/span&gt;
 &lt;span class="handle pfp-stan"&gt;&lt;span class="hide"&gt;PuckStan&lt;/span&gt;&lt;/span&gt;
 
 &lt;span class="gm-pfp"&gt;
@@ -1105,7 +1120,9 @@
     &lt;span class="pfp pfp-gc-dinner"&gt;&lt;/span&gt;
   &lt;/p&gt;
 &lt;/td&gt;
-&lt;td class="wa-name"&gt;&lt;span class="name pfp-gc-dinner"&gt;&lt;span class="hide"&gt;dinner&lt;/span&gt;&lt;/span&gt;&lt;/td&gt;</code></pre>
+&lt;td class="wa-name"&gt;
+  &lt;span class="name pfp-gc-dinner"&gt;&lt;span class="hide"&gt;dinner&lt;/span&gt;&lt;/span&gt;
+&lt;/td&gt;</code></pre>
 
 <p>If someone renames the group partway through your story, type the new name into the later chats instead of using the name span, so the earlier chats keep the old one.</p>
 
@@ -1454,11 +1471,17 @@
 <p>For a message someone's still writing, put a <code>cursor</code> span straight after the last word, with a typed <code>|</code> inside it. It shows up as a flashing cursor, in any app - in a typing bar, a draft, a half-written comment, wherever. It's black in light chats and white in dark ones, and switches with <code>theme-auto</code>. The typed line only shows for readers with the workskin switched off:</p>
 
 <div class="mob imsg theme-auto">
-  <p class="imsg-footer"><span class="imsg-plus">+</span><span class="hide"> </span><span class="imsg-field typed">ok so about last night<span class="cursor">|</span><span class="hide"> </span><span class="imsg-send ic ic-imsg-send">&#8593;</span></span></p>
+  <p class="imsg-footer">
+    <span class="imsg-plus">+</span><span class="hide"> </span>
+    <span class="imsg-field typed">ok so about last night<span class="cursor">|</span><span class="hide"> </span><span class="imsg-send ic ic-imsg-send">&#8593;</span></span>
+  </p>
 </div>
 
 <pre><code>&lt;div class="mob imsg theme-auto"&gt;
-  &lt;p class="imsg-footer"&gt;&lt;span class="imsg-plus"&gt;+&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="imsg-field typed"&gt;ok so about last night&lt;span class="cursor"&gt;|&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="imsg-send ic ic-imsg-send"&gt;&amp;#8593;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+  &lt;p class="imsg-footer"&gt;
+    &lt;span class="imsg-plus"&gt;+&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;
+    &lt;span class="imsg-field typed"&gt;ok so about last night&lt;span class="cursor"&gt;|&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="imsg-send ic ic-imsg-send"&gt;&amp;#8593;&lt;/span&gt;&lt;/span&gt;
+  &lt;/p&gt;
 &lt;/div&gt;</code></pre>
 
 <p>The bit that matters is just <code>&lt;span class="cursor"&gt;|&lt;/span&gt;</code> - the rest is iMessage's typing bar, from the iMessage chapter.</p>
@@ -1471,7 +1494,10 @@
     <p class="msg out"><span class="hide"><em>Ilya:</em> </span>I'm <a class="tl egg" href="#t5"><span class="orig">fine</span><span class="tltn"><span class="hide"> (</span>not fine. not even a little bit<span class="hide">)</span></span></a></p>
     <p class="msg in"><span class="hide"><em>Scott:</em> </span>you're a terrible liar</p>
   </div>
-  <p class="twdm-footer"><span class="twdm-plus">+</span><span class="hide"> </span><span class="twdm-field typed"><a class="tl" href="#t6"><span class="orig">blyat</span><span class="tltn"><span class="hide"> (</span>shit<span class="hide">)</span></span></a><span class="cursor">|</span><span class="hide"> </span><span class="ic ic-mic">&#127908;</span></span></p>
+  <p class="twdm-footer">
+    <span class="twdm-plus">+</span><span class="hide"> </span>
+    <span class="twdm-field typed"><a class="tl" href="#t6"><span class="orig">blyat</span><span class="tltn"><span class="hide"> (</span>shit<span class="hide">)</span></span></a><span class="cursor">|</span><span class="hide"> </span><span class="ic ic-mic">&#127908;</span></span>
+  </p>
 </div>
 
 <p><em>The finished chat looks like this, and here is the full HTML:</em></p>
@@ -1482,7 +1508,10 @@
     &lt;p class="msg out"&gt;&lt;span class="hide"&gt;&lt;em&gt;Ilya:&lt;/em&gt; &lt;/span&gt;I'm &lt;a class="tl egg" href="#t5"&gt;&lt;span class="orig"&gt;fine&lt;/span&gt;&lt;span class="tltn"&gt;&lt;span class="hide"&gt; (&lt;/span&gt;not fine. not even a little bit&lt;span class="hide"&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
     &lt;p class="msg in"&gt;&lt;span class="hide"&gt;&lt;em&gt;Scott:&lt;/em&gt; &lt;/span&gt;you're a terrible liar&lt;/p&gt;
   &lt;/div&gt;
-  &lt;p class="twdm-footer"&gt;&lt;span class="twdm-plus"&gt;+&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="twdm-field typed"&gt;&lt;a class="tl" href="#t6"&gt;&lt;span class="orig"&gt;blyat&lt;/span&gt;&lt;span class="tltn"&gt;&lt;span class="hide"&gt; (&lt;/span&gt;shit&lt;span class="hide"&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/a&gt;&lt;span class="cursor"&gt;|&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="ic ic-mic"&gt;&amp;#127908;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+  &lt;p class="twdm-footer"&gt;
+    &lt;span class="twdm-plus"&gt;+&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;
+    &lt;span class="twdm-field typed"&gt;&lt;a class="tl" href="#t6"&gt;&lt;span class="orig"&gt;blyat&lt;/span&gt;&lt;span class="tltn"&gt;&lt;span class="hide"&gt; (&lt;/span&gt;shit&lt;span class="hide"&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/a&gt;&lt;span class="cursor"&gt;|&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="ic ic-mic"&gt;&amp;#127908;&lt;/span&gt;&lt;/span&gt;
+  &lt;/p&gt;
 &lt;/div&gt;</code></pre>
 
 <p>That's all of the HTML for the themes, translations and extras. The CSS behind them is the core of the workskin - the part every module needs - and the CSS chapter after this one explains how it all works.</p>

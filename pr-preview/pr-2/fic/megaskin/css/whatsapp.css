@@ -272,7 +272,7 @@
   padding-left: 0.5em;
 }
 
-#workskin .wa .wa-field span:first-child { padding-left: 0; }
+#workskin .wa .wa-field span:first-of-type { padding-left: 0; }
 
 #workskin .wa .wa-field .wa-placeholder { width: auto; padding-left: 0.5em; }
 

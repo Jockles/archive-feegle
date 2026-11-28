@@ -230,7 +230,7 @@
   padding: 50% 0 0 0;
 }
 
-#workskin .tb .tb-row.two .tb-photo + .tb-photo { margin-left: 4px; }
+#workskin .tb .tb-row.two .tb-photo ~ .tb-photo { margin-left: 4px; }
 
 #workskin .tb .tb-row.two .tb-photo img {
   position: absolute;
