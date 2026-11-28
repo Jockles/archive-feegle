@@ -1238,7 +1238,7 @@
   line-height: 36px;
 }
 
-#workskin .igdm .mob-header .igdm-calls {
+#workskin .igdm .mob-header .igdm-btns {
   display: block;
   float: right;
   height: 36px;
@@ -1247,17 +1247,17 @@
 }
 
 #workskin .igdm .mob-header .igdm-back .ic,
-#workskin .igdm .mob-header .igdm-calls .ic {
+#workskin .igdm .mob-header .igdm-btns .ic {
   display: inline-block;
   width: 1.45em;
   height: 1.45em;
   vertical-align: middle;
 }
 
-#workskin .igdm .mob-header .igdm-calls .ic ~ .ic { margin-left: 1.2em; }
+#workskin .igdm .mob-header .igdm-btns .ic ~ .ic { margin-left: 1.2em; }
 
 /* with the back arrow there, a header with two pictures lines up the same as one with one */
-#workskin .igdm .mob-header .igdm-back + .igdm-calls + .ig-collab,
+#workskin .igdm .mob-header .igdm-back + .igdm-btns + .ig-collab,
 #workskin .igdm .mob-header .igdm-back + .ig-collab { margin-left: 0; }
 
 #workskin .igdm .igdm-footer {

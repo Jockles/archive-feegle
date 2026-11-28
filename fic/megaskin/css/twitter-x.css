@@ -824,7 +824,7 @@
 #workskin .twdm .mob-header .twdm-name { display: block; }
 
 #workskin .twdm .twdm-back,
-#workskin .twdm .twdm-calls {
+#workskin .twdm .twdm-btns {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
@@ -833,11 +833,11 @@
 
 #workskin .twdm .twdm-back { left: 0.9em; }
 
-#workskin .twdm .twdm-calls { right: 0.9em; }
+#workskin .twdm .twdm-btns { right: 0.9em; }
 
 #workskin .twdm .mob-header .ic { width: 1.3em; height: 1.3em; vertical-align: middle; }
 
-#workskin .twdm .twdm-calls .ic + .ic { margin-left: 1.1em; }
+#workskin .twdm .twdm-btns .ic + .ic { margin-left: 1.1em; }
 
 #workskin .twdm .mob-body { padding: 0.7em 0.8em 0.5em 0.8em; }
 
