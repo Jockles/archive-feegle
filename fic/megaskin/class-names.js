@@ -100,7 +100,9 @@ var MEGASKIN_RENAMES = [
   ["ic-x-home-filled", "ic-tw-home-filled"],
   ["ic-x-home", "ic-tw-home"],
   ["ic-x-search", "ic-tw-search"],
-  ["ic-x-bell", "ic-tw-bell"]
+  ["ic-x-bell", "ic-tw-bell"],
+  ["tw-scroll", "app-screen"],
+  ["tb-screen", "app-screen"]
 ];
 
 // Names that did nothing and were taken out.

@@ -245,14 +245,14 @@
 
 <h4>Scrolling</h4>
 
-<pre><code>#workskin .tw-feed .tw-scroll {
+<pre><code>#workskin .tw-feed .app-screen {
   display: block;
   max-height: 580px;
   overflow-y: auto;
   overflow-x: hidden;
 }
 
-#workskin .tw-feed.no-scroll .tw-scroll { max-height: none; overflow-y: visible; }
+#workskin .tw-feed.no-scroll .app-screen { max-height: none; overflow-y: visible; }
 
 #workskin .tw {
   max-height: 700px;
@@ -260,7 +260,7 @@
   overflow-x: hidden;
 }</code></pre>
 
-<p>In a thread, only the <code>tw-scroll</code> part scrolls, at the same height as every other chat.</p>
+<p>In a thread, only the <code>app-screen</code> part scrolls, at the same height as every other chat.</p>
 
 <details>
 <summary>Options: a tweet on its own, and no scrolling</summary>
@@ -962,7 +962,7 @@
 
 <ul>
   <li><strong>DMs:</strong> everything starting <code>.twdm</code>, and anything with <code>twdm-</code> in it.</li>
-  <li><strong>Threads:</strong> everything starting <code>.tw-feed</code>, and <code>tw-scroll</code> and <code>tw-reply-bar</code>.</li>
+  <li><strong>Threads:</strong> everything starting <code>.tw-feed</code>, and <code>app-screen</code> and <code>tw-reply-bar</code>.</li>
   <li><strong>Polls:</strong> <code>tw-opt</code>, <code>tw-pct</code> and <code>tw-pollinfo</code>, which is also the biggest saving, since there are 15 bar sizes.</li>
   <li><strong>Picture galleries:</strong> <code>tw-photo</code> and <code>img-desc</code>, and the <code>two</code>, <code>three</code> and <code>four</code> rules. Keep <code>tw-photos</code> for single pictures.</li>
   <li><strong>Extras:</strong> <code>tw-note</code>, <code>tw-warn</code>, <code>tw-label</code>, <code>liked</code> and <code>reposted</code> each come out on their own.</li>

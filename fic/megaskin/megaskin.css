@@ -3303,7 +3303,7 @@
 
 /* ---------- Twitter/X: Scrolling ---------- */
 
-#workskin .tw-feed .tw-scroll {
+#workskin .tw-feed .app-screen {
   display: block;
   max-height: 580px;
   overflow-y: auto;
@@ -3311,7 +3311,7 @@
 }
 
 /* no-scroll switches the thread's scrolling off */
-#workskin .tw-feed.no-scroll .tw-scroll { max-height: none; overflow-y: visible; }
+#workskin .tw-feed.no-scroll .app-screen { max-height: none; overflow-y: visible; }
 
 #workskin .tw {
   max-height: 700px;
@@ -3320,12 +3320,12 @@
 }
 
 #workskin .tw::-webkit-scrollbar,
-#workskin .tw-scroll::-webkit-scrollbar {
+#workskin .app-screen::-webkit-scrollbar {
   width: 6px;
 }
 
 #workskin .tw::-webkit-scrollbar-thumb,
-#workskin .tw-scroll::-webkit-scrollbar-thumb {
+#workskin .app-screen::-webkit-scrollbar-thumb {
   background: rgba(128, 128, 128, 0.5);
   border-radius: 6px;
 }
@@ -6932,7 +6932,7 @@
 /* THE APP SCREEN (optional): add "app" to the feed for Tumblr's bar along the top and the buttons along the bottom. */
 #workskin .tb-feed.app { padding: 0; overflow: hidden; }
 
-#workskin .tb-feed .tb-screen {
+#workskin .tb-feed .app-screen {
   display: block;
   max-height: 640px;
   overflow-y: auto;
@@ -6941,9 +6941,9 @@
 }
 
 /* no-scroll switches the screen's scrolling off */
-#workskin .tb-feed.no-scroll .tb-screen { max-height: none; overflow-y: visible; }
+#workskin .tb-feed.no-scroll .app-screen { max-height: none; overflow-y: visible; }
 
-#workskin .tb-screen .tb { max-height: none; overflow: visible; }
+#workskin .app-screen .tb { max-height: none; overflow: visible; }
 
 #workskin .tb-feed .tb-header,
 #workskin .tb-feed .tb-tabs,

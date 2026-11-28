@@ -492,7 +492,7 @@
 /* THE APP SCREEN (optional): add "app" to the feed for Tumblr's bar along the top and the buttons along the bottom. */
 #workskin .tb-feed.app { padding: 0; overflow: hidden; }
 
-#workskin .tb-feed .tb-screen {
+#workskin .tb-feed .app-screen {
   display: block;
   max-height: 640px;
   overflow-y: auto;
@@ -501,9 +501,9 @@
 }
 
 /* no-scroll switches the screen's scrolling off */
-#workskin .tb-feed.no-scroll .tb-screen { max-height: none; overflow-y: visible; }
+#workskin .tb-feed.no-scroll .app-screen { max-height: none; overflow-y: visible; }
 
-#workskin .tb-screen .tb { max-height: none; overflow: visible; }
+#workskin .app-screen .tb { max-height: none; overflow: visible; }
 
 #workskin .tb-feed .tb-header,
 #workskin .tb-feed .tb-tabs,
