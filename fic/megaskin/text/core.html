@@ -77,9 +77,9 @@
     <p class="msg in"><span class="hide"><em>Jane:</em> </span>the header is my name up there</p>
     <p class="msg out"><span class="hide"><em>Ilya:</em> </span>and we are in the body</p>
   </div>
-  <p class="imsg-footer">
-    <span class="imsg-plus">+</span><span class="hide"> </span>
-    <span class="imsg-msgbar">iMessage<span class="hide"> </span><span class="imsg-mic ic ic-mic">&#127908;</span></span>
+  <p class="footer">
+    <span class="plus">+</span><span class="hide"> </span>
+    <span class="msgbar">iMessage<span class="hide"> </span><span class="mic ic ic-mic">&#127908;</span></span>
   </p>
 </div>
 
@@ -90,15 +90,15 @@
     &lt;p class="msg in"&gt;&lt;span class="hide"&gt;&lt;em&gt;Jane:&lt;/em&gt; &lt;/span&gt;the header is my name up there&lt;/p&gt;
     &lt;p class="msg out"&gt;&lt;span class="hide"&gt;&lt;em&gt;Ilya:&lt;/em&gt; &lt;/span&gt;and we are in the body&lt;/p&gt;
   &lt;/div&gt;
-  &lt;p class="imsg-footer"&gt;
-    &lt;span class="imsg-plus"&gt;+&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;
-    &lt;span class="imsg-msgbar"&gt;iMessage&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="imsg-mic ic ic-mic"&gt;&amp;amp;#127908;&lt;/span&gt;&lt;/span&gt;
+  &lt;p class="footer"&gt;
+    &lt;span class="plus"&gt;+&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;
+    &lt;span class="msgbar"&gt;iMessage&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="mic ic ic-mic"&gt;&amp;amp;#127908;&lt;/span&gt;&lt;/span&gt;
   &lt;/p&gt;
 &lt;/div&gt;</code></pre>
 
 <p><strong>Inside the body, everything is a message or a post.</strong> A message is a <code>msg</code> in every chat app. A post is a container of its own (<code>tw</code>, <code>ig</code>, <code>tb</code>), with a top line for who posted it, then the words and pictures, then a row of buttons at the bottom.</p>
 
-<p><strong>Class names are the app's name and one plain word.</strong> <code>wa-photo</code> is a photo in WhatsApp and <code>tw-photo</code> is a photo on Twitter/X. The same word means the same thing in every app:</p>
+<p><strong>Class names are the app's name and one plain word.</strong> <code>photo</code> is a photo in WhatsApp and <code>tw-photo</code> is a photo on Twitter/X. The same word means the same thing in every app:</p>
 
 <ul>
   <li><code>-header</code> and <code>-footer</code>: the bars at the top and bottom of a container.</li>
@@ -208,8 +208,8 @@
   <div class="mob-body">
     <div class="msg out gallery">
       <p class="hide"><em>Ilya:</em></p>
-      <p class="imsg-photos one">
-        <span class="imsg-photo"><img src="https://images.squidge.org/images/2026/11/16/Cat3.jpg" alt="Black and white cat holding out a paw daintily, on a beige and green cat tree. The cat looks to be stepping into the frame from the left"></span>
+      <p class="photos one">
+        <span class="photo"><img src="https://images.squidge.org/images/2026/11/16/Cat3.jpg" alt="Black and white cat holding out a paw daintily, on a beige and green cat tree. The cat looks to be stepping into the frame from the left"></span>
       </p>
     </div>
   </div>
@@ -217,8 +217,8 @@
 
 <pre><code>&lt;div class="msg out gallery"&gt;
   &lt;p class="hide"&gt;&lt;em&gt;Ilya:&lt;/em&gt;&lt;/p&gt;
-  &lt;p class="imsg-photos one"&gt;
-    &lt;span class="imsg-photo"&gt;&lt;img src="https://images.squidge.org/images/2026/11/16/Cat3.jpg" alt="Black and white cat holding out a paw daintily, on a beige and green cat tree. The cat looks to be stepping into the frame from the left"&gt;&lt;/span&gt;
+  &lt;p class="photos one"&gt;
+    &lt;span class="photo"&gt;&lt;img src="https://images.squidge.org/images/2026/11/16/Cat3.jpg" alt="Black and white cat holding out a paw daintily, on a beige and green cat tree. The cat looks to be stepping into the frame from the left"&gt;&lt;/span&gt;
   &lt;/p&gt;
 &lt;/div&gt;</code></pre>
 
@@ -306,22 +306,22 @@
 
 <div class="mob dc theme-auto">
   <div class="msg">
-    <p><b class="dc-name colour1">SwankyUsername</b> <span class="dc-time">Today at 9:20 AM</span></p>
+    <p><b class="dc-name colour1">SwankyUsername</b> <span class="time">Today at 9:20 AM</span></p>
     <p><span class="dc-text">phone width, the usual</span></p>
   </div>
   <div class="msg">
-    <p><b class="dc-name colour6">DropSomeKnowledge</b> <span class="dc-time">Today at 9:21 AM</span></p>
+    <p><b class="dc-name colour6">DropSomeKnowledge</b> <span class="time">Today at 9:21 AM</span></p>
     <p><span class="dc-text">like the app on a phone</span></p>
   </div>
 </div>
 
 <div class="mob dc theme-auto wide">
   <div class="msg">
-    <p><b class="dc-name colour1">SwankyUsername</b> <span class="dc-time">Today at 9:20 AM</span></p>
+    <p><b class="dc-name colour1">SwankyUsername</b> <span class="time">Today at 9:20 AM</span></p>
     <p><span class="dc-text">wide</span></p>
   </div>
   <div class="msg">
-    <p><b class="dc-name colour6">DropSomeKnowledge</b> <span class="dc-time">Today at 9:21 AM</span></p>
+    <p><b class="dc-name colour6">DropSomeKnowledge</b> <span class="time">Today at 9:21 AM</span></p>
     <p><span class="dc-text">fills the page, like Discord on a computer</span></p>
   </div>
 </div>
@@ -465,11 +465,11 @@
   <div class="mob-body">
     <div class="msg in">
       <p><span class="hide"><em>Mom:</em> </span>Are you coming Sunday?</p>
-      <p class="wa-time">10:02</p>
+      <p class="time">10:02</p>
     </div>
     <div class="msg out">
       <p><span class="hide"><em>Shane:</em> </span>After skate on saturday</p>
-      <p class="wa-time">10:03 <span class="wa-read ic ic-read">✓✓</span></p>
+      <p class="time">10:03 <span class="wa-read ic ic-read">✓✓</span></p>
     </div>
   </div>
 </div>
@@ -479,11 +479,11 @@
   <div class="mob-body">
     <div class="msg in">
       <p><span class="hide"><em>Mom:</em> </span>Are you coming Sunday?</p>
-      <p class="wa-time">10:02</p>
+      <p class="time">10:02</p>
     </div>
     <div class="msg out">
       <p><span class="hide"><em>Shane:</em> </span>After skate on saturday</p>
-      <p class="wa-time">10:03 <span class="wa-read ic ic-read">✓✓</span></p>
+      <p class="time">10:03 <span class="wa-read ic ic-read">✓✓</span></p>
     </div>
   </div>
 </div>
@@ -495,11 +495,11 @@
   &lt;div class="mob-body"&gt;
     &lt;div class="msg in"&gt;
       &lt;p&gt;&lt;span class="hide"&gt;&lt;em&gt;Mom:&lt;/em&gt; &lt;/span&gt;Are you coming Sunday?&lt;/p&gt;
-      &lt;p class="wa-time"&gt;10:02&lt;/p&gt;
+      &lt;p class="time"&gt;10:02&lt;/p&gt;
     &lt;/div&gt;
     &lt;div class="msg out"&gt;
       &lt;p&gt;&lt;span class="hide"&gt;&lt;em&gt;Shane:&lt;/em&gt; &lt;/span&gt;After skate on saturday&lt;/p&gt;
-      &lt;p class="wa-time"&gt;10:03 &lt;span class="wa-read ic ic-read"&gt;✓✓&lt;/span&gt;&lt;/p&gt;
+      &lt;p class="time"&gt;10:03 &lt;span class="wa-read ic ic-read"&gt;✓✓&lt;/span&gt;&lt;/p&gt;
     &lt;/div&gt;
   &lt;/div&gt;
 &lt;/div&gt;</code></pre>
@@ -595,14 +595,14 @@
 
 <div class="mob twdm theme-dark">
   <p class="mob-header">
-    <span class="twdm-back">
+    <span class="back">
       <span class="ic ic-back">&#8592;</span>
     </span>
     <span class="tw-pfp">
       <span class="pfp pfp-shane"></span>
     </span>
-    <span class="twdm-name">Shane Hollander</span>
-    <span class="twdm-btns"><span class="ic ic-video">&#127909;</span><span class="ic ic-phone">&#128222;</span></span>
+    <span class="chat-name">Shane Hollander</span>
+    <span class="btns"><span class="ic ic-video">&#127909;</span><span class="ic ic-phone">&#128222;</span></span>
   </p>
   <div class="mob-body">
     <p class="msg in"><span class="hide"><em>Shane Hollander:</em> </span>saw your tweet</p>
@@ -612,14 +612,14 @@
 
 <div class="mob twdm theme-light">
   <p class="mob-header">
-    <span class="twdm-back">
+    <span class="back">
       <span class="ic ic-back">&#8592;</span>
     </span>
     <span class="tw-pfp">
       <span class="pfp pfp-shane"></span>
     </span>
-    <span class="twdm-name">Shane Hollander</span>
-    <span class="twdm-btns"><span class="ic ic-video">&#127909;</span><span class="ic ic-phone">&#128222;</span></span>
+    <span class="chat-name">Shane Hollander</span>
+    <span class="btns"><span class="ic ic-video">&#127909;</span><span class="ic ic-phone">&#128222;</span></span>
   </p>
   <div class="mob-body">
     <p class="msg in"><span class="hide"><em>Shane Hollander:</em> </span>saw your tweet</p>
@@ -631,14 +631,14 @@
 
 <pre><code>&lt;div class="mob twdm theme-dark"&gt;
   &lt;p class="mob-header"&gt;
-    &lt;span class="twdm-back"&gt;
+    &lt;span class="back"&gt;
       &lt;span class="ic ic-back"&gt;&amp;#8592;&lt;/span&gt;
     &lt;/span&gt;
     &lt;span class="tw-pfp"&gt;
       &lt;span class="pfp pfp-shane"&gt;&lt;/span&gt;
     &lt;/span&gt;
-    &lt;span class="twdm-name"&gt;Shane Hollander&lt;/span&gt;
-    &lt;span class="twdm-btns"&gt;&lt;span class="ic ic-video"&gt;&amp;#127909;&lt;/span&gt;&lt;span class="ic ic-phone"&gt;&amp;#128222;&lt;/span&gt;&lt;/span&gt;
+    &lt;span class="chat-name"&gt;Shane Hollander&lt;/span&gt;
+    &lt;span class="btns"&gt;&lt;span class="ic ic-video"&gt;&amp;#127909;&lt;/span&gt;&lt;span class="ic ic-phone"&gt;&amp;#128222;&lt;/span&gt;&lt;/span&gt;
   &lt;/p&gt;
   &lt;div class="mob-body"&gt;
     &lt;p class="msg in"&gt;&lt;span class="hide"&gt;&lt;em&gt;Shane Hollander:&lt;/em&gt; &lt;/span&gt;saw your tweet&lt;/p&gt;
@@ -687,7 +687,7 @@
 
 <div class="mob igdm theme-dark">
   <p class="mob-header">
-    <span class="igdm-name">ilya.r</span><span class="hide"> - </span>
+    <span class="chat-name">ilya.r</span><span class="hide"> - </span>
     <span>Active now</span>
   </p>
   <div class="mob-body">
@@ -698,7 +698,7 @@
 
 <div class="mob igdm theme-light">
   <p class="mob-header">
-    <span class="igdm-name">ilya.r</span><span class="hide"> - </span>
+    <span class="chat-name">ilya.r</span><span class="hide"> - </span>
     <span>Active now</span>
   </p>
   <div class="mob-body">
@@ -711,7 +711,7 @@
 
 <pre><code>&lt;div class="mob igdm theme-dark"&gt;
   &lt;p class="mob-header"&gt;
-    &lt;span class="igdm-name"&gt;ilya.r&lt;/span&gt;&lt;span class="hide"&gt; - &lt;/span&gt;
+    &lt;span class="chat-name"&gt;ilya.r&lt;/span&gt;&lt;span class="hide"&gt; - &lt;/span&gt;
     &lt;span&gt;Active now&lt;/span&gt;
   &lt;/p&gt;
   &lt;div class="mob-body"&gt;
@@ -776,11 +776,11 @@
     <p class="dc-channel"><span class="hide"># </span>general</p>
   </div>
   <div class="msg">
-    <p><b class="dc-name colour1">Mark | Brother-in-law-Elect</b> <span class="dc-time">10/01/2022</span></p>
+    <p><b class="dc-name colour1">Mark | Brother-in-law-Elect</b> <span class="time">10/01/2022</span></p>
     <p><span class="dc-text">Jackie, you there?</span></p>
   </div>
-  <div class="dc-footer">
-    <p><span class="dc-msgbar">Message #general</span></p>
+  <div class="footer">
+    <p><span class="msgbar">Message #general</span></p>
   </div>
 </div>
 
@@ -789,11 +789,11 @@
     <p class="dc-channel"><span class="hide"># </span>general</p>
   </div>
   <div class="msg">
-    <p><b class="dc-name colour1">Mark | Brother-in-law-Elect</b> <span class="dc-time">10/01/2022</span></p>
+    <p><b class="dc-name colour1">Mark | Brother-in-law-Elect</b> <span class="time">10/01/2022</span></p>
     <p><span class="dc-text">Jackie, you there?</span></p>
   </div>
-  <div class="dc-footer">
-    <p><span class="dc-msgbar">Message #general</span></p>
+  <div class="footer">
+    <p><span class="msgbar">Message #general</span></p>
   </div>
 </div>
 
@@ -804,11 +804,11 @@
     &lt;p class="dc-channel"&gt;&lt;span class="hide"&gt;# &lt;/span&gt;general&lt;/p&gt;
   &lt;/div&gt;
   &lt;div class="msg"&gt;
-    &lt;p&gt;&lt;b class="dc-name colour1"&gt;Mark | Brother-in-law-Elect&lt;/b&gt; &lt;span class="dc-time"&gt;10/01/2022&lt;/span&gt;&lt;/p&gt;
+    &lt;p&gt;&lt;b class="dc-name colour1"&gt;Mark | Brother-in-law-Elect&lt;/b&gt; &lt;span class="time"&gt;10/01/2022&lt;/span&gt;&lt;/p&gt;
     &lt;p&gt;&lt;span class="dc-text"&gt;Jackie, you there?&lt;/span&gt;&lt;/p&gt;
   &lt;/div&gt;
-  &lt;div class="dc-footer"&gt;
-    &lt;p&gt;&lt;span class="dc-msgbar"&gt;Message #general&lt;/span&gt;&lt;/p&gt;
+  &lt;div class="footer"&gt;
+    &lt;p&gt;&lt;span class="msgbar"&gt;Message #general&lt;/span&gt;&lt;/p&gt;
   &lt;/div&gt;
 &lt;/div&gt;</code></pre>
 
@@ -833,16 +833,16 @@
 <p>A message bar by itself, with something half typed in it:</p>
 
 <div class="mob imsg theme-auto">
-  <p class="imsg-footer">
-    <span class="imsg-plus">+</span><span class="hide"> </span>
-    <span class="imsg-msgbar typed">I miss<span class="hide"> </span><span class="imsg-mic ic ic-mic">&#127908;</span></span>
+  <p class="footer">
+    <span class="plus">+</span><span class="hide"> </span>
+    <span class="msgbar typed">I miss<span class="hide"> </span><span class="mic ic ic-mic">&#127908;</span></span>
   </p>
 </div>
 
 <pre><code>&lt;div class="mob imsg theme-auto"&gt;
-  &lt;p class="imsg-footer"&gt;
-    &lt;span class="imsg-plus"&gt;+&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;
-    &lt;span class="imsg-msgbar typed"&gt;I miss&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="imsg-mic ic ic-mic"&gt;&amp;#127908;&lt;/span&gt;&lt;/span&gt;
+  &lt;p class="footer"&gt;
+    &lt;span class="plus"&gt;+&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;
+    &lt;span class="msgbar typed"&gt;I miss&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="mic ic ic-mic"&gt;&amp;#127908;&lt;/span&gt;&lt;/span&gt;
   &lt;/p&gt;
 &lt;/div&gt;</code></pre>
 
@@ -900,23 +900,23 @@
 
 <div class="mob wa theme-auto">
   <div class="mob-body">
-    <div class="wa-row">
+    <div class="row">
       <p class="wa-pfp colour4">HP</p>
       <div class="msg in tail">
         <p class="who colour4">Hayden<span class="hide">:</span></p>
         <p>should I bring the kids?</p>
-        <p class="wa-time">09:13</p>
+        <p class="time">09:13</p>
       </div>
     </div>
   </div>
 </div>
 
-<pre><code>&lt;div class="wa-row"&gt;
+<pre><code>&lt;div class="row"&gt;
   &lt;p class="wa-pfp colour4"&gt;HP&lt;/p&gt;
   &lt;div class="msg in tail"&gt;
     &lt;p class="who colour4"&gt;Hayden&lt;span class="hide"&gt;:&lt;/span&gt;&lt;/p&gt;
     &lt;p&gt;should I bring the kids?&lt;/p&gt;
-    &lt;p class="wa-time"&gt;09:13&lt;/p&gt;
+    &lt;p class="time"&gt;09:13&lt;/p&gt;
   &lt;/div&gt;
 &lt;/div&gt;</code></pre>
 
@@ -965,17 +965,17 @@
 
 <div class="mob wa theme-auto">
   <div class="mob-body">
-    <div class="wa-row">
+    <div class="row">
       <p class="wa-pfp colour6">
         <span class="pfp"><img src="https://images.squidge.org/images/2026/11/16/Cat2.jpg" alt="Profile picture of Sam, a black and white cat screaming at the camera"></span>
       </p>
       <div class="msg in tail">
         <p class="who colour6">Sam<span class="hide">:</span></p>
         <p>who's bringing the ice</p>
-        <p class="wa-time">18:02</p>
+        <p class="time">18:02</p>
       </div>
     </div>
-    <div class="wa-row">
+    <div class="row">
       <p class="wa-pfp colour2">
         <span class="pfp">
           <img class="landscape" src="https://media.istockphoto.com/id/2172051553/photo/asiatic-lily.jpg?s=1024x1024&w=is&k=20&c=3vCuZD234XmkXzrnzWPBdIZM0oJA1B6qe1x-06K_wDo=" alt="Profile picture of Ash, a close-up photo of an Asiatic lily">
@@ -984,23 +984,23 @@
       <div class="msg in tail">
         <p class="who colour2">Ash<span class="hide">:</span></p>
         <p>not me, I'm bringing the dog</p>
-        <p class="wa-time">18:04</p>
+        <p class="time">18:04</p>
       </div>
     </div>
   </div>
 </div>
 
-<pre><code>&lt;div class="wa-row"&gt;
+<pre><code>&lt;div class="row"&gt;
   &lt;p class="wa-pfp colour6"&gt;
     &lt;span class="pfp"&gt;&lt;img src="https://images.squidge.org/images/2026/11/16/Cat2.jpg" alt="Profile picture of Sam, a black and white cat screaming at the camera"&gt;&lt;/span&gt;
   &lt;/p&gt;
   &lt;div class="msg in tail"&gt;
     &lt;p class="who colour6"&gt;Sam&lt;span class="hide"&gt;:&lt;/span&gt;&lt;/p&gt;
     &lt;p&gt;who's bringing the ice&lt;/p&gt;
-    &lt;p class="wa-time"&gt;18:02&lt;/p&gt;
+    &lt;p class="time"&gt;18:02&lt;/p&gt;
   &lt;/div&gt;
 &lt;/div&gt;
-&lt;div class="wa-row"&gt;
+&lt;div class="row"&gt;
   &lt;p class="wa-pfp colour2"&gt;
     &lt;span class="pfp"&gt;
       &lt;img class="landscape" src="https://media.istockphoto.com/id/2172051553/photo/asiatic-lily.jpg?s=1024x1024&amp;w=is&amp;k=20&amp;c=3vCuZD234XmkXzrnzWPBdIZM0oJA1B6qe1x-06K_wDo=" alt="Profile picture of Ash, a close-up photo of an Asiatic lily"&gt;
@@ -1009,7 +1009,7 @@
   &lt;div class="msg in tail"&gt;
     &lt;p class="who colour2"&gt;Ash&lt;span class="hide"&gt;:&lt;/span&gt;&lt;/p&gt;
     &lt;p&gt;not me, I'm bringing the dog&lt;/p&gt;
-    &lt;p class="wa-time"&gt;18:04&lt;/p&gt;
+    &lt;p class="time"&gt;18:04&lt;/p&gt;
   &lt;/div&gt;
 &lt;/div&gt;</code></pre>
 
@@ -1078,14 +1078,14 @@
 
 <div class="mob wa theme-auto">
   <div class="mob-body">
-    <div class="wa-row">
+    <div class="row">
       <p class="wa-pfp">
         <span class="pfp pfp-stan"></span>
       </p>
       <div class="msg in tail">
         <p class="who pfp-stan">Stan<span class="hide">:</span></p>
         <p>same picture everywhere now</p>
-        <p class="wa-time">09:15</p>
+        <p class="time">09:15</p>
       </div>
     </div>
   </div>
@@ -1140,7 +1140,7 @@
 
 <div class="mob dc theme-auto">
   <div class="msg">
-    <p><b class="dc-name pfp-stan"><span class="dc-pfp"><span class="pfp pfp-stan"></span></span>Stan</b> <span class="dc-time">Today at 9:15 AM</span></p>
+    <p><b class="dc-name pfp-stan"><span class="dc-pfp"><span class="pfp pfp-stan"></span></span>Stan</b> <span class="time">Today at 9:15 AM</span></p>
     <p><span class="dc-text">same picture everywhere now</span></p>
   </div>
 </div>
@@ -1179,14 +1179,14 @@
 #workskin .pfp.pfp-gc-dinner { background-image: url(LINK); }
 #workskin .name.pfp-gc-dinner::before { content: "dinner"; }</code></pre>
 
-<p>Then use it in the WhatsApp header, with the picture in the circle and the name in <code>wa-name</code>, typing the name inside a <code>hide</code> span as usual for readers with the workskin off:</p>
+<p>Then use it in the WhatsApp header, with the picture in the circle and the name in <code>chat-name</code>, typing the name inside a <code>hide</code> span as usual for readers with the workskin off:</p>
 
 <pre><code>&lt;td rowspan="2" class="wa-pfp-cell"&gt;
   &lt;p class="wa-pfp"&gt;
     &lt;span class="pfp pfp-gc-dinner"&gt;&lt;/span&gt;
   &lt;/p&gt;
 &lt;/td&gt;
-&lt;td class="wa-name"&gt;
+&lt;td class="chat-name"&gt;
   &lt;span class="name pfp-gc-dinner"&gt;&lt;span class="hide"&gt;dinner&lt;/span&gt;&lt;/span&gt;
 &lt;/td&gt;</code></pre>
 
@@ -1220,15 +1220,15 @@
   <div class="mob-body">
     <div class="msg out">
       <p><span class="hide"><em>Shane:</em> </span>did you eat my last protein bar</p>
-      <p class="wa-time">08:02</p>
+      <p class="time">08:02</p>
     </div>
     <div class="msg in">
       <p><span class="hide"><em>Ilya:</em> </span>no</p>
-      <p class="wa-time">08:02</p>
+      <p class="time">08:02</p>
     </div>
     <div class="msg out">
       <p><span class="hide"><em>Shane:</em> </span>the wrapper is in your jacket pocket, Ilya</p>
-      <p class="wa-time">08:03</p>
+      <p class="time">08:03</p>
     </div>
   </div>
 </div>
@@ -1243,15 +1243,15 @@
   <div class="mob-body">
     <div class="msg in">
       <p><span class="hide"><em>Shane:</em> </span>did you eat my last protein bar</p>
-      <p class="wa-time">08:02</p>
+      <p class="time">08:02</p>
     </div>
     <div class="msg out">
       <p><span class="hide"><em>Ilya:</em> </span>no</p>
-      <p class="wa-time">08:02</p>
+      <p class="time">08:02</p>
     </div>
     <div class="msg in">
       <p><span class="hide"><em>Shane:</em> </span>the wrapper is in your jacket pocket, Ilya</p>
-      <p class="wa-time">08:03</p>
+      <p class="time">08:03</p>
     </div>
   </div>
 </div>
@@ -1302,13 +1302,13 @@
   <div class="mob-body">
     <div class="msg out gallery">
       <p class="hide"><em>Yuna:</em></p>
-      <p class="wa-photos four">
-        <span class="wa-photo"><img src="https://images.squidge.org/images/2026/11/16/Cat1.jpg" alt="Black and white cat staring through a gap between a screen and a desk, with blurred cables hanging down around and blue sky behind"></span>
-        <span class="wa-photo"><img src="https://images.squidge.org/images/2026/11/16/Cat2.jpg" alt="Black and white cat screaming at the camera, on a red patterned rug"></span>
-        <span class="wa-photo"><img src="https://images.squidge.org/images/2026/11/16/Cat3.jpg" alt="Black and white cat holding out a paw daintily, on a beige and green cat tree. The cat looks to be stepping into the frame from the left"></span>
-        <span class="wa-photo"><img src="https://images.squidge.org/images/2026/11/16/Cat4.jpg" alt="Black and white cat sitting in an opened red suitcase, carry on size, on the floor behind a white door, and on a red patterned rug"></span>
+      <p class="photos four">
+        <span class="photo"><img src="https://images.squidge.org/images/2026/11/16/Cat1.jpg" alt="Black and white cat staring through a gap between a screen and a desk, with blurred cables hanging down around and blue sky behind"></span>
+        <span class="photo"><img src="https://images.squidge.org/images/2026/11/16/Cat2.jpg" alt="Black and white cat screaming at the camera, on a red patterned rug"></span>
+        <span class="photo"><img src="https://images.squidge.org/images/2026/11/16/Cat3.jpg" alt="Black and white cat holding out a paw daintily, on a beige and green cat tree. The cat looks to be stepping into the frame from the left"></span>
+        <span class="photo"><img src="https://images.squidge.org/images/2026/11/16/Cat4.jpg" alt="Black and white cat sitting in an opened red suitcase, carry on size, on the floor behind a white door, and on a red patterned rug"></span>
       </p>
-      <p class="wa-time">12:26 <span class="wa-read ic ic-read">✓✓</span></p>
+      <p class="time">12:26 <span class="wa-read ic ic-read">✓✓</span></p>
     </div>
   </div>
 </div>
@@ -1319,34 +1319,34 @@
   <div class="mob-body">
     <div class="msg out gallery">
       <p class="hide"><em>Yuna:</em></p>
-      <p class="wa-photos four">
-        <span class="wa-photo">
+      <p class="photos four">
+        <span class="photo">
           <img class="landscape" src="https://images.squidge.org/images/2026/11/16/Cat1.jpg" alt="Black and white cat staring through a gap between a screen and a desk, with blurred cables hanging down around and blue sky behind">
         </span>
-        <span class="wa-photo"><img src="https://images.squidge.org/images/2026/11/16/Cat2.jpg" alt="Black and white cat screaming at the camera, on a red patterned rug"></span>
-        <span class="wa-photo">
+        <span class="photo"><img src="https://images.squidge.org/images/2026/11/16/Cat2.jpg" alt="Black and white cat screaming at the camera, on a red patterned rug"></span>
+        <span class="photo">
           <img class="landscape" src="https://images.squidge.org/images/2026/11/16/Cat3.jpg" alt="Black and white cat holding out a paw daintily, on a beige and green cat tree. The cat looks to be stepping into the frame from the left">
         </span>
-        <span class="wa-photo"><img src="https://images.squidge.org/images/2026/11/16/Cat4.jpg" alt="Black and white cat sitting in an opened red suitcase, carry on size, on the floor behind a white door, and on a red patterned rug"></span>
+        <span class="photo"><img src="https://images.squidge.org/images/2026/11/16/Cat4.jpg" alt="Black and white cat sitting in an opened red suitcase, carry on size, on the floor behind a white door, and on a red patterned rug"></span>
       </p>
-      <p class="wa-time">12:26 <span class="wa-read ic ic-read">✓✓</span></p>
+      <p class="time">12:26 <span class="wa-read ic ic-read">✓✓</span></p>
     </div>
   </div>
 </div>
 
 <pre><code>&lt;div class="msg out gallery"&gt;
   &lt;p class="hide"&gt;&lt;em&gt;Yuna:&lt;/em&gt;&lt;/p&gt;
-  &lt;p class="wa-photos four"&gt;
-    &lt;span class="wa-photo"&gt;
+  &lt;p class="photos four"&gt;
+    &lt;span class="photo"&gt;
       &lt;img class="landscape" src="https://images.squidge.org/images/2026/11/16/Cat1.jpg" alt="Black and white cat staring through a gap between a screen and a desk, with blurred cables hanging down around and blue sky behind"&gt;
     &lt;/span&gt;
-    &lt;span class="wa-photo"&gt;&lt;img src="https://images.squidge.org/images/2026/11/16/Cat2.jpg" alt="Black and white cat screaming at the camera, on a red patterned rug"&gt;&lt;/span&gt;
-    &lt;span class="wa-photo"&gt;
+    &lt;span class="photo"&gt;&lt;img src="https://images.squidge.org/images/2026/11/16/Cat2.jpg" alt="Black and white cat screaming at the camera, on a red patterned rug"&gt;&lt;/span&gt;
+    &lt;span class="photo"&gt;
       &lt;img class="landscape" src="https://images.squidge.org/images/2026/11/16/Cat3.jpg" alt="Black and white cat holding out a paw daintily, on a beige and green cat tree. The cat looks to be stepping into the frame from the left"&gt;
     &lt;/span&gt;
-    &lt;span class="wa-photo"&gt;&lt;img src="https://images.squidge.org/images/2026/11/16/Cat4.jpg" alt="Black and white cat sitting in an opened red suitcase, carry on size, on the floor behind a white door, and on a red patterned rug"&gt;&lt;/span&gt;
+    &lt;span class="photo"&gt;&lt;img src="https://images.squidge.org/images/2026/11/16/Cat4.jpg" alt="Black and white cat sitting in an opened red suitcase, carry on size, on the floor behind a white door, and on a red patterned rug"&gt;&lt;/span&gt;
   &lt;/p&gt;
-  &lt;p class="wa-time"&gt;12:26 &lt;span class="wa-read ic ic-read"&gt;✓✓&lt;/span&gt;&lt;/p&gt;
+  &lt;p class="time"&gt;12:26 &lt;span class="wa-read ic ic-read"&gt;✓✓&lt;/span&gt;&lt;/p&gt;
 &lt;/div&gt;</code></pre>
 
 <p>It works the same way for profile pictures. Jane's and Lily's pictures are both landscape, so here they are first without <code>landscape</code> and then with it, followed by the code for one of them:</p>
@@ -1355,24 +1355,24 @@
 
 <div class="mob wa theme-auto">
   <div class="mob-body">
-    <div class="wa-row">
+    <div class="row">
       <p class="wa-pfp colour3">
         <span class="pfp"><img src="https://www.shutterstock.com/shutterstock/photos/1100283806/display_1500/stock-photo-beautiful-lavender-flower-in-the-dalat-flower-park-selective-focus-1100283806.jpg" alt="Profile picture of Jane, a lavender flower"></span>
       </p>
       <div class="msg in tail">
         <p class="who colour3">Jane<span class="hide">:</span></p>
         <p>can you see my picture properly?</p>
-        <p class="wa-time">09:15</p>
+        <p class="time">09:15</p>
       </div>
     </div>
-    <div class="wa-row">
+    <div class="row">
       <p class="wa-pfp colour2">
         <span class="pfp"><img src="https://media.istockphoto.com/id/2172051553/photo/asiatic-lily.jpg?s=1024x1024&amp;w=is&amp;k=20&amp;c=3vCuZD234XmkXzrnzWPBdIZM0oJA1B6qe1x-06K_wDo=" alt="Profile picture of Lily, a close-up photo of an Asiatic lily"></span>
       </p>
       <div class="msg in tail">
         <p class="who colour2">Lily<span class="hide">:</span></p>
         <p>mine doesn't fill the circle either</p>
-        <p class="wa-time">09:16</p>
+        <p class="time">09:16</p>
       </div>
     </div>
   </div>
@@ -1382,7 +1382,7 @@
 
 <div class="mob wa theme-auto">
   <div class="mob-body">
-    <div class="wa-row">
+    <div class="row">
       <p class="wa-pfp colour3">
         <span class="pfp">
           <img class="landscape" src="https://www.shutterstock.com/shutterstock/photos/1100283806/display_1500/stock-photo-beautiful-lavender-flower-in-the-dalat-flower-park-selective-focus-1100283806.jpg" alt="Profile picture of Jane, a lavender flower">
@@ -1391,10 +1391,10 @@
       <div class="msg in tail">
         <p class="who colour3">Jane<span class="hide">:</span></p>
         <p>that is much better</p>
-        <p class="wa-time">09:15</p>
+        <p class="time">09:15</p>
       </div>
     </div>
-    <div class="wa-row">
+    <div class="row">
       <p class="wa-pfp colour2">
         <span class="pfp">
           <img class="landscape" src="https://media.istockphoto.com/id/2172051553/photo/asiatic-lily.jpg?s=1024x1024&amp;w=is&amp;k=20&amp;c=3vCuZD234XmkXzrnzWPBdIZM0oJA1B6qe1x-06K_wDo=" alt="Profile picture of Lily, a close-up photo of an Asiatic lily">
@@ -1403,7 +1403,7 @@
       <div class="msg in tail">
         <p class="who colour2">Lily<span class="hide">:</span></p>
         <p>mine fills the circle now too</p>
-        <p class="wa-time">09:16</p>
+        <p class="time">09:16</p>
       </div>
     </div>
   </div>
@@ -1551,16 +1551,16 @@
 <p>For a message someone's still writing, put a <code>cursor</code> span straight after the last word, with a typed <code>|</code> inside it. It shows up as a flashing cursor, in any app - in a typing bar, a draft, a half-written comment, wherever. It's black in light chats and white in dark ones, and switches with <code>theme-auto</code>. The typed line only shows for readers with the workskin switched off:</p>
 
 <div class="mob imsg theme-auto">
-  <p class="imsg-footer">
-    <span class="imsg-plus">+</span><span class="hide"> </span>
-    <span class="imsg-msgbar typed">ok so about last night<span class="cursor">|</span><span class="hide"> </span><span class="imsg-send ic ic-imsg-send">&#8593;</span></span>
+  <p class="footer">
+    <span class="plus">+</span><span class="hide"> </span>
+    <span class="msgbar typed">ok so about last night<span class="cursor">|</span><span class="hide"> </span><span class="imsg-send ic ic-imsg-send">&#8593;</span></span>
   </p>
 </div>
 
 <pre><code>&lt;div class="mob imsg theme-auto"&gt;
-  &lt;p class="imsg-footer"&gt;
-    &lt;span class="imsg-plus"&gt;+&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;
-    &lt;span class="imsg-msgbar typed"&gt;ok so about last night&lt;span class="cursor"&gt;|&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="imsg-send ic ic-imsg-send"&gt;&amp;#8593;&lt;/span&gt;&lt;/span&gt;
+  &lt;p class="footer"&gt;
+    &lt;span class="plus"&gt;+&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;
+    &lt;span class="msgbar typed"&gt;ok so about last night&lt;span class="cursor"&gt;|&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="imsg-send ic ic-imsg-send"&gt;&amp;#8593;&lt;/span&gt;&lt;/span&gt;
   &lt;/p&gt;
 &lt;/div&gt;</code></pre>
 
@@ -1570,20 +1570,20 @@
 
 <div class="mob twdm theme-auto">
   <p class="mob-header">
-    <span class="twdm-back">
+    <span class="back">
       <span class="ic ic-back">&#8592;</span>
     </span>
     <span class="tw-pfp colour7">SH</span>
-    <span class="twdm-name">Scott</span>
-    <span class="twdm-btns"><span class="ic ic-video">&#127909;</span><span class="ic ic-phone">&#128222;</span></span>
+    <span class="chat-name">Scott</span>
+    <span class="btns"><span class="ic ic-video">&#127909;</span><span class="ic ic-phone">&#128222;</span></span>
   </p>
   <div class="mob-body">
     <p class="msg out"><span class="hide"><em>Ilya:</em> </span>I'm <a class="tl egg" href="#t5"><span class="orig">fine</span><span class="tltn"><span class="hide"> (</span>not fine. not even a little bit<span class="hide">)</span></span></a></p>
     <p class="msg in"><span class="hide"><em>Scott:</em> </span>you're a terrible liar</p>
   </div>
-  <p class="twdm-footer">
-    <span class="twdm-plus">+</span><span class="hide"> </span>
-    <span class="twdm-msgbar typed"><a class="tl" href="#t6"><span class="orig">blyat</span><span class="tltn"><span class="hide"> (</span>shit<span class="hide">)</span></span></a><span class="cursor">|</span><span class="hide"> </span><span class="ic ic-mic">&#127908;</span></span>
+  <p class="footer">
+    <span class="plus">+</span><span class="hide"> </span>
+    <span class="msgbar typed"><a class="tl" href="#t6"><span class="orig">blyat</span><span class="tltn"><span class="hide"> (</span>shit<span class="hide">)</span></span></a><span class="cursor">|</span><span class="hide"> </span><span class="ic ic-mic">&#127908;</span></span>
   </p>
 </div>
 
@@ -1591,20 +1591,20 @@
 
 <pre><code>&lt;div class="mob twdm theme-auto"&gt;
   &lt;p class="mob-header"&gt;
-    &lt;span class="twdm-back"&gt;
+    &lt;span class="back"&gt;
       &lt;span class="ic ic-back"&gt;&amp;#8592;&lt;/span&gt;
     &lt;/span&gt;
     &lt;span class="tw-pfp colour7"&gt;SH&lt;/span&gt;
-    &lt;span class="twdm-name"&gt;Scott&lt;/span&gt;
-    &lt;span class="twdm-btns"&gt;&lt;span class="ic ic-video"&gt;&amp;#127909;&lt;/span&gt;&lt;span class="ic ic-phone"&gt;&amp;#128222;&lt;/span&gt;&lt;/span&gt;
+    &lt;span class="chat-name"&gt;Scott&lt;/span&gt;
+    &lt;span class="btns"&gt;&lt;span class="ic ic-video"&gt;&amp;#127909;&lt;/span&gt;&lt;span class="ic ic-phone"&gt;&amp;#128222;&lt;/span&gt;&lt;/span&gt;
   &lt;/p&gt;
   &lt;div class="mob-body"&gt;
     &lt;p class="msg out"&gt;&lt;span class="hide"&gt;&lt;em&gt;Ilya:&lt;/em&gt; &lt;/span&gt;I'm &lt;a class="tl egg" href="#t5"&gt;&lt;span class="orig"&gt;fine&lt;/span&gt;&lt;span class="tltn"&gt;&lt;span class="hide"&gt; (&lt;/span&gt;not fine. not even a little bit&lt;span class="hide"&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
     &lt;p class="msg in"&gt;&lt;span class="hide"&gt;&lt;em&gt;Scott:&lt;/em&gt; &lt;/span&gt;you're a terrible liar&lt;/p&gt;
   &lt;/div&gt;
-  &lt;p class="twdm-footer"&gt;
-    &lt;span class="twdm-plus"&gt;+&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;
-    &lt;span class="twdm-msgbar typed"&gt;&lt;a class="tl" href="#t6"&gt;&lt;span class="orig"&gt;blyat&lt;/span&gt;&lt;span class="tltn"&gt;&lt;span class="hide"&gt; (&lt;/span&gt;shit&lt;span class="hide"&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/a&gt;&lt;span class="cursor"&gt;|&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="ic ic-mic"&gt;&amp;#127908;&lt;/span&gt;&lt;/span&gt;
+  &lt;p class="footer"&gt;
+    &lt;span class="plus"&gt;+&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;
+    &lt;span class="msgbar typed"&gt;&lt;a class="tl" href="#t6"&gt;&lt;span class="orig"&gt;blyat&lt;/span&gt;&lt;span class="tltn"&gt;&lt;span class="hide"&gt; (&lt;/span&gt;shit&lt;span class="hide"&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/a&gt;&lt;span class="cursor"&gt;|&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="ic ic-mic"&gt;&amp;#127908;&lt;/span&gt;&lt;/span&gt;
   &lt;/p&gt;
 &lt;/div&gt;</code></pre>
 

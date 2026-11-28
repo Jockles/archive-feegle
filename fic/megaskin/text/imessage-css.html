@@ -60,14 +60,14 @@
 
 <h4>Message Bar</h4>
 
-<pre><code>#workskin .imsg .imsg-footer {
+<pre><code>#workskin .imsg .footer {
   display: flex;
   align-items: center;
   margin: 0;
   padding: 0.45em 0.7em 0.65em 0.7em;
 }
 
-#workskin .imsg .imsg-plus {
+#workskin .imsg .plus {
   flex: none;
   width: 1.55em;
   height: 1.55em;
@@ -83,7 +83,7 @@
   text-align: center;
 }
 
-#workskin .imsg .imsg-msgbar {
+#workskin .imsg .msgbar {
   flex: 1;
   position: relative;
   padding: 0.45em 2.4em 0.45em 0.9em;
@@ -93,7 +93,7 @@
   color: #6c6c70;
 }
 
-#workskin .imsg .imsg-mic {
+#workskin .imsg .mic {
   position: absolute;
   right: 0.7em;
   top: 50%;
@@ -108,7 +108,7 @@
 
 <p>For a half-typed message, <code>typed</code> turns the words black (white in dark mode), and the send arrow takes the microphone's place:</p>
 
-<pre><code>#workskin .imsg .imsg-msgbar.typed { color: #000000; }
+<pre><code>#workskin .imsg .msgbar.typed { color: #000000; }
 #workskin .imsg .imsg-send {
   position: absolute;
   right: 0.3em;
@@ -213,7 +213,7 @@
   margin: 0.5em 0 0 0.9em;
 }
 
-#workskin .imsg .imsg-status {
+#workskin .imsg .status {
   display: block;
   text-align: right;
   font-size: 0.7em;
@@ -234,7 +234,7 @@
 
 <h4>Edited Messages</h4>
 
-<pre><code>#workskin .imsg .imsg-edited, #workskin .imsg .imsg-edited-in {
+<pre><code>#workskin .imsg .edited, #workskin .imsg .imsg-edited-in {
   display: block;
   text-align: right;
   font-size: 0.7em;
@@ -380,13 +380,13 @@
 
 <pre><code>#workskin .imsg .msg.gallery { width: 55%; padding: 0.2em; }
 
-#workskin .imsg .imsg-photos { border-radius: 15px; }
+#workskin .imsg .photos { border-radius: 15px; }
 
-#workskin .imsg .imsg-photo { background: none; }
+#workskin .imsg .photo { background: none; }
 
-#workskin .imsg .imsg-photo .img-desc { font-size: 1em; }
+#workskin .imsg .photo .img-desc { font-size: 1em; }
 
-#workskin .imsg .imsg-photos.one .imsg-photo .img-desc { padding: 2.3em 0.8em; }</code></pre>
+#workskin .imsg .photos.one .photo .img-desc { padding: 2.3em 0.8em; }</code></pre>
 
 <p>The picture grid itself is shared by every chat app and lives in Core, under Chat Photos. These rules only give it the iMessage look: a picture bubble is a fixed <code>55%</code> of the chat wide, whatever size the picture is, and the picture fills it. A description gets lots of padding so it's about the size of a photo.</p>
 
@@ -450,9 +450,9 @@
 <ul>
   <li><strong>Tapbacks:</strong> everything with <code>tapped</code> or <code>imsg-tap</code> in it, including the lines in the dark and auto blocks.</li>
   <li><strong>Green bubbles:</strong> the <code>.out.sms</code> line.</li>
-  <li><strong>Pictures:</strong> the <code>.msg.gallery</code> and <code>imsg-photo</code> rules.</li>
+  <li><strong>Pictures:</strong> the <code>.msg.gallery</code> and <code>photo</code> rules.</li>
   <li><strong>Typing dots:</strong> the four <code>typing-indicator</code> rules, and <code>.out.typing-indicator</code>.</li>
-  <li><strong>Message bar:</strong> everything with <code>imsg-footer</code>, <code>imsg-plus</code>, <code>imsg-msgbar</code> or <code>imsg-mic</code> in it.</li>
+  <li><strong>Message bar:</strong> everything with <code>footer</code>, <code>plus</code>, <code>msgbar</code> or <code>mic</code> in it.</li>
 </ul>
 
 <p>Leave the window, the bubbles and the theme blocks, which everything else depends on.</p>

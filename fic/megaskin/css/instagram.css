@@ -686,8 +686,8 @@
   font-size: 0.85em;
 }
 
-/* the name: <span class="igdm-name">shane.h</span>. A verified tick or a group's little arrow goes inside it, after the name */
-#workskin .igdm .mob-header .igdm-name {
+/* the name: <span class="chat-name">shane.h</span>. A verified tick or a group's little arrow goes inside it, after the name */
+#workskin .igdm .mob-header .chat-name {
   display: inline;
   color: inherit;
   font-weight: bold;
@@ -718,7 +718,7 @@
   margin: 0.5em 0 0 1em;
 }
 
-#workskin .igdm .igdm-status {
+#workskin .igdm .status {
   display: block;
   text-align: right;
   font-size: 0.7em;
@@ -726,7 +726,7 @@
   margin: 0.1em 0.5em 0.4em 0;
 }
 
-/* the three typing dots, in a grey bubble from whoever is typing. In a group, put it in their igdm-row like any message:
+/* the three typing dots, in a grey bubble from whoever is typing. In a group, put it in their row like any message:
    <p class="msg in typing-indicator"><span class="hide"><em>Rose</em> is typing...</span><span></span><span></span><span></span></p> */
 #workskin .igdm .msg.typing-indicator { padding: 0.75em 0.95em; line-height: 1; }
 
@@ -853,29 +853,29 @@
 #workskin .igdm .mob-header .ig-collab .ig-pfp ~ .ig-pfp ~ .ig-pfp { display: none; }
 
 /* ---- a run of messages from one person in a group, with their picture beside the last one. */
-#workskin .igdm .igdm-row {
+#workskin .igdm .row {
   position: relative;
   padding-left: 36px;
   margin: 0.2em 0;
 }
 
-#workskin .igdm .igdm-row .ig-pfp {
+#workskin .igdm .row .ig-pfp {
   position: absolute;
   left: 0;
   bottom: 0.2em;
 }
 
-#workskin .igdm .igdm-row .who { margin-left: 0.9em; }
+#workskin .igdm .row .who { margin-left: 0.9em; }
 
 /* ---- reactions: the little pill hanging off the bottom of a bubble. It's a line of its own, straight after the message
    (or the photo, or the post card) it belongs to. Add "out" under one of your own. While everyone has used the same emoji,
    the pill shows their faces:
    <p class="msg in">see you there</p>
-   <p class="igdm-reacts"><span class="hide">[Reactions: </span>❤️<span class="hide"> from Rose and Hayden </span><span class="ig-pfp"><span class="pfp pfp-rose"></span></span><span class="ig-pfp colour4">HP</span><span class="hide">]</span></p>
+   <p class="reacts"><span class="hide">[Reactions: </span>❤️<span class="hide"> from Rose and Hayden </span><span class="ig-pfp"><span class="pfp pfp-rose"></span></span><span class="ig-pfp colour4">HP</span><span class="hide">]</span></p>
    Once there are two different emojis, it shows the emojis and a number instead:
-   <p class="igdm-reacts out"><span class="hide">[Reactions: </span>❤️🫒 11<span class="hide">]</span></p>
+   <p class="reacts out"><span class="hide">[Reactions: </span>❤️🫒 11<span class="hide">]</span></p>
    After three faces Instagram adds the rest as a number, like +2: type it straight after the last face. */
-#workskin .igdm .igdm-reacts {
+#workskin .igdm .reacts {
   display: table;
   position: relative;
   margin: -1.05em 0.5em 0.6em 0.5em;
@@ -889,10 +889,10 @@
   white-space: nowrap;
 }
 
-#workskin .igdm .igdm-reacts.out { margin-left: auto; }
+#workskin .igdm .reacts.out { margin-left: auto; }
 
-#workskin .igdm .igdm-reacts .ig-pfp,
-#workskin .igdm .igdm-row .igdm-reacts .ig-pfp {
+#workskin .igdm .reacts .ig-pfp,
+#workskin .igdm .row .reacts .ig-pfp {
   display: inline-flex;
   position: static;
   width: 16px;
@@ -902,26 +902,26 @@
   vertical-align: middle;
 }
 
-#workskin .igdm .igdm-reacts .ig-pfp + .ig-pfp { margin-left: 3px; }
+#workskin .igdm .reacts .ig-pfp + .ig-pfp { margin-left: 3px; }
 
 /* in a group, the picture stays beside the bubble when a pill comes last */
-#workskin .igdm .igdm-row:has(> .igdm-reacts:last-child) > .ig-pfp { bottom: 1.5em; }
+#workskin .igdm .row:has(> .reacts:last-child) > .ig-pfp { bottom: 1.5em; }
 
 /* ---- replies: a grey line saying who replied, then the message they replied to, faded, with a bar beside it, then the reply itself. */
-#workskin .igdm .igdm-reply {
+#workskin .igdm .reply {
   display: block;
   font-size: 0.72em;
   color: #737373;
   margin: 0.5em 0 0.15em 0.9em;
 }
 
-#workskin .igdm .igdm-reply.out { margin: 0.5em 0.9em 0.15em 0; text-align: right; }
+#workskin .igdm .reply.out { margin: 0.5em 0.9em 0.15em 0; text-align: right; }
 
 /* in and out only set the side here, not a bubble */
-#workskin .igdm .igdm-reply.in,
-#workskin .igdm .igdm-reply.out { background: none; color: #737373; }
+#workskin .igdm .reply.in,
+#workskin .igdm .reply.out { background: none; color: #737373; }
 
-#workskin .igdm .igdm-quote {
+#workskin .igdm .quote {
   display: table;
   position: relative;
   max-width: 66%;
@@ -933,12 +933,12 @@
   font-size: 0.92em;
 }
 
-#workskin .igdm .igdm-quote.out { margin: 0 0.7em 0.2em auto; }
+#workskin .igdm .quote.out { margin: 0 0.7em 0.2em auto; }
 
-#workskin .igdm .igdm-quote.me { background: #d9c7fb; color: #ffffff; }
+#workskin .igdm .quote.me { background: #d9c7fb; color: #ffffff; }
 
 /* the grey bar beside the quote */
-#workskin .igdm .igdm-quote::before {
+#workskin .igdm .quote::before {
   content: "";
   position: absolute;
   top: 0;
@@ -949,7 +949,7 @@
   background: #dbdbdb;
 }
 
-#workskin .igdm .igdm-quote.out::before { left: auto; right: -0.7em; }
+#workskin .igdm .quote.out::before { left: auto; right: -0.7em; }
 
 /* ---- photos: a message with a picture in it instead of words, rounded, with no bubble behind it (see CHAT PHOTOS in the Core part) */
 #workskin .igdm .msg.gallery {
@@ -958,17 +958,17 @@
   background: none;
 }
 
-#workskin .igdm .igdm-photos { border-radius: 18px; }
+#workskin .igdm .photos { border-radius: 18px; }
 
-#workskin .igdm .igdm-photo { background: #efefef; }
+#workskin .igdm .photo { background: #efefef; }
 
-#workskin .igdm .igdm-photo .img-desc {
+#workskin .igdm .photo .img-desc {
   color: #737373;
   font-size: 0.85em;
   line-height: 1.35;
 }
 
-#workskin .igdm .igdm-photos.one .igdm-photo .img-desc { padding: 3em 1em; }
+#workskin .igdm .photos.one .photo .img-desc { padding: 3em 1em; }
 
 /* ---- a shared post as a card: the account at the top, then the picture, then the account name in bold and the start of the caption */
 #workskin .igdm .igdm-post {
@@ -1056,7 +1056,7 @@
 }
 
 #workskin .igdm .igdm-post.out .igdm-post-btns,
-#workskin .igdm .igdm-link-card.out .igdm-post-btns { left: auto; right: 100%; margin: 0 0.6em 0 0; }
+#workskin .igdm .link-card.out .igdm-post-btns { left: auto; right: 100%; margin: 0 0.6em 0 0; }
 
 #workskin .igdm .igdm-post-btns .ic {
   display: block;
@@ -1072,7 +1072,7 @@
 
 #workskin .igdm .ic.ic-save { background-image: url(https://images.squidge.org/images/2026/11/15/bookmark-black.png); }
 
-/* replying to a shared post or reel: the card itself is the faded quote, in place of igdm-quote, and its buttons go */
+/* replying to a shared post or reel: the card itself is the faded quote, in place of quote, and its buttons go */
 #workskin .igdm .igdm-post.quoted { opacity: 0.45; }
 
 #workskin .igdm .igdm-post.quoted .igdm-post-btns { display: none; }
@@ -1144,7 +1144,7 @@
 }
 
 /* ---- a link someone sends: a card with the page's picture, its title in bold and the website underneath */
-#workskin .igdm .igdm-link-card {
+#workskin .igdm .link-card {
   display: block;
   position: relative;
   width: 62%;
@@ -1154,9 +1154,9 @@
   color: #262626;
 }
 
-#workskin .igdm .igdm-link-card.out { margin: 0.2em 0 0.2em auto; }
+#workskin .igdm .link-card.out { margin: 0.2em 0 0.2em auto; }
 
-#workskin .igdm .igdm-link-img {
+#workskin .igdm .link-img {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1167,9 +1167,9 @@
   background: #ffffff;
 }
 
-#workskin .igdm .igdm-link-img img { display: block; width: 100%; height: auto; }
+#workskin .igdm .link-img img { display: block; width: 100%; height: auto; }
 
-#workskin .igdm .igdm-link-img.text {
+#workskin .igdm .link-img.text {
   display: block;
   padding: 3em 1em;
   background: #dbdbdb;
@@ -1179,7 +1179,7 @@
   text-align: center;
 }
 
-#workskin .igdm .igdm-link-title {
+#workskin .igdm .link-title {
   display: block;
   max-height: 4.05em;
   margin: 0.7em 0.9em 0.3em 0.9em;
@@ -1189,7 +1189,7 @@
   line-height: 1.35;
 }
 
-#workskin .igdm .igdm-link-url {
+#workskin .igdm .link-url {
   display: block;
   margin: 0 0.9em 0.75em 0.9em;
   color: #737373;
@@ -1197,7 +1197,7 @@
 }
 
 /* the little globe before the website */
-#workskin .igdm .igdm-link-url::before {
+#workskin .igdm .link-url::before {
   content: "";
   display: inline-block;
   box-sizing: border-box;
@@ -1230,7 +1230,7 @@
 }
 
 /* ---- THE APP SCREEN (optional): turn the header into the app's top bar, with a back arrow on the left and call and video buttons on the right, and add the message bar at the bottom. */
-#workskin .igdm .mob-header .igdm-back {
+#workskin .igdm .mob-header .back {
   display: block;
   float: left;
   height: 36px;
@@ -1238,7 +1238,7 @@
   line-height: 36px;
 }
 
-#workskin .igdm .mob-header .igdm-btns {
+#workskin .igdm .mob-header .btns {
   display: block;
   float: right;
   height: 36px;
@@ -1246,20 +1246,20 @@
   line-height: 36px;
 }
 
-#workskin .igdm .mob-header .igdm-back .ic,
-#workskin .igdm .mob-header .igdm-btns .ic {
+#workskin .igdm .mob-header .back .ic,
+#workskin .igdm .mob-header .btns .ic {
   display: inline-block;
   width: 1.45em;
   height: 1.45em;
   vertical-align: middle;
 }
 
-#workskin .igdm .mob-header .igdm-btns .ic ~ .ic { margin-left: 1.2em; }
+#workskin .igdm .mob-header .btns .ic ~ .ic { margin-left: 1.2em; }
 
 /* with the back arrow there, a header with two pictures lines up the same as one with one */
-#workskin .igdm .mob-header .igdm-back ~ .ig-collab { margin-left: 0; }
+#workskin .igdm .mob-header .back ~ .ig-collab { margin-left: 0; }
 
-#workskin .igdm .igdm-footer {
+#workskin .igdm .footer {
   display: flex;
   align-items: center;
   margin: 0.3em 0.6em 0.6em 0.6em;
@@ -1279,14 +1279,14 @@
   background-size: 1.2em;
 }
 
-#workskin .igdm .igdm-msgbar {
+#workskin .igdm .msgbar {
   flex: 1;
   position: relative;
   padding: 0.35em 2.2em 0.35em 0;
   color: #737373;
 }
 
-#workskin .igdm .igdm-msgbar .ic {
+#workskin .igdm .msgbar .ic {
   position: absolute;
   right: 0.6em;
   top: 50%;
@@ -1295,7 +1295,7 @@
   height: 1.2em;
 }
 
-#workskin .igdm .igdm-msgbar.typed { color: #262626; }
+#workskin .igdm .msgbar.typed { color: #262626; }
 
 /* ---------- Instagram: Links ---------- */
 
@@ -1567,11 +1567,11 @@
 #workskin .igdm.theme-dark { background: #0c1014; color: #f5f5f5; border-color: #262626; }
 
 #workskin .igdm.theme-dark .mob-header { background: #0c1014; color: #f5f5f5; border-bottom-color: #262626; }
-#workskin .igdm.theme-dark .mob-header .igdm-name { color: inherit; }
+#workskin .igdm.theme-dark .mob-header .chat-name { color: inherit; }
 
 #workskin .igdm.theme-dark .mob-header span,
 #workskin .igdm.theme-dark .who,
-#workskin .igdm.theme-dark .igdm-status {
+#workskin .igdm.theme-dark .status {
   color: #a8a8a8;
 }
 
@@ -1581,26 +1581,26 @@
 
 #workskin .igdm.theme-dark .mob-header .ig-collab .ig-pfp ~ .ig-pfp { border-color: #0c1014; }
 
-#workskin .igdm.theme-dark .igdm-footer { background: #262626; }
-#workskin .igdm.theme-dark .igdm-msgbar { color: #a8a8a8; }
-#workskin .igdm.theme-dark .igdm-msgbar.typed { color: #f5f5f5; }
-#workskin .igdm.theme-dark .igdm-reacts { background: #262626; color: #f5f5f5; border-color: #0c1014; }
-#workskin .igdm.theme-dark .igdm-reply.in,
-  #workskin .igdm.theme-dark .igdm-reply.out { background: none; color: #a8a8a8; }
-#workskin .igdm.theme-dark .igdm-quote { background: #1c1c1c; color: #8e8e8e; }
-#workskin .igdm.theme-dark .igdm-quote.me { background: #3b2a66; color: #c9b5f2; }
-#workskin .igdm.theme-dark .igdm-quote::before { background: #363636; }
-#workskin .igdm.theme-dark .igdm-photo,
+#workskin .igdm.theme-dark .footer { background: #262626; }
+#workskin .igdm.theme-dark .msgbar { color: #a8a8a8; }
+#workskin .igdm.theme-dark .msgbar.typed { color: #f5f5f5; }
+#workskin .igdm.theme-dark .reacts { background: #262626; color: #f5f5f5; border-color: #0c1014; }
+#workskin .igdm.theme-dark .reply.in,
+  #workskin .igdm.theme-dark .reply.out { background: none; color: #a8a8a8; }
+#workskin .igdm.theme-dark .quote { background: #1c1c1c; color: #8e8e8e; }
+#workskin .igdm.theme-dark .quote.me { background: #3b2a66; color: #c9b5f2; }
+#workskin .igdm.theme-dark .quote::before { background: #363636; }
+#workskin .igdm.theme-dark .photo,
   #workskin .igdm.theme-dark .igdm-post { background: #262626; color: #f5f5f5; }
-#workskin .igdm.theme-dark .igdm-photo .img-desc { color: #a8a8a8; }
+#workskin .igdm.theme-dark .photo .img-desc { color: #a8a8a8; }
 #workskin .igdm.theme-dark .igdm-post-img.text { background: #363636; color: #a8a8a8; }
 #workskin .igdm.theme-dark .igdm-post.reel { background: #000000; }
 #workskin .igdm.theme-dark .igdm-post-btns .ic { background-color: #262626; }
-#workskin .igdm.theme-dark .igdm-link-card { background: #262626; color: #f5f5f5; }
-#workskin .igdm.theme-dark .igdm-link-img.text { background: #363636; color: #a8a8a8; }
-#workskin .igdm.theme-dark .igdm-link-url { color: #a8a8a8; }
+#workskin .igdm.theme-dark .link-card { background: #262626; color: #f5f5f5; }
+#workskin .igdm.theme-dark .link-img.text { background: #363636; color: #a8a8a8; }
+#workskin .igdm.theme-dark .link-url { color: #a8a8a8; }
 #workskin .igdm.theme-dark .typing-indicator span:empty { background: #a8a8a8; }
-#workskin .igdm.theme-dark .igdm-link-url::before { border-color: #a8a8a8; background-image: linear-gradient(transparent 42%, #a8a8a8 42%, #a8a8a8 58%, transparent 58%); }
+#workskin .igdm.theme-dark .link-url::before { border-color: #a8a8a8; background-image: linear-gradient(transparent 42%, #a8a8a8 42%, #a8a8a8 58%, transparent 58%); }
 #workskin .igdm.theme-dark .igdm-post-btns .ic.ic-info::before { border-color: #f5f5f5; color: #f5f5f5; }
 #workskin .igdm.theme-dark .ic.ic-save { background-image: url(https://images.squidge.org/images/2026/11/15/bookmark-white.png); }
 
@@ -1660,11 +1660,11 @@
   #workskin .igdm.theme-auto { background: #0c1014; color: #f5f5f5; border-color: #262626; }
 
   #workskin .igdm.theme-auto .mob-header { background: #0c1014; color: #f5f5f5; border-bottom-color: #262626; }
-  #workskin .igdm.theme-auto .mob-header .igdm-name { color: inherit; }
+  #workskin .igdm.theme-auto .mob-header .chat-name { color: inherit; }
 
   #workskin .igdm.theme-auto .mob-header span,
     #workskin .igdm.theme-auto .who,
-    #workskin .igdm.theme-auto .igdm-status {
+    #workskin .igdm.theme-auto .status {
       color: #a8a8a8;
     }
 
@@ -1674,26 +1674,26 @@
 
   #workskin .igdm.theme-auto .mob-header .ig-collab .ig-pfp ~ .ig-pfp { border-color: #0c1014; }
 
-  #workskin .igdm.theme-auto .igdm-footer { background: #262626; }
-  #workskin .igdm.theme-auto .igdm-msgbar { color: #a8a8a8; }
-  #workskin .igdm.theme-auto .igdm-msgbar.typed { color: #f5f5f5; }
-  #workskin .igdm.theme-auto .igdm-reacts { background: #262626; color: #f5f5f5; border-color: #0c1014; }
-  #workskin .igdm.theme-auto .igdm-reply.in,
-    #workskin .igdm.theme-auto .igdm-reply.out { background: none; color: #a8a8a8; }
-  #workskin .igdm.theme-auto .igdm-quote { background: #1c1c1c; color: #8e8e8e; }
-  #workskin .igdm.theme-auto .igdm-quote.me { background: #3b2a66; color: #c9b5f2; }
-  #workskin .igdm.theme-auto .igdm-quote::before { background: #363636; }
-  #workskin .igdm.theme-auto .igdm-photo,
+  #workskin .igdm.theme-auto .footer { background: #262626; }
+  #workskin .igdm.theme-auto .msgbar { color: #a8a8a8; }
+  #workskin .igdm.theme-auto .msgbar.typed { color: #f5f5f5; }
+  #workskin .igdm.theme-auto .reacts { background: #262626; color: #f5f5f5; border-color: #0c1014; }
+  #workskin .igdm.theme-auto .reply.in,
+    #workskin .igdm.theme-auto .reply.out { background: none; color: #a8a8a8; }
+  #workskin .igdm.theme-auto .quote { background: #1c1c1c; color: #8e8e8e; }
+  #workskin .igdm.theme-auto .quote.me { background: #3b2a66; color: #c9b5f2; }
+  #workskin .igdm.theme-auto .quote::before { background: #363636; }
+  #workskin .igdm.theme-auto .photo,
     #workskin .igdm.theme-auto .igdm-post { background: #262626; color: #f5f5f5; }
-  #workskin .igdm.theme-auto .igdm-photo .img-desc { color: #a8a8a8; }
+  #workskin .igdm.theme-auto .photo .img-desc { color: #a8a8a8; }
   #workskin .igdm.theme-auto .igdm-post-img.text { background: #363636; color: #a8a8a8; }
   #workskin .igdm.theme-auto .igdm-post.reel { background: #000000; }
   #workskin .igdm.theme-auto .igdm-post-btns .ic { background-color: #262626; }
-  #workskin .igdm.theme-auto .igdm-link-card { background: #262626; color: #f5f5f5; }
-  #workskin .igdm.theme-auto .igdm-link-img.text { background: #363636; color: #a8a8a8; }
-  #workskin .igdm.theme-auto .igdm-link-url { color: #a8a8a8; }
+  #workskin .igdm.theme-auto .link-card { background: #262626; color: #f5f5f5; }
+  #workskin .igdm.theme-auto .link-img.text { background: #363636; color: #a8a8a8; }
+  #workskin .igdm.theme-auto .link-url { color: #a8a8a8; }
   #workskin .igdm.theme-auto .typing-indicator span:empty { background: #a8a8a8; }
-  #workskin .igdm.theme-auto .igdm-link-url::before { border-color: #a8a8a8; background-image: linear-gradient(transparent 42%, #a8a8a8 42%, #a8a8a8 58%, transparent 58%); }
+  #workskin .igdm.theme-auto .link-url::before { border-color: #a8a8a8; background-image: linear-gradient(transparent 42%, #a8a8a8 42%, #a8a8a8 58%, transparent 58%); }
   #workskin .igdm.theme-auto .igdm-post-btns .ic.ic-info::before { border-color: #f5f5f5; color: #f5f5f5; }
   #workskin .igdm.theme-auto .ic.ic-save { background-image: url(https://images.squidge.org/images/2026/11/15/bookmark-white.png); }
 }

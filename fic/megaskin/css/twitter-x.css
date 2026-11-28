@@ -852,28 +852,28 @@
 
 #workskin .twdm .mob-header .tw-pfp { width: 40px; height: 40px; margin: 0 auto 0.25em auto; }
 
-#workskin .twdm .mob-header .twdm-name { display: block; }
+#workskin .twdm .mob-header .chat-name { display: block; }
 
-#workskin .twdm .twdm-back,
-#workskin .twdm .twdm-btns {
+#workskin .twdm .back,
+#workskin .twdm .btns {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
   line-height: 1;
 }
 
-#workskin .twdm .twdm-back { left: 0.9em; }
+#workskin .twdm .back { left: 0.9em; }
 
-#workskin .twdm .twdm-btns { right: 0.9em; }
+#workskin .twdm .btns { right: 0.9em; }
 
 #workskin .twdm .mob-header .ic { width: 1.3em; height: 1.3em; vertical-align: middle; }
 
-#workskin .twdm .twdm-btns .ic + .ic { margin-left: 1.1em; }
+#workskin .twdm .btns .ic + .ic { margin-left: 1.1em; }
 
 #workskin .twdm .mob-body { padding: 0.7em 0.8em 0.5em 0.8em; }
 
 #workskin .twdm .msg,
-#workskin .twdm .twdm-quote {
+#workskin .twdm .quote {
   display: table;
   max-width: 75%;
   margin: 0.25em 0;
@@ -896,8 +896,8 @@
 /* the date and time between messages use the core mob-sys line: <p class="mob-sys">Thu 17 Sep at 17:34</p> */
 #workskin .twdm .mob-sys { margin: 0.9em 0; color: #536471; opacity: 1; }
 
-/* "Seen" or "Sent" under your last message: <p class="twdm-status">Seen</p> */
-#workskin .twdm .twdm-status {
+/* "Seen" or "Sent" under your last message: <p class="status">Seen</p> */
+#workskin .twdm .status {
   display: block;
   text-align: right;
   font-size: 0.78em;
@@ -905,8 +905,8 @@
   margin: 0.15em 0.6em 0.5em 0;
 }
 
-/* reaction pill under a DM: <p class="twdm-reacts">&#128562; 1</p>  (add "out" under one of your own) */
-#workskin .twdm .twdm-reacts {
+/* reaction pill under a DM: <p class="reacts">&#128562; 1</p>  (add "out" under one of your own) */
+#workskin .twdm .reacts {
   display: table;
   margin: -0.45em 0.6em 0.4em 0.6em;
   padding: 0.05em 0.55em;
@@ -916,7 +916,7 @@
   font-size: 0.8em;
 }
 
-#workskin .twdm .twdm-reacts.out { margin-left: auto; border-radius: 1em; color: #0f1419; }
+#workskin .twdm .reacts.out { margin-left: auto; border-radius: 1em; color: #0f1419; }
 
 /* group DMs: the sender's name above their messages: <p class="who">Name</p> */
 #workskin .twdm .who {
@@ -927,10 +927,10 @@
 }
 
 /* group DMs: one person's run of messages, with their picture beside the last bubble
-   <div class="twdm-row"><p class="tw-pfp colour4">HP</p><p class="who">Hayden<span class="hide">:</span></p><p class="msg in">...</p></div> */
-#workskin .twdm .twdm-row { position: relative; padding-left: 36px; margin: 0.25em 0; }
+   <div class="row"><p class="tw-pfp colour4">HP</p><p class="who">Hayden<span class="hide">:</span></p><p class="msg in">...</p></div> */
+#workskin .twdm .row { position: relative; padding-left: 36px; margin: 0.25em 0; }
 
-#workskin .twdm .twdm-row .tw-pfp {
+#workskin .twdm .row .tw-pfp {
   position: absolute;
   left: 0;
   bottom: 0.25em;
@@ -941,18 +941,18 @@
 }
 
 /* replying to a message: a small "Replied to" line, then the message being replied to in an outlined bubble, then the reply */
-#workskin .twdm .twdm-reply {
+#workskin .twdm .reply {
   display: block;
   margin: 0.7em 0.95em 0.15em 0.95em;
   font-size: 0.78em;
   color: #536471;
 }
 
-#workskin .twdm .twdm-reply.in { background: transparent; color: #536471; }
+#workskin .twdm .reply.in { background: transparent; color: #536471; }
 
-#workskin .twdm .twdm-reply.out { background: transparent; color: #536471; text-align: right; }
+#workskin .twdm .reply.out { background: transparent; color: #536471; text-align: right; }
 
-#workskin .twdm p.twdm-quote { background: transparent; color: #536471; border: 1px solid #cfd9de; margin-bottom: 0.2em; }
+#workskin .twdm p.quote { background: transparent; color: #536471; border: 1px solid #cfd9de; margin-bottom: 0.2em; }
 
 /* a picture in a DM: <p class="msg in photo"><img src="..."></p> or a [description] */
 /* the three typing dots, in a bubble from whoever is typing */
@@ -963,13 +963,13 @@
 /* a picture sent in a message (see CHAT PHOTOS in the Core part) */
 #workskin .twdm .msg.gallery { min-width: 55%; padding: 0.25em; }
 
-#workskin .twdm .twdm-photos { border-radius: 1.1em; }
+#workskin .twdm .photos { border-radius: 1.1em; }
 
-#workskin .twdm .twdm-photo { background: none; }
+#workskin .twdm .photo { background: none; }
 
-#workskin .twdm .twdm-photo .img-desc { font-size: 1em; }
+#workskin .twdm .photo .img-desc { font-size: 1em; }
 
-#workskin .twdm .twdm-photos.one .twdm-photo .img-desc { padding: 2.25em 1.25em; }
+#workskin .twdm .photos.one .photo .img-desc { padding: 2.25em 1.25em; }
 
 /* a voice message:
    <p class="msg out voice"><span class="twdm-play ic ic-play">&#9654;</span><span class="twdm-wave"></span><span class="twdm-length">0:02</span></p> */
@@ -1001,14 +1001,14 @@
 #workskin .twdm .voice .twdm-length { margin-left: 0.5em; font-size: 0.85em; }
 
 /* the message bar at the bottom: goes after the mob-body, inside the chat, all on one line */
-#workskin .twdm .twdm-footer {
+#workskin .twdm .footer {
   display: flex;
   align-items: center;
   margin: 0;
   padding: 0.45em 0.7em 0.55em 0.7em;
 }
 
-#workskin .twdm .twdm-plus {
+#workskin .twdm .plus {
   flex: none;
   width: 1.55em;
   height: 1.55em;
@@ -1023,7 +1023,7 @@
   text-align: center;
 }
 
-#workskin .twdm .twdm-msgbar {
+#workskin .twdm .msgbar {
   flex: 1;
   position: relative;
   padding: 0.45em 2.4em 0.45em 0.9em;
@@ -1032,7 +1032,7 @@
   color: #536471;
 }
 
-#workskin .twdm .twdm-msgbar .ic {
+#workskin .twdm .msgbar .ic {
   position: absolute;
   right: 0.8em;
   top: 50%;
@@ -1041,7 +1041,7 @@
   height: 1.15em;
 }
 
-#workskin .twdm .twdm-msgbar.typed { color: #0f1419; }
+#workskin .twdm .msgbar.typed { color: #0f1419; }
 
 /* the app's buttons along the very bottom (optional), in DMs and on the app screen. */
 #workskin .twdm .tw-nav,
@@ -1214,7 +1214,7 @@
 
 #workskin .tw-reply.theme-dark .tw-opt.win .tw-bar { background: #315a8a; }
 
-#workskin .twdm.theme-dark .twdm-reacts { background: #16181c; border-color: #2f3336; color: #e7e9ea; }
+#workskin .twdm.theme-dark .reacts { background: #16181c; border-color: #2f3336; color: #e7e9ea; }
 
 #workskin .tw.theme-dark .tw-photos,
 #workskin .tw-reply.theme-dark .tw-photos {
@@ -1265,11 +1265,11 @@
 
 #workskin .twdm.theme-dark .typing-indicator span:empty { background: #8b98a5; }
 
-#workskin .twdm.theme-dark .twdm-plus,
-#workskin .twdm.theme-dark .twdm-msgbar { border-color: #2f3336; color: #71767b; }
+#workskin .twdm.theme-dark .plus,
+#workskin .twdm.theme-dark .msgbar { border-color: #2f3336; color: #71767b; }
 
-#workskin .twdm.theme-dark .twdm-plus,
-#workskin .twdm.theme-dark .twdm-msgbar.typed { color: #e7e9ea; }
+#workskin .twdm.theme-dark .plus,
+#workskin .twdm.theme-dark .msgbar.typed { color: #e7e9ea; }
 
 #workskin .tw-feed.theme-dark .tw-nav { border-top-color: #2f3336; }
 
@@ -1293,16 +1293,16 @@
 #workskin .twdm.theme-dark .mob-header { background: #000000; color: #e7e9ea; border-bottom-color: #2f3336; }
 
 #workskin .twdm.theme-dark .mob-sys,
-#workskin .twdm.theme-dark .twdm-status,
-#workskin .twdm.theme-dark .twdm-reply {
+#workskin .twdm.theme-dark .status,
+#workskin .twdm.theme-dark .reply {
   color: #71767b;
 }
 
 #workskin .twdm.theme-dark .in { background: #202327; color: #e7e9ea; }
 
-#workskin .twdm.theme-dark .twdm-reply.in { background: transparent; color: #71767b; }
+#workskin .twdm.theme-dark .reply.in { background: transparent; color: #71767b; }
 
-#workskin .twdm.theme-dark p.twdm-quote { background: transparent; color: #71767b; border-color: #2f3336; }
+#workskin .twdm.theme-dark p.quote { background: transparent; color: #71767b; border-color: #2f3336; }
 
 /* ---------- Twitter/X: Auto theme (theme-auto): light, switching to dark when the reader's device is in dark mode ---------- */
 
@@ -1358,7 +1358,7 @@
 
   #workskin .tw-reply.theme-auto .tw-opt.win .tw-bar { background: #315a8a; }
 
-  #workskin .twdm.theme-auto .twdm-reacts { background: #16181c; border-color: #2f3336; color: #e7e9ea; }
+  #workskin .twdm.theme-auto .reacts { background: #16181c; border-color: #2f3336; color: #e7e9ea; }
 
   #workskin .tw.theme-auto .tw-photos,
     #workskin .tw-reply.theme-auto .tw-photos {
@@ -1432,11 +1432,11 @@
 
   #workskin .twdm.theme-auto .typing-indicator span:empty { background: #8b98a5; }
 
-  #workskin .twdm.theme-auto .twdm-plus,
-    #workskin .twdm.theme-auto .twdm-msgbar { border-color: #2f3336; color: #71767b; }
+  #workskin .twdm.theme-auto .plus,
+    #workskin .twdm.theme-auto .msgbar { border-color: #2f3336; color: #71767b; }
 
-  #workskin .twdm.theme-auto .twdm-plus,
-    #workskin .twdm.theme-auto .twdm-msgbar.typed { color: #e7e9ea; }
+  #workskin .twdm.theme-auto .plus,
+    #workskin .twdm.theme-auto .msgbar.typed { color: #e7e9ea; }
 
   #workskin .tw-feed.theme-auto .tw-nav { border-top-color: #2f3336; }
 
@@ -1460,16 +1460,16 @@
   #workskin .twdm.theme-auto .mob-header { background: #000000; color: #e7e9ea; border-bottom-color: #2f3336; }
 
   #workskin .twdm.theme-auto .mob-sys,
-    #workskin .twdm.theme-auto .twdm-status,
-    #workskin .twdm.theme-auto .twdm-reply {
+    #workskin .twdm.theme-auto .status,
+    #workskin .twdm.theme-auto .reply {
       color: #71767b;
     }
 
   #workskin .twdm.theme-auto .in { background: #202327; color: #e7e9ea; }
 
-  #workskin .twdm.theme-auto .twdm-reply.in { background: transparent; color: #71767b; }
+  #workskin .twdm.theme-auto .reply.in { background: transparent; color: #71767b; }
 
-  #workskin .twdm.theme-auto p.twdm-quote { background: transparent; color: #71767b; border-color: #2f3336; }
+  #workskin .twdm.theme-auto p.quote { background: transparent; color: #71767b; border-color: #2f3336; }
 }
 
 /* ---------- Twitter/X: Icons ---------- */

@@ -91,7 +91,7 @@
   border-color: rgb(46, 51, 56);
 }
 
-#workskin .dc .dc-footer {
+#workskin .dc .footer {
   margin: 1.5rem 1rem 0;
   padding: 1rem 3.5rem;
   border-radius: 0.5rem;
@@ -100,14 +100,14 @@
   background-color: rgb(235, 237, 239);
 }
 
-#workskin .dc .dc-msgbar {
+#workskin .dc .msgbar {
   display: contents;
   position: absolute;
   top: 50%;
   transform: translate(0%, -50%);
 }
 
-#workskin .dc .dc-msgbar::before {
+#workskin .dc .msgbar::before {
   content: '';
   background-repeat: no-repeat;
   background-size: contain;
@@ -144,8 +144,8 @@
   width: 2.5rem;
 }
 
-#workskin .dc .dc-time,
-#workskin .dc .dc-edited {
+#workskin .dc .time,
+#workskin .dc .edited {
   margin-left: 0.25rem;
   font-size: 0.75rem;
   line-height: 1.375rem;
@@ -174,7 +174,7 @@
   overflow: hidden;
 }
 
-#workskin .dc .dc-reply .dc-pfp {
+#workskin .dc .reply .dc-pfp {
   left: -1.25rem;
   margin-top: 0.3125rem;
   width: 1rem;
@@ -184,7 +184,7 @@
 #workskin .dc .dc-name:has(.dc-pfp)::before { display: none; }
 
 /* a picture in a message (see CHAT PHOTOS in the Core part) */
-#workskin .dc .dc-photos { max-width: 360px; border-radius: 0.1875rem; }
+#workskin .dc .photos { max-width: 360px; border-radius: 0.1875rem; }
 
 #workskin .dc .dc-emoji {
   width: 3rem;
@@ -201,7 +201,7 @@
   display: inline;
 }
 
-/* reactions: <p class="dc-reacts"><span class="dc-reaction">emoji <span class="dc-count">12</span></span></p> */
+/* reactions: <p class="reacts"><span class="dc-reaction">emoji <span class="count">12</span></span></p> */
 #workskin .dc .dc-reaction {
   display: inline-block;
   vertical-align: middle;
@@ -214,7 +214,7 @@
   height: 1.625rem;
 }
 
-#workskin .dc .dc-count {
+#workskin .dc .count {
   display: inline-block;
   vertical-align: middle;
   line-height: 1.25rem;
@@ -223,9 +223,9 @@
   padding-left: 0.1rem;
 }
 
-#workskin .dc .dc-reply { margin-bottom: 0.25rem; line-height: 1.125rem; position: relative; }
+#workskin .dc .reply { margin-bottom: 0.25rem; line-height: 1.125rem; position: relative; }
 
-#workskin .dc .dc-reply .dc-name {
+#workskin .dc .reply .dc-name {
   position: relative;
   left: 1.25rem;
   font-size: 0.875rem;
@@ -233,7 +233,7 @@
   height: 1.125rem;
 }
 
-#workskin .dc .dc-reply .dc-name::before {
+#workskin .dc .reply .dc-name::before {
   content: '';
   background-repeat: no-repeat;
   background-size: contain;
@@ -246,7 +246,7 @@
   width: 1rem;
 }
 
-#workskin .dc .dc-reply .dc-text {
+#workskin .dc .reply .dc-text {
   position: relative;
   left: 1rem;
   font-size: 0.875rem;
@@ -262,7 +262,7 @@
 }
 
 /* the curved line linking a reply to its parent */
-#workskin .dc .dc-reply::before {
+#workskin .dc .reply::before {
   content: '';
   display: block;
   position: absolute;
@@ -278,8 +278,8 @@
   border-color: rgb(199, 204, 209);
 }
 
-/* link card: <div class="dc-link-card"> small lines, title, picture </div> */
-#workskin .dc .dc-link-card {
+/* link card: <div class="link-card"> small lines, title, picture </div> */
+#workskin .dc .link-card {
   margin: 0.25rem 0;
   padding: 0.5rem 1rem 1rem 0.75rem;
   border-left: 0.25rem solid rgb(255, 0, 0);
@@ -287,13 +287,13 @@
   max-width: 432px;
 }
 
-#workskin .dc .dc-link-title { font-weight: 600; }
+#workskin .dc .link-title { font-weight: 600; }
 
-#workskin .dc .dc-link-desc { font-size: 0.875rem; line-height: 1rem; }
+#workskin .dc .link-desc { font-size: 0.875rem; line-height: 1rem; }
 
-#workskin .dc .dc-link-img { margin-top: 1rem; }
+#workskin .dc .link-img { margin-top: 1rem; }
 
-#workskin .dc .dc-link-img img { display: block; max-width: 100%; border-radius: 0.25rem; }
+#workskin .dc .link-img img { display: block; max-width: 100%; border-radius: 0.25rem; }
 
 #workskin .dc .dc-quote { display: table; }
 
@@ -514,20 +514,23 @@
 }
 
 #workskin .dc .dc-code,
-#workskin .dc .dc-link-card {
+#workskin .dc .link-card {
   background-color: rgb(242, 243, 245);
 }
 
-#workskin .dc .dc-time, #workskin .dc .dc-edited, #workskin .dc .dc-divider-label { color: rgb(94, 103, 114); }
+#workskin .dc .time, #workskin .dc .edited, #workskin .dc .dc-divider-label { color: rgb(94, 103, 114); }
 
 #workskin .dc a:not(.tl),
-#workskin .dc .dc-link,
-#workskin .dc .dc-link-title,
-#workskin .dc .fake-link {
+#workskin .dc .fake-link,
+#workskin .dc .link-title {
   color: rgb(0, 104, 224);
 }
 
-#workskin .dc .dc-reply,
+/* Discord only underlines a link when the mouse is over it */
+#workskin .dc a:not(.tl),
+#workskin .dc .fake-link { text-decoration: none; }
+
+#workskin .dc .reply,
 #workskin .dc .dc-topic {
   color: rgb(79, 86, 96);
 }
@@ -600,31 +603,30 @@
 #workskin .dc.theme-dark .dc-header-divider { border-color: rgb(220, 221, 222); }
 
 #workskin .dc.theme-dark .dc-code,
-#workskin .dc.theme-dark .dc-link-card {
+#workskin .dc.theme-dark .link-card {
   background-color: rgb(47, 49, 54);
 }
 
-#workskin .dc.theme-dark .dc-time, #workskin .dc.theme-dark .dc-edited, #workskin .dc.theme-dark .dc-divider-label { color: rgb(163, 166, 170); }
+#workskin .dc.theme-dark .time, #workskin .dc.theme-dark .edited, #workskin .dc.theme-dark .dc-divider-label { color: rgb(163, 166, 170); }
 
 #workskin .dc.theme-dark .dc-divider-label { background-color: rgb(54, 57, 63); }
 
 #workskin .dc.theme-dark .dc-quote-line { background-color: rgb(79, 84, 92); }
 
 #workskin .dc.theme-dark a:not(.tl),
-#workskin .dc.theme-dark .dc-link,
-#workskin .dc.theme-dark .dc-link-title,
-#workskin .dc.theme-dark .fake-link {
+#workskin .dc.theme-dark .fake-link,
+#workskin .dc.theme-dark .link-title {
   color: rgb(0, 175, 244);
 }
 
 #workskin .dc.theme-dark a:not(.tl):hover { color: rgb(0, 175, 244); text-decoration: underline; }
 
-#workskin .dc.theme-dark .dc-reply,
+#workskin .dc.theme-dark .reply,
 #workskin .dc.theme-dark .dc-topic {
   color: rgb(185, 187, 190);
 }
 
-#workskin .dc.theme-dark .dc-reply::before { border-color: rgb(79, 84, 92); }
+#workskin .dc.theme-dark .reply::before { border-color: rgb(79, 84, 92); }
 
 #workskin .dc.theme-dark .dc-reaction:not(.me) {
   background-color: rgb(47, 49, 54);
@@ -660,7 +662,7 @@
 
 #workskin .dc.theme-dark .typing-indicator span:empty { background-color: rgb(220, 221, 222); }
 
-#workskin .dc.theme-dark .dc-footer { background-color: rgb(64, 68, 75); }
+#workskin .dc.theme-dark .footer { background-color: rgb(64, 68, 75); }
 
 #workskin .dc.theme-dark .hashtag::before { background-image: url(https://images.squidge.org/images/2026/11/15/dc-hashtag-dark.png); }
 
@@ -668,7 +670,7 @@
 
 #workskin .dc.theme-dark .at-symbol::before { background-image: url(https://images.squidge.org/images/2026/11/15/dc-at-dark.png); }
 
-#workskin .dc.theme-dark .dc-msgbar::before { background-image: url(https://images.squidge.org/images/2026/11/15/dc-plus-dark.png); }
+#workskin .dc.theme-dark .msgbar::before { background-image: url(https://images.squidge.org/images/2026/11/15/dc-plus-dark.png); }
 
 /* spoilers, dark: hidden until clicked */
 #workskin .dc.theme-dark .dc-spoiler-text {
@@ -708,31 +710,30 @@
   #workskin .dc.theme-auto .dc-header-divider { border-color: rgb(220, 221, 222); }
 
   #workskin .dc.theme-auto .dc-code,
-    #workskin .dc.theme-auto .dc-link-card {
+    #workskin .dc.theme-auto .link-card {
       background-color: rgb(47, 49, 54);
     }
 
-  #workskin .dc.theme-auto .dc-time, #workskin .dc.theme-auto .dc-edited, #workskin .dc.theme-auto .dc-divider-label { color: rgb(163, 166, 170); }
+  #workskin .dc.theme-auto .time, #workskin .dc.theme-auto .edited, #workskin .dc.theme-auto .dc-divider-label { color: rgb(163, 166, 170); }
 
   #workskin .dc.theme-auto .dc-divider-label { background-color: rgb(54, 57, 63); }
 
   #workskin .dc.theme-auto .dc-quote-line { background-color: rgb(79, 84, 92); }
 
-  #workskin .dc.theme-auto a:not(.tl),
-    #workskin .dc.theme-auto .dc-link,
-    #workskin .dc.theme-auto .dc-link-title,
-    #workskin .dc.theme-auto .fake-link {
+    #workskin .dc.theme-auto a:not(.tl),
+    #workskin .dc.theme-auto .fake-link,
+    #workskin .dc.theme-auto .link-title {
       color: rgb(0, 175, 244);
     }
 
   #workskin .dc.theme-auto a:not(.tl):hover { color: rgb(0, 175, 244); text-decoration: underline; }
 
-  #workskin .dc.theme-auto .dc-reply,
+  #workskin .dc.theme-auto .reply,
     #workskin .dc.theme-auto .dc-topic {
       color: rgb(185, 187, 190);
     }
 
-  #workskin .dc.theme-auto .dc-reply::before { border-color: rgb(79, 84, 92); }
+  #workskin .dc.theme-auto .reply::before { border-color: rgb(79, 84, 92); }
 
   #workskin .dc.theme-auto .dc-reaction:not(.me) {
       background-color: rgb(47, 49, 54);
@@ -779,7 +780,7 @@
   
   #workskin .dc.theme-auto .typing-indicator span:empty { background-color: rgb(220, 221, 222); }
 
-  #workskin .dc.theme-auto .dc-footer { background-color: rgb(64, 68, 75); }
+  #workskin .dc.theme-auto .footer { background-color: rgb(64, 68, 75); }
 
   #workskin .dc.theme-auto .hashtag::before { background-image: url(https://images.squidge.org/images/2026/11/15/dc-hashtag-dark.png); }
 
@@ -787,7 +788,7 @@
 
   #workskin .dc.theme-auto .at-symbol::before { background-image: url(https://images.squidge.org/images/2026/11/15/dc-at-dark.png); }
 
-  #workskin .dc.theme-auto .dc-msgbar::before { background-image: url(https://images.squidge.org/images/2026/11/15/dc-plus-dark.png); }
+  #workskin .dc.theme-auto .msgbar::before { background-image: url(https://images.squidge.org/images/2026/11/15/dc-plus-dark.png); }
 
   /* spoilers, dark: hidden until clicked */
   #workskin .dc.theme-auto .dc-spoiler-text {
