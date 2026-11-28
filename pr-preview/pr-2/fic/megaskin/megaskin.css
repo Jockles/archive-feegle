@@ -6764,6 +6764,7 @@
   line-height: 1.3;
 }
 
+/* a finished poll: <p class="tb-opt results win p50"><span class="tb-bar">the words</span><span class="hide"> - </span><span class="tb-pct">52%</span></p> */
 #workskin .tb .tb-text .tb-opt.results {
   justify-content: flex-start;
   border-color: transparent;
