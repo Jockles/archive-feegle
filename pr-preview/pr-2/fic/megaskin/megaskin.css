@@ -4017,7 +4017,7 @@
 }
 
 /* the blue bar along the top: a back arrow or the page's buttons, the page name in the middle, search and write a tweet on the right.
-   <p class="twc-header"><span class="ic ic-back">&#8592;</span><span class="twc-title">Tweet</span><span class="ic ic-x-search">&#128269;</span><span class="ic ic-tw-compose">&#9998;</span></p> */
+   <p class="twc-header"><span class="twc-icon ic ic-back">&#8592;</span><span class="twc-title">Tweet</span><span class="twc-icon ic ic-x-search">&#128269;</span><span class="twc-icon ic ic-tw-compose">&#9998;</span></p> */
 #workskin .twc12-feed .twc-header {
   display: flex;
   position: sticky;
@@ -4044,11 +4044,11 @@
   font-size: 1.15em;
 }
 
-#workskin .twc12-feed .twc-header .ic { flex: none; width: 1.4em; height: 1.4em; }
+#workskin .twc12-feed .twc-header .twc-icon { flex: none; width: 1.4em; height: 1.4em; }
 
-#workskin .twc12-feed .twc-title + .ic { margin-left: auto; }
+#workskin .twc12-feed .twc-title + .twc-icon { margin-left: auto; }
 
-#workskin .twc12-feed .twc-header .ic + .ic { margin-left: 0.8em; }
+#workskin .twc12-feed .twc-header .twc-icon + .twc-icon { margin-left: 0.8em; }
 
 /* the black row of buttons along the bottom, each with its name under it. "on" lights up the page you're on.
    <p class="tw-nav"><span class="tw-tab on"><span class="ic ic-x-home-filled">&#8962;</span> Home</span> <span class="tw-tab"><span class="ic ic-tw-at">@</span> Connect</span> <span class="tw-tab"><span class="ic ic-tw-hash">#</span> Discover</span> <span class="tw-tab"><span class="ic ic-tw-me">&#9786;</span> Me</span></p> */
@@ -4111,10 +4111,10 @@
 #workskin .twc12 .ic.ic-tw-repost { background-image: url(https://images.squidge.org/images/2026/11/19/tw12-retweet-grey.png); }
 #workskin .twc12 .ic.ic-tw-like { background-image: url(https://images.squidge.org/images/2026/11/19/tw12-star-grey.png); }
 #workskin .twc12 .ic.ic-tw-share { background-image: url(https://images.squidge.org/images/2026/11/19/tw12-more-grey.png); }
-#workskin .twc12-feed .twc-header .ic.ic-back { background-image: url(https://images.squidge.org/images/2026/11/19/tw12-back-white.png); }
-#workskin .twc12-feed .twc-header .ic.ic-x-search { background-image: url(https://images.squidge.org/images/2026/11/19/tw12-search-white.png); }
-#workskin .twc12-feed .twc-header .ic.ic-tw-compose { background-image: url(https://images.squidge.org/images/2026/11/19/tw12-compose-white.png); }
-#workskin .twc12-feed .twc-header .ic.ic-tw-me { background-image: url(https://images.squidge.org/images/2026/11/19/tw12-me-white.png); }
+#workskin .twc12-feed .twc-header .twc-icon.ic-back { background-image: url(https://images.squidge.org/images/2026/11/19/tw12-back-white.png); }
+#workskin .twc12-feed .twc-header .twc-icon.ic-x-search { background-image: url(https://images.squidge.org/images/2026/11/19/tw12-search-white.png); }
+#workskin .twc12-feed .twc-header .twc-icon.ic-tw-compose { background-image: url(https://images.squidge.org/images/2026/11/19/tw12-compose-white.png); }
+#workskin .twc12-feed .twc-header .twc-icon.ic-tw-me { background-image: url(https://images.squidge.org/images/2026/11/19/tw12-me-white.png); }
 #workskin .twc12-feed .tw-nav .ic.ic-x-home-filled { background-image: url(https://images.squidge.org/images/2026/11/19/tw12-home-grey.png); }
 #workskin .twc12-feed .tw-nav .ic.ic-tw-at { background-image: url(https://images.squidge.org/images/2026/11/19/tw12-at-grey.png); }
 #workskin .twc12-feed .tw-nav .ic.ic-tw-hash { background-image: url(https://images.squidge.org/images/2026/11/19/tw12-hash-grey.png); }
@@ -4433,9 +4433,9 @@
   font-size: 1.1em;
 }
 
-#workskin .twc16-feed .twc-header .ic { flex: none; width: 1.4em; height: 1.4em; }
+#workskin .twc16-feed .twc-header .twc-icon { flex: none; width: 1.4em; height: 1.4em; }
 
-#workskin .twc16-feed .twc-title + .ic { margin-left: auto; }
+#workskin .twc16-feed .twc-title + .twc-icon { margin-left: auto; }
 
 /* the replies box under an opened tweet: <p class="twc-reply-bar"><span>Tweet your reply</span></p> */
 #workskin .twc16-feed .twc-reply-bar {
@@ -6007,7 +6007,7 @@
   background-size: contain;
 }
 
-#workskin .ig .ig-notif {
+#workskin .ig .ig-icon {
   display: block;
   flex: none;
   width: 1.6em;
@@ -6929,7 +6929,7 @@
   line-height: 1;
 }
 
-#workskin .tb-feed .tb-topicon { margin-left: 0.8em; font-size: 1.5em; line-height: 1; }
+#workskin .tb-feed .tb-icon { margin-left: 0.8em; font-size: 1.5em; line-height: 1; }
 
 #workskin .tb-feed .tb-tabs {
   padding: 0.6em 1em 0.9em 1em;
@@ -6955,7 +6955,7 @@
   background: #00b8ff;
 }
 
-#workskin .tb-feed .tb-tabs .tb-topicon { margin-left: auto; font-size: 1.3em; }
+#workskin .tb-feed .tb-tabs .tb-icon { margin-left: auto; font-size: 1.3em; }
 
 #workskin .tb-feed .tb-nav {
   justify-content: space-around;

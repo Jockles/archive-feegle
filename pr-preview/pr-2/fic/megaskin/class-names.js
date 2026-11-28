@@ -91,7 +91,9 @@ var MEGASKIN_RENAMES = [
   ["mail-buttons", "mail-btns"],
   ["wa-title", "wa-name"],
   ["dc-reaction-count", "dc-count"],
-  ["dc-message", "msg"]
+  ["dc-message", "msg"],
+  ["tb-topicon", "tb-icon"],
+  ["ig-notif", "ig-icon"]
 ];
 
 // Names that did nothing and were taken out.
