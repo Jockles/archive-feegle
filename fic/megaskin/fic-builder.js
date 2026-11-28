@@ -824,8 +824,7 @@
   }
   function igdmHTML(b) {
     var o = others(b), head = "";
-    if (b.app) head += '<span class="back"><span class="ic ic-back">&#8592;</span></span><span class="hide"> </span><span class="btns"><span class="ic ic-phone">&#128222;</span>' +
-      '<span class="hide"> </span><span class="ic ic-video">&#127909;</span></span><span class="hide"> </span>';
+    if (b.app) head += '<span class="back"><span class="ic ic-back">&#8592;</span></span><span class="hide"> </span>';
     var pic = false;
     if (b.headPic !== false) {
       var f = igdmFaces(b); pic = f.length > 0;
@@ -841,7 +840,8 @@
     if (b.group && b.chev !== false) nameHTML += '<span class="igdm-drop"></span>'; // the little > after a group's name, drawn by the skin
     head += '<span class="chat-name">' + nameHTML + "</span>";
     var L = ['<div class="' + containerClass(b, "igdm") + '">',
-      '  <p class="mob-header">' + head + '<span class="hide"> - </span>' + (t(b.sub) ? "<span>" + esc(t(b.sub)) + "</span>" : "") + "</p>",
+      '  <p class="mob-header">' + head + '<span class="hide"> - </span>' + (t(b.sub) ? "<span>" + esc(t(b.sub)) + "</span>" : "") +
+        (b.app ? '<span class="hide"> </span><span class="btns"><span class="ic ic-phone">&#128222;</span><span class="hide"> </span><span class="ic ic-video">&#127909;</span></span>' : "") + "</p>",
       '  <div class="mob-body">'];
     // in a group, each run of messages from one person goes in a row: their picture, their name, then the messages.
     // The name is just above the first one, so only the ones after it need the hidden name.
@@ -2512,8 +2512,9 @@
     // the header: the app screen's buttons, the pictures, the name and tick, then the line under it
     var hk = kids(head), pics = [];
     if (is(hk[0], "span.back")) {
-      if (!is(hk[1], "span.hide") || !is(hk[2], "span.btns") || !is(hk[3], "span.hide")) no();
-      b.app = true; hk = hk.slice(4);
+      // the back arrow first and the buttons last
+      if (!is(hk[1], "span.hide") || !is(hk[hk.length - 1], "span.btns") || !is(hk[hk.length - 2], "span.hide")) no();
+      b.app = true; hk = hk.slice(2, -2);
     }
     if (is(hk[0], "span.ig-collab")) { pics = kids(hk.shift()); if (pics.length !== 2) no(); b.group = true; }
     else if (is(hk[0], "span.ig-pfp")) pics = [hk.shift()];
@@ -3052,6 +3053,12 @@
         }
         if (cell("btns")) span("btns", cell("btns"));
         tb.parentNode.replaceChild(hd, tb); hit = true;
+      });
+      // an Instagram DM header's buttons were first, after the back arrow: now they're last
+      if (c.classList.contains("igdm")) Array.prototype.slice.call(c.querySelectorAll(":scope > p.mob-header")).forEach(function (hd) {
+        var hk = kids(hd);
+        if (!is(hk[0], "span.back") || !is(hk[1], "span.hide") || !is(hk[2], "span.btns") || !is(hk[3], "span.hide")) return;
+        hd.appendChild(hk[3]); hd.appendChild(hk[2]); hit = true;
       });
       // a poll result's hidden gap between the words and the percentage was a space: now it's " - ", the same as Tumblr's
       Array.prototype.slice.call(c.querySelectorAll(".tw-opt > span.hide")).forEach(function (h) {
