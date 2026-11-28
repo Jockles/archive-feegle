@@ -133,8 +133,8 @@
 /* text that only shows when the reader has "Hide Creator's Style" on, or in a download. */
 #workskin .hide.hide.hide.hide { display: none; }
 
-/* video descriptions */
-#workskin .vid-desc {
+/* a video described in words, straight after the video: <p class="video-desc">[Video: ...]</p> */
+#workskin .video-desc {
   position: absolute;
   left: -9999px;
   width: 1px;

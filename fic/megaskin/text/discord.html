@@ -12,7 +12,7 @@
 
 <div class="dc theme-auto">
   <div class="dc-header hashtag">
-    <h3><span class="hide"># </span>general<span class="dc-header-divider"></span><span class="hide">: </span><span class="dc-desc">for general conversation (keep it clean!)</span></h3>
+    <h3><span class="hide"># </span>general<span class="dc-header-divider"></span><span class="hide">: </span><span class="dc-topic">for general conversation (keep it clean!)</span></h3>
   </div>
 
   <div class="dc-message">
@@ -121,7 +121,7 @@
 
 <pre><code>&lt;div class="dc theme-auto"&gt;
   &lt;div class="dc-header hashtag"&gt;
-    &lt;h3&gt;&lt;span class="hide"&gt;# &lt;/span&gt;general&lt;span class="dc-header-divider"&gt;&lt;/span&gt;&lt;span class="hide"&gt;: &lt;/span&gt;&lt;span class="dc-desc"&gt;for general conversation (keep it clean!)&lt;/span&gt;&lt;/h3&gt;
+    &lt;h3&gt;&lt;span class="hide"&gt;# &lt;/span&gt;general&lt;span class="dc-header-divider"&gt;&lt;/span&gt;&lt;span class="hide"&gt;: &lt;/span&gt;&lt;span class="dc-topic"&gt;for general conversation (keep it clean!)&lt;/span&gt;&lt;/h3&gt;
   &lt;/div&gt;
 
   &lt;div class="dc-message"&gt;
@@ -307,12 +307,12 @@
 
 <div class="dc theme-auto">
   <div class="dc-header hashtag">
-    <h3><span class="hide"># </span>general<span class="dc-header-divider"></span><span class="hide">: </span><span class="dc-desc">for general conversation (keep it clean!)</span></h3>
+    <h3><span class="hide"># </span>general<span class="dc-header-divider"></span><span class="hide">: </span><span class="dc-topic">for general conversation (keep it clean!)</span></h3>
   </div>
 </div>
 
 <pre><code>&lt;div class="dc-header hashtag"&gt;
-  &lt;h3&gt;&lt;span class="hide"&gt;# &lt;/span&gt;general&lt;span class="dc-header-divider"&gt;&lt;/span&gt;&lt;span class="hide"&gt;: &lt;/span&gt;&lt;span class="dc-desc"&gt;for general conversation (keep it clean!)&lt;/span&gt;&lt;/h3&gt;
+  &lt;h3&gt;&lt;span class="hide"&gt;# &lt;/span&gt;general&lt;span class="dc-header-divider"&gt;&lt;/span&gt;&lt;span class="hide"&gt;: &lt;/span&gt;&lt;span class="dc-topic"&gt;for general conversation (keep it clean!)&lt;/span&gt;&lt;/h3&gt;
 &lt;/div&gt;</code></pre>
 
 <p>The header is a <code>div</code> with <code>dc-header</code>. Adding <code>hashtag</code> puts the <code>#</code> symbol before the channel name.</p>
@@ -322,7 +322,7 @@
 
 <ul>
   <li>Use <code>locked</code> instead of <code>hashtag</code> for a locked channel - the icon is added for you.</li>
-  <li>You can leave the description out if you don't need it. Take out everything from <code>dc-header-divider</code> to the end of the <code>dc-desc</code> span.</li>
+  <li>You can leave the description out if you don't need it. Take out everything from <code>dc-header-divider</code> to the end of the <code>dc-topic</code> span.</li>
 </ul>
 
 </details>
@@ -330,7 +330,7 @@
 <details>
 <summary>How it works: the spans in the header</summary>
 
-<p>Inside the header, <code>dc-header-divider</code> is the thin line between the channel name and its description, and <code>dc-desc</code> is the grey description. The spans with <code>hide</code> hold text that only shows if a reader has the workskin switched off, like the <code>#</code> and the colon, so the header still makes sense without the styling.</p>
+<p>Inside the header, <code>dc-header-divider</code> is the thin line between the channel name and its description, and <code>dc-topic</code> is the grey description. The spans with <code>hide</code> hold text that only shows if a reader has the workskin switched off, like the <code>#</code> and the colon, so the header still makes sense without the styling.</p>
 
 </details>
 

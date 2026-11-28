@@ -560,9 +560,9 @@
   margin: 0 auto;
 }
 
-/* a description standing in for a picture: <span class="tw-photo"><span class="tw-desc">[...]</span></span> */
-#workskin .tw .tw-photos .tw-photo .tw-desc,
-#workskin .tw-reply .tw-photos .tw-photo .tw-desc {
+/* a description standing in for a picture: <span class="tw-photo"><span class="img-desc">[...]</span></span> */
+#workskin .tw .tw-photos .tw-photo .img-desc,
+#workskin .tw-reply .tw-photos .tw-photo .img-desc {
   position: absolute;
   top: 0;
   left: 0;
