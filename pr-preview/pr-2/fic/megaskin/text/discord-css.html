@@ -15,7 +15,6 @@
 <p>The usual order - the main rules, Links, Scrolling, Dark theme and Auto theme - but Discord is the odd one out in a few ways:</p>
 
 <ul>
-  <li>It doesn't use the <code>mob</code> box. Discord is mostly used on a computer, so it's a wide window that fills the page, unless you add <code>narrow</code>.</li>
   <li>It does its own scrolling, and has its own <code>no-scroll</code> rule.</li>
   <li>The little icons in the header and the message box are pictures hosted on squidge.org, not text.</li>
   <li>It uses <code>rem</code> for most sizes, where the other modules use <code>em</code>. A <code>rem</code> is the size of the page's normal text, so the sizes stay the same wherever the chat sits.</li>
@@ -26,7 +25,6 @@
 <h4>The Window</h4>
 
 <pre><code>#workskin .dc {
-  margin: 1.2em 0;
   position: relative;
   padding: 0 0 1rem 0;
   font-family: Whitney, "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -42,20 +40,14 @@
   color: rgb(46, 51, 56);
   background-color: rgb(255, 255, 255);
   border-color: rgb(227, 229, 232);
-}
-
-#workskin .dc.narrow {
-  width: 380px;
-  max-width: 100%;
-  margin: 1.2em auto;
 }</code></pre>
 
 <p>A white window with a pale grey edge and only slightly rounded corners. Whitney was Discord's font for years - readers who don't have it get Helvetica or Arial instead.</p>
 
 <details>
-<summary>Options: Discord on a phone</summary>
+<summary>Options: the width</summary>
 
-<p><code>narrow</code> makes it the same width as the phone chats and centres it, for when you want Discord on a phone. Change the <code>380px</code> if you want a different width.</p>
+<p>The width comes from the <code>mob</code> box in Core, the same as every other chat, so there's no width here. Adding <code>wide</code> to the container makes it fill the page.</p>
 
 </details>
 

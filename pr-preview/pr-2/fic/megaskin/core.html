@@ -25,7 +25,7 @@
   <!-- /site meta -->
   <link rel="stylesheet" href="../../style.css?v=c31c06ea">
   <script src="../../theme.js?v=c50fd7c2"></script>
-  <link rel="stylesheet" href="megaskin.css?v=af2c923f" id="creator-style">
+  <link rel="stylesheet" href="megaskin.css?v=7f91a588" id="creator-style">
 </head>
 <body>
 <header>
@@ -66,7 +66,7 @@
   <li><a href="#accessibility">Accessibility</a>: <code>hide</code>, alt text and video descriptions (<code>video-desc</code>), for screen readers and for readers with the workskin switched off</li>
   <li><a href="#container-settings">Container settings</a>
     <ul>
-      <li><a href="#width">Phone or full width</a> (<code>wide</code> - Discord is wide by default, and uses <code>narrow</code> for phone width instead)</li>
+      <li><a href="#width">Phone or full width</a> (<code>wide</code>)</li>
       <li><a href="#scrolling">Scrolling</a> for long chats (<code>no-scroll</code> to switch it off)</li>
       <li><a href="#themes">Light, dark and auto themes</a></li>
     </ul>
@@ -99,7 +99,7 @@
 <p>This container has three classes, and each one has a job:</p>
 
 <ul>
-  <li><code>mob</code> sets the phone-sized width and the base text styling. Every chat container except Discord has it.</li>
+  <li><code>mob</code> sets the phone-sized width and the base text styling. Every chat container has it.</li>
   <li><code>imsg</code> is the <strong>platform class</strong>. It decides which app the chat looks like. Here it makes an iMessage chat. It can only talk to the css in the iMessage module.</li>
   <li><code>theme-auto</code> is the <strong>theme class</strong>. It makes the chat light or dark to match the reader's device. <a href="core.html#s2-3-3-1">Fixing a Chat to Light or Dark</a> explains how to lock a chat to light or dark instead.</li>
 </ul>
@@ -121,7 +121,7 @@
   <li><code>dc</code>: Discord</li>
 </ul>
 
-<p>On a wide screen every chat except Discord is held to the width of a phone, and on a small screen it fills the width of the screen.</p>
+<p>On a wide screen every chat is held to the width of a phone, and on a small screen it fills the width of the screen.</p>
 
 <h3 id="accessibility"><span id="s2-2"></span>2.2 Accessibility</h3>
 
@@ -278,7 +278,7 @@
 
 <h4 id="width"><span id="s2-3-1"></span>2.3.1 Phone Width or Full Width</h4>
 
-<p>Every chat is built to be the width of a phone, and I recommend leaving it that way. That's the size all of the designs are made for (except Discord, which is designed wide), so the layouts look their best at it. Anything that doesn't contain large images should scale wider just fine, but I've not optimised anything to work wide so you can use it at your own risk. This is mostly for anyone that wants full width texting-type chats for themselves. There is no desktop version of any of the apps in this, though I'd be open to adding them.</p>
+<p>Every chat is built to be the width of a phone, and I recommend leaving it that way. That's the size all of the designs are made for, so the layouts look their best at it. Anything that doesn't contain large images should scale wider just fine, but only the Discord skin is optimised for working full width, so use it at your own risk anywhere else. This is mostly for anyone that wants full width texting-type chats for themselves. There is no desktop version of any of the apps in this, though I'd be open to adding them.</p>
 
 <p>If you'd prefer a chat to fill the page, add the class <code>wide</code> to its container. It's available on every chat, and should resize cleanly to any page width:</p>
 
@@ -302,35 +302,33 @@
 <p>Each chat container's size is separate, so you can mix phone-width and full-width chats in one fic if that takes your fancy.</p>
 
 <details>
-<summary>Options: Discord at phone width</summary>
+<summary>Options: Discord at full width</summary>
 
-<p>Discord goes the other way: it's wide to begin with, and you can add <code>narrow</code> to give it the width of a phone:</p>
+<p>Discord is the one app that's used on a computer as much as a phone, so it's the only skin that's optimised for working full width:</p>
 
-<p>The discord container more easily resizes to be small on smaller screens, so the narrow skin is more for if you want it to look intentionally like a phone screen on desktop.</p>
-
-<pre><code>&lt;div class="dc theme-auto narrow"&gt;&lt;/div&gt;</code></pre>
+<pre><code>&lt;div class="mob dc theme-auto wide"&gt;&lt;/div&gt;</code></pre>
 
 <p>Here's the same Discord chat both ways:</p>
 
-<div class="dc theme-auto">
+<div class="mob dc theme-auto">
   <div class="dc-message">
     <p><b class="dc-name colour1">SwankyUsername</b> <span class="dc-time">Today at 9:20 AM</span></p>
-    <p><span class="dc-text">wide, the usual</span></p>
+    <p><span class="dc-text">phone width, the usual</span></p>
   </div>
   <div class="dc-message">
     <p><b class="dc-name colour6">DropSomeKnowledge</b> <span class="dc-time">Today at 9:21 AM</span></p>
-    <p><span class="dc-text">fills the page</span></p>
+    <p><span class="dc-text">like the app on a phone</span></p>
   </div>
 </div>
 
-<div class="dc theme-auto narrow">
+<div class="mob dc theme-auto wide">
   <div class="dc-message">
     <p><b class="dc-name colour1">SwankyUsername</b> <span class="dc-time">Today at 9:20 AM</span></p>
-    <p><span class="dc-text">narrow</span></p>
+    <p><span class="dc-text">wide</span></p>
   </div>
   <div class="dc-message">
     <p><b class="dc-name colour6">DropSomeKnowledge</b> <span class="dc-time">Today at 9:21 AM</span></p>
-    <p><span class="dc-text">the width of a phone</span></p>
+    <p><span class="dc-text">fills the page, like Discord on a computer</span></p>
   </div>
 </div>
 
@@ -393,7 +391,7 @@
 <ul>
   <li>iMessage, WhatsApp, Twitter/X DMs and Instagram DMs keep the header and the bottom bar where they are, and scroll the messages in between.</li>
   <li>Twitter/X posts, Instagram posts, Tumblr posts and Gmail emails scroll as a whole.</li>
-  <li>Discord stays wide, and the whole window scrolls, header and message box included.</li>
+  <li>In Discord the whole window scrolls, header and message box included.</li>
 </ul>
 
 </details>
@@ -770,7 +768,7 @@
 
 <p><strong>Discord</strong></p>
 
-<div class="dc theme-dark">
+<div class="mob dc theme-dark">
   <div class="dc-header hashtag">
     <h3><span class="hide"># </span>general</h3>
   </div>
@@ -783,7 +781,7 @@
   </div>
 </div>
 
-<div class="dc theme-light">
+<div class="mob dc theme-light">
   <div class="dc-header hashtag">
     <h3><span class="hide"># </span>general</h3>
   </div>
@@ -798,7 +796,7 @@
 
 <p><em>The HTML for the dark version:</em></p>
 
-<pre><code>&lt;div class="dc theme-dark"&gt;
+<pre><code>&lt;div class="mob dc theme-dark"&gt;
   &lt;div class="dc-header hashtag"&gt;
     &lt;h3&gt;&lt;span class="hide"&gt;# &lt;/span&gt;general&lt;/h3&gt;
   &lt;/div&gt;
@@ -1131,7 +1129,7 @@
   </div>
 </div>
 
-<div class="dc theme-auto">
+<div class="mob dc theme-auto">
   <div class="dc-message">
     <p><b class="dc-name pfp-stan"><span class="dc-pfp"><span class="pfp pfp-stan"></span></span>Stan</b> <span class="dc-time">Today at 9:15 AM</span></p>
     <p><span class="dc-text">same picture everywhere now</span></p>

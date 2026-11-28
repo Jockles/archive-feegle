@@ -42,8 +42,7 @@
 }
 
 /* a part on its own: add "loose" and the box shrinks to fit what's inside it */
-#workskin .mob.loose.loose,
-#workskin .dc.loose.loose {
+#workskin .mob.loose.loose {
   display: table;
   width: auto;
   max-width: 100%;
