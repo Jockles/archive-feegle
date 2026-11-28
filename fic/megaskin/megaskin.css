@@ -148,8 +148,8 @@
 /* text that only shows when the reader has "Hide Creator's Style" on, or in a download. */
 #workskin .hide.hide.hide.hide { display: none; }
 
-/* video descriptions */
-#workskin .vid-desc {
+/* a video described in words, straight after the video: <p class="video-desc">[Video: ...]</p> */
+#workskin .video-desc {
   position: absolute;
   left: -9999px;
   width: 1px;
@@ -2721,9 +2721,9 @@
   margin: 0 auto;
 }
 
-/* a description standing in for a picture: <span class="tw-photo"><span class="tw-desc">[...]</span></span> */
-#workskin .tw .tw-photos .tw-photo .tw-desc,
-#workskin .tw-reply .tw-photos .tw-photo .tw-desc {
+/* a description standing in for a picture: <span class="tw-photo"><span class="img-desc">[...]</span></span> */
+#workskin .tw .tw-photos .tw-photo .img-desc,
+#workskin .tw-reply .tw-photos .tw-photo .img-desc {
   position: absolute;
   top: 0;
   left: 0;
@@ -4617,7 +4617,7 @@
   color: #737373;
 }
 
-/* stands in for the photo: describe the image in here */
+/* stands in for the photo: <p class="ig-photo"><span class="img-desc">[describe the picture here]</span></p> */
 #workskin .ig .ig-photo,
 #workskin .igdm .igdm-post .ig-photo {
   display: block;
@@ -7635,7 +7635,7 @@
   white-space: nowrap;
 }
 
-#workskin .dc .dc-desc {
+#workskin .dc .dc-topic {
   display: inline;
   margin-left: 0.5rem;
   font-size: 0.875rem;
@@ -8083,7 +8083,7 @@
 }
 
 #workskin .dc .dc-reply,
-#workskin .dc .dc-desc {
+#workskin .dc .dc-topic {
   color: rgb(79, 86, 96);
 }
 
@@ -8174,7 +8174,7 @@
 #workskin .dc.theme-dark a:not(.tl):hover { color: rgb(0, 175, 244); text-decoration: underline; }
 
 #workskin .dc.theme-dark .dc-reply,
-#workskin .dc.theme-dark .dc-desc {
+#workskin .dc.theme-dark .dc-topic {
   color: rgb(185, 187, 190);
 }
 
@@ -8281,7 +8281,7 @@
   #workskin .dc.theme-auto a:not(.tl):hover { color: rgb(0, 175, 244); text-decoration: underline; }
 
   #workskin .dc.theme-auto .dc-reply,
-    #workskin .dc.theme-auto .dc-desc {
+    #workskin .dc.theme-auto .dc-topic {
       color: rgb(185, 187, 190);
     }
 

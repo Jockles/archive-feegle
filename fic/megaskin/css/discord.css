@@ -89,7 +89,7 @@
   white-space: nowrap;
 }
 
-#workskin .dc .dc-desc {
+#workskin .dc .dc-topic {
   display: inline;
   margin-left: 0.5rem;
   font-size: 0.875rem;
@@ -537,7 +537,7 @@
 }
 
 #workskin .dc .dc-reply,
-#workskin .dc .dc-desc {
+#workskin .dc .dc-topic {
   color: rgb(79, 86, 96);
 }
 
@@ -628,7 +628,7 @@
 #workskin .dc.theme-dark a:not(.tl):hover { color: rgb(0, 175, 244); text-decoration: underline; }
 
 #workskin .dc.theme-dark .dc-reply,
-#workskin .dc.theme-dark .dc-desc {
+#workskin .dc.theme-dark .dc-topic {
   color: rgb(185, 187, 190);
 }
 
@@ -735,7 +735,7 @@
   #workskin .dc.theme-auto a:not(.tl):hover { color: rgb(0, 175, 244); text-decoration: underline; }
 
   #workskin .dc.theme-auto .dc-reply,
-    #workskin .dc.theme-auto .dc-desc {
+    #workskin .dc.theme-auto .dc-topic {
       color: rgb(185, 187, 190);
     }
 
