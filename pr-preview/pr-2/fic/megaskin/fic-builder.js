@@ -1000,7 +1000,7 @@
   }
   // one tweet: kind is "feed" (on its own), "main" (top of a thread) or "reply"
   // the extras ticked on a tweet: [tick box, label]. Older tweets with no tick saved go by what's filled in
-  var TW_ADDS = [["hasPoll", "Poll"], ["hasQuote", "Quote tweet"], ["hasNote", "Community note"], ["hasPics", "Pictures"], ["hasVideo", "Video"]];
+  var TW_ADDS = [["hasPoll", "Poll"], ["hasPics", "Pictures"], ["hasVideo", "Video"], ["hasQuote", "Quote tweet"], ["hasNote", "Community note"]];
   function has(m, k) {
     if (m[k] !== undefined) return !!m[k];
     if (k === "hasPoll") return !!t(m.poll);
@@ -1380,17 +1380,30 @@
       btn("msg-up:" + bi + ":" + mi, "&uarr;", "Move up") + btn("msg-down:" + bi + ":" + mi, "&darr;", "Move down") +
       btn("msg-ins:" + bi + ":" + mi, "+", "Add a message under this one") + btn("msg-del:" + bi + ":" + mi, "&times;", "Delete this message") + "</span></div>");
     if (m.open && m.from !== "sys" && m.from !== "typing") {
+      // in the order the message shows them: what's above the bubble, then what's in it, then what's under it
+      var me = m.from === b.pov, imsg = !wa && !dm && !ig;
       h.push('<div class="fb-extras">');
       h.push('<p class="hint">Select some words in the message, then: ' + btn("fmt:tl", "Translation") + " " + btn("fmt:egg", "Easter egg") + " " + btn("fmt:link", "Fake link") + "</p>");
+      // above the bubble
+      if (wa) h.push(field(P + ".fwd", "Forwarded", { type: "check" }));
+      if (!imsg) h.push(replyField(b, P, mi));
+      // the bubble
+      if (imsg) h.push(field(P + ".sms", "Green SMS bubble", { type: "check" }));
+      if (wa) {
+        h.push(field(P + ".big", "Large emoji", { type: "check" }));
+        h.push(field(P + ".call", "Call", { type: "select", re: true, options: [["", "Not a call"], ["voice", "Voice call"], ["video", "Video call"]] }));
+        if (m.call) h.push(field(P + ".missed", "Missed call", { type: "check", re: true }) + (m.missed ? "" : field(P + ".callLen", "How long", { ph: "44 secs" })));
+        h.push(field(P + ".contact", "Shared contact", { type: "select", re: true, options: [["", "None"]].concat(castOptions()) }));
+      }
+      h.push('<p class="hint">Pictures (up to four' + (wa ? "; with pictures, the message text becomes the caption" : "") + "):</p>");
+      m.photos.forEach(function (p, k) {
+        var K = P + ".photos." + k;
+        h.push('<div class="fb-acct"><div class="fb-row">' + field(K + ".url", "", { type: "url", ph: "Picture link" }) + btn("photo-del:" + bi + ":" + mi + ":" + k, "&times;", "Remove") + "</div>" +
+          field(K + ".alt", "", { ph: "Describe the picture (alt text)", wrap: true }) + field(K + ".desc", "", { ph: "Or, with no picture, describe it in words", wrap: true }) +
+          field(K + ".land", "Landscape picture", { type: "check" }) + "</div>");
+      });
+      if (m.photos.length < 4) h.push(btn("photo-add:" + bi + ":" + mi, "+ Picture"));
       if (ig) {
-        h.push(replyField(b, P, mi));
-        h.push(field(P + ".status", "Line under it", { ph: b.group ? "Seen by 3" : "Seen" }));
-        h.push('<div class="fb-row">' + field(P + ".waReacts", "Reactions", { ph: "😂" }) + field(P + ".waCount", "How many", { ph: "2", cls: "fb-time" }) + "</div>");
-        h.push('<p class="hint">Who reacted:' + help(P + ".faces") + "</p>");
-        (m.faces || []).forEach(function (f, k) {
-          h.push('<div class="fb-row">' + field(P + ".faces." + k, "", { type: "select", options: castOptions() }) + btn("face-del:" + bi + ":" + mi + ":" + k, "&times;", "Remove") + "</div>");
-        });
-        h.push(btn("face-add:" + bi + ":" + mi, "+ Someone who reacted"));
         // what's shared in the message: only one of these, and picking one brings up its boxes
         var kind = igdmKind(m);
         h.push('<p class="hint fb-attach">Shared in this message:' + help(P + ".attach") + " " + [["", "Nothing"], ["post", "Picture post"], ["reel", "Reel"], ["link", "Link"], ["story", "Story"]].map(function (o) {
@@ -1432,30 +1445,8 @@
             field(K + ".img", "", { type: "url", ph: "Picture link", wrap: true }) + field(K + ".alt", "", { ph: "Describe the picture (alt text)", wrap: true }) +
             field(K + ".imgdesc", "", { ph: "Or, with no picture, describe it in words", wrap: true }) + "</div>");
         }
-        h.push(pictureRows(P, bi, mi, m, 4, true));
-        h.push("</div></li>"); return h.join("");
-      } else if (dm) {
-        h.push(replyField(b, P, mi));
-        h.push(field(P + ".waReacts", "Reactions", { ph: "😂 1" }));
-        if (m.from === b.pov) h.push(field(P + ".status", "Seen or Sent", { ph: "Seen" }));
-        h.push(field(P + ".voice", "Voice message length", { ph: "0:02" }));
-      } else if (!wa) {
-        h.push(field(P + ".sms", "Green SMS bubble", { type: "check" }));
-        h.push('<p class="hint">Tapbacks (one emoji per person):</p>');
-        m.reacts.forEach(function (r, k) {
-          h.push('<div class="fb-row">' + field(P + ".reacts." + k + ".by", "", { type: "select", options: S.cast.map(function (c) { return [c.id, nameOf(c)]; }) }) +
-            field(P + ".reacts." + k + ".emoji", "", { ph: "❤️", cls: "fb-emoji" }) + btn("tap-del:" + bi + ":" + mi + ":" + k, "&times;", "Remove") + "</div>");
-        });
-        h.push(btn("tap-add:" + bi + ":" + mi, "+ Tapback"));
-        h.push(field(P + ".status", "Line under it (e.g. Delivered, or Read 11:52 PM)", {}));
-      } else {
-        if (m.from === b.pov) h.push(field(P + ".tick", "Ticks", { type: "select", options: [["read", "Read (blue)"], ["delivered", "Delivered (grey)"], ["sent", "Sent (one tick)"], ["", "None"]] }));
-        h.push(field(P + ".big", "Large emoji", { type: "check" }) + field(P + ".fwd", "Forwarded", { type: "check" }));
-        h.push(field(P + ".call", "Call", { type: "select", re: true, options: [["", "Not a call"], ["voice", "Voice call"], ["video", "Video call"]] }));
-        if (m.call) h.push(field(P + ".missed", "Missed call", { type: "check", re: true }) + (m.missed ? "" : field(P + ".callLen", "How long", { ph: "44 secs" })));
-        h.push(field(P + ".contact", "Shared contact", { type: "select", re: true, options: [["", "None"]].concat(castOptions()) }));
-        h.push(replyField(b, P, mi));
-        h.push('<div class="fb-row">' + field(P + ".waReacts", "Reactions", { ph: "❤️ 😂" }) + field(P + ".waCount", "Count", { ph: "2", cls: "fb-time" }) + "</div>");
+      }
+      if (wa) {
         if (!m.link) h.push(btn("link-add:" + bi + ":" + mi, "+ Link preview"));
         else {
           var K = P + ".link";
@@ -1467,15 +1458,33 @@
             field(K + ".imgdesc", "", { ph: "Describe the video, or with no picture, describe the picture" }) + "</div>");
         }
       }
-      if (!dm) h.push(field(P + ".edited", "Edited", { type: "check" }));
-      h.push('<p class="hint">Pictures (up to four' + (wa ? "; with pictures, the message text becomes the caption" : "") + "):</p>");
-      m.photos.forEach(function (p, k) {
-        var K = P + ".photos." + k;
-        h.push('<div class="fb-acct"><div class="fb-row">' + field(K + ".url", "", { type: "url", ph: "Picture link" }) + btn("photo-del:" + bi + ":" + mi + ":" + k, "&times;", "Remove") + "</div>" +
-          field(K + ".alt", "", { ph: "Describe the picture (alt text)", wrap: true }) + field(K + ".desc", "", { ph: "Or, with no picture, describe it in words", wrap: true }) +
-          field(K + ".land", "Landscape picture", { type: "check" }) + "</div>");
-      });
-      if (m.photos.length < 4) h.push(btn("photo-add:" + bi + ":" + mi, "+ Picture"));
+      if (dm) h.push(field(P + ".voice", "Voice message length", { ph: "0:02" }));
+      // under the bubble
+      if (!dm && !ig) h.push(field(P + ".edited", "Edited", { type: "check" }));
+      if (wa && me) h.push(field(P + ".tick", "Ticks", { type: "select", options: [["read", "Read (blue)"], ["delivered", "Delivered (grey)"], ["sent", "Sent (one tick)"], ["", "None"]] }));
+      if (imsg) {
+        h.push('<p class="hint">Tapbacks (one emoji per person):</p>');
+        m.reacts.forEach(function (r, k) {
+          h.push('<div class="fb-row">' + field(P + ".reacts." + k + ".by", "", { type: "select", options: S.cast.map(function (c) { return [c.id, nameOf(c)]; }) }) +
+            field(P + ".reacts." + k + ".emoji", "", { ph: "❤️", cls: "fb-emoji" }) + btn("tap-del:" + bi + ":" + mi + ":" + k, "&times;", "Remove") + "</div>");
+        });
+        h.push(btn("tap-add:" + bi + ":" + mi, "+ Tapback"));
+        h.push(field(P + ".status", "Line under it (e.g. Delivered, or Read 11:52 PM)", {}));
+      }
+      if (wa) h.push('<div class="fb-row">' + field(P + ".waReacts", "Reactions", { ph: "❤️ 😂" }) + field(P + ".waCount", "Count", { ph: "2", cls: "fb-time" }) + "</div>");
+      if (dm) {
+        h.push(field(P + ".waReacts", "Reactions", { ph: "😂 1" }));
+        if (me) h.push(field(P + ".status", "Seen or Sent", { ph: "Seen" }));
+      }
+      if (ig) {
+        h.push('<div class="fb-row">' + field(P + ".waReacts", "Reactions", { ph: "😂" }) + field(P + ".waCount", "How many", { ph: "2", cls: "fb-time" }) + "</div>");
+        h.push('<p class="hint">Who reacted:' + help(P + ".faces") + "</p>");
+        (m.faces || []).forEach(function (f, k) {
+          h.push('<div class="fb-row">' + field(P + ".faces." + k, "", { type: "select", options: castOptions() }) + btn("face-del:" + bi + ":" + mi + ":" + k, "&times;", "Remove") + "</div>");
+        });
+        h.push(btn("face-add:" + bi + ":" + mi, "+ Someone who reacted"));
+        h.push(field(P + ".status", "Line under it", { ph: b.group ? "Seen by 3" : "Seen" }));
+      }
       h.push("</div>");
     }
     h.push("</li>");
@@ -1522,17 +1531,12 @@
 
   // one Instagram post: who, when, the caption and the photos up top, everything else in the extras
   function igRow(b, bi, m, mi) {
+    // in the order the post shows them: the account line at the top, then the photos, then the buttons, the caption, the comments and the time
     var P = "blocks." + bi + ".msgs." + mi, h = [], c = char(m.from);
     h.push('<li class="fb-msg"><div class="fb-row">' + field(P + ".from", "", { type: "select", re: true, options: castOptions() }) +
-      field(P + ".time", "", { ph: "2 hours ago", cls: "fb-time" }) + field(P + ".verified", "Verified", { type: "check" }) +
-      field(P + ".story", "Story ring", { type: "check" }) + field(P + ".locked", "Private", { type: "check" }) + rowTools(bi, mi, m, true) + "</div>");
-    h.push(field(P + ".text", "", { type: "area", rows: 2, ph: "The caption. #hashtags go blue by themselves" }));
-    if (!m.shape) m.shape = "";
-    h.push(pictureRows(P, bi, mi, m, 10, true));
-    if (m.photos.length) h.push(field(P + ".shape", "Photo shape", { type: "select", options: [["", "Normal"], ["sq", "Square"], ["portrait", "Tall"]] }));
+      field(P + ".verified", "Verified", { type: "check" }) + field(P + ".story", "Story ring", { type: "check" }) + field(P + ".locked", "Private", { type: "check" }) + rowTools(bi, mi, m, true) + "</div>");
     if (m.open) {
-      h.push('<div class="fb-extras">' + fmtButtons());
-      h.push(accField(P + ".acc", c, "ig"));
+      h.push('<div class="fb-extras">' + accField(P + ".acc", c, "ig"));
       h.push('<h4 class="fb-h">The account line</h4><div class="fb-grid"><div>' +
         field(P + ".nameAs", "Name shown", { ph: igName(c, accOf(c, m.acc, "ig")) }) +
         field(P + ".under", "Under the name", { ph: "Ottawa, Ontario" }) + field(P + ".song", "It's a song", { type: "check" }) + "</div><div>" +
@@ -1543,7 +1547,21 @@
         h.push('<div class="fb-row">' + field(G + ".who", "", { type: "select", options: castOptions() }) + field(G + ".as", "", { ph: "Name shown" }) + field(G + ".tick", "Verified", { type: "check" }) +
           btn("collab-del:" + bi + ":" + mi + ":" + k, "&times;", "Remove") + "</div>");
       });
-      h.push(btn("collab-add:" + bi + ":" + mi, "+ Collaborator"));
+      h.push(btn("collab-add:" + bi + ":" + mi, "+ Collaborator") + "</div>");
+    }
+    if (!m.shape) m.shape = "";
+    h.push(pictureRows(P, bi, mi, m, 10, true));
+    if (m.photos.length) h.push(field(P + ".shape", "Photo shape", { type: "select", options: [["", "Normal"], ["sq", "Square"], ["portrait", "Tall"]] }));
+    if (m.open) {
+      if (!m.tags) m.tags = [];
+      h.push('<div class="fb-extras"><h4 class="fb-h">People tagged in the photo</h4>');
+      m.tags.forEach(function (g, k) {
+        var G = P + ".tags." + k;
+        h.push('<div class="fb-row">' + field(G + ".who", "", { type: "select", options: castOptions() }) +
+          field(G + ".fol", "", { type: "select", options: [["following", "Following"], ["follow", "Follow (blue)"], ["none", "No button"]] }) +
+          field(G + ".tick", "Verified", { type: "check" }) + field(G + ".lock", "Private", { type: "check" }) + btn("tag-del:" + bi + ":" + mi + ":" + k, "&times;", "Remove") + "</div>");
+      });
+      h.push(btn("tag-add:" + bi + ":" + mi, "+ Tag someone"));
       h.push('<h4 class="fb-h">Buttons and likes</h4><div class="fb-grid"><div>' +
         field(P + ".likes", "Likes", { ph: "2,431" }) + field(P + ".likeClick", "Clickable like", { type: "check", re: true }) +
         (m.likeClick !== false ? field(P + ".liked", "Already liked", { type: "check" }) : "") + "</div><div>" +
@@ -1558,34 +1576,25 @@
         });
         if (m.faces.length < 3) h.push(btn("face-add:" + bi + ":" + mi, "+ Face"));
       }
-      h.push('<h4 class="fb-h">Caption and comments</h4>' + field(P + ".more", "Cut short with 'more'", { type: "check" }) + " " +
-        field(P + ".viewAll", "'View all comments' line", { type: "check" }));
-      h.push(field(P + ".comments", "Comments, one per line", { type: "area", rows: 2, ph: "Shane: why are you awake\nscott.h: I see you" }));
-      if (!m.tags) m.tags = [];
-      h.push('<h4 class="fb-h">People tagged in the photo</h4>');
-      m.tags.forEach(function (g, k) {
-        var G = P + ".tags." + k;
-        h.push('<div class="fb-row">' + field(G + ".who", "", { type: "select", options: castOptions() }) +
-          field(G + ".fol", "", { type: "select", options: [["following", "Following"], ["follow", "Follow (blue)"], ["none", "No button"]] }) +
-          field(G + ".tick", "Verified", { type: "check" }) + field(G + ".lock", "Private", { type: "check" }) + btn("tag-del:" + bi + ":" + mi + ":" + k, "&times;", "Remove") + "</div>");
-      });
-      h.push(btn("tag-add:" + bi + ":" + mi, "+ Tag someone"));
       h.push("</div>");
     }
+    h.push(field(P + ".text", "", { type: "area", rows: 2, ph: "The caption. #hashtags go blue by themselves" }));
+    if (m.open) {
+      h.push('<div class="fb-extras">' + fmtButtons() + field(P + ".more", "Cut short with 'more'", { type: "check" }) + " " +
+        field(P + ".viewAll", "'View all comments' line", { type: "check" }));
+      h.push(field(P + ".comments", "Comments, one per line", { type: "area", rows: 2, ph: "Shane: why are you awake\nscott.h: I see you" }) + "</div>");
+    }
+    h.push('<div class="fb-row">' + field(P + ".time", "When it was posted", { ph: "2 hours ago", cls: "fb-time" }) + "</div>");
     h.push("</li>");
     return h.join("");
   }
 
   // one tweet in a timeline or thread
   function tweetRow(b, bi, m, mi) {
-    var P = "blocks." + bi + ".msgs." + mi, h = [], thread = b.type === "twthread";
+    // in the order the tweet shows them: who it's replying to and the name line, then the words and what's added to them, then the date and the buttons
+    var P = "blocks." + bi + ".msgs." + mi, h = [], thread = b.type === "twthread", c = char(m.from), old = b.era === "tw2020";
     h.push('<li class="fb-msg' + (thread && mi === 0 ? " out" : "") + '">');
     if (thread) h.push('<p class="hint"><b>' + (mi === 0 ? "The tweet" : "Reply") + "</b></p>");
-    h.push('<div class="fb-row">' + field(P + ".from", "", { type: "select", re: true, options: castOptions() }) +
-      field(P + ".time", "", { ph: "2h", cls: "fb-time" }) +
-      // picked a lot, so they sit on the top row rather than in the extras
-      field(P + ".verified", "Verified", { type: "check" }) + field(P + ".locked", "Private", { type: "check", re: true }) +
-      rowTools(bi, mi, m, true) + "</div>");
     if (thread && mi > 0) {
       // who it's replying to: anyone who posted further up the thread
       var users = [];
@@ -1593,26 +1602,19 @@
       var prev = b.msgs[mi - 1];
       h.push('<div class="fb-row"><label for="f-' + P.replace(/\./g, "-") + '-replyTo">Replying to</label>' + field(P + ".replyTo", "", { type: "select", re: true, options: [["", nameOf(char(prev.from)) + " (the tweet above)"]].concat(users.map(function (u) { return [u, nameOf(char(u))]; })) }) + "</div>");
     }
+    h.push('<div class="fb-row">' + field(P + ".from", "", { type: "select", re: true, options: castOptions() }) +
+      // picked a lot, so they sit on the top row rather than in the extras
+      field(P + ".verified", "Verified", { type: "check" }) + field(P + ".locked", "Private", { type: "check", re: true }) +
+      field(P + ".time", "", { ph: "2h", cls: "fb-time" }) + rowTools(bi, mi, m, true) + "</div>");
+    if (m.open) {
+      if (m.fanMask === undefined) m.fanMask = fanMask(m);
+      h.push('<div class="fb-extras">' + accField(P + ".acc", c, "tw") +
+        field(P + ".fan", "Grey line under the name", { ph: "Fan account" }) + field(P + ".fanMask", "Fan account mask", { type: "check" }) +
+        field(P + ".label", "Grey label", {}) + "</div>");
+    }
     h.push(field(P + ".text", "", { type: "area", rows: 2, ph: "What's happening? #hashtags and @mentions go blue by themselves" }));
     if (m.open) {
-      var c = char(m.from);
       h.push('<div class="fb-extras">' + fmtButtons());
-      h.push(accField(P + ".acc", c, "tw"));
-      var old = b.era === "tw2020";
-      if (m.fanMask === undefined) m.fanMask = fanMask(m);
-      h.push(field(P + ".fan", "Grey line under the name", { ph: "Fan account" }) + field(P + ".fanMask", "Fan account mask", { type: "check" }));
-      h.push(field(P + ".label", "Grey label", {}));
-      // the buttons along the bottom
-      h.push('<p class="hint">Buttons along the bottom (leave a number empty for a button with no count):</p><div class="fb-grid"><div>' +
-        field(P + ".replies", "Replies", { ph: "10" }) + "</div><div>" +
-        (m.locked ? '<p class="hint">Reposts: faded out, because private tweets can\'t be reposted</p>' :
-          field(P + ".reposts", old ? "Retweets" : "Reposts", { ph: "580" }) + field(P + ".reposted", old ? "Retweeted" : "Reposted", { type: "check" }) +
-          field(P + ".noRepost", "Faded repost button", { type: "check", re: true })) + "</div><div>" +
-        field(P + ".likes", "Likes", { ph: "2,614" }) + field(P + ".likeClick", "Clickable like", { type: "check", re: true }) +
-        field(P + ".liked", m.likeClick ? "Already liked" : "Liked", { type: "check" }) + "</div>" +
-        (old ? "" : "<div>" + field(P + ".views", "Views", { ph: "71K" }) + "</div><div>" +
-          field(P + ".saveClick", "Clickable bookmark", { type: "check", re: true }) + field(P + ".saved", m.saveClick ? "Already bookmarked" : "Bookmarked", { type: "check" }) + "</div>") + "</div>");
-      h.push(field(P + ".date", "Small grey bottom text", { ph: "8:23 AM · 11 May 23" }));
       // the bigger extras only open up when they're ticked
       TW_ADDS.forEach(function (a) { if (m[a[0]] === undefined) m[a[0]] = has(m, a[0]); });
       h.push('<p class="hint">Add to this tweet:</p><div>' + TW_ADDS.map(function (a) { return field(P + "." + a[0], a[1], { type: "check", re: true }); }).join(" ") + "</div>");
@@ -1628,12 +1630,23 @@
           (kind === "tap" ? field(P + ".pollVote", "The vote goes to", { type: "select", re: true, options: names.concat([["pick", "Whichever one the reader picks"]]) }) : "") +
           (kind === "tap" && m.pollVote === "pick" ? pickRows(P, m) : "") + "</div>");
       }
-      if (m.hasQuote) h.push('<div class="fb-acct"><p class="hint">Quote tweet:' + help(P + ".qName") + '</p><div class="fb-grid"><div>' + field(P + ".qName", "", { ph: "Their name" }) + "</div><div>" + field(P + ".qHandle", "", { ph: "Their handle" }) + "</div></div>" +
-        field(P + ".qText", "", { ph: "What they said" }) + "</div>");
-      if (m.hasNote) h.push('<div class="fb-acct">' + field(P + ".note", "Community note", { ph: "Readers added context: ..." }) + "</div>");
       if (m.hasPics) h.push('<div class="fb-acct">' + pictureRows(P, bi, mi, m, 4, true) + field(P + ".warn", "Sensitive content cover", { type: "check" }) + "</div>");
       if (m.hasVideo) h.push('<div class="fb-acct"><p class="hint">Video:' + help(P + ".vUrl") + "</p>" + field(P + ".vUrl", "", { type: "url", ph: "Video embed link (Vimeo, YouTube or the Internet Archive)" }) +
         field(P + ".vTitle", "", { ph: "The video's title" }) + field(P + ".vDesc", "", { ph: "Describe the video" }) + "</div>");
+      if (m.hasQuote) h.push('<div class="fb-acct"><p class="hint">Quote tweet:' + help(P + ".qName") + '</p><div class="fb-grid"><div>' + field(P + ".qName", "", { ph: "Their name" }) + "</div><div>" + field(P + ".qHandle", "", { ph: "Their handle" }) + "</div></div>" +
+        field(P + ".qText", "", { ph: "What they said" }) + "</div>");
+      if (m.hasNote) h.push('<div class="fb-acct">' + field(P + ".note", "Community note", { ph: "Readers added context: ..." }) + "</div>");
+      h.push(field(P + ".date", "Small grey bottom text", { ph: "8:23 AM · 11 May 23" }));
+      // the buttons along the bottom
+      h.push('<p class="hint">Buttons along the bottom (leave a number empty for a button with no count):</p><div class="fb-grid"><div>' +
+        field(P + ".replies", "Replies", { ph: "10" }) + "</div><div>" +
+        (m.locked ? '<p class="hint">Reposts: faded out, because private tweets can\'t be reposted</p>' :
+          field(P + ".reposts", old ? "Retweets" : "Reposts", { ph: "580" }) + field(P + ".reposted", old ? "Retweeted" : "Reposted", { type: "check" }) +
+          field(P + ".noRepost", "Faded repost button", { type: "check", re: true })) + "</div><div>" +
+        field(P + ".likes", "Likes", { ph: "2,614" }) + field(P + ".likeClick", "Clickable like", { type: "check", re: true }) +
+        field(P + ".liked", m.likeClick ? "Already liked" : "Liked", { type: "check" }) + "</div>" +
+        (old ? "" : "<div>" + field(P + ".views", "Views", { ph: "71K" }) + "</div><div>" +
+          field(P + ".saveClick", "Clickable bookmark", { type: "check", re: true }) + field(P + ".saved", m.saveClick ? "Already bookmarked" : "Bookmarked", { type: "check" }) + "</div>") + "</div>");
       h.push("</div>");
     }
     h.push("</li>");
@@ -1656,23 +1669,28 @@
     return h.join("");
   }
   // the settings for a chat: iMessage and WhatsApp
+  // a chat's settings, in the order the chat shows them: the whole chat first, then the header, then the background.
+  // The messages come next, and the bottom of the screen (chatFooter) goes after them.
   function chatSettings(b, i) {
     var P = "blocks." + i, h = [], wa = b.type === "wa", dm = b.type === "twdm", ig = b.type === "igdm";
-    h.push("<details" + (b.open ? " open" : "") + ' data-open="' + P + '.open"><summary>Chat settings</summary><div class="fb-grid">');
-    // first row: whose phone, and whether it's a group
+    h.push("<details" + (b.open ? " open" : "") + ' data-open="' + P + '.open"><summary>Chat settings</summary>');
+    // the whole chat: whose phone, a group or not, and how it sits on the page
+    h.push('<div class="fb-grid">');
     h.push("<div>" + field(P + ".pov", "Whose phone is it?", { type: "select", re: true, options: castOptions() }) + "</div>");
-    h.push("<div>" + field(P + ".group", "Group chat", { type: "check", re: true }) + ((wa || ig) && b.group ? field(P + ".pics", "Show pictures by names", { type: "check" }) : "") + "</div>");
-    // second row: the top, the background and the bottom
-    h.push('</div><div class="fb-grid">');
-    if (wa) {
-      h.push("<div>" + field(P + ".header", "Header", { type: "select", re: true, options: [["simple", "Simple"], ["bar", "With picture and icons"], ["none", "None"]] }) + "</div>");
-      h.push("<div>" + field(P + ".bg", "Background", { type: "select", re: true, options: BACKGROUNDS.map(function (x) { return [x, x ? x.charAt(0).toUpperCase() + x.slice(1) : "Default"]; }).concat([["custom", "Custom picture"]]) }) + "</div>");
-    }
-    h.push("<div>" + field(P + ".bar", "Message bar at the bottom", { type: "select", re: true, options: [["none", "None"], ["empty", "Empty"], ["typed", "Something half-typed"]] }) + "</div>");
-    if (ig) h.push("<div>" + field(P + ".app", "App screen", { type: "check" }) + field(P + ".headPic", "Pictures in the header", { type: "check", re: true }) + "</div>");
-    if (dm) h.push("<div>" + field(P + ".nav", "App buttons", { type: "check", re: true }) + (b.nav ? field(P + ".badge", "Notifications number", { ph: "3" }) : "") + "</div>");
+    h.push("<div>" + field(P + ".group", "Group chat", { type: "check", re: true }) + "</div>");
     h.push("</div>");
-    // then what each choice above opens up, each in its own row so it's clear where it came from
+    h.push('<div class="fb-grid fb-grid3">');
+    h.push("<div>" + field(P + ".theme", "Light, dark, or auto", { type: "select", options: [["theme-light", "Light"], ["theme-dark", "Dark"], ["theme-auto", "Auto"]] }) + "</div>");
+    h.push("<div>" + field(P + ".width", "Width", { type: "select", options: [["", "Phone width"], ["wide", "Full width"]] }) + "</div>");
+    h.push("<div>" + field(P + ".scroll", "Long chats", { type: "select", options: [["", "Scroll inside the phone"], ["no-scroll", "Show it all"]] }) + "</div>");
+    h.push("</div>");
+    // the header
+    if (wa || ig) {
+      h.push('<div class="fb-grid">');
+      if (wa) h.push("<div>" + field(P + ".header", "Header", { type: "select", re: true, options: [["simple", "Simple"], ["bar", "With picture and icons"], ["none", "None"]] }) + "</div>");
+      if (ig) h.push("<div>" + field(P + ".app", "App screen", { type: "check" }) + field(P + ".headPic", "Pictures in the header", { type: "check", re: true }) + "</div>");
+      h.push("</div>");
+    }
     if (!wa || b.header !== "none") {
       // folded up by default, as it's long
       h.push('<details class="fb-acct"' + (b.headOpen ? " open" : "") + ' data-open="' + P + '.headOpen"><summary class="hint">The header</summary><div class="fb-grid">');
@@ -1683,17 +1701,27 @@
       h.push(groupPicSettings(b, P, wa, dm));
       h.push("</details>");
     }
-    // these two are short, so they start open, to show what picking the option added
+    // the body: the background, and pictures by the names in a group
+    if (wa || (ig && b.group)) {
+      h.push('<div class="fb-grid">');
+      if (wa) h.push("<div>" + field(P + ".bg", "Background", { type: "select", re: true, options: BACKGROUNDS.map(function (x) { return [x, x ? x.charAt(0).toUpperCase() + x.slice(1) : "Default"]; }).concat([["custom", "Custom picture"]]) }) + "</div>");
+      if (b.group) h.push("<div>" + field(P + ".pics", "Show pictures by names", { type: "check" }) + "</div>");
+      h.push("</div>");
+    }
+    // short, so it starts open, to show what picking the option added
     if (wa && b.bg === "custom") h.push('<details class="fb-acct"' + (b.bgOpen !== false ? " open" : "") + ' data-open="' + P + '.bgOpen"><summary class="hint">The background</summary>' +
       field(P + ".wall", "Picture link", { type: "url", ph: "https://..." }) + "</details>");
-    if (b.bar === "typed") h.push('<details class="fb-acct"' + (b.barOpen !== false ? " open" : "") + ' data-open="' + P + '.barOpen"><summary class="hint">The message bar</summary>' +
-      field(P + ".barText", "Half-typed message", {}) + field(P + ".cursor", "Flashing cursor", { type: "check" }) + "</details>");
-    // last row: always these three, side by side
-    h.push('<div class="fb-grid fb-grid3">');
-    h.push("<div>" + field(P + ".theme", "Light, dark, or auto", { type: "select", options: [["theme-light", "Light"], ["theme-dark", "Dark"], ["theme-auto", "Auto"]] }) + "</div>");
-    h.push("<div>" + field(P + ".width", "Width", { type: "select", options: [["", "Phone width"], ["wide", "Full width"]] }) + "</div>");
-    h.push("<div>" + field(P + ".scroll", "Long chats", { type: "select", options: [["", "Scroll inside the phone"], ["no-scroll", "Show it all"]] }) + "</div>");
+    h.push("</details>");
+    return h.join("");
+  }
+  // the bottom of a chat's screen, after the messages: the message bar, then (Twitter/X DMs) the app buttons
+  function chatFooter(b, i) {
+    var P = "blocks." + i, h = [], dm = b.type === "twdm";
+    h.push('<details class="fb-foot"' + (b.footOpen !== false ? " open" : "") + ' data-open="' + P + '.footOpen"><summary>Bottom of the screen</summary><div class="fb-grid">');
+    h.push("<div>" + field(P + ".bar", "Message bar", { type: "select", re: true, options: [["none", "None"], ["empty", "Empty"], ["typed", "Something half-typed"]] }) + "</div>");
+    if (dm) h.push("<div>" + field(P + ".nav", "App buttons", { type: "check", re: true }) + (b.nav ? field(P + ".badge", "Notifications number", { ph: "3" }) : "") + "</div>");
     h.push("</div>");
+    if (b.bar === "typed") h.push('<div class="fb-acct">' + field(P + ".barText", "Half-typed message", {}) + field(P + ".cursor", "Flashing cursor", { type: "check" }) + "</div>");
     h.push("</details>");
     return h.join("");
   }
@@ -1781,7 +1809,6 @@
     } else {
       h.push('<div class="fb-grid"><div>' + field(P + ".theme", "Light, dark, or auto", { type: "select", options: [["theme-light", "Light"], ["theme-dark", "Dark"], ["theme-auto", "Auto"]] }) + "</div><div>" +
         field(P + ".width", "Width", { type: "select", options: [["", "Phone width"], ["wide", "Full width"]] }) + "</div>" +
-        (b.type === "twthread" ? "<div>" + field(P + ".bar", "Tweet your reply bar", { type: "select", options: [["empty", "Yes"], ["none", "No"]] }) + "</div>" : "") +
         "<div>" + field(P + ".era", "Which look", { type: "select", re: true, options: [["", "X (from mid-2023)"], ["tw2020", "Twitter (2020 to mid-2023)"]] }) + "</div>" +
         (b.type !== "twone" ? "<div>" + field(P + ".scroll", b.type === "twfeed" ? "Long timelines" : "Long threads", { type: "select", options: [["", "Scroll inside the phone"], ["no-scroll", "Show it all"]] }) + "</div>" : "") +
         (b.type === "twone" ? "<div>" + field(P + ".scroll", "Long tweets", { type: "select", options: [["", "Scroll inside the box"], ["no-scroll", "Show it all"]] }) + "</div>" : "") +
@@ -1797,6 +1824,9 @@
     h.push('<div class="fb-script">' + field(P + ".script", chat ? "Type or paste messages" : /^ig/.test(b.type) ? "Type or paste posts" : "Type or paste tweets", { type: "area", rows: 4, ph: ph }) +
       '<p class="hint">' + (SCRIPT_HINTS[chat ? "chat" : b.type]) + "</p>" +
       btn("script:" + i, chat ? "Add these messages" : /^ig/.test(b.type) ? "Add these posts" : "Add these tweets") + "</div>");
+    // the bottom of the screen comes after everything in it
+    if (chat) h.push(chatFooter(b, i));
+    if (b.type === "twthread") h.push('<div class="fb-grid"><div>' + field(P + ".bar", "Tweet your reply bar at the bottom", { type: "select", options: [["empty", "Yes"], ["none", "No"]] }) + "</div></div>");
     h.push("</section>");
     helpKind = "";
     return h.join("");
