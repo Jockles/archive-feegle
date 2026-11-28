@@ -212,7 +212,7 @@
 
 <h4>Messages and Names</h4>
 
-<pre><code>#workskin .dc .dc-message { min-height: 2.75rem; margin-top: 1.0625rem; padding: 0.125rem 3rem 0.125rem 4.5rem; }
+<pre><code>#workskin .dc .msg { min-height: 2.75rem; margin-top: 1.0625rem; padding: 0.125rem 3rem 0.125rem 4.5rem; }
 
 #workskin .dc .dc-name::before {
   content: '';
@@ -340,7 +340,7 @@
   color: rgb(71, 82, 196);
 }
 
-#workskin .dc .dc-message:has(.dc-mention.me) {
+#workskin .dc .msg:has(.dc-mention.me) {
   background-color: rgba(250, 168, 26, 0.1);
   border-left: 2px solid rgb(170, 114, 18);
 }</code></pre>
@@ -505,4 +505,4 @@
   <li><strong>Extras:</strong> <code>dc-new-user</code>, <code>dc-bot</code>, and the typing dots (<code>dc-typing</code> and <code>typing-indicator</code>).</li>
 </ul>
 
-<p>Keep the window, <code>dc-message</code>, <code>dc-name</code>, <code>dc-time</code> and <code>dc-text</code>, which every message uses.</p>
+<p>Keep the window, <code>msg</code>, <code>dc-name</code>, <code>dc-time</code> and <code>dc-text</code>, which every message uses.</p>

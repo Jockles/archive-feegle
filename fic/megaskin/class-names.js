@@ -90,7 +90,8 @@ var MEGASKIN_RENAMES = [
   ["gm-tools", "gm-btns"],
   ["mail-buttons", "mail-btns"],
   ["wa-title", "wa-name"],
-  ["dc-reaction-count", "dc-count"]
+  ["dc-reaction-count", "dc-count"],
+  ["dc-message", "msg"]
 ];
 
 // Names that did nothing and were taken out.

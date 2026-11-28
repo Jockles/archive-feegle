@@ -124,7 +124,7 @@
   background-image: url(https://images.squidge.org/images/2026/11/15/dc-plus-light.png);
 }
 
-#workskin .dc .dc-message { min-height: 2.75rem; margin-top: 1.0625rem; padding: 0.125rem 3rem 0.125rem 4.5rem; }
+#workskin .dc .msg { min-height: 2.75rem; margin-top: 1.0625rem; padding: 0.125rem 3rem 0.125rem 4.5rem; }
 
 #workskin .dc .dc-name {
   font-size: 1rem;
@@ -547,7 +547,7 @@
   color: rgb(71, 82, 196);
 }
 
-#workskin .dc .dc-message:has(.dc-mention.me) {
+#workskin .dc .msg:has(.dc-mention.me) {
   background-color: rgba(250, 168, 26, 0.1);
   border-left: 2px solid rgb(170, 114, 18);
 }
@@ -643,7 +643,7 @@
 #workskin .dc.theme-dark .dc-mention { color: rgb(222, 224, 252); background-color: rgba(88, 101, 242, 0.3); }
 
 /* message where the POV character is @mentioned */
-#workskin .dc.theme-dark .dc-message:has(.dc-mention.me) {
+#workskin .dc.theme-dark .msg:has(.dc-mention.me) {
   background-color: rgba(250, 168, 26, 0.1);
   border-left: 2px solid rgb(250, 168, 26);
 }
@@ -750,7 +750,7 @@
   #workskin .dc.theme-auto .dc-mention { color: rgb(222, 224, 252); background-color: rgba(88, 101, 242, 0.3); }
 
   /* message where the POV character is @mentioned */
-  #workskin .dc.theme-auto .dc-message:has(.dc-mention.me) {
+  #workskin .dc.theme-auto .msg:has(.dc-mention.me) {
       background-color: rgba(250, 168, 26, 0.1);
       border-left: 2px solid rgb(250, 168, 26);
     }
