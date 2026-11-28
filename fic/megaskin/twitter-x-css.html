@@ -7,7 +7,7 @@
   <title>Megaskin, Chapter 9: Twitter/X CSS | jockles.com</title>
   <link rel="stylesheet" href="../../style.css">
   <script src="../../theme.js"></script>
-  <link rel="stylesheet" href="megaskin.css?v=fa06c6f8" id="creator-style">
+  <link rel="stylesheet" href="megaskin.css?v=51a3e4bd" id="creator-style">
 </head>
 <body>
 <header>
@@ -248,15 +248,15 @@
   line-height: 1;
 }
 
-/* THE 2020 TWITTER REDESIGN: add "tw2020" to an app screen, &lt;div class="tw-feed app tw2020 theme-auto"&gt;.
+/* THE 2020 TWITTER REDESIGN: add "twc20" to an app screen, &lt;div class="tw-feed app twc20 theme-auto"&gt;.
    The bird takes the place of the X with a sparkle on the right, the tabs are hidden,
    and the tweets lose their bookmark button and the line above their stats, with share spaced out like the rest */
-#workskin .tw-feed.tw2020 .tw-header {
+#workskin .tw-feed.twc20 .tw-header {
   padding-bottom: 0.6em;
   border-bottom: 1px solid #eff3f4;
 }
 
-#workskin .tw-feed.tw2020 .tw-logo {
+#workskin .tw-feed.twc20 .tw-logo {
   height: 1em;
   margin-right: 0;
   overflow: hidden;
@@ -269,7 +269,7 @@
 }
 
 /* the sparkle, top right, the same width as the picture on the left */
-#workskin .tw-feed.tw2020 .tw-header::after {
+#workskin .tw-feed.twc20 .tw-header::after {
   content: "\2726";
   display: block;
   flex: none;
@@ -280,13 +280,13 @@
   text-align: right;
 }
 
-#workskin .tw-feed.tw2020 .tw-tabs { display: none; }
+#workskin .tw-feed.twc20 .tw-tabs { display: none; }
 
-#workskin .tw-feed.tw2020 .tw-stats { border-top: 0; padding-top: 0.2em; }
+#workskin .tw-feed.twc20 .tw-stats { border-top: 0; padding-top: 0.2em; }
 
-#workskin .tw-feed.tw2020 .tw-stat.tw-end { flex: 1 1 0; margin-left: 0; }
+#workskin .tw-feed.twc20 .tw-stat.tw-end { flex: 1 1 0; margin-left: 0; }
 
-#workskin .tw-feed.tw2020 .tw-stat.tw-end:not(:last-child) { display: none; }</code></pre>
+#workskin .tw-feed.twc20 .tw-stat.tw-end:not(:last-child) { display: none; }</code></pre>
 
 </details>
 
@@ -300,7 +300,7 @@
 <details>
 <summary>How it works: the 2020 redesign</summary>
 
-<p>The <code>tw2020</code> rules all start with <code>.tw-feed.tw2020</code>, so they only touch a thread with both classes. The logo gets the same bird as <code>bird</code>, without the margin, because the sparkle now balances the picture: it's an <code>::after</code> box on the top bar with the sparkle character as its <code>content</code>, the same width as the picture. In the stats row, the share button gets <code>flex: 1 1 0</code> back so it spreads out like the others, and <code>:not(:last-of-type)</code> hides every <code>tw-end</code> button that isn't the last one in the row, which is the bookmark.</p>
+<p>The <code>twc20</code> rules all start with <code>.tw-feed.twc20</code>, so they only touch a thread with both classes. The logo gets the same bird as <code>bird</code>, without the margin, because the sparkle now balances the picture: it's an <code>::after</code> box on the top bar with the sparkle character as its <code>content</code>, the same width as the picture. In the stats row, the share button gets <code>flex: 1 1 0</code> back so it spreads out like the others, and <code>:not(:last-of-type)</code> hides every <code>tw-end</code> button that isn't the last one in the row, which is the bookmark.</p>
 
 </details>
 
@@ -795,9 +795,9 @@
 }
 
 /* a second grey line under the name, like "Fan account":
-   &lt;span class="tw-fan"&gt;&lt;span class="ic ic-tw-fan"&gt;&amp;#127917;&lt;/span&gt; Fan account&lt;/span&gt; at the end of tw-top. It sits under the name, beside the picture */
-#workskin .tw .tw-fan,
-#workskin .tw-reply .tw-fan {
+   &lt;span class="tw-account-label"&gt;&lt;span class="ic ic-tw-fan"&gt;&amp;#127917;&lt;/span&gt; Fan account&lt;/span&gt; at the end of tw-top. It sits under the name, beside the picture */
+#workskin .tw .tw-account-label,
+#workskin .tw-reply .tw-account-label {
   position: absolute;
   top: 1.3em;
   left: 40px;
@@ -808,8 +808,8 @@
   color: #536471;
 }
 
-#workskin .tw .tw-fan .ic,
-#workskin .tw-reply .tw-fan .ic { margin-right: 0.2em; }
+#workskin .tw .tw-account-label .ic,
+#workskin .tw-reply .tw-account-label .ic { margin-right: 0.2em; }
 
 /* a tweet on its own, or the first tweet of a reply chain, is an opened tweet: its @handle and time go on a
    second line under the name, and a fan account line goes under them. In a feed (a tw-feed with app)
@@ -824,14 +824,14 @@
 #workskin .tw .tw-handle,
 #workskin .tw .tw-time { margin-left: 0; }
 
-#workskin .tw .tw-fan { display: block; position: static; margin-left: 0; }
+#workskin .tw .tw-account-label { display: block; position: static; margin-left: 0; }
 
 #workskin .tw-feed.app .tw .tw-top { display: flex; }
 
 #workskin .tw-feed.app .tw .tw-handle,
 #workskin .tw-feed.app .tw .tw-time { margin-left: 0.25em; }
 
-#workskin .tw-feed.app .tw .tw-fan { position: absolute; margin-left: 0.55em; }</code></pre>
+#workskin .tw-feed.app .tw .tw-account-label { position: absolute; margin-left: 0.55em; }</code></pre>
 
 </details>
 
@@ -850,7 +850,7 @@
   <li>When the row is too long, flex shrinks the boxes in it. <code>flex-shrink</code> (the middle number in <code>flex: 0 100000 auto</code>) says how fast each one shrinks: the handle's is 100000 and the name's is 1, so the handle shrinks a hundred thousand times faster. That's so fast that it's gone completely before the name has shrunk by even a fraction of a pixel, so you never see a cut-off name next to a scrap of handle. <code>min-width: 0</code> is what allows a box to shrink smaller than its words. The time and the padlock get <code>flex: none</code>, so they never shrink at all.</li>
   <li><code>text-overflow: ellipsis</code> puts "..." where the handle or the name is cut. The name is a flex row too, so its tick can shrink away before the name does. The tick's <code>background-size</code> is fixed, so it gets cut off instead of squashed.</li>
   <li>A name typed straight in, with no span around it, can't get the "...", so it wraps onto a hidden second line instead: <code>max-height: 1.3em</code>, the same as the <code>line-height</code>, shows the first line and hides the rest.</li>
-  <li>The picture is 40px tall, which leaves room under the name for a second line. <code>tw-fan</code> is pinned there with <code>position: absolute</code>, starting just past the picture, so it doesn't push the tweet down.</li>
+  <li>The picture is 40px tall, which leaves room under the name for a second line. <code>tw-account-label</code> is pinned there with <code>position: absolute</code>, starting just past the picture, so it doesn't push the tweet down.</li>
   <li>The last few rules are for an opened tweet: a <code>tw</code> on its own, or the first tweet of a reply chain. There, the name line goes back to <code>display: block</code>, the picture floats to the left, the name (still a flex box) takes the first line, and the handle and time flow onto the line under it. The fan line goes back to being an ordinary block, under the handle. The rules starting <code>.tw-feed.app</code> switch the one-line layout back on for tweets in a feed.</li>
 </ul>
 

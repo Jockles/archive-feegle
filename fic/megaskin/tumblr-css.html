@@ -7,7 +7,7 @@
   <title>Megaskin, Chapter 15: Tumblr CSS | jockles.com</title>
   <link rel="stylesheet" href="../../style.css">
   <script src="../../theme.js"></script>
-  <link rel="stylesheet" href="megaskin.css?v=fa06c6f8" id="creator-style">
+  <link rel="stylesheet" href="megaskin.css?v=51a3e4bd" id="creator-style">
 </head>
 <body>
 <header>
@@ -151,7 +151,7 @@
 
 #workskin .tb .tb-name &gt; b:only-child { line-height: 38px; }
 
-#workskin .tb .tb-subline { display: block; font-size: 0.85em; color: #6c7a8b; }</code></pre>
+#workskin .tb .tb-detail { display: block; font-size: 0.85em; color: #6c7a8b; }</code></pre>
 
 <p>The post's header (<code>tb-top</code>) and each reblog's header (<code>tb-blog</code>) are built the same, except the post's header has a line under it.</p>
 
@@ -620,14 +620,14 @@
 <pre><code>#workskin .tb .tb-text &gt; .tb-photos:first-child,
 #workskin .tb .tb-reblog &gt; .tb-blog + .tb-photos { margin-top: -0.3em; }
 
-#workskin .tb .tb-at { color: #3a5f86; }</code></pre>
+#workskin .tb .tb-link { color: #3a5f86; }</code></pre>
 
 <p>Pictures at the very start of a post, or straight after a reblog's header, get a small negative margin to cancel out the gap at the top of the body, so they sit right up against the header.</p>
 
 <details>
 <summary>How it works: directly inside, straight after, and mentions</summary>
 
-<p><code>&gt;</code> means "directly inside", and <code>+</code> means "straight after". The <code>tb-at</code> mentions are a dusty blue, just different enough from the text to stand out (the dark theme makes them a pale blue instead).</p>
+<p><code>&gt;</code> means "directly inside", and <code>+</code> means "straight after". The <code>tb-link</code> mentions are a dusty blue, just different enough from the text to stand out (the dark theme makes them a pale blue instead).</p>
 
 </details>
 
@@ -699,7 +699,7 @@
   <li><strong>Chat posts:</strong> <code>tb-chat</code>.</li>
   <li><strong>Polls:</strong> <code>tb-opt</code>, <code>tb-pct</code>, <code>tb-pollinfo</code>, <code>tb-vote</code>, <code>tb-pick</code>, <code>tb-poll</code>, <code>tb-results</code> and <code>tb-voted</code>.</li>
   <li><strong>Pictures and gifs:</strong> <code>tb-photos</code>, <code>tb-row</code> and <code>tb-photo</code>.</li>
-  <li><strong>Mentions:</strong> <code>tb-at</code>.</li>
+  <li><strong>Mentions:</strong> <code>tb-link</code>.</li>
   <li><strong>Checkmarks:</strong> <code>tb-check</code>, <code>tb-checks</code> and the <code>ic-checks</code> lines in the Icons section.</li>
   <li><strong>Bottom row:</strong> <code>tb-stats</code>, <code>tb-stat</code> and <code>tb-icon</code>.</li>
   <li><strong>The feed:</strong> everything starting <code>.tb-feed</code>.</li>

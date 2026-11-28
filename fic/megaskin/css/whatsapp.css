@@ -444,7 +444,7 @@
   padding-top: 0.15em;
 }
 
-#workskin .wa .wa-call .wa-call-len {
+#workskin .wa .wa-call .wa-call-length {
   display: block;
   overflow: hidden;
   font-size: 0.9em;
@@ -564,7 +564,7 @@
 
 #workskin .wa.theme-dark .wa-call .wa-call-ic { background-color: rgba(255, 255, 255, 0.08); }
 
-#workskin .wa.theme-dark .wa-call .wa-call-len,
+#workskin .wa.theme-dark .wa-call .wa-call-length,
 #workskin .wa.theme-dark .wa-fwd { color: #8696a0; }
 
 #workskin .wa.theme-dark .wa-contact,
@@ -647,7 +647,7 @@
 
   #workskin .wa.theme-auto .wa-call .wa-call-ic { background-color: rgba(255, 255, 255, 0.08); }
 
-  #workskin .wa.theme-auto .wa-call .wa-call-len,
+  #workskin .wa.theme-auto .wa-call .wa-call-length,
   #workskin .wa.theme-auto .wa-fwd { color: #8696a0; }
 
   #workskin .wa.theme-auto .wa-contact,

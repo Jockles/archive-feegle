@@ -71,7 +71,18 @@ var MEGASKIN_RENAMES = [
   ["igdm-desc", "img-desc"],
   ["vid-desc", "video-desc"],
   ["tw-desc", "img-desc"],
-  ["dc-desc", "dc-topic"]
+  ["dc-desc", "dc-topic"],
+  ["igdm-replied", "igdm-reply"],
+  ["twdm-replied", "twdm-reply"],
+  ["twdm-dur", "twdm-length"],
+  ["wa-call-len", "wa-call-length"],
+  ["tw2020", "twc20"],
+  ["igdm-chev", "igdm-drop"],
+  ["ig-viewall", "ig-view-all"],
+  ["tb-subline", "tb-detail"],
+  ["tb-at", "tb-link"],
+  ["tw-fan", "tw-account-label"],
+  ["mine", "me"]
 ];
 
 // Names that did nothing and were taken out.

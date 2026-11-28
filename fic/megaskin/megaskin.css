@@ -1772,7 +1772,7 @@
   padding-top: 0.15em;
 }
 
-#workskin .wa .wa-call .wa-call-len {
+#workskin .wa .wa-call .wa-call-length {
   display: block;
   overflow: hidden;
   font-size: 0.9em;
@@ -1892,7 +1892,7 @@
 
 #workskin .wa.theme-dark .wa-call .wa-call-ic { background-color: rgba(255, 255, 255, 0.08); }
 
-#workskin .wa.theme-dark .wa-call .wa-call-len,
+#workskin .wa.theme-dark .wa-call .wa-call-length,
 #workskin .wa.theme-dark .wa-fwd { color: #8696a0; }
 
 #workskin .wa.theme-dark .wa-contact,
@@ -1975,7 +1975,7 @@
 
   #workskin .wa.theme-auto .wa-call .wa-call-ic { background-color: rgba(255, 255, 255, 0.08); }
 
-  #workskin .wa.theme-auto .wa-call .wa-call-len,
+  #workskin .wa.theme-auto .wa-call .wa-call-length,
   #workskin .wa.theme-auto .wa-fwd { color: #8696a0; }
 
   #workskin .wa.theme-auto .wa-contact,
@@ -2281,9 +2281,9 @@
 }
 
 /* a second grey line under the name, like "Fan account":
-   <span class="tw-fan"><span class="ic ic-tw-fan">&#127917;</span> Fan account</span> at the end of tw-top. It sits under the name, beside the picture */
-#workskin .tw .tw-fan,
-#workskin .tw-reply .tw-fan {
+   <span class="tw-account-label"><span class="ic ic-tw-fan">&#127917;</span> Fan account</span> at the end of tw-top. It sits under the name, beside the picture */
+#workskin .tw .tw-account-label,
+#workskin .tw-reply .tw-account-label {
   position: absolute;
   top: 1.3em;
   left: 40px;
@@ -2294,8 +2294,8 @@
   color: #536471;
 }
 
-#workskin .tw .tw-fan .ic,
-#workskin .tw-reply .tw-fan .ic { margin-right: 0.2em; }
+#workskin .tw .tw-account-label .ic,
+#workskin .tw-reply .tw-account-label .ic { margin-right: 0.2em; }
 
 /* a tweet on its own, or the first tweet of a reply chain, is an opened tweet: its @handle and time go on a second line under the name, and a fan account line goes under them. */
 #workskin .tw .tw-top {
@@ -2308,14 +2308,14 @@
 #workskin .tw .tw-handle,
 #workskin .tw .tw-time { margin-left: 0; }
 
-#workskin .tw .tw-fan { display: block; position: static; margin-left: 0; }
+#workskin .tw .tw-account-label { display: block; position: static; margin-left: 0; }
 
 #workskin .tw-feed.app .tw .tw-top { display: flex; }
 
 #workskin .tw-feed.app .tw .tw-handle,
 #workskin .tw-feed.app .tw .tw-time { margin-left: 0.25em; }
 
-#workskin .tw-feed.app .tw .tw-fan { position: absolute; margin-left: 0.55em; }
+#workskin .tw-feed.app .tw .tw-account-label { position: absolute; margin-left: 0.55em; }
 
 #workskin .tw .tw-handle {
   color: #536471;
@@ -2922,13 +2922,13 @@
   line-height: 1;
 }
 
-/* THE 2020 TWITTER REDESIGN: add "tw2020" to an app screen */
-#workskin .tw-feed.tw2020 .tw-header {
+/* THE 2020 TWITTER REDESIGN: add "twc20" to an app screen */
+#workskin .tw-feed.twc20 .tw-header {
   padding-bottom: 0.6em;
   border-bottom: 1px solid #eff3f4;
 }
 
-#workskin .tw-feed.tw2020 .tw-logo {
+#workskin .tw-feed.twc20 .tw-logo {
   height: 1em;
   margin-right: 0;
   overflow: hidden;
@@ -2941,7 +2941,7 @@
 }
 
 /* the sparkle, top right, the same width as the picture on the left */
-#workskin .tw-feed.tw2020 .tw-header::after {
+#workskin .tw-feed.twc20 .tw-header::after {
   content: "\2726";
   display: block;
   flex: none;
@@ -2952,13 +2952,13 @@
   text-align: right;
 }
 
-#workskin .tw-feed.tw2020 .tw-tabs { display: none; }
+#workskin .tw-feed.twc20 .tw-tabs { display: none; }
 
-#workskin .tw-feed.tw2020 .tw-stats { border-top: 0; padding-top: 0.2em; }
+#workskin .tw-feed.twc20 .tw-stats { border-top: 0; padding-top: 0.2em; }
 
-#workskin .tw-feed.tw2020 .tw-stat.tw-end { flex: 1 1 0; margin-left: 0; }
+#workskin .tw-feed.twc20 .tw-stat.tw-end { flex: 1 1 0; margin-left: 0; }
 
-#workskin .tw-feed.tw2020 .tw-stat.tw-end:not(:last-child) { display: none; }
+#workskin .tw-feed.twc20 .tw-stat.tw-end:not(:last-child) { display: none; }
 
 /* ---------- Twitter/X: DMs ---------- */
 
@@ -3071,16 +3071,16 @@
 }
 
 /* replying to a message: a small "Replied to" line, then the message being replied to in an outlined bubble, then the reply */
-#workskin .twdm .twdm-replied {
+#workskin .twdm .twdm-reply {
   display: block;
   margin: 0.7em 0.95em 0.15em 0.95em;
   font-size: 0.78em;
   color: #536471;
 }
 
-#workskin .twdm .twdm-replied.in { background: transparent; color: #536471; }
+#workskin .twdm .twdm-reply.in { background: transparent; color: #536471; }
 
-#workskin .twdm .twdm-replied.out { background: transparent; color: #536471; text-align: right; }
+#workskin .twdm .twdm-reply.out { background: transparent; color: #536471; text-align: right; }
 
 #workskin .twdm p.twdm-quote { background: transparent; color: #536471; border: 1px solid #cfd9de; margin-bottom: 0.2em; }
 
@@ -3102,12 +3102,12 @@
 #workskin .twdm .twdm-photos.one .twdm-photo .img-desc { padding: 2.25em 1.25em; }
 
 /* a voice message:
-   <p class="msg out voice"><span class="twdm-play ic ic-play">&#9654;</span><span class="twdm-wave"></span><span class="twdm-dur">0:02</span></p> */
+   <p class="msg out voice"><span class="twdm-play ic ic-play">&#9654;</span><span class="twdm-wave"></span><span class="twdm-length">0:02</span></p> */
 #workskin .twdm .msg.voice { min-width: 55%; }
 
 #workskin .twdm .voice .twdm-play,
 #workskin .twdm .voice .twdm-wave,
-#workskin .twdm .voice .twdm-dur {
+#workskin .twdm .voice .twdm-length {
   display: inline-block;
   vertical-align: middle;
 }
@@ -3128,7 +3128,7 @@
   letter-spacing: 1px;
 }
 
-#workskin .twdm .voice .twdm-dur { margin-left: 0.5em; font-size: 0.85em; }
+#workskin .twdm .voice .twdm-length { margin-left: 0.5em; font-size: 0.85em; }
 
 /* the message bar at the bottom: goes after the mob-body, inside the chat, all on one line */
 #workskin .twdm .twdm-footer {
@@ -3275,7 +3275,7 @@
 
 #workskin .tw-feed.theme-dark .tw-handle,
 
-#workskin .tw-feed.theme-dark .tw-fan,
+#workskin .tw-feed.theme-dark .tw-account-label,
 
 #workskin .tw-feed.theme-dark .tw-time,
 #workskin .tw-feed.theme-dark .tw-stats {
@@ -3290,7 +3290,7 @@
 
 #workskin .tw.theme-dark .tw-handle,
 
-#workskin .tw.theme-dark .tw-fan,
+#workskin .tw.theme-dark .tw-account-label,
 
 #workskin .tw.theme-dark .tw-time,
 #workskin .tw.theme-dark .tw-replying {
@@ -3357,7 +3357,7 @@
 
 #workskin .tw-feed.theme-dark .tw-add { background: #000000; }
 
-#workskin .tw-feed.theme-dark.tw2020 .tw-header { border-bottom-color: #2f3336; }
+#workskin .tw-feed.theme-dark.twc20 .tw-header { border-bottom-color: #2f3336; }
 
 #workskin .tw-feed.theme-dark .tw-reply-bar { border-top-color: #2f3336; color: #71767b; }
 
@@ -3402,7 +3402,7 @@
 
 #workskin .tw-reply.theme-dark .tw-handle,
 
-#workskin .tw-reply.theme-dark .tw-fan,
+#workskin .tw-reply.theme-dark .tw-account-label,
 
 #workskin .tw-reply.theme-dark .tw-time,
 #workskin .tw-reply.theme-dark .tw-replying {
@@ -3415,13 +3415,13 @@
 
 #workskin .twdm.theme-dark .mob-sys,
 #workskin .twdm.theme-dark .twdm-status,
-#workskin .twdm.theme-dark .twdm-replied {
+#workskin .twdm.theme-dark .twdm-reply {
   color: #71767b;
 }
 
 #workskin .twdm.theme-dark .in { background: #202327; color: #e7e9ea; }
 
-#workskin .twdm.theme-dark .twdm-replied.in { background: transparent; color: #71767b; }
+#workskin .twdm.theme-dark .twdm-reply.in { background: transparent; color: #71767b; }
 
 #workskin .twdm.theme-dark p.twdm-quote { background: transparent; color: #71767b; border-color: #2f3336; }
 
@@ -3434,7 +3434,7 @@
 
   #workskin .tw.theme-auto .tw-handle,
 
-  #workskin .tw.theme-auto .tw-fan,
+  #workskin .tw.theme-auto .tw-account-label,
 
   #workskin .tw.theme-auto .tw-time,
     #workskin .tw.theme-auto .tw-replying {
@@ -3501,7 +3501,7 @@
 
   #workskin .tw-feed.theme-auto .tw-add { background: #000000; }
 
-  #workskin .tw-feed.theme-auto.tw2020 .tw-header { border-bottom-color: #2f3336; }
+  #workskin .tw-feed.theme-auto.twc20 .tw-header { border-bottom-color: #2f3336; }
 
   #workskin .tw-feed.theme-auto .tw-reply-bar { border-top-color: #2f3336; color: #71767b; }
 
@@ -3540,7 +3540,7 @@
 
   #workskin .tw-feed.theme-auto .tw-handle,
 
-  #workskin .tw-feed.theme-auto .tw-fan,
+  #workskin .tw-feed.theme-auto .tw-account-label,
 
   #workskin .tw-feed.theme-auto .tw-time,
     #workskin .tw-feed.theme-auto .tw-stats {
@@ -3569,7 +3569,7 @@
 
   #workskin .tw-reply.theme-auto .tw-handle,
 
-  #workskin .tw-reply.theme-auto .tw-fan,
+  #workskin .tw-reply.theme-auto .tw-account-label,
 
   #workskin .tw-reply.theme-auto .tw-time,
     #workskin .tw-reply.theme-auto .tw-replying {
@@ -3582,13 +3582,13 @@
 
   #workskin .twdm.theme-auto .mob-sys,
     #workskin .twdm.theme-auto .twdm-status,
-    #workskin .twdm.theme-auto .twdm-replied {
+    #workskin .twdm.theme-auto .twdm-reply {
       color: #71767b;
     }
 
   #workskin .twdm.theme-auto .in { background: #202327; color: #e7e9ea; }
 
-  #workskin .twdm.theme-auto .twdm-replied.in { background: transparent; color: #71767b; }
+  #workskin .twdm.theme-auto .twdm-reply.in { background: transparent; color: #71767b; }
 
   #workskin .twdm.theme-auto p.twdm-quote { background: transparent; color: #71767b; border-color: #2f3336; }
 }
@@ -4727,7 +4727,7 @@
 /* a long caption cut short, ending in a grey "more": put "... " and <span class="ig-more">more</span> at the end */
 #workskin .ig .ig-more { color: #737373; }
 
-#workskin .ig .ig-viewall {
+#workskin .ig .ig-view-all {
   display: block;
   padding: 0.15em 0.9em;
   color: #737373;
@@ -5347,14 +5347,14 @@
   color: #737373;
 }
 
-/* add "mine" when the phone's owner shared it, and it goes on the right */
-#workskin .igdm .igdm-shared.mine { margin: 0.2em 0 0.2em auto; }
+/* add "me" when the phone's owner shared it, and it goes on the right */
+#workskin .igdm .igdm-shared.me { margin: 0.2em 0 0.2em auto; }
 /* ---- pictures in DMs. In the header, put the picture first, before the name */
 #workskin .igdm .mob-header { display: flow-root; padding: 0.6em 0.9em; text-align: left; }
 
-/* the little arrow after the name that opens the chat's details: an empty igdm-chev span straight after the name.
+/* the little arrow after the name that opens the chat's details: an empty igdm-drop span straight after the name.
    It's drawn by the skin, so it isn't there at all with the workskin off */
-#workskin .igdm .mob-header .igdm-chev {
+#workskin .igdm .mob-header .igdm-drop {
   display: inline;
   margin-left: 0.3em;
   font-size: 1.15em;
@@ -5362,7 +5362,7 @@
   color: #737373;
 }
 
-#workskin .igdm .mob-header .igdm-chev::before { content: "\203A"; }
+#workskin .igdm .mob-header .igdm-drop::before { content: "\203A"; }
 
 /* the verified tick after the name, on the same line as it, never on a line of its own */
 #workskin .igdm .mob-header .ig-tick {
@@ -5501,18 +5501,18 @@
 #workskin .igdm .igdm-row:has(> .igdm-reacts:last-child) > .ig-pfp { bottom: 1.5em; }
 
 /* ---- replies: a grey line saying who replied, then the message they replied to, faded, with a bar beside it, then the reply itself. */
-#workskin .igdm .igdm-replied {
+#workskin .igdm .igdm-reply {
   display: block;
   font-size: 0.72em;
   color: #737373;
   margin: 0.5em 0 0.15em 0.9em;
 }
 
-#workskin .igdm .igdm-replied.out { margin: 0.5em 0.9em 0.15em 0; text-align: right; }
+#workskin .igdm .igdm-reply.out { margin: 0.5em 0.9em 0.15em 0; text-align: right; }
 
 /* in and out only set the side here, not a bubble */
-#workskin .igdm .igdm-replied.in,
-#workskin .igdm .igdm-replied.out { background: none; color: #737373; }
+#workskin .igdm .igdm-reply.in,
+#workskin .igdm .igdm-reply.out { background: none; color: #737373; }
 
 #workskin .igdm .igdm-quote {
   display: table;
@@ -5528,7 +5528,7 @@
 
 #workskin .igdm .igdm-quote.out { margin: 0 0.7em 0.2em auto; }
 
-#workskin .igdm .igdm-quote.mine { background: #d9c7fb; color: #ffffff; }
+#workskin .igdm .igdm-quote.me { background: #d9c7fb; color: #ffffff; }
 
 /* the grey bar beside the quote */
 #workskin .igdm .igdm-quote::before {
@@ -6094,7 +6094,7 @@
 #workskin .ig.theme-dark .ig-top { border-bottom-color: #262626; }
 
 #workskin .ig.theme-dark .ig-top span,
-#workskin .ig.theme-dark .ig-viewall,
+#workskin .ig.theme-dark .ig-view-all,
 #workskin .ig.theme-dark .ig-time {
   color: #a8a8a8;
 }
@@ -6157,10 +6157,10 @@
 #workskin .igdm.theme-dark .igdm-field { color: #a8a8a8; }
 #workskin .igdm.theme-dark .igdm-field.typed { color: #f5f5f5; }
 #workskin .igdm.theme-dark .igdm-reacts { background: #262626; color: #f5f5f5; border-color: #0c1014; }
-#workskin .igdm.theme-dark .igdm-replied.in,
-  #workskin .igdm.theme-dark .igdm-replied.out { background: none; color: #a8a8a8; }
+#workskin .igdm.theme-dark .igdm-reply.in,
+  #workskin .igdm.theme-dark .igdm-reply.out { background: none; color: #a8a8a8; }
 #workskin .igdm.theme-dark .igdm-quote { background: #1c1c1c; color: #8e8e8e; }
-#workskin .igdm.theme-dark .igdm-quote.mine { background: #3b2a66; color: #c9b5f2; }
+#workskin .igdm.theme-dark .igdm-quote.me { background: #3b2a66; color: #c9b5f2; }
 #workskin .igdm.theme-dark .igdm-quote::before { background: #363636; }
 #workskin .igdm.theme-dark .igdm-photo,
   #workskin .igdm.theme-dark .igdm-post { background: #262626; color: #f5f5f5; }
@@ -6186,7 +6186,7 @@
   #workskin .ig.theme-auto .ig-top { border-bottom-color: #262626; }
 
   #workskin .ig.theme-auto .ig-top span,
-    #workskin .ig.theme-auto .ig-viewall,
+    #workskin .ig.theme-auto .ig-view-all,
     #workskin .ig.theme-auto .ig-time {
       color: #a8a8a8;
     }
@@ -6249,10 +6249,10 @@
   #workskin .igdm.theme-auto .igdm-field { color: #a8a8a8; }
   #workskin .igdm.theme-auto .igdm-field.typed { color: #f5f5f5; }
   #workskin .igdm.theme-auto .igdm-reacts { background: #262626; color: #f5f5f5; border-color: #0c1014; }
-  #workskin .igdm.theme-auto .igdm-replied.in,
-    #workskin .igdm.theme-auto .igdm-replied.out { background: none; color: #a8a8a8; }
+  #workskin .igdm.theme-auto .igdm-reply.in,
+    #workskin .igdm.theme-auto .igdm-reply.out { background: none; color: #a8a8a8; }
   #workskin .igdm.theme-auto .igdm-quote { background: #1c1c1c; color: #8e8e8e; }
-  #workskin .igdm.theme-auto .igdm-quote.mine { background: #3b2a66; color: #c9b5f2; }
+  #workskin .igdm.theme-auto .igdm-quote.me { background: #3b2a66; color: #c9b5f2; }
   #workskin .igdm.theme-auto .igdm-quote::before { background: #363636; }
   #workskin .igdm.theme-auto .igdm-photo,
     #workskin .igdm.theme-auto .igdm-post { background: #262626; color: #f5f5f5; }
@@ -6435,9 +6435,9 @@
 /* a name with no line under it sits level with the middle of the picture */
 #workskin .tb .tb-name > b:only-child { line-height: 38px; }
 
-#workskin .tb .tb-subline { display: block; font-size: 0.85em; color: #6c7a8b; }
+#workskin .tb .tb-detail { display: block; font-size: 0.85em; color: #6c7a8b; }
 
-#workskin .tb .tb-subline b { color: #555555; }
+#workskin .tb .tb-detail b { color: #555555; }
 
 /* round profile picture (initials), colour1-colour10 for colours; add "rb" for the green reblog badge */
 /* initials by default; colour1-colour10 are the colours (set in the CORE), or put a picture
@@ -6578,8 +6578,8 @@
 #workskin .tb .tb-text > .tb-photos:first-child,
 #workskin .tb .tb-reblog > .tb-blog + .tb-photos { margin-top: -0.3em; }
 
-/* a mention of another blog in the text of a post: <span class="tb-at">@rinkrat</span> */
-#workskin .tb .tb-at { color: #3a5f86; }
+/* a mention of another blog in the text of a post: <span class="tb-link">@rinkrat</span> */
+#workskin .tb .tb-link { color: #3a5f86; }
 
 #workskin .tb .tb-text .tb-row {
   display: flex;
@@ -6974,13 +6974,13 @@
 
 #workskin .tb.theme-dark { background: #1f1f1f; color: #e8e8e8; border-color: #1f1f1f; }
 
-#workskin .tb.theme-dark .tb-subline,
+#workskin .tb.theme-dark .tb-detail,
 #workskin .tb.theme-dark .tb-menu,
 #workskin .tb.theme-dark .tb-tags {
   color: #9a9a9a;
 }
 
-#workskin .tb.theme-dark .tb-subline b { color: #cfcfcf; }
+#workskin .tb.theme-dark .tb-detail b { color: #cfcfcf; }
 
 #workskin .tb.theme-dark .tb-stats { color: #bdbdbd; }
 
@@ -6988,7 +6988,7 @@
 
 #workskin .tb.theme-dark .tb-photo { background: #2e2e2e; }
 
-#workskin .tb.theme-dark .tb-at { color: #c3d4e8; }
+#workskin .tb.theme-dark .tb-link { color: #c3d4e8; }
 
 #workskin .tb.theme-dark .tb-pfp.reblog::after { border-color: #1f1f1f; }
 
@@ -7024,13 +7024,13 @@
 
   #workskin .tb.theme-auto { background: #1f1f1f; color: #e8e8e8; border-color: #1f1f1f; }
 
-  #workskin .tb.theme-auto .tb-subline,
+  #workskin .tb.theme-auto .tb-detail,
     #workskin .tb.theme-auto .tb-menu,
     #workskin .tb.theme-auto .tb-tags {
       color: #9a9a9a;
     }
 
-  #workskin .tb.theme-auto .tb-subline b { color: #cfcfcf; }
+  #workskin .tb.theme-auto .tb-detail b { color: #cfcfcf; }
 
   #workskin .tb.theme-auto .tb-stats { color: #bdbdbd; }
 
@@ -7038,7 +7038,7 @@
 
   #workskin .tb.theme-auto .tb-photo { background: #2e2e2e; }
 
-  #workskin .tb.theme-auto .tb-at { color: #c3d4e8; }
+  #workskin .tb.theme-auto .tb-link { color: #c3d4e8; }
 
   #workskin .tb.theme-auto .tb-pfp.reblog::after { border-color: #1f1f1f; }
 
