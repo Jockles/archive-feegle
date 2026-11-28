@@ -833,10 +833,11 @@
     // a long name in a chat between two is cut short with "…" to fit on one line at phone width (AO3 won't let the skin do it)
     var full = Array.from(t(b.title) || (b.group ? "Group chat" : o[0] ? igName(o[0]) : "Someone"));
     var room = (b.app ? (pic ? 18 : 25) : pic ? 28 : 34) + (b.tick ? 0 : 2);
-    if (!b.group && full.length > room) head += esc(full.slice(0, room - 1).join("") + "…");
-    else head += t(b.title) ? esc(t(b.title)) : b.group ? "Group chat" : o[0] ? igNameHTML(o[0], null) : "Someone";
-    if (b.tick && !b.group) head += TICK;
-    if (b.group && b.chev !== false) head += '<span class="igdm-drop"></span>'; // the little > after a group's name, drawn by the skin
+    // the name, with its tick or (in a group) the little arrow, all in one igdm-name span
+    var nameHTML = !b.group && full.length > room ? esc(full.slice(0, room - 1).join("") + "…") : t(b.title) ? esc(t(b.title)) : b.group ? "Group chat" : o[0] ? igNameHTML(o[0], null) : "Someone";
+    if (b.tick && !b.group) nameHTML += TICK;
+    if (b.group && b.chev !== false) nameHTML += '<span class="igdm-drop"></span>'; // the little > after a group's name, drawn by the skin
+    head += '<span class="igdm-name">' + nameHTML + "</span>";
     var L = ['<div class="' + containerClass(b, "igdm") + '">',
       '  <p class="mob-header">' + head + '<span class="hide"> - </span>' + (t(b.sub) ? "<span>" + esc(t(b.sub)) + "</span>" : "") + "</p>",
       '  <div class="mob-body">'];
@@ -2506,9 +2507,8 @@
     if (is(hk[0], "span.ig-collab")) { pics = kids(hk.shift()); if (pics.length !== 2) no(); b.group = true; }
     else if (is(hk[0], "span.ig-pfp")) pics = [hk.shift()];
     b.headPic = pics.length > 0;
-    var dash = hk.findIndex(function (n) { return is(n, "span.hide") && n.textContent === " - "; });
-    if (dash < 0) no();
-    var name = hk.slice(0, dash), sub = hk.slice(dash + 1);
+    if (!is(hk[0], "span.igdm-name") || !is(hk[1], "span.hide") || hk[1].textContent !== " - ") no();
+    var name = kids(hk[0]), sub = hk.slice(2);
     if (sub.length > 1 || sub.length && !is(sub[0], "span")) no();
     b.sub = sub.length ? sub[0].textContent : "";
     if (is(name[name.length - 1], "span.igdm-drop")) { if (!b.group || kids(name.pop()).length) no(); }
@@ -2816,7 +2816,7 @@
   // stays on one line; one with a block inside puts every child on its own line, two spaces in; one with only inline
   // children splits only if its kind is on the list below (tested to look the same split or not, on the site and on AO3)
   // and one of them has a class. A hidden span that isn't first stays on the end of the line before it.
-  var SPLIT_SAFE = ["div.igdm-row", "p.dc-photos", "p.dc-photos.one", "p.dc-photos.three", "p.dc-photos.two", "p.hide", "p.ig-carousel-info", "p.ig-header", "p.ig-photo.real", "p.ig-story", "p.ig-story.close", "p.ig-story.me", "p.igdm-footer", "p.igdm-link-img", "p.igdm-photos", "p.igdm-photos.one", "p.igdm-photos.three", "p.igdm-photos.two", "p.igdm-post-btns", "p.igdm-post-by", "p.igdm-post-img", "p.imsg-footer", "p.imsg-photos", "p.imsg-photos.one", "p.imsg-photos.three", "p.imsg-photos.two", "p.msg.in.tail.typing-indicator", "p.msg.in.typing-indicator", "p.msg.in.voice", "p.msg.out.tail.typing-indicator", "p.msg.out.typing-indicator", "p.msg.out.voice", "p.tb-blog", "p.tb-header", "p.tb-nav", "p.tb-row", "p.tb-row.two", "p.tb-tabs", "p.tb-top", "p.tw-header", "p.tw-nav", "p.tw-opt.results.p10", "p.tw-opt.results.p25", "p.tw-opt.results.p30", "p.tw-opt.results.p60", "p.tw-opt.results.win.p75", "p.tw-pfp", "p.tw-photos", "p.tw-photos.four", "p.tw-photos.three", "p.tw-photos.two", "p.tw-stat", "p.tw-stat.locked", "p.tw-stat.right", "p.tw-stat.right.saved", "p.tw-tabs", "p.tw-top", "p.twc-reply-bar", "p.twdm-footer", "p.twdm-photos", "p.twdm-photos.one", "p.twdm-photos.three", "p.twdm-photos.two", "p.wa-call", "p.wa-footer", "p.wa-link-img", "p.wa-pfp", "p.wa-photos.four", "p.wa-photos.one", "p.wa-photos.three", "p.wa-photos.two", "p.wa-wall", "p.who", "span.dc-embed-text", "span.dc-quote", "span.gm-pfp", "span.handle.acc-rpf", "span.hide", "span.ig-badge", "span.ig-collab", "span.ig-like-pfp", "span.ig-pfp", "span.ig-pfp.story", "span.ig-photo.real", "span.igdm-back", "span.pfp", "span.tb-ask-pfp", "span.tb-name", "span.tb-pfp", "span.tb-pfp.reblog", "span.tb-photo", "span.tb-voted", "span.tw-me", "span.tw-pfp", "span.tw-photo", "span.twdm-back", "span.wa-field", "span.wa-pfp", "span.wa-photo", "td.gm-btns", "td.gm-pfp-cell", "td.gm-star", "td.wa-back", "td.wa-btns", "td.wa-name"];
+  var SPLIT_SAFE = ["div.igdm-row", "p.dc-photos", "p.dc-photos.one", "p.dc-photos.three", "p.dc-photos.two", "p.hide", "p.ig-carousel-info", "p.ig-header", "p.ig-photo.real", "p.ig-story", "p.ig-story.close", "p.ig-story.me", "p.igdm-footer", "p.igdm-link-img", "p.igdm-photos", "p.igdm-photos.one", "p.igdm-photos.three", "p.igdm-photos.two", "p.igdm-post-btns", "p.igdm-post-by", "p.igdm-post-img", "p.imsg-footer", "p.imsg-photos", "p.imsg-photos.one", "p.imsg-photos.three", "p.imsg-photos.two", "p.mob-header", "p.msg.in.tail.typing-indicator", "p.msg.in.typing-indicator", "p.msg.in.voice", "p.msg.out.tail.typing-indicator", "p.msg.out.typing-indicator", "p.msg.out.voice", "p.tb-blog", "p.tb-header", "p.tb-nav", "p.tb-row", "p.tb-row.two", "p.tb-tabs", "p.tb-top", "p.tw-header", "p.tw-nav", "p.tw-opt.results.p10", "p.tw-opt.results.p25", "p.tw-opt.results.p30", "p.tw-opt.results.p60", "p.tw-opt.results.win.p75", "p.tw-pfp", "p.tw-photos", "p.tw-photos.four", "p.tw-photos.three", "p.tw-photos.two", "p.tw-stat", "p.tw-stat.locked", "p.tw-stat.right", "p.tw-stat.right.saved", "p.tw-tabs", "p.tw-top", "p.twc-reply-bar", "p.twdm-footer", "p.twdm-photos", "p.twdm-photos.one", "p.twdm-photos.three", "p.twdm-photos.two", "p.wa-call", "p.wa-footer", "p.wa-link-img", "p.wa-pfp", "p.wa-photos.four", "p.wa-photos.one", "p.wa-photos.three", "p.wa-photos.two", "p.wa-wall", "p.who", "span.dc-embed-text", "span.dc-quote", "span.gm-pfp", "span.handle.acc-rpf", "span.hide", "span.ig-badge", "span.ig-collab", "span.ig-like-pfp", "span.ig-pfp", "span.ig-pfp.story", "span.ig-photo.real", "span.igdm-back", "span.pfp", "span.tb-ask-pfp", "span.tb-name", "span.tb-pfp", "span.tb-pfp.reblog", "span.tb-photo", "span.tb-voted", "span.tw-me", "span.tw-pfp", "span.tw-photo", "span.twdm-back", "span.wa-field", "span.wa-pfp", "span.wa-photo", "td.gm-btns", "td.gm-pfp-cell", "td.gm-star", "td.wa-back", "td.wa-btns", "td.wa-name"];
   var FMT_BOXES = "mob dc tw-feed ig-feed tb-feed twc12-feed twc16-feed tw tw-reply ig igdm tb gm mail twdm wa imsg twc12 twc16".split(" ");
   var FMT_BLOCK = "div p table thead tbody tr td th ul ol li details summary blockquote h1 h2 h3 h4 h5 h6 pre hr".split(" ");
   var FMT_VOID = ["img", "br", "hr", "input"];
@@ -2972,6 +2972,20 @@
         var tx = Array.prototype.filter.call(x.childNodes, function (n) { return n.nodeType === 3 && n.nodeValue.trim(); })[0];
         if (!tx || x.querySelector(".img-desc, img")) return;
         var sp = document.createElement("span"); sp.className = "img-desc"; x.insertBefore(sp, tx); sp.appendChild(tx); hit = true;
+      });
+      // an Instagram DM header's name (with its tick or arrow) used to sit bare: now it's in an igdm-name span
+      if (c.classList.contains("igdm")) Array.prototype.slice.call(c.querySelectorAll(":scope > p.mob-header")).forEach(function (hd) {
+        if (hd.querySelector(":scope > span.igdm-name")) return;
+        var ns = Array.prototype.slice.call(hd.childNodes), dash = ns.findIndex(function (n) { return is(n, "span.hide") && n.textContent === " - "; });
+        if (dash < 0) return;
+        var st = 0;
+        ns.slice(0, dash).forEach(function (n, i) { if (is(n, ".ig-pfp, .ig-collab, .igdm-btns")) st = i + 1; });
+        while (st < dash && ns[st].nodeType === 3 && !ns[st].nodeValue.trim()) st++;
+        if (st > 0 && is(ns[st - 1], ".igdm-btns") && is(ns[st], "span.hide")) st++;
+        var w = document.createElement("span"); w.className = "igdm-name";
+        hd.insertBefore(w, ns[dash]);
+        ns.slice(st, dash).forEach(function (n) { w.appendChild(n); });
+        hit = true;
       });
       // a poll result's hidden gap between the words and the percentage was a space: now it's " - ", the same as Tumblr's
       Array.prototype.slice.call(c.querySelectorAll(".tw-opt > span.hide")).forEach(function (h) {
