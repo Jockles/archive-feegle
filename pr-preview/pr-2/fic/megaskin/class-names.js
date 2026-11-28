@@ -93,7 +93,10 @@ var MEGASKIN_RENAMES = [
   ["dc-reaction-count", "dc-count"],
   ["dc-message", "msg"],
   ["tb-topicon", "tb-icon"],
-  ["ig-notif", "ig-icon"]
+  ["ig-notif", "ig-icon"],
+  ["wa-link", "wa-link-card"],
+  ["igdm-link", "igdm-link-card"],
+  ["wa-link-text", "wa-link"]
 ];
 
 // Names that did nothing and were taken out.
