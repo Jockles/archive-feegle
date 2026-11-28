@@ -2730,7 +2730,80 @@
     return b;
   };
 
-  function blockHTML(b) {
+  // ---------- one part per line ----------
+  // Each chat is laid out the same way as the tutorial's examples (the Megaskin's fmt.py): an element with words in it
+  // stays on one line; one with a block inside puts every child on its own line, two spaces in; one with only inline
+  // children splits only if its kind is on the list below (tested to look the same split or not, on the site and on AO3)
+  // and one of them has a class. A hidden span that isn't first stays on the end of the line before it.
+  var SPLIT_SAFE = ["p.hide", "p.ig-header", "p.ig-photo.real", "p.ig-story", "p.ig-story.close", "p.ig-story.me", "p.igdm-link-img", "p.igdm-post-img", "p.tb-blog", "p.tb-header", "p.tb-nav", "p.tb-row", "p.tb-stats", "p.tb-tabs", "p.tb-top", "p.tw-header", "p.tw-nav", "p.tw-opt.results.p10", "p.tw-opt.results.p25", "p.tw-opt.results.p30", "p.tw-opt.results.p60", "p.tw-opt.results.win.p75", "p.tw-pfp", "p.tw-photos", "p.tw-photos.four", "p.tw-photos.three", "p.tw-photos.two", "p.tw-stat", "p.tw-stat.locked", "p.tw-stat.tw-end", "p.tw-stat.tw-end.saved", "p.tw-tabs", "p.twc-footer", "p.wa-footer", "p.wa-link-img", "p.wa-pfp", "p.wa-photos.four", "p.wa-photos.one", "p.wa-photos.three", "p.wa-photos.two", "p.wa-wall", "span.badged", "span.dc-embed-text", "span.dc-quote", "span.gm-pfp", "span.handle.acc-rpf", "span.hide", "span.ig-badge", "span.ig-like-pfp", "span.ig-pfp.story", "span.pfp", "span.tb-ask-pfp", "span.tb-follow", "span.tb-name", "span.tb-pfp", "span.tb-pfp.reblog", "span.tb-stat", "span.tw-me", "span.tw-pfp", "span.tw-photo", "span.wa-pfp", "span.wa-photo", "td.gm-star"];
+  var FMT_BOXES = "mob dc tw-feed ig-feed tb-feed twc12-feed twc16-feed tw tw-reply ig igdm tb gm mail twdm wa imsg twc12 twc16".split(" ");
+  var FMT_BLOCK = "div p table thead tbody tr td th ul ol li details summary blockquote h1 h2 h3 h4 h5 h6 pre hr".split(" ");
+  var FMT_VOID = ["img", "br", "hr", "input"];
+  function fmtParse(text) {
+    var root = { kind: "root", kids: [] }, stack = [root], i = 0, re = /<!--[\s\S]*?-->|<[^>]+>/g, m;
+    function addText(a, b) { if (b > a) stack[stack.length - 1].kids.push({ kind: "text", raw: text.slice(a, b), start: a, end: b }); }
+    while ((m = re.exec(text))) {
+      addText(i, m.index); i = re.lastIndex; var tk = m[0];
+      if (/^<!/.test(tk)) { stack[stack.length - 1].kids.push({ kind: "text", raw: tk, start: m.index, end: i }); continue; }
+      if (/^<\//.test(tk)) {
+        var name = tk.slice(2, -1).trim().toLowerCase(), top = stack[stack.length - 1];
+        if (top.kind !== "el" || top.tag !== name) return null;
+        stack.pop(); top.close = tk; top.end = i; continue;
+      }
+      var tg = (tk.match(/^<\s*([a-zA-Z0-9]+)/) || [])[1], cm = tk.match(/class="([^"]*)"/);
+      var n = { kind: "el", raw: tk, start: m.index, end: i, kids: [], close: "", tag: (tg || "").toLowerCase(), classes: cm ? cm[1].split(/\s+/).filter(Boolean) : [] };
+      stack[stack.length - 1].kids.push(n);
+      if (FMT_VOID.indexOf(n.tag) < 0 && !/\/>$/.test(tk)) stack.push(n);
+    }
+    addText(i, text.length);
+    return stack.length === 1 ? root : null;
+  }
+  function fmtSig(n) { return n.tag + "." + n.classes.filter(function (c) { return !/^(colour\d+|pfp-.*|pov-.*|theme-.*)$/.test(c); }).join("."); }
+  function fmtWs(n) { return n.kind === "text" && !n.raw.trim(); }
+  function fmtOne(n) {
+    if (n.kind === "text") return n.raw.replace(/\s*\n\s*/g, " ");
+    var inner = n.kids.map(fmtOne).join("");
+    if (FMT_BLOCK.indexOf(n.tag) >= 0) inner = inner.trim();
+    return n.raw + inner + n.close;
+  }
+  function fmtLines(n, ind) {
+    var pad = new Array(ind + 1).join(" ");
+    if (n.kind === "text") return [pad + fmtOne(n).trim()];
+    var kids = n.kids.filter(function (k) { return !fmtWs(k); });
+    var words = kids.some(function (k) { return k.kind === "text"; });
+    var blocky = kids.some(function (k) { return k.kind === "el" && FMT_BLOCK.indexOf(k.tag) >= 0; });
+    if (n.tag === "pre") return null;
+    var named = kids.some(function (k) { return k.kind === "el" && k.classes.length; });
+    if (!kids.length || words && !blocky || !words && !blocky && (SPLIT_SAFE.indexOf(fmtSig(n)) < 0 || !named)) return [pad + fmtOne(n).trim()];
+    if (words) return null;
+    var out = [pad + n.raw], gap = [];
+    for (var j = 0; j + 1 < n.kids.length; j++) { var a = n.kids[j]; if (fmtWs(a) && (a.raw.match(/\n/g) || []).length > 1 && j > 0) gap.push(n.kids[j + 1]); }
+    for (var k = 0; k < kids.length; k++) {
+      var c = kids[k];
+      if (gap.indexOf(c) >= 0 && out.length > 1) out.push("");
+      if (k && c.tag === "span" && c.classes.indexOf("hide") >= 0 && out.length > 1) { out[out.length - 1] += fmtOne(c); continue; }
+      var sub = fmtLines(c, ind + 2);
+      if (!sub) return null;
+      out = out.concat(sub);
+    }
+    return out.concat([pad + n.close]);
+  }
+  // the chat boxes in some HTML, each laid out one part per line (anything it can't lay out stays as it is)
+  function onePerLine(text) {
+    var tree = fmtParse(text); if (!tree) return text;
+    var reps = [];
+    (function walk(n) {
+      n.kids.forEach(function (k) {
+        if (k.kind !== "el" || k.tag === "pre") return;
+        if (k.classes.some(function (c) { return FMT_BOXES.indexOf(c) >= 0; })) { var sub = fmtLines(k, 0); if (sub) reps.push([k.start, k.end, sub.join("\n")]); }
+        else walk(k);
+      });
+    })(tree);
+    reps.sort(function (x, y) { return y[0] - x[0]; }).forEach(function (r) { text = text.slice(0, r[0]) + r[2] + text.slice(r[1]); });
+    return text;
+  }
+  function blockHTML(b) { return b.type === "raw" ? t(b.html) : onePerLine(appHTML(b)); }
+  function appHTML(b) {
     var pov = char(b.pov);
     povOwner = (b.type === "imsg" || b.type === "wa") && isProfile(pov) ? slugOf(pov) : "";
     if (b.type === "imsg") return imsgHTML(b);
@@ -2740,7 +2813,6 @@
     if (b.type === "twdm") return twdmHTML(b);
     if (b.type === "igfeed" || b.type === "igone") return igFeedHTML(b);
     if (b.type === "igdm") return igdmHTML(b);
-    if (b.type === "raw") return t(b.html);
     return "";
   }
   // which app a piece of HTML is from, by the Megaskin's classes
