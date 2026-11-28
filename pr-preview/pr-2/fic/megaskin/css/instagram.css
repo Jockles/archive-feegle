@@ -24,7 +24,7 @@
   color: #737373;
 }
 
-/* stands in for the photo: describe the image in here */
+/* stands in for the photo: <p class="ig-photo"><span class="img-desc">[describe the picture here]</span></p> */
 #workskin .ig .ig-photo,
 #workskin .igdm .igdm-post .ig-photo {
   display: block;

@@ -25,7 +25,7 @@
   <!-- /site meta -->
   <link rel="stylesheet" href="../../style.css?v=c31c06ea">
   <script src="../../theme.js?v=c50fd7c2"></script>
-  <link rel="stylesheet" href="megaskin.css?v=325e2e04" id="creator-style">
+  <link rel="stylesheet" href="megaskin.css?v=fa06c6f8" id="creator-style">
 </head>
 <body>
 <header>
@@ -63,7 +63,7 @@
 
 <ul>
   <li><a href="#anatomy">The chat container, and the anatomy of a module</a>: the container and its platform and theme classes</li>
-  <li><a href="#accessibility">Accessibility</a>: <code>hide</code>, alt text and video descriptions (<code>vid-desc</code>), for screen readers and for readers with the workskin switched off</li>
+  <li><a href="#accessibility">Accessibility</a>: <code>hide</code>, alt text and video descriptions (<code>video-desc</code>), for screen readers and for readers with the workskin switched off</li>
   <li><a href="#container-settings">Container settings</a>
     <ul>
       <li><a href="#width">Phone or full width</a> (<code>wide</code> - Discord is wide by default, and uses <code>narrow</code> for phone width instead)</li>
@@ -150,7 +150,7 @@
   <li>Reactions, in square brackets: "[Jane reacted &#128514;]" in iMessage, and "[Reactions: &#10084;&#65039; &#128514; 3]" in WhatsApp and Twitter/X DMs.</li>
   <li>The <code>#</code> and the colon in a Discord channel header.</li>
   <li>The words after the counts on Instagram's buttons, like "84 comments", and "likes (" and "when liked)" around the clickable heart's two counts.</li>
-  <li>Video descriptions (<code>vid-desc</code>), which screen readers read out too.</li>
+  <li>Video descriptions (<code>video-desc</code>), which screen readers read out too.</li>
 </ul>
 
 <p>You can even hide whole sentences of narration this way, so a chat reads like a normal scene with the workskin off.</p>
@@ -243,20 +243,20 @@
 
 <h4 id="s2-2-5">2.2.5 Video Descriptions</h4>
 
-<p>AO3 doesn't give videos an alt text option, so the workskin has a class for it instead. Put a paragraph with <code>vid-desc</code> straight after the video, with a description of what happens in it in square brackets:</p>
+<p>AO3 doesn't give videos an alt text option, so the workskin has a class for it instead. Put a paragraph with <code>video-desc</code> straight after the video, with a description of what happens in it in square brackets:</p>
 
 <div class="mob tw theme-auto">
   <p class="tw-top"><span class="tw-name">Jockles</span> <span class="tw-handle">@jockles25</span> <span class="tw-time">· 2h</span></p>
   <p class="tw-text">Ilya Rozanov you will always be famous to me</p>
   <div class="tw-photos video">
     <iframe src="https://player.vimeo.com/video/1169167060?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" title="Ilya Rozanov | Come Home"></iframe>
-    <p class="vid-desc">[Video: a tribute edit of Ilya Rozanov, made from Heated Rivalry footage and set to "Would You Come Home" by Tyler Blackburn]</p>
+    <p class="video-desc">[Video: a tribute edit of Ilya Rozanov, made from Heated Rivalry footage and set to "Would You Come Home" by Tyler Blackburn]</p>
   </div>
 </div>
 
 <pre><code>&lt;div class="tw-photos video"&gt;
   &lt;iframe src="https://player.vimeo.com/video/1169167060?badge=0&amp;amp;autopause=0&amp;amp;player_id=0&amp;amp;app_id=58479" frameborder="0" title="Ilya Rozanov | Come Home"&gt;&lt;/iframe&gt;
-  &lt;p class="vid-desc"&gt;[Video: a tribute edit of Ilya Rozanov, made from Heated Rivalry footage and set to "Would You Come Home" by Tyler Blackburn]&lt;/p&gt;
+  &lt;p class="video-desc"&gt;[Video: a tribute edit of Ilya Rozanov, made from Heated Rivalry footage and set to "Would You Come Home" by Tyler Blackburn]&lt;/p&gt;
 &lt;/div&gt;</code></pre>
 
 <p>Say who's in it, what happens, and the song if it's an edit. It works anywhere a video can go, and the WhatsApp and Twitter/X video examples already have one.</p>
@@ -615,7 +615,7 @@
 
 <div class="mob ig theme-dark">
   <p class="ig-top">ilya.r<span class="hide"> - </span><span>Ottawa, Ontario</span></p>
-  <p class="ig-photo">[A photo of a small dog, Anya, in a Christmas sweater.]</p>
+  <p class="ig-photo"><span class="img-desc">[A photo of a small dog, Anya, in a Christmas sweater.]</span></p>
   <p class="ig-likes">2,431 likes</p>
   <p class="ig-caption"><b>ilya.r</b> my child is cuter than you</p>
   <p class="ig-time">3 hours ago</p>
@@ -623,7 +623,7 @@
 
 <div class="mob ig theme-light">
   <p class="ig-top">ilya.r<span class="hide"> - </span><span>Ottawa, Ontario</span></p>
-  <p class="ig-photo">[A photo of a small dog, Anya, in a Christmas sweater.]</p>
+  <p class="ig-photo"><span class="img-desc">[A photo of a small dog, Anya, in a Christmas sweater.]</span></p>
   <p class="ig-likes">2,431 likes</p>
   <p class="ig-caption"><b>ilya.r</b> my child is cuter than you</p>
   <p class="ig-time">3 hours ago</p>
@@ -633,7 +633,7 @@
 
 <pre><code>&lt;div class="mob ig theme-dark"&gt;
   &lt;p class="ig-top"&gt;ilya.r&lt;span class="hide"&gt; - &lt;/span&gt;&lt;span&gt;Ottawa, Ontario&lt;/span&gt;&lt;/p&gt;
-  &lt;p class="ig-photo"&gt;[A photo of a small dog, Anya, in a Christmas sweater.]&lt;/p&gt;
+  &lt;p class="ig-photo"&gt;&lt;span class="img-desc"&gt;[A photo of a small dog, Anya, in a Christmas sweater.]&lt;/span&gt;&lt;/p&gt;
   &lt;p class="ig-likes"&gt;2,431 likes&lt;/p&gt;
   &lt;p class="ig-caption"&gt;&lt;b&gt;ilya.r&lt;/b&gt; my child is cuter than you&lt;/p&gt;
   &lt;p class="ig-time"&gt;3 hours ago&lt;/p&gt;
