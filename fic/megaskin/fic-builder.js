@@ -409,8 +409,8 @@
       L = L.concat(ind(['<table class="wa-header">', "  <tbody>", "    <tr>",
         '      <td rowspan="2" class="wa-back"><span class="ic ic-back">&#8592;</span></td>',
         '      <td rowspan="2" class="wa-pfp-cell">' + pc + "</td>",
-        '      <td class="wa-title">' + headTitle(b) + "</td>",
-        '      <td rowspan="2" class="wa-actions"><span class="ic ic-video">&#127909;</span> <span class="ic ic-menu">&#8942;</span></td>',
+        '      <td class="wa-name">' + headTitle(b) + "</td>",
+        '      <td rowspan="2" class="wa-btns"><span class="ic ic-video">&#127909;</span> <span class="ic ic-menu">&#8942;</span></td>',
         "    </tr>", "    <tr>", '      <td class="wa-status">' + esc(sub) + "</td>", "    </tr>", "  </tbody>", "</table>"], 1));
     } else if (b.header !== "none") L.push("  " + mobHead(b));
     L.push('  <div class="mob-body">');
@@ -516,7 +516,7 @@
     var name = t(b.title) ? esc(t(b.title)) : b.group ? "Group chat" : head ? dmName(head) : "Someone";
     var L = ['<div class="' + containerClass(b, "twdm") + '">',
       '  <p class="mob-header"><span class="twdm-back"><span class="ic ic-back">&#8592;</span></span>' + (head ? circle("tw-pfp", head) : '<span class="tw-pfp colour5">?</span>') +
-      '<span class="twdm-name">' + name + '</span><span class="twdm-calls"><span class="ic ic-video">&#127909;</span><span class="ic ic-phone">&#128222;</span></span></p>',
+      '<span class="twdm-name">' + name + '</span><span class="twdm-btns"><span class="ic ic-video">&#127909;</span><span class="ic ic-phone">&#128222;</span></span></p>',
       '  <div class="mob-body">'];
     // in a group, each run of messages from one person goes in a row, with their picture and name first
     var body = [], row = null;
@@ -814,7 +814,7 @@
   }
   function igdmHTML(b) {
     var o = others(b), head = "";
-    if (b.app) head += '<span class="igdm-back"><span class="ic ic-back">&#8592;</span></span><span class="hide"> </span><span class="igdm-calls"><span class="ic ic-phone">&#128222;</span>' +
+    if (b.app) head += '<span class="igdm-back"><span class="ic ic-back">&#8592;</span></span><span class="hide"> </span><span class="igdm-btns"><span class="ic ic-phone">&#128222;</span>' +
       '<span class="hide"> </span><span class="ic ic-video">&#127909;</span></span><span class="hide"> </span>';
     var pic = false;
     if (b.headPic !== false) {
@@ -2122,7 +2122,7 @@
     var bar = null;
     if (is(ks[k], "table.wa-header")) {
       bar = ks[k++]; b.header = "bar";
-      var tt = bar.querySelector("td.wa-title"), st = bar.querySelector("td.wa-status"); if (!tt || !st) no();
+      var tt = bar.querySelector("td.wa-name"), st = bar.querySelector("td.wa-status"); if (!tt || !st) no();
       b.title = tt.querySelector("span.name") ? "" : tt.textContent; b.sub = st.textContent;
     } else if (is(ks[k], "p.mob-header")) { b.header = "simple"; headBack(b, ks[k++]); }
     else b.header = "none";
@@ -2492,7 +2492,7 @@
     // the header: the app screen's buttons, the pictures, the name and tick, then the line under it
     var hk = kids(head), pics = [];
     if (is(hk[0], "span.igdm-back")) {
-      if (!is(hk[1], "span.hide") || !is(hk[2], "span.igdm-calls") || !is(hk[3], "span.hide")) no();
+      if (!is(hk[1], "span.hide") || !is(hk[2], "span.igdm-btns") || !is(hk[3], "span.hide")) no();
       b.app = true; hk = hk.slice(4);
     }
     if (is(hk[0], "span.ig-collab")) { pics = kids(hk.shift()); if (pics.length !== 2) no(); b.group = true; }
