@@ -409,8 +409,8 @@
       L = L.concat(ind(['<table class="wa-header">', "  <tbody>", "    <tr>",
         '      <td rowspan="2" class="wa-back"><span class="ic ic-back">&#8592;</span></td>',
         '      <td rowspan="2" class="wa-pfp-cell">' + pc + "</td>",
-        '      <td class="wa-title">' + headTitle(b) + "</td>",
-        '      <td rowspan="2" class="wa-actions"><span class="ic ic-video">&#127909;</span> <span class="ic ic-menu">&#8942;</span></td>',
+        '      <td class="wa-name">' + headTitle(b) + "</td>",
+        '      <td rowspan="2" class="wa-btns"><span class="ic ic-video">&#127909;</span> <span class="ic ic-menu">&#8942;</span></td>',
         "    </tr>", "    <tr>", '      <td class="wa-status">' + esc(sub) + "</td>", "    </tr>", "  </tbody>", "</table>"], 1));
     } else if (b.header !== "none") L.push("  " + mobHead(b));
     L.push('  <div class="mob-body">');
@@ -516,7 +516,7 @@
     var name = t(b.title) ? esc(t(b.title)) : b.group ? "Group chat" : head ? dmName(head) : "Someone";
     var L = ['<div class="' + containerClass(b, "twdm") + '">',
       '  <p class="mob-header"><span class="twdm-back"><span class="ic ic-back">&#8592;</span></span>' + (head ? circle("tw-pfp", head) : '<span class="tw-pfp colour5">?</span>') +
-      '<span class="twdm-name">' + name + '</span><span class="twdm-calls"><span class="ic ic-video">&#127909;</span><span class="ic ic-phone">&#128222;</span></span></p>',
+      '<span class="twdm-name">' + name + '</span><span class="twdm-btns"><span class="ic ic-video">&#127909;</span><span class="ic ic-phone">&#128222;</span></span></p>',
       '  <div class="mob-body">'];
     // in a group, each run of messages from one person goes in a row, with their picture and name first
     var body = [], row = null;
@@ -814,7 +814,7 @@
   }
   function igdmHTML(b) {
     var o = others(b), head = "";
-    if (b.app) head += '<span class="igdm-back"><span class="ic ic-back">&#8592;</span></span><span class="hide"> </span><span class="igdm-calls"><span class="ic ic-phone">&#128222;</span>' +
+    if (b.app) head += '<span class="igdm-back"><span class="ic ic-back">&#8592;</span></span><span class="hide"> </span><span class="igdm-btns"><span class="ic ic-phone">&#128222;</span>' +
       '<span class="hide"> </span><span class="ic ic-video">&#127909;</span></span><span class="hide"> </span>';
     var pic = false;
     if (b.headPic !== false) {
@@ -993,9 +993,9 @@
     else L.push(stat(m.liked ? " liked" : "", "like", 9825, m.likes, "like", "likes"));
     if (!old && t(m.views) !== "-") L.push(stat("", "views", 128202, m.views, "view", "views"));
     // a bookmark readers can click turns blue
-    if (!old && m.saveClick) L.push('  <details class="tw-stat tw-end tw-tog"' + (m.saved ? " open" : "") + '><summary><span class="ic ic-tw-bookmark">&#128278;</span><span class="hide"> Bookmark</span></summary></details>');
-    else if (!old) L.push(stat(" tw-end" + (m.saved ? " saved" : ""), "bookmark", 128278, ""));
-    L.push(stat(" tw-end", "share", 8679, ""));
+    if (!old && m.saveClick) L.push('  <details class="tw-stat right tw-tog"' + (m.saved ? " open" : "") + '><summary><span class="ic ic-tw-bookmark">&#128278;</span><span class="hide"> Bookmark</span></summary></details>');
+    else if (!old) L.push(stat(" right" + (m.saved ? " saved" : ""), "bookmark", 128278, ""));
+    L.push(stat(" right", "share", 8679, ""));
     return L.concat(["</div>"]);
   }
   // one tweet: kind is "feed" (on its own), "main" (top of a thread) or "reply"
@@ -2122,7 +2122,7 @@
     var bar = null;
     if (is(ks[k], "table.wa-header")) {
       bar = ks[k++]; b.header = "bar";
-      var tt = bar.querySelector("td.wa-title"), st = bar.querySelector("td.wa-status"); if (!tt || !st) no();
+      var tt = bar.querySelector("td.wa-name"), st = bar.querySelector("td.wa-status"); if (!tt || !st) no();
       b.title = tt.querySelector("span.name") ? "" : tt.textContent; b.sub = st.textContent;
     } else if (is(ks[k], "p.mob-header")) { b.header = "simple"; headBack(b, ks[k++]); }
     else b.header = "none";
@@ -2492,7 +2492,7 @@
     // the header: the app screen's buttons, the pictures, the name and tick, then the line under it
     var hk = kids(head), pics = [];
     if (is(hk[0], "span.igdm-back")) {
-      if (!is(hk[1], "span.hide") || !is(hk[2], "span.igdm-calls") || !is(hk[3], "span.hide")) no();
+      if (!is(hk[1], "span.hide") || !is(hk[2], "span.igdm-btns") || !is(hk[3], "span.hide")) no();
       b.app = true; hk = hk.slice(4);
     }
     if (is(hk[0], "span.ig-collab")) { pics = kids(hk.shift()); if (pics.length !== 2) no(); b.group = true; }
@@ -2806,7 +2806,7 @@
   // stays on one line; one with a block inside puts every child on its own line, two spaces in; one with only inline
   // children splits only if its kind is on the list below (tested to look the same split or not, on the site and on AO3)
   // and one of them has a class. A hidden span that isn't first stays on the end of the line before it.
-  var SPLIT_SAFE = ["p.dc-photos", "p.dc-photos.one", "p.dc-photos.three", "p.dc-photos.two", "p.hide", "p.ig-header", "p.ig-photo.real", "p.ig-story", "p.ig-story.close", "p.ig-story.me", "p.igdm-link-img", "p.igdm-photos", "p.igdm-photos.one", "p.igdm-photos.three", "p.igdm-photos.two", "p.igdm-post-img", "p.imsg-photos", "p.imsg-photos.one", "p.imsg-photos.three", "p.imsg-photos.two", "p.tb-blog", "p.tb-header", "p.tb-nav", "p.tb-row", "p.tb-stats", "p.tb-tabs", "p.tb-top", "p.tw-header", "p.tw-nav", "p.tw-opt.results.p10", "p.tw-opt.results.p25", "p.tw-opt.results.p30", "p.tw-opt.results.p60", "p.tw-opt.results.win.p75", "p.tw-pfp", "p.tw-photos", "p.tw-photos.four", "p.tw-photos.three", "p.tw-photos.two", "p.tw-stat", "p.tw-stat.locked", "p.tw-stat.tw-end", "p.tw-stat.tw-end.saved", "p.tw-tabs", "p.twc-reply-bar", "p.twdm-photos", "p.twdm-photos.one", "p.twdm-photos.three", "p.twdm-photos.two", "p.wa-footer", "p.wa-link-img", "p.wa-pfp", "p.wa-photos.four", "p.wa-photos.one", "p.wa-photos.three", "p.wa-photos.two", "p.wa-wall", "span.badged", "span.dc-embed-text", "span.dc-quote", "span.gm-pfp", "span.handle.acc-rpf", "span.hide", "span.ig-badge", "span.ig-like-pfp", "span.ig-pfp.story", "span.pfp", "span.tb-ask-pfp", "span.tb-follow", "span.tb-name", "span.tb-pfp", "span.tb-pfp.reblog", "span.tb-stat", "span.tw-me", "span.tw-pfp", "span.tw-photo", "span.wa-pfp", "span.wa-photo", "td.gm-star"];
+  var SPLIT_SAFE = ["p.dc-photos", "p.dc-photos.one", "p.dc-photos.three", "p.dc-photos.two", "p.hide", "p.ig-header", "p.ig-photo.real", "p.ig-story", "p.ig-story.close", "p.ig-story.me", "p.igdm-link-img", "p.igdm-photos", "p.igdm-photos.one", "p.igdm-photos.three", "p.igdm-photos.two", "p.igdm-post-img", "p.imsg-photos", "p.imsg-photos.one", "p.imsg-photos.three", "p.imsg-photos.two", "p.tb-blog", "p.tb-header", "p.tb-nav", "p.tb-row", "p.tb-stats", "p.tb-tabs", "p.tb-top", "p.tw-header", "p.tw-nav", "p.tw-opt.results.p10", "p.tw-opt.results.p25", "p.tw-opt.results.p30", "p.tw-opt.results.p60", "p.tw-opt.results.win.p75", "p.tw-pfp", "p.tw-photos", "p.tw-photos.four", "p.tw-photos.three", "p.tw-photos.two", "p.tw-stat", "p.tw-stat.locked", "p.tw-stat.right", "p.tw-stat.right.saved", "p.tw-tabs", "p.twc-reply-bar", "p.twdm-photos", "p.twdm-photos.one", "p.twdm-photos.three", "p.twdm-photos.two", "p.wa-footer", "p.wa-link-img", "p.wa-pfp", "p.wa-photos.four", "p.wa-photos.one", "p.wa-photos.three", "p.wa-photos.two", "p.wa-wall", "span.badged", "span.dc-embed-text", "span.dc-quote", "span.gm-pfp", "span.handle.acc-rpf", "span.hide", "span.ig-badge", "span.ig-like-pfp", "span.ig-pfp.story", "span.pfp", "span.tb-ask-pfp", "span.tb-follow", "span.tb-name", "span.tb-pfp", "span.tb-pfp.reblog", "span.tb-stat", "span.tw-me", "span.tw-pfp", "span.tw-photo", "span.wa-pfp", "span.wa-photo", "td.gm-star"];
   var FMT_BOXES = "mob dc tw-feed ig-feed tb-feed twc12-feed twc16-feed tw tw-reply ig igdm tb gm mail twdm wa imsg twc12 twc16".split(" ");
   var FMT_BLOCK = "div p table thead tbody tr td th ul ol li details summary blockquote h1 h2 h3 h4 h5 h6 pre hr".split(" ");
   var FMT_VOID = ["img", "br", "hr", "input"];
