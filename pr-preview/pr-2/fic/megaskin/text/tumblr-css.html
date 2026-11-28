@@ -290,7 +290,7 @@
 
 <pre><code>#workskin .tb-feed.app { padding: 0; overflow: hidden; }
 
-#workskin .tb-feed .tb-screen {
+#workskin .tb-feed .app-screen {
   display: block;
   max-height: 640px;
   overflow-y: auto;
@@ -298,11 +298,11 @@
   padding: 0 0 0.5em 0;
 }
 
-#workskin .tb-feed.no-scroll .tb-screen { max-height: none; overflow-y: visible; }
+#workskin .tb-feed.no-scroll .app-screen { max-height: none; overflow-y: visible; }
 
-#workskin .tb-screen .tb { max-height: none; overflow: visible; }</code></pre>
+#workskin .app-screen .tb { max-height: none; overflow: visible; }</code></pre>
 
-<p>With <code>app</code>, the feed itself doesn't scroll - the <code>tb-screen</code> inside it does, up to <code>640px</code> tall.</p>
+<p>With <code>app</code>, the feed itself doesn't scroll - the <code>app-screen</code> inside it does, up to <code>640px</code> tall.</p>
 
 <details>
 <summary>How it works: what scrolls and what stays put</summary>
@@ -649,7 +649,7 @@
   <li><strong>Checkmarks:</strong> <code>tb-check</code>, <code>tb-checks</code> and the <code>ic-checks</code> lines in the Icons section.</li>
   <li><strong>Bottom row:</strong> <code>tb-stats</code> and <code>tb-stat</code>.</li>
   <li><strong>The feed:</strong> everything starting <code>.tb-feed</code>.</li>
-  <li><strong>Just the app screen:</strong> the rules with <code>.tb-feed.app</code>, <code>tb-screen</code>, <code>tb-header</code>, <code>tb-logo</code>, <code>tb-icon</code>, <code>tb-tabs</code>, <code>tb-tab</code>, <code>tb-nav</code> and <code>ic-tb-</code> in them.</li>
+  <li><strong>Just the app screen:</strong> the rules with <code>.tb-feed.app</code>, <code>app-screen</code>, <code>tb-header</code>, <code>tb-logo</code>, <code>tb-icon</code>, <code>tb-tabs</code>, <code>tb-tab</code>, <code>tb-nav</code> and <code>ic-tb-</code> in them.</li>
 </ul>
 
 <p>Keep the card, the header, the name, the picture and the body, which every post uses.</p>
