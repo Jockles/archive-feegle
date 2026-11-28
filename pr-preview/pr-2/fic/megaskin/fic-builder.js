@@ -571,8 +571,8 @@
     L.push("  </div>");
     if (b.bar === "empty") L.push('  <p class="footer"><span class="plus">+</span><span class="hide"> </span><span class="msgbar">Message<span class="hide"> </span><span class="ic ic-mic">&#127908;</span></span></p>');
     if (b.bar === "typed") L.push('  <p class="footer"><span class="plus">+</span><span class="hide"> </span><span class="msgbar typed">' + fmt(b.barText) + (b.cursor ? CURSOR : "") + '<span class="hide"> </span><span class="ic ic-mic">&#127908;</span></span></p>');
-    if (b.nav) L.push('  <p class="tw-nav"><span class="ic ic-tw-home">&#8962;</span> <span class="ic ic-tw-search">&#128269;</span> <span class="ic ic-x-grok">&#8856;</span> ' +
-      '<span class="ic ic-tw-bell">&#128276;</span>' + (t(b.badge) ? '<span class="tw-badge"><span class="hide"> (</span>' + esc(t(b.badge)) + '<span class="hide">)</span></span>' : "") +
+    if (b.nav) L.push('  <p class="nav"><span class="ic ic-tw-home">&#8962;</span> <span class="ic ic-tw-search">&#128269;</span> <span class="ic ic-x-grok">&#8856;</span> ' +
+      '<span class="ic ic-tw-bell">&#128276;</span>' + (t(b.badge) ? '<span class="badge"><span class="hide"> (</span>' + esc(t(b.badge)) + '<span class="hide">)</span></span>' : "") +
       ' <span class="on ic ic-x-chat">&#128172;</span></p>');
     L.push("</div>");
     return L.join("\n");
@@ -620,13 +620,13 @@
   // a name cut short with "…" (which counts as one) when it's longer than n, as the app does; AO3 won't let the skin do it
   function cutTo(s, n) { var ch = Array.from(s); return ch.length > n ? ch.slice(0, n - 1).join("") + "…" : s; }
   function igNameHTML(c, a) { return isProfile(c) ? pSpan("handle", c, a, igName(c, a)) : esc(igName(c)); }
-  // an account name on a post's top line or in "In this photo" sits in an ig-name span
-  function igNameSpan(h) { return '<span class="ig-name">' + h + "</span>"; }
-  var TICK = '<span class="hide"> </span><span class="ig-tick ic ic-verified">&#10003;</span>';
-  var LOCK = '<span class="hide"> </span><span class="ig-lock ic ic-lock">&#128274;</span>';
+  // an account name on a post's top line or in "In this photo" sits in a who span
+  function igNameSpan(h) { return '<span class="who">' + h + "</span>"; }
+  var TICK = '<span class="hide"> </span><span class="tick ic ic-verified">&#10003;</span>';
+  var LOCK = '<span class="hide"> </span><span class="lock ic ic-lock">&#128274;</span>';
   function igCaption(text) {
     // #hashtags go blue, and a new line in the box is a new line in the caption
-    return fmt(t(text)).replace(/(^|[\s(])(#[A-Za-z0-9_]+)/g, '$1<span class="ig-link">$2</span>').replace(/\n/g, "<br>");
+    return fmt(t(text)).replace(/(^|[\s(])(#[A-Za-z0-9_]+)/g, '$1<span class="fake-link">$2</span>').replace(/\n/g, "<br>");
   }
   // a comment line: "name: what they said", with the name from the cast if it's someone in it
   function igComment(line) {
@@ -637,8 +637,8 @@
   }
   function igPhoto(ph, cls, tag) {
     var u = picUrl(ph.url);
-    if (u) return "<" + tag + ' class="ig-photo real' + cls + '"><img ' + (ph.land ? 'class="landscape" ' : "") + 'src="' + esc(u) + '" alt="' + esc(t(ph.alt)) + '"></' + tag + ">";
-    return "<" + tag + ' class="ig-photo' + cls + '"><span class="img-desc">[' + esc(t(ph.desc) || "A photo") + "]</span></" + tag + ">";
+    if (u) return "<" + tag + ' class="photo real' + cls + '"><img ' + (ph.land ? 'class="landscape" ' : "") + 'src="' + esc(u) + '" alt="' + esc(t(ph.alt)) + '"></' + tag + ">";
+    return "<" + tag + ' class="photo' + cls + '"><span class="img-desc">[' + esc(t(ph.desc) || "A photo") + "]</span></" + tag + ">";
   }
   // one photo, or a carousel: each photo after the first goes inside the one before it
   function igPhotos(m) {
@@ -664,7 +664,7 @@
       var c = char(g.who), fol = g.who === b.pov ? "none" : g.fol;
       var bt = fol === "follow" ? '<span class="ig-following blue">Follow</span>' : fol === "none" ? "" : '<span class="ig-following">Following</span>';
       var nm = isProfile(c) ? appBit(c, "ig", "name") || nameOf(c) : nameOf(c);
-      L.push('<p class="ig-person">' + bt + circle("ig-pfp", c, null) + igNameSpan(isProfile(c) ? igNameHTML(c, null) : '<span class="handle">' + esc(igName(c)) + "</span>") +
+      L.push('<p class="ig-person">' + bt + circle("avatar", c, null) + igNameSpan(isProfile(c) ? igNameHTML(c, null) : '<span class="handle">' + esc(igName(c)) + "</span>") +
         (g.tick ? TICK : "") + (g.lock ? LOCK : "") + '<span class="ig-person-name">' + esc(nm) + "</span></p>");
     });
     L.push("</div></details>");
@@ -672,18 +672,20 @@
   }
   // a post's buttons, built like Twitter's: the icon, then the number bare after a space, then the hidden word
   var IG_ICONS = { heart: [9825, "like", "likes", "Like"], comment: [128172, "comment", "comments", "Comment"], repost: [8635, "repost", "reposts", "Repost"], share: [10148, "", "", "Share"], save: [128278, "", "", "Save"] };
-  var IG_LOCKED = '<p class="ig-stat locked"><span class="ic ic-repost">&#8635;</span><span class="hide"> (can\'t be reposted)</span></p>';
+  var IG_LOCKED = '<p class="stat reposts locked"><span class="ic ic-repost">&#8635;</span><span class="hide"> (can\'t be reposted)</span></p>';
+  // each button's kind word, the same in every app
+  var IG_KINDS = { heart: "likes", comment: "comments", repost: "reposts", share: "shares", save: "bookmarks" };
   function igStat(kind, n, cls) {
     var k = IG_ICONS[kind];
-    return '<p class="ig-stat' + (cls || "") + '"><span class="ic ic-' + kind + '">&#' + k[0] + ";</span>" +
+    return '<p class="stat ' + IG_KINDS[kind] + (cls || "") + '"><span class="ic ic-' + kind + '">&#' + k[0] + ";</span>" +
       (t(n) ? " " + esc(t(n)) + '<span class="hide"> ' + plural(n, k[1], k[2]) + "</span>" : '<span class="hide"> ' + k[3] + "</span>") + "</p>";
   }
   // the heart readers can click: it turns red and the number goes up by one
   function igLikeTog(n, open) {
-    return '<details class="ig-stat ig-tog"' + (open ? " open" : "") + '><summary><span class="ic ic-heart">&#9825;</span>' +
+    return '<details class="stat likes tog"' + (open ? " open" : "") + '><summary><span class="ic ic-heart">&#9825;</span>' +
       (t(n) ? '<span class="off"> ' + esc(t(n)) + '</span><span class="hide"> likes (</span><span class="on"> ' + esc(bumpCount(n)) + '</span><span class="hide"> once liked)</span>' : '<span class="hide"> Like</span>') + "</summary></details>";
   }
-  function igSaveTog(open) { return '<details class="ig-stat ig-tog right"' + (open ? " open" : "") + '><summary><span class="ic ic-save">&#128278;</span><span class="hide"> Save</span></summary></details>'; }
+  function igSaveTog(open) { return '<details class="stat bookmarks tog right"' + (open ? " open" : "") + '><summary><span class="ic ic-save">&#128278;</span><span class="hide"> Save</span></summary></details>'; }
   // the other accounts on a collab post (posts saved before this had just one, in m.collab)
   function collabsOf(m) {
     if (!m.collabs) m.collabs = m.collab ? [{ who: m.collab, tick: !!m.collabTick }] : [];
@@ -693,7 +695,7 @@
     var c = char(m.from); if (!c) return [];
     var a = accOf(c, m.acc, "ig"), cos = collabsOf(m).filter(function (g) { return char(g.who); }), L = [];
     // the account line: the menu goes first (it sits at the far right), then a Follow button for a suggested post
-    var top = '<span class="ig-menu ic ic-ig-lines">&#8801;</span>' + (m.follow === "button" ? '<span class="ig-follow btn ic ic-ig-follow">Follow</span>' : "");
+    var top = '<span class="menu ic ic-ig-lines">&#8801;</span>' + (m.follow === "button" ? '<span class="follow btn ic ic-ig-follow">Follow</span>' : "");
     // the name: the username, or the name typed in, cut short with "…" if it won't fit on one line at phone width
     var fullA = t(m.nameAs) || igName(c, a), lenA = Array.from(fullA).length;
     function shown(full, typed, n, html) { var x = cutTo(full, n); return igNameSpan(typed || x !== full ? esc(x) : html); }
@@ -710,14 +712,14 @@
         var room = 19 - (m.verified ? 2 : 0) - (cos[0].tick ? 2 : 0);
         while (nA + nB > room && (nA > 6 || nB > 6)) { if (nA >= nB && nA > 6 || nB <= 6) nA--; else nB--; }
       }
-      top += '<span class="ig-collab">' + circle("ig-pfp", c, a) + circle("ig-pfp", co, null) + "</span>" + shown(fullA, t(m.nameAs), Math.max(nA, 6), igNameHTML(c, a)) + (m.verified ? TICK : "") + (m.locked ? LOCK : "") + and;
+      top += '<span class="ig-collab">' + circle("avatar", c, a) + circle("avatar", co, null) + "</span>" + shown(fullA, t(m.nameAs), Math.max(nA, 6), igNameHTML(c, a)) + (m.verified ? TICK : "") + (m.locked ? LOCK : "") + and;
       if (cos.length === 1) top += shown(fullB, t(cos[0].as), Math.max(nB, 6), igNameHTML(co, null)) + (cos[0].tick ? TICK : "");
       else { top += cos.length + " others"; pend = " (" + cos.map(function (g) { return esc(igName(char(g.who))); }).join(", ") + ")"; }
-    } else top += circle("ig-pfp" + (m.story ? " story" : ""), c, a) + shown(fullA, t(m.nameAs), m.follow === "link" ? 20 : m.verified ? 24 : 27, igNameHTML(c, a)) + (m.verified ? TICK : "") + (m.locked ? LOCK : "");
-    if (m.follow === "link") after('<span class="ig-follow">Follow</span>');
+    } else top += circle("avatar" + (m.story ? " story" : ""), c, a) + shown(fullA, t(m.nameAs), m.follow === "link" ? 20 : m.verified ? 24 : 27, igNameHTML(c, a)) + (m.verified ? TICK : "") + (m.locked ? LOCK : "");
+    if (m.follow === "link") after('<span class="follow">Follow</span>');
     if (t(m.under)) after("<span>" + (m.song ? "&#9835; " : "") + esc(t(m.under)) + "</span>");
     if (pend) top += '<span class="hide">' + pend + "</span>";
-    L.push('<p class="ig-top">' + top + "</p>");
+    L.push('<p class="top">' + top + "</p>");
     L = L.concat(igPhotos(m), igTagged(m, b));
     // the buttons: the heart, comments, reposts if there are any, share, and save
     var btns = [];
@@ -729,28 +731,28 @@
     else if (t(m.reposts)) btns.push(igStat("repost", m.reposts));
     btns.push(igStat("share", ""));
     btns.push(igSaveTog(m.saved));
-    L = L.concat(['<div class="ig-stats">'], btns, ["</div>"]);
+    L = L.concat(['<div class="stats">'], btns, ["</div>"]);
     var faces = (m.faces || []).map(char).filter(Boolean);
-    if (m.likesLine === "faces" && faces.length) L.push('<p class="ig-likes liked-by"><span class="ig-like-pfps">' + faces.map(function (f) { return circle("ig-like-pfp", f, null); }).join("") +
+    if (m.likesLine === "faces" && faces.length) L.push('<p class="counts liked-by"><span class="ig-like-pfps">' + faces.map(function (f) { return circle("ig-like-pfp", f, null); }).join("") +
       "</span>Liked by <b>" + igNameHTML(faces[0], null) + "</b> and <b>others</b></p>");
-    else if ((m.likesLine || "count") === "count" && t(m.likes)) L.push('<p class="ig-likes">' + esc(t(m.likes)) + " " + plural(m.likes, "like", "likes") + "</p>");
+    else if ((m.likesLine || "count") === "count" && t(m.likes)) L.push('<p class="counts">' + esc(t(m.likes)) + " " + plural(m.likes, "like", "likes") + "</p>");
     if (t(m.text)) L.push('<p class="ig-caption"><b>' + igNameHTML(c, a) + "</b> " + igCaption(m.text) + (m.more ? '... <span class="ig-more">more</span>' : "") + "</p>");
     if (m.viewAll && t(m.cmCount)) L.push('<p class="ig-view-all">View all ' + esc(t(m.cmCount)) + " comments</p>");
     t(m.comments).split(/\n/).map(t).filter(Boolean).forEach(function (line) { L.push(igComment(line)); });
-    if (t(m.time)) L.push('<p class="ig-time">' + esc(t(m.time)) + "</p>");
-    var open = b.type === "igone" ? '<div class="mob ig ' + b.theme + (b.width ? " " + b.width : "") + (b.scroll ? " " + b.scroll : "") + '">' : '<div class="mob ig ' + b.theme + '">'; // a post in a feed has the feed's colours too
+    if (t(m.time)) L.push('<p class="time">' + esc(t(m.time)) + "</p>");
+    var open = b.type === "igone" ? '<div class="mob ig post ' + b.theme + (b.width ? " " + b.width : "") + (b.scroll ? " " + b.scroll : "") + '">' : '<div class="mob ig post ' + b.theme + '">'; // a post in a feed has the feed's colours too
     return [open].concat(L, ["</div>"]);
   }
   // the Stories row: "Your story" first if ticked, then one circle per line ("close" for a green ring, "seen" for none)
   function igStories(b) {
     var me = char(b.pov), L = [];
-    if (b.myStory && me) L.push('<p class="ig-story me">' + circle("ig-pfp", me, null) + '<span class="ig-story-name">Your story</span></p>');
+    if (b.myStory && me) L.push('<p class="ig-story me">' + circle("avatar", me, null) + '<span class="ig-story-name">Your story</span></p>');
     t(b.stories).split(/\n/).map(t).filter(Boolean).forEach(function (line) {
       var ring = "", k = line.match(/^(.*?)\s*\((close|seen)\)$/i);
       if (k) { line = k[1]; ring = k[2].toLowerCase() === "close" ? " close" : " plain"; }
       var c = findChar(line);
-      L.push('<p class="ig-story' + ring + '">' + (c ? circle("ig-pfp", c, null) + '<span class="ig-story-name">' + esc(igName(c)) + "</span>" :
-        '<span class="ig-pfp">' + esc(line.charAt(0).toUpperCase()) + '</span><span class="ig-story-name">' + esc(line) + "</span>") + "</p>");
+      L.push('<p class="ig-story' + ring + '">' + (c ? circle("avatar", c, null) + '<span class="ig-story-name">' + esc(igName(c)) + "</span>" :
+        '<span class="avatar">' + esc(line.charAt(0).toUpperCase()) + '</span><span class="ig-story-name">' + esc(line) + "</span>") + "</p>");
     });
     return L.length ? ['<div class="ig-stories">'].concat(L, ["</div>"]) : [];
   }
@@ -758,8 +760,8 @@
     var posts = b.msgs.map(function (m) { return igPostHTML(b, m).join("\n"); }).filter(Boolean);
     if (b.type === "igone") return posts.join("\n\n");
     var L = ['<div class="ig-feed app ' + b.theme + (b.width ? " " + b.width : "") + (b.scroll ? " " + b.scroll : "") + '">', '<div class="app-screen">'];
-    if (b.top !== "none") L.push('<p class="ig-header"><span class="ig-add">+</span><span class="ig-logo">Instagram</span><span class="ig-icon ic ic-heart">&#9825;</span>' +
-      (b.top === "new" ? '<span class="ig-badge"><span class="hide"> (new)</span></span>' : "") + "</p>");
+    if (b.top !== "none") L.push('<p class="header"><span class="add">+</span><span class="logo">Instagram</span><span class="icon ic ic-heart">&#9825;</span>' +
+      (b.top === "new" ? '<span class="badge"><span class="hide"> (new)</span></span>' : "") + "</p>");
     return L.concat(igStories(b), posts, ["</div>", "</div>"]).join("\n");
   }
 
@@ -931,7 +933,7 @@
   var POLL_SIZES = [0, 10, 20, 25, 30, 33, 40, 50, 60, 67, 70, 75, 80, 90, 100];
   function twText(text) {
     // hashtags and @mentions go blue, and a new line in the box is a new line in the tweet
-    return fmt(t(text)).replace(/(^|[\s(])([#@][A-Za-z0-9_]+)/g, '$1<span class="tw-link">$2</span>').replace(/\n/g, "<br>");
+    return fmt(t(text)).replace(/(^|[\s(])([#@][A-Za-z0-9_]+)/g, '$1<span class="fake-link">$2</span>').replace(/\n/g, "<br>");
   }
   // the fan account mask: ticked by hand, or (for work saved before the tick box) when the line says Fan account
   function fanMask(m) { return m.fanMask === undefined ? /^fan account$/i.test(t(m.fan)) : !!m.fanMask; }
@@ -953,8 +955,8 @@
     return opts.map(function (o, i) {
       var pct = pcts[i], size = POLL_SIZES.reduce(function (a, b) { return Math.abs(b - pct) < Math.abs(a - pct) ? b : a; });
       var win = !tap && !won && pct === top; if (win) won = true;
-      var voted = (tap || tick) && i === vote ? '<span class="hide"> - voted </span><span class="tw-voted">&#10003;</span>' : "";
-      return '<p class="tw-opt results' + (win ? " win" : "") + " p" + size + '"><span class="tw-bar">' + esc(o.text) + voted + '</span><span class="hide"> - </span><span class="tw-pct">' + pct + "%</span></p>";
+      var voted = (tap || tick) && i === vote ? '<span class="hide"> - voted </span><span class="voted">&#10003;</span>' : "";
+      return '<p class="opt results' + (win ? " win" : "") + " p" + size + '"><span class="tw-bar">' + esc(o.text) + voted + '</span><span class="hide"> - </span><span class="pct">' + pct + "%</span></p>";
     });
   }
   function pollKind(m) {
@@ -968,54 +970,56 @@
     var res = pollResults(opts, opts.map(function (o) { return o.pct || 0; }), tap, +(m.pollVote || 0));
     if (kind === "results" && m.pollShowVote) res = pollResults(opts, opts.map(function (o) { return o.pct || 0; }), false, +(m.pollVoted || 0), true);
     var info = t(m.pollinfo);
-    if (!done) return opts.map(function (o) { return '<p class="tw-opt">' + esc(o.text) + "</p>"; }).concat(info ? ['<p class="tw-pollinfo">' + esc(info) + "</p>"] : []);
-    if (!tap) return res.concat(info ? ['<p class="tw-pollinfo">' + esc(info) + "</p>"] : []);
-    var after = info ? ['<p class="tw-pollinfo">' + esc(info.replace(/\d[\d,]*/, bumpCount)) + "</p>"] : [];
+    if (!done) return opts.map(function (o) { return '<p class="opt">' + esc(o.text) + "</p>"; }).concat(info ? ['<p class="pollinfo">' + esc(info) + "</p>"] : []);
+    if (!tap) return res.concat(info ? ['<p class="pollinfo">' + esc(info) + "</p>"] : []);
+    var after = info ? ['<p class="pollinfo">' + esc(info.replace(/\d[\d,]*/, bumpCount)) + "</p>"] : [];
     if (m.pollVote === "pick") {
       // the reader picks: each option opens its own copy of the results, with the tick on it
-      var L = ['<div class="tw-poll">'];
+      var L = ['<div class="poll">'];
       opts.forEach(function (o, i) {
-        L.push('<details class="tw-pick">', '  <summary class="tw-opt">' + esc(o.text) + "</summary>", '  <div class="tw-results">');
+        L.push('<details class="pick">', '  <summary class="opt">' + esc(o.text) + "</summary>", '  <div class="poll-results">');
         var own = t((m.pollPickInfo || [])[i]);
-        L = L.concat(ind(pollResults(opts, pickPcts(m, opts, i), true, i).concat(own ? ['<p class="tw-pollinfo">' + esc(own) + "</p>"] : after), 2));
+        L = L.concat(ind(pollResults(opts, pickPcts(m, opts, i), true, i).concat(own ? ['<p class="pollinfo">' + esc(own) + "</p>"] : after), 2));
         L.push("  </div>", "</details>");
       });
-      return L.concat(info ? ['<p class="tw-pollinfo">' + esc(info) + "</p>"] : []).concat(["</div>"]);
+      return L.concat(info ? ['<p class="pollinfo">' + esc(info) + "</p>"] : []).concat(["</div>"]);
     }
     // tappable: the open poll first, and tapping it shows the results with one more vote
-    return ['<details class="tw-vote">', "<summary>"].concat(opts.map(function (o) { return '  <span class="tw-opt">' + esc(o.text) + "</span>"; }))
-      .concat(info ? ['  <span class="tw-pollinfo">' + esc(info) + "</span>"] : []).concat(["</summary>"]).concat(ind(res, 1))
+    return ['<details class="vote">', "<summary>"].concat(opts.map(function (o) { return '  <span class="opt">' + esc(o.text) + "</span>"; }))
+      .concat(info ? ['  <span class="pollinfo">' + esc(info) + "</span>"] : []).concat(["</summary>"]).concat(ind(res, 1))
       .concat(ind(after, 1)).concat(["</details>"]);
   }
   function twMedia(m, video, pics) {
     var v = video ? picUrl(m.vUrl) : "";
-    if (v) return ['<div class="tw-photos video"><iframe src="' + esc(v) + '" frameborder="0" title="' + esc(t(m.vTitle) || "Video") + '"></iframe>' +
+    if (v) return ['<div class="photos video"><iframe src="' + esc(v) + '" frameborder="0" title="' + esc(t(m.vTitle) || "Video") + '"></iframe>' +
       (t(m.vDesc) ? '<p class="video-desc">[' + esc(t(m.vDesc)) + "]</p>" : "") + "</div>"];
     var ph = pics ? (m.photos || []).filter(function (p) { return picUrl(p.url) || t(p.desc); }).slice(0, 4) : [];
     if (!ph.length) return [];
     function img(p) { return '<img ' + (p.land ? 'class="landscape" ' : "") + 'src="' + esc(picUrl(p.url)) + '" alt="' + esc(p.alt) + '">'; }
-    if (ph.length === 1) return ['<p class="tw-photos">' + (picUrl(ph[0].url) ? img(ph[0]) : '<span class="img-desc">[' + esc(t(ph[0].desc)) + "]</span>") + "</p>"];
-    return ['<p class="tw-photos ' + ["two", "three", "four"][ph.length - 2] + '">'].concat(ph.map(function (p) {
-      return '  <span class="tw-photo">' + (picUrl(p.url) ? img(p) : '<span class="img-desc">[' + esc(t(p.desc)) + "]</span>") + "</span>";
+    if (ph.length === 1) return ['<p class="photos">' + (picUrl(ph[0].url) ? img(ph[0]) : '<span class="img-desc">[' + esc(t(ph[0].desc)) + "]</span>") + "</p>"];
+    return ['<p class="photos ' + ["two", "three", "four"][ph.length - 2] + '">'].concat(ph.map(function (p) {
+      return '  <span class="photo">' + (picUrl(p.url) ? img(p) : '<span class="img-desc">[' + esc(t(p.desc)) + "]</span>") + "</span>";
     })).concat(["</p>"]);
   }
   // the row of buttons: replies, reposts, likes, views, bookmark and share
   function twStats(b, m) {
     var old = b.era === "tw2020";
+    // each button's kind word, the same in every app
+    var TW_KINDS = { reply: "comments", repost: "reposts", like: "likes", views: "views", bookmark: "bookmarks", share: "shares" };
     function stat(cls, icon, code, n, one, many) {
-      return '  <p class="tw-stat' + cls + '"><span class="ic ic-tw-' + icon + '">&#' + code + ";</span>" +
+      return '  <p class="stat ' + TW_KINDS[icon] + cls + '"><span class="ic ic-tw-' + icon + '">&#' + code + ";</span>" +
         (t(n) ? " " + esc(t(n)) + '<span class="hide"> ' + plural(n, one, many) + "</span>" : "") + "</p>";
     }
-    var L = ['<div class="tw-stats">', stat("", "reply", 9993, m.replies, "reply", "replies")];
+    var L = ['<div class="stats">', stat("", "reply", 9993, m.replies, "reply", "replies")];
     if (m.locked || m.noRepost) L.push(stat(" locked", "repost", 8644, ""));
     else L.push(stat(m.reposted ? " reposted" : "", "repost", 8644, m.reposts, old ? "retweet" : "repost", old ? "retweets" : "reposts"));
     // a like readers can click goes up by one, and turns red
-    if (m.likeClick) L.push('  <details class="tw-stat tw-tog"' + (m.liked ? " open" : "") + '><summary><span class="ic ic-tw-like">&#9825;</span><span class="off">' +
+    if (m.likeClick) L.push('  <details class="stat likes tog"' + (m.liked ? " open" : "") + '><summary><span class="ic ic-tw-like">&#9825;</span><span class="off">' +
       (t(m.likes) ? " " + esc(t(m.likes)) : "") + '</span><span class="hide"> likes (</span><span class="on"> ' + esc(bumpCount(m.likes)) + '</span><span class="hide"> once liked)</span></summary></details>');
     else L.push(stat(m.liked ? " liked" : "", "like", 9825, m.likes, "like", "likes"));
     if (!old && t(m.views) !== "-") L.push(stat("", "views", 128202, m.views, "view", "views"));
     // a bookmark readers can click turns blue
-    if (!old && m.saveClick) L.push('  <details class="tw-stat right tw-tog"' + (m.saved ? " open" : "") + '><summary><span class="ic ic-tw-bookmark">&#128278;</span><span class="hide"> Bookmark</span></summary></details>');
+    if (!old && m.saveClick) L.push('  <details class="stat bookmarks right tog"' + (m.saved ? " open" : "") + '><summary><span class="ic ic-tw-bookmark">&#128278;</span><span class="hide"> Bookmark</span></summary></details>');
     else if (!old) L.push(stat(" right" + (m.saved ? " saved" : ""), "bookmark", 128278, ""));
     L.push(stat(" right", "share", 8679, ""));
     return L.concat(["</div>"]);
@@ -1038,23 +1042,23 @@
       // replying to someone further up the thread: by default, whoever posted the tweet just above
       var i = b.msgs.indexOf(m), above = b.msgs.slice(0, i).filter(function (x) { return char(x.from); });
       var to = above.filter(function (x) { return x.from === m.replyTo; }).pop() || above[above.length - 1], qc = to && char(to.from);
-      if (qc) L.push('<p class="tw-replying">Replying to <span class="tw-link">@' + esc(twHandle(qc, accOf(qc, to.acc, "tw"))) + "</span></p>");
+      if (qc) L.push('<p class="tw-replying">Replying to <span class="fake-link">@' + esc(twHandle(qc, accOf(qc, to.acc, "tw"))) + "</span></p>");
     }
     // a typed name sits in its own span, so a long one ends in "..."
-    L.push('<p class="tw-top">' + circle("tw-pfp", c, a) + '<span class="hide"> </span><span class="tw-name">' + (isProfile(c) ? twNameHTML(c, a) : "<span>" + esc(nameOf(c)) + "</span>") +
-      (m.verified ? ' <span class="tw-tick ic ic-verified">&#10004;</span>' : "") + '</span> <span class="tw-handle">' + twHandleHTML(c, a) + "</span>" +
-      (m.locked ? ' <span class="tw-lock ic ic-tw-lock">&#128274;</span>' : "") + (t(m.time) ? ' <span class="tw-time">· ' + esc(t(m.time)) + "</span>" : "") +
+    L.push('<p class="top">' + circle("avatar", c, a) + '<span class="hide"> </span><span class="who">' + (isProfile(c) ? twNameHTML(c, a) : "<span>" + esc(nameOf(c)) + "</span>") +
+      (m.verified ? ' <span class="tick ic ic-verified">&#10004;</span>' : "") + '</span> <span class="tw-handle">' + twHandleHTML(c, a) + "</span>" +
+      (m.locked ? ' <span class="lock ic ic-tw-lock">&#128274;</span>' : "") + (t(m.time) ? ' <span class="time">· ' + esc(t(m.time)) + "</span>" : "") +
       (t(m.fan) ? ' <span class="tw-account-label">' + (fanMask(m) ? '<span class="ic ic-tw-fan">&#127917;</span> ' : "") + esc(t(m.fan)) + "</span>" : "") + "</p>");
     if (t(m.label)) L.push('<p class="tw-label">' + esc(t(m.label)) + "</p>");
-    if (t(m.text)) L.push((kind === "reply" ? "<p>" : '<p class="tw-text">') + twText(m.text) + "</p>");
+    if (t(m.text)) L.push((kind === "reply" ? "<p>" : '<p class="text">') + twText(m.text) + "</p>");
     if (has(m, "hasPoll")) L = L.concat(twPoll(m));
     if (has(m, "hasVideo") || has(m, "hasPics")) L = L.concat(twMedia(m, has(m, "hasVideo"), has(m, "hasPics")));
     if (m.warn && has(m, "hasPics")) L.push('<p class="tw-warn"><b>Content warning: Sensitive content</b><br>The Tweet author flagged this Tweet as showing sensitive content.</p>');
-    if (has(m, "hasQuote") && (t(m.qText) || t(m.qName))) L.push('<p class="tw-quote"><b>' + esc(t(m.qName)) + "</b>" + (noAt(m.qHandle) ? ' <span class="tw-handle">@' + esc(noAt(m.qHandle)) + "</span>" : "") + "<br>" + fmt(m.qText) + "</p>");
+    if (has(m, "hasQuote") && (t(m.qText) || t(m.qName))) L.push('<p class="quote"><b>' + esc(t(m.qName)) + "</b>" + (noAt(m.qHandle) ? ' <span class="tw-handle">@' + esc(noAt(m.qHandle)) + "</span>" : "") + "<br>" + fmt(m.qText) + "</p>");
     if (has(m, "hasNote") && t(m.note)) L.push('<p class="tw-note">' + esc(t(m.note)) + "</p>");
     if (t(m.date)) L.push('<p class="tw-date">' + esc(t(m.date)) + "</p>");
     L = L.concat(twStats(b, m));
-    var open = kind === "feed" && !b.app ? '<div class="mob tw ' + b.theme + (b.width ? " " + b.width : "") + (b.scroll ? " " + b.scroll : "") + '">' : kind === "reply" ? '<div class="mob tw-reply">' : '<div class="mob tw">';
+    var open = kind === "feed" && !b.app ? '<div class="mob tw post ' + b.theme + (b.width ? " " + b.width : "") + (b.scroll ? " " + b.scroll : "") + '">' : kind === "reply" ? '<div class="mob tw-reply post">' : '<div class="mob tw post">';
     return [open].concat(ind(L, 1)).concat(["</div>"]);
   }
   function twFeedHTML(b) {
@@ -1063,16 +1067,16 @@
     // the X app screen: the pov character's picture and the logo, then the tabs, then the tweets
     var me = char(b.pov) || S.cast[0], old = b.era === "tw2020";
     var L = ['<div class="tw-feed app' + (old ? " twc20" : "") + " " + b.theme + (b.width ? " " + b.width : "") + (b.scroll ? " " + b.scroll : "") + '">', '  <div class="app-screen">',
-      '  <p class="tw-header">' + (me ? circle("tw-me", me) + " " : "") + '<span class="tw-logo">' + (old ? "Twitter" : "X") + "</span></p>"];
-    if (!old) L.push('  <p class="tw-tabs"><span class="tw-tab on">For you<span class="tw-drop"></span></span> <span class="tw-tab">Following</span>' +
-      t(b.tabs).split(/\n/).map(t).filter(Boolean).map(function (x) { return ' <span class="tw-tab">' + esc(x) + "</span>"; }).join("") + ' <span class="tw-add">+</span></p>');
+      '  <p class="header">' + (me ? circle("tw-me", me) + " " : "") + '<span class="logo">' + (old ? "Twitter" : "X") + "</span></p>"];
+    if (!old) L.push('  <p class="tabs"><span class="tab on">For you<span class="tw-drop"></span></span> <span class="tab">Following</span>' +
+      t(b.tabs).split(/\n/).map(t).filter(Boolean).map(function (x) { return ' <span class="tab">' + esc(x) + "</span>"; }).join("") + ' <span class="add">+</span></p>');
     return L.concat(ind(tweets.join("\n\n").split("\n"), 1)).concat(["  </div>", "</div>"]).join("\n").replace(/\n  \n/g, "\n\n");
   }
   function twThreadHTML(b) {
     var L = ['<div class="tw-feed' + (b.era === "tw2020" ? " twc20" : "") + " " + b.theme + (b.width ? " " + b.width : "") + (b.scroll ? " " + b.scroll : "") + '">', '  <div class="app-screen">'];
     b.msgs.forEach(function (m, i) { L = L.concat(ind(tweetHTML(b, m, i ? "reply" : "main"), 2)); });
     L.push("  </div>");
-    if (b.bar !== "none") L.push('  <p class="tw-reply-bar"><span>Reply</span><span class="hide"> - </span>Tweet your reply</p>');
+    if (b.bar !== "none") L.push('  <p class="reply-bar"><span>Reply</span><span class="hide"> - </span>Tweet your reply</p>');
     L.push("</div>");
     return L.join("\n");
   }
@@ -1971,7 +1975,7 @@
         return n.classList.contains("egg") ? "{{" + o.textContent + "|" + c.textContent + "}}" : "[[" + o.textContent + "|" + c.textContent + "]]";
       }
       if (is(n, "span.fake-link")) return "<<" + n.textContent + ">>";
-      if (is(n, "span.tw-link, span.ig-link")) return n.textContent; // a hashtag or @mention goes blue by itself
+      if (is(n, "span.fake-link, span.fake-link")) return n.textContent; // a hashtag or @mention goes blue by itself
       if (is(n, "br")) return "\n";
       return no();
     }).join("").replace(/^\s+|\s+$/g, "");
@@ -2126,7 +2130,7 @@
   function looks(c, el) {
     if (!c || isProfile(c) || fresh.indexOf(c.id) < 0 || !el) return;
     var col = el.className.match(/(?:^|\s)colour(\d+)/); if (col) c.colour = col[1];
-    if (!is(el, ".avatar, .tw-pfp, .ig-pfp, [class*=-pfp]")) return;
+    if (!is(el, ".avatar, .avatar, .avatar, [class*=-pfp]")) return;
     var img = el.querySelector("img");
     if (img) { c.pic = img.getAttribute("src"); c.alt = img.getAttribute("alt") || ""; c.land = img.classList.contains("landscape"); if (c.alt === "Profile picture of " + nameOf(c)) c.alt = ""; return; }
     var txt = words(el);
@@ -2302,8 +2306,8 @@
     var body = ks[k++]; if (!is(body, "div.mob-body")) no();
     b.bar = "none";
     if (is(ks[k], "p.footer")) { var f = ks[k++].querySelector(".msgbar"); if (!f) no(); barBack(b, f, 2); }
-    if (is(ks[k], "p.tw-nav")) {
-      b.nav = true; var bd = ks[k++].querySelector(".tw-badge");
+    if (is(ks[k], "p.nav")) {
+      b.nav = true; var bd = ks[k++].querySelector(".badge");
       if (bd) { var bc = bd.cloneNode(true); bc.querySelectorAll(".hide").forEach(function (x) { x.remove(); }); b.badge = bc.textContent; }
     }
     if (ks[k]) no();
@@ -2402,7 +2406,7 @@
       m.postIni = words(pf) === m.postAcc.charAt(0).toUpperCase() ? "" : words(pf);
     }
     if (is(ks[0], "div.ig-carousel")) {
-      var phs = Array.prototype.map.call(ks.shift().querySelectorAll(".ig-photo"), function (x) {
+      var phs = Array.prototype.map.call(ks.shift().querySelectorAll(".photo"), function (x) {
         var img = x.querySelector("img");
         return img ? { url: img.getAttribute("src"), alt: img.getAttribute("alt") || "", desc: "", land: img.classList.contains("landscape") } : { url: "", alt: "", desc: words(x).replace(/^\[|\]$/g, ""), land: false };
       });
@@ -2538,7 +2542,7 @@
     b.sub = sub.length ? sub[0].textContent : "";
     if (is(name[name.length - 1], "span.igdm-drop")) { if (!b.group || kids(name.pop()).length) no(); }
     else if (b.group) b.chev = false;
-    if (name.length > 2 && is(name[name.length - 1], "span.ig-tick") && is(name[name.length - 2], "span.hide")) { b.tick = true; name = name.slice(0, -2); }
+    if (name.length > 2 && is(name[name.length - 1], "span.tick") && is(name[name.length - 2], "span.hide")) { b.tick = true; name = name.slice(0, -2); }
     var o = others(b);
     if (name.length === 1 && is(name[0], "span.handle") && !b.group) { if (igPerson(name[0]) !== o[0]) no(); }
     else {
@@ -2560,7 +2564,7 @@
   function noHide(el) { var c = el.cloneNode(true); c.querySelectorAll(".hide").forEach(function (x) { x.remove(); }); return c; }
   // who posted a tweet, from its top line
   function tweeter(top, m) {
-    var nm = top.querySelector(".tw-name"), hd = top.querySelector(".tw-handle"), pf = top.querySelector(".tw-pfp"); if (!nm || !hd || !pf) no();
+    var nm = top.querySelector(".who"), hd = top.querySelector(".tw-handle"), pf = top.querySelector(".avatar"); if (!nm || !hd || !pf) no();
     var ps = nm.querySelector("span.name[class*=pfp-]"), c;
     if (ps) {
       c = personBySlug(ps.className.match(/pfp-([a-z0-9-]+)/)[1]);
@@ -2577,9 +2581,9 @@
       if (fresh.indexOf(c.id) >= 0 && h !== nameOf(c).replace(/\s+/g, "")) c.handle = h;
       looks(c, pf);
     }
-    m.verified = !!nm.querySelector(".tw-tick");
-    m.locked = !!top.querySelector(".tw-lock");
-    var tm = top.querySelector(".tw-time"); m.time = tm ? tm.textContent.replace(/^·\s*/, "") : "";
+    m.verified = !!nm.querySelector(".tick");
+    m.locked = !!top.querySelector(".lock");
+    var tm = top.querySelector(".time"); m.time = tm ? tm.textContent.replace(/^·\s*/, "") : "";
     var fan = top.querySelector(".tw-account-label");
     if (fan) { m.fanMask = !!fan.querySelector(".ic-tw-fan"); var fc = fan.cloneNode(true); fc.querySelectorAll(".ic").forEach(function (x) { x.remove(); }); m.fan = words(fc); }
     return c;
@@ -2589,7 +2593,7 @@
     ["hasPoll", "hasQuote", "hasNote", "hasPics", "hasVideo"].forEach(function (k) { m[k] = false; });
     m.likeClick = false; m.views = "-";
     var replying = kind === "reply" && is(ks[0], "p.tw-replying") ? ks.shift().textContent.replace(/^Replying to @/, "") : null;
-    if (!is(ks[0], "p.tw-top")) no();
+    if (!is(ks[0], "p.top")) no();
     var c = tweeter(ks.shift(), m); m.from = c.id;
     if (replying !== null) {
       var to = b.msgs.slice().reverse().filter(function (x) { var xc = char(x.from); return xc && twHandle(xc, accOf(xc, x.acc, "tw")) === replying; })[0];
@@ -2597,46 +2601,46 @@
       m.replyTo = to.from;
     }
     if (is(ks[0], "p.tw-label")) m.label = ks.shift().textContent;
-    if (kind === "reply" ? is(ks[0], "p") && !ks[0].className : is(ks[0], "p.tw-text")) m.text = textBack(inl(ks.shift()));
+    if (kind === "reply" ? is(ks[0], "p") && !ks[0].className : is(ks[0], "p.text")) m.text = textBack(inl(ks.shift()));
     // a poll: still open, or with its results
-    if (is(ks[0], "p.tw-opt")) {
+    if (is(ks[0], "p.opt")) {
       m.hasPoll = true;
       var lines = [], res = ks[0].classList.contains("results");
-      while (is(ks[0], "p.tw-opt")) {
+      while (is(ks[0], "p.opt")) {
         var o = ks.shift();
         if (!res) { lines.push(o.textContent); continue; }
-        var bar = o.querySelector(".tw-bar"), pct = o.querySelector(".tw-pct"); if (!bar || !pct) no();
-        if (bar.querySelector(".tw-voted")) { m.pollShowVote = true; m.pollVoted = String(lines.length); }
+        var bar = o.querySelector(".tw-bar"), pct = o.querySelector(".pct"); if (!bar || !pct) no();
+        if (bar.querySelector(".voted")) { m.pollShowVote = true; m.pollVoted = String(lines.length); }
         lines.push(noHide(bar).textContent.replace(/\s*✓$/, "") + " " + pct.textContent);
       }
       m.poll = lines.join("\n"); m.pollKind = res ? "results" : "open";
-      if (is(ks[0], "p.tw-pollinfo")) m.pollinfo = ks.shift().textContent;
+      if (is(ks[0], "p.pollinfo")) m.pollinfo = ks.shift().textContent;
     }
     // a poll readers can tap: the open poll, and the results with their vote once tapped
-    if (is(ks[0], "details.tw-vote")) {
+    if (is(ks[0], "details.vote")) {
       m.hasPoll = true; m.pollKind = "tap"; m.pollTap = true;
       var dv = ks.shift(), sum = dv.querySelector("summary"); if (!sum) no();
-      var si = sum.querySelector(".tw-pollinfo"); if (si) m.pollinfo = si.textContent;
-      m.poll = Array.prototype.map.call(dv.querySelectorAll(":scope > p.tw-opt"), function (o, i) {
-        var bar = o.querySelector(".tw-bar"), pct = o.querySelector(".tw-pct"); if (!bar || !pct) no();
-        if (bar.querySelector(".tw-voted")) m.pollVote = String(i);
+      var si = sum.querySelector(".pollinfo"); if (si) m.pollinfo = si.textContent;
+      m.poll = Array.prototype.map.call(dv.querySelectorAll(":scope > p.opt"), function (o, i) {
+        var bar = o.querySelector(".tw-bar"), pct = o.querySelector(".pct"); if (!bar || !pct) no();
+        if (bar.querySelector(".voted")) m.pollVote = String(i);
         return noHide(bar).textContent.replace(/\s*✓$/, "") + " " + pct.textContent;
       }).join("\n");
     }
-    if (is(ks[0], "div.tw-photos.video")) {
+    if (is(ks[0], "div.photos.video")) {
       m.hasVideo = true; var f = ks[0].querySelector("iframe"); if (!f) no();
       m.vUrl = f.getAttribute("src"); m.vTitle = f.getAttribute("title") || "";
       var vd = ks.shift().querySelector(".video-desc"); if (vd) m.vDesc = words(vd).replace(/^\[|\]$/g, "");
-    } else if (is(ks[0], "p.tw-photos")) {
+    } else if (is(ks[0], "p.photos")) {
       m.hasPics = true;
-      var med = ks.shift(), cells = med.querySelectorAll(".tw-photo");
+      var med = ks.shift(), cells = med.querySelectorAll(".photo");
       m.photos = (cells.length ? Array.prototype.slice.call(cells) : [med]).map(function (cell) {
         var img = cell.querySelector("img");
         return img ? { url: img.getAttribute("src"), alt: img.getAttribute("alt") || "", desc: "", land: img.classList.contains("landscape") } : { url: "", alt: "", desc: words(cell).replace(/^\[|\]$/g, ""), land: false };
       });
     }
     if (is(ks[0], "p.tw-warn")) { m.warn = true; ks.shift(); }
-    if (is(ks[0], "p.tw-quote")) {
+    if (is(ks[0], "p.quote")) {
       m.hasQuote = true;
       var qn = inl(ks.shift()), qb = qn.shift(); if (!is(qb, "b")) no();
       m.qName = qb.textContent;
@@ -2647,7 +2651,7 @@
     }
     if (is(ks[0], "p.tw-note")) { m.hasNote = true; m.note = ks.shift().textContent; }
     if (is(ks[0], "p.tw-date")) m.date = ks.shift().textContent;
-    var st = ks.shift(); if (!is(st, "div.tw-stats") || ks.length) no();
+    var st = ks.shift(); if (!is(st, "div.stats") || ks.length) no();
     kids(st).forEach(function (x) {
       var ic = x.querySelector(".ic"), what = ic ? (ic.className.match(/ic-tw-(\w+)/) || [])[1] : ""; if (!what) no();
       if (what === "reply") m.replies = countOf(x);
@@ -2663,7 +2667,7 @@
   }
   function twLook(b, c) { if (c === "twc20") { b.era = "tw2020"; return true; } }
   READERS.twone = function (els) {
-    var b = newBlock("twone"); settings(b, els[0], "tw");
+    var b = newBlock("twone"); settings(b, els[0], "tw", function (c) { return c === "post"; });
     els.forEach(function (el) { b.msgs.push(tweetBack(b, el, "feed")); });
     return b;
   };
@@ -2674,9 +2678,9 @@
     var ks = kids(el), sc = ks.shift(); if (!is(sc, "div.app-screen")) no();
     var inner = kids(sc), me = null;
     if (app) {
-      var top = inner.shift(); if (!is(top, "p.tw-header")) no();
+      var top = inner.shift(); if (!is(top, "p.header")) no();
       me = top.querySelector(".tw-me");
-      if (is(inner[0], "p.tw-tabs")) b.tabs = Array.prototype.slice.call(inner.shift().querySelectorAll(".tw-tab")).slice(2).map(function (x) { return x.textContent; }).join("\n");
+      if (is(inner[0], "p.tabs")) b.tabs = Array.prototype.slice.call(inner.shift().querySelectorAll(".tab")).slice(2).map(function (x) { return x.textContent; }).join("\n");
       inner.forEach(function (d) { if (!is(d, "div.mob.tw")) no(); b.msgs.push(tweetBack(b, d, "feed")); });
       // whose phone: a profile from its class, or whoever has that picture
       var ms = me && slugIn(me);
@@ -2684,7 +2688,7 @@
       else if (me) { var hit = S.cast.filter(function (c) { return canon(circle("tw-me", c)) === canon(me.outerHTML); })[0]; if (hit) b.pov = hit.id; }
     } else {
       inner.forEach(function (d, i) { if (!is(d, i ? "div.mob.tw-reply" : "div.mob.tw")) no(); b.msgs.push(tweetBack(b, d, i ? "reply" : "main")); });
-      b.bar = is(ks[0], "p.tw-reply-bar") ? (ks.shift(), "empty") : "none";
+      b.bar = is(ks[0], "p.reply-bar") ? (ks.shift(), "empty") : "none";
       if (b.msgs[0]) b.pov = b.msgs[0].from;
     }
     if (ks.length) no();
@@ -2714,19 +2718,19 @@
   function igPostBack(b, div) {
     var ks = kids(div), m = newMsg("", "");
     m.likesLine = "count"; m.faces = []; m.tags = []; m.collabs = []; m.follow = ""; m.shape = "";
-    var top = ks.shift(); if (!is(top, "p.ig-top")) no();
+    var top = ks.shift(); if (!is(top, "p.top")) no();
     var ns = kids(top), k = 0, pend = false;
     function take(sel) { if (is(ns[k], sel)) return ns[k++]; return null; }
     function marks() { // a tick and a padlock after a name
       var tick = false, lock = false;
-      while (is(ns[k], "span.hide") && is(ns[k + 1], "span.ig-tick, span.ig-lock")) { if (ns[k + 1].classList.contains("ig-tick")) tick = true; else lock = true; k += 2; }
+      while (is(ns[k], "span.hide") && is(ns[k + 1], "span.tick, span.lock")) { if (ns[k + 1].classList.contains("tick")) tick = true; else lock = true; k += 2; }
       return { tick: tick, lock: lock };
     }
-    if (!take("span.ig-menu")) no();
-    if (take("span.ig-follow.btn")) m.follow = "button";
-    var col = take("span.ig-collab"), pic = col ? col.querySelector(".ig-pfp") : take("span.ig-pfp"); if (!pic) no();
+    if (!take("span.menu")) no();
+    if (take("span.follow.btn")) m.follow = "button";
+    var col = take("span.ig-collab"), pic = col ? col.querySelector(".avatar") : take("span.avatar"); if (!pic) no();
     m.story = pic.classList.contains("story");
-    var nw = take("span.ig-name"), nm = nw && kids(nw).length === 1 ? kids(nw)[0] : no();
+    var nw = take("span.who"), nm = nw && kids(nw).length === 1 ? kids(nw)[0] : no();
     // a name typed over a profile's picture (often cut short with "…") belongs to that profile
     var c = nm.nodeType === 3 && slugIn(pic) ? (m.nameAs = nm.nodeValue.trim(), personBySlug(slugIn(pic))) : nm.nodeType === 3 ? (function () { var x = S.cast.filter(function (x) { return x.kind === "oneoff" && igName(x) === nm.nodeValue.trim(); })[0]; if (!x) { x = freshChar(nm.nodeValue.trim()); if (igName(x) !== nm.nodeValue.trim()) x.ighandle = nm.nodeValue.trim(); } return x; })() : igPerson(nm);
     var acc = nm.nodeType === 1 && nm.className.match(/(?:^|\s)acc-([a-z0-9-]+)/); m.acc = acc ? acc[1] : "";
@@ -2734,7 +2738,7 @@
     var mk = marks(); m.verified = mk.tick; m.locked = mk.lock;
     if (col) {
       // "and" someone, or "and 2 others" with their names hidden
-      var pics = col.querySelectorAll(".ig-pfp"), andT = ns[k++];
+      var pics = col.querySelectorAll(".avatar"), andT = ns[k++];
       if (!andT || andT.nodeType !== 3) no();
       if (/^and \d+ others$/.test(andT.nodeValue.trim())) {
         var hid = take("span.hide"), hm = hid && hid.textContent.match(/^ \((.*)\)( - )?$/); if (!hm) no();
@@ -2746,7 +2750,7 @@
         looks(char(m.collabs[0].who), pics[1]);
       } else {
         if (andT.nodeValue.trim() !== "and") no();
-        var rw = take("span.ig-name"), rest = rw && kids(rw).length === 1 ? kids(rw)[0] : no();
+        var rw = take("span.who"), rest = rw && kids(rw).length === 1 ? kids(rw)[0] : no();
         var cas = rest.nodeType === 3 && slugIn(pics[1]) ? rest.nodeValue.trim() : "";
         var co = cas ? personBySlug(slugIn(pics[1])) : rest.nodeType === 3 ? (function () { var n = rest.nodeValue.trim(), x = S.cast.filter(function (y) { return y.kind === "oneoff" && igName(y) === n; })[0]; if (!x) { x = freshChar(n); if (igName(x) !== n) x.ighandle = n; } return x; })() : igPerson(rest);
         looks(co, pics[1]);
@@ -2759,12 +2763,12 @@
       if (!pend && is(ns[k], "span.hide") && is(ns[k + 1], sel)) { k += 2; return ns[k - 1]; }
       return null;
     }
-    if (sepThen("span.ig-follow")) m.follow = "link";
+    if (sepThen("span.follow")) m.follow = "link";
     var u = sepThen("span"); if (u) { u = u.textContent; m.song = /^♫ /.test(u); m.under = u.replace(/^♫ /, ""); }
     if (pend || k !== ns.length) no();
     // the photo, or a carousel of them
-    if (is(ks[0], "p.ig-photo, div.ig-carousel")) {
-      var pe = ks.shift(), phs = is(pe, "p") ? [pe] : Array.prototype.slice.call(pe.querySelectorAll(".ig-photo"));
+    if (is(ks[0], "p.photo, div.ig-carousel")) {
+      var pe = ks.shift(), phs = is(pe, "p") ? [pe] : Array.prototype.slice.call(pe.querySelectorAll(".photo"));
       var shape = (phs[0].className.match(/(?:^|\s)(square|portrait)(?:\s|$)/) || [])[1]; m.shape = shape === "square" ? "sq" : shape || "";
       m.photos = phs.map(function (x) {
         var img = x.querySelector("img");
@@ -2773,7 +2777,7 @@
     }
     if (is(ks[0], "details.ig-tagged")) {
       m.tags = Array.prototype.map.call(ks.shift().querySelectorAll("p.ig-person"), function (p) {
-        var fb = p.querySelector(".ig-following"), pc = p.querySelector(".ig-pfp"), hn = p.querySelector(".handle"); if (!pc || !hn) no();
+        var fb = p.querySelector(".ig-following"), pc = p.querySelector(".avatar"), hn = p.querySelector(".handle"); if (!pc || !hn) no();
         var pn = p.querySelector(".ig-person-name"), who;
         if (hn.querySelector("[class*=pfp-]") || is(hn, "[class*=pfp-]") || !pn) who = igPerson(hn);
         else { // a one-off: their name, and their username if it isn't the usual one made from it
@@ -2782,22 +2786,22 @@
           if (!who) { who = freshChar(n); if (igName(who) !== h) who.ighandle = h; }
         }
         looks(who, pc);
-        return { who: who.id, fol: !fb ? "none" : fb.classList.contains("blue") ? "follow" : "following", tick: !!p.querySelector(".ig-tick"), lock: !!p.querySelector(".ig-lock") };
+        return { who: who.id, fol: !fb ? "none" : fb.classList.contains("blue") ? "follow" : "following", tick: !!p.querySelector(".tick"), lock: !!p.querySelector(".lock") };
       });
     }
-    var act = ks.shift(); if (!is(act, "div.ig-stats")) no();
+    var act = ks.shift(); if (!is(act, "div.stats")) no();
     kids(act).forEach(function (x) {
       // the number is what's left once the icon, the hidden words and the liked number are taken out
       var num = function () { var c = (x.querySelector(":scope > summary") || x).cloneNode(true); c.querySelectorAll(".ic, .hide, .on").forEach(function (r) { r.remove(); }); return c.textContent.trim(); };
-      if (is(x, "details.ig-stat.ig-tog.right")) { if (!x.querySelector(".ic-save")) no(); m.saved = x.open; }
-      else if (is(x, "details.ig-stat.ig-tog")) { m.likeClick = true; m.liked = x.open; m.likes = num(); }
-      else if (!is(x, "p.ig-stat")) no();
+      if (is(x, "details.stat.tog.right")) { if (!x.querySelector(".ic-save")) no(); m.saved = x.open; }
+      else if (is(x, "details.stat.tog")) { m.likeClick = true; m.liked = x.open; m.likes = num(); }
+      else if (!is(x, "p.stat")) no();
       else if (x.querySelector(".ic-heart")) { m.likeClick = false; m.liked = x.classList.contains("liked"); m.likes = num(); }
       else if (x.querySelector(".ic-comment")) m.cmCount = num();
       else if (x.querySelector(".ic-repost")) m.reposts = num();
       else if (!x.querySelector(".ic-share")) no();
     });
-    if (is(ks[0], "p.ig-likes")) {
+    if (is(ks[0], "p.counts")) {
       var ll = ks.shift();
       if (ll.classList.contains("liked-by")) { m.likesLine = "faces"; m.faces = Array.prototype.map.call(ll.querySelectorAll(".ig-like-pfp"), function (f) { return byCircle(f).id; }); }
     } else if (t(m.likes)) m.likesLine = "none";
@@ -2814,14 +2818,14 @@
       else lines.push(textBack(cm));
     }
     m.comments = lines.join("\n");
-    if (is(ks[0], "p.ig-time")) m.time = ks.shift().textContent;
+    if (is(ks[0], "p.time")) m.time = ks.shift().textContent;
     if (ks.length) no();
     return m;
   }
   READERS.ig = function (els) {
     var feed = els[0].classList.contains("ig-feed"), b = newBlock(feed ? "igfeed" : "igone");
     if (!feed) {
-      settings(b, els[0], "ig");
+      settings(b, els[0], "ig", function (c) { return c === "post"; });
       els.forEach(function (el) { b.msgs.push(igPostBack(b, el)); });
       return b;
     }
@@ -2830,10 +2834,10 @@
     var ks = kids(els[0]); if (ks.length !== 1 || !is(ks[0], "div.app-screen")) no();
     ks = kids(ks[0]);
     b.top = "none"; b.myStory = false;
-    if (is(ks[0], "p.ig-header")) b.top = ks.shift().querySelector(".ig-badge") ? "new" : "plain";
+    if (is(ks[0], "p.header")) b.top = ks.shift().querySelector(".badge") ? "new" : "plain";
     if (is(ks[0], "div.ig-stories")) {
       b.stories = Array.prototype.map.call(ks.shift().querySelectorAll("p.ig-story"), function (p) {
-        var pc = p.querySelector(".ig-pfp"), sn = p.querySelector(".ig-story-name"); if (!pc || !sn) no();
+        var pc = p.querySelector(".avatar"), sn = p.querySelector(".ig-story-name"); if (!pc || !sn) no();
         if (p.classList.contains("me")) { b.myStory = true; b.pov = byCircle(pc).id; return ""; }
         var ring = p.classList.contains("close") ? " (close)" : p.classList.contains("plain") ? " (seen)" : "";
         var c = S.cast.filter(function (x) { return igName(x) === sn.textContent; })[0];
@@ -2849,7 +2853,7 @@
   // stays on one line; one with a block inside puts every child on its own line, two spaces in; one with only inline
   // children splits only if its kind is on the list below (tested to look the same split or not, on the site and on AO3)
   // and one of them has a class. A hidden span that isn't first stays on the end of the line before it.
-  var SPLIT_SAFE = ["div.row", "p.avatar", "p.footer", "p.hide", "p.ig-carousel-info", "p.ig-header", "p.ig-person", "p.ig-photo.real", "p.ig-story", "p.ig-story.close", "p.ig-story.me", "p.ig-top", "p.igdm-post-btns", "p.igdm-post-by", "p.igdm-post-img", "p.link-img", "p.mob-header", "p.msg.in.tail.typing-indicator", "p.msg.in.typing-indicator", "p.msg.in.voice", "p.msg.out.tail.typing-indicator", "p.msg.out.typing-indicator", "p.msg.out.voice", "p.photos", "p.photos.four", "p.photos.one", "p.photos.three", "p.photos.two", "p.tb-blog", "p.tb-header", "p.tb-nav", "p.tb-row", "p.tb-row.two", "p.tb-tabs", "p.tb-top", "p.tw-header", "p.tw-nav", "p.tw-opt.results.p10", "p.tw-opt.results.p25", "p.tw-opt.results.p30", "p.tw-opt.results.p60", "p.tw-opt.results.win.p75", "p.tw-pfp", "p.tw-photos", "p.tw-photos.four", "p.tw-photos.three", "p.tw-photos.two", "p.tw-stat", "p.tw-stat.locked", "p.tw-stat.right", "p.tw-stat.right.saved", "p.tw-tabs", "p.tw-top", "p.twc-reply-bar", "p.wa-call", "p.wa-wall", "p.who", "span.avatar", "span.back", "span.dc-embed-text", "span.dc-quote", "span.gm-pfp", "span.handle.acc-rpf", "span.hide", "span.ig-badge", "span.ig-collab", "span.ig-like-pfp", "span.ig-pfp", "span.ig-pfp.story", "span.ig-photo.real", "span.msgbar", "span.pfp", "span.photo", "span.tb-ask-pfp", "span.tb-name", "span.tb-pfp", "span.tb-pfp.reblog", "span.tb-photo", "span.tb-voted", "span.tw-me", "span.tw-pfp", "span.tw-photo", "td.gm-btns", "td.gm-pfp-cell", "td.gm-star"];
+  var SPLIT_SAFE = ["div.row", "ig:p.header", "ig:p.photo.real", "ig:p.top", "ig:span.avatar", "ig:span.avatar.story", "ig:span.badge", "ig:span.photo.real", "p.avatar", "p.footer", "p.hide", "p.ig-carousel-info", "p.ig-person", "p.ig-story", "p.ig-story.close", "p.ig-story.me", "p.igdm-post-btns", "p.igdm-post-by", "p.igdm-post-img", "p.link-img", "p.mob-header", "p.msg.in.tail.typing-indicator", "p.msg.in.typing-indicator", "p.msg.in.voice", "p.msg.out.tail.typing-indicator", "p.msg.out.typing-indicator", "p.msg.out.voice", "p.photos", "p.photos.four", "p.photos.one", "p.photos.three", "p.photos.two", "p.tb-blog", "p.tb-row", "p.tb-row.two", "p.wa-call", "p.wa-wall", "p.who", "span.avatar", "span.back", "span.dc-embed-text", "span.dc-quote", "span.gm-pfp", "span.handle.acc-rpf", "span.hide", "span.ig-collab", "span.ig-like-pfp", "span.msgbar", "span.pfp", "span.photo", "span.tb-ask-pfp", "span.tw-me", "tb:p.header", "tb:p.nav", "tb:p.tabs", "tb:p.top", "tb:span.avatar", "tb:span.avatar.reblog", "tb:span.photo", "tb:span.voted", "tb:span.who", "td.gm-btns", "td.gm-pfp-cell", "td.gm-star", "tw:p.avatar", "tw:p.header", "tw:p.nav", "tw:p.opt.results.p10", "tw:p.opt.results.p25", "tw:p.opt.results.p30", "tw:p.opt.results.p60", "tw:p.opt.results.win.p75", "tw:p.photos", "tw:p.photos.four", "tw:p.photos.three", "tw:p.photos.two", "tw:p.stat", "tw:p.stat.locked", "tw:p.stat.right", "tw:p.stat.right.saved", "tw:p.tabs", "tw:p.top", "tw:span.avatar", "tw:span.photo", "twc:p.avatar", "twc:p.nav", "twc:p.opt.results.p10", "twc:p.opt.results.p25", "twc:p.opt.results.p30", "twc:p.opt.results.p60", "twc:p.opt.results.win.p75", "twc:p.photos", "twc:p.photos.four", "twc:p.photos.three", "twc:p.photos.two", "twc:p.reply-bar", "twc:p.stat", "twc:p.stat.locked", "twc:p.stat.right", "twc:p.stat.right.saved", "twc:p.tabs", "twc:p.top", "twc:span.avatar", "twc:span.photo"];
   var FMT_BOXES = "mob dc tw-feed ig-feed tb-feed twc12-feed twc16-feed tw tw-reply ig igdm tb gm mail twdm wa imsg twc12 twc16".split(" ");
   var FMT_BLOCK = "div p table thead tbody tr td th ul ol li details summary blockquote h1 h2 h3 h4 h5 h6 pre hr".split(" ");
   var FMT_VOID = ["img", "br", "hr", "input"];
@@ -2872,7 +2876,7 @@
     addText(i, text.length);
     return stack.length === 1 ? root : null;
   }
-  function fmtSig(n) { return n.tag + "." + n.classes.filter(function (c) { return !/^(colour\d+|pfp-.*|pov-.*|theme-.*)$/.test(c); }).join("."); }
+  function fmtSig(n) { return n.tag + "." + n.classes.filter(function (c) { return !/^(colour\d+|pfp-.*|pov-.*|theme-.*|comments|reposts|reblogs|likes|views|bookmarks|shares)$/.test(c); }).join("."); }
   function fmtWs(n) { return n.kind === "text" && !n.raw.trim(); }
   function fmtOne(n) {
     if (n.kind === "text") return n.raw.replace(/\s*\n\s*/g, " ");
@@ -2880,7 +2884,14 @@
     if (FMT_BLOCK.indexOf(n.tag) >= 0) inner = inner.trim();
     return n.raw + inner + n.close;
   }
-  function fmtLines(n, ind) {
+  // which app a box is, for the rows on the list that only count in one app ("tw:p.top")
+  function fmtApp(n, app) {
+    var c = (n.classes || []).filter(function (x) { return FMT_BOXES.indexOf(x) >= 0 && x !== "mob"; })[0];
+    if (!c) return app;
+    return { "tw-reply": "tw", twdm: "tw", igdm: "ig", twc12: "twc", twc16: "twc" }[c] || c.replace("-feed", "").replace(/^twc1[26]$/, "twc");
+  }
+  function fmtLines(n, ind, app) {
+    app = fmtApp(n, app || "");
     var pad = new Array(ind + 1).join(" ");
     if (n.kind === "text") return [pad + fmtOne(n).trim()];
     var kids = n.kids.filter(function (k) { return !fmtWs(k); });
@@ -2888,7 +2899,7 @@
     var blocky = kids.some(function (k) { return k.kind === "el" && FMT_BLOCK.indexOf(k.tag) >= 0; });
     if (n.tag === "pre") return null;
     var named = kids.some(function (k) { return k.kind === "el" && k.classes.length; });
-    if (!kids.length || words && !blocky || !words && !blocky && (SPLIT_SAFE.indexOf(fmtSig(n)) < 0 || !named)) return [pad + fmtOne(n).trim()];
+    if (!kids.length || words && !blocky || !words && !blocky && (SPLIT_SAFE.indexOf(fmtSig(n)) < 0 && SPLIT_SAFE.indexOf(app + ":" + fmtSig(n)) < 0 || !named)) return [pad + fmtOne(n).trim()];
     if (words) return null;
     var out = [pad + n.raw], gap = [];
     for (var j = 0; j + 1 < n.kids.length; j++) { var a = n.kids[j]; if (fmtWs(a) && (a.raw.match(/\n/g) || []).length > 1 && j > 0) gap.push(n.kids[j + 1]); }
@@ -2896,7 +2907,7 @@
       var c = kids[k];
       if (gap.indexOf(c) >= 0 && out.length > 1) out.push("");
       if (k && c.tag === "span" && c.classes.indexOf("hide") >= 0 && out.length > 1) { out[out.length - 1] += fmtOne(c); continue; }
-      var sub = fmtLines(c, ind + 2);
+      var sub = fmtLines(c, ind + 2, app);
       if (!sub) return null;
       out = out.concat(sub);
     }
@@ -2997,8 +3008,8 @@
         Array.prototype.forEach.call(scr.children, function (x) { if (th && x.matches("div.mob.ig") && !/(?:^|\s)theme-/.test(x.className)) x.classList.add(th); });
         hit = true;
       }
-      // a picture circle in an Instagram or Twitter DM was ig-pfp or tw-pfp: now it's avatar, like every chat's
-      if (c.matches(".mob.igdm, .mob.twdm")) Array.prototype.slice.call(c.querySelectorAll(".ig-pfp, .tw-pfp")).forEach(function (x) {
+      // a picture circle in an Instagram or Twitter DM was avatar or avatar: now it's avatar, like every chat's
+      if (c.matches(".mob.igdm, .mob.twdm")) Array.prototype.slice.call(c.querySelectorAll(".avatar, .avatar")).forEach(function (x) {
         x.setAttribute("class", x.getAttribute("class").replace(/(^|\s)(ig|tw)-pfp(?=\s|$)/, "$1avatar")); hit = true;
       });
       // old WhatsApp typing dots were a div with p's (and a name line in a group); now they're one p like every other app
@@ -3042,7 +3053,7 @@
         d.appendChild(w); o.parentNode.replaceChild(d, o);
       });
       // old described pictures in posts were bare words in brackets: now they're in an img-desc span
-      Array.prototype.slice.call(c.querySelectorAll(".ig-photo, p.tw-photos > span:not([class])")).forEach(function (x) {
+      Array.prototype.slice.call(c.querySelectorAll(".photo, p.photos > span:not([class])")).forEach(function (x) {
         if (is(x, "span:not([class])")) { x.className = "img-desc"; hit = true; return; }
         var tx = Array.prototype.filter.call(x.childNodes, function (n) { return n.nodeType === 3 && n.nodeValue.trim(); })[0];
         if (!tx || x.querySelector(".img-desc, img")) return;
@@ -3088,31 +3099,31 @@
         hd.appendChild(hk[3]); hd.appendChild(hk[2]); hit = true;
       });
       // a poll result's hidden gap between the words and the percentage was a space: now it's " - ", the same as Tumblr's
-      Array.prototype.slice.call(c.querySelectorAll(".tw-opt > span.hide")).forEach(function (h) {
-        if (h.textContent === " " && is(h.previousElementSibling, ".tw-bar") && is(h.nextElementSibling, ".tw-pct")) { h.textContent = " - "; hit = true; }
+      Array.prototype.slice.call(c.querySelectorAll(".opt > span.hide")).forEach(function (h) {
+        if (h.textContent === " " && is(h.previousElementSibling, ".tw-bar") && is(h.nextElementSibling, ".pct")) { h.textContent = " - "; hit = true; }
       });
       // the notification badge used to sit in a badged wrapper round the bell: now the two are side by side
       Array.prototype.slice.call(c.querySelectorAll("span.badged")).forEach(function (w) {
         while (w.firstChild) w.parentNode.insertBefore(w.firstChild, w);
         w.remove(); hit = true;
       });
-      // the old boxed Follow button was ig-follow-btn: now it's ig-follow with btn
+      // the old boxed Follow button was ig-follow-btn: now it's follow with btn
       Array.prototype.slice.call(c.querySelectorAll(".ig-follow-btn")).forEach(function (x) {
-        x.setAttribute("class", x.getAttribute("class").replace(/(^|\s)ig-follow-btn(?=\s|$)/, "$1ig-follow btn")); hit = true;
+        x.setAttribute("class", x.getAttribute("class").replace(/(^|\s)ig-follow-btn(?=\s|$)/, "$1follow btn")); hit = true;
       });
-      // an account name on a post's top line or in "In this photo" used to sit bare: now it's in an ig-name span.
+      // an account name on a post's top line or in "In this photo" used to sit bare: now it's in a who span.
       // A collab's "and" was an ig-and span between two hidden spaces: now it's the plain words
-      Array.prototype.slice.call(c.querySelectorAll("p.ig-top, p.ig-person")).forEach(function (p) {
-        if (p.querySelector(":scope > span.ig-name")) return;
+      Array.prototype.slice.call(c.querySelectorAll("p.top, p.ig-person")).forEach(function (p) {
+        if (p.querySelector(":scope > span.who")) return;
         var ns = kids(p), i = 0;
         function wrap(n) {
           if (!n || !(n.nodeType === 3 || is(n, "span.handle"))) return;
-          var w = document.createElement("span"); w.className = "ig-name"; p.insertBefore(w, n);
+          var w = document.createElement("span"); w.className = "who"; p.insertBefore(w, n);
           if (n.nodeType === 3) { w.textContent = n.nodeValue.trim(); n.remove(); } else w.appendChild(n);
           hit = true;
         }
-        while (is(ns[i], ".ig-menu, .ig-follow.btn, .ig-following")) i++;
-        if (!is(ns[i], ".ig-pfp, .ig-collab")) return;
+        while (is(ns[i], ".menu, .follow.btn, .ig-following")) i++;
+        if (!is(ns[i], ".avatar, .ig-collab")) return;
         wrap(ns[i + 1]);
         var and = p.querySelector(":scope > span.ig-and"); if (!and) return;
         var ks = kids(p), j = ks.indexOf(and);
@@ -3126,9 +3137,9 @@
           if (is(hid, "span.hide") && is(dash, "span.hide") && dash.textContent === " - ") { hid.textContent += " - "; dash.remove(); }
         } else wrap(rest);
       });
-      // old Instagram buttons had ig-icon and ig-count spans (and drawn comment and bookmark icons): now they're built like Twitter's
-      Array.prototype.slice.call(c.querySelectorAll("div.ig-stats")).forEach(function (st) {
-        if (!st.querySelector(".ig-icon, .ig-count")) return;
+      // old Instagram buttons had icon and ig-count spans (and drawn comment and bookmark icons): now they're built like Twitter's
+      Array.prototype.slice.call(c.querySelectorAll("div.stats")).forEach(function (st) {
+        if (!st.querySelector(".icon, .ig-count")) return;
         st.innerHTML = kids(st).map(function (x) {
           var cnt = x.querySelector(".ig-count:not(.on)"), n = cnt ? cnt.textContent : "", save = x.querySelector(".bookmark, .ic-save");
           if (is(x, "details")) return save ? igSaveTog(x.open) : igLikeTog(n, x.open);
@@ -3155,6 +3166,18 @@
         if (h) h.textContent = h.textContent.replace(/^ /, "");
         while (r.firstChild) p.appendChild(r.firstChild);
         host.removeChild(r); host.parentNode.insertBefore(p, host.nextSibling); hit = true;
+      });
+      // every tweet and Instagram post is a post now
+      [c].concat(Array.prototype.slice.call(c.querySelectorAll(".mob"))).forEach(function (x) {
+        if (x.matches(".mob.tw, .mob.tw-reply, .mob.ig") && !x.classList.contains("post")) { x.classList.add("post"); hit = true; }
+      });
+      // and each button says what kind it is, from its icon
+      var KINDS = [["comments", ".ic-tw-reply, .ic-comment"], ["reposts", ".ic-tw-repost, .ic-repost"], ["likes", ".ic-tw-like, .ic-heart"],
+        ["views", ".ic-tw-views"], ["bookmarks", ".ic-tw-bookmark, .ic-save"], ["shares", ".ic-tw-share, .ic-share"]];
+      Array.prototype.slice.call(c.querySelectorAll(".stats > .stat")).forEach(function (x) {
+        if (KINDS.some(function (k) { return x.classList.contains(k[0]); })) return;
+        var k = KINDS.filter(function (k) { return x.querySelector(k[1]); })[0]; if (!k) return;
+        x.setAttribute("class", x.getAttribute("class").replace(/(^|\s)stat(?=\s|$)/, "$1stat " + k[0])); hit = true;
       });
       return c;
     });
