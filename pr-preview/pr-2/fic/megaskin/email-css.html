@@ -25,7 +25,7 @@
   <!-- /site meta -->
   <link rel="stylesheet" href="../../style.css?v=c31c06ea">
   <script src="../../theme.js?v=c50fd7c2"></script>
-  <link rel="stylesheet" href="megaskin.css?v=888fecf4" id="creator-style">
+  <link rel="stylesheet" href="megaskin.css?v=e4dcd439" id="creator-style">
 </head>
 <body>
 <header>
@@ -88,11 +88,11 @@
 
 <h3 id="s17-1">17.1 Getting the CSS</h3>
 
-<p>The Email CSS is here: <a href="css/email.css">jockles.com/fic/megaskin/css/email.css</a>. It needs the core CSS too, so paste the <a href="core-css.html">core</a> into your work skin first and this underneath it.</p>
+<p>Gmail and the email window are two separate modules, so you only need the one you use. The Gmail CSS is here: <a href="css/gmail.css">jockles.com/fic/megaskin/css/gmail.css</a>, and the email window CSS is here: <a href="css/email.css">jockles.com/fic/megaskin/css/email.css</a>. They need the core CSS too, so paste the <a href="core-css.html">core</a> into your work skin first and these underneath it.</p>
 
 <h3 id="s17-2">17.2 How the Module is Laid Out</h3>
 
-<p>Gmail first (everything starting <code>.gm</code>), then the email window (everything starting <code>.mail</code>), then Links, Scrolling, Dark theme, Auto theme and Icons. Both kinds of email sit inside a <code>mob</code> box, so they get the core's phone width and can use <code>no-scroll</code>.</p>
+<p>There are two modules: Gmail (everything starting <code>.gm</code>) and the email window (everything starting <code>.mail</code>). Each one has its main rules first, then its own Links, Scrolling, Dark theme, Auto theme and Icons. Both kinds of email sit inside a <code>mob</code> box, so they get the core's phone width and can use <code>no-scroll</code>.</p>
 
 <h3 id="s17-3">17.3 Gmail Emails</h3>
 
@@ -511,11 +511,11 @@
 
 <h3 id="s17-8">17.8 Taking Parts Out</h3>
 
-<p>If you only use one kind of email, you can delete the other:</p>
+<p>If you only use one kind of email, you only need that module:</p>
 
 <ul>
-  <li><strong>Only Gmail:</strong> delete every rule starting <code>#workskin .mail</code>, including in Links, Scrolling and the dark and auto blocks.</li>
-  <li><strong>Only the email window:</strong> delete every rule starting <code>#workskin .gm</code>, the same way.</li>
+  <li><strong>Only Gmail:</strong> paste the Gmail module and leave out the email window one.</li>
+  <li><strong>Only the email window:</strong> paste the email window module and leave out the Gmail one.</li>
 </ul>
 
 <p>Within Gmail, you can also take out the subject line (<code>gm-title</code>, <code>gm-label</code> and <code>gm-star</code>) or the reply buttons (<code>gm-footer</code> and <code>gm-actions</code>) if you never use them. In the email window, attachments (<code>mail-attachment</code>), the signature (<code>mail-signature</code>) and the buttons (<code>mail-btns</code>) can all go on their own. Keep the table reset - every Gmail header needs it.</p>
