@@ -532,8 +532,8 @@
       if (q && char(q.from)) {
         var qt = plain(q.text).trim() || (q.photos.length ? "Photo" : t(q.voice) ? "Voice message" : "");
         if (qt.length > 60) qt = qt.slice(0, 57).trim() + "...";
-        to.push('<p class="twdm-replied' + (out ? " out" : "") + '">Replied to ' + (q.from === b.pov ? "you" : esc(nameOf(char(q.from)))) + "</p>",
-          '<p class="msg ' + side + ' twdm-quote"><span class="hide">(</span>' + esc(qt) + '<span class="hide">)</span></p>');
+        to.push('<p class="twdm-replied ' + side + '">Replied to ' + (q.from === b.pov ? "you" : esc(nameOf(char(q.from)))) + "</p>",
+          '<p class="twdm-quote ' + side + '"><span class="hide">(</span>' + esc(qt) + '<span class="hide">)</span></p>');
       }
       var bubbles = [];
       (m.photos || []).forEach(function (ph) {
@@ -2895,6 +2895,11 @@
         p.className = d.className;
         p.innerHTML = '<span class="hide">' + (who ? "<em>" + esc(who.textContent) + "</em> " : "") + (hide ? hide.innerHTML : "") + "</span><span></span><span></span><span></span>";
         d.parentNode.replaceChild(p, d); hit = true;
+      });
+      // old Twitter DM replies: the quote was a "msg" bubble, and someone else's "Replied to" line had no side
+      Array.prototype.slice.call(c.querySelectorAll("p.twdm-quote.msg, p.twdm-replied:not(.out):not(.in)")).forEach(function (q) {
+        if (q.classList.contains("twdm-quote")) q.classList.remove("msg"); else q.classList.add("in");
+        hit = true;
       });
       // old Instagram DM reactions were a span at the end of a "reacted" bubble or card; now they're a line of their own after it
       Array.prototype.slice.call(c.querySelectorAll("span.igdm-reacts")).forEach(function (r) {
