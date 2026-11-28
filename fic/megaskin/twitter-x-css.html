@@ -7,7 +7,7 @@
   <title>Megaskin, Chapter 9: Twitter/X CSS | jockles.com</title>
   <link rel="stylesheet" href="../../style.css">
   <script src="../../theme.js"></script>
-  <link rel="stylesheet" href="megaskin.css?v=51a3e4bd" id="creator-style">
+  <link rel="stylesheet" href="megaskin.css?v=2b033a56" id="creator-style">
 </head>
 <body>
 <header>
@@ -284,9 +284,9 @@
 
 #workskin .tw-feed.twc20 .tw-stats { border-top: 0; padding-top: 0.2em; }
 
-#workskin .tw-feed.twc20 .tw-stat.tw-end { flex: 1 1 0; margin-left: 0; }
+#workskin .tw-feed.twc20 .tw-stat.right { flex: 1 1 0; margin-left: 0; }
 
-#workskin .tw-feed.twc20 .tw-stat.tw-end:not(:last-child) { display: none; }</code></pre>
+#workskin .tw-feed.twc20 .tw-stat.right:not(:last-child) { display: none; }</code></pre>
 
 </details>
 
@@ -300,7 +300,7 @@
 <details>
 <summary>How it works: the 2020 redesign</summary>
 
-<p>The <code>twc20</code> rules all start with <code>.tw-feed.twc20</code>, so they only touch a thread with both classes. The logo gets the same bird as <code>bird</code>, without the margin, because the sparkle now balances the picture: it's an <code>::after</code> box on the top bar with the sparkle character as its <code>content</code>, the same width as the picture. In the stats row, the share button gets <code>flex: 1 1 0</code> back so it spreads out like the others, and <code>:not(:last-of-type)</code> hides every <code>tw-end</code> button that isn't the last one in the row, which is the bookmark.</p>
+<p>The <code>twc20</code> rules all start with <code>.tw-feed.twc20</code>, so they only touch a thread with both classes. The logo gets the same bird as <code>bird</code>, without the margin, because the sparkle now balances the picture: it's an <code>::after</code> box on the top bar with the sparkle character as its <code>content</code>, the same width as the picture. In the stats row, the share button gets <code>flex: 1 1 0</code> back so it spreads out like the others, and <code>:not(:last-of-type)</code> hides every <code>right</code> button that isn't the last one in the row, which is the bookmark.</p>
 
 </details>
 
@@ -410,9 +410,9 @@
 #workskin .tw .tw-stat,
 #workskin .tw-reply .tw-stat { display: block; flex: 1 1 0; margin: 0; padding: 0; white-space: nowrap; }
 
-/* the bookmark and share buttons (tw-end) hug the right-hand edge */
-#workskin .tw .tw-stat.tw-end,
-#workskin .tw-reply .tw-stat.tw-end { flex: none; margin-left: 0.9em; }
+/* the bookmark and share buttons (right) hug the right-hand edge */
+#workskin .tw .tw-stat.right,
+#workskin .tw-reply .tw-stat.right { flex: none; margin-left: 0.9em; }
 
 #workskin .tw .tw-stats .ic,
 #workskin .tw-reply .tw-stats .ic { width: 1.3em; height: 1.3em; margin-right: 0.3em; vertical-align: -0.3em; }
@@ -434,12 +434,12 @@
 <details>
 <summary>How it works: the row of buttons, quotes and notes</summary>
 
-<p>The row of buttons is a flex row, like the bottom of a Tumblr post. <code>flex: 1 1 0</code> gives each button an equal share of the width, so replies, reposts, likes and views spread out evenly. <code>tw-end</code> switches that off with <code>flex: none</code>, so the bookmark and share buttons only take up as much room as they need, and sit together at the right-hand end. The main tweet's row has a pale line above it, and a reply's row is smaller with no line. The buttons themselves are pictures, in the Icons section at the end of the module. A quote tweet is a smaller rounded box inside the tweet. The Community Note (<code>tw-note</code>) and the sensitive content cover (<code>tw-warn</code>) are boxes the same way, with a pale grey background.</p>
+<p>The row of buttons is a flex row, like the bottom of a Tumblr post. <code>flex: 1 1 0</code> gives each button an equal share of the width, so replies, reposts, likes and views spread out evenly. <code>right</code> switches that off with <code>flex: none</code>, so the bookmark and share buttons only take up as much room as they need, and sit together at the right-hand end. The main tweet's row has a pale line above it, and a reply's row is smaller with no line. The buttons themselves are pictures, in the Icons section at the end of the module. A quote tweet is a smaller rounded box inside the tweet. The Community Note (<code>tw-note</code>) and the sensitive content cover (<code>tw-warn</code>) are boxes the same way, with a pale grey background.</p>
 
 </details>
 
 <pre><code>/* ---- a like or bookmark readers can click: &lt;details class="tw-stat tw-tog"&gt;
-   (&lt;details class="tw-stat tw-end tw-tog"&gt; for the bookmark)
+   (&lt;details class="tw-stat right tw-tog"&gt; for the bookmark)
    Inside the &lt;summary&gt;, the "off" count shows at first and the "on" count once clicked.
    Click again and it goes back. */
 #workskin .tw .tw-tog summary,
@@ -474,8 +474,8 @@
 
 #workskin .tw .tw-stats .saved,
 #workskin .tw-reply .tw-stats .saved,
-#workskin .tw .tw-stats .tw-tog.tw-end[open],
-#workskin .tw-reply .tw-stats .tw-tog.tw-end[open] {
+#workskin .tw .tw-stats .tw-tog.right[open],
+#workskin .tw-reply .tw-stats .tw-tog.right[open] {
   color: #1d9bf0;
 }
 
@@ -485,7 +485,7 @@
   color: #cfd9de;
 }</code></pre>
 
-<p>A button the account has used turns red for a like, green for a repost or blue for a bookmark, count and all, and a clicked like turns red the same way. A clicked bookmark turns blue: <code>.tw-tog.tw-end</code> picks out the bookmark, and is more specific than the red rule, so it wins. <code>locked</code> fades a private tweet's repost button to pale grey, or dark grey in dark mode. The coloured pictures are in the Icons section too.</p>
+<p>A button the account has used turns red for a like, green for a repost or blue for a bookmark, count and all, and a clicked like turns red the same way. A clicked bookmark turns blue: <code>.tw-tog.right</code> picks out the bookmark, and is more specific than the red rule, so it wins. <code>locked</code> fades a private tweet's repost button to pale grey, or dark grey in dark mode. The coloured pictures are in the Icons section too.</p>
 
 <details>
 <summary>How it works: the clickable like and bookmark</summary>
