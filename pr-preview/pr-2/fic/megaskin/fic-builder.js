@@ -1037,7 +1037,7 @@
     var L = ['<div class="tw-feed' + (b.era === "tw2020" ? " tw2020" : "") + " " + b.theme + (b.width ? " " + b.width : "") + (b.scroll ? " " + b.scroll : "") + '">', '  <div class="tw-scroll">'];
     b.msgs.forEach(function (m, i) { L = L.concat(ind(tweetHTML(b, m, i ? "reply" : "main"), 2)); });
     L.push("  </div>");
-    if (b.bar !== "none") L.push('  <p class="tw-footer"><span>Reply</span><span class="hide"> - </span>Tweet your reply</p>');
+    if (b.bar !== "none") L.push('  <p class="tw-reply-bar"><span>Reply</span><span class="hide"> - </span>Tweet your reply</p>');
     L.push("</div>");
     return L.join("\n");
   }
@@ -2580,7 +2580,7 @@
       else if (me) { var hit = S.cast.filter(function (c) { return canon(circle("tw-me", c)) === canon(me.outerHTML); })[0]; if (hit) b.pov = hit.id; }
     } else {
       inner.forEach(function (d, i) { if (!is(d, i ? "div.mob.tw-reply" : "div.mob.tw")) no(); b.msgs.push(tweetBack(b, d, i ? "reply" : "main")); });
-      b.bar = is(ks[0], "p.tw-footer") ? (ks.shift(), "empty") : "none";
+      b.bar = is(ks[0], "p.tw-reply-bar") ? (ks.shift(), "empty") : "none";
       if (b.msgs[0]) b.pov = b.msgs[0].from;
     }
     if (ks.length) no();
