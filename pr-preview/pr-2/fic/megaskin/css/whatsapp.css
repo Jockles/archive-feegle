@@ -19,7 +19,7 @@
   padding: 0.7em 1em;
 }
 
-#workskin .wa .mob-header span {
+#workskin .wa .mob-header > span {
   display: block;
   font-weight: normal;
   font-size: 0.8em;
@@ -82,65 +82,68 @@
 }
 
 /* full header: back arrow, picture, title + subtitle, icons.
-   Use a <table class="wa-header"> instead of <p class="mob-header"> (see the tutorial for the cells) */
-#workskin .wa table.wa-header {
-  width: 100%;
-  table-layout: fixed;
-  border-collapse: collapse;
-  border-spacing: 0;
-  margin: 0;
-  background: #008069;
-  color: #ffffff;
-  text-align: left;
+   <p class="mob-header"> with a back span, a wa-pfp span, the chat-name, a plain span for the status and a btns span */
+#workskin .wa .mob-header:has(> .back),
+#workskin .wa .mob-header:has(> .wa-pfp) {
+  display: flow-root;
+  position: relative;
+  padding: 0.55em 0.8em;
+  line-height: 1.2;
+  white-space: nowrap;
 }
 
-#workskin .wa table.wa-header td {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  background: transparent;
-  color: inherit;
-  font: inherit;
-  vertical-align: middle;
-}
-
-#workskin .wa table.wa-header .back {
-  width: 34px;
-  padding-left: 0.8em;
+#workskin .wa .mob-header > .back {
+  float: left;
+  height: 38px;
+  margin-right: 0.6em;
   font-size: 1.3em;
-  line-height: 1;
+  line-height: 38px;
+  opacity: 1;
 }
 
-#workskin .wa table.wa-header .wa-pfp-cell { width: 48px; padding: 0.55em 0; text-align: center; }
-
-#workskin .wa table.wa-header .wa-pfp-cell .wa-pfp { margin: 0 auto; }
-
-#workskin .wa table.wa-header .chat-name {
-  padding: 0.55em 0.4em 0 0.4em;
+#workskin .wa .mob-header > .wa-pfp {
+  display: flex;
+  float: left;
+  width: 38px;
+  height: 38px;
+  margin-right: 0.6em;
+  font-size: 0.85em;
   font-weight: bold;
-  line-height: 1.2;
-  white-space: nowrap;
+  opacity: 1;
+}
+
+/* the name, and the status line under it: too long, and they end in "..." */
+#workskin .wa .mob-header > .chat-name {
+  padding-top: 0.25em;
+  font-size: 1em;
+  font-weight: bold;
+  opacity: 1;
+}
+
+#workskin .wa .mob-header > .chat-name,
+#workskin .wa .mob-header > .chat-name ~ span {
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-#workskin .wa table.wa-header .wa-status {
-  padding: 0 0.4em 0.55em 0.4em;
-  font-size: 0.8em;
-  line-height: 1.2;
-  opacity: 0.85;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+#workskin .wa .mob-header:has(> .btns) { padding-right: 68px; }
+
+#workskin .wa .mob-header > .btns {
+  position: absolute;
+  top: 50%;
+  right: 0.8em;
+  margin-top: -0.6em;
+  font-size: 1em;
+  opacity: 1;
 }
 
-#workskin .wa table.wa-header .btns {
-  width: 64px;
-  padding-right: 0.8em;
-  letter-spacing: 0.4em;
-  text-align: right;
-  white-space: nowrap;
+#workskin .wa .mob-header .ic {
+  display: inline-block;
+  font-size: 1em;
+  opacity: 1;
 }
+
+#workskin .wa .mob-header .btns .ic ~ .ic { margin-left: 0.6em; }
 
 /* round profile picture: initials by default; add a number class colour1-colour10 for a colour (the colours are
    in the COLOURS section of the CORE), or put a picture or a profile inside it with a pfp span */
@@ -160,13 +163,6 @@
   font-size: 0.72em;
   font-weight: bold;
   overflow: hidden;
-}
-
-#workskin .wa table.wa-header .wa-pfp {
-  width: 38px;
-  height: 38px;
-  font-size: 0.85em;
-  font-weight: bold;
 }
 
 /* a message with a profile picture beside it (group chats) */
@@ -518,8 +514,7 @@
 
 #workskin .wa.theme-dark { background-color: #0b141a; background-image: url(https://images.squidge.org/images/2026/11/18/whatsapp-bck-dark.png); color: #e9edef; border-color: #222d34; }
 
-#workskin .wa.theme-dark .mob-header,
-#workskin .wa.theme-dark table.wa-header {
+#workskin .wa.theme-dark .mob-header {
   background: #202c33;
 }
 
@@ -581,8 +576,7 @@
 @media (prefers-color-scheme: dark) {
   #workskin .wa.theme-auto { background-color: #0b141a; background-image: url(https://images.squidge.org/images/2026/11/18/whatsapp-bck-dark.png); color: #e9edef; border-color: #222d34; }
 
-  #workskin .wa.theme-auto .mob-header,
-    #workskin .wa.theme-auto table.wa-header {
+  #workskin .wa.theme-auto .mob-header {
       background: #202c33;
     }
 
@@ -741,7 +735,6 @@
 }
 
 #workskin .wa .mob-header,
-#workskin .wa .wa-header,
 #workskin .wa .mob-body,
 #workskin .wa .footer { position: relative; }
 
@@ -826,8 +819,8 @@
 }
 
 /* the top bar is coloured in every theme, so its icons are white */
-#workskin .wa .wa-header .ic.ic-back { background-image: url(https://images.squidge.org/images/2026/11/15/back-white.png); }
-#workskin .wa .wa-header .ic.ic-video { background-image: url(https://images.squidge.org/images/2026/11/15/video-white.png); }
-#workskin .wa .wa-header .ic.ic-menu { background-image: url(https://images.squidge.org/images/2026/11/15/menu-vertical-white.png); }
+#workskin .wa .mob-header .ic.ic-back { background-image: url(https://images.squidge.org/images/2026/11/15/back-white.png); }
+#workskin .wa .mob-header .ic.ic-video { background-image: url(https://images.squidge.org/images/2026/11/15/video-white.png); }
+#workskin .wa .mob-header .ic.ic-menu { background-image: url(https://images.squidge.org/images/2026/11/15/menu-vertical-white.png); }
 
 /* <<<<<<<<<< MODULE: WhatsApp (end) <<<<<<<<<< */
