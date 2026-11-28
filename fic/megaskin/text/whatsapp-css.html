@@ -59,7 +59,7 @@
   opacity: 1;
 }
 
-#workskin .wa .mob-header &gt; .wa-pfp {
+#workskin .wa .mob-header &gt; .avatar {
   display: flex;
   float: left;
   width: 38px;
@@ -434,7 +434,7 @@
   font-weight: bold;
 }
 
-#workskin .wa .wa-contact .wa-pfp {
+#workskin .wa .wa-contact .avatar {
   position: static;
   flex-shrink: 0;
   width: 46px;
@@ -461,7 +461,7 @@
 <details>
 <summary>How it works: the picture and the name</summary>
 
-<p>The picture and name sit side by side with <code>display: flex</code>, and <code>align-items: center</code> lines the name up with the middle of the picture. The picture is the usual <code>wa-pfp</code>, just bigger, with <code>position: static</code> so it stays in the card when the card is in a group, where the sender's own picture is pinned beside the bubble.</p>
+<p>The picture and name sit side by side with <code>display: flex</code>, and <code>align-items: center</code> lines the name up with the middle of the picture. The picture is the usual <code>avatar</code>, just bigger, with <code>position: static</code> so it stays in the card when the card is in a group, where the sender's own picture is pinned beside the bubble.</p>
 
 </details>
 
@@ -706,7 +706,7 @@
 
 <h4>Profile Pictures and the Ten Colours</h4>
 
-<pre><code>#workskin .wa .wa-pfp {
+<pre><code>#workskin .wa .avatar {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -744,7 +744,7 @@
 
 <pre><code>#workskin .wa .row { position: relative; padding-left: 38px; margin: 0.2em 0; }
 
-#workskin .wa .row .wa-pfp { position: absolute; left: 0; top: 0; }
+#workskin .wa .row .avatar { position: absolute; left: 0; top: 0; }
 
 #workskin .wa .row .msg { margin: 0; }
 
@@ -780,8 +780,8 @@
 <p>WhatsApp is a long module, so it's worth trimming if you only use a few parts. These come out cleanly - search for the class names and delete every rule with them in, including in the dark and auto blocks:</p>
 
 <ul>
-  <li><strong>Header with a picture and icons:</strong> the <code>mob-header</code> rules with <code>back</code>, <code>chat-name</code> or <code>btns</code> in them. Keep <code>wa-pfp</code> if you use pictures beside messages.</li>
-  <li><strong>Pictures beside messages:</strong> <code>row</code> and <code>indent</code>, and <code>wa-pfp</code> with its colours if you don't use the group header either.</li>
+  <li><strong>Header with a picture and icons:</strong> the <code>mob-header</code> rules with <code>back</code>, <code>chat-name</code> or <code>btns</code> in them. Keep <code>avatar</code> if you use pictures beside messages.</li>
+  <li><strong>Pictures beside messages:</strong> <code>row</code> and <code>indent</code>, and <code>avatar</code> with its colours if you don't use the group header either.</li>
   <li><strong>Reactions:</strong> <code>reacts</code> and <code>count</code>.</li>
   <li><strong>Message bar:</strong> <code>footer</code>, <code>msgbar</code>, <code>wa-placeholder</code>, <code>mic</code>.</li>
   <li><strong>Link cards:</strong> <code>share</code>, and everything starting <code>link-card</code>.</li>

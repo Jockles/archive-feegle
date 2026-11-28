@@ -82,9 +82,9 @@
 }
 
 /* full header: back arrow, picture, title + subtitle, icons.
-   <p class="mob-header"> with a back span, a wa-pfp span, the chat-name, a plain span for the status and a btns span */
+   <p class="mob-header"> with a back span, an avatar span, the chat-name, a plain span for the status and a btns span */
 #workskin .wa .mob-header:has(> .back),
-#workskin .wa .mob-header:has(> .wa-pfp) {
+#workskin .wa .mob-header:has(> .avatar) {
   display: flow-root;
   position: relative;
   padding: 0.55em 0.8em;
@@ -101,7 +101,7 @@
   opacity: 1;
 }
 
-#workskin .wa .mob-header > .wa-pfp {
+#workskin .wa .mob-header > .avatar {
   display: flex;
   float: left;
   width: 38px;
@@ -147,7 +147,7 @@
 
 /* round profile picture: initials by default; add a number class colour1-colour10 for a colour (the colours are
    in the COLOURS section of the CORE), or put a picture or a profile inside it with a pfp span */
-#workskin .wa .wa-pfp {
+#workskin .wa .avatar {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -168,7 +168,7 @@
 /* a message with a profile picture beside it (group chats) */
 #workskin .wa .row { position: relative; padding-left: 38px; margin: 0.2em 0; }
 
-#workskin .wa .row .wa-pfp { position: absolute; left: 0; top: 0; }
+#workskin .wa .row .avatar { position: absolute; left: 0; top: 0; }
 
 #workskin .wa .row .msg { margin: 0; }
 
@@ -474,7 +474,7 @@
   font-weight: bold;
 }
 
-#workskin .wa .wa-contact .wa-pfp {
+#workskin .wa .wa-contact .avatar {
   position: static;
   flex-shrink: 0;
   width: 46px;

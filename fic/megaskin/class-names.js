@@ -177,7 +177,9 @@ var MEGASKIN_RENAMES = [
   ["dc-count", "count"],
   ["dc-edited", "edited"],
   ["dc-time", "time"],
-  ["dc-link", "fake-link"]
+  ["dc-link", "fake-link"],
+  ["wa-pfp", "avatar"],
+  ["dc-pfp", "avatar"]
 ];
 
 // Names that did nothing and were taken out.

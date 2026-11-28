@@ -49,7 +49,7 @@
 
 #workskin .tw .tw-pfp,
 #workskin .tw-reply .tw-pfp,
-#workskin .twdm .tw-pfp {
+#workskin .twdm .avatar {
   display: flex;
   flex: none;
   align-items: center;
@@ -850,7 +850,7 @@
   line-height: 1.2;
 }
 
-#workskin .twdm .mob-header .tw-pfp { width: 40px; height: 40px; margin: 0 auto 0.25em auto; }
+#workskin .twdm .mob-header .avatar { width: 40px; height: 40px; margin: 0 auto 0.25em auto; }
 
 #workskin .twdm .mob-header .chat-name { display: block; }
 
@@ -941,7 +941,7 @@
    <div class="row"><p class="tw-pfp colour4">HP</p><p class="who">Hayden<span class="hide">:</span></p><p class="msg in">...</p></div> */
 #workskin .twdm .row { position: relative; padding-left: 36px; margin: 0.25em 0; }
 
-#workskin .twdm .row .tw-pfp {
+#workskin .twdm .row .avatar {
   position: absolute;
   left: 0;
   bottom: 0.25em;

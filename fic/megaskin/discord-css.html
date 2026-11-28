@@ -7,7 +7,7 @@
   <title>Megaskin, Chapter 19: Discord CSS | jockles.com</title>
   <link rel="stylesheet" href="../../style.css">
   <script src="../../theme.js"></script>
-  <link rel="stylesheet" href="megaskin.css?v=3dcd206c" id="creator-style">
+  <link rel="stylesheet" href="megaskin.css?v=56fd0911" id="creator-style">
 </head>
 <body>
 <header>
@@ -322,7 +322,7 @@
 
 </details>
 
-<pre><code>#workskin .dc .dc-pfp {
+<pre><code>#workskin .dc .avatar {
   display: inline-block; /* inline, like the plain circle, so Firefox keeps it level with the name */
   position: absolute;
   left: 1.25rem;
@@ -333,9 +333,9 @@
   overflow: hidden;
 }
 
-#workskin .dc .dc-name:has(.dc-pfp)::before { display: none; }</code></pre>
+#workskin .dc .dc-name:has(.avatar)::before { display: none; }</code></pre>
 
-<p>For a picture or a profile from the core, a <code>dc-pfp</code> span goes inside the name, sitting exactly where the circle would be. The second rule says "if a name has a <code>dc-pfp</code> in it, don't draw the plain circle" - otherwise you'd get both.</p>
+<p>For a picture or a profile from the core, an <code>avatar</code> span goes inside the name, sitting exactly where the circle would be. The second rule says "if a name has an <code>avatar</code> in it, don't draw the plain circle" - otherwise you'd get both.</p>
 
 <details>
 <summary>How it works: more about :has()</summary>
