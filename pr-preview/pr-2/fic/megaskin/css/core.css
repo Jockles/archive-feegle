@@ -969,6 +969,8 @@
 }
 
 /* ---- ONE PART PER LINE: AO3 turns the line breaks in your code into <br> tags. Between the parts of these rows a line break is never wanted, so it is hidden, and the code can be written with each part on its own line. ---- */
+#workskin .ig-top > br,
+#workskin .ig-person > br,
 #workskin .igdm-row > br,
 #workskin .ig-carousel-info > br,
 #workskin .igdm-footer > br,

@@ -10,19 +10,47 @@
 }
 
 #workskin .ig .ig-top {
-  display: block;
-  overflow: hidden;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  align-content: flex-start;
+  position: relative;
   padding: 0.7em 0.9em;
-  font-weight: bold;
   border-bottom: 1px solid #efefef;
 }
 
+/* room for the picture on the left, and the menu and follow button on the right */
+#workskin .ig .ig-top:has(> .ig-pfp) { min-height: 32px; padding-left: 53px; }
+
+#workskin .ig .ig-top:has(> .ig-pfp.story) { min-height: 36px; padding-left: 57px; }
+
+#workskin .ig .ig-top:has(> .ig-collab) { min-height: 32px; padding-left: 57px; }
+
+#workskin .ig .ig-top:has(> .ig-menu) { padding-right: 2.6em; }
+
+#workskin .ig .ig-top:has(> .ig-follow.btn) { padding-right: 5em; }
+
+/* the place, on a line of its own under the name: <span>Montreal, Quebec</span> */
 #workskin .ig .ig-top span {
-  display: block;
+  flex-basis: 100%;
   font-weight: normal;
   font-size: 0.8em;
   color: #737373;
 }
+
+/* an account name: <span class="ig-name">scott.h</span> */
+#workskin .ig .ig-top .ig-name,
+#workskin .ig .ig-person .ig-name {
+  flex-basis: auto;
+  margin-right: 0.3em;
+  font-size: 1em;
+  font-weight: bold;
+  color: inherit;
+}
+
+#workskin .ig .ig-top .ig-name ~ .ig-name { margin-left: 0.3em; }
+
+#workskin .ig .ig-top .handle { flex-basis: auto; }
 
 /* stands in for the photo: <p class="ig-photo"><span class="img-desc">[describe the picture here]</span></p> */
 #workskin .ig .ig-photo,
@@ -83,12 +111,16 @@
 
 /* a profile picture beside the account name */
 #workskin .ig .ig-top .ig-pfp {
-  float: left;
   width: 32px;
   height: 32px;
-  margin: 0 0.6em 0 0;
   border-radius: 50%;
   overflow: hidden;
+}
+
+#workskin .ig .ig-top > .ig-pfp {
+  position: absolute;
+  top: 0.875em;
+  left: 1.125em;
 }
 
 /* the grey circle when there's no colour class. It's kept less specific than the colour classes, so they win */
@@ -150,9 +182,9 @@
 
 /* ---- more for the top line (put these inside ig-top) ---- */
 #workskin .ig .ig-top .ig-menu {
-  display: block;
-  float: right;
-  margin: 0 0 0 0.6em;
+  position: absolute;
+  top: 0.538em;
+  right: 0.692em;
   color: inherit;
   font-size: 1.3em;
   font-weight: bold;
@@ -161,10 +193,10 @@
 
 #workskin .ig .ig-top .ig-tick,
 #workskin .ig .ig-person .ig-tick {
-  display: inline-block;
+  flex: none;
   width: 1.25em;
   height: 1.25em;
-  margin-left: 0.3em;
+  margin: 0 0.5em 0 0.3em;
   border-radius: 50%;
   background: #0095f6;
   color: #ffffff;
@@ -175,8 +207,13 @@
   vertical-align: middle;
 }
 
+#workskin .ig .ig-top .ig-name ~ .ig-tick,
+#workskin .ig .ig-person .ig-name ~ .ig-tick,
+#workskin .ig .ig-top .ig-name ~ .ig-lock,
+#workskin .ig .ig-person .ig-name ~ .ig-lock { margin-left: 0; }
+
 #workskin .ig .ig-top .ig-follow {
-  display: inline;
+  flex: none;
   color: #0095f6;
   font-size: 1em;
   font-weight: bold;
@@ -188,13 +225,13 @@
   font-weight: normal;
 }
 
-/* an account you don't follow, suggested in the feed: add btn to ig-follow and it becomes a follow button left of the menu. Both go FIRST in the line, menu then follow */
+/* an account you don't follow, suggested in the feed: add btn to ig-follow and it becomes a follow button left of the menu. */
 #workskin .ig .ig-top .ig-follow.btn::before { content: none; }
 
 #workskin .ig .ig-top .ig-follow.btn {
-  display: block;
-  float: right;
-  margin: 0 0.3em 0 0.6em;
+  position: absolute;
+  top: 0.538em;
+  right: 2.59em;
   color: inherit;
   font-size: 1.3em;
   font-weight: bold;
@@ -216,26 +253,18 @@
 
 /* a post made by two accounts together (a collab): wrap both pictures in an ig-collab span, as the first picture in the line. */
 #workskin .ig .ig-top .ig-collab {
-  float: left;
-  position: relative;
+  position: absolute;
+  top: 0.875em;
+  left: 1.125em;
   width: 36px;
   height: 36px;
-  margin: -2px 0.6em -2px 0;
-}
-
-#workskin .ig .ig-top .ig-and {
-  display: inline;
-  margin: 0 0.3em;
-  font-size: 1em;
-  font-weight: normal;
-  color: inherit;
+  margin: -2px 0 0 0;
 }
 
 #workskin .ig .ig-top .ig-collab .ig-pfp {
   position: absolute;
   top: 0;
   right: 0;
-  float: none;
   width: 24px;
   height: 24px;
   margin: 0;
@@ -367,18 +396,25 @@
 }
 
 #workskin .ig .ig-person {
-  display: block;
-  overflow: hidden;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  align-content: flex-start;
+  position: relative;
+  min-height: 44px;
   margin: 0;
-  padding: 0.5em 1em;
+  padding: 0.5em 1em 0.5em 66px;
   font-weight: bold;
 }
 
+#workskin .ig .ig-person:has(> .ig-following) { padding-right: 7.7em; }
+
 #workskin .ig .ig-person .ig-pfp {
-  float: left;
+  position: absolute;
+  top: 0.556em;
+  left: 1.111em;
   width: 44px;
   height: 44px;
-  margin: 0 0.8em 0 0;
   border-radius: 50%;
   overflow: hidden;
   display: flex;
@@ -391,13 +427,12 @@
 
 #workskin .ig .ig-person .ig-pfp .pfp::before { font-size: 1.2em; }
 
-#workskin .ig .ig-person .handle { display: inline-block; padding-top: 0.2em; }
-
-#workskin .ig .ig-person .ig-person-name { display: block; font-weight: normal; color: #737373; }
+#workskin .ig .ig-person .ig-person-name { flex-basis: 100%; font-weight: normal; color: #737373; }
 
 #workskin .ig .ig-person .ig-following {
-  float: right;
-  margin: 0.4em 0 0 0.6em;
+  position: absolute;
+  top: 0.956em;
+  right: 1.111em;
   padding: 0.35em 1.1em;
   border-radius: 8px;
   background: #efefef;
@@ -1465,6 +1500,8 @@
 
 #workskin .ig.theme-dark .ig-top { border-bottom-color: #262626; }
 
+#workskin .ig.theme-dark .ig-top .ig-name { color: inherit; }
+
 #workskin .ig.theme-dark .ig-top span,
 #workskin .ig.theme-dark .ig-view-all,
 #workskin .ig.theme-dark .ig-time {
@@ -1553,6 +1590,8 @@
   #workskin .ig.theme-auto { background: #0c1014; color: #f5f5f5; border-color: #262626; }
 
   #workskin .ig.theme-auto .ig-top { border-bottom-color: #262626; }
+
+  #workskin .ig.theme-auto .ig-top .ig-name { color: inherit; }
 
   #workskin .ig.theme-auto .ig-top span,
     #workskin .ig.theme-auto .ig-view-all,
@@ -1666,11 +1705,10 @@
    straight after the name (after the verified tick, if there is one), in the top line or a tagged person */
 #workskin .ig .ig-top .ig-lock,
 #workskin .ig .ig-person .ig-lock {
-  display: inline-block;
+  flex: none;
   width: 1em;
   height: 1em;
-  margin-left: 0.3em;
-  vertical-align: -0.1em;
+  margin: 0 0.3em;
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
