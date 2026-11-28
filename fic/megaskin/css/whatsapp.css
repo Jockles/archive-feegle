@@ -115,7 +115,7 @@
 
 #workskin .wa table.wa-header .wa-pfp-cell .wa-pfp { margin: 0 auto; }
 
-#workskin .wa table.wa-header .wa-title {
+#workskin .wa table.wa-header .wa-name {
   padding: 0.55em 0.4em 0 0.4em;
   font-weight: bold;
   line-height: 1.2;
@@ -134,7 +134,7 @@
   text-overflow: ellipsis;
 }
 
-#workskin .wa table.wa-header .wa-actions {
+#workskin .wa table.wa-header .wa-btns {
   width: 64px;
   padding-right: 0.8em;
   letter-spacing: 0.4em;

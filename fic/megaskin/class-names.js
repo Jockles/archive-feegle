@@ -83,7 +83,13 @@ var MEGASKIN_RENAMES = [
   ["tb-at", "tb-link"],
   ["tw-fan", "tw-account-label"],
   ["mine", "me"],
-  ["tw-end", "right"]
+  ["tw-end", "right"],
+  ["wa-actions", "wa-btns"],
+  ["igdm-calls", "igdm-btns"],
+  ["twdm-calls", "twdm-btns"],
+  ["gm-tools", "gm-btns"],
+  ["mail-buttons", "mail-btns"],
+  ["wa-title", "wa-name"]
 ];
 
 // Names that did nothing and were taken out.
