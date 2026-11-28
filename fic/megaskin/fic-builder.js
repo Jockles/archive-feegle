@@ -464,7 +464,7 @@
         var lk = ['<div class="wa-link">'];
         var li = picUrl(link.img), vid = picUrl(link.video || "");
         if (vid) lk.push('  <div class="wa-link-img video"><iframe src="' + esc(vid) + '" frameborder="0" title="' + esc(link.title.trim()) + '"></iframe>' +
-          (link.imgdesc.trim() ? '<p class="vid-desc">[' + esc(link.imgdesc.trim()) + "]</p>" : "") + "</div>");
+          (link.imgdesc.trim() ? '<p class="video-desc">[' + esc(link.imgdesc.trim()) + "]</p>" : "") + "</div>");
         else if (li) lk.push('  <p class="wa-link-img"><img src="' + esc(li) + '" alt="' + esc(link.alt) + '"></p>');
         else if (link.imgdesc.trim()) lk.push('  <p class="wa-link-img text">[' + esc(link.imgdesc.trim()) + "]</p>");
         if (link.title.trim()) lk.push('  <p class="wa-link-title">' + esc(link.title.trim()) + "</p>");
@@ -629,7 +629,7 @@
   function igPhoto(ph, cls, tag) {
     var u = picUrl(ph.url);
     if (u) return "<" + tag + ' class="ig-photo real' + cls + '"><img ' + (ph.land ? 'class="landscape" ' : "") + 'src="' + esc(u) + '" alt="' + esc(t(ph.alt)) + '"></' + tag + ">";
-    return "<" + tag + ' class="ig-photo' + cls + '">[' + esc(t(ph.desc) || "A photo") + "]</" + tag + ">";
+    return "<" + tag + ' class="ig-photo' + cls + '"><span class="img-desc">[' + esc(t(ph.desc) || "A photo") + "]</span></" + tag + ">";
   }
   // one photo, or a carousel: each photo after the first goes inside the one before it
   function igPhotos(m) {
@@ -968,13 +968,13 @@
   function twMedia(m, video, pics) {
     var v = video ? picUrl(m.vUrl) : "";
     if (v) return ['<div class="tw-photos video"><iframe src="' + esc(v) + '" frameborder="0" title="' + esc(t(m.vTitle) || "Video") + '"></iframe>' +
-      (t(m.vDesc) ? '<p class="vid-desc">[' + esc(t(m.vDesc)) + "]</p>" : "") + "</div>"];
+      (t(m.vDesc) ? '<p class="video-desc">[' + esc(t(m.vDesc)) + "]</p>" : "") + "</div>"];
     var ph = pics ? (m.photos || []).filter(function (p) { return picUrl(p.url) || t(p.desc); }).slice(0, 4) : [];
     if (!ph.length) return [];
     function img(p) { return '<img ' + (p.land ? 'class="landscape" ' : "") + 'src="' + esc(picUrl(p.url)) + '" alt="' + esc(p.alt) + '">'; }
-    if (ph.length === 1) return ['<p class="tw-photos">' + (picUrl(ph[0].url) ? img(ph[0]) : "<span>[" + esc(t(ph[0].desc)) + "]</span>") + "</p>"];
+    if (ph.length === 1) return ['<p class="tw-photos">' + (picUrl(ph[0].url) ? img(ph[0]) : '<span class="img-desc">[' + esc(t(ph[0].desc)) + "]</span>") + "</p>"];
     return ['<p class="tw-photos ' + ["two", "three", "four"][ph.length - 2] + '">'].concat(ph.map(function (p) {
-      return '  <span class="tw-photo">' + (picUrl(p.url) ? img(p) : '<span class="tw-desc">[' + esc(t(p.desc)) + "]</span>") + "</span>";
+      return '  <span class="tw-photo">' + (picUrl(p.url) ? img(p) : '<span class="img-desc">[' + esc(t(p.desc)) + "]</span>") + "</span>";
     })).concat(["</p>"]);
   }
   // the row of buttons: replies, reposts, likes, views, bookmark and share
@@ -2161,7 +2161,7 @@
         var lk = { url: "", title: "", desc: "", img: "", alt: "", imgdesc: "", video: "", showUrl: false };
         if (!is(main, "div.wa-link")) { lk.url = words(main); lk.showUrl = true; main = ns.shift(); if (!is(main, "div.wa-link")) no(); }
         kids(main).forEach(function (x) {
-          if (is(x, ".wa-link-img.video")) { var f = x.querySelector("iframe"); if (!f) no(); lk.video = f.getAttribute("src"); var vd = x.querySelector(".vid-desc"); if (vd) lk.imgdesc = words(vd).replace(/^\[|\]$/g, ""); }
+          if (is(x, ".wa-link-img.video")) { var f = x.querySelector("iframe"); if (!f) no(); lk.video = f.getAttribute("src"); var vd = x.querySelector(".video-desc"); if (vd) lk.imgdesc = words(vd).replace(/^\[|\]$/g, ""); }
           else if (is(x, "p.wa-link-img.text")) lk.imgdesc = words(x).replace(/^\[|\]$/g, "");
           else if (is(x, "p.wa-link-img")) { var im = x.querySelector("img"); if (!im) no(); lk.img = im.getAttribute("src"); lk.alt = im.getAttribute("alt") || ""; }
           else if (is(x, "p.wa-link-title")) lk.title = x.textContent;
@@ -2563,7 +2563,7 @@
     if (is(ks[0], "div.tw-photos.video")) {
       m.hasVideo = true; var f = ks[0].querySelector("iframe"); if (!f) no();
       m.vUrl = f.getAttribute("src"); m.vTitle = f.getAttribute("title") || "";
-      var vd = ks.shift().querySelector(".vid-desc"); if (vd) m.vDesc = words(vd).replace(/^\[|\]$/g, "");
+      var vd = ks.shift().querySelector(".video-desc"); if (vd) m.vDesc = words(vd).replace(/^\[|\]$/g, "");
     } else if (is(ks[0], "p.tw-photos")) {
       m.hasPics = true;
       var med = ks.shift(), cells = med.querySelectorAll(".tw-photo");
@@ -2925,6 +2925,13 @@
         ph.className = pre + "-photos one"; ph.appendChild(cell); d.appendChild(ph);
         taps.forEach(function (x) { d.appendChild(x); });
         o.parentNode.replaceChild(d, o); hit = true;
+      });
+      // old described pictures in posts were bare words in brackets: now they're in an img-desc span
+      Array.prototype.slice.call(c.querySelectorAll(".ig-photo, p.tw-photos > span:not([class])")).forEach(function (x) {
+        if (is(x, "span:not([class])")) { x.className = "img-desc"; hit = true; return; }
+        var tx = Array.prototype.filter.call(x.childNodes, function (n) { return n.nodeType === 3 && n.nodeValue.trim(); })[0];
+        if (!tx || x.querySelector(".img-desc, img")) return;
+        var sp = document.createElement("span"); sp.className = "img-desc"; x.insertBefore(sp, tx); sp.appendChild(tx); hit = true;
       });
       // old Twitter DM replies: the quote was a "msg" bubble, and someone else's "Replied to" line had no side
       Array.prototype.slice.call(c.querySelectorAll("p.twdm-quote.msg, p.twdm-replied:not(.out):not(.in)")).forEach(function (q) {
