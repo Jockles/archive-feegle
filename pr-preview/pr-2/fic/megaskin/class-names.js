@@ -89,7 +89,8 @@ var MEGASKIN_RENAMES = [
   ["twdm-calls", "twdm-btns"],
   ["gm-tools", "gm-btns"],
   ["mail-buttons", "mail-btns"],
-  ["wa-title", "wa-name"]
+  ["wa-title", "wa-name"],
+  ["dc-reaction-count", "dc-count"]
 ];
 
 // Names that did nothing and were taken out.
