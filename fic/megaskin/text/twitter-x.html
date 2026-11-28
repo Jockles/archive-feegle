@@ -10,7 +10,7 @@
 
 <h4>A Timeline</h4>
 
-<p>This is a timeline on Ilya's phone, with the X app's top bar and tabs, and the app buttons along the bottom:</p>
+<p>This is a timeline on Ilya's phone, with the X app's top bar and tabs:</p>
 
 <div class="tw-feed app pov-ilya theme-auto">
   <div class="tw-scroll">
@@ -208,16 +208,6 @@
       </div>
     </div>
   </div>
-  <p class="tw-nav">
-    <span class="on ic ic-x-home-filled">&#8962;</span>
-    <span class="ic ic-x-search">&#128269;</span>
-    <span class="ic ic-x-grok">&#8856;</span>
-    <span class="badged">
-      <span class="ic ic-x-bell">&#128276;</span>
-      <span class="tw-badge"><span class="hide"> (</span>3<span class="hide">)</span></span>
-    </span>
-    <span class="ic ic-x-chat-outline">&#128172;</span>
-  </p>
 </div>
 
 <details>
@@ -419,16 +409,6 @@
       &lt;/div&gt;
     &lt;/div&gt;
   &lt;/div&gt;
-  &lt;p class="tw-nav"&gt;
-    &lt;span class="on ic ic-x-home-filled"&gt;&amp;#8962;&lt;/span&gt;
-    &lt;span class="ic ic-x-search"&gt;&amp;#128269;&lt;/span&gt;
-    &lt;span class="ic ic-x-grok"&gt;&amp;#8856;&lt;/span&gt;
-    &lt;span class="badged"&gt;
-      &lt;span class="ic ic-x-bell"&gt;&amp;#128276;&lt;/span&gt;
-      &lt;span class="tw-badge"&gt;&lt;span class="hide"&gt; (&lt;/span&gt;3&lt;span class="hide"&gt;)&lt;/span&gt;&lt;/span&gt;
-    &lt;/span&gt;
-    &lt;span class="ic ic-x-chat-outline"&gt;&amp;#128172;&lt;/span&gt;
-  &lt;/p&gt;
 &lt;/div&gt;</code></pre>
 
 </details>
@@ -584,7 +564,7 @@
       </div>
     </div>
   </div>
-  <p class="tw-footer"><span>Reply</span><span class="hide"> - </span>Tweet your reply</p>
+  <p class="tw-reply-bar"><span>Reply</span><span class="hide"> - </span>Tweet your reply</p>
 </div>
 
 <details>
@@ -739,14 +719,14 @@
       &lt;/div&gt;
     &lt;/div&gt;
   &lt;/div&gt;
-  &lt;p class="tw-footer"&gt;&lt;span&gt;Reply&lt;/span&gt;&lt;span class="hide"&gt; - &lt;/span&gt;Tweet your reply&lt;/p&gt;
+  &lt;p class="tw-reply-bar"&gt;&lt;span&gt;Reply&lt;/span&gt;&lt;span class="hide"&gt; - &lt;/span&gt;Tweet your reply&lt;/p&gt;
 &lt;/div&gt;</code></pre>
 
 </details>
 
 <h3>The Container</h3>
 
-<p>Every tweet in this chapter sits in a timeline, a <code>tw-feed</code> box with a theme, with a <code>tw-scroll</code> box inside it that holds everything that scrolls. Add <code>app</code> to the <code>tw-feed</code> for the timeline look, where each tweet's name, handle and time sit on one line. Inside go the top bar, the tabs and the tweets, in that order, then the app buttons after the <code>tw-scroll</code> closes. The top bar, the tabs and the app buttons are all optional, so leave them out if you only want the tweets:</p>
+<p>Every tweet in this chapter sits in a timeline, a <code>tw-feed</code> box with a theme, with a <code>tw-scroll</code> box inside it that holds everything that scrolls. Add <code>app</code> to the <code>tw-feed</code> for the timeline look, where each tweet's name, handle and time sit on one line. Inside go the top bar, the tabs and the tweets, in that order. The top bar and the tabs are optional, so leave them out if you only want the tweets:</p>
 
 <pre><code>&lt;div class="tw-feed app theme-auto"&gt;
   &lt;div class="tw-scroll"&gt;
@@ -755,7 +735,6 @@
     &lt;div class="mob tw"&gt;a tweet&lt;/div&gt;
     &lt;div class="mob tw"&gt;another tweet&lt;/div&gt;
   &lt;/div&gt;
-  &lt;p class="tw-nav"&gt;the app buttons&lt;/p&gt;
 &lt;/div&gt;</code></pre>
 
 <p>Once the timeline is taller than a phone screen (<code>580px</code>) it scrolls, and the top bar and the tabs scroll away with the tweets, like in the app (see <a href="core.html#heading">Scrolling Long Chats</a>).</p>
@@ -899,28 +878,7 @@
 
 <h4>Footer</h4>
 
-<p>Anything after the <code>tw-scroll</code> closes stays put at the bottom while the tweets scroll. On a timeline, that's the row of app buttons:</p>
-
-<p>The row of app buttons along the bottom is optional. It goes last, after the <code>tw-scroll</code> closes, so it stays put while the tweets scroll. It's the same row as in DMs (see <a href="twitter-x.html#heading">The App Buttons</a>), except that on the timeline the home button is the picked one, with a filled-in house, and the chat button is an outline:</p>
-
-<pre><code>&lt;p class="tw-nav"&gt;
-  &lt;span class="on ic ic-x-home-filled"&gt;&amp;#8962;&lt;/span&gt;
-  &lt;span class="ic ic-x-search"&gt;&amp;#128269;&lt;/span&gt;
-  &lt;span class="ic ic-x-grok"&gt;&amp;#8856;&lt;/span&gt;
-  &lt;span class="badged"&gt;
-    &lt;span class="ic ic-x-bell"&gt;&amp;#128276;&lt;/span&gt;
-    &lt;span class="tw-badge"&gt;&lt;span class="hide"&gt; (&lt;/span&gt;3&lt;span class="hide"&gt;)&lt;/span&gt;&lt;/span&gt;
-  &lt;/span&gt;
-  &lt;span class="ic ic-x-chat-outline"&gt;&amp;#128172;&lt;/span&gt;
-&lt;/p&gt;</code></pre>
-
-<p>Under a tweet with its replies, it's the "Tweet your reply" bar instead, a <code>tw-footer</code> line:</p>
-
-<div class="tw-feed theme-auto">
-  <p class="tw-footer"><span>Reply</span><span class="hide"> - </span>Tweet your reply</p>
-</div>
-
-<pre><code>&lt;p class="tw-footer"&gt;&lt;span&gt;Reply&lt;/span&gt;&lt;span class="hide"&gt; - &lt;/span&gt;Tweet your reply&lt;/p&gt;</code></pre>
+<p>The timeline has no footer, and that's on purpose. In the real app the row of buttons along the bottom disappears as you scroll, and that doesn't work in a satisfying way in an AO3 skin.</p>
 
 <h4>A Tweet on Its Own</h4>
 
@@ -1095,6 +1053,14 @@
 &lt;/div&gt;</code></pre>
 
 <p><code>tw-replying</code> is the little grey "Replying to" line at the top. For a longer comment section, add as many <code>tw-reply</code> containers as you like, one after another.</p>
+
+<p>The bottom of a tweet with its replies is the "Tweet your reply" bar, a <code>tw-reply-bar</code> line. It goes last, after the <code>tw-scroll</code> closes, so it stays put while the replies scroll:</p>
+
+<div class="tw-feed theme-auto">
+  <p class="tw-reply-bar"><span>Reply</span><span class="hide"> - </span>Tweet your reply</p>
+</div>
+
+<pre><code>&lt;p class="tw-reply-bar"&gt;&lt;span&gt;Reply&lt;/span&gt;&lt;span class="hide"&gt; - &lt;/span&gt;Tweet your reply&lt;/p&gt;</code></pre>
 
 <h4>Quote Tweets</h4>
 

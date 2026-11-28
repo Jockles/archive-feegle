@@ -303,15 +303,15 @@
 
 #workskin .twc16-feed .twc-title + .ic { margin-left: auto; }
 
-/* the replies box under an opened tweet: <p class="twc-footer"><span>Tweet your reply</span></p> */
-#workskin .twc16-feed .twc-footer {
+/* the replies box under an opened tweet: <p class="twc-reply-bar"><span>Tweet your reply</span></p> */
+#workskin .twc16-feed .twc-reply-bar {
   display: block;
   margin: 0;
   padding: 0.5em 1em;
   border-bottom: 1px solid #e6ecf0;
 }
 
-#workskin .twc16-feed .twc-footer span {
+#workskin .twc16-feed .twc-reply-bar span {
   display: block;
   padding: 0.35em 0.9em;
   border: 1px solid #ccd6dd;
@@ -401,8 +401,8 @@
 #workskin .twc16-feed.theme-dark .tw-counts,
 #workskin .twc16.theme-dark .tw-quote,
 #workskin .twc16-feed.theme-dark .tw-quote,
-#workskin .twc16-feed.theme-dark .twc-footer,
-#workskin .twc16-feed.theme-dark .twc-footer span {
+#workskin .twc16-feed.theme-dark .twc-reply-bar,
+#workskin .twc16-feed.theme-dark .twc-reply-bar span {
   border-color: #38444d;
 }
 
@@ -450,8 +450,8 @@
   #workskin .twc16-feed.theme-auto .tw-counts,
   #workskin .twc16.theme-auto .tw-quote,
   #workskin .twc16-feed.theme-auto .tw-quote,
-  #workskin .twc16-feed.theme-auto .twc-footer,
-  #workskin .twc16-feed.theme-auto .twc-footer span {
+  #workskin .twc16-feed.theme-auto .twc-reply-bar,
+  #workskin .twc16-feed.theme-auto .twc-reply-bar span {
     border-color: #38444d;
   }
 

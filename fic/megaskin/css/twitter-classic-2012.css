@@ -198,8 +198,8 @@
 
 #workskin .twc12.big .tw-stats .ic { width: 1.75em; height: 1.75em; }
 
-/* the reply box under an opened tweet: <p class="twc-footer"><span>Reply to Name</span></p> */
-#workskin .twc12 .twc-footer {
+/* the reply box under an opened tweet: <p class="twc-reply-bar"><span>Reply to Name</span></p> */
+#workskin .twc12 .twc-reply-bar {
   display: block;
   margin: 0 -0.8em;
   padding: 0.45em 0.6em;
@@ -208,7 +208,7 @@
   border-top: 1px solid #c4c4c4;
 }
 
-#workskin .twc12 .twc-footer span {
+#workskin .twc12 .twc-reply-bar span {
   display: block;
   padding: 0.3em 0.7em;
   background: #ffffff;
