@@ -940,7 +940,7 @@
       var pct = pcts[i], size = POLL_SIZES.reduce(function (a, b) { return Math.abs(b - pct) < Math.abs(a - pct) ? b : a; });
       var win = !tap && !won && pct === top; if (win) won = true;
       var voted = (tap || tick) && i === vote ? '<span class="hide"> - voted </span><span class="tw-voted">&#10003;</span>' : "";
-      return '<p class="tw-opt results' + (win ? " win" : "") + " p" + size + '"><span class="tw-bar">' + esc(o.text) + voted + '</span><span class="hide"> </span><span class="tw-pct">' + pct + "%</span></p>";
+      return '<p class="tw-opt results' + (win ? " win" : "") + " p" + size + '"><span class="tw-bar">' + esc(o.text) + voted + '</span><span class="hide"> - </span><span class="tw-pct">' + pct + "%</span></p>";
     });
   }
   function pollKind(m) {
@@ -2972,6 +2972,10 @@
         var tx = Array.prototype.filter.call(x.childNodes, function (n) { return n.nodeType === 3 && n.nodeValue.trim(); })[0];
         if (!tx || x.querySelector(".img-desc, img")) return;
         var sp = document.createElement("span"); sp.className = "img-desc"; x.insertBefore(sp, tx); sp.appendChild(tx); hit = true;
+      });
+      // a poll result's hidden gap between the words and the percentage was a space: now it's " - ", the same as Tumblr's
+      Array.prototype.slice.call(c.querySelectorAll(".tw-opt > span.hide")).forEach(function (h) {
+        if (h.textContent === " " && is(h.previousElementSibling, ".tw-bar") && is(h.nextElementSibling, ".tw-pct")) { h.textContent = " - "; hit = true; }
       });
       // the notification badge used to sit in a badged wrapper round the bell: now the two are side by side
       Array.prototype.slice.call(c.querySelectorAll("span.badged")).forEach(function (w) {
