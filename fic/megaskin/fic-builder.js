@@ -400,15 +400,14 @@
     if (b.header === "bar") {
       var o = others(b), pc;
       if (b.group) pc = waPfp(groupPic(b));
-      else pc = o[0] ? waPfp(o[0]) : '<p class="wa-pfp colour5">?</p>';
+      else pc = o[0] ? waPfp(o[0]) : '<span class="wa-pfp colour5">?</span>';
       var sub = b.sub.trim();
       if (b.group && !sub) sub = o.map(nameOf).concat(["You"]).join(", ");
-      L = L.concat(ind(['<table class="wa-header">', "  <tbody>", "    <tr>",
-        '      <td rowspan="2" class="back"><span class="ic ic-back">&#8592;</span></td>',
-        '      <td rowspan="2" class="wa-pfp-cell">' + pc + "</td>",
-        '      <td class="chat-name">' + headTitle(b) + "</td>",
-        '      <td rowspan="2" class="btns"><span class="ic ic-video">&#127909;</span> <span class="ic ic-menu">&#8942;</span></td>',
-        "    </tr>", "    <tr>", '      <td class="wa-status">' + esc(sub) + "</td>", "    </tr>", "  </tbody>", "</table>"], 1));
+      // the back arrow, the picture, the name, the status line under it, then the buttons
+      pc = pc.replace(/^<p /, "<span ").replace(/<\/p>$/, "</span>");
+      L.push("  " + '<p class="mob-header"><span class="back"><span class="ic ic-back">&#8592;</span></span>' + pc +
+        '<span class="chat-name">' + headTitle(b) + "</span>" + (sub ? '<span class="hide"> - </span><span>' + esc(sub) + "</span>" : "") +
+        '<span class="btns"><span class="ic ic-video">&#127909;</span><span class="ic ic-menu">&#8942;</span></span></p>');
     } else if (b.header !== "none") L.push("  " + mobHead(b));
     L.push('  <div class="mob-body">');
     var body = [];
@@ -2140,10 +2139,11 @@
     var ks = kids(el), k = 0;
     if (is(ks[k], "p.wa-wall")) { var w = ks[k++].querySelector("img"); if (!w) no(); b.bg = "custom"; b.wall = w.getAttribute("src"); }
     var bar = null;
-    if (is(ks[k], "table.wa-header")) {
+    if (is(ks[k], "p.mob-header") && ks[k].querySelector(":scope > span.chat-name")) {
       bar = ks[k++]; b.header = "bar";
-      var tt = bar.querySelector("td.chat-name"), st = bar.querySelector("td.wa-status"); if (!tt || !st) no();
-      b.title = tt.querySelector("span.name") ? "" : tt.textContent; b.sub = st.textContent;
+      var hk = kids(bar), tt = bar.querySelector(":scope > span.chat-name"), hi = hk.indexOf(tt);
+      b.title = tt.querySelector("span.name") ? "" : tt.textContent;
+      b.sub = is(hk[hi + 1], "span.hide") && is(hk[hi + 2], "span:not([class])") ? hk[hi + 2].textContent : "";
     } else if (is(ks[k], "p.mob-header")) { b.header = "simple"; headBack(b, ks[k++]); }
     else b.header = "none";
     var body = ks[k++]; if (!is(body, "div.mob-body")) no();
@@ -2255,7 +2255,7 @@
     if (rowless) b.pics = false;
     // the picture at the top: the group's, or the other person's
     if (bar) {
-      var gp = bar.querySelector("td.wa-pfp-cell p.wa-pfp"); if (!gp) no();
+      var gp = bar.querySelector(":scope > span.wa-pfp"); if (!gp) no();
       if (b.group) {
         var gs = slugIn(gp);
         if (gs) b.gp.from = personBySlug(gs).id;
@@ -2835,7 +2835,7 @@
   // stays on one line; one with a block inside puts every child on its own line, two spaces in; one with only inline
   // children splits only if its kind is on the list below (tested to look the same split or not, on the site and on AO3)
   // and one of them has a class. A hidden span that isn't first stays on the end of the line before it.
-  var SPLIT_SAFE = ["div.row", "p.footer", "p.hide", "p.ig-carousel-info", "p.ig-header", "p.ig-person", "p.ig-photo.real", "p.ig-story", "p.ig-story.close", "p.ig-story.me", "p.ig-top", "p.igdm-post-btns", "p.igdm-post-by", "p.igdm-post-img", "p.link-img", "p.mob-header", "p.msg.in.tail.typing-indicator", "p.msg.in.typing-indicator", "p.msg.in.voice", "p.msg.out.tail.typing-indicator", "p.msg.out.typing-indicator", "p.msg.out.voice", "p.photos", "p.photos.four", "p.photos.one", "p.photos.three", "p.photos.two", "p.tb-blog", "p.tb-header", "p.tb-nav", "p.tb-row", "p.tb-row.two", "p.tb-tabs", "p.tb-top", "p.tw-header", "p.tw-nav", "p.tw-opt.results.p10", "p.tw-opt.results.p25", "p.tw-opt.results.p30", "p.tw-opt.results.p60", "p.tw-opt.results.win.p75", "p.tw-pfp", "p.tw-photos", "p.tw-photos.four", "p.tw-photos.three", "p.tw-photos.two", "p.tw-stat", "p.tw-stat.locked", "p.tw-stat.right", "p.tw-stat.right.saved", "p.tw-tabs", "p.tw-top", "p.twc-reply-bar", "p.wa-call", "p.wa-pfp", "p.wa-wall", "p.who", "span.back", "span.dc-embed-text", "span.dc-quote", "span.gm-pfp", "span.handle.acc-rpf", "span.hide", "span.ig-badge", "span.ig-collab", "span.ig-like-pfp", "span.ig-pfp", "span.ig-pfp.story", "span.ig-photo.real", "span.msgbar", "span.pfp", "span.photo", "span.tb-ask-pfp", "span.tb-name", "span.tb-pfp", "span.tb-pfp.reblog", "span.tb-photo", "span.tb-voted", "span.tw-me", "span.tw-pfp", "span.tw-photo", "span.wa-pfp", "td.back", "td.btns", "td.chat-name", "td.gm-btns", "td.gm-pfp-cell", "td.gm-star"];
+  var SPLIT_SAFE = ["div.row", "p.footer", "p.hide", "p.ig-carousel-info", "p.ig-header", "p.ig-person", "p.ig-photo.real", "p.ig-story", "p.ig-story.close", "p.ig-story.me", "p.ig-top", "p.igdm-post-btns", "p.igdm-post-by", "p.igdm-post-img", "p.link-img", "p.mob-header", "p.msg.in.tail.typing-indicator", "p.msg.in.typing-indicator", "p.msg.in.voice", "p.msg.out.tail.typing-indicator", "p.msg.out.typing-indicator", "p.msg.out.voice", "p.photos", "p.photos.four", "p.photos.one", "p.photos.three", "p.photos.two", "p.tb-blog", "p.tb-header", "p.tb-nav", "p.tb-row", "p.tb-row.two", "p.tb-tabs", "p.tb-top", "p.tw-header", "p.tw-nav", "p.tw-opt.results.p10", "p.tw-opt.results.p25", "p.tw-opt.results.p30", "p.tw-opt.results.p60", "p.tw-opt.results.win.p75", "p.tw-pfp", "p.tw-photos", "p.tw-photos.four", "p.tw-photos.three", "p.tw-photos.two", "p.tw-stat", "p.tw-stat.locked", "p.tw-stat.right", "p.tw-stat.right.saved", "p.tw-tabs", "p.tw-top", "p.twc-reply-bar", "p.wa-call", "p.wa-pfp", "p.wa-wall", "p.who", "span.back", "span.dc-embed-text", "span.dc-quote", "span.gm-pfp", "span.handle.acc-rpf", "span.hide", "span.ig-badge", "span.ig-collab", "span.ig-like-pfp", "span.ig-pfp", "span.ig-pfp.story", "span.ig-photo.real", "span.msgbar", "span.pfp", "span.photo", "span.tb-ask-pfp", "span.tb-name", "span.tb-pfp", "span.tb-pfp.reblog", "span.tb-photo", "span.tb-voted", "span.tw-me", "span.tw-pfp", "span.tw-photo", "span.wa-pfp", "td.gm-btns", "td.gm-pfp-cell", "td.gm-star"];
   var FMT_BOXES = "mob dc tw-feed ig-feed tb-feed twc12-feed twc16-feed tw tw-reply ig igdm tb gm mail twdm wa imsg twc12 twc16".split(" ");
   var FMT_BLOCK = "div p table thead tbody tr td th ul ol li details summary blockquote h1 h2 h3 h4 h5 h6 pre hr".split(" ");
   var FMT_VOID = ["img", "br", "hr", "input"];
@@ -3033,6 +3033,25 @@
         hd.insertBefore(w, ns[dash]);
         ns.slice(st, dash).forEach(function (n) { w.appendChild(n); });
         hit = true;
+      });
+      // the WhatsApp header was a table: now it's a mob-header line, with the status after a hidden " - " and the buttons last
+      if (c.classList.contains("wa")) Array.prototype.slice.call(c.querySelectorAll(":scope > table.wa-header")).forEach(function (tb) {
+        var hd = document.createElement("p"), cell = function (sel) { return tb.querySelector("td." + sel); };
+        function span(cls, from) {
+          var x = document.createElement("span"); if (cls) x.className = cls;
+          Array.prototype.forEach.call(from.childNodes, function (n) { if (n.nodeType !== 3 || n.nodeValue.trim()) x.appendChild(n.cloneNode(true)); });
+          hd.appendChild(x);
+        }
+        hd.className = "mob-header";
+        if (cell("back")) span("back", cell("back"));
+        var pp = tb.querySelector("td.wa-pfp-cell p.wa-pfp");
+        if (pp) span(pp.className, pp);
+        if (cell("chat-name")) span("chat-name", cell("chat-name"));
+        if (cell("wa-status") && cell("wa-status").textContent.trim()) {
+          var h = document.createElement("span"); h.className = "hide"; h.textContent = " - "; hd.appendChild(h); span("", cell("wa-status"));
+        }
+        if (cell("btns")) span("btns", cell("btns"));
+        tb.parentNode.replaceChild(hd, tb); hit = true;
       });
       // a poll result's hidden gap between the words and the percentage was a space: now it's " - ", the same as Tumblr's
       Array.prototype.slice.call(c.querySelectorAll(".tw-opt > span.hide")).forEach(function (h) {
