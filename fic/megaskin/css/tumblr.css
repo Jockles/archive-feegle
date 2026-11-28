@@ -152,10 +152,10 @@
 
 /* Follow button (optional) on a reblog header, for a blog you don't follow. It doesn't go on the post's top header:
    you already follow the blog whose post is on your dash. */
-#workskin .tb .tb-follow { display: block; float: right; margin: 2px 0 0 0.5em; }
-
-#workskin .tb .tb-follow span {
-  display: inline-block;
+#workskin .tb .tb-follow {
+  display: block;
+  float: right;
+  margin: 2px 0 0 0.55em;
   padding: 0 1.1em;
   line-height: 34px;
   border-radius: 2em;
@@ -604,7 +604,7 @@
 
 #workskin .tb.theme-dark .tb-stats { color: #bdbdbd; }
 
-#workskin .tb.theme-dark .tb-follow span { background: #2e2e2e; }
+#workskin .tb.theme-dark .tb-follow { background: #2e2e2e; }
 
 #workskin .tb.theme-dark .tb-photo { background: #2e2e2e; }
 
@@ -654,7 +654,7 @@
 
   #workskin .tb.theme-auto .tb-stats { color: #bdbdbd; }
 
-  #workskin .tb.theme-auto .tb-follow span { background: #2e2e2e; }
+  #workskin .tb.theme-auto .tb-follow { background: #2e2e2e; }
 
   #workskin .tb.theme-auto .tb-photo { background: #2e2e2e; }
 
