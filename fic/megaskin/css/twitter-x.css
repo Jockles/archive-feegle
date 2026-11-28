@@ -1030,10 +1030,12 @@
 #workskin .twdm .tw-nav br,
 #workskin .tw-feed .tw-nav br { display: none; }
 
-/* a blue number on a button, like new notifications: put a tw-badge straight after the button.
+/* a blue number on a button, like new notifications: put a tw-badge straight after the button (the "+ br +" lines cover the line break AO3 adds between them).
    <span class="ic ic-x-bell">&#128276;</span><span class="tw-badge"><span class="hide"> (</span>3<span class="hide">)</span></span> */
 #workskin .twdm .tw-nav .ic:has(+ .tw-badge),
-#workskin .tw-feed .tw-nav .ic:has(+ .tw-badge) { margin-right: 0; }
+#workskin .twdm .tw-nav .ic:has(+ br + .tw-badge),
+#workskin .tw-feed .tw-nav .ic:has(+ .tw-badge),
+#workskin .tw-feed .tw-nav .ic:has(+ br + .tw-badge) { margin-right: 0; }
 
 #workskin .twdm .tw-nav .tw-badge,
 #workskin .tw-feed .tw-nav .tw-badge {

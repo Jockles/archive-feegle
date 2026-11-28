@@ -340,7 +340,8 @@
 #workskin .twc16-feed .tw-nav .on { opacity: 1; }
 
 /* a blue number on a button, like new notifications: put a tw-badge straight after the button */
-#workskin .twc16-feed .tw-nav .ic:has(+ .tw-badge) { margin-right: 0; }
+#workskin .twc16-feed .tw-nav .ic:has(+ .tw-badge),
+#workskin .twc16-feed .tw-nav .ic:has(+ br + .tw-badge) { margin-right: 0; }
 
 #workskin .twc16-feed .tw-nav .tw-badge {
   flex: none;
