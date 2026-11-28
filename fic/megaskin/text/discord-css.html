@@ -110,12 +110,14 @@
   z-index: 1;
 }
 
-#workskin .dc .dc-header &gt; h3 {
-  padding-left: 3rem !important;
-  padding-right: 3rem !important;
+#workskin .dc .dc-channel {
+  padding: 0 3rem;
+  font-family: "ABC Ginto Normal", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 1.0625rem;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  color: rgb(6, 6, 7);
 }</code></pre>
 
 <p>The soft line under the header, and the channel name, which is kept on one line.</p>
@@ -125,7 +127,7 @@
 
 <ul>
   <li>The line under the header is <code>::after</code> - three thin shadows stacked up, which fade out like Discord's soft edge instead of a hard line.</li>
-  <li>The channel name is pushed in to clear the symbol, kept on one line, and cut off with "..." if it's too long. <code>!important</code> stops AO3's own heading padding from winning.</li>
+  <li>The channel name is pushed in to clear the symbol, kept on one line, and cut off with "..." if it's too long.</li>
 </ul>
 
 </details>
