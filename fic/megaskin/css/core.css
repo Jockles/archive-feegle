@@ -773,9 +773,9 @@
   opacity: 0.5;
 }
 
-#workskin .typing-indicator span:empty + span:empty { opacity: 0.7; }
+#workskin .typing-indicator span:empty ~ span:empty { opacity: 0.7; }
 
-#workskin .typing-indicator span:empty + span:empty + span:empty { opacity: 1; margin-right: 0; }
+#workskin .typing-indicator span:empty ~ span:empty ~ span:empty { opacity: 1; margin-right: 0; }
 
 /* ---- CHAT PHOTOS: pictures sent in a message. They are built the same way in every chat app, with the app's own first word (imsg-, wa-, igdm-, twdm-, dc-):
    <div class="msg in gallery">
@@ -967,6 +967,35 @@
 #workskin .dc-photos.one .dc-photo .img-desc {
   position: static;
   padding: 4em 1em;
+}
+
+/* ---- ONE PART PER LINE: AO3 turns the line breaks in your code into <br> tags. Between the parts of these rows a line break is never wanted, so it is hidden, and the code can be written with each part on its own line. ---- */
+#workskin .igdm-row > br,
+#workskin .ig-carousel-info > br,
+#workskin .igdm-footer > br,
+#workskin .igdm-post-btns > br,
+#workskin .igdm-post-by > br,
+#workskin .imsg-footer > br,
+#workskin .typing-indicator > br,
+#workskin .msg.voice > br,
+#workskin .tb-row > br,
+#workskin .twdm-footer > br,
+#workskin .wa-call > br,
+#workskin .who > br,
+#workskin .ig-collab > br,
+#workskin .ig-pfp > br,
+#workskin .ig-photo > br,
+#workskin .igdm-back > br,
+#workskin .tb-photo > br,
+#workskin .tb-voted > br,
+#workskin .twdm-back > br,
+#workskin .wa-field > br,
+#workskin .gm-btns > br,
+#workskin .gm-pfp-cell > br,
+#workskin .wa-back > br,
+#workskin .wa-btns > br,
+#workskin .wa-name > br {
+  display: none;
 }
 
 /* <<<<<<<<<< CORE (end) <<<<<<<<<< */
