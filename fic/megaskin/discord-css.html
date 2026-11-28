@@ -7,7 +7,7 @@
   <title>Megaskin, Chapter 19: Discord CSS | jockles.com</title>
   <link rel="stylesheet" href="../../style.css">
   <script src="../../theme.js"></script>
-  <link rel="stylesheet" href="megaskin.css?v=39e2c11d" id="creator-style">
+  <link rel="stylesheet" href="megaskin.css?v=ef4cd03f" id="creator-style">
 </head>
 <body>
 <header>
@@ -248,13 +248,27 @@
 
 <h5 id="s19-3-3-2">19.3.3.2 Typing Indicator</h5>
 
-<pre><code>#workskin .dc .typing-indicator span:nth-child(1) { opacity: 0.4; transform: scale(0.6, 0.6); }
+<pre><code>#workskin .dc .dc-typing { margin: 0 1.5rem; font-size: 0.875rem; line-height: 1rem; }
 
-#workskin .dc .typing-indicator span:nth-child(2) { opacity: 0.6; transform: scale(0.8, 0.8); }
+#workskin .dc .typing-indicator span:empty {
+  float: left;
+  width: .65rem;
+  height: .65rem;
+  margin: .425rem 0 .425rem 0.1rem;
+  background-color: rgb(46, 51, 56);
+  opacity: 0.4;
+  transform: scale(0.6, 0.6);
+}
 
-#workskin .dc .typing-indicator span:nth-child(3) { opacity: 0.9; transform: scale(1, 1); }</code></pre>
+#workskin .dc .typing-indicator span:empty + span:empty { opacity: 0.6; transform: scale(0.8, 0.8); }
 
-<p>The three typing dots get bigger and darker from left to right, which gives a frozen version of Discord's bouncing dots.</p>
+#workskin .dc .typing-indicator span:empty + span:empty + span:empty {
+  margin-right: 0.75rem;
+  opacity: 0.9;
+  transform: scale(1, 1);
+}</code></pre>
+
+<p>The line under the chat box that says who's typing. The dots start from the core CSS (see <a href="core-css.html#s3-11">Typing Dots</a>). Here they sit to the left of the names, and get bigger and darker from left to right, which gives a frozen version of Discord's bouncing dots.</p>
 
 <h4 id="s19-3-4">19.3.4 Long Chats</h4>
 
@@ -299,7 +313,7 @@
 <details>
 <summary>Options: the ten colours</summary>
 
-<p>Adding <code>colour1</code> to <code>colour10</code> to a name does two jobs: it colours the name, and (because it's on the name) the circle too. The colours are in the core, shared with every app, with brighter shades for names and lighter ones again in the dark theme - see <a href="core-css.html#s3-14">The Ten Colours</a>.</p>
+<p>Adding <code>colour1</code> to <code>colour10</code> to a name does two jobs: it colours the name, and (because it's on the name) the circle too. The colours are in the core, shared with every app, with brighter shades for names and lighter ones again in the dark theme - see <a href="core-css.html#s3-15">The Ten Colours</a>.</p>
 
 </details>
 
@@ -568,7 +582,7 @@
   <li><strong>Spoilers:</strong> <code>dc-spoiler</code> and <code>dc-spoiler-text</code>.</li>
   <li><strong>Mentions:</strong> <code>dc-mention</code> and <code>dc-role-mention</code>.</li>
   <li><strong>Dividers:</strong> <code>dc-divider</code>, <code>dc-divider-label</code>, <code>dc-new-divider</code> and <code>dc-new-tag</code>.</li>
-  <li><strong>Extras:</strong> <code>dc-new-user</code>, <code>dc-bot</code>, and the typing dots (<code>dc-typing</code>, <code>typing-indicator</code> and <code>dc-typing-text</code>).</li>
+  <li><strong>Extras:</strong> <code>dc-new-user</code>, <code>dc-bot</code>, and the typing dots (<code>dc-typing</code> and <code>typing-indicator</code>).</li>
 </ul>
 
 <p>Keep the window, <code>dc-message</code>, <code>dc-name</code>, <code>dc-time</code> and <code>dc-text</code>, which every message uses.</p>

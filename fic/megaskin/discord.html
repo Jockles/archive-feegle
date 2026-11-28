@@ -7,7 +7,7 @@
   <title>Megaskin, Chapter 18: Discord | jockles.com</title>
   <link rel="stylesheet" href="../../style.css">
   <script src="../../theme.js"></script>
-  <link rel="stylesheet" href="megaskin.css?v=39e2c11d" id="creator-style">
+  <link rel="stylesheet" href="megaskin.css?v=ef4cd03f" id="creator-style">
 </head>
 <body>
 <header>
@@ -197,9 +197,7 @@
   <div class="dc-footer">
     <p><span class="dc-field">Message #general</span></p>
   </div>
-  <div class="dc-typing">
-    <p><span class="typing-indicator"><span></span><span></span><span></span></span> <span class="dc-typing-text"><b>SwankyUsername</b> and <b>DropSomeKnowledge</b> are typing...</span></p>
-  </div>
+  <p class="dc-typing typing-indicator"><span></span><span></span><span></span><b>SwankyUsername</b> and <b>DropSomeKnowledge</b> are typing...</p>
 </div>
 
 <details>
@@ -304,9 +302,7 @@
   &lt;div class="dc-footer"&gt;
     &lt;p&gt;&lt;span class="dc-field"&gt;Message #general&lt;/span&gt;&lt;/p&gt;
   &lt;/div&gt;
-  &lt;div class="dc-typing"&gt;
-    &lt;p&gt;&lt;span class="typing-indicator"&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt; &lt;span class="dc-typing-text"&gt;&lt;b&gt;SwankyUsername&lt;/b&gt; and &lt;b&gt;DropSomeKnowledge&lt;/b&gt; are typing...&lt;/span&gt;&lt;/p&gt;
-  &lt;/div&gt;
+  &lt;p class="dc-typing typing-indicator"&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;b&gt;SwankyUsername&lt;/b&gt; and &lt;b&gt;DropSomeKnowledge&lt;/b&gt; are typing...&lt;/p&gt;
 &lt;/div&gt;</code></pre>
 
 </details>
@@ -460,16 +456,12 @@
 <p>To show that one or more people are typing, add this <em>after</em> the chat box:</p>
 
 <div class="dc theme-auto">
-  <div class="dc-typing">
-    <p><span class="typing-indicator"><span></span><span></span><span></span></span> <span class="dc-typing-text"><b>SwankyUsername</b> and <b>DropSomeKnowledge</b> are typing...</span></p>
-  </div>
+  <p class="dc-typing typing-indicator"><span></span><span></span><span></span><b>SwankyUsername</b> and <b>DropSomeKnowledge</b> are typing...</p>
 </div>
 
-<pre><code>&lt;div class="dc-typing"&gt;
-  &lt;p&gt;&lt;span class="typing-indicator"&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt; &lt;span class="dc-typing-text"&gt;&lt;b&gt;SwankyUsername&lt;/b&gt; and &lt;b&gt;DropSomeKnowledge&lt;/b&gt; are typing...&lt;/span&gt;&lt;/p&gt;
-&lt;/div&gt;</code></pre>
+<pre><code>&lt;p class="dc-typing typing-indicator"&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;b&gt;SwankyUsername&lt;/b&gt; and &lt;b&gt;DropSomeKnowledge&lt;/b&gt; are typing...&lt;/p&gt;</code></pre>
 
-<p>Put the names of everyone who's typing in <code>dc-typing-text</code>.</p>
+<p>The three empty spans are the dots. Put the names of everyone who's typing after them.</p>
 
 <h4 id="s18-2-3">18.2.3 Long Chats</h4>
 

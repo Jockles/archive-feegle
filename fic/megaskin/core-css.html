@@ -7,7 +7,7 @@
   <title>Megaskin, Chapter 3: The Core CSS | jockles.com</title>
   <link rel="stylesheet" href="../../style.css">
   <script src="../../theme.js"></script>
-  <link rel="stylesheet" href="megaskin.css?v=39e2c11d" id="creator-style">
+  <link rel="stylesheet" href="megaskin.css?v=ef4cd03f" id="creator-style">
 </head>
 <body>
 <header>
@@ -56,18 +56,19 @@
   <li><a href="#s3-8">3.8 Hidden Text</a></li>
   <li><a href="#s3-9">3.9 Video Descriptions</a></li>
   <li><a href="#s3-10">3.10 Flashing Cursor</a></li>
-  <li><a href="#s3-11">3.11 Links That Go Nowhere</a></li>
-  <li><a href="#s3-12">3.12 Hover and Tap Translations</a></li>
-  <li><a href="#s3-13">3.13 Character Profiles, Line by Line</a>
+  <li><a href="#s3-11">3.11 Typing Dots</a></li>
+  <li><a href="#s3-12">3.12 Links That Go Nowhere</a></li>
+  <li><a href="#s3-13">3.13 Hover and Tap Translations</a></li>
+  <li><a href="#s3-14">3.14 Character Profiles, Line by Line</a>
     <ul>
-      <li><a href="#s3-13-1">3.13.1 A Simple Profile: Stan</a></li>
-      <li><a href="#s3-13-2">3.13.2 The Profile Maker Tool</a></li>
-      <li><a href="#s3-13-3">3.13.3 Every Option: Luca</a></li>
-      <li><a href="#s3-13-4">3.13.4 More Than One Account on the Same App</a></li>
+      <li><a href="#s3-14-1">3.14.1 A Simple Profile: Stan</a></li>
+      <li><a href="#s3-14-2">3.14.2 The Profile Maker Tool</a></li>
+      <li><a href="#s3-14-3">3.14.3 Every Option: Luca</a></li>
+      <li><a href="#s3-14-4">3.14.4 More Than One Account on the Same App</a></li>
     </ul>
   </li>
-  <li><a href="#s3-14">3.14 The Ten Colours</a></li>
-  <li><a href="#s3-15">3.15 Themes</a></li>
+  <li><a href="#s3-15">3.15 The Ten Colours</a></li>
+  <li><a href="#s3-16">3.16 Themes</a></li>
 </ul>
 
 <p>This chapter goes through the CSS behind the last one: the chat box, scrolling, round pictures, hidden text, translations, character profiles and the ten colours every app shares. It's the part of the skin that every module needs, so whichever apps you use, the core goes in first.</p>
@@ -101,7 +102,7 @@
 <details>
 <summary>How it works: why every colour is written out in full</summary>
 
-<p>AO3 also doesn't allow CSS variables or <code>@import</code>, so every colour is written out in full wherever it's used. The exception is the ten colours for pictures and names, which every app shares - they're all together in the core, so there's only one place to change them (see <a href="core-css.html#s3-14">The Ten Colours</a>).</p>
+<p>AO3 also doesn't allow CSS variables or <code>@import</code>, so every colour is written out in full wherever it's used. The exception is the ten colours for pictures and names, which every app shares - they're all together in the core, so there's only one place to change them (see <a href="core-css.html#s3-15">The Ten Colours</a>).</p>
 
 </details>
 
@@ -306,7 +307,7 @@
   margin: 0 auto;
 }</code></pre>
 
-<p>A circle with no picture in it shows initials on a plain colour instead. The colours for that, <code>colour1</code> to <code>colour10</code>, are near the end of the core - see <a href="core-css.html#s3-14">The Ten Colours</a>.</p>
+<p>A circle with no picture in it shows initials on a plain colour instead. The colours for that, <code>colour1</code> to <code>colour10</code>, are near the end of the core - see <a href="core-css.html#s3-15">The Ten Colours</a>.</p>
 
 <details>
 <summary>Options: moving initials up or down</summary>
@@ -351,7 +352,7 @@
 
 #workskin .ig .ig-top .ig-pfp .pfp::before { font-size: 1.1em; }</code></pre>
 
-<p>It doesn't do anything until a profile gives it some text, like Holster's does (see <a href="core-css.html#s3-13">Character Profiles, Line by Line</a>).</p>
+<p>It doesn't do anything until a profile gives it some text, like Holster's does (see <a href="core-css.html#s3-14">Character Profiles, Line by Line</a>).</p>
 
 </details>
 
@@ -415,7 +416,36 @@
 
 </details>
 
-<h3 id="s3-11">3.11 Links That Go Nowhere</h3>
+<h3 id="s3-11">3.11 Typing Dots</h3>
+
+<pre><code>#workskin .typing-indicator span:empty {
+  display: inline-block;
+  width: 0.6em;
+  height: 0.6em;
+  margin-right: 0.25em;
+  border-radius: 50%;
+  background: #8e8e93;
+  opacity: 0.5;
+}
+
+#workskin .typing-indicator span:empty + span:empty { opacity: 0.7; }
+
+#workskin .typing-indicator span:empty + span:empty + span:empty { opacity: 1; margin-right: 0; }</code></pre>
+
+<p>The three dots that show someone is typing are three empty spans at the end of a message with <code>typing-indicator</code> on it. It's the same in every chat app, so the dots live here, and each app only adds its own colour and spacing.</p>
+
+<details>
+<summary>How it works: picking out the dots</summary>
+
+<ul>
+  <li><code>span:empty</code> means a span with nothing in it, so the hidden "is typing..." span in front is left alone.</li>
+  <li><code>border-radius: 50%</code> makes each one a circle.</li>
+  <li><code>+</code> means "straight after". So <code>span:empty + span:empty</code> is the second and third dot, and the last rule is the third. They get darker from left to right, so it looks like the dots are mid-bounce.</li>
+</ul>
+
+</details>
+
+<h3 id="s3-12">3.12 Links That Go Nowhere</h3>
 
 <pre><code>#workskin .mob .fake-link,
 #workskin .mob a:not(.tl) {
@@ -427,7 +457,7 @@
 
 <p>A <code>fake-link</code> and a real link get the same underline and the same pointing-hand cursor, so readers can't tell them apart. <code>a:not(.tl)</code> means "any link that isn't a translation", because translations are links too and need to look different. The colours are in each module, under its <em>Links</em> heading.</p>
 
-<h3 id="s3-12">3.12 Hover and Tap Translations</h3>
+<h3 id="s3-13">3.13 Hover and Tap Translations</h3>
 
 <p>Thanks to La_Temperanza, whose <a href="https://archiveofourown.org/works/10957056"><em>How To Change Text on AO3 When the Cursor is Hovering Over It (Or Clicked on Mobile)</em></a> the translations are built on. Copied and adapted from it: swapping the text on hover or tap, the brackets for readers with Creator's Style off, and the link that makes tapping work on phones.</p>
 
@@ -524,11 +554,11 @@
 
 </details>
 
-<h3 id="s3-13">3.13 Character Profiles, Line by Line</h3>
+<h3 id="s3-14">3.14 Character Profiles, Line by Line</h3>
 
 <p>A profile is a block of CSS for one character. The trick behind it is that CSS can't put text on a page by itself, but it <em>can</em> add text before or after something with <code>::before</code> and <code>::after</code>. So <code>&lt;span class=&quot;handle pfp-luca&quot;&gt;&lt;/span&gt;</code> is an empty span, and the profile fills it in. Because the words come from the CSS, they disappear when the skin is off, which is why every example has a <code>hide</code> copy typed inside.</p>
 
-<h4 id="s3-13-1">3.13.1 A Simple Profile: Stan</h4>
+<h4 id="s3-14-1">3.14.1 A Simple Profile: Stan</h4>
 
 <p>To make a profile for one of your characters, you only need five lines. Here they are for Stan, the simplest profile in the skin. Copy his block into the core CSS, then change <code>stan</code> to your character's name everywhere in it, and swap in their picture, name colour, name, handle and email address:</p>
 
@@ -573,19 +603,19 @@
   <li><strong>Yuna</strong> (<code>pfp-yuna</code>): Yuna has a work life and a family life, and a plain coloured circle instead of a picture. She has a second email address for work (<code>acc-work</code>) - the extra account idea, just for email - plus a nickname line for how she's saved on her son's phone, and a wallpaper line for her own phone.</li>
   <li><strong>Zim</strong> (<code>pfp-zim</code>): Jack only has a different appearance on one app, so he only has those lines added - a different name and handle on Twitter/X.</li>
   <li><strong>Holster</strong> (<code>pfp-holster</code>): Holster only has a picture on one app, so that's the only picture line. Everywhere else he has initials, with a different circle colour on some apps.</li>
-  <li><strong>Rose</strong> (<code>pfp-rose</code>): Rose keeps her public and private accounts separate, so she has a second Instagram account, <code>acc-private</code>, with its own picture and handle (see <a href="core-css.html#s3-13-4">More Than One Account on the Same App</a>). She's also saved with her private picture on Shane's phone, which shows how a picture can be different on just one phone.</li>
+  <li><strong>Rose</strong> (<code>pfp-rose</code>): Rose keeps her public and private accounts separate, so she has a second Instagram account, <code>acc-private</code>, with its own picture and handle (see <a href="core-css.html#s3-14-4">More Than One Account on the Same App</a>). She's also saved with her private picture on Shane's phone, which shows how a picture can be different on just one phone.</li>
   <li><strong>Shane</strong> (<code>pfp-shane</code>): Shane is a main character who shows up everywhere, so he has a bit of everything - a real picture, a nickname on his partner's phone, a slightly different handle on each app, and a wallpaper for his own phone.</li>
   <li><strong>Ilya</strong> (<code>pfp-ilya</code>): Ilya is the other main character, and he has two secret accounts alongside his main ones - a Twitter/X burner (<code>acc-burner</code>) and a Shane fan account on Twitter/X and Instagram (<code>acc-shanewife</code>). He also has a nickname line for how he's saved on Shane's phone and a wallpaper line for his own phone.</li>
-  <li><strong>Luca</strong> (<code>pfp-luca</code>): Luca has every option at once, so you can see them all working together - he's explained line by line in <a href="core-css.html#s3-13-3">Every Option: Luca</a>.</li>
+  <li><strong>Luca</strong> (<code>pfp-luca</code>): Luca has every option at once, so you can see them all working together - he's explained line by line in <a href="core-css.html#s3-14-3">Every Option: Luca</a>.</li>
 </ul>
 
 </details>
 
-<h4 id="s3-13-2">3.13.2 The Profile Maker Tool</h4>
+<h4 id="s3-14-2">3.14.2 The Profile Maker Tool</h4>
 
 <p>If you'd like to see your profile as you build it, my <a href="profile-maker.html">Profile Maker</a> is a WYSIWYG (what you see is what you get) helper tool: fill in the boxes and it shows the character in every app as you go, then gives you the CSS to copy. It's only a shortcut, though. Everything in this section does the same job by hand, so you don't have to use it at all if you don't want to, or if it ever breaks.</p>
 
-<h4 id="s3-13-3">3.13.3 Every Option: Luca</h4>
+<h4 id="s3-14-3">3.14.3 Every Option: Luca</h4>
 
 <p>Luca's profile uses every option, so here it is a line at a time. Only the lines marked <em>every profile</em> need to be in yours - they're the same five as Stan's.</p>
 
@@ -677,7 +707,7 @@
 #workskin .tb .pfp.pfp-luca.acc-rpf { background-image: url(https://images.squidge.org/images/2026/11/16/Hollanov1.png); }
 #workskin .tb .handle.pfp-luca.acc-rpf::after { content: "rink-rivals-rpf"; }</code></pre>
 
-<p>As well as his main Tumblr, Luca has an art blog and a hockey RPF blog, each with its own picture and URL. In your HTML, add the account's <code>acc-</code> name: <code>&lt;span class=&quot;handle pfp-luca acc-art&quot;&gt;&lt;/span&gt;</code>. There's more on how this works in <a href="core-css.html#s3-13-4">More Than One Account on the Same App</a>.</p>
+<p>As well as his main Tumblr, Luca has an art blog and a hockey RPF blog, each with its own picture and URL. In your HTML, add the account's <code>acc-</code> name: <code>&lt;span class=&quot;handle pfp-luca acc-art&quot;&gt;&lt;/span&gt;</code>. There's more on how this works in <a href="core-css.html#s3-14-4">More Than One Account on the Same App</a>.</p>
 
 <p><strong>14. Tumblr checkmarks</strong></p>
 
@@ -715,7 +745,7 @@
 
 </details>
 
-<h4 id="s3-13-4">3.13.4 More Than One Account on the Same App</h4>
+<h4 id="s3-14-4">3.14.4 More Than One Account on the Same App</h4>
 
 <p>Sometimes a character has more than one account on an app - a public one and a private one, their real account and a burner, or a fan account nobody can know about. Each extra account gets a name starting with <code>acc-</code>, the same way a phone gets <code>pov-</code>: <code>acc-burner</code>, <code>acc-shanewife</code>, <code>acc-private</code>, or whatever you like. Its lines go at the end of that character's profile. Here's Ilya's burner on Twitter/X:</p>
 
@@ -734,7 +764,7 @@
   <li>Make as many as you like. Ilya has a second one, <code>acc-shanewife</code>, built the same way but for Instagram too, and Rose's private Instagram, <code>acc-private</code>, uses <code>.ig</code> and <code>.igdm</code> instead of the Twitter/X classes. Yuna's work email, <code>acc-work</code>, is the same idea for an email address: <code>#workskin .email.pfp-yuna.acc-work::after { content: &quot;Yuna@HollanderHockey.com&quot;; }</code>.</li>
 </ul>
 
-<h3 id="s3-14">3.14 The Ten Colours</h3>
+<h3 id="s3-15">3.15 The Ten Colours</h3>
 
 <p>Every app uses the same ten colours, <code>colour1</code> to <code>colour10</code>, for its round picture circles and for people's names. They all live at the end of the core, so if you change a colour there, it changes in every app at once.</p>
 
@@ -790,7 +820,7 @@
 
 </details>
 
-<h3 id="s3-15">3.15 Themes</h3>
+<h3 id="s3-16">3.16 Themes</h3>
 
 <p>Apart from the ten colours above, the core doesn't hold any colours, so there's nothing else about themes in it. Each module has its own dark theme and auto theme at the bottom of its block, and they work the same way everywhere:</p>
 

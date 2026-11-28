@@ -7,7 +7,7 @@
   <title>Megaskin, Chapter 8: Twitter/X | jockles.com</title>
   <link rel="stylesheet" href="../../style.css">
   <script src="../../theme.js"></script>
-  <link rel="stylesheet" href="megaskin.css?v=39e2c11d" id="creator-style">
+  <link rel="stylesheet" href="megaskin.css?v=ef4cd03f" id="creator-style">
 </head>
 <body>
 <header>
@@ -1921,6 +1921,7 @@
     <p class="msg out"><span class="hide"><em>Ilya:</em> </span>you laughed. I heard you</p>
     <p class="msg out voice"><span class="hide"><em>Ilya:</em> </span><span class="twdm-play ic ic-play">&#9654;</span><span class="twdm-wave"></span><span class="twdm-dur">0:02</span></p>
     <p class="twdm-status">Seen</p>
+    <p class="msg in typing-indicator"><span class="hide"><em>Shane</em> is typing...</span><span></span><span></span><span></span></p>
   </div>
   <p class="twdm-footer"><span class="twdm-plus">+</span><span class="hide"> </span><span class="twdm-field">Message<span class="hide"> </span><span class="ic ic-mic">&#127908;</span></span></p>
   <p class="tw-nav">
@@ -1957,6 +1958,7 @@
     &lt;p class="msg out"&gt;&lt;span class="hide"&gt;&lt;em&gt;Ilya:&lt;/em&gt; &lt;/span&gt;you laughed. I heard you&lt;/p&gt;
     &lt;p class="msg out voice"&gt;&lt;span class="hide"&gt;&lt;em&gt;Ilya:&lt;/em&gt; &lt;/span&gt;&lt;span class="twdm-play ic ic-play"&gt;&amp;#9654;&lt;/span&gt;&lt;span class="twdm-wave"&gt;&lt;/span&gt;&lt;span class="twdm-dur"&gt;0:02&lt;/span&gt;&lt;/p&gt;
     &lt;p class="twdm-status"&gt;Seen&lt;/p&gt;
+    &lt;p class="msg in typing-indicator"&gt;&lt;span class="hide"&gt;&lt;em&gt;Shane&lt;/em&gt; is typing...&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/p&gt;
   &lt;/div&gt;
   &lt;p class="twdm-footer"&gt;&lt;span class="twdm-plus"&gt;+&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="twdm-field"&gt;Message&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="ic ic-mic"&gt;&amp;#127908;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
   &lt;p class="tw-nav"&gt;
@@ -2118,7 +2120,21 @@
 
 </details>
 
-<h5 id="s8-7-3-2">8.7.3.2 The App Buttons</h5>
+<h5 id="s8-7-3-2">8.7.3.2 Typing Dots</h5>
+
+<p>The three dots that show someone is typing are a message with three empty spans in it, so they belong to whoever is typing. Add <code>typing-indicator</code> to a message from them. The hidden words say who it is for readers with the workskin off:</p>
+
+<div class="mob twdm theme-auto">
+  <div class="mob-body">
+    <p class="msg in typing-indicator"><span class="hide"><em>Shane</em> is typing...</span><span></span><span></span><span></span></p>
+  </div>
+</div>
+
+<pre><code>&lt;p class="msg in typing-indicator"&gt;&lt;span class="hide"&gt;&lt;em&gt;Shane&lt;/em&gt; is typing...&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/p&gt;</code></pre>
+
+<p>In a group, put it in their <code>twdm-row</code> like any of their messages.</p>
+
+<h5 id="s8-7-3-3">8.7.3.3 The App Buttons</h5>
 
 <p>The row of buttons along the very bottom of the app is optional. Put it last, after the message bar. Each button is an icon, and <code>on</code> gives the chat button its grey box, because that's the part of the app you're in:</p>
 

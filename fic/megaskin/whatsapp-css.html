@@ -7,7 +7,7 @@
   <title>Megaskin, Chapter 7: WhatsApp CSS | jockles.com</title>
   <link rel="stylesheet" href="../../style.css">
   <script src="../../theme.js"></script>
-  <link rel="stylesheet" href="megaskin.css?v=39e2c11d" id="creator-style">
+  <link rel="stylesheet" href="megaskin.css?v=ef4cd03f" id="creator-style">
 </head>
 <body>
 <header>
@@ -341,32 +341,11 @@
 
 <h5 id="s7-3-4-2">7.3.4.2 Typing Dots</h5>
 
-<pre><code>#workskin .wa .msg.typing-indicator { min-width: 0; }
+<pre><code>#workskin .wa .msg.typing-indicator { min-width: 0; padding-top: 0.7em; padding-bottom: 0.55em; line-height: 1; }
 
-#workskin .wa .typing-indicator p:last-child { margin: 0.35em 0 0.25em 0; line-height: 1; }
+#workskin .wa .typing-indicator span:empty { background: #8696a0; }</code></pre>
 
-#workskin .wa .typing-indicator p:last-child span {
-  display: inline-block;
-  width: 0.6em;
-  height: 0.6em;
-  margin-right: 0.25em;
-  border-radius: 50%;
-  background: #8696a0;
-  opacity: 0.5;
-}
-
-#workskin .wa .typing-indicator p:last-child span:nth-last-child(2) { opacity: 0.7; }
-
-#workskin .wa .typing-indicator p:last-child span:last-child { opacity: 1; margin-right: 0; }</code></pre>
-
-<p>The dots go inside an ordinary message bubble, so they get everything a message gets: the colour, the tail, and in a group, the picture and name.</p>
-
-<details>
-<summary>How it works: shrinking the bubble and shading the dots</summary>
-
-<p><code>min-width: 0</code> undoes the usual minimum width, which is there to fit the time, so the bubble shrinks to fit the dots. <code>p:last-child</code> picks out the paragraph with the dots in, so a name line above it is left alone. Each dot is an empty span made round with <code>border-radius: 50%</code>, in WhatsApp's grey, and they get darker from left to right, like a frozen version of the moving dots. <code>:nth-last-child</code> counts from the end, the same as in iMessage.</p>
-
-</details>
+<p>The dots go inside an ordinary message bubble, so they get everything a message gets: the colour, the tail, and in a group, the picture. The dots themselves are in the core CSS, the same for every chat app (see <a href="core-css.html#s3-11">Typing Dots</a>). <code>min-width: 0</code> undoes the usual minimum width, which is there to fit the time, so the bubble shrinks to fit the dots, and the second rule gives them WhatsApp's grey.</p>
 
 <h3 id="s7-4">7.4 Normal Messages</h3>
 
@@ -847,7 +826,7 @@
 <details>
 <summary>Options: the ten colours</summary>
 
-<p>Add <code>colour1</code> to <code>colour10</code> to a circle for its colour, and the same number to a name (<code>who</code>) or a quoted reply (<code>wa-quote</code>) to colour the name and the line down the side. The ten colours are in the core, shared with every app - see <a href="core-css.html#s3-14">The Ten Colours</a> for how to change them.</p>
+<p>Add <code>colour1</code> to <code>colour10</code> to a circle for its colour, and the same number to a name (<code>who</code>) or a quoted reply (<code>wa-quote</code>) to colour the name and the line down the side. The ten colours are in the core, shared with every app - see <a href="core-css.html#s3-15">The Ten Colours</a> for how to change them.</p>
 
 </details>
 

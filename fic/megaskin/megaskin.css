@@ -776,6 +776,22 @@
   #workskin .dc.theme-auto .dc-name.colour2::before { background-color: #5c5c60; }
 }
 
+/* ---- typing dots: a message from whoever is typing, ending in three empty spans. The same in every chat app:
+   <p class="msg in typing-indicator"><span class="hide"><em>Rose</em> is typing...</span><span></span><span></span><span></span></p> */
+#workskin .typing-indicator span:empty {
+  display: inline-block;
+  width: 0.6em;
+  height: 0.6em;
+  margin-right: 0.25em;
+  border-radius: 50%;
+  background: #8e8e93;
+  opacity: 0.5;
+}
+
+#workskin .typing-indicator span:empty + span:empty { opacity: 0.7; }
+
+#workskin .typing-indicator span:empty + span:empty + span:empty { opacity: 1; margin-right: 0; }
+
 /* <<<<<<<<<< CORE (end) <<<<<<<<<< */
 
 /* >>>>>>>>>> MODULE: iMessage (start) >>>>>>>>>> */
@@ -967,21 +983,7 @@
 /* the three typing dots, in a message bubble from whoever is typing (out for the phone's owner, in for anyone else, with a who line above it in a group, like any message) */
 #workskin .imsg .typing-indicator { padding: 0.6em 0.8em; line-height: 1; }
 
-#workskin .imsg .typing-indicator span {
-  display: inline-block;
-  width: 0.6em;
-  height: 0.6em;
-  margin-right: 0.25em;
-  border-radius: 50%;
-  background: #8e8e93;
-  opacity: 0.5;
-}
-
-#workskin .imsg .typing-indicator span:nth-last-child(2) { opacity: 0.7; }
-
-#workskin .imsg .typing-indicator span:last-child { opacity: 1; margin-right: 0; }
-
-#workskin .imsg .out.typing-indicator span { background: #ffffff; }
+#workskin .imsg .out.typing-indicator span:empty { background: #ffffff; }
 
 /* the message bar at the bottom: goes after the mob-body, inside the chat, all on one line */
 #workskin .imsg .imsg-footer {
@@ -1381,23 +1383,9 @@
 #workskin .wa .wa-reacts.indent { margin-left: 46px; }
 
 /* the three typing dots, in a message bubble from whoever is typing (out for the phone's owner, in for anyone else, with the wa-row picture and who line in a group, like any message) */
-#workskin .wa .msg.typing-indicator { min-width: 0; }
+#workskin .wa .msg.typing-indicator { min-width: 0; padding-top: 0.7em; padding-bottom: 0.55em; line-height: 1; }
 
-#workskin .wa .typing-indicator p:last-child { margin: 0.35em 0 0.25em 0; line-height: 1; }
-
-#workskin .wa .typing-indicator p:last-child span {
-  display: inline-block;
-  width: 0.6em;
-  height: 0.6em;
-  margin-right: 0.25em;
-  border-radius: 50%;
-  background: #8696a0;
-  opacity: 0.5;
-}
-
-#workskin .wa .typing-indicator p:last-child span:nth-last-child(2) { opacity: 0.7; }
-
-#workskin .wa .typing-indicator p:last-child span:last-child { opacity: 1; margin-right: 0; }
+#workskin .wa .typing-indicator span:empty { background: #8696a0; }
 
 /* the message bar at the bottom */
 #workskin .wa .wa-footer { position: relative; padding: 0.5em 3.4em 0.5em 0.6em; }
@@ -3018,6 +3006,11 @@
 #workskin .twdm .msg.twdm-quote { background: transparent; color: #536471; border: 1px solid #cfd9de; margin-bottom: 0.2em; }
 
 /* a picture in a DM: <p class="msg in photo"><img src="..."></p> or a [description] */
+/* the three typing dots, in a bubble from whoever is typing */
+#workskin .twdm .msg.typing-indicator { padding: 0.8em 0.95em; line-height: 1; }
+
+#workskin .twdm .typing-indicator span:empty { background: #536471; }
+
 #workskin .twdm .msg.photo {
   padding: 0.25em;
   min-width: 55%;
@@ -3317,6 +3310,8 @@
 
 #workskin .twdm.theme-dark .who { color: #71767b; }
 
+#workskin .twdm.theme-dark .typing-indicator span:empty { background: #8b98a5; }
+
 #workskin .twdm.theme-dark .twdm-plus,
 #workskin .twdm.theme-dark .twdm-field { border-color: #2f3336; color: #71767b; }
 
@@ -3479,6 +3474,8 @@
   #workskin .tw-feed.theme-auto .tw-stats { border-top-color: #2f3336; }
 
   #workskin .twdm.theme-auto .who { color: #71767b; }
+
+  #workskin .twdm.theme-auto .typing-indicator span:empty { background: #8b98a5; }
 
   #workskin .twdm.theme-auto .twdm-plus,
     #workskin .twdm.theme-auto .twdm-field { border-color: #2f3336; color: #71767b; }
@@ -5248,19 +5245,17 @@
    <p class="msg in typing-indicator"><span class="hide"><em>Rose</em> is typing...</span><span></span><span></span><span></span></p> */
 #workskin .igdm .msg.typing-indicator { padding: 0.75em 0.95em; line-height: 1; }
 
-#workskin .igdm .typing-indicator span:not(.hide) {
-  display: inline-block;
+#workskin .igdm .typing-indicator span:empty {
   width: 0.5em;
   height: 0.5em;
   margin-right: 0.3em;
-  border-radius: 50%;
   background: #8e8e8e;
   opacity: 0.45;
 }
 
-#workskin .igdm .typing-indicator span:nth-last-child(2) { opacity: 0.7; }
+#workskin .igdm .typing-indicator span:empty + span:empty { opacity: 0.7; }
 
-#workskin .igdm .typing-indicator span:last-child { opacity: 1; margin-right: 0; }
+#workskin .igdm .typing-indicator span:empty + span:empty + span:empty { opacity: 1; margin-right: 0; }
 
 /* shared post / reel / story reply inside a DM */
 #workskin .igdm .igdm-shared {
@@ -6103,7 +6098,7 @@
 #workskin .igdm.theme-dark .igdm-link { background: #262626; color: #f5f5f5; }
 #workskin .igdm.theme-dark .igdm-link-img.text { background: #363636; color: #a8a8a8; }
 #workskin .igdm.theme-dark .igdm-link-url { color: #a8a8a8; }
-#workskin .igdm.theme-dark .typing-indicator span:not(.hide) { background: #a8a8a8; }
+#workskin .igdm.theme-dark .typing-indicator span:empty { background: #a8a8a8; }
 #workskin .igdm.theme-dark .igdm-link-url::before { border-color: #a8a8a8; background-image: linear-gradient(transparent 42%, #a8a8a8 42%, #a8a8a8 58%, transparent 58%); }
 #workskin .igdm.theme-dark .igdm-post-btns .ic.ic-info::before { border-color: #f5f5f5; color: #f5f5f5; }
 #workskin .igdm.theme-dark .ic.ic-save { background-image: url(https://images.squidge.org/images/2026/11/15/bookmark-white.png); }
@@ -6195,7 +6190,7 @@
   #workskin .igdm.theme-auto .igdm-link { background: #262626; color: #f5f5f5; }
   #workskin .igdm.theme-auto .igdm-link-img.text { background: #363636; color: #a8a8a8; }
   #workskin .igdm.theme-auto .igdm-link-url { color: #a8a8a8; }
-  #workskin .igdm.theme-auto .typing-indicator span:not(.hide) { background: #a8a8a8; }
+  #workskin .igdm.theme-auto .typing-indicator span:empty { background: #a8a8a8; }
   #workskin .igdm.theme-auto .igdm-link-url::before { border-color: #a8a8a8; background-image: linear-gradient(transparent 42%, #a8a8a8 42%, #a8a8a8 58%, transparent 58%); }
   #workskin .igdm.theme-auto .igdm-post-btns .ic.ic-info::before { border-color: #f5f5f5; color: #f5f5f5; }
   #workskin .igdm.theme-auto .ic.ic-save { background-image: url(https://images.squidge.org/images/2026/11/15/bookmark-white.png); }
@@ -7978,36 +7973,27 @@
   transform: translate(0%, -50%);
 }
 
-#workskin .dc .dc-typing { margin: 0 1.5rem; }
+/* who's typing, after the chat box: the three dots, then the names
+   <p class="dc-typing typing-indicator"><span></span><span></span><span></span><b>Name</b> is typing...</p> */
+#workskin .dc .dc-typing { margin: 0 1.5rem; font-size: 0.875rem; line-height: 1rem; }
 
-#workskin .dc .typing-indicator {
-  width: auto;
-  border-radius: 1em;
-  padding-right: 0.75em;
-  display: inline;
-  position: relative;
-  overflow: hidden;
-  text-align: left;
-  clear: both;
-}
-
-#workskin .dc .typing-indicator span {
-  height: .65rem;
-  width: .65rem;
+#workskin .dc .typing-indicator span:empty {
   float: left;
+  width: .65rem;
+  height: .65rem;
   margin: .425rem 0 .425rem 0.1rem;
-  display: inline-block;
-  border-radius: 50%;
   background-color: rgb(46, 51, 56);
+  opacity: 0.4;
+  transform: scale(0.6, 0.6);
 }
 
-#workskin .dc .typing-indicator span:nth-child(1) { opacity: 0.4; transform: scale(0.6, 0.6); }
+#workskin .dc .typing-indicator span:empty + span:empty { opacity: 0.6; transform: scale(0.8, 0.8); }
 
-#workskin .dc .typing-indicator span:nth-child(2) { opacity: 0.6; transform: scale(0.8, 0.8); }
-
-#workskin .dc .typing-indicator span:nth-child(3) { opacity: 0.9; transform: scale(1, 1); }
-
-#workskin .dc .dc-typing-text { font-size: 0.875rem; }
+#workskin .dc .typing-indicator span:empty + span:empty + span:empty {
+  margin-right: 0.75rem;
+  opacity: 0.9;
+  transform: scale(1, 1);
+}
 
 #workskin .dc .dc-code,
 #workskin .dc .dc-embed {
@@ -8152,7 +8138,7 @@
   border-bottom-color: rgb(54, 57, 63);
 }
 
-#workskin .dc.theme-dark .typing-indicator span { background-color: rgb(220, 221, 222); }
+#workskin .dc.theme-dark .typing-indicator span:empty { background-color: rgb(220, 221, 222); }
 
 #workskin .dc.theme-dark .dc-footer { background-color: rgb(64, 68, 75); }
 
@@ -8270,7 +8256,7 @@
   
   
   
-  #workskin .dc.theme-auto .typing-indicator span { background-color: rgb(220, 221, 222); }
+  #workskin .dc.theme-auto .typing-indicator span:empty { background-color: rgb(220, 221, 222); }
 
   #workskin .dc.theme-auto .dc-footer { background-color: rgb(64, 68, 75); }
 
