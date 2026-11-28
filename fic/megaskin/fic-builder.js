@@ -402,12 +402,10 @@
       if (m.from === "sys") { body.push('<p class="mob-sys">' + fmt(m.text) + "</p>"); last = ""; return; }
       if (m.from === "typing") {
         var tc = typer(b, m); if (!tc) return;
-        var tOut = tc.id === b.pov, tWho = b.group && !tOut;
-        var tb = ['<div class="msg ' + (tOut ? "out" : "in") + ' tail typing-indicator">'];
-        if (tWho) tb.push('  <p class="who ' + (isProfile(tc) ? "pfp-" + slugOf(tc) : colourClass(tc)) + '">' + waName(tc) + "</p>");
-        tb.push('  <p class="hide">' + typingHide(tc, !tWho) + "</p>", "  <p><span></span><span></span><span></span></p>", "</div>");
-        if (!tWho) tb = [tb[0] + tb.slice(1, -1).map(function (x) { return x.trim(); }).join("") + "</div>"];
-        if (tWho && b.pics) tb = ['<div class="wa-row">', "  " + waPfp(tc)].concat(ind(tb, 1)).concat(["</div>"]);
+        // the same dots as every app, with the name hidden; in a group with pictures, in a row after their picture
+        var tOut = tc.id === b.pov;
+        var tb = ['<p class="msg ' + (tOut ? "out" : "in") + ' tail typing-indicator"><span class="hide">' + typingHide(tc, true) + "</span><span></span><span></span><span></span></p>"];
+        if (b.group && !tOut && b.pics) tb = ['<div class="wa-row">', "  " + waPfp(tc)].concat(ind(tb, 1)).concat(["</div>"]);
         body = body.concat(tb);
         last = ""; return;
       }
@@ -515,6 +513,16 @@
     function close() { if (row) body = body.concat(['<div class="twdm-row">'], ind(row.lines, 1), ["</div>"]); row = null; }
     b.msgs.forEach(function (m) {
       if (m.from === "sys") { close(); body.push('<p class="mob-sys">' + fmt(m.text) + "</p>"); return; }
+      if (m.from === "typing") {
+        // typing dots: a message from whoever is typing, so in a group they go in that person's row
+        var tc = typer(b, m); if (!tc) return;
+        var tOut = tc.id === b.pov, tg = b.group && !tOut;
+        if (!tg || (row && row.from !== tc.id)) close();
+        if (tg && !row) row = { from: tc.id, first: true, lines: [pfpLine(tc), '<p class="who">' + dmName(tc) + '<span class="hide">:</span></p>'] };
+        if (tg) row.first = false;
+        (tg ? row.lines : body).push('<p class="msg ' + (tOut ? "out" : "in") + ' typing-indicator"><span class="hide">' + typingHide(tc, true) + "</span><span></span><span></span><span></span></p>");
+        return;
+      }
       var c = char(m.from); if (!c) return;
       var out = m.from === b.pov, side = out ? "out" : "in", grouped = b.group && !out;
       if (!grouped || (row && row.from !== m.from)) close();
@@ -1352,7 +1360,7 @@
 
   function speakerOptions(b) {
     return S.cast.map(function (c) { return [c.id, nameOf(c) + (c.id === b.pov ? " (phone owner)" : "")]; })
-      .concat([["sys", "Date or notice line"]]).concat(b.type === "twdm" ? [] : [["typing", "Typing dots"]]);
+      .concat([["sys", "Date or notice line"]]).concat([["typing", "Typing dots"]]);
   }
 
   function msgRow(b, bi, m, mi) {
@@ -2086,7 +2094,17 @@
         if (is(rk[0], "p.wa-pfp")) rowPfp = rk.shift();
         if (rk.length !== 1) no();
         n = rk[0];
+        if (is(n, "p.msg.typing-indicator")) {
+          var rem = n.querySelector("span.hide em"); if (!rem || n.classList.contains("out")) no();
+          var rby = personByName(rem.textContent, true); if (!rby) no(); looks(rby, rowPfp);
+          b.msgs.push(m = newMsg("typing", "")); m.by = rby.id; return;
+        }
       } else if (is(n, "div.msg.in") && (n.querySelector("p.who") || b.group)) rowless = true;
+      else if (is(n, "p.msg.typing-indicator")) {
+        var tem = n.querySelector("span.hide em"), tout = n.classList.contains("out"); if (!tem) no();
+        var tby = tout ? owner(b, tem.textContent) : personByName(tem.textContent, true); if (!tby) no();
+        b.msgs.push(m = newMsg("typing", "")); m.by = tby.id; return;
+      }
       if (!is(n, "div.msg")) no();
       var out = n.classList.contains("out"); if (!out && !n.classList.contains("in")) no();
       var ns = kids(n), who = null, name = "";
@@ -2215,6 +2233,11 @@
         if (is(p, "p.twdm-quote")) { if (!quote) no(); var qc = p.cloneNode(true); qc.querySelectorAll(".hide").forEach(function (x) { x.remove(); }); quote.text = qc.textContent; return; }
         if (is(p, "p.twdm-reacts")) { if (!m) no(); var rc = p.cloneNode(true); rc.querySelectorAll(".hide").forEach(function (x) { x.remove(); }); m.waReacts = rc.textContent; return; }
         if (is(p, "p.twdm-status")) { if (!m) no(); m.status = p.textContent; return; }
+        if (is(p, "p.msg.typing-indicator")) {
+          var tem = p.querySelector("span.hide em"), tout = p.classList.contains("out"); if (!tem || quote) no();
+          var tby = who || (tout ? owner(b, tem.textContent) : personByName(tem.textContent, true)); if (!tby) no();
+          b.msgs.push(m = newMsg("typing", "")); m.by = tby.id; return;
+        }
         if (!is(p, "p.msg")) no();
         var cl = p.classList, out = cl.contains("out"); if (!out && !cl.contains("in")) no();
         var ns = inl(p), name = labelOf(ns);
@@ -2735,7 +2758,7 @@
   // stays on one line; one with a block inside puts every child on its own line, two spaces in; one with only inline
   // children splits only if its kind is on the list below (tested to look the same split or not, on the site and on AO3)
   // and one of them has a class. A hidden span that isn't first stays on the end of the line before it.
-  var SPLIT_SAFE = ["p.hide", "p.ig-header", "p.ig-photo.real", "p.ig-story", "p.ig-story.close", "p.ig-story.me", "p.igdm-link-img", "p.igdm-post-img", "p.tb-blog", "p.tb-header", "p.tb-nav", "p.tb-row", "p.tb-stats", "p.tb-tabs", "p.tb-top", "p.tw-header", "p.tw-nav", "p.tw-opt.results.p10", "p.tw-opt.results.p25", "p.tw-opt.results.p30", "p.tw-opt.results.p60", "p.tw-opt.results.win.p75", "p.tw-pfp", "p.tw-photos", "p.tw-photos.four", "p.tw-photos.three", "p.tw-photos.two", "p.tw-stat", "p.tw-stat.locked", "p.tw-stat.tw-end", "p.tw-stat.tw-end.saved", "p.tw-tabs", "p.twc-footer", "p.wa-footer", "p.wa-link-img", "p.wa-pfp", "p.wa-photos.four", "p.wa-photos.one", "p.wa-photos.three", "p.wa-photos.two", "p.wa-wall", "span.badged", "span.dc-embed-text", "span.dc-quote", "span.gm-pfp", "span.handle.acc-rpf", "span.hide", "span.ig-badge", "span.ig-like-pfp", "span.ig-pfp.story", "span.pfp", "span.tb-ask-pfp", "span.tb-follow", "span.tb-name", "span.tb-pfp", "span.tb-pfp.reblog", "span.tb-stat", "span.tw-me", "span.tw-pfp", "span.tw-photo", "span.wa-pfp", "span.wa-photo", "td.gm-star"];
+  var SPLIT_SAFE = ["p.hide", "p.ig-header", "p.ig-photo.real", "p.ig-story", "p.ig-story.close", "p.ig-story.me", "p.igdm-link-img", "p.igdm-post-img", "p.tb-blog", "p.tb-header", "p.tb-nav", "p.tb-row", "p.tb-stats", "p.tb-tabs", "p.tb-top", "p.tw-header", "p.tw-nav", "p.tw-opt.results.p10", "p.tw-opt.results.p25", "p.tw-opt.results.p30", "p.tw-opt.results.p60", "p.tw-opt.results.win.p75", "p.tw-pfp", "p.tw-photos", "p.tw-photos.four", "p.tw-photos.three", "p.tw-photos.two", "p.tw-stat", "p.tw-stat.locked", "p.tw-stat.tw-end", "p.tw-stat.tw-end.saved", "p.tw-tabs", "p.twc-reply-bar", "p.wa-footer", "p.wa-link-img", "p.wa-pfp", "p.wa-photos.four", "p.wa-photos.one", "p.wa-photos.three", "p.wa-photos.two", "p.wa-wall", "span.badged", "span.dc-embed-text", "span.dc-quote", "span.gm-pfp", "span.handle.acc-rpf", "span.hide", "span.ig-badge", "span.ig-like-pfp", "span.ig-pfp.story", "span.pfp", "span.tb-ask-pfp", "span.tb-follow", "span.tb-name", "span.tb-pfp", "span.tb-pfp.reblog", "span.tb-stat", "span.tw-me", "span.tw-pfp", "span.tw-photo", "span.wa-pfp", "span.wa-photo", "td.gm-star"];
   var FMT_BOXES = "mob dc tw-feed ig-feed tb-feed twc12-feed twc16-feed tw tw-reply ig igdm tb gm mail twdm wa imsg twc12 twc16".split(" ");
   var FMT_BLOCK = "div p table thead tbody tr td th ul ol li details summary blockquote h1 h2 h3 h4 h5 h6 pre hr".split(" ");
   var FMT_VOID = ["img", "br", "hr", "input"];
@@ -2862,6 +2885,14 @@
         var cls = x.getAttribute("class").trim().split(/\s+/).filter(function (k) { if (gone.indexOf(k) >= 0) { hit = true; return false; } return true; })
           .map(function (k) { renames.forEach(function (r) { if (k === r[0]) { hit = true; k = r[1]; } }); return k; });
         if (cls.length) x.setAttribute("class", cls.join(" ")); else x.removeAttribute("class");
+      });
+      // old WhatsApp typing dots were a div with p's (and a name line in a group); now they're one p like every other app
+      [c].concat(Array.prototype.slice.call(c.querySelectorAll("div.msg.typing-indicator"))).forEach(function (d) {
+        if (!d.matches("div.msg.typing-indicator") || !d.parentNode) return;
+        var who = d.querySelector(":scope > p.who"), hide = d.querySelector(":scope > p.hide"), p = document.createElement("p");
+        p.className = d.className;
+        p.innerHTML = '<span class="hide">' + (who ? "<em>" + esc(who.textContent) + "</em> " : "") + (hide ? hide.innerHTML : "") + "</span><span></span><span></span><span></span>";
+        d.parentNode.replaceChild(p, d); hit = true;
       });
       return c;
     });

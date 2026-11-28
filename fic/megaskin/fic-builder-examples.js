@@ -137,7 +137,8 @@ window.FB_EXAMPLES = [
       ["Rose", "the girls are devastated they're not invited 😿", { time: "09:19" }],
       ["Ilya", "Shane will not drink this. more for me", { time: "09:20" }],
       ["Hayden", "", { time: "09:21", contact: "Jackie Pike" }],
-      ["Hayden", "Jackie wants to bring dessert. message her yourselves, I'm not the middleman", { time: "09:21" }]
+      ["Hayden", "Jackie wants to bring dessert. message her yourselves, I'm not the middleman", { time: "09:21" }],
+      ["typing", "", { by: "Rose" }]
     ]
   },
   {
@@ -204,7 +205,8 @@ window.FB_EXAMPLES = [
       ["sys", "Today 09:02"],
       ["Shane", "", { photos: [{ url: MACK, alt: MACKALT }] }],
       ["Ilya", "you laughed. I heard you", { reply: 3 }],
-      ["Ilya", "", { voice: "0:02", status: "Seen" }]
+      ["Ilya", "", { voice: "0:02", status: "Seen" }],
+      ["typing", "", { by: "Shane" }]
     ]
   },
   {
@@ -218,7 +220,8 @@ window.FB_EXAMPLES = [
       ["Hayden", "Jackie says I'm allowed"],
       ["Shane", "yes. Ilya is paying", { waReacts: "👍 😂 3" }],
       ["Ilya", "I did not agree to this", { reply: 3, status: "Sent" }],
-      ["Scott", "you did, actually. there are witnesses"]
+      ["Scott", "you did, actually. there are witnesses"],
+      ["typing", "", { by: "Hayden" }]
     ]
   },
   {
