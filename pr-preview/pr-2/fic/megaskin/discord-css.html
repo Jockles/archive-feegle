@@ -25,7 +25,7 @@
   <!-- /site meta -->
   <link rel="stylesheet" href="../../style.css?v=c31c06ea">
   <script src="../../theme.js?v=c50fd7c2"></script>
-  <link rel="stylesheet" href="megaskin.css?v=e4dcd439" id="creator-style">
+  <link rel="stylesheet" href="megaskin.css?v=888848ea" id="creator-style">
 </head>
 <body>
 <header>
@@ -236,7 +236,7 @@
 
 <h5 id="s19-3-3-1">19.3.3.1 Chat Box</h5>
 
-<pre><code>#workskin .dc .dc-footer {
+<pre><code>#workskin .dc .footer {
   margin: 1.5rem 1rem 0;
   padding: 1rem 3.5rem;
   border-radius: 0.5rem;
@@ -245,7 +245,7 @@
   background-color: rgb(235, 237, 239);
 }
 
-#workskin .dc .dc-msgbar::before {
+#workskin .dc .msgbar::before {
   content: '';
   background-repeat: no-repeat;
   background-size: contain;
@@ -362,8 +362,8 @@
 
 </details>
 
-<pre><code>#workskin .dc .dc-time,
-#workskin .dc .dc-edited {
+<pre><code>#workskin .dc .time,
+#workskin .dc .edited {
   margin-left: 0.25rem;
   font-size: 0.75rem;
   line-height: 1.375rem;
@@ -389,7 +389,7 @@
 
 <h4 id="s19-4-2">19.4.2 Replies</h4>
 
-<pre><code>#workskin .dc .dc-reply::before {
+<pre><code>#workskin .dc .reply::before {
   content: '';
   display: block;
   position: absolute;
@@ -407,7 +407,7 @@
 
 <p>The curved line from a reply up to the message it's answering is a box with only a top and a left border, and its top-left corner rounded. That's the whole trick - the rest of the box is invisible.</p>
 
-<pre><code>#workskin .dc .dc-reply .dc-text {
+<pre><code>#workskin .dc .reply .dc-text {
   position: relative;
   left: 1rem;
   font-size: 0.875rem;
@@ -585,11 +585,11 @@
 
 <ul>
   <li><strong>Header:</strong> everything starting <code>dc-header</code>, plus <code>dc-topic</code>, <code>hashtag</code>, <code>locked</code> and <code>at-symbol</code>.</li>
-  <li><strong>Message box:</strong> <code>dc-footer</code> and <code>dc-msgbar</code>.</li>
-  <li><strong>Replies:</strong> <code>dc-reply</code>.</li>
-  <li><strong>Pictures and emoji:</strong> <code>dc-photos</code>, <code>dc-emoji</code> and <code>dc-inline-emoji</code>.</li>
-  <li><strong>Reactions:</strong> <code>dc-reacts</code>, <code>dc-reaction</code> and <code>dc-count</code>.</li>
-  <li><strong>Link cards:</strong> everything starting <code>dc-link-</code>.</li>
+  <li><strong>Message box:</strong> <code>footer</code> and <code>msgbar</code>.</li>
+  <li><strong>Replies:</strong> <code>reply</code>.</li>
+  <li><strong>Pictures and emoji:</strong> <code>photos</code>, <code>dc-emoji</code> and <code>dc-inline-emoji</code>.</li>
+  <li><strong>Reactions:</strong> <code>reacts</code>, <code>dc-reaction</code> and <code>count</code>.</li>
+  <li><strong>Link cards:</strong> everything starting <code>link-</code>.</li>
   <li><strong>Quotes and code:</strong> <code>dc-quote</code>, <code>dc-quote-line</code>, <code>dc-quote-text</code> and <code>dc-code</code>.</li>
   <li><strong>Spoilers:</strong> <code>dc-spoiler</code> and <code>dc-spoiler-text</code>.</li>
   <li><strong>Mentions:</strong> <code>dc-mention</code> and <code>dc-role-mention</code>.</li>
@@ -597,7 +597,7 @@
   <li><strong>Extras:</strong> <code>dc-new-user</code>, <code>dc-bot</code>, and the typing dots (<code>dc-typing</code> and <code>typing-indicator</code>).</li>
 </ul>
 
-<p>Keep the window, <code>msg</code>, <code>dc-name</code>, <code>dc-time</code> and <code>dc-text</code>, which every message uses.</p>
+<p>Keep the window, <code>msg</code>, <code>dc-name</code>, <code>time</code> and <code>dc-text</code>, which every message uses.</p>
         </div>
       </div>
 

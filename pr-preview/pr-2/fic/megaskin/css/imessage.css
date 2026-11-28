@@ -57,7 +57,7 @@
 }
 
 /* "Delivered" / "Read 9:42" */
-#workskin .imsg .imsg-status {
+#workskin .imsg .status {
   display: block;
   text-align: right;
   font-size: 0.7em;
@@ -66,7 +66,7 @@
 }
 
 /* "Edited" under an edited message: blue, on the same side as the bubble */
-#workskin .imsg .imsg-edited, #workskin .imsg .imsg-edited-in {
+#workskin .imsg .edited, #workskin .imsg .imsg-edited-in {
   display: block;
   text-align: right;
   font-size: 0.7em;
@@ -173,13 +173,13 @@
 /* a picture sent in a message (see CHAT PHOTOS in the Core part): the bubble is a little frame around it */
 #workskin .imsg .msg.gallery { width: 55%; padding: 0.2em; }
 
-#workskin .imsg .imsg-photos { border-radius: 15px; }
+#workskin .imsg .photos { border-radius: 15px; }
 
-#workskin .imsg .imsg-photo { background: none; }
+#workskin .imsg .photo { background: none; }
 
-#workskin .imsg .imsg-photo .img-desc { font-size: 1em; }
+#workskin .imsg .photo .img-desc { font-size: 1em; }
 
-#workskin .imsg .imsg-photos.one .imsg-photo .img-desc { padding: 2.3em 0.8em; }
+#workskin .imsg .photos.one .photo .img-desc { padding: 2.3em 0.8em; }
 
 /* the three typing dots, in a message bubble from whoever is typing (out for the phone's owner, in for anyone else, with a who line above it in a group, like any message) */
 #workskin .imsg .typing-indicator { padding: 0.6em 0.8em; line-height: 1; }
@@ -187,7 +187,7 @@
 #workskin .imsg .out.typing-indicator span:empty { background: #ffffff; }
 
 /* the message bar at the bottom: goes after the mob-body, inside the chat, all on one line */
-#workskin .imsg .imsg-footer {
+#workskin .imsg .footer {
   display: flex;
   align-items: center;
   margin: 0;
@@ -195,7 +195,7 @@
 }
 
 /* the round + button on the left, with a grey outline */
-#workskin .imsg .imsg-plus {
+#workskin .imsg .plus {
   flex: none;
   width: 1.55em;
   height: 1.55em;
@@ -212,7 +212,7 @@
 }
 
 /* the grey box with the word in it */
-#workskin .imsg .imsg-msgbar {
+#workskin .imsg .msgbar {
   flex: 1;
   position: relative;
   padding: 0.45em 2.4em 0.45em 0.9em;
@@ -223,7 +223,7 @@
 }
 
 /* the microphone on the right of the box */
-#workskin .imsg .imsg-mic {
+#workskin .imsg .mic {
   position: absolute;
   right: 0.7em;
   top: 50%;
@@ -232,7 +232,7 @@
 }
 
 /* a half-typed message in the box: black text instead of grey */
-#workskin .imsg .imsg-msgbar.typed { color: #000000; }
+#workskin .imsg .msgbar.typed { color: #000000; }
 
 /* the blue send arrow that replaces the microphone while typing */
 #workskin .imsg .imsg-send {
@@ -274,11 +274,11 @@
 #workskin .imsg.theme-dark .imsg-tap.me::before,
 #workskin .imsg.theme-dark .imsg-tap.me::after { background: #0a84ff; color: #ffffff; }
 
-#workskin .imsg.theme-dark .imsg-plus { border-color: #757579; background: #2c2c2e; color: #ffffff; }
+#workskin .imsg.theme-dark .plus { border-color: #757579; background: #2c2c2e; color: #ffffff; }
 
-#workskin .imsg.theme-dark .imsg-msgbar { border-color: #757579; background: #1c1c1e; color: #8e8e93; }
+#workskin .imsg.theme-dark .msgbar { border-color: #757579; background: #1c1c1e; color: #8e8e93; }
 
-#workskin .imsg.theme-dark .imsg-msgbar.typed { color: #ffffff; }
+#workskin .imsg.theme-dark .msgbar.typed { color: #ffffff; }
 
 /* ---------- iMessage: Auto theme (theme-auto): light, switching to dark when the reader's device is in dark mode ---------- */
 
@@ -300,11 +300,11 @@
     #workskin .imsg.theme-auto .imsg-tap.me::before,
     #workskin .imsg.theme-auto .imsg-tap.me::after { background: #0a84ff; color: #ffffff; }
 
-  #workskin .imsg.theme-auto .imsg-plus { border-color: #757579; background: #2c2c2e; color: #ffffff; }
+  #workskin .imsg.theme-auto .plus { border-color: #757579; background: #2c2c2e; color: #ffffff; }
 
-  #workskin .imsg.theme-auto .imsg-msgbar { border-color: #757579; background: #1c1c1e; color: #8e8e93; }
+  #workskin .imsg.theme-auto .msgbar { border-color: #757579; background: #1c1c1e; color: #8e8e93; }
 
-  #workskin .imsg.theme-auto .imsg-msgbar.typed { color: #ffffff; }
+  #workskin .imsg.theme-auto .msgbar.typed { color: #ffffff; }
 }
 
 /* ---------- iMessage: Icons ---------- */

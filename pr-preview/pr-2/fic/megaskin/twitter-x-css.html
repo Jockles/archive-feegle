@@ -25,7 +25,7 @@
   <!-- /site meta -->
   <link rel="stylesheet" href="../../style.css?v=c31c06ea">
   <script src="../../theme.js?v=c50fd7c2"></script>
-  <link rel="stylesheet" href="megaskin.css?v=e4dcd439" id="creator-style">
+  <link rel="stylesheet" href="megaskin.css?v=888848ea" id="creator-style">
 </head>
 <body>
 <header>
@@ -919,17 +919,17 @@
 
 #workskin .twdm .mob-header .tw-pfp { width: 40px; height: 40px; margin: 0 auto 0.25em auto; }
 
-#workskin .twdm .twdm-back,
-#workskin .twdm .twdm-btns {
+#workskin .twdm .back,
+#workskin .twdm .btns {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
   line-height: 1;
 }
 
-#workskin .twdm .twdm-back { left: 0.9em; }
+#workskin .twdm .back { left: 0.9em; }
 
-#workskin .twdm .twdm-btns { right: 0.9em; }</code></pre>
+#workskin .twdm .btns { right: 0.9em; }</code></pre>
 
 <p>The header is the usual centred <code>mob-header</code>, with wide padding on both sides to leave room for the buttons.</p>
 
@@ -943,7 +943,7 @@
 <h4 id="s9-8-2">9.8.2 Bubbles</h4>
 
 <pre><code>#workskin .twdm .msg,
-#workskin .twdm .twdm-quote {
+#workskin .twdm .quote {
   display: table;
   max-width: 75%;
   margin: 0.25em 0;
@@ -968,15 +968,15 @@
 <details>
 <summary>How it works: status lines, reactions and quoted messages</summary>
 
-<p>Seen and Sent (<code>twdm-status</code>) work like iMessage's Delivered line, and the dates are the core <code>mob-sys</code> line in grey. Reactions are a pill pulled up under the bubble with a negative margin, like WhatsApp's. A quoted message in a reply (<code>twdm-quote</code>) is a bubble with its background taken away and a thin grey border added.</p>
+<p>Seen and Sent (<code>status</code>) work like iMessage's Delivered line, and the dates are the core <code>mob-sys</code> line in grey. Reactions are a pill pulled up under the bubble with a negative margin, like WhatsApp's. A quoted message in a reply (<code>quote</code>) is a bubble with its background taken away and a thin grey border added.</p>
 
 </details>
 
 <h4 id="s9-8-3">9.8.3 Group Chats</h4>
 
-<pre><code>#workskin .twdm .twdm-row { position: relative; padding-left: 36px; margin: 0.25em 0; }
+<pre><code>#workskin .twdm .row { position: relative; padding-left: 36px; margin: 0.25em 0; }
 
-#workskin .twdm .twdm-row .tw-pfp {
+#workskin .twdm .row .tw-pfp {
   position: absolute;
   left: 0;
   bottom: 0.25em;

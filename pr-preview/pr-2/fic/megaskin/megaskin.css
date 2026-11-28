@@ -118,7 +118,7 @@
 }
 
 /* the tiny circles in Discord replies and Instagram's "Liked by" line get smaller initials */
-#workskin .dc .dc-reply .pfp::before { font-size: 0.4em; }
+#workskin .dc .reply .pfp::before { font-size: 0.4em; }
 #workskin .ig .ig-like-pfp .pfp::before { font-size: 0.75em; }
 
 /* Instagram's account picture is bigger than its text, so its initials need a bigger size */
@@ -596,125 +596,125 @@
 /* names: a bit brighter than the circles, so they are easy to read as text.
    In a WhatsApp quoted reply, the colour goes on the line down the side and the name. */
 #workskin .wa .who.colour1,
-#workskin .wa .wa-quote.colour1 b,
+#workskin .wa .quote.colour1 b,
 #workskin .dc .colour1 { color: #b8651f; }
 
-#workskin .wa .wa-quote.colour1 { border-left-color: #b8651f; }
+#workskin .wa .quote.colour1 { border-left-color: #b8651f; }
 
 #workskin .wa .who.colour2,
-#workskin .wa .wa-quote.colour2 b,
+#workskin .wa .quote.colour2 b,
 #workskin .dc .colour2 { color: #5f6368; }
 
-#workskin .wa .wa-quote.colour2 { border-left-color: #5f6368; }
+#workskin .wa .quote.colour2 { border-left-color: #5f6368; }
 
 #workskin .wa .who.colour3,
-#workskin .wa .wa-quote.colour3 b,
+#workskin .wa .quote.colour3 b,
 #workskin .dc .colour3 { color: #b03a6f; }
 
-#workskin .wa .wa-quote.colour3 { border-left-color: #b03a6f; }
+#workskin .wa .quote.colour3 { border-left-color: #b03a6f; }
 
 #workskin .wa .who.colour4,
-#workskin .wa .wa-quote.colour4 b,
+#workskin .wa .quote.colour4 b,
 #workskin .dc .colour4 { color: #1f8a72; }
 
-#workskin .wa .wa-quote.colour4 { border-left-color: #1f8a72; }
+#workskin .wa .quote.colour4 { border-left-color: #1f8a72; }
 
 #workskin .wa .who.colour5,
-#workskin .wa .wa-quote.colour5 b,
+#workskin .wa .quote.colour5 b,
 #workskin .dc .colour5 { color: #2f68c8; }
 
-#workskin .wa .wa-quote.colour5 { border-left-color: #2f68c8; }
+#workskin .wa .quote.colour5 { border-left-color: #2f68c8; }
 
 #workskin .wa .who.colour6,
-#workskin .wa .wa-quote.colour6 b,
+#workskin .wa .quote.colour6 b,
 #workskin .dc .colour6 { color: #7b52c4; }
 
-#workskin .wa .wa-quote.colour6 { border-left-color: #7b52c4; }
+#workskin .wa .quote.colour6 { border-left-color: #7b52c4; }
 
 #workskin .wa .who.colour7,
-#workskin .wa .wa-quote.colour7 b,
+#workskin .wa .quote.colour7 b,
 #workskin .dc .colour7 { color: #c0392b; }
 
-#workskin .wa .wa-quote.colour7 { border-left-color: #c0392b; }
+#workskin .wa .quote.colour7 { border-left-color: #c0392b; }
 
 #workskin .wa .who.colour8,
-#workskin .wa .wa-quote.colour8 b,
+#workskin .wa .quote.colour8 b,
 #workskin .dc .colour8 { color: #4a8a25; }
 
-#workskin .wa .wa-quote.colour8 { border-left-color: #4a8a25; }
+#workskin .wa .quote.colour8 { border-left-color: #4a8a25; }
 
 #workskin .wa .who.colour9,
-#workskin .wa .wa-quote.colour9 b,
+#workskin .wa .quote.colour9 b,
 #workskin .dc .colour9 { color: #9a7412; }
 
-#workskin .wa .wa-quote.colour9 { border-left-color: #9a7412; }
+#workskin .wa .quote.colour9 { border-left-color: #9a7412; }
 
 #workskin .wa .who.colour10,
-#workskin .wa .wa-quote.colour10 b,
+#workskin .wa .quote.colour10 b,
 #workskin .dc .colour10 { color: #1f7fa3; }
 
-#workskin .wa .wa-quote.colour10 { border-left-color: #1f7fa3; }
+#workskin .wa .quote.colour10 { border-left-color: #1f7fa3; }
 
 /* names in the dark theme: lighter shades, so they show up on a dark background */
 #workskin .wa.theme-dark .who.colour1,
-#workskin .wa.theme-dark .wa-quote.colour1 b,
+#workskin .wa.theme-dark .quote.colour1 b,
 #workskin .dc.theme-dark .colour1 { color: #f0a25c; }
 
-#workskin .wa.theme-dark .wa-quote.colour1 { border-left-color: #f0a25c; }
+#workskin .wa.theme-dark .quote.colour1 { border-left-color: #f0a25c; }
 
 #workskin .wa.theme-dark .who.colour2,
-#workskin .wa.theme-dark .wa-quote.colour2 b,
+#workskin .wa.theme-dark .quote.colour2 b,
 #workskin .dc.theme-dark .colour2 { color: #aeb3b8; }
 
-#workskin .wa.theme-dark .wa-quote.colour2 { border-left-color: #aeb3b8; }
+#workskin .wa.theme-dark .quote.colour2 { border-left-color: #aeb3b8; }
 
 #workskin .wa.theme-dark .who.colour3,
-#workskin .wa.theme-dark .wa-quote.colour3 b,
+#workskin .wa.theme-dark .quote.colour3 b,
 #workskin .dc.theme-dark .colour3 { color: #ff7aa2; }
 
-#workskin .wa.theme-dark .wa-quote.colour3 { border-left-color: #ff7aa2; }
+#workskin .wa.theme-dark .quote.colour3 { border-left-color: #ff7aa2; }
 
 #workskin .wa.theme-dark .who.colour4,
-#workskin .wa.theme-dark .wa-quote.colour4 b,
+#workskin .wa.theme-dark .quote.colour4 b,
 #workskin .dc.theme-dark .colour4 { color: #06cf9c; }
 
-#workskin .wa.theme-dark .wa-quote.colour4 { border-left-color: #06cf9c; }
+#workskin .wa.theme-dark .quote.colour4 { border-left-color: #06cf9c; }
 
 #workskin .wa.theme-dark .who.colour5,
-#workskin .wa.theme-dark .wa-quote.colour5 b,
+#workskin .wa.theme-dark .quote.colour5 b,
 #workskin .dc.theme-dark .colour5 { color: #6fa3ff; }
 
-#workskin .wa.theme-dark .wa-quote.colour5 { border-left-color: #6fa3ff; }
+#workskin .wa.theme-dark .quote.colour5 { border-left-color: #6fa3ff; }
 
 #workskin .wa.theme-dark .who.colour6,
-#workskin .wa.theme-dark .wa-quote.colour6 b,
+#workskin .wa.theme-dark .quote.colour6 b,
 #workskin .dc.theme-dark .colour6 { color: #c4a3ff; }
 
-#workskin .wa.theme-dark .wa-quote.colour6 { border-left-color: #c4a3ff; }
+#workskin .wa.theme-dark .quote.colour6 { border-left-color: #c4a3ff; }
 
 #workskin .wa.theme-dark .who.colour7,
-#workskin .wa.theme-dark .wa-quote.colour7 b,
+#workskin .wa.theme-dark .quote.colour7 b,
 #workskin .dc.theme-dark .colour7 { color: #ff7b72; }
 
-#workskin .wa.theme-dark .wa-quote.colour7 { border-left-color: #ff7b72; }
+#workskin .wa.theme-dark .quote.colour7 { border-left-color: #ff7b72; }
 
 #workskin .wa.theme-dark .who.colour8,
-#workskin .wa.theme-dark .wa-quote.colour8 b,
+#workskin .wa.theme-dark .quote.colour8 b,
 #workskin .dc.theme-dark .colour8 { color: #8fd16a; }
 
-#workskin .wa.theme-dark .wa-quote.colour8 { border-left-color: #8fd16a; }
+#workskin .wa.theme-dark .quote.colour8 { border-left-color: #8fd16a; }
 
 #workskin .wa.theme-dark .who.colour9,
-#workskin .wa.theme-dark .wa-quote.colour9 b,
+#workskin .wa.theme-dark .quote.colour9 b,
 #workskin .dc.theme-dark .colour9 { color: #e6c35c; }
 
-#workskin .wa.theme-dark .wa-quote.colour9 { border-left-color: #e6c35c; }
+#workskin .wa.theme-dark .quote.colour9 { border-left-color: #e6c35c; }
 
 #workskin .wa.theme-dark .who.colour10,
-#workskin .wa.theme-dark .wa-quote.colour10 b,
+#workskin .wa.theme-dark .quote.colour10 b,
 #workskin .dc.theme-dark .colour10 { color: #53bdeb; }
 
-#workskin .wa.theme-dark .wa-quote.colour10 { border-left-color: #53bdeb; }
+#workskin .wa.theme-dark .quote.colour10 { border-left-color: #53bdeb; }
 
 /* Discord's dark grey would hide the colour2 circle, so it is a little lighter there */
 #workskin .dc.theme-dark .dc-name.colour2::before { background-color: #5c5c60; }
@@ -722,64 +722,64 @@
 /* names in the auto theme: the dark shades when the reader's device is in dark mode */
 @media (prefers-color-scheme: dark) {
   #workskin .wa.theme-auto .who.colour1,
-  #workskin .wa.theme-auto .wa-quote.colour1 b,
+  #workskin .wa.theme-auto .quote.colour1 b,
   #workskin .dc.theme-auto .colour1 { color: #f0a25c; }
 
-  #workskin .wa.theme-auto .wa-quote.colour1 { border-left-color: #f0a25c; }
+  #workskin .wa.theme-auto .quote.colour1 { border-left-color: #f0a25c; }
 
   #workskin .wa.theme-auto .who.colour2,
-  #workskin .wa.theme-auto .wa-quote.colour2 b,
+  #workskin .wa.theme-auto .quote.colour2 b,
   #workskin .dc.theme-auto .colour2 { color: #aeb3b8; }
 
-  #workskin .wa.theme-auto .wa-quote.colour2 { border-left-color: #aeb3b8; }
+  #workskin .wa.theme-auto .quote.colour2 { border-left-color: #aeb3b8; }
 
   #workskin .wa.theme-auto .who.colour3,
-  #workskin .wa.theme-auto .wa-quote.colour3 b,
+  #workskin .wa.theme-auto .quote.colour3 b,
   #workskin .dc.theme-auto .colour3 { color: #ff7aa2; }
 
-  #workskin .wa.theme-auto .wa-quote.colour3 { border-left-color: #ff7aa2; }
+  #workskin .wa.theme-auto .quote.colour3 { border-left-color: #ff7aa2; }
 
   #workskin .wa.theme-auto .who.colour4,
-  #workskin .wa.theme-auto .wa-quote.colour4 b,
+  #workskin .wa.theme-auto .quote.colour4 b,
   #workskin .dc.theme-auto .colour4 { color: #06cf9c; }
 
-  #workskin .wa.theme-auto .wa-quote.colour4 { border-left-color: #06cf9c; }
+  #workskin .wa.theme-auto .quote.colour4 { border-left-color: #06cf9c; }
 
   #workskin .wa.theme-auto .who.colour5,
-  #workskin .wa.theme-auto .wa-quote.colour5 b,
+  #workskin .wa.theme-auto .quote.colour5 b,
   #workskin .dc.theme-auto .colour5 { color: #6fa3ff; }
 
-  #workskin .wa.theme-auto .wa-quote.colour5 { border-left-color: #6fa3ff; }
+  #workskin .wa.theme-auto .quote.colour5 { border-left-color: #6fa3ff; }
 
   #workskin .wa.theme-auto .who.colour6,
-  #workskin .wa.theme-auto .wa-quote.colour6 b,
+  #workskin .wa.theme-auto .quote.colour6 b,
   #workskin .dc.theme-auto .colour6 { color: #c4a3ff; }
 
-  #workskin .wa.theme-auto .wa-quote.colour6 { border-left-color: #c4a3ff; }
+  #workskin .wa.theme-auto .quote.colour6 { border-left-color: #c4a3ff; }
 
   #workskin .wa.theme-auto .who.colour7,
-  #workskin .wa.theme-auto .wa-quote.colour7 b,
+  #workskin .wa.theme-auto .quote.colour7 b,
   #workskin .dc.theme-auto .colour7 { color: #ff7b72; }
 
-  #workskin .wa.theme-auto .wa-quote.colour7 { border-left-color: #ff7b72; }
+  #workskin .wa.theme-auto .quote.colour7 { border-left-color: #ff7b72; }
 
   #workskin .wa.theme-auto .who.colour8,
-  #workskin .wa.theme-auto .wa-quote.colour8 b,
+  #workskin .wa.theme-auto .quote.colour8 b,
   #workskin .dc.theme-auto .colour8 { color: #8fd16a; }
 
-  #workskin .wa.theme-auto .wa-quote.colour8 { border-left-color: #8fd16a; }
+  #workskin .wa.theme-auto .quote.colour8 { border-left-color: #8fd16a; }
 
   #workskin .wa.theme-auto .who.colour9,
-  #workskin .wa.theme-auto .wa-quote.colour9 b,
+  #workskin .wa.theme-auto .quote.colour9 b,
   #workskin .dc.theme-auto .colour9 { color: #e6c35c; }
 
-  #workskin .wa.theme-auto .wa-quote.colour9 { border-left-color: #e6c35c; }
+  #workskin .wa.theme-auto .quote.colour9 { border-left-color: #e6c35c; }
 
   #workskin .wa.theme-auto .who.colour10,
-  #workskin .wa.theme-auto .wa-quote.colour10 b,
+  #workskin .wa.theme-auto .quote.colour10 b,
   #workskin .dc.theme-auto .colour10 { color: #53bdeb; }
 
-  #workskin .wa.theme-auto .wa-quote.colour10 { border-left-color: #53bdeb; }
+  #workskin .wa.theme-auto .quote.colour10 { border-left-color: #53bdeb; }
 
   /* Discord's dark grey would hide the colour2 circle, so it is a little lighter there */
   #workskin .dc.theme-auto .dc-name.colour2::before { background-color: #5c5c60; }
@@ -803,45 +803,29 @@
 
 /* ---- CHAT PHOTOS: pictures sent in a message. They are built the same way in every chat app, with the app's own first word (imsg-, wa-, igdm-, twdm-, dc-):
    <div class="msg in gallery">
-     <p class="imsg-photos one">
-       <span class="imsg-photo"><img src="..." alt="..."></span>
+     <p class="photos one">
+       <span class="photo"><img src="..." alt="..."></span>
      </p>
    </div>
    The word after photos says how many pictures there are: one, two or three. Leave it out for four. ---- */
-#workskin .imsg-photos,
-#workskin .wa-photos,
-#workskin .igdm-photos,
-#workskin .twdm-photos,
-#workskin .dc-photos {
+#workskin .photos {
   display: block;
   overflow: hidden;
   border-radius: 6px;
 }
 
 /* AO3 turns line breaks in your code into <br> tags; inside a grid they would push photos down */
-#workskin .imsg-photos br,
-#workskin .wa-photos br,
-#workskin .igdm-photos br,
-#workskin .twdm-photos br,
-#workskin .dc-photos br {
+#workskin .photos br {
   display: none;
 }
 
-#workskin .imsg-photos::after,
-#workskin .wa-photos::after,
-#workskin .igdm-photos::after,
-#workskin .twdm-photos::after,
-#workskin .dc-photos::after {
+#workskin .photos::after {
   content: "";
   display: block;
   clear: both;
 }
 
-#workskin .imsg-photo,
-#workskin .wa-photo,
-#workskin .igdm-photo,
-#workskin .twdm-photo,
-#workskin .dc-photo {
+#workskin .photo {
   display: block;
   position: relative;
   float: left;
@@ -853,24 +837,12 @@
   background: rgba(0, 0, 0, 0.12);
 }
 
-#workskin .imsg-photo:nth-of-type(2n),
-#workskin .wa-photo:nth-of-type(2n),
-#workskin .igdm-photo:nth-of-type(2n),
-#workskin .twdm-photo:nth-of-type(2n),
-#workskin .dc-photo:nth-of-type(2n) { margin-right: 0; }
+#workskin .photo:nth-of-type(2n) { margin-right: 0; }
 
-#workskin .imsg-photo:nth-of-type(n+3),
-#workskin .wa-photo:nth-of-type(n+3),
-#workskin .igdm-photo:nth-of-type(n+3),
-#workskin .twdm-photo:nth-of-type(n+3),
-#workskin .dc-photo:nth-of-type(n+3) { margin-bottom: 0; }
+#workskin .photo:nth-of-type(n+3) { margin-bottom: 0; }
 
 /* the picture. AO3 can't crop pictures automatically, so the skin needs to know which way the picture runs: - normal (taller than wide, or square): it is made as wide as the box, and the top and bottom are cropped evenly - add class="landscape" to the img if it is wider than tall: it is made as tall as the box, and the sides are cropped evenly The tall boxes (two pictures; the left one of three) always use the second way, as nearly any photo fits them that way. */
-#workskin .imsg-photo img,
-#workskin .wa-photo img,
-#workskin .igdm-photo img,
-#workskin .twdm-photo img,
-#workskin .dc-photo img {
+#workskin .photo img {
   position: absolute;
   top: -9999px;
   bottom: -9999px;
@@ -885,21 +857,9 @@
   margin: auto 0;
 }
 
-#workskin .imsg-photo img.landscape,
-#workskin .wa-photo img.landscape,
-#workskin .igdm-photo img.landscape,
-#workskin .twdm-photo img.landscape,
-#workskin .dc-photo img.landscape,
-#workskin .imsg-photos.two .imsg-photo img,
-#workskin .wa-photos.two .wa-photo img,
-#workskin .igdm-photos.two .igdm-photo img,
-#workskin .twdm-photos.two .twdm-photo img,
-#workskin .dc-photos.two .dc-photo img,
-#workskin .imsg-photos.three .imsg-photo:first-of-type img,
-#workskin .wa-photos.three .wa-photo:first-of-type img,
-#workskin .igdm-photos.three .igdm-photo:first-of-type img,
-#workskin .twdm-photos.three .twdm-photo:first-of-type img,
-#workskin .dc-photos.three .dc-photo:first-of-type img {
+#workskin .photo img.landscape,
+#workskin .photos.two .photo img,
+#workskin .photos.three .photo:first-of-type img {
   top: 0;
   bottom: auto;
   right: -9999px;
@@ -909,12 +869,8 @@
   margin: 0 auto;
 }
 
-/* a description standing in for a picture: <span class="imsg-photo"><span class="img-desc">[...]</span></span> */
-#workskin .imsg-photo .img-desc,
-#workskin .wa-photo .img-desc,
-#workskin .igdm-photo .img-desc,
-#workskin .twdm-photo .img-desc,
-#workskin .dc-photo .img-desc {
+/* a description standing in for a picture: <span class="photo"><span class="img-desc">[...]</span></span> */
+#workskin .photo .img-desc {
   position: absolute;
   top: 0;
   left: 0;
@@ -928,43 +884,23 @@
 }
 
 /* two pictures: side by side, each one tall */
-#workskin .imsg-photos.two .imsg-photo,
-#workskin .wa-photos.two .wa-photo,
-#workskin .igdm-photos.two .igdm-photo,
-#workskin .twdm-photos.two .twdm-photo,
-#workskin .dc-photos.two .dc-photo {
+#workskin .photos.two .photo {
   padding-top: 99%;
   margin-bottom: 0;
 }
 
 /* three pictures: one tall on the left, two small ones stacked on the right */
-#workskin .imsg-photos.three .imsg-photo:first-of-type,
-#workskin .wa-photos.three .wa-photo:first-of-type,
-#workskin .igdm-photos.three .igdm-photo:first-of-type,
-#workskin .twdm-photos.three .twdm-photo:first-of-type,
-#workskin .dc-photos.three .dc-photo:first-of-type {
+#workskin .photos.three .photo:first-of-type {
   padding-top: 99%;
   margin-bottom: 0;
 }
 
-#workskin .imsg-photos.three .imsg-photo:nth-of-type(2),
-#workskin .wa-photos.three .wa-photo:nth-of-type(2),
-#workskin .igdm-photos.three .igdm-photo:nth-of-type(2),
-#workskin .twdm-photos.three .twdm-photo:nth-of-type(2),
-#workskin .dc-photos.three .dc-photo:nth-of-type(2) { margin-bottom: 1%; }
+#workskin .photos.three .photo:nth-of-type(2) { margin-bottom: 1%; }
 
-#workskin .imsg-photos.three .imsg-photo:nth-of-type(3),
-#workskin .wa-photos.three .wa-photo:nth-of-type(3),
-#workskin .igdm-photos.three .igdm-photo:nth-of-type(3),
-#workskin .twdm-photos.three .twdm-photo:nth-of-type(3),
-#workskin .dc-photos.three .dc-photo:nth-of-type(3) { margin-right: 0; }
+#workskin .photos.three .photo:nth-of-type(3) { margin-right: 0; }
 
 /* one picture on its own isn't cropped into a square, so it keeps its own shape. A very tall one is trimmed at the bottom. */
-#workskin .imsg-photos.one .imsg-photo,
-#workskin .wa-photos.one .wa-photo,
-#workskin .igdm-photos.one .igdm-photo,
-#workskin .twdm-photos.one .twdm-photo,
-#workskin .dc-photos.one .dc-photo {
+#workskin .photos.one .photo {
   float: none;
   width: 100%;
   height: auto;
@@ -973,22 +909,14 @@
   margin: 0;
 }
 
-#workskin .imsg-photos.one .imsg-photo img,
-#workskin .wa-photos.one .wa-photo img,
-#workskin .igdm-photos.one .igdm-photo img,
-#workskin .twdm-photos.one .twdm-photo img,
-#workskin .dc-photos.one .dc-photo img {
+#workskin .photos.one .photo img {
   position: static;
   width: 100%;
   height: auto;
   margin: 0;
 }
 
-#workskin .imsg-photos.one .imsg-photo .img-desc,
-#workskin .wa-photos.one .wa-photo .img-desc,
-#workskin .igdm-photos.one .igdm-photo .img-desc,
-#workskin .twdm-photos.one .twdm-photo .img-desc,
-#workskin .dc-photos.one .dc-photo .img-desc {
+#workskin .photos.one .photo .img-desc {
   position: static;
   padding: 4em 1em;
 }
@@ -996,32 +924,28 @@
 /* ---- ONE PART PER LINE: AO3 turns the line breaks in your code into <br> tags. Between the parts of these rows a line break is never wanted, so it is hidden, and the code can be written with each part on its own line. ---- */
 #workskin .ig-top > br,
 #workskin .ig-person > br,
-#workskin .igdm-row > br,
+#workskin .row > br,
 #workskin .ig-carousel-info > br,
-#workskin .igdm-footer > br,
+#workskin .footer > br,
 #workskin .igdm-post-btns > br,
 #workskin .igdm-post-by > br,
-#workskin .imsg-footer > br,
 #workskin .typing-indicator > br,
 #workskin .msg.voice > br,
 #workskin .tb-row > br,
-#workskin .twdm-footer > br,
 #workskin .wa-call > br,
 #workskin .who > br,
 #workskin .mob-header > br,
 #workskin .ig-collab > br,
 #workskin .ig-pfp > br,
 #workskin .ig-photo > br,
-#workskin .igdm-back > br,
+#workskin .back > br,
 #workskin .tb-photo > br,
 #workskin .tb-voted > br,
-#workskin .twdm-back > br,
-#workskin .wa-msgbar > br,
+#workskin .msgbar > br,
 #workskin .gm-btns > br,
 #workskin .gm-pfp-cell > br,
-#workskin .wa-back > br,
-#workskin .wa-btns > br,
-#workskin .wa-name > br {
+#workskin .btns > br,
+#workskin .chat-name > br {
   display: none;
 }
 
@@ -1086,7 +1010,7 @@
 }
 
 /* "Delivered" / "Read 9:42" */
-#workskin .imsg .imsg-status {
+#workskin .imsg .status {
   display: block;
   text-align: right;
   font-size: 0.7em;
@@ -1095,7 +1019,7 @@
 }
 
 /* "Edited" under an edited message: blue, on the same side as the bubble */
-#workskin .imsg .imsg-edited, #workskin .imsg .imsg-edited-in {
+#workskin .imsg .edited, #workskin .imsg .imsg-edited-in {
   display: block;
   text-align: right;
   font-size: 0.7em;
@@ -1202,13 +1126,13 @@
 /* a picture sent in a message (see CHAT PHOTOS in the Core part): the bubble is a little frame around it */
 #workskin .imsg .msg.gallery { width: 55%; padding: 0.2em; }
 
-#workskin .imsg .imsg-photos { border-radius: 15px; }
+#workskin .imsg .photos { border-radius: 15px; }
 
-#workskin .imsg .imsg-photo { background: none; }
+#workskin .imsg .photo { background: none; }
 
-#workskin .imsg .imsg-photo .img-desc { font-size: 1em; }
+#workskin .imsg .photo .img-desc { font-size: 1em; }
 
-#workskin .imsg .imsg-photos.one .imsg-photo .img-desc { padding: 2.3em 0.8em; }
+#workskin .imsg .photos.one .photo .img-desc { padding: 2.3em 0.8em; }
 
 /* the three typing dots, in a message bubble from whoever is typing (out for the phone's owner, in for anyone else, with a who line above it in a group, like any message) */
 #workskin .imsg .typing-indicator { padding: 0.6em 0.8em; line-height: 1; }
@@ -1216,7 +1140,7 @@
 #workskin .imsg .out.typing-indicator span:empty { background: #ffffff; }
 
 /* the message bar at the bottom: goes after the mob-body, inside the chat, all on one line */
-#workskin .imsg .imsg-footer {
+#workskin .imsg .footer {
   display: flex;
   align-items: center;
   margin: 0;
@@ -1224,7 +1148,7 @@
 }
 
 /* the round + button on the left, with a grey outline */
-#workskin .imsg .imsg-plus {
+#workskin .imsg .plus {
   flex: none;
   width: 1.55em;
   height: 1.55em;
@@ -1241,7 +1165,7 @@
 }
 
 /* the grey box with the word in it */
-#workskin .imsg .imsg-msgbar {
+#workskin .imsg .msgbar {
   flex: 1;
   position: relative;
   padding: 0.45em 2.4em 0.45em 0.9em;
@@ -1252,7 +1176,7 @@
 }
 
 /* the microphone on the right of the box */
-#workskin .imsg .imsg-mic {
+#workskin .imsg .mic {
   position: absolute;
   right: 0.7em;
   top: 50%;
@@ -1261,7 +1185,7 @@
 }
 
 /* a half-typed message in the box: black text instead of grey */
-#workskin .imsg .imsg-msgbar.typed { color: #000000; }
+#workskin .imsg .msgbar.typed { color: #000000; }
 
 /* the blue send arrow that replaces the microphone while typing */
 #workskin .imsg .imsg-send {
@@ -1303,11 +1227,11 @@
 #workskin .imsg.theme-dark .imsg-tap.me::before,
 #workskin .imsg.theme-dark .imsg-tap.me::after { background: #0a84ff; color: #ffffff; }
 
-#workskin .imsg.theme-dark .imsg-plus { border-color: #757579; background: #2c2c2e; color: #ffffff; }
+#workskin .imsg.theme-dark .plus { border-color: #757579; background: #2c2c2e; color: #ffffff; }
 
-#workskin .imsg.theme-dark .imsg-msgbar { border-color: #757579; background: #1c1c1e; color: #8e8e93; }
+#workskin .imsg.theme-dark .msgbar { border-color: #757579; background: #1c1c1e; color: #8e8e93; }
 
-#workskin .imsg.theme-dark .imsg-msgbar.typed { color: #ffffff; }
+#workskin .imsg.theme-dark .msgbar.typed { color: #ffffff; }
 
 /* ---------- iMessage: Auto theme (theme-auto): light, switching to dark when the reader's device is in dark mode ---------- */
 
@@ -1329,11 +1253,11 @@
     #workskin .imsg.theme-auto .imsg-tap.me::before,
     #workskin .imsg.theme-auto .imsg-tap.me::after { background: #0a84ff; color: #ffffff; }
 
-  #workskin .imsg.theme-auto .imsg-plus { border-color: #757579; background: #2c2c2e; color: #ffffff; }
+  #workskin .imsg.theme-auto .plus { border-color: #757579; background: #2c2c2e; color: #ffffff; }
 
-  #workskin .imsg.theme-auto .imsg-msgbar { border-color: #757579; background: #1c1c1e; color: #8e8e93; }
+  #workskin .imsg.theme-auto .msgbar { border-color: #757579; background: #1c1c1e; color: #8e8e93; }
 
-  #workskin .imsg.theme-auto .imsg-msgbar.typed { color: #ffffff; }
+  #workskin .imsg.theme-auto .msgbar.typed { color: #ffffff; }
 }
 
 /* ---------- iMessage: Icons ---------- */
@@ -1418,7 +1342,7 @@
 }
 
 /* time + ticks sit at the end of the bubble */
-#workskin .wa .wa-time {
+#workskin .wa .time {
   display: block;
   text-align: right;
   font-size: 0.68em;
@@ -1429,7 +1353,7 @@
 #workskin .wa .wa-read { color: #53bdeb; font-weight: bold; }
 
 /* quoted/replied-to message inside a bubble */
-#workskin .wa .wa-quote {
+#workskin .wa .quote {
   display: block;
   background: rgba(0, 0, 0, 0.06);
   border-left: 4px solid #06cf9c;
@@ -1473,7 +1397,7 @@
   vertical-align: middle;
 }
 
-#workskin .wa table.wa-header .wa-back {
+#workskin .wa table.wa-header .back {
   width: 34px;
   padding-left: 0.8em;
   font-size: 1.3em;
@@ -1484,7 +1408,7 @@
 
 #workskin .wa table.wa-header .wa-pfp-cell .wa-pfp { margin: 0 auto; }
 
-#workskin .wa table.wa-header .wa-name {
+#workskin .wa table.wa-header .chat-name {
   padding: 0.55em 0.4em 0 0.4em;
   font-weight: bold;
   line-height: 1.2;
@@ -1503,7 +1427,7 @@
   text-overflow: ellipsis;
 }
 
-#workskin .wa table.wa-header .wa-btns {
+#workskin .wa table.wa-header .btns {
   width: 64px;
   padding-right: 0.8em;
   letter-spacing: 0.4em;
@@ -1539,14 +1463,14 @@
 }
 
 /* a message with a profile picture beside it (group chats) */
-#workskin .wa .wa-row { position: relative; padding-left: 38px; margin: 0.2em 0; }
+#workskin .wa .row { position: relative; padding-left: 38px; margin: 0.2em 0; }
 
-#workskin .wa .wa-row .wa-pfp { position: absolute; left: 0; top: 0; }
+#workskin .wa .row .wa-pfp { position: absolute; left: 0; top: 0; }
 
-#workskin .wa .wa-row .msg { margin: 0; }
+#workskin .wa .row .msg { margin: 0; }
 
 /* later messages from the same person: no picture, but still indented */
-#workskin .wa .wa-row.same { padding-left: 38px; }
+#workskin .wa .row.same { padding-left: 38px; }
 
 /* sender name with the phone number at the right: <p class="who colour1">~ Name<span class="wa-no">+353...</span></p>
    also works inside a quote's <b> */
@@ -1592,9 +1516,9 @@
    (AO3 removes style="" attributes, so this is a class) */
 #workskin .wa .wa-big { font-size: 2.2em; line-height: 1.2; }
 
-/* emoji reactions under a bubble: <p class="wa-reacts">❤️ 😂 <span class="wa-count">2</span></p>
+/* emoji reactions under a bubble: <p class="reacts">❤️ 😂 <span class="count">2</span></p>
    add "out" to put it under one of your own messages; add "pad" under a bubble that has a picture beside it */
-#workskin .wa .wa-reacts {
+#workskin .wa .reacts {
   display: table;
   position: relative;
   margin: -0.55em 0 0.3em 0.7em;
@@ -1606,24 +1530,24 @@
   font-size: 0.85em;
 }
 
-#workskin .wa .wa-reacts .wa-count { margin-left: 0.35em; font-size: 0.9em; color: #667781; }
+#workskin .wa .reacts .count { margin-left: 0.35em; font-size: 0.9em; color: #667781; }
 
-#workskin .wa .wa-reacts.out { margin-left: auto; margin-right: 0.7em; }
+#workskin .wa .reacts.out { margin-left: auto; margin-right: 0.7em; }
 
-#workskin .wa .wa-reacts.indent { margin-left: 46px; }
+#workskin .wa .reacts.indent { margin-left: 46px; }
 
-/* the three typing dots, in a message bubble from whoever is typing (out for the phone's owner, in for anyone else, with the wa-row picture and who line in a group, like any message) */
+/* the three typing dots, in a message bubble from whoever is typing (out for the phone's owner, in for anyone else, with the row picture and who line in a group, like any message) */
 #workskin .wa .msg.typing-indicator { min-width: 0; padding-top: 0.7em; padding-bottom: 0.55em; line-height: 1; }
 
 #workskin .wa .typing-indicator span:empty { background: #8696a0; }
 
 /* the message bar at the bottom */
-#workskin .wa .wa-footer { position: relative; padding: 0.5em 3.4em 0.5em 0.6em; }
+#workskin .wa .footer { position: relative; padding: 0.5em 3.4em 0.5em 0.6em; }
 
 /* AO3 turns line breaks in your HTML into <br /> tags: keep them out of the message bar */
-#workskin .wa .wa-footer br { display: none; }
+#workskin .wa .footer br { display: none; }
 
-#workskin .wa .wa-msgbar {
+#workskin .wa .msgbar {
   display: table;
   width: 100%;
   box-sizing: border-box;
@@ -1633,7 +1557,7 @@
   color: #667781;
 }
 
-#workskin .wa .wa-msgbar span {
+#workskin .wa .msgbar span {
   display: table-cell;
   vertical-align: middle;
   white-space: nowrap;
@@ -1641,17 +1565,17 @@
   padding-left: 0.5em;
 }
 
-#workskin .wa .wa-msgbar span:first-of-type { padding-left: 0; }
+#workskin .wa .msgbar span:first-of-type { padding-left: 0; }
 
-#workskin .wa .wa-msgbar .wa-placeholder { width: auto; padding-left: 0.5em; }
+#workskin .wa .msgbar .wa-placeholder { width: auto; padding-left: 0.5em; }
 
 /* a half-typed message: dark text that wraps onto more lines */
-#workskin .wa .wa-msgbar .wa-placeholder.typed { white-space: normal; color: #111b21; }
+#workskin .wa .msgbar .wa-placeholder.typed { white-space: normal; color: #111b21; }
 
 /* a flashing cursor in the typed message stays in the line of words, not a cell of its own */
-#workskin .wa .wa-msgbar .cursor { display: inline-block; width: 0.2em; padding: 0; }
+#workskin .wa .msgbar .cursor { display: inline-block; width: 0.2em; padding: 0; }
 
-#workskin .wa .wa-mic {
+#workskin .wa .mic {
   position: absolute;
   right: 0.6em;
   top: 50%;
@@ -1672,37 +1596,37 @@
   padding: 0.25em 0.25em 0.3em 0.25em;
 }
 
-#workskin .wa .msg.share .wa-time,
-#workskin .wa .msg.gallery .wa-time {
+#workskin .wa .msg.share .time,
+#workskin .wa .msg.gallery .time {
   padding-right: 0.35em;
 }
 
-/* link card: <div class="wa-link-card"> picture, title, description, address </div> */
-#workskin .wa .wa-link-card {
+/* link card: <div class="link-card"> picture, title, description, address </div> */
+#workskin .wa .link-card {
   display: block;
   overflow: hidden;
   border-radius: 6px;
   background: rgba(0, 0, 0, 0.06);
 }
 
-#workskin .wa .wa-link-img {
+#workskin .wa .link-img {
   display: block;
   max-height: 190px;
   overflow: hidden;
 }
 
-#workskin .wa .wa-link-img img {
+#workskin .wa .link-img img {
   display: block;
   width: 100%;
   height: auto;
 }
 
-/* an embedded video player in place of the picture: <div class="wa-link-img video"><iframe src="..."></iframe></div> */
-#workskin .wa .wa-link-img.video {
+/* an embedded video player in place of the picture: <div class="link-img video"><iframe src="..."></iframe></div> */
+#workskin .wa .link-img.video {
   max-height: none;
 }
 
-#workskin .wa .wa-link-img.video iframe {
+#workskin .wa .link-img.video iframe {
   display: block;
   width: 100%;
   height: 190px;
@@ -1710,8 +1634,8 @@
   border: 0;
 }
 
-/* a description standing in for the picture: <div class="wa-link-img text">[...]</div> */
-#workskin .wa .wa-link-img.text {
+/* a description standing in for the picture: <div class="link-img text">[...]</div> */
+#workskin .wa .link-img.text {
   padding: 2.5em 1em;
   background: rgba(0, 0, 0, 0.08);
   color: #667781;
@@ -1719,44 +1643,38 @@
   text-align: center;
 }
 
-#workskin .wa .wa-link-title {
+#workskin .wa .link-title {
   display: block;
   padding: 0.5em 0.6em 0 0.6em;
   font-weight: bold;
 }
 
-#workskin .wa .wa-link-desc {
+#workskin .wa .link-desc {
   display: block;
   padding: 0.15em 0.6em 0 0.6em;
   color: #667781;
   font-size: 0.85em;
 }
 
-#workskin .wa .wa-link-url {
+#workskin .wa .link-url {
   display: block;
   padding: 0.4em 0.6em 0.5em 0.6em;
   color: #667781;
   font-size: 0.85em;
 }
 
-#workskin .wa .wa-link-url::before {
+#workskin .wa .link-url::before {
   content: "\1F517";
   margin-right: 0.4em;
 }
 
-/* the link written out in the message text itself: <span class="wa-link">example.com</span> */
-#workskin .wa .wa-link {
-  color: #027eb5;
-  text-decoration: underline;
-}
-
 /* photos: the grid is in the Core part, under CHAT PHOTOS */
-#workskin .wa .wa-photo .img-desc { color: #667781; }
+#workskin .wa .photo .img-desc { color: #667781; }
 
 /* one photo with no caption: the time sits on the photo, white on a dark fade, the same in every theme */
 #workskin .wa .msg.gallery { position: relative; }
 
-#workskin .wa .msg.gallery .wa-photos.one + .wa-time {
+#workskin .wa .msg.gallery .photos.one + .time {
   position: absolute;
   right: 0.25em;
   bottom: 0.3em;
@@ -1767,10 +1685,10 @@
   color: #ffffff;
 }
 /* ticks on the fade are white, and stay white once read */
-#workskin .wa .msg.gallery .wa-photos.one + .wa-time .wa-read { color: #ffffff; }
-#workskin .wa .msg.gallery .wa-photos.one + .wa-time .ic.ic-sent { background-image: url(https://images.squidge.org/images/2026/11/20/tick-white.png); }
-#workskin .wa .msg.gallery .wa-photos.one + .wa-time .ic.ic-delivered,
-#workskin .wa .msg.gallery .wa-photos.one + .wa-time .ic.ic-read { background-image: url(https://images.squidge.org/images/2026/11/20/double-tick-white.png); }
+#workskin .wa .msg.gallery .photos.one + .time .wa-read { color: #ffffff; }
+#workskin .wa .msg.gallery .photos.one + .time .ic.ic-sent { background-image: url(https://images.squidge.org/images/2026/11/20/tick-white.png); }
+#workskin .wa .msg.gallery .photos.one + .time .ic.ic-delivered,
+#workskin .wa .msg.gallery .photos.one + .time .ic.ic-read { background-image: url(https://images.squidge.org/images/2026/11/20/double-tick-white.png); }
 
 /* text under a picture, a gallery or a link card: <p class="wa-caption">...</p>, after the photos or the card and before the time */
 #workskin .wa .wa-caption {
@@ -1821,7 +1739,7 @@
 }
 
 /* the time sits beside the length instead of on a line of its own */
-#workskin .wa .msg.call .wa-time {
+#workskin .wa .msg.call .time {
   position: absolute;
   right: 0.85em;
   bottom: 0.75em;
@@ -1851,7 +1769,7 @@
   font-size: 0.9em;
 }
 
-#workskin .wa .msg.contact .wa-time { padding: 0 0.7em 0.35em 0.7em; }
+#workskin .wa .msg.contact .time { padding: 0 0.7em 0.35em 0.7em; }
 
 /* in a group, the sender's name sits at the top of the card */
 #workskin .wa .msg.contact .who { padding: 0.35em 0.7em 0 0.7em; }
@@ -1891,9 +1809,9 @@
 
 #workskin .wa.theme-dark .in { background: #202c33; color: #e9edef; }
 
-#workskin .wa.theme-dark .wa-time { color: #8696a0; }
+#workskin .wa.theme-dark .time { color: #8696a0; }
 
-#workskin .wa.theme-dark .wa-quote { background: rgba(255, 255, 255, 0.06); color: #8696a0; }
+#workskin .wa.theme-dark .quote { background: rgba(255, 255, 255, 0.06); color: #8696a0; }
 
 #workskin .wa.theme-dark .mob-sys { background: #182229; color: #8696a0; }
 
@@ -1903,29 +1821,27 @@
 
 #workskin .wa.theme-dark .out.tail::before { border-color: transparent transparent transparent #005c4b; }
 
-#workskin .wa.theme-dark .wa-reacts {
+#workskin .wa.theme-dark .reacts {
   background: #202c33;
   color: #e9edef;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
 }
 
-#workskin .wa.theme-dark .wa-reacts .wa-count { color: #8696a0; }
+#workskin .wa.theme-dark .reacts .count { color: #8696a0; }
 
-#workskin .wa.theme-dark .wa-msgbar { background: #202c33; color: #8696a0; }
+#workskin .wa.theme-dark .msgbar { background: #202c33; color: #8696a0; }
 
-#workskin .wa.theme-dark .wa-msgbar .wa-placeholder.typed { color: #e9edef; }
+#workskin .wa.theme-dark .msgbar .wa-placeholder.typed { color: #e9edef; }
 
-#workskin .wa.theme-dark .wa-link-card { background: rgba(0, 0, 0, 0.22); }
+#workskin .wa.theme-dark .link-card { background: rgba(0, 0, 0, 0.22); }
 
-#workskin .wa.theme-dark .wa-link-img.text { background: rgba(0, 0, 0, 0.2); color: #8696a0; }
+#workskin .wa.theme-dark .link-img.text { background: rgba(0, 0, 0, 0.2); color: #8696a0; }
 
-#workskin .wa.theme-dark .wa-link-desc,
-#workskin .wa.theme-dark .wa-link-url,
-#workskin .wa.theme-dark .wa-photo .img-desc { color: #8696a0; }
+#workskin .wa.theme-dark .link-desc,
+#workskin .wa.theme-dark .link-url,
+#workskin .wa.theme-dark .photo .img-desc { color: #8696a0; }
 
-#workskin .wa.theme-dark .wa-photo { background: rgba(0, 0, 0, 0.3); }
-
-#workskin .wa.theme-dark .wa-link { color: #53bdeb; }
+#workskin .wa.theme-dark .photo { background: rgba(0, 0, 0, 0.3); }
 
 #workskin .wa.theme-dark .fake-link, #workskin .wa.theme-dark a:not(.tl) { color: #53bdeb; }
 
@@ -1956,9 +1872,9 @@
 
   #workskin .wa.theme-auto .in { background: #202c33; color: #e9edef; }
 
-  #workskin .wa.theme-auto .wa-time { color: #8696a0; }
+  #workskin .wa.theme-auto .time { color: #8696a0; }
 
-  #workskin .wa.theme-auto .wa-quote { background: rgba(255, 255, 255, 0.06); color: #8696a0; }
+  #workskin .wa.theme-auto .quote { background: rgba(255, 255, 255, 0.06); color: #8696a0; }
 
   #workskin .wa.theme-auto .mob-sys { background: #182229; color: #8696a0; }
 
@@ -1998,19 +1914,19 @@
 
   #workskin .wa.theme-auto .out.tail::before { border-color: transparent transparent transparent #005c4b; }
 
-  #workskin .wa.theme-auto .wa-reacts {
+  #workskin .wa.theme-auto .reacts {
       background: #202c33;
       color: #e9edef;
       box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
     }
 
-  #workskin .wa.theme-auto .wa-reacts .wa-count { color: #8696a0; }
+  #workskin .wa.theme-auto .reacts .count { color: #8696a0; }
 
-  #workskin .wa.theme-auto .wa-msgbar { background: #202c33; color: #8696a0; }
+  #workskin .wa.theme-auto .msgbar { background: #202c33; color: #8696a0; }
 
-  #workskin .wa.theme-auto .wa-msgbar .wa-placeholder.typed { color: #e9edef; }
+  #workskin .wa.theme-auto .msgbar .wa-placeholder.typed { color: #e9edef; }
 
-  #workskin .wa.theme-auto .wa-link-card { background: rgba(0, 0, 0, 0.22); }
+  #workskin .wa.theme-auto .link-card { background: rgba(0, 0, 0, 0.22); }
 
   #workskin .wa.theme-auto .wa-call { background: rgba(0, 0, 0, 0.18); }
 
@@ -2024,15 +1940,13 @@
 
   #workskin .wa.theme-auto .wa-contact-btn { border-top-color: rgba(255, 255, 255, 0.1); }
 
-  #workskin .wa.theme-auto .wa-link-img.text { background: rgba(0, 0, 0, 0.2); color: #8696a0; }
+  #workskin .wa.theme-auto .link-img.text { background: rgba(0, 0, 0, 0.2); color: #8696a0; }
 
-  #workskin .wa.theme-auto .wa-link-desc,
-    #workskin .wa.theme-auto .wa-link-url,
-    #workskin .wa.theme-auto .wa-photo .img-desc { color: #8696a0; }
+  #workskin .wa.theme-auto .link-desc,
+    #workskin .wa.theme-auto .link-url,
+    #workskin .wa.theme-auto .photo .img-desc { color: #8696a0; }
 
-  #workskin .wa.theme-auto .wa-photo { background: rgba(0, 0, 0, 0.3); }
-
-  #workskin .wa.theme-auto .wa-link { color: #53bdeb; }
+  #workskin .wa.theme-auto .photo { background: rgba(0, 0, 0, 0.3); }
 
   #workskin .wa.theme-auto .fake-link, #workskin .wa.theme-auto a:not(.tl) { color: #53bdeb; }
 }
@@ -2111,7 +2025,7 @@
 #workskin .wa .mob-header,
 #workskin .wa .wa-header,
 #workskin .wa .mob-body,
-#workskin .wa .wa-footer { position: relative; }
+#workskin .wa .footer { position: relative; }
 
 /* ---------- WhatsApp: Icons ---------- */
 #workskin .wa .ic {
@@ -2128,7 +2042,7 @@
   background-size: contain;
 }
 
-#workskin .wa .wa-link-url::before {
+#workskin .wa .link-url::before {
   content: "";
   display: inline-block;
   width: 1em;
@@ -2140,7 +2054,7 @@
 }
 
 /* the icons in the message box sit in table cells, so they keep a set width */
-#workskin .wa .wa-msgbar .ic { display: table-cell; width: 1.6em; background-size: 1.15em; }
+#workskin .wa .msgbar .ic { display: table-cell; width: 1.6em; background-size: 1.15em; }
 
 /* the double ticks are wider than one symbol. The grey sent and delivered ticks are
    the same grey as the time, so they change with the theme. */
@@ -2148,12 +2062,12 @@
 #workskin .wa .ic.ic-delivered { width: 1.25em; }
 
 /* the mic and send buttons are whole round buttons, so the picture fills them */
-#workskin .wa .wa-mic.ic { display: block; width: 2.4em; height: 2.4em; vertical-align: baseline; background-color: transparent; background-size: 100%; }
+#workskin .wa .mic.ic { display: block; width: 2.4em; height: 2.4em; vertical-align: baseline; background-color: transparent; background-size: 100%; }
 
 #workskin .wa .ic.ic-emoji { background-image: url(https://images.squidge.org/images/2026/11/15/emoji-black.png); }
 #workskin .wa .ic.ic-paperclip { background-image: url(https://images.squidge.org/images/2026/11/15/paperclip-black.png); }
 #workskin .wa .ic.ic-camera { background-image: url(https://images.squidge.org/images/2026/11/15/camera-black.png); }
-#workskin .wa .wa-link-url::before { background-image: url(https://images.squidge.org/images/2026/11/15/link-black.png); }
+#workskin .wa .link-url::before { background-image: url(https://images.squidge.org/images/2026/11/15/link-black.png); }
 #workskin .wa .ic.ic-read { background-image: url(https://images.squidge.org/images/2026/11/15/double-tick-blue.png); }
 #workskin .wa .ic.ic-sent { background-image: url(https://images.squidge.org/images/2026/11/15/tick-grey-light.png); }
 #workskin .wa .ic.ic-delivered { background-image: url(https://images.squidge.org/images/2026/11/15/double-tick-grey-light.png); }
@@ -2177,7 +2091,7 @@
 #workskin .wa.theme-dark .ic.ic-emoji { background-image: url(https://images.squidge.org/images/2026/11/15/emoji-white.png); }
 #workskin .wa.theme-dark .ic.ic-paperclip { background-image: url(https://images.squidge.org/images/2026/11/15/paperclip-white.png); }
 #workskin .wa.theme-dark .ic.ic-camera { background-image: url(https://images.squidge.org/images/2026/11/15/camera-white.png); }
-#workskin .wa.theme-dark .wa-link-url::before { background-image: url(https://images.squidge.org/images/2026/11/15/link-white.png); }
+#workskin .wa.theme-dark .link-url::before { background-image: url(https://images.squidge.org/images/2026/11/15/link-white.png); }
 #workskin .wa.theme-dark .ic.ic-sent { background-image: url(https://images.squidge.org/images/2026/11/15/tick-grey-dark.png); }
 #workskin .wa.theme-dark .ic.ic-delivered { background-image: url(https://images.squidge.org/images/2026/11/15/double-tick-grey-dark.png); }
 #workskin .wa.theme-dark .ic.ic-forward { background-image: url(https://images.squidge.org/images/2026/11/15/forward-white.png); }
@@ -2187,7 +2101,7 @@
   #workskin .wa.theme-auto .ic.ic-emoji { background-image: url(https://images.squidge.org/images/2026/11/15/emoji-white.png); }
   #workskin .wa.theme-auto .ic.ic-paperclip { background-image: url(https://images.squidge.org/images/2026/11/15/paperclip-white.png); }
   #workskin .wa.theme-auto .ic.ic-camera { background-image: url(https://images.squidge.org/images/2026/11/15/camera-white.png); }
-  #workskin .wa.theme-auto .wa-link-url::before { background-image: url(https://images.squidge.org/images/2026/11/15/link-white.png); }
+  #workskin .wa.theme-auto .link-url::before { background-image: url(https://images.squidge.org/images/2026/11/15/link-white.png); }
   #workskin .wa.theme-auto .ic.ic-sent { background-image: url(https://images.squidge.org/images/2026/11/15/tick-grey-dark.png); }
   #workskin .wa.theme-auto .ic.ic-delivered { background-image: url(https://images.squidge.org/images/2026/11/15/double-tick-grey-dark.png); }
   #workskin .wa.theme-auto .ic.ic-forward { background-image: url(https://images.squidge.org/images/2026/11/15/forward-white.png); }
@@ -3054,28 +2968,28 @@
 
 #workskin .twdm .mob-header .tw-pfp { width: 40px; height: 40px; margin: 0 auto 0.25em auto; }
 
-#workskin .twdm .mob-header .twdm-name { display: block; }
+#workskin .twdm .mob-header .chat-name { display: block; }
 
-#workskin .twdm .twdm-back,
-#workskin .twdm .twdm-btns {
+#workskin .twdm .back,
+#workskin .twdm .btns {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
   line-height: 1;
 }
 
-#workskin .twdm .twdm-back { left: 0.9em; }
+#workskin .twdm .back { left: 0.9em; }
 
-#workskin .twdm .twdm-btns { right: 0.9em; }
+#workskin .twdm .btns { right: 0.9em; }
 
 #workskin .twdm .mob-header .ic { width: 1.3em; height: 1.3em; vertical-align: middle; }
 
-#workskin .twdm .twdm-btns .ic + .ic { margin-left: 1.1em; }
+#workskin .twdm .btns .ic + .ic { margin-left: 1.1em; }
 
 #workskin .twdm .mob-body { padding: 0.7em 0.8em 0.5em 0.8em; }
 
 #workskin .twdm .msg,
-#workskin .twdm .twdm-quote {
+#workskin .twdm .quote {
   display: table;
   max-width: 75%;
   margin: 0.25em 0;
@@ -3098,8 +3012,8 @@
 /* the date and time between messages use the core mob-sys line: <p class="mob-sys">Thu 17 Sep at 17:34</p> */
 #workskin .twdm .mob-sys { margin: 0.9em 0; color: #536471; opacity: 1; }
 
-/* "Seen" or "Sent" under your last message: <p class="twdm-status">Seen</p> */
-#workskin .twdm .twdm-status {
+/* "Seen" or "Sent" under your last message: <p class="status">Seen</p> */
+#workskin .twdm .status {
   display: block;
   text-align: right;
   font-size: 0.78em;
@@ -3107,8 +3021,8 @@
   margin: 0.15em 0.6em 0.5em 0;
 }
 
-/* reaction pill under a DM: <p class="twdm-reacts">&#128562; 1</p>  (add "out" under one of your own) */
-#workskin .twdm .twdm-reacts {
+/* reaction pill under a DM: <p class="reacts">&#128562; 1</p>  (add "out" under one of your own) */
+#workskin .twdm .reacts {
   display: table;
   margin: -0.45em 0.6em 0.4em 0.6em;
   padding: 0.05em 0.55em;
@@ -3118,7 +3032,7 @@
   font-size: 0.8em;
 }
 
-#workskin .twdm .twdm-reacts.out { margin-left: auto; border-radius: 1em; color: #0f1419; }
+#workskin .twdm .reacts.out { margin-left: auto; border-radius: 1em; color: #0f1419; }
 
 /* group DMs: the sender's name above their messages: <p class="who">Name</p> */
 #workskin .twdm .who {
@@ -3129,10 +3043,10 @@
 }
 
 /* group DMs: one person's run of messages, with their picture beside the last bubble
-   <div class="twdm-row"><p class="tw-pfp colour4">HP</p><p class="who">Hayden<span class="hide">:</span></p><p class="msg in">...</p></div> */
-#workskin .twdm .twdm-row { position: relative; padding-left: 36px; margin: 0.25em 0; }
+   <div class="row"><p class="tw-pfp colour4">HP</p><p class="who">Hayden<span class="hide">:</span></p><p class="msg in">...</p></div> */
+#workskin .twdm .row { position: relative; padding-left: 36px; margin: 0.25em 0; }
 
-#workskin .twdm .twdm-row .tw-pfp {
+#workskin .twdm .row .tw-pfp {
   position: absolute;
   left: 0;
   bottom: 0.25em;
@@ -3143,18 +3057,18 @@
 }
 
 /* replying to a message: a small "Replied to" line, then the message being replied to in an outlined bubble, then the reply */
-#workskin .twdm .twdm-reply {
+#workskin .twdm .reply {
   display: block;
   margin: 0.7em 0.95em 0.15em 0.95em;
   font-size: 0.78em;
   color: #536471;
 }
 
-#workskin .twdm .twdm-reply.in { background: transparent; color: #536471; }
+#workskin .twdm .reply.in { background: transparent; color: #536471; }
 
-#workskin .twdm .twdm-reply.out { background: transparent; color: #536471; text-align: right; }
+#workskin .twdm .reply.out { background: transparent; color: #536471; text-align: right; }
 
-#workskin .twdm p.twdm-quote { background: transparent; color: #536471; border: 1px solid #cfd9de; margin-bottom: 0.2em; }
+#workskin .twdm p.quote { background: transparent; color: #536471; border: 1px solid #cfd9de; margin-bottom: 0.2em; }
 
 /* a picture in a DM: <p class="msg in photo"><img src="..."></p> or a [description] */
 /* the three typing dots, in a bubble from whoever is typing */
@@ -3165,13 +3079,13 @@
 /* a picture sent in a message (see CHAT PHOTOS in the Core part) */
 #workskin .twdm .msg.gallery { min-width: 55%; padding: 0.25em; }
 
-#workskin .twdm .twdm-photos { border-radius: 1.1em; }
+#workskin .twdm .photos { border-radius: 1.1em; }
 
-#workskin .twdm .twdm-photo { background: none; }
+#workskin .twdm .photo { background: none; }
 
-#workskin .twdm .twdm-photo .img-desc { font-size: 1em; }
+#workskin .twdm .photo .img-desc { font-size: 1em; }
 
-#workskin .twdm .twdm-photos.one .twdm-photo .img-desc { padding: 2.25em 1.25em; }
+#workskin .twdm .photos.one .photo .img-desc { padding: 2.25em 1.25em; }
 
 /* a voice message:
    <p class="msg out voice"><span class="twdm-play ic ic-play">&#9654;</span><span class="twdm-wave"></span><span class="twdm-length">0:02</span></p> */
@@ -3203,14 +3117,14 @@
 #workskin .twdm .voice .twdm-length { margin-left: 0.5em; font-size: 0.85em; }
 
 /* the message bar at the bottom: goes after the mob-body, inside the chat, all on one line */
-#workskin .twdm .twdm-footer {
+#workskin .twdm .footer {
   display: flex;
   align-items: center;
   margin: 0;
   padding: 0.45em 0.7em 0.55em 0.7em;
 }
 
-#workskin .twdm .twdm-plus {
+#workskin .twdm .plus {
   flex: none;
   width: 1.55em;
   height: 1.55em;
@@ -3225,7 +3139,7 @@
   text-align: center;
 }
 
-#workskin .twdm .twdm-msgbar {
+#workskin .twdm .msgbar {
   flex: 1;
   position: relative;
   padding: 0.45em 2.4em 0.45em 0.9em;
@@ -3234,7 +3148,7 @@
   color: #536471;
 }
 
-#workskin .twdm .twdm-msgbar .ic {
+#workskin .twdm .msgbar .ic {
   position: absolute;
   right: 0.8em;
   top: 50%;
@@ -3243,7 +3157,7 @@
   height: 1.15em;
 }
 
-#workskin .twdm .twdm-msgbar.typed { color: #0f1419; }
+#workskin .twdm .msgbar.typed { color: #0f1419; }
 
 /* the app's buttons along the very bottom (optional), in DMs and on the app screen. */
 #workskin .twdm .tw-nav,
@@ -3416,7 +3330,7 @@
 
 #workskin .tw-reply.theme-dark .tw-opt.win .tw-bar { background: #315a8a; }
 
-#workskin .twdm.theme-dark .twdm-reacts { background: #16181c; border-color: #2f3336; color: #e7e9ea; }
+#workskin .twdm.theme-dark .reacts { background: #16181c; border-color: #2f3336; color: #e7e9ea; }
 
 #workskin .tw.theme-dark .tw-photos,
 #workskin .tw-reply.theme-dark .tw-photos {
@@ -3467,11 +3381,11 @@
 
 #workskin .twdm.theme-dark .typing-indicator span:empty { background: #8b98a5; }
 
-#workskin .twdm.theme-dark .twdm-plus,
-#workskin .twdm.theme-dark .twdm-msgbar { border-color: #2f3336; color: #71767b; }
+#workskin .twdm.theme-dark .plus,
+#workskin .twdm.theme-dark .msgbar { border-color: #2f3336; color: #71767b; }
 
-#workskin .twdm.theme-dark .twdm-plus,
-#workskin .twdm.theme-dark .twdm-msgbar.typed { color: #e7e9ea; }
+#workskin .twdm.theme-dark .plus,
+#workskin .twdm.theme-dark .msgbar.typed { color: #e7e9ea; }
 
 #workskin .tw-feed.theme-dark .tw-nav { border-top-color: #2f3336; }
 
@@ -3495,16 +3409,16 @@
 #workskin .twdm.theme-dark .mob-header { background: #000000; color: #e7e9ea; border-bottom-color: #2f3336; }
 
 #workskin .twdm.theme-dark .mob-sys,
-#workskin .twdm.theme-dark .twdm-status,
-#workskin .twdm.theme-dark .twdm-reply {
+#workskin .twdm.theme-dark .status,
+#workskin .twdm.theme-dark .reply {
   color: #71767b;
 }
 
 #workskin .twdm.theme-dark .in { background: #202327; color: #e7e9ea; }
 
-#workskin .twdm.theme-dark .twdm-reply.in { background: transparent; color: #71767b; }
+#workskin .twdm.theme-dark .reply.in { background: transparent; color: #71767b; }
 
-#workskin .twdm.theme-dark p.twdm-quote { background: transparent; color: #71767b; border-color: #2f3336; }
+#workskin .twdm.theme-dark p.quote { background: transparent; color: #71767b; border-color: #2f3336; }
 
 /* ---------- Twitter/X: Auto theme (theme-auto): light, switching to dark when the reader's device is in dark mode ---------- */
 
@@ -3560,7 +3474,7 @@
 
   #workskin .tw-reply.theme-auto .tw-opt.win .tw-bar { background: #315a8a; }
 
-  #workskin .twdm.theme-auto .twdm-reacts { background: #16181c; border-color: #2f3336; color: #e7e9ea; }
+  #workskin .twdm.theme-auto .reacts { background: #16181c; border-color: #2f3336; color: #e7e9ea; }
 
   #workskin .tw.theme-auto .tw-photos,
     #workskin .tw-reply.theme-auto .tw-photos {
@@ -3634,11 +3548,11 @@
 
   #workskin .twdm.theme-auto .typing-indicator span:empty { background: #8b98a5; }
 
-  #workskin .twdm.theme-auto .twdm-plus,
-    #workskin .twdm.theme-auto .twdm-msgbar { border-color: #2f3336; color: #71767b; }
+  #workskin .twdm.theme-auto .plus,
+    #workskin .twdm.theme-auto .msgbar { border-color: #2f3336; color: #71767b; }
 
-  #workskin .twdm.theme-auto .twdm-plus,
-    #workskin .twdm.theme-auto .twdm-msgbar.typed { color: #e7e9ea; }
+  #workskin .twdm.theme-auto .plus,
+    #workskin .twdm.theme-auto .msgbar.typed { color: #e7e9ea; }
 
   #workskin .tw-feed.theme-auto .tw-nav { border-top-color: #2f3336; }
 
@@ -3662,16 +3576,16 @@
   #workskin .twdm.theme-auto .mob-header { background: #000000; color: #e7e9ea; border-bottom-color: #2f3336; }
 
   #workskin .twdm.theme-auto .mob-sys,
-    #workskin .twdm.theme-auto .twdm-status,
-    #workskin .twdm.theme-auto .twdm-reply {
+    #workskin .twdm.theme-auto .status,
+    #workskin .twdm.theme-auto .reply {
       color: #71767b;
     }
 
   #workskin .twdm.theme-auto .in { background: #202327; color: #e7e9ea; }
 
-  #workskin .twdm.theme-auto .twdm-reply.in { background: transparent; color: #71767b; }
+  #workskin .twdm.theme-auto .reply.in { background: transparent; color: #71767b; }
 
-  #workskin .twdm.theme-auto p.twdm-quote { background: transparent; color: #71767b; border-color: #2f3336; }
+  #workskin .twdm.theme-auto p.quote { background: transparent; color: #71767b; border-color: #2f3336; }
 }
 
 /* ---------- Twitter/X: Icons ---------- */
@@ -5359,8 +5273,8 @@
   font-size: 0.85em;
 }
 
-/* the name: <span class="igdm-name">shane.h</span>. A verified tick or a group's little arrow goes inside it, after the name */
-#workskin .igdm .mob-header .igdm-name {
+/* the name: <span class="chat-name">shane.h</span>. A verified tick or a group's little arrow goes inside it, after the name */
+#workskin .igdm .mob-header .chat-name {
   display: inline;
   color: inherit;
   font-weight: bold;
@@ -5391,7 +5305,7 @@
   margin: 0.5em 0 0 1em;
 }
 
-#workskin .igdm .igdm-status {
+#workskin .igdm .status {
   display: block;
   text-align: right;
   font-size: 0.7em;
@@ -5399,7 +5313,7 @@
   margin: 0.1em 0.5em 0.4em 0;
 }
 
-/* the three typing dots, in a grey bubble from whoever is typing. In a group, put it in their igdm-row like any message:
+/* the three typing dots, in a grey bubble from whoever is typing. In a group, put it in their row like any message:
    <p class="msg in typing-indicator"><span class="hide"><em>Rose</em> is typing...</span><span></span><span></span><span></span></p> */
 #workskin .igdm .msg.typing-indicator { padding: 0.75em 0.95em; line-height: 1; }
 
@@ -5526,29 +5440,29 @@
 #workskin .igdm .mob-header .ig-collab .ig-pfp ~ .ig-pfp ~ .ig-pfp { display: none; }
 
 /* ---- a run of messages from one person in a group, with their picture beside the last one. */
-#workskin .igdm .igdm-row {
+#workskin .igdm .row {
   position: relative;
   padding-left: 36px;
   margin: 0.2em 0;
 }
 
-#workskin .igdm .igdm-row .ig-pfp {
+#workskin .igdm .row .ig-pfp {
   position: absolute;
   left: 0;
   bottom: 0.2em;
 }
 
-#workskin .igdm .igdm-row .who { margin-left: 0.9em; }
+#workskin .igdm .row .who { margin-left: 0.9em; }
 
 /* ---- reactions: the little pill hanging off the bottom of a bubble. It's a line of its own, straight after the message
    (or the photo, or the post card) it belongs to. Add "out" under one of your own. While everyone has used the same emoji,
    the pill shows their faces:
    <p class="msg in">see you there</p>
-   <p class="igdm-reacts"><span class="hide">[Reactions: </span>❤️<span class="hide"> from Rose and Hayden </span><span class="ig-pfp"><span class="pfp pfp-rose"></span></span><span class="ig-pfp colour4">HP</span><span class="hide">]</span></p>
+   <p class="reacts"><span class="hide">[Reactions: </span>❤️<span class="hide"> from Rose and Hayden </span><span class="ig-pfp"><span class="pfp pfp-rose"></span></span><span class="ig-pfp colour4">HP</span><span class="hide">]</span></p>
    Once there are two different emojis, it shows the emojis and a number instead:
-   <p class="igdm-reacts out"><span class="hide">[Reactions: </span>❤️🫒 11<span class="hide">]</span></p>
+   <p class="reacts out"><span class="hide">[Reactions: </span>❤️🫒 11<span class="hide">]</span></p>
    After three faces Instagram adds the rest as a number, like +2: type it straight after the last face. */
-#workskin .igdm .igdm-reacts {
+#workskin .igdm .reacts {
   display: table;
   position: relative;
   margin: -1.05em 0.5em 0.6em 0.5em;
@@ -5562,10 +5476,10 @@
   white-space: nowrap;
 }
 
-#workskin .igdm .igdm-reacts.out { margin-left: auto; }
+#workskin .igdm .reacts.out { margin-left: auto; }
 
-#workskin .igdm .igdm-reacts .ig-pfp,
-#workskin .igdm .igdm-row .igdm-reacts .ig-pfp {
+#workskin .igdm .reacts .ig-pfp,
+#workskin .igdm .row .reacts .ig-pfp {
   display: inline-flex;
   position: static;
   width: 16px;
@@ -5575,26 +5489,26 @@
   vertical-align: middle;
 }
 
-#workskin .igdm .igdm-reacts .ig-pfp + .ig-pfp { margin-left: 3px; }
+#workskin .igdm .reacts .ig-pfp + .ig-pfp { margin-left: 3px; }
 
 /* in a group, the picture stays beside the bubble when a pill comes last */
-#workskin .igdm .igdm-row:has(> .igdm-reacts:last-child) > .ig-pfp { bottom: 1.5em; }
+#workskin .igdm .row:has(> .reacts:last-child) > .ig-pfp { bottom: 1.5em; }
 
 /* ---- replies: a grey line saying who replied, then the message they replied to, faded, with a bar beside it, then the reply itself. */
-#workskin .igdm .igdm-reply {
+#workskin .igdm .reply {
   display: block;
   font-size: 0.72em;
   color: #737373;
   margin: 0.5em 0 0.15em 0.9em;
 }
 
-#workskin .igdm .igdm-reply.out { margin: 0.5em 0.9em 0.15em 0; text-align: right; }
+#workskin .igdm .reply.out { margin: 0.5em 0.9em 0.15em 0; text-align: right; }
 
 /* in and out only set the side here, not a bubble */
-#workskin .igdm .igdm-reply.in,
-#workskin .igdm .igdm-reply.out { background: none; color: #737373; }
+#workskin .igdm .reply.in,
+#workskin .igdm .reply.out { background: none; color: #737373; }
 
-#workskin .igdm .igdm-quote {
+#workskin .igdm .quote {
   display: table;
   position: relative;
   max-width: 66%;
@@ -5606,12 +5520,12 @@
   font-size: 0.92em;
 }
 
-#workskin .igdm .igdm-quote.out { margin: 0 0.7em 0.2em auto; }
+#workskin .igdm .quote.out { margin: 0 0.7em 0.2em auto; }
 
-#workskin .igdm .igdm-quote.me { background: #d9c7fb; color: #ffffff; }
+#workskin .igdm .quote.me { background: #d9c7fb; color: #ffffff; }
 
 /* the grey bar beside the quote */
-#workskin .igdm .igdm-quote::before {
+#workskin .igdm .quote::before {
   content: "";
   position: absolute;
   top: 0;
@@ -5622,7 +5536,7 @@
   background: #dbdbdb;
 }
 
-#workskin .igdm .igdm-quote.out::before { left: auto; right: -0.7em; }
+#workskin .igdm .quote.out::before { left: auto; right: -0.7em; }
 
 /* ---- photos: a message with a picture in it instead of words, rounded, with no bubble behind it (see CHAT PHOTOS in the Core part) */
 #workskin .igdm .msg.gallery {
@@ -5631,17 +5545,17 @@
   background: none;
 }
 
-#workskin .igdm .igdm-photos { border-radius: 18px; }
+#workskin .igdm .photos { border-radius: 18px; }
 
-#workskin .igdm .igdm-photo { background: #efefef; }
+#workskin .igdm .photo { background: #efefef; }
 
-#workskin .igdm .igdm-photo .img-desc {
+#workskin .igdm .photo .img-desc {
   color: #737373;
   font-size: 0.85em;
   line-height: 1.35;
 }
 
-#workskin .igdm .igdm-photos.one .igdm-photo .img-desc { padding: 3em 1em; }
+#workskin .igdm .photos.one .photo .img-desc { padding: 3em 1em; }
 
 /* ---- a shared post as a card: the account at the top, then the picture, then the account name in bold and the start of the caption */
 #workskin .igdm .igdm-post {
@@ -5729,7 +5643,7 @@
 }
 
 #workskin .igdm .igdm-post.out .igdm-post-btns,
-#workskin .igdm .igdm-link-card.out .igdm-post-btns { left: auto; right: 100%; margin: 0 0.6em 0 0; }
+#workskin .igdm .link-card.out .igdm-post-btns { left: auto; right: 100%; margin: 0 0.6em 0 0; }
 
 #workskin .igdm .igdm-post-btns .ic {
   display: block;
@@ -5745,7 +5659,7 @@
 
 #workskin .igdm .ic.ic-save { background-image: url(https://images.squidge.org/images/2026/11/15/bookmark-black.png); }
 
-/* replying to a shared post or reel: the card itself is the faded quote, in place of igdm-quote, and its buttons go */
+/* replying to a shared post or reel: the card itself is the faded quote, in place of quote, and its buttons go */
 #workskin .igdm .igdm-post.quoted { opacity: 0.45; }
 
 #workskin .igdm .igdm-post.quoted .igdm-post-btns { display: none; }
@@ -5817,7 +5731,7 @@
 }
 
 /* ---- a link someone sends: a card with the page's picture, its title in bold and the website underneath */
-#workskin .igdm .igdm-link-card {
+#workskin .igdm .link-card {
   display: block;
   position: relative;
   width: 62%;
@@ -5827,9 +5741,9 @@
   color: #262626;
 }
 
-#workskin .igdm .igdm-link-card.out { margin: 0.2em 0 0.2em auto; }
+#workskin .igdm .link-card.out { margin: 0.2em 0 0.2em auto; }
 
-#workskin .igdm .igdm-link-img {
+#workskin .igdm .link-img {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -5840,9 +5754,9 @@
   background: #ffffff;
 }
 
-#workskin .igdm .igdm-link-img img { display: block; width: 100%; height: auto; }
+#workskin .igdm .link-img img { display: block; width: 100%; height: auto; }
 
-#workskin .igdm .igdm-link-img.text {
+#workskin .igdm .link-img.text {
   display: block;
   padding: 3em 1em;
   background: #dbdbdb;
@@ -5852,7 +5766,7 @@
   text-align: center;
 }
 
-#workskin .igdm .igdm-link-title {
+#workskin .igdm .link-title {
   display: block;
   max-height: 4.05em;
   margin: 0.7em 0.9em 0.3em 0.9em;
@@ -5862,7 +5776,7 @@
   line-height: 1.35;
 }
 
-#workskin .igdm .igdm-link-url {
+#workskin .igdm .link-url {
   display: block;
   margin: 0 0.9em 0.75em 0.9em;
   color: #737373;
@@ -5870,7 +5784,7 @@
 }
 
 /* the little globe before the website */
-#workskin .igdm .igdm-link-url::before {
+#workskin .igdm .link-url::before {
   content: "";
   display: inline-block;
   box-sizing: border-box;
@@ -5903,7 +5817,7 @@
 }
 
 /* ---- THE APP SCREEN (optional): turn the header into the app's top bar, with a back arrow on the left and call and video buttons on the right, and add the message bar at the bottom. */
-#workskin .igdm .mob-header .igdm-back {
+#workskin .igdm .mob-header .back {
   display: block;
   float: left;
   height: 36px;
@@ -5911,7 +5825,7 @@
   line-height: 36px;
 }
 
-#workskin .igdm .mob-header .igdm-btns {
+#workskin .igdm .mob-header .btns {
   display: block;
   float: right;
   height: 36px;
@@ -5919,20 +5833,20 @@
   line-height: 36px;
 }
 
-#workskin .igdm .mob-header .igdm-back .ic,
-#workskin .igdm .mob-header .igdm-btns .ic {
+#workskin .igdm .mob-header .back .ic,
+#workskin .igdm .mob-header .btns .ic {
   display: inline-block;
   width: 1.45em;
   height: 1.45em;
   vertical-align: middle;
 }
 
-#workskin .igdm .mob-header .igdm-btns .ic ~ .ic { margin-left: 1.2em; }
+#workskin .igdm .mob-header .btns .ic ~ .ic { margin-left: 1.2em; }
 
 /* with the back arrow there, a header with two pictures lines up the same as one with one */
-#workskin .igdm .mob-header .igdm-back ~ .ig-collab { margin-left: 0; }
+#workskin .igdm .mob-header .back ~ .ig-collab { margin-left: 0; }
 
-#workskin .igdm .igdm-footer {
+#workskin .igdm .footer {
   display: flex;
   align-items: center;
   margin: 0.3em 0.6em 0.6em 0.6em;
@@ -5952,14 +5866,14 @@
   background-size: 1.2em;
 }
 
-#workskin .igdm .igdm-msgbar {
+#workskin .igdm .msgbar {
   flex: 1;
   position: relative;
   padding: 0.35em 2.2em 0.35em 0;
   color: #737373;
 }
 
-#workskin .igdm .igdm-msgbar .ic {
+#workskin .igdm .msgbar .ic {
   position: absolute;
   right: 0.6em;
   top: 50%;
@@ -5968,7 +5882,7 @@
   height: 1.2em;
 }
 
-#workskin .igdm .igdm-msgbar.typed { color: #262626; }
+#workskin .igdm .msgbar.typed { color: #262626; }
 
 /* ---------- Instagram: Links ---------- */
 
@@ -6240,11 +6154,11 @@
 #workskin .igdm.theme-dark { background: #0c1014; color: #f5f5f5; border-color: #262626; }
 
 #workskin .igdm.theme-dark .mob-header { background: #0c1014; color: #f5f5f5; border-bottom-color: #262626; }
-#workskin .igdm.theme-dark .mob-header .igdm-name { color: inherit; }
+#workskin .igdm.theme-dark .mob-header .chat-name { color: inherit; }
 
 #workskin .igdm.theme-dark .mob-header span,
 #workskin .igdm.theme-dark .who,
-#workskin .igdm.theme-dark .igdm-status {
+#workskin .igdm.theme-dark .status {
   color: #a8a8a8;
 }
 
@@ -6254,26 +6168,26 @@
 
 #workskin .igdm.theme-dark .mob-header .ig-collab .ig-pfp ~ .ig-pfp { border-color: #0c1014; }
 
-#workskin .igdm.theme-dark .igdm-footer { background: #262626; }
-#workskin .igdm.theme-dark .igdm-msgbar { color: #a8a8a8; }
-#workskin .igdm.theme-dark .igdm-msgbar.typed { color: #f5f5f5; }
-#workskin .igdm.theme-dark .igdm-reacts { background: #262626; color: #f5f5f5; border-color: #0c1014; }
-#workskin .igdm.theme-dark .igdm-reply.in,
-  #workskin .igdm.theme-dark .igdm-reply.out { background: none; color: #a8a8a8; }
-#workskin .igdm.theme-dark .igdm-quote { background: #1c1c1c; color: #8e8e8e; }
-#workskin .igdm.theme-dark .igdm-quote.me { background: #3b2a66; color: #c9b5f2; }
-#workskin .igdm.theme-dark .igdm-quote::before { background: #363636; }
-#workskin .igdm.theme-dark .igdm-photo,
+#workskin .igdm.theme-dark .footer { background: #262626; }
+#workskin .igdm.theme-dark .msgbar { color: #a8a8a8; }
+#workskin .igdm.theme-dark .msgbar.typed { color: #f5f5f5; }
+#workskin .igdm.theme-dark .reacts { background: #262626; color: #f5f5f5; border-color: #0c1014; }
+#workskin .igdm.theme-dark .reply.in,
+  #workskin .igdm.theme-dark .reply.out { background: none; color: #a8a8a8; }
+#workskin .igdm.theme-dark .quote { background: #1c1c1c; color: #8e8e8e; }
+#workskin .igdm.theme-dark .quote.me { background: #3b2a66; color: #c9b5f2; }
+#workskin .igdm.theme-dark .quote::before { background: #363636; }
+#workskin .igdm.theme-dark .photo,
   #workskin .igdm.theme-dark .igdm-post { background: #262626; color: #f5f5f5; }
-#workskin .igdm.theme-dark .igdm-photo .img-desc { color: #a8a8a8; }
+#workskin .igdm.theme-dark .photo .img-desc { color: #a8a8a8; }
 #workskin .igdm.theme-dark .igdm-post-img.text { background: #363636; color: #a8a8a8; }
 #workskin .igdm.theme-dark .igdm-post.reel { background: #000000; }
 #workskin .igdm.theme-dark .igdm-post-btns .ic { background-color: #262626; }
-#workskin .igdm.theme-dark .igdm-link-card { background: #262626; color: #f5f5f5; }
-#workskin .igdm.theme-dark .igdm-link-img.text { background: #363636; color: #a8a8a8; }
-#workskin .igdm.theme-dark .igdm-link-url { color: #a8a8a8; }
+#workskin .igdm.theme-dark .link-card { background: #262626; color: #f5f5f5; }
+#workskin .igdm.theme-dark .link-img.text { background: #363636; color: #a8a8a8; }
+#workskin .igdm.theme-dark .link-url { color: #a8a8a8; }
 #workskin .igdm.theme-dark .typing-indicator span:empty { background: #a8a8a8; }
-#workskin .igdm.theme-dark .igdm-link-url::before { border-color: #a8a8a8; background-image: linear-gradient(transparent 42%, #a8a8a8 42%, #a8a8a8 58%, transparent 58%); }
+#workskin .igdm.theme-dark .link-url::before { border-color: #a8a8a8; background-image: linear-gradient(transparent 42%, #a8a8a8 42%, #a8a8a8 58%, transparent 58%); }
 #workskin .igdm.theme-dark .igdm-post-btns .ic.ic-info::before { border-color: #f5f5f5; color: #f5f5f5; }
 #workskin .igdm.theme-dark .ic.ic-save { background-image: url(https://images.squidge.org/images/2026/11/15/bookmark-white.png); }
 
@@ -6333,11 +6247,11 @@
   #workskin .igdm.theme-auto { background: #0c1014; color: #f5f5f5; border-color: #262626; }
 
   #workskin .igdm.theme-auto .mob-header { background: #0c1014; color: #f5f5f5; border-bottom-color: #262626; }
-  #workskin .igdm.theme-auto .mob-header .igdm-name { color: inherit; }
+  #workskin .igdm.theme-auto .mob-header .chat-name { color: inherit; }
 
   #workskin .igdm.theme-auto .mob-header span,
     #workskin .igdm.theme-auto .who,
-    #workskin .igdm.theme-auto .igdm-status {
+    #workskin .igdm.theme-auto .status {
       color: #a8a8a8;
     }
 
@@ -6347,26 +6261,26 @@
 
   #workskin .igdm.theme-auto .mob-header .ig-collab .ig-pfp ~ .ig-pfp { border-color: #0c1014; }
 
-  #workskin .igdm.theme-auto .igdm-footer { background: #262626; }
-  #workskin .igdm.theme-auto .igdm-msgbar { color: #a8a8a8; }
-  #workskin .igdm.theme-auto .igdm-msgbar.typed { color: #f5f5f5; }
-  #workskin .igdm.theme-auto .igdm-reacts { background: #262626; color: #f5f5f5; border-color: #0c1014; }
-  #workskin .igdm.theme-auto .igdm-reply.in,
-    #workskin .igdm.theme-auto .igdm-reply.out { background: none; color: #a8a8a8; }
-  #workskin .igdm.theme-auto .igdm-quote { background: #1c1c1c; color: #8e8e8e; }
-  #workskin .igdm.theme-auto .igdm-quote.me { background: #3b2a66; color: #c9b5f2; }
-  #workskin .igdm.theme-auto .igdm-quote::before { background: #363636; }
-  #workskin .igdm.theme-auto .igdm-photo,
+  #workskin .igdm.theme-auto .footer { background: #262626; }
+  #workskin .igdm.theme-auto .msgbar { color: #a8a8a8; }
+  #workskin .igdm.theme-auto .msgbar.typed { color: #f5f5f5; }
+  #workskin .igdm.theme-auto .reacts { background: #262626; color: #f5f5f5; border-color: #0c1014; }
+  #workskin .igdm.theme-auto .reply.in,
+    #workskin .igdm.theme-auto .reply.out { background: none; color: #a8a8a8; }
+  #workskin .igdm.theme-auto .quote { background: #1c1c1c; color: #8e8e8e; }
+  #workskin .igdm.theme-auto .quote.me { background: #3b2a66; color: #c9b5f2; }
+  #workskin .igdm.theme-auto .quote::before { background: #363636; }
+  #workskin .igdm.theme-auto .photo,
     #workskin .igdm.theme-auto .igdm-post { background: #262626; color: #f5f5f5; }
-  #workskin .igdm.theme-auto .igdm-photo .img-desc { color: #a8a8a8; }
+  #workskin .igdm.theme-auto .photo .img-desc { color: #a8a8a8; }
   #workskin .igdm.theme-auto .igdm-post-img.text { background: #363636; color: #a8a8a8; }
   #workskin .igdm.theme-auto .igdm-post.reel { background: #000000; }
   #workskin .igdm.theme-auto .igdm-post-btns .ic { background-color: #262626; }
-  #workskin .igdm.theme-auto .igdm-link-card { background: #262626; color: #f5f5f5; }
-  #workskin .igdm.theme-auto .igdm-link-img.text { background: #363636; color: #a8a8a8; }
-  #workskin .igdm.theme-auto .igdm-link-url { color: #a8a8a8; }
+  #workskin .igdm.theme-auto .link-card { background: #262626; color: #f5f5f5; }
+  #workskin .igdm.theme-auto .link-img.text { background: #363636; color: #a8a8a8; }
+  #workskin .igdm.theme-auto .link-url { color: #a8a8a8; }
   #workskin .igdm.theme-auto .typing-indicator span:empty { background: #a8a8a8; }
-  #workskin .igdm.theme-auto .igdm-link-url::before { border-color: #a8a8a8; background-image: linear-gradient(transparent 42%, #a8a8a8 42%, #a8a8a8 58%, transparent 58%); }
+  #workskin .igdm.theme-auto .link-url::before { border-color: #a8a8a8; background-image: linear-gradient(transparent 42%, #a8a8a8 42%, #a8a8a8 58%, transparent 58%); }
   #workskin .igdm.theme-auto .igdm-post-btns .ic.ic-info::before { border-color: #f5f5f5; color: #f5f5f5; }
   #workskin .igdm.theme-auto .ic.ic-save { background-image: url(https://images.squidge.org/images/2026/11/15/bookmark-white.png); }
 }
@@ -7826,7 +7740,7 @@
   border-color: rgb(46, 51, 56);
 }
 
-#workskin .dc .dc-footer {
+#workskin .dc .footer {
   margin: 1.5rem 1rem 0;
   padding: 1rem 3.5rem;
   border-radius: 0.5rem;
@@ -7835,14 +7749,14 @@
   background-color: rgb(235, 237, 239);
 }
 
-#workskin .dc .dc-msgbar {
+#workskin .dc .msgbar {
   display: contents;
   position: absolute;
   top: 50%;
   transform: translate(0%, -50%);
 }
 
-#workskin .dc .dc-msgbar::before {
+#workskin .dc .msgbar::before {
   content: '';
   background-repeat: no-repeat;
   background-size: contain;
@@ -7879,8 +7793,8 @@
   width: 2.5rem;
 }
 
-#workskin .dc .dc-time,
-#workskin .dc .dc-edited {
+#workskin .dc .time,
+#workskin .dc .edited {
   margin-left: 0.25rem;
   font-size: 0.75rem;
   line-height: 1.375rem;
@@ -7909,7 +7823,7 @@
   overflow: hidden;
 }
 
-#workskin .dc .dc-reply .dc-pfp {
+#workskin .dc .reply .dc-pfp {
   left: -1.25rem;
   margin-top: 0.3125rem;
   width: 1rem;
@@ -7919,7 +7833,7 @@
 #workskin .dc .dc-name:has(.dc-pfp)::before { display: none; }
 
 /* a picture in a message (see CHAT PHOTOS in the Core part) */
-#workskin .dc .dc-photos { max-width: 360px; border-radius: 0.1875rem; }
+#workskin .dc .photos { max-width: 360px; border-radius: 0.1875rem; }
 
 #workskin .dc .dc-emoji {
   width: 3rem;
@@ -7936,7 +7850,7 @@
   display: inline;
 }
 
-/* reactions: <p class="dc-reacts"><span class="dc-reaction">emoji <span class="dc-count">12</span></span></p> */
+/* reactions: <p class="reacts"><span class="dc-reaction">emoji <span class="count">12</span></span></p> */
 #workskin .dc .dc-reaction {
   display: inline-block;
   vertical-align: middle;
@@ -7949,7 +7863,7 @@
   height: 1.625rem;
 }
 
-#workskin .dc .dc-count {
+#workskin .dc .count {
   display: inline-block;
   vertical-align: middle;
   line-height: 1.25rem;
@@ -7958,9 +7872,9 @@
   padding-left: 0.1rem;
 }
 
-#workskin .dc .dc-reply { margin-bottom: 0.25rem; line-height: 1.125rem; position: relative; }
+#workskin .dc .reply { margin-bottom: 0.25rem; line-height: 1.125rem; position: relative; }
 
-#workskin .dc .dc-reply .dc-name {
+#workskin .dc .reply .dc-name {
   position: relative;
   left: 1.25rem;
   font-size: 0.875rem;
@@ -7968,7 +7882,7 @@
   height: 1.125rem;
 }
 
-#workskin .dc .dc-reply .dc-name::before {
+#workskin .dc .reply .dc-name::before {
   content: '';
   background-repeat: no-repeat;
   background-size: contain;
@@ -7981,7 +7895,7 @@
   width: 1rem;
 }
 
-#workskin .dc .dc-reply .dc-text {
+#workskin .dc .reply .dc-text {
   position: relative;
   left: 1rem;
   font-size: 0.875rem;
@@ -7997,7 +7911,7 @@
 }
 
 /* the curved line linking a reply to its parent */
-#workskin .dc .dc-reply::before {
+#workskin .dc .reply::before {
   content: '';
   display: block;
   position: absolute;
@@ -8013,8 +7927,8 @@
   border-color: rgb(199, 204, 209);
 }
 
-/* link card: <div class="dc-link-card"> small lines, title, picture </div> */
-#workskin .dc .dc-link-card {
+/* link card: <div class="link-card"> small lines, title, picture </div> */
+#workskin .dc .link-card {
   margin: 0.25rem 0;
   padding: 0.5rem 1rem 1rem 0.75rem;
   border-left: 0.25rem solid rgb(255, 0, 0);
@@ -8022,13 +7936,13 @@
   max-width: 432px;
 }
 
-#workskin .dc .dc-link-title { font-weight: 600; }
+#workskin .dc .link-title { font-weight: 600; }
 
-#workskin .dc .dc-link-desc { font-size: 0.875rem; line-height: 1rem; }
+#workskin .dc .link-desc { font-size: 0.875rem; line-height: 1rem; }
 
-#workskin .dc .dc-link-img { margin-top: 1rem; }
+#workskin .dc .link-img { margin-top: 1rem; }
 
-#workskin .dc .dc-link-img img { display: block; max-width: 100%; border-radius: 0.25rem; }
+#workskin .dc .link-img img { display: block; max-width: 100%; border-radius: 0.25rem; }
 
 #workskin .dc .dc-quote { display: table; }
 
@@ -8249,20 +8163,23 @@
 }
 
 #workskin .dc .dc-code,
-#workskin .dc .dc-link-card {
+#workskin .dc .link-card {
   background-color: rgb(242, 243, 245);
 }
 
-#workskin .dc .dc-time, #workskin .dc .dc-edited, #workskin .dc .dc-divider-label { color: rgb(94, 103, 114); }
+#workskin .dc .time, #workskin .dc .edited, #workskin .dc .dc-divider-label { color: rgb(94, 103, 114); }
 
 #workskin .dc a:not(.tl),
-#workskin .dc .dc-link,
-#workskin .dc .dc-link-title,
-#workskin .dc .fake-link {
+#workskin .dc .fake-link,
+#workskin .dc .link-title {
   color: rgb(0, 104, 224);
 }
 
-#workskin .dc .dc-reply,
+/* Discord only underlines a link when the mouse is over it */
+#workskin .dc a:not(.tl),
+#workskin .dc .fake-link { text-decoration: none; }
+
+#workskin .dc .reply,
 #workskin .dc .dc-topic {
   color: rgb(79, 86, 96);
 }
@@ -8335,31 +8252,30 @@
 #workskin .dc.theme-dark .dc-header-divider { border-color: rgb(220, 221, 222); }
 
 #workskin .dc.theme-dark .dc-code,
-#workskin .dc.theme-dark .dc-link-card {
+#workskin .dc.theme-dark .link-card {
   background-color: rgb(47, 49, 54);
 }
 
-#workskin .dc.theme-dark .dc-time, #workskin .dc.theme-dark .dc-edited, #workskin .dc.theme-dark .dc-divider-label { color: rgb(163, 166, 170); }
+#workskin .dc.theme-dark .time, #workskin .dc.theme-dark .edited, #workskin .dc.theme-dark .dc-divider-label { color: rgb(163, 166, 170); }
 
 #workskin .dc.theme-dark .dc-divider-label { background-color: rgb(54, 57, 63); }
 
 #workskin .dc.theme-dark .dc-quote-line { background-color: rgb(79, 84, 92); }
 
 #workskin .dc.theme-dark a:not(.tl),
-#workskin .dc.theme-dark .dc-link,
-#workskin .dc.theme-dark .dc-link-title,
-#workskin .dc.theme-dark .fake-link {
+#workskin .dc.theme-dark .fake-link,
+#workskin .dc.theme-dark .link-title {
   color: rgb(0, 175, 244);
 }
 
 #workskin .dc.theme-dark a:not(.tl):hover { color: rgb(0, 175, 244); text-decoration: underline; }
 
-#workskin .dc.theme-dark .dc-reply,
+#workskin .dc.theme-dark .reply,
 #workskin .dc.theme-dark .dc-topic {
   color: rgb(185, 187, 190);
 }
 
-#workskin .dc.theme-dark .dc-reply::before { border-color: rgb(79, 84, 92); }
+#workskin .dc.theme-dark .reply::before { border-color: rgb(79, 84, 92); }
 
 #workskin .dc.theme-dark .dc-reaction:not(.me) {
   background-color: rgb(47, 49, 54);
@@ -8395,7 +8311,7 @@
 
 #workskin .dc.theme-dark .typing-indicator span:empty { background-color: rgb(220, 221, 222); }
 
-#workskin .dc.theme-dark .dc-footer { background-color: rgb(64, 68, 75); }
+#workskin .dc.theme-dark .footer { background-color: rgb(64, 68, 75); }
 
 #workskin .dc.theme-dark .hashtag::before { background-image: url(https://images.squidge.org/images/2026/11/15/dc-hashtag-dark.png); }
 
@@ -8403,7 +8319,7 @@
 
 #workskin .dc.theme-dark .at-symbol::before { background-image: url(https://images.squidge.org/images/2026/11/15/dc-at-dark.png); }
 
-#workskin .dc.theme-dark .dc-msgbar::before { background-image: url(https://images.squidge.org/images/2026/11/15/dc-plus-dark.png); }
+#workskin .dc.theme-dark .msgbar::before { background-image: url(https://images.squidge.org/images/2026/11/15/dc-plus-dark.png); }
 
 /* spoilers, dark: hidden until clicked */
 #workskin .dc.theme-dark .dc-spoiler-text {
@@ -8443,31 +8359,30 @@
   #workskin .dc.theme-auto .dc-header-divider { border-color: rgb(220, 221, 222); }
 
   #workskin .dc.theme-auto .dc-code,
-    #workskin .dc.theme-auto .dc-link-card {
+    #workskin .dc.theme-auto .link-card {
       background-color: rgb(47, 49, 54);
     }
 
-  #workskin .dc.theme-auto .dc-time, #workskin .dc.theme-auto .dc-edited, #workskin .dc.theme-auto .dc-divider-label { color: rgb(163, 166, 170); }
+  #workskin .dc.theme-auto .time, #workskin .dc.theme-auto .edited, #workskin .dc.theme-auto .dc-divider-label { color: rgb(163, 166, 170); }
 
   #workskin .dc.theme-auto .dc-divider-label { background-color: rgb(54, 57, 63); }
 
   #workskin .dc.theme-auto .dc-quote-line { background-color: rgb(79, 84, 92); }
 
-  #workskin .dc.theme-auto a:not(.tl),
-    #workskin .dc.theme-auto .dc-link,
-    #workskin .dc.theme-auto .dc-link-title,
-    #workskin .dc.theme-auto .fake-link {
+    #workskin .dc.theme-auto a:not(.tl),
+    #workskin .dc.theme-auto .fake-link,
+    #workskin .dc.theme-auto .link-title {
       color: rgb(0, 175, 244);
     }
 
   #workskin .dc.theme-auto a:not(.tl):hover { color: rgb(0, 175, 244); text-decoration: underline; }
 
-  #workskin .dc.theme-auto .dc-reply,
+  #workskin .dc.theme-auto .reply,
     #workskin .dc.theme-auto .dc-topic {
       color: rgb(185, 187, 190);
     }
 
-  #workskin .dc.theme-auto .dc-reply::before { border-color: rgb(79, 84, 92); }
+  #workskin .dc.theme-auto .reply::before { border-color: rgb(79, 84, 92); }
 
   #workskin .dc.theme-auto .dc-reaction:not(.me) {
       background-color: rgb(47, 49, 54);
@@ -8514,7 +8429,7 @@
   
   #workskin .dc.theme-auto .typing-indicator span:empty { background-color: rgb(220, 221, 222); }
 
-  #workskin .dc.theme-auto .dc-footer { background-color: rgb(64, 68, 75); }
+  #workskin .dc.theme-auto .footer { background-color: rgb(64, 68, 75); }
 
   #workskin .dc.theme-auto .hashtag::before { background-image: url(https://images.squidge.org/images/2026/11/15/dc-hashtag-dark.png); }
 
@@ -8522,7 +8437,7 @@
 
   #workskin .dc.theme-auto .at-symbol::before { background-image: url(https://images.squidge.org/images/2026/11/15/dc-at-dark.png); }
 
-  #workskin .dc.theme-auto .dc-msgbar::before { background-image: url(https://images.squidge.org/images/2026/11/15/dc-plus-dark.png); }
+  #workskin .dc.theme-auto .msgbar::before { background-image: url(https://images.squidge.org/images/2026/11/15/dc-plus-dark.png); }
 
   /* spoilers, dark: hidden until clicked */
   #workskin .dc.theme-auto .dc-spoiler-text {

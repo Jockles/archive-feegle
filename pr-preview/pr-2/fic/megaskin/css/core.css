@@ -103,7 +103,7 @@
 }
 
 /* the tiny circles in Discord replies and Instagram's "Liked by" line get smaller initials */
-#workskin .dc .dc-reply .pfp::before { font-size: 0.4em; }
+#workskin .dc .reply .pfp::before { font-size: 0.4em; }
 #workskin .ig .ig-like-pfp .pfp::before { font-size: 0.75em; }
 
 /* Instagram's account picture is bigger than its text, so its initials need a bigger size */
@@ -581,125 +581,125 @@
 /* names: a bit brighter than the circles, so they are easy to read as text.
    In a WhatsApp quoted reply, the colour goes on the line down the side and the name. */
 #workskin .wa .who.colour1,
-#workskin .wa .wa-quote.colour1 b,
+#workskin .wa .quote.colour1 b,
 #workskin .dc .colour1 { color: #b8651f; }
 
-#workskin .wa .wa-quote.colour1 { border-left-color: #b8651f; }
+#workskin .wa .quote.colour1 { border-left-color: #b8651f; }
 
 #workskin .wa .who.colour2,
-#workskin .wa .wa-quote.colour2 b,
+#workskin .wa .quote.colour2 b,
 #workskin .dc .colour2 { color: #5f6368; }
 
-#workskin .wa .wa-quote.colour2 { border-left-color: #5f6368; }
+#workskin .wa .quote.colour2 { border-left-color: #5f6368; }
 
 #workskin .wa .who.colour3,
-#workskin .wa .wa-quote.colour3 b,
+#workskin .wa .quote.colour3 b,
 #workskin .dc .colour3 { color: #b03a6f; }
 
-#workskin .wa .wa-quote.colour3 { border-left-color: #b03a6f; }
+#workskin .wa .quote.colour3 { border-left-color: #b03a6f; }
 
 #workskin .wa .who.colour4,
-#workskin .wa .wa-quote.colour4 b,
+#workskin .wa .quote.colour4 b,
 #workskin .dc .colour4 { color: #1f8a72; }
 
-#workskin .wa .wa-quote.colour4 { border-left-color: #1f8a72; }
+#workskin .wa .quote.colour4 { border-left-color: #1f8a72; }
 
 #workskin .wa .who.colour5,
-#workskin .wa .wa-quote.colour5 b,
+#workskin .wa .quote.colour5 b,
 #workskin .dc .colour5 { color: #2f68c8; }
 
-#workskin .wa .wa-quote.colour5 { border-left-color: #2f68c8; }
+#workskin .wa .quote.colour5 { border-left-color: #2f68c8; }
 
 #workskin .wa .who.colour6,
-#workskin .wa .wa-quote.colour6 b,
+#workskin .wa .quote.colour6 b,
 #workskin .dc .colour6 { color: #7b52c4; }
 
-#workskin .wa .wa-quote.colour6 { border-left-color: #7b52c4; }
+#workskin .wa .quote.colour6 { border-left-color: #7b52c4; }
 
 #workskin .wa .who.colour7,
-#workskin .wa .wa-quote.colour7 b,
+#workskin .wa .quote.colour7 b,
 #workskin .dc .colour7 { color: #c0392b; }
 
-#workskin .wa .wa-quote.colour7 { border-left-color: #c0392b; }
+#workskin .wa .quote.colour7 { border-left-color: #c0392b; }
 
 #workskin .wa .who.colour8,
-#workskin .wa .wa-quote.colour8 b,
+#workskin .wa .quote.colour8 b,
 #workskin .dc .colour8 { color: #4a8a25; }
 
-#workskin .wa .wa-quote.colour8 { border-left-color: #4a8a25; }
+#workskin .wa .quote.colour8 { border-left-color: #4a8a25; }
 
 #workskin .wa .who.colour9,
-#workskin .wa .wa-quote.colour9 b,
+#workskin .wa .quote.colour9 b,
 #workskin .dc .colour9 { color: #9a7412; }
 
-#workskin .wa .wa-quote.colour9 { border-left-color: #9a7412; }
+#workskin .wa .quote.colour9 { border-left-color: #9a7412; }
 
 #workskin .wa .who.colour10,
-#workskin .wa .wa-quote.colour10 b,
+#workskin .wa .quote.colour10 b,
 #workskin .dc .colour10 { color: #1f7fa3; }
 
-#workskin .wa .wa-quote.colour10 { border-left-color: #1f7fa3; }
+#workskin .wa .quote.colour10 { border-left-color: #1f7fa3; }
 
 /* names in the dark theme: lighter shades, so they show up on a dark background */
 #workskin .wa.theme-dark .who.colour1,
-#workskin .wa.theme-dark .wa-quote.colour1 b,
+#workskin .wa.theme-dark .quote.colour1 b,
 #workskin .dc.theme-dark .colour1 { color: #f0a25c; }
 
-#workskin .wa.theme-dark .wa-quote.colour1 { border-left-color: #f0a25c; }
+#workskin .wa.theme-dark .quote.colour1 { border-left-color: #f0a25c; }
 
 #workskin .wa.theme-dark .who.colour2,
-#workskin .wa.theme-dark .wa-quote.colour2 b,
+#workskin .wa.theme-dark .quote.colour2 b,
 #workskin .dc.theme-dark .colour2 { color: #aeb3b8; }
 
-#workskin .wa.theme-dark .wa-quote.colour2 { border-left-color: #aeb3b8; }
+#workskin .wa.theme-dark .quote.colour2 { border-left-color: #aeb3b8; }
 
 #workskin .wa.theme-dark .who.colour3,
-#workskin .wa.theme-dark .wa-quote.colour3 b,
+#workskin .wa.theme-dark .quote.colour3 b,
 #workskin .dc.theme-dark .colour3 { color: #ff7aa2; }
 
-#workskin .wa.theme-dark .wa-quote.colour3 { border-left-color: #ff7aa2; }
+#workskin .wa.theme-dark .quote.colour3 { border-left-color: #ff7aa2; }
 
 #workskin .wa.theme-dark .who.colour4,
-#workskin .wa.theme-dark .wa-quote.colour4 b,
+#workskin .wa.theme-dark .quote.colour4 b,
 #workskin .dc.theme-dark .colour4 { color: #06cf9c; }
 
-#workskin .wa.theme-dark .wa-quote.colour4 { border-left-color: #06cf9c; }
+#workskin .wa.theme-dark .quote.colour4 { border-left-color: #06cf9c; }
 
 #workskin .wa.theme-dark .who.colour5,
-#workskin .wa.theme-dark .wa-quote.colour5 b,
+#workskin .wa.theme-dark .quote.colour5 b,
 #workskin .dc.theme-dark .colour5 { color: #6fa3ff; }
 
-#workskin .wa.theme-dark .wa-quote.colour5 { border-left-color: #6fa3ff; }
+#workskin .wa.theme-dark .quote.colour5 { border-left-color: #6fa3ff; }
 
 #workskin .wa.theme-dark .who.colour6,
-#workskin .wa.theme-dark .wa-quote.colour6 b,
+#workskin .wa.theme-dark .quote.colour6 b,
 #workskin .dc.theme-dark .colour6 { color: #c4a3ff; }
 
-#workskin .wa.theme-dark .wa-quote.colour6 { border-left-color: #c4a3ff; }
+#workskin .wa.theme-dark .quote.colour6 { border-left-color: #c4a3ff; }
 
 #workskin .wa.theme-dark .who.colour7,
-#workskin .wa.theme-dark .wa-quote.colour7 b,
+#workskin .wa.theme-dark .quote.colour7 b,
 #workskin .dc.theme-dark .colour7 { color: #ff7b72; }
 
-#workskin .wa.theme-dark .wa-quote.colour7 { border-left-color: #ff7b72; }
+#workskin .wa.theme-dark .quote.colour7 { border-left-color: #ff7b72; }
 
 #workskin .wa.theme-dark .who.colour8,
-#workskin .wa.theme-dark .wa-quote.colour8 b,
+#workskin .wa.theme-dark .quote.colour8 b,
 #workskin .dc.theme-dark .colour8 { color: #8fd16a; }
 
-#workskin .wa.theme-dark .wa-quote.colour8 { border-left-color: #8fd16a; }
+#workskin .wa.theme-dark .quote.colour8 { border-left-color: #8fd16a; }
 
 #workskin .wa.theme-dark .who.colour9,
-#workskin .wa.theme-dark .wa-quote.colour9 b,
+#workskin .wa.theme-dark .quote.colour9 b,
 #workskin .dc.theme-dark .colour9 { color: #e6c35c; }
 
-#workskin .wa.theme-dark .wa-quote.colour9 { border-left-color: #e6c35c; }
+#workskin .wa.theme-dark .quote.colour9 { border-left-color: #e6c35c; }
 
 #workskin .wa.theme-dark .who.colour10,
-#workskin .wa.theme-dark .wa-quote.colour10 b,
+#workskin .wa.theme-dark .quote.colour10 b,
 #workskin .dc.theme-dark .colour10 { color: #53bdeb; }
 
-#workskin .wa.theme-dark .wa-quote.colour10 { border-left-color: #53bdeb; }
+#workskin .wa.theme-dark .quote.colour10 { border-left-color: #53bdeb; }
 
 /* Discord's dark grey would hide the colour2 circle, so it is a little lighter there */
 #workskin .dc.theme-dark .dc-name.colour2::before { background-color: #5c5c60; }
@@ -707,64 +707,64 @@
 /* names in the auto theme: the dark shades when the reader's device is in dark mode */
 @media (prefers-color-scheme: dark) {
   #workskin .wa.theme-auto .who.colour1,
-  #workskin .wa.theme-auto .wa-quote.colour1 b,
+  #workskin .wa.theme-auto .quote.colour1 b,
   #workskin .dc.theme-auto .colour1 { color: #f0a25c; }
 
-  #workskin .wa.theme-auto .wa-quote.colour1 { border-left-color: #f0a25c; }
+  #workskin .wa.theme-auto .quote.colour1 { border-left-color: #f0a25c; }
 
   #workskin .wa.theme-auto .who.colour2,
-  #workskin .wa.theme-auto .wa-quote.colour2 b,
+  #workskin .wa.theme-auto .quote.colour2 b,
   #workskin .dc.theme-auto .colour2 { color: #aeb3b8; }
 
-  #workskin .wa.theme-auto .wa-quote.colour2 { border-left-color: #aeb3b8; }
+  #workskin .wa.theme-auto .quote.colour2 { border-left-color: #aeb3b8; }
 
   #workskin .wa.theme-auto .who.colour3,
-  #workskin .wa.theme-auto .wa-quote.colour3 b,
+  #workskin .wa.theme-auto .quote.colour3 b,
   #workskin .dc.theme-auto .colour3 { color: #ff7aa2; }
 
-  #workskin .wa.theme-auto .wa-quote.colour3 { border-left-color: #ff7aa2; }
+  #workskin .wa.theme-auto .quote.colour3 { border-left-color: #ff7aa2; }
 
   #workskin .wa.theme-auto .who.colour4,
-  #workskin .wa.theme-auto .wa-quote.colour4 b,
+  #workskin .wa.theme-auto .quote.colour4 b,
   #workskin .dc.theme-auto .colour4 { color: #06cf9c; }
 
-  #workskin .wa.theme-auto .wa-quote.colour4 { border-left-color: #06cf9c; }
+  #workskin .wa.theme-auto .quote.colour4 { border-left-color: #06cf9c; }
 
   #workskin .wa.theme-auto .who.colour5,
-  #workskin .wa.theme-auto .wa-quote.colour5 b,
+  #workskin .wa.theme-auto .quote.colour5 b,
   #workskin .dc.theme-auto .colour5 { color: #6fa3ff; }
 
-  #workskin .wa.theme-auto .wa-quote.colour5 { border-left-color: #6fa3ff; }
+  #workskin .wa.theme-auto .quote.colour5 { border-left-color: #6fa3ff; }
 
   #workskin .wa.theme-auto .who.colour6,
-  #workskin .wa.theme-auto .wa-quote.colour6 b,
+  #workskin .wa.theme-auto .quote.colour6 b,
   #workskin .dc.theme-auto .colour6 { color: #c4a3ff; }
 
-  #workskin .wa.theme-auto .wa-quote.colour6 { border-left-color: #c4a3ff; }
+  #workskin .wa.theme-auto .quote.colour6 { border-left-color: #c4a3ff; }
 
   #workskin .wa.theme-auto .who.colour7,
-  #workskin .wa.theme-auto .wa-quote.colour7 b,
+  #workskin .wa.theme-auto .quote.colour7 b,
   #workskin .dc.theme-auto .colour7 { color: #ff7b72; }
 
-  #workskin .wa.theme-auto .wa-quote.colour7 { border-left-color: #ff7b72; }
+  #workskin .wa.theme-auto .quote.colour7 { border-left-color: #ff7b72; }
 
   #workskin .wa.theme-auto .who.colour8,
-  #workskin .wa.theme-auto .wa-quote.colour8 b,
+  #workskin .wa.theme-auto .quote.colour8 b,
   #workskin .dc.theme-auto .colour8 { color: #8fd16a; }
 
-  #workskin .wa.theme-auto .wa-quote.colour8 { border-left-color: #8fd16a; }
+  #workskin .wa.theme-auto .quote.colour8 { border-left-color: #8fd16a; }
 
   #workskin .wa.theme-auto .who.colour9,
-  #workskin .wa.theme-auto .wa-quote.colour9 b,
+  #workskin .wa.theme-auto .quote.colour9 b,
   #workskin .dc.theme-auto .colour9 { color: #e6c35c; }
 
-  #workskin .wa.theme-auto .wa-quote.colour9 { border-left-color: #e6c35c; }
+  #workskin .wa.theme-auto .quote.colour9 { border-left-color: #e6c35c; }
 
   #workskin .wa.theme-auto .who.colour10,
-  #workskin .wa.theme-auto .wa-quote.colour10 b,
+  #workskin .wa.theme-auto .quote.colour10 b,
   #workskin .dc.theme-auto .colour10 { color: #53bdeb; }
 
-  #workskin .wa.theme-auto .wa-quote.colour10 { border-left-color: #53bdeb; }
+  #workskin .wa.theme-auto .quote.colour10 { border-left-color: #53bdeb; }
 
   /* Discord's dark grey would hide the colour2 circle, so it is a little lighter there */
   #workskin .dc.theme-auto .dc-name.colour2::before { background-color: #5c5c60; }
@@ -788,45 +788,29 @@
 
 /* ---- CHAT PHOTOS: pictures sent in a message. They are built the same way in every chat app, with the app's own first word (imsg-, wa-, igdm-, twdm-, dc-):
    <div class="msg in gallery">
-     <p class="imsg-photos one">
-       <span class="imsg-photo"><img src="..." alt="..."></span>
+     <p class="photos one">
+       <span class="photo"><img src="..." alt="..."></span>
      </p>
    </div>
    The word after photos says how many pictures there are: one, two or three. Leave it out for four. ---- */
-#workskin .imsg-photos,
-#workskin .wa-photos,
-#workskin .igdm-photos,
-#workskin .twdm-photos,
-#workskin .dc-photos {
+#workskin .photos {
   display: block;
   overflow: hidden;
   border-radius: 6px;
 }
 
 /* AO3 turns line breaks in your code into <br> tags; inside a grid they would push photos down */
-#workskin .imsg-photos br,
-#workskin .wa-photos br,
-#workskin .igdm-photos br,
-#workskin .twdm-photos br,
-#workskin .dc-photos br {
+#workskin .photos br {
   display: none;
 }
 
-#workskin .imsg-photos::after,
-#workskin .wa-photos::after,
-#workskin .igdm-photos::after,
-#workskin .twdm-photos::after,
-#workskin .dc-photos::after {
+#workskin .photos::after {
   content: "";
   display: block;
   clear: both;
 }
 
-#workskin .imsg-photo,
-#workskin .wa-photo,
-#workskin .igdm-photo,
-#workskin .twdm-photo,
-#workskin .dc-photo {
+#workskin .photo {
   display: block;
   position: relative;
   float: left;
@@ -838,24 +822,12 @@
   background: rgba(0, 0, 0, 0.12);
 }
 
-#workskin .imsg-photo:nth-of-type(2n),
-#workskin .wa-photo:nth-of-type(2n),
-#workskin .igdm-photo:nth-of-type(2n),
-#workskin .twdm-photo:nth-of-type(2n),
-#workskin .dc-photo:nth-of-type(2n) { margin-right: 0; }
+#workskin .photo:nth-of-type(2n) { margin-right: 0; }
 
-#workskin .imsg-photo:nth-of-type(n+3),
-#workskin .wa-photo:nth-of-type(n+3),
-#workskin .igdm-photo:nth-of-type(n+3),
-#workskin .twdm-photo:nth-of-type(n+3),
-#workskin .dc-photo:nth-of-type(n+3) { margin-bottom: 0; }
+#workskin .photo:nth-of-type(n+3) { margin-bottom: 0; }
 
 /* the picture. AO3 can't crop pictures automatically, so the skin needs to know which way the picture runs: - normal (taller than wide, or square): it is made as wide as the box, and the top and bottom are cropped evenly - add class="landscape" to the img if it is wider than tall: it is made as tall as the box, and the sides are cropped evenly The tall boxes (two pictures; the left one of three) always use the second way, as nearly any photo fits them that way. */
-#workskin .imsg-photo img,
-#workskin .wa-photo img,
-#workskin .igdm-photo img,
-#workskin .twdm-photo img,
-#workskin .dc-photo img {
+#workskin .photo img {
   position: absolute;
   top: -9999px;
   bottom: -9999px;
@@ -870,21 +842,9 @@
   margin: auto 0;
 }
 
-#workskin .imsg-photo img.landscape,
-#workskin .wa-photo img.landscape,
-#workskin .igdm-photo img.landscape,
-#workskin .twdm-photo img.landscape,
-#workskin .dc-photo img.landscape,
-#workskin .imsg-photos.two .imsg-photo img,
-#workskin .wa-photos.two .wa-photo img,
-#workskin .igdm-photos.two .igdm-photo img,
-#workskin .twdm-photos.two .twdm-photo img,
-#workskin .dc-photos.two .dc-photo img,
-#workskin .imsg-photos.three .imsg-photo:first-of-type img,
-#workskin .wa-photos.three .wa-photo:first-of-type img,
-#workskin .igdm-photos.three .igdm-photo:first-of-type img,
-#workskin .twdm-photos.three .twdm-photo:first-of-type img,
-#workskin .dc-photos.three .dc-photo:first-of-type img {
+#workskin .photo img.landscape,
+#workskin .photos.two .photo img,
+#workskin .photos.three .photo:first-of-type img {
   top: 0;
   bottom: auto;
   right: -9999px;
@@ -894,12 +854,8 @@
   margin: 0 auto;
 }
 
-/* a description standing in for a picture: <span class="imsg-photo"><span class="img-desc">[...]</span></span> */
-#workskin .imsg-photo .img-desc,
-#workskin .wa-photo .img-desc,
-#workskin .igdm-photo .img-desc,
-#workskin .twdm-photo .img-desc,
-#workskin .dc-photo .img-desc {
+/* a description standing in for a picture: <span class="photo"><span class="img-desc">[...]</span></span> */
+#workskin .photo .img-desc {
   position: absolute;
   top: 0;
   left: 0;
@@ -913,43 +869,23 @@
 }
 
 /* two pictures: side by side, each one tall */
-#workskin .imsg-photos.two .imsg-photo,
-#workskin .wa-photos.two .wa-photo,
-#workskin .igdm-photos.two .igdm-photo,
-#workskin .twdm-photos.two .twdm-photo,
-#workskin .dc-photos.two .dc-photo {
+#workskin .photos.two .photo {
   padding-top: 99%;
   margin-bottom: 0;
 }
 
 /* three pictures: one tall on the left, two small ones stacked on the right */
-#workskin .imsg-photos.three .imsg-photo:first-of-type,
-#workskin .wa-photos.three .wa-photo:first-of-type,
-#workskin .igdm-photos.three .igdm-photo:first-of-type,
-#workskin .twdm-photos.three .twdm-photo:first-of-type,
-#workskin .dc-photos.three .dc-photo:first-of-type {
+#workskin .photos.three .photo:first-of-type {
   padding-top: 99%;
   margin-bottom: 0;
 }
 
-#workskin .imsg-photos.three .imsg-photo:nth-of-type(2),
-#workskin .wa-photos.three .wa-photo:nth-of-type(2),
-#workskin .igdm-photos.three .igdm-photo:nth-of-type(2),
-#workskin .twdm-photos.three .twdm-photo:nth-of-type(2),
-#workskin .dc-photos.three .dc-photo:nth-of-type(2) { margin-bottom: 1%; }
+#workskin .photos.three .photo:nth-of-type(2) { margin-bottom: 1%; }
 
-#workskin .imsg-photos.three .imsg-photo:nth-of-type(3),
-#workskin .wa-photos.three .wa-photo:nth-of-type(3),
-#workskin .igdm-photos.three .igdm-photo:nth-of-type(3),
-#workskin .twdm-photos.three .twdm-photo:nth-of-type(3),
-#workskin .dc-photos.three .dc-photo:nth-of-type(3) { margin-right: 0; }
+#workskin .photos.three .photo:nth-of-type(3) { margin-right: 0; }
 
 /* one picture on its own isn't cropped into a square, so it keeps its own shape. A very tall one is trimmed at the bottom. */
-#workskin .imsg-photos.one .imsg-photo,
-#workskin .wa-photos.one .wa-photo,
-#workskin .igdm-photos.one .igdm-photo,
-#workskin .twdm-photos.one .twdm-photo,
-#workskin .dc-photos.one .dc-photo {
+#workskin .photos.one .photo {
   float: none;
   width: 100%;
   height: auto;
@@ -958,22 +894,14 @@
   margin: 0;
 }
 
-#workskin .imsg-photos.one .imsg-photo img,
-#workskin .wa-photos.one .wa-photo img,
-#workskin .igdm-photos.one .igdm-photo img,
-#workskin .twdm-photos.one .twdm-photo img,
-#workskin .dc-photos.one .dc-photo img {
+#workskin .photos.one .photo img {
   position: static;
   width: 100%;
   height: auto;
   margin: 0;
 }
 
-#workskin .imsg-photos.one .imsg-photo .img-desc,
-#workskin .wa-photos.one .wa-photo .img-desc,
-#workskin .igdm-photos.one .igdm-photo .img-desc,
-#workskin .twdm-photos.one .twdm-photo .img-desc,
-#workskin .dc-photos.one .dc-photo .img-desc {
+#workskin .photos.one .photo .img-desc {
   position: static;
   padding: 4em 1em;
 }
@@ -981,32 +909,28 @@
 /* ---- ONE PART PER LINE: AO3 turns the line breaks in your code into <br> tags. Between the parts of these rows a line break is never wanted, so it is hidden, and the code can be written with each part on its own line. ---- */
 #workskin .ig-top > br,
 #workskin .ig-person > br,
-#workskin .igdm-row > br,
+#workskin .row > br,
 #workskin .ig-carousel-info > br,
-#workskin .igdm-footer > br,
+#workskin .footer > br,
 #workskin .igdm-post-btns > br,
 #workskin .igdm-post-by > br,
-#workskin .imsg-footer > br,
 #workskin .typing-indicator > br,
 #workskin .msg.voice > br,
 #workskin .tb-row > br,
-#workskin .twdm-footer > br,
 #workskin .wa-call > br,
 #workskin .who > br,
 #workskin .mob-header > br,
 #workskin .ig-collab > br,
 #workskin .ig-pfp > br,
 #workskin .ig-photo > br,
-#workskin .igdm-back > br,
+#workskin .back > br,
 #workskin .tb-photo > br,
 #workskin .tb-voted > br,
-#workskin .twdm-back > br,
-#workskin .wa-msgbar > br,
+#workskin .msgbar > br,
 #workskin .gm-btns > br,
 #workskin .gm-pfp-cell > br,
-#workskin .wa-back > br,
-#workskin .wa-btns > br,
-#workskin .wa-name > br {
+#workskin .btns > br,
+#workskin .chat-name > br {
   display: none;
 }
 
