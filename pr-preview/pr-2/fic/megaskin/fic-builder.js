@@ -661,9 +661,20 @@
     L.push("</div></details>");
     return L;
   }
-  function igCount(icon, n, one, many) {
-    return '<p class="ig-stat">' + icon + '<span class="hide"> </span><span class="ig-count">' + esc(t(n)) + '</span><span class="hide"> ' + plural(n, one, many) + "</span></p>";
+  // a post's buttons, built like Twitter's: the icon, then the number bare after a space, then the hidden word
+  var IG_ICONS = { heart: [9825, "like", "likes", "Like"], comment: [128172, "comment", "comments", "Comment"], repost: [8635, "repost", "reposts", "Repost"], share: [10148, "", "", "Share"], save: [128278, "", "", "Save"] };
+  var IG_LOCKED = '<p class="ig-stat locked"><span class="ic ic-repost">&#8635;</span><span class="hide"> (can\'t be reposted)</span></p>';
+  function igStat(kind, n, cls) {
+    var k = IG_ICONS[kind];
+    return '<p class="ig-stat' + (cls || "") + '"><span class="ic ic-' + kind + '">&#' + k[0] + ";</span>" +
+      (t(n) ? " " + esc(t(n)) + '<span class="hide"> ' + plural(n, k[1], k[2]) + "</span>" : '<span class="hide"> ' + k[3] + "</span>") + "</p>";
   }
+  // the heart readers can click: it turns red and the number goes up by one
+  function igLikeTog(n, open) {
+    return '<details class="ig-stat ig-tog"' + (open ? " open" : "") + '><summary><span class="ic ic-heart">&#9825;</span>' +
+      (t(n) ? '<span class="off"> ' + esc(t(n)) + '</span><span class="hide"> likes (</span><span class="on"> ' + esc(bumpCount(n)) + '</span><span class="hide"> once liked)</span>' : '<span class="hide"> Like</span>') + "</summary></details>";
+  }
+  function igSaveTog(open) { return '<details class="ig-stat ig-tog right"' + (open ? " open" : "") + '><summary><span class="ic ic-save">&#128278;</span><span class="hide"> Save</span></summary></details>'; }
   // the other accounts on a collab post (posts saved before this had just one, in m.collab)
   function collabsOf(m) {
     if (!m.collabs) m.collabs = m.collab ? [{ who: m.collab, tick: !!m.collabTick }] : [];
@@ -697,17 +708,14 @@
     L = L.concat(igPhotos(m), igTagged(m, b));
     // the buttons: the heart, comments, reposts if there are any, share, and save
     var btns = [];
-    if (m.likeClick !== false && !t(m.likes)) btns.push('<details class="ig-tog like"' + (m.liked ? " open" : "") + '><summary><span class="ig-icon off ic ic-heart">&#9825;</span><span class="ig-icon on ic ic-heart-red">&#9829;</span><span class="hide"> Like</span></summary></details>');
-    else if (m.likeClick !== false) btns.push('<details class="ig-tog like"' + (m.liked ? " open" : "") + '><summary><span class="ig-icon off ic ic-heart">&#9825;</span><span class="hide"> </span><span class="ig-count off">' + esc(t(m.likes)) +
-      '</span><span class="hide"> likes (</span><span class="ig-icon on ic ic-heart-red">&#9829;</span><span class="hide"> </span><span class="ig-count on">' + esc(bumpCount(m.likes)) + '</span><span class="hide"> when liked)</span></summary></details>');
-    else btns.push(t(m.likes) ? igCount('<span class="ig-icon ic ic-heart">&#9825;</span>', m.likes, "like", "likes") : '<p class="ig-stat"><span class="ig-icon ic ic-heart">&#9825;</span><span class="hide"> Like</span></p>');
-    btns.push(t(m.cmCount) ? igCount('<span class="ig-icon comment"></span>', m.cmCount, "comment", "comments").replace('<span class="hide"> </span>', "") : '<p class="ig-stat"><span class="ig-icon comment"></span><span class="hide"> Comment</span></p>');
+    if (m.likeClick !== false) btns.push(igLikeTog(m.likes, m.liked));
+    else btns.push(igStat("heart", m.likes, m.liked ? " liked" : ""));
+    btns.push(igStat("comment", m.cmCount));
     // a private post can't be reposted, so its repost button is faded out
-    if (m.locked) btns.push(t(m.reposts) ? igCount('<span class="ig-icon ic ic-repost">&#8635;</span>', m.reposts, "repost", "reposts").replace('"ig-stat"', '"ig-stat locked"') :
-      '<p class="ig-stat locked"><span class="ig-icon ic ic-repost">&#8635;</span><span class="hide"> (can\'t be reposted)</span></p>');
-    else if (t(m.reposts)) btns.push(igCount('<span class="ig-icon ic ic-repost">&#8635;</span>', m.reposts, "repost", "reposts"));
-    btns.push('<p class="ig-stat"><span class="ig-icon ic ic-share">&#10148;</span><span class="hide"> Share</span></p>');
-    btns.push('<details class="ig-tog save"' + (m.saved ? " open" : "") + '><summary><span class="hide">Save</span><span class="ig-icon bookmark off"></span><span class="ig-icon bookmark on"></span></summary></details>');
+    if (m.locked) btns.push(t(m.reposts) ? igStat("repost", m.reposts, " locked") : IG_LOCKED);
+    else if (t(m.reposts)) btns.push(igStat("repost", m.reposts));
+    btns.push(igStat("share", ""));
+    btns.push(igSaveTog(m.saved));
     L = L.concat(['<div class="ig-stats">'], btns, ["</div>"]);
     var faces = (m.faces || []).map(char).filter(Boolean);
     if (m.likesLine === "faces" && faces.length) L.push('<p class="ig-likes liked-by"><span class="ig-like-pfps">' + faces.map(function (f) { return circle("ig-like-pfp", f, null); }).join("") +
@@ -1564,7 +1572,7 @@
       h.push(btn("tag-add:" + bi + ":" + mi, "+ Tag someone"));
       h.push('<h4 class="fb-h">Buttons and likes</h4><div class="fb-grid"><div>' +
         field(P + ".likes", "Likes", { ph: "2,431" }) + field(P + ".likeClick", "Clickable like", { type: "check", re: true }) +
-        (m.likeClick !== false ? field(P + ".liked", "Already liked", { type: "check" }) : "") + "</div><div>" +
+        field(P + ".liked", m.likeClick !== false ? "Already liked" : "Liked", { type: "check" }) + "</div><div>" +
         field(P + ".cmCount", "Comments", { ph: "84" }) + "</div><div>" + field(P + ".reposts", "Reposts", { ph: "12" }) + "</div><div>" +
         field(P + ".saved", "Already saved", { type: "check" }) + "</div></div>");
       if (!m.likesLine) m.likesLine = "count";
@@ -2747,12 +2755,14 @@
     }
     var act = ks.shift(); if (!is(act, "div.ig-stats")) no();
     kids(act).forEach(function (x) {
-      var cnt = x.querySelector(".ig-count:not(.on)");
-      if (is(x, "details.like")) { m.likeClick = true; m.liked = x.open; m.likes = cnt ? cnt.textContent : ""; }
-      else if (is(x, "details.save")) m.saved = x.open;
-      else if (x.querySelector(".ic-heart")) { m.likeClick = false; m.likes = cnt ? cnt.textContent : ""; }
-      else if (x.querySelector(".comment")) m.cmCount = cnt ? cnt.textContent : "";
-      else if (x.querySelector(".ic-repost")) m.reposts = cnt ? cnt.textContent : "";
+      // the number is what's left once the icon, the hidden words and the liked number are taken out
+      var num = function () { var c = (x.querySelector(":scope > summary") || x).cloneNode(true); c.querySelectorAll(".ic, .hide, .on").forEach(function (r) { r.remove(); }); return c.textContent.trim(); };
+      if (is(x, "details.ig-stat.ig-tog.right")) { if (!x.querySelector(".ic-save")) no(); m.saved = x.open; }
+      else if (is(x, "details.ig-stat.ig-tog")) { m.likeClick = true; m.liked = x.open; m.likes = num(); }
+      else if (!is(x, "p.ig-stat")) no();
+      else if (x.querySelector(".ic-heart")) { m.likeClick = false; m.liked = x.classList.contains("liked"); m.likes = num(); }
+      else if (x.querySelector(".ic-comment")) m.cmCount = num();
+      else if (x.querySelector(".ic-repost")) m.reposts = num();
       else if (!x.querySelector(".ic-share")) no();
     });
     if (is(ks[0], "p.ig-likes")) {
@@ -2962,6 +2972,21 @@
         var tx = Array.prototype.filter.call(x.childNodes, function (n) { return n.nodeType === 3 && n.nodeValue.trim(); })[0];
         if (!tx || x.querySelector(".img-desc, img")) return;
         var sp = document.createElement("span"); sp.className = "img-desc"; x.insertBefore(sp, tx); sp.appendChild(tx); hit = true;
+      });
+      // old Instagram buttons had ig-icon and ig-count spans (and drawn comment and bookmark icons): now they're built like Twitter's
+      Array.prototype.slice.call(c.querySelectorAll("div.ig-stats")).forEach(function (st) {
+        if (!st.querySelector(".ig-icon, .ig-count")) return;
+        st.innerHTML = kids(st).map(function (x) {
+          var cnt = x.querySelector(".ig-count:not(.on)"), n = cnt ? cnt.textContent : "", save = x.querySelector(".bookmark, .ic-save");
+          if (is(x, "details")) return save ? igSaveTog(x.open) : igLikeTog(n, x.open);
+          if (save) return igStat("save", "", x.querySelector(".bookmark.on, .on") || x.classList.contains("saved") ? " saved" : "");
+          if (x.querySelector(".ic-heart")) return igStat("heart", n, x.classList.contains("liked") ? " liked" : "");
+          if (x.querySelector(".comment, .ic-comment")) return igStat("comment", n);
+          if (x.querySelector(".ic-repost")) return x.classList.contains("locked") ? (n ? igStat("repost", n, " locked") : IG_LOCKED) : igStat("repost", n);
+          if (x.querySelector(".ic-share")) return igStat("share", "");
+          return x.outerHTML;
+        }).join("");
+        hit = true;
       });
       // old Twitter DM replies: the quote was a "msg" bubble, and someone else's "Replied to" line had no side
       Array.prototype.slice.call(c.querySelectorAll("p.twdm-quote.msg, p.twdm-reply:not(.out):not(.in)")).forEach(function (q) {
