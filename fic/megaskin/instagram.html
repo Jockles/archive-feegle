@@ -7,7 +7,7 @@
   <title>Megaskin, Chapter 12: Instagram | jockles.com</title>
   <link rel="stylesheet" href="../../style.css">
   <script src="../../theme.js"></script>
-  <link rel="stylesheet" href="megaskin.css?v=dd17aa21" id="creator-style">
+  <link rel="stylesheet" href="megaskin.css?v=6c41f5e5" id="creator-style">
 </head>
 <body>
 <header>
@@ -2545,7 +2545,6 @@
     <span class="back">
       <span class="ic ic-back">&#8592;</span>
     </span><span class="hide"> </span>
-    <span class="btns"><span class="ic ic-phone">&#128222;</span><span class="hide"> </span><span class="ic ic-video">&#127909;</span></span><span class="hide"> </span>
     <span class="ig-collab">
       <span class="ig-pfp">
         <span class="pfp pfp-rose"></span>
@@ -2555,7 +2554,8 @@
       </span>
     </span>
     <span class="chat-name">gala committee 🥂<span class="igdm-drop"></span></span><span class="hide"> - </span>
-    <span>2 active 2h ago</span>
+    <span>2 active 2h ago</span><span class="hide"> </span>
+    <span class="btns"><span class="ic ic-phone">&#128222;</span><span class="hide"> </span><span class="ic ic-video">&#127909;</span></span>
   </p>
   <div class="mob-body">
     <div class="row">
@@ -2584,7 +2584,6 @@
     &lt;span class="back"&gt;
       &lt;span class="ic ic-back"&gt;&amp;#8592;&lt;/span&gt;
     &lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;
-    &lt;span class="btns"&gt;&lt;span class="ic ic-phone"&gt;&amp;#128222;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="ic ic-video"&gt;&amp;#127909;&lt;/span&gt;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;
     &lt;span class="ig-collab"&gt;
       &lt;span class="ig-pfp"&gt;
         &lt;span class="pfp pfp-rose"&gt;&lt;/span&gt;
@@ -2594,7 +2593,8 @@
       &lt;/span&gt;
     &lt;/span&gt;
     &lt;span class="chat-name"&gt;gala committee 🥂&lt;span class="igdm-drop"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="hide"&gt; - &lt;/span&gt;
-    &lt;span&gt;2 active 2h ago&lt;/span&gt;
+    &lt;span&gt;2 active 2h ago&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;
+    &lt;span class="btns"&gt;&lt;span class="ic ic-phone"&gt;&amp;#128222;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="ic ic-video"&gt;&amp;#127909;&lt;/span&gt;&lt;/span&gt;
   &lt;/p&gt;
   &lt;div class="mob-body"&gt;
     &lt;div class="row"&gt;
@@ -2617,19 +2617,19 @@
 
 </details>
 
-<p>The back arrow and the call and video buttons go in the header first, before the picture, in that order:</p>
+<p>The back arrow goes first in the header, before the picture, and the call and video buttons go last, after the status line:</p>
 
 <div class="mob igdm theme-auto">
   <p class="mob-header">
     <span class="back">
       <span class="ic ic-back">&#8592;</span>
     </span><span class="hide"> </span>
-    <span class="btns"><span class="ic ic-phone">&#128222;</span><span class="hide"> </span><span class="ic ic-video">&#127909;</span></span><span class="hide"> </span>
     <span class="ig-pfp">
       <span class="pfp pfp-shane"></span>
     </span>
     <span class="chat-name">shane.h</span><span class="hide"> - </span>
-    <span>Active now</span>
+    <span>Active now</span><span class="hide"> </span>
+    <span class="btns"><span class="ic ic-phone">&#128222;</span><span class="hide"> </span><span class="ic ic-video">&#127909;</span></span>
   </p>
 </div>
 
@@ -2637,8 +2637,11 @@
   &lt;span class="ic ic-back"&gt;&amp;#8592;&lt;/span&gt;
 &lt;/span&gt;
 &lt;span class="hide"&gt; &lt;/span&gt;
-&lt;span class="btns"&gt;&lt;span class="ic ic-phone"&gt;&amp;#128222;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="ic ic-video"&gt;&amp;#127909;&lt;/span&gt;&lt;/span&gt;
+&lt;span class="msgbar"&gt;Message...&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="ic ic-mic"&gt;&amp;#127908;&lt;/span&gt;&lt;/span&gt;
 &lt;span class="hide"&gt; &lt;/span&gt;</code></pre>
+
+<pre><code>&lt;span class="hide"&gt; &lt;/span&gt;
+&lt;span class="btns"&gt;&lt;span class="ic ic-phone"&gt;&amp;#128222;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="ic ic-video"&gt;&amp;#127909;&lt;/span&gt;&lt;/span&gt;</code></pre>
 
 <p>The message bar goes after the <code>mob-body</code>, still inside the chat:</p>
 
@@ -2650,8 +2653,7 @@
 </div>
 
 <pre><code>&lt;p class="footer"&gt;
-  &lt;span class="igdm-cam ic ic-camera"&gt;&amp;#128247;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;
-  &lt;span class="msgbar"&gt;Message...&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="ic ic-mic"&gt;&amp;#127908;&lt;/span&gt;&lt;/span&gt;
+  &lt;span class="igdm-cam ic ic-camera"&gt;&amp;#128247;&lt;/span&gt;
 &lt;/p&gt;</code></pre>
 
 <p>To show a message someone's halfway through typing, add <code>typed</code> to the <code>msgbar</code> and swap "Message..." for the words:</p>

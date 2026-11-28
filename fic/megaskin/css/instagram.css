@@ -1249,11 +1249,15 @@
   line-height: 36px;
 }
 
+#workskin .igdm .mob-header:has(> .btns) { position: relative; padding-right: 5.6em; }
+
 #workskin .igdm .mob-header .btns {
   display: block;
-  float: right;
+  position: absolute;
+  top: 50%;
+  right: 0.8em;
   height: 36px;
-  margin: 0 -0.1em 0 0.6em;
+  margin-top: -18px;
   line-height: 36px;
 }
 
