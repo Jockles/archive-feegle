@@ -25,7 +25,7 @@
   <!-- /site meta -->
   <link rel="stylesheet" href="../../style.css?v=c31c06ea">
   <script src="../../theme.js?v=c50fd7c2"></script>
-  <link rel="stylesheet" href="megaskin.css?v=66b2fbcf" id="creator-style">
+  <link rel="stylesheet" href="megaskin.css?v=2e7a16bb" id="creator-style">
 </head>
 <body>
 <header>
@@ -365,10 +365,10 @@
   top: 0; /* nudges the initials down (1px, 2px) or up (-1px, -2px) */
 }
 
-#workskin .dc .reply .pfp::before,
-#workskin .ig .ig-like-pfp .pfp::before { font-size: 0.4em; }
+#workskin .dc .reply .pfp::before { font-size: 0.4em; }
+#workskin .ig .ig-like-pfp .pfp::before { font-size: 0.75em; }
 
-#workskin .ig .ig-top .ig-pfp .pfp::before { font-size: 1.1em; }</code></pre>
+#workskin .ig .ig-top .ig-pfp .pfp::before { font-size: 1.4em; }</code></pre>
 
 <p>It doesn't do anything until a profile gives it some text, like Holster's does (see <a href="core-css.html#s3-14">Character Profiles, Line by Line</a>).</p>
 
@@ -747,6 +747,14 @@
 #workskin .pfp.pfp-luca.alt-pfp2 { background-image: url(https://images.squidge.org/images/2026/11/16/LucaPriv.png); }</code></pre>
 
 <p>If a character changes their picture halfway through the fic, give each new picture an <code>alt-pfp</code> name with a number, and add that name in your HTML from the point it changes: <code>&lt;span class=&quot;pfp pfp-luca alt-pfp1&quot;&gt;&lt;/span&gt;</code>. Everything before that point has no <code>alt-pfp</code> name, so it keeps line 1's picture. It works like a second account, but it's the same account with a new picture, so the name and handle stay the same.</p>
+
+<p><strong>17. A verified tick</strong></p>
+
+<pre><code>#workskin .tw .tw-name .name.pfp-luca::after, #workskin .tw-reply .tw-name .name.pfp-luca::after, #workskin .twdm .chat-name .name.pfp-luca::after { background-image: url(https://images.squidge.org/images/2026/11/15/verified-blue.png); padding-right: 1.3em; }</code></pre>
+
+<p>This puts the blue tick after Luca's name on Twitter/X, the same way Tumblr's checkmarks work: <code>padding-right</code> makes a space after the name, and the tick picture sits in it. For Instagram, where the tick goes after the handle, use <code>.ig-name .handle.pfp-luca::after</code> and <code>.igdm .chat-name .handle.pfp-luca::after</code>. To leave the tick off one account, add a line for that account's <code>acc-</code> name with <code>background-image: none; padding-right: 0;</code>, like Rose's private Instagram:</p>
+
+<pre><code>#workskin .ig-name .handle.pfp-rose.acc-private::after, #workskin .igdm .chat-name .handle.pfp-rose.acc-private::after { background-image: none; padding-right: 0; }</code></pre>
 
 <details>
 <summary>How it works: why names, handles and emails look like the text around them</summary>
