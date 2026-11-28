@@ -192,9 +192,9 @@
 #workskin .tw .tw-stat,
 #workskin .tw-reply .tw-stat { display: block; flex: 1 1 0; margin: 0; padding: 0; white-space: nowrap; }
 
-/* the bookmark and share buttons (tw-end) hug the right-hand edge */
-#workskin .tw .tw-stat.tw-end,
-#workskin .tw-reply .tw-stat.tw-end { flex: none; margin-left: 0.9em; }
+/* the bookmark and share buttons (add "right") hug the right-hand edge */
+#workskin .tw .tw-stat.right,
+#workskin .tw-reply .tw-stat.right { flex: none; margin-left: 0.9em; }
 
 #workskin .tw .tw-stats .ic,
 #workskin .tw-reply .tw-stats .ic { width: 1.3em; height: 1.3em; margin-right: 0.3em; vertical-align: -0.3em; }
@@ -313,8 +313,8 @@
 
 #workskin .tw .tw-stats .saved,
 #workskin .tw-reply .tw-stats .saved,
-#workskin .tw .tw-stats .tw-tog.tw-end[open],
-#workskin .tw-reply .tw-stats .tw-tog.tw-end[open] {
+#workskin .tw .tw-stats .tw-tog.right[open],
+#workskin .tw-reply .tw-stats .tw-tog.right[open] {
   color: #1d9bf0;
 }
 
@@ -795,9 +795,9 @@
 
 #workskin .tw-feed.twc20 .tw-stats { border-top: 0; padding-top: 0.2em; }
 
-#workskin .tw-feed.twc20 .tw-stat.tw-end { flex: 1 1 0; margin-left: 0; }
+#workskin .tw-feed.twc20 .tw-stat.right { flex: 1 1 0; margin-left: 0; }
 
-#workskin .tw-feed.twc20 .tw-stat.tw-end:not(:last-child) { display: none; }
+#workskin .tw-feed.twc20 .tw-stat.right:not(:last-child) { display: none; }
 
 /* ---------- Twitter/X: DMs ---------- */
 
