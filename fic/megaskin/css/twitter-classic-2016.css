@@ -299,9 +299,9 @@
   font-size: 1.1em;
 }
 
-#workskin .twc16-feed .twc-header .ic { flex: none; width: 1.4em; height: 1.4em; }
+#workskin .twc16-feed .twc-header .twc-icon { flex: none; width: 1.4em; height: 1.4em; }
 
-#workskin .twc16-feed .twc-title + .ic { margin-left: auto; }
+#workskin .twc16-feed .twc-title + .twc-icon { margin-left: auto; }
 
 /* the replies box under an opened tweet: <p class="twc-reply-bar"><span>Tweet your reply</span></p> */
 #workskin .twc16-feed .twc-reply-bar {
