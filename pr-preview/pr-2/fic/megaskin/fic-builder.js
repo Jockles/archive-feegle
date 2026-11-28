@@ -272,17 +272,17 @@
   // the flashing cursor at the end of a half-typed message (the skin draws it, black or white to suit the chat)
   var CURSOR = '<span class="cursor">|</span>';
   function hideLabel(name) { return '<span class="hide"><em>' + esc(name) + ":</em> </span>"; }
-  // pictures sent in a chat, built the same way in every chat app with the app's own first word (imsg, wa, igdm, twdm).
+  // pictures sent in a chat, built the same way in every chat app
   // The word after photos says how many: one, two, three, and none for four (WhatsApp has always written "four").
   function photoLines(pre, photos) {
     var n = photos.length, word = ["one", "two", "three", pre === "wa" ? "four" : ""][n - 1];
     var ph = photos.map(function (p) {
       var u = picUrl(p.url);
-      return '<span class="' + pre + '-photo">' + (u ? "<img " + (p.land ? 'class="landscape" ' : "") + 'src="' + esc(u) + '" alt="' + esc(t(p.alt)) + '">' :
+      return '<span class="photo">' + (u ? "<img " + (p.land ? 'class="landscape" ' : "") + 'src="' + esc(u) + '" alt="' + esc(t(p.alt)) + '">' :
         '<span class="img-desc">[' + esc(t(p.desc)) + "]</span>") + "</span>";
     });
-    if (n === 1) return ['<p class="' + pre + '-photos one">' + ph[0] + "</p>"];
-    return ['<p class="' + pre + "-photos" + (word ? " " + word : "") + '">'].concat(ind(ph, 1), ["</p>"]);
+    if (n === 1) return ['<p class="photos one">' + ph[0] + "</p>"];
+    return ['<p class="photos' + (word ? " " + word : "") + '">'].concat(ind(ph, 1), ["</p>"]);
   }
   // a bubble of pictures: the hidden name (from a hideLabel, or none), the pictures, then anything after them
   function chatGallery(pre, cls, lbl, photos, after) {
@@ -360,13 +360,13 @@
         if (bb.pics) body = body.concat(chatGallery("imsg", bb.cls, label, bb.pics, extra));
         else body.push('<p class="' + bb.cls + '">' + label + bb.inner + extra + "</p>");
       });
-      if (m.edited) body.push('<p class="' + (out ? "imsg-edited" : "imsg-edited-in") + '">Edited</p>');
-      if (m.status.trim()) body.push('<p class="imsg-status">' + esc(m.status.trim()) + "</p>");
+      if (m.edited) body.push('<p class="' + (out ? "edited" : "imsg-edited-in") + '">Edited</p>');
+      if (m.status.trim()) body.push('<p class="status">' + esc(m.status.trim()) + "</p>");
     });
     L = L.concat(ind(body, 2));
     L.push("  </div>");
-    if (b.bar === "empty") L.push('  <p class="imsg-footer"><span class="imsg-plus">+</span><span class="hide"> </span><span class="imsg-msgbar">iMessage<span class="hide"> </span><span class="imsg-mic ic ic-mic">&#127908;</span></span></p>');
-    if (b.bar === "typed") L.push('  <p class="imsg-footer"><span class="imsg-plus">+</span><span class="hide"> </span><span class="imsg-msgbar typed">' + fmt(b.barText) + (b.cursor ? CURSOR : "") + '<span class="hide"> </span><span class="imsg-send ic ic-imsg-send">&#8593;</span></span></p>');
+    if (b.bar === "empty") L.push('  <p class="footer"><span class="plus">+</span><span class="hide"> </span><span class="msgbar">iMessage<span class="hide"> </span><span class="mic ic ic-mic">&#127908;</span></span></p>');
+    if (b.bar === "typed") L.push('  <p class="footer"><span class="plus">+</span><span class="hide"> </span><span class="msgbar typed">' + fmt(b.barText) + (b.cursor ? CURSOR : "") + '<span class="hide"> </span><span class="imsg-send ic ic-imsg-send">&#8593;</span></span></p>');
     L.push("</div>");
     return L.join("\n");
   }
@@ -392,7 +392,7 @@
     var who = you ? "You" : waName(qc);
     var txt = plain(q.text).trim();
     if (!txt && q.photos && q.photos.length) txt = "Photo";
-    return '<p class="wa-quote' + cls + '"><span class="hide">[Replying to </span><b>' + who + '</b><span class="hide">:</span><br>' + esc(txt) + '<span class="hide">]</span></p>';
+    return '<p class="quote' + cls + '"><span class="hide">[Replying to </span><b>' + who + '</b><span class="hide">:</span><br>' + esc(txt) + '<span class="hide">]</span></p>';
   }
   function waHTML(b) {
     var L = [], last = "", lastSide = "";
@@ -407,10 +407,10 @@
       var sub = b.sub.trim();
       if (b.group && !sub) sub = o.map(nameOf).concat(["You"]).join(", ");
       L = L.concat(ind(['<table class="wa-header">', "  <tbody>", "    <tr>",
-        '      <td rowspan="2" class="wa-back"><span class="ic ic-back">&#8592;</span></td>',
+        '      <td rowspan="2" class="back"><span class="ic ic-back">&#8592;</span></td>',
         '      <td rowspan="2" class="wa-pfp-cell">' + pc + "</td>",
-        '      <td class="wa-name">' + headTitle(b) + "</td>",
-        '      <td rowspan="2" class="wa-btns"><span class="ic ic-video">&#127909;</span> <span class="ic ic-menu">&#8942;</span></td>',
+        '      <td class="chat-name">' + headTitle(b) + "</td>",
+        '      <td rowspan="2" class="btns"><span class="ic ic-video">&#127909;</span> <span class="ic ic-menu">&#8942;</span></td>',
         "    </tr>", "    <tr>", '      <td class="wa-status">' + esc(sub) + "</td>", "    </tr>", "  </tbody>", "</table>"], 1));
     } else if (b.header !== "none") L.push("  " + mobHead(b));
     L.push('  <div class="mob-body">');
@@ -422,7 +422,7 @@
         // the same dots as every app, with the name hidden; in a group with pictures, in a row after their picture
         var tOut = tc.id === b.pov;
         var tb = ['<p class="msg ' + (tOut ? "out" : "in") + ' tail typing-indicator"><span class="hide">' + typingHide(tc, true) + "</span><span></span><span></span><span></span></p>"];
-        if (b.group && !tOut && b.pics) tb = ['<div class="wa-row">', "  " + waPfp(tc)].concat(ind(tb, 1)).concat(["</div>"]);
+        if (b.group && !tOut && b.pics) tb = ['<div class="row">', "  " + waPfp(tc)].concat(ind(tb, 1)).concat(["</div>"]);
         body = body.concat(tb);
         last = ""; return;
       }
@@ -460,16 +460,16 @@
         inner = inner.concat(photoLines("wa", photos));
         if (m.text.trim()) inner.push('<p class="wa-caption">' + fmt(m.text) + "</p>");
       } else if (link) {
-        if (link.url.trim() && link.showUrl) inner.push('<p><span class="wa-link">' + esc(link.url.trim()) + "</span></p>");
-        var lk = ['<div class="wa-link-card">'];
+        if (link.url.trim() && link.showUrl) inner.push('<p><span class="fake-link">' + esc(link.url.trim()) + "</span></p>");
+        var lk = ['<div class="link-card">'];
         var li = picUrl(link.img), vid = picUrl(link.video || "");
-        if (vid) lk.push('  <div class="wa-link-img video"><iframe src="' + esc(vid) + '" frameborder="0" title="' + esc(link.title.trim()) + '"></iframe>' +
+        if (vid) lk.push('  <div class="link-img video"><iframe src="' + esc(vid) + '" frameborder="0" title="' + esc(link.title.trim()) + '"></iframe>' +
           (link.imgdesc.trim() ? '<p class="video-desc">[' + esc(link.imgdesc.trim()) + "]</p>" : "") + "</div>");
-        else if (li) lk.push('  <p class="wa-link-img"><img src="' + esc(li) + '" alt="' + esc(link.alt) + '"></p>');
-        else if (link.imgdesc.trim()) lk.push('  <p class="wa-link-img text">[' + esc(link.imgdesc.trim()) + "]</p>");
-        if (link.title.trim()) lk.push('  <p class="wa-link-title">' + esc(link.title.trim()) + "</p>");
-        if (link.desc.trim()) lk.push('  <p class="wa-link-desc">' + esc(link.desc.trim()) + "</p>");
-        if (link.url.trim()) lk.push('  <p class="wa-link-url">' + esc(link.url.trim().replace(/^https?:\/\//, "").replace(/\/.*$/, "")) + "</p>");
+        else if (li) lk.push('  <p class="link-img"><img src="' + esc(li) + '" alt="' + esc(link.alt) + '"></p>');
+        else if (link.imgdesc.trim()) lk.push('  <p class="link-img text">[' + esc(link.imgdesc.trim()) + "]</p>");
+        if (link.title.trim()) lk.push('  <p class="link-title">' + esc(link.title.trim()) + "</p>");
+        if (link.desc.trim()) lk.push('  <p class="link-desc">' + esc(link.desc.trim()) + "</p>");
+        if (link.url.trim()) lk.push('  <p class="link-url">' + esc(link.url.trim().replace(/^https?:\/\//, "").replace(/\/.*$/, "")) + "</p>");
         lk.push("</div>");
         inner.push(lk.join("\n"));
         if (m.text.trim()) inner.push('<p class="wa-caption">' + fmt(m.text) + "</p>");
@@ -479,17 +479,17 @@
       var tick = !out || card ? "" : m.tick === "read" ? ' <span class="wa-read ic ic-read">✓✓</span>' :
         m.tick === "delivered" ? ' <span class="ic ic-delivered">✓✓</span>' : m.tick === "sent" ? ' <span class="ic ic-sent">✓</span>' : "";
       // a blank time with no ticks leaves the line out
-      if (m.time.trim() || tick || (m.edited && !card)) inner.push('<p class="wa-time">' + (m.edited && !card ? "Edited " : "") + esc(m.time.trim()) + tick + "</p>");
+      if (m.time.trim() || tick || (m.edited && !card)) inner.push('<p class="time">' + (m.edited && !card ? "Edited " : "") + esc(m.time.trim()) + tick + "</p>");
       if (card === "contact") inner.push('<p class="wa-contact-btn">Message</p>');
       var block = [open].concat(ind(inner.join("\n").split("\n"), 1)).concat(["</div>"]);
       if (rows) {
-        block = ['<div class="wa-row' + (first ? "" : " same") + '">'].concat(first ? ["  " + waPfp(c)] : []).concat(ind(block, 1)).concat(["</div>"]);
+        block = ['<div class="row' + (first ? "" : " same") + '">'].concat(first ? ["  " + waPfp(c)] : []).concat(ind(block, 1)).concat(["</div>"]);
       }
       body = body.concat(block);
       var r = (m.waReacts || "").trim();
       if (r) {
-        body.push('<p class="wa-reacts' + (out ? " out" : rows ? " indent" : "") + '"><span class="hide">[Reactions: </span>' + esc(r) +
-          (m.waCount.trim() ? ' <span class="wa-count">' + esc(m.waCount.trim()) + "</span>" : "") + '<span class="hide">]</span></p>');
+        body.push('<p class="reacts' + (out ? " out" : rows ? " indent" : "") + '"><span class="hide">[Reactions: </span>' + esc(r) +
+          (m.waCount.trim() ? ' <span class="count">' + esc(m.waCount.trim()) + "</span>" : "") + '<span class="hide">]</span></p>');
       }
       lastSide = side;
     });
@@ -497,10 +497,10 @@
     L.push("  </div>");
     if (b.bar === "empty" || b.bar === "typed") {
       var typed = b.bar === "typed";
-      L = L.concat(ind(['<p class="wa-footer">', '  <span class="wa-msgbar">', '    <span class="ic ic-emoji">&#9786;</span>',
+      L = L.concat(ind(['<p class="footer">', '  <span class="msgbar">', '    <span class="ic ic-emoji">&#9786;</span>',
         typed ? '    <span class="wa-placeholder typed">' + fmt(b.barText) + (b.cursor ? CURSOR : "") + "</span>" : '    <span class="wa-placeholder">Message</span>',
         '    <span class="ic ic-paperclip">&#128206;</span>'].concat(typed ? [] : ['    <span class="ic ic-camera">&#128247;</span>'])
-        .concat(["  </span>", typed ? '  <span class="wa-mic ic ic-wa-send">&#10148;</span>' : '  <span class="wa-mic ic ic-wa-mic">&#127908;</span>', "</p>"]), 1));
+        .concat(["  </span>", typed ? '  <span class="mic ic ic-wa-send">&#10148;</span>' : '  <span class="mic ic ic-wa-mic">&#127908;</span>', "</p>"]), 1));
     }
     L.push("</div>");
     return L.join("\n");
@@ -515,12 +515,12 @@
     var o = others(b), head = b.group ? groupPic(b) : o[0];
     var name = t(b.title) ? esc(t(b.title)) : b.group ? "Group chat" : head ? dmName(head) : "Someone";
     var L = ['<div class="' + containerClass(b, "twdm") + '">',
-      '  <p class="mob-header"><span class="twdm-back"><span class="ic ic-back">&#8592;</span></span>' + (head ? circle("tw-pfp", head) : '<span class="tw-pfp colour5">?</span>') +
-      '<span class="twdm-name">' + name + '</span><span class="twdm-btns"><span class="ic ic-video">&#127909;</span><span class="ic ic-phone">&#128222;</span></span></p>',
+      '  <p class="mob-header"><span class="back"><span class="ic ic-back">&#8592;</span></span>' + (head ? circle("tw-pfp", head) : '<span class="tw-pfp colour5">?</span>') +
+      '<span class="chat-name">' + name + '</span><span class="btns"><span class="ic ic-video">&#127909;</span><span class="ic ic-phone">&#128222;</span></span></p>',
       '  <div class="mob-body">'];
     // in a group, each run of messages from one person goes in a row, with their picture and name first
     var body = [], row = null;
-    function close() { if (row) body = body.concat(['<div class="twdm-row">'], ind(row.lines, 1), ["</div>"]); row = null; }
+    function close() { if (row) body = body.concat(['<div class="row">'], ind(row.lines, 1), ["</div>"]); row = null; }
     b.msgs.forEach(function (m) {
       if (m.from === "sys") { close(); body.push('<p class="mob-sys">' + fmt(m.text) + "</p>"); return; }
       if (m.from === "typing") {
@@ -542,8 +542,8 @@
       if (q && char(q.from)) {
         var qt = plain(q.text).trim() || (q.photos.length ? "Photo" : t(q.voice) ? "Voice message" : "");
         if (qt.length > 60) qt = qt.slice(0, 57).trim() + "...";
-        to.push('<p class="twdm-reply ' + side + '">Replied to ' + (q.from === b.pov ? "you" : esc(nameOf(char(q.from)))) + "</p>",
-          '<p class="twdm-quote ' + side + '"><span class="hide">(</span>' + esc(qt) + '<span class="hide">)</span></p>');
+        to.push('<p class="reply ' + side + '">Replied to ' + (q.from === b.pov ? "you" : esc(nameOf(char(q.from)))) + "</p>",
+          '<p class="quote ' + side + '"><span class="hide">(</span>' + esc(qt) + '<span class="hide">)</span></p>');
       }
       var bubbles = [], pics = shownPhotos(m);
       if (pics.length) bubbles.push([side + " gallery", pics]);
@@ -556,14 +556,14 @@
         else to.push('<p class="msg ' + bb[0] + '">' + lbl + bb[1] + "</p>");
         if (grouped) row.first = false;
       });
-      if (t(m.waReacts)) to.push('<p class="twdm-reacts' + (out ? " out" : "") + '"><span class="hide">[Reactions: </span>' + esc(t(m.waReacts)) + '<span class="hide">]</span></p>');
-      if (t(m.status)) to.push('<p class="twdm-status">' + esc(t(m.status)) + "</p>");
+      if (t(m.waReacts)) to.push('<p class="reacts' + (out ? " out" : "") + '"><span class="hide">[Reactions: </span>' + esc(t(m.waReacts)) + '<span class="hide">]</span></p>');
+      if (t(m.status)) to.push('<p class="status">' + esc(t(m.status)) + "</p>");
     });
     close();
     L = L.concat(ind(body, 2));
     L.push("  </div>");
-    if (b.bar === "empty") L.push('  <p class="twdm-footer"><span class="twdm-plus">+</span><span class="hide"> </span><span class="twdm-msgbar">Message<span class="hide"> </span><span class="ic ic-mic">&#127908;</span></span></p>');
-    if (b.bar === "typed") L.push('  <p class="twdm-footer"><span class="twdm-plus">+</span><span class="hide"> </span><span class="twdm-msgbar typed">' + fmt(b.barText) + (b.cursor ? CURSOR : "") + '<span class="hide"> </span><span class="ic ic-mic">&#127908;</span></span></p>');
+    if (b.bar === "empty") L.push('  <p class="footer"><span class="plus">+</span><span class="hide"> </span><span class="msgbar">Message<span class="hide"> </span><span class="ic ic-mic">&#127908;</span></span></p>');
+    if (b.bar === "typed") L.push('  <p class="footer"><span class="plus">+</span><span class="hide"> </span><span class="msgbar typed">' + fmt(b.barText) + (b.cursor ? CURSOR : "") + '<span class="hide"> </span><span class="ic ic-mic">&#127908;</span></span></p>');
     if (b.nav) L.push('  <p class="tw-nav"><span class="ic ic-tw-home">&#8962;</span> <span class="ic ic-tw-search">&#128269;</span> <span class="ic ic-x-grok">&#8856;</span> ' +
       '<span class="ic ic-tw-bell">&#128276;</span>' + (t(b.badge) ? '<span class="tw-badge"><span class="hide"> (</span>' + esc(t(b.badge)) + '<span class="hide">)</span></span>' : "") +
       ' <span class="on ic ic-x-chat">&#128172;</span></p>');
@@ -786,7 +786,7 @@
       var more = (+total || who.length) - 3;
       inner = kinds[0] + '<span class="hide"> from ' + esc(list) + " </span>" + who.slice(0, 3).map(function (f) { return circle("ig-pfp", f, null); }).join("") + (more > 0 ? "+" + more : "");
     } else inner = esc(kinds.length === 1 ? kinds[0] : em.join("")) + (total ? " " + esc(total) : "");
-    return '<p class="igdm-reacts' + (side === "out" ? " out" : "") + '"><span class="hide">[Reactions: </span>' + inner + '<span class="hide">]</span></p>';
+    return '<p class="reacts' + (side === "out" ? " out" : "") + '"><span class="hide">[Reactions: </span>' + inner + '<span class="hide">]</span></p>';
   }
   // what a reply shows of the message it answers
   function igdmQuote(q) {
@@ -820,15 +820,15 @@
     var k = m.link, u = picUrl(k.img || ""), L = [];
     var btns = (m.linkInfo !== false ? '<span class="ic ic-info"></span>' : "") + (m.linkShare !== false ? '<span class="ic ic-share"></span>' : "");
     if (btns) L.push('<p class="igdm-post-btns">' + btns + "</p>");
-    if (u) L.push('<p class="igdm-link-img"><img src="' + esc(u) + '" alt="' + esc(t(k.alt)) + '"></p>');
-    else if (t(k.imgdesc)) L.push('<p class="igdm-link-img text">[' + esc(t(k.imgdesc)) + "]</p>");
-    L.push('<p class="igdm-link-title">' + label + esc(t(k.title)) + "</p>");
-    L.push('<p class="igdm-link-url">' + esc(t(k.url).replace(/^https?:\/\//, "").replace(/\/.*$/, "")) + "</p>");
-    return ['<div class="igdm-link-card ' + side + '">'].concat(ind(L, 1), ["</div>"]);
+    if (u) L.push('<p class="link-img"><img src="' + esc(u) + '" alt="' + esc(t(k.alt)) + '"></p>');
+    else if (t(k.imgdesc)) L.push('<p class="link-img text">[' + esc(t(k.imgdesc)) + "]</p>");
+    L.push('<p class="link-title">' + label + esc(t(k.title)) + "</p>");
+    L.push('<p class="link-url">' + esc(t(k.url).replace(/^https?:\/\//, "").replace(/\/.*$/, "")) + "</p>");
+    return ['<div class="link-card ' + side + '">'].concat(ind(L, 1), ["</div>"]);
   }
   function igdmHTML(b) {
     var o = others(b), head = "";
-    if (b.app) head += '<span class="igdm-back"><span class="ic ic-back">&#8592;</span></span><span class="hide"> </span><span class="igdm-btns"><span class="ic ic-phone">&#128222;</span>' +
+    if (b.app) head += '<span class="back"><span class="ic ic-back">&#8592;</span></span><span class="hide"> </span><span class="btns"><span class="ic ic-phone">&#128222;</span>' +
       '<span class="hide"> </span><span class="ic ic-video">&#127909;</span></span><span class="hide"> </span>';
     var pic = false;
     if (b.headPic !== false) {
@@ -839,18 +839,18 @@
     // a long name in a chat between two is cut short with "…" to fit on one line at phone width (AO3 won't let the skin do it)
     var full = Array.from(t(b.title) || (b.group ? "Group chat" : o[0] ? igName(o[0]) : "Someone"));
     var room = (b.app ? (pic ? 18 : 25) : pic ? 28 : 34) + (b.tick ? 0 : 2);
-    // the name, with its tick or (in a group) the little arrow, all in one igdm-name span
+    // the name, with its tick or (in a group) the little arrow, all in one chat-name span
     var nameHTML = !b.group && full.length > room ? esc(full.slice(0, room - 1).join("") + "…") : t(b.title) ? esc(t(b.title)) : b.group ? "Group chat" : o[0] ? igNameHTML(o[0], null) : "Someone";
     if (b.tick && !b.group) nameHTML += TICK;
     if (b.group && b.chev !== false) nameHTML += '<span class="igdm-drop"></span>'; // the little > after a group's name, drawn by the skin
-    head += '<span class="igdm-name">' + nameHTML + "</span>";
+    head += '<span class="chat-name">' + nameHTML + "</span>";
     var L = ['<div class="' + containerClass(b, "igdm") + '">',
       '  <p class="mob-header">' + head + '<span class="hide"> - </span>' + (t(b.sub) ? "<span>" + esc(t(b.sub)) + "</span>" : "") + "</p>",
       '  <div class="mob-body">'];
     // in a group, each run of messages from one person goes in a row: their picture, their name, then the messages.
     // The name is just above the first one, so only the ones after it need the hidden name.
     var body = [], row = null;
-    function close() { if (row) body = body.concat(['<div class="igdm-row">'], ind(row.lines, 1), ["</div>"]); row = null; }
+    function close() { if (row) body = body.concat(['<div class="row">'], ind(row.lines, 1), ["</div>"]); row = null; }
     // names in a group are usernames, and in a chat between two they're the names typed in the cast
     function nm(x) { return b.group ? igName(x) : nameOf(x); }
     b.msgs.forEach(function (m) {
@@ -877,14 +877,14 @@
       var to = grouped ? row.lines : body;
       if (q && q.hasPost) {
         // a reply to a shared post: "You replied" or "Shane replied", then the card itself, faded
-        to.push('<p class="igdm-reply ' + side + '">' + (out ? "You" : esc(nm(c))) + " replied" + (grouped && row.first ? '<span class="hide">:</span>' : "") + "</p>");
+        to.push('<p class="reply ' + side + '">' + (out ? "You" : esc(nm(c))) + " replied" + (grouped && row.first ? '<span class="hide">:</span>' : "") + "</p>");
         igdmPost(q, side, "", true).forEach(function (l) { to.push(l); });
       } else if (q) {
         var mine = q.from === b.pov;
         var said = out ? (mine ? "You replied to yourself" : "You replied to " + nm(char(q.from))) :
           mine ? nm(c) + " replied to you" : q.from === m.from ? nm(c) + " replied to themself" : nm(c) + " replied to " + nm(char(q.from));
-        to.push('<p class="igdm-reply ' + side + '">' + esc(said) + (grouped && row.first ? '<span class="hide">:</span>' : "") + "</p>",
-          '<p class="igdm-quote ' + side + (mine ? " me" : "") + '"><span class="hide">[Replying to: </span>' + esc(igdmQuote(q)) + '<span class="hide">]</span></p>');
+        to.push('<p class="reply ' + side + '">' + esc(said) + (grouped && row.first ? '<span class="hide">:</span>' : "") + "</p>",
+          '<p class="quote ' + side + (mine ? " me" : "") + '"><span class="hide">[Replying to: </span>' + esc(igdmQuote(q)) + '<span class="hide">]</span></p>');
       }
       // the hidden name: not on the first message under a name in a group, as the name is just above it
       function label() { var l = grouped ? (row.first ? "" : hideLabel(igName(c))) : hideLabel(nameOf(c)); if (grouped) row.first = false; return l; }
@@ -908,12 +908,12 @@
         else to.push('<p class="' + x[0] + '">' + label() + x[1] + "</p>");
         if (i === last && rx) to.push(rx);
       });
-      if (t(m.status)) to.push('<p class="igdm-status">' + esc(t(m.status)) + "</p>");
+      if (t(m.status)) to.push('<p class="status">' + esc(t(m.status)) + "</p>");
     });
     close();
     L = L.concat(ind(body, 2));
     L.push("  </div>");
-    if (b.bar === "empty" || b.bar === "typed") L.push('  <p class="igdm-footer"><span class="igdm-cam ic ic-camera">&#128247;</span><span class="hide"> </span><span class="igdm-msgbar' + (b.bar === "typed" ? " typed\">" + fmt(b.barText) + (b.cursor ? CURSOR : "") : '">Message...') +
+    if (b.bar === "empty" || b.bar === "typed") L.push('  <p class="footer"><span class="igdm-cam ic ic-camera">&#128247;</span><span class="hide"> </span><span class="msgbar' + (b.bar === "typed" ? " typed\">" + fmt(b.barText) + (b.cursor ? CURSOR : "") : '">Message...') +
       '<span class="hide"> </span><span class="ic ic-mic">&#127908;</span></span></p>');
     L.push("</div>");
     return L.join("\n");
@@ -2003,7 +2003,7 @@
   // a chat's pictures: each one a picture tag or the words in an img-desc
   function photosBack(ph, pre) {
     var ps = kids(ph).map(function (x) {
-      var k = is(x, "span." + pre + "-photo") ? kids(x) : no();
+      var k = is(x, "span.photo") ? kids(x) : no();
       if (k.length !== 1) no();
       if (is(k[0], "img")) return { url: k[0].getAttribute("src"), alt: k[0].getAttribute("alt") || "", desc: "", land: k[0].classList.contains("landscape") };
       if (is(k[0], "span.img-desc")) return { url: "", alt: "", desc: words(k[0]).replace(/^\[|\]$/g, ""), land: false };
@@ -2016,7 +2016,7 @@
   function galleryBack(d, pre) {
     var ks = kids(d), name = "";
     if (is(ks[0], "p.hide")) { var em = ks.shift().querySelector("em"); if (!em) no(); name = em.textContent.replace(/:$/, ""); }
-    if (!is(ks[0], "p." + pre + "-photos")) no();
+    if (!is(ks[0], "p.photos")) no();
     return { name: name, photos: photosBack(ks.shift(), pre), rest: ks };
   }
   function labelOf(nodes) {
@@ -2069,7 +2069,7 @@
     headBack(b, ks[k++]);
     var body = ks[k++]; if (!is(body, "div.mob-body")) no();
     b.bar = "none";
-    if (is(ks[k], "p.imsg-footer")) { var f = ks[k++].querySelector(".imsg-msgbar"); if (!f) no(); barBack(b, f, 2); }
+    if (is(ks[k], "p.footer")) { var f = ks[k++].querySelector(".msgbar"); if (!f) no(); barBack(b, f, 2); }
     if (ks[k]) no();
     var who = null, m = null;
     kids(body).forEach(function (p) {
@@ -2078,8 +2078,8 @@
       var cl = p.classList, ns = gal ? gal.rest : inl(p);
       if (cl.contains("mob-sys")) { b.msgs.push(m = newMsg("sys", textBack(ns))); who = null; return; }
       if (cl.contains("who")) { who = personIn(p); b.group = true; return; }
-      if (cl.contains("imsg-edited") || cl.contains("imsg-edited-in")) { if (!m) no(); m.edited = true; return; }
-      if (cl.contains("imsg-status")) { if (!m) no(); m.status = p.textContent; return; }
+      if (cl.contains("edited") || cl.contains("imsg-edited-in")) { if (!m) no(); m.edited = true; return; }
+      if (cl.contains("status")) { if (!m) no(); m.status = p.textContent; return; }
       if (!cl.contains("msg")) no();
       var out = cl.contains("out"); if (!out && !cl.contains("in")) no();
       if (cl.contains("typing-indicator")) {
@@ -2137,26 +2137,26 @@
     var bar = null;
     if (is(ks[k], "table.wa-header")) {
       bar = ks[k++]; b.header = "bar";
-      var tt = bar.querySelector("td.wa-name"), st = bar.querySelector("td.wa-status"); if (!tt || !st) no();
+      var tt = bar.querySelector("td.chat-name"), st = bar.querySelector("td.wa-status"); if (!tt || !st) no();
       b.title = tt.querySelector("span.name") ? "" : tt.textContent; b.sub = st.textContent;
     } else if (is(ks[k], "p.mob-header")) { b.header = "simple"; headBack(b, ks[k++]); }
     else b.header = "none";
     var body = ks[k++]; if (!is(body, "div.mob-body")) no();
     b.bar = "none";
-    if (is(ks[k], "p.wa-footer")) { var ph = ks[k++].querySelector(".wa-placeholder"); if (!ph) no(); b.bar = ph.classList.contains("typed") ? "typed" : "empty";
+    if (is(ks[k], "p.footer")) { var ph = ks[k++].querySelector(".wa-placeholder"); if (!ph) no(); b.bar = ph.classList.contains("typed") ? "typed" : "empty";
       if (b.bar === "typed") { var pn = inl(ph); if (is(pn[pn.length - 1], "span.cursor")) { b.cursor = true; pn.pop(); } b.barText = textBack(pn); } }
     if (ks[k]) no();
     var m = null, lastIn = null, rowless = false;
     kids(body).forEach(function (n) {
       if (is(n, "p.mob-sys")) { b.msgs.push(m = newMsg("sys", textBack(inl(n)))); return; }
-      if (is(n, "p.wa-reacts")) {
+      if (is(n, "p.reacts")) {
         if (!m) no();
-        var r = n.cloneNode(true), cnt = r.querySelector(".wa-count");
-        r.querySelectorAll(".hide, .wa-count").forEach(function (x) { x.remove(); });
+        var r = n.cloneNode(true), cnt = r.querySelector(".count");
+        r.querySelectorAll(".hide, .count").forEach(function (x) { x.remove(); });
         m.waReacts = r.textContent.trim(); m.waCount = cnt ? cnt.textContent : ""; return;
       }
       var rowPfp = null;
-      if (is(n, "div.wa-row")) {
+      if (is(n, "div.row")) {
         var rk = kids(n); b.group = true;
         if (is(rk[0], "p.wa-pfp")) rowPfp = rk.shift();
         if (rk.length !== 1) no();
@@ -2185,7 +2185,7 @@
       if (is(ns[0], "p.hide")) name = ns.shift().textContent.replace(/:$/, "");
       m = newMsg("", "");
       if (is(ns[0], "p.wa-fwd")) { m.fwd = true; ns.shift(); }
-      var quote = is(ns[0], "p.wa-quote") ? ns.shift() : null;
+      var quote = is(ns[0], "p.quote") ? ns.shift() : null;
       var main = ns.shift();
       if (!main) no();
       if (is(main, "p.wa-call")) {
@@ -2199,19 +2199,19 @@
         looks(cc, cp); m.contact = cc.id;
         if (!is(ns[ns.length - 1], "p.wa-contact-btn")) no();
         ns.pop();
-      } else if (is(main, "p.wa-photos")) {
+      } else if (is(main, "p.photos")) {
         m.photos = photosBack(main, "wa");
         if (is(ns[0], "p.wa-caption")) m.text = textBack(inl(ns.shift()));
-      } else if (is(main, "div.wa-link-card") || is(main, "p") && main.querySelector(".wa-link")) {
+      } else if (is(main, "div.link-card") || is(main, "p") && main.querySelector(".fake-link")) {
         var lk = { url: "", title: "", desc: "", img: "", alt: "", imgdesc: "", video: "", showUrl: false };
-        if (!is(main, "div.wa-link-card")) { lk.url = words(main); lk.showUrl = true; main = ns.shift(); if (!is(main, "div.wa-link-card")) no(); }
+        if (!is(main, "div.link-card")) { lk.url = words(main); lk.showUrl = true; main = ns.shift(); if (!is(main, "div.link-card")) no(); }
         kids(main).forEach(function (x) {
-          if (is(x, ".wa-link-img.video")) { var f = x.querySelector("iframe"); if (!f) no(); lk.video = f.getAttribute("src"); var vd = x.querySelector(".video-desc"); if (vd) lk.imgdesc = words(vd).replace(/^\[|\]$/g, ""); }
-          else if (is(x, "p.wa-link-img.text")) lk.imgdesc = words(x).replace(/^\[|\]$/g, "");
-          else if (is(x, "p.wa-link-img")) { var im = x.querySelector("img"); if (!im) no(); lk.img = im.getAttribute("src"); lk.alt = im.getAttribute("alt") || ""; }
-          else if (is(x, "p.wa-link-title")) lk.title = x.textContent;
-          else if (is(x, "p.wa-link-desc")) lk.desc = x.textContent;
-          else if (is(x, "p.wa-link-url")) { if (!lk.url) lk.url = x.textContent; }
+          if (is(x, ".link-img.video")) { var f = x.querySelector("iframe"); if (!f) no(); lk.video = f.getAttribute("src"); var vd = x.querySelector(".video-desc"); if (vd) lk.imgdesc = words(vd).replace(/^\[|\]$/g, ""); }
+          else if (is(x, "p.link-img.text")) lk.imgdesc = words(x).replace(/^\[|\]$/g, "");
+          else if (is(x, "p.link-img")) { var im = x.querySelector("img"); if (!im) no(); lk.img = im.getAttribute("src"); lk.alt = im.getAttribute("alt") || ""; }
+          else if (is(x, "p.link-title")) lk.title = x.textContent;
+          else if (is(x, "p.link-desc")) lk.desc = x.textContent;
+          else if (is(x, "p.link-url")) { if (!lk.url) lk.url = x.textContent; }
           else no();
         });
         m.link = lk;
@@ -2223,7 +2223,7 @@
         if (!who) name = labelOf(tn) || no();
         m.text = textBack(tn);
       } else no();
-      if (is(ns[0], "p.wa-time")) {
+      if (is(ns[0], "p.time")) {
         var tm = ns.shift(), tick = tm.querySelector(".ic");
         m.tick = !tick ? "" : tick.classList.contains("ic-read") ? "read" : tick.classList.contains("ic-delivered") ? "delivered" : tick.classList.contains("ic-sent") ? "sent" : no();
         var tx = (tick ? tm.textContent.replace(tick.textContent, "") : tm.textContent).trim();
@@ -2279,11 +2279,11 @@
     var b = newBlock("twdm"); settings(b, el, "twdm");
     var ks = kids(el), k = 0, head = ks[k++];
     if (!is(head, "p.mob-header")) no();
-    var hp = head.querySelector(".tw-pfp"), hn = head.querySelector(".twdm-name"); if (!hp || !hn) no();
+    var hp = head.querySelector(".tw-pfp"), hn = head.querySelector(".chat-name"); if (!hp || !hn) no();
     b.title = hn.querySelector("span.name") ? "" : hn.textContent;
     var body = ks[k++]; if (!is(body, "div.mob-body")) no();
     b.bar = "none";
-    if (is(ks[k], "p.twdm-footer")) { var f = ks[k++].querySelector(".twdm-msgbar"); if (!f) no(); barBack(b, f, 2); }
+    if (is(ks[k], "p.footer")) { var f = ks[k++].querySelector(".msgbar"); if (!f) no(); barBack(b, f, 2); }
     if (is(ks[k], "p.tw-nav")) {
       b.nav = true; var bd = ks[k++].querySelector(".tw-badge");
       if (bd) { var bc = bd.cloneNode(true); bc.querySelectorAll(".hide").forEach(function (x) { x.remove(); }); b.badge = bc.textContent; }
@@ -2293,10 +2293,10 @@
     function bubbles(list, who) {
       list.forEach(function (p) {
         if (is(p, "p.mob-sys")) { b.msgs.push(m = newMsg("sys", textBack(inl(p)))); return; }
-        if (is(p, "p.twdm-reply")) { quote = { to: p.textContent.replace(/^Replied to /, "") }; return; }
-        if (is(p, "p.twdm-quote")) { if (!quote) no(); var qc = p.cloneNode(true); qc.querySelectorAll(".hide").forEach(function (x) { x.remove(); }); quote.text = qc.textContent; return; }
-        if (is(p, "p.twdm-reacts")) { if (!m) no(); var rc = p.cloneNode(true); rc.querySelectorAll(".hide").forEach(function (x) { x.remove(); }); m.waReacts = rc.textContent; return; }
-        if (is(p, "p.twdm-status")) { if (!m) no(); m.status = p.textContent; return; }
+        if (is(p, "p.reply")) { quote = { to: p.textContent.replace(/^Replied to /, "") }; return; }
+        if (is(p, "p.quote")) { if (!quote) no(); var qc = p.cloneNode(true); qc.querySelectorAll(".hide").forEach(function (x) { x.remove(); }); quote.text = qc.textContent; return; }
+        if (is(p, "p.reacts")) { if (!m) no(); var rc = p.cloneNode(true); rc.querySelectorAll(".hide").forEach(function (x) { x.remove(); }); m.waReacts = rc.textContent; return; }
+        if (is(p, "p.status")) { if (!m) no(); m.status = p.textContent; return; }
         if (is(p, "p.msg.typing-indicator")) {
           var tem = p.querySelector("span.hide em"), tout = p.classList.contains("out"); if (!tem || quote) no();
           var tby = who || (tout ? owner(b, tem.textContent) : personByName(tem.textContent, true)); if (!tby) no();
@@ -2327,7 +2327,7 @@
       });
     }
     kids(body).forEach(function (n) {
-      if (is(n, "div.twdm-row")) {
+      if (is(n, "div.row")) {
         var rk = kids(n); b.group = true;
         var pf = rk.shift(), wp = rk.shift(); if (!is(pf, "p.tw-pfp") || !is(wp, "p.who")) no();
         var who = personIn(wp); looks(who, pf);
@@ -2405,13 +2405,13 @@
     var ks = kids(d);
     m.link = { url: "", showUrl: false, title: "", desc: "", img: "", alt: "", video: "", imgdesc: "" }; m.linkInfo = m.linkShare = false;
     if (is(ks[0], "p.igdm-post-btns")) kids(ks.shift()).forEach(function (x) { if (is(x, "span.ic-info")) m.linkInfo = true; else if (is(x, "span.ic-share")) m.linkShare = true; else no(); });
-    if (is(ks[0], "p.igdm-link-img")) {
+    if (is(ks[0], "p.link-img")) {
       var im = ks.shift(), img = im.querySelector("img");
       if (img) { m.link.img = img.getAttribute("src"); m.link.alt = img.getAttribute("alt") || ""; }
       else if (im.classList.contains("text")) m.link.imgdesc = words(im).replace(/^\[|\]$/g, "");
       else no();
     }
-    var ti = ks.shift(), ur = ks.shift(); if (!is(ti, "p.igdm-link-title") || !is(ur, "p.igdm-link-url") || ks.length) no();
+    var ti = ks.shift(), ur = ks.shift(); if (!is(ti, "p.link-title") || !is(ur, "p.link-url") || ks.length) no();
     var ns = inl(ti), name = labelOf(ns);
     m.link.title = ns.map(function (n) { return n.nodeType === 3 ? n.nodeValue : no(); }).join("").trim();
     m.link.url = words(ur);
@@ -2422,28 +2422,28 @@
     var b = newBlock("igdm"); settings(b, el, "igdm");
     var ks = kids(el), head = ks[0], body = ks[1], k = 2;
     if (!is(head, "p.mob-header") || !is(body, "div.mob-body")) no();
-    if (is(ks[k], "p.igdm-footer")) { var f = ks[k++].querySelector(".igdm-msgbar"); if (!f) no(); barBack(b, f, 2); }
+    if (is(ks[k], "p.footer")) { var f = ks[k++].querySelector(".msgbar"); if (!f) no(); barBack(b, f, 2); }
     if (ks[k]) no();
     // two pictures at the top, or rows with names: a group, even with no one else talking yet
-    b.group = !!(head.querySelector("span.ig-collab") || body.querySelector("div.igdm-row"));
+    b.group = !!(head.querySelector("span.ig-collab") || body.querySelector("div.row"));
     // the messages first, so the people in the header pictures are already in the cast
     var m = null, shared = [], replies = [], quote = null, lastBubble = null;
     function line(p, who) {
       // a reactions pill belongs to the bubble (or card) just before it, on the same side
-      if (is(p, "p.igdm-reacts")) {
+      if (is(p, "p.reacts")) {
         if (!lastBubble || quote || p.classList.contains("out") !== lastBubble.out) no();
         reactsBack(lastBubble.m, p); lastBubble = null; return;
       }
       lastBubble = null;
       if (is(p, "p.mob-sys")) { if (who || quote) no(); b.msgs.push(m = newMsg("sys", textBack(inl(p)))); return; }
-      if (is(p, "p.igdm-status")) { if (!m || quote) no(); m.status = p.textContent; return; }
+      if (is(p, "p.status")) { if (!m || quote) no(); m.status = p.textContent; return; }
       // a reply: "Shane replied to you", then the message it answers, faded
-      if (is(p, "p.igdm-reply")) { if (quote) no(); quote = { side: p.classList.contains("out") ? "out" : "in" }; return; }
+      if (is(p, "p.reply")) { if (quote) no(); quote = { side: p.classList.contains("out") ? "out" : "in" }; return; }
       if (is(p, "div.igdm-post.quoted")) {
         if (!quote || quote.text != null || !p.classList.contains(quote.side)) no();
         var qp = newMsg("", ""); cardBack(p, qp, true); quote.post = qp; quote.text = ""; return;
       }
-      if (is(p, "p.igdm-quote")) {
+      if (is(p, "p.quote")) {
         if (!quote || quote.text != null || !p.classList.contains(quote.side)) no();
         quote.mine = p.classList.contains("me"); quote.text = noHide(p).textContent; return;
       }
@@ -2452,7 +2452,7 @@
         var tby = who || (tout ? owner(b, tem.textContent) : personByName(tem.textContent, true)); if (!tby) no();
         b.msgs.push(m = newMsg("typing", "")); m.by = tby.id; return;
       }
-      var card = is(p, "div.igdm-post"), lnk = is(p, "div.igdm-link-card"), sh = is(p, "p.igdm-shared"), out = p.classList.contains(sh ? "me" : "out");
+      var card = is(p, "div.igdm-post"), lnk = is(p, "div.link-card"), sh = is(p, "p.igdm-shared"), out = p.classList.contains(sh ? "me" : "out");
       var gal = is(p, "div.msg.gallery") ? galleryBack(p, "igdm") : null;
       if (!card && !lnk && !sh && !gal && !is(p, "p.msg")) no();
       if (!sh && !out && !p.classList.contains("in")) no();
@@ -2477,11 +2477,11 @@
       b.msgs.push(m);
     }
     kids(body).forEach(function (n) {
-      if (!is(n, "div.igdm-row")) { line(n, null); return; }
+      if (!is(n, "div.row")) { line(n, null); return; }
       var rk = kids(n), pf = is(rk[0], "span.ig-pfp") ? rk.shift() : null, wp = rk[0], who;
       if (!pf) b.pics = false;
       if (is(wp, "p.who")) { rk.shift(); who = igPerson(wp); }
-      else if (is(wp, "p.igdm-reply")) {
+      else if (is(wp, "p.reply")) {
         // a row starting with a reply has no name line: the name is in "RoseLandry replied to ..."
         var rn = noHide(wp).textContent.match(/^(.+?) replied(?: to |$)/), sl = pf && slugIn(pf); if (!rn) no();
         who = sl ? personBySlug(sl) : S.cast.filter(function (x) { return igName(x) === rn[1]; })[0];
@@ -2506,14 +2506,14 @@
     });
     // the header: the app screen's buttons, the pictures, the name and tick, then the line under it
     var hk = kids(head), pics = [];
-    if (is(hk[0], "span.igdm-back")) {
-      if (!is(hk[1], "span.hide") || !is(hk[2], "span.igdm-btns") || !is(hk[3], "span.hide")) no();
+    if (is(hk[0], "span.back")) {
+      if (!is(hk[1], "span.hide") || !is(hk[2], "span.btns") || !is(hk[3], "span.hide")) no();
       b.app = true; hk = hk.slice(4);
     }
     if (is(hk[0], "span.ig-collab")) { pics = kids(hk.shift()); if (pics.length !== 2) no(); b.group = true; }
     else if (is(hk[0], "span.ig-pfp")) pics = [hk.shift()];
     b.headPic = pics.length > 0;
-    if (!is(hk[0], "span.igdm-name") || !is(hk[1], "span.hide") || hk[1].textContent !== " - ") no();
+    if (!is(hk[0], "span.chat-name") || !is(hk[1], "span.hide") || hk[1].textContent !== " - ") no();
     var name = kids(hk[0]), sub = hk.slice(2);
     if (sub.length > 1 || sub.length && !is(sub[0], "span")) no();
     b.sub = sub.length ? sub[0].textContent : "";
@@ -2830,7 +2830,7 @@
   // stays on one line; one with a block inside puts every child on its own line, two spaces in; one with only inline
   // children splits only if its kind is on the list below (tested to look the same split or not, on the site and on AO3)
   // and one of them has a class. A hidden span that isn't first stays on the end of the line before it.
-  var SPLIT_SAFE = ["div.igdm-row", "p.dc-photos", "p.dc-photos.one", "p.dc-photos.three", "p.dc-photos.two", "p.hide", "p.ig-carousel-info", "p.ig-header", "p.ig-person", "p.ig-photo.real", "p.ig-story", "p.ig-story.close", "p.ig-story.me", "p.ig-top", "p.igdm-footer", "p.igdm-link-img", "p.igdm-photos", "p.igdm-photos.one", "p.igdm-photos.three", "p.igdm-photos.two", "p.igdm-post-btns", "p.igdm-post-by", "p.igdm-post-img", "p.imsg-footer", "p.imsg-photos", "p.imsg-photos.one", "p.imsg-photos.three", "p.imsg-photos.two", "p.mob-header", "p.msg.in.tail.typing-indicator", "p.msg.in.typing-indicator", "p.msg.in.voice", "p.msg.out.tail.typing-indicator", "p.msg.out.typing-indicator", "p.msg.out.voice", "p.tb-blog", "p.tb-header", "p.tb-nav", "p.tb-row", "p.tb-row.two", "p.tb-tabs", "p.tb-top", "p.tw-header", "p.tw-nav", "p.tw-opt.results.p10", "p.tw-opt.results.p25", "p.tw-opt.results.p30", "p.tw-opt.results.p60", "p.tw-opt.results.win.p75", "p.tw-pfp", "p.tw-photos", "p.tw-photos.four", "p.tw-photos.three", "p.tw-photos.two", "p.tw-stat", "p.tw-stat.locked", "p.tw-stat.right", "p.tw-stat.right.saved", "p.tw-tabs", "p.tw-top", "p.twc-reply-bar", "p.twdm-footer", "p.twdm-photos", "p.twdm-photos.one", "p.twdm-photos.three", "p.twdm-photos.two", "p.wa-call", "p.wa-footer", "p.wa-link-img", "p.wa-pfp", "p.wa-photos.four", "p.wa-photos.one", "p.wa-photos.three", "p.wa-photos.two", "p.wa-wall", "p.who", "span.dc-embed-text", "span.dc-quote", "span.gm-pfp", "span.handle.acc-rpf", "span.hide", "span.ig-badge", "span.ig-collab", "span.ig-like-pfp", "span.ig-pfp", "span.ig-pfp.story", "span.ig-photo.real", "span.igdm-back", "span.pfp", "span.tb-ask-pfp", "span.tb-name", "span.tb-pfp", "span.tb-pfp.reblog", "span.tb-photo", "span.tb-voted", "span.tw-me", "span.tw-pfp", "span.tw-photo", "span.twdm-back", "span.wa-msgbar", "span.wa-pfp", "span.wa-photo", "td.gm-btns", "td.gm-pfp-cell", "td.gm-star", "td.wa-back", "td.wa-btns", "td.wa-name"];
+  var SPLIT_SAFE = ["div.row", "p.footer", "p.hide", "p.ig-carousel-info", "p.ig-header", "p.ig-person", "p.ig-photo.real", "p.ig-story", "p.ig-story.close", "p.ig-story.me", "p.ig-top", "p.igdm-post-btns", "p.igdm-post-by", "p.igdm-post-img", "p.link-img", "p.mob-header", "p.msg.in.tail.typing-indicator", "p.msg.in.typing-indicator", "p.msg.in.voice", "p.msg.out.tail.typing-indicator", "p.msg.out.typing-indicator", "p.msg.out.voice", "p.photos", "p.photos.four", "p.photos.one", "p.photos.three", "p.photos.two", "p.tb-blog", "p.tb-header", "p.tb-nav", "p.tb-row", "p.tb-row.two", "p.tb-tabs", "p.tb-top", "p.tw-header", "p.tw-nav", "p.tw-opt.results.p10", "p.tw-opt.results.p25", "p.tw-opt.results.p30", "p.tw-opt.results.p60", "p.tw-opt.results.win.p75", "p.tw-pfp", "p.tw-photos", "p.tw-photos.four", "p.tw-photos.three", "p.tw-photos.two", "p.tw-stat", "p.tw-stat.locked", "p.tw-stat.right", "p.tw-stat.right.saved", "p.tw-tabs", "p.tw-top", "p.twc-reply-bar", "p.wa-call", "p.wa-pfp", "p.wa-wall", "p.who", "span.back", "span.dc-embed-text", "span.dc-quote", "span.gm-pfp", "span.handle.acc-rpf", "span.hide", "span.ig-badge", "span.ig-collab", "span.ig-like-pfp", "span.ig-pfp", "span.ig-pfp.story", "span.ig-photo.real", "span.msgbar", "span.pfp", "span.photo", "span.tb-ask-pfp", "span.tb-name", "span.tb-pfp", "span.tb-pfp.reblog", "span.tb-photo", "span.tb-voted", "span.tw-me", "span.tw-pfp", "span.tw-photo", "span.wa-pfp", "td.back", "td.btns", "td.chat-name", "td.gm-btns", "td.gm-pfp-cell", "td.gm-star"];
   var FMT_BOXES = "mob dc tw-feed ig-feed tb-feed twc12-feed twc16-feed tw tw-reply ig igdm tb gm mail twdm wa imsg twc12 twc16".split(" ");
   var FMT_BLOCK = "div p table thead tbody tr td th ul ol li details summary blockquote h1 h2 h3 h4 h5 h6 pre hr".split(" ");
   var FMT_VOID = ["img", "br", "hr", "input"];
@@ -2982,11 +2982,11 @@
         var d = document.createElement("div"), ns = inl(o), lbl = labelOf(ns), taps = [], cell = document.createElement("span"), ph = document.createElement("p");
         d.className = "msg " + (o.classList.contains("out") ? "out" : "in") + " gallery" + (o.classList.contains("tapped") ? " tapped" : "");
         while (is(ns[ns.length - 1], "span.imsg-tap")) taps.unshift(ns.pop());
-        cell.className = pre + "-photo";
+        cell.className = "photo";
         if (ns.length === 1 && is(ns[0], "img, span.img-desc")) cell.appendChild(ns[0]);
         else { var sd = document.createElement("span"); sd.className = "img-desc"; sd.textContent = ns.map(function (n) { return n.textContent; }).join(""); cell.appendChild(sd); }
         if (lbl) { var hp = document.createElement("p"), em = document.createElement("em"); hp.className = "hide"; em.textContent = lbl + ":"; hp.appendChild(em); d.appendChild(hp); }
-        ph.className = pre + "-photos one"; ph.appendChild(cell); d.appendChild(ph);
+        ph.className = "photos one"; ph.appendChild(cell); d.appendChild(ph);
         taps.forEach(function (x) { d.appendChild(x); });
         o.parentNode.replaceChild(d, o); hit = true;
       });
@@ -2997,16 +2997,16 @@
         if (!tx || x.querySelector(".img-desc, img")) return;
         var sp = document.createElement("span"); sp.className = "img-desc"; x.insertBefore(sp, tx); sp.appendChild(tx); hit = true;
       });
-      // an Instagram DM header's name (with its tick or arrow) used to sit bare: now it's in an igdm-name span
+      // an Instagram DM header's name (with its tick or arrow) used to sit bare: now it's in an chat-name span
       if (c.classList.contains("igdm")) Array.prototype.slice.call(c.querySelectorAll(":scope > p.mob-header")).forEach(function (hd) {
-        if (hd.querySelector(":scope > span.igdm-name")) return;
+        if (hd.querySelector(":scope > span.chat-name")) return;
         var ns = Array.prototype.slice.call(hd.childNodes), dash = ns.findIndex(function (n) { return is(n, "span.hide") && n.textContent === " - "; });
         if (dash < 0) return;
         var st = 0;
-        ns.slice(0, dash).forEach(function (n, i) { if (is(n, ".ig-pfp, .ig-collab, .igdm-btns")) st = i + 1; });
+        ns.slice(0, dash).forEach(function (n, i) { if (is(n, ".ig-pfp, .ig-collab, .btns")) st = i + 1; });
         while (st < dash && ns[st].nodeType === 3 && !ns[st].nodeValue.trim()) st++;
-        if (st > 0 && is(ns[st - 1], ".igdm-btns") && is(ns[st], "span.hide")) st++;
-        var w = document.createElement("span"); w.className = "igdm-name";
+        if (st > 0 && is(ns[st - 1], ".btns") && is(ns[st], "span.hide")) st++;
+        var w = document.createElement("span"); w.className = "chat-name";
         hd.insertBefore(w, ns[dash]);
         ns.slice(st, dash).forEach(function (n) { w.appendChild(n); });
         hit = true;
@@ -3066,16 +3066,16 @@
         hit = true;
       });
       // old Twitter DM replies: the quote was a "msg" bubble, and someone else's "Replied to" line had no side
-      Array.prototype.slice.call(c.querySelectorAll("p.twdm-quote.msg, p.twdm-reply:not(.out):not(.in)")).forEach(function (q) {
-        if (q.classList.contains("twdm-quote")) q.classList.remove("msg"); else q.classList.add("in");
+      Array.prototype.slice.call(c.querySelectorAll("p.quote.msg, p.reply:not(.out):not(.in)")).forEach(function (q) {
+        if (q.classList.contains("quote")) q.classList.remove("msg"); else q.classList.add("in");
         hit = true;
       });
       // old Instagram DM reactions were a span at the end of a "reacted" bubble or card; now they're a line of their own after it
-      Array.prototype.slice.call(c.querySelectorAll("span.igdm-reacts")).forEach(function (r) {
+      Array.prototype.slice.call(c.querySelectorAll("span.reacts")).forEach(function (r) {
         var host = r.parentNode, p = document.createElement("p"), h = r.querySelector(":scope > span.hide");
         if (!host || !host.parentNode) return;
         host.classList.remove("reacted"); if (!host.getAttribute("class")) host.removeAttribute("class");
-        p.className = "igdm-reacts" + (host.classList.contains("out") ? " out" : "");
+        p.className = "reacts" + (host.classList.contains("out") ? " out" : "");
         if (h) h.textContent = h.textContent.replace(/^ /, "");
         while (r.firstChild) p.appendChild(r.firstChild);
         host.removeChild(r); host.parentNode.insertBefore(p, host.nextSibling); hit = true;
