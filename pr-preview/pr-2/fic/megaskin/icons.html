@@ -25,7 +25,7 @@
   <!-- /site meta -->
   <link rel="stylesheet" href="../../style.css?v=c31c06ea">
   <script src="../../theme.js?v=c50fd7c2"></script>
-  <link rel="stylesheet" href="megaskin.css?v=80e20858" id="creator-style">
+  <link rel="stylesheet" href="megaskin.css?v=a305a8de" id="creator-style">
 </head>
 <body>
 <header>
@@ -98,9 +98,9 @@
 
 <p>An icon is a span with <code>ic</code> and the icon's name, with a typed symbol still inside it:</p>
 
-<pre><code>&lt;span class="tb-icon ic ic-heart"&gt;&amp;#9825;&lt;/span&gt;</code></pre>
+<pre><code>&lt;span class="ic ic-heart"&gt;&amp;#9825;&lt;/span&gt;</code></pre>
 
-<p>Keep the app's own class (<code>tb-icon</code> here) as well - that's what sizes and spaces it. The symbol inside is the stand-in: it's what readers see if they have creator's style turned off, or if you take the icons out of your skin. Every example in this tutorial already has them, so if you copy your HTML from here, there's nothing else to do.</p>
+<p>If the span has another class as well (like <code>ig-menu</code>), keep it - that's what sizes and places it. The symbol inside is the stand-in: it's what readers see if they have creator's style turned off, or if you take the icons out of your skin. Every example in this tutorial already has them, so if you copy your HTML from here, there's nothing else to do.</p>
 
 <h3 id="s20-3">20.3 Taking the Icons Out</h3>
 
@@ -109,7 +109,7 @@
 <details>
 <summary>Options: taking out just one icon</summary>
 
-<p>To take out just one icon, take the <code>ic</code> classes off that span in your HTML, so <code>&lt;span class="tb-icon ic ic-heart"&gt;</code> becomes <code>&lt;span class="tb-icon"&gt;</code>. Deleting only that icon's lines in the CSS won't do it, because the first rule in the section still hides the symbol, and you'll be left with a blank space.</p>
+<p>To take out just one icon, take the <code>ic</code> classes off that span in your HTML, so <code>&lt;span class="ic ic-heart"&gt;</code> becomes <code>&lt;span&gt;</code>. Deleting only that icon's lines in the CSS won't do it, because the first rule in the section still hides the symbol, and you'll be left with a blank space.</p>
 
 </details>
 

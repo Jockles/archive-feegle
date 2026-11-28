@@ -25,7 +25,7 @@
   <!-- /site meta -->
   <link rel="stylesheet" href="../../style.css?v=c31c06ea">
   <script src="../../theme.js?v=c50fd7c2"></script>
-  <link rel="stylesheet" href="megaskin.css?v=80e20858" id="creator-style">
+  <link rel="stylesheet" href="megaskin.css?v=a305a8de" id="creator-style">
 </head>
 <body>
 <header>
@@ -407,10 +407,13 @@
 #workskin .tb .tb-stat {
   display: block;
   flex: 1 1 0;
+  margin: 0;
   white-space: nowrap;
 }
 
-#workskin .tb .tb-icon {
+#workskin .tb .tb-stat.right { flex: none; }
+
+#workskin .tb .tb-stats .ic {
   display: inline-block;
   margin-right: 0.3em;
   font-size: 1.3em;
@@ -418,7 +421,7 @@
   vertical-align: -0.15em;
 }
 
-#workskin .tb .tb-stats &gt; .tb-icon { margin-right: 0; }</code></pre>
+#workskin .tb .tb-stat.right .ic { margin-right: 0; }</code></pre>
 
 <p><code>display: flex</code> lines the bottom row up.</p>
 
@@ -719,7 +722,7 @@
   <li><strong>Pictures and gifs:</strong> <code>tb-photos</code>, <code>tb-row</code> and <code>tb-photo</code>.</li>
   <li><strong>Mentions:</strong> <code>tb-link</code>.</li>
   <li><strong>Checkmarks:</strong> <code>tb-check</code>, <code>tb-checks</code> and the <code>ic-checks</code> lines in the Icons section.</li>
-  <li><strong>Bottom row:</strong> <code>tb-stats</code>, <code>tb-stat</code> and <code>tb-icon</code>.</li>
+  <li><strong>Bottom row:</strong> <code>tb-stats</code> and <code>tb-stat</code>.</li>
   <li><strong>The feed:</strong> everything starting <code>.tb-feed</code>.</li>
   <li><strong>Just the app screen:</strong> the rules with <code>.tb-feed.app</code>, <code>tb-screen</code>, <code>tb-header</code>, <code>tb-logo</code>, <code>tb-topicon</code>, <code>tb-tabs</code>, <code>tb-tab</code>, <code>tb-nav</code> and <code>ic-tb-</code> in them.</li>
 </ul>
