@@ -613,6 +613,8 @@
   // a name cut short with "…" (which counts as one) when it's longer than n, as the app does; AO3 won't let the skin do it
   function cutTo(s, n) { var ch = Array.from(s); return ch.length > n ? ch.slice(0, n - 1).join("") + "…" : s; }
   function igNameHTML(c, a) { return isProfile(c) ? pSpan("handle", c, a, igName(c, a)) : esc(igName(c)); }
+  // an account name on a post's top line or in "In this photo" sits in an ig-name span
+  function igNameSpan(h) { return '<span class="ig-name">' + h + "</span>"; }
   var TICK = '<span class="hide"> </span><span class="ig-tick ic ic-verified">&#10003;</span>';
   var LOCK = '<span class="hide"> </span><span class="ig-lock ic ic-lock">&#128274;</span>';
   function igCaption(text) {
@@ -655,7 +657,7 @@
       var c = char(g.who), fol = g.who === b.pov ? "none" : g.fol;
       var bt = fol === "follow" ? '<span class="ig-following blue">Follow</span>' : fol === "none" ? "" : '<span class="ig-following">Following</span>';
       var nm = isProfile(c) ? appBit(c, "ig", "name") || nameOf(c) : nameOf(c);
-      L.push('<p class="ig-person">' + bt + circle("ig-pfp", c, null) + (isProfile(c) ? igNameHTML(c, null) : '<span class="handle">' + esc(igName(c)) + "</span>") +
+      L.push('<p class="ig-person">' + bt + circle("ig-pfp", c, null) + igNameSpan(isProfile(c) ? igNameHTML(c, null) : '<span class="handle">' + esc(igName(c)) + "</span>") +
         (g.tick ? TICK : "") + (g.lock ? LOCK : "") + '<span class="ig-person-name">' + esc(nm) + "</span></p>");
     });
     L.push("</div></details>");
@@ -687,10 +689,13 @@
     var top = '<span class="ig-menu ic ic-ig-lines">&#8801;</span>' + (m.follow === "button" ? '<span class="ig-follow btn ic ic-ig-follow">Follow</span>' : "");
     // the name: the username, or the name typed in, cut short with "…" if it won't fit on one line at phone width
     var fullA = t(m.nameAs) || igName(c, a), lenA = Array.from(fullA).length;
-    function shown(full, typed, n, html) { var x = cutTo(full, n); return typed || x !== full ? esc(x) : html; }
+    function shown(full, typed, n, html) { var x = cutTo(full, n); return igNameSpan(typed || x !== full ? esc(x) : html); }
+    // what comes after the names is split off by a hidden " - " (with the hidden names of "2 others" in front of it)
+    var pend = "";
+    function after(h) { top += '<span class="hide">' + pend + " - </span>" + h; pend = ""; }
     if (cos.length) {
       // a collab: only the first two pictures show, and with three or more it says "and 2 others"
-      var co = char(cos[0].who), and = '<span class="hide"> </span><span class="ig-and">and</span><span class="hide"> </span>';
+      var co = char(cos[0].who), and = " and ";
       var nA = lenA, nB = 0, fullB = "";
       if (cos.length === 1) {
         // both names share the line: the longer one is cut first, but neither goes below 6
@@ -700,10 +705,11 @@
       }
       top += '<span class="ig-collab">' + circle("ig-pfp", c, a) + circle("ig-pfp", co, null) + "</span>" + shown(fullA, t(m.nameAs), Math.max(nA, 6), igNameHTML(c, a)) + (m.verified ? TICK : "") + (m.locked ? LOCK : "") + and;
       if (cos.length === 1) top += shown(fullB, t(cos[0].as), Math.max(nB, 6), igNameHTML(co, null)) + (cos[0].tick ? TICK : "");
-      else top += cos.length + " others" + '<span class="hide"> (' + cos.map(function (g) { return esc(igName(char(g.who))); }).join(", ") + ")</span>";
+      else { top += cos.length + " others"; pend = " (" + cos.map(function (g) { return esc(igName(char(g.who))); }).join(", ") + ")"; }
     } else top += circle("ig-pfp" + (m.story ? " story" : ""), c, a) + shown(fullA, t(m.nameAs), m.follow === "link" ? 20 : m.verified ? 24 : 27, igNameHTML(c, a)) + (m.verified ? TICK : "") + (m.locked ? LOCK : "");
-    if (m.follow === "link") top += '<span class="hide"> - </span><span class="ig-follow">Follow</span>';
-    if (t(m.under)) top += '<span class="hide"> - </span><span>' + (m.song ? "&#9835; " : "") + esc(t(m.under)) + "</span>";
+    if (m.follow === "link") after('<span class="ig-follow">Follow</span>');
+    if (t(m.under)) after("<span>" + (m.song ? "&#9835; " : "") + esc(t(m.under)) + "</span>");
+    if (pend) top += '<span class="hide">' + pend + "</span>";
     L.push('<p class="ig-top">' + top + "</p>");
     L = L.concat(igPhotos(m), igTagged(m, b));
     // the buttons: the heart, comments, reposts if there are any, share, and save
@@ -745,7 +751,7 @@
     var posts = b.msgs.map(function (m) { return igPostHTML(b, m).join("\n"); }).filter(Boolean);
     if (b.type === "igone") return posts.join("\n\n");
     var L = ['<div class="mob ig ig-feed ' + b.theme + (b.width ? " " + b.width : "") + (b.scroll ? " " + b.scroll : "") + '">'];
-    if (b.top !== "none") L.push('<p class="ig-header"><span class="ig-add">+</span><span class="ig-logo">Instagram</span><span class="ig-notif ic ic-heart">&#9825;</span>' +
+    if (b.top !== "none") L.push('<p class="ig-header"><span class="ig-add">+</span><span class="ig-logo">Instagram</span><span class="ig-icon ic ic-heart">&#9825;</span>' +
       (b.top === "new" ? '<span class="ig-badge"><span class="hide"> (new)</span></span>' : "") + "</p>");
     return L.concat(igStories(b), posts, ["</div>"]).join("\n");
   }
@@ -2690,7 +2696,7 @@
     var ks = kids(div), m = newMsg("", "");
     m.likesLine = "count"; m.faces = []; m.tags = []; m.collabs = []; m.follow = ""; m.shape = "";
     var top = ks.shift(); if (!is(top, "p.ig-top")) no();
-    var ns = kids(top), k = 0;
+    var ns = kids(top), k = 0, pend = false;
     function take(sel) { if (is(ns[k], sel)) return ns[k++]; return null; }
     function marks() { // a tick and a padlock after a name
       var tick = false, lock = false;
@@ -2701,7 +2707,7 @@
     if (take("span.ig-follow.btn")) m.follow = "button";
     var col = take("span.ig-collab"), pic = col ? col.querySelector(".ig-pfp") : take("span.ig-pfp"); if (!pic) no();
     m.story = pic.classList.contains("story");
-    var nm = ns[k++]; if (!nm) no();
+    var nw = take("span.ig-name"), nm = nw && kids(nw).length === 1 ? kids(nw)[0] : no();
     // a name typed over a profile's picture (often cut short with "…") belongs to that profile
     var c = nm.nodeType === 3 && slugIn(pic) ? (m.nameAs = nm.nodeValue.trim(), personBySlug(slugIn(pic))) : nm.nodeType === 3 ? (function () { var x = S.cast.filter(function (x) { return x.kind === "oneoff" && igName(x) === nm.nodeValue.trim(); })[0]; if (!x) { x = freshChar(nm.nodeValue.trim()); if (igName(x) !== nm.nodeValue.trim()) x.ighandle = nm.nodeValue.trim(); } return x; })() : igPerson(nm);
     var acc = nm.nodeType === 1 && nm.className.match(/(?:^|\s)acc-([a-z0-9-]+)/); m.acc = acc ? acc[1] : "";
@@ -2709,27 +2715,34 @@
     var mk = marks(); m.verified = mk.tick; m.locked = mk.lock;
     if (col) {
       // "and" someone, or "and 2 others" with their names hidden
-      if (!take("span.hide") || !take("span.ig-and") || !take("span.hide")) no();
-      var pics = col.querySelectorAll(".ig-pfp");
-      if (is(ns[k], "span.hide")) no();
-      var rest = ns[k++];
-      if (rest && rest.nodeType === 3 && /^\d+ others$/.test(rest.nodeValue.trim())) {
-        var hid = take("span.hide"); if (!hid) no();
-        m.collabs = hid.textContent.replace(/^ \(|\)$/g, "").split(", ").map(function (n) {
+      var pics = col.querySelectorAll(".ig-pfp"), andT = ns[k++];
+      if (!andT || andT.nodeType !== 3) no();
+      if (/^and \d+ others$/.test(andT.nodeValue.trim())) {
+        var hid = take("span.hide"), hm = hid && hid.textContent.match(/^ \((.*)\)( - )?$/); if (!hm) no();
+        pend = !!hm[2];
+        m.collabs = hm[1].split(", ").map(function (n) {
           var x = S.cast.filter(function (y) { return igName(y) === n; })[0] || (function () { var f = freshChar(n); if (igName(f) !== n) f.ighandle = n; return f; })();
           return { who: x.id, tick: false };
         });
         looks(char(m.collabs[0].who), pics[1]);
       } else {
+        if (andT.nodeValue.trim() !== "and") no();
+        var rw = take("span.ig-name"), rest = rw && kids(rw).length === 1 ? kids(rw)[0] : no();
         var cas = rest.nodeType === 3 && slugIn(pics[1]) ? rest.nodeValue.trim() : "";
         var co = cas ? personBySlug(slugIn(pics[1])) : rest.nodeType === 3 ? (function () { var n = rest.nodeValue.trim(), x = S.cast.filter(function (y) { return y.kind === "oneoff" && igName(y) === n; })[0]; if (!x) { x = freshChar(n); if (igName(x) !== n) x.ighandle = n; } return x; })() : igPerson(rest);
         looks(co, pics[1]);
         m.collabs = [{ who: co.id, tick: marks().tick, as: cas }];
       }
     }
-    if (is(ns[k], "span.hide") && is(ns[k + 1], "span.ig-follow")) { m.follow = "link"; k += 2; }
-    if (is(ns[k], "span.hide") && is(ns[k + 1], "span")) { var u = ns[k + 1].textContent; m.song = /^♫ /.test(u); m.under = u.replace(/^♫ /, ""); k += 2; }
-    if (k !== ns.length) no();
+    // after the names, each part comes after a hidden " - " (already read with the names of "2 others")
+    function sepThen(sel) {
+      if (pend && is(ns[k], sel)) { pend = false; return ns[k++]; }
+      if (!pend && is(ns[k], "span.hide") && is(ns[k + 1], sel)) { k += 2; return ns[k - 1]; }
+      return null;
+    }
+    if (sepThen("span.ig-follow")) m.follow = "link";
+    var u = sepThen("span"); if (u) { u = u.textContent; m.song = /^♫ /.test(u); m.under = u.replace(/^♫ /, ""); }
+    if (pend || k !== ns.length) no();
     // the photo, or a carousel of them
     if (is(ks[0], "p.ig-photo, div.ig-carousel")) {
       var pe = ks.shift(), phs = is(pe, "p") ? [pe] : Array.prototype.slice.call(pe.querySelectorAll(".ig-photo"));
@@ -2816,7 +2829,7 @@
   // stays on one line; one with a block inside puts every child on its own line, two spaces in; one with only inline
   // children splits only if its kind is on the list below (tested to look the same split or not, on the site and on AO3)
   // and one of them has a class. A hidden span that isn't first stays on the end of the line before it.
-  var SPLIT_SAFE = ["div.igdm-row", "p.dc-photos", "p.dc-photos.one", "p.dc-photos.three", "p.dc-photos.two", "p.hide", "p.ig-carousel-info", "p.ig-header", "p.ig-photo.real", "p.ig-story", "p.ig-story.close", "p.ig-story.me", "p.igdm-footer", "p.igdm-link-img", "p.igdm-photos", "p.igdm-photos.one", "p.igdm-photos.three", "p.igdm-photos.two", "p.igdm-post-btns", "p.igdm-post-by", "p.igdm-post-img", "p.imsg-footer", "p.imsg-photos", "p.imsg-photos.one", "p.imsg-photos.three", "p.imsg-photos.two", "p.mob-header", "p.msg.in.tail.typing-indicator", "p.msg.in.typing-indicator", "p.msg.in.voice", "p.msg.out.tail.typing-indicator", "p.msg.out.typing-indicator", "p.msg.out.voice", "p.tb-blog", "p.tb-header", "p.tb-nav", "p.tb-row", "p.tb-row.two", "p.tb-tabs", "p.tb-top", "p.tw-header", "p.tw-nav", "p.tw-opt.results.p10", "p.tw-opt.results.p25", "p.tw-opt.results.p30", "p.tw-opt.results.p60", "p.tw-opt.results.win.p75", "p.tw-pfp", "p.tw-photos", "p.tw-photos.four", "p.tw-photos.three", "p.tw-photos.two", "p.tw-stat", "p.tw-stat.locked", "p.tw-stat.right", "p.tw-stat.right.saved", "p.tw-tabs", "p.tw-top", "p.twc-reply-bar", "p.twdm-footer", "p.twdm-photos", "p.twdm-photos.one", "p.twdm-photos.three", "p.twdm-photos.two", "p.wa-call", "p.wa-footer", "p.wa-link-img", "p.wa-pfp", "p.wa-photos.four", "p.wa-photos.one", "p.wa-photos.three", "p.wa-photos.two", "p.wa-wall", "p.who", "span.dc-embed-text", "span.dc-quote", "span.gm-pfp", "span.handle.acc-rpf", "span.hide", "span.ig-badge", "span.ig-collab", "span.ig-like-pfp", "span.ig-pfp", "span.ig-pfp.story", "span.ig-photo.real", "span.igdm-back", "span.pfp", "span.tb-ask-pfp", "span.tb-name", "span.tb-pfp", "span.tb-pfp.reblog", "span.tb-photo", "span.tb-voted", "span.tw-me", "span.tw-pfp", "span.tw-photo", "span.twdm-back", "span.wa-field", "span.wa-pfp", "span.wa-photo", "td.gm-btns", "td.gm-pfp-cell", "td.gm-star", "td.wa-back", "td.wa-btns", "td.wa-name"];
+  var SPLIT_SAFE = ["div.igdm-row", "p.dc-photos", "p.dc-photos.one", "p.dc-photos.three", "p.dc-photos.two", "p.hide", "p.ig-carousel-info", "p.ig-header", "p.ig-person", "p.ig-photo.real", "p.ig-story", "p.ig-story.close", "p.ig-story.me", "p.ig-top", "p.igdm-footer", "p.igdm-link-img", "p.igdm-photos", "p.igdm-photos.one", "p.igdm-photos.three", "p.igdm-photos.two", "p.igdm-post-btns", "p.igdm-post-by", "p.igdm-post-img", "p.imsg-footer", "p.imsg-photos", "p.imsg-photos.one", "p.imsg-photos.three", "p.imsg-photos.two", "p.mob-header", "p.msg.in.tail.typing-indicator", "p.msg.in.typing-indicator", "p.msg.in.voice", "p.msg.out.tail.typing-indicator", "p.msg.out.typing-indicator", "p.msg.out.voice", "p.tb-blog", "p.tb-header", "p.tb-nav", "p.tb-row", "p.tb-row.two", "p.tb-tabs", "p.tb-top", "p.tw-header", "p.tw-nav", "p.tw-opt.results.p10", "p.tw-opt.results.p25", "p.tw-opt.results.p30", "p.tw-opt.results.p60", "p.tw-opt.results.win.p75", "p.tw-pfp", "p.tw-photos", "p.tw-photos.four", "p.tw-photos.three", "p.tw-photos.two", "p.tw-stat", "p.tw-stat.locked", "p.tw-stat.right", "p.tw-stat.right.saved", "p.tw-tabs", "p.tw-top", "p.twc-reply-bar", "p.twdm-footer", "p.twdm-photos", "p.twdm-photos.one", "p.twdm-photos.three", "p.twdm-photos.two", "p.wa-call", "p.wa-footer", "p.wa-link-img", "p.wa-pfp", "p.wa-photos.four", "p.wa-photos.one", "p.wa-photos.three", "p.wa-photos.two", "p.wa-wall", "p.who", "span.dc-embed-text", "span.dc-quote", "span.gm-pfp", "span.handle.acc-rpf", "span.hide", "span.ig-badge", "span.ig-collab", "span.ig-like-pfp", "span.ig-pfp", "span.ig-pfp.story", "span.ig-photo.real", "span.igdm-back", "span.pfp", "span.tb-ask-pfp", "span.tb-name", "span.tb-pfp", "span.tb-pfp.reblog", "span.tb-photo", "span.tb-voted", "span.tw-me", "span.tw-pfp", "span.tw-photo", "span.twdm-back", "span.wa-field", "span.wa-pfp", "span.wa-photo", "td.gm-btns", "td.gm-pfp-cell", "td.gm-star", "td.wa-back", "td.wa-btns", "td.wa-name"];
   var FMT_BOXES = "mob dc tw-feed ig-feed tb-feed twc12-feed twc16-feed tw tw-reply ig igdm tb gm mail twdm wa imsg twc12 twc16".split(" ");
   var FMT_BLOCK = "div p table thead tbody tr td th ul ol li details summary blockquote h1 h2 h3 h4 h5 h6 pre hr".split(" ");
   var FMT_VOID = ["img", "br", "hr", "input"];
@@ -2999,6 +3012,32 @@
       // the old boxed Follow button was ig-follow-btn: now it's ig-follow with btn
       Array.prototype.slice.call(c.querySelectorAll(".ig-follow-btn")).forEach(function (x) {
         x.setAttribute("class", x.getAttribute("class").replace(/(^|\s)ig-follow-btn(?=\s|$)/, "$1ig-follow btn")); hit = true;
+      });
+      // an account name on a post's top line or in "In this photo" used to sit bare: now it's in an ig-name span.
+      // A collab's "and" was an ig-and span between two hidden spaces: now it's the plain words
+      Array.prototype.slice.call(c.querySelectorAll("p.ig-top, p.ig-person")).forEach(function (p) {
+        if (p.querySelector(":scope > span.ig-name")) return;
+        var ns = kids(p), i = 0;
+        function wrap(n) {
+          if (!n || !(n.nodeType === 3 || is(n, "span.handle"))) return;
+          var w = document.createElement("span"); w.className = "ig-name"; p.insertBefore(w, n);
+          if (n.nodeType === 3) { w.textContent = n.nodeValue.trim(); n.remove(); } else w.appendChild(n);
+          hit = true;
+        }
+        while (is(ns[i], ".ig-menu, .ig-follow.btn, .ig-following")) i++;
+        if (!is(ns[i], ".ig-pfp, .ig-collab")) return;
+        wrap(ns[i + 1]);
+        var and = p.querySelector(":scope > span.ig-and"); if (!and) return;
+        var ks = kids(p), j = ks.indexOf(and);
+        if (!is(ks[j - 1], "span.hide") || ks[j - 1].textContent !== " " || !is(ks[j + 1], "span.hide") || ks[j + 1].textContent !== " ") return;
+        var rest = ks[j + 2], tx = document.createTextNode(" and ");
+        p.insertBefore(tx, ks[j - 1]); ks[j - 1].remove(); and.remove(); ks[j + 1].remove(); hit = true;
+        if (rest && rest.nodeType === 3 && /^\d+ others$/.test(rest.nodeValue.trim())) {
+          tx.nodeValue = " and " + rest.nodeValue.trim(); rest.remove();
+          // the hidden names of the others and the hidden " - " after them are one span now
+          var hid = ks[j + 3], dash = ks[j + 4];
+          if (is(hid, "span.hide") && is(dash, "span.hide") && dash.textContent === " - ") { hid.textContent += " - "; dash.remove(); }
+        } else wrap(rest);
       });
       // old Instagram buttons had ig-icon and ig-count spans (and drawn comment and bookmark icons): now they're built like Twitter's
       Array.prototype.slice.call(c.querySelectorAll("div.ig-stats")).forEach(function (st) {
