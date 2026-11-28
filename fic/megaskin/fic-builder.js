@@ -369,10 +369,10 @@
   }
 
   function waPfp(c) {
-    if (isProfile(c)) return '<p class="wa-pfp"><span class="pfp pfp-' + slugOf(c) + '"></span></p>';
+    if (isProfile(c)) return '<p class="avatar"><span class="pfp pfp-' + slugOf(c) + '"></span></p>';
     var u = picUrl(c.pic);
-    if (u) return '<p class="wa-pfp ' + colourClass(c) + '"><span class="pfp"><img ' + (c.land ? 'class="landscape" ' : "") + 'src="' + esc(u) + '" alt="' + esc(c.alt.trim() || ("Profile picture of " + nameOf(c))) + '"></span></p>';
-    return '<p class="wa-pfp ' + colourClass(c) + '">' + (c.showInitials !== false ? esc(initials(c)) : "") + "</p>";
+    if (u) return '<p class="avatar ' + colourClass(c) + '"><span class="pfp"><img ' + (c.land ? 'class="landscape" ' : "") + 'src="' + esc(u) + '" alt="' + esc(c.alt.trim() || ("Profile picture of " + nameOf(c))) + '"></span></p>';
+    return '<p class="avatar ' + colourClass(c) + '">' + (c.showInitials !== false ? esc(initials(c)) : "") + "</p>";
   }
   function groupPic(b) {
     var g = b.gp || newGroupPic(), pc = char(g.from);
@@ -400,7 +400,7 @@
     if (b.header === "bar") {
       var o = others(b), pc;
       if (b.group) pc = waPfp(groupPic(b));
-      else pc = o[0] ? waPfp(o[0]) : '<span class="wa-pfp colour5">?</span>';
+      else pc = o[0] ? waPfp(o[0]) : '<span class="avatar colour5">?</span>';
       var sub = b.sub.trim();
       if (b.group && !sub) sub = o.map(nameOf).concat(["You"]).join(", ");
       // the back arrow, the picture, the name, the status line under it, then the buttons
@@ -505,13 +505,13 @@
   // ---------- Twitter/X DMs ----------
 
   // a round picture as its own line (the picture beside a run of messages in a group)
-  function pfpLine(c) { var h = circle("tw-pfp", c); return "<p" + h.slice(5, -7) + "</p>"; }
+  function pfpLine(c) { var h = circle("avatar", c); return "<p" + h.slice(5, -7) + "</p>"; }
   function dmName(c) { return isProfile(c) ? pSpan("name", c, null, twName(c)) : esc(nameOf(c)); }
   function twdmHTML(b) {
     var o = others(b), head = b.group ? groupPic(b) : o[0];
     var name = t(b.title) ? esc(t(b.title)) : b.group ? "Group chat" : head ? dmName(head) : "Someone";
     var L = ['<div class="' + containerClass(b, "twdm") + '">',
-      '  <p class="mob-header"><span class="back"><span class="ic ic-back">&#8592;</span></span>' + (head ? circle("tw-pfp", head) : '<span class="tw-pfp colour5">?</span>') +
+      '  <p class="mob-header"><span class="back"><span class="ic ic-back">&#8592;</span></span>' + (head ? circle("avatar", head) : '<span class="avatar colour5">?</span>') +
       '<span class="chat-name">' + name + '</span><span class="btns"><span class="ic ic-video">&#127909;</span><span class="ic ic-phone">&#128222;</span></span></p>',
       '  <div class="mob-body">'];
     // in a group, each run of messages from one person goes in a row, with their picture and name first
@@ -780,7 +780,7 @@
     if (kinds.length === 1 && who.length) {
       var names = who.map(nameOf), list = names.length > 1 ? names.slice(0, -1).join(", ") + " and " + names[names.length - 1] : names[0];
       var more = (+total || who.length) - 3;
-      inner = kinds[0] + '<span class="hide"> from ' + esc(list) + " </span>" + who.slice(0, 3).map(function (f) { return circle("ig-pfp", f, null); }).join("") + (more > 0 ? "+" + more : "");
+      inner = kinds[0] + '<span class="hide"> from ' + esc(list) + " </span>" + who.slice(0, 3).map(function (f) { return circle("avatar", f, null); }).join("") + (more > 0 ? "+" + more : "");
     } else inner = esc(kinds.length === 1 ? kinds[0] : em.join("")) + (total ? " " + esc(total) : "");
     return '<p class="reacts' + (side === "out" ? " out" : "") + '"><span class="hide">[Reactions: </span>' + inner + '<span class="hide">]</span></p>';
   }
@@ -796,7 +796,7 @@
     // a reel is one picture (a still from the video): the skin adds the play button and the reel sign
     var acc = char(m.postBy), u = picUrl(m.postImg || ""), reel = m.postReel;
     var who = acc ? igNameHTML(acc, null) : esc(t(m.postAcc) || "someone");
-    var pic = acc ? circle("ig-pfp", acc, null) : '<span class="ig-pfp' + (m.postCol ? " colour" + m.postCol : "") + '">' + esc(t(m.postIni) || (t(m.postAcc) || "s").charAt(0).toUpperCase()) + "</span>";
+    var pic = acc ? circle("avatar", acc, null) : '<span class="avatar' + (m.postCol ? " colour" + m.postCol : "") + '">' + esc(t(m.postIni) || (t(m.postAcc) || "s").charAt(0).toUpperCase()) + "</span>";
     var L = [], btns = quoted ? "" : (m.postShare !== false ? '<span class="ic ic-share"></span>' : "") + (m.postSave !== false ? '<span class="ic ic-save"></span>' : "");
     if (btns) L.push('<p class="igdm-post-btns">' + btns + "</p>");
     L.push('<p class="igdm-post-by">' + pic + (quoted ? '<span class="hide">[Replying to a ' + (reel ? "reel" : "post") + " from </span><b>" + who + '</b><span class="hide">]</span>' :
@@ -828,8 +828,8 @@
     var pic = false;
     if (b.headPic !== false) {
       var f = igdmFaces(b); pic = f.length > 0;
-      if (f.length === 2) head += '<span class="ig-collab">' + circle("ig-pfp", f[0], null) + circle("ig-pfp", f[1], null) + "</span>";
-      else if (f.length) head += circle("ig-pfp", f[0], null);
+      if (f.length === 2) head += '<span class="ig-collab">' + circle("avatar", f[0], null) + circle("avatar", f[1], null) + "</span>";
+      else if (f.length) head += circle("avatar", f[0], null);
     }
     // a long name in a chat between two is cut short with "…" to fit on one line at phone width (AO3 won't let the skin do it)
     var full = Array.from(t(b.title) || (b.group ? "Group chat" : o[0] ? igName(o[0]) : "Someone"));
@@ -856,7 +856,7 @@
         var tc = typer(b, m); if (!tc) return;
         var tOut = tc.id === b.pov, tg = b.group && !tOut;
         if (!tg || (row && row.from !== tc.id)) close();
-        if (tg && !row) row = { from: tc.id, first: true, lines: (b.pics !== false ? [circle("ig-pfp", tc, null)] : []).concat(['<p class="who">' + igNameHTML(tc, null) + '<span class="hide">:</span></p>']) };
+        if (tg && !row) row = { from: tc.id, first: true, lines: (b.pics !== false ? [circle("avatar", tc, null)] : []).concat(['<p class="who">' + igNameHTML(tc, null) + '<span class="hide">:</span></p>']) };
         if (tg) row.first = false;
         (tg ? row.lines : body).push('<p class="msg ' + (tOut ? "out" : "in") + ' typing-indicator"><span class="hide">' + typingHide(tc, true) + "</span><span></span><span></span><span></span></p>");
         return;
@@ -866,7 +866,7 @@
       var q = m.replyTo && b.msgs.filter(function (x) { return x.id === m.replyTo && char(x.from); })[0];
       if (!grouped || (row && row.from !== m.from)) close();
       if (grouped && !row) {
-        row = { from: m.from, first: true, lines: b.pics !== false ? [circle("ig-pfp", c, null)] : [] };
+        row = { from: m.from, first: true, lines: b.pics !== false ? [circle("avatar", c, null)] : [] };
         // a reply's "replied to" line takes the place of the name line
         if (!q) row.lines.push('<p class="who">' + igNameHTML(c, null) + '<span class="hide">:</span></p>');
       }
@@ -2113,7 +2113,7 @@
   function looks(c, el) {
     if (!c || isProfile(c) || fresh.indexOf(c.id) < 0 || !el) return;
     var col = el.className.match(/(?:^|\s)colour(\d+)/); if (col) c.colour = col[1];
-    if (!is(el, ".wa-pfp, .tw-pfp, .ig-pfp, [class*=-pfp]")) return;
+    if (!is(el, ".avatar, .tw-pfp, .ig-pfp, [class*=-pfp]")) return;
     var img = el.querySelector("img");
     if (img) { c.pic = img.getAttribute("src"); c.alt = img.getAttribute("alt") || ""; c.land = img.classList.contains("landscape"); if (c.alt === "Profile picture of " + nameOf(c)) c.alt = ""; return; }
     var txt = words(el);
@@ -2163,7 +2163,7 @@
       var rowPfp = null;
       if (is(n, "div.row")) {
         var rk = kids(n); b.group = true;
-        if (is(rk[0], "p.wa-pfp")) rowPfp = rk.shift();
+        if (is(rk[0], "p.avatar")) rowPfp = rk.shift();
         if (rk.length !== 1) no();
         n = rk[0];
         if (is(n, "p.msg.typing-indicator")) {
@@ -2198,7 +2198,7 @@
         m.call = cm[1] === "video" ? "video" : "voice"; m.missed = cm[2] === "missed";
         var len = main.querySelector(".wa-call-length"); m.callLen = m.missed || !len ? "" : len.textContent;
       } else if (is(main, "p.wa-contact")) {
-        var cp = main.querySelector("span.wa-pfp, span"); if (!cp) no();
+        var cp = main.querySelector("span.avatar, span"); if (!cp) no();
         var cslug = cp.className.match(/(?:^|\s)pfp-([a-z0-9-]+)/) || (cp.querySelector("[class*=pfp-]") || {}).className && cp.querySelector("[class*=pfp-]").className.match(/(?:^|\s)pfp-([a-z0-9-]+)/);
         var cc = cslug ? personBySlug(cslug[1]) : (function () { var x = main.cloneNode(true); x.querySelector("span").remove(); var nm = words(x); return S.cast.filter(function (c) { return c.kind === "oneoff" && nameOf(c) === nm; })[0] || freshChar(nm); })();
         looks(cc, cp); m.contact = cc.id;
@@ -2255,7 +2255,7 @@
     if (rowless) b.pics = false;
     // the picture at the top: the group's, or the other person's
     if (bar) {
-      var gp = bar.querySelector(":scope > span.wa-pfp"); if (!gp) no();
+      var gp = bar.querySelector(":scope > span.avatar"); if (!gp) no();
       if (b.group) {
         var gs = slugIn(gp);
         if (gs) b.gp.from = personBySlug(gs).id;
@@ -2284,7 +2284,7 @@
     var b = newBlock("twdm"); settings(b, el, "twdm");
     var ks = kids(el), k = 0, head = ks[k++];
     if (!is(head, "p.mob-header")) no();
-    var hp = head.querySelector(".tw-pfp"), hn = head.querySelector(".chat-name"); if (!hp || !hn) no();
+    var hp = head.querySelector(".avatar"), hn = head.querySelector(".chat-name"); if (!hp || !hn) no();
     b.title = hn.querySelector("span.name") ? "" : hn.textContent;
     var body = ks[k++]; if (!is(body, "div.mob-body")) no();
     b.bar = "none";
@@ -2334,7 +2334,7 @@
     kids(body).forEach(function (n) {
       if (is(n, "div.row")) {
         var rk = kids(n); b.group = true;
-        var pf = rk.shift(), wp = rk.shift(); if (!is(pf, "p.tw-pfp") || !is(wp, "p.who")) no();
+        var pf = rk.shift(), wp = rk.shift(); if (!is(pf, "p.avatar") || !is(wp, "p.who")) no();
         var who = personIn(wp); looks(who, pf);
         bubbles(rk, who);
       } else bubbles([n], null);
@@ -2355,7 +2355,7 @@
     if (!em || em.nodeType !== 3 || !is(from, "span.hide")) no();
     var fm = from.textContent.match(/^ from (.+) $/); if (!fm) no();
     var plus = rk.length && rk[rk.length - 1].nodeType === 3 ? rk.pop().nodeValue.match(/^\+(\d+)$/) : null;
-    rk.forEach(function (f) { if (!is(f, "span.ig-pfp")) no(); });
+    rk.forEach(function (f) { if (!is(f, "span.avatar")) no(); });
     var names = fm[1].split(/, | and /);
     if (rk.length > Math.min(names.length, 3)) no();
     m.waReacts = em.nodeValue;
@@ -2378,7 +2378,7 @@
     }
     var by = ks.shift(); if (!is(by, "p.igdm-post-by")) no();
     var bk = kids(by), pf = bk.shift(), h = bk.shift(), acc = bk.shift(), end = bk.shift();
-    if (!is(pf, "span.ig-pfp") || !is(h, "span.hide") || !is(acc, "b") || !is(end, "span.hide") || bk.length) no();
+    if (!is(pf, "span.avatar") || !is(h, "span.hide") || !is(acc, "b") || !is(end, "span.hide") || bk.length) no();
     var kind = reel ? "reel" : "post", em = h.querySelector("em"), name = "";
     if (quoted) { if (h.textContent !== "[Replying to a " + kind + " from " || end.textContent !== "]") no(); }
     else { if (!em || h.textContent !== em.textContent + " shared a " + kind + " from " || end.textContent !== ":") no(); name = em.textContent; }
@@ -2483,7 +2483,7 @@
     }
     kids(body).forEach(function (n) {
       if (!is(n, "div.row")) { line(n, null); return; }
-      var rk = kids(n), pf = is(rk[0], "span.ig-pfp") ? rk.shift() : null, wp = rk[0], who;
+      var rk = kids(n), pf = is(rk[0], "span.avatar") ? rk.shift() : null, wp = rk[0], who;
       if (!pf) b.pics = false;
       if (is(wp, "p.who")) { rk.shift(); who = igPerson(wp); }
       else if (is(wp, "p.reply")) {
@@ -2517,7 +2517,7 @@
       b.app = true; hk = hk.slice(2, -2);
     }
     if (is(hk[0], "span.ig-collab")) { pics = kids(hk.shift()); if (pics.length !== 2) no(); b.group = true; }
-    else if (is(hk[0], "span.ig-pfp")) pics = [hk.shift()];
+    else if (is(hk[0], "span.avatar")) pics = [hk.shift()];
     b.headPic = pics.length > 0;
     if (!is(hk[0], "span.chat-name") || !is(hk[1], "span.hide") || hk[1].textContent !== " - ") no();
     var name = kids(hk[0]), sub = hk.slice(2);
@@ -2836,7 +2836,7 @@
   // stays on one line; one with a block inside puts every child on its own line, two spaces in; one with only inline
   // children splits only if its kind is on the list below (tested to look the same split or not, on the site and on AO3)
   // and one of them has a class. A hidden span that isn't first stays on the end of the line before it.
-  var SPLIT_SAFE = ["div.row", "p.footer", "p.hide", "p.ig-carousel-info", "p.ig-header", "p.ig-person", "p.ig-photo.real", "p.ig-story", "p.ig-story.close", "p.ig-story.me", "p.ig-top", "p.igdm-post-btns", "p.igdm-post-by", "p.igdm-post-img", "p.link-img", "p.mob-header", "p.msg.in.tail.typing-indicator", "p.msg.in.typing-indicator", "p.msg.in.voice", "p.msg.out.tail.typing-indicator", "p.msg.out.typing-indicator", "p.msg.out.voice", "p.photos", "p.photos.four", "p.photos.one", "p.photos.three", "p.photos.two", "p.tb-blog", "p.tb-header", "p.tb-nav", "p.tb-row", "p.tb-row.two", "p.tb-tabs", "p.tb-top", "p.tw-header", "p.tw-nav", "p.tw-opt.results.p10", "p.tw-opt.results.p25", "p.tw-opt.results.p30", "p.tw-opt.results.p60", "p.tw-opt.results.win.p75", "p.tw-pfp", "p.tw-photos", "p.tw-photos.four", "p.tw-photos.three", "p.tw-photos.two", "p.tw-stat", "p.tw-stat.locked", "p.tw-stat.right", "p.tw-stat.right.saved", "p.tw-tabs", "p.tw-top", "p.twc-reply-bar", "p.wa-call", "p.wa-pfp", "p.wa-wall", "p.who", "span.back", "span.dc-embed-text", "span.dc-quote", "span.gm-pfp", "span.handle.acc-rpf", "span.hide", "span.ig-badge", "span.ig-collab", "span.ig-like-pfp", "span.ig-pfp", "span.ig-pfp.story", "span.ig-photo.real", "span.msgbar", "span.pfp", "span.photo", "span.tb-ask-pfp", "span.tb-name", "span.tb-pfp", "span.tb-pfp.reblog", "span.tb-photo", "span.tb-voted", "span.tw-me", "span.tw-pfp", "span.tw-photo", "span.wa-pfp", "td.gm-btns", "td.gm-pfp-cell", "td.gm-star"];
+  var SPLIT_SAFE = ["div.row", "p.avatar", "p.footer", "p.hide", "p.ig-carousel-info", "p.ig-header", "p.ig-person", "p.ig-photo.real", "p.ig-story", "p.ig-story.close", "p.ig-story.me", "p.ig-top", "p.igdm-post-btns", "p.igdm-post-by", "p.igdm-post-img", "p.link-img", "p.mob-header", "p.msg.in.tail.typing-indicator", "p.msg.in.typing-indicator", "p.msg.in.voice", "p.msg.out.tail.typing-indicator", "p.msg.out.typing-indicator", "p.msg.out.voice", "p.photos", "p.photos.four", "p.photos.one", "p.photos.three", "p.photos.two", "p.tb-blog", "p.tb-header", "p.tb-nav", "p.tb-row", "p.tb-row.two", "p.tb-tabs", "p.tb-top", "p.tw-header", "p.tw-nav", "p.tw-opt.results.p10", "p.tw-opt.results.p25", "p.tw-opt.results.p30", "p.tw-opt.results.p60", "p.tw-opt.results.win.p75", "p.tw-pfp", "p.tw-photos", "p.tw-photos.four", "p.tw-photos.three", "p.tw-photos.two", "p.tw-stat", "p.tw-stat.locked", "p.tw-stat.right", "p.tw-stat.right.saved", "p.tw-tabs", "p.tw-top", "p.twc-reply-bar", "p.wa-call", "p.wa-wall", "p.who", "span.avatar", "span.back", "span.dc-embed-text", "span.dc-quote", "span.gm-pfp", "span.handle.acc-rpf", "span.hide", "span.ig-badge", "span.ig-collab", "span.ig-like-pfp", "span.ig-pfp", "span.ig-pfp.story", "span.ig-photo.real", "span.msgbar", "span.pfp", "span.photo", "span.tb-ask-pfp", "span.tb-name", "span.tb-pfp", "span.tb-pfp.reblog", "span.tb-photo", "span.tb-voted", "span.tw-me", "span.tw-pfp", "span.tw-photo", "td.gm-btns", "td.gm-pfp-cell", "td.gm-star"];
   var FMT_BOXES = "mob dc tw-feed ig-feed tb-feed twc12-feed twc16-feed tw tw-reply ig igdm tb gm mail twdm wa imsg twc12 twc16".split(" ");
   var FMT_BLOCK = "div p table thead tbody tr td th ul ol li details summary blockquote h1 h2 h3 h4 h5 h6 pre hr".split(" ");
   var FMT_VOID = ["img", "br", "hr", "input"];
@@ -2974,6 +2974,10 @@
         Array.prototype.forEach.call(scr.children, function (x) { if (th && x.matches("div.mob.ig") && !/(?:^|\s)theme-/.test(x.className)) x.classList.add(th); });
         hit = true;
       }
+      // a picture circle in an Instagram or Twitter DM was ig-pfp or tw-pfp: now it's avatar, like every chat's
+      if (c.matches(".mob.igdm, .mob.twdm")) Array.prototype.slice.call(c.querySelectorAll(".ig-pfp, .tw-pfp")).forEach(function (x) {
+        x.setAttribute("class", x.getAttribute("class").replace(/(^|\s)(ig|tw)-pfp(?=\s|$)/, "$1avatar")); hit = true;
+      });
       // old WhatsApp typing dots were a div with p's (and a name line in a group); now they're one p like every other app
       [c].concat(Array.prototype.slice.call(c.querySelectorAll("div.msg.typing-indicator"))).forEach(function (d) {
         if (!d.matches("div.msg.typing-indicator") || !d.parentNode) return;
@@ -3027,7 +3031,7 @@
         var ns = Array.prototype.slice.call(hd.childNodes), dash = ns.findIndex(function (n) { return is(n, "span.hide") && n.textContent === " - "; });
         if (dash < 0) return;
         var st = 0;
-        ns.slice(0, dash).forEach(function (n, i) { if (is(n, ".ig-pfp, .ig-collab, .btns")) st = i + 1; });
+        ns.slice(0, dash).forEach(function (n, i) { if (is(n, ".avatar, .ig-collab, .btns")) st = i + 1; });
         while (st < dash && ns[st].nodeType === 3 && !ns[st].nodeValue.trim()) st++;
         if (st > 0 && is(ns[st - 1], ".btns") && is(ns[st], "span.hide")) st++;
         var w = document.createElement("span"); w.className = "chat-name";
@@ -3045,7 +3049,7 @@
         }
         hd.className = "mob-header";
         if (cell("back")) span("back", cell("back"));
-        var pp = tb.querySelector("td.wa-pfp-cell p.wa-pfp");
+        var pp = tb.querySelector("td.wa-pfp-cell p.avatar");
         if (pp) span(pp.className, pp);
         if (cell("chat-name")) span("chat-name", cell("chat-name"));
         if (cell("wa-status") && cell("wa-status").textContent.trim()) {
