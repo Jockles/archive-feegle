@@ -727,25 +727,54 @@
 #workskin .tw .tw-account-label .ic,
 #workskin .tw-reply .tw-account-label .ic { margin-right: 0.2em; }
 
-/* a tweet on its own, or the first tweet of a reply chain, is an opened tweet: its @handle and time go on a
-   second line under the name, and a fan account line goes under them. In a feed (a tw-feed with app)
-   and in replies, they stay on one line */
+/* a tweet on its own, or the first tweet of a reply chain, is an opened tweet: the row wraps, so the name takes the whole first line, the @handle and time go on a second line under it, and a fan account line goes under them. The picture is pinned to the left of all three. */
 #workskin .tw .tw-top {
-  display: block;
-  text-overflow: ellipsis;
+  flex-wrap: wrap;
+  align-content: flex-start;
 }
 
-#workskin .tw .tw-pfp { float: left; }
+#workskin .tw .tw-top:has(&gt; .tw-pfp) {
+  min-height: 40px;
+  padding-left: 40px;
+}
 
-#workskin .tw .tw-handle,
-#workskin .tw .tw-time { margin-left: 0; }
+#workskin .tw .tw-pfp {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
 
-#workskin .tw .tw-account-label { display: block; position: static; margin-left: 0; }
+#workskin .tw .tw-name { flex-basis: 100%; }
 
-#workskin .tw-feed.app .tw .tw-top { display: flex; }
+#workskin .tw .tw-handle { margin-left: 0; }
 
-#workskin .tw-feed.app .tw .tw-handle,
-#workskin .tw-feed.app .tw .tw-time { margin-left: 0.25em; }
+#workskin .tw .tw-account-label {
+  flex-basis: 100%;
+  position: static;
+  margin-left: 0;
+}
+
+/* the gap between the picture and the words */
+#workskin .tw .tw-top:has(&gt; .tw-pfp) &gt; .tw-name,
+#workskin .tw .tw-top:has(&gt; .tw-pfp) &gt; .tw-handle,
+#workskin .tw .tw-top:has(&gt; .tw-pfp) &gt; .tw-account-label { margin-left: 0.55em; }
+
+/* on the app screen every tweet is one line again */
+#workskin .tw-feed.app .tw .tw-top {
+  flex-wrap: nowrap;
+  min-height: 0;
+  padding-left: 0;
+}
+
+#workskin .tw-feed.app .tw .tw-pfp { position: static; }
+
+#workskin .tw-feed.app .tw .tw-name,
+#workskin .tw-feed.app .tw .tw-account-label { flex-basis: auto; }
+
+#workskin .tw-feed.app .tw .tw-top:has(&gt; .tw-pfp) &gt; .tw-name { margin-left: 0; }
+
+#workskin .tw-feed.app .tw .tw-top:has(&gt; .tw-pfp) &gt; .tw-handle,
+#workskin .tw-feed.app .tw .tw-handle { margin-left: 0.25em; }
 
 #workskin .tw-feed.app .tw .tw-account-label { position: absolute; margin-left: 0.55em; }</code></pre>
 
@@ -767,7 +796,7 @@
   <li><code>text-overflow: ellipsis</code> puts "..." where the handle or the name is cut. The name is a flex row too, so its tick can shrink away before the name does. The tick's <code>background-size</code> is fixed, so it gets cut off instead of squashed.</li>
   <li>A name typed straight in, with no span around it, can't get the "...", so it wraps onto a hidden second line instead: <code>max-height: 1.3em</code>, the same as the <code>line-height</code>, shows the first line and hides the rest.</li>
   <li>The picture is 40px tall, which leaves room under the name for a second line. <code>tw-account-label</code> is pinned there with <code>position: absolute</code>, starting just past the picture, so it doesn't push the tweet down.</li>
-  <li>The last few rules are for an opened tweet: a <code>tw</code> on its own, or the first tweet of a reply chain. There, the name line goes back to <code>display: block</code>, the picture floats to the left, the name (still a flex box) takes the first line, and the handle and time flow onto the line under it. The fan line goes back to being an ordinary block, under the handle. The rules starting <code>.tw-feed.app</code> switch the one-line layout back on for tweets in a feed.</li>
+  <li>The last few rules are for an opened tweet: a <code>tw</code> on its own, or the first tweet of a reply chain. There, the row is allowed to wrap (<code>flex-wrap: wrap</code>). The name is told to be the full width, so it takes the whole first line, and the handle and time wrap onto the line under it. The fan line is full width too, so it goes under the handle. The picture is pinned to the left with <code>position: absolute</code>, and the row gets <code>padding-left</code> to leave room for it. The rules starting <code>.tw-feed.app</code> switch the one-line layout back on for tweets in a feed.</li>
 </ul>
 
 </details>
