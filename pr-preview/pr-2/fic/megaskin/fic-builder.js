@@ -285,8 +285,8 @@
     return ['<p class="photos' + (word ? " " + word : "") + '">'].concat(ind(ph, 1), ["</p>"]);
   }
   // a bubble of pictures: the hidden name (from a hideLabel, or none), the pictures, then anything after them
-  function chatGallery(pre, cls, lbl, photos, after) {
-    var L = ['<div class="' + cls + '">'];
+  function chatGallery(pre, cls, lbl, photos, after, before) {
+    var L = ['<div class="' + cls + '">'].concat(ind(before || [], 1));
     if (lbl) L.push("  " + lbl.replace('<span class="hide">', '<p class="hide">').replace(":</em> </span>", ":</em></p>"));
     return L.concat(ind(photoLines(pre, photos), 1), after ? ["  " + after] : [], ["</div>"]);
   }
@@ -347,18 +347,15 @@
       var pics = shownPhotos(m);
       if (pics.length) bubbles.push({ cls: "msg " + side + " gallery", pics: pics });
       var taps = (m.reacts || []).filter(function (r) { return r.emoji.trim(); });
+      // tapbacks: the message becomes a div, with a reacts line for each one first, then the message
       bubbles.forEach(function (bb, i) {
-        var extra = "";
-        if (i === bubbles.length - 1 && taps.length) {
-          bb.cls += " tapped";
-          extra = taps.map(function (r) {
-            var by = char(r.by);
-            return '<span class="imsg-tap' + (r.by === b.pov ? " me" : "") + '"><span class="hide"> [' + esc(nameOf(by)) +
-              " reacted </span>" + esc(r.emoji.trim()) + '<span class="hide">]</span></span>';
-          }).join("");
-        }
-        if (bb.pics) body = body.concat(chatGallery("imsg", bb.cls, label, bb.pics, extra));
-        else body.push('<p class="' + bb.cls + '">' + label + bb.inner + extra + "</p>");
+        var rs = i === bubbles.length - 1 ? taps.map(function (r) {
+          return '<p class="reacts' + (r.by === b.pov ? " me" : "") + '"><span class="hide">[' + esc(nameOf(char(r.by))) +
+            " reacted </span>" + esc(r.emoji.trim()) + '<span class="hide">]</span></p>';
+        }) : [];
+        if (bb.pics) body = body.concat(chatGallery("imsg", bb.cls, label, bb.pics, "", rs));
+        else if (rs.length) body = body.concat(['<div class="' + bb.cls + '">'], ind(rs, 1), ["  <p>" + label + bb.inner + "</p>", "</div>"]);
+        else body.push('<p class="' + bb.cls + '">' + label + bb.inner + "</p>");
       });
       if (m.edited) body.push('<p class="' + (out ? "edited" : "imsg-edited-in") + '">Edited</p>');
       if (m.status.trim()) body.push('<p class="status">' + esc(m.status.trim()) + "</p>");
@@ -2073,6 +2070,19 @@
     if (ks[k]) no();
     var who = null, m = null;
     kids(body).forEach(function (p) {
+      // tapbacks: reacts lines first, then the message (in its own p, or the pictures)
+      var taps = [];
+      if (is(p, "div.msg")) {
+        var dk = kids(p), tp = p.cloneNode(false);
+        while (is(dk[0], "p.reacts")) {
+          var tap = dk.shift(), h = tap.querySelector(".hide"), r = h && h.textContent.match(/^\[(.+) reacted $/); if (!r) no();
+          taps.push({ by: (tap.classList.contains("me") ? char(b.pov) || no() : personByName(r[1], true)).id, emoji: tap.textContent.replace(h.textContent, "").replace(/\]$/, "") });
+        }
+        if (!taps.length && !p.classList.contains("gallery")) no();
+        if (!p.classList.contains("gallery")) { if (dk.length !== 1 || !is(dk[0], "p:not([class])")) no(); tp = p.ownerDocument.createElement("p"); tp.className = p.className; dk = inl(dk[0]); }
+        dk.forEach(function (x) { tp.appendChild(x.cloneNode(true)); });
+        p = tp;
+      }
       var gal = is(p, "div.msg.gallery") ? galleryBack(p, "imsg") : null;
       if (!gal && !is(p, "p")) no();
       var cl = p.classList, ns = gal ? gal.rest : inl(p);
@@ -2091,11 +2101,6 @@
       var name = gal ? gal.name : labelOf(ns), from = out ? owner(b, name) : name ? personByName(name, true) : who;
       if (!from) no();
       m = newMsg(from.id, "");
-      var taps = [];
-      while (is(ns[ns.length - 1], "span.imsg-tap")) {
-        var tap = ns.pop(), h = tap.querySelector(".hide"), r = h && h.textContent.match(/^ \[(.+) reacted $/); if (!r) no();
-        taps.unshift({ by: (tap.classList.contains("me") ? char(b.pov) || no() : personByName(r[1], true)).id, emoji: tap.textContent.replace(h.textContent, "").replace(/\]$/, "") });
-      }
       m.reacts = taps;
       if (gal) { if (ns.length) no(); m.photos = gal.photos; }
       else { m.text = textBack(ns); m.sms = cl.contains("sms"); }
@@ -2989,6 +2994,24 @@
         ph.className = "photos one"; ph.appendChild(cell); d.appendChild(ph);
         taps.forEach(function (x) { d.appendChild(x); });
         o.parentNode.replaceChild(d, o); hit = true;
+      });
+      // iMessage tapbacks were imsg-tap spans at the end of a "tapped" message: now each is a reacts line at the top,
+      // and the message is a div with its words in a p of their own
+      if (c.classList.contains("imsg")) Array.prototype.slice.call(c.querySelectorAll(".msg.tapped")).forEach(function (o) {
+        var ns = inl(o), rs = [];
+        while (is(ns[ns.length - 1], "span.imsg-tap")) {
+          var tp = ns.pop(), r = document.createElement("p");
+          r.className = "reacts" + (tp.classList.contains("me") ? " me" : "");
+          r.innerHTML = tp.innerHTML; var h = r.querySelector(".hide"); if (h) h.textContent = h.textContent.replace(/^ /, "");
+          rs.unshift(r); tp.remove();
+        }
+        o.classList.remove("tapped"); hit = true;
+        if (is(o, "div")) { rs.reverse().forEach(function (r) { o.insertBefore(r, o.firstChild); }); return; }
+        var d = document.createElement("div"), w = document.createElement("p");
+        d.className = o.className;
+        rs.forEach(function (r) { d.appendChild(r); });
+        ns.forEach(function (n) { w.appendChild(n); });
+        d.appendChild(w); o.parentNode.replaceChild(d, o);
       });
       // old described pictures in posts were bare words in brackets: now they're in an img-desc span
       Array.prototype.slice.call(c.querySelectorAll(".ig-photo, p.tw-photos > span:not([class])")).forEach(function (x) {
