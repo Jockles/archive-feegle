@@ -918,6 +918,17 @@
 
 #workskin .twdm .reacts.out { margin-left: auto; border-radius: 1em; color: #0f1419; }
 
+/* a reacts line written the iMessage way (first inside the message) hangs off the bottom of the bubble as well */
+#workskin .twdm .msg:has(> .reacts) { position: relative; margin-bottom: 1.6em; }
+
+#workskin .twdm .msg > .reacts { position: absolute; top: 100%; left: 0; margin: -0.5em 0 0 0; white-space: nowrap; }
+
+#workskin .twdm .msg.out > .reacts { left: auto; right: 0; }
+
+#workskin .twdm .msg > .reacts + .reacts { left: 2.6em; }
+
+#workskin .twdm .msg.out > .reacts + .reacts { left: auto; right: 2.6em; }
+
 /* group DMs: the sender's name above their messages: <p class="who">Name</p> */
 #workskin .twdm .who {
   display: block;

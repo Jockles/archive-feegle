@@ -7,7 +7,7 @@
   <title>Megaskin, Chapter 5: iMessage CSS | jockles.com</title>
   <link rel="stylesheet" href="../../style.css">
   <script src="../../theme.js"></script>
-  <link rel="stylesheet" href="megaskin.css?v=888848ea" id="creator-style">
+  <link rel="stylesheet" href="megaskin.css?v=314dbda6" id="creator-style">
 </head>
 <body>
 <header>
@@ -316,14 +316,17 @@
 
 <p>Tapbacks are the fiddliest part, because they sit half outside the bubble. They work by taking the reaction out of the normal flow of the text and pinning it to the bubble's corner:</p>
 
-<pre><code>#workskin .imsg .msg.tapped {
+<pre><code>#workskin .imsg div.msg > p { margin: 0; }
+
+#workskin .imsg .msg:has(> .reacts) {
   position: relative;
   margin-top: 1.7em;
 }
 
-#workskin .imsg .imsg-tap {
+#workskin .imsg .reacts {
   position: absolute;
   top: -1.75em;
+  margin: 0;
   right: -0.95em;
   min-width: 2.15em;
   height: 2.15em;
@@ -344,7 +347,7 @@
 
 <ul>
   <li><code>position: relative</code> on the bubble and <code>position: absolute</code> on the tapback go together. The tapback is placed using the bubble's edges, and <code>top: -1.75em</code> and <code>right: -0.95em</code> move it up and out past the top right corner.</li>
-  <li>Because it's been taken out of the flow, the tapback doesn't push anything out of the way, so <code>tapped</code> adds space above the bubble (<code>margin-top: 1.7em</code>) for it to sit in. That's the only thing <code>tapped</code> does.</li>
+  <li>Because it's been taken out of the flow, the tapback doesn't push anything out of the way, so the first rule adds space above the bubble (<code>margin-top: 1.7em</code>) for it to sit in. <code>:has(&gt; .reacts)</code> means "a message with a <code>reacts</code> line inside it".</li>
   <li>The white border is the same colour as the chat, so it looks like a little gap between the tapback and the bubble behind it.</li>
   <li><code>border-radius</code> is half the height, which makes a circle, or a pill shape if the emoji is wide.</li>
 </ul>
@@ -356,15 +359,15 @@
 
 <p>The two tail dots are made from nothing at all:</p>
 
-<pre><code>#workskin .imsg .imsg-tap::before,
-#workskin .imsg .imsg-tap::after {
+<pre><code>#workskin .imsg .reacts::before,
+#workskin .imsg .reacts::after {
   content: "";
   position: absolute;
   border-radius: 50%;
   background: #e9e9eb;
 }
 
-#workskin .imsg .imsg-tap::before {
+#workskin .imsg .reacts::before {
   right: -0.2em;
   bottom: -0.2em;
   width: 0.5em;
@@ -372,7 +375,7 @@
   border: 2px solid #ffffff;
 }
 
-#workskin .imsg .imsg-tap::after {
+#workskin .imsg .reacts::after {
   right: -0.55em;
   bottom: -0.5em;
   width: 0.25em;
@@ -386,16 +389,16 @@
 <details>
 <summary>How it works: your own messages, and your own reactions</summary>
 
-<pre><code>#workskin .imsg .out .imsg-tap { right: auto; left: -0.95em; }
+<pre><code>#workskin .imsg .out .reacts { right: auto; left: -0.95em; }
 
-#workskin .imsg .out .imsg-tap::before { right: auto; left: -0.2em; }
+#workskin .imsg .out .reacts::before { right: auto; left: -0.2em; }
 
-#workskin .imsg .out .imsg-tap::after { right: auto; left: -0.55em; }
+#workskin .imsg .out .reacts::after { right: auto; left: -0.55em; }
 
-#workskin .imsg .imsg-tap.me { background: #0a84ff; color: #ffffff; }
+#workskin .imsg .reacts.me { background: #0a84ff; color: #ffffff; }
 
-#workskin .imsg .imsg-tap.me::before,
-#workskin .imsg .imsg-tap.me::after { background: #0a84ff; }</code></pre>
+#workskin .imsg .reacts.me::before,
+#workskin .imsg .reacts.me::after { background: #0a84ff; }</code></pre>
 
 <p>On your own messages, everything is flipped to the left: <code>right: auto</code> cancels the right-hand position, and <code>left</code> takes over. <code>me</code> turns the tapback and both its dots blue.</p>
 
@@ -404,25 +407,25 @@
 <details>
 <summary>How it works: stacked tapbacks in group chats</summary>
 
-<pre><code>#workskin .imsg .imsg-tap { z-index: 4; }
+<pre><code>#workskin .imsg .reacts { z-index: 4; }
 
-#workskin .imsg .imsg-tap + .imsg-tap { z-index: 3; }
+#workskin .imsg .reacts + .reacts { z-index: 3; }
 
-#workskin .imsg .imsg-tap + .imsg-tap + .imsg-tap { z-index: 2; }
+#workskin .imsg .reacts + .reacts + .reacts { z-index: 2; }
 
-#workskin .imsg .imsg-tap + .imsg-tap + .imsg-tap + .imsg-tap { z-index: 1; }
+#workskin .imsg .reacts + .reacts + .reacts + .reacts { z-index: 1; }
 
-#workskin .imsg .imsg-tap + .imsg-tap { right: 0.5em; }
+#workskin .imsg .reacts + .reacts { right: 0.5em; }
 
-#workskin .imsg .imsg-tap + .imsg-tap + .imsg-tap { right: 1.95em; }
+#workskin .imsg .reacts + .reacts + .reacts { right: 1.95em; }
 
-#workskin .imsg .imsg-tap + .imsg-tap + .imsg-tap + .imsg-tap { right: 3.4em; }
+#workskin .imsg .reacts + .reacts + .reacts + .reacts { right: 3.4em; }
 
-#workskin .imsg .imsg-tap + .imsg-tap::before,
-#workskin .imsg .imsg-tap + .imsg-tap::after { display: none; }</code></pre>
+#workskin .imsg .reacts + .reacts::before,
+#workskin .imsg .reacts + .reacts::after { display: none; }</code></pre>
 
 <ul>
-  <li><code>+</code> means "straight after". So <code>.imsg-tap + .imsg-tap</code> is the second tapback, and adding another <code>+ .imsg-tap</code> each time gets the third and fourth.</li>
+  <li><code>+</code> means "straight after". So <code>.reacts + .reacts</code> is the second tapback, and adding another <code>+ .reacts</code> each time gets the third and fourth.</li>
   <li>Each one is moved a step further along the bubble (<code>0.5em</code>, <code>1.95em</code>, <code>3.4em</code>), so they overlap like a fan.</li>
   <li><code>z-index</code> decides which is in front. The first has the highest number, so it's on top.</li>
   <li>Only the first keeps its tail dots.</li>
@@ -434,11 +437,11 @@
 <details>
 <summary>How it works: keeping a sender's name next to their tapped message</summary>
 
-<pre><code>#workskin .imsg .who + .msg.tapped { margin-top: 0.18em; }
+<pre><code>#workskin .imsg .who + .msg:has(> .reacts) { margin-top: 0.18em; }
 
-#workskin .imsg .who:has(+ .msg.tapped) { margin-top: 1.5em; }</code></pre>
+#workskin .imsg .who:has(+ .msg > .reacts) { margin-top: 1.5em; }</code></pre>
 
-<p>In a group chat, the space <code>tapped</code> adds would go between the name and the message, which looks wrong. The first line takes the space away from a tapped message that comes straight after a name. The second puts it above the name instead: <code>:has(+ .msg.tapped)</code> means "a name line that has a tapped message straight after it". If a reader's browser doesn't understand <code>:has</code>, the name just sits a bit closer to the message above - nothing breaks.</p>
+<p>In a group chat, the space above a tapped message would go between the name and the message, which looks wrong. The first line takes the space away from a tapped message that comes straight after a name. The second puts it above the name instead: <code>:has(+ .msg &gt; .reacts)</code> means "a name line that has a tapped message straight after it". If a reader's browser doesn't understand <code>:has</code>, the name just sits a bit closer to the message above - nothing breaks.</p>
 
 </details>
 
@@ -466,7 +469,7 @@
 <details>
 <summary>How it works: keeping the shape, and tapbacks on a picture</summary>
 
-<p><code>height: auto</code> keeps the picture's shape, so nothing gets squashed. <code>overflow: hidden</code> keeps the bubble neat, but it would cut off a tapback sitting above the picture, so a <code>tapped</code> picture bubble lets it show.</p>
+<p><code>height: auto</code> keeps the picture's shape, so nothing gets squashed. <code>overflow: hidden</code> keeps the bubble neat, but it would cut off a tapback sitting above the picture, so a picture bubble with a tapback lets it show.</p>
 
 </details>
 
@@ -514,7 +517,7 @@
 <p>If you never use a part, you can delete its rules to make your skin shorter. Each part has a comment above it saying what it is. The ones that come out cleanly are:</p>
 
 <ul>
-  <li><strong>Tapbacks:</strong> everything with <code>tapped</code> or <code>imsg-tap</code> in it, including the lines in the dark and auto blocks.</li>
+  <li><strong>Tapbacks:</strong> everything with <code>reacts</code> in it, including the lines in the dark and auto blocks.</li>
   <li><strong>Green bubbles:</strong> the <code>.out.sms</code> line.</li>
   <li><strong>Pictures:</strong> the <code>.msg.gallery</code> and <code>photo</code> rules.</li>
   <li><strong>Typing dots:</strong> the four <code>typing-indicator</code> rules, and <code>.out.typing-indicator</code>.</li>
