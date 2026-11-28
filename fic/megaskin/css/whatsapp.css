@@ -381,121 +381,8 @@
   text-decoration: underline;
 }
 
-/* photos */
-#workskin .wa .wa-photos {
-  display: block;
-  overflow: hidden;
-  border-radius: 6px;
-}
-
-/* AO3 turns line breaks in your code into <br> tags; inside a grid they would push photos down */
-#workskin .wa .wa-photos br {
-  display: none;
-}
-
-#workskin .wa .wa-photos::after {
-  content: "";
-  display: block;
-  clear: both;
-}
-
-#workskin .wa .wa-photo {
-  display: block;
-  position: relative;
-  float: left;
-  width: 49%;
-  height: 0;
-  padding: 49% 0 0 0;
-  margin: 0 1% 1% 0;
-  overflow: hidden;
-  background: rgba(0, 0, 0, 0.12);
-}
-
-#workskin .wa .wa-photo:nth-of-type(2n) { margin-right: 0; }
-
-#workskin .wa .wa-photo:nth-of-type(n+3) { margin-bottom: 0; }
-
-/* the picture. AO3 can't crop pictures automatically, so the skin needs to know which way the picture runs: - normal (taller than wide, or square): it is made as wide as the box, and the top and bottom are cropped evenly - add class="landscape" to the img if it is wider than tall: it is made as tall as the box, and the sides are cropped evenly The tall boxes (two pictures; the left one of three) always use the second way, as nearly any photo fits them that way. */
-#workskin .wa .wa-photo img {
-  position: absolute;
-  top: -9999px;
-  bottom: -9999px;
-  left: 0;
-  display: block;
-  width: 100%;
-  height: auto;
-  min-width: 0;
-  min-height: 0;
-  max-width: none;
-  max-height: none;
-  margin: auto 0;
-}
-
-#workskin .wa .wa-photo img.landscape,
-#workskin .wa .wa-photos.two .wa-photo img,
-#workskin .wa .wa-photos.three .wa-photo:first-of-type img {
-  top: 0;
-  bottom: auto;
-  right: -9999px;
-  left: -9999px;
-  width: auto;
-  height: 100%;
-  margin: 0 auto;
-}
-
-/* a description standing in for a picture: <span class="wa-photo"><span class="wa-desc">[...]</span></span> */
-#workskin .wa .wa-photo .wa-desc {
-  position: absolute;
-  top: 0;
-  left: 0;
-  display: block;
-  box-sizing: border-box;
-  width: 100%;
-  padding: 1em 0.5em;
-  color: #667781;
-  font-size: 0.8em;
-  font-style: italic;
-  text-align: center;
-}
-
-/* two pictures: side by side, each one tall */
-#workskin .wa .wa-photos.two .wa-photo {
-  padding-top: 99%;
-  margin-bottom: 0;
-}
-
-/* three pictures: one tall on the left, two small ones stacked on the right */
-#workskin .wa .wa-photos.three .wa-photo:first-of-type {
-  padding-top: 99%;
-  margin-bottom: 0;
-}
-
-#workskin .wa .wa-photos.three .wa-photo:nth-of-type(2) { margin-bottom: 1%; }
-
-#workskin .wa .wa-photos.three .wa-photo:nth-of-type(3) { margin-right: 0; }
-
-/* one picture on its own: <p class="wa-photos one"><span class="wa-photo"><img ...></span></p>
-   It isn't cropped into a square, so it keeps its own shape. A very tall one is trimmed at the bottom. */
-#workskin .wa .wa-photos.one .wa-photo {
-  float: none;
-  width: 100%;
-  height: auto;
-  max-height: 26em;
-  padding: 0;
-  margin: 0;
-}
-
-#workskin .wa .wa-photos.one .wa-photo img {
-  position: static;
-  width: 100%;
-  height: auto;
-  margin: 0;
-}
-
-#workskin .wa .wa-photos.one .wa-photo .wa-desc {
-  position: static;
-  padding: 4em 1em;
-}
+/* photos: the grid is in the Core part, under CHAT PHOTOS */
+#workskin .wa .wa-photo .img-desc { color: #667781; }
 
 /* one photo with no caption: the time sits on the photo, white on a dark fade, the same in every theme */
 #workskin .wa .msg.gallery { position: relative; }
@@ -665,7 +552,7 @@
 
 #workskin .wa.theme-dark .wa-link-desc,
 #workskin .wa.theme-dark .wa-link-url,
-#workskin .wa.theme-dark .wa-photo .wa-desc { color: #8696a0; }
+#workskin .wa.theme-dark .wa-photo .img-desc { color: #8696a0; }
 
 #workskin .wa.theme-dark .wa-photo { background: rgba(0, 0, 0, 0.3); }
 
@@ -772,7 +659,7 @@
 
   #workskin .wa.theme-auto .wa-link-desc,
     #workskin .wa.theme-auto .wa-link-url,
-    #workskin .wa.theme-auto .wa-photo .wa-desc { color: #8696a0; }
+    #workskin .wa.theme-auto .wa-photo .img-desc { color: #8696a0; }
 
   #workskin .wa.theme-auto .wa-photo { background: rgba(0, 0, 0, 0.3); }
 

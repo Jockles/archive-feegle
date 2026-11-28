@@ -66,7 +66,9 @@ var MEGASKIN_RENAMES = [
   ["tw-foot", "tw-footer"],
   ["twc-foot", "twc-footer"],
   ["tw-footer", "tw-reply-bar"],
-  ["twc-footer", "twc-reply-bar"]
+  ["twc-footer", "twc-reply-bar"],
+  ["wa-desc", "img-desc"],
+  ["igdm-desc", "img-desc"]
 ];
 
 // Names that did nothing and were taken out.

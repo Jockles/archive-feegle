@@ -170,19 +170,16 @@
 
 #workskin .imsg .mob-sys { color: #8e8e93; opacity: 1; }
 
-/* a picture sent in a message: <p class="msg out photo"><img src="..."></p>
-   or, for a description instead: <p class="msg out photo text">[A photo of the rink]</p> */
-#workskin .imsg .msg.photo { width: 55%; padding: 0.2em; overflow: hidden; }
-#workskin .imsg .msg.photo.tapped { overflow: visible; }
+/* a picture sent in a message (see CHAT PHOTOS in the Core part): the bubble is a little frame around it */
+#workskin .imsg .msg.gallery { width: 55%; padding: 0.2em; }
 
-#workskin .imsg .msg.photo img {
-  display: block;
-  width: 100%;
-  height: auto;
-  border-radius: 15px;
-}
+#workskin .imsg .imsg-photos { border-radius: 15px; }
 
-#workskin .imsg .msg.photo.text { padding: 2.5em 1em; font-style: italic; text-align: center; }
+#workskin .imsg .imsg-photo { background: none; }
+
+#workskin .imsg .imsg-photo .img-desc { font-size: 1em; }
+
+#workskin .imsg .imsg-photos.one .imsg-photo .img-desc { padding: 2.3em 0.8em; }
 
 /* the three typing dots, in a message bubble from whoever is typing (out for the phone's owner, in for anyone else, with a who line above it in a group, like any message) */
 #workskin .imsg .typing-indicator { padding: 0.6em 0.8em; line-height: 1; }

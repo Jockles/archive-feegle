@@ -196,7 +196,8 @@
 
 #workskin .dc .dc-name:has(.dc-pfp)::before { display: none; }
 
-#workskin .dc .dc-photo { border-radius: 0.1875rem; max-width: 360px; width: 100%; }
+/* a picture in a message (see CHAT PHOTOS in the Core part) */
+#workskin .dc .dc-photos { max-width: 360px; border-radius: 0.1875rem; }
 
 #workskin .dc .dc-emoji {
   width: 3rem;

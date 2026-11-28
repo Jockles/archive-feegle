@@ -1808,7 +1808,12 @@
     <p class="msg out"><span class="hide"><em>Ilya:</em> </span>I am always funny</p>
     <p class="twdm-reacts out"><span class="hide">[Reactions: </span>&#128580; 1<span class="hide">]</span></p>
     <p class="mob-sys">Today 09:02</p>
-    <p class="msg in photo"><span class="hide"><em>Shane:</em> </span><img src="https://64.media.tumblr.com/c3c4ecb5bfed8fa9f0590c54206ddb30/cff2318529321620-44/s1280x1920/42befcc40a517e1f202dda40783be2ffb95c1d92.pnj" alt="Macklin Celebrini at the IHF Worlds, dressed in his red jersey and black helmet. He's surrounded by sparkles, a red vignette, and hearts containing the Canadian flag"></p>
+    <div class="msg in gallery">
+      <p class="hide"><em>Shane:</em></p>
+      <p class="twdm-photos one">
+        <span class="twdm-photo"><img src="https://64.media.tumblr.com/c3c4ecb5bfed8fa9f0590c54206ddb30/cff2318529321620-44/s1280x1920/42befcc40a517e1f202dda40783be2ffb95c1d92.pnj" alt="Macklin Celebrini at the IHF Worlds, dressed in his red jersey and black helmet. He's surrounded by sparkles, a red vignette, and hearts containing the Canadian flag"></span>
+      </p>
+    </div>
     <p class="twdm-replied out">Replied to Shane</p>
     <p class="twdm-quote out"><span class="hide">(</span>it wasn't<span class="hide">)</span></p>
     <p class="msg out"><span class="hide"><em>Ilya:</em> </span>you laughed. I heard you</p>
@@ -1845,7 +1850,12 @@
     &lt;p class="msg out"&gt;&lt;span class="hide"&gt;&lt;em&gt;Ilya:&lt;/em&gt; &lt;/span&gt;I am always funny&lt;/p&gt;
     &lt;p class="twdm-reacts out"&gt;&lt;span class="hide"&gt;[Reactions: &lt;/span&gt;&amp;#128580; 1&lt;span class="hide"&gt;]&lt;/span&gt;&lt;/p&gt;
     &lt;p class="mob-sys"&gt;Today 09:02&lt;/p&gt;
-    &lt;p class="msg in photo"&gt;&lt;span class="hide"&gt;&lt;em&gt;Shane:&lt;/em&gt; &lt;/span&gt;&lt;img src="https://64.media.tumblr.com/c3c4ecb5bfed8fa9f0590c54206ddb30/cff2318529321620-44/s1280x1920/42befcc40a517e1f202dda40783be2ffb95c1d92.pnj" alt="Macklin Celebrini at the IHF Worlds, dressed in his red jersey and black helmet. He's surrounded by sparkles, a red vignette, and hearts containing the Canadian flag"&gt;&lt;/p&gt;
+    &lt;div class="msg in gallery"&gt;
+      &lt;p class="hide"&gt;&lt;em&gt;Shane:&lt;/em&gt;&lt;/p&gt;
+      &lt;p class="twdm-photos one"&gt;
+        &lt;span class="twdm-photo"&gt;&lt;img src="https://64.media.tumblr.com/c3c4ecb5bfed8fa9f0590c54206ddb30/cff2318529321620-44/s1280x1920/42befcc40a517e1f202dda40783be2ffb95c1d92.pnj" alt="Macklin Celebrini at the IHF Worlds, dressed in his red jersey and black helmet. He's surrounded by sparkles, a red vignette, and hearts containing the Canadian flag"&gt;&lt;/span&gt;
+      &lt;/p&gt;
+    &lt;/div&gt;
     &lt;p class="twdm-replied out"&gt;Replied to Shane&lt;/p&gt;
     &lt;p class="twdm-quote out"&gt;&lt;span class="hide"&gt;(&lt;/span&gt;it wasn't&lt;span class="hide"&gt;)&lt;/span&gt;&lt;/p&gt;
     &lt;p class="msg out"&gt;&lt;span class="hide"&gt;&lt;em&gt;Ilya:&lt;/em&gt; &lt;/span&gt;you laughed. I heard you&lt;/p&gt;
@@ -2203,17 +2213,37 @@
 
 <h4>Pictures in DMs</h4>
 
-<p>A picture in a DM is a message with <code>photo</code> added. Put a picture tag inside it, or add <code>text</code> as well and describe the picture in words:</p>
+<p>A picture in a DM is built the same way as in every chat app. Add <code>gallery</code> to the message, then put a <code>twdm-photos one</code> line inside it, with one <code>twdm-photo</code> holding the picture tag. To describe the picture in words instead, put an <code>img-desc</code> span in the <code>twdm-photo</code>:</p>
 
 <div class="mob twdm theme-auto">
   <div class="mob-body">
-    <p class="msg in photo"><span class="hide"><em>Shane:</em> </span><img src="https://64.media.tumblr.com/c3c4ecb5bfed8fa9f0590c54206ddb30/cff2318529321620-44/s1280x1920/42befcc40a517e1f202dda40783be2ffb95c1d92.pnj" alt="Macklin Celebrini at the IHF Worlds, dressed in his red jersey and black helmet. He's surrounded by sparkles, a red vignette, and hearts containing the Canadian flag"></p>
-    <p class="msg out photo text"><span class="hide"><em>Ilya:</em> </span>[A photo of Ilya pulling a face at the camera]</p>
+    <div class="msg in gallery">
+      <p class="hide"><em>Shane:</em></p>
+      <p class="twdm-photos one">
+        <span class="twdm-photo"><img src="https://64.media.tumblr.com/c3c4ecb5bfed8fa9f0590c54206ddb30/cff2318529321620-44/s1280x1920/42befcc40a517e1f202dda40783be2ffb95c1d92.pnj" alt="Macklin Celebrini at the IHF Worlds, dressed in his red jersey and black helmet. He's surrounded by sparkles, a red vignette, and hearts containing the Canadian flag"></span>
+      </p>
+    </div>
+    <div class="msg out gallery">
+      <p class="hide"><em>Ilya:</em></p>
+      <p class="twdm-photos one">
+        <span class="twdm-photo"><span class="img-desc">[A photo of Ilya pulling a face at the camera]</span></span>
+      </p>
+    </div>
   </div>
 </div>
 
-<pre><code>&lt;p class="msg in photo"&gt;&lt;span class="hide"&gt;&lt;em&gt;Shane:&lt;/em&gt; &lt;/span&gt;&lt;img src="https://64.media.tumblr.com/c3c4ecb5bfed8fa9f0590c54206ddb30/cff2318529321620-44/s1280x1920/42befcc40a517e1f202dda40783be2ffb95c1d92.pnj" alt="Macklin Celebrini at the IHF Worlds, dressed in his red jersey and black helmet. He's surrounded by sparkles, a red vignette, and hearts containing the Canadian flag"&gt;&lt;/p&gt;
-&lt;p class="msg out photo text"&gt;&lt;span class="hide"&gt;&lt;em&gt;Ilya:&lt;/em&gt; &lt;/span&gt;[A photo of Ilya pulling a face at the camera]&lt;/p&gt;</code></pre>
+<pre><code>&lt;div class="msg in gallery"&gt;
+  &lt;p class="hide"&gt;&lt;em&gt;Shane:&lt;/em&gt;&lt;/p&gt;
+  &lt;p class="twdm-photos one"&gt;
+    &lt;span class="twdm-photo"&gt;&lt;img src="https://64.media.tumblr.com/c3c4ecb5bfed8fa9f0590c54206ddb30/cff2318529321620-44/s1280x1920/42befcc40a517e1f202dda40783be2ffb95c1d92.pnj" alt="Macklin Celebrini at the IHF Worlds, dressed in his red jersey and black helmet. He's surrounded by sparkles, a red vignette, and hearts containing the Canadian flag"&gt;&lt;/span&gt;
+  &lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="msg out gallery"&gt;
+  &lt;p class="hide"&gt;&lt;em&gt;Ilya:&lt;/em&gt;&lt;/p&gt;
+  &lt;p class="twdm-photos one"&gt;
+    &lt;span class="twdm-photo"&gt;&lt;span class="img-desc"&gt;[A photo of Ilya pulling a face at the camera]&lt;/span&gt;&lt;/span&gt;
+  &lt;/p&gt;
+&lt;/div&gt;</code></pre>
 
 <h4>Group Chats</h4>
 
