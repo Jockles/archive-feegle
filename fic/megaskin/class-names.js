@@ -96,7 +96,11 @@ var MEGASKIN_RENAMES = [
   ["ig-notif", "ig-icon"],
   ["wa-link", "wa-link-card"],
   ["igdm-link", "igdm-link-card"],
-  ["wa-link-text", "wa-link"]
+  ["wa-link-text", "wa-link"],
+  ["ic-x-home-filled", "ic-tw-home-filled"],
+  ["ic-x-home", "ic-tw-home"],
+  ["ic-x-search", "ic-tw-search"],
+  ["ic-x-bell", "ic-tw-bell"]
 ];
 
 // Names that did nothing and were taken out.

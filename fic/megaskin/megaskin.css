@@ -3254,7 +3254,7 @@
 #workskin .tw-feed .tw-nav br { display: none; }
 
 /* a blue number on a button, like new notifications: put a tw-badge straight after the button (the "+ br +" lines cover the line break AO3 adds between them).
-   <span class="ic ic-x-bell">&#128276;</span><span class="tw-badge"><span class="hide"> (</span>3<span class="hide">)</span></span> */
+   <span class="ic ic-tw-bell">&#128276;</span><span class="tw-badge"><span class="hide"> (</span>3<span class="hide">)</span></span> */
 #workskin .twdm .tw-nav .ic:has(+ .tw-badge),
 #workskin .twdm .tw-nav .ic:has(+ br + .tw-badge),
 #workskin .tw-feed .tw-nav .ic:has(+ .tw-badge),
@@ -3732,11 +3732,11 @@
 #workskin .twdm .ic.ic-video { background-image: url(https://images.squidge.org/images/2026/11/15/video-black.png); }
 #workskin .twdm .ic.ic-phone { background-image: url(https://images.squidge.org/images/2026/11/15/phone-black.png); }
 #workskin .twdm .ic.ic-mic { background-image: url(https://images.squidge.org/images/2026/11/15/mic-black.png); }
-#workskin .twdm .ic.ic-x-home, #workskin .tw-feed .ic.ic-x-home { background-image: url(https://images.squidge.org/images/2026/11/19/x-home-black.png); }
-#workskin .twdm .ic.ic-x-home-filled, #workskin .tw-feed .ic.ic-x-home-filled { background-image: url(https://images.squidge.org/images/2026/11/19/x-home-filled-black.png); }
-#workskin .twdm .ic.ic-x-search, #workskin .tw-feed .ic.ic-x-search { background-image: url(https://images.squidge.org/images/2026/11/19/x-search-black.png); }
+#workskin .twdm .ic.ic-tw-home, #workskin .tw-feed .ic.ic-tw-home { background-image: url(https://images.squidge.org/images/2026/11/19/x-home-black.png); }
+#workskin .twdm .ic.ic-tw-home-filled, #workskin .tw-feed .ic.ic-tw-home-filled { background-image: url(https://images.squidge.org/images/2026/11/19/x-home-filled-black.png); }
+#workskin .twdm .ic.ic-tw-search, #workskin .tw-feed .ic.ic-tw-search { background-image: url(https://images.squidge.org/images/2026/11/19/x-search-black.png); }
 #workskin .twdm .ic.ic-x-grok, #workskin .tw-feed .ic.ic-x-grok { background-image: url(https://images.squidge.org/images/2026/11/19/x-grok-black.png); }
-#workskin .twdm .ic.ic-x-bell, #workskin .tw-feed .ic.ic-x-bell { background-image: url(https://images.squidge.org/images/2026/11/19/x-bell-black.png); }
+#workskin .twdm .ic.ic-tw-bell, #workskin .tw-feed .ic.ic-tw-bell { background-image: url(https://images.squidge.org/images/2026/11/19/x-bell-black.png); }
 #workskin .twdm .ic.ic-x-chat, #workskin .tw-feed .ic.ic-x-chat { background-image: url(https://images.squidge.org/images/2026/11/19/x-chat-black.png); }
 #workskin .twdm .ic.ic-x-chat-outline, #workskin .tw-feed .ic.ic-x-chat-outline { background-image: url(https://images.squidge.org/images/2026/11/19/x-chat-outline-black.png); }
 
@@ -3744,11 +3744,11 @@
 #workskin .twdm.theme-dark .ic.ic-video { background-image: url(https://images.squidge.org/images/2026/11/15/video-white.png); }
 #workskin .twdm.theme-dark .ic.ic-phone { background-image: url(https://images.squidge.org/images/2026/11/15/phone-white.png); }
 #workskin .twdm.theme-dark .ic.ic-mic { background-image: url(https://images.squidge.org/images/2026/11/15/mic-white.png); }
-#workskin .twdm.theme-dark .ic.ic-x-home, #workskin .tw-feed.theme-dark .ic.ic-x-home { background-image: url(https://images.squidge.org/images/2026/11/19/x-home-white.png); }
-#workskin .twdm.theme-dark .ic.ic-x-home-filled, #workskin .tw-feed.theme-dark .ic.ic-x-home-filled { background-image: url(https://images.squidge.org/images/2026/11/19/x-home-filled-white.png); }
-#workskin .twdm.theme-dark .ic.ic-x-search, #workskin .tw-feed.theme-dark .ic.ic-x-search { background-image: url(https://images.squidge.org/images/2026/11/19/x-search-white.png); }
+#workskin .twdm.theme-dark .ic.ic-tw-home, #workskin .tw-feed.theme-dark .ic.ic-tw-home { background-image: url(https://images.squidge.org/images/2026/11/19/x-home-white.png); }
+#workskin .twdm.theme-dark .ic.ic-tw-home-filled, #workskin .tw-feed.theme-dark .ic.ic-tw-home-filled { background-image: url(https://images.squidge.org/images/2026/11/19/x-home-filled-white.png); }
+#workskin .twdm.theme-dark .ic.ic-tw-search, #workskin .tw-feed.theme-dark .ic.ic-tw-search { background-image: url(https://images.squidge.org/images/2026/11/19/x-search-white.png); }
 #workskin .twdm.theme-dark .ic.ic-x-grok, #workskin .tw-feed.theme-dark .ic.ic-x-grok { background-image: url(https://images.squidge.org/images/2026/11/19/x-grok-white.png); }
-#workskin .twdm.theme-dark .ic.ic-x-bell, #workskin .tw-feed.theme-dark .ic.ic-x-bell { background-image: url(https://images.squidge.org/images/2026/11/19/x-bell-white.png); }
+#workskin .twdm.theme-dark .ic.ic-tw-bell, #workskin .tw-feed.theme-dark .ic.ic-tw-bell { background-image: url(https://images.squidge.org/images/2026/11/19/x-bell-white.png); }
 #workskin .twdm.theme-dark .ic.ic-x-chat, #workskin .tw-feed.theme-dark .ic.ic-x-chat { background-image: url(https://images.squidge.org/images/2026/11/19/x-chat-white.png); }
 #workskin .twdm.theme-dark .ic.ic-x-chat-outline, #workskin .tw-feed.theme-dark .ic.ic-x-chat-outline { background-image: url(https://images.squidge.org/images/2026/11/19/x-chat-outline-white.png); }
 
@@ -3757,11 +3757,11 @@
   #workskin .twdm.theme-auto .ic.ic-video { background-image: url(https://images.squidge.org/images/2026/11/15/video-white.png); }
   #workskin .twdm.theme-auto .ic.ic-phone { background-image: url(https://images.squidge.org/images/2026/11/15/phone-white.png); }
   #workskin .twdm.theme-auto .ic.ic-mic { background-image: url(https://images.squidge.org/images/2026/11/15/mic-white.png); }
-  #workskin .twdm.theme-auto .ic.ic-x-home, #workskin .tw-feed.theme-auto .ic.ic-x-home { background-image: url(https://images.squidge.org/images/2026/11/19/x-home-white.png); }
-  #workskin .twdm.theme-auto .ic.ic-x-home-filled, #workskin .tw-feed.theme-auto .ic.ic-x-home-filled { background-image: url(https://images.squidge.org/images/2026/11/19/x-home-filled-white.png); }
-  #workskin .twdm.theme-auto .ic.ic-x-search, #workskin .tw-feed.theme-auto .ic.ic-x-search { background-image: url(https://images.squidge.org/images/2026/11/19/x-search-white.png); }
+  #workskin .twdm.theme-auto .ic.ic-tw-home, #workskin .tw-feed.theme-auto .ic.ic-tw-home { background-image: url(https://images.squidge.org/images/2026/11/19/x-home-white.png); }
+  #workskin .twdm.theme-auto .ic.ic-tw-home-filled, #workskin .tw-feed.theme-auto .ic.ic-tw-home-filled { background-image: url(https://images.squidge.org/images/2026/11/19/x-home-filled-white.png); }
+  #workskin .twdm.theme-auto .ic.ic-tw-search, #workskin .tw-feed.theme-auto .ic.ic-tw-search { background-image: url(https://images.squidge.org/images/2026/11/19/x-search-white.png); }
   #workskin .twdm.theme-auto .ic.ic-x-grok, #workskin .tw-feed.theme-auto .ic.ic-x-grok { background-image: url(https://images.squidge.org/images/2026/11/19/x-grok-white.png); }
-  #workskin .twdm.theme-auto .ic.ic-x-bell, #workskin .tw-feed.theme-auto .ic.ic-x-bell { background-image: url(https://images.squidge.org/images/2026/11/19/x-bell-white.png); }
+  #workskin .twdm.theme-auto .ic.ic-tw-bell, #workskin .tw-feed.theme-auto .ic.ic-tw-bell { background-image: url(https://images.squidge.org/images/2026/11/19/x-bell-white.png); }
   #workskin .twdm.theme-auto .ic.ic-x-chat, #workskin .tw-feed.theme-auto .ic.ic-x-chat { background-image: url(https://images.squidge.org/images/2026/11/19/x-chat-white.png); }
   #workskin .twdm.theme-auto .ic.ic-x-chat-outline, #workskin .tw-feed.theme-auto .ic.ic-x-chat-outline { background-image: url(https://images.squidge.org/images/2026/11/19/x-chat-outline-white.png); }
 }
@@ -4019,7 +4019,7 @@
 }
 
 /* the blue bar along the top: a back arrow or the page's buttons, the page name in the middle, search and write a tweet on the right.
-   <p class="twc-header"><span class="twc-icon ic ic-back">&#8592;</span><span class="twc-title">Tweet</span><span class="twc-icon ic ic-x-search">&#128269;</span><span class="twc-icon ic ic-tw-compose">&#9998;</span></p> */
+   <p class="twc-header"><span class="twc-icon ic ic-back">&#8592;</span><span class="twc-title">Tweet</span><span class="twc-icon ic ic-tw-search">&#128269;</span><span class="twc-icon ic ic-tw-compose">&#9998;</span></p> */
 #workskin .twc12-feed .twc-header {
   display: flex;
   position: sticky;
@@ -4053,7 +4053,7 @@
 #workskin .twc12-feed .twc-header .twc-icon + .twc-icon { margin-left: 0.8em; }
 
 /* the black row of buttons along the bottom, each with its name under it. "on" lights up the page you're on.
-   <p class="tw-nav"><span class="tw-tab on"><span class="ic ic-x-home-filled">&#8962;</span> Home</span> <span class="tw-tab"><span class="ic ic-tw-at">@</span> Connect</span> <span class="tw-tab"><span class="ic ic-tw-hash">#</span> Discover</span> <span class="tw-tab"><span class="ic ic-tw-me">&#9786;</span> Me</span></p> */
+   <p class="tw-nav"><span class="tw-tab on"><span class="ic ic-tw-home-filled">&#8962;</span> Home</span> <span class="tw-tab"><span class="ic ic-tw-at">@</span> Connect</span> <span class="tw-tab"><span class="ic ic-tw-hash">#</span> Discover</span> <span class="tw-tab"><span class="ic ic-tw-me">&#9786;</span> Me</span></p> */
 #workskin .twc12-feed .tw-nav {
   display: flex;
   position: sticky;
@@ -4114,16 +4114,16 @@
 #workskin .twc12 .ic.ic-tw-like { background-image: url(https://images.squidge.org/images/2026/11/19/tw12-star-grey.png); }
 #workskin .twc12 .ic.ic-tw-share { background-image: url(https://images.squidge.org/images/2026/11/19/tw12-more-grey.png); }
 #workskin .twc12-feed .twc-header .twc-icon.ic-back { background-image: url(https://images.squidge.org/images/2026/11/19/tw12-back-white.png); }
-#workskin .twc12-feed .twc-header .twc-icon.ic-x-search { background-image: url(https://images.squidge.org/images/2026/11/19/tw12-search-white.png); }
+#workskin .twc12-feed .twc-header .twc-icon.ic-tw-search { background-image: url(https://images.squidge.org/images/2026/11/19/tw12-search-white.png); }
 #workskin .twc12-feed .twc-header .twc-icon.ic-tw-compose { background-image: url(https://images.squidge.org/images/2026/11/19/tw12-compose-white.png); }
 #workskin .twc12-feed .twc-header .twc-icon.ic-tw-me { background-image: url(https://images.squidge.org/images/2026/11/19/tw12-me-white.png); }
-#workskin .twc12-feed .tw-nav .ic.ic-x-home-filled { background-image: url(https://images.squidge.org/images/2026/11/19/tw12-home-grey.png); }
+#workskin .twc12-feed .tw-nav .ic.ic-tw-home-filled { background-image: url(https://images.squidge.org/images/2026/11/19/tw12-home-grey.png); }
 #workskin .twc12-feed .tw-nav .ic.ic-tw-at { background-image: url(https://images.squidge.org/images/2026/11/19/tw12-at-grey.png); }
 #workskin .twc12-feed .tw-nav .ic.ic-tw-hash { background-image: url(https://images.squidge.org/images/2026/11/19/tw12-hash-grey.png); }
 #workskin .twc12-feed .tw-nav .ic.ic-tw-me { background-image: url(https://images.squidge.org/images/2026/11/19/tw12-me-grey.png); }
 
 /* the page you're on has blue buttons */
-#workskin .twc12-feed .tw-nav .on .ic.ic-x-home-filled { background-image: url(https://images.squidge.org/images/2026/11/19/tw12-home-blue.png); }
+#workskin .twc12-feed .tw-nav .on .ic.ic-tw-home-filled { background-image: url(https://images.squidge.org/images/2026/11/19/tw12-home-blue.png); }
 #workskin .twc12-feed .tw-nav .on .ic.ic-tw-at { background-image: url(https://images.squidge.org/images/2026/11/19/tw12-at-blue.png); }
 #workskin .twc12-feed .tw-nav .on .ic.ic-tw-hash { background-image: url(https://images.squidge.org/images/2026/11/19/tw12-hash-blue.png); }
 #workskin .twc12-feed .tw-nav .on .ic.ic-tw-me { background-image: url(https://images.squidge.org/images/2026/11/19/tw12-me-blue.png); }
@@ -4456,7 +4456,7 @@
 }
 
 /* the row of buttons along the bottom: home, search, notifications and messages. "on" makes the page you're on blue.
-   <p class="tw-nav"><span class="on ic ic-x-home-filled">&#8962;</span> <span class="ic ic-x-search">&#128269;</span> <span class="ic ic-x-bell">&#128276;</span> <span class="ic ic-tw-mail">&#9993;</span></p> */
+   <p class="tw-nav"><span class="on ic ic-tw-home-filled">&#8962;</span> <span class="ic ic-tw-search">&#128269;</span> <span class="ic ic-tw-bell">&#128276;</span> <span class="ic ic-tw-mail">&#9993;</span></p> */
 #workskin .twc16-feed .tw-nav {
   display: flex;
   position: sticky;
@@ -4627,10 +4627,10 @@
 #workskin .twc16 .ic.ic-tw-share { background-image: url(https://images.squidge.org/images/2026/11/15/share-up-black.png); }
 #workskin .twc16 .ic.ic-dropdown { background-image: url(https://images.squidge.org/images/2026/11/15/dropdown-black.png); }
 #workskin .twc16-feed .ic.ic-back { background-image: url(https://images.squidge.org/images/2026/11/15/back-black.png); }
-#workskin .twc16-feed .ic.ic-x-home { background-image: url(https://images.squidge.org/images/2026/11/19/x-home-black.png); }
-#workskin .twc16-feed .ic.ic-x-home-filled { background-image: url(https://images.squidge.org/images/2026/11/19/x-home-filled-black.png); }
-#workskin .twc16-feed .ic.ic-x-search { background-image: url(https://images.squidge.org/images/2026/11/19/x-search-black.png); }
-#workskin .twc16-feed .ic.ic-x-bell { background-image: url(https://images.squidge.org/images/2026/11/19/x-bell-black.png); }
+#workskin .twc16-feed .ic.ic-tw-home { background-image: url(https://images.squidge.org/images/2026/11/19/x-home-black.png); }
+#workskin .twc16-feed .ic.ic-tw-home-filled { background-image: url(https://images.squidge.org/images/2026/11/19/x-home-filled-black.png); }
+#workskin .twc16-feed .ic.ic-tw-search { background-image: url(https://images.squidge.org/images/2026/11/19/x-search-black.png); }
+#workskin .twc16-feed .ic.ic-tw-bell { background-image: url(https://images.squidge.org/images/2026/11/19/x-bell-black.png); }
 
 /* Classic Twitter 2016-19 icons, dark */
 #workskin .twc16.theme-dark .ic.ic-tw-reply, #workskin .twc16-feed.theme-dark .ic.ic-tw-reply { background-image: url(https://images.squidge.org/images/2026/11/15/comment-white.png); }
@@ -4640,10 +4640,10 @@
 #workskin .twc16.theme-dark .ic.ic-tw-share, #workskin .twc16-feed.theme-dark .ic.ic-tw-share { background-image: url(https://images.squidge.org/images/2026/11/15/share-up-white.png); }
 #workskin .twc16.theme-dark .ic.ic-dropdown, #workskin .twc16-feed.theme-dark .ic.ic-dropdown { background-image: url(https://images.squidge.org/images/2026/11/15/dropdown-white.png); }
 #workskin .twc16-feed.theme-dark .ic.ic-back { background-image: url(https://images.squidge.org/images/2026/11/15/back-white.png); }
-#workskin .twc16-feed.theme-dark .ic.ic-x-home { background-image: url(https://images.squidge.org/images/2026/11/19/x-home-white.png); }
-#workskin .twc16-feed.theme-dark .ic.ic-x-home-filled { background-image: url(https://images.squidge.org/images/2026/11/19/x-home-filled-white.png); }
-#workskin .twc16-feed.theme-dark .ic.ic-x-search { background-image: url(https://images.squidge.org/images/2026/11/19/x-search-white.png); }
-#workskin .twc16-feed.theme-dark .ic.ic-x-bell { background-image: url(https://images.squidge.org/images/2026/11/19/x-bell-white.png); }
+#workskin .twc16-feed.theme-dark .ic.ic-tw-home { background-image: url(https://images.squidge.org/images/2026/11/19/x-home-white.png); }
+#workskin .twc16-feed.theme-dark .ic.ic-tw-home-filled { background-image: url(https://images.squidge.org/images/2026/11/19/x-home-filled-white.png); }
+#workskin .twc16-feed.theme-dark .ic.ic-tw-search { background-image: url(https://images.squidge.org/images/2026/11/19/x-search-white.png); }
+#workskin .twc16-feed.theme-dark .ic.ic-tw-bell { background-image: url(https://images.squidge.org/images/2026/11/19/x-bell-white.png); }
 
 /* Classic Twitter 2016-19 icons, auto */
 @media (prefers-color-scheme: dark) {
@@ -4654,10 +4654,10 @@
   #workskin .twc16.theme-auto .ic.ic-tw-share, #workskin .twc16-feed.theme-auto .ic.ic-tw-share { background-image: url(https://images.squidge.org/images/2026/11/15/share-up-white.png); }
   #workskin .twc16.theme-auto .ic.ic-dropdown, #workskin .twc16-feed.theme-auto .ic.ic-dropdown { background-image: url(https://images.squidge.org/images/2026/11/15/dropdown-white.png); }
   #workskin .twc16-feed.theme-auto .ic.ic-back { background-image: url(https://images.squidge.org/images/2026/11/15/back-white.png); }
-  #workskin .twc16-feed.theme-auto .ic.ic-x-home { background-image: url(https://images.squidge.org/images/2026/11/19/x-home-white.png); }
-  #workskin .twc16-feed.theme-auto .ic.ic-x-home-filled { background-image: url(https://images.squidge.org/images/2026/11/19/x-home-filled-white.png); }
-  #workskin .twc16-feed.theme-auto .ic.ic-x-search { background-image: url(https://images.squidge.org/images/2026/11/19/x-search-white.png); }
-  #workskin .twc16-feed.theme-auto .ic.ic-x-bell { background-image: url(https://images.squidge.org/images/2026/11/19/x-bell-white.png); }
+  #workskin .twc16-feed.theme-auto .ic.ic-tw-home { background-image: url(https://images.squidge.org/images/2026/11/19/x-home-white.png); }
+  #workskin .twc16-feed.theme-auto .ic.ic-tw-home-filled { background-image: url(https://images.squidge.org/images/2026/11/19/x-home-filled-white.png); }
+  #workskin .twc16-feed.theme-auto .ic.ic-tw-search { background-image: url(https://images.squidge.org/images/2026/11/19/x-search-white.png); }
+  #workskin .twc16-feed.theme-auto .ic.ic-tw-bell { background-image: url(https://images.squidge.org/images/2026/11/19/x-bell-white.png); }
 }
 
 /* a red heart and a green retweet for buttons the account has used, in every theme */
