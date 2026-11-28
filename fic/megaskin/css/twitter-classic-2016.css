@@ -240,10 +240,8 @@
 #workskin .twc16-feed {
   width: 380px;
   max-width: 100%;
-  max-height: 640px;
   margin: 1.2em auto;
-  overflow-y: auto;
-  overflow-x: hidden;
+  overflow: hidden;
   box-sizing: border-box;
   background: #ffffff;
   color: #14171a;
@@ -255,7 +253,10 @@
 }
 
 /* no-scroll switches the feed's scrolling off */
-#workskin .twc16-feed.no-scroll { max-height: none; overflow-y: visible; }
+/* the part that scrolls: the top bar and the tweets. The row of buttons goes after it, so it stays put */
+#workskin .twc16-feed .app-screen { max-height: 595px; overflow-y: auto; overflow-x: hidden; }
+
+#workskin .twc16-feed.no-scroll .app-screen { max-height: none; overflow-y: visible; }
 
 #workskin .twc16-feed .twc16 {
   width: auto;
@@ -323,9 +324,6 @@
    <p class="tw-nav"><span class="on ic ic-tw-home-filled">&#8962;</span> <span class="ic ic-tw-search">&#128269;</span> <span class="ic ic-tw-bell">&#128276;</span> <span class="ic ic-tw-mail">&#9993;</span></p> */
 #workskin .twc16-feed .tw-nav {
   display: flex;
-  position: sticky;
-  bottom: 0;
-  z-index: 2;
   align-items: center;
   margin: 0;
   padding: 0.55em 0.4em 0.65em 0.4em;
