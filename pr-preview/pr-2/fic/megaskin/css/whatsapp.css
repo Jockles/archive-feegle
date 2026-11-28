@@ -254,7 +254,7 @@
 /* AO3 turns line breaks in your HTML into <br /> tags: keep them out of the message bar */
 #workskin .wa .wa-footer br { display: none; }
 
-#workskin .wa .wa-field {
+#workskin .wa .wa-msgbar {
   display: table;
   width: 100%;
   box-sizing: border-box;
@@ -264,7 +264,7 @@
   color: #667781;
 }
 
-#workskin .wa .wa-field span {
+#workskin .wa .wa-msgbar span {
   display: table-cell;
   vertical-align: middle;
   white-space: nowrap;
@@ -272,15 +272,15 @@
   padding-left: 0.5em;
 }
 
-#workskin .wa .wa-field span:first-of-type { padding-left: 0; }
+#workskin .wa .wa-msgbar span:first-of-type { padding-left: 0; }
 
-#workskin .wa .wa-field .wa-placeholder { width: auto; padding-left: 0.5em; }
+#workskin .wa .wa-msgbar .wa-placeholder { width: auto; padding-left: 0.5em; }
 
 /* a half-typed message: dark text that wraps onto more lines */
-#workskin .wa .wa-field .wa-placeholder.typed { white-space: normal; color: #111b21; }
+#workskin .wa .wa-msgbar .wa-placeholder.typed { white-space: normal; color: #111b21; }
 
 /* a flashing cursor in the typed message stays in the line of words, not a cell of its own */
-#workskin .wa .wa-field .cursor { display: inline-block; width: 0.2em; padding: 0; }
+#workskin .wa .wa-msgbar .cursor { display: inline-block; width: 0.2em; padding: 0; }
 
 #workskin .wa .wa-mic {
   position: absolute;
@@ -542,9 +542,9 @@
 
 #workskin .wa.theme-dark .wa-reacts .wa-count { color: #8696a0; }
 
-#workskin .wa.theme-dark .wa-field { background: #202c33; color: #8696a0; }
+#workskin .wa.theme-dark .wa-msgbar { background: #202c33; color: #8696a0; }
 
-#workskin .wa.theme-dark .wa-field .wa-placeholder.typed { color: #e9edef; }
+#workskin .wa.theme-dark .wa-msgbar .wa-placeholder.typed { color: #e9edef; }
 
 #workskin .wa.theme-dark .wa-link-card { background: rgba(0, 0, 0, 0.22); }
 
@@ -637,9 +637,9 @@
 
   #workskin .wa.theme-auto .wa-reacts .wa-count { color: #8696a0; }
 
-  #workskin .wa.theme-auto .wa-field { background: #202c33; color: #8696a0; }
+  #workskin .wa.theme-auto .wa-msgbar { background: #202c33; color: #8696a0; }
 
-  #workskin .wa.theme-auto .wa-field .wa-placeholder.typed { color: #e9edef; }
+  #workskin .wa.theme-auto .wa-msgbar .wa-placeholder.typed { color: #e9edef; }
 
   #workskin .wa.theme-auto .wa-link-card { background: rgba(0, 0, 0, 0.22); }
 
@@ -771,7 +771,7 @@
 }
 
 /* the icons in the message box sit in table cells, so they keep a set width */
-#workskin .wa .wa-field .ic { display: table-cell; width: 1.6em; background-size: 1.15em; }
+#workskin .wa .wa-msgbar .ic { display: table-cell; width: 1.6em; background-size: 1.15em; }
 
 /* the double ticks are wider than one symbol. The grey sent and delivered ticks are
    the same grey as the time, so they change with the theme. */

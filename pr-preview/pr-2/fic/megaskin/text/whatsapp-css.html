@@ -193,7 +193,7 @@
 
 #workskin .wa .wa-footer br { display: none; }
 
-#workskin .wa .wa-field {
+#workskin .wa .wa-msgbar {
   display: table;
   width: 100%;
   box-sizing: border-box;
@@ -203,7 +203,7 @@
   color: #667781;
 }
 
-#workskin .wa .wa-field span {
+#workskin .wa .wa-msgbar span {
   display: table-cell;
   vertical-align: middle;
   white-space: nowrap;
@@ -211,7 +211,7 @@
   padding-left: 0.5em;
 }
 
-#workskin .wa .wa-field .wa-placeholder { width: auto; padding-left: 0.5em; }
+#workskin .wa .wa-msgbar .wa-placeholder { width: auto; padding-left: 0.5em; }
 
 #workskin .wa .wa-mic {
   position: absolute;
@@ -245,9 +245,9 @@
 
 <p>For a half-typed message, <code>typed</code> undoes the <code>nowrap</code> so long messages wrap, and makes the words dark (light in dark mode):</p>
 
-<pre><code>#workskin .wa .wa-field .wa-placeholder.typed { white-space: normal; color: #111b21; }
+<pre><code>#workskin .wa .wa-msgbar .wa-placeholder.typed { white-space: normal; color: #111b21; }
 
-#workskin .wa .wa-field .cursor { display: inline-block; width: 0.2em; padding: 0; }</code></pre>
+#workskin .wa .wa-msgbar .cursor { display: inline-block; width: 0.2em; padding: 0; }</code></pre>
 
 <p>Every span in the bar is a table cell, which would make a flashing <code>cursor</code> (from the core) a cell of its own and stretch the bar. The second rule keeps it a thin box in the line of words.</p>
 
@@ -794,7 +794,7 @@
   <li><strong>Header with a picture and icons:</strong> <code>wa-header</code>, <code>wa-back</code>, <code>wa-name</code>, <code>wa-status</code>, <code>wa-btns</code>. Keep <code>wa-pfp</code> if you use pictures beside messages.</li>
   <li><strong>Pictures beside messages:</strong> <code>wa-row</code> and <code>indent</code>, and <code>wa-pfp</code> with its colours if you don't use the group header either.</li>
   <li><strong>Reactions:</strong> <code>wa-reacts</code> and <code>wa-count</code>.</li>
-  <li><strong>Message bar:</strong> <code>wa-footer</code>, <code>wa-field</code>, <code>wa-placeholder</code>, <code>wa-mic</code>.</li>
+  <li><strong>Message bar:</strong> <code>wa-footer</code>, <code>wa-msgbar</code>, <code>wa-placeholder</code>, <code>wa-mic</code>.</li>
   <li><strong>Link cards:</strong> <code>share</code>, and everything starting <code>wa-link-card</code>.</li>
   <li><strong>Photos:</strong> <code>gallery</code>, <code>wa-photos</code>, <code>wa-photo</code>, <code>img-desc</code>.</li>
   <li><strong>Calls:</strong> <code>call</code>, and everything starting <code>wa-call</code>, including the <code>ic-wa-call</code> and <code>ic-wa-video</code> icons.</li>

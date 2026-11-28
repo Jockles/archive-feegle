@@ -1023,7 +1023,7 @@
   text-align: center;
 }
 
-#workskin .twdm .twdm-field {
+#workskin .twdm .twdm-msgbar {
   flex: 1;
   position: relative;
   padding: 0.45em 2.4em 0.45em 0.9em;
@@ -1032,7 +1032,7 @@
   color: #536471;
 }
 
-#workskin .twdm .twdm-field .ic {
+#workskin .twdm .twdm-msgbar .ic {
   position: absolute;
   right: 0.8em;
   top: 50%;
@@ -1041,7 +1041,7 @@
   height: 1.15em;
 }
 
-#workskin .twdm .twdm-field.typed { color: #0f1419; }
+#workskin .twdm .twdm-msgbar.typed { color: #0f1419; }
 
 /* the app's buttons along the very bottom (optional), in DMs and on the app screen. */
 #workskin .twdm .tw-nav,
@@ -1266,10 +1266,10 @@
 #workskin .twdm.theme-dark .typing-indicator span:empty { background: #8b98a5; }
 
 #workskin .twdm.theme-dark .twdm-plus,
-#workskin .twdm.theme-dark .twdm-field { border-color: #2f3336; color: #71767b; }
+#workskin .twdm.theme-dark .twdm-msgbar { border-color: #2f3336; color: #71767b; }
 
 #workskin .twdm.theme-dark .twdm-plus,
-#workskin .twdm.theme-dark .twdm-field.typed { color: #e7e9ea; }
+#workskin .twdm.theme-dark .twdm-msgbar.typed { color: #e7e9ea; }
 
 #workskin .tw-feed.theme-dark .tw-nav { border-top-color: #2f3336; }
 
@@ -1433,10 +1433,10 @@
   #workskin .twdm.theme-auto .typing-indicator span:empty { background: #8b98a5; }
 
   #workskin .twdm.theme-auto .twdm-plus,
-    #workskin .twdm.theme-auto .twdm-field { border-color: #2f3336; color: #71767b; }
+    #workskin .twdm.theme-auto .twdm-msgbar { border-color: #2f3336; color: #71767b; }
 
   #workskin .twdm.theme-auto .twdm-plus,
-    #workskin .twdm.theme-auto .twdm-field.typed { color: #e7e9ea; }
+    #workskin .twdm.theme-auto .twdm-msgbar.typed { color: #e7e9ea; }
 
   #workskin .tw-feed.theme-auto .tw-nav { border-top-color: #2f3336; }
 

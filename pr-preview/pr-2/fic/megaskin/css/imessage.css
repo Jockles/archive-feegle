@@ -212,7 +212,7 @@
 }
 
 /* the grey box with the word in it */
-#workskin .imsg .imsg-field {
+#workskin .imsg .imsg-msgbar {
   flex: 1;
   position: relative;
   padding: 0.45em 2.4em 0.45em 0.9em;
@@ -232,7 +232,7 @@
 }
 
 /* a half-typed message in the box: black text instead of grey */
-#workskin .imsg .imsg-field.typed { color: #000000; }
+#workskin .imsg .imsg-msgbar.typed { color: #000000; }
 
 /* the blue send arrow that replaces the microphone while typing */
 #workskin .imsg .imsg-send {
@@ -276,9 +276,9 @@
 
 #workskin .imsg.theme-dark .imsg-plus { border-color: #757579; background: #2c2c2e; color: #ffffff; }
 
-#workskin .imsg.theme-dark .imsg-field { border-color: #757579; background: #1c1c1e; color: #8e8e93; }
+#workskin .imsg.theme-dark .imsg-msgbar { border-color: #757579; background: #1c1c1e; color: #8e8e93; }
 
-#workskin .imsg.theme-dark .imsg-field.typed { color: #ffffff; }
+#workskin .imsg.theme-dark .imsg-msgbar.typed { color: #ffffff; }
 
 /* ---------- iMessage: Auto theme (theme-auto): light, switching to dark when the reader's device is in dark mode ---------- */
 
@@ -302,9 +302,9 @@
 
   #workskin .imsg.theme-auto .imsg-plus { border-color: #757579; background: #2c2c2e; color: #ffffff; }
 
-  #workskin .imsg.theme-auto .imsg-field { border-color: #757579; background: #1c1c1e; color: #8e8e93; }
+  #workskin .imsg.theme-auto .imsg-msgbar { border-color: #757579; background: #1c1c1e; color: #8e8e93; }
 
-  #workskin .imsg.theme-auto .imsg-field.typed { color: #ffffff; }
+  #workskin .imsg.theme-auto .imsg-msgbar.typed { color: #ffffff; }
 }
 
 /* ---------- iMessage: Icons ---------- */

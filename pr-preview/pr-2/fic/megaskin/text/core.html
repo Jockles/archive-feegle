@@ -79,7 +79,7 @@
   </div>
   <p class="imsg-footer">
     <span class="imsg-plus">+</span><span class="hide"> </span>
-    <span class="imsg-field">iMessage<span class="hide"> </span><span class="imsg-mic ic ic-mic">&#127908;</span></span>
+    <span class="imsg-msgbar">iMessage<span class="hide"> </span><span class="imsg-mic ic ic-mic">&#127908;</span></span>
   </p>
 </div>
 
@@ -92,7 +92,7 @@
   &lt;/div&gt;
   &lt;p class="imsg-footer"&gt;
     &lt;span class="imsg-plus"&gt;+&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;
-    &lt;span class="imsg-field"&gt;iMessage&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="imsg-mic ic ic-mic"&gt;&amp;amp;#127908;&lt;/span&gt;&lt;/span&gt;
+    &lt;span class="imsg-msgbar"&gt;iMessage&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="imsg-mic ic ic-mic"&gt;&amp;amp;#127908;&lt;/span&gt;&lt;/span&gt;
   &lt;/p&gt;
 &lt;/div&gt;</code></pre>
 
@@ -102,6 +102,7 @@
 
 <ul>
   <li><code>-header</code> and <code>-footer</code>: the bars at the top and bottom of a container.</li>
+  <li><code>-msgbar</code>: the message bar in the footer, where a message is typed.</li>
   <li><code>-top</code>: the top line of a post, and <code>-stats</code>: the row of buttons under it, with each button a <code>-stat</code>.</li>
   <li><code>-name</code> and <code>-time</code>: who it is and when.</li>
   <li><code>-pfp</code>: a profile picture.</li>
@@ -779,7 +780,7 @@
     <p><span class="dc-text">Jackie, you there?</span></p>
   </div>
   <div class="dc-footer">
-    <p><span class="dc-field">Message #general</span></p>
+    <p><span class="dc-msgbar">Message #general</span></p>
   </div>
 </div>
 
@@ -792,7 +793,7 @@
     <p><span class="dc-text">Jackie, you there?</span></p>
   </div>
   <div class="dc-footer">
-    <p><span class="dc-field">Message #general</span></p>
+    <p><span class="dc-msgbar">Message #general</span></p>
   </div>
 </div>
 
@@ -807,7 +808,7 @@
     &lt;p&gt;&lt;span class="dc-text"&gt;Jackie, you there?&lt;/span&gt;&lt;/p&gt;
   &lt;/div&gt;
   &lt;div class="dc-footer"&gt;
-    &lt;p&gt;&lt;span class="dc-field"&gt;Message #general&lt;/span&gt;&lt;/p&gt;
+    &lt;p&gt;&lt;span class="dc-msgbar"&gt;Message #general&lt;/span&gt;&lt;/p&gt;
   &lt;/div&gt;
 &lt;/div&gt;</code></pre>
 
@@ -834,14 +835,14 @@
 <div class="mob imsg theme-auto">
   <p class="imsg-footer">
     <span class="imsg-plus">+</span><span class="hide"> </span>
-    <span class="imsg-field typed">I miss<span class="hide"> </span><span class="imsg-mic ic ic-mic">&#127908;</span></span>
+    <span class="imsg-msgbar typed">I miss<span class="hide"> </span><span class="imsg-mic ic ic-mic">&#127908;</span></span>
   </p>
 </div>
 
 <pre><code>&lt;div class="mob imsg theme-auto"&gt;
   &lt;p class="imsg-footer"&gt;
     &lt;span class="imsg-plus"&gt;+&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;
-    &lt;span class="imsg-field typed"&gt;I miss&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="imsg-mic ic ic-mic"&gt;&amp;#127908;&lt;/span&gt;&lt;/span&gt;
+    &lt;span class="imsg-msgbar typed"&gt;I miss&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="imsg-mic ic ic-mic"&gt;&amp;#127908;&lt;/span&gt;&lt;/span&gt;
   &lt;/p&gt;
 &lt;/div&gt;</code></pre>
 
@@ -1552,14 +1553,14 @@
 <div class="mob imsg theme-auto">
   <p class="imsg-footer">
     <span class="imsg-plus">+</span><span class="hide"> </span>
-    <span class="imsg-field typed">ok so about last night<span class="cursor">|</span><span class="hide"> </span><span class="imsg-send ic ic-imsg-send">&#8593;</span></span>
+    <span class="imsg-msgbar typed">ok so about last night<span class="cursor">|</span><span class="hide"> </span><span class="imsg-send ic ic-imsg-send">&#8593;</span></span>
   </p>
 </div>
 
 <pre><code>&lt;div class="mob imsg theme-auto"&gt;
   &lt;p class="imsg-footer"&gt;
     &lt;span class="imsg-plus"&gt;+&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;
-    &lt;span class="imsg-field typed"&gt;ok so about last night&lt;span class="cursor"&gt;|&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="imsg-send ic ic-imsg-send"&gt;&amp;#8593;&lt;/span&gt;&lt;/span&gt;
+    &lt;span class="imsg-msgbar typed"&gt;ok so about last night&lt;span class="cursor"&gt;|&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="imsg-send ic ic-imsg-send"&gt;&amp;#8593;&lt;/span&gt;&lt;/span&gt;
   &lt;/p&gt;
 &lt;/div&gt;</code></pre>
 
@@ -1582,7 +1583,7 @@
   </div>
   <p class="twdm-footer">
     <span class="twdm-plus">+</span><span class="hide"> </span>
-    <span class="twdm-field typed"><a class="tl" href="#t6"><span class="orig">blyat</span><span class="tltn"><span class="hide"> (</span>shit<span class="hide">)</span></span></a><span class="cursor">|</span><span class="hide"> </span><span class="ic ic-mic">&#127908;</span></span>
+    <span class="twdm-msgbar typed"><a class="tl" href="#t6"><span class="orig">blyat</span><span class="tltn"><span class="hide"> (</span>shit<span class="hide">)</span></span></a><span class="cursor">|</span><span class="hide"> </span><span class="ic ic-mic">&#127908;</span></span>
   </p>
 </div>
 
@@ -1603,7 +1604,7 @@
   &lt;/div&gt;
   &lt;p class="twdm-footer"&gt;
     &lt;span class="twdm-plus"&gt;+&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;
-    &lt;span class="twdm-field typed"&gt;&lt;a class="tl" href="#t6"&gt;&lt;span class="orig"&gt;blyat&lt;/span&gt;&lt;span class="tltn"&gt;&lt;span class="hide"&gt; (&lt;/span&gt;shit&lt;span class="hide"&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/a&gt;&lt;span class="cursor"&gt;|&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="ic ic-mic"&gt;&amp;#127908;&lt;/span&gt;&lt;/span&gt;
+    &lt;span class="twdm-msgbar typed"&gt;&lt;a class="tl" href="#t6"&gt;&lt;span class="orig"&gt;blyat&lt;/span&gt;&lt;span class="tltn"&gt;&lt;span class="hide"&gt; (&lt;/span&gt;shit&lt;span class="hide"&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/a&gt;&lt;span class="cursor"&gt;|&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="ic ic-mic"&gt;&amp;#127908;&lt;/span&gt;&lt;/span&gt;
   &lt;/p&gt;
 &lt;/div&gt;</code></pre>
 
