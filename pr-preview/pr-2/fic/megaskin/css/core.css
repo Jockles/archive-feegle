@@ -1008,6 +1008,9 @@
 
 #workskin .igdm .footer > .plus { flex: none; margin: 0 0.4em; font-size: 1.3em; }
 
+/* another app's microphone still gets WhatsApp's green button */
+#workskin .wa .footer .mic.ic-mic { background-color: #00a884; }
+
 /* the header: a status line under the name in Twitter DMs */
 #workskin .twdm .mob-header > span {
   display: block;
