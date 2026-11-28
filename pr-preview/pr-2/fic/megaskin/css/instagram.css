@@ -679,14 +679,14 @@
   border-radius: 14px;
 }
 
-#workskin .igdm .mob-head {
+#workskin .igdm .mob-header {
   background: #ffffff;
   color: #262626;
   border-bottom: 1px solid transparent;
   font-size: 0.9em;
 }
 
-#workskin .igdm .mob-head span {
+#workskin .igdm .mob-header span {
   display: block;
   font-weight: normal;
   color: #737373;
@@ -759,11 +759,11 @@
 /* add "mine" when the phone's owner shared it, and it goes on the right */
 #workskin .igdm .igdm-shared.mine { margin: 0.2em 0 0.2em auto; }
 /* ---- pictures in DMs. In the header, put the picture first, before the name */
-#workskin .igdm .mob-head { display: flow-root; padding: 0.6em 0.9em; text-align: left; }
+#workskin .igdm .mob-header { display: flow-root; padding: 0.6em 0.9em; text-align: left; }
 
 /* the little arrow after the name that opens the chat's details: an empty igdm-chev span straight after the name.
    It's drawn by the skin, so it isn't there at all with the workskin off */
-#workskin .igdm .mob-head .igdm-chev {
+#workskin .igdm .mob-header .igdm-chev {
   display: inline;
   margin-left: 0.3em;
   font-size: 1.15em;
@@ -771,10 +771,10 @@
   color: #737373;
 }
 
-#workskin .igdm .mob-head .igdm-chev::before { content: "\203A"; }
+#workskin .igdm .mob-header .igdm-chev::before { content: "\203A"; }
 
 /* the verified tick after the name, on the same line as it, never on a line of its own */
-#workskin .igdm .mob-head .ig-tick {
+#workskin .igdm .mob-header .ig-tick {
   display: inline-block;
   position: absolute;
   width: 0.9em;
@@ -785,17 +785,17 @@
 
 /* the name line stays on one line: a long group name ends in "...", and a long username breaks
    onto the next line instead, so the tick always stays right after it */
-#workskin .igdm .mob-head { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+#workskin .igdm .mob-header { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
 /* the padding keeps room at the end of the name's last line, and the tick sits in it, so it can't drop to a line of its own */
-#workskin .igdm .mob-head span.handle.handle.handle.handle {
+#workskin .igdm .mob-header span.handle.handle.handle.handle {
   padding-right: 1.4em;
   margin-right: -1.4em;
   white-space: normal;
   word-break: break-all;
 }
 
-#workskin .igdm .mob-head > span:last-child { overflow: hidden; text-overflow: ellipsis; }
+#workskin .igdm .mob-header > span:last-child { overflow: hidden; text-overflow: ellipsis; }
 
 #workskin .igdm .ig-pfp {
   display: flex;
@@ -811,7 +811,7 @@
   line-height: 1;
 }
 
-#workskin .igdm .mob-head .ig-pfp {
+#workskin .igdm .mob-header .ig-pfp {
   float: left;
   width: 36px;
   height: 36px;
@@ -820,7 +820,7 @@
   font-size: 0.8em;
 }
 
-#workskin .igdm .mob-head .ig-collab {
+#workskin .igdm .mob-header .ig-collab {
   display: block;
   float: left;
   position: relative;
@@ -829,7 +829,7 @@
   margin: -1px 0.7em -1px 0;
 }
 
-#workskin .igdm .mob-head .ig-collab .ig-pfp {
+#workskin .igdm .mob-header .ig-collab .ig-pfp {
   position: absolute;
   top: 0;
   left: 0;
@@ -840,7 +840,7 @@
   font-size: 0.6em;
 }
 
-#workskin .igdm .mob-head .ig-collab .ig-pfp + .ig-pfp {
+#workskin .igdm .mob-header .ig-collab .ig-pfp + .ig-pfp {
   top: auto;
   left: auto;
   bottom: 0;
@@ -852,7 +852,7 @@
 }
 
 /* only two pictures fit, so a third one (or more) is hidden */
-#workskin .igdm .mob-head .ig-collab .ig-pfp + .ig-pfp + .ig-pfp { display: none; }
+#workskin .igdm .mob-header .ig-collab .ig-pfp + .ig-pfp + .ig-pfp { display: none; }
 
 /* ---- a run of messages from one person in a group, with their picture beside the last one. */
 #workskin .igdm .igdm-row {
@@ -1237,7 +1237,7 @@
 }
 
 /* ---- THE APP SCREEN (optional): turn the header into the app's top bar, with a back arrow on the left and call and video buttons on the right, and add the message bar at the bottom. */
-#workskin .igdm .mob-head .igdm-back {
+#workskin .igdm .mob-header .igdm-back {
   display: block;
   float: left;
   height: 36px;
@@ -1245,7 +1245,7 @@
   line-height: 36px;
 }
 
-#workskin .igdm .mob-head .igdm-calls {
+#workskin .igdm .mob-header .igdm-calls {
   display: block;
   float: right;
   height: 36px;
@@ -1253,21 +1253,21 @@
   line-height: 36px;
 }
 
-#workskin .igdm .mob-head .igdm-back .ic,
-#workskin .igdm .mob-head .igdm-calls .ic {
+#workskin .igdm .mob-header .igdm-back .ic,
+#workskin .igdm .mob-header .igdm-calls .ic {
   display: inline-block;
   width: 1.45em;
   height: 1.45em;
   vertical-align: middle;
 }
 
-#workskin .igdm .mob-head .igdm-calls .ic ~ .ic { margin-left: 1.2em; }
+#workskin .igdm .mob-header .igdm-calls .ic ~ .ic { margin-left: 1.2em; }
 
 /* with the back arrow there, a header with two pictures lines up the same as one with one */
-#workskin .igdm .mob-head .igdm-back + .igdm-calls + .ig-collab,
-#workskin .igdm .mob-head .igdm-back + .ig-collab { margin-left: 0; }
+#workskin .igdm .mob-header .igdm-back + .igdm-calls + .ig-collab,
+#workskin .igdm .mob-header .igdm-back + .ig-collab { margin-left: 0; }
 
-#workskin .igdm .igdm-input {
+#workskin .igdm .igdm-footer {
   display: flex;
   align-items: center;
   margin: 0.3em 0.6em 0.6em 0.6em;
@@ -1353,14 +1353,14 @@
 #workskin .ig.ig-feed .ig .ig-top { border-bottom: 0; }
 
 /* the top bar: + on the left, the logo in the middle, the heart on the right */
-#workskin .ig .ig-apptop {
+#workskin .ig .ig-header {
   display: flex;
   align-items: center;
   padding: 0.5em 0.9em 0.2em 0.9em;
   white-space: nowrap;
 }
 
-#workskin .ig .ig-apptop br { display: none; }
+#workskin .ig .ig-header br { display: none; }
 
 #workskin .ig .ig-add {
   flex: none;
@@ -1553,9 +1553,9 @@
 
 #workskin .igdm.theme-dark { background: #0c1014; color: #f5f5f5; border-color: #262626; }
 
-#workskin .igdm.theme-dark .mob-head { background: #0c1014; color: #f5f5f5; border-bottom-color: #262626; }
+#workskin .igdm.theme-dark .mob-header { background: #0c1014; color: #f5f5f5; border-bottom-color: #262626; }
 
-#workskin .igdm.theme-dark .mob-head span,
+#workskin .igdm.theme-dark .mob-header span,
 #workskin .igdm.theme-dark .who,
 #workskin .igdm.theme-dark .igdm-status {
   color: #a8a8a8;
@@ -1565,9 +1565,9 @@
 
 #workskin .igdm.theme-dark .igdm-shared { border-color: #363636; color: #a8a8a8; }
 
-#workskin .igdm.theme-dark .mob-head .ig-collab .ig-pfp + .ig-pfp { border-color: #0c1014; }
+#workskin .igdm.theme-dark .mob-header .ig-collab .ig-pfp + .ig-pfp { border-color: #0c1014; }
 
-#workskin .igdm.theme-dark .igdm-input { background: #262626; }
+#workskin .igdm.theme-dark .igdm-footer { background: #262626; }
 #workskin .igdm.theme-dark .igdm-field { color: #a8a8a8; }
 #workskin .igdm.theme-dark .igdm-field.typed { color: #f5f5f5; }
 #workskin .igdm.theme-dark .igdm-reacts { background: #262626; color: #f5f5f5; border-color: #0c1014; }
@@ -1645,9 +1645,9 @@
 
   #workskin .igdm.theme-auto { background: #0c1014; color: #f5f5f5; border-color: #262626; }
 
-  #workskin .igdm.theme-auto .mob-head { background: #0c1014; color: #f5f5f5; border-bottom-color: #262626; }
+  #workskin .igdm.theme-auto .mob-header { background: #0c1014; color: #f5f5f5; border-bottom-color: #262626; }
 
-  #workskin .igdm.theme-auto .mob-head span,
+  #workskin .igdm.theme-auto .mob-header span,
     #workskin .igdm.theme-auto .who,
     #workskin .igdm.theme-auto .igdm-status {
       color: #a8a8a8;
@@ -1657,9 +1657,9 @@
 
   #workskin .igdm.theme-auto .igdm-shared { border-color: #363636; color: #a8a8a8; }
 
-  #workskin .igdm.theme-auto .mob-head .ig-collab .ig-pfp + .ig-pfp { border-color: #0c1014; }
+  #workskin .igdm.theme-auto .mob-header .ig-collab .ig-pfp + .ig-pfp { border-color: #0c1014; }
 
-  #workskin .igdm.theme-auto .igdm-input { background: #262626; }
+  #workskin .igdm.theme-auto .igdm-footer { background: #262626; }
   #workskin .igdm.theme-auto .igdm-field { color: #a8a8a8; }
   #workskin .igdm.theme-auto .igdm-field.typed { color: #f5f5f5; }
   #workskin .igdm.theme-auto .igdm-reacts { background: #262626; color: #f5f5f5; border-color: #0c1014; }

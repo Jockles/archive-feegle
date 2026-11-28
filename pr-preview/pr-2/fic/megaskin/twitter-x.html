@@ -25,7 +25,7 @@
   <!-- /site meta -->
   <link rel="stylesheet" href="../../style.css?v=c31c06ea">
   <script src="../../theme.js?v=c50fd7c2"></script>
-  <link rel="stylesheet" href="megaskin.css?v=0fbf0eaf" id="creator-style">
+  <link rel="stylesheet" href="megaskin.css?v=216ca427" id="creator-style">
 </head>
 <body>
 <header>
@@ -70,9 +70,9 @@
   </li>
   <li><a href="#s8-2">8.2 The Container</a>
     <ul>
-      <li><a href="#s8-2-1">8.2.1 Top</a></li>
+      <li><a href="#s8-2-1">8.2.1 Header</a></li>
       <li><a href="#s8-2-2">8.2.2 Tweets in the Timeline</a></li>
-      <li><a href="#s8-2-3">8.2.3 Bottom</a></li>
+      <li><a href="#s8-2-3">8.2.3 Footer</a></li>
       <li><a href="#s8-2-4">8.2.4 A Tweet on Its Own</a></li>
     </ul>
   </li>
@@ -139,7 +139,7 @@
 
 <div class="tw-feed app pov-ilya theme-auto">
   <div class="tw-scroll">
-  <p class="tw-apptop"><span class="tw-me"><span class="pfp pfp-ilya"></span></span> <span class="tw-logo">X</span></p>
+  <p class="tw-header"><span class="tw-me"><span class="pfp pfp-ilya"></span></span> <span class="tw-logo">X</span></p>
   <p class="tw-tabs"><span class="tw-tab on">For you<span class="tw-drop"></span></span> <span class="tw-tab">Following</span> <span class="tw-tab">Metros Fans</span> <span class="tw-tab">Hockey Twitter</span> <span class="tw-add">+</span></p>
   <div class="mob tw">
     <p class="tw-top"><span class="tw-pfp"><span class="pfp"><img src="https://images.squidge.org/images/2026/11/16/HockeyBlur.png" alt="Profile picture of hockeyfan, a blurred photo of a hockey game"></span></span><span class="hide"> </span><span class="tw-name">Hockey Fan</span> <span class="tw-handle">@hockeyfan</span> <span class="tw-time">· 2h</span></p>
@@ -270,7 +270,7 @@
 
 <pre><code>&lt;div class="tw-feed app pov-ilya theme-auto"&gt;
   &lt;div class="tw-scroll"&gt;
-  &lt;p class="tw-apptop"&gt;&lt;span class="tw-me"&gt;&lt;span class="pfp pfp-ilya"&gt;&lt;/span&gt;&lt;/span&gt; &lt;span class="tw-logo"&gt;X&lt;/span&gt;&lt;/p&gt;
+  &lt;p class="tw-header"&gt;&lt;span class="tw-me"&gt;&lt;span class="pfp pfp-ilya"&gt;&lt;/span&gt;&lt;/span&gt; &lt;span class="tw-logo"&gt;X&lt;/span&gt;&lt;/p&gt;
   &lt;p class="tw-tabs"&gt;&lt;span class="tw-tab on"&gt;For you&lt;span class="tw-drop"&gt;&lt;/span&gt;&lt;/span&gt; &lt;span class="tw-tab"&gt;Following&lt;/span&gt; &lt;span class="tw-tab"&gt;Metros Fans&lt;/span&gt; &lt;span class="tw-tab"&gt;Hockey Twitter&lt;/span&gt; &lt;span class="tw-add"&gt;+&lt;/span&gt;&lt;/p&gt;
   &lt;div class="mob tw"&gt;
     &lt;p class="tw-top"&gt;&lt;span class="tw-pfp"&gt;&lt;span class="pfp"&gt;&lt;img src="https://images.squidge.org/images/2026/11/16/HockeyBlur.png" alt="Profile picture of hockeyfan, a blurred photo of a hockey game"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="tw-name"&gt;Hockey Fan&lt;/span&gt; &lt;span class="tw-handle"&gt;@hockeyfan&lt;/span&gt; &lt;span class="tw-time"&gt;· 2h&lt;/span&gt;&lt;/p&gt;
@@ -497,7 +497,7 @@
       </div>
     </div>
   </div>
-  <p class="tw-foot"><span>Reply</span><span class="hide"> - </span>Tweet your reply</p>
+  <p class="tw-footer"><span>Reply</span><span class="hide"> - </span>Tweet your reply</p>
 </div>
 
 <details>
@@ -600,7 +600,7 @@
       &lt;/div&gt;
     &lt;/div&gt;
   &lt;/div&gt;
-  &lt;p class="tw-foot"&gt;&lt;span&gt;Reply&lt;/span&gt;&lt;span class="hide"&gt; - &lt;/span&gt;Tweet your reply&lt;/p&gt;
+  &lt;p class="tw-footer"&gt;&lt;span&gt;Reply&lt;/span&gt;&lt;span class="hide"&gt; - &lt;/span&gt;Tweet your reply&lt;/p&gt;
 &lt;/div&gt;</code></pre>
 
 </details>
@@ -611,7 +611,7 @@
 
 <pre><code>&lt;div class="tw-feed app theme-auto"&gt;
   &lt;div class="tw-scroll"&gt;
-    &lt;p class="tw-apptop"&gt;the top bar&lt;/p&gt;
+    &lt;p class="tw-header"&gt;the top bar&lt;/p&gt;
     &lt;p class="tw-tabs"&gt;the tabs&lt;/p&gt;
     &lt;div class="mob tw"&gt;a tweet&lt;/div&gt;
     &lt;div class="mob tw"&gt;another tweet&lt;/div&gt;
@@ -630,22 +630,22 @@
 
 </details>
 
-<h4 id="s8-2-1">8.2.1 Top</h4>
+<h4 id="s8-2-1">8.2.1 Header</h4>
 
-<p>At the top go two lines: <code>tw-apptop</code>, with the pov character's own picture and the X, then the row of tabs:</p>
+<p>At the top go two lines: <code>tw-header</code>, with the pov character's own picture and the X, then the row of tabs:</p>
 
 <div class="tw-feed app pov-ilya theme-auto"><div class="tw-scroll">
-  <p class="tw-apptop"><span class="tw-me"><span class="pfp pfp-ilya"></span></span> <span class="tw-logo">X</span></p>
+  <p class="tw-header"><span class="tw-me"><span class="pfp pfp-ilya"></span></span> <span class="tw-logo">X</span></p>
   <p class="tw-tabs"><span class="tw-tab on">For you<span class="tw-drop"></span></span> <span class="tw-tab">Following</span> <span class="tw-tab">Metros Fans</span> <span class="tw-tab">Hockey Twitter</span> <span class="tw-add">+</span></p>
 </div></div>
 
-<pre><code>&lt;p class="tw-apptop"&gt;&lt;span class="tw-me"&gt;&lt;span class="pfp pfp-ilya"&gt;&lt;/span&gt;&lt;/span&gt; &lt;span class="tw-logo"&gt;X&lt;/span&gt;&lt;/p&gt;
+<pre><code>&lt;p class="tw-header"&gt;&lt;span class="tw-me"&gt;&lt;span class="pfp pfp-ilya"&gt;&lt;/span&gt;&lt;/span&gt; &lt;span class="tw-logo"&gt;X&lt;/span&gt;&lt;/p&gt;
 &lt;p class="tw-tabs"&gt;&lt;span class="tw-tab on"&gt;For you&lt;span class="tw-drop"&gt;&lt;/span&gt;&lt;/span&gt; &lt;span class="tw-tab"&gt;Following&lt;/span&gt; &lt;span class="tw-tab"&gt;Metros Fans&lt;/span&gt; &lt;span class="tw-tab"&gt;Hockey Twitter&lt;/span&gt; &lt;span class="tw-add"&gt;+&lt;/span&gt;&lt;/p&gt;</code></pre>
 
 <details>
 <summary>How it works: the top bar and the tabs, piece by piece</summary>
 
-<p><code>tw-apptop</code>, with the pov character's own picture in <code>tw-me</code> and the X in <code>tw-logo</code>, then the row of tabs in <code>tw-tabs</code>. The picked tab gets <code>on</code>, which makes it dark (or white in dark mode) with a line under it in the same colour. The little down arrow after For you is an empty <code>tw-drop</code> span. After For you and Following come any communities the character has joined, and the <code>tw-add</code> plus sign goes at the end.</p>
+<p><code>tw-header</code>, with the pov character's own picture in <code>tw-me</code> and the X in <code>tw-logo</code>, then the row of tabs in <code>tw-tabs</code>. The picked tab gets <code>on</code>, which makes it dark (or white in dark mode) with a line under it in the same colour. The little down arrow after For you is an empty <code>tw-drop</code> span. After For you and Following come any communities the character has joined, and the <code>tw-add</code> plus sign goes at the end.</p>
 
 </details>
 
@@ -655,13 +655,13 @@
 
 <pre><code>&lt;div class="tw-feed app tw2020 theme-auto"&gt;
   &lt;div class="tw-scroll"&gt;
-  &lt;p class="tw-apptop"&gt;&lt;span class="tw-me"&gt;&lt;span class="pfp pfp-yuna"&gt;&lt;/span&gt;&lt;/span&gt; &lt;span class="tw-logo"&gt;Twitter&lt;/span&gt;&lt;/p&gt;</code></pre>
+  &lt;p class="tw-header"&gt;&lt;span class="tw-me"&gt;&lt;span class="pfp pfp-yuna"&gt;&lt;/span&gt;&lt;/span&gt; &lt;span class="tw-logo"&gt;Twitter&lt;/span&gt;&lt;/p&gt;</code></pre>
 
 <p>Here's how it looks:</p>
 
 <div class="tw-feed app tw2020 theme-auto">
   <div class="tw-scroll">
-  <p class="tw-apptop"><span class="tw-me"><span class="pfp pfp-yuna"></span></span> <span class="tw-logo">Twitter</span></p>
+  <p class="tw-header"><span class="tw-me"><span class="pfp pfp-yuna"></span></span> <span class="tw-logo">Twitter</span></p>
   <div class="mob tw">
     <p class="tw-top"><span class="tw-pfp colour6">SH</span><span class="hide"> </span><span class="tw-name">Scott Hunter <span class="tw-tick ic ic-verified">&#10004;</span></span> <span class="tw-handle">@SHunter</span> <span class="tw-time">· 5m</span></p>
     <p class="tw-text">Good game tonight. Proud of this team.</p>
@@ -680,7 +680,7 @@
 
 <pre><code>&lt;div class="tw-feed app tw2020 theme-auto"&gt;
   &lt;div class="tw-scroll"&gt;
-  &lt;p class="tw-apptop"&gt;&lt;span class="tw-me"&gt;&lt;span class="pfp pfp-yuna"&gt;&lt;/span&gt;&lt;/span&gt; &lt;span class="tw-logo"&gt;Twitter&lt;/span&gt;&lt;/p&gt;
+  &lt;p class="tw-header"&gt;&lt;span class="tw-me"&gt;&lt;span class="pfp pfp-yuna"&gt;&lt;/span&gt;&lt;/span&gt; &lt;span class="tw-logo"&gt;Twitter&lt;/span&gt;&lt;/p&gt;
   &lt;div class="mob tw"&gt;
     &lt;p class="tw-top"&gt;&lt;span class="tw-pfp colour6"&gt;SH&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="tw-name"&gt;Scott Hunter &lt;span class="tw-tick ic ic-verified"&gt;&amp;#10004;&lt;/span&gt;&lt;/span&gt; &lt;span class="tw-handle"&gt;@SHunter&lt;/span&gt; &lt;span class="tw-time"&gt;· 5m&lt;/span&gt;&lt;/p&gt;
     &lt;p class="tw-text"&gt;Good game tonight. Proud of this team.&lt;/p&gt;
@@ -716,7 +716,7 @@
 
 <p>For a tweet that's been tapped on, with its replies underneath (like the thread at the top of this chapter), leave <code>app</code> off the <code>tw-feed</code>. Then the first tweet is shown opened up, with the handle under the name and the date and time along the bottom (see <a href="twitter-x.html#s8-3-4">Timestamp Line</a>), and the replies go after it (see <a href="twitter-x.html#s8-3-5">Replies</a>).</p>
 
-<h4 id="s8-2-3">8.2.3 Bottom</h4>
+<h4 id="s8-2-3">8.2.3 Footer</h4>
 
 <p>Anything after the <code>tw-scroll</code> closes stays put at the bottom while the tweets scroll. On a timeline, that's the row of app buttons:</p>
 
@@ -724,11 +724,11 @@
 
 <pre><code>&lt;p class="tw-nav"&gt;&lt;span class="on ic ic-x-home-filled"&gt;&amp;#8962;&lt;/span&gt; &lt;span class="ic ic-x-search"&gt;&amp;#128269;&lt;/span&gt; &lt;span class="ic ic-x-grok"&gt;&amp;#8856;&lt;/span&gt; &lt;span class="badged"&gt;&lt;span class="ic ic-x-bell"&gt;&amp;#128276;&lt;/span&gt;&lt;span class="tw-badge"&gt;&lt;span class="hide"&gt; (&lt;/span&gt;3&lt;span class="hide"&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; &lt;span class="ic ic-x-chat-outline"&gt;&amp;#128172;&lt;/span&gt;&lt;/p&gt;</code></pre>
 
-<p>Under a tweet with its replies, it's the "Tweet your reply" bar instead, a <code>tw-foot</code> line:</p>
+<p>Under a tweet with its replies, it's the "Tweet your reply" bar instead, a <code>tw-footer</code> line:</p>
 
-<div class="tw-feed theme-auto"><p class="tw-foot"><span>Reply</span><span class="hide"> - </span>Tweet your reply</p></div>
+<div class="tw-feed theme-auto"><p class="tw-footer"><span>Reply</span><span class="hide"> - </span>Tweet your reply</p></div>
 
-<pre><code>&lt;p class="tw-foot"&gt;&lt;span&gt;Reply&lt;/span&gt;&lt;span class="hide"&gt; - &lt;/span&gt;Tweet your reply&lt;/p&gt;</code></pre>
+<pre><code>&lt;p class="tw-footer"&gt;&lt;span&gt;Reply&lt;/span&gt;&lt;span class="hide"&gt; - &lt;/span&gt;Tweet your reply&lt;/p&gt;</code></pre>
 
 <h4 id="s8-2-4">8.2.4 A Tweet on Its Own</h4>
 
@@ -1324,7 +1324,7 @@
 <h4 id="s8-7-1">8.7.1 A One-to-One DM</h4>
 
 <div class="mob twdm theme-auto">
-  <p class="mob-head"><span class="twdm-back"><span class="ic ic-back">&#8592;</span></span><span class="tw-pfp"><span class="pfp pfp-shane"></span></span><span class="twdm-name">Shane Hollander</span><span class="twdm-calls"><span class="ic ic-video">&#127909;</span><span class="ic ic-phone">&#128222;</span></span></p>
+  <p class="mob-header"><span class="twdm-back"><span class="ic ic-back">&#8592;</span></span><span class="tw-pfp"><span class="pfp pfp-shane"></span></span><span class="twdm-name">Shane Hollander</span><span class="twdm-calls"><span class="ic ic-video">&#127909;</span><span class="ic ic-phone">&#128222;</span></span></p>
   <div class="mob-body">
     <p class="mob-sys">Thu 17 Sep at 22:14</p>
     <p class="msg in"><span class="hide"><em>Shane:</em> </span>saw your tweet</p>
@@ -1343,7 +1343,7 @@
     <p class="msg out voice"><span class="hide"><em>Ilya:</em> </span><span class="twdm-play ic ic-play">&#9654;</span><span class="twdm-wave"></span><span class="twdm-dur">0:02</span></p>
     <p class="twdm-status">Seen</p>
   </div>
-  <p class="twdm-input"><span class="twdm-plus">+</span><span class="hide"> </span><span class="twdm-field">Message<span class="hide"> </span><span class="ic ic-mic">&#127908;</span></span></p>
+  <p class="twdm-footer"><span class="twdm-plus">+</span><span class="hide"> </span><span class="twdm-field">Message<span class="hide"> </span><span class="ic ic-mic">&#127908;</span></span></p>
   <p class="tw-nav"><span class="ic ic-x-home">&#8962;</span> <span class="ic ic-x-search">&#128269;</span> <span class="ic ic-x-grok">&#8856;</span> <span class="badged"><span class="ic ic-x-bell">&#128276;</span><span class="tw-badge"><span class="hide"> (</span>3<span class="hide">)</span></span></span> <span class="on ic ic-x-chat">&#128172;</span></p>
 </div>
 
@@ -1351,7 +1351,7 @@
 <summary>The full HTML for this chat</summary>
 
 <pre><code>&lt;div class="mob twdm theme-auto"&gt;
-  &lt;p class="mob-head"&gt;&lt;span class="twdm-back"&gt;&lt;span class="ic ic-back"&gt;&amp;#8592;&lt;/span&gt;&lt;/span&gt;&lt;span class="tw-pfp"&gt;&lt;span class="pfp pfp-shane"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="twdm-name"&gt;Shane Hollander&lt;/span&gt;&lt;span class="twdm-calls"&gt;&lt;span class="ic ic-video"&gt;&amp;#127909;&lt;/span&gt;&lt;span class="ic ic-phone"&gt;&amp;#128222;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+  &lt;p class="mob-header"&gt;&lt;span class="twdm-back"&gt;&lt;span class="ic ic-back"&gt;&amp;#8592;&lt;/span&gt;&lt;/span&gt;&lt;span class="tw-pfp"&gt;&lt;span class="pfp pfp-shane"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="twdm-name"&gt;Shane Hollander&lt;/span&gt;&lt;span class="twdm-calls"&gt;&lt;span class="ic ic-video"&gt;&amp;#127909;&lt;/span&gt;&lt;span class="ic ic-phone"&gt;&amp;#128222;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
   &lt;div class="mob-body"&gt;
     &lt;p class="mob-sys"&gt;Thu 17 Sep at 22:14&lt;/p&gt;
     &lt;p class="msg in"&gt;&lt;span class="hide"&gt;&lt;em&gt;Shane:&lt;/em&gt; &lt;/span&gt;saw your tweet&lt;/p&gt;
@@ -1370,7 +1370,7 @@
     &lt;p class="msg out voice"&gt;&lt;span class="hide"&gt;&lt;em&gt;Ilya:&lt;/em&gt; &lt;/span&gt;&lt;span class="twdm-play ic ic-play"&gt;&amp;#9654;&lt;/span&gt;&lt;span class="twdm-wave"&gt;&lt;/span&gt;&lt;span class="twdm-dur"&gt;0:02&lt;/span&gt;&lt;/p&gt;
     &lt;p class="twdm-status"&gt;Seen&lt;/p&gt;
   &lt;/div&gt;
-  &lt;p class="twdm-input"&gt;&lt;span class="twdm-plus"&gt;+&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="twdm-field"&gt;Message&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="ic ic-mic"&gt;&amp;#127908;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+  &lt;p class="twdm-footer"&gt;&lt;span class="twdm-plus"&gt;+&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="twdm-field"&gt;Message&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="ic ic-mic"&gt;&amp;#127908;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
   &lt;p class="tw-nav"&gt;&lt;span class="ic ic-x-home"&gt;&amp;#8962;&lt;/span&gt; &lt;span class="ic ic-x-search"&gt;&amp;#128269;&lt;/span&gt; &lt;span class="ic ic-x-grok"&gt;&amp;#8856;&lt;/span&gt; &lt;span class="badged"&gt;&lt;span class="ic ic-x-bell"&gt;&amp;#128276;&lt;/span&gt;&lt;span class="tw-badge"&gt;&lt;span class="hide"&gt; (&lt;/span&gt;3&lt;span class="hide"&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; &lt;span class="on ic ic-x-chat"&gt;&amp;#128172;&lt;/span&gt;&lt;/p&gt;
 &lt;/div&gt;</code></pre>
 
@@ -1379,7 +1379,7 @@
 <h4 id="s8-7-2">8.7.2 A Group DM</h4>
 
 <div class="mob twdm theme-auto">
-  <p class="mob-head"><span class="twdm-back"><span class="ic ic-back">&#8592;</span></span><span class="tw-pfp colour3">RD</span><span class="twdm-name">Rookie Dinner</span><span class="twdm-calls"><span class="ic ic-video">&#127909;</span><span class="ic ic-phone">&#128222;</span></span></p>
+  <p class="mob-header"><span class="twdm-back"><span class="ic ic-back">&#8592;</span></span><span class="tw-pfp colour3">RD</span><span class="twdm-name">Rookie Dinner</span><span class="twdm-calls"><span class="ic ic-video">&#127909;</span><span class="ic ic-phone">&#128222;</span></span></p>
   <div class="mob-body">
     <p class="mob-sys">Today 18:55</p>
     <div class="twdm-row">
@@ -1404,7 +1404,7 @@
     </div>
     <p class="twdm-status">Sent</p>
   </div>
-  <p class="twdm-input"><span class="twdm-plus">+</span><span class="hide"> </span><span class="twdm-field">Message<span class="hide"> </span><span class="ic ic-mic">&#127908;</span></span></p>
+  <p class="twdm-footer"><span class="twdm-plus">+</span><span class="hide"> </span><span class="twdm-field">Message<span class="hide"> </span><span class="ic ic-mic">&#127908;</span></span></p>
   <p class="tw-nav"><span class="ic ic-x-home">&#8962;</span> <span class="ic ic-x-search">&#128269;</span> <span class="ic ic-x-grok">&#8856;</span> <span class="badged"><span class="ic ic-x-bell">&#128276;</span><span class="tw-badge"><span class="hide"> (</span>3<span class="hide">)</span></span></span> <span class="on ic ic-x-chat">&#128172;</span></p>
 </div>
 
@@ -1412,7 +1412,7 @@
 <summary>The full HTML for this chat</summary>
 
 <pre><code>&lt;div class="mob twdm theme-auto"&gt;
-  &lt;p class="mob-head"&gt;&lt;span class="twdm-back"&gt;&lt;span class="ic ic-back"&gt;&amp;#8592;&lt;/span&gt;&lt;/span&gt;&lt;span class="tw-pfp colour3"&gt;RD&lt;/span&gt;&lt;span class="twdm-name"&gt;Rookie Dinner&lt;/span&gt;&lt;span class="twdm-calls"&gt;&lt;span class="ic ic-video"&gt;&amp;#127909;&lt;/span&gt;&lt;span class="ic ic-phone"&gt;&amp;#128222;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+  &lt;p class="mob-header"&gt;&lt;span class="twdm-back"&gt;&lt;span class="ic ic-back"&gt;&amp;#8592;&lt;/span&gt;&lt;/span&gt;&lt;span class="tw-pfp colour3"&gt;RD&lt;/span&gt;&lt;span class="twdm-name"&gt;Rookie Dinner&lt;/span&gt;&lt;span class="twdm-calls"&gt;&lt;span class="ic ic-video"&gt;&amp;#127909;&lt;/span&gt;&lt;span class="ic ic-phone"&gt;&amp;#128222;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
   &lt;div class="mob-body"&gt;
     &lt;p class="mob-sys"&gt;Today 18:55&lt;/p&gt;
     &lt;div class="twdm-row"&gt;
@@ -1437,7 +1437,7 @@
     &lt;/div&gt;
     &lt;p class="twdm-status"&gt;Sent&lt;/p&gt;
   &lt;/div&gt;
-  &lt;p class="twdm-input"&gt;&lt;span class="twdm-plus"&gt;+&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="twdm-field"&gt;Message&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="ic ic-mic"&gt;&amp;#127908;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+  &lt;p class="twdm-footer"&gt;&lt;span class="twdm-plus"&gt;+&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="twdm-field"&gt;Message&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="ic ic-mic"&gt;&amp;#127908;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
   &lt;p class="tw-nav"&gt;&lt;span class="ic ic-x-home"&gt;&amp;#8962;&lt;/span&gt; &lt;span class="ic ic-x-search"&gt;&amp;#128269;&lt;/span&gt; &lt;span class="ic ic-x-grok"&gt;&amp;#8856;&lt;/span&gt; &lt;span class="badged"&gt;&lt;span class="ic ic-x-bell"&gt;&amp;#128276;&lt;/span&gt;&lt;span class="tw-badge"&gt;&lt;span class="hide"&gt; (&lt;/span&gt;3&lt;span class="hide"&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; &lt;span class="on ic ic-x-chat"&gt;&amp;#128172;&lt;/span&gt;&lt;/p&gt;
 &lt;/div&gt;</code></pre>
 
@@ -1447,9 +1447,9 @@
 
 <p>DMs are built like iMessage - a container, a header and a body - with the module class <code>twdm</code>, so the container is <code>&lt;div class=&quot;mob twdm theme-auto&quot;&gt;</code>. First comes the header, with a back arrow on the left, the person's picture and name in the middle, and the video and call buttons on the right:</p>
 
-<div class="mob twdm theme-auto"><p class="mob-head"><span class="twdm-back"><span class="ic ic-back">&#8592;</span></span><span class="tw-pfp"><span class="pfp pfp-shane"></span></span><span class="twdm-name">Shane Hollander</span><span class="twdm-calls"><span class="ic ic-video">&#127909;</span><span class="ic ic-phone">&#128222;</span></span></p></div>
+<div class="mob twdm theme-auto"><p class="mob-header"><span class="twdm-back"><span class="ic ic-back">&#8592;</span></span><span class="tw-pfp"><span class="pfp pfp-shane"></span></span><span class="twdm-name">Shane Hollander</span><span class="twdm-calls"><span class="ic ic-video">&#127909;</span><span class="ic ic-phone">&#128222;</span></span></p></div>
 
-<pre><code>&lt;p class="mob-head"&gt;&lt;span class="twdm-back"&gt;&lt;span class="ic ic-back"&gt;&amp;#8592;&lt;/span&gt;&lt;/span&gt;&lt;span class="tw-pfp"&gt;&lt;span class="pfp pfp-shane"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="twdm-name"&gt;Shane Hollander&lt;/span&gt;&lt;span class="twdm-calls"&gt;&lt;span class="ic ic-video"&gt;&amp;#127909;&lt;/span&gt;&lt;span class="ic ic-phone"&gt;&amp;#128222;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;</code></pre>
+<pre><code>&lt;p class="mob-header"&gt;&lt;span class="twdm-back"&gt;&lt;span class="ic ic-back"&gt;&amp;#8592;&lt;/span&gt;&lt;/span&gt;&lt;span class="tw-pfp"&gt;&lt;span class="pfp pfp-shane"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="twdm-name"&gt;Shane Hollander&lt;/span&gt;&lt;span class="twdm-calls"&gt;&lt;span class="ic ic-video"&gt;&amp;#127909;&lt;/span&gt;&lt;span class="ic ic-phone"&gt;&amp;#128222;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;</code></pre>
 
 <p>After the header comes <code>&lt;div class=&quot;mob-body&quot;&gt;</code>, which holds all of the messages.</p>
 
@@ -1478,18 +1478,18 @@
 
 <p>To finish off the window, add the message bar after the body, inside the container. It's built the same way as iMessage's: the round <code>twdm-plus</code> button, then the <code>twdm-field</code> box with the word in it and the microphone at the end. The hide spans keep a space between the parts for readers with the workskin off:</p>
 
-<div class="mob twdm theme-auto"><p class="twdm-input"><span class="twdm-plus">+</span><span class="hide"> </span><span class="twdm-field">Message<span class="hide"> </span><span class="ic ic-mic">&#127908;</span></span></p></div>
+<div class="mob twdm theme-auto"><p class="twdm-footer"><span class="twdm-plus">+</span><span class="hide"> </span><span class="twdm-field">Message<span class="hide"> </span><span class="ic ic-mic">&#127908;</span></span></p></div>
 
-<pre><code>&lt;p class="twdm-input"&gt;&lt;span class="twdm-plus"&gt;+&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="twdm-field"&gt;Message&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="ic ic-mic"&gt;&amp;#127908;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;</code></pre>
+<pre><code>&lt;p class="twdm-footer"&gt;&lt;span class="twdm-plus"&gt;+&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="twdm-field"&gt;Message&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="ic ic-mic"&gt;&amp;#127908;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;</code></pre>
 
 <details>
 <summary>Options: a half-written message</summary>
 
 <p>For a half-written message, add <code>typed</code> to the <code>twdm-field</code>, write the message instead of "Message", and add the flashing cursor from the core if you like:</p>
 
-<div class="mob twdm theme-auto"><p class="twdm-input"><span class="twdm-plus">+</span><span class="hide"> </span><span class="twdm-field typed">I did not agree<span class="cursor">|</span><span class="hide"> </span><span class="ic ic-mic">&#127908;</span></span></p></div>
+<div class="mob twdm theme-auto"><p class="twdm-footer"><span class="twdm-plus">+</span><span class="hide"> </span><span class="twdm-field typed">I did not agree<span class="cursor">|</span><span class="hide"> </span><span class="ic ic-mic">&#127908;</span></span></p></div>
 
-<pre><code>&lt;p class="twdm-input"&gt;&lt;span class="twdm-plus"&gt;+&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="twdm-field typed"&gt;I did not agree&lt;span class="cursor"&gt;|&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="ic ic-mic"&gt;&amp;#127908;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;</code></pre>
+<pre><code>&lt;p class="twdm-footer"&gt;&lt;span class="twdm-plus"&gt;+&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="twdm-field typed"&gt;I did not agree&lt;span class="cursor"&gt;|&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="ic ic-mic"&gt;&amp;#127908;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;</code></pre>
 
 </details>
 
@@ -1689,11 +1689,11 @@
 &lt;/div&gt;</code></pre>
 
 <div class="mob twdm theme-auto">
-  <p class="twdm-input"><span class="twdm-plus">+</span><span class="hide"> </span><span class="twdm-field">Message<span class="hide"> </span><span class="ic ic-mic">&#127908;</span></span></p>
+  <p class="twdm-footer"><span class="twdm-plus">+</span><span class="hide"> </span><span class="twdm-field">Message<span class="hide"> </span><span class="ic ic-mic">&#127908;</span></span></p>
 </div>
 
 <pre><code>&lt;div class="mob twdm theme-auto"&gt;
-  &lt;p class="twdm-input"&gt;&lt;span class="twdm-plus"&gt;+&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="twdm-field"&gt;Message&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="ic ic-mic"&gt;&amp;#127908;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+  &lt;p class="twdm-footer"&gt;&lt;span class="twdm-plus"&gt;+&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="twdm-field"&gt;Message&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="ic ic-mic"&gt;&amp;#127908;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
 &lt;/div&gt;</code></pre>
 
 <p>There's more on this in <a href="core.html#alone">A Part on Its Own</a>, in the Core chapter.</p>

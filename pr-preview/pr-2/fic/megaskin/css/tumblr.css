@@ -493,7 +493,7 @@
 
 #workskin .tb-screen .tb { max-height: none; overflow: visible; }
 
-#workskin .tb-feed .tb-apptop,
+#workskin .tb-feed .tb-header,
 #workskin .tb-feed .tb-tabs,
 #workskin .tb-feed .tb-nav {
   display: flex;
@@ -502,11 +502,11 @@
   font-family: Arial, Helvetica, sans-serif;
 }
 
-#workskin .tb-feed .tb-apptop br,
+#workskin .tb-feed .tb-header br,
 #workskin .tb-feed .tb-tabs br,
 #workskin .tb-feed .tb-nav br { display: none; }
 
-#workskin .tb-feed .tb-apptop { padding: 0.9em 1em 0.3em 1em; }
+#workskin .tb-feed .tb-header { padding: 0.9em 1em 0.3em 1em; }
 
 #workskin .tb-feed .tb-logo {
   margin-right: auto;
@@ -705,7 +705,7 @@
 #workskin .tb .ic.ic-heart { background-image: url(https://images.squidge.org/images/2026/11/15/heart-black.png); }
 
 /* the app screen's top bar and bottom buttons. They always sit on the feed colour, so they don't change with the theme. */
-#workskin .tb-feed .tb-apptop .ic,
+#workskin .tb-feed .tb-header .ic,
 #workskin .tb-feed .tb-tabs .ic,
 #workskin .tb-feed .tb-nav .ic {
   display: inline-block;

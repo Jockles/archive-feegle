@@ -301,7 +301,7 @@ Tutorial([
           '<td class="gm-from"><span class="name ' + c + '"></span> <span class="gm-address">&lt;<span class="email ' + c + '"></span>&gt;</span></td>' +
           '<td class="gm-date">9:15 AM</td></tr><tr><td class="gm-to">to me &#9662;</td><td class="gm-tools">&#8617; &#8943;</td></tr></tbody></table>' +
           '<div class="gm-body"><p>and this is me in Gmail</p></div></div></div>' +
-          '<div class="mob mail ' + t + '"><p class="mail-titlebar"><span>_ X</span><span class="hide"> - </span>Hello</p>' +
+          '<div class="mob mail ' + t + '"><p class="mail-header"><span>_ X</span><span class="hide"> - </span>Hello</p>' +
           '<p class="mail-field"><b>From:</b> <span class="email ' + c + '"></span></p><p class="mail-field"><b>Subject:</b> Hello</p>' +
           '<div class="mail-body"><p>and in any other email</p></div></div>',
         dc: '<div class="dc ' + t + '"><div class="dc-message"><p><b class="dc-name ' + c + '"><span class="dc-pfp"><span class="pfp ' + c + '"></span></span>' +
@@ -315,10 +315,10 @@ Tutorial([
         return '<p><em>Extra ' + esc(x.app.label) + ' account (' + esc(x.acc) + '):</em></p>' + blocks(p + " " + x.acc)[x.app.key];
       }).join("") +
       (owner ? '<p><em>On ' + esc(owner) + "'s phone (pov-" + esc(owner) + '):</em></p>' +
-        '<div class="mob wa ' + t + ' pov-' + owner + '"><p class="mob-head"><span class="name ' + p + '"></span><span class="hide"> - </span><span>online</span></p>' +
+        '<div class="mob wa ' + t + ' pov-' + owner + '"><p class="mob-header"><span class="name ' + p + '"></span><span class="hide"> - </span><span>online</span></p>' +
         '<div class="mob-body"><div class="msg in"><p>hey it\'s me</p><p class="wa-time">10:02</p></div></div></div>' : '') +
       '<p><em>On ' + nm + "'s own phone (pov-" + esc(r.slug) + '):</em></p>' +
-      '<div class="mob wa ' + t + ' pov-' + r.slug + '"><p class="mob-head">Someone<span class="hide"> - </span><span>online</span></p>' +
+      '<div class="mob wa ' + t + ' pov-' + r.slug + '"><p class="mob-header">Someone<span class="hide"> - </span><span>online</span></p>' +
         '<div class="mob-body"><div class="msg out"><p>my wallpaper</p><p class="wa-time">10:03 <span class="wa-read">✓✓</span></p></div></div></div>';
     $("workskin").innerHTML = html;
   }

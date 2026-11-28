@@ -127,7 +127,7 @@
 }
 
 /* title bar: put the window controls first, so they sit at the right */
-#workskin .mail .mail-titlebar {
+#workskin .mail .mail-header {
   display: block;
   overflow: hidden;
   margin: 0;
@@ -139,7 +139,7 @@
   text-overflow: ellipsis;
 }
 
-#workskin .mail .mail-titlebar span {
+#workskin .mail .mail-header span {
   float: right;
   margin-left: 0.8em;
   color: #cfcfcf;
@@ -246,9 +246,9 @@
 
 #workskin .mail.theme-dark { border-color: #3c4043; background: #202124; color: #e8eaed; }
 
-#workskin .mail.theme-dark .mail-titlebar { background: #131314; color: #e8eaed; }
+#workskin .mail.theme-dark .mail-header { background: #131314; color: #e8eaed; }
 
-#workskin .mail.theme-dark .mail-titlebar span { color: #9aa0a6; }
+#workskin .mail.theme-dark .mail-header span { color: #9aa0a6; }
 
 #workskin .mail.theme-dark .mail-field { background: #202124; color: #e8eaed; border-bottom-color: #3c4043; }
 
@@ -290,9 +290,9 @@
 
   #workskin .mail.theme-auto { border-color: #3c4043; background: #202124; color: #e8eaed; }
 
-  #workskin .mail.theme-auto .mail-titlebar { background: #131314; color: #e8eaed; }
+  #workskin .mail.theme-auto .mail-header { background: #131314; color: #e8eaed; }
 
-  #workskin .mail.theme-auto .mail-titlebar span { color: #9aa0a6; }
+  #workskin .mail.theme-auto .mail-header span { color: #9aa0a6; }
 
   #workskin .mail.theme-auto .mail-field { background: #202124; color: #e8eaed; border-bottom-color: #3c4043; }
 

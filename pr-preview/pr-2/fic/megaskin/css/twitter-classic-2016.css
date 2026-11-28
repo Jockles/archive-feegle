@@ -16,7 +16,7 @@
 /* AO3 turns line breaks in your code into <br> tags: hide them in the rows */
 #workskin .twc16 .tw-top br,
 #workskin .twc16 .tw-stats br,
-#workskin .twc16-feed .twc-apptop br,
+#workskin .twc16-feed .twc-header br,
 #workskin .twc16-feed .tw-nav br { display: none; }
 
 /* "Shane Retweeted" or "Rose liked" above a tweet:
@@ -267,8 +267,8 @@
 }
 
 /* the bar along the top: your own picture (or a back arrow) on the left, the page name in the middle.
-   <p class="twc-apptop"><span class="tw-me"><span class="pfp pfp-name"></span></span><span class="twc-title">Home</span></p> */
-#workskin .twc16-feed .twc-apptop {
+   <p class="twc-header"><span class="tw-me"><span class="pfp pfp-name"></span></span><span class="twc-title">Home</span></p> */
+#workskin .twc16-feed .twc-header {
   display: flex;
   position: sticky;
   top: 0;
@@ -299,19 +299,19 @@
   font-size: 1.1em;
 }
 
-#workskin .twc16-feed .twc-apptop .ic { flex: none; width: 1.4em; height: 1.4em; }
+#workskin .twc16-feed .twc-header .ic { flex: none; width: 1.4em; height: 1.4em; }
 
 #workskin .twc16-feed .twc-title + .ic { margin-left: auto; }
 
-/* the replies box under an opened tweet: <p class="twc-foot"><span>Tweet your reply</span></p> */
-#workskin .twc16-feed .twc-foot {
+/* the replies box under an opened tweet: <p class="twc-footer"><span>Tweet your reply</span></p> */
+#workskin .twc16-feed .twc-footer {
   display: block;
   margin: 0;
   padding: 0.5em 1em;
   border-bottom: 1px solid #e6ecf0;
 }
 
-#workskin .twc16-feed .twc-foot span {
+#workskin .twc16-feed .twc-footer span {
   display: block;
   padding: 0.35em 0.9em;
   border: 1px solid #ccd6dd;
@@ -371,7 +371,7 @@
 #workskin .twc16.theme-dark,
 #workskin .twc16-feed.theme-dark,
 #workskin .twc16-feed.theme-dark .twc16,
-#workskin .twc16-feed.theme-dark .twc-apptop,
+#workskin .twc16-feed.theme-dark .twc-header,
 #workskin .twc16-feed.theme-dark .tw-nav {
   background: #15202b;
   color: #ffffff;
@@ -401,8 +401,8 @@
 #workskin .twc16-feed.theme-dark .tw-counts,
 #workskin .twc16.theme-dark .tw-quote,
 #workskin .twc16-feed.theme-dark .tw-quote,
-#workskin .twc16-feed.theme-dark .twc-foot,
-#workskin .twc16-feed.theme-dark .twc-foot span {
+#workskin .twc16-feed.theme-dark .twc-footer,
+#workskin .twc16-feed.theme-dark .twc-footer span {
   border-color: #38444d;
 }
 
@@ -420,7 +420,7 @@
   #workskin .twc16.theme-auto,
   #workskin .twc16-feed.theme-auto,
   #workskin .twc16-feed.theme-auto .twc16,
-  #workskin .twc16-feed.theme-auto .twc-apptop,
+  #workskin .twc16-feed.theme-auto .twc-header,
   #workskin .twc16-feed.theme-auto .tw-nav {
     background: #15202b;
     color: #ffffff;
@@ -450,8 +450,8 @@
   #workskin .twc16-feed.theme-auto .tw-counts,
   #workskin .twc16.theme-auto .tw-quote,
   #workskin .twc16-feed.theme-auto .tw-quote,
-  #workskin .twc16-feed.theme-auto .twc-foot,
-  #workskin .twc16-feed.theme-auto .twc-foot span {
+  #workskin .twc16-feed.theme-auto .twc-footer,
+  #workskin .twc16-feed.theme-auto .twc-footer span {
     border-color: #38444d;
   }
 

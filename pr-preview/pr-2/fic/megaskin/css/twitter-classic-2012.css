@@ -16,7 +16,7 @@
 /* AO3 turns line breaks in your code into <br> tags: hide them in the rows */
 #workskin .twc12 .tw-top br,
 #workskin .twc12 .tw-stats br,
-#workskin .twc12-feed .twc-apptop br,
+#workskin .twc12-feed .twc-header br,
 #workskin .twc12-feed .tw-nav br { display: none; }
 
 /* the name line: picture, name and @handle, with the time in the top right corner.
@@ -198,8 +198,8 @@
 
 #workskin .twc12.big .tw-stats .ic { width: 1.75em; height: 1.75em; }
 
-/* the reply box under an opened tweet: <p class="twc-foot"><span>Reply to Name</span></p> */
-#workskin .twc12 .twc-foot {
+/* the reply box under an opened tweet: <p class="twc-footer"><span>Reply to Name</span></p> */
+#workskin .twc12 .twc-footer {
   display: block;
   margin: 0 -0.8em;
   padding: 0.45em 0.6em;
@@ -208,7 +208,7 @@
   border-top: 1px solid #c4c4c4;
 }
 
-#workskin .twc12 .twc-foot span {
+#workskin .twc12 .twc-footer span {
   display: block;
   padding: 0.3em 0.7em;
   background: #ffffff;
@@ -249,8 +249,8 @@
 }
 
 /* the blue bar along the top: a back arrow or the page's buttons, the page name in the middle, search and write a tweet on the right.
-   <p class="twc-apptop"><span class="ic ic-back">&#8592;</span><span class="twc-title">Tweet</span><span class="ic ic-x-search">&#128269;</span><span class="ic ic-tw-compose">&#9998;</span></p> */
-#workskin .twc12-feed .twc-apptop {
+   <p class="twc-header"><span class="ic ic-back">&#8592;</span><span class="twc-title">Tweet</span><span class="ic ic-x-search">&#128269;</span><span class="ic ic-tw-compose">&#9998;</span></p> */
+#workskin .twc12-feed .twc-header {
   display: flex;
   position: sticky;
   top: 0;
@@ -276,11 +276,11 @@
   font-size: 1.15em;
 }
 
-#workskin .twc12-feed .twc-apptop .ic { flex: none; width: 1.4em; height: 1.4em; }
+#workskin .twc12-feed .twc-header .ic { flex: none; width: 1.4em; height: 1.4em; }
 
 #workskin .twc12-feed .twc-title + .ic { margin-left: auto; }
 
-#workskin .twc12-feed .twc-apptop .ic + .ic { margin-left: 0.8em; }
+#workskin .twc12-feed .twc-header .ic + .ic { margin-left: 0.8em; }
 
 /* the black row of buttons along the bottom, each with its name under it. "on" lights up the page you're on.
    <p class="tw-nav"><span class="tw-tab on"><span class="ic ic-x-home-filled">&#8962;</span> Home</span> <span class="tw-tab"><span class="ic ic-tw-at">@</span> Connect</span> <span class="tw-tab"><span class="ic ic-tw-hash">#</span> Discover</span> <span class="tw-tab"><span class="ic ic-tw-me">&#9786;</span> Me</span></p> */
@@ -343,10 +343,10 @@
 #workskin .twc12 .ic.ic-tw-repost { background-image: url(https://images.squidge.org/images/2026/11/19/tw12-retweet-grey.png); }
 #workskin .twc12 .ic.ic-tw-like { background-image: url(https://images.squidge.org/images/2026/11/19/tw12-star-grey.png); }
 #workskin .twc12 .ic.ic-tw-share { background-image: url(https://images.squidge.org/images/2026/11/19/tw12-more-grey.png); }
-#workskin .twc12-feed .twc-apptop .ic.ic-back { background-image: url(https://images.squidge.org/images/2026/11/19/tw12-back-white.png); }
-#workskin .twc12-feed .twc-apptop .ic.ic-x-search { background-image: url(https://images.squidge.org/images/2026/11/19/tw12-search-white.png); }
-#workskin .twc12-feed .twc-apptop .ic.ic-tw-compose { background-image: url(https://images.squidge.org/images/2026/11/19/tw12-compose-white.png); }
-#workskin .twc12-feed .twc-apptop .ic.ic-tw-me { background-image: url(https://images.squidge.org/images/2026/11/19/tw12-me-white.png); }
+#workskin .twc12-feed .twc-header .ic.ic-back { background-image: url(https://images.squidge.org/images/2026/11/19/tw12-back-white.png); }
+#workskin .twc12-feed .twc-header .ic.ic-x-search { background-image: url(https://images.squidge.org/images/2026/11/19/tw12-search-white.png); }
+#workskin .twc12-feed .twc-header .ic.ic-tw-compose { background-image: url(https://images.squidge.org/images/2026/11/19/tw12-compose-white.png); }
+#workskin .twc12-feed .twc-header .ic.ic-tw-me { background-image: url(https://images.squidge.org/images/2026/11/19/tw12-me-white.png); }
 #workskin .twc12-feed .tw-nav .ic.ic-x-home-filled { background-image: url(https://images.squidge.org/images/2026/11/19/tw12-home-grey.png); }
 #workskin .twc12-feed .tw-nav .ic.ic-tw-at { background-image: url(https://images.squidge.org/images/2026/11/19/tw12-at-grey.png); }
 #workskin .twc12-feed .tw-nav .ic.ic-tw-hash { background-image: url(https://images.squidge.org/images/2026/11/19/tw12-hash-grey.png); }

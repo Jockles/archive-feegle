@@ -25,7 +25,7 @@
   <!-- /site meta -->
   <link rel="stylesheet" href="../../style.css?v=c31c06ea">
   <script src="../../theme.js?v=c50fd7c2"></script>
-  <link rel="stylesheet" href="megaskin.css?v=0fbf0eaf" id="creator-style">
+  <link rel="stylesheet" href="megaskin.css?v=216ca427" id="creator-style">
 </head>
 <body>
 <header>
@@ -67,8 +67,8 @@
   <li><a href="#s19-3">19.3 The Container</a>
     <ul>
       <li><a href="#s19-3-1">19.3.1 The Window</a></li>
-      <li><a href="#s19-3-2">19.3.2 Top</a></li>
-      <li><a href="#s19-3-3">19.3.3 Bottom</a></li>
+      <li><a href="#s19-3-2">19.3.2 Header</a></li>
+      <li><a href="#s19-3-3">19.3.3 Footer</a></li>
       <li><a href="#s19-3-4">19.3.4 Long Chats</a></li>
     </ul>
   </li>
@@ -165,7 +165,7 @@
 
 <p>This takes away AO3's gaps between paragraphs, so the message lines sit tight together like they do in Discord.</p>
 
-<h4 id="s19-3-2">19.3.2 Top</h4>
+<h4 id="s19-3-2">19.3.2 Header</h4>
 
 <pre><code>#workskin .dc .dc-header::before {
   content: '';
@@ -238,11 +238,11 @@
 
 <p>The little upright line between the channel name and its description is an empty span with only a left border.</p>
 
-<h4 id="s19-3-3">19.3.3 Bottom</h4>
+<h4 id="s19-3-3">19.3.3 Footer</h4>
 
 <h5 id="s19-3-3-1">19.3.3.1 Chat Box</h5>
 
-<pre><code>#workskin .dc .dc-input {
+<pre><code>#workskin .dc .dc-footer {
   margin: 1.5rem 1rem 0;
   padding: 1rem 3.5rem;
   border-radius: 0.5rem;
@@ -577,7 +577,7 @@
 
 <ul>
   <li><strong>Header:</strong> everything starting <code>dc-header</code>, plus <code>dc-desc</code>, <code>hashtag</code>, <code>locked</code> and <code>at-symbol</code>.</li>
-  <li><strong>Message box:</strong> <code>dc-input</code> and <code>dc-field</code>.</li>
+  <li><strong>Message box:</strong> <code>dc-footer</code> and <code>dc-field</code>.</li>
   <li><strong>Replies:</strong> <code>dc-reply</code>.</li>
   <li><strong>Pictures and emoji:</strong> <code>dc-photo</code>, <code>dc-emoji</code> and <code>dc-inline-emoji</code>.</li>
   <li><strong>Reactions:</strong> <code>dc-reaction</code> and <code>dc-reaction-count</code>.</li>

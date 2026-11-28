@@ -75,7 +75,7 @@
 
 <p>This takes away AO3's gaps between paragraphs, so the message lines sit tight together like they do in Discord.</p>
 
-<h4>Top</h4>
+<h4>Header</h4>
 
 <pre><code>#workskin .dc .dc-header::before {
   content: '';
@@ -148,11 +148,11 @@
 
 <p>The little upright line between the channel name and its description is an empty span with only a left border.</p>
 
-<h4>Bottom</h4>
+<h4>Footer</h4>
 
 <h5>Chat Box</h5>
 
-<pre><code>#workskin .dc .dc-input {
+<pre><code>#workskin .dc .dc-footer {
   margin: 1.5rem 1rem 0;
   padding: 1rem 3.5rem;
   border-radius: 0.5rem;
@@ -487,7 +487,7 @@
 
 <ul>
   <li><strong>Header:</strong> everything starting <code>dc-header</code>, plus <code>dc-desc</code>, <code>hashtag</code>, <code>locked</code> and <code>at-symbol</code>.</li>
-  <li><strong>Message box:</strong> <code>dc-input</code> and <code>dc-field</code>.</li>
+  <li><strong>Message box:</strong> <code>dc-footer</code> and <code>dc-field</code>.</li>
   <li><strong>Replies:</strong> <code>dc-reply</code>.</li>
   <li><strong>Pictures and emoji:</strong> <code>dc-photo</code>, <code>dc-emoji</code> and <code>dc-inline-emoji</code>.</li>
   <li><strong>Reactions:</strong> <code>dc-reaction</code> and <code>dc-reaction-count</code>.</li>

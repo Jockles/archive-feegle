@@ -104,7 +104,7 @@
   border-color: rgb(46, 51, 56);
 }
 
-#workskin .dc .dc-input {
+#workskin .dc .dc-footer {
   margin: 1.5rem 1rem 0;
   padding: 1rem 3.5rem;
   border-radius: 0.5rem;
@@ -676,7 +676,7 @@
 
 #workskin .dc.theme-dark .typing-indicator span { background-color: rgb(220, 221, 222); }
 
-#workskin .dc.theme-dark .dc-input { background-color: rgb(64, 68, 75); }
+#workskin .dc.theme-dark .dc-footer { background-color: rgb(64, 68, 75); }
 
 #workskin .dc.theme-dark .hashtag::before { background-image: url(https://images.squidge.org/images/2026/11/15/dc-hashtag-dark.png); }
 
@@ -794,7 +794,7 @@
   
   #workskin .dc.theme-auto .typing-indicator span { background-color: rgb(220, 221, 222); }
 
-  #workskin .dc.theme-auto .dc-input { background-color: rgb(64, 68, 75); }
+  #workskin .dc.theme-auto .dc-footer { background-color: rgb(64, 68, 75); }
 
   #workskin .dc.theme-auto .hashtag::before { background-image: url(https://images.squidge.org/images/2026/11/15/dc-hashtag-dark.png); }
 

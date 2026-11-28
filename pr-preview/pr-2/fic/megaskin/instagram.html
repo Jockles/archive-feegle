@@ -25,7 +25,7 @@
   <!-- /site meta -->
   <link rel="stylesheet" href="../../style.css?v=c31c06ea">
   <script src="../../theme.js?v=c50fd7c2"></script>
-  <link rel="stylesheet" href="megaskin.css?v=0fbf0eaf" id="creator-style">
+  <link rel="stylesheet" href="megaskin.css?v=216ca427" id="creator-style">
 </head>
 <body>
 <header>
@@ -69,7 +69,7 @@
   </li>
   <li><a href="#s12-2">12.2 The Container</a>
     <ul>
-      <li><a href="#s12-2-1">12.2.1 Top</a></li>
+      <li><a href="#s12-2-1">12.2.1 Header</a></li>
       <li><a href="#s12-2-2">12.2.2 Posts in the Feed</a></li>
       <li><a href="#s12-2-3">12.2.3 A Post on Its Own</a></li>
     </ul>
@@ -142,7 +142,7 @@
 </ul>
 
 <div class="mob ig ig-feed theme-auto">
-<p class="ig-apptop"><span class="ig-add">+</span><span class="ig-logo">Instagram</span><span class="ig-notif ic ic-heart">&#9825;</span><span class="ig-badge"><span class="hide"> (new)</span></span></p>
+<p class="ig-header"><span class="ig-add">+</span><span class="ig-logo">Instagram</span><span class="ig-notif ic ic-heart">&#9825;</span><span class="ig-badge"><span class="hide"> (new)</span></span></p>
 <div class="ig-stories">
 <p class="ig-story me"><span class="ig-pfp"><span class="pfp pfp-ilya"></span></span><span class="ig-story-name">Your story</span></p>
 <p class="ig-story close"><span class="ig-pfp"><span class="pfp pfp-rose"></span></span><span class="ig-story-name">rose.landry</span></p>
@@ -246,7 +246,7 @@
 <summary>The full HTML for this feed</summary>
 
 <pre><code>&lt;div class="mob ig ig-feed theme-auto"&gt;
-&lt;p class="ig-apptop"&gt;&lt;span class="ig-add"&gt;+&lt;/span&gt;&lt;span class="ig-logo"&gt;Instagram&lt;/span&gt;&lt;span class="ig-notif ic ic-heart"&gt;&amp;#9825;&lt;/span&gt;&lt;span class="ig-badge"&gt;&lt;span class="hide"&gt; (new)&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p class="ig-header"&gt;&lt;span class="ig-add"&gt;+&lt;/span&gt;&lt;span class="ig-logo"&gt;Instagram&lt;/span&gt;&lt;span class="ig-notif ic ic-heart"&gt;&amp;#9825;&lt;/span&gt;&lt;span class="ig-badge"&gt;&lt;span class="hide"&gt; (new)&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
 &lt;div class="ig-stories"&gt;
 &lt;p class="ig-story me"&gt;&lt;span class="ig-pfp"&gt;&lt;span class="pfp pfp-ilya"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="ig-story-name"&gt;Your story&lt;/span&gt;&lt;/p&gt;
 &lt;p class="ig-story close"&gt;&lt;span class="ig-pfp"&gt;&lt;span class="pfp pfp-rose"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="ig-story-name"&gt;rose.landry&lt;/span&gt;&lt;/p&gt;
@@ -355,7 +355,7 @@
 <p>Every Instagram post in this chapter sits in a feed, the same way every iMessage sits in its chat window. The feed is a <code>mob ig ig-feed</code> box with a theme, and inside it go the top bar, the Stories row and the posts, in that order. The top bar and the Stories row are optional, so leave them out if you only want the posts:</p>
 
 <pre><code>&lt;div class="mob ig ig-feed theme-auto"&gt;
-&lt;p class="ig-apptop"&gt;the top bar&lt;/p&gt;
+&lt;p class="ig-header"&gt;the top bar&lt;/p&gt;
 &lt;div class="ig-stories"&gt;the Stories circles&lt;/div&gt;
 &lt;div class="mob ig"&gt;a post&lt;/div&gt;
 &lt;div class="mob ig"&gt;another post&lt;/div&gt;
@@ -370,17 +370,17 @@
 
 </details>
 
-<h4 id="s12-2-1">12.2.1 Top</h4>
+<h4 id="s12-2-1">12.2.1 Header</h4>
 
 <p>At the top of the feed go the top bar and the row of Stories circles. Both are optional.</p>
 
 <h5 id="s12-2-1-1">12.2.1.1 The Top Bar</h5>
 
-<p>The top bar is an <code>ig-apptop</code> line, with the + on the left, the logo in the middle and the heart on the right. The logo is a picture, and the word typed inside it is for readers with the workskin off. The little red dot on the heart means there's something new, so leave out the <code>ig-badge</code> span if there isn't:</p>
+<p>The top bar is an <code>ig-header</code> line, with the + on the left, the logo in the middle and the heart on the right. The logo is a picture, and the word typed inside it is for readers with the workskin off. The little red dot on the heart means there's something new, so leave out the <code>ig-badge</code> span if there isn't:</p>
 
-<div class="mob ig ig-feed theme-auto"><p class="ig-apptop"><span class="ig-add">+</span><span class="ig-logo">Instagram</span><span class="ig-notif ic ic-heart">&#9825;</span><span class="ig-badge"><span class="hide"> (new)</span></span></p></div>
+<div class="mob ig ig-feed theme-auto"><p class="ig-header"><span class="ig-add">+</span><span class="ig-logo">Instagram</span><span class="ig-notif ic ic-heart">&#9825;</span><span class="ig-badge"><span class="hide"> (new)</span></span></p></div>
 
-<pre><code>&lt;p class="ig-apptop"&gt;&lt;span class="ig-add"&gt;+&lt;/span&gt;&lt;span class="ig-logo"&gt;Instagram&lt;/span&gt;&lt;span class="ig-notif ic ic-heart"&gt;&amp;#9825;&lt;/span&gt;&lt;span class="ig-badge"&gt;&lt;span class="hide"&gt; (new)&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;</code></pre>
+<pre><code>&lt;p class="ig-header"&gt;&lt;span class="ig-add"&gt;+&lt;/span&gt;&lt;span class="ig-logo"&gt;Instagram&lt;/span&gt;&lt;span class="ig-notif ic ic-heart"&gt;&amp;#9825;&lt;/span&gt;&lt;span class="ig-badge"&gt;&lt;span class="hide"&gt; (new)&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;</code></pre>
 
 <h5 id="s12-2-1-2">12.2.1.2 The Stories Row</h5>
 
@@ -955,7 +955,7 @@
 <h4 id="s12-6-1">12.6.1 A One-to-One DM</h4>
 
 <div class="mob igdm theme-auto">
-  <p class="mob-head"><span class="ig-pfp"><span class="pfp pfp-shane"></span></span>shane.h<span class="hide"> - </span><span>Active now</span></p>
+  <p class="mob-header"><span class="ig-pfp"><span class="pfp pfp-shane"></span></span>shane.h<span class="hide"> - </span><span>Active now</span></p>
   <div class="mob-body">
     <p class="msg in"><span class="hide"><em>Shane:</em> </span>you replied to my story</p>
     <p class="msg out"><span class="hide"><em>Ilya:</em> </span>I did not</p>
@@ -970,7 +970,7 @@
 <summary>The full HTML for this chat</summary>
 
 <pre><code>&lt;div class="mob igdm theme-auto"&gt;
-  &lt;p class="mob-head"&gt;&lt;span class="ig-pfp"&gt;&lt;span class="pfp pfp-shane"&gt;&lt;/span&gt;&lt;/span&gt;shane.h&lt;span class="hide"&gt; - &lt;/span&gt;&lt;span&gt;Active now&lt;/span&gt;&lt;/p&gt;
+  &lt;p class="mob-header"&gt;&lt;span class="ig-pfp"&gt;&lt;span class="pfp pfp-shane"&gt;&lt;/span&gt;&lt;/span&gt;shane.h&lt;span class="hide"&gt; - &lt;/span&gt;&lt;span&gt;Active now&lt;/span&gt;&lt;/p&gt;
   &lt;div class="mob-body"&gt;
     &lt;p class="msg in"&gt;&lt;span class="hide"&gt;&lt;em&gt;Shane:&lt;/em&gt; &lt;/span&gt;you replied to my story&lt;/p&gt;
     &lt;p class="msg out"&gt;&lt;span class="hide"&gt;&lt;em&gt;Ilya:&lt;/em&gt; &lt;/span&gt;I did not&lt;/p&gt;
@@ -986,7 +986,7 @@
 <h4 id="s12-6-2">12.6.2 A Group DM</h4>
 
 <div class="mob igdm theme-auto">
-  <p class="mob-head"><span class="ig-collab"><span class="ig-pfp"><span class="pfp pfp-rose"></span></span><span class="ig-pfp"><span class="pfp pfp-shane"></span></span></span>gala committee 🥂<span class="igdm-chev"></span><span class="hide"> - </span><span>2 active 2h ago</span></p>
+  <p class="mob-header"><span class="ig-collab"><span class="ig-pfp"><span class="pfp pfp-rose"></span></span><span class="ig-pfp"><span class="pfp pfp-shane"></span></span></span>gala committee 🥂<span class="igdm-chev"></span><span class="hide"> - </span><span>2 active 2h ago</span></p>
   <div class="mob-body">
     <div class="igdm-row">
       <span class="ig-pfp"><span class="pfp pfp-rose"></span></span>
@@ -1008,7 +1008,7 @@
 <summary>The full HTML for this chat</summary>
 
 <pre><code>&lt;div class="mob igdm theme-auto"&gt;
-  &lt;p class="mob-head"&gt;&lt;span class="ig-collab"&gt;&lt;span class="ig-pfp"&gt;&lt;span class="pfp pfp-rose"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="ig-pfp"&gt;&lt;span class="pfp pfp-shane"&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;gala committee 🥂&lt;span class="igdm-chev"&gt;&lt;/span&gt;&lt;span class="hide"&gt; - &lt;/span&gt;&lt;span&gt;2 active 2h ago&lt;/span&gt;&lt;/p&gt;
+  &lt;p class="mob-header"&gt;&lt;span class="ig-collab"&gt;&lt;span class="ig-pfp"&gt;&lt;span class="pfp pfp-rose"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="ig-pfp"&gt;&lt;span class="pfp pfp-shane"&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;gala committee 🥂&lt;span class="igdm-chev"&gt;&lt;/span&gt;&lt;span class="hide"&gt; - &lt;/span&gt;&lt;span&gt;2 active 2h ago&lt;/span&gt;&lt;/p&gt;
   &lt;div class="mob-body"&gt;
     &lt;div class="igdm-row"&gt;
       &lt;span class="ig-pfp"&gt;&lt;span class="pfp pfp-rose"&gt;&lt;/span&gt;&lt;/span&gt;
@@ -1032,15 +1032,15 @@
 
 <p>Instagram DMs use the usual container, header and body, with the module class <code>igdm</code>, so the container is <code>&lt;div class=&quot;mob igdm theme-auto&quot;&gt;</code>. First comes the header, with the picture, the name and the status line:</p>
 
-<div class="mob igdm theme-auto"><p class="mob-head"><span class="ig-pfp"><span class="pfp pfp-shane"></span></span>shane.h<span class="hide"> - </span><span>Active now</span></p></div>
+<div class="mob igdm theme-auto"><p class="mob-header"><span class="ig-pfp"><span class="pfp pfp-shane"></span></span>shane.h<span class="hide"> - </span><span>Active now</span></p></div>
 
-<pre><code>&lt;p class="mob-head"&gt;&lt;span class="ig-pfp"&gt;&lt;span class="pfp pfp-shane"&gt;&lt;/span&gt;&lt;/span&gt;shane.h&lt;span class="hide"&gt; - &lt;/span&gt;&lt;span&gt;Active now&lt;/span&gt;&lt;/p&gt;</code></pre>
+<pre><code>&lt;p class="mob-header"&gt;&lt;span class="ig-pfp"&gt;&lt;span class="pfp pfp-shane"&gt;&lt;/span&gt;&lt;/span&gt;shane.h&lt;span class="hide"&gt; - &lt;/span&gt;&lt;span&gt;Active now&lt;/span&gt;&lt;/p&gt;</code></pre>
 
 <p>The picture comes first, in an <code>ig-pfp</code> span with a <code>pfp</code> span inside it, the same as a post. Every DM in the app has one, so put it in unless you really don't want it. The span at the end is the status line, like "Active now" or "Active 2h ago". The name can be typed, like shane.h here, or it can come from a profile, in a handle span with the name typed inside it in a <code>hide</code> span. Then the picture comes from the profile too:</p>
 
-<div class="mob igdm theme-auto"><p class="mob-head"><span class="ig-pfp"><span class="pfp pfp-shane"></span></span><span class="handle pfp-shane"><span class="hide">shanehollanderhockeyplayer</span></span><span class="hide"> </span><span class="ig-tick ic ic-verified">&#10003;</span><span class="hide"> - </span><span>Active now</span></p></div>
+<div class="mob igdm theme-auto"><p class="mob-header"><span class="ig-pfp"><span class="pfp pfp-shane"></span></span><span class="handle pfp-shane"><span class="hide">shanehollanderhockeyplayer</span></span><span class="hide"> </span><span class="ig-tick ic ic-verified">&#10003;</span><span class="hide"> - </span><span>Active now</span></p></div>
 
-<pre><code>&lt;p class="mob-head"&gt;&lt;span class="ig-pfp"&gt;&lt;span class="pfp pfp-shane"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="handle pfp-shane"&gt;&lt;span class="hide"&gt;shanehollanderhockeyplayer&lt;/span&gt;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="ig-tick ic ic-verified"&gt;&amp;#10003;&lt;/span&gt;&lt;span class="hide"&gt; - &lt;/span&gt;&lt;span&gt;Active now&lt;/span&gt;&lt;/p&gt;</code></pre>
+<pre><code>&lt;p class="mob-header"&gt;&lt;span class="ig-pfp"&gt;&lt;span class="pfp pfp-shane"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="handle pfp-shane"&gt;&lt;span class="hide"&gt;shanehollanderhockeyplayer&lt;/span&gt;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="ig-tick ic ic-verified"&gt;&amp;#10003;&lt;/span&gt;&lt;span class="hide"&gt; - &lt;/span&gt;&lt;span&gt;Active now&lt;/span&gt;&lt;/p&gt;</code></pre>
 
 <details>
 <summary>Names that are too long</summary>
@@ -1049,20 +1049,20 @@
 
 <p>A name from a profile is filled in by the skin, from the handle span, so you can't shorten it inside the span. Swap the whole handle span for the name typed out, cut short with "…". Keep the picture span, so the picture still comes from the profile. Here's Shane's header with the name from his profile:</p>
 
-<pre><code>&lt;p class="mob-head"&gt;&lt;span class="ig-pfp"&gt;&lt;span class="pfp pfp-shane"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="handle pfp-shane"&gt;&lt;span class="hide"&gt;shanehollanderhockeyplayer&lt;/span&gt;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="ig-tick ic ic-verified"&gt;&amp;#10003;&lt;/span&gt;&lt;span class="hide"&gt; - &lt;/span&gt;&lt;span&gt;Active now&lt;/span&gt;&lt;/p&gt;</code></pre>
+<pre><code>&lt;p class="mob-header"&gt;&lt;span class="ig-pfp"&gt;&lt;span class="pfp pfp-shane"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="handle pfp-shane"&gt;&lt;span class="hide"&gt;shanehollanderhockeyplayer&lt;/span&gt;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="ig-tick ic ic-verified"&gt;&amp;#10003;&lt;/span&gt;&lt;span class="hide"&gt; - &lt;/span&gt;&lt;span&gt;Active now&lt;/span&gt;&lt;/p&gt;</code></pre>
 
 <p>And here it is with the handle span swapped for the shortened name:</p>
 
-<div class="mob igdm theme-auto"><p class="mob-head"><span class="ig-pfp"><span class="pfp pfp-shane"></span></span>shanehollanderh…<span class="hide"> </span><span class="ig-tick ic ic-verified">&#10003;</span><span class="hide"> - </span><span>Active now</span></p></div>
+<div class="mob igdm theme-auto"><p class="mob-header"><span class="ig-pfp"><span class="pfp pfp-shane"></span></span>shanehollanderh…<span class="hide"> </span><span class="ig-tick ic ic-verified">&#10003;</span><span class="hide"> - </span><span>Active now</span></p></div>
 
-<pre><code>&lt;p class="mob-head"&gt;&lt;span class="ig-pfp"&gt;&lt;span class="pfp pfp-shane"&gt;&lt;/span&gt;&lt;/span&gt;shanehollanderh…&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="ig-tick ic ic-verified"&gt;&amp;#10003;&lt;/span&gt;&lt;span class="hide"&gt; - &lt;/span&gt;&lt;span&gt;Active now&lt;/span&gt;&lt;/p&gt;</code></pre>
+<pre><code>&lt;p class="mob-header"&gt;&lt;span class="ig-pfp"&gt;&lt;span class="pfp pfp-shane"&gt;&lt;/span&gt;&lt;/span&gt;shanehollanderh…&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="ig-tick ic ic-verified"&gt;&amp;#10003;&lt;/span&gt;&lt;span class="hide"&gt; - &lt;/span&gt;&lt;span&gt;Active now&lt;/span&gt;&lt;/p&gt;</code></pre>
 
 <p>A typed name is shortened the same way: just cut it short and add "…" at the end.</p>
 </details>
 
 <p>For a group, wrap two pictures in an <code>ig-collab</code> span and they overlap, the first at the top left and the second in front of it at the bottom right. Instagram only ever shows two, so a third is hidden. If someone hasn't got a picture, type their initials in the <code>ig-pfp</code> span instead and add a colour from colour1 to colour10:</p>
 
-<div class="mob igdm theme-auto"><p class="mob-head"><span class="ig-collab"><span class="ig-pfp"><span class="pfp pfp-rose"></span></span><span class="ig-pfp colour4">HP</span></span>gala committee 🥂<span class="igdm-chev"></span><span class="hide"> - </span><span>2 active 2h ago</span></p></div>
+<div class="mob igdm theme-auto"><p class="mob-header"><span class="ig-collab"><span class="ig-pfp"><span class="pfp pfp-rose"></span></span><span class="ig-pfp colour4">HP</span></span>gala committee 🥂<span class="igdm-chev"></span><span class="hide"> - </span><span>2 active 2h ago</span></p></div>
 
 <pre><code>&lt;span class="ig-collab"&gt;&lt;span class="ig-pfp"&gt;&lt;span class="pfp pfp-rose"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="ig-pfp colour4"&gt;HP&lt;/span&gt;&lt;/span&gt;</code></pre>
 
@@ -1397,7 +1397,7 @@
 <p>To make the chat look like the whole DM screen in the app, add the top bar buttons to the header and the message bar to the bottom. Both are optional, and the chat works the same without them:</p>
 
 <div class="mob igdm theme-auto">
-  <p class="mob-head"><span class="igdm-back"><span class="ic ic-back">&#8592;</span></span><span class="hide"> </span><span class="igdm-calls"><span class="ic ic-phone">&#128222;</span><span class="hide"> </span><span class="ic ic-video">&#127909;</span></span><span class="hide"> </span><span class="ig-collab"><span class="ig-pfp"><span class="pfp pfp-rose"></span></span><span class="ig-pfp"><span class="pfp pfp-shane"></span></span></span>gala committee 🥂<span class="igdm-chev"></span><span class="hide"> - </span><span>2 active 2h ago</span></p>
+  <p class="mob-header"><span class="igdm-back"><span class="ic ic-back">&#8592;</span></span><span class="hide"> </span><span class="igdm-calls"><span class="ic ic-phone">&#128222;</span><span class="hide"> </span><span class="ic ic-video">&#127909;</span></span><span class="hide"> </span><span class="ig-collab"><span class="ig-pfp"><span class="pfp pfp-rose"></span></span><span class="ig-pfp"><span class="pfp pfp-shane"></span></span></span>gala committee 🥂<span class="igdm-chev"></span><span class="hide"> - </span><span>2 active 2h ago</span></p>
   <div class="mob-body">
     <div class="igdm-row">
       <span class="ig-pfp"><span class="pfp pfp-rose"></span></span>
@@ -1407,14 +1407,14 @@
     <p class="msg out"><span class="hide"><em>Ilya:</em> </span>I already ate half of it</p>
     <p class="igdm-status">Seen by 3</p>
   </div>
-  <p class="igdm-input"><span class="igdm-cam ic ic-camera">&#128247;</span><span class="hide"> </span><span class="igdm-field">Message...<span class="hide"> </span><span class="ic ic-mic">&#127908;</span></span></p>
+  <p class="igdm-footer"><span class="igdm-cam ic ic-camera">&#128247;</span><span class="hide"> </span><span class="igdm-field">Message...<span class="hide"> </span><span class="ic ic-mic">&#127908;</span></span></p>
 </div>
 
 <details>
 <summary>The full HTML for this chat</summary>
 
 <pre><code>&lt;div class="mob igdm theme-auto"&gt;
-  &lt;p class="mob-head"&gt;&lt;span class="igdm-back"&gt;&lt;span class="ic ic-back"&gt;&amp;#8592;&lt;/span&gt;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="igdm-calls"&gt;&lt;span class="ic ic-phone"&gt;&amp;#128222;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="ic ic-video"&gt;&amp;#127909;&lt;/span&gt;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="ig-collab"&gt;&lt;span class="ig-pfp"&gt;&lt;span class="pfp pfp-rose"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="ig-pfp"&gt;&lt;span class="pfp pfp-shane"&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;gala committee 🥂&lt;span class="igdm-chev"&gt;&lt;/span&gt;&lt;span class="hide"&gt; - &lt;/span&gt;&lt;span&gt;2 active 2h ago&lt;/span&gt;&lt;/p&gt;
+  &lt;p class="mob-header"&gt;&lt;span class="igdm-back"&gt;&lt;span class="ic ic-back"&gt;&amp;#8592;&lt;/span&gt;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="igdm-calls"&gt;&lt;span class="ic ic-phone"&gt;&amp;#128222;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="ic ic-video"&gt;&amp;#127909;&lt;/span&gt;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="ig-collab"&gt;&lt;span class="ig-pfp"&gt;&lt;span class="pfp pfp-rose"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="ig-pfp"&gt;&lt;span class="pfp pfp-shane"&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;gala committee 🥂&lt;span class="igdm-chev"&gt;&lt;/span&gt;&lt;span class="hide"&gt; - &lt;/span&gt;&lt;span&gt;2 active 2h ago&lt;/span&gt;&lt;/p&gt;
   &lt;div class="mob-body"&gt;
     &lt;div class="igdm-row"&gt;
       &lt;span class="ig-pfp"&gt;&lt;span class="pfp pfp-rose"&gt;&lt;/span&gt;&lt;/span&gt;
@@ -1424,26 +1424,26 @@
     &lt;p class="msg out"&gt;&lt;span class="hide"&gt;&lt;em&gt;Ilya:&lt;/em&gt; &lt;/span&gt;I already ate half of it&lt;/p&gt;
     &lt;p class="igdm-status"&gt;Seen by 3&lt;/p&gt;
   &lt;/div&gt;
-  &lt;p class="igdm-input"&gt;&lt;span class="igdm-cam ic ic-camera"&gt;&amp;#128247;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="igdm-field"&gt;Message...&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="ic ic-mic"&gt;&amp;#127908;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+  &lt;p class="igdm-footer"&gt;&lt;span class="igdm-cam ic ic-camera"&gt;&amp;#128247;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="igdm-field"&gt;Message...&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="ic ic-mic"&gt;&amp;#127908;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
 &lt;/div&gt;</code></pre>
 
 </details>
 
 <p>The back arrow and the call and video buttons go in the header first, before the picture, in that order:</p>
 
-<div class="mob igdm theme-auto"><p class="mob-head"><span class="igdm-back"><span class="ic ic-back">&#8592;</span></span><span class="hide"> </span><span class="igdm-calls"><span class="ic ic-phone">&#128222;</span><span class="hide"> </span><span class="ic ic-video">&#127909;</span></span><span class="hide"> </span><span class="ig-pfp"><span class="pfp pfp-shane"></span></span>shane.h<span class="hide"> - </span><span>Active now</span></p></div>
+<div class="mob igdm theme-auto"><p class="mob-header"><span class="igdm-back"><span class="ic ic-back">&#8592;</span></span><span class="hide"> </span><span class="igdm-calls"><span class="ic ic-phone">&#128222;</span><span class="hide"> </span><span class="ic ic-video">&#127909;</span></span><span class="hide"> </span><span class="ig-pfp"><span class="pfp pfp-shane"></span></span>shane.h<span class="hide"> - </span><span>Active now</span></p></div>
 
 <pre><code>&lt;span class="igdm-back"&gt;&lt;span class="ic ic-back"&gt;&amp;#8592;&lt;/span&gt;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="igdm-calls"&gt;&lt;span class="ic ic-phone"&gt;&amp;#128222;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="ic ic-video"&gt;&amp;#127909;&lt;/span&gt;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;</code></pre>
 
 <p>The message bar goes after the <code>mob-body</code>, still inside the chat:</p>
 
-<div class="mob igdm theme-auto"><p class="igdm-input"><span class="igdm-cam ic ic-camera">&#128247;</span><span class="hide"> </span><span class="igdm-field">Message...<span class="hide"> </span><span class="ic ic-mic">&#127908;</span></span></p></div>
+<div class="mob igdm theme-auto"><p class="igdm-footer"><span class="igdm-cam ic ic-camera">&#128247;</span><span class="hide"> </span><span class="igdm-field">Message...<span class="hide"> </span><span class="ic ic-mic">&#127908;</span></span></p></div>
 
-<pre><code>&lt;p class="igdm-input"&gt;&lt;span class="igdm-cam ic ic-camera"&gt;&amp;#128247;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="igdm-field"&gt;Message...&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="ic ic-mic"&gt;&amp;#127908;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;</code></pre>
+<pre><code>&lt;p class="igdm-footer"&gt;&lt;span class="igdm-cam ic ic-camera"&gt;&amp;#128247;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="igdm-field"&gt;Message...&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="ic ic-mic"&gt;&amp;#127908;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;</code></pre>
 
 <p>To show a message someone's halfway through typing, add <code>typed</code> to the <code>igdm-field</code> and swap "Message..." for the words:</p>
 
-<div class="mob igdm theme-auto"><p class="igdm-input"><span class="igdm-cam ic ic-camera">&#128247;</span><span class="hide"> </span><span class="igdm-field typed">wait who said there was garlic bread<span class="hide"> </span><span class="ic ic-mic">&#127908;</span></span></p></div>
+<div class="mob igdm theme-auto"><p class="igdm-footer"><span class="igdm-cam ic ic-camera">&#128247;</span><span class="hide"> </span><span class="igdm-field typed">wait who said there was garlic bread<span class="hide"> </span><span class="ic ic-mic">&#127908;</span></span></p></div>
 
 <pre><code>&lt;span class="igdm-field typed"&gt;wait who said there was garlic bread&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="ic ic-mic"&gt;&amp;#127908;&lt;/span&gt;&lt;/span&gt;</code></pre>
 
@@ -1462,11 +1462,11 @@
 &lt;/div&gt;</code></pre>
 
 <div class="mob igdm theme-auto">
-  <p class="igdm-input"><span class="igdm-cam ic ic-camera">&#128247;</span><span class="hide"> </span><span class="igdm-field typed">wait who said there was garlic bread<span class="hide"> </span><span class="ic ic-mic">&#127908;</span></span></p>
+  <p class="igdm-footer"><span class="igdm-cam ic ic-camera">&#128247;</span><span class="hide"> </span><span class="igdm-field typed">wait who said there was garlic bread<span class="hide"> </span><span class="ic ic-mic">&#127908;</span></span></p>
 </div>
 
 <pre><code>&lt;div class="mob igdm theme-auto"&gt;
-  &lt;p class="igdm-input"&gt;&lt;span class="igdm-cam ic ic-camera"&gt;&amp;#128247;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="igdm-field typed"&gt;wait who said there was garlic bread&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="ic ic-mic"&gt;&amp;#127908;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+  &lt;p class="igdm-footer"&gt;&lt;span class="igdm-cam ic ic-camera"&gt;&amp;#128247;&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="igdm-field typed"&gt;wait who said there was garlic bread&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="ic ic-mic"&gt;&amp;#127908;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
 &lt;/div&gt;</code></pre>
 
 <p>There's more on this in <a href="core.html#alone">A Part on Its Own</a>, in the Core chapter.</p>

@@ -12,14 +12,14 @@
   border-radius: 10px;
 }
 
-#workskin .wa .mob-head {
+#workskin .wa .mob-header {
   background: #008069;
   color: #ffffff;
   text-align: left;
   padding: 0.7em 1em;
 }
 
-#workskin .wa .mob-head span {
+#workskin .wa .mob-header span {
   display: block;
   font-weight: normal;
   font-size: 0.8em;
@@ -82,8 +82,8 @@
 }
 
 /* full header: back arrow, picture, title + subtitle, icons.
-   Use a <table class="wa-top"> instead of <p class="mob-head"> (see the tutorial for the cells) */
-#workskin .wa table.wa-top {
+   Use a <table class="wa-header"> instead of <p class="mob-header"> (see the tutorial for the cells) */
+#workskin .wa table.wa-header {
   width: 100%;
   table-layout: fixed;
   border-collapse: collapse;
@@ -94,7 +94,7 @@
   text-align: left;
 }
 
-#workskin .wa table.wa-top td {
+#workskin .wa table.wa-header td {
   margin: 0;
   padding: 0;
   border: 0;
@@ -104,18 +104,18 @@
   vertical-align: middle;
 }
 
-#workskin .wa table.wa-top .wa-back {
+#workskin .wa table.wa-header .wa-back {
   width: 34px;
   padding-left: 0.8em;
   font-size: 1.3em;
   line-height: 1;
 }
 
-#workskin .wa table.wa-top .wa-pfp-cell { width: 48px; padding: 0.55em 0; text-align: center; }
+#workskin .wa table.wa-header .wa-pfp-cell { width: 48px; padding: 0.55em 0; text-align: center; }
 
-#workskin .wa table.wa-top .wa-pfp-cell .wa-pfp { margin: 0 auto; }
+#workskin .wa table.wa-header .wa-pfp-cell .wa-pfp { margin: 0 auto; }
 
-#workskin .wa table.wa-top .wa-title {
+#workskin .wa table.wa-header .wa-title {
   padding: 0.55em 0.4em 0 0.4em;
   font-weight: bold;
   line-height: 1.2;
@@ -124,7 +124,7 @@
   text-overflow: ellipsis;
 }
 
-#workskin .wa table.wa-top .wa-status {
+#workskin .wa table.wa-header .wa-status {
   padding: 0 0.4em 0.55em 0.4em;
   font-size: 0.8em;
   line-height: 1.2;
@@ -134,7 +134,7 @@
   text-overflow: ellipsis;
 }
 
-#workskin .wa table.wa-top .wa-actions {
+#workskin .wa table.wa-header .wa-actions {
   width: 64px;
   padding-right: 0.8em;
   letter-spacing: 0.4em;
@@ -162,7 +162,7 @@
   overflow: hidden;
 }
 
-#workskin .wa table.wa-top .wa-pfp {
+#workskin .wa table.wa-header .wa-pfp {
   width: 38px;
   height: 38px;
   font-size: 0.85em;
@@ -263,10 +263,10 @@
 #workskin .wa .typing-indicator p:last-child span:last-child { opacity: 1; margin-right: 0; }
 
 /* the message bar at the bottom */
-#workskin .wa .wa-input { position: relative; padding: 0.5em 3.4em 0.5em 0.6em; }
+#workskin .wa .wa-footer { position: relative; padding: 0.5em 3.4em 0.5em 0.6em; }
 
 /* AO3 turns line breaks in your HTML into <br /> tags: keep them out of the message bar */
-#workskin .wa .wa-input br { display: none; }
+#workskin .wa .wa-footer br { display: none; }
 
 #workskin .wa .wa-field {
   display: table;
@@ -640,8 +640,8 @@
 
 #workskin .wa.theme-dark { background-color: #0b141a; background-image: url(https://images.squidge.org/images/2026/11/18/whatsapp-bck-dark.png); color: #e9edef; border-color: #222d34; }
 
-#workskin .wa.theme-dark .mob-head,
-#workskin .wa.theme-dark table.wa-top {
+#workskin .wa.theme-dark .mob-header,
+#workskin .wa.theme-dark table.wa-header {
   background: #202c33;
 }
 
@@ -705,8 +705,8 @@
 @media (prefers-color-scheme: dark) {
   #workskin .wa.theme-auto { background-color: #0b141a; background-image: url(https://images.squidge.org/images/2026/11/18/whatsapp-bck-dark.png); color: #e9edef; border-color: #222d34; }
 
-  #workskin .wa.theme-auto .mob-head,
-    #workskin .wa.theme-auto table.wa-top {
+  #workskin .wa.theme-auto .mob-header,
+    #workskin .wa.theme-auto table.wa-header {
       background: #202c33;
     }
 
@@ -866,10 +866,10 @@
   max-height: none;
 }
 
-#workskin .wa .mob-head,
-#workskin .wa .wa-top,
+#workskin .wa .mob-header,
+#workskin .wa .wa-header,
 #workskin .wa .mob-body,
-#workskin .wa .wa-input { position: relative; }
+#workskin .wa .wa-footer { position: relative; }
 
 /* ---------- WhatsApp: Icons ---------- */
 #workskin .wa .ic {
@@ -952,8 +952,8 @@
 }
 
 /* the top bar is coloured in every theme, so its icons are white */
-#workskin .wa .wa-top .ic.ic-back { background-image: url(https://images.squidge.org/images/2026/11/15/back-white.png); }
-#workskin .wa .wa-top .ic.ic-video { background-image: url(https://images.squidge.org/images/2026/11/15/video-white.png); }
-#workskin .wa .wa-top .ic.ic-menu { background-image: url(https://images.squidge.org/images/2026/11/15/menu-vertical-white.png); }
+#workskin .wa .wa-header .ic.ic-back { background-image: url(https://images.squidge.org/images/2026/11/15/back-white.png); }
+#workskin .wa .wa-header .ic.ic-video { background-image: url(https://images.squidge.org/images/2026/11/15/video-white.png); }
+#workskin .wa .wa-header .ic.ic-menu { background-image: url(https://images.squidge.org/images/2026/11/15/menu-vertical-white.png); }
 
 /* <<<<<<<<<< MODULE: WhatsApp (end) <<<<<<<<<< */
