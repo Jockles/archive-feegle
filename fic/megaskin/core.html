@@ -143,7 +143,7 @@
 
 <ul>
   <li><code>mob-header</code> and <code>footer</code>: the bars at the top and bottom. In the header, <code>back</code> is the back arrow, <code>chat-name</code> is who the chat is with, and <code>btns</code> is the group of buttons. In the footer, <code>msgbar</code> is the message bar, where a message is typed, with <code>plus</code> and <code>mic</code> beside it.</li>
-  <li><code>msg</code>: a message, with <code>who</code> for the sender's name in a group, and <code>row</code> around one person's messages when their picture sits beside them.</li>
+  <li><code>msg</code>: a message, with <code>who</code> for the sender's name in a group, <code>avatar</code> for their round picture, and <code>row</code> around one person's messages when their picture sits beside them.</li>
   <li><code>time</code>, <code>status</code> and <code>edited</code>: when it was sent, whether it's been read, and whether it's been changed.</li>
   <li><code>photos</code>: a set of photos, with each one a <code>photo</code>.</li>
   <li><code>reply</code> and <code>quote</code>: the line that says what a message is replying to, and the message it quotes.</li>
@@ -166,7 +166,22 @@
   </p>
 </div>
 
-<p>It won't always be a perfect copy of the other app, because not every app has every part (iMessage doesn't know what a missed call is), but everything still shows up and nothing breaks. Discord is the furthest from the others, since its messages aren't bubbles.</p>
+<p>The bubbles are only how an app looks, not how the chat is built. Discord draws no bubbles, just a picture, a name and lines of text, but it's made from the same parts, so the same chat with <code>dc</code> on the top line becomes a Discord channel:</p>
+
+<div class="mob dc theme-auto">
+  <p class="mob-header">Jane<span class="hide"> - </span><span>iMessage</span></p>
+  <div class="mob-body">
+    <p class="mob-sys">Today 9:41 AM</p>
+    <p class="msg in"><span class="hide"><em>Jane:</em> </span>the header is my name up there</p>
+    <p class="msg out"><span class="hide"><em>Ilya:</em> </span>and we are in the body</p>
+  </div>
+  <p class="footer">
+    <span class="plus">+</span><span class="hide"> </span>
+    <span class="msgbar">iMessage<span class="hide"> </span><span class="mic ic ic-mic">&#127908;</span></span>
+  </p>
+</div>
+
+<p>It won't always be a perfect copy of the other app, because not every app has every part (iMessage doesn't know what a missed call is), but everything still shows up and nothing breaks.</p>
 
 <p><strong>Everything else is the app's name and one plain word.</strong> A part that only one chat app has keeps that app's name, like <code>wa-call</code> for a WhatsApp call, and so does everything in posts: <code>tw-photo</code> is a photo on Twitter/X. The same word still means the same thing in every app:</p>
 
