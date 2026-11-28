@@ -7,7 +7,7 @@
   <title>Megaskin, Chapter 7: WhatsApp CSS | jockles.com</title>
   <link rel="stylesheet" href="../../style.css">
   <script src="../../theme.js"></script>
-  <link rel="stylesheet" href="megaskin.css?v=0fbf0eaf" id="creator-style">
+  <link rel="stylesheet" href="megaskin.css?v=216ca427" id="creator-style">
 </head>
 <body>
 <header>
@@ -49,9 +49,9 @@
   <li><a href="#s7-3">7.3 The Container</a>
     <ul>
       <li><a href="#s7-3-1">7.3.1 The Window</a></li>
-      <li><a href="#s7-3-2">7.3.2 Top</a></li>
+      <li><a href="#s7-3-2">7.3.2 Header</a></li>
       <li><a href="#s7-3-3">7.3.3 Wallpapers</a></li>
-      <li><a href="#s7-3-4">7.3.4 Bottom</a></li>
+      <li><a href="#s7-3-4">7.3.4 Footer</a></li>
     </ul>
   </li>
   <li><a href="#s7-4">7.4 Normal Messages</a>
@@ -123,9 +123,9 @@
 
 </details>
 
-<h4 id="s7-3-2">7.3.2 Top</h4>
+<h4 id="s7-3-2">7.3.2 Header</h4>
 
-<pre><code>#workskin .wa .mob-head {
+<pre><code>#workskin .wa .mob-header {
   background: #008069;
   color: #ffffff;
   text-align: left;
@@ -136,7 +136,7 @@
 
 <p>The header with the back arrow, picture and icons is a table, because tables are one of the few layouts AO3 never rearranges. (It's the approach from the WhatsApp group chat skin in the credits.)</p>
 
-<pre><code>#workskin .wa table.wa-top {
+<pre><code>#workskin .wa table.wa-header {
   width: 100%;
   table-layout: fixed;
   border-collapse: collapse;
@@ -147,7 +147,7 @@
   text-align: left;
 }
 
-#workskin .wa table.wa-top td {
+#workskin .wa table.wa-header td {
   margin: 0;
   padding: 0;
   border: 0;
@@ -167,7 +167,7 @@
 
 </details>
 
-<pre><code>#workskin .wa table.wa-top .wa-title {
+<pre><code>#workskin .wa table.wa-header .wa-title {
   padding: 0.55em 0.4em 0 0.4em;
   font-weight: bold;
   line-height: 1.2;
@@ -262,22 +262,22 @@
   max-height: none;
 }
 
-#workskin .wa .mob-head,
-#workskin .wa .wa-top,
+#workskin .wa .mob-header,
+#workskin .wa .wa-header,
 #workskin .wa .mob-body,
-#workskin .wa .wa-input { position: relative; }</code></pre>
+#workskin .wa .wa-footer { position: relative; }</code></pre>
 
 <p>The <code>wa-wall</code> box is pinned to all four edges of the chat with <code>position: absolute</code>, and <code>overflow: hidden</code> crops anything that sticks out. The picture inside is told to be at least as wide and as tall as the chat, keeping its shape, and the huge minus numbers with <code>margin: auto</code> centre it. The last rule gives the header, messages and message bar a <code>position</code> too, which lifts them on top of the picture.</p>
 
 </details>
 
-<h4 id="s7-3-4">7.3.4 Bottom</h4>
+<h4 id="s7-3-4">7.3.4 Footer</h4>
 
 <h5 id="s7-3-4-1">7.3.4.1 The Message Bar</h5>
 
-<pre><code>#workskin .wa .wa-input { position: relative; padding: 0.5em 3.4em 0.5em 0.6em; }
+<pre><code>#workskin .wa .wa-footer { position: relative; padding: 0.5em 3.4em 0.5em 0.6em; }
 
-#workskin .wa .wa-input br { display: none; }
+#workskin .wa .wa-footer br { display: none; }
 
 #workskin .wa .wa-field {
   display: table;
@@ -898,10 +898,10 @@
 <p>WhatsApp is a long module, so it's worth trimming if you only use a few parts. These come out cleanly - search for the class names and delete every rule with them in, including in the dark and auto blocks:</p>
 
 <ul>
-  <li><strong>Header with a picture and icons:</strong> <code>wa-top</code>, <code>wa-back</code>, <code>wa-title</code>, <code>wa-status</code>, <code>wa-actions</code>. Keep <code>wa-pfp</code> if you use pictures beside messages.</li>
+  <li><strong>Header with a picture and icons:</strong> <code>wa-header</code>, <code>wa-back</code>, <code>wa-title</code>, <code>wa-status</code>, <code>wa-actions</code>. Keep <code>wa-pfp</code> if you use pictures beside messages.</li>
   <li><strong>Pictures beside messages:</strong> <code>wa-row</code> and <code>indent</code>, and <code>wa-pfp</code> with its colours if you don't use the group header either.</li>
   <li><strong>Reactions:</strong> <code>wa-reacts</code> and <code>wa-count</code>.</li>
-  <li><strong>Message bar:</strong> <code>wa-input</code>, <code>wa-field</code>, <code>wa-placeholder</code>, <code>wa-mic</code>.</li>
+  <li><strong>Message bar:</strong> <code>wa-footer</code>, <code>wa-field</code>, <code>wa-placeholder</code>, <code>wa-mic</code>.</li>
   <li><strong>Link cards:</strong> <code>share</code>, and everything starting <code>wa-link</code>.</li>
   <li><strong>Photos:</strong> <code>gallery</code>, <code>wa-photos</code>, <code>wa-photo</code>, <code>wa-desc</code>.</li>
   <li><strong>Calls:</strong> <code>call</code>, and everything starting <code>wa-call</code>, including the <code>ic-wa-call</code> and <code>ic-wa-video</code> icons.</li>

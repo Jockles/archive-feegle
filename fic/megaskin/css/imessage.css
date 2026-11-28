@@ -9,14 +9,14 @@
   border-radius: 14px;
 }
 
-#workskin .imsg .mob-head {
+#workskin .imsg .mob-header {
   background: #f6f6f8;
   color: #000000;
   border-bottom: 1px solid #d8d8dc;
   font-size: 0.85em;
 }
 
-#workskin .imsg .mob-head span {
+#workskin .imsg .mob-header span {
   display: block;
   font-weight: normal;
   color: #8e8e93;
@@ -204,7 +204,7 @@
 #workskin .imsg .out.typing-indicator span { background: #ffffff; }
 
 /* the message bar at the bottom: goes after the mob-body, inside the chat, all on one line */
-#workskin .imsg .imsg-input {
+#workskin .imsg .imsg-footer {
   display: flex;
   align-items: center;
   margin: 0;
@@ -276,7 +276,7 @@
 
 #workskin .imsg.theme-dark { background: #000000; color: #ffffff; border-color: #2c2c2e; }
 
-#workskin .imsg.theme-dark .mob-head { background: #1c1c1e; color: #ffffff; border-bottom-color: #2c2c2e; }
+#workskin .imsg.theme-dark .mob-header { background: #1c1c1e; color: #ffffff; border-bottom-color: #2c2c2e; }
 
 #workskin .imsg.theme-dark .in {
   background: #262628;
@@ -302,7 +302,7 @@
 @media (prefers-color-scheme: dark) {
   #workskin .imsg.theme-auto { background: #000000; color: #ffffff; border-color: #2c2c2e; }
 
-  #workskin .imsg.theme-auto .mob-head { background: #1c1c1e; color: #ffffff; border-bottom-color: #2c2c2e; }
+  #workskin .imsg.theme-auto .mob-header { background: #1c1c1e; color: #ffffff; border-bottom-color: #2c2c2e; }
 
   #workskin .imsg.theme-auto .in {
       background: #262628;

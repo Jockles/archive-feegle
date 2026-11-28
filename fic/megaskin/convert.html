@@ -40,7 +40,7 @@
 <main class="cv">
   <p class="work-title"><a href="index.html">Megaskin</a> by Jockles</p>
   <h2>Converter</h2>
-  <p>Some of the Megaskin's class names have changed to make them easier to read. If you posted a fic with the old names, paste your HTML here and it swaps them for the new ones. Nothing else in your fic is touched: it only changes names inside <code>class="..."</code>. A few names that never did anything are taken out.</p>
+  <p>Some of the Megaskin's class names have changed to make them easier to read. If you posted a fic with the old names, paste your HTML here and it swaps them for the new ones. Nothing else in your fic is touched: it only changes names inside <code>class="..."</code>. A few names that never did anything are taken out. Only run it once, on code that still has the old names.</p>
 
   <h3>1. Your chapter HTML</h3>
   <textarea id="html-in" placeholder="Paste a chapter's HTML here"></textarea>
@@ -63,8 +63,11 @@
 <script src="class-names.js"></script>
 <script>
 (function () {
-  var map = {};
-  MEGASKIN_RENAMES.forEach(function (r) { map[r[0]] = r[1]; });
+  // try every row in order, so a name that changed twice ends up at its newest
+  function newest(name) {
+    MEGASKIN_RENAMES.forEach(function (r) { if (name === r[0]) name = r[1]; });
+    return name;
+  }
   function $(id) { return document.getElementById(id); }
   // swap whole class names inside class="..." or class='...'
   function html(text) {
@@ -76,8 +79,9 @@
         if (MEGASKIN_REMOVED.indexOf(w) > -1) { n++; return false; }
         return w !== "";
       }).map(function (w) {
-        if (Object.prototype.hasOwnProperty.call(map, w)) { n++; return map[w]; }
-        return w;
+        var v = newest(w);
+        if (v !== w) n++;
+        return v;
       });
       return start + q + names.join(" ") + q;
     });
@@ -89,8 +93,9 @@
   function css(text) {
     var n = 0;
     var out = text.replace(/\.(-?[A-Za-z_][\w-]*)/g, function (all, name) {
-      if (Object.prototype.hasOwnProperty.call(map, name)) { n++; return "." + map[name]; }
-      return all;
+      var v = newest(name);
+      if (v !== name) n++;
+      return "." + v;
     });
     return [out, n];
   }

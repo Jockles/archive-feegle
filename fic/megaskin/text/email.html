@@ -214,7 +214,7 @@
 
 </details>
 
-<h5>Top</h5>
+<h5>Header</h5>
 
 <p>The subject line at the top is a table with a <code>gm-title</code> cell for the subject and a <code>gm-star</code> cell for the star. A <code>gm-label</code> span after the subject adds the little grey label, like "Inbox" - you can leave it out if you like:</p>
 
@@ -238,7 +238,7 @@
 
 <p>If you're only showing the replies further down a thread, you can leave the subject line out completely.</p>
 
-<h5>Bottom</h5>
+<h5>Footer</h5>
 
 <p>For the Reply, Reply all and Forward buttons, use a <code>gm-footer</code> around a table with the class <code>gm-actions</code>. If the email only went to one person, leave out the "Reply all" button in the middle:</p>
 
@@ -541,7 +541,7 @@
 <h4>A Work Email</h4>
 
 <div class="mob mail theme-auto">
-  <p class="mail-titlebar"><span>_ X</span><span class="hide"> - </span>Charity gala - forms to sign</p>
+  <p class="mail-header"><span>_ X</span><span class="hide"> - </span>Charity gala - forms to sign</p>
   <p class="mail-field"><b>From:</b> <span class="email pfp-yuna acc-work"><span class="hide">Yuna@HollanderHockey.com</span></span></p>
   <p class="mail-field"><b>Subject:</b> Charity gala - forms to sign</p>
   <p class="mail-field"><b>To:</b> shane@example.com<br><b>Cc:</b> ilya@example.com</p>
@@ -558,7 +558,7 @@
 <summary>The full HTML for this email</summary>
 
 <pre><code>&lt;div class="mob mail theme-auto"&gt;
-  &lt;p class="mail-titlebar"&gt;&lt;span&gt;_ X&lt;/span&gt;&lt;span class="hide"&gt; - &lt;/span&gt;Charity gala - forms to sign&lt;/p&gt;
+  &lt;p class="mail-header"&gt;&lt;span&gt;_ X&lt;/span&gt;&lt;span class="hide"&gt; - &lt;/span&gt;Charity gala - forms to sign&lt;/p&gt;
   &lt;p class="mail-field"&gt;&lt;b&gt;From:&lt;/b&gt; &lt;span class="email pfp-yuna acc-work"&gt;&lt;span class="hide"&gt;Yuna@HollanderHockey.com&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
   &lt;p class="mail-field"&gt;&lt;b&gt;Subject:&lt;/b&gt; Charity gala - forms to sign&lt;/p&gt;
   &lt;p class="mail-field"&gt;&lt;b&gt;To:&lt;/b&gt; shane@example.com&lt;br&gt;&lt;b&gt;Cc:&lt;/b&gt; ilya@example.com&lt;/p&gt;
@@ -581,17 +581,17 @@
   [title bar, header lines, body and button bar go here]
 &lt;/div&gt;</code></pre>
 
-<h5>Top</h5>
+<h5>Header</h5>
 
-<p>The dark title bar is a paragraph with <code>mail-titlebar</code>. The little minimise and close marks go in a span <em>first</em>, so they sit on the right, and then the title:</p>
+<p>The dark title bar is a paragraph with <code>mail-header</code>. The little minimise and close marks go in a span <em>first</em>, so they sit on the right, and then the title:</p>
 
-<div class="mob mail theme-auto"><p class="mail-titlebar"><span>_ X</span><span class="hide"> - </span>Charity gala - forms to sign</p></div>
+<div class="mob mail theme-auto"><p class="mail-header"><span>_ X</span><span class="hide"> - </span>Charity gala - forms to sign</p></div>
 
-<pre><code>&lt;p class="mail-titlebar"&gt;&lt;span&gt;_ X&lt;/span&gt;&lt;span class="hide"&gt; - &lt;/span&gt;Charity gala - forms to sign&lt;/p&gt;</code></pre>
+<pre><code>&lt;p class="mail-header"&gt;&lt;span&gt;_ X&lt;/span&gt;&lt;span class="hide"&gt; - &lt;/span&gt;Charity gala - forms to sign&lt;/p&gt;</code></pre>
 
 <p>You can change the title to anything, like the subject line. If it's too long for the window, it gets cut off rather than wrapping onto a second line.</p>
 
-<h5>Bottom</h5>
+<h5>Footer</h5>
 
 <p>To finish off the window, add the bar of buttons with <code>mail-buttons</code>. Each button is a span:</p>
 

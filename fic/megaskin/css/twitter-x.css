@@ -637,7 +637,7 @@
   color: inherit;
 }
 
-#workskin .tw-feed .tw-foot {
+#workskin .tw-feed .tw-footer {
   display: block;
   padding: 0.7em 1em;
   border-top: 1px solid #eff3f4;
@@ -645,9 +645,9 @@
 }
 
 /* the paragraph AO3 wraps around the bar's text */
-#workskin .tw-feed .tw-foot > p { margin: 0; padding: 0; }
+#workskin .tw-feed .tw-footer > p { margin: 0; padding: 0; }
 
-#workskin .tw-feed .tw-foot span {
+#workskin .tw-feed .tw-footer span {
   float: right;
   padding: 0.25em 0.9em;
   border-radius: 1em;
@@ -658,7 +658,7 @@
 }
 
 /* THE APP SCREEN (optional): add "app" to a tw-feed for X's bar along the top, with the tabs under it. */
-#workskin .tw-feed .tw-apptop,
+#workskin .tw-feed .tw-header,
 #workskin .tw-feed .tw-tabs {
   display: flex;
   align-items: center;
@@ -666,10 +666,10 @@
   white-space: nowrap;
 }
 
-#workskin .tw-feed .tw-apptop br,
+#workskin .tw-feed .tw-header br,
 #workskin .tw-feed .tw-tabs br { display: none; }
 
-#workskin .tw-feed .tw-apptop { padding: 0.8em 1em 0.3em 1em; }
+#workskin .tw-feed .tw-header { padding: 0.8em 1em 0.3em 1em; }
 
 /* the reader's own picture, top left */
 #workskin .tw-feed .tw-me {
@@ -762,7 +762,7 @@
 }
 
 /* THE 2020 TWITTER REDESIGN: add "tw2020" to an app screen */
-#workskin .tw-feed.tw2020 .tw-apptop {
+#workskin .tw-feed.tw2020 .tw-header {
   padding-bottom: 0.6em;
   border-bottom: 1px solid #eff3f4;
 }
@@ -780,7 +780,7 @@
 }
 
 /* the sparkle, top right, the same width as the picture on the left */
-#workskin .tw-feed.tw2020 .tw-apptop::after {
+#workskin .tw-feed.tw2020 .tw-header::after {
   content: "\2726";
   display: block;
   flex: none;
@@ -809,7 +809,7 @@
 }
 
 /* the top bar: a back arrow on the left, the picture and name in the middle, video and call buttons on the right */
-#workskin .twdm .mob-head {
+#workskin .twdm .mob-header {
   position: relative;
   padding: 0.55em 5.6em 0.45em 5.6em;
   background: #ffffff;
@@ -819,9 +819,9 @@
   line-height: 1.2;
 }
 
-#workskin .twdm .mob-head .tw-pfp { width: 40px; height: 40px; margin: 0 auto 0.25em auto; }
+#workskin .twdm .mob-header .tw-pfp { width: 40px; height: 40px; margin: 0 auto 0.25em auto; }
 
-#workskin .twdm .mob-head .twdm-name { display: block; }
+#workskin .twdm .mob-header .twdm-name { display: block; }
 
 #workskin .twdm .twdm-back,
 #workskin .twdm .twdm-calls {
@@ -835,7 +835,7 @@
 
 #workskin .twdm .twdm-calls { right: 0.9em; }
 
-#workskin .twdm .mob-head .ic { width: 1.3em; height: 1.3em; vertical-align: middle; }
+#workskin .twdm .mob-header .ic { width: 1.3em; height: 1.3em; vertical-align: middle; }
 
 #workskin .twdm .twdm-calls .ic + .ic { margin-left: 1.1em; }
 
@@ -967,7 +967,7 @@
 #workskin .twdm .voice .twdm-dur { margin-left: 0.5em; font-size: 0.85em; }
 
 /* the message bar at the bottom: goes after the mob-body, inside the chat, all on one line */
-#workskin .twdm .twdm-input {
+#workskin .twdm .twdm-footer {
   display: flex;
   align-items: center;
   margin: 0;
@@ -1193,9 +1193,9 @@
 
 #workskin .tw-feed.theme-dark .tw-add { background: #000000; }
 
-#workskin .tw-feed.theme-dark.tw2020 .tw-apptop { border-bottom-color: #2f3336; }
+#workskin .tw-feed.theme-dark.tw2020 .tw-header { border-bottom-color: #2f3336; }
 
-#workskin .tw-feed.theme-dark .tw-foot { border-top-color: #2f3336; color: #71767b; }
+#workskin .tw-feed.theme-dark .tw-footer { border-top-color: #2f3336; color: #71767b; }
 
 /* the tweets inside a thread take the thread's theme */
 #workskin .tw-feed.theme-dark .tw-replying,
@@ -1245,7 +1245,7 @@
 
 #workskin .twdm.theme-dark { background: #000000; color: #e7e9ea; border-color: #2f3336; }
 
-#workskin .twdm.theme-dark .mob-head { background: #000000; color: #e7e9ea; border-bottom-color: #2f3336; }
+#workskin .twdm.theme-dark .mob-header { background: #000000; color: #e7e9ea; border-bottom-color: #2f3336; }
 
 #workskin .twdm.theme-dark .mob-sys,
 #workskin .twdm.theme-dark .twdm-status,
@@ -1333,9 +1333,9 @@
 
   #workskin .tw-feed.theme-auto .tw-add { background: #000000; }
 
-  #workskin .tw-feed.theme-auto.tw2020 .tw-apptop { border-bottom-color: #2f3336; }
+  #workskin .tw-feed.theme-auto.tw2020 .tw-header { border-bottom-color: #2f3336; }
 
-  #workskin .tw-feed.theme-auto .tw-foot { border-top-color: #2f3336; color: #71767b; }
+  #workskin .tw-feed.theme-auto .tw-footer { border-top-color: #2f3336; color: #71767b; }
 
   /* the tweets inside a thread take the thread's theme */
   #workskin .tw-feed.theme-auto .tw-replying,
@@ -1408,7 +1408,7 @@
 
   #workskin .twdm.theme-auto { background: #000000; color: #e7e9ea; border-color: #2f3336; }
 
-  #workskin .twdm.theme-auto .mob-head { background: #000000; color: #e7e9ea; border-bottom-color: #2f3336; }
+  #workskin .twdm.theme-auto .mob-header { background: #000000; color: #e7e9ea; border-bottom-color: #2f3336; }
 
   #workskin .twdm.theme-auto .mob-sys,
     #workskin .twdm.theme-auto .twdm-status,

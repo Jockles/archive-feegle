@@ -1,4 +1,5 @@
 // Megaskin class names that changed: old name, new name.
+// Keep them in this order. A few names changed twice, so each row is tried in turn.
 var MEGASKIN_RENAMES = [
   ["ig-actions", "ig-stats"],
   ["ig-btn", "ig-stat"],
@@ -49,7 +50,21 @@ var MEGASKIN_RENAMES = [
   ["tw-thread", "tw-feed"],
   ["wa-bar", "wa-top"],
   ["cont", "same"],
-  ["pad", "indent"]
+  ["pad", "indent"],
+  ["mob-head", "mob-header"],
+  ["wa-top", "wa-header"],
+  ["ig-apptop", "ig-header"],
+  ["tw-apptop", "tw-header"],
+  ["tb-apptop", "tb-header"],
+  ["twc-apptop", "twc-header"],
+  ["mail-titlebar", "mail-header"],
+  ["imsg-input", "imsg-footer"],
+  ["wa-input", "wa-footer"],
+  ["igdm-input", "igdm-footer"],
+  ["twdm-input", "twdm-footer"],
+  ["dc-input", "dc-footer"],
+  ["tw-foot", "tw-footer"],
+  ["twc-foot", "twc-footer"]
 ];
 
 // Names that did nothing and were taken out.

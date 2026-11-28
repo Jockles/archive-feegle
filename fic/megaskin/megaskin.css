@@ -36,7 +36,7 @@
 
 #workskin .mob p { margin: 0; padding: 0; text-indent: 0; }
 
-#workskin .mob-head { padding: 0.6em 0.9em; text-align: center; font-weight: bold; }
+#workskin .mob-header { padding: 0.6em 0.9em; text-align: center; font-weight: bold; }
 
 #workskin .mob-body { padding: 0.7em 0.7em 0.5em 0.7em; }
 
@@ -789,14 +789,14 @@
   border-radius: 14px;
 }
 
-#workskin .imsg .mob-head {
+#workskin .imsg .mob-header {
   background: #f6f6f8;
   color: #000000;
   border-bottom: 1px solid #d8d8dc;
   font-size: 0.85em;
 }
 
-#workskin .imsg .mob-head span {
+#workskin .imsg .mob-header span {
   display: block;
   font-weight: normal;
   color: #8e8e93;
@@ -984,7 +984,7 @@
 #workskin .imsg .out.typing-indicator span { background: #ffffff; }
 
 /* the message bar at the bottom: goes after the mob-body, inside the chat, all on one line */
-#workskin .imsg .imsg-input {
+#workskin .imsg .imsg-footer {
   display: flex;
   align-items: center;
   margin: 0;
@@ -1056,7 +1056,7 @@
 
 #workskin .imsg.theme-dark { background: #000000; color: #ffffff; border-color: #2c2c2e; }
 
-#workskin .imsg.theme-dark .mob-head { background: #1c1c1e; color: #ffffff; border-bottom-color: #2c2c2e; }
+#workskin .imsg.theme-dark .mob-header { background: #1c1c1e; color: #ffffff; border-bottom-color: #2c2c2e; }
 
 #workskin .imsg.theme-dark .in {
   background: #262628;
@@ -1082,7 +1082,7 @@
 @media (prefers-color-scheme: dark) {
   #workskin .imsg.theme-auto { background: #000000; color: #ffffff; border-color: #2c2c2e; }
 
-  #workskin .imsg.theme-auto .mob-head { background: #1c1c1e; color: #ffffff; border-bottom-color: #2c2c2e; }
+  #workskin .imsg.theme-auto .mob-header { background: #1c1c1e; color: #ffffff; border-bottom-color: #2c2c2e; }
 
   #workskin .imsg.theme-auto .in {
       background: #262628;
@@ -1149,14 +1149,14 @@
   border-radius: 10px;
 }
 
-#workskin .wa .mob-head {
+#workskin .wa .mob-header {
   background: #008069;
   color: #ffffff;
   text-align: left;
   padding: 0.7em 1em;
 }
 
-#workskin .wa .mob-head span {
+#workskin .wa .mob-header span {
   display: block;
   font-weight: normal;
   font-size: 0.8em;
@@ -1219,8 +1219,8 @@
 }
 
 /* full header: back arrow, picture, title + subtitle, icons.
-   Use a <table class="wa-top"> instead of <p class="mob-head"> (see the tutorial for the cells) */
-#workskin .wa table.wa-top {
+   Use a <table class="wa-header"> instead of <p class="mob-header"> (see the tutorial for the cells) */
+#workskin .wa table.wa-header {
   width: 100%;
   table-layout: fixed;
   border-collapse: collapse;
@@ -1231,7 +1231,7 @@
   text-align: left;
 }
 
-#workskin .wa table.wa-top td {
+#workskin .wa table.wa-header td {
   margin: 0;
   padding: 0;
   border: 0;
@@ -1241,18 +1241,18 @@
   vertical-align: middle;
 }
 
-#workskin .wa table.wa-top .wa-back {
+#workskin .wa table.wa-header .wa-back {
   width: 34px;
   padding-left: 0.8em;
   font-size: 1.3em;
   line-height: 1;
 }
 
-#workskin .wa table.wa-top .wa-pfp-cell { width: 48px; padding: 0.55em 0; text-align: center; }
+#workskin .wa table.wa-header .wa-pfp-cell { width: 48px; padding: 0.55em 0; text-align: center; }
 
-#workskin .wa table.wa-top .wa-pfp-cell .wa-pfp { margin: 0 auto; }
+#workskin .wa table.wa-header .wa-pfp-cell .wa-pfp { margin: 0 auto; }
 
-#workskin .wa table.wa-top .wa-title {
+#workskin .wa table.wa-header .wa-title {
   padding: 0.55em 0.4em 0 0.4em;
   font-weight: bold;
   line-height: 1.2;
@@ -1261,7 +1261,7 @@
   text-overflow: ellipsis;
 }
 
-#workskin .wa table.wa-top .wa-status {
+#workskin .wa table.wa-header .wa-status {
   padding: 0 0.4em 0.55em 0.4em;
   font-size: 0.8em;
   line-height: 1.2;
@@ -1271,7 +1271,7 @@
   text-overflow: ellipsis;
 }
 
-#workskin .wa table.wa-top .wa-actions {
+#workskin .wa table.wa-header .wa-actions {
   width: 64px;
   padding-right: 0.8em;
   letter-spacing: 0.4em;
@@ -1299,7 +1299,7 @@
   overflow: hidden;
 }
 
-#workskin .wa table.wa-top .wa-pfp {
+#workskin .wa table.wa-header .wa-pfp {
   width: 38px;
   height: 38px;
   font-size: 0.85em;
@@ -1400,10 +1400,10 @@
 #workskin .wa .typing-indicator p:last-child span:last-child { opacity: 1; margin-right: 0; }
 
 /* the message bar at the bottom */
-#workskin .wa .wa-input { position: relative; padding: 0.5em 3.4em 0.5em 0.6em; }
+#workskin .wa .wa-footer { position: relative; padding: 0.5em 3.4em 0.5em 0.6em; }
 
 /* AO3 turns line breaks in your HTML into <br /> tags: keep them out of the message bar */
-#workskin .wa .wa-input br { display: none; }
+#workskin .wa .wa-footer br { display: none; }
 
 #workskin .wa .wa-field {
   display: table;
@@ -1777,8 +1777,8 @@
 
 #workskin .wa.theme-dark { background-color: #0b141a; background-image: url(https://images.squidge.org/images/2026/11/18/whatsapp-bck-dark.png); color: #e9edef; border-color: #222d34; }
 
-#workskin .wa.theme-dark .mob-head,
-#workskin .wa.theme-dark table.wa-top {
+#workskin .wa.theme-dark .mob-header,
+#workskin .wa.theme-dark table.wa-header {
   background: #202c33;
 }
 
@@ -1842,8 +1842,8 @@
 @media (prefers-color-scheme: dark) {
   #workskin .wa.theme-auto { background-color: #0b141a; background-image: url(https://images.squidge.org/images/2026/11/18/whatsapp-bck-dark.png); color: #e9edef; border-color: #222d34; }
 
-  #workskin .wa.theme-auto .mob-head,
-    #workskin .wa.theme-auto table.wa-top {
+  #workskin .wa.theme-auto .mob-header,
+    #workskin .wa.theme-auto table.wa-header {
       background: #202c33;
     }
 
@@ -2003,10 +2003,10 @@
   max-height: none;
 }
 
-#workskin .wa .mob-head,
-#workskin .wa .wa-top,
+#workskin .wa .mob-header,
+#workskin .wa .wa-header,
 #workskin .wa .mob-body,
-#workskin .wa .wa-input { position: relative; }
+#workskin .wa .wa-footer { position: relative; }
 
 /* ---------- WhatsApp: Icons ---------- */
 #workskin .wa .ic {
@@ -2089,9 +2089,9 @@
 }
 
 /* the top bar is coloured in every theme, so its icons are white */
-#workskin .wa .wa-top .ic.ic-back { background-image: url(https://images.squidge.org/images/2026/11/15/back-white.png); }
-#workskin .wa .wa-top .ic.ic-video { background-image: url(https://images.squidge.org/images/2026/11/15/video-white.png); }
-#workskin .wa .wa-top .ic.ic-menu { background-image: url(https://images.squidge.org/images/2026/11/15/menu-vertical-white.png); }
+#workskin .wa .wa-header .ic.ic-back { background-image: url(https://images.squidge.org/images/2026/11/15/back-white.png); }
+#workskin .wa .wa-header .ic.ic-video { background-image: url(https://images.squidge.org/images/2026/11/15/video-white.png); }
+#workskin .wa .wa-header .ic.ic-menu { background-image: url(https://images.squidge.org/images/2026/11/15/menu-vertical-white.png); }
 
 /* <<<<<<<<<< MODULE: WhatsApp (end) <<<<<<<<<< */
 
@@ -2734,7 +2734,7 @@
   color: inherit;
 }
 
-#workskin .tw-feed .tw-foot {
+#workskin .tw-feed .tw-footer {
   display: block;
   padding: 0.7em 1em;
   border-top: 1px solid #eff3f4;
@@ -2742,9 +2742,9 @@
 }
 
 /* the paragraph AO3 wraps around the bar's text */
-#workskin .tw-feed .tw-foot > p { margin: 0; padding: 0; }
+#workskin .tw-feed .tw-footer > p { margin: 0; padding: 0; }
 
-#workskin .tw-feed .tw-foot span {
+#workskin .tw-feed .tw-footer span {
   float: right;
   padding: 0.25em 0.9em;
   border-radius: 1em;
@@ -2755,7 +2755,7 @@
 }
 
 /* THE APP SCREEN (optional): add "app" to a tw-feed for X's bar along the top, with the tabs under it. */
-#workskin .tw-feed .tw-apptop,
+#workskin .tw-feed .tw-header,
 #workskin .tw-feed .tw-tabs {
   display: flex;
   align-items: center;
@@ -2763,10 +2763,10 @@
   white-space: nowrap;
 }
 
-#workskin .tw-feed .tw-apptop br,
+#workskin .tw-feed .tw-header br,
 #workskin .tw-feed .tw-tabs br { display: none; }
 
-#workskin .tw-feed .tw-apptop { padding: 0.8em 1em 0.3em 1em; }
+#workskin .tw-feed .tw-header { padding: 0.8em 1em 0.3em 1em; }
 
 /* the reader's own picture, top left */
 #workskin .tw-feed .tw-me {
@@ -2859,7 +2859,7 @@
 }
 
 /* THE 2020 TWITTER REDESIGN: add "tw2020" to an app screen */
-#workskin .tw-feed.tw2020 .tw-apptop {
+#workskin .tw-feed.tw2020 .tw-header {
   padding-bottom: 0.6em;
   border-bottom: 1px solid #eff3f4;
 }
@@ -2877,7 +2877,7 @@
 }
 
 /* the sparkle, top right, the same width as the picture on the left */
-#workskin .tw-feed.tw2020 .tw-apptop::after {
+#workskin .tw-feed.tw2020 .tw-header::after {
   content: "\2726";
   display: block;
   flex: none;
@@ -2906,7 +2906,7 @@
 }
 
 /* the top bar: a back arrow on the left, the picture and name in the middle, video and call buttons on the right */
-#workskin .twdm .mob-head {
+#workskin .twdm .mob-header {
   position: relative;
   padding: 0.55em 5.6em 0.45em 5.6em;
   background: #ffffff;
@@ -2916,9 +2916,9 @@
   line-height: 1.2;
 }
 
-#workskin .twdm .mob-head .tw-pfp { width: 40px; height: 40px; margin: 0 auto 0.25em auto; }
+#workskin .twdm .mob-header .tw-pfp { width: 40px; height: 40px; margin: 0 auto 0.25em auto; }
 
-#workskin .twdm .mob-head .twdm-name { display: block; }
+#workskin .twdm .mob-header .twdm-name { display: block; }
 
 #workskin .twdm .twdm-back,
 #workskin .twdm .twdm-calls {
@@ -2932,7 +2932,7 @@
 
 #workskin .twdm .twdm-calls { right: 0.9em; }
 
-#workskin .twdm .mob-head .ic { width: 1.3em; height: 1.3em; vertical-align: middle; }
+#workskin .twdm .mob-header .ic { width: 1.3em; height: 1.3em; vertical-align: middle; }
 
 #workskin .twdm .twdm-calls .ic + .ic { margin-left: 1.1em; }
 
@@ -3064,7 +3064,7 @@
 #workskin .twdm .voice .twdm-dur { margin-left: 0.5em; font-size: 0.85em; }
 
 /* the message bar at the bottom: goes after the mob-body, inside the chat, all on one line */
-#workskin .twdm .twdm-input {
+#workskin .twdm .twdm-footer {
   display: flex;
   align-items: center;
   margin: 0;
@@ -3290,9 +3290,9 @@
 
 #workskin .tw-feed.theme-dark .tw-add { background: #000000; }
 
-#workskin .tw-feed.theme-dark.tw2020 .tw-apptop { border-bottom-color: #2f3336; }
+#workskin .tw-feed.theme-dark.tw2020 .tw-header { border-bottom-color: #2f3336; }
 
-#workskin .tw-feed.theme-dark .tw-foot { border-top-color: #2f3336; color: #71767b; }
+#workskin .tw-feed.theme-dark .tw-footer { border-top-color: #2f3336; color: #71767b; }
 
 /* the tweets inside a thread take the thread's theme */
 #workskin .tw-feed.theme-dark .tw-replying,
@@ -3342,7 +3342,7 @@
 
 #workskin .twdm.theme-dark { background: #000000; color: #e7e9ea; border-color: #2f3336; }
 
-#workskin .twdm.theme-dark .mob-head { background: #000000; color: #e7e9ea; border-bottom-color: #2f3336; }
+#workskin .twdm.theme-dark .mob-header { background: #000000; color: #e7e9ea; border-bottom-color: #2f3336; }
 
 #workskin .twdm.theme-dark .mob-sys,
 #workskin .twdm.theme-dark .twdm-status,
@@ -3430,9 +3430,9 @@
 
   #workskin .tw-feed.theme-auto .tw-add { background: #000000; }
 
-  #workskin .tw-feed.theme-auto.tw2020 .tw-apptop { border-bottom-color: #2f3336; }
+  #workskin .tw-feed.theme-auto.tw2020 .tw-header { border-bottom-color: #2f3336; }
 
-  #workskin .tw-feed.theme-auto .tw-foot { border-top-color: #2f3336; color: #71767b; }
+  #workskin .tw-feed.theme-auto .tw-footer { border-top-color: #2f3336; color: #71767b; }
 
   /* the tweets inside a thread take the thread's theme */
   #workskin .tw-feed.theme-auto .tw-replying,
@@ -3505,7 +3505,7 @@
 
   #workskin .twdm.theme-auto { background: #000000; color: #e7e9ea; border-color: #2f3336; }
 
-  #workskin .twdm.theme-auto .mob-head { background: #000000; color: #e7e9ea; border-bottom-color: #2f3336; }
+  #workskin .twdm.theme-auto .mob-header { background: #000000; color: #e7e9ea; border-bottom-color: #2f3336; }
 
   #workskin .twdm.theme-auto .mob-sys,
     #workskin .twdm.theme-auto .twdm-status,
@@ -3640,7 +3640,7 @@
 /* AO3 turns line breaks in your code into <br> tags: hide them in the rows */
 #workskin .twc12 .tw-top br,
 #workskin .twc12 .tw-stats br,
-#workskin .twc12-feed .twc-apptop br,
+#workskin .twc12-feed .twc-header br,
 #workskin .twc12-feed .tw-nav br { display: none; }
 
 /* the name line: picture, name and @handle, with the time in the top right corner.
@@ -3822,8 +3822,8 @@
 
 #workskin .twc12.big .tw-stats .ic { width: 1.75em; height: 1.75em; }
 
-/* the reply box under an opened tweet: <p class="twc-foot"><span>Reply to Name</span></p> */
-#workskin .twc12 .twc-foot {
+/* the reply box under an opened tweet: <p class="twc-footer"><span>Reply to Name</span></p> */
+#workskin .twc12 .twc-footer {
   display: block;
   margin: 0 -0.8em;
   padding: 0.45em 0.6em;
@@ -3832,7 +3832,7 @@
   border-top: 1px solid #c4c4c4;
 }
 
-#workskin .twc12 .twc-foot span {
+#workskin .twc12 .twc-footer span {
   display: block;
   padding: 0.3em 0.7em;
   background: #ffffff;
@@ -3873,8 +3873,8 @@
 }
 
 /* the blue bar along the top: a back arrow or the page's buttons, the page name in the middle, search and write a tweet on the right.
-   <p class="twc-apptop"><span class="ic ic-back">&#8592;</span><span class="twc-title">Tweet</span><span class="ic ic-x-search">&#128269;</span><span class="ic ic-tw-compose">&#9998;</span></p> */
-#workskin .twc12-feed .twc-apptop {
+   <p class="twc-header"><span class="ic ic-back">&#8592;</span><span class="twc-title">Tweet</span><span class="ic ic-x-search">&#128269;</span><span class="ic ic-tw-compose">&#9998;</span></p> */
+#workskin .twc12-feed .twc-header {
   display: flex;
   position: sticky;
   top: 0;
@@ -3900,11 +3900,11 @@
   font-size: 1.15em;
 }
 
-#workskin .twc12-feed .twc-apptop .ic { flex: none; width: 1.4em; height: 1.4em; }
+#workskin .twc12-feed .twc-header .ic { flex: none; width: 1.4em; height: 1.4em; }
 
 #workskin .twc12-feed .twc-title + .ic { margin-left: auto; }
 
-#workskin .twc12-feed .twc-apptop .ic + .ic { margin-left: 0.8em; }
+#workskin .twc12-feed .twc-header .ic + .ic { margin-left: 0.8em; }
 
 /* the black row of buttons along the bottom, each with its name under it. "on" lights up the page you're on.
    <p class="tw-nav"><span class="tw-tab on"><span class="ic ic-x-home-filled">&#8962;</span> Home</span> <span class="tw-tab"><span class="ic ic-tw-at">@</span> Connect</span> <span class="tw-tab"><span class="ic ic-tw-hash">#</span> Discover</span> <span class="tw-tab"><span class="ic ic-tw-me">&#9786;</span> Me</span></p> */
@@ -3967,10 +3967,10 @@
 #workskin .twc12 .ic.ic-tw-repost { background-image: url(https://images.squidge.org/images/2026/11/19/tw12-retweet-grey.png); }
 #workskin .twc12 .ic.ic-tw-like { background-image: url(https://images.squidge.org/images/2026/11/19/tw12-star-grey.png); }
 #workskin .twc12 .ic.ic-tw-share { background-image: url(https://images.squidge.org/images/2026/11/19/tw12-more-grey.png); }
-#workskin .twc12-feed .twc-apptop .ic.ic-back { background-image: url(https://images.squidge.org/images/2026/11/19/tw12-back-white.png); }
-#workskin .twc12-feed .twc-apptop .ic.ic-x-search { background-image: url(https://images.squidge.org/images/2026/11/19/tw12-search-white.png); }
-#workskin .twc12-feed .twc-apptop .ic.ic-tw-compose { background-image: url(https://images.squidge.org/images/2026/11/19/tw12-compose-white.png); }
-#workskin .twc12-feed .twc-apptop .ic.ic-tw-me { background-image: url(https://images.squidge.org/images/2026/11/19/tw12-me-white.png); }
+#workskin .twc12-feed .twc-header .ic.ic-back { background-image: url(https://images.squidge.org/images/2026/11/19/tw12-back-white.png); }
+#workskin .twc12-feed .twc-header .ic.ic-x-search { background-image: url(https://images.squidge.org/images/2026/11/19/tw12-search-white.png); }
+#workskin .twc12-feed .twc-header .ic.ic-tw-compose { background-image: url(https://images.squidge.org/images/2026/11/19/tw12-compose-white.png); }
+#workskin .twc12-feed .twc-header .ic.ic-tw-me { background-image: url(https://images.squidge.org/images/2026/11/19/tw12-me-white.png); }
 #workskin .twc12-feed .tw-nav .ic.ic-x-home-filled { background-image: url(https://images.squidge.org/images/2026/11/19/tw12-home-grey.png); }
 #workskin .twc12-feed .tw-nav .ic.ic-tw-at { background-image: url(https://images.squidge.org/images/2026/11/19/tw12-at-grey.png); }
 #workskin .twc12-feed .tw-nav .ic.ic-tw-hash { background-image: url(https://images.squidge.org/images/2026/11/19/tw12-hash-grey.png); }
@@ -4006,7 +4006,7 @@
 /* AO3 turns line breaks in your code into <br> tags: hide them in the rows */
 #workskin .twc16 .tw-top br,
 #workskin .twc16 .tw-stats br,
-#workskin .twc16-feed .twc-apptop br,
+#workskin .twc16-feed .twc-header br,
 #workskin .twc16-feed .tw-nav br { display: none; }
 
 /* "Shane Retweeted" or "Rose liked" above a tweet:
@@ -4257,8 +4257,8 @@
 }
 
 /* the bar along the top: your own picture (or a back arrow) on the left, the page name in the middle.
-   <p class="twc-apptop"><span class="tw-me"><span class="pfp pfp-name"></span></span><span class="twc-title">Home</span></p> */
-#workskin .twc16-feed .twc-apptop {
+   <p class="twc-header"><span class="tw-me"><span class="pfp pfp-name"></span></span><span class="twc-title">Home</span></p> */
+#workskin .twc16-feed .twc-header {
   display: flex;
   position: sticky;
   top: 0;
@@ -4289,19 +4289,19 @@
   font-size: 1.1em;
 }
 
-#workskin .twc16-feed .twc-apptop .ic { flex: none; width: 1.4em; height: 1.4em; }
+#workskin .twc16-feed .twc-header .ic { flex: none; width: 1.4em; height: 1.4em; }
 
 #workskin .twc16-feed .twc-title + .ic { margin-left: auto; }
 
-/* the replies box under an opened tweet: <p class="twc-foot"><span>Tweet your reply</span></p> */
-#workskin .twc16-feed .twc-foot {
+/* the replies box under an opened tweet: <p class="twc-footer"><span>Tweet your reply</span></p> */
+#workskin .twc16-feed .twc-footer {
   display: block;
   margin: 0;
   padding: 0.5em 1em;
   border-bottom: 1px solid #e6ecf0;
 }
 
-#workskin .twc16-feed .twc-foot span {
+#workskin .twc16-feed .twc-footer span {
   display: block;
   padding: 0.35em 0.9em;
   border: 1px solid #ccd6dd;
@@ -4361,7 +4361,7 @@
 #workskin .twc16.theme-dark,
 #workskin .twc16-feed.theme-dark,
 #workskin .twc16-feed.theme-dark .twc16,
-#workskin .twc16-feed.theme-dark .twc-apptop,
+#workskin .twc16-feed.theme-dark .twc-header,
 #workskin .twc16-feed.theme-dark .tw-nav {
   background: #15202b;
   color: #ffffff;
@@ -4391,8 +4391,8 @@
 #workskin .twc16-feed.theme-dark .tw-counts,
 #workskin .twc16.theme-dark .tw-quote,
 #workskin .twc16-feed.theme-dark .tw-quote,
-#workskin .twc16-feed.theme-dark .twc-foot,
-#workskin .twc16-feed.theme-dark .twc-foot span {
+#workskin .twc16-feed.theme-dark .twc-footer,
+#workskin .twc16-feed.theme-dark .twc-footer span {
   border-color: #38444d;
 }
 
@@ -4410,7 +4410,7 @@
   #workskin .twc16.theme-auto,
   #workskin .twc16-feed.theme-auto,
   #workskin .twc16-feed.theme-auto .twc16,
-  #workskin .twc16-feed.theme-auto .twc-apptop,
+  #workskin .twc16-feed.theme-auto .twc-header,
   #workskin .twc16-feed.theme-auto .tw-nav {
     background: #15202b;
     color: #ffffff;
@@ -4440,8 +4440,8 @@
   #workskin .twc16-feed.theme-auto .tw-counts,
   #workskin .twc16.theme-auto .tw-quote,
   #workskin .twc16-feed.theme-auto .tw-quote,
-  #workskin .twc16-feed.theme-auto .twc-foot,
-  #workskin .twc16-feed.theme-auto .twc-foot span {
+  #workskin .twc16-feed.theme-auto .twc-footer,
+  #workskin .twc16-feed.theme-auto .twc-footer span {
     border-color: #38444d;
   }
 
@@ -5197,14 +5197,14 @@
   border-radius: 14px;
 }
 
-#workskin .igdm .mob-head {
+#workskin .igdm .mob-header {
   background: #ffffff;
   color: #262626;
   border-bottom: 1px solid transparent;
   font-size: 0.9em;
 }
 
-#workskin .igdm .mob-head span {
+#workskin .igdm .mob-header span {
   display: block;
   font-weight: normal;
   color: #737373;
@@ -5277,11 +5277,11 @@
 /* add "mine" when the phone's owner shared it, and it goes on the right */
 #workskin .igdm .igdm-shared.mine { margin: 0.2em 0 0.2em auto; }
 /* ---- pictures in DMs. In the header, put the picture first, before the name */
-#workskin .igdm .mob-head { display: flow-root; padding: 0.6em 0.9em; text-align: left; }
+#workskin .igdm .mob-header { display: flow-root; padding: 0.6em 0.9em; text-align: left; }
 
 /* the little arrow after the name that opens the chat's details: an empty igdm-chev span straight after the name.
    It's drawn by the skin, so it isn't there at all with the workskin off */
-#workskin .igdm .mob-head .igdm-chev {
+#workskin .igdm .mob-header .igdm-chev {
   display: inline;
   margin-left: 0.3em;
   font-size: 1.15em;
@@ -5289,10 +5289,10 @@
   color: #737373;
 }
 
-#workskin .igdm .mob-head .igdm-chev::before { content: "\203A"; }
+#workskin .igdm .mob-header .igdm-chev::before { content: "\203A"; }
 
 /* the verified tick after the name, on the same line as it, never on a line of its own */
-#workskin .igdm .mob-head .ig-tick {
+#workskin .igdm .mob-header .ig-tick {
   display: inline-block;
   position: absolute;
   width: 0.9em;
@@ -5303,17 +5303,17 @@
 
 /* the name line stays on one line: a long group name ends in "...", and a long username breaks
    onto the next line instead, so the tick always stays right after it */
-#workskin .igdm .mob-head { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+#workskin .igdm .mob-header { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
 /* the padding keeps room at the end of the name's last line, and the tick sits in it, so it can't drop to a line of its own */
-#workskin .igdm .mob-head span.handle.handle.handle.handle {
+#workskin .igdm .mob-header span.handle.handle.handle.handle {
   padding-right: 1.4em;
   margin-right: -1.4em;
   white-space: normal;
   word-break: break-all;
 }
 
-#workskin .igdm .mob-head > span:last-child { overflow: hidden; text-overflow: ellipsis; }
+#workskin .igdm .mob-header > span:last-child { overflow: hidden; text-overflow: ellipsis; }
 
 #workskin .igdm .ig-pfp {
   display: flex;
@@ -5329,7 +5329,7 @@
   line-height: 1;
 }
 
-#workskin .igdm .mob-head .ig-pfp {
+#workskin .igdm .mob-header .ig-pfp {
   float: left;
   width: 36px;
   height: 36px;
@@ -5338,7 +5338,7 @@
   font-size: 0.8em;
 }
 
-#workskin .igdm .mob-head .ig-collab {
+#workskin .igdm .mob-header .ig-collab {
   display: block;
   float: left;
   position: relative;
@@ -5347,7 +5347,7 @@
   margin: -1px 0.7em -1px 0;
 }
 
-#workskin .igdm .mob-head .ig-collab .ig-pfp {
+#workskin .igdm .mob-header .ig-collab .ig-pfp {
   position: absolute;
   top: 0;
   left: 0;
@@ -5358,7 +5358,7 @@
   font-size: 0.6em;
 }
 
-#workskin .igdm .mob-head .ig-collab .ig-pfp + .ig-pfp {
+#workskin .igdm .mob-header .ig-collab .ig-pfp + .ig-pfp {
   top: auto;
   left: auto;
   bottom: 0;
@@ -5370,7 +5370,7 @@
 }
 
 /* only two pictures fit, so a third one (or more) is hidden */
-#workskin .igdm .mob-head .ig-collab .ig-pfp + .ig-pfp + .ig-pfp { display: none; }
+#workskin .igdm .mob-header .ig-collab .ig-pfp + .ig-pfp + .ig-pfp { display: none; }
 
 /* ---- a run of messages from one person in a group, with their picture beside the last one. */
 #workskin .igdm .igdm-row {
@@ -5755,7 +5755,7 @@
 }
 
 /* ---- THE APP SCREEN (optional): turn the header into the app's top bar, with a back arrow on the left and call and video buttons on the right, and add the message bar at the bottom. */
-#workskin .igdm .mob-head .igdm-back {
+#workskin .igdm .mob-header .igdm-back {
   display: block;
   float: left;
   height: 36px;
@@ -5763,7 +5763,7 @@
   line-height: 36px;
 }
 
-#workskin .igdm .mob-head .igdm-calls {
+#workskin .igdm .mob-header .igdm-calls {
   display: block;
   float: right;
   height: 36px;
@@ -5771,21 +5771,21 @@
   line-height: 36px;
 }
 
-#workskin .igdm .mob-head .igdm-back .ic,
-#workskin .igdm .mob-head .igdm-calls .ic {
+#workskin .igdm .mob-header .igdm-back .ic,
+#workskin .igdm .mob-header .igdm-calls .ic {
   display: inline-block;
   width: 1.45em;
   height: 1.45em;
   vertical-align: middle;
 }
 
-#workskin .igdm .mob-head .igdm-calls .ic ~ .ic { margin-left: 1.2em; }
+#workskin .igdm .mob-header .igdm-calls .ic ~ .ic { margin-left: 1.2em; }
 
 /* with the back arrow there, a header with two pictures lines up the same as one with one */
-#workskin .igdm .mob-head .igdm-back + .igdm-calls + .ig-collab,
-#workskin .igdm .mob-head .igdm-back + .ig-collab { margin-left: 0; }
+#workskin .igdm .mob-header .igdm-back + .igdm-calls + .ig-collab,
+#workskin .igdm .mob-header .igdm-back + .ig-collab { margin-left: 0; }
 
-#workskin .igdm .igdm-input {
+#workskin .igdm .igdm-footer {
   display: flex;
   align-items: center;
   margin: 0.3em 0.6em 0.6em 0.6em;
@@ -5871,14 +5871,14 @@
 #workskin .ig.ig-feed .ig .ig-top { border-bottom: 0; }
 
 /* the top bar: + on the left, the logo in the middle, the heart on the right */
-#workskin .ig .ig-apptop {
+#workskin .ig .ig-header {
   display: flex;
   align-items: center;
   padding: 0.5em 0.9em 0.2em 0.9em;
   white-space: nowrap;
 }
 
-#workskin .ig .ig-apptop br { display: none; }
+#workskin .ig .ig-header br { display: none; }
 
 #workskin .ig .ig-add {
   flex: none;
@@ -6071,9 +6071,9 @@
 
 #workskin .igdm.theme-dark { background: #0c1014; color: #f5f5f5; border-color: #262626; }
 
-#workskin .igdm.theme-dark .mob-head { background: #0c1014; color: #f5f5f5; border-bottom-color: #262626; }
+#workskin .igdm.theme-dark .mob-header { background: #0c1014; color: #f5f5f5; border-bottom-color: #262626; }
 
-#workskin .igdm.theme-dark .mob-head span,
+#workskin .igdm.theme-dark .mob-header span,
 #workskin .igdm.theme-dark .who,
 #workskin .igdm.theme-dark .igdm-status {
   color: #a8a8a8;
@@ -6083,9 +6083,9 @@
 
 #workskin .igdm.theme-dark .igdm-shared { border-color: #363636; color: #a8a8a8; }
 
-#workskin .igdm.theme-dark .mob-head .ig-collab .ig-pfp + .ig-pfp { border-color: #0c1014; }
+#workskin .igdm.theme-dark .mob-header .ig-collab .ig-pfp + .ig-pfp { border-color: #0c1014; }
 
-#workskin .igdm.theme-dark .igdm-input { background: #262626; }
+#workskin .igdm.theme-dark .igdm-footer { background: #262626; }
 #workskin .igdm.theme-dark .igdm-field { color: #a8a8a8; }
 #workskin .igdm.theme-dark .igdm-field.typed { color: #f5f5f5; }
 #workskin .igdm.theme-dark .igdm-reacts { background: #262626; color: #f5f5f5; border-color: #0c1014; }
@@ -6163,9 +6163,9 @@
 
   #workskin .igdm.theme-auto { background: #0c1014; color: #f5f5f5; border-color: #262626; }
 
-  #workskin .igdm.theme-auto .mob-head { background: #0c1014; color: #f5f5f5; border-bottom-color: #262626; }
+  #workskin .igdm.theme-auto .mob-header { background: #0c1014; color: #f5f5f5; border-bottom-color: #262626; }
 
-  #workskin .igdm.theme-auto .mob-head span,
+  #workskin .igdm.theme-auto .mob-header span,
     #workskin .igdm.theme-auto .who,
     #workskin .igdm.theme-auto .igdm-status {
       color: #a8a8a8;
@@ -6175,9 +6175,9 @@
 
   #workskin .igdm.theme-auto .igdm-shared { border-color: #363636; color: #a8a8a8; }
 
-  #workskin .igdm.theme-auto .mob-head .ig-collab .ig-pfp + .ig-pfp { border-color: #0c1014; }
+  #workskin .igdm.theme-auto .mob-header .ig-collab .ig-pfp + .ig-pfp { border-color: #0c1014; }
 
-  #workskin .igdm.theme-auto .igdm-input { background: #262626; }
+  #workskin .igdm.theme-auto .igdm-footer { background: #262626; }
   #workskin .igdm.theme-auto .igdm-field { color: #a8a8a8; }
   #workskin .igdm.theme-auto .igdm-field.typed { color: #f5f5f5; }
   #workskin .igdm.theme-auto .igdm-reacts { background: #262626; color: #f5f5f5; border-color: #0c1014; }
@@ -6809,7 +6809,7 @@
 
 #workskin .tb-screen .tb { max-height: none; overflow: visible; }
 
-#workskin .tb-feed .tb-apptop,
+#workskin .tb-feed .tb-header,
 #workskin .tb-feed .tb-tabs,
 #workskin .tb-feed .tb-nav {
   display: flex;
@@ -6818,11 +6818,11 @@
   font-family: Arial, Helvetica, sans-serif;
 }
 
-#workskin .tb-feed .tb-apptop br,
+#workskin .tb-feed .tb-header br,
 #workskin .tb-feed .tb-tabs br,
 #workskin .tb-feed .tb-nav br { display: none; }
 
-#workskin .tb-feed .tb-apptop { padding: 0.9em 1em 0.3em 1em; }
+#workskin .tb-feed .tb-header { padding: 0.9em 1em 0.3em 1em; }
 
 #workskin .tb-feed .tb-logo {
   margin-right: auto;
@@ -7021,7 +7021,7 @@
 #workskin .tb .ic.ic-heart { background-image: url(https://images.squidge.org/images/2026/11/15/heart-black.png); }
 
 /* the app screen's top bar and bottom buttons. They always sit on the feed colour, so they don't change with the theme. */
-#workskin .tb-feed .tb-apptop .ic,
+#workskin .tb-feed .tb-header .ic,
 #workskin .tb-feed .tb-tabs .ic,
 #workskin .tb-feed .tb-nav .ic {
   display: inline-block;
@@ -7215,7 +7215,7 @@
 }
 
 /* title bar: put the window controls first, so they sit at the right */
-#workskin .mail .mail-titlebar {
+#workskin .mail .mail-header {
   display: block;
   overflow: hidden;
   margin: 0;
@@ -7227,7 +7227,7 @@
   text-overflow: ellipsis;
 }
 
-#workskin .mail .mail-titlebar span {
+#workskin .mail .mail-header span {
   float: right;
   margin-left: 0.8em;
   color: #cfcfcf;
@@ -7334,9 +7334,9 @@
 
 #workskin .mail.theme-dark { border-color: #3c4043; background: #202124; color: #e8eaed; }
 
-#workskin .mail.theme-dark .mail-titlebar { background: #131314; color: #e8eaed; }
+#workskin .mail.theme-dark .mail-header { background: #131314; color: #e8eaed; }
 
-#workskin .mail.theme-dark .mail-titlebar span { color: #9aa0a6; }
+#workskin .mail.theme-dark .mail-header span { color: #9aa0a6; }
 
 #workskin .mail.theme-dark .mail-field { background: #202124; color: #e8eaed; border-bottom-color: #3c4043; }
 
@@ -7378,9 +7378,9 @@
 
   #workskin .mail.theme-auto { border-color: #3c4043; background: #202124; color: #e8eaed; }
 
-  #workskin .mail.theme-auto .mail-titlebar { background: #131314; color: #e8eaed; }
+  #workskin .mail.theme-auto .mail-header { background: #131314; color: #e8eaed; }
 
-  #workskin .mail.theme-auto .mail-titlebar span { color: #9aa0a6; }
+  #workskin .mail.theme-auto .mail-header span { color: #9aa0a6; }
 
   #workskin .mail.theme-auto .mail-field { background: #202124; color: #e8eaed; border-bottom-color: #3c4043; }
 
@@ -7582,7 +7582,7 @@
   border-color: rgb(46, 51, 56);
 }
 
-#workskin .dc .dc-input {
+#workskin .dc .dc-footer {
   margin: 1.5rem 1rem 0;
   padding: 1rem 3.5rem;
   border-radius: 0.5rem;
@@ -8154,7 +8154,7 @@
 
 #workskin .dc.theme-dark .typing-indicator span { background-color: rgb(220, 221, 222); }
 
-#workskin .dc.theme-dark .dc-input { background-color: rgb(64, 68, 75); }
+#workskin .dc.theme-dark .dc-footer { background-color: rgb(64, 68, 75); }
 
 #workskin .dc.theme-dark .hashtag::before { background-image: url(https://images.squidge.org/images/2026/11/15/dc-hashtag-dark.png); }
 
@@ -8272,7 +8272,7 @@
   
   #workskin .dc.theme-auto .typing-indicator span { background-color: rgb(220, 221, 222); }
 
-  #workskin .dc.theme-auto .dc-input { background-color: rgb(64, 68, 75); }
+  #workskin .dc.theme-auto .dc-footer { background-color: rgb(64, 68, 75); }
 
   #workskin .dc.theme-auto .hashtag::before { background-image: url(https://images.squidge.org/images/2026/11/15/dc-hashtag-dark.png); }
 
