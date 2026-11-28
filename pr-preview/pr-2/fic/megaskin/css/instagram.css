@@ -134,7 +134,7 @@
 /* a long caption cut short, ending in a grey "more": put "... " and <span class="ig-more">more</span> at the end */
 #workskin .ig .ig-more { color: #737373; }
 
-#workskin .ig .ig-viewall {
+#workskin .ig .ig-view-all {
   display: block;
   padding: 0.15em 0.9em;
   color: #737373;
@@ -754,14 +754,14 @@
   color: #737373;
 }
 
-/* add "mine" when the phone's owner shared it, and it goes on the right */
-#workskin .igdm .igdm-shared.mine { margin: 0.2em 0 0.2em auto; }
+/* add "me" when the phone's owner shared it, and it goes on the right */
+#workskin .igdm .igdm-shared.me { margin: 0.2em 0 0.2em auto; }
 /* ---- pictures in DMs. In the header, put the picture first, before the name */
 #workskin .igdm .mob-header { display: flow-root; padding: 0.6em 0.9em; text-align: left; }
 
-/* the little arrow after the name that opens the chat's details: an empty igdm-chev span straight after the name.
+/* the little arrow after the name that opens the chat's details: an empty igdm-drop span straight after the name.
    It's drawn by the skin, so it isn't there at all with the workskin off */
-#workskin .igdm .mob-header .igdm-chev {
+#workskin .igdm .mob-header .igdm-drop {
   display: inline;
   margin-left: 0.3em;
   font-size: 1.15em;
@@ -769,7 +769,7 @@
   color: #737373;
 }
 
-#workskin .igdm .mob-header .igdm-chev::before { content: "\203A"; }
+#workskin .igdm .mob-header .igdm-drop::before { content: "\203A"; }
 
 /* the verified tick after the name, on the same line as it, never on a line of its own */
 #workskin .igdm .mob-header .ig-tick {
@@ -908,18 +908,18 @@
 #workskin .igdm .igdm-row:has(> .igdm-reacts:last-child) > .ig-pfp { bottom: 1.5em; }
 
 /* ---- replies: a grey line saying who replied, then the message they replied to, faded, with a bar beside it, then the reply itself. */
-#workskin .igdm .igdm-replied {
+#workskin .igdm .igdm-reply {
   display: block;
   font-size: 0.72em;
   color: #737373;
   margin: 0.5em 0 0.15em 0.9em;
 }
 
-#workskin .igdm .igdm-replied.out { margin: 0.5em 0.9em 0.15em 0; text-align: right; }
+#workskin .igdm .igdm-reply.out { margin: 0.5em 0.9em 0.15em 0; text-align: right; }
 
 /* in and out only set the side here, not a bubble */
-#workskin .igdm .igdm-replied.in,
-#workskin .igdm .igdm-replied.out { background: none; color: #737373; }
+#workskin .igdm .igdm-reply.in,
+#workskin .igdm .igdm-reply.out { background: none; color: #737373; }
 
 #workskin .igdm .igdm-quote {
   display: table;
@@ -935,7 +935,7 @@
 
 #workskin .igdm .igdm-quote.out { margin: 0 0.7em 0.2em auto; }
 
-#workskin .igdm .igdm-quote.mine { background: #d9c7fb; color: #ffffff; }
+#workskin .igdm .igdm-quote.me { background: #d9c7fb; color: #ffffff; }
 
 /* the grey bar beside the quote */
 #workskin .igdm .igdm-quote::before {
@@ -1501,7 +1501,7 @@
 #workskin .ig.theme-dark .ig-top { border-bottom-color: #262626; }
 
 #workskin .ig.theme-dark .ig-top span,
-#workskin .ig.theme-dark .ig-viewall,
+#workskin .ig.theme-dark .ig-view-all,
 #workskin .ig.theme-dark .ig-time {
   color: #a8a8a8;
 }
@@ -1564,10 +1564,10 @@
 #workskin .igdm.theme-dark .igdm-field { color: #a8a8a8; }
 #workskin .igdm.theme-dark .igdm-field.typed { color: #f5f5f5; }
 #workskin .igdm.theme-dark .igdm-reacts { background: #262626; color: #f5f5f5; border-color: #0c1014; }
-#workskin .igdm.theme-dark .igdm-replied.in,
-  #workskin .igdm.theme-dark .igdm-replied.out { background: none; color: #a8a8a8; }
+#workskin .igdm.theme-dark .igdm-reply.in,
+  #workskin .igdm.theme-dark .igdm-reply.out { background: none; color: #a8a8a8; }
 #workskin .igdm.theme-dark .igdm-quote { background: #1c1c1c; color: #8e8e8e; }
-#workskin .igdm.theme-dark .igdm-quote.mine { background: #3b2a66; color: #c9b5f2; }
+#workskin .igdm.theme-dark .igdm-quote.me { background: #3b2a66; color: #c9b5f2; }
 #workskin .igdm.theme-dark .igdm-quote::before { background: #363636; }
 #workskin .igdm.theme-dark .igdm-photo,
   #workskin .igdm.theme-dark .igdm-post { background: #262626; color: #f5f5f5; }
@@ -1593,7 +1593,7 @@
   #workskin .ig.theme-auto .ig-top { border-bottom-color: #262626; }
 
   #workskin .ig.theme-auto .ig-top span,
-    #workskin .ig.theme-auto .ig-viewall,
+    #workskin .ig.theme-auto .ig-view-all,
     #workskin .ig.theme-auto .ig-time {
       color: #a8a8a8;
     }
@@ -1656,10 +1656,10 @@
   #workskin .igdm.theme-auto .igdm-field { color: #a8a8a8; }
   #workskin .igdm.theme-auto .igdm-field.typed { color: #f5f5f5; }
   #workskin .igdm.theme-auto .igdm-reacts { background: #262626; color: #f5f5f5; border-color: #0c1014; }
-  #workskin .igdm.theme-auto .igdm-replied.in,
-    #workskin .igdm.theme-auto .igdm-replied.out { background: none; color: #a8a8a8; }
+  #workskin .igdm.theme-auto .igdm-reply.in,
+    #workskin .igdm.theme-auto .igdm-reply.out { background: none; color: #a8a8a8; }
   #workskin .igdm.theme-auto .igdm-quote { background: #1c1c1c; color: #8e8e8e; }
-  #workskin .igdm.theme-auto .igdm-quote.mine { background: #3b2a66; color: #c9b5f2; }
+  #workskin .igdm.theme-auto .igdm-quote.me { background: #3b2a66; color: #c9b5f2; }
   #workskin .igdm.theme-auto .igdm-quote::before { background: #363636; }
   #workskin .igdm.theme-auto .igdm-photo,
     #workskin .igdm.theme-auto .igdm-post { background: #262626; color: #f5f5f5; }

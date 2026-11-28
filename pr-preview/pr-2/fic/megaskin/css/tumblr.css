@@ -51,9 +51,9 @@
 /* a name with no line under it sits level with the middle of the picture */
 #workskin .tb .tb-name > b:only-child { line-height: 38px; }
 
-#workskin .tb .tb-subline { display: block; font-size: 0.85em; color: #6c7a8b; }
+#workskin .tb .tb-detail { display: block; font-size: 0.85em; color: #6c7a8b; }
 
-#workskin .tb .tb-subline b { color: #555555; }
+#workskin .tb .tb-detail b { color: #555555; }
 
 /* round profile picture (initials), colour1-colour10 for colours; add "rb" for the green reblog badge */
 /* initials by default; colour1-colour10 are the colours (set in the CORE), or put a picture
@@ -194,8 +194,8 @@
 #workskin .tb .tb-text > .tb-photos:first-child,
 #workskin .tb .tb-reblog > .tb-blog + .tb-photos { margin-top: -0.3em; }
 
-/* a mention of another blog in the text of a post: <span class="tb-at">@rinkrat</span> */
-#workskin .tb .tb-at { color: #3a5f86; }
+/* a mention of another blog in the text of a post: <span class="tb-link">@rinkrat</span> */
+#workskin .tb .tb-link { color: #3a5f86; }
 
 #workskin .tb .tb-text .tb-row {
   display: flex;
@@ -590,13 +590,13 @@
 
 #workskin .tb.theme-dark { background: #1f1f1f; color: #e8e8e8; border-color: #1f1f1f; }
 
-#workskin .tb.theme-dark .tb-subline,
+#workskin .tb.theme-dark .tb-detail,
 #workskin .tb.theme-dark .tb-menu,
 #workskin .tb.theme-dark .tb-tags {
   color: #9a9a9a;
 }
 
-#workskin .tb.theme-dark .tb-subline b { color: #cfcfcf; }
+#workskin .tb.theme-dark .tb-detail b { color: #cfcfcf; }
 
 #workskin .tb.theme-dark .tb-stats { color: #bdbdbd; }
 
@@ -604,7 +604,7 @@
 
 #workskin .tb.theme-dark .tb-photo { background: #2e2e2e; }
 
-#workskin .tb.theme-dark .tb-at { color: #c3d4e8; }
+#workskin .tb.theme-dark .tb-link { color: #c3d4e8; }
 
 #workskin .tb.theme-dark .tb-pfp.reblog::after { border-color: #1f1f1f; }
 
@@ -640,13 +640,13 @@
 
   #workskin .tb.theme-auto { background: #1f1f1f; color: #e8e8e8; border-color: #1f1f1f; }
 
-  #workskin .tb.theme-auto .tb-subline,
+  #workskin .tb.theme-auto .tb-detail,
     #workskin .tb.theme-auto .tb-menu,
     #workskin .tb.theme-auto .tb-tags {
       color: #9a9a9a;
     }
 
-  #workskin .tb.theme-auto .tb-subline b { color: #cfcfcf; }
+  #workskin .tb.theme-auto .tb-detail b { color: #cfcfcf; }
 
   #workskin .tb.theme-auto .tb-stats { color: #bdbdbd; }
 
@@ -654,7 +654,7 @@
 
   #workskin .tb.theme-auto .tb-photo { background: #2e2e2e; }
 
-  #workskin .tb.theme-auto .tb-at { color: #c3d4e8; }
+  #workskin .tb.theme-auto .tb-link { color: #c3d4e8; }
 
   #workskin .tb.theme-auto .tb-pfp.reblog::after { border-color: #1f1f1f; }
 
