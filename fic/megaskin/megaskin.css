@@ -1667,8 +1667,8 @@
   padding-right: 0.35em;
 }
 
-/* link card: <div class="wa-link"> picture, title, description, address </div> */
-#workskin .wa .wa-link {
+/* link card: <div class="wa-link-card"> picture, title, description, address </div> */
+#workskin .wa .wa-link-card {
   display: block;
   overflow: hidden;
   border-radius: 6px;
@@ -1734,8 +1734,8 @@
   margin-right: 0.4em;
 }
 
-/* the link written out in the message text itself: <span class="wa-link-text">example.com</span> */
-#workskin .wa .wa-link-text {
+/* the link written out in the message text itself: <span class="wa-link">example.com</span> */
+#workskin .wa .wa-link {
   color: #027eb5;
   text-decoration: underline;
 }
@@ -1905,7 +1905,7 @@
 
 #workskin .wa.theme-dark .wa-field .wa-placeholder.typed { color: #e9edef; }
 
-#workskin .wa.theme-dark .wa-link { background: rgba(0, 0, 0, 0.22); }
+#workskin .wa.theme-dark .wa-link-card { background: rgba(0, 0, 0, 0.22); }
 
 #workskin .wa.theme-dark .wa-link-img.text { background: rgba(0, 0, 0, 0.2); color: #8696a0; }
 
@@ -1915,7 +1915,7 @@
 
 #workskin .wa.theme-dark .wa-photo { background: rgba(0, 0, 0, 0.3); }
 
-#workskin .wa.theme-dark .wa-link-text { color: #53bdeb; }
+#workskin .wa.theme-dark .wa-link { color: #53bdeb; }
 
 #workskin .wa.theme-dark .fake-link, #workskin .wa.theme-dark a:not(.tl) { color: #53bdeb; }
 
@@ -2000,7 +2000,7 @@
 
   #workskin .wa.theme-auto .wa-field .wa-placeholder.typed { color: #e9edef; }
 
-  #workskin .wa.theme-auto .wa-link { background: rgba(0, 0, 0, 0.22); }
+  #workskin .wa.theme-auto .wa-link-card { background: rgba(0, 0, 0, 0.22); }
 
   #workskin .wa.theme-auto .wa-call { background: rgba(0, 0, 0, 0.18); }
 
@@ -2022,7 +2022,7 @@
 
   #workskin .wa.theme-auto .wa-photo { background: rgba(0, 0, 0, 0.3); }
 
-  #workskin .wa.theme-auto .wa-link-text { color: #53bdeb; }
+  #workskin .wa.theme-auto .wa-link { color: #53bdeb; }
 
   #workskin .wa.theme-auto .fake-link, #workskin .wa.theme-auto a:not(.tl) { color: #53bdeb; }
 }
@@ -5724,7 +5724,7 @@
 }
 
 #workskin .igdm .igdm-post.out .igdm-post-btns,
-#workskin .igdm .igdm-link.out .igdm-post-btns { left: auto; right: 100%; margin: 0 0.6em 0 0; }
+#workskin .igdm .igdm-link-card.out .igdm-post-btns { left: auto; right: 100%; margin: 0 0.6em 0 0; }
 
 #workskin .igdm .igdm-post-btns .ic {
   display: block;
@@ -5812,7 +5812,7 @@
 }
 
 /* ---- a link someone sends: a card with the page's picture, its title in bold and the website underneath */
-#workskin .igdm .igdm-link {
+#workskin .igdm .igdm-link-card {
   display: block;
   position: relative;
   width: 62%;
@@ -5822,7 +5822,7 @@
   color: #262626;
 }
 
-#workskin .igdm .igdm-link.out { margin: 0.2em 0 0.2em auto; }
+#workskin .igdm .igdm-link-card.out { margin: 0.2em 0 0.2em auto; }
 
 #workskin .igdm .igdm-link-img {
   display: flex;
@@ -6241,7 +6241,7 @@
 #workskin .igdm.theme-dark .igdm-post-img.text { background: #363636; color: #a8a8a8; }
 #workskin .igdm.theme-dark .igdm-post.reel { background: #000000; }
 #workskin .igdm.theme-dark .igdm-post-btns .ic { background-color: #262626; }
-#workskin .igdm.theme-dark .igdm-link { background: #262626; color: #f5f5f5; }
+#workskin .igdm.theme-dark .igdm-link-card { background: #262626; color: #f5f5f5; }
 #workskin .igdm.theme-dark .igdm-link-img.text { background: #363636; color: #a8a8a8; }
 #workskin .igdm.theme-dark .igdm-link-url { color: #a8a8a8; }
 #workskin .igdm.theme-dark .typing-indicator span:empty { background: #a8a8a8; }
@@ -6332,7 +6332,7 @@
   #workskin .igdm.theme-auto .igdm-post-img.text { background: #363636; color: #a8a8a8; }
   #workskin .igdm.theme-auto .igdm-post.reel { background: #000000; }
   #workskin .igdm.theme-auto .igdm-post-btns .ic { background-color: #262626; }
-  #workskin .igdm.theme-auto .igdm-link { background: #262626; color: #f5f5f5; }
+  #workskin .igdm.theme-auto .igdm-link-card { background: #262626; color: #f5f5f5; }
   #workskin .igdm.theme-auto .igdm-link-img.text { background: #363636; color: #a8a8a8; }
   #workskin .igdm.theme-auto .igdm-link-url { color: #a8a8a8; }
   #workskin .igdm.theme-auto .typing-indicator span:empty { background: #a8a8a8; }

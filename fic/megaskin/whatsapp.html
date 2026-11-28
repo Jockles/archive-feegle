@@ -7,7 +7,7 @@
   <title>Megaskin, Chapter 6: WhatsApp | jockles.com</title>
   <link rel="stylesheet" href="../../style.css">
   <script src="../../theme.js"></script>
-  <link rel="stylesheet" href="megaskin.css?v=39b308bb" id="creator-style">
+  <link rel="stylesheet" href="megaskin.css?v=e3eec9f2" id="creator-style">
 </head>
 <body>
 <header>
@@ -163,7 +163,7 @@
     </div>
     <div class="msg in share">
       <p class="hide"><em>Lily:</em></p>
-      <div class="wa-link">
+      <div class="wa-link-card">
         <p class="wa-link-img"><img src="https://64.media.tumblr.com/c3c4ecb5bfed8fa9f0590c54206ddb30/cff2318529321620-44/s1280x1920/42befcc40a517e1f202dda40783be2ffb95c1d92.pnj" alt="Macklin Celebrini at the IHF Worlds, dressed in his red jersey and black helmet. He's surrounded by sparkles, a red vignette, and hearts containing the Canadian flag"></p>
         <p class="wa-link-title">Captain Mack</p>
         <p class="wa-link-desc">All the reasons Mack deserves the C</p>
@@ -173,7 +173,7 @@
     </div>
     <div class="msg in share">
       <p class="hide"><em>Lily:</em></p>
-      <div class="wa-link">
+      <div class="wa-link-card">
         <div class="wa-link-img video">
           <iframe src="https://player.vimeo.com/video/1169167060?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" title="Ilya Rozanov | Come Home"></iframe>
           <p class="video-desc">[Video: a tribute edit of Ilya Rozanov, made from Heated Rivalry footage and set to "Would You Come Home" by Tyler Blackburn]</p>
@@ -190,8 +190,8 @@
     </div>
     <div class="msg out share">
       <p class="hide"><em>Shane:</em></p>
-      <p><span class="wa-link-text">https://recipes.example.com/pierogi</span></p>
-      <div class="wa-link">
+      <p><span class="wa-link">https://recipes.example.com/pierogi</span></p>
+      <div class="wa-link-card">
         <p class="wa-link-img text">[The page's picture: a plate of golden fried pierogi with sour cream]</p>
         <p class="wa-link-title">Pierogi from Scratch</p>
         <p class="wa-link-desc">Easier than you think</p>
@@ -304,7 +304,7 @@
     &lt;/div&gt;
     &lt;div class="msg in share"&gt;
       &lt;p class="hide"&gt;&lt;em&gt;Lily:&lt;/em&gt;&lt;/p&gt;
-      &lt;div class="wa-link"&gt;
+      &lt;div class="wa-link-card"&gt;
         &lt;p class="wa-link-img"&gt;&lt;img src="https://64.media.tumblr.com/c3c4ecb5bfed8fa9f0590c54206ddb30/cff2318529321620-44/s1280x1920/42befcc40a517e1f202dda40783be2ffb95c1d92.pnj" alt="Macklin Celebrini at the IHF Worlds, dressed in his red jersey and black helmet. He's surrounded by sparkles, a red vignette, and hearts containing the Canadian flag"&gt;&lt;/p&gt;
         &lt;p class="wa-link-title"&gt;Captain Mack&lt;/p&gt;
         &lt;p class="wa-link-desc"&gt;All the reasons Mack deserves the C&lt;/p&gt;
@@ -314,7 +314,7 @@
     &lt;/div&gt;
     &lt;div class="msg in share"&gt;
       &lt;p class="hide"&gt;&lt;em&gt;Lily:&lt;/em&gt;&lt;/p&gt;
-      &lt;div class="wa-link"&gt;
+      &lt;div class="wa-link-card"&gt;
         &lt;div class="wa-link-img video"&gt;
           &lt;iframe src="https://player.vimeo.com/video/1169167060?badge=0&amp;amp;autopause=0&amp;amp;player_id=0&amp;amp;app_id=58479" frameborder="0" title="Ilya Rozanov | Come Home"&gt;&lt;/iframe&gt;
           &lt;p class="video-desc"&gt;[Video: a tribute edit of Ilya Rozanov, made from Heated Rivalry footage and set to "Would You Come Home" by Tyler Blackburn]&lt;/p&gt;
@@ -331,8 +331,8 @@
     &lt;/div&gt;
     &lt;div class="msg out share"&gt;
       &lt;p class="hide"&gt;&lt;em&gt;Shane:&lt;/em&gt;&lt;/p&gt;
-      &lt;p&gt;&lt;span class="wa-link-text"&gt;https://recipes.example.com/pierogi&lt;/span&gt;&lt;/p&gt;
-      &lt;div class="wa-link"&gt;
+      &lt;p&gt;&lt;span class="wa-link"&gt;https://recipes.example.com/pierogi&lt;/span&gt;&lt;/p&gt;
+      &lt;div class="wa-link-card"&gt;
         &lt;p class="wa-link-img text"&gt;[The page's picture: a plate of golden fried pierogi with sour cream]&lt;/p&gt;
         &lt;p class="wa-link-title"&gt;Pierogi from Scratch&lt;/p&gt;
         &lt;p class="wa-link-desc"&gt;Easier than you think&lt;/p&gt;
@@ -1985,13 +1985,13 @@
 
 <h4 id="s6-5-3">6.5.3 Shared Links</h4>
 
-<p>To show a link the way WhatsApp previews it, add <code>share</code> to the message and put a <code>wa-link</code> card inside it, above the time. The card holds a picture (<code>wa-link-img</code>), the title (<code>wa-link-title</code>), an optional short description (<code>wa-link-desc</code>) and the web address (<code>wa-link-url</code>), which gets a little link symbol in front of it automatically. The <code>hide</code> paragraph at the start holds the hidden label, as there's no message text to put it in. Don't forget the alt text on the picture:</p>
+<p>To show a link the way WhatsApp previews it, add <code>share</code> to the message and put a <code>wa-link-card</code> inside it, above the time. The card holds a picture (<code>wa-link-img</code>), the title (<code>wa-link-title</code>), an optional short description (<code>wa-link-desc</code>) and the web address (<code>wa-link-url</code>), which gets a little link symbol in front of it automatically. The <code>hide</code> paragraph at the start holds the hidden label, as there's no message text to put it in. Don't forget the alt text on the picture:</p>
 
 <div class="mob wa theme-auto">
   <div class="mob-body">
     <div class="msg in share">
       <p class="hide"><em>Lily:</em></p>
-      <div class="wa-link">
+      <div class="wa-link-card">
         <p class="wa-link-img"><img src="https://64.media.tumblr.com/c3c4ecb5bfed8fa9f0590c54206ddb30/cff2318529321620-44/s1280x1920/42befcc40a517e1f202dda40783be2ffb95c1d92.pnj" alt="Macklin Celebrini at the IHF Worlds, dressed in his red jersey and black helmet. He's surrounded by sparkles, a red vignette, and hearts containing the Canadian flag"></p>
         <p class="wa-link-title">Captain Mack</p>
         <p class="wa-link-desc">All the reasons Mack deserves the C</p>
@@ -2004,7 +2004,7 @@
 
 <pre><code>&lt;div class="msg in share"&gt;
   &lt;p class="hide"&gt;&lt;em&gt;Lily:&lt;/em&gt;&lt;/p&gt;
-  &lt;div class="wa-link"&gt;
+  &lt;div class="wa-link-card"&gt;
     &lt;p class="wa-link-img"&gt;&lt;img src="https://64.media.tumblr.com/c3c4ecb5bfed8fa9f0590c54206ddb30/cff2318529321620-44/s1280x1920/42befcc40a517e1f202dda40783be2ffb95c1d92.pnj" alt="Macklin Celebrini at the IHF Worlds, dressed in his red jersey and black helmet. He's surrounded by sparkles, a red vignette, and hearts containing the Canadian flag"&gt;&lt;/p&gt;
     &lt;p class="wa-link-title"&gt;Captain Mack&lt;/p&gt;
     &lt;p class="wa-link-desc"&gt;All the reasons Mack deserves the C&lt;/p&gt;
@@ -2022,7 +2022,7 @@
   <div class="mob-body">
     <div class="msg in share">
       <p class="hide"><em>Lily:</em></p>
-      <div class="wa-link">
+      <div class="wa-link-card">
         <div class="wa-link-img video">
           <iframe src="https://player.vimeo.com/video/1169167060?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" title="Ilya Rozanov | Come Home"></iframe>
           <p class="video-desc">[Video: a tribute edit of Ilya Rozanov, made from Heated Rivalry footage and set to "Would You Come Home" by Tyler Blackburn]</p>
@@ -2038,7 +2038,7 @@
 
 <pre><code>&lt;div class="msg in share"&gt;
   &lt;p class="hide"&gt;&lt;em&gt;Lily:&lt;/em&gt;&lt;/p&gt;
-  &lt;div class="wa-link"&gt;
+  &lt;div class="wa-link-card"&gt;
     &lt;div class="wa-link-img video"&gt;
       &lt;iframe src="https://player.vimeo.com/video/1169167060?badge=0&amp;amp;autopause=0&amp;amp;player_id=0&amp;amp;app_id=58479" frameborder="0" title="Ilya Rozanov | Come Home"&gt;&lt;/iframe&gt;
       &lt;p class="video-desc"&gt;[Video: a tribute edit of Ilya Rozanov, made from Heated Rivalry footage and set to "Would You Come Home" by Tyler Blackburn]&lt;/p&gt;
@@ -2059,14 +2059,14 @@
 <details>
 <summary>Options: no description, no picture, and the link in the message</summary>
 
-<p>The description is optional, so leave out the <code>wa-link-desc</code> line if you only want a title and an address. If you don't want a picture at all, add <code>text</code> to the picture box and write a description in square brackets. In this one, Shane has also pasted the link into his message, so WhatsApp shows the address in blue above the card. Put that in a span with <code>wa-link-text</code> (or <code>fake-link</code>, which looks the same), above the card. The address in the card is just text, so you can make up any address you like there too:</p>
+<p>The description is optional, so leave out the <code>wa-link-desc</code> line if you only want a title and an address. If you don't want a picture at all, add <code>text</code> to the picture box and write a description in square brackets. In this one, Shane has also pasted the link into his message, so WhatsApp shows the address in blue above the card. Put that in a span with <code>wa-link</code> (or <code>fake-link</code>, which looks the same), above the card. The address in the card is just text, so you can make up any address you like there too:</p>
 
 <div class="mob wa theme-auto">
   <div class="mob-body">
     <div class="msg out share">
       <p class="hide"><em>Shane:</em></p>
-      <p><span class="wa-link-text">https://recipes.example.com/pierogi</span></p>
-      <div class="wa-link">
+      <p><span class="wa-link">https://recipes.example.com/pierogi</span></p>
+      <div class="wa-link-card">
         <p class="wa-link-img text">[The page's picture: a plate of golden fried pierogi with sour cream]</p>
         <p class="wa-link-title">Pierogi from Scratch</p>
         <p class="wa-link-desc">Easier than you think</p>
@@ -2079,8 +2079,8 @@
 
 <pre><code>&lt;div class="msg out share"&gt;
   &lt;p class="hide"&gt;&lt;em&gt;Shane:&lt;/em&gt;&lt;/p&gt;
-  &lt;p&gt;&lt;span class="wa-link-text"&gt;https://recipes.example.com/pierogi&lt;/span&gt;&lt;/p&gt;
-  &lt;div class="wa-link"&gt;
+  &lt;p&gt;&lt;span class="wa-link"&gt;https://recipes.example.com/pierogi&lt;/span&gt;&lt;/p&gt;
+  &lt;div class="wa-link-card"&gt;
     &lt;p class="wa-link-img text"&gt;[The page's picture: a plate of golden fried pierogi with sour cream]&lt;/p&gt;
     &lt;p class="wa-link-title"&gt;Pierogi from Scratch&lt;/p&gt;
     &lt;p class="wa-link-desc"&gt;Easier than you think&lt;/p&gt;
