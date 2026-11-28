@@ -25,7 +25,7 @@
   <!-- /site meta -->
   <link rel="stylesheet" href="../../style.css?v=c31c06ea">
   <script src="../../theme.js?v=c50fd7c2"></script>
-  <link rel="stylesheet" href="megaskin.css?v=39e2c11d" id="creator-style">
+  <link rel="stylesheet" href="megaskin.css?v=ef4cd03f" id="creator-style">
 </head>
 <body>
 <header>
@@ -235,10 +235,7 @@
       <p class="wa-caption">she says she wants pierogi too</p>
       <p class="wa-time">14:24</p>
     </div>
-    <div class="msg in tail typing-indicator">
-      <p class="hide"><em>Lily</em> is typing...</p>
-      <p><span></span><span></span><span></span></p>
-    </div>
+    <p class="msg in tail typing-indicator"><span class="hide"><em>Lily</em> is typing...</span><span></span><span></span><span></span></p>
   </div>
   <p class="wa-footer">
     <span class="wa-field"> <span class="ic ic-emoji">&#9786;</span> <span class="wa-placeholder">Message</span> <span class="ic ic-paperclip">&#128206;</span> <span class="ic ic-camera">&#128247;</span> </span>
@@ -364,10 +361,7 @@
       &lt;p class="wa-caption"&gt;she says she wants pierogi too&lt;/p&gt;
       &lt;p class="wa-time"&gt;14:24&lt;/p&gt;
     &lt;/div&gt;
-    &lt;div class="msg in tail typing-indicator"&gt;
-      &lt;p class="hide"&gt;&lt;em&gt;Lily&lt;/em&gt; is typing...&lt;/p&gt;
-      &lt;p&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/p&gt;
-    &lt;/div&gt;
+    &lt;p class="msg in tail typing-indicator"&gt;&lt;span class="hide"&gt;&lt;em&gt;Lily&lt;/em&gt; is typing...&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/p&gt;
   &lt;/div&gt;
   &lt;p class="wa-footer"&gt;
     &lt;span class="wa-field"&gt; &lt;span class="ic ic-emoji"&gt;&amp;#9786;&lt;/span&gt; &lt;span class="wa-placeholder"&gt;Message&lt;/span&gt; &lt;span class="ic ic-paperclip"&gt;&amp;#128206;&lt;/span&gt; &lt;span class="ic ic-camera"&gt;&amp;#128247;&lt;/span&gt; &lt;/span&gt;
@@ -1065,21 +1059,15 @@
 
 <h5 id="s6-2-3-2">6.2.3.2 Typing Dots</h5>
 
-<p>To show someone is typing, add <code>typing-indicator</code> to a message bubble from them, and put three empty spans in its last paragraph. It gets the same bubble as their messages, tail and all, just shrunk to fit the dots. The hidden line says who it is for readers with the workskin off:</p>
+<p>The three dots that show someone is typing are a message with three empty spans in it, so they belong to whoever is typing. Add <code>typing-indicator</code> to a message from them. It gets the same bubble as their messages, tail and all, just shrunk to fit the dots. The hidden words say who it is for readers with the workskin off:</p>
 
 <div class="mob wa theme-auto">
   <div class="mob-body">
-    <div class="msg in tail typing-indicator">
-      <p class="hide"><em>Lily</em> is typing...</p>
-      <p><span></span><span></span><span></span></p>
-    </div>
+    <p class="msg in tail typing-indicator"><span class="hide"><em>Lily</em> is typing...</span><span></span><span></span><span></span></p>
   </div>
 </div>
 
-<pre><code>&lt;div class="msg in tail typing-indicator"&gt;
-  &lt;p class="hide"&gt;&lt;em&gt;Lily&lt;/em&gt; is typing...&lt;/p&gt;
-  &lt;p&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/p&gt;
-&lt;/div&gt;</code></pre>
+<pre><code>&lt;p class="msg in tail typing-indicator"&gt;&lt;span class="hide"&gt;&lt;em&gt;Lily&lt;/em&gt; is typing...&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/p&gt;</code></pre>
 
 <details>
 <summary>Options: your own typing dots</summary>
@@ -1088,45 +1076,31 @@
 
 <div class="mob wa theme-auto">
   <div class="mob-body">
-    <div class="msg out tail typing-indicator">
-      <p class="hide"><em>Shane</em> is typing...</p>
-      <p><span></span><span></span><span></span></p>
-    </div>
+    <p class="msg out tail typing-indicator"><span class="hide"><em>Shane</em> is typing...</span><span></span><span></span><span></span></p>
   </div>
 </div>
 
-<pre><code>&lt;div class="msg out tail typing-indicator"&gt;
-  &lt;p class="hide"&gt;&lt;em&gt;Shane&lt;/em&gt; is typing...&lt;/p&gt;
-  &lt;p&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/p&gt;
-&lt;/div&gt;</code></pre>
+<pre><code>&lt;p class="msg out tail typing-indicator"&gt;&lt;span class="hide"&gt;&lt;em&gt;Shane&lt;/em&gt; is typing...&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/p&gt;</code></pre>
 
 </details>
 
 <details>
 <summary>Options: typing dots in a group chat</summary>
 
-<p>In a group chat, give it the person's picture and name like any of their messages (see <a href="whatsapp.html#s6-6-3">Profile Pictures in Groups</a>):</p>
+<p>In a group chat, give it the person's picture like any of their messages (see <a href="whatsapp.html#s6-6-3">Profile Pictures in Groups</a>):</p>
 
 <div class="mob wa theme-auto">
   <div class="mob-body">
     <div class="wa-row">
       <p class="wa-pfp colour4">HP</p>
-      <div class="msg in tail typing-indicator">
-        <p class="who colour4">Hayden</p>
-        <p class="hide">is typing...</p>
-        <p><span></span><span></span><span></span></p>
-      </div>
+      <p class="msg in tail typing-indicator"><span class="hide"><em>Hayden</em> is typing...</span><span></span><span></span><span></span></p>
     </div>
   </div>
 </div>
 
 <pre><code>&lt;div class="wa-row"&gt;
   &lt;p class="wa-pfp colour4"&gt;HP&lt;/p&gt;
-  &lt;div class="msg in tail typing-indicator"&gt;
-    &lt;p class="who colour4"&gt;Hayden&lt;/p&gt;
-    &lt;p class="hide"&gt;is typing...&lt;/p&gt;
-    &lt;p&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/p&gt;
-  &lt;/div&gt;
+  &lt;p class="msg in tail typing-indicator"&gt;&lt;span class="hide"&gt;&lt;em&gt;Hayden&lt;/em&gt; is typing...&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/p&gt;
 &lt;/div&gt;</code></pre>
 
 </details>

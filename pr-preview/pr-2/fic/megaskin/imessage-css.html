@@ -25,7 +25,7 @@
   <!-- /site meta -->
   <link rel="stylesheet" href="../../style.css?v=c31c06ea">
   <script src="../../theme.js?v=c50fd7c2"></script>
-  <link rel="stylesheet" href="megaskin.css?v=39e2c11d" id="creator-style">
+  <link rel="stylesheet" href="megaskin.css?v=ef4cd03f" id="creator-style">
 </head>
 <body>
 <header>
@@ -227,30 +227,9 @@
 
 <pre><code>#workskin .imsg .typing-indicator { padding: 0.6em 0.8em; line-height: 1; }
 
-#workskin .imsg .typing-indicator span {
-  display: inline-block;
-  width: 0.6em;
-  height: 0.6em;
-  margin-right: 0.25em;
-  border-radius: 50%;
-  background: #8e8e93;
-  opacity: 0.5;
-}
+#workskin .imsg .out.typing-indicator span:empty { background: #ffffff; }</code></pre>
 
-#workskin .imsg .typing-indicator span:nth-last-child(2) { opacity: 0.7; }
-
-#workskin .imsg .typing-indicator span:last-child { opacity: 1; margin-right: 0; }
-
-#workskin .imsg .out.typing-indicator span { background: #ffffff; }</code></pre>
-
-<p>The dots sit in an ordinary message bubble, so the bubble's colour, side and tail all come from <code>in</code> or <code>out</code>. Each empty span becomes a small circle. On a blue sent bubble the dots are white.</p>
-
-<details>
-<summary>How it works: making the dots look mid-bounce</summary>
-
-<p>The first rule just gives the bubble a bit more padding. <code>:nth-last-child(2)</code> and <code>:last-child</code> - the second and third dot, counting from the end so the hidden text in front doesn't get counted - get darker, so it looks like the dots are mid-bounce.</p>
-
-</details>
+<p>The dots sit in an ordinary message bubble, so the bubble's colour, side and tail all come from <code>in</code> or <code>out</code>. The dots themselves are in the core CSS, the same for every chat app (see <a href="core-css.html#s3-11">Typing Dots</a>). Here the first rule gives the bubble a bit more padding, and the second makes the dots white on a blue sent bubble.</p>
 
 <h3 id="s5-4">5.4 Normal Messages</h3>
 

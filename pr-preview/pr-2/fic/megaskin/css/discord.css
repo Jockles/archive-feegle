@@ -500,36 +500,27 @@
   transform: translate(0%, -50%);
 }
 
-#workskin .dc .dc-typing { margin: 0 1.5rem; }
+/* who's typing, after the chat box: the three dots, then the names
+   <p class="dc-typing typing-indicator"><span></span><span></span><span></span><b>Name</b> is typing...</p> */
+#workskin .dc .dc-typing { margin: 0 1.5rem; font-size: 0.875rem; line-height: 1rem; }
 
-#workskin .dc .typing-indicator {
-  width: auto;
-  border-radius: 1em;
-  padding-right: 0.75em;
-  display: inline;
-  position: relative;
-  overflow: hidden;
-  text-align: left;
-  clear: both;
-}
-
-#workskin .dc .typing-indicator span {
-  height: .65rem;
-  width: .65rem;
+#workskin .dc .typing-indicator span:empty {
   float: left;
+  width: .65rem;
+  height: .65rem;
   margin: .425rem 0 .425rem 0.1rem;
-  display: inline-block;
-  border-radius: 50%;
   background-color: rgb(46, 51, 56);
+  opacity: 0.4;
+  transform: scale(0.6, 0.6);
 }
 
-#workskin .dc .typing-indicator span:nth-child(1) { opacity: 0.4; transform: scale(0.6, 0.6); }
+#workskin .dc .typing-indicator span:empty + span:empty { opacity: 0.6; transform: scale(0.8, 0.8); }
 
-#workskin .dc .typing-indicator span:nth-child(2) { opacity: 0.6; transform: scale(0.8, 0.8); }
-
-#workskin .dc .typing-indicator span:nth-child(3) { opacity: 0.9; transform: scale(1, 1); }
-
-#workskin .dc .dc-typing-text { font-size: 0.875rem; }
+#workskin .dc .typing-indicator span:empty + span:empty + span:empty {
+  margin-right: 0.75rem;
+  opacity: 0.9;
+  transform: scale(1, 1);
+}
 
 #workskin .dc .dc-code,
 #workskin .dc .dc-embed {
@@ -674,7 +665,7 @@
   border-bottom-color: rgb(54, 57, 63);
 }
 
-#workskin .dc.theme-dark .typing-indicator span { background-color: rgb(220, 221, 222); }
+#workskin .dc.theme-dark .typing-indicator span:empty { background-color: rgb(220, 221, 222); }
 
 #workskin .dc.theme-dark .dc-footer { background-color: rgb(64, 68, 75); }
 
@@ -792,7 +783,7 @@
   
   
   
-  #workskin .dc.theme-auto .typing-indicator span { background-color: rgb(220, 221, 222); }
+  #workskin .dc.theme-auto .typing-indicator span:empty { background-color: rgb(220, 221, 222); }
 
   #workskin .dc.theme-auto .dc-footer { background-color: rgb(64, 68, 75); }
 

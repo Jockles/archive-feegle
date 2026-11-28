@@ -187,21 +187,7 @@
 /* the three typing dots, in a message bubble from whoever is typing (out for the phone's owner, in for anyone else, with a who line above it in a group, like any message) */
 #workskin .imsg .typing-indicator { padding: 0.6em 0.8em; line-height: 1; }
 
-#workskin .imsg .typing-indicator span {
-  display: inline-block;
-  width: 0.6em;
-  height: 0.6em;
-  margin-right: 0.25em;
-  border-radius: 50%;
-  background: #8e8e93;
-  opacity: 0.5;
-}
-
-#workskin .imsg .typing-indicator span:nth-last-child(2) { opacity: 0.7; }
-
-#workskin .imsg .typing-indicator span:last-child { opacity: 1; margin-right: 0; }
-
-#workskin .imsg .out.typing-indicator span { background: #ffffff; }
+#workskin .imsg .out.typing-indicator span:empty { background: #ffffff; }
 
 /* the message bar at the bottom: goes after the mob-body, inside the chat, all on one line */
 #workskin .imsg .imsg-footer {

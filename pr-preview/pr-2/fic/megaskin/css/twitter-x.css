@@ -921,6 +921,11 @@
 #workskin .twdm .msg.twdm-quote { background: transparent; color: #536471; border: 1px solid #cfd9de; margin-bottom: 0.2em; }
 
 /* a picture in a DM: <p class="msg in photo"><img src="..."></p> or a [description] */
+/* the three typing dots, in a bubble from whoever is typing */
+#workskin .twdm .msg.typing-indicator { padding: 0.8em 0.95em; line-height: 1; }
+
+#workskin .twdm .typing-indicator span:empty { background: #536471; }
+
 #workskin .twdm .msg.photo {
   padding: 0.25em;
   min-width: 55%;
@@ -1220,6 +1225,8 @@
 
 #workskin .twdm.theme-dark .who { color: #71767b; }
 
+#workskin .twdm.theme-dark .typing-indicator span:empty { background: #8b98a5; }
+
 #workskin .twdm.theme-dark .twdm-plus,
 #workskin .twdm.theme-dark .twdm-field { border-color: #2f3336; color: #71767b; }
 
@@ -1382,6 +1389,8 @@
   #workskin .tw-feed.theme-auto .tw-stats { border-top-color: #2f3336; }
 
   #workskin .twdm.theme-auto .who { color: #71767b; }
+
+  #workskin .twdm.theme-auto .typing-indicator span:empty { background: #8b98a5; }
 
   #workskin .twdm.theme-auto .twdm-plus,
     #workskin .twdm.theme-auto .twdm-field { border-color: #2f3336; color: #71767b; }

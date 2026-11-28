@@ -244,23 +244,9 @@
 #workskin .wa .wa-reacts.indent { margin-left: 46px; }
 
 /* the three typing dots, in a message bubble from whoever is typing (out for the phone's owner, in for anyone else, with the wa-row picture and who line in a group, like any message) */
-#workskin .wa .msg.typing-indicator { min-width: 0; }
+#workskin .wa .msg.typing-indicator { min-width: 0; padding-top: 0.7em; padding-bottom: 0.55em; line-height: 1; }
 
-#workskin .wa .typing-indicator p:last-child { margin: 0.35em 0 0.25em 0; line-height: 1; }
-
-#workskin .wa .typing-indicator p:last-child span {
-  display: inline-block;
-  width: 0.6em;
-  height: 0.6em;
-  margin-right: 0.25em;
-  border-radius: 50%;
-  background: #8696a0;
-  opacity: 0.5;
-}
-
-#workskin .wa .typing-indicator p:last-child span:nth-last-child(2) { opacity: 0.7; }
-
-#workskin .wa .typing-indicator p:last-child span:last-child { opacity: 1; margin-right: 0; }
+#workskin .wa .typing-indicator span:empty { background: #8696a0; }
 
 /* the message bar at the bottom */
 #workskin .wa .wa-footer { position: relative; padding: 0.5em 3.4em 0.5em 0.6em; }

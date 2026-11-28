@@ -761,4 +761,20 @@
   #workskin .dc.theme-auto .dc-name.colour2::before { background-color: #5c5c60; }
 }
 
+/* ---- typing dots: a message from whoever is typing, ending in three empty spans. The same in every chat app:
+   <p class="msg in typing-indicator"><span class="hide"><em>Rose</em> is typing...</span><span></span><span></span><span></span></p> */
+#workskin .typing-indicator span:empty {
+  display: inline-block;
+  width: 0.6em;
+  height: 0.6em;
+  margin-right: 0.25em;
+  border-radius: 50%;
+  background: #8e8e93;
+  opacity: 0.5;
+}
+
+#workskin .typing-indicator span:empty + span:empty { opacity: 0.7; }
+
+#workskin .typing-indicator span:empty + span:empty + span:empty { opacity: 1; margin-right: 0; }
+
 /* <<<<<<<<<< CORE (end) <<<<<<<<<< */
