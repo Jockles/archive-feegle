@@ -220,6 +220,17 @@
   }
   // whose phone the chat being made is on, so the hidden names match what they have someone saved as
   var povOwner = "";
+  // a profile picture that changes partway through the fic: "Luca: 1" in a chat's settings writes alt-pfp1 on Luca's picture there
+  var curAlts = {};
+  function altsOf(b) {
+    var o = {};
+    t(b.altPics).split(/\n/).forEach(function (line) {
+      var m = line.match(/^(.+?):\s*(\d+)\s*$/), c = m && findChar(m[1]);
+      if (c && isProfile(c)) o[c.id] = m[2];
+    });
+    return o;
+  }
+  function altCls(c) { return curAlts[c.id] ? " alt-pfp" + curAlts[c.id] : ""; }
   function shownName(c) {
     var sv = isProfile(c) && povOwner && c.prof && (c.prof.saved || []).filter(function (x) { return MP.slugify(x.owner) === povOwner && t(x.as); })[0];
     return sv ? t(sv.as) : nameOf(c);
@@ -369,7 +380,7 @@
   }
 
   function waPfp(c) {
-    if (isProfile(c)) return '<p class="avatar"><span class="pfp pfp-' + slugOf(c) + '"></span></p>';
+    if (isProfile(c)) return '<p class="avatar"><span class="pfp pfp-' + slugOf(c) + altCls(c) + '"></span></p>';
     var u = picUrl(c.pic);
     if (u) return '<p class="avatar ' + colourClass(c) + '"><span class="pfp"><img ' + (c.land ? 'class="landscape" ' : "") + 'src="' + esc(u) + '" alt="' + esc(c.alt.trim() || ("Profile picture of " + nameOf(c))) + '"></span></p>';
     return '<p class="avatar ' + colourClass(c) + '">' + (c.showInitials !== false ? esc(initials(c)) : "") + "</p>";
@@ -591,7 +602,7 @@
   function twHandleHTML(c, a) { return isProfile(c) ? pSpan("handle", c, a, "@" + twHandle(c, a)) : "@" + esc(twHandle(c)); }
   // a round picture: from a profile, an uploaded picture, or initials in a colour
   function circle(cls, c, a) {
-    if (isProfile(c)) return '<span class="' + cls + '"><span class="pfp pfp-' + slugOf(c) + accCls(a) + '"></span></span>';
+    if (isProfile(c)) return '<span class="' + cls + '"><span class="pfp pfp-' + slugOf(c) + accCls(a) + altCls(c) + '"></span></span>';
     var u = picUrl(c.pic);
     if (u) return '<span class="' + cls + '"><span class="pfp"><img ' + (c.land ? 'class="landscape" ' : "") + 'src="' + esc(u) + '" alt="' + esc(t(c.alt) || ("Profile picture of " + nameOf(c))) + '"></span></span>';
     return '<span class="' + cls + " " + colourClass(c) + '">' + (c.showInitials !== false ? esc(initials(c)) : "") + "</span>";
@@ -1695,6 +1706,7 @@
     h.push("<div>" + field(P + ".width", "Width", { type: "select", options: [["", "Phone width"], ["wide", "Full width"]] }) + "</div>");
     h.push("<div>" + field(P + ".scroll", "Long chats", { type: "select", options: [["", "Scroll inside the phone"], ["no-scroll", "Show it all"]] }) + "</div>");
     h.push("</div>");
+    h.push(field(P + ".altPics", "Changed profile pictures", { type: "area", rows: 2, ph: "Luca: 1 (uses Luca's alt-pfp1 picture here)" }));
     // the header: folded up by default, as it's long
     h.push('<details class="fb-acct"' + (b.headOpen ? " open" : "") + ' data-open="' + P + '.headOpen"><summary class="hint">Header</summary>');
     if (wa || ig) {
@@ -1826,6 +1838,7 @@
         (b.type === "twfeed" ? "<div>" + field(P + ".pov", "Whose phone is it? (their picture goes at the top)", { type: "select", options: castOptions() }) + "</div>" : "") + "</div>");
       if (b.type === "twfeed" && b.era !== "tw2020") h.push(field(P + ".tabs", "Communities in the tabs, after For you and Following (one per line)", { type: "area", rows: 2, ph: "Metros Fans\nHockey Twitter" }));
     }
+    if (!chat) h.push(field(P + ".altPics", "Changed profile pictures", { type: "area", rows: 2, ph: "Luca: 1 (uses Luca's alt-pfp1 picture here)" }));
     var row = chat ? msgRow : /^ig/.test(b.type) ? igRow : tweetRow;
     h.push('<ol class="fb-msgs">' + b.msgs.map(function (m, mi) { return row(b, i, m, mi); }).join("") + "</ol>");
     var ph = chat ? "Ilya: are you awake\nShane: no\n-- Today 11:48 PM" : /^ig/.test(b.type) ? "Rose: made enough for the whole committee. nobody came. #galaprep\nScott: opening day" : "Zim: Reminder to everyone...\nHolster: I played all through college...";
@@ -2906,6 +2919,7 @@
   function blockHTML(b) { return b.type === "raw" ? t(b.html) : onePerLine(appHTML(b)); }
   function appHTML(b) {
     var pov = char(b.pov);
+    curAlts = altsOf(b);
     povOwner = (b.type === "imsg" || b.type === "wa") && isProfile(pov) ? slugOf(pov) : "";
     if (b.type === "imsg") return imsgHTML(b);
     if (b.type === "wa") return waHTML(b);
@@ -2945,6 +2959,15 @@
       });
       var b = READERS[appOf(els[0])](els);
       tlCount = 0;
+      // a changed picture (alt-pfp1 and so on) on someone's profile picture
+      var alts = {};
+      els.forEach(function (e) {
+        e.querySelectorAll("span.pfp[class*=alt-pfp]").forEach(function (x) {
+          var a = x.className.match(/(?:^|\s)alt-pfp(\d+)(?:\s|$)/), sl = x.className.match(/(?:^|\s)pfp-([a-z0-9-]+)/);
+          if (a && sl) alts[personBySlug(sl[1]).id] = a[1];
+        });
+      });
+      b.altPics = Object.keys(alts).map(function (id) { return nameOf(char(id)) + ": " + alts[id]; }).join("\n");
       if (canon(blockHTML(b)) === canon(html)) return b;
     } catch (e) { /* not one we can read */ }
     S.cast = JSON.parse(keep);
