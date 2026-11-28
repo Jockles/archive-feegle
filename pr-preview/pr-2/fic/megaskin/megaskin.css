@@ -921,6 +921,146 @@
   padding: 4em 1em;
 }
 
+/* ---------- Chat parts borrowed from another app ----------
+   Change the app on a chat's top line (imsg, wa, igdm, twdm, dc) and the whole chat changes app.
+   Not every app has every part, so these rules give a plain look to a part in the apps that don't have their own. */
+
+/* a message written as a box with lines inside it (the WhatsApp way) */
+#workskin .igdm div.msg > p,
+#workskin .twdm div.msg > p { margin: 0; }
+
+/* the time inside a bubble */
+#workskin .imsg .time,
+#workskin .igdm .time,
+#workskin .twdm .time {
+  margin: 0.1em 0 0 0;
+  font-size: 0.7em;
+  text-align: right;
+  opacity: 0.65;
+}
+
+/* Delivered, Read, Seen */
+#workskin .wa .status,
+#workskin .dc .status {
+  margin: 0.1em 0.6em 0.3em 0.6em;
+  font-size: 0.7em;
+  text-align: right;
+  opacity: 0.65;
+}
+
+/* Edited */
+#workskin .wa .edited,
+#workskin .igdm .edited,
+#workskin .twdm .edited {
+  margin: 0.1em 0.6em 0.3em 0.6em;
+  font-size: 0.7em;
+  opacity: 0.65;
+}
+
+/* "Replied to Shane" above a reply */
+#workskin .imsg .reply,
+#workskin .wa .reply {
+  margin: 0.5em 0.6em 0.1em 0.6em;
+  font-size: 0.75em;
+  opacity: 0.65;
+}
+
+#workskin .imsg .reply.out,
+#workskin .wa .reply.out,
+#workskin .wa .edited.out,
+#workskin .igdm .edited.out,
+#workskin .twdm .edited.out { text-align: right; }
+
+/* the message being replied to */
+#workskin .imsg .quote,
+#workskin .dc .quote {
+  display: table;
+  max-width: 70%;
+  margin: 0.2em 0;
+  padding: 0.3em 0.7em;
+  border-left: 3px solid;
+  border-radius: 0.5em;
+  background: rgba(128, 128, 128, 0.15);
+  font-size: 0.9em;
+  opacity: 0.8;
+}
+
+#workskin .imsg .quote.out,
+#workskin .dc .quote.out { margin-left: auto; }
+
+/* in iMessage and WhatsApp "in" and "out" colour a bubble, and these lines are not bubbles */
+#workskin .imsg p.reply.in,
+#workskin .imsg p.reply.out,
+#workskin .imsg p.status.in,
+#workskin .imsg p.status.out,
+#workskin .imsg p.edited.in,
+#workskin .imsg p.edited.out,
+#workskin .wa p.reply.in,
+#workskin .wa p.reply.out,
+#workskin .wa p.status.in,
+#workskin .wa p.status.out,
+#workskin .wa p.edited.in,
+#workskin .wa p.edited.out { background: none; color: inherit; }
+
+#workskin .imsg p.quote.in,
+#workskin .imsg p.quote.out { background: rgba(128, 128, 128, 0.15); color: inherit; }
+
+/* a quote on a line of its own, above the reply */
+#workskin .wa .mob-body > .quote,
+#workskin .wa .row > .quote { display: table; max-width: 70%; }
+
+/* the + beside the message bar */
+#workskin .wa .footer:has(> .plus) { padding-left: 2.6em; }
+
+#workskin .wa .footer > .plus {
+  position: absolute;
+  left: 0.5em;
+  top: 50%;
+  margin-top: -0.75em;
+  font-size: 1.4em;
+  line-height: 1.5em;
+}
+
+#workskin .igdm .footer > .plus { flex: none; margin: 0 0.4em; font-size: 1.3em; }
+
+/* link cards */
+#workskin .imsg .link-card,
+#workskin .twdm .link-card {
+  display: block;
+  max-width: 75%;
+  margin: 0.2em 0;
+  border-radius: 0.8em;
+  background: rgba(128, 128, 128, 0.15);
+  overflow: hidden;
+}
+
+#workskin .imsg .link-card.out,
+#workskin .twdm .link-card.out { margin-left: auto; }
+
+#workskin .imsg .link-card p,
+#workskin .twdm .link-card p { margin: 0; padding: 0.15em 0.7em; }
+
+#workskin .imsg .link-card .link-img,
+#workskin .twdm .link-card .link-img { padding: 0; }
+
+#workskin .imsg .link-img img,
+#workskin .twdm .link-img img { display: block; width: 100%; }
+
+#workskin .imsg .link-title,
+#workskin .twdm .link-title { font-weight: bold; }
+
+#workskin .imsg .link-desc,
+#workskin .igdm .link-desc,
+#workskin .twdm .link-desc,
+#workskin .imsg .link-url,
+#workskin .twdm .link-url,
+#workskin .dc .link-url { font-size: 0.85em; opacity: 0.7; }
+
+/* the number beside a reaction */
+#workskin .imsg .reacts .count,
+#workskin .igdm .reacts .count,
+#workskin .twdm .reacts .count { margin-left: 0.3em; font-size: 0.9em; opacity: 0.7; }
+
 /* ---- ONE PART PER LINE: AO3 turns the line breaks in your code into <br> tags. Between the parts of these rows a line break is never wanted, so it is hidden, and the code can be written with each part on its own line. ---- */
 #workskin .ig-top > br,
 #workskin .ig-person > br,
