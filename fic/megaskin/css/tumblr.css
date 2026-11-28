@@ -18,8 +18,8 @@
 }
 
 /* Header row of a post or of one reblog: picture, name + small grey line, optional Follow, dots.
-   Use <div class="tb-top"> for the post, <div class="tb-blog"> inside each reblog. */
-#workskin .tb .tb-top,
+   Use <div class="top"> for the post, <div class="tb-blog"> inside each reblog. */
+#workskin .tb .top,
 #workskin .tb .tb-blog {
   display: block;
   overflow: hidden;
@@ -28,28 +28,28 @@
 }
 
 /* thin line under a post's header (the reblog headers sit inside the body and don't get one) */
-#workskin .tb .tb-top { padding-bottom: 0.8em; border-bottom: 1px solid #eeeeee; }
+#workskin .tb .top { padding-bottom: 0.8em; border-bottom: 1px solid #eeeeee; }
 
 /* a reblog header is a paragraph inside the post body, so undo the body's paragraph spacing */
-#workskin .tb .tb-text .tb-blog { margin: 0; padding: 0.8em 0.9em 0.3em 0.9em; }
+#workskin .tb .text .tb-blog { margin: 0; padding: 0.8em 0.9em 0.3em 0.9em; }
 
 /* AO3 turns line breaks in your HTML into <br /> tags: keep them out of the header rows and the counts row */
-#workskin .tb .tb-top br,
+#workskin .tb .top br,
 #workskin .tb .tb-blog br,
-#workskin .tb .tb-stats br { display: none; }
+#workskin .tb .stats br { display: none; }
 
 /* ...and the paragraph AO3 wraps around a header row's pieces */
-#workskin .tb .tb-top > p,
-#workskin .tb .tb-text .tb-blog > p,
-#workskin .tb .tb-stats > p { margin: 0; padding: 0; }
+#workskin .tb .top > p,
+#workskin .tb .text .tb-blog > p,
+#workskin .tb .stats > p { margin: 0; padding: 0; }
 
-#workskin .tb .tb-name { display: block; min-height: 38px; margin-left: 48px; overflow: hidden; }
+#workskin .tb .who { display: block; min-height: 38px; margin-left: 48px; overflow: hidden; }
 
 /* the name stays on one line, and checkmarks that run out of room are cut off where the menu starts, like the app */
-#workskin .tb .tb-name > b { display: block; overflow: hidden; white-space: nowrap; font-weight: bold; line-height: 1.3; }
+#workskin .tb .who > b { display: block; overflow: hidden; white-space: nowrap; font-weight: bold; line-height: 1.3; }
 
 /* a name with no line under it sits level with the middle of the picture */
-#workskin .tb .tb-name > b:only-child { line-height: 38px; }
+#workskin .tb .who > b:only-child { line-height: 38px; }
 
 #workskin .tb .tb-detail { display: block; font-size: 0.85em; color: #6c7a8b; }
 
@@ -58,7 +58,7 @@
 /* round profile picture (initials), colour1-colour10 for colours; add "rb" for the green reblog badge */
 /* initials by default; colour1-colour10 are the colours (set in the CORE), or put a picture
    or a profile inside it with a pfp span */
-#workskin .tb .tb-pfp {
+#workskin .tb .avatar {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -78,7 +78,7 @@
   font-weight: bold;
 }
 
-#workskin .tb .tb-pfp.reblog::after {
+#workskin .tb .avatar.reblog::after {
   content: '\21C4';
   position: absolute;
   right: -6px;
@@ -152,7 +152,7 @@
 
 /* Follow button (optional) on a reblog header, for a blog you don't follow. It doesn't go on the post's top header:
    you already follow the blog whose post is on your dash. */
-#workskin .tb .tb-follow {
+#workskin .tb .follow {
   display: block;
   float: right;
   margin: 2px 0 0 0.55em;
@@ -164,7 +164,7 @@
   font-size: 0.9em;
 }
 
-#workskin .tb .tb-menu {
+#workskin .tb .menu {
   display: block;
   float: right;
   height: 38px;
@@ -175,16 +175,16 @@
   font-size: 0.8em;
 }
 
-/* the three dots are a picture: <span class="tb-menu ic ic-more">&#8226;&#8226;&#8226;</span> */
-#workskin .tb .tb-menu.ic {
+/* the three dots are a picture: <span class="menu ic ic-more">&#8226;&#8226;&#8226;</span> */
+#workskin .tb .menu.ic {
   width: 1.9em;
   height: 38px;
   opacity: 0.55;
 }
 
-#workskin .tb .tb-text { display: block; padding: 0.3em 0 0.8em 0; }
+#workskin .tb .text { display: block; padding: 0.3em 0 0.8em 0; }
 
-#workskin .tb .tb-text p { margin: 0.5em 0; padding: 0 0.9em; }
+#workskin .tb .text p { margin: 0.5em 0; padding: 0 0.9em; }
 
 #workskin .tb :not(.pfp) > img {
   display: block;
@@ -195,26 +195,23 @@
 }
 
 /* PICTURES AND GIFS: a picture post goes edge to edge across the card. */
-#workskin .tb .tb-photos { display: block; margin: 0.6em 0; }
+#workskin .tb .photos { display: block; margin: 0.6em 0; }
 
 /* pictures at the very start of a post sit right up against the header */
-#workskin .tb .tb-text > .tb-photos:first-child,
-#workskin .tb .tb-reblog > .tb-blog + .tb-photos { margin-top: -0.3em; }
+#workskin .tb .text > .photos:first-child,
+#workskin .tb .tb-reblog > .tb-blog + .photos { margin-top: -0.3em; }
 
-/* a mention of another blog in the text of a post: <span class="tb-link">@rinkrat</span> */
-#workskin .tb .tb-link { color: #3a5f86; }
-
-#workskin .tb .tb-text .tb-row {
+#workskin .tb .text .tb-row {
   display: flex;
   margin: 0 0 4px 0;
   padding: 0;
 }
 
-#workskin .tb .tb-text .tb-row:last-child { margin-bottom: 0; }
+#workskin .tb .text .tb-row:last-child { margin-bottom: 0; }
 
 #workskin .tb .tb-row br { display: none; }
 
-#workskin .tb .tb-photo {
+#workskin .tb .photo {
   display: block;
   position: relative;
   flex: 1 1 0;
@@ -222,7 +219,7 @@
   background: #e8e8e8;
 }
 
-#workskin .tb .tb-photo img {
+#workskin .tb .photo img {
   display: block;
   width: 100%;
   max-width: none;
@@ -232,14 +229,14 @@
 }
 
 /* two side by side: each is a square box, with a small gap between */
-#workskin .tb .tb-row.two .tb-photo {
+#workskin .tb .tb-row.two .photo {
   height: 0;
   padding: 50% 0 0 0;
 }
 
-#workskin .tb .tb-row.two .tb-photo ~ .tb-photo { margin-left: 4px; }
+#workskin .tb .tb-row.two .photo ~ .photo { margin-left: 4px; }
 
-#workskin .tb .tb-row.two .tb-photo img {
+#workskin .tb .tb-row.two .photo img {
   position: absolute;
   top: -9999px;
   bottom: -9999px;
@@ -247,7 +244,7 @@
   margin: auto 0;
 }
 
-#workskin .tb .tb-row.two .tb-photo img.landscape {
+#workskin .tb .tb-row.two .photo img.landscape {
   top: 0;
   bottom: auto;
   right: -9999px;
@@ -265,7 +262,7 @@
   border-top: 1px solid #eeeeee;
 }
 
-#workskin .tb .tb-text > .tb-reblog:first-child { border-top: 0; }
+#workskin .tb .text > .tb-reblog:first-child { border-top: 0; }
 
 /* the ask and answer boxes: <div class="tb-ask"> */
 #workskin .tb .tb-ask {
@@ -324,7 +321,7 @@
 }
 
 /* ROUNDED SQUARE PICTURES: on Tumblr, each blog picks a circle or a rounded square for its picture, and it's the same everywhere that blog shows up. */
-#workskin .tb .tb-pfp.square,
+#workskin .tb .avatar.square,
 #workskin .tb .tb-ask-pfp.square,
 #workskin .tb .square .pfp { border-radius: 15%; }
 
@@ -337,8 +334,8 @@
 }
 
 /* the bottom row: replies, reblogs and likes, each with its own count, then share on the far right
-   <div class="tb-stats"><p class="tb-stat"><span class="ic ic-comment">&#9993;</span> 7<span class="hide"> replies</span></p> ... </div> */
-#workskin .tb .tb-stats {
+   <div class="stats"><p class="stat comments"><span class="ic ic-comment">&#9993;</span> 7<span class="hide"> replies</span></p> ... </div> */
+#workskin .tb .stats {
   display: flex;
   align-items: center;
   padding: 0.6em 0.9em 0.9em 0.9em;
@@ -346,17 +343,17 @@
 }
 
 /* each button and its count takes an equal share of the row */
-#workskin .tb .tb-stat {
+#workskin .tb .stat {
   display: block;
   flex: 1 1 0;
   margin: 0;
   white-space: nowrap;
 }
 
-/* the share button only takes the room it needs, at the right-hand end: add right to its tb-stat */
-#workskin .tb .tb-stat.right { flex: none; }
+/* the share button only takes the room it needs, at the right-hand end: add right to its stat */
+#workskin .tb .stat.right { flex: none; }
 
-#workskin .tb .tb-stats .ic {
+#workskin .tb .stats .ic {
   display: inline-block;
   margin-right: 0.3em;
   font-size: 1.3em;
@@ -364,14 +361,14 @@
   vertical-align: -0.15em;
 }
 
-#workskin .tb .tb-stat.right .ic { margin-right: 0; }
+#workskin .tb .stat.right .ic { margin-right: 0; }
 
-/* quote post: <p class="tb-quote">text</p><p class="tb-source">&mdash; someone</p> */
-#workskin .tb .tb-quote { font-family: Georgia, serif; font-size: 1.9em; line-height: 1.25; }
+/* quote post: <p class="quote">text</p><p class="tb-source">&mdash; someone</p> */
+#workskin .tb .quote { font-family: Georgia, serif; font-size: 1.9em; line-height: 1.25; }
 
-#workskin .tb .tb-quote::before { content: "\201C"; }
+#workskin .tb .quote::before { content: "\201C"; }
 
-#workskin .tb .tb-quote::after { content: "\201D"; }
+#workskin .tb .quote::after { content: "\201D"; }
 
 #workskin .tb .tb-source { font-size: 0.9em; }
 
@@ -387,8 +384,8 @@
 
 #workskin .tb .tb-chat b { font-weight: bold; }
 
-/* poll: in tb-text, the question as a paragraph, then each option as */
-#workskin .tb .tb-text .tb-opt {
+/* poll: in text, the question as a paragraph, then each option as */
+#workskin .tb .text .opt {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -404,8 +401,8 @@
   line-height: 1.3;
 }
 
-/* a finished poll: <p class="tb-opt results win p50"><span class="tb-bar">the words</span><span class="hide"> - </span><span class="tb-pct">52%</span></p> */
-#workskin .tb .tb-text .tb-opt.results {
+/* a finished poll: <p class="opt results win p50"><span class="tb-bar">the words</span><span class="hide"> - </span><span class="pct">52%</span></p> */
+#workskin .tb .text .opt.results {
   justify-content: flex-start;
   border-color: transparent;
   border-radius: 8px;
@@ -414,58 +411,58 @@
   background-image: linear-gradient(#dcdcdc, #dcdcdc);
 }
 
-#workskin .tb .tb-text .tb-opt.results.win { background-image: linear-gradient(#a6d9ec, #a6d9ec); }
+#workskin .tb .text .opt.results.win { background-image: linear-gradient(#a6d9ec, #a6d9ec); }
 
-#workskin .tb .tb-opt .tb-pct { margin-left: auto; padding-left: 0.8em; font-weight: normal; white-space: nowrap; }
+#workskin .tb .opt .pct { margin-left: auto; padding-left: 0.8em; font-weight: normal; white-space: nowrap; }
 
-#workskin .tb .tb-opt.p0 { background-size: 0% 100%; }
-#workskin .tb .tb-opt.p5 { background-size: 5% 100%; }
-#workskin .tb .tb-opt.p10 { background-size: 10% 100%; }
-#workskin .tb .tb-opt.p20 { background-size: 20% 100%; }
-#workskin .tb .tb-opt.p25 { background-size: 25% 100%; }
-#workskin .tb .tb-opt.p30 { background-size: 30% 100%; }
-#workskin .tb .tb-opt.p33 { background-size: 33% 100%; }
-#workskin .tb .tb-opt.p40 { background-size: 40% 100%; }
-#workskin .tb .tb-opt.p50 { background-size: 50% 100%; }
-#workskin .tb .tb-opt.p60 { background-size: 60% 100%; }
-#workskin .tb .tb-opt.p67 { background-size: 67% 100%; }
-#workskin .tb .tb-opt.p70 { background-size: 70% 100%; }
-#workskin .tb .tb-opt.p75 { background-size: 75% 100%; }
-#workskin .tb .tb-opt.p80 { background-size: 80% 100%; }
-#workskin .tb .tb-opt.p90 { background-size: 90% 100%; }
-#workskin .tb .tb-opt.p100 { background-size: 100% 100%; }
+#workskin .tb .opt.p0 { background-size: 0% 100%; }
+#workskin .tb .opt.p5 { background-size: 5% 100%; }
+#workskin .tb .opt.p10 { background-size: 10% 100%; }
+#workskin .tb .opt.p20 { background-size: 20% 100%; }
+#workskin .tb .opt.p25 { background-size: 25% 100%; }
+#workskin .tb .opt.p30 { background-size: 30% 100%; }
+#workskin .tb .opt.p33 { background-size: 33% 100%; }
+#workskin .tb .opt.p40 { background-size: 40% 100%; }
+#workskin .tb .opt.p50 { background-size: 50% 100%; }
+#workskin .tb .opt.p60 { background-size: 60% 100%; }
+#workskin .tb .opt.p67 { background-size: 67% 100%; }
+#workskin .tb .opt.p70 { background-size: 70% 100%; }
+#workskin .tb .opt.p75 { background-size: 75% 100%; }
+#workskin .tb .opt.p80 { background-size: 80% 100%; }
+#workskin .tb .opt.p90 { background-size: 90% 100%; }
+#workskin .tb .opt.p100 { background-size: 100% 100%; }
 
-#workskin .tb .tb-text .tb-pollinfo { display: block; margin: 0.6em 0; text-align: center; color: #555555; font-size: 0.85em; }
+#workskin .tb .text .pollinfo { display: block; margin: 0.6em 0; text-align: center; color: #555555; font-size: 0.85em; }
 
 /* TAPPABLE POLL, the short way */
-#workskin .tb .tb-vote,
-#workskin .tb .tb-vote > summary { display: block; }
+#workskin .tb .vote,
+#workskin .tb .vote > summary { display: block; }
 
-#workskin .tb .tb-vote > summary,
-#workskin .tb .tb-pick > summary { cursor: pointer; list-style: none; }
+#workskin .tb .vote > summary,
+#workskin .tb .pick > summary { cursor: pointer; list-style: none; }
 
-#workskin .tb .tb-vote > summary::-webkit-details-marker,
-#workskin .tb .tb-pick > summary::-webkit-details-marker { display: none; }
+#workskin .tb .vote > summary::-webkit-details-marker,
+#workskin .tb .pick > summary::-webkit-details-marker { display: none; }
 
-#workskin .tb .tb-vote > summary::marker,
-#workskin .tb .tb-pick > summary::marker { content: ""; }
+#workskin .tb .vote > summary::marker,
+#workskin .tb .pick > summary::marker { content: ""; }
 
-#workskin .tb .tb-vote[open] > summary { display: none; }
+#workskin .tb .vote[open] > summary { display: none; }
 
 /* TAPPABLE POLL where the reader picks */
-#workskin .tb .tb-poll { display: block; position: relative; }
+#workskin .tb .poll { display: block; position: relative; }
 
-#workskin .tb .tb-pick { display: block; margin: 0.45em 0; }
+#workskin .tb .pick { display: block; margin: 0.45em 0; }
 
-#workskin .tb .tb-text .tb-pick > .tb-opt { margin: 0 0.9em; }
+#workskin .tb .text .pick > .opt { margin: 0 0.9em; }
 
-#workskin .tb .tb-pick[open] > summary { visibility: hidden; }
+#workskin .tb .pick[open] > summary { visibility: hidden; }
 
-#workskin .tb .tb-results { display: block; position: absolute; top: 0; left: 0; right: 0; z-index: 1; background: #ffffff; }
+#workskin .tb .poll-results { display: block; position: absolute; top: 0; left: 0; right: 0; z-index: 1; background: #ffffff; }
 
-#workskin .tb .tb-voted { display: block; flex: none; width: 1.3em; height: 1.3em; margin-left: auto; }
+#workskin .tb .voted { display: block; flex: none; width: 1.3em; height: 1.3em; margin-left: auto; }
 
-#workskin .tb .tb-opt .tb-voted + .tb-pct { margin-left: 0; }
+#workskin .tb .opt .voted + .pct { margin-left: 0; }
 
 /* THE FEED BEHIND THE CARDS (optional): put one or more .tb posts inside */
 #workskin .tb-feed {
@@ -505,22 +502,22 @@
 
 #workskin .app-screen .tb { max-height: none; overflow: visible; }
 
-#workskin .tb-feed .tb-header,
-#workskin .tb-feed .tb-tabs,
-#workskin .tb-feed .tb-nav {
+#workskin .tb-feed .header,
+#workskin .tb-feed .tabs,
+#workskin .tb-feed .nav {
   display: flex;
   align-items: center;
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
 }
 
-#workskin .tb-feed .tb-header br,
-#workskin .tb-feed .tb-tabs br,
-#workskin .tb-feed .tb-nav br { display: none; }
+#workskin .tb-feed .header br,
+#workskin .tb-feed .tabs br,
+#workskin .tb-feed .nav br { display: none; }
 
-#workskin .tb-feed .tb-header { padding: 0.9em 1em 0.3em 1em; }
+#workskin .tb-feed .header { padding: 0.9em 1em 0.3em 1em; }
 
-#workskin .tb-feed .tb-logo {
+#workskin .tb-feed .logo {
   margin-right: auto;
   color: #ffffff;
   font-family: "Arial Black", Arial, Helvetica, sans-serif;
@@ -529,21 +526,21 @@
   line-height: 1;
 }
 
-#workskin .tb-feed .tb-icon { margin-left: 0.8em; font-size: 1.5em; line-height: 1; }
+#workskin .tb-feed .icon { margin-left: 0.8em; font-size: 1.5em; line-height: 1; }
 
-#workskin .tb-feed .tb-tabs {
+#workskin .tb-feed .tabs {
   padding: 0.6em 1em 0.9em 1em;
   color: #6f7e93;
   font-size: 1.05em;
   font-weight: bold;
 }
 
-#workskin .tb-feed .tb-tab { position: relative; margin-right: 1.3em; white-space: nowrap; }
+#workskin .tb-feed .tab { position: relative; margin-right: 1.3em; white-space: nowrap; }
 
-#workskin .tb-feed .tb-tab.on { color: #ffffff; }
+#workskin .tb-feed .tab.on { color: #ffffff; }
 
 /* the short blue line under the picked tab */
-#workskin .tb-feed .tb-tab.on::after {
+#workskin .tb-feed .tab.on::after {
   content: "";
   position: absolute;
   left: 50%;
@@ -555,9 +552,9 @@
   background: #00b8ff;
 }
 
-#workskin .tb-feed .tb-tabs .tb-icon { margin-left: auto; font-size: 1.3em; }
+#workskin .tb-feed .tabs .icon { margin-left: auto; font-size: 1.3em; }
 
-#workskin .tb-feed .tb-nav {
+#workskin .tb-feed .nav {
   justify-content: space-around;
   padding: 0.7em 0.4em 0.9em 0.4em;
   color: #717e8f;
@@ -565,7 +562,7 @@
   line-height: 1;
 }
 
-#workskin .tb-feed .tb-nav .on { color: #ffffff; }
+#workskin .tb-feed .nav .on { color: #ffffff; }
 
 #workskin .tb-feed .mob {
   width: auto;
@@ -577,6 +574,7 @@
 
 /* ---------- Tumblr: Links ---------- */
 
+/* links and mentions of other blogs, eg <span class="fake-link">@rinkrat</span> */
 #workskin .tb .fake-link, #workskin .tb a:not(.tl) { color: #0070b8; }
 
 /* ---------- Tumblr: Scrolling ---------- */
@@ -603,36 +601,34 @@
 #workskin .tb.theme-dark { background: #1f1f1f; color: #e8e8e8; border-color: #1f1f1f; }
 
 #workskin .tb.theme-dark .tb-detail,
-#workskin .tb.theme-dark .tb-menu,
+#workskin .tb.theme-dark .menu,
 #workskin .tb.theme-dark .tb-tags {
   color: #9a9a9a;
 }
 
 #workskin .tb.theme-dark .tb-detail b { color: #cfcfcf; }
 
-#workskin .tb.theme-dark .tb-stats { color: #bdbdbd; }
+#workskin .tb.theme-dark .stats { color: #bdbdbd; }
 
-#workskin .tb.theme-dark .tb-follow { background: #2e2e2e; }
+#workskin .tb.theme-dark .follow { background: #2e2e2e; }
 
-#workskin .tb.theme-dark .tb-photo { background: #2e2e2e; }
+#workskin .tb.theme-dark .photo { background: #2e2e2e; }
 
-#workskin .tb.theme-dark .tb-link { color: #c3d4e8; }
-
-#workskin .tb.theme-dark .tb-pfp.reblog::after { border-color: #1f1f1f; }
+#workskin .tb.theme-dark .avatar.reblog::after { border-color: #1f1f1f; }
 
 #workskin .tb.theme-dark .tb-reblog { border-top-color: #2c2c2c; }
 
 #workskin .tb.theme-dark .tb-ask { background: #272727; }
 
-#workskin .tb.theme-dark .tb-text .tb-opt.results { background-color: #2a2a2a; }
+#workskin .tb.theme-dark .text .opt.results { background-color: #2a2a2a; }
 
-#workskin .tb.theme-dark .tb-text .tb-opt.results { background-image: linear-gradient(#404040, #404040); }
+#workskin .tb.theme-dark .text .opt.results { background-image: linear-gradient(#404040, #404040); }
 
-#workskin .tb.theme-dark .tb-text .tb-opt.results.win { background-image: linear-gradient(#19637e, #19637e); }
+#workskin .tb.theme-dark .text .opt.results.win { background-image: linear-gradient(#19637e, #19637e); }
 
-#workskin .tb.theme-dark .tb-text .tb-pollinfo { color: #bdbdbd; }
+#workskin .tb.theme-dark .text .pollinfo { color: #bdbdbd; }
 
-#workskin .tb.theme-dark .tb-results { background: #1f1f1f; }
+#workskin .tb.theme-dark .poll-results { background: #1f1f1f; }
 
 #workskin .tb.theme-dark .tb-asker,
 #workskin .tb.theme-dark .tb-asker b {
@@ -641,7 +637,7 @@
 
 
 
-#workskin .tb.theme-dark .tb-top { border-bottom-color: #2c2c2c; }
+#workskin .tb.theme-dark .top { border-bottom-color: #2c2c2c; }
 
 #workskin .tb.theme-dark .tb-ask::after { border-left-color: #272727; }
 
@@ -653,36 +649,34 @@
   #workskin .tb.theme-auto { background: #1f1f1f; color: #e8e8e8; border-color: #1f1f1f; }
 
   #workskin .tb.theme-auto .tb-detail,
-    #workskin .tb.theme-auto .tb-menu,
+    #workskin .tb.theme-auto .menu,
     #workskin .tb.theme-auto .tb-tags {
       color: #9a9a9a;
     }
 
   #workskin .tb.theme-auto .tb-detail b { color: #cfcfcf; }
 
-  #workskin .tb.theme-auto .tb-stats { color: #bdbdbd; }
+  #workskin .tb.theme-auto .stats { color: #bdbdbd; }
 
-  #workskin .tb.theme-auto .tb-follow { background: #2e2e2e; }
+  #workskin .tb.theme-auto .follow { background: #2e2e2e; }
 
-  #workskin .tb.theme-auto .tb-photo { background: #2e2e2e; }
+  #workskin .tb.theme-auto .photo { background: #2e2e2e; }
 
-  #workskin .tb.theme-auto .tb-link { color: #c3d4e8; }
-
-  #workskin .tb.theme-auto .tb-pfp.reblog::after { border-color: #1f1f1f; }
+  #workskin .tb.theme-auto .avatar.reblog::after { border-color: #1f1f1f; }
 
   #workskin .tb.theme-auto .tb-reblog { border-top-color: #2c2c2c; }
 
   #workskin .tb.theme-auto .tb-ask { background: #272727; }
 
-  #workskin .tb.theme-auto .tb-text .tb-opt.results { background-color: #2a2a2a; }
+  #workskin .tb.theme-auto .text .opt.results { background-color: #2a2a2a; }
 
-  #workskin .tb.theme-auto .tb-text .tb-opt.results { background-image: linear-gradient(#404040, #404040); }
+  #workskin .tb.theme-auto .text .opt.results { background-image: linear-gradient(#404040, #404040); }
 
-  #workskin .tb.theme-auto .tb-text .tb-opt.results.win { background-image: linear-gradient(#19637e, #19637e); }
+  #workskin .tb.theme-auto .text .opt.results.win { background-image: linear-gradient(#19637e, #19637e); }
 
-  #workskin .tb.theme-auto .tb-text .tb-pollinfo { color: #bdbdbd; }
+  #workskin .tb.theme-auto .text .pollinfo { color: #bdbdbd; }
 
-  #workskin .tb.theme-auto .tb-results { background: #1f1f1f; }
+  #workskin .tb.theme-auto .poll-results { background: #1f1f1f; }
 
   #workskin .tb.theme-auto .tb-asker,
     #workskin .tb.theme-auto .tb-asker b {
@@ -691,7 +685,7 @@
 
 
 
-  #workskin .tb.theme-auto .tb-top { border-bottom-color: #2c2c2c; }
+  #workskin .tb.theme-auto .top { border-bottom-color: #2c2c2c; }
 
   #workskin .tb.theme-auto .tb-ask::after { border-left-color: #272727; }
 }
@@ -718,9 +712,9 @@
 #workskin .tb .ic.ic-more { background-image: url(https://images.squidge.org/images/2026/11/15/menu-horizontal-black.png); }
 
 /* the app screen's top bar and bottom buttons. They always sit on the feed colour, so they don't change with the theme. */
-#workskin .tb-feed .tb-header .ic,
-#workskin .tb-feed .tb-tabs .ic,
-#workskin .tb-feed .tb-nav .ic {
+#workskin .tb-feed .header .ic,
+#workskin .tb-feed .tabs .ic,
+#workskin .tb-feed .nav .ic {
   display: inline-block;
   width: 1em;
   height: 1em;
@@ -759,7 +753,7 @@
 #workskin .tb .ic.ic-checks-blue { width: 2.15em; background-image: url(https://images.squidge.org/images/2026/11/16/tb-checks-blue.png); }
 
 /* the green reblog badge on a picture: the white reblog picture instead of the typed arrows */
-#workskin .tb .tb-pfp.reblog::after {
+#workskin .tb .avatar.reblog::after {
   content: '';
   background-image: url(https://images.squidge.org/images/2026/11/15/reblog-white.png);
   background-repeat: no-repeat;
