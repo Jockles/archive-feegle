@@ -378,7 +378,7 @@
   height: 300px;
 }
 
-#workskin .ig.ig-feed .ig { display: flow-root; }
+#workskin .ig-feed .ig { display: flow-root; }
 
 /* the sheet covers the bottom of the post, and its shadow darkens the rest */
 #workskin .ig .ig-sheet {
@@ -690,7 +690,6 @@
 #workskin .igdm .mob-header .igdm-name {
   display: inline;
   color: inherit;
-  font-size: 1em;
   font-weight: bold;
 }
 
@@ -1324,12 +1323,33 @@
 }
 
 /* ---- THE FEED (the default container for posts): a scrolling Instagram home screen, with the top bar and the Stories row, then posts one after another. */
-#workskin .ig.ig-feed { max-height: 580px; }
+#workskin .ig-feed {
+  width: 380px;
+  max-width: 100%;
+  margin: 1.2em auto;
+  box-sizing: border-box;
+  overflow: hidden;
+  background: #ffffff;
+  color: #262626;
+  border: 1px solid #dbdbdb;
+  border-radius: 4px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 0.92em;
+  line-height: 1.35;
+  text-align: left;
+}
 
-/* the core no-scroll rule is no stronger than the one above, so the feed needs its own */
-#workskin .ig.ig-feed.no-scroll { max-height: none; overflow-y: visible; }
+#workskin .ig-feed.wide { width: auto; max-width: none; }
 
-#workskin .ig.ig-feed .ig {
+#workskin .ig-feed p { margin: 0; padding: 0; text-indent: 0; }
+
+/* the part that scrolls: the top bar, the Stories row and the posts */
+#workskin .ig-feed .app-screen { max-height: 580px; overflow-y: auto; overflow-x: hidden; }
+
+/* no-scroll switches the feed's scrolling off */
+#workskin .ig-feed.no-scroll .app-screen { max-height: none; overflow-y: visible; }
+
+#workskin .ig-feed .ig {
   width: auto;
   max-width: none;
   max-height: none;
@@ -1341,21 +1361,21 @@
   color: inherit;
 }
 
-#workskin .ig.ig-feed .ig:last-child { margin-bottom: 0.3em; }
+#workskin .ig-feed .ig:last-child { margin-bottom: 0.3em; }
 
-#workskin .ig.ig-feed .ig .ig-top { border-bottom: 0; }
+#workskin .ig-feed .ig .ig-top { border-bottom: 0; }
 
 /* the top bar: + on the left, the logo in the middle, the heart on the right */
-#workskin .ig .ig-header {
+#workskin .ig-feed .ig-header {
   display: flex;
   align-items: center;
   padding: 0.5em 0.9em 0.2em 0.9em;
   white-space: nowrap;
 }
 
-#workskin .ig .ig-header br { display: none; }
+#workskin .ig-feed .ig-header br { display: none; }
 
-#workskin .ig .ig-add {
+#workskin .ig-feed .ig-add {
   flex: none;
   width: 1.1em;
   font-size: 1.9em;
@@ -1364,7 +1384,7 @@
 }
 
 /* the logo is a picture, with the word hidden behind it for readers with the workskin off */
-#workskin .ig .ig-logo {
+#workskin .ig-feed .ig-logo {
   flex: 1;
   height: 2.6em;
   margin-left: 0.4em;
@@ -1377,7 +1397,7 @@
   background-size: contain;
 }
 
-#workskin .ig .ig-icon {
+#workskin .ig-feed .ig-icon {
   display: block;
   flex: none;
   width: 1.6em;
@@ -1389,7 +1409,7 @@
 }
 
 /* the little red dot on the heart: leave it out when there's nothing new */
-#workskin .ig .ig-badge {
+#workskin .ig-feed .ig-badge {
   flex: none;
   width: 0.42em;
   height: 0.42em;
@@ -1399,16 +1419,16 @@
 }
 
 /* the Stories row: as many circles as fit, and the rest are cut off at the edge */
-#workskin .ig .ig-stories {
+#workskin .ig-feed .ig-stories {
   display: flex;
   overflow: hidden;
   padding: 0.5em 0.4em 0.6em 0.4em;
   border-bottom: 1px solid #efefef;
 }
 
-#workskin .ig .ig-stories br { display: none; }
+#workskin .ig-feed .ig-stories br { display: none; }
 
-#workskin .ig .ig-story {
+#workskin .ig-feed .ig-story {
   display: block;
   position: relative;
   flex: none;
@@ -1418,7 +1438,7 @@
 }
 
 /* the ring is drawn behind the circle: colourful for a story that hasn't been watched yet */
-#workskin .ig .ig-story::before {
+#workskin .ig-feed .ig-story::before {
   content: "";
   position: absolute;
   top: 0;
@@ -1452,18 +1472,18 @@
   line-height: 1;
 }
 
-#workskin .ig .ig-story .pfp::before { font-size: 1.4em; }
+#workskin .ig-feed .ig-story .pfp::before { font-size: 1.4em; }
 
 /* close friends: a green ring. No story: no ring */
-#workskin .ig .ig-story.close::before { background-image: none; background-color: #1cd14f; }
+#workskin .ig-feed .ig-story.close::before { background-image: none; background-color: #1cd14f; }
 
-#workskin .ig .ig-story.plain::before { display: none; }
+#workskin .ig-feed .ig-story.plain::before { display: none; }
 
 /* your own circle has a thin grey ring */
-#workskin .ig .ig-story.me::before { background-image: none; background-color: #dbdbdb; }
+#workskin .ig-feed .ig-story.me::before { background-image: none; background-color: #dbdbdb; }
 
 /* the name under each circle, cut off with "..." if it's too long */
-#workskin .ig .ig-story-name {
+#workskin .ig-feed .ig-story-name {
   display: block;
   margin-top: 0.3em;
   overflow: hidden;
@@ -1473,9 +1493,9 @@
 }
 
 /* your own circle comes first, with "me": it gets the + badge, and grey words */
-#workskin .ig .ig-story.me .ig-story-name { color: #737373; }
+#workskin .ig-feed .ig-story.me .ig-story-name { color: #737373; }
 
-#workskin .ig .ig-story.me::after {
+#workskin .ig-feed .ig-story.me::after {
   content: "+";
   position: absolute;
   top: 3.4em;
@@ -1498,6 +1518,8 @@
 
 #workskin .ig.theme-dark { background: #0c1014; color: #f5f5f5; border-color: #262626; }
 
+#workskin .ig-feed.theme-dark { background: #0c1014; color: #f5f5f5; border-color: #262626; }
+
 #workskin .ig.theme-dark .ig-top { border-bottom-color: #262626; }
 
 #workskin .ig.theme-dark .ig-top .ig-name { color: inherit; }
@@ -1514,7 +1536,7 @@
 
 #workskin .ig.theme-dark .ig-more { color: #a8a8a8; }
 
-#workskin .ig.theme-dark .ig-logo { background-image: url(https://images.squidge.org/images/2026/11/19/ig-logo-white.png); }
+#workskin .ig-feed.theme-dark .ig-logo { background-image: url(https://images.squidge.org/images/2026/11/19/ig-logo-white.png); }
 
 #workskin .ig.theme-dark .ig-top .ig-pfp.story .pfp { border-color: #0c1014; }
 #workskin .ig.theme-dark .ig-top .ig-collab .ig-pfp + .ig-pfp { border-color: #0c1014; }
@@ -1529,18 +1551,18 @@
 #workskin .ig.theme-dark .ig-person .ig-following.blue { background: #0095f6; color: #ffffff; }
 #workskin .ig.theme-dark .ig-carousel .ig-carousel-dots, #workskin .igdm.theme-dark .igdm-post .ig-carousel .ig-carousel-dots { color: #555555; }
 
-#workskin .ig.theme-dark .ig-stories { border-bottom-color: #262626; }
+#workskin .ig-feed.theme-dark .ig-stories { border-bottom-color: #262626; }
 
-#workskin .ig.theme-dark .ig-story .ig-pfp { border-color: #0c1014; }
-
-
+#workskin .ig-feed.theme-dark .ig-story .ig-pfp { border-color: #0c1014; }
 
 
-#workskin .ig.theme-dark .ig-story.me .ig-story-name { color: #a8a8a8; }
 
-#workskin .ig.theme-dark .ig-story.me::before { background-color: #737373; }
 
-#workskin .ig.theme-dark .ig-story.me::after { border-color: #0c1014; background: #f5f5f5; color: #0c1014; }
+#workskin .ig-feed.theme-dark .ig-story.me .ig-story-name { color: #a8a8a8; }
+
+#workskin .ig-feed.theme-dark .ig-story.me::before { background-color: #737373; }
+
+#workskin .ig-feed.theme-dark .ig-story.me::after { border-color: #0c1014; background: #f5f5f5; color: #0c1014; }
 
 #workskin .igdm.theme-dark { background: #0c1014; color: #f5f5f5; border-color: #262626; }
 
@@ -1589,6 +1611,8 @@
 
   #workskin .ig.theme-auto { background: #0c1014; color: #f5f5f5; border-color: #262626; }
 
+  #workskin .ig-feed.theme-auto { background: #0c1014; color: #f5f5f5; border-color: #262626; }
+
   #workskin .ig.theme-auto .ig-top { border-bottom-color: #262626; }
 
   #workskin .ig.theme-auto .ig-top .ig-name { color: inherit; }
@@ -1605,7 +1629,7 @@
 
   #workskin .ig.theme-auto .ig-more { color: #a8a8a8; }
 
-  #workskin .ig.theme-auto .ig-logo { background-image: url(https://images.squidge.org/images/2026/11/19/ig-logo-white.png); }
+  #workskin .ig-feed.theme-auto .ig-logo { background-image: url(https://images.squidge.org/images/2026/11/19/ig-logo-white.png); }
 
   #workskin .ig.theme-auto .ig-top .ig-pfp.story .pfp { border-color: #0c1014; }
   #workskin .ig.theme-auto .ig-top .ig-collab .ig-pfp + .ig-pfp { border-color: #0c1014; }
@@ -1620,18 +1644,18 @@
   #workskin .ig.theme-auto .ig-person .ig-following.blue { background: #0095f6; color: #ffffff; }
   #workskin .ig.theme-auto .ig-carousel .ig-carousel-dots, #workskin .igdm.theme-auto .igdm-post .ig-carousel .ig-carousel-dots { color: #555555; }
 
-  #workskin .ig.theme-auto .ig-stories { border-bottom-color: #262626; }
+  #workskin .ig-feed.theme-auto .ig-stories { border-bottom-color: #262626; }
 
-  #workskin .ig.theme-auto .ig-story .ig-pfp { border-color: #0c1014; }
-
-
+  #workskin .ig-feed.theme-auto .ig-story .ig-pfp { border-color: #0c1014; }
 
 
-  #workskin .ig.theme-auto .ig-story.me .ig-story-name { color: #a8a8a8; }
 
-  #workskin .ig.theme-auto .ig-story.me::before { background-color: #737373; }
 
-  #workskin .ig.theme-auto .ig-story.me::after { border-color: #0c1014; background: #f5f5f5; color: #0c1014; }
+  #workskin .ig-feed.theme-auto .ig-story.me .ig-story-name { color: #a8a8a8; }
+
+  #workskin .ig-feed.theme-auto .ig-story.me::before { background-color: #737373; }
+
+  #workskin .ig-feed.theme-auto .ig-story.me::after { border-color: #0c1014; background: #f5f5f5; color: #0c1014; }
 
   #workskin .igdm.theme-auto { background: #0c1014; color: #f5f5f5; border-color: #262626; }
 
@@ -1675,7 +1699,7 @@
 }
 
 /* ---------- Instagram: Icons ---------- */
-#workskin .ig .ic, #workskin .igdm .ic {
+#workskin .ig .ic, #workskin .ig-feed .ic, #workskin .igdm .ic {
   display: inline-block;
   width: 1em;
   height: 1em;
@@ -1722,7 +1746,7 @@
 #workskin .ig .ic.ic-ig-follow { background-image: url(https://images.squidge.org/images/2026/11/19/ig-follow-black.png); }
 #workskin .ig .ic.ic-share, #workskin .igdm .ic.ic-share { background-image: url(https://images.squidge.org/images/2026/11/15/share-black.png); }
 #workskin .ig .ic.ic-repost, #workskin .igdm .ic.ic-repost { background-image: url(https://images.squidge.org/images/2026/11/15/repost-black.png); }
-#workskin .ig .ic.ic-heart, #workskin .igdm .ic.ic-heart { background-image: url(https://images.squidge.org/images/2026/11/15/heart-black.png); }
+#workskin .ig .ic.ic-heart, #workskin .ig-feed .ic.ic-heart, #workskin .igdm .ic.ic-heart { background-image: url(https://images.squidge.org/images/2026/11/15/heart-black.png); }
 #workskin .igdm .ic.ic-back { background-image: url(https://images.squidge.org/images/2026/11/15/back-black.png); }
 #workskin .igdm .ic.ic-phone { background-image: url(https://images.squidge.org/images/2026/11/15/phone-black.png); }
 #workskin .igdm .ic.ic-video { background-image: url(https://images.squidge.org/images/2026/11/15/video-black.png); }
@@ -1739,7 +1763,7 @@
 #workskin .ig.theme-dark .ic.ic-ig-follow { background-image: url(https://images.squidge.org/images/2026/11/19/ig-follow-white.png); }
 #workskin .ig.theme-dark .ic.ic-share, #workskin .igdm.theme-dark .ic.ic-share { background-image: url(https://images.squidge.org/images/2026/11/15/share-white.png); }
 #workskin .ig.theme-dark .ic.ic-repost, #workskin .igdm.theme-dark .ic.ic-repost { background-image: url(https://images.squidge.org/images/2026/11/15/repost-white.png); }
-#workskin .ig.theme-dark .ic.ic-heart, #workskin .igdm.theme-dark .ic.ic-heart { background-image: url(https://images.squidge.org/images/2026/11/15/heart-white.png); }
+#workskin .ig.theme-dark .ic.ic-heart, #workskin .ig-feed.theme-dark .ic.ic-heart, #workskin .igdm.theme-dark .ic.ic-heart { background-image: url(https://images.squidge.org/images/2026/11/15/heart-white.png); }
 #workskin .igdm.theme-dark .ic.ic-back { background-image: url(https://images.squidge.org/images/2026/11/15/back-white.png); }
 #workskin .igdm.theme-dark .ic.ic-phone { background-image: url(https://images.squidge.org/images/2026/11/15/phone-white.png); }
 #workskin .igdm.theme-dark .ic.ic-video { background-image: url(https://images.squidge.org/images/2026/11/15/video-white.png); }
@@ -1757,7 +1781,7 @@
   #workskin .ig.theme-auto .ic.ic-ig-follow { background-image: url(https://images.squidge.org/images/2026/11/19/ig-follow-white.png); }
   #workskin .ig.theme-auto .ic.ic-share, #workskin .igdm.theme-auto .ic.ic-share { background-image: url(https://images.squidge.org/images/2026/11/15/share-white.png); }
   #workskin .ig.theme-auto .ic.ic-repost, #workskin .igdm.theme-auto .ic.ic-repost { background-image: url(https://images.squidge.org/images/2026/11/15/repost-white.png); }
-  #workskin .ig.theme-auto .ic.ic-heart, #workskin .igdm.theme-auto .ic.ic-heart { background-image: url(https://images.squidge.org/images/2026/11/15/heart-white.png); }
+  #workskin .ig.theme-auto .ic.ic-heart, #workskin .ig-feed.theme-auto .ic.ic-heart, #workskin .igdm.theme-auto .ic.ic-heart { background-image: url(https://images.squidge.org/images/2026/11/15/heart-white.png); }
   #workskin .igdm.theme-auto .ic.ic-back { background-image: url(https://images.squidge.org/images/2026/11/15/back-white.png); }
   #workskin .igdm.theme-auto .ic.ic-phone { background-image: url(https://images.squidge.org/images/2026/11/15/phone-white.png); }
   #workskin .igdm.theme-auto .ic.ic-video { background-image: url(https://images.squidge.org/images/2026/11/15/video-white.png); }
