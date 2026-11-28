@@ -684,7 +684,7 @@
     var c = char(m.from); if (!c) return [];
     var a = accOf(c, m.acc, "ig"), cos = collabsOf(m).filter(function (g) { return char(g.who); }), L = [];
     // the account line: the menu goes first (it sits at the far right), then a Follow button for a suggested post
-    var top = '<span class="ig-menu ic ic-ig-lines">&#8801;</span>' + (m.follow === "button" ? '<span class="ig-follow-btn ic ic-ig-follow">Follow</span>' : "");
+    var top = '<span class="ig-menu ic ic-ig-lines">&#8801;</span>' + (m.follow === "button" ? '<span class="ig-follow btn ic ic-ig-follow">Follow</span>' : "");
     // the name: the username, or the name typed in, cut short with "…" if it won't fit on one line at phone width
     var fullA = t(m.nameAs) || igName(c, a), lenA = Array.from(fullA).length;
     function shown(full, typed, n, html) { var x = cutTo(full, n); return typed || x !== full ? esc(x) : html; }
@@ -2698,7 +2698,7 @@
       return { tick: tick, lock: lock };
     }
     if (!take("span.ig-menu")) no();
-    if (take("span.ig-follow-btn")) m.follow = "button";
+    if (take("span.ig-follow.btn")) m.follow = "button";
     var col = take("span.ig-collab"), pic = col ? col.querySelector(".ig-pfp") : take("span.ig-pfp"); if (!pic) no();
     m.story = pic.classList.contains("story");
     var nm = ns[k++]; if (!nm) no();
@@ -2816,7 +2816,7 @@
   // stays on one line; one with a block inside puts every child on its own line, two spaces in; one with only inline
   // children splits only if its kind is on the list below (tested to look the same split or not, on the site and on AO3)
   // and one of them has a class. A hidden span that isn't first stays on the end of the line before it.
-  var SPLIT_SAFE = ["div.igdm-row", "p.dc-photos", "p.dc-photos.one", "p.dc-photos.three", "p.dc-photos.two", "p.hide", "p.ig-carousel-info", "p.ig-header", "p.ig-photo.real", "p.ig-story", "p.ig-story.close", "p.ig-story.me", "p.igdm-footer", "p.igdm-link-img", "p.igdm-photos", "p.igdm-photos.one", "p.igdm-photos.three", "p.igdm-photos.two", "p.igdm-post-btns", "p.igdm-post-by", "p.igdm-post-img", "p.imsg-footer", "p.imsg-photos", "p.imsg-photos.one", "p.imsg-photos.three", "p.imsg-photos.two", "p.msg.in.tail.typing-indicator", "p.msg.in.typing-indicator", "p.msg.in.voice", "p.msg.out.tail.typing-indicator", "p.msg.out.typing-indicator", "p.msg.out.voice", "p.tb-blog", "p.tb-header", "p.tb-nav", "p.tb-row", "p.tb-row.two", "p.tb-tabs", "p.tb-top", "p.tw-header", "p.tw-nav", "p.tw-opt.results.p10", "p.tw-opt.results.p25", "p.tw-opt.results.p30", "p.tw-opt.results.p60", "p.tw-opt.results.win.p75", "p.tw-pfp", "p.tw-photos", "p.tw-photos.four", "p.tw-photos.three", "p.tw-photos.two", "p.tw-stat", "p.tw-stat.locked", "p.tw-stat.right", "p.tw-stat.right.saved", "p.tw-tabs", "p.twc-reply-bar", "p.twdm-footer", "p.twdm-photos", "p.twdm-photos.one", "p.twdm-photos.three", "p.twdm-photos.two", "p.wa-call", "p.wa-footer", "p.wa-link-img", "p.wa-pfp", "p.wa-photos.four", "p.wa-photos.one", "p.wa-photos.three", "p.wa-photos.two", "p.wa-wall", "p.who", "span.badged", "span.dc-embed-text", "span.dc-quote", "span.gm-pfp", "span.handle.acc-rpf", "span.hide", "span.ig-badge", "span.ig-collab", "span.ig-like-pfp", "span.ig-pfp", "span.ig-pfp.story", "span.ig-photo.real", "span.igdm-back", "span.pfp", "span.tb-ask-pfp", "span.tb-follow", "span.tb-name", "span.tb-pfp", "span.tb-pfp.reblog", "span.tb-photo", "span.tb-voted", "span.tw-me", "span.tw-pfp", "span.tw-photo", "span.twdm-back", "span.wa-field", "span.wa-pfp", "span.wa-photo", "td.gm-btns", "td.gm-pfp-cell", "td.gm-star", "td.wa-back", "td.wa-btns", "td.wa-name"];
+  var SPLIT_SAFE = ["div.igdm-row", "p.dc-photos", "p.dc-photos.one", "p.dc-photos.three", "p.dc-photos.two", "p.hide", "p.ig-carousel-info", "p.ig-header", "p.ig-photo.real", "p.ig-story", "p.ig-story.close", "p.ig-story.me", "p.igdm-footer", "p.igdm-link-img", "p.igdm-photos", "p.igdm-photos.one", "p.igdm-photos.three", "p.igdm-photos.two", "p.igdm-post-btns", "p.igdm-post-by", "p.igdm-post-img", "p.imsg-footer", "p.imsg-photos", "p.imsg-photos.one", "p.imsg-photos.three", "p.imsg-photos.two", "p.msg.in.tail.typing-indicator", "p.msg.in.typing-indicator", "p.msg.in.voice", "p.msg.out.tail.typing-indicator", "p.msg.out.typing-indicator", "p.msg.out.voice", "p.tb-blog", "p.tb-header", "p.tb-nav", "p.tb-row", "p.tb-row.two", "p.tb-tabs", "p.tb-top", "p.tw-header", "p.tw-nav", "p.tw-opt.results.p10", "p.tw-opt.results.p25", "p.tw-opt.results.p30", "p.tw-opt.results.p60", "p.tw-opt.results.win.p75", "p.tw-pfp", "p.tw-photos", "p.tw-photos.four", "p.tw-photos.three", "p.tw-photos.two", "p.tw-stat", "p.tw-stat.locked", "p.tw-stat.right", "p.tw-stat.right.saved", "p.tw-tabs", "p.twc-reply-bar", "p.twdm-footer", "p.twdm-photos", "p.twdm-photos.one", "p.twdm-photos.three", "p.twdm-photos.two", "p.wa-call", "p.wa-footer", "p.wa-link-img", "p.wa-pfp", "p.wa-photos.four", "p.wa-photos.one", "p.wa-photos.three", "p.wa-photos.two", "p.wa-wall", "p.who", "span.badged", "span.dc-embed-text", "span.dc-quote", "span.gm-pfp", "span.handle.acc-rpf", "span.hide", "span.ig-badge", "span.ig-collab", "span.ig-like-pfp", "span.ig-pfp", "span.ig-pfp.story", "span.ig-photo.real", "span.igdm-back", "span.pfp", "span.tb-ask-pfp", "span.tb-name", "span.tb-pfp", "span.tb-pfp.reblog", "span.tb-photo", "span.tb-voted", "span.tw-me", "span.tw-pfp", "span.tw-photo", "span.twdm-back", "span.wa-field", "span.wa-pfp", "span.wa-photo", "td.gm-btns", "td.gm-pfp-cell", "td.gm-star", "td.wa-back", "td.wa-btns", "td.wa-name"];
   var FMT_BOXES = "mob dc tw-feed ig-feed tb-feed twc12-feed twc16-feed tw tw-reply ig igdm tb gm mail twdm wa imsg twc12 twc16".split(" ");
   var FMT_BLOCK = "div p table thead tbody tr td th ul ol li details summary blockquote h1 h2 h3 h4 h5 h6 pre hr".split(" ");
   var FMT_VOID = ["img", "br", "hr", "input"];
@@ -2972,6 +2972,10 @@
         var tx = Array.prototype.filter.call(x.childNodes, function (n) { return n.nodeType === 3 && n.nodeValue.trim(); })[0];
         if (!tx || x.querySelector(".img-desc, img")) return;
         var sp = document.createElement("span"); sp.className = "img-desc"; x.insertBefore(sp, tx); sp.appendChild(tx); hit = true;
+      });
+      // the old boxed Follow button was ig-follow-btn: now it's ig-follow with btn
+      Array.prototype.slice.call(c.querySelectorAll(".ig-follow-btn")).forEach(function (x) {
+        x.setAttribute("class", x.getAttribute("class").replace(/(^|\s)ig-follow-btn(?=\s|$)/, "$1ig-follow btn")); hit = true;
       });
       // old Instagram buttons had ig-icon and ig-count spans (and drawn comment and bookmark icons): now they're built like Twitter's
       Array.prototype.slice.call(c.querySelectorAll("div.ig-stats")).forEach(function (st) {
