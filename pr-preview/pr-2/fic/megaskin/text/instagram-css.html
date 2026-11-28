@@ -18,7 +18,7 @@
 
 <h4>The Feed</h4>
 
-<pre><code>#workskin .ig.ig-feed .ig {
+<pre><code>#workskin .ig-feed .ig {
   width: auto;
   max-width: none;
   max-height: none;
@@ -30,16 +30,16 @@
   color: inherit;
 }
 
-#workskin .ig.ig-feed .ig:last-child { margin-bottom: 0.3em; }
+#workskin .ig-feed .ig:last-child { margin-bottom: 0.3em; }
 
-#workskin .ig .ig-stories {
+#workskin .ig-feed .ig-stories {
   display: flex;
   overflow: hidden;
   padding: 0.5em 0.4em 0.6em 0.4em;
   border-bottom: 1px solid #efefef;
 }
 
-#workskin .ig .ig-story::before {
+#workskin .ig-feed .ig-story::before {
   content: "";
   position: absolute;
   top: 0;
@@ -71,9 +71,9 @@
   line-height: 1;
 }
 
-#workskin .ig .ig-story.close::before { background-image: none; background-color: #1cd14f; }
+#workskin .ig-feed .ig-story.close::before { background-image: none; background-color: #1cd14f; }
 
-#workskin .ig .ig-story.me::after {
+#workskin .ig-feed .ig-story.me::after {
   content: "+";
   position: absolute;
   top: 3.4em;
@@ -645,7 +645,7 @@
   height: 300px;
 }
 
-#workskin .ig.ig-feed .ig { display: flow-root; }</code></pre>
+#workskin .ig-feed .ig { display: flow-root; }</code></pre>
 
 </details>
 
@@ -856,11 +856,33 @@
 <details>
 <summary>How it works: scrolling a feed, and a post on its own</summary>
 
-<p>A feed scrolls once it's taller than <code>580px</code>, the same height as every other chat, and the posts inside it don't scroll on their own. A post on its own scrolls as a whole once it's taller than <code>700px</code>, which is why a post on its own with a real photo needs <code>no-scroll</code>. The feed's height rule is just as strong as the core's <code>no-scroll</code> rule and comes after it, so the feed has its own <code>no-scroll</code> rule too:</p>
+<p>The feed is a box of its own, the same width as a phone, and the <code>app-screen</code> inside it scrolls once it's taller than <code>580px</code>, the same height as every other chat. The posts inside it don't scroll on their own. A post on its own scrolls as a whole once it's taller than <code>700px</code>, which is why a post on its own with a real photo needs <code>no-scroll</code>:</p>
 
-<pre><code>#workskin .ig.ig-feed { max-height: 580px; }
+<pre><code>#workskin .ig-feed {
+  width: 380px;
+  max-width: 100%;
+  margin: 1.2em auto;
+  box-sizing: border-box;
+  overflow: hidden;
+  background: #ffffff;
+  color: #262626;
+  border: 1px solid #dbdbdb;
+  border-radius: 4px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 0.92em;
+  line-height: 1.35;
+  text-align: left;
+}
 
-#workskin .ig.ig-feed.no-scroll { max-height: none; overflow-y: visible; }</code></pre>
+#workskin .ig-feed.wide { width: auto; max-width: none; }
+
+#workskin .ig-feed p { margin: 0; padding: 0; text-indent: 0; }
+
+/* the part that scrolls: the top bar, the Stories row and the posts */
+#workskin .ig-feed .app-screen { max-height: 580px; overflow-y: auto; overflow-x: hidden; }
+
+/* no-scroll switches the feed's scrolling off */
+#workskin .ig-feed.no-scroll .app-screen { max-height: none; overflow-y: visible; }</code></pre>
 
 </details>
 

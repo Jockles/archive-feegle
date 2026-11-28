@@ -438,6 +438,7 @@
 #workskin .tb .tb-ask-pfp.colour1,
 #workskin .gm .gm-pfp.colour1,
 #workskin .ig .ig-pfp.colour1,
+#workskin .ig-feed .ig-pfp.colour1,
 #workskin .ig .ig-like-pfp.colour1,
 #workskin .igdm .ig-pfp.colour1,
 #workskin .dc .dc-name.colour1::before { background-color: #b5733a; }
@@ -452,6 +453,7 @@
 #workskin .tb .tb-ask-pfp.colour2,
 #workskin .gm .gm-pfp.colour2,
 #workskin .ig .ig-pfp.colour2,
+#workskin .ig-feed .ig-pfp.colour2,
 #workskin .ig .ig-like-pfp.colour2,
 #workskin .igdm .ig-pfp.colour2,
 #workskin .dc .dc-name.colour2::before { background-color: #3a3a3c; }
@@ -466,6 +468,7 @@
 #workskin .tb .tb-ask-pfp.colour3,
 #workskin .gm .gm-pfp.colour3,
 #workskin .ig .ig-pfp.colour3,
+#workskin .ig-feed .ig-pfp.colour3,
 #workskin .ig .ig-like-pfp.colour3,
 #workskin .igdm .ig-pfp.colour3,
 #workskin .dc .dc-name.colour3::before { background-color: #7a2b4e; }
@@ -480,6 +483,7 @@
 #workskin .tb .tb-ask-pfp.colour4,
 #workskin .gm .gm-pfp.colour4,
 #workskin .ig .ig-pfp.colour4,
+#workskin .ig-feed .ig-pfp.colour4,
 #workskin .ig .ig-like-pfp.colour4,
 #workskin .igdm .ig-pfp.colour4,
 #workskin .dc .dc-name.colour4::before { background-color: #2f7d6b; }
@@ -494,6 +498,7 @@
 #workskin .tb .tb-ask-pfp.colour5,
 #workskin .gm .gm-pfp.colour5,
 #workskin .ig .ig-pfp.colour5,
+#workskin .ig-feed .ig-pfp.colour5,
 #workskin .ig .ig-like-pfp.colour5,
 #workskin .igdm .ig-pfp.colour5,
 #workskin .dc .dc-name.colour5::before { background-color: #3b5ea8; }
@@ -508,6 +513,7 @@
 #workskin .tb .tb-ask-pfp.colour6,
 #workskin .gm .gm-pfp.colour6,
 #workskin .ig .ig-pfp.colour6,
+#workskin .ig-feed .ig-pfp.colour6,
 #workskin .ig .ig-like-pfp.colour6,
 #workskin .igdm .ig-pfp.colour6,
 #workskin .dc .dc-name.colour6::before { background-color: #6b4fa0; }
@@ -522,6 +528,7 @@
 #workskin .tb .tb-ask-pfp.colour7,
 #workskin .gm .gm-pfp.colour7,
 #workskin .ig .ig-pfp.colour7,
+#workskin .ig-feed .ig-pfp.colour7,
 #workskin .ig .ig-like-pfp.colour7,
 #workskin .igdm .ig-pfp.colour7,
 #workskin .dc .dc-name.colour7::before { background-color: #a8383b; }
@@ -536,6 +543,7 @@
 #workskin .tb .tb-ask-pfp.colour8,
 #workskin .gm .gm-pfp.colour8,
 #workskin .ig .ig-pfp.colour8,
+#workskin .ig-feed .ig-pfp.colour8,
 #workskin .ig .ig-like-pfp.colour8,
 #workskin .igdm .ig-pfp.colour8,
 #workskin .dc .dc-name.colour8::before { background-color: #4e7a2c; }
@@ -550,6 +558,7 @@
 #workskin .tb .tb-ask-pfp.colour9,
 #workskin .gm .gm-pfp.colour9,
 #workskin .ig .ig-pfp.colour9,
+#workskin .ig-feed .ig-pfp.colour9,
 #workskin .ig .ig-like-pfp.colour9,
 #workskin .igdm .ig-pfp.colour9,
 #workskin .dc .dc-name.colour9::before { background-color: #8c6d1f; }
@@ -564,6 +573,7 @@
 #workskin .tb .tb-ask-pfp.colour10,
 #workskin .gm .gm-pfp.colour10,
 #workskin .ig .ig-pfp.colour10,
+#workskin .ig-feed .ig-pfp.colour10,
 #workskin .ig .ig-like-pfp.colour10,
 #workskin .igdm .ig-pfp.colour10,
 #workskin .dc .dc-name.colour10::before { background-color: #2a7390; }
