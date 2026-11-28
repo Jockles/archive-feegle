@@ -451,7 +451,7 @@
         var video = m.call === "video", miss = m.missed, icon = video ? "&#127909;" : "&#128222;";
         var what = (miss ? "Missed " : "") + (video ? "video call" : "voice call");
         inner.push('<p class="wa-call"><span class="wa-call-ic ic ic-wa-' + (video ? "video" : "call") + "-" + (miss ? "missed" : out ? "out" : "in") + '">' + icon +
-          '</span><span class="hide"> </span><b>' + what.charAt(0).toUpperCase() + what.slice(1) + '</b><span class="hide"> - </span><span class="wa-call-len">' +
+          '</span><span class="hide"> </span><b>' + what.charAt(0).toUpperCase() + what.slice(1) + '</b><span class="hide"> - </span><span class="wa-call-length">' +
           esc(miss ? "Tap to call back" : t(m.callLen)) + "</span></p>");
       } else if (card === "contact") {
         var cc = char(m.contact), pf = waPfp(cc);
@@ -542,13 +542,13 @@
       if (q && char(q.from)) {
         var qt = plain(q.text).trim() || (q.photos.length ? "Photo" : t(q.voice) ? "Voice message" : "");
         if (qt.length > 60) qt = qt.slice(0, 57).trim() + "...";
-        to.push('<p class="twdm-replied ' + side + '">Replied to ' + (q.from === b.pov ? "you" : esc(nameOf(char(q.from)))) + "</p>",
+        to.push('<p class="twdm-reply ' + side + '">Replied to ' + (q.from === b.pov ? "you" : esc(nameOf(char(q.from)))) + "</p>",
           '<p class="twdm-quote ' + side + '"><span class="hide">(</span>' + esc(qt) + '<span class="hide">)</span></p>');
       }
       var bubbles = [], pics = shownPhotos(m);
       if (pics.length) bubbles.push([side + " gallery", pics]);
       if (t(m.text)) bubbles.push([side, fmt(m.text)]);
-      if (t(m.voice)) bubbles.push([side + " voice", '<span class="twdm-play ic ic-play">&#9654;</span><span class="twdm-wave"></span><span class="twdm-dur">' + esc(t(m.voice)) + "</span>"]);
+      if (t(m.voice)) bubbles.push([side + " voice", '<span class="twdm-play ic ic-play">&#9654;</span><span class="twdm-wave"></span><span class="twdm-length">' + esc(t(m.voice)) + "</span>"]);
       bubbles.forEach(function (bb) {
         // the first message under a name in a group needs no hidden name: the name is just above it
         var lbl = grouped && row.first ? "" : hideLabel(nameOf(c));
@@ -714,7 +714,7 @@
       "</span>Liked by <b>" + igNameHTML(faces[0], null) + "</b> and <b>others</b></p>");
     else if ((m.likesLine || "count") === "count" && t(m.likes)) L.push('<p class="ig-likes">' + esc(t(m.likes)) + " " + plural(m.likes, "like", "likes") + "</p>");
     if (t(m.text)) L.push('<p class="ig-caption"><b>' + igNameHTML(c, a) + "</b> " + igCaption(m.text) + (m.more ? '... <span class="ig-more">more</span>' : "") + "</p>");
-    if (m.viewAll && t(m.cmCount)) L.push('<p class="ig-viewall">View all ' + esc(t(m.cmCount)) + " comments</p>");
+    if (m.viewAll && t(m.cmCount)) L.push('<p class="ig-view-all">View all ' + esc(t(m.cmCount)) + " comments</p>");
     t(m.comments).split(/\n/).map(t).filter(Boolean).forEach(function (line) { L.push(igComment(line)); });
     if (t(m.time)) L.push('<p class="ig-time">' + esc(t(m.time)) + "</p>");
     var open = b.type === "igone" ? '<div class="mob ig ' + b.theme + (b.width ? " " + b.width : "") + (b.scroll ? " " + b.scroll : "") + '">' : '<div class="mob ig">';
@@ -828,7 +828,7 @@
     if (!b.group && full.length > room) head += esc(full.slice(0, room - 1).join("") + "…");
     else head += t(b.title) ? esc(t(b.title)) : b.group ? "Group chat" : o[0] ? igNameHTML(o[0], null) : "Someone";
     if (b.tick && !b.group) head += TICK;
-    if (b.group && b.chev !== false) head += '<span class="igdm-chev"></span>'; // the little > after a group's name, drawn by the skin
+    if (b.group && b.chev !== false) head += '<span class="igdm-drop"></span>'; // the little > after a group's name, drawn by the skin
     var L = ['<div class="' + containerClass(b, "igdm") + '">',
       '  <p class="mob-header">' + head + '<span class="hide"> - </span>' + (t(b.sub) ? "<span>" + esc(t(b.sub)) + "</span>" : "") + "</p>",
       '  <div class="mob-body">'];
@@ -862,14 +862,14 @@
       var to = grouped ? row.lines : body;
       if (q && q.hasPost) {
         // a reply to a shared post: "You replied" or "Shane replied", then the card itself, faded
-        to.push('<p class="igdm-replied ' + side + '">' + (out ? "You" : esc(nm(c))) + " replied" + (grouped && row.first ? '<span class="hide">:</span>' : "") + "</p>");
+        to.push('<p class="igdm-reply ' + side + '">' + (out ? "You" : esc(nm(c))) + " replied" + (grouped && row.first ? '<span class="hide">:</span>' : "") + "</p>");
         igdmPost(q, side, "", true).forEach(function (l) { to.push(l); });
       } else if (q) {
         var mine = q.from === b.pov;
         var said = out ? (mine ? "You replied to yourself" : "You replied to " + nm(char(q.from))) :
           mine ? nm(c) + " replied to you" : q.from === m.from ? nm(c) + " replied to themself" : nm(c) + " replied to " + nm(char(q.from));
-        to.push('<p class="igdm-replied ' + side + '">' + esc(said) + (grouped && row.first ? '<span class="hide">:</span>' : "") + "</p>",
-          '<p class="igdm-quote ' + side + (mine ? " mine" : "") + '"><span class="hide">[Replying to: </span>' + esc(igdmQuote(q)) + '<span class="hide">]</span></p>');
+        to.push('<p class="igdm-reply ' + side + '">' + esc(said) + (grouped && row.first ? '<span class="hide">:</span>' : "") + "</p>",
+          '<p class="igdm-quote ' + side + (mine ? " me" : "") + '"><span class="hide">[Replying to: </span>' + esc(igdmQuote(q)) + '<span class="hide">]</span></p>');
       }
       // the hidden name: not on the first message under a name in a group, as the name is just above it
       function label() { var l = grouped ? (row.first ? "" : hideLabel(igName(c))) : hideLabel(nameOf(c)); if (grouped) row.first = false; return l; }
@@ -881,7 +881,7 @@
       if (m.link) parts.push(["link"]);
       // a shared story: the story in an outlined box, then the words sent with it (work saved before had only the box, in the text)
       var story = m.shared ? (m.storyText === undefined ? m.text : m.storyText) : "", said = m.shared && m.storyText === undefined ? "" : m.text;
-      if (t(story)) parts.push(["igdm-shared" + (out ? " mine" : ""), fmt(story)]); // the phone owner's story box goes on the right
+      if (t(story)) parts.push(["igdm-shared" + (out ? " me" : ""), fmt(story)]); // the phone owner's story box goes on the right
       if (t(said)) parts.push(["msg " + side, fmt(said)]);
       // the reactions pill is a line of its own, straight after the last bubble (or card)
       var rx = igdmReacts(m, side), last = -1;
@@ -1022,7 +1022,7 @@
     L.push('<p class="tw-top">' + circle("tw-pfp", c, a) + '<span class="hide"> </span><span class="tw-name">' + (isProfile(c) ? twNameHTML(c, a) : "<span>" + esc(nameOf(c)) + "</span>") +
       (m.verified ? ' <span class="tw-tick ic ic-verified">&#10004;</span>' : "") + '</span> <span class="tw-handle">' + twHandleHTML(c, a) + "</span>" +
       (m.locked ? ' <span class="tw-lock ic ic-tw-lock">&#128274;</span>' : "") + (t(m.time) ? ' <span class="tw-time">· ' + esc(t(m.time)) + "</span>" : "") +
-      (t(m.fan) ? ' <span class="tw-fan">' + (fanMask(m) ? '<span class="ic ic-tw-fan">&#127917;</span> ' : "") + esc(t(m.fan)) + "</span>" : "") + "</p>");
+      (t(m.fan) ? ' <span class="tw-account-label">' + (fanMask(m) ? '<span class="ic ic-tw-fan">&#127917;</span> ' : "") + esc(t(m.fan)) + "</span>" : "") + "</p>");
     if (t(m.label)) L.push('<p class="tw-label">' + esc(t(m.label)) + "</p>");
     if (t(m.text)) L.push((kind === "reply" ? "<p>" : '<p class="tw-text">') + twText(m.text) + "</p>");
     if (has(m, "hasPoll")) L = L.concat(twPoll(m));
@@ -1040,14 +1040,14 @@
     if (b.type === "twone") return tweets.join("\n\n"); // each tweet in its own box, not in a feed
     // the X app screen: the pov character's picture and the logo, then the tabs, then the tweets
     var me = char(b.pov) || S.cast[0], old = b.era === "tw2020";
-    var L = ['<div class="tw-feed app' + (old ? " tw2020" : "") + " " + b.theme + (b.width ? " " + b.width : "") + (b.scroll ? " " + b.scroll : "") + '">', '  <div class="tw-scroll">',
+    var L = ['<div class="tw-feed app' + (old ? " twc20" : "") + " " + b.theme + (b.width ? " " + b.width : "") + (b.scroll ? " " + b.scroll : "") + '">', '  <div class="tw-scroll">',
       '  <p class="tw-header">' + (me ? circle("tw-me", me) + " " : "") + '<span class="tw-logo">' + (old ? "Twitter" : "X") + "</span></p>"];
     if (!old) L.push('  <p class="tw-tabs"><span class="tw-tab on">For you<span class="tw-drop"></span></span> <span class="tw-tab">Following</span>' +
       t(b.tabs).split(/\n/).map(t).filter(Boolean).map(function (x) { return ' <span class="tw-tab">' + esc(x) + "</span>"; }).join("") + ' <span class="tw-add">+</span></p>');
     return L.concat(ind(tweets.join("\n\n").split("\n"), 1)).concat(["  </div>", "</div>"]).join("\n").replace(/\n  \n/g, "\n\n");
   }
   function twThreadHTML(b) {
-    var L = ['<div class="tw-feed' + (b.era === "tw2020" ? " tw2020" : "") + " " + b.theme + (b.width ? " " + b.width : "") + (b.scroll ? " " + b.scroll : "") + '">', '  <div class="tw-scroll">'];
+    var L = ['<div class="tw-feed' + (b.era === "tw2020" ? " twc20" : "") + " " + b.theme + (b.width ? " " + b.width : "") + (b.scroll ? " " + b.scroll : "") + '">', '  <div class="tw-scroll">'];
     b.msgs.forEach(function (m, i) { L = L.concat(ind(tweetHTML(b, m, i ? "reply" : "main"), 2)); });
     L.push("  </div>");
     if (b.bar !== "none") L.push('  <p class="tw-reply-bar"><span>Reply</span><span class="hide"> - </span>Tweet your reply</p>');
@@ -2146,7 +2146,7 @@
       if (is(main, "p.wa-call")) {
         var ic = main.querySelector(".wa-call-ic"), cm = ic && ic.className.match(/ic-wa-(video|call)-(missed|out|in)/); if (!cm) no();
         m.call = cm[1] === "video" ? "video" : "voice"; m.missed = cm[2] === "missed";
-        var len = main.querySelector(".wa-call-len"); m.callLen = m.missed || !len ? "" : len.textContent;
+        var len = main.querySelector(".wa-call-length"); m.callLen = m.missed || !len ? "" : len.textContent;
       } else if (is(main, "p.wa-contact")) {
         var cp = main.querySelector("span.wa-pfp, span"); if (!cp) no();
         var cslug = cp.className.match(/(?:^|\s)pfp-([a-z0-9-]+)/) || (cp.querySelector("[class*=pfp-]") || {}).className && cp.querySelector("[class*=pfp-]").className.match(/(?:^|\s)pfp-([a-z0-9-]+)/);
@@ -2248,7 +2248,7 @@
     function bubbles(list, who) {
       list.forEach(function (p) {
         if (is(p, "p.mob-sys")) { b.msgs.push(m = newMsg("sys", textBack(inl(p)))); return; }
-        if (is(p, "p.twdm-replied")) { quote = { to: p.textContent.replace(/^Replied to /, "") }; return; }
+        if (is(p, "p.twdm-reply")) { quote = { to: p.textContent.replace(/^Replied to /, "") }; return; }
         if (is(p, "p.twdm-quote")) { if (!quote) no(); var qc = p.cloneNode(true); qc.querySelectorAll(".hide").forEach(function (x) { x.remove(); }); quote.text = qc.textContent; return; }
         if (is(p, "p.twdm-reacts")) { if (!m) no(); var rc = p.cloneNode(true); rc.querySelectorAll(".hide").forEach(function (x) { x.remove(); }); m.waReacts = rc.textContent; return; }
         if (is(p, "p.twdm-status")) { if (!m) no(); m.status = p.textContent; return; }
@@ -2266,7 +2266,7 @@
         m = newMsg(from.id, "");
         if (gal) { if (ns.length) no(); m.photos = gal.photos; }
         else if (cl.contains("voice")) {
-          var d = p.querySelector(".twdm-dur"); if (!d) no(); m.voice = d.textContent;
+          var d = p.querySelector(".twdm-length"); if (!d) no(); m.voice = d.textContent;
         } else m.text = textBack(ns);
         if (quote) {
           var q = b.msgs.slice().reverse().filter(function (x) {
@@ -2393,21 +2393,21 @@
       if (is(p, "p.mob-sys")) { if (who || quote) no(); b.msgs.push(m = newMsg("sys", textBack(inl(p)))); return; }
       if (is(p, "p.igdm-status")) { if (!m || quote) no(); m.status = p.textContent; return; }
       // a reply: "Shane replied to you", then the message it answers, faded
-      if (is(p, "p.igdm-replied")) { if (quote) no(); quote = { side: p.classList.contains("out") ? "out" : "in" }; return; }
+      if (is(p, "p.igdm-reply")) { if (quote) no(); quote = { side: p.classList.contains("out") ? "out" : "in" }; return; }
       if (is(p, "div.igdm-post.quoted")) {
         if (!quote || quote.text != null || !p.classList.contains(quote.side)) no();
         var qp = newMsg("", ""); cardBack(p, qp, true); quote.post = qp; quote.text = ""; return;
       }
       if (is(p, "p.igdm-quote")) {
         if (!quote || quote.text != null || !p.classList.contains(quote.side)) no();
-        quote.mine = p.classList.contains("mine"); quote.text = noHide(p).textContent; return;
+        quote.mine = p.classList.contains("me"); quote.text = noHide(p).textContent; return;
       }
       if (is(p, "p.msg.typing-indicator")) {
         var tem = p.querySelector("span.hide em"), tout = p.classList.contains("out"); if (quote || !tem) no();
         var tby = who || (tout ? owner(b, tem.textContent) : personByName(tem.textContent, true)); if (!tby) no();
         b.msgs.push(m = newMsg("typing", "")); m.by = tby.id; return;
       }
-      var card = is(p, "div.igdm-post"), lnk = is(p, "div.igdm-link"), sh = is(p, "p.igdm-shared"), out = p.classList.contains(sh ? "mine" : "out");
+      var card = is(p, "div.igdm-post"), lnk = is(p, "div.igdm-link"), sh = is(p, "p.igdm-shared"), out = p.classList.contains(sh ? "me" : "out");
       var gal = is(p, "div.msg.gallery") ? galleryBack(p, "igdm") : null;
       if (!card && !lnk && !sh && !gal && !is(p, "p.msg")) no();
       if (!sh && !out && !p.classList.contains("in")) no();
@@ -2436,7 +2436,7 @@
       var rk = kids(n), pf = is(rk[0], "span.ig-pfp") ? rk.shift() : null, wp = rk[0], who;
       if (!pf) b.pics = false;
       if (is(wp, "p.who")) { rk.shift(); who = igPerson(wp); }
-      else if (is(wp, "p.igdm-replied")) {
+      else if (is(wp, "p.igdm-reply")) {
         // a row starting with a reply has no name line: the name is in "RoseLandry replied to ..."
         var rn = noHide(wp).textContent.match(/^(.+?) replied(?: to |$)/), sl = pf && slugIn(pf); if (!rn) no();
         who = sl ? personBySlug(sl) : S.cast.filter(function (x) { return igName(x) === rn[1]; })[0];
@@ -2473,7 +2473,7 @@
     var name = hk.slice(0, dash), sub = hk.slice(dash + 1);
     if (sub.length > 1 || sub.length && !is(sub[0], "span")) no();
     b.sub = sub.length ? sub[0].textContent : "";
-    if (is(name[name.length - 1], "span.igdm-chev")) { if (!b.group || kids(name.pop()).length) no(); }
+    if (is(name[name.length - 1], "span.igdm-drop")) { if (!b.group || kids(name.pop()).length) no(); }
     else if (b.group) b.chev = false;
     if (name.length > 2 && is(name[name.length - 1], "span.ig-tick") && is(name[name.length - 2], "span.hide")) { b.tick = true; name = name.slice(0, -2); }
     var o = others(b);
@@ -2517,7 +2517,7 @@
     m.verified = !!nm.querySelector(".tw-tick");
     m.locked = !!top.querySelector(".tw-lock");
     var tm = top.querySelector(".tw-time"); m.time = tm ? tm.textContent.replace(/^·\s*/, "") : "";
-    var fan = top.querySelector(".tw-fan");
+    var fan = top.querySelector(".tw-account-label");
     if (fan) { m.fanMask = !!fan.querySelector(".ic-tw-fan"); var fc = fan.cloneNode(true); fc.querySelectorAll(".ic").forEach(function (x) { x.remove(); }); m.fan = words(fc); }
     return c;
   }
@@ -2598,7 +2598,7 @@
     });
     return m;
   }
-  function twLook(b, c) { if (c === "tw2020") { b.era = c; return true; } }
+  function twLook(b, c) { if (c === "twc20") { b.era = "tw2020"; return true; } }
   READERS.twone = function (els) {
     var b = newBlock("twone"); settings(b, els[0], "tw");
     els.forEach(function (el) { b.msgs.push(tweetBack(b, el, "feed")); });
@@ -2734,7 +2734,7 @@
       if (is(cn[cn.length - 1], "span.ig-more")) { m.more = true; cn.pop(); var lt = cn[cn.length - 1]; if (!lt || lt.nodeType !== 3) no(); lt.nodeValue = lt.nodeValue.replace(/\.\.\. $/, ""); }
       m.text = textBack(cn);
     }
-    if (is(ks[0], "p.ig-viewall")) { m.viewAll = true; ks.shift(); }
+    if (is(ks[0], "p.ig-view-all")) { m.viewAll = true; ks.shift(); }
     var lines = [];
     while (is(ks[0], "p.ig-comment")) {
       var cm = inl(ks.shift()), who = is(cm[0], "b") ? cm.shift() : null;
@@ -2934,7 +2934,7 @@
         var sp = document.createElement("span"); sp.className = "img-desc"; x.insertBefore(sp, tx); sp.appendChild(tx); hit = true;
       });
       // old Twitter DM replies: the quote was a "msg" bubble, and someone else's "Replied to" line had no side
-      Array.prototype.slice.call(c.querySelectorAll("p.twdm-quote.msg, p.twdm-replied:not(.out):not(.in)")).forEach(function (q) {
+      Array.prototype.slice.call(c.querySelectorAll("p.twdm-quote.msg, p.twdm-reply:not(.out):not(.in)")).forEach(function (q) {
         if (q.classList.contains("twdm-quote")) q.classList.remove("msg"); else q.classList.add("in");
         hit = true;
       });
