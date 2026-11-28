@@ -7861,8 +7861,8 @@
   border-color: rgb(199, 204, 209);
 }
 
-#workskin .dc .dc-embed {
-  display: block;
+/* link card: <div class="dc-link-card"> small lines, title, picture </div> */
+#workskin .dc .dc-link-card {
   margin: 0.25rem 0;
   padding: 0.5rem 1rem 1rem 0.75rem;
   border-left: 0.25rem solid rgb(255, 0, 0);
@@ -7870,11 +7870,13 @@
   max-width: 432px;
 }
 
-#workskin .dc .dc-embed-title { margin-top: 0.5rem; font-weight: 600; }
+#workskin .dc .dc-link-title { font-weight: 600; }
 
-#workskin .dc .dc-embed-text { margin-top: 0.5rem; font-size: 0.875rem; }
+#workskin .dc .dc-link-desc { font-size: 0.875rem; line-height: 1rem; }
 
-#workskin .dc .dc-embed-img { margin-top: 1rem; border-radius: 0.25rem; max-width: 100%; }
+#workskin .dc .dc-link-img { margin-top: 1rem; }
+
+#workskin .dc .dc-link-img img { display: block; max-width: 100%; border-radius: 0.25rem; }
 
 #workskin .dc .dc-quote { display: table; }
 
@@ -8095,7 +8097,7 @@
 }
 
 #workskin .dc .dc-code,
-#workskin .dc .dc-embed {
+#workskin .dc .dc-link-card {
   background-color: rgb(242, 243, 245);
 }
 
@@ -8103,6 +8105,7 @@
 
 #workskin .dc a:not(.tl),
 #workskin .dc .dc-link,
+#workskin .dc .dc-link-title,
 #workskin .dc .fake-link {
   color: rgb(0, 104, 224);
 }
@@ -8180,7 +8183,7 @@
 #workskin .dc.theme-dark .dc-header-divider { border-color: rgb(220, 221, 222); }
 
 #workskin .dc.theme-dark .dc-code,
-#workskin .dc.theme-dark .dc-embed {
+#workskin .dc.theme-dark .dc-link-card {
   background-color: rgb(47, 49, 54);
 }
 
@@ -8192,6 +8195,7 @@
 
 #workskin .dc.theme-dark a:not(.tl),
 #workskin .dc.theme-dark .dc-link,
+#workskin .dc.theme-dark .dc-link-title,
 #workskin .dc.theme-dark .fake-link {
   color: rgb(0, 175, 244);
 }
@@ -8287,7 +8291,7 @@
   #workskin .dc.theme-auto .dc-header-divider { border-color: rgb(220, 221, 222); }
 
   #workskin .dc.theme-auto .dc-code,
-    #workskin .dc.theme-auto .dc-embed {
+    #workskin .dc.theme-auto .dc-link-card {
       background-color: rgb(47, 49, 54);
     }
 
@@ -8299,6 +8303,7 @@
 
   #workskin .dc.theme-auto a:not(.tl),
     #workskin .dc.theme-auto .dc-link,
+    #workskin .dc.theme-auto .dc-link-title,
     #workskin .dc.theme-auto .fake-link {
       color: rgb(0, 175, 244);
     }

@@ -7,7 +7,7 @@
   <title>Megaskin, Chapter 18: Discord | jockles.com</title>
   <link rel="stylesheet" href="../../style.css">
   <script src="../../theme.js"></script>
-  <link rel="stylesheet" href="megaskin.css?v=b4be3c25" id="creator-style">
+  <link rel="stylesheet" href="megaskin.css?v=9026d3cf" id="creator-style">
 </head>
 <body>
 <header>
@@ -184,7 +184,11 @@
   <div class="msg">
     <p><b class="dc-name colour6">DropSomeKnowledge</b> <span class="dc-time">Today at 9:10 AM</span></p>
     <p><span class="dc-text">this is the best thing I've ever watched <span class="dc-link">https://youtube.com/watch?v=robots</span></span></p>
-    <p><span class="dc-embed"> <span class="dc-embed-text">YouTube</span><br> <span class="dc-embed-text"><b>Cats on Keyboards</b></span><br> <span class="dc-embed-title dc-link">10 Hours of Cats Pressing Buttons</span> </span></p>
+    <div class="dc-link-card">
+      <p class="dc-link-desc">YouTube</p>
+      <p class="dc-link-desc"><b>Cats on Keyboards</b></p>
+      <p class="dc-link-title">10 Hours of Cats Pressing Buttons</p>
+    </div>
   </div>
 
   <div class="msg">
@@ -293,7 +297,11 @@
   &lt;div class="msg"&gt;
     &lt;p&gt;&lt;b class="dc-name colour6"&gt;DropSomeKnowledge&lt;/b&gt; &lt;span class="dc-time"&gt;Today at 9:10 AM&lt;/span&gt;&lt;/p&gt;
     &lt;p&gt;&lt;span class="dc-text"&gt;this is the best thing I've ever watched &lt;span class="dc-link"&gt;https://youtube.com/watch?v=robots&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
-    &lt;p&gt;&lt;span class="dc-embed"&gt; &lt;span class="dc-embed-text"&gt;YouTube&lt;/span&gt;&lt;br&gt; &lt;span class="dc-embed-text"&gt;&lt;b&gt;Cats on Keyboards&lt;/b&gt;&lt;/span&gt;&lt;br&gt; &lt;span class="dc-embed-title dc-link"&gt;10 Hours of Cats Pressing Buttons&lt;/span&gt; &lt;/span&gt;&lt;/p&gt;
+    &lt;div class="dc-link-card"&gt;
+      &lt;p class="dc-link-desc"&gt;YouTube&lt;/p&gt;
+      &lt;p class="dc-link-desc"&gt;&lt;b&gt;Cats on Keyboards&lt;/b&gt;&lt;/p&gt;
+      &lt;p class="dc-link-title"&gt;10 Hours of Cats Pressing Buttons&lt;/p&gt;
+    &lt;/div&gt;
   &lt;/div&gt;
 
   &lt;div class="msg"&gt;
@@ -827,26 +835,34 @@
 
 <h4 id="s18-4-3">18.4.3 Link Embeds</h4>
 
-<p>For the preview box Discord makes when someone posts a link, add a <code>dc-embed</code> after the line with the link in it:</p>
+<p>For the preview box Discord makes when someone posts a link, add a <code>dc-link-card</code> after the line with the link in it. The small lines are <code>dc-link-desc</code> and the title is <code>dc-link-title</code>:</p>
 
 <div class="mob dc theme-auto">
   <div class="msg">
     <p><b class="dc-name colour6">DropSomeKnowledge</b> <span class="dc-time">Today at 9:10 AM</span></p>
     <p><span class="dc-text">this is the best thing I've ever watched <span class="dc-link">https://youtube.com/watch?v=robots</span></span></p>
-    <p><span class="dc-embed"> <span class="dc-embed-text">YouTube</span><br> <span class="dc-embed-text"><b>Cats on Keyboards</b></span><br> <span class="dc-embed-title dc-link">10 Hours of Cats Pressing Buttons</span> </span></p>
+    <div class="dc-link-card">
+      <p class="dc-link-desc">YouTube</p>
+      <p class="dc-link-desc"><b>Cats on Keyboards</b></p>
+      <p class="dc-link-title">10 Hours of Cats Pressing Buttons</p>
+    </div>
   </div>
 </div>
 
 <pre><code>&lt;div class="msg"&gt;
   &lt;p&gt;&lt;b class="dc-name colour6"&gt;DropSomeKnowledge&lt;/b&gt; &lt;span class="dc-time"&gt;Today at 9:10 AM&lt;/span&gt;&lt;/p&gt;
   &lt;p&gt;&lt;span class="dc-text"&gt;this is the best thing I've ever watched &lt;span class="dc-link"&gt;https://youtube.com/watch?v=robots&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
-  &lt;p&gt;&lt;span class="dc-embed"&gt; &lt;span class="dc-embed-text"&gt;YouTube&lt;/span&gt;&lt;br&gt; &lt;span class="dc-embed-text"&gt;&lt;b&gt;Cats on Keyboards&lt;/b&gt;&lt;/span&gt;&lt;br&gt; &lt;span class="dc-embed-title dc-link"&gt;10 Hours of Cats Pressing Buttons&lt;/span&gt; &lt;/span&gt;&lt;/p&gt;
+  &lt;div class="dc-link-card"&gt;
+    &lt;p class="dc-link-desc"&gt;YouTube&lt;/p&gt;
+    &lt;p class="dc-link-desc"&gt;&lt;b&gt;Cats on Keyboards&lt;/b&gt;&lt;/p&gt;
+    &lt;p class="dc-link-title"&gt;10 Hours of Cats Pressing Buttons&lt;/p&gt;
+  &lt;/div&gt;
 &lt;/div&gt;</code></pre>
 
 <details>
 <summary>Options: real links, fake links and a preview picture</summary>
 
-<p>Use a real link with the <code>&lt;a&gt;</code> tag, or write it as ordinary text with the class <code>dc-link</code> to make it look like one. To add a preview picture, put an image with the class <code>dc-embed-img</code> inside the embed, at the end.</p>
+<p>Use a real link with the <code>&lt;a&gt;</code> tag, or write it as ordinary text with the class <code>dc-link</code> to make it look like one. To add a preview picture, put it in a <code>dc-link-img</code> paragraph at the end of the card.</p>
 
 <p><code>fake-link</code> from <a href="core.html#fake-links">Links That Go Nowhere</a> works here too, and looks exactly the same as <code>dc-link</code>, so you can use whichever you like.</p>
 
