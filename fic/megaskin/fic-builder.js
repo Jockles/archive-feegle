@@ -298,7 +298,7 @@
     return isProfile(o[0]) ? profileName(o[0]) : esc(nameOf(o[0]));
   }
   function mobHead(b) {
-    return '<p class="mob-head">' + headTitle(b) + '<span class="hide"> - </span>' +
+    return '<p class="mob-header">' + headTitle(b) + '<span class="hide"> - </span>' +
       (b.sub.trim() ? "<span>" + esc(b.sub.trim()) + "</span>" : "") + "</p>";
   }
 
@@ -348,8 +348,8 @@
     });
     L = L.concat(ind(body, 2));
     L.push("  </div>");
-    if (b.bar === "empty") L.push('  <p class="imsg-input"><span class="imsg-plus">+</span><span class="hide"> </span><span class="imsg-field">iMessage<span class="hide"> </span><span class="imsg-mic ic ic-mic">&#127908;</span></span></p>');
-    if (b.bar === "typed") L.push('  <p class="imsg-input"><span class="imsg-plus">+</span><span class="hide"> </span><span class="imsg-field typed">' + fmt(b.barText) + (b.cursor ? CURSOR : "") + '<span class="hide"> </span><span class="imsg-send ic ic-imsg-send">&#8593;</span></span></p>');
+    if (b.bar === "empty") L.push('  <p class="imsg-footer"><span class="imsg-plus">+</span><span class="hide"> </span><span class="imsg-field">iMessage<span class="hide"> </span><span class="imsg-mic ic ic-mic">&#127908;</span></span></p>');
+    if (b.bar === "typed") L.push('  <p class="imsg-footer"><span class="imsg-plus">+</span><span class="hide"> </span><span class="imsg-field typed">' + fmt(b.barText) + (b.cursor ? CURSOR : "") + '<span class="hide"> </span><span class="imsg-send ic ic-imsg-send">&#8593;</span></span></p>');
     L.push("</div>");
     return L.join("\n");
   }
@@ -389,7 +389,7 @@
       else pc = o[0] ? waPfp(o[0]) : '<p class="wa-pfp colour5">?</p>';
       var sub = b.sub.trim();
       if (b.group && !sub) sub = o.map(nameOf).concat(["You"]).join(", ");
-      L = L.concat(ind(['<table class="wa-top">', "  <tbody>", "    <tr>",
+      L = L.concat(ind(['<table class="wa-header">', "  <tbody>", "    <tr>",
         '      <td rowspan="2" class="wa-back"><span class="ic ic-back">&#8592;</span></td>',
         '      <td rowspan="2" class="wa-pfp-cell">' + pc + "</td>",
         '      <td class="wa-title">' + headTitle(b) + "</td>",
@@ -489,7 +489,7 @@
     L.push("  </div>");
     if (b.bar === "empty" || b.bar === "typed") {
       var typed = b.bar === "typed";
-      L = L.concat(ind(['<p class="wa-input">', '  <span class="wa-field">', '    <span class="ic ic-emoji">&#9786;</span>',
+      L = L.concat(ind(['<p class="wa-footer">', '  <span class="wa-field">', '    <span class="ic ic-emoji">&#9786;</span>',
         typed ? '    <span class="wa-placeholder typed">' + fmt(b.barText) + (b.cursor ? CURSOR : "") + "</span>" : '    <span class="wa-placeholder">Message</span>',
         '    <span class="ic ic-paperclip">&#128206;</span>'].concat(typed ? [] : ['    <span class="ic ic-camera">&#128247;</span>'])
         .concat(["  </span>", typed ? '  <span class="wa-mic ic ic-wa-send">&#10148;</span>' : '  <span class="wa-mic ic ic-wa-mic">&#127908;</span>', "</p>"]), 1));
@@ -507,7 +507,7 @@
     var o = others(b), head = b.group ? groupPic(b) : o[0];
     var name = t(b.title) ? esc(t(b.title)) : b.group ? "Group chat" : head ? dmName(head) : "Someone";
     var L = ['<div class="' + containerClass(b, "twdm") + '">',
-      '  <p class="mob-head"><span class="twdm-back"><span class="ic ic-back">&#8592;</span></span>' + (head ? circle("tw-pfp", head) : '<span class="tw-pfp colour5">?</span>') +
+      '  <p class="mob-header"><span class="twdm-back"><span class="ic ic-back">&#8592;</span></span>' + (head ? circle("tw-pfp", head) : '<span class="tw-pfp colour5">?</span>') +
       '<span class="twdm-name">' + name + '</span><span class="twdm-calls"><span class="ic ic-video">&#127909;</span><span class="ic ic-phone">&#128222;</span></span></p>',
       '  <div class="mob-body">'];
     // in a group, each run of messages from one person goes in a row, with their picture and name first
@@ -546,8 +546,8 @@
     close();
     L = L.concat(ind(body, 2));
     L.push("  </div>");
-    if (b.bar === "empty") L.push('  <p class="twdm-input"><span class="twdm-plus">+</span><span class="hide"> </span><span class="twdm-field">Message<span class="hide"> </span><span class="ic ic-mic">&#127908;</span></span></p>');
-    if (b.bar === "typed") L.push('  <p class="twdm-input"><span class="twdm-plus">+</span><span class="hide"> </span><span class="twdm-field typed">' + fmt(b.barText) + (b.cursor ? CURSOR : "") + '<span class="hide"> </span><span class="ic ic-mic">&#127908;</span></span></p>');
+    if (b.bar === "empty") L.push('  <p class="twdm-footer"><span class="twdm-plus">+</span><span class="hide"> </span><span class="twdm-field">Message<span class="hide"> </span><span class="ic ic-mic">&#127908;</span></span></p>');
+    if (b.bar === "typed") L.push('  <p class="twdm-footer"><span class="twdm-plus">+</span><span class="hide"> </span><span class="twdm-field typed">' + fmt(b.barText) + (b.cursor ? CURSOR : "") + '<span class="hide"> </span><span class="ic ic-mic">&#127908;</span></span></p>');
     if (b.nav) L.push('  <p class="tw-nav"><span class="ic ic-x-home">&#8962;</span> <span class="ic ic-x-search">&#128269;</span> <span class="ic ic-x-grok">&#8856;</span> ' +
       (t(b.badge) ? '<span class="badged"><span class="ic ic-x-bell">&#128276;</span><span class="tw-badge"><span class="hide"> (</span>' + esc(t(b.badge)) + '<span class="hide">)</span></span></span>' : '<span class="ic ic-x-bell">&#128276;</span>') +
       ' <span class="on ic ic-x-chat">&#128172;</span></p>');
@@ -721,7 +721,7 @@
     var posts = b.msgs.map(function (m) { return igPostHTML(b, m).join("\n"); }).filter(Boolean);
     if (b.type === "igone") return posts.join("\n\n");
     var L = ['<div class="mob ig ig-feed ' + b.theme + (b.width ? " " + b.width : "") + (b.scroll ? " " + b.scroll : "") + '">'];
-    if (b.top !== "none") L.push('<p class="ig-apptop"><span class="ig-add">+</span><span class="ig-logo">Instagram</span><span class="ig-notif ic ic-heart">&#9825;</span>' +
+    if (b.top !== "none") L.push('<p class="ig-header"><span class="ig-add">+</span><span class="ig-logo">Instagram</span><span class="ig-notif ic ic-heart">&#9825;</span>' +
       (b.top === "new" ? '<span class="ig-badge"><span class="hide"> (new)</span></span>' : "") + "</p>");
     return L.concat(igStories(b), posts, ["</div>"]).join("\n");
   }
@@ -816,7 +816,7 @@
     if (b.tick && !b.group) head += TICK;
     if (b.group && b.chev !== false) head += '<span class="igdm-chev"></span>'; // the little > after a group's name, drawn by the skin
     var L = ['<div class="' + containerClass(b, "igdm") + '">',
-      '  <p class="mob-head">' + head + '<span class="hide"> - </span>' + (t(b.sub) ? "<span>" + esc(t(b.sub)) + "</span>" : "") + "</p>",
+      '  <p class="mob-header">' + head + '<span class="hide"> - </span>' + (t(b.sub) ? "<span>" + esc(t(b.sub)) + "</span>" : "") + "</p>",
       '  <div class="mob-body">'];
     // in a group, each run of messages from one person goes in a row: their picture, their name, then the messages.
     // The name is just above the first one, so only the ones after it need the hidden name.
@@ -885,7 +885,7 @@
     close();
     L = L.concat(ind(body, 2));
     L.push("  </div>");
-    if (b.bar === "empty" || b.bar === "typed") L.push('  <p class="igdm-input"><span class="igdm-cam ic ic-camera">&#128247;</span><span class="hide"> </span><span class="igdm-field' + (b.bar === "typed" ? " typed\">" + fmt(b.barText) + (b.cursor ? CURSOR : "") : '">Message...') +
+    if (b.bar === "empty" || b.bar === "typed") L.push('  <p class="igdm-footer"><span class="igdm-cam ic ic-camera">&#128247;</span><span class="hide"> </span><span class="igdm-field' + (b.bar === "typed" ? " typed\">" + fmt(b.barText) + (b.cursor ? CURSOR : "") : '">Message...') +
       '<span class="hide"> </span><span class="ic ic-mic">&#127908;</span></span></p>');
     L.push("</div>");
     return L.join("\n");
@@ -1028,7 +1028,7 @@
     // the X app screen: the pov character's picture and the logo, then the tabs, then the tweets
     var me = char(b.pov) || S.cast[0], old = b.era === "tw2020";
     var L = ['<div class="tw-feed app' + (old ? " tw2020" : "") + " " + b.theme + (b.width ? " " + b.width : "") + (b.scroll ? " " + b.scroll : "") + '">', '  <div class="tw-scroll">',
-      '  <p class="tw-apptop">' + (me ? circle("tw-me", me) + " " : "") + '<span class="tw-logo">' + (old ? "Twitter" : "X") + "</span></p>"];
+      '  <p class="tw-header">' + (me ? circle("tw-me", me) + " " : "") + '<span class="tw-logo">' + (old ? "Twitter" : "X") + "</span></p>"];
     if (!old) L.push('  <p class="tw-tabs"><span class="tw-tab on">For you<span class="tw-drop"></span></span> <span class="tw-tab">Following</span>' +
       t(b.tabs).split(/\n/).map(t).filter(Boolean).map(function (x) { return ' <span class="tw-tab">' + esc(x) + "</span>"; }).join("") + ' <span class="tw-add">+</span></p>');
     return L.concat(ind(tweets.join("\n\n").split("\n"), 1)).concat(["  </div>", "</div>"]).join("\n").replace(/\n  \n/g, "\n\n");
@@ -1037,7 +1037,7 @@
     var L = ['<div class="tw-feed' + (b.era === "tw2020" ? " tw2020" : "") + " " + b.theme + (b.width ? " " + b.width : "") + (b.scroll ? " " + b.scroll : "") + '">', '  <div class="tw-scroll">'];
     b.msgs.forEach(function (m, i) { L = L.concat(ind(tweetHTML(b, m, i ? "reply" : "main"), 2)); });
     L.push("  </div>");
-    if (b.bar !== "none") L.push('  <p class="tw-foot"><span>Reply</span><span class="hide"> - </span>Tweet your reply</p>');
+    if (b.bar !== "none") L.push('  <p class="tw-footer"><span>Reply</span><span class="hide"> - </span>Tweet your reply</p>');
     L.push("</div>");
     return L.join("\n");
   }
@@ -1988,11 +1988,11 @@
     var el = els[0]; if (els.length !== 1) no();
     var b = newBlock("imsg"); settings(b, el, "imsg");
     var ks = kids(el), k = 0;
-    if (!is(ks[k], "p.mob-head")) no();
+    if (!is(ks[k], "p.mob-header")) no();
     headBack(b, ks[k++]);
     var body = ks[k++]; if (!is(body, "div.mob-body")) no();
     b.bar = "none";
-    if (is(ks[k], "p.imsg-input")) { var f = ks[k++].querySelector(".imsg-field"); if (!f) no(); barBack(b, f, 2); }
+    if (is(ks[k], "p.imsg-footer")) { var f = ks[k++].querySelector(".imsg-field"); if (!f) no(); barBack(b, f, 2); }
     if (ks[k]) no();
     var who = null, m = null;
     kids(body).forEach(function (p) {
@@ -2060,15 +2060,15 @@
     var ks = kids(el), k = 0;
     if (is(ks[k], "p.wa-wall")) { var w = ks[k++].querySelector("img"); if (!w) no(); b.bg = "custom"; b.wall = w.getAttribute("src"); }
     var bar = null;
-    if (is(ks[k], "table.wa-top")) {
+    if (is(ks[k], "table.wa-header")) {
       bar = ks[k++]; b.header = "bar";
       var tt = bar.querySelector("td.wa-title"), st = bar.querySelector("td.wa-status"); if (!tt || !st) no();
       b.title = tt.querySelector("span.name") ? "" : tt.textContent; b.sub = st.textContent;
-    } else if (is(ks[k], "p.mob-head")) { b.header = "simple"; headBack(b, ks[k++]); }
+    } else if (is(ks[k], "p.mob-header")) { b.header = "simple"; headBack(b, ks[k++]); }
     else b.header = "none";
     var body = ks[k++]; if (!is(body, "div.mob-body")) no();
     b.bar = "none";
-    if (is(ks[k], "p.wa-input")) { var ph = ks[k++].querySelector(".wa-placeholder"); if (!ph) no(); b.bar = ph.classList.contains("typed") ? "typed" : "empty";
+    if (is(ks[k], "p.wa-footer")) { var ph = ks[k++].querySelector(".wa-placeholder"); if (!ph) no(); b.bar = ph.classList.contains("typed") ? "typed" : "empty";
       if (b.bar === "typed") { var pn = inl(ph); if (is(pn[pn.length - 1], "span.cursor")) { b.cursor = true; pn.pop(); } b.barText = textBack(pn); } }
     if (ks[k]) no();
     var m = null, lastIn = null, rowless = false;
@@ -2196,12 +2196,12 @@
     var el = els[0]; if (els.length !== 1) no();
     var b = newBlock("twdm"); settings(b, el, "twdm");
     var ks = kids(el), k = 0, head = ks[k++];
-    if (!is(head, "p.mob-head")) no();
+    if (!is(head, "p.mob-header")) no();
     var hp = head.querySelector(".tw-pfp"), hn = head.querySelector(".twdm-name"); if (!hp || !hn) no();
     b.title = hn.querySelector("span.name") ? "" : hn.textContent;
     var body = ks[k++]; if (!is(body, "div.mob-body")) no();
     b.bar = "none";
-    if (is(ks[k], "p.twdm-input")) { var f = ks[k++].querySelector(".twdm-field"); if (!f) no(); barBack(b, f, 2); }
+    if (is(ks[k], "p.twdm-footer")) { var f = ks[k++].querySelector(".twdm-field"); if (!f) no(); barBack(b, f, 2); }
     if (is(ks[k], "p.tw-nav")) {
       b.nav = true; var bd = ks[k++].querySelector(".tw-badge");
       if (bd) { var bc = bd.cloneNode(true); bc.querySelectorAll(".hide").forEach(function (x) { x.remove(); }); b.badge = bc.textContent; }
@@ -2336,8 +2336,8 @@
     var el = els[0]; if (els.length !== 1) no();
     var b = newBlock("igdm"); settings(b, el, "igdm");
     var ks = kids(el), head = ks[0], body = ks[1], k = 2;
-    if (!is(head, "p.mob-head") || !is(body, "div.mob-body")) no();
-    if (is(ks[k], "p.igdm-input")) { var f = ks[k++].querySelector(".igdm-field"); if (!f) no(); barBack(b, f, 2); }
+    if (!is(head, "p.mob-header") || !is(body, "div.mob-body")) no();
+    if (is(ks[k], "p.igdm-footer")) { var f = ks[k++].querySelector(".igdm-field"); if (!f) no(); barBack(b, f, 2); }
     if (ks[k]) no();
     // two pictures at the top, or rows with names: a group, even with no one else talking yet
     b.group = !!(head.querySelector("span.ig-collab") || body.querySelector("div.igdm-row"));
@@ -2570,7 +2570,7 @@
     var ks = kids(el), sc = ks.shift(); if (!is(sc, "div.tw-scroll")) no();
     var inner = kids(sc), me = null;
     if (app) {
-      var top = inner.shift(); if (!is(top, "p.tw-apptop")) no();
+      var top = inner.shift(); if (!is(top, "p.tw-header")) no();
       me = top.querySelector(".tw-me");
       if (is(inner[0], "p.tw-tabs")) b.tabs = Array.prototype.slice.call(inner.shift().querySelectorAll(".tw-tab")).slice(2).map(function (x) { return x.textContent; }).join("\n");
       inner.forEach(function (d) { if (!is(d, "div.mob.tw")) no(); b.msgs.push(tweetBack(b, d, "feed")); });
@@ -2580,7 +2580,7 @@
       else if (me) { var hit = S.cast.filter(function (c) { return canon(circle("tw-me", c)) === canon(me.outerHTML); })[0]; if (hit) b.pov = hit.id; }
     } else {
       inner.forEach(function (d, i) { if (!is(d, i ? "div.mob.tw-reply" : "div.mob.tw")) no(); b.msgs.push(tweetBack(b, d, i ? "reply" : "main")); });
-      b.bar = is(ks[0], "p.tw-foot") ? (ks.shift(), "empty") : "none";
+      b.bar = is(ks[0], "p.tw-footer") ? (ks.shift(), "empty") : "none";
       if (b.msgs[0]) b.pov = b.msgs[0].from;
     }
     if (ks.length) no();
@@ -2716,7 +2716,7 @@
     settings(b, els[0], "ig", function (c) { return c === "ig-feed"; });
     var ks = kids(els[0]);
     b.top = "none"; b.myStory = false;
-    if (is(ks[0], "p.ig-apptop")) b.top = ks.shift().querySelector(".ig-badge") ? "new" : "plain";
+    if (is(ks[0], "p.ig-header")) b.top = ks.shift().querySelector(".ig-badge") ? "new" : "plain";
     if (is(ks[0], "div.ig-stories")) {
       b.stories = Array.prototype.map.call(ks.shift().querySelectorAll("p.ig-story"), function (p) {
         var pc = p.querySelector(".ig-pfp"), sn = p.querySelector(".ig-story-name"); if (!pc || !sn) no();
@@ -2780,15 +2780,15 @@
   // a chat made before the skin's class names changed: the same chat with each old name swapped for its new one
   // (from class-names.js), or null if it has none of the old names
   function renamedEls(els) {
-    var map = {}, gone = typeof MEGASKIN_REMOVED !== "undefined" ? MEGASKIN_REMOVED : [], hit = false;
-    (typeof MEGASKIN_RENAMES !== "undefined" ? MEGASKIN_RENAMES : []).forEach(function (r) { map[r[0]] = r[1]; });
+    var renames = typeof MEGASKIN_RENAMES !== "undefined" ? MEGASKIN_RENAMES : [], gone = typeof MEGASKIN_REMOVED !== "undefined" ? MEGASKIN_REMOVED : [], hit = false;
     var out = els.map(function (e) {
       var c = e.cloneNode(true);
       [c].concat(Array.prototype.slice.call(c.querySelectorAll("[class]"))).forEach(function (x) {
         if (!x.getAttribute("class")) return;
-        // classes that were taken out go, and the rest are swapped in one go
+        // classes that were taken out go, and each of the rest goes through the renames in order, oldest first,
+        // so a name renamed twice ends up with its newest name, and a name given back out isn't swapped again
         var cls = x.getAttribute("class").trim().split(/\s+/).filter(function (k) { if (gone.indexOf(k) >= 0) { hit = true; return false; } return true; })
-          .map(function (k) { if (map.hasOwnProperty(k)) { hit = true; return map[k]; } return k; });
+          .map(function (k) { renames.forEach(function (r) { if (k === r[0]) { hit = true; k = r[1]; } }); return k; });
         if (cls.length) x.setAttribute("class", cls.join(" ")); else x.removeAttribute("class");
       });
       return c;
