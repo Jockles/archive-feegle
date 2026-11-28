@@ -25,7 +25,7 @@
   <!-- /site meta -->
   <link rel="stylesheet" href="../../style.css?v=c31c06ea">
   <script src="../../theme.js?v=c50fd7c2"></script>
-  <link rel="stylesheet" href="megaskin.css?v=56fd0911" id="creator-style">
+  <link rel="stylesheet" href="megaskin.css?v=90364172" id="creator-style">
 </head>
 <body>
 <header>
@@ -256,7 +256,7 @@
   <p><em>Ilya:</em> always working I do not rest</p>
 </blockquote>
 
-<p>You only need speaker labels in chats made of bubbles: iMessage, WhatsApp, Twitter/X DMs and Instagram DMs. Tweets, posts, emails and Discord messages have the name written out already.</p>
+<p>You only need speaker labels in chats: iMessage, WhatsApp, Twitter/X DMs, Instagram DMs and Discord. Tweets, posts and emails have the name written out already.</p>
 
 <p>In a group chat, the name above someone's bubble (the <code>who</code> line) shows whether the workskin is on or off, so it only needs a hidden colon after it: <code>&lt;span class=&quot;hide&quot;&gt;:&lt;/span&gt;</code>. Your own messages have no name above them, so they still need the full label.</p>
 
@@ -384,29 +384,38 @@
 
 <p>Discord is the one app that's used on a computer as much as a phone, so it's the only skin that's optimised for working full width:</p>
 
-<pre><code>&lt;div class="mob dc theme-auto wide"&gt;&lt;/div&gt;</code></pre>
+<pre><code>&lt;div class="mob dc theme-auto wide"&gt;&lt;/div&gt;
+&lt;div class="mob dc theme-auto wide"&gt;&lt;/div&gt;</code></pre>
 
 <p>Here's the same Discord chat both ways:</p>
 
 <div class="mob dc theme-auto">
-  <div class="msg">
-    <p><b class="dc-name colour1">SwankyUsername</b> <span class="time">Today at 9:20 AM</span></p>
-    <p><span class="dc-text">phone width, the usual</span></p>
-  </div>
-  <div class="msg">
-    <p><b class="dc-name colour6">DropSomeKnowledge</b> <span class="time">Today at 9:21 AM</span></p>
-    <p><span class="dc-text">like the app on a phone</span></p>
+  <div class="mob-body">
+    <div class="row">
+      <span class="avatar colour1"></span>
+      <p class="who colour1">SwankyUsername<span class="hide"> (</span><span class="time">Today at 9:20 AM</span><span class="hide">):</span></p>
+      <p class="msg in">phone width, the usual</p>
+    </div>
+    <div class="row">
+      <span class="avatar colour6"></span>
+      <p class="who colour6">DropSomeKnowledge<span class="hide"> (</span><span class="time">Today at 9:21 AM</span><span class="hide">):</span></p>
+      <p class="msg in">like the app on a phone</p>
+    </div>
   </div>
 </div>
 
 <div class="mob dc theme-auto wide">
-  <div class="msg">
-    <p><b class="dc-name colour1">SwankyUsername</b> <span class="time">Today at 9:20 AM</span></p>
-    <p><span class="dc-text">wide</span></p>
-  </div>
-  <div class="msg">
-    <p><b class="dc-name colour6">DropSomeKnowledge</b> <span class="time">Today at 9:21 AM</span></p>
-    <p><span class="dc-text">fills the page, like Discord on a computer</span></p>
+  <div class="mob-body">
+    <div class="row">
+      <span class="avatar colour1"></span>
+      <p class="who colour1">SwankyUsername<span class="hide"> (</span><span class="time">Today at 9:20 AM</span><span class="hide">):</span></p>
+      <p class="msg in">wide</p>
+    </div>
+    <div class="row">
+      <span class="avatar colour6"></span>
+      <p class="who colour6">DropSomeKnowledge<span class="hide"> (</span><span class="time">Today at 9:21 AM</span><span class="hide">):</span></p>
+      <p class="msg in">fills the page, like Discord on a computer</p>
+    </div>
   </div>
 </div>
 
@@ -467,9 +476,8 @@
 <summary>How it works: what scrolls in each app</summary>
 
 <ul>
-  <li>iMessage, WhatsApp, Twitter/X DMs and Instagram DMs keep the header and the bottom bar where they are, and scroll the messages in between.</li>
+  <li>iMessage, WhatsApp, Twitter/X DMs, Instagram DMs and Discord keep the header and the bottom bar where they are, and scroll the messages in between.</li>
   <li>Twitter/X posts, Instagram posts, Tumblr posts and Gmail emails scroll as a whole.</li>
-  <li>In Discord the whole window scrolls, header and message box included.</li>
 </ul>
 
 </details>
@@ -856,44 +864,50 @@
 <p><strong>Discord</strong></p>
 
 <div class="mob dc theme-dark">
-  <div class="dc-header hashtag">
-    <p class="dc-channel"><span class="hide"># </span>general</p>
+  <p class="mob-header hashtag"><span class="hide"># </span><span class="chat-name">general</span></p>
+  <div class="mob-body">
+    <div class="row">
+      <span class="avatar colour1"></span>
+      <p class="who colour1">Mark | Brother-in-law-Elect<span class="hide"> (</span><span class="time">10/01/2022</span><span class="hide">):</span></p>
+      <p class="msg in">Jackie, you there?</p>
+    </div>
   </div>
-  <div class="msg">
-    <p><b class="dc-name colour1">Mark | Brother-in-law-Elect</b> <span class="time">10/01/2022</span></p>
-    <p><span class="dc-text">Jackie, you there?</span></p>
-  </div>
-  <div class="footer">
-    <p><span class="msgbar">Message #general</span></p>
-  </div>
+  <p class="footer">
+    <span class="plus">+</span><span class="hide"> </span>
+    <span class="msgbar">Message #general</span>
+  </p>
 </div>
 
 <div class="mob dc theme-light">
-  <div class="dc-header hashtag">
-    <p class="dc-channel"><span class="hide"># </span>general</p>
+  <p class="mob-header hashtag"><span class="hide"># </span><span class="chat-name">general</span></p>
+  <div class="mob-body">
+    <div class="row">
+      <span class="avatar colour1"></span>
+      <p class="who colour1">Mark | Brother-in-law-Elect<span class="hide"> (</span><span class="time">10/01/2022</span><span class="hide">):</span></p>
+      <p class="msg in">Jackie, you there?</p>
+    </div>
   </div>
-  <div class="msg">
-    <p><b class="dc-name colour1">Mark | Brother-in-law-Elect</b> <span class="time">10/01/2022</span></p>
-    <p><span class="dc-text">Jackie, you there?</span></p>
-  </div>
-  <div class="footer">
-    <p><span class="msgbar">Message #general</span></p>
-  </div>
+  <p class="footer">
+    <span class="plus">+</span><span class="hide"> </span>
+    <span class="msgbar">Message #general</span>
+  </p>
 </div>
 
 <p><em>The HTML for the dark version:</em></p>
 
 <pre><code>&lt;div class="mob dc theme-dark"&gt;
-  &lt;div class="dc-header hashtag"&gt;
-    &lt;p class="dc-channel"&gt;&lt;span class="hide"&gt;# &lt;/span&gt;general&lt;/p&gt;
+  &lt;p class="mob-header hashtag"&gt;&lt;span class="hide"&gt;# &lt;/span&gt;&lt;span class="chat-name"&gt;general&lt;/span&gt;&lt;/p&gt;
+  &lt;div class="mob-body"&gt;
+    &lt;div class="row"&gt;
+      &lt;span class="avatar colour1"&gt;&lt;/span&gt;
+      &lt;p class="who colour1"&gt;Mark | Brother-in-law-Elect&lt;span class="hide"&gt; (&lt;/span&gt;&lt;span class="time"&gt;10/01/2022&lt;/span&gt;&lt;span class="hide"&gt;):&lt;/span&gt;&lt;/p&gt;
+      &lt;p class="msg in"&gt;Jackie, you there?&lt;/p&gt;
+    &lt;/div&gt;
   &lt;/div&gt;
-  &lt;div class="msg"&gt;
-    &lt;p&gt;&lt;b class="dc-name colour1"&gt;Mark | Brother-in-law-Elect&lt;/b&gt; &lt;span class="time"&gt;10/01/2022&lt;/span&gt;&lt;/p&gt;
-    &lt;p&gt;&lt;span class="dc-text"&gt;Jackie, you there?&lt;/span&gt;&lt;/p&gt;
-  &lt;/div&gt;
-  &lt;div class="footer"&gt;
-    &lt;p&gt;&lt;span class="msgbar"&gt;Message #general&lt;/span&gt;&lt;/p&gt;
-  &lt;/div&gt;
+  &lt;p class="footer"&gt;
+    &lt;span class="plus"&gt;+&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;
+    &lt;span class="msgbar"&gt;Message #general&lt;/span&gt;
+  &lt;/p&gt;
 &lt;/div&gt;</code></pre>
 
 </details>
@@ -1015,7 +1029,7 @@
   <li>Instagram posts: <code>ig-pfp</code> beside the account name, and <code>ig-like-pfp</code> for the little faces in the "Liked by" line.</li>
   <li>Tumblr: <code>tb-pfp</code>, at the start of the header.</li>
   <li>Gmail: <code>gm-pfp</code>, beside the sender.</li>
-  <li>Discord: <code>avatar</code>, first thing inside the <code>dc-name</code>. Without it, <code>colour1</code> to <code>colour10</code> give plain coloured circles, the same as in the other apps.</li>
+  <li>Discord: <code>avatar</code>, first thing in each <code>row</code>, the same as the chat apps. Without a profile, <code>colour1</code> to <code>colour10</code> give plain coloured circles, the same as in the other apps.</li>
 </ul>
 
 </details>
@@ -1107,7 +1121,7 @@
 
 <pre><code>/* PROFILE: Stan */
 #workskin .pfp.pfp-stan { background-image: url(https://images.squidge.org/images/2026/11/15/GayCrosedHockeySticks.png); }
-#workskin .wa .who.pfp-stan, #workskin .dc .dc-name.pfp-stan { color: #d2782a; }
+#workskin .wa .who.pfp-stan, #workskin .dc .who.pfp-stan { color: #d2782a; }
 #workskin .name.pfp-stan::before { content: "Stan"; }
 #workskin .handle.pfp-stan::after { content: "PuckStan"; }
 #workskin .email.pfp-stan::after { content: "Puckstan@gmail.com"; }</code></pre>
@@ -1154,7 +1168,7 @@
   <li><strong>Name:</strong> <code>&lt;span class=&quot;name pfp-stan&quot;&gt;&lt;/span&gt;</code></li>
   <li><strong>Handle:</strong> <code>&lt;span class=&quot;handle pfp-stan&quot;&gt;&lt;/span&gt;</code></li>
   <li><strong>Email:</strong> <code>&lt;span class=&quot;email pfp-stan&quot;&gt;&lt;/span&gt;</code></li>
-  <li><strong>Name colour:</strong> add <code>pfp-stan</code> to a WhatsApp <code>who</code> line or a Discord <code>dc-name</code>.</li>
+  <li><strong>Name colour:</strong> add <code>pfp-stan</code> to a WhatsApp or Discord <code>who</code> line.</li>
   <li><strong>Another account of theirs:</strong> add the account's <code>acc-</code> name, like <code>&lt;span class=&quot;handle pfp-ilya acc-burner&quot;&gt;&lt;/span&gt;</code> for Ilya's burner.</li>
 </ul>
 
@@ -1223,9 +1237,14 @@
 </div>
 
 <div class="mob dc theme-auto">
-  <div class="msg">
-    <p><b class="dc-name pfp-stan"><span class="avatar"><span class="pfp pfp-stan"></span></span>Stan</b> <span class="time">Today at 9:15 AM</span></p>
-    <p><span class="dc-text">same picture everywhere now</span></p>
+  <div class="mob-body">
+    <div class="row">
+      <span class="avatar">
+        <span class="pfp pfp-stan"></span>
+      </span>
+      <p class="who pfp-stan">Stan<span class="hide"> (</span><span class="time">Today at 9:15 AM</span><span class="hide">):</span></p>
+      <p class="msg in">same picture everywhere now</p>
+    </div>
   </div>
 </div>
 
@@ -1250,7 +1269,10 @@
 &lt;/span&gt;
 &lt;span class="gm-address"&gt;&amp;lt;&lt;span class="email pfp-stan"&gt;&lt;span class="hide"&gt;Puckstan@gmail.com&lt;/span&gt;&lt;/span&gt;&amp;gt;&lt;/span&gt;
 
-&lt;b class="dc-name pfp-stan"&gt;&lt;span class="avatar"&gt;&lt;span class="pfp pfp-stan"&gt;&lt;/span&gt;&lt;/span&gt;Stan&lt;/b&gt;</code></pre>
+&lt;span class="avatar"&gt;
+  &lt;span class="pfp pfp-stan"&gt;&lt;/span&gt;
+&lt;/span&gt;
+&lt;p class="who pfp-stan"&gt;Stan&lt;/p&gt;</code></pre>
 
 <p>Names, handles and email addresses from a profile come from the CSS, so readers with the workskin switched off won't see them. That's why the examples have a hidden copy typed inside each one - there's more on that in <a href="#accessibility">Accessibility</a>, above.</p>
 

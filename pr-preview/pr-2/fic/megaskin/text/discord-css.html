@@ -12,10 +12,10 @@
 
 <h3>How the Module is Laid Out</h3>
 
-<p>The usual order - the main rules, Links, Scrolling, Dark theme and Auto theme - but Discord is the odd one out in a few ways:</p>
+<p>The usual order - the main rules, Links, Dark theme and Auto theme - with one extra part at the end, for parts borrowed from the other chat apps. Discord is the odd one out in a few ways:</p>
 
 <ul>
-  <li>It does its own scrolling, and has its own <code>no-scroll</code> rule.</li>
+  <li>It's built from the same parts as the other chat apps (<code>mob-header</code>, <code>row</code>, <code>avatar</code>, <code>who</code>, <code>msg</code>, <code>footer</code>), but with no bubbles: the messages are plain text beside a round picture.</li>
   <li>The little icons in the header and the message box are pictures hosted on squidge.org, not text.</li>
   <li>It uses <code>rem</code> for most sizes, where the other modules use <code>em</code>. A <code>rem</code> is the size of the page's normal text, so the sizes stay the same wherever the chat sits.</li>
 </ul>
@@ -51,13 +51,6 @@
 
 </details>
 
-<details>
-<summary>How it works: why the window is position: relative</summary>
-
-<p><code>position: relative</code> matters more than it looks: the profile circles are placed with <code>position: absolute</code>, and this makes them measure from the edge of the window.</p>
-
-</details>
-
 <pre><code>#workskin .dc p,
 #workskin .dc a:not(.tl) {
   margin: 0;
@@ -69,104 +62,115 @@
 
 <h4>Header</h4>
 
-<pre><code>#workskin .dc .dc-header::before {
+<pre><code>#workskin .dc .mob-header {
+  position: relative;
+  z-index: 100;
+  height: 56px;
+  box-sizing: border-box;
+  padding: 0 1rem 0 3rem;
+  font-size: 1rem;
+  font-weight: normal;
+  line-height: 56px;
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  box-shadow:
+    rgba(4, 4, 5, 0.2) 0px 1px 0px 0px,
+    rgba(6, 6, 7, 0.05) 0px 1.5px 0px 0px,
+    rgba(4, 4, 5, 0.05) 0px 2px 0px 0px;
+}
+
+#workskin .dc .mob-header::before {
   content: '';
   background-repeat: no-repeat;
   background-size: contain;
   position: absolute;
   left: 1rem;
-  top: 1rem;
+  top: 16px;
   height: 1.5rem;
   width: 1.5rem;
-}
+}</code></pre>
 
-#workskin .dc .hashtag::before { background-image: url(https://images.squidge.org/images/2026/11/15/dc-hashtag-light.png); }
+<p>The header is the same <code>mob-header</code> line as the other chat apps, made 56 pixels tall with a soft line under it, and kept on one line.</p>
+
+<details>
+<summary>How it works: the soft line and the symbol</summary>
+
+<ul>
+  <li>The line under the header is three thin shadows stacked up, which fade out like Discord's soft edge instead of a hard line.</li>
+  <li>The left padding of <code>3rem</code> leaves room for the symbol, which is an empty box made with <code>::before</code>.</li>
+  <li>Anything too long is cut off with "...".</li>
+</ul>
+
+</details>
+
+<pre><code>#workskin .dc .hashtag::before { background-image: url(https://images.squidge.org/images/2026/11/15/dc-hashtag-light.png); }
 
 #workskin .dc .locked::before { background-image: url(https://images.squidge.org/images/2026/11/15/dc-lock-light.png); }
 
 #workskin .dc .at-symbol::before { background-image: url(https://images.squidge.org/images/2026/11/15/dc-at-light.png); }</code></pre>
 
-<p>The symbol before the channel name is a picture. Adding <code>hashtag</code>, <code>locked</code> or <code>at-symbol</code> to the header picks which picture: # for a channel, a padlock for a private channel, or @ for a DM.</p>
+<p>The symbol before the channel name is a picture. Adding <code>hashtag</code>, <code>locked</code> or <code>at-symbol</code> to the header picks which picture: # for a channel, a padlock for a private channel, or @ for a DM. The dark theme swaps each one for a lighter version, so they show up on the dark background.</p>
 
-<details>
-<summary>How it works: a picture with no picture tag</summary>
-
-<p>The symbol is an empty box made with <code>::before</code>, with a picture as its background. The dark theme swaps each one for a lighter version, so they show up on the dark background.</p>
-
-</details>
-
-<pre><code>#workskin .dc .dc-header::after {
-  content: "";
-  position: relative;
-  display: block;
-  top: 18px;
-  left: 0;
-  right: 0;
-  height: 1px;
-  box-shadow:
-    rgba(4, 4, 5, 0.2) 0px 1px 0px 0px,
-    rgba(6, 6, 7, 0.05) 0px 1.5px 0px 0px,
-    rgba(4, 4, 5, 0.05) 0px 2px 0px 0px;
-  z-index: 1;
-}
-
-#workskin .dc .dc-channel {
-  padding: 0 3rem;
+<pre><code>#workskin .dc .mob-header .chat-name {
   font-family: "ABC Ginto Normal", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 1.0625rem;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
   color: rgb(6, 6, 7);
+}
+
+#workskin .dc .mob-header &gt; span:not([class]) {
+  margin-left: 1rem;
+  padding-left: 0.5rem;
+  border-left: 1px solid rgb(46, 51, 56);
+  font-size: 0.875rem;
+  line-height: 1.125rem;
 }</code></pre>
 
-<p>The soft line under the header, and the channel name, which is kept on one line.</p>
+<p>The channel name, then the grey description. The little upright line between them is the description's left border.</p>
 
 <details>
-<summary>How it works: the soft line and the long names</summary>
+<summary>How it works: the plain span</summary>
 
-<ul>
-  <li>The line under the header is <code>::after</code> - three thin shadows stacked up, which fade out like Discord's soft edge instead of a hard line.</li>
-  <li>The channel name is pushed in to clear the symbol, kept on one line, and cut off with "..." if it's too long.</li>
-</ul>
+<p><code>span:not([class])</code> means "a span with no class". In the header, that's the plain span with the description in it, where the other chat apps put "online" or "last seen".</p>
 
 </details>
-
-<pre><code>#workskin .dc .dc-header-divider {
-  border-left: 1px solid;
-  display: inline;
-  margin: 0 0.5rem 0 1rem;
-  height: 24px;
-  border-color: rgb(46, 51, 56);
-}</code></pre>
-
-<p>The little upright line between the channel name and its description is an empty span with only a left border.</p>
 
 <h4>Footer</h4>
 
 <h5>Chat Box</h5>
 
 <pre><code>#workskin .dc .footer {
-  margin: 1.5rem 1rem 0;
-  padding: 1rem 3.5rem;
-  border-radius: 0.5rem;
   position: relative;
   min-height: 1.5rem;
+  margin: 1.5rem 1rem 0;
+  padding: 1rem 1rem 1rem 3.5rem;
+  border-radius: 0.5rem;
   background-color: rgb(235, 237, 239);
 }
 
-#workskin .dc .msgbar::before {
-  content: '';
-  background-repeat: no-repeat;
-  background-size: contain;
+#workskin .dc .footer .plus {
   position: absolute;
   left: 1rem;
-  height: 1.5rem;
+  top: 50%;
+  margin-top: -0.75rem;
   width: 1.5rem;
+  height: 1.5rem;
+  overflow: hidden;
+  text-indent: -100em;
+  background-repeat: no-repeat;
+  background-size: contain;
   background-image: url(https://images.squidge.org/images/2026/11/15/dc-plus-light.png);
 }</code></pre>
 
-<p>The grey "Message #general" box at the bottom, with a round button on its left - another squidge.org picture in a <code>::before</code>.</p>
+<p>The grey "Message #general" box at the bottom, with a round button on its left. The button is the <code>plus</code> span, with its + pushed out of sight and a squidge.org picture shown instead.</p>
+
+<details>
+<summary>How it works: hiding the +</summary>
+
+<p><code>text-indent: -100em</code> moves the + a long way to the left, and <code>overflow: hidden</code> cuts off anything outside the box, so only the picture is left. Readers with the workskin off still see the +.</p>
+
+</details>
 
 <h5>Typing Indicator</h5>
 
@@ -194,81 +198,85 @@
 
 <h4>Long Chats</h4>
 
-<pre><code>#workskin .dc { max-height: 640px; overflow-y: auto; overflow-x: hidden; }
+<pre><code>#workskin .dc .mob-body { padding: 0 0 0.5rem 0; }</code></pre>
 
-#workskin .dc.no-scroll {
-  max-height: none;
-  overflow-y: visible;
-}</code></pre>
-
-<p>The whole window scrolls once it's taller than <code>640px</code> - the header and the message box scroll with it.</p>
-
-<details>
-<summary>Options: taller, shorter or no scrolling</summary>
-
-<p>Change the <code>640px</code> to move the cut-off. Add <code>no-scroll</code> to the <code>dc</code> box to switch it off for one chat.</p>
-
-</details>
+<p>Discord scrolls the same way as the other chat apps, using the core's <code>mob-body</code> rule (see <a href="core-css.html#heading">Scrolling</a>): the messages scroll and the header and chat box stay put. This rule only takes away the core's padding, because Discord's messages have their own.</p>
 
 <h3>Normal Messages</h3>
 
-<h4>Messages and Names</h4>
+<h4>Rows and Names</h4>
 
-<pre><code>#workskin .dc .msg { min-height: 2.75rem; margin-top: 1.0625rem; padding: 0.125rem 3rem 0.125rem 4.5rem; }
+<pre><code>#workskin .dc .row {
+  position: relative;
+  min-height: 2.75rem;
+  margin-top: 1.0625rem;
+  padding: 0.125rem 3rem 0.125rem 4.5rem;
+}
 
-#workskin .dc .dc-name::before {
-  content: '';
-  background-color: rgb(88, 101, 242);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  position: absolute;
-  border-radius: 50%;
-  margin-top: 0.125rem;
-  left: 1.25rem;
-  height: 2.5rem;
-  width: 2.5rem;
-}</code></pre>
+#workskin .dc .who {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.375rem;
+  word-wrap: break-word;
+}
 
-<p>Every message is pushed in from the left, which leaves room for the round profile circle. With no colour class, the circle is Discord blue.</p>
+#workskin .dc .msg {
+  margin: 0;
+  padding: 0;
+  font-size: 1rem;
+  line-height: 1.375rem;
+  word-wrap: break-word;
+}
+
+#workskin .dc p.msg { white-space: break-spaces; }</code></pre>
+
+<p>Each <code>row</code> is pushed in from the left, which leaves room for the round picture. The name and the messages are plain lines of text, with no bubbles. The name line is <code>flex</code>, so it looks the same whether its parts are written on one line or on several.</p>
 
 <details>
-<summary>Options: the ten colours</summary>
-
-<p>Adding <code>colour1</code> to <code>colour10</code> to a name does two jobs: it colours the name, and (because it's on the name) the circle too. The colours are in the core, shared with every app, with brighter shades for names and lighter ones again in the dark theme - see <a href="core-css.html#heading">The Ten Colours</a>.</p>
-
-</details>
-
-<details>
-<summary>How it works: the circle belongs to the name</summary>
+<summary>How it works: the row, and spaces in messages</summary>
 
 <ul>
-  <li>Every message is pushed in <code>4.5rem</code> from the left, which leaves room for the profile circle.</li>
-  <li>The circle belongs to the name, not the message: it's the name's <code>::before</code>, taken out of the line with <code>position: absolute</code> and put <code>1.25rem</code> from the window's left edge. That's why a message with no name (a second message from the same person) has no circle, just like Discord.</li>
-  <li><code>min-height</code> makes each message at least as tall as the circle, so short messages don't overlap the next one.</li>
+  <li><code>min-height</code> makes each row at least as tall as the picture, so short messages don't overlap the next one.</li>
+  <li><code>break-spaces</code> keeps any extra spaces you type in a message, and <code>break-word</code> breaks up very long words (like a keysmash) so they don't run off the edge. It's only on one-line messages (<code>p.msg</code>), because on a message with a picture or link card in it, it would turn the line breaks in your code into big gaps.</li>
 </ul>
 
 </details>
 
 <pre><code>#workskin .dc .avatar {
-  display: inline-block; /* inline, like the plain circle, so Firefox keeps it level with the name */
-  position: absolute;
-  left: 1.25rem;
-  margin-top: 0.125rem;
+  display: block;
   width: 2.5rem;
   height: 2.5rem;
   border-radius: 50%;
   overflow: hidden;
+  background-color: rgb(88, 101, 242);
+  color: #ffffff;
 }
 
-#workskin .dc .dc-name:has(.avatar)::before { display: none; }</code></pre>
+#workskin .dc .avatar:has(&gt; .pfp) { background-color: transparent; }
 
-<p>For a picture or a profile from the core, an <code>avatar</code> span goes inside the name, sitting exactly where the circle would be. The second rule says "if a name has an <code>avatar</code> in it, don't draw the plain circle" - otherwise you'd get both.</p>
+#workskin .dc .row &gt; .avatar {
+  position: absolute;
+  left: 1.25rem;
+  margin-top: 0.125rem;
+}</code></pre>
+
+<p>The round picture. With no colour class, it's Discord blue. With a <code>pfp</code> span inside, the blue goes, so only the picture shows.</p>
 
 <details>
-<summary>How it works: more about :has()</summary>
+<summary>Options: the ten colours</summary>
 
-<p><code>:has()</code> picks something by what's inside it. If a reader's browser doesn't understand it, the rule is skipped, and the coloured circle sits behind the picture, so it still looks fine.</p>
+<p>Adding <code>colour1</code> to <code>colour10</code> to the <code>avatar</code> colours the circle, and adding it to the <code>who</code> line colours the name. The colours are in the core, shared with every app, with brighter shades for names and lighter ones again in the dark theme - see <a href="core-css.html#heading">The Ten Colours</a>.</p>
+
+</details>
+
+<details>
+<summary>How it works: taking the picture out of the line</summary>
+
+<p><code>position: absolute</code> takes the picture out of the row and puts it <code>1.25rem</code> from the left edge, in the space the row's padding left free. It has no <code>top</code>, so it stays level with wherever the name line is - under a reply, if there is one.</p>
 
 </details>
 
@@ -276,28 +284,49 @@
 #workskin .dc .edited {
   margin-left: 0.25rem;
   font-size: 0.75rem;
+  font-weight: normal;
   line-height: 1.375rem;
   white-space: nowrap;
 }
 
-#workskin .dc .dc-text {
-  font-size: 1rem;
-  line-height: 1.375rem;
-  white-space: break-spaces;
-  word-wrap: break-word;
-  padding: 0.125rem 0 0.125rem 0;
-}</code></pre>
+#workskin .dc .who .time { margin-left: 0.5rem; }</code></pre>
 
 <p>The time and "(edited)" are small and grey and never split across lines.</p>
 
-<details>
-<summary>How it works: spaces and very long words</summary>
-
-<p><code>break-spaces</code> keeps any extra spaces you type in a message, and <code>break-word</code> breaks up very long words (like a keysmash) so they don't run off the edge.</p>
-
-</details>
-
 <h4>Replies</h4>
+
+<pre><code>#workskin .dc .reply,
+#workskin .dc .quote {
+  display: inline-block;
+  position: relative;
+  margin-bottom: 0.25rem;
+  font-size: 0.875rem;
+  line-height: 1.125rem;
+  vertical-align: top;
+}
+
+#workskin .dc .reply .avatar {
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  margin-right: 0.25rem;
+  vertical-align: -0.2rem;
+}
+
+#workskin .dc .quote {
+  display: inline-block;
+  position: relative;
+  margin-bottom: 0.25rem;
+  font-size: 0.875rem;
+  line-height: 1.125rem;
+  vertical-align: top;
+}</code></pre>
+
+<p>The <code>reply</code> line (a little picture and the name) and the <code>quote</code> (the start of their message) sit side by side above the name. The quote is small, on one line, and cut off with "..." if it's long.</p>
+
+<pre><code>#workskin .dc .reply { float: left; }</code></pre>
+
+<p>The reply floats to the left, so the quote sits right beside it whether or not there's a space between them in the code.</p>
 
 <pre><code>#workskin .dc .reply::before {
   content: '';
@@ -306,7 +335,7 @@
   box-sizing: border-box;
   top: 0.625rem;
   right: 100%;
-  bottom: 0;
+  bottom: -0.25rem;
   left: -2.25rem;
   margin: -0.0625rem 0.25rem -0.125rem -0.0625rem;
   border-style: solid;
@@ -317,23 +346,6 @@
 
 <p>The curved line from a reply up to the message it's answering is a box with only a top and a left border, and its top-left corner rounded. That's the whole trick - the rest of the box is invisible.</p>
 
-<pre><code>#workskin .dc .reply .dc-text {
-  position: relative;
-  left: 1rem;
-  font-size: 0.875rem;
-  height: 1.125rem;
-  padding: 0;
-  line-height: 1.125rem;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  display: inline-block;
-  max-width: 80%;
-  transform: translate(0%, 25%);
-}</code></pre>
-
-<p>The quoted message is small, on one line, and cut off with "..." if it's long. The name in a reply gets a smaller circle (<code>1rem</code>), set up the same way as the big one.</p>
-
 <h4>Reactions and Mentions</h4>
 
 <pre><code>#workskin .dc .dc-reaction.me {
@@ -343,19 +355,21 @@
 }
 
 #workskin .dc .msg:has(.dc-mention.me) {
+  margin: 0 -3rem 0 -4.5rem;
+  padding: 0 3rem 0 4.375rem;
   background-color: rgba(250, 168, 26, 0.1);
   border-left: 2px solid rgb(170, 114, 18);
 }</code></pre>
 
 <ul>
   <li>Reactions are grey pills, but adding <code>me</code> to one makes it blue with a blue edge, like a reaction your POV character has added.</li>
-  <li>Adding <code>me</code> to a mention lights up the whole message in yellow, with a line down its left side - what Discord does when someone @s you.</li>
+  <li>Adding <code>me</code> to a mention lights up that message line in yellow, with a line down its left side - what Discord does when someone @s you.</li>
 </ul>
 
 <details>
 <summary>How it works: lighting up the whole message</summary>
 
-<p>This is <code>:has()</code> again: "a message that has a <code>dc-mention me</code> inside it".</p>
+<p>This is <code>:has()</code> again: "a message that has a <code>dc-mention me</code> inside it". The minus margins stretch the yellow out to both edges of the window, and the padding puts the words back where they were.</p>
 
 </details>
 
@@ -391,29 +405,32 @@
 
 <h4>Dividers</h4>
 
-<pre><code>#workskin .dc .dc-divider-label {
-  padding: 0.125rem 0.25rem;
-  line-height: 0.8125rem;
+<pre><code>#workskin .dc .mob-sys {
+  display: flex;
+  align-items: center;
+  margin: 1.5rem 0.875rem 0.5rem 1rem;
   font-size: 0.75rem;
   font-weight: 600;
-  border-radius: 0.5rem;
-  display: block;
-  position: absolute;
-  right: 50%;
-  top: 50%;
-  transform: translate(50%, -50%);
-  z-index: 5;
-  background-color: rgb(255, 255, 255);
+  line-height: 0.8125rem;
+  opacity: 1;
+}
+
+#workskin .dc .mob-sys::before,
+#workskin .dc .mob-sys::after {
+  content: "";
+  flex: 1;
+  border-top: thin solid rgba(79, 84, 92, 0.48);
 }</code></pre>
 
-<p>The date dividers are a thin line with a label sitting on it.</p>
+<p>The date dividers are the same <code>mob-sys</code> line as the other chat apps, with a thin line on each side of the date.</p>
 
 <details>
-<summary>How it works: putting the label in the middle</summary>
+<summary>How it works: lines on both sides</summary>
 
-<p>The label is moved to the middle (<code>right: 50%; top: 50%</code>), then <code>transform</code> nudges it back by half its own size so it's perfectly centred. Its background is the same colour as the window, which hides the line behind the words.</p>
+<p><code>display: flex</code> puts the line's parts in a row: the <code>::before</code> line, the date, then the <code>::after</code> line. <code>flex: 1</code> makes both lines stretch to fill the space that's left, so the date ends up in the middle.</p>
 
 </details>
+
 
 <pre><code>#workskin .dc .dc-new-tag::before {
   content: '';
@@ -489,22 +506,26 @@
 
 <p>The dark theme is Discord's classic dark grey (<code>rgb(54, 57, 63)</code>) with light text. Code blocks, embeds and reactions go a shade darker, links go brighter, the names get their lighter colours, and the header icons and the message box button swap to their light versions. The spoilers get their own dark colours, with the same 68-year trick. The auto theme is the same again inside <code>@media (prefers-color-scheme: dark)</code>, and plain <code>dc</code> or <code>theme-light</code> is the light theme.</p>
 
+<h3>Parts From the Other Chat Apps</h3>
+
+<p>The last part of the module catches parts that only the other chat apps use, so a chat swapped to Discord still looks right. A message with no row around it shows its hidden name as the name line, and the header's picture, back arrow and buttons, and the message bar's icons, are hidden.</p>
+
 <h3>Taking Parts Out</h3>
 
 <p>Search for the class names and delete every rule with them in, including in the dark and auto blocks:</p>
 
 <ul>
-  <li><strong>Header:</strong> everything starting <code>dc-header</code>, plus <code>dc-topic</code>, <code>hashtag</code>, <code>locked</code> and <code>at-symbol</code>.</li>
-  <li><strong>Message box:</strong> <code>footer</code> and <code>msgbar</code>.</li>
-  <li><strong>Replies:</strong> <code>reply</code>.</li>
+  <li><strong>Header:</strong> <code>mob-header</code>, <code>chat-name</code>, <code>hashtag</code>, <code>locked</code> and <code>at-symbol</code>.</li>
+  <li><strong>Message box:</strong> <code>footer</code> and <code>plus</code>.</li>
+  <li><strong>Replies:</strong> <code>reply</code> and <code>quote</code>.</li>
   <li><strong>Pictures and emoji:</strong> <code>photos</code>, <code>dc-emoji</code> and <code>dc-inline-emoji</code>.</li>
-  <li><strong>Reactions:</strong> <code>reacts</code>, <code>dc-reaction</code> and <code>count</code>.</li>
+  <li><strong>Reactions:</strong> <code>dc-reaction</code> and <code>count</code>.</li>
   <li><strong>Link cards:</strong> everything starting <code>link-</code>.</li>
-  <li><strong>Quotes and code:</strong> <code>dc-quote</code>, <code>dc-quote-line</code>, <code>dc-quote-text</code> and <code>dc-code</code>.</li>
+  <li><strong>Quotes and code:</strong> <code>dc-quote</code> and <code>dc-code</code>.</li>
   <li><strong>Spoilers:</strong> <code>dc-spoiler</code> and <code>dc-spoiler-text</code>.</li>
   <li><strong>Mentions:</strong> <code>dc-mention</code> and <code>dc-role-mention</code>.</li>
-  <li><strong>Dividers:</strong> <code>dc-divider</code>, <code>dc-divider-label</code>, <code>dc-new-divider</code> and <code>dc-new-tag</code>.</li>
+  <li><strong>Dividers:</strong> <code>mob-sys</code>, <code>dc-new</code> and <code>dc-new-tag</code>.</li>
   <li><strong>Extras:</strong> <code>dc-new-user</code>, <code>dc-bot</code>, and the typing dots (<code>dc-typing</code> and <code>typing-indicator</code>).</li>
 </ul>
 
-<p>Keep the window, <code>msg</code>, <code>dc-name</code>, <code>time</code> and <code>dc-text</code>, which every message uses.</p>
+<p>Keep the window, <code>row</code>, <code>avatar</code>, <code>who</code>, <code>msg</code> and <code>time</code>, which every message uses.</p>

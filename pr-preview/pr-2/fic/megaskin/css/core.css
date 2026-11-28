@@ -287,10 +287,10 @@
 #workskin .dc .pfp.pfp-luca { background-image: linear-gradient(135deg, #8e7cc3, #6fa8dc); }
 
 /* 3. Name colour (every profile): for WhatsApp group names and Discord usernames */
-#workskin .wa .who.pfp-luca, #workskin .dc .dc-name.pfp-luca { color: #1f9e89; }
+#workskin .wa .who.pfp-luca, #workskin .dc .who.pfp-luca { color: #1f9e89; }
 
 /* 4. A different name colour for one app */
-#workskin .dc .dc-name.pfp-luca { color: #e8734a; }
+#workskin .dc .who.pfp-luca { color: #e8734a; }
 
 /* 5. Name (every profile) */
 #workskin .name.pfp-luca::before { content: "Luca"; }
@@ -338,7 +338,7 @@
 
 /* PROFILE: Stan */
 #workskin .pfp.pfp-stan { background-image: url(https://images.squidge.org/images/2026/11/15/GayCrosedHockeySticks.png); }
-#workskin .wa .who.pfp-stan, #workskin .dc .dc-name.pfp-stan { color: #d2782a; }
+#workskin .wa .who.pfp-stan, #workskin .dc .who.pfp-stan { color: #d2782a; }
 #workskin .name.pfp-stan::before { content: "Stan"; }
 #workskin .handle.pfp-stan::after { content: "PuckStan"; }
 #workskin .email.pfp-stan::after { content: "Puckstan@gmail.com"; }
@@ -346,7 +346,7 @@
 /* PROFILE: Yuna - with a second email address for work, acc-work. Add the acc- name:
    <span class="email pfp-yuna acc-work"> */
 #workskin .pfp.pfp-yuna { background-color: #7d4fb0; }
-#workskin .wa .who.pfp-yuna, #workskin .dc .dc-name.pfp-yuna { color: #9a62d0; }
+#workskin .wa .who.pfp-yuna, #workskin .dc .who.pfp-yuna { color: #9a62d0; }
 #workskin .name.pfp-yuna::before { content: "Yuna"; }
 #workskin .pov-shane .name.pfp-yuna::before { content: "Mom"; }
 #workskin .handle.pfp-yuna::after { content: "MetrosMomager"; }
@@ -357,7 +357,7 @@
 
 /* PROFILE: Zim */
 #workskin .pfp.pfp-zim { background-color: #4a6a8f; }
-#workskin .wa .who.pfp-zim, #workskin .dc .dc-name.pfp-zim { color: #5d84b3; }
+#workskin .wa .who.pfp-zim, #workskin .dc .who.pfp-zim { color: #5d84b3; }
 #workskin .name.pfp-zim::before { content: "Jack Zimmerman"; }
 #workskin .tw .name.pfp-zim::before, #workskin .tw-reply .name.pfp-zim::before, #workskin .twdm .name.pfp-zim::before, #workskin .twc12 .name.pfp-zim::before, #workskin .twc16 .name.pfp-zim::before { content: "Zim"; }
 #workskin .handle.pfp-zim::after { content: "JackZim"; }
@@ -373,14 +373,14 @@
 #workskin .ig .pfp.pfp-holster, #workskin .igdm .pfp.pfp-holster { background-color: #c13584; }
 #workskin .tb .pfp.pfp-holster { background-color: #35465c; }
 #workskin .dc .pfp.pfp-holster { background-color: #5865f2; }
-#workskin .wa .who.pfp-holster, #workskin .dc .dc-name.pfp-holster { color: #1aa386; }
+#workskin .wa .who.pfp-holster, #workskin .dc .who.pfp-holster { color: #1aa386; }
 #workskin .name.pfp-holster::before { content: "Holster"; }
 #workskin .handle.pfp-holster::after { content: "HolsterInLaw"; }
 #workskin .email.pfp-holster::after { content: "birka@samwellU.edu"; }
 
 /* PROFILE: Rose - her public accounts (Twitter/X and Instagram) use her full name, and she has a private second account on Instagram, acc-private. */
 #workskin .pfp.pfp-rose { background-color: #c2416b; background-image: url(https://images.squidge.org/images/2026/11/16/RoseHeadshot.jpg); }
-#workskin .wa .who.pfp-rose, #workskin .dc .dc-name.pfp-rose { color: #d6336c; }
+#workskin .wa .who.pfp-rose, #workskin .dc .who.pfp-rose { color: #d6336c; }
 #workskin .name.pfp-rose::before { content: "Rose"; }
 #workskin .tw .name.pfp-rose::before, #workskin .tw-reply .name.pfp-rose::before, #workskin .twdm .name.pfp-rose::before, #workskin .ig .name.pfp-rose::before, #workskin .igdm .name.pfp-rose::before, #workskin .twc12 .name.pfp-rose::before, #workskin .twc16 .name.pfp-rose::before { content: "Rose Landry"; }
 #workskin .handle.pfp-rose::after { content: "PoseyRosey"; }
@@ -396,7 +396,7 @@
 
 /* PROFILE: Shane */
 #workskin .pfp.pfp-shane { background-image: url(https://images.squidge.org/images/2026/11/16/ShaneHockey.png); }
-#workskin .wa .who.pfp-shane, #workskin .dc .dc-name.pfp-shane { color: #3a7bd5; }
+#workskin .wa .who.pfp-shane, #workskin .dc .who.pfp-shane { color: #3a7bd5; }
 #workskin .name.pfp-shane::before { content: "Shane"; }
 #workskin .pov-ilya .name.pfp-shane::before { content: "Jane"; }
 #workskin .handle.pfp-shane::after { content: "ShaneHollanderHockeyPlayer"; }
@@ -409,7 +409,7 @@
 /* PROFILE: Ilya - with two extra accounts, acc-burner (Twitter/X) and acc-shanewife (Twitter/X and Instagram). Add the
    acc- name: <span class="handle pfp-ilya acc-burner"> */
 #workskin .pfp.pfp-ilya { background-color: #b5433a; background-image: url(https://images.squidge.org/images/2026/11/16/IlyaHelmet.png); }
-#workskin .wa .who.pfp-ilya, #workskin .dc .dc-name.pfp-ilya { color: #d65548; }
+#workskin .wa .who.pfp-ilya, #workskin .dc .who.pfp-ilya { color: #d65548; }
 #workskin .name.pfp-ilya::before { content: "Ilya"; }
 #workskin .pov-shane .name.pfp-ilya::before { content: "Lily"; }
 #workskin .handle.pfp-ilya::after { content: "irozanov"; }
@@ -438,8 +438,7 @@
 #workskin .gm .gm-pfp.colour1,
 #workskin .ig .ig-pfp.colour1,
 #workskin .ig-feed .ig-pfp.colour1,
-#workskin .ig .ig-like-pfp.colour1,
-#workskin .dc .dc-name.colour1::before { background-color: #b5733a; }
+#workskin .ig .ig-like-pfp.colour1 { background-color: #b5733a; }
 
 #workskin .mob .avatar.colour2,
 #workskin .tw .tw-pfp.colour2,
@@ -451,8 +450,7 @@
 #workskin .gm .gm-pfp.colour2,
 #workskin .ig .ig-pfp.colour2,
 #workskin .ig-feed .ig-pfp.colour2,
-#workskin .ig .ig-like-pfp.colour2,
-#workskin .dc .dc-name.colour2::before { background-color: #3a3a3c; }
+#workskin .ig .ig-like-pfp.colour2 { background-color: #3a3a3c; }
 
 #workskin .mob .avatar.colour3,
 #workskin .tw .tw-pfp.colour3,
@@ -464,8 +462,7 @@
 #workskin .gm .gm-pfp.colour3,
 #workskin .ig .ig-pfp.colour3,
 #workskin .ig-feed .ig-pfp.colour3,
-#workskin .ig .ig-like-pfp.colour3,
-#workskin .dc .dc-name.colour3::before { background-color: #7a2b4e; }
+#workskin .ig .ig-like-pfp.colour3 { background-color: #7a2b4e; }
 
 #workskin .mob .avatar.colour4,
 #workskin .tw .tw-pfp.colour4,
@@ -477,8 +474,7 @@
 #workskin .gm .gm-pfp.colour4,
 #workskin .ig .ig-pfp.colour4,
 #workskin .ig-feed .ig-pfp.colour4,
-#workskin .ig .ig-like-pfp.colour4,
-#workskin .dc .dc-name.colour4::before { background-color: #2f7d6b; }
+#workskin .ig .ig-like-pfp.colour4 { background-color: #2f7d6b; }
 
 #workskin .mob .avatar.colour5,
 #workskin .tw .tw-pfp.colour5,
@@ -490,8 +486,7 @@
 #workskin .gm .gm-pfp.colour5,
 #workskin .ig .ig-pfp.colour5,
 #workskin .ig-feed .ig-pfp.colour5,
-#workskin .ig .ig-like-pfp.colour5,
-#workskin .dc .dc-name.colour5::before { background-color: #3b5ea8; }
+#workskin .ig .ig-like-pfp.colour5 { background-color: #3b5ea8; }
 
 #workskin .mob .avatar.colour6,
 #workskin .tw .tw-pfp.colour6,
@@ -503,8 +498,7 @@
 #workskin .gm .gm-pfp.colour6,
 #workskin .ig .ig-pfp.colour6,
 #workskin .ig-feed .ig-pfp.colour6,
-#workskin .ig .ig-like-pfp.colour6,
-#workskin .dc .dc-name.colour6::before { background-color: #6b4fa0; }
+#workskin .ig .ig-like-pfp.colour6 { background-color: #6b4fa0; }
 
 #workskin .mob .avatar.colour7,
 #workskin .tw .tw-pfp.colour7,
@@ -516,8 +510,7 @@
 #workskin .gm .gm-pfp.colour7,
 #workskin .ig .ig-pfp.colour7,
 #workskin .ig-feed .ig-pfp.colour7,
-#workskin .ig .ig-like-pfp.colour7,
-#workskin .dc .dc-name.colour7::before { background-color: #a8383b; }
+#workskin .ig .ig-like-pfp.colour7 { background-color: #a8383b; }
 
 #workskin .mob .avatar.colour8,
 #workskin .tw .tw-pfp.colour8,
@@ -529,8 +522,7 @@
 #workskin .gm .gm-pfp.colour8,
 #workskin .ig .ig-pfp.colour8,
 #workskin .ig-feed .ig-pfp.colour8,
-#workskin .ig .ig-like-pfp.colour8,
-#workskin .dc .dc-name.colour8::before { background-color: #4e7a2c; }
+#workskin .ig .ig-like-pfp.colour8 { background-color: #4e7a2c; }
 
 #workskin .mob .avatar.colour9,
 #workskin .tw .tw-pfp.colour9,
@@ -542,8 +534,7 @@
 #workskin .gm .gm-pfp.colour9,
 #workskin .ig .ig-pfp.colour9,
 #workskin .ig-feed .ig-pfp.colour9,
-#workskin .ig .ig-like-pfp.colour9,
-#workskin .dc .dc-name.colour9::before { background-color: #8c6d1f; }
+#workskin .ig .ig-like-pfp.colour9 { background-color: #8c6d1f; }
 
 #workskin .mob .avatar.colour10,
 #workskin .tw .tw-pfp.colour10,
@@ -555,8 +546,7 @@
 #workskin .gm .gm-pfp.colour10,
 #workskin .ig .ig-pfp.colour10,
 #workskin .ig-feed .ig-pfp.colour10,
-#workskin .ig .ig-like-pfp.colour10,
-#workskin .dc .dc-name.colour10::before { background-color: #2a7390; }
+#workskin .ig .ig-like-pfp.colour10 { background-color: #2a7390; }
 
 /* names: a bit brighter than the circles, so they are easy to read as text.
    In a WhatsApp quoted reply, the colour goes on the line down the side and the name. */
@@ -682,7 +672,7 @@
 #workskin .wa.theme-dark .quote.colour10 { border-left-color: #53bdeb; }
 
 /* Discord's dark grey would hide the colour2 circle, so it is a little lighter there */
-#workskin .dc.theme-dark .dc-name.colour2::before { background-color: #5c5c60; }
+#workskin .dc.theme-dark .avatar.colour2 { background-color: #5c5c60; }
 
 /* names in the auto theme: the dark shades when the reader's device is in dark mode */
 @media (prefers-color-scheme: dark) {
@@ -747,7 +737,7 @@
   #workskin .wa.theme-auto .quote.colour10 { border-left-color: #53bdeb; }
 
   /* Discord's dark grey would hide the colour2 circle, so it is a little lighter there */
-  #workskin .dc.theme-auto .dc-name.colour2::before { background-color: #5c5c60; }
+  #workskin .dc.theme-auto .avatar.colour2 { background-color: #5c5c60; }
 }
 
 /* ---- typing dots: a message from whoever is typing, ending in three empty spans. The same in every chat app:
@@ -937,8 +927,7 @@
 #workskin .twdm .edited.out { text-align: right; }
 
 /* the message being replied to */
-#workskin .imsg .quote,
-#workskin .dc .quote {
+#workskin .imsg .quote {
   display: table;
   max-width: 70%;
   margin: 0.2em 0;
@@ -950,8 +939,7 @@
   opacity: 0.8;
 }
 
-#workskin .imsg .quote.out,
-#workskin .dc .quote.out { margin-left: auto; }
+#workskin .imsg .quote.out { margin-left: auto; }
 
 /* in iMessage and WhatsApp "in" and "out" colour a bubble, and these lines are not bubbles */
 #workskin .imsg p.reply.in,
@@ -1059,6 +1047,27 @@
 #workskin .imsg .row { position: relative; padding-left: 34px; }
 
 #workskin .imsg .row > .avatar { position: absolute; left: 0; bottom: 0.2em; }
+
+/* the time after a name, the Discord way */
+#workskin .imsg .who .time,
+#workskin .wa .who .time,
+#workskin .igdm .who .time,
+#workskin .twdm .who .time {
+  display: inline;
+  float: none;
+  position: static;
+  margin: 0 0 0 0.4em;
+  padding: 0;
+  font-size: 0.9em;
+  font-weight: normal;
+  opacity: 0.7;
+}
+
+/* the little picture in a Discord reply */
+#workskin .imsg .reply .avatar,
+#workskin .wa .reply .avatar,
+#workskin .igdm .reply .avatar,
+#workskin .twdm .reply .avatar { display: none; }
 
 /* link cards */
 #workskin .imsg .link-card,
