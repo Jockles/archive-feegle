@@ -2,14 +2,7 @@
 
 /* ---------- MODULE: DISCORD   (classes: dc) ---------- */
 
-#workskin .dc.narrow {
-  width: 380px;
-  max-width: 100%;
-  margin: 1.2em auto;
-}
-
 #workskin .dc {
-  margin: 1.2em 0;
   position: relative;
   padding: 0 0 1rem 0;
   font-family: Whitney, "Helvetica Neue", Helvetica, Arial, sans-serif;

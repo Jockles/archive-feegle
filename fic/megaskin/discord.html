@@ -7,7 +7,7 @@
   <title>Megaskin, Chapter 18: Discord | jockles.com</title>
   <link rel="stylesheet" href="../../style.css">
   <script src="../../theme.js"></script>
-  <link rel="stylesheet" href="megaskin.css?v=af2c923f" id="creator-style">
+  <link rel="stylesheet" href="megaskin.css?v=7f91a588" id="creator-style">
 </head>
 <body>
 <header>
@@ -98,7 +98,7 @@
 
 <h4 id="s18-1-1">18.1.1 A Server Channel</h4>
 
-<div class="dc theme-auto">
+<div class="mob dc theme-auto">
   <div class="dc-header hashtag">
     <h3><span class="hide"># </span>general<span class="dc-header-divider"></span><span class="hide">: </span><span class="dc-topic">for general conversation (keep it clean!)</span></h3>
   </div>
@@ -207,7 +207,7 @@
 <details>
 <summary>The full HTML for this chat</summary>
 
-<pre><code>&lt;div class="dc theme-auto"&gt;
+<pre><code>&lt;div class="mob dc theme-auto"&gt;
   &lt;div class="dc-header hashtag"&gt;
     &lt;h3&gt;&lt;span class="hide"&gt;# &lt;/span&gt;general&lt;span class="dc-header-divider"&gt;&lt;/span&gt;&lt;span class="hide"&gt;: &lt;/span&gt;&lt;span class="dc-topic"&gt;for general conversation (keep it clean!)&lt;/span&gt;&lt;/h3&gt;
   &lt;/div&gt;
@@ -318,7 +318,7 @@
 <h4 id="s18-1-2">18.1.2 A Direct Message</h4>
 
 
-<div class="dc theme-auto">
+<div class="mob dc theme-auto">
   <div class="dc-header at-symbol">
     <h3><span class="hide">@ </span>DropSomeKnowledge</h3>
   </div>
@@ -341,7 +341,7 @@
 <details>
 <summary>The full HTML for this chat</summary>
 
-<pre><code>&lt;div class="dc theme-auto"&gt;
+<pre><code>&lt;div class="mob dc theme-auto"&gt;
   &lt;div class="dc-header at-symbol"&gt;
     &lt;h3&gt;&lt;span class="hide"&gt;@ &lt;/span&gt;DropSomeKnowledge&lt;/h3&gt;
   &lt;/div&gt;
@@ -367,9 +367,9 @@
 
 <p>The first step is a container for the Discord window:</p>
 
-<div class="dc theme-auto"></div>
+<div class="mob dc theme-auto"></div>
 
-<pre><code>&lt;div class="dc theme-auto"&gt;&lt;/div&gt;</code></pre>
+<pre><code>&lt;div class="mob dc theme-auto"&gt;&lt;/div&gt;</code></pre>
 
 <p><code>dc</code> is the module class for Discord, and <code>theme-auto</code> shows it in Discord's dark or light mode to match the reader. Everything else in this chapter goes inside this container.</p>
 
@@ -381,9 +381,9 @@
 </details>
 
 <details>
-<summary>How it works: the odd one out</summary>
+<summary>Options: Discord at full width</summary>
 
-<p>Discord is the odd one out - it doesn't use <code>mob</code>, and it's full width instead of phone width.</p>
+<p>Discord is the width of a phone like every other chat, but it's the one skin that's optimised for working full width too. Add <code>wide</code> to the container for Discord on a computer (see <a href="core.html#width">Phone Width or Full Width</a>).</p>
 
 </details>
 
@@ -393,7 +393,7 @@
 
 <p>For a channel header, use this:</p>
 
-<div class="dc theme-auto">
+<div class="mob dc theme-auto">
   <div class="dc-header hashtag">
     <h3><span class="hide"># </span>general<span class="dc-header-divider"></span><span class="hide">: </span><span class="dc-topic">for general conversation (keep it clean!)</span></h3>
   </div>
@@ -426,7 +426,7 @@
 
 <p>For a DM, use <code>at-symbol</code> on the channel header, with the person's name, and put their name in the chat box too, like the direct message at the top of the chapter:</p>
 
-<div class="dc theme-auto">
+<div class="mob dc theme-auto">
   <div class="dc-header at-symbol">
     <h3><span class="hide">@ </span>DropSomeKnowledge</h3>
   </div>
@@ -439,7 +439,7 @@
 <details>
 <summary>Options: a DM on one character's account</summary>
 
-<p>If the DM is on one character's account, add <code>pov-</code> and their profile name to the container, like <code>&lt;div class=&quot;dc theme-auto pov-shane&quot;&gt;</code>, and anyone with a profile shows up under whatever nickname Shane has given them. Their pictures stay the same - Discord doesn't let you change someone else's (see <a href="core.html#s2-5-3-2">Their Phone</a>).</p>
+<p>If the DM is on one character's account, add <code>pov-</code> and their profile name to the container, like <code>&lt;div class=&quot;mob dc theme-auto pov-shane&quot;&gt;</code>, and anyone with a profile shows up under whatever nickname Shane has given them. Their pictures stay the same - Discord doesn't let you change someone else's (see <a href="core.html#s2-5-3-2">Their Phone</a>).</p>
 
 </details>
 
@@ -449,7 +449,7 @@
 
 <p>For the "Message #general" box at the bottom of the window, use this, with your own channel name in place of the text. It goes after all of the messages:</p>
 
-<div class="dc theme-auto">
+<div class="mob dc theme-auto">
   <div class="dc-footer">
     <p><span class="dc-field">Message #general</span></p>
   </div>
@@ -463,7 +463,7 @@
 
 <p>To show that one or more people are typing, add this <em>after</em> the chat box:</p>
 
-<div class="dc theme-auto">
+<div class="mob dc theme-auto">
   <p class="dc-typing typing-indicator"><span></span><span></span><span></span><b>SwankyUsername</b> and <b>DropSomeKnowledge</b> are typing...</p>
 </div>
 
@@ -478,7 +478,7 @@
 <details>
 <summary>Options: showing the whole conversation</summary>
 
-<p>If you'd rather show the whole conversation at once, add <code>no-scroll</code> to the container: <code>&lt;div class=&quot;dc theme-auto no-scroll&quot;&gt;</code>. The window then grows as tall as it needs to. That's worth doing for a short burst of messages in the middle of a scene, so nobody misses a message tucked away in a scroll box (see <a href="core.html#scrolling">Scrolling Long Chats</a>).</p>
+<p>If you'd rather show the whole conversation at once, add <code>no-scroll</code> to the container: <code>&lt;div class=&quot;mob dc theme-auto no-scroll&quot;&gt;</code>. The window then grows as tall as it needs to. That's worth doing for a short burst of messages in the middle of a scene, so nobody misses a message tucked away in a scroll box (see <a href="core.html#scrolling">Scrolling Long Chats</a>).</p>
 
 </details>
 
@@ -495,7 +495,7 @@
 
 <p>A Discord message needs three things: a name, a timestamp and the message itself. They all go inside a <code>div</code> with the class <code>dc-message</code>:</p>
 
-<div class="dc theme-auto">
+<div class="mob dc theme-auto">
   <div class="dc-message">
     <p><b class="dc-name colour1">SwankyUsername</b> <span class="dc-time">10/01/2022</span></p>
     <p><span class="dc-text">Hello, world! Testing ordinary text.</span></p>
@@ -521,7 +521,7 @@
 
 <p>The message itself goes in <code>dc-text</code>. To write a message over several lines, give each line its own <code>dc-text</code> and put a line break between them:</p>
 
-<div class="dc theme-auto">
+<div class="mob dc theme-auto">
   <div class="dc-message">
     <p><b class="dc-name colour1">SwankyUsername</b> <span class="dc-time">10/01/2022</span></p>
     <p><span class="dc-text">Robots will take over the <b>world</b>.</span><br> <span class="dc-text">You <i>will</i> see.</span></p>
@@ -539,7 +539,7 @@
 
 <p>To reply to a message, add a <code>dc-reply</code> paragraph inside the message container, <em>before</em> the name line:</p>
 
-<div class="dc theme-auto">
+<div class="mob dc theme-auto">
   <div class="dc-message">
     <p class="dc-reply"><span class="hide">Replying to message by: </span> <b class="dc-name colour1">SwankyUsername</b> <span class="dc-text">Robots will take over the world.</span></p>
     <p><b class="dc-name colour6">DropSomeKnowledge</b> <span class="dc-time">Yesterday at 9:40 AM</span></p>
@@ -568,7 +568,7 @@
 
 <p>For the little "(edited)" tag at the end of a message, add a <code>dc-edited</code> span inside the <code>dc-text</code>:</p>
 
-<div class="dc theme-auto">
+<div class="mob dc theme-auto">
   <div class="dc-message">
     <p><b class="dc-name colour1">SwankyUsername</b> <span class="dc-time">10/01/2022</span></p>
     <p><span class="dc-text">ok that was dramatic of me<span class="dc-edited"> (edited)</span></span></p>
@@ -584,7 +584,7 @@
 
 <p>For reactions under a message, put each one in a span with <code>dc-reaction</code>, with the emoji first and the count in <code>dc-reaction-count</code>:</p>
 
-<div class="dc theme-auto">
+<div class="mob dc theme-auto">
   <div class="dc-message">
     <p><span class="dc-reaction"> 😡<span class="dc-reaction-count">12</span><span class="hide"> </span> </span> <span class="dc-reaction me"> 😂<span class="dc-reaction-count">14</span><span class="hide"> </span> </span></p>
   </div>
@@ -612,7 +612,7 @@
 
 <p>To hide a word until the reader clicks it, wrap it in <code>dc-spoiler-text</code>:</p>
 
-<div class="dc theme-auto">
+<div class="mob dc theme-auto">
   <div class="dc-message">
     <p><b class="dc-name colour6">DropSomeKnowledge</b> <span class="dc-time">Yesterday at 9:41 AM</span></p>
     <p><span class="dc-text">also the robot is <span class="dc-spoiler-text">my cat on the keyboard</span>, you know</span></p>
@@ -628,7 +628,7 @@
 
 <p>For an @mention, wrap it in a span with <code>dc-mention</code>, inside a <code>dc-text</code>:</p>
 
-<div class="dc theme-auto">
+<div class="mob dc theme-auto">
   <div class="dc-message">
     <p><b class="dc-name colour1">SwankyUsername</b> <span class="dc-time">Yesterday at 11:15 PM</span></p>
     <p><span class="dc-text">hey <span class="dc-mention">@DropSomeKnowledge</span> your cat is a genius</span></p>
@@ -645,7 +645,7 @@
 
 <p>If you want it to look like your point-of-view character is the one being mentioned, add the class <code>me</code>. The whole message is then highlighted with a gold bar down the side:</p>
 
-<div class="dc theme-auto">
+<div class="mob dc theme-auto">
   <div class="dc-message">
     <p><b class="dc-name colour6">DropSomeKnowledge</b> <span class="dc-time">Yesterday at 11:20 PM</span></p>
     <p><span class="dc-text">yo <span class="dc-mention me">@ElDorado</span> wake up, you're missing this</span></p>
@@ -664,7 +664,7 @@
 
 <p>You can mention a role too, like @losers, with <code>dc-role-mention</code>:</p>
 
-<div class="dc theme-auto">
+<div class="mob dc theme-auto">
   <div class="dc-message">
     <p><b class="dc-name colour1">SwankyUsername</b> <span class="dc-time">Yesterday at 11:21 PM</span></p>
     <p><span class="dc-text">hey <span class="dc-role-mention">@losers</span> look at this</span></p>
@@ -682,7 +682,7 @@
 
 <p>To make it look like a character has quoted someone, or sent some code, use these:</p>
 
-<div class="dc theme-auto">
+<div class="mob dc theme-auto">
   <div class="dc-message">
     <p><b class="dc-name colour1">SwankyUsername</b> <span class="dc-time">Today at 9:12 AM</span></p>
     <p><span class="dc-quote"> <span class="dc-quote-line"></span> <span class="dc-text dc-quote-text">this is the best thing I've ever watched</span> </span></p>
@@ -700,7 +700,7 @@
 
 <p>To show time passing, add a date divider between messages:</p>
 
-<div class="dc theme-auto">
+<div class="mob dc theme-auto">
   <div class="dc-divider">
     <p><span class="dc-divider-label">October 2, 2022</span></p>
   </div>
@@ -715,7 +715,7 @@
 
 <p>To split old messages from new ones, add a red line with a NEW tag:</p>
 
-<div class="dc theme-auto">
+<div class="mob dc theme-auto">
   <div class="dc-new-divider">
     <p><span class="dc-new-tag">New</span></p>
   </div>
@@ -732,7 +732,7 @@
 
 <p>If the date has changed and there are new messages, you can use both in one line:</p>
 
-<div class="dc theme-auto">
+<div class="mob dc theme-auto">
   <div class="dc-new-divider">
     <p><span class="dc-divider-label">October 3, 2022</span><span class="hide"> - </span><span class="dc-new-tag">New</span></p>
   </div>
@@ -748,7 +748,7 @@
 
 <p>To show that someone has joined the server, use a message with <code>dc-new-user</code> instead of the name and text:</p>
 
-<div class="dc theme-auto">
+<div class="mob dc theme-auto">
   <div class="dc-message">
     <p><span class="dc-new-user">Welcome, <b class="colour4">BugsPunny</b>. We hope you brought pizza.</span> <span class="dc-time">Yesterday at 6:12 AM</span></p>
   </div>
@@ -762,7 +762,7 @@
 
 <p>To give a user the BOT tag, add an empty span with the class <code>dc-bot</code> after their name:</p>
 
-<div class="dc theme-auto">
+<div class="mob dc theme-auto">
   <div class="dc-message">
     <p><b class="dc-name colour4">BugsPunny</b> <span class="dc-bot"></span><span class="hide"> [Verified Bot] </span> <span class="dc-time">Yesterday at 6:12 AM</span></p>
     <p><span class="dc-text">beep boop. ALL HAIL OUR ROBOT OVERLORDS</span></p>
@@ -780,7 +780,7 @@
 
 <p>To send a picture, put a <code>dc-photos one</code> line in a message, with one <code>dc-photo</code> inside it holding the image tag, the same as in every chat app. The web address of the image goes in <code>src</code>. Always fill in the <code>alt</code> text, so anyone using a screen reader knows what's in the picture:</p>
 
-<div class="dc theme-auto">
+<div class="mob dc theme-auto">
   <div class="dc-message">
     <p><b class="dc-name colour1">SwankyUsername</b> <span class="dc-time">Today at 9:02 AM</span></p>
     <p><span class="dc-text">my captain</span></p>
@@ -809,7 +809,7 @@
 
 <p>You can hide an image the same way. Add <code>dc-spoiler</code> to the <code>dc-photo</code>, and the word SPOILER is added on top for you:</p>
 
-<div class="dc theme-auto">
+<div class="mob dc theme-auto">
   <div class="dc-message">
     <p><b class="dc-name colour6">DropSomeKnowledge</b> <span class="dc-time">Yesterday at 9:42 AM</span></p>
     <p class="dc-photos one">
@@ -829,7 +829,7 @@
 
 <p>For the preview box Discord makes when someone posts a link, add a <code>dc-embed</code> after the line with the link in it:</p>
 
-<div class="dc theme-auto">
+<div class="mob dc theme-auto">
   <div class="dc-message">
     <p><b class="dc-name colour6">DropSomeKnowledge</b> <span class="dc-time">Today at 9:10 AM</span></p>
     <p><span class="dc-text">this is the best thing I've ever watched <span class="dc-link">https://youtube.com/watch?v=robots</span></span></p>
@@ -860,7 +860,7 @@
 
 <p>Add one of <code>colour1</code> to <code>colour10</code> to the <code>dc-name</code> - it colours both the name and the round profile picture. Discord doesn't put initials in the circle, so this way gives a plain coloured circle:</p>
 
-<div class="dc theme-auto">
+<div class="mob dc theme-auto">
   <div class="dc-message">
     <p><b class="dc-name colour1">mackattack</b> <span class="dc-time">Today at 9:12 AM</span></p>
     <p><span class="dc-text">who has the aux at practice</span></p>
@@ -895,7 +895,7 @@
 
 <p>For an uploaded picture, put a <code>dc-pfp</code> span first inside the name, with the picture tag in a <code>pfp</code> span with alt text, and type the username after it. Add a colour class for the name colour:</p>
 
-<div class="dc theme-auto">
+<div class="mob dc theme-auto">
   <div class="dc-message">
     <p><b class="dc-name colour6"><span class="dc-pfp"><span class="pfp"><img src="https://images.squidge.org/images/2026/11/16/Cat2.jpg" alt="Profile picture of samthecat, a black and white cat screaming at the camera"></span></span>samthecat</b> <span class="dc-time">Today at 9:16 AM</span></p>
     <p><span class="dc-text">not me, I'm a cat</span></p>
@@ -917,7 +917,7 @@
 
 <p>Replies show a little picture too, so copy the same <code>dc-pfp</code> into the name in the <code>dc-reply</code> line. marlavender's picture is a wide one, so it has <code>class=&quot;landscape&quot;</code>:</p>
 
-<div class="dc theme-auto">
+<div class="mob dc theme-auto">
   <div class="dc-message">
     <p><b class="dc-name colour6"><span class="dc-pfp"><span class="pfp"><img src="https://images.squidge.org/images/2026/11/16/Cat2.jpg" alt="Profile picture of Sam, a black and white cat screaming at the camera"></span></span>samthecat</b> <span class="dc-time">Today at 7:02 PM</span></p>
     <p><span class="dc-text">does anyone have a spare skate key</span></p>
@@ -945,7 +945,7 @@
 
 <p>To use a character's profile, put a <code>dc-pfp</code> span first inside the name, with their profile in it, the same as the other modules, and add their profile name to <code>dc-name</code> for their name colour. That gives them the picture and the name colour from their profile, so you can leave out the colour class:</p>
 
-<div class="dc theme-auto">
+<div class="mob dc theme-auto">
   <div class="dc-message">
     <p><b class="dc-name pfp-shane"><span class="dc-pfp"><span class="pfp pfp-shane"></span></span><span class="handle pfp-shane"><span class="hide">shanehollander</span></span></b> <span class="dc-time">Today at 9:15 AM</span></p>
     <p><span class="dc-text">some of us have practice at 10. please stop pinging the whole server</span></p>
@@ -968,14 +968,14 @@
 
 <p>You don't need a whole channel. Any part works by itself inside its container. Here's one message with no header and no message box:</p>
 
-<div class="dc theme-auto">
+<div class="mob dc theme-auto">
   <div class="dc-message">
     <p><b class="dc-name colour1">mackattack</b> <span class="dc-time">Today at 9:12 AM</span></p>
     <p><span class="dc-text">who has the aux at practice</span></p>
   </div>
 </div>
 
-<pre><code>&lt;div class="dc theme-auto"&gt;
+<pre><code>&lt;div class="mob dc theme-auto"&gt;
   &lt;div class="dc-message"&gt;
     &lt;p&gt;&lt;b class="dc-name colour1"&gt;mackattack&lt;/b&gt; &lt;span class="dc-time"&gt;Today at 9:12 AM&lt;/span&gt;&lt;/p&gt;
     &lt;p&gt;&lt;span class="dc-text"&gt;who has the aux at practice&lt;/span&gt;&lt;/p&gt;

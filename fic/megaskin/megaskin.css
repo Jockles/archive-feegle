@@ -57,8 +57,7 @@
 }
 
 /* a part on its own: add "loose" and the box shrinks to fit what's inside it */
-#workskin .mob.loose.loose,
-#workskin .dc.loose.loose {
+#workskin .mob.loose.loose {
   display: table;
   width: auto;
   max-width: 100%;
@@ -7580,14 +7579,7 @@
 
 /* ---------- MODULE: DISCORD   (classes: dc) ---------- */
 
-#workskin .dc.narrow {
-  width: 380px;
-  max-width: 100%;
-  margin: 1.2em auto;
-}
-
 #workskin .dc {
-  margin: 1.2em 0;
   position: relative;
   padding: 0 0 1rem 0;
   font-family: Whitney, "Helvetica Neue", Helvetica, Arial, sans-serif;
