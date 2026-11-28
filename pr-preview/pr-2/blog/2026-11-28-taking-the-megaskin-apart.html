@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-Clacks-Overhead" content="GNU Terry Pratchett">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Taking the Megaskin apart | jockles.com</title>
+  <!-- site meta -->
+  <link rel="icon" href="/favicon.ico?v=3" sizes="32x32">
+  <link rel="icon" href="/images/favicon.svg?v=3" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/images/apple-touch-icon.png?v=3">
+  <meta name="theme-color" content="#6c392a">
+  <meta name="description" content="In the roadmap post I said the next job was a bit of a code tidy-up. A quick rename, make the class names a bit more consistent, done by the weekend. Alas.">
+  <link rel="canonical" href="https://jockles.com/blog/2026-11-28-taking-the-megaskin-apart.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="jockles.com">
+  <meta property="og:title" content="Taking the Megaskin apart">
+  <meta property="og:description" content="In the roadmap post I said the next job was a bit of a code tidy-up. A quick rename, make the class names a bit more consistent, done by the weekend. Alas.">
+  <meta property="og:url" content="https://jockles.com/blog/2026-11-28-taking-the-megaskin-apart.html">
+  <meta property="og:image" content="https://jockles.com/images/social-card.png?v=3">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="jockles.com: All the Fannish things I do.">
+  <meta name="twitter:card" content="summary_large_image">
+  <!-- /site meta -->
+  <link rel="stylesheet" href="../style.css?v=c31c06ea">
+  <script src="../theme.js?v=c50fd7c2"></script>
+</head>
+<body>
+<header>
+  <h1><a href="../index.html">jockles.com</a></h1>
+  <p>All the Fannish things I do.</p>
+</header>
+<nav>
+  <ul>
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../fic/index.html">Fic</a></li>
+    <li><a href="../videos/index.html">Videos</a></li>
+    <li><a href="../blog/index.html">Blog</a></li>
+    <li><a href="../links.html">Links</a></li>
+    <li class="menu-drop"><span class="menu-drop-label" tabindex="0">Tools</span>
+      <ul>
+        <li><a href="../fic/megaskin/fic-builder.html">Megaskin Fic-Builder</a></li>
+        <li><a href="../fic/megaskin/profile-maker.html">Megaskin Profile-Builder</a></li>
+      </ul>
+    </li>
+    <li><a href="../about.html">About</a></li>
+  </ul>
+</nav>
+<main>
+      <h2>Taking the Megaskin apart</h2>
+      <p><i>Posted 28-11-2026</i></p>
+
+      <p>In the <a href="2026-11-21-megaskin-roadmap.html">roadmap post</a> I said the next job was a bit of a code tidy-up. A quick rename, make the class names a bit more consistent, done by the weekend. Alas.</p>
+
+      <p>It turned into me taking the whole <a href="../fic/megaskin/index.html">Megaskin</a> apart and putting it back together, and honestly I'm really pleased with what came out the other end. None of it is live yet. It's all going up in one go, so this is a sneak peek at what's coming and why.</p>
+
+      <h3>Why bother?</h3>
+      <p>The Megaskin started as a pile of separate skins. I built each app at a different time, borrowing from different people's skins, and every time I learned a new trick I did the next app a bit differently. So by the end, the same thing had four different names depending on which app you were in. Reactions were written one way in WhatsApp, another way in Instagram, and a third way in iMessage. Same with replies, typing dots, photos, the bar you type in&hellip; you get the idea.</p>
+      <p>That's fine if you're me and you wrote it. It's not fine if you've never touched code before and you're trying to work out why your Instagram post looks nothing like the tutorial. And that's who the Megaskin is for. I want someone with no coding experience at all to be able to open the code and actually read it.</p>
+
+      <h3>Step one: names</h3>
+      <p>Every class is now the app's name plus one plain word. <code>tw-photo</code> is a photo on Twitter. <code>ig-photo</code> is a photo on Instagram. No abbreviations I'd have to explain, no clever names that only made sense at 2am. Over a hundred classes got renamed.</p>
+      <p>If you've already posted a fic with the old Megaskin, don't panic. I've built a little converter that swaps the old names for the new ones, so give me a shout and I'll send it your way.</p>
+
+      <h3>Step two: every box is built the same way</h3>
+      <p>This was the big one. I sat down and wrote myself a rulebook for how every single module has to be built, and then went back and made every app follow it.</p>
+      <ul>
+        <li><b>An app has a header, a body and a footer.</b> The header is the bar along the top, the body holds all the messages or posts, and the footer is the bar along the bottom.</li>
+        <li><b>A message or a post has a top, a main bit and a bottom.</b> And those go where the real app puts them. A sender's name sits on top. A timestamp sits at the bottom. iMessage tapbacks sit <i>above</i> the bubble, so they're top. WhatsApp reactions sit <i>under</i> it, so they're bottom.</li>
+        <li><b>One part per line, in order.</b> Top, then main, then bottom, each on its own line, so you can read the code from top to bottom the same way you read the chat.</li>
+      </ul>
+      <p>That last one made me nervous, because AO3 has opinions about line breaks and I was worried it would add random gaps everywhere. So I tested it: one Tumblr post with everything crammed on one line, and the same post split over several lines. On AO3 they look identical. Phew.</p>
+      <p>Instagram and Twitter don't have a footer, and that's on purpose. In the real apps, the bar along the bottom disappears as you scroll, and there's just no satisfying way to do that in an AO3 skin. The "Tweet your reply" bar is still there, but only under a tweet you've opened, as the bottom of that tweet.</p>
+
+      <h3>Step three: same part, same word</h3>
+      <p>Then I went through every app side by side and made a decision for every single mismatch. Something like thirty of them, in one morning. Very glamorous.</p>
+      <p>So now every chat app uses the same plain word for the same part, with no app name in front of it at all. The bar you type in is <code>msgbar</code>. The little row of emojis is <code>reacts</code>. The picture circle is <code>avatar</code>. A reply is <code>reply</code>. Describing a photo for readers who can't see it is <code>img-desc</code> everywhere, and <code>video-desc</code> for videos. Learn it once, use it in every app.</p>
+
+      <h3>The bit I'm most excited about</h3>
+      <p>Because the chats are all built from the same parts now, you can change <i>one word</i> on the top line and the whole chat turns into a different app. Write a conversation in iMessage, change <code>imsg</code> to <code>wa</code>, and it's a WhatsApp chat. Change it to <code>igdm</code> and it's an Instagram DM. Twitter DMs and Discord too.</p>
+      <p>The bubbles turned out to just be decoration. Discord doesn't have bubbles at all, only a picture, a name and lines of text, but underneath it's the same chat. So I rebuilt Discord from scratch to match the others, and while I was in there I made it phone-sized by default, like every other app. It used to be the only one that sprawled across the whole page.</p>
+      <p>It's not always a perfect copy. Discord shows "Shane is typing&hellip;" in a line under the message bar, while the other apps show the dots as a bubble at the end of the chat, so if you flip one to the other the typing line stays where you wrote it. But nothing breaks and everything still shows up, which is more than I expected when I started.</p>
+
+      <h3>Other things that snuck in</h3>
+      <ul>
+        <li><b>Email is two modules now.</b> Gmail and the plain email window are separate, the same way Classic Twitter has its 2012 and 2016 looks, so you only paste in the one you need.</li>
+        <li><b>Verified ticks live in the profile.</b> Set a character up as verified once and the tick follows them around Twitter and Instagram, like Tumblr's checkmarks already did. And it works per account, so their main account can be verified while their private one isn't. You can still add one by hand if you want.</li>
+        <li><b>Profile pictures that change.</b> If a character changes their picture halfway through your fic, you can give them a second (and third) one without making a whole new profile.</li>
+        <li><b>The tutorial follows the same rules.</b> Every chapter teaches things in the same order, and every feature is in the big example at the top of its chapter. When a section explains something, it takes apart that top example instead of making up a new one.</li>
+        <li><b>The <a href="../fic/megaskin/fic-builder.html">Fic Builder</a> matches.</b> Its settings go in the same order as the skin: header, body, footer, then top, main and bottom for each message or post. It writes the new names, and it still reads the old ones.</li>
+      </ul>
+
+      <h3>What's next</h3>
+      <p>The feeds are getting the same treatment as the chats right now. Every tweet, Instagram post and Tumblr post becomes a <code>post</code>, and the likes, reposts, comments and so on all get the same names. The end goal is that you can flip a tweet into an Instagram post just like you can flip a chat.</p>
+      <p>Then it's going up on the site, and then the big AO3 update, which is going to be a fun day of copying and pasting twenty-one chapters. Yay???</p>
+
+      <p>As always, if something doesn't make sense, or you've found a bit I missed, come and yell at me on <a href="https://multishipperpirateking.tumblr.com">Tumblr</a>.</p>
+
+      <p><a href="index.html">&larr; All posts</a></p>
+</main>
+<footer>
+  Made by hand in HTML &amp; CSS. No trackers, no cookies, no ads. &middot; <a href="https://buymeacoffee.com/jockles">Support Me</a>
+</footer>
+</body>
+</html>
