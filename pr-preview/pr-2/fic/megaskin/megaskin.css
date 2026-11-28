@@ -350,6 +350,10 @@
 #workskin .tb .handle.pfp-luca.acc-rpf::after { background-image: url(https://images.squidge.org/images/2026/11/16/tb-checks-4.png); padding-right: 3.95em; }
 /* 15. A rounded square picture on Tumblr instead of a circle, everywhere this blog shows up */
 #workskin .tb .pfp.pfp-luca.acc-art { border-radius: 15%; }
+/* 16. A picture that changes partway through the fic: give each new picture an alt-pfp name,
+   and add that name in your HTML from the point it changes: <span class="pfp pfp-luca alt-pfp1"> */
+#workskin .pfp.pfp-luca.alt-pfp1 { background-image: url(https://images.squidge.org/images/2026/11/16/LucaMain.png); }
+#workskin .pfp.pfp-luca.alt-pfp2 { background-image: url(https://images.squidge.org/images/2026/11/16/LucaPriv.png); }
 
 /* PROFILE: Stan */
 #workskin .pfp.pfp-stan { background-image: url(https://images.squidge.org/images/2026/11/15/GayCrosedHockeySticks.png); }
