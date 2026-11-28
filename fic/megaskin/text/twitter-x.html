@@ -2211,7 +2211,7 @@
   </div>
   <p class="twdm-footer">
     <span class="twdm-plus">+</span><span class="hide"> </span>
-    <span class="twdm-field">Message<span class="hide"> </span><span class="ic ic-mic">&#127908;</span></span>
+    <span class="twdm-msgbar">Message<span class="hide"> </span><span class="ic ic-mic">&#127908;</span></span>
   </p>
   <p class="tw-nav">
     <span class="ic ic-tw-home">&#8962;</span>
@@ -2273,7 +2273,7 @@
   &lt;/div&gt;
   &lt;p class="twdm-footer"&gt;
     &lt;span class="twdm-plus"&gt;+&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;
-    &lt;span class="twdm-field"&gt;Message&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="ic ic-mic"&gt;&amp;#127908;&lt;/span&gt;&lt;/span&gt;
+    &lt;span class="twdm-msgbar"&gt;Message&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="ic ic-mic"&gt;&amp;#127908;&lt;/span&gt;&lt;/span&gt;
   &lt;/p&gt;
   &lt;p class="tw-nav"&gt;
     &lt;span class="ic ic-tw-home"&gt;&amp;#8962;&lt;/span&gt;
@@ -2326,7 +2326,7 @@
   </div>
   <p class="twdm-footer">
     <span class="twdm-plus">+</span><span class="hide"> </span>
-    <span class="twdm-field">Message<span class="hide"> </span><span class="ic ic-mic">&#127908;</span></span>
+    <span class="twdm-msgbar">Message<span class="hide"> </span><span class="ic ic-mic">&#127908;</span></span>
   </p>
   <p class="tw-nav">
     <span class="ic ic-tw-home">&#8962;</span>
@@ -2378,7 +2378,7 @@
   &lt;/div&gt;
   &lt;p class="twdm-footer"&gt;
     &lt;span class="twdm-plus"&gt;+&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;
-    &lt;span class="twdm-field"&gt;Message&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="ic ic-mic"&gt;&amp;#127908;&lt;/span&gt;&lt;/span&gt;
+    &lt;span class="twdm-msgbar"&gt;Message&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="ic ic-mic"&gt;&amp;#127908;&lt;/span&gt;&lt;/span&gt;
   &lt;/p&gt;
   &lt;p class="tw-nav"&gt;
     &lt;span class="ic ic-tw-home"&gt;&amp;#8962;&lt;/span&gt;
@@ -2445,35 +2445,35 @@
 
 <h5>The Message Bar</h5>
 
-<p>To finish off the window, add the message bar after the body, inside the container. It's built the same way as iMessage's: the round <code>twdm-plus</code> button, then the <code>twdm-field</code> box with the word in it and the microphone at the end. The hide spans keep a space between the parts for readers with the workskin off:</p>
+<p>To finish off the window, add the message bar after the body, inside the container. It's built the same way as iMessage's: the round <code>twdm-plus</code> button, then the <code>twdm-msgbar</code> box with the word in it and the microphone at the end. The hide spans keep a space between the parts for readers with the workskin off:</p>
 
 <div class="mob twdm theme-auto">
   <p class="twdm-footer">
     <span class="twdm-plus">+</span><span class="hide"> </span>
-    <span class="twdm-field">Message<span class="hide"> </span><span class="ic ic-mic">&#127908;</span></span>
+    <span class="twdm-msgbar">Message<span class="hide"> </span><span class="ic ic-mic">&#127908;</span></span>
   </p>
 </div>
 
 <pre><code>&lt;p class="twdm-footer"&gt;
   &lt;span class="twdm-plus"&gt;+&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;
-  &lt;span class="twdm-field"&gt;Message&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="ic ic-mic"&gt;&amp;#127908;&lt;/span&gt;&lt;/span&gt;
+  &lt;span class="twdm-msgbar"&gt;Message&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="ic ic-mic"&gt;&amp;#127908;&lt;/span&gt;&lt;/span&gt;
 &lt;/p&gt;</code></pre>
 
 <details>
 <summary>Options: a half-written message</summary>
 
-<p>For a half-written message, add <code>typed</code> to the <code>twdm-field</code>, write the message instead of "Message", and add the flashing cursor from the core if you like:</p>
+<p>For a half-written message, add <code>typed</code> to the <code>twdm-msgbar</code>, write the message instead of "Message", and add the flashing cursor from the core if you like:</p>
 
 <div class="mob twdm theme-auto">
   <p class="twdm-footer">
     <span class="twdm-plus">+</span><span class="hide"> </span>
-    <span class="twdm-field typed">I did not agree<span class="cursor">|</span><span class="hide"> </span><span class="ic ic-mic">&#127908;</span></span>
+    <span class="twdm-msgbar typed">I did not agree<span class="cursor">|</span><span class="hide"> </span><span class="ic ic-mic">&#127908;</span></span>
   </p>
 </div>
 
 <pre><code>&lt;p class="twdm-footer"&gt;
   &lt;span class="twdm-plus"&gt;+&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;
-  &lt;span class="twdm-field typed"&gt;I did not agree&lt;span class="cursor"&gt;|&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="ic ic-mic"&gt;&amp;#127908;&lt;/span&gt;&lt;/span&gt;
+  &lt;span class="twdm-msgbar typed"&gt;I did not agree&lt;span class="cursor"&gt;|&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="ic ic-mic"&gt;&amp;#127908;&lt;/span&gt;&lt;/span&gt;
 &lt;/p&gt;</code></pre>
 
 </details>
@@ -2818,14 +2818,14 @@
 <div class="mob twdm theme-auto">
   <p class="twdm-footer">
     <span class="twdm-plus">+</span><span class="hide"> </span>
-    <span class="twdm-field">Message<span class="hide"> </span><span class="ic ic-mic">&#127908;</span></span>
+    <span class="twdm-msgbar">Message<span class="hide"> </span><span class="ic ic-mic">&#127908;</span></span>
   </p>
 </div>
 
 <pre><code>&lt;div class="mob twdm theme-auto"&gt;
   &lt;p class="twdm-footer"&gt;
     &lt;span class="twdm-plus"&gt;+&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;
-    &lt;span class="twdm-field"&gt;Message&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="ic ic-mic"&gt;&amp;#127908;&lt;/span&gt;&lt;/span&gt;
+    &lt;span class="twdm-msgbar"&gt;Message&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="ic ic-mic"&gt;&amp;#127908;&lt;/span&gt;&lt;/span&gt;
   &lt;/p&gt;
 &lt;/div&gt;</code></pre>
 

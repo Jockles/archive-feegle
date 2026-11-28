@@ -100,14 +100,14 @@
   background-color: rgb(235, 237, 239);
 }
 
-#workskin .dc .dc-field {
+#workskin .dc .dc-msgbar {
   display: contents;
   position: absolute;
   top: 50%;
   transform: translate(0%, -50%);
 }
 
-#workskin .dc .dc-field::before {
+#workskin .dc .dc-msgbar::before {
   content: '';
   background-repeat: no-repeat;
   background-size: contain;
@@ -668,7 +668,7 @@
 
 #workskin .dc.theme-dark .at-symbol::before { background-image: url(https://images.squidge.org/images/2026/11/15/dc-at-dark.png); }
 
-#workskin .dc.theme-dark .dc-field::before { background-image: url(https://images.squidge.org/images/2026/11/15/dc-plus-dark.png); }
+#workskin .dc.theme-dark .dc-msgbar::before { background-image: url(https://images.squidge.org/images/2026/11/15/dc-plus-dark.png); }
 
 /* spoilers, dark: hidden until clicked */
 #workskin .dc.theme-dark .dc-spoiler-text {
@@ -787,7 +787,7 @@
 
   #workskin .dc.theme-auto .at-symbol::before { background-image: url(https://images.squidge.org/images/2026/11/15/dc-at-dark.png); }
 
-  #workskin .dc.theme-auto .dc-field::before { background-image: url(https://images.squidge.org/images/2026/11/15/dc-plus-dark.png); }
+  #workskin .dc.theme-auto .dc-msgbar::before { background-image: url(https://images.squidge.org/images/2026/11/15/dc-plus-dark.png); }
 
   /* spoilers, dark: hidden until clicked */
   #workskin .dc.theme-auto .dc-spoiler-text {

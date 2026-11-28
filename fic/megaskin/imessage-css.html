@@ -7,7 +7,7 @@
   <title>Megaskin, Chapter 5: iMessage CSS | jockles.com</title>
   <link rel="stylesheet" href="../../style.css">
   <script src="../../theme.js"></script>
-  <link rel="stylesheet" href="megaskin.css?v=a0793ca5" id="creator-style">
+  <link rel="stylesheet" href="megaskin.css?v=888fecf4" id="creator-style">
 </head>
 <body>
 <header>
@@ -149,7 +149,7 @@
   text-align: center;
 }
 
-#workskin .imsg .imsg-field {
+#workskin .imsg .imsg-msgbar {
   flex: 1;
   position: relative;
   padding: 0.45em 2.4em 0.45em 0.9em;
@@ -174,7 +174,7 @@
 
 <p>For a half-typed message, <code>typed</code> turns the words black (white in dark mode), and the send arrow takes the microphone's place:</p>
 
-<pre><code>#workskin .imsg .imsg-field.typed { color: #000000; }
+<pre><code>#workskin .imsg .imsg-msgbar.typed { color: #000000; }
 #workskin .imsg .imsg-send {
   position: absolute;
   right: 0.3em;
@@ -518,7 +518,7 @@
   <li><strong>Green bubbles:</strong> the <code>.out.sms</code> line.</li>
   <li><strong>Pictures:</strong> the <code>.msg.gallery</code> and <code>imsg-photo</code> rules.</li>
   <li><strong>Typing dots:</strong> the four <code>typing-indicator</code> rules, and <code>.out.typing-indicator</code>.</li>
-  <li><strong>Message bar:</strong> everything with <code>imsg-footer</code>, <code>imsg-plus</code>, <code>imsg-field</code> or <code>imsg-mic</code> in it.</li>
+  <li><strong>Message bar:</strong> everything with <code>imsg-footer</code>, <code>imsg-plus</code>, <code>imsg-msgbar</code> or <code>imsg-mic</code> in it.</li>
 </ul>
 
 <p>Leave the window, the bubbles and the theme blocks, which everything else depends on.</p>

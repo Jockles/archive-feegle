@@ -1016,7 +1016,7 @@
 #workskin .tb-photo > br,
 #workskin .tb-voted > br,
 #workskin .twdm-back > br,
-#workskin .wa-field > br,
+#workskin .wa-msgbar > br,
 #workskin .gm-btns > br,
 #workskin .gm-pfp-cell > br,
 #workskin .wa-back > br,
@@ -1241,7 +1241,7 @@
 }
 
 /* the grey box with the word in it */
-#workskin .imsg .imsg-field {
+#workskin .imsg .imsg-msgbar {
   flex: 1;
   position: relative;
   padding: 0.45em 2.4em 0.45em 0.9em;
@@ -1261,7 +1261,7 @@
 }
 
 /* a half-typed message in the box: black text instead of grey */
-#workskin .imsg .imsg-field.typed { color: #000000; }
+#workskin .imsg .imsg-msgbar.typed { color: #000000; }
 
 /* the blue send arrow that replaces the microphone while typing */
 #workskin .imsg .imsg-send {
@@ -1305,9 +1305,9 @@
 
 #workskin .imsg.theme-dark .imsg-plus { border-color: #757579; background: #2c2c2e; color: #ffffff; }
 
-#workskin .imsg.theme-dark .imsg-field { border-color: #757579; background: #1c1c1e; color: #8e8e93; }
+#workskin .imsg.theme-dark .imsg-msgbar { border-color: #757579; background: #1c1c1e; color: #8e8e93; }
 
-#workskin .imsg.theme-dark .imsg-field.typed { color: #ffffff; }
+#workskin .imsg.theme-dark .imsg-msgbar.typed { color: #ffffff; }
 
 /* ---------- iMessage: Auto theme (theme-auto): light, switching to dark when the reader's device is in dark mode ---------- */
 
@@ -1331,9 +1331,9 @@
 
   #workskin .imsg.theme-auto .imsg-plus { border-color: #757579; background: #2c2c2e; color: #ffffff; }
 
-  #workskin .imsg.theme-auto .imsg-field { border-color: #757579; background: #1c1c1e; color: #8e8e93; }
+  #workskin .imsg.theme-auto .imsg-msgbar { border-color: #757579; background: #1c1c1e; color: #8e8e93; }
 
-  #workskin .imsg.theme-auto .imsg-field.typed { color: #ffffff; }
+  #workskin .imsg.theme-auto .imsg-msgbar.typed { color: #ffffff; }
 }
 
 /* ---------- iMessage: Icons ---------- */
@@ -1623,7 +1623,7 @@
 /* AO3 turns line breaks in your HTML into <br /> tags: keep them out of the message bar */
 #workskin .wa .wa-footer br { display: none; }
 
-#workskin .wa .wa-field {
+#workskin .wa .wa-msgbar {
   display: table;
   width: 100%;
   box-sizing: border-box;
@@ -1633,7 +1633,7 @@
   color: #667781;
 }
 
-#workskin .wa .wa-field span {
+#workskin .wa .wa-msgbar span {
   display: table-cell;
   vertical-align: middle;
   white-space: nowrap;
@@ -1641,15 +1641,15 @@
   padding-left: 0.5em;
 }
 
-#workskin .wa .wa-field span:first-of-type { padding-left: 0; }
+#workskin .wa .wa-msgbar span:first-of-type { padding-left: 0; }
 
-#workskin .wa .wa-field .wa-placeholder { width: auto; padding-left: 0.5em; }
+#workskin .wa .wa-msgbar .wa-placeholder { width: auto; padding-left: 0.5em; }
 
 /* a half-typed message: dark text that wraps onto more lines */
-#workskin .wa .wa-field .wa-placeholder.typed { white-space: normal; color: #111b21; }
+#workskin .wa .wa-msgbar .wa-placeholder.typed { white-space: normal; color: #111b21; }
 
 /* a flashing cursor in the typed message stays in the line of words, not a cell of its own */
-#workskin .wa .wa-field .cursor { display: inline-block; width: 0.2em; padding: 0; }
+#workskin .wa .wa-msgbar .cursor { display: inline-block; width: 0.2em; padding: 0; }
 
 #workskin .wa .wa-mic {
   position: absolute;
@@ -1911,9 +1911,9 @@
 
 #workskin .wa.theme-dark .wa-reacts .wa-count { color: #8696a0; }
 
-#workskin .wa.theme-dark .wa-field { background: #202c33; color: #8696a0; }
+#workskin .wa.theme-dark .wa-msgbar { background: #202c33; color: #8696a0; }
 
-#workskin .wa.theme-dark .wa-field .wa-placeholder.typed { color: #e9edef; }
+#workskin .wa.theme-dark .wa-msgbar .wa-placeholder.typed { color: #e9edef; }
 
 #workskin .wa.theme-dark .wa-link-card { background: rgba(0, 0, 0, 0.22); }
 
@@ -2006,9 +2006,9 @@
 
   #workskin .wa.theme-auto .wa-reacts .wa-count { color: #8696a0; }
 
-  #workskin .wa.theme-auto .wa-field { background: #202c33; color: #8696a0; }
+  #workskin .wa.theme-auto .wa-msgbar { background: #202c33; color: #8696a0; }
 
-  #workskin .wa.theme-auto .wa-field .wa-placeholder.typed { color: #e9edef; }
+  #workskin .wa.theme-auto .wa-msgbar .wa-placeholder.typed { color: #e9edef; }
 
   #workskin .wa.theme-auto .wa-link-card { background: rgba(0, 0, 0, 0.22); }
 
@@ -2140,7 +2140,7 @@
 }
 
 /* the icons in the message box sit in table cells, so they keep a set width */
-#workskin .wa .wa-field .ic { display: table-cell; width: 1.6em; background-size: 1.15em; }
+#workskin .wa .wa-msgbar .ic { display: table-cell; width: 1.6em; background-size: 1.15em; }
 
 /* the double ticks are wider than one symbol. The grey sent and delivered ticks are
    the same grey as the time, so they change with the theme. */
@@ -3225,7 +3225,7 @@
   text-align: center;
 }
 
-#workskin .twdm .twdm-field {
+#workskin .twdm .twdm-msgbar {
   flex: 1;
   position: relative;
   padding: 0.45em 2.4em 0.45em 0.9em;
@@ -3234,7 +3234,7 @@
   color: #536471;
 }
 
-#workskin .twdm .twdm-field .ic {
+#workskin .twdm .twdm-msgbar .ic {
   position: absolute;
   right: 0.8em;
   top: 50%;
@@ -3243,7 +3243,7 @@
   height: 1.15em;
 }
 
-#workskin .twdm .twdm-field.typed { color: #0f1419; }
+#workskin .twdm .twdm-msgbar.typed { color: #0f1419; }
 
 /* the app's buttons along the very bottom (optional), in DMs and on the app screen. */
 #workskin .twdm .tw-nav,
@@ -3468,10 +3468,10 @@
 #workskin .twdm.theme-dark .typing-indicator span:empty { background: #8b98a5; }
 
 #workskin .twdm.theme-dark .twdm-plus,
-#workskin .twdm.theme-dark .twdm-field { border-color: #2f3336; color: #71767b; }
+#workskin .twdm.theme-dark .twdm-msgbar { border-color: #2f3336; color: #71767b; }
 
 #workskin .twdm.theme-dark .twdm-plus,
-#workskin .twdm.theme-dark .twdm-field.typed { color: #e7e9ea; }
+#workskin .twdm.theme-dark .twdm-msgbar.typed { color: #e7e9ea; }
 
 #workskin .tw-feed.theme-dark .tw-nav { border-top-color: #2f3336; }
 
@@ -3635,10 +3635,10 @@
   #workskin .twdm.theme-auto .typing-indicator span:empty { background: #8b98a5; }
 
   #workskin .twdm.theme-auto .twdm-plus,
-    #workskin .twdm.theme-auto .twdm-field { border-color: #2f3336; color: #71767b; }
+    #workskin .twdm.theme-auto .twdm-msgbar { border-color: #2f3336; color: #71767b; }
 
   #workskin .twdm.theme-auto .twdm-plus,
-    #workskin .twdm.theme-auto .twdm-field.typed { color: #e7e9ea; }
+    #workskin .twdm.theme-auto .twdm-msgbar.typed { color: #e7e9ea; }
 
   #workskin .tw-feed.theme-auto .tw-nav { border-top-color: #2f3336; }
 
@@ -5952,14 +5952,14 @@
   background-size: 1.2em;
 }
 
-#workskin .igdm .igdm-field {
+#workskin .igdm .igdm-msgbar {
   flex: 1;
   position: relative;
   padding: 0.35em 2.2em 0.35em 0;
   color: #737373;
 }
 
-#workskin .igdm .igdm-field .ic {
+#workskin .igdm .igdm-msgbar .ic {
   position: absolute;
   right: 0.6em;
   top: 50%;
@@ -5968,7 +5968,7 @@
   height: 1.2em;
 }
 
-#workskin .igdm .igdm-field.typed { color: #262626; }
+#workskin .igdm .igdm-msgbar.typed { color: #262626; }
 
 /* ---------- Instagram: Links ---------- */
 
@@ -6255,8 +6255,8 @@
 #workskin .igdm.theme-dark .mob-header .ig-collab .ig-pfp ~ .ig-pfp { border-color: #0c1014; }
 
 #workskin .igdm.theme-dark .igdm-footer { background: #262626; }
-#workskin .igdm.theme-dark .igdm-field { color: #a8a8a8; }
-#workskin .igdm.theme-dark .igdm-field.typed { color: #f5f5f5; }
+#workskin .igdm.theme-dark .igdm-msgbar { color: #a8a8a8; }
+#workskin .igdm.theme-dark .igdm-msgbar.typed { color: #f5f5f5; }
 #workskin .igdm.theme-dark .igdm-reacts { background: #262626; color: #f5f5f5; border-color: #0c1014; }
 #workskin .igdm.theme-dark .igdm-reply.in,
   #workskin .igdm.theme-dark .igdm-reply.out { background: none; color: #a8a8a8; }
@@ -6348,8 +6348,8 @@
   #workskin .igdm.theme-auto .mob-header .ig-collab .ig-pfp ~ .ig-pfp { border-color: #0c1014; }
 
   #workskin .igdm.theme-auto .igdm-footer { background: #262626; }
-  #workskin .igdm.theme-auto .igdm-field { color: #a8a8a8; }
-  #workskin .igdm.theme-auto .igdm-field.typed { color: #f5f5f5; }
+  #workskin .igdm.theme-auto .igdm-msgbar { color: #a8a8a8; }
+  #workskin .igdm.theme-auto .igdm-msgbar.typed { color: #f5f5f5; }
   #workskin .igdm.theme-auto .igdm-reacts { background: #262626; color: #f5f5f5; border-color: #0c1014; }
   #workskin .igdm.theme-auto .igdm-reply.in,
     #workskin .igdm.theme-auto .igdm-reply.out { background: none; color: #a8a8a8; }
@@ -7747,14 +7747,14 @@
   background-color: rgb(235, 237, 239);
 }
 
-#workskin .dc .dc-field {
+#workskin .dc .dc-msgbar {
   display: contents;
   position: absolute;
   top: 50%;
   transform: translate(0%, -50%);
 }
 
-#workskin .dc .dc-field::before {
+#workskin .dc .dc-msgbar::before {
   content: '';
   background-repeat: no-repeat;
   background-size: contain;
@@ -8315,7 +8315,7 @@
 
 #workskin .dc.theme-dark .at-symbol::before { background-image: url(https://images.squidge.org/images/2026/11/15/dc-at-dark.png); }
 
-#workskin .dc.theme-dark .dc-field::before { background-image: url(https://images.squidge.org/images/2026/11/15/dc-plus-dark.png); }
+#workskin .dc.theme-dark .dc-msgbar::before { background-image: url(https://images.squidge.org/images/2026/11/15/dc-plus-dark.png); }
 
 /* spoilers, dark: hidden until clicked */
 #workskin .dc.theme-dark .dc-spoiler-text {
@@ -8434,7 +8434,7 @@
 
   #workskin .dc.theme-auto .at-symbol::before { background-image: url(https://images.squidge.org/images/2026/11/15/dc-at-dark.png); }
 
-  #workskin .dc.theme-auto .dc-field::before { background-image: url(https://images.squidge.org/images/2026/11/15/dc-plus-dark.png); }
+  #workskin .dc.theme-auto .dc-msgbar::before { background-image: url(https://images.squidge.org/images/2026/11/15/dc-plus-dark.png); }
 
   /* spoilers, dark: hidden until clicked */
   #workskin .dc.theme-auto .dc-spoiler-text {
