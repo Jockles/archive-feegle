@@ -841,7 +841,8 @@
 
 #workskin .twdm .mob-body { padding: 0.7em 0.8em 0.5em 0.8em; }
 
-#workskin .twdm .msg {
+#workskin .twdm .msg,
+#workskin .twdm .twdm-quote {
   display: table;
   max-width: 75%;
   margin: 0.25em 0;
@@ -916,9 +917,11 @@
   color: #536471;
 }
 
+#workskin .twdm .twdm-replied.in { background: transparent; color: #536471; }
+
 #workskin .twdm .twdm-replied.out { background: transparent; color: #536471; text-align: right; }
 
-#workskin .twdm .msg.twdm-quote { background: transparent; color: #536471; border: 1px solid #cfd9de; margin-bottom: 0.2em; }
+#workskin .twdm p.twdm-quote { background: transparent; color: #536471; border: 1px solid #cfd9de; margin-bottom: 0.2em; }
 
 /* a picture in a DM: <p class="msg in photo"><img src="..."></p> or a [description] */
 /* the three typing dots, in a bubble from whoever is typing */
@@ -1262,7 +1265,9 @@
 
 #workskin .twdm.theme-dark .in { background: #202327; color: #e7e9ea; }
 
-#workskin .twdm.theme-dark .msg.twdm-quote { background: transparent; color: #71767b; border-color: #2f3336; }
+#workskin .twdm.theme-dark .twdm-replied.in { background: transparent; color: #71767b; }
+
+#workskin .twdm.theme-dark p.twdm-quote { background: transparent; color: #71767b; border-color: #2f3336; }
 
 /* ---------- Twitter/X: Auto theme (theme-auto): light, switching to dark when the reader's device is in dark mode ---------- */
 
@@ -1427,7 +1432,9 @@
 
   #workskin .twdm.theme-auto .in { background: #202327; color: #e7e9ea; }
 
-  #workskin .twdm.theme-auto .msg.twdm-quote { background: transparent; color: #71767b; border-color: #2f3336; }
+  #workskin .twdm.theme-auto .twdm-replied.in { background: transparent; color: #71767b; }
+
+  #workskin .twdm.theme-auto p.twdm-quote { background: transparent; color: #71767b; border-color: #2f3336; }
 }
 
 /* ---------- Twitter/X: Icons ---------- */
