@@ -126,7 +126,7 @@
 /* the grey circle when there's no colour class. It's kept less specific than the colour classes, so they win */
 #workskin .ig-top .ig-pfp,
 #workskin .ig-person .ig-pfp,
-#workskin .igdm .ig-pfp,
+#workskin .igdm .avatar,
 #workskin .ig-like-pfp { background-color: #8a8a8a; }
 
 /* initials instead of a picture: <span class="ig-pfp colour3">RL</span>, and the same in
@@ -795,7 +795,7 @@
 
 #workskin .igdm .mob-header > span:last-child { overflow: hidden; text-overflow: ellipsis; }
 
-#workskin .igdm .ig-pfp {
+#workskin .igdm .avatar {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -809,7 +809,7 @@
   line-height: 1;
 }
 
-#workskin .igdm .mob-header .ig-pfp {
+#workskin .igdm .mob-header .avatar {
   float: left;
   width: 36px;
   height: 36px;
@@ -827,7 +827,7 @@
   margin: -1px 0.7em -1px 0;
 }
 
-#workskin .igdm .mob-header .ig-collab .ig-pfp {
+#workskin .igdm .mob-header .ig-collab .avatar {
   position: absolute;
   top: 0;
   left: 0;
@@ -838,7 +838,7 @@
   font-size: 0.6em;
 }
 
-#workskin .igdm .mob-header .ig-collab .ig-pfp ~ .ig-pfp {
+#workskin .igdm .mob-header .ig-collab .avatar ~ .avatar {
   top: auto;
   left: auto;
   bottom: 0;
@@ -850,7 +850,7 @@
 }
 
 /* only two pictures fit, so a third one (or more) is hidden */
-#workskin .igdm .mob-header .ig-collab .ig-pfp ~ .ig-pfp ~ .ig-pfp { display: none; }
+#workskin .igdm .mob-header .ig-collab .avatar ~ .avatar ~ .avatar { display: none; }
 
 /* ---- a run of messages from one person in a group, with their picture beside the last one. */
 #workskin .igdm .row {
@@ -859,7 +859,7 @@
   margin: 0.2em 0;
 }
 
-#workskin .igdm .row .ig-pfp {
+#workskin .igdm .row .avatar {
   position: absolute;
   left: 0;
   bottom: 0.2em;
@@ -902,8 +902,8 @@
 
 #workskin .igdm .msg.out > .reacts + .reacts { left: auto; right: 2.6em; }
 
-#workskin .igdm .reacts .ig-pfp,
-#workskin .igdm .row .reacts .ig-pfp {
+#workskin .igdm .reacts .avatar,
+#workskin .igdm .row .reacts .avatar {
   display: inline-flex;
   position: static;
   width: 16px;
@@ -913,10 +913,10 @@
   vertical-align: middle;
 }
 
-#workskin .igdm .reacts .ig-pfp + .ig-pfp { margin-left: 3px; }
+#workskin .igdm .reacts .avatar + .avatar { margin-left: 3px; }
 
 /* in a group, the picture stays beside the bubble when a pill comes last */
-#workskin .igdm .row:has(> .reacts:last-child) > .ig-pfp { bottom: 1.5em; }
+#workskin .igdm .row:has(> .reacts:last-child) > .avatar { bottom: 1.5em; }
 
 /* ---- replies: a grey line saying who replied, then the message they replied to, faded, with a bar beside it, then the reply itself. */
 #workskin .igdm .reply {
@@ -1003,7 +1003,7 @@
   line-height: 1.3;
 }
 
-#workskin .igdm .igdm-post-by .ig-pfp {
+#workskin .igdm .igdm-post-by .avatar {
   flex: none;
   width: 30px;
   height: 30px;
@@ -1594,7 +1594,7 @@
 
 #workskin .igdm.theme-dark .igdm-shared { border-color: #363636; color: #a8a8a8; }
 
-#workskin .igdm.theme-dark .mob-header .ig-collab .ig-pfp ~ .ig-pfp { border-color: #0c1014; }
+#workskin .igdm.theme-dark .mob-header .ig-collab .avatar ~ .avatar { border-color: #0c1014; }
 
 #workskin .igdm.theme-dark .footer { background: #262626; }
 #workskin .igdm.theme-dark .msgbar { color: #a8a8a8; }
@@ -1687,7 +1687,7 @@
 
   #workskin .igdm.theme-auto .igdm-shared { border-color: #363636; color: #a8a8a8; }
 
-  #workskin .igdm.theme-auto .mob-header .ig-collab .ig-pfp ~ .ig-pfp { border-color: #0c1014; }
+  #workskin .igdm.theme-auto .mob-header .ig-collab .avatar ~ .avatar { border-color: #0c1014; }
 
   #workskin .igdm.theme-auto .footer { background: #262626; }
   #workskin .igdm.theme-auto .msgbar { color: #a8a8a8; }

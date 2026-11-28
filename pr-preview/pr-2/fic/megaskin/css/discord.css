@@ -163,7 +163,7 @@
 /* --- colours: add colour1 to colour10 to the dc-name, like <b class="dc-name colour3">Name</b> --- */
 
 /* --- profile pictures, the same way as every other module --- */
-#workskin .dc .dc-pfp {
+#workskin .dc .avatar {
   display: inline-block; /* inline, like the plain circle, so Firefox keeps it level with the name */
   position: absolute;
   left: 1.25rem;
@@ -174,14 +174,14 @@
   overflow: hidden;
 }
 
-#workskin .dc .reply .dc-pfp {
+#workskin .dc .reply .avatar {
   left: -1.25rem;
   margin-top: 0.3125rem;
   width: 1rem;
   height: 1rem;
 }
 
-#workskin .dc .dc-name:has(.dc-pfp)::before { display: none; }
+#workskin .dc .dc-name:has(.avatar)::before { display: none; }
 
 /* a picture in a message (see CHAT PHOTOS in the Core part) */
 #workskin .dc .photos { max-width: 360px; border-radius: 0.1875rem; }

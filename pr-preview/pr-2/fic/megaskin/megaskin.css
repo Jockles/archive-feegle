@@ -89,7 +89,7 @@
 
 /* ---------- Small helpers: hidden text, video descriptions, round pictures, flashing cursor ---------- */
 
-/* a real profile picture inside any round picture circle (WhatsApp wa-pfp, Tumblr tb-pfp, Gmail gm-pfp, Instagram ig-pfp, Discord dc-pfp): wrap the picture tag in a span with pfp */
+/* a real profile picture inside any round picture circle (avatar in chats, Tumblr tb-pfp, Gmail gm-pfp, Instagram ig-pfp, Twitter tw-pfp): wrap the picture tag in a span with pfp */
 #workskin .pfp {
   display: block;
   position: relative;
@@ -443,10 +443,9 @@
 /* ---------- COLOURS: colour1 to colour10 ---------- */
 
 /* picture circles (the same in light and dark) */
-#workskin .wa .wa-pfp.colour1,
+#workskin .mob .avatar.colour1,
 #workskin .tw .tw-pfp.colour1,
 #workskin .tw-reply .tw-pfp.colour1,
-#workskin .twdm .tw-pfp.colour1,
 #workskin .twc12 .tw-pfp.colour1,
 #workskin .twc16 .tw-pfp.colour1,
 #workskin .tb .tb-pfp.colour1,
@@ -455,13 +454,11 @@
 #workskin .ig .ig-pfp.colour1,
 #workskin .ig-feed .ig-pfp.colour1,
 #workskin .ig .ig-like-pfp.colour1,
-#workskin .igdm .ig-pfp.colour1,
 #workskin .dc .dc-name.colour1::before { background-color: #b5733a; }
 
-#workskin .wa .wa-pfp.colour2,
+#workskin .mob .avatar.colour2,
 #workskin .tw .tw-pfp.colour2,
 #workskin .tw-reply .tw-pfp.colour2,
-#workskin .twdm .tw-pfp.colour2,
 #workskin .twc12 .tw-pfp.colour2,
 #workskin .twc16 .tw-pfp.colour2,
 #workskin .tb .tb-pfp.colour2,
@@ -470,13 +467,11 @@
 #workskin .ig .ig-pfp.colour2,
 #workskin .ig-feed .ig-pfp.colour2,
 #workskin .ig .ig-like-pfp.colour2,
-#workskin .igdm .ig-pfp.colour2,
 #workskin .dc .dc-name.colour2::before { background-color: #3a3a3c; }
 
-#workskin .wa .wa-pfp.colour3,
+#workskin .mob .avatar.colour3,
 #workskin .tw .tw-pfp.colour3,
 #workskin .tw-reply .tw-pfp.colour3,
-#workskin .twdm .tw-pfp.colour3,
 #workskin .twc12 .tw-pfp.colour3,
 #workskin .twc16 .tw-pfp.colour3,
 #workskin .tb .tb-pfp.colour3,
@@ -485,13 +480,11 @@
 #workskin .ig .ig-pfp.colour3,
 #workskin .ig-feed .ig-pfp.colour3,
 #workskin .ig .ig-like-pfp.colour3,
-#workskin .igdm .ig-pfp.colour3,
 #workskin .dc .dc-name.colour3::before { background-color: #7a2b4e; }
 
-#workskin .wa .wa-pfp.colour4,
+#workskin .mob .avatar.colour4,
 #workskin .tw .tw-pfp.colour4,
 #workskin .tw-reply .tw-pfp.colour4,
-#workskin .twdm .tw-pfp.colour4,
 #workskin .twc12 .tw-pfp.colour4,
 #workskin .twc16 .tw-pfp.colour4,
 #workskin .tb .tb-pfp.colour4,
@@ -500,13 +493,11 @@
 #workskin .ig .ig-pfp.colour4,
 #workskin .ig-feed .ig-pfp.colour4,
 #workskin .ig .ig-like-pfp.colour4,
-#workskin .igdm .ig-pfp.colour4,
 #workskin .dc .dc-name.colour4::before { background-color: #2f7d6b; }
 
-#workskin .wa .wa-pfp.colour5,
+#workskin .mob .avatar.colour5,
 #workskin .tw .tw-pfp.colour5,
 #workskin .tw-reply .tw-pfp.colour5,
-#workskin .twdm .tw-pfp.colour5,
 #workskin .twc12 .tw-pfp.colour5,
 #workskin .twc16 .tw-pfp.colour5,
 #workskin .tb .tb-pfp.colour5,
@@ -515,13 +506,11 @@
 #workskin .ig .ig-pfp.colour5,
 #workskin .ig-feed .ig-pfp.colour5,
 #workskin .ig .ig-like-pfp.colour5,
-#workskin .igdm .ig-pfp.colour5,
 #workskin .dc .dc-name.colour5::before { background-color: #3b5ea8; }
 
-#workskin .wa .wa-pfp.colour6,
+#workskin .mob .avatar.colour6,
 #workskin .tw .tw-pfp.colour6,
 #workskin .tw-reply .tw-pfp.colour6,
-#workskin .twdm .tw-pfp.colour6,
 #workskin .twc12 .tw-pfp.colour6,
 #workskin .twc16 .tw-pfp.colour6,
 #workskin .tb .tb-pfp.colour6,
@@ -530,13 +519,11 @@
 #workskin .ig .ig-pfp.colour6,
 #workskin .ig-feed .ig-pfp.colour6,
 #workskin .ig .ig-like-pfp.colour6,
-#workskin .igdm .ig-pfp.colour6,
 #workskin .dc .dc-name.colour6::before { background-color: #6b4fa0; }
 
-#workskin .wa .wa-pfp.colour7,
+#workskin .mob .avatar.colour7,
 #workskin .tw .tw-pfp.colour7,
 #workskin .tw-reply .tw-pfp.colour7,
-#workskin .twdm .tw-pfp.colour7,
 #workskin .twc12 .tw-pfp.colour7,
 #workskin .twc16 .tw-pfp.colour7,
 #workskin .tb .tb-pfp.colour7,
@@ -545,13 +532,11 @@
 #workskin .ig .ig-pfp.colour7,
 #workskin .ig-feed .ig-pfp.colour7,
 #workskin .ig .ig-like-pfp.colour7,
-#workskin .igdm .ig-pfp.colour7,
 #workskin .dc .dc-name.colour7::before { background-color: #a8383b; }
 
-#workskin .wa .wa-pfp.colour8,
+#workskin .mob .avatar.colour8,
 #workskin .tw .tw-pfp.colour8,
 #workskin .tw-reply .tw-pfp.colour8,
-#workskin .twdm .tw-pfp.colour8,
 #workskin .twc12 .tw-pfp.colour8,
 #workskin .twc16 .tw-pfp.colour8,
 #workskin .tb .tb-pfp.colour8,
@@ -560,13 +545,11 @@
 #workskin .ig .ig-pfp.colour8,
 #workskin .ig-feed .ig-pfp.colour8,
 #workskin .ig .ig-like-pfp.colour8,
-#workskin .igdm .ig-pfp.colour8,
 #workskin .dc .dc-name.colour8::before { background-color: #4e7a2c; }
 
-#workskin .wa .wa-pfp.colour9,
+#workskin .mob .avatar.colour9,
 #workskin .tw .tw-pfp.colour9,
 #workskin .tw-reply .tw-pfp.colour9,
-#workskin .twdm .tw-pfp.colour9,
 #workskin .twc12 .tw-pfp.colour9,
 #workskin .twc16 .tw-pfp.colour9,
 #workskin .tb .tb-pfp.colour9,
@@ -575,13 +558,11 @@
 #workskin .ig .ig-pfp.colour9,
 #workskin .ig-feed .ig-pfp.colour9,
 #workskin .ig .ig-like-pfp.colour9,
-#workskin .igdm .ig-pfp.colour9,
 #workskin .dc .dc-name.colour9::before { background-color: #8c6d1f; }
 
-#workskin .wa .wa-pfp.colour10,
+#workskin .mob .avatar.colour10,
 #workskin .tw .tw-pfp.colour10,
 #workskin .tw-reply .tw-pfp.colour10,
-#workskin .twdm .tw-pfp.colour10,
 #workskin .twc12 .tw-pfp.colour10,
 #workskin .twc16 .tw-pfp.colour10,
 #workskin .tb .tb-pfp.colour10,
@@ -590,7 +571,6 @@
 #workskin .ig .ig-pfp.colour10,
 #workskin .ig-feed .ig-pfp.colour10,
 #workskin .ig .ig-like-pfp.colour10,
-#workskin .igdm .ig-pfp.colour10,
 #workskin .dc .dc-name.colour10::before { background-color: #2a7390; }
 
 /* names: a bit brighter than the circles, so they are easy to read as text.
@@ -1036,10 +1016,10 @@
 
 #workskin .twdm .mob-header > .back,
 #workskin .twdm .mob-header > .btns,
-#workskin .twdm .mob-header > .tw-pfp,
+#workskin .twdm .mob-header > .avatar,
 #workskin .twdm .mob-header > .chat-name { font-size: 1em; font-weight: bold; opacity: 1; }
 
-#workskin .twdm .mob-header > .tw-pfp { display: flex; font-size: 0.85em; }
+#workskin .twdm .mob-header > .avatar { display: flex; font-size: 0.85em; }
 
 /* the header: a back arrow, a name span and buttons in iMessage */
 #workskin .imsg .mob-header:has(> .back),
@@ -1065,6 +1045,35 @@
 #workskin .imsg .mob-header .btns span { display: inline; color: inherit; font-size: 1em; }
 
 #workskin .imsg .mob-header .btns span ~ span { margin-left: 0.5em; }
+
+/* profile pictures in iMessage: in the header, and beside one person's messages in a row */
+#workskin .imsg .avatar,
+#workskin .imsg .mob-header .avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  margin: 0;
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: #8e8e93;
+  color: #ffffff;
+  font-size: 0.72em;
+  font-weight: bold;
+  line-height: 1;
+}
+
+#workskin .imsg .mob-header .avatar {
+  width: 40px;
+  height: 40px;
+  margin: 0 auto 0.25em auto;
+  font-size: 1em;
+}
+
+#workskin .imsg .row { position: relative; padding-left: 34px; }
+
+#workskin .imsg .row > .avatar { position: absolute; left: 0; bottom: 0.2em; }
 
 /* link cards */
 #workskin .imsg .link-card,
@@ -1120,6 +1129,7 @@
 #workskin .mob-header > br,
 #workskin .ig-collab > br,
 #workskin .ig-pfp > br,
+#workskin .avatar > br,
 #workskin .ig-photo > br,
 #workskin .back > br,
 #workskin .tb-photo > br,
@@ -1583,9 +1593,9 @@
 }
 
 /* full header: back arrow, picture, title + subtitle, icons.
-   <p class="mob-header"> with a back span, a wa-pfp span, the chat-name, a plain span for the status and a btns span */
+   <p class="mob-header"> with a back span, an avatar span, the chat-name, a plain span for the status and a btns span */
 #workskin .wa .mob-header:has(> .back),
-#workskin .wa .mob-header:has(> .wa-pfp) {
+#workskin .wa .mob-header:has(> .avatar) {
   display: flow-root;
   position: relative;
   padding: 0.55em 0.8em;
@@ -1602,7 +1612,7 @@
   opacity: 1;
 }
 
-#workskin .wa .mob-header > .wa-pfp {
+#workskin .wa .mob-header > .avatar {
   display: flex;
   float: left;
   width: 38px;
@@ -1648,7 +1658,7 @@
 
 /* round profile picture: initials by default; add a number class colour1-colour10 for a colour (the colours are
    in the COLOURS section of the CORE), or put a picture or a profile inside it with a pfp span */
-#workskin .wa .wa-pfp {
+#workskin .wa .avatar {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1669,7 +1679,7 @@
 /* a message with a profile picture beside it (group chats) */
 #workskin .wa .row { position: relative; padding-left: 38px; margin: 0.2em 0; }
 
-#workskin .wa .row .wa-pfp { position: absolute; left: 0; top: 0; }
+#workskin .wa .row .avatar { position: absolute; left: 0; top: 0; }
 
 #workskin .wa .row .msg { margin: 0; }
 
@@ -1975,7 +1985,7 @@
   font-weight: bold;
 }
 
-#workskin .wa .wa-contact .wa-pfp {
+#workskin .wa .wa-contact .avatar {
   position: static;
   flex-shrink: 0;
   width: 46px;
@@ -2377,7 +2387,7 @@
 
 #workskin .tw .tw-pfp,
 #workskin .tw-reply .tw-pfp,
-#workskin .twdm .tw-pfp {
+#workskin .twdm .avatar {
   display: flex;
   flex: none;
   align-items: center;
@@ -3178,7 +3188,7 @@
   line-height: 1.2;
 }
 
-#workskin .twdm .mob-header .tw-pfp { width: 40px; height: 40px; margin: 0 auto 0.25em auto; }
+#workskin .twdm .mob-header .avatar { width: 40px; height: 40px; margin: 0 auto 0.25em auto; }
 
 #workskin .twdm .mob-header .chat-name { display: block; }
 
@@ -3269,7 +3279,7 @@
    <div class="row"><p class="tw-pfp colour4">HP</p><p class="who">Hayden<span class="hide">:</span></p><p class="msg in">...</p></div> */
 #workskin .twdm .row { position: relative; padding-left: 36px; margin: 0.25em 0; }
 
-#workskin .twdm .row .tw-pfp {
+#workskin .twdm .row .avatar {
   position: absolute;
   left: 0;
   bottom: 0.25em;
@@ -4936,7 +4946,7 @@
 /* the grey circle when there's no colour class. It's kept less specific than the colour classes, so they win */
 #workskin .ig-top .ig-pfp,
 #workskin .ig-person .ig-pfp,
-#workskin .igdm .ig-pfp,
+#workskin .igdm .avatar,
 #workskin .ig-like-pfp { background-color: #8a8a8a; }
 
 /* initials instead of a picture: <span class="ig-pfp colour3">RL</span>, and the same in
@@ -5605,7 +5615,7 @@
 
 #workskin .igdm .mob-header > span:last-child { overflow: hidden; text-overflow: ellipsis; }
 
-#workskin .igdm .ig-pfp {
+#workskin .igdm .avatar {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -5619,7 +5629,7 @@
   line-height: 1;
 }
 
-#workskin .igdm .mob-header .ig-pfp {
+#workskin .igdm .mob-header .avatar {
   float: left;
   width: 36px;
   height: 36px;
@@ -5637,7 +5647,7 @@
   margin: -1px 0.7em -1px 0;
 }
 
-#workskin .igdm .mob-header .ig-collab .ig-pfp {
+#workskin .igdm .mob-header .ig-collab .avatar {
   position: absolute;
   top: 0;
   left: 0;
@@ -5648,7 +5658,7 @@
   font-size: 0.6em;
 }
 
-#workskin .igdm .mob-header .ig-collab .ig-pfp ~ .ig-pfp {
+#workskin .igdm .mob-header .ig-collab .avatar ~ .avatar {
   top: auto;
   left: auto;
   bottom: 0;
@@ -5660,7 +5670,7 @@
 }
 
 /* only two pictures fit, so a third one (or more) is hidden */
-#workskin .igdm .mob-header .ig-collab .ig-pfp ~ .ig-pfp ~ .ig-pfp { display: none; }
+#workskin .igdm .mob-header .ig-collab .avatar ~ .avatar ~ .avatar { display: none; }
 
 /* ---- a run of messages from one person in a group, with their picture beside the last one. */
 #workskin .igdm .row {
@@ -5669,7 +5679,7 @@
   margin: 0.2em 0;
 }
 
-#workskin .igdm .row .ig-pfp {
+#workskin .igdm .row .avatar {
   position: absolute;
   left: 0;
   bottom: 0.2em;
@@ -5712,8 +5722,8 @@
 
 #workskin .igdm .msg.out > .reacts + .reacts { left: auto; right: 2.6em; }
 
-#workskin .igdm .reacts .ig-pfp,
-#workskin .igdm .row .reacts .ig-pfp {
+#workskin .igdm .reacts .avatar,
+#workskin .igdm .row .reacts .avatar {
   display: inline-flex;
   position: static;
   width: 16px;
@@ -5723,10 +5733,10 @@
   vertical-align: middle;
 }
 
-#workskin .igdm .reacts .ig-pfp + .ig-pfp { margin-left: 3px; }
+#workskin .igdm .reacts .avatar + .avatar { margin-left: 3px; }
 
 /* in a group, the picture stays beside the bubble when a pill comes last */
-#workskin .igdm .row:has(> .reacts:last-child) > .ig-pfp { bottom: 1.5em; }
+#workskin .igdm .row:has(> .reacts:last-child) > .avatar { bottom: 1.5em; }
 
 /* ---- replies: a grey line saying who replied, then the message they replied to, faded, with a bar beside it, then the reply itself. */
 #workskin .igdm .reply {
@@ -5813,7 +5823,7 @@
   line-height: 1.3;
 }
 
-#workskin .igdm .igdm-post-by .ig-pfp {
+#workskin .igdm .igdm-post-by .avatar {
   flex: none;
   width: 30px;
   height: 30px;
@@ -6404,7 +6414,7 @@
 
 #workskin .igdm.theme-dark .igdm-shared { border-color: #363636; color: #a8a8a8; }
 
-#workskin .igdm.theme-dark .mob-header .ig-collab .ig-pfp ~ .ig-pfp { border-color: #0c1014; }
+#workskin .igdm.theme-dark .mob-header .ig-collab .avatar ~ .avatar { border-color: #0c1014; }
 
 #workskin .igdm.theme-dark .footer { background: #262626; }
 #workskin .igdm.theme-dark .msgbar { color: #a8a8a8; }
@@ -6497,7 +6507,7 @@
 
   #workskin .igdm.theme-auto .igdm-shared { border-color: #363636; color: #a8a8a8; }
 
-  #workskin .igdm.theme-auto .mob-header .ig-collab .ig-pfp ~ .ig-pfp { border-color: #0c1014; }
+  #workskin .igdm.theme-auto .mob-header .ig-collab .avatar ~ .avatar { border-color: #0c1014; }
 
   #workskin .igdm.theme-auto .footer { background: #262626; }
   #workskin .igdm.theme-auto .msgbar { color: #a8a8a8; }
@@ -8050,7 +8060,7 @@
 /* --- colours: add colour1 to colour10 to the dc-name, like <b class="dc-name colour3">Name</b> --- */
 
 /* --- profile pictures, the same way as every other module --- */
-#workskin .dc .dc-pfp {
+#workskin .dc .avatar {
   display: inline-block; /* inline, like the plain circle, so Firefox keeps it level with the name */
   position: absolute;
   left: 1.25rem;
@@ -8061,14 +8071,14 @@
   overflow: hidden;
 }
 
-#workskin .dc .reply .dc-pfp {
+#workskin .dc .reply .avatar {
   left: -1.25rem;
   margin-top: 0.3125rem;
   width: 1rem;
   height: 1rem;
 }
 
-#workskin .dc .dc-name:has(.dc-pfp)::before { display: none; }
+#workskin .dc .dc-name:has(.avatar)::before { display: none; }
 
 /* a picture in a message (see CHAT PHOTOS in the Core part) */
 #workskin .dc .photos { max-width: 360px; border-radius: 0.1875rem; }
