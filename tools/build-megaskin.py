@@ -55,7 +55,8 @@ CSS_FILES = {
     "MODULE: Classic Twitter 2016-19": "twitter-classic-2016.css",
     "MODULE: Instagram (posts, comments, DMs)": "instagram.css",
     "MODULE: Tumblr": "tumblr.css",
-    "MODULE: Email (Gmail and generic email window)": "email.css",
+    "MODULE: Gmail": "gmail.css",
+    "MODULE: Email window": "email.css",
     "MODULE: Discord": "discord.css",
 }
 
