@@ -330,7 +330,7 @@
 }
 
 /* the bottom row: replies, reblogs and likes, each with its own count, then share on the far right
-   <p class="tb-stats"><span class="tb-stat"><span class="tb-icon ic ic-comment">&#9993;</span> 7<span class="hide"> replies</span></span> ... </p> */
+   <div class="tb-stats"><p class="tb-stat"><span class="ic ic-comment">&#9993;</span> 7<span class="hide"> replies</span></p> ... </div> */
 #workskin .tb .tb-stats {
   display: flex;
   align-items: center;
@@ -342,10 +342,14 @@
 #workskin .tb .tb-stat {
   display: block;
   flex: 1 1 0;
+  margin: 0;
   white-space: nowrap;
 }
 
-#workskin .tb .tb-icon {
+/* the share button only takes the room it needs, at the right-hand end: add right to its tb-stat */
+#workskin .tb .tb-stat.right { flex: none; }
+
+#workskin .tb .tb-stats .ic {
   display: inline-block;
   margin-right: 0.3em;
   font-size: 1.3em;
@@ -353,7 +357,7 @@
   vertical-align: -0.15em;
 }
 
-#workskin .tb .tb-stats > .tb-icon { margin-right: 0; }
+#workskin .tb .tb-stat.right .ic { margin-right: 0; }
 
 /* quote post: <p class="tb-quote">text</p><p class="tb-source">&mdash; someone</p> */
 #workskin .tb .tb-quote { font-family: Georgia, serif; font-size: 1.9em; line-height: 1.25; }
