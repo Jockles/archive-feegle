@@ -174,7 +174,9 @@
 
 <p>The top bar is <code>mob-header</code>, with the contact's name in it:</p>
 
-<div class="mob imsg theme-auto"><p class="mob-header">Ilya</p></div>
+<div class="mob imsg theme-auto">
+  <p class="mob-header">Ilya</p>
+</div>
 
 <pre><code>&lt;p class="mob-header"&gt;Ilya&lt;/p&gt;</code></pre>
 
@@ -183,7 +185,9 @@
 
 <p>A <code>&lt;span&gt;</code> after the name adds a smaller grey line under it, like "iMessage" or "Mobile":</p>
 
-<div class="mob imsg theme-auto"><p class="mob-header">Ilya<span class="hide"> - </span><span>iMessage</span></p></div>
+<div class="mob imsg theme-auto">
+  <p class="mob-header">Ilya<span class="hide"> - </span><span>iMessage</span></p>
+</div>
 
 <pre><code>&lt;p class="mob-header"&gt;Ilya&lt;span class="hide"&gt; - &lt;/span&gt;&lt;span&gt;iMessage&lt;/span&gt;&lt;/p&gt;</code></pre>
 
@@ -212,7 +216,9 @@
 
 <p>To finish off the screen with the "iMessage" box along the bottom, add an <code>imsg-footer</code> paragraph after the <code>mob-body</code>, still inside the chat. Keep it all on one line:</p>
 
-<div class="mob imsg theme-auto"><p class="imsg-footer"><span class="imsg-plus">+</span><span class="hide"> </span><span class="imsg-field">iMessage<span class="hide"> </span><span class="imsg-mic ic ic-mic">&#127908;</span></span></p></div>
+<div class="mob imsg theme-auto">
+  <p class="imsg-footer"><span class="imsg-plus">+</span><span class="hide"> </span><span class="imsg-field">iMessage<span class="hide"> </span><span class="imsg-mic ic ic-mic">&#127908;</span></span></p>
+</div>
 
 <pre><code>&lt;p class="imsg-footer"&gt;&lt;span class="imsg-plus"&gt;+&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="imsg-field"&gt;iMessage&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="imsg-mic ic ic-mic"&gt;&amp;#127908;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;</code></pre>
 
@@ -221,7 +227,9 @@
 
 <p>For a message someone is halfway through writing, add <code>typed</code> to the box so the words go black, swap "iMessage" for what they're typing, and swap the microphone for the blue send arrow, <code>imsg-send</code>. Long messages wrap onto more lines, the same as on the phone:</p>
 
-<div class="mob imsg theme-auto"><p class="imsg-footer"><span class="imsg-plus">+</span><span class="hide"> </span><span class="imsg-field typed">ok so about last night, I think we need to talk about what happened before your mum<span class="hide"> </span><span class="imsg-send ic ic-imsg-send">&#8593;</span></span></p></div>
+<div class="mob imsg theme-auto">
+  <p class="imsg-footer"><span class="imsg-plus">+</span><span class="hide"> </span><span class="imsg-field typed">ok so about last night, I think we need to talk about what happened before your mum<span class="hide"> </span><span class="imsg-send ic ic-imsg-send">&#8593;</span></span></p>
+</div>
 
 <pre><code>&lt;p class="imsg-footer"&gt;&lt;span class="imsg-plus"&gt;+&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="imsg-field typed"&gt;ok so about last night, I think we need to talk about what happened before your mum&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="imsg-send ic ic-imsg-send"&gt;&amp;#8593;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;</code></pre>
 
@@ -245,7 +253,11 @@
 
 <p>The three dots that show someone is typing are a message bubble with three empty spans in it, so they belong to whoever is typing. Add <code>typing-indicator</code> to a message with <code>in</code> for someone else:</p>
 
-<div class="mob imsg theme-auto"><div class="mob-body"><p class="msg in typing-indicator"><span class="hide"><em>Ilya</em> is typing...</span><span></span><span></span><span></span></p></div></div>
+<div class="mob imsg theme-auto">
+  <div class="mob-body">
+    <p class="msg in typing-indicator"><span class="hide"><em>Ilya</em> is typing...</span><span></span><span></span><span></span></p>
+  </div>
+</div>
 
 <pre><code>&lt;p class="msg in typing-indicator"&gt;&lt;span class="hide"&gt;&lt;em&gt;Ilya&lt;/em&gt; is typing...&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/p&gt;</code></pre>
 
@@ -254,14 +266,22 @@
 
 <p>Or <code>out</code> for whoever owns the phone, halfway through writing something - the dots go on the right, in a blue bubble:</p>
 
-<div class="mob imsg theme-auto"><div class="mob-body"><p class="msg out typing-indicator"><span class="hide"><em>Shane</em> is typing...</span><span></span><span></span><span></span></p></div></div>
+<div class="mob imsg theme-auto">
+  <div class="mob-body">
+    <p class="msg out typing-indicator"><span class="hide"><em>Shane</em> is typing...</span><span></span><span></span><span></span></p>
+  </div>
+</div>
 
 <pre><code>&lt;p class="msg out typing-indicator"&gt;&lt;span class="hide"&gt;&lt;em&gt;Shane&lt;/em&gt; is typing...&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/p&gt;</code></pre>
 
 <p>In a group chat, put their name above it, the same as their messages:</p>
 
-<div class="mob imsg theme-auto"><div class="mob-body"><p class="who">Hayden</p>
-<p class="msg in typing-indicator"><span class="hide">is typing...</span><span></span><span></span><span></span></p></div></div>
+<div class="mob imsg theme-auto">
+  <div class="mob-body">
+    <p class="who">Hayden</p>
+    <p class="msg in typing-indicator"><span class="hide">is typing...</span><span></span><span></span><span></span></p>
+  </div>
+</div>
 
 <pre><code>&lt;p class="who"&gt;Hayden&lt;/p&gt;
 &lt;p class="msg in typing-indicator"&gt;&lt;span class="hide"&gt;is typing...&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/p&gt;</code></pre>
@@ -281,8 +301,12 @@
 
 <p>Each message is a paragraph with the class <code>msg</code>, plus one more class that says who sent it. <code>in</code> is a message from the other person, which shows as a grey bubble on the left, and <code>out</code> is a message from your point-of-view character, which shows as a blue bubble on the right. Give every message its own <code>&lt;p&gt;</code>, one after another, inside <code>mob-body</code>:</p>
 
-<div class="mob imsg theme-auto"><div class="mob-body"><p class="msg in"><span class="hide"><em>Ilya:</em> </span>are you awake</p>
-<p class="msg out"><span class="hide"><em>Shane:</em> </span>no</p></div></div>
+<div class="mob imsg theme-auto">
+  <div class="mob-body">
+    <p class="msg in"><span class="hide"><em>Ilya:</em> </span>are you awake</p>
+    <p class="msg out"><span class="hide"><em>Shane:</em> </span>no</p>
+  </div>
+</div>
 
 <pre><code>&lt;p class="msg in"&gt;&lt;span class="hide"&gt;&lt;em&gt;Ilya:&lt;/em&gt; &lt;/span&gt;are you awake&lt;/p&gt;
 &lt;p class="msg out"&gt;&lt;span class="hide"&gt;&lt;em&gt;Shane:&lt;/em&gt; &lt;/span&gt;no&lt;/p&gt;</code></pre>
@@ -309,7 +333,11 @@
 
 <p>For a centred line with the time or date, use <code>mob-sys</code>:</p>
 
-<div class="mob imsg theme-auto"><div class="mob-body"><p class="mob-sys">Today 11:48 PM</p></div></div>
+<div class="mob imsg theme-auto">
+  <div class="mob-body">
+    <p class="mob-sys">Today 11:48 PM</p>
+  </div>
+</div>
 
 <pre><code>&lt;p class="mob-sys"&gt;Today 11:48 PM&lt;/p&gt;</code></pre>
 
@@ -318,7 +346,11 @@
 
 <p>It works for anything that isn't a message - a timestamp, "Yesterday", or a note partway through the chat, like when someone joins the group:</p>
 
-<div class="mob imsg theme-auto"><div class="mob-body"><p class="mob-sys">Ilya added Wyatt to the conversation</p></div></div>
+<div class="mob imsg theme-auto">
+  <div class="mob-body">
+    <p class="mob-sys">Ilya added Wyatt to the conversation</p>
+  </div>
+</div>
 
 <pre><code>&lt;p class="mob-sys"&gt;Ilya added Wyatt to the conversation&lt;/p&gt;</code></pre>
 
@@ -328,7 +360,11 @@
 
 <p>When someone reacts to a message, iMessage shows a tapback - a little bubble on the top corner of the message, with a tail of two dots. Add <code>tapped</code> to the message to make room above it, then put a span with <code>imsg-tap</code> at the end of the message text, with the emoji inside:</p>
 
-<div class="mob imsg theme-auto"><div class="mob-body"><p class="msg out tapped"><span class="hide"><em>Shane:</em> </span>ok yes. go to sleep, you have a game tomorrow<span class="imsg-tap"><span class="hide"> [Ilya reacted </span>👎<span class="hide">]</span></span></p></div></div>
+<div class="mob imsg theme-auto">
+  <div class="mob-body">
+    <p class="msg out tapped"><span class="hide"><em>Shane:</em> </span>ok yes. go to sleep, you have a game tomorrow<span class="imsg-tap"><span class="hide"> [Ilya reacted </span>👎<span class="hide">]</span></span></p>
+  </div>
+</div>
 
 <pre><code>&lt;p class="msg out tapped"&gt;&lt;span class="hide"&gt;&lt;em&gt;Shane:&lt;/em&gt; &lt;/span&gt;ok yes. go to sleep, you have a game tomorrow&lt;span class="imsg-tap"&gt;&lt;span class="hide"&gt; [Ilya reacted &lt;/span&gt;👎&lt;span class="hide"&gt;]&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;</code></pre>
 
@@ -337,8 +373,12 @@
 
 <p><code>imsg-tap</code> on its own is grey, for someone else's reaction, and <code>imsg-tap me</code> is blue, for your point-of-view character's:</p>
 
-<div class="mob imsg theme-auto"><div class="mob-body"><p class="msg in tapped"><span class="hide"><em>Ilya:</em> </span>liar<span class="imsg-tap me"><span class="hide"> [Shane reacted </span>😂<span class="hide">]</span></span></p>
-<p class="msg out tapped"><span class="hide"><em>Shane:</em> </span>ok yes. go to sleep, you have a game tomorrow<span class="imsg-tap"><span class="hide"> [Ilya reacted </span>👎<span class="hide">]</span></span></p></div></div>
+<div class="mob imsg theme-auto">
+  <div class="mob-body">
+    <p class="msg in tapped"><span class="hide"><em>Ilya:</em> </span>liar<span class="imsg-tap me"><span class="hide"> [Shane reacted </span>😂<span class="hide">]</span></span></p>
+    <p class="msg out tapped"><span class="hide"><em>Shane:</em> </span>ok yes. go to sleep, you have a game tomorrow<span class="imsg-tap"><span class="hide"> [Ilya reacted </span>👎<span class="hide">]</span></span></p>
+  </div>
+</div>
 
 <pre><code>&lt;p class="msg in tapped"&gt;&lt;span class="hide"&gt;&lt;em&gt;Ilya:&lt;/em&gt; &lt;/span&gt;liar&lt;span class="imsg-tap me"&gt;&lt;span class="hide"&gt; [Shane reacted &lt;/span&gt;😂&lt;span class="hide"&gt;]&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
 &lt;p class="msg out tapped"&gt;&lt;span class="hide"&gt;&lt;em&gt;Shane:&lt;/em&gt; &lt;/span&gt;ok yes. go to sleep, you have a game tomorrow&lt;span class="imsg-tap"&gt;&lt;span class="hide"&gt; [Ilya reacted &lt;/span&gt;👎&lt;span class="hide"&gt;]&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;</code></pre>
@@ -350,9 +390,13 @@
 
 <p>When more than one person reacts to the same message, iMessage stacks the tapbacks on the corner, overlapping, with the first one at the front. Put the <code>imsg-tap</code> spans one after another at the end of the message. The first one gets the tail, and each one after it tucks in behind, a bit further along the bubble:</p>
 
-<div class="mob imsg theme-auto"><div class="mob-body"><p class="who">Scott<span class="hide">:</span></p>
-<p class="msg in tapped">reminder that nobody is letting Ilya run the drills again<span class="imsg-tap me"><span class="hide"> [Shane reacted </span>😂<span class="hide">]</span></span><span class="imsg-tap"><span class="hide"> [Hayden reacted </span>‼️<span class="hide">]</span></span><span class="imsg-tap"><span class="hide"> [Ryan reacted </span>👍<span class="hide">]</span></span></p>
-<p class="msg out tapped"><span class="hide"><em>Shane:</em> </span>the kids loved it though<span class="imsg-tap"><span class="hide"> [Ilya reacted </span>❤️<span class="hide">]</span></span><span class="imsg-tap"><span class="hide"> [Scott reacted </span>👎<span class="hide">]</span></span></p></div></div>
+<div class="mob imsg theme-auto">
+  <div class="mob-body">
+    <p class="who">Scott<span class="hide">:</span></p>
+    <p class="msg in tapped">reminder that nobody is letting Ilya run the drills again<span class="imsg-tap me"><span class="hide"> [Shane reacted </span>😂<span class="hide">]</span></span><span class="imsg-tap"><span class="hide"> [Hayden reacted </span>‼️<span class="hide">]</span></span><span class="imsg-tap"><span class="hide"> [Ryan reacted </span>👍<span class="hide">]</span></span></p>
+    <p class="msg out tapped"><span class="hide"><em>Shane:</em> </span>the kids loved it though<span class="imsg-tap"><span class="hide"> [Ilya reacted </span>❤️<span class="hide">]</span></span><span class="imsg-tap"><span class="hide"> [Scott reacted </span>👎<span class="hide">]</span></span></p>
+  </div>
+</div>
 
 <pre><code>&lt;p class="who"&gt;Scott&lt;span class="hide"&gt;:&lt;/span&gt;&lt;/p&gt;
 &lt;p class="msg in tapped"&gt;reminder that nobody is letting Ilya run the drills again&lt;span class="imsg-tap me"&gt;&lt;span class="hide"&gt; [Shane reacted &lt;/span&gt;😂&lt;span class="hide"&gt;]&lt;/span&gt;&lt;/span&gt;&lt;span class="imsg-tap"&gt;&lt;span class="hide"&gt; [Hayden reacted &lt;/span&gt;‼️&lt;span class="hide"&gt;]&lt;/span&gt;&lt;/span&gt;&lt;span class="imsg-tap"&gt;&lt;span class="hide"&gt; [Ryan reacted &lt;/span&gt;👍&lt;span class="hide"&gt;]&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
@@ -388,8 +432,12 @@
 
 <p>iMessage shows a little status line under your last message. Add it with <code>imsg-status</code>, straight after the message it belongs to, and write "Delivered", "Read 11:52 PM" or whatever you like:</p>
 
-<div class="mob imsg theme-auto"><div class="mob-body"><p class="msg out"><span class="hide"><em>Shane:</em> </span>call me?</p>
-<p class="imsg-status">Read 11:52 PM</p></div></div>
+<div class="mob imsg theme-auto">
+  <div class="mob-body">
+    <p class="msg out"><span class="hide"><em>Shane:</em> </span>call me?</p>
+    <p class="imsg-status">Read 11:52 PM</p>
+  </div>
+</div>
 
 <pre><code>&lt;p class="msg out"&gt;&lt;span class="hide"&gt;&lt;em&gt;Shane:&lt;/em&gt; &lt;/span&gt;call me?&lt;/p&gt;
 &lt;p class="imsg-status"&gt;Read 11:52 PM&lt;/p&gt;</code></pre>
@@ -398,8 +446,12 @@
 
 <p>iMessage puts a small blue "Edited" under a message that's been edited. Add it with <code>imsg-edited</code>, straight after the message, just like the status line:</p>
 
-<div class="mob imsg theme-auto"><div class="mob-body"><p class="msg out"><span class="hide"><em>Shane:</em> </span>see you at 7</p>
-<p class="imsg-edited">Edited</p></div></div>
+<div class="mob imsg theme-auto">
+  <div class="mob-body">
+    <p class="msg out"><span class="hide"><em>Shane:</em> </span>see you at 7</p>
+    <p class="imsg-edited">Edited</p>
+  </div>
+</div>
 
 <pre><code>&lt;p class="msg out"&gt;&lt;span class="hide"&gt;&lt;em&gt;Shane:&lt;/em&gt; &lt;/span&gt;see you at 7&lt;/p&gt;
 &lt;p class="imsg-edited"&gt;Edited&lt;/p&gt;</code></pre>
@@ -409,8 +461,12 @@
 
 <p>For a message from the other person, use <code>imsg-edited-in</code> instead, so it sits on the left:</p>
 
-<div class="mob imsg theme-auto"><div class="mob-body"><p class="msg in"><span class="hide"><em>Ilya:</em> </span>see you at 8</p>
-<p class="imsg-edited-in">Edited</p></div></div>
+<div class="mob imsg theme-auto">
+  <div class="mob-body">
+    <p class="msg in"><span class="hide"><em>Ilya:</em> </span>see you at 8</p>
+    <p class="imsg-edited-in">Edited</p>
+  </div>
+</div>
 
 <pre><code>&lt;p class="msg in"&gt;&lt;span class="hide"&gt;&lt;em&gt;Ilya:&lt;/em&gt; &lt;/span&gt;see you at 8&lt;/p&gt;
 &lt;p class="imsg-edited-in"&gt;Edited&lt;/p&gt;</code></pre>
@@ -421,8 +477,12 @@
 
 <p>When your point-of-view character's message goes as a normal text instead of an iMessage, it turns green - like Shane's, because the signal in the rink is too bad for iMessage. The same thing happens when they're messaging someone without an iPhone. Add <code>sms</code> to an <code>out</code> message to make it green:</p>
 
-<div class="mob imsg theme-auto"><div class="mob-body"><p class="msg out sms"><span class="hide"><em>Shane:</em> </span>can't check, the signal in this rink is terrible</p>
-<p class="msg out sms"><span class="hide"><em>Shane:</em> </span>these are going as texts. it's like 2009 in here</p></div></div>
+<div class="mob imsg theme-auto">
+  <div class="mob-body">
+    <p class="msg out sms"><span class="hide"><em>Shane:</em> </span>can't check, the signal in this rink is terrible</p>
+    <p class="msg out sms"><span class="hide"><em>Shane:</em> </span>these are going as texts. it's like 2009 in here</p>
+  </div>
+</div>
 
 <pre><code>&lt;p class="msg out sms"&gt;&lt;span class="hide"&gt;&lt;em&gt;Shane:&lt;/em&gt; &lt;/span&gt;can't check, the signal in this rink is terrible&lt;/p&gt;
 &lt;p class="msg out sms"&gt;&lt;span class="hide"&gt;&lt;em&gt;Shane:&lt;/em&gt; &lt;/span&gt;these are going as texts. it's like 2009 in here&lt;/p&gt;</code></pre>
@@ -433,7 +493,11 @@
 
 <p>To send a picture, add <code>photo</code> to a message and put a picture tag inside it. The corners are rounded for you. The picture has to be hosted somewhere else (see <a href="core.html#heading">Pictures and Alt Text</a>), and your link goes in <code>src</code>, with your description in <code>alt</code>:</p>
 
-<div class="mob imsg theme-auto"><div class="mob-body"><p class="msg in photo"><span class="hide"><em>Ilya:</em> </span><img src="https://images.squidge.org/images/2026/11/16/Cat4.jpg" alt="A cat curled up inside an open suitcase"></p></div></div>
+<div class="mob imsg theme-auto">
+  <div class="mob-body">
+    <p class="msg in photo"><span class="hide"><em>Ilya:</em> </span><img src="https://images.squidge.org/images/2026/11/16/Cat4.jpg" alt="A cat curled up inside an open suitcase"></p>
+  </div>
+</div>
 
 <pre><code>&lt;p class="msg in photo"&gt;&lt;span class="hide"&gt;&lt;em&gt;Ilya:&lt;/em&gt; &lt;/span&gt;&lt;img src="https://images.squidge.org/images/2026/11/16/Cat4.jpg" alt="A cat curled up inside an open suitcase"&gt;&lt;/p&gt;</code></pre>
 
@@ -442,7 +506,11 @@
 
 <p>If you'd rather describe the picture than show it, add <code>text</code> as well and write the description in square brackets:</p>
 
-<div class="mob imsg theme-auto"><div class="mob-body"><p class="msg in photo text"><span class="hide"><em>Ilya:</em> </span>[A blurry photo of the same cat, now asleep on Ilya's hotel bed]</p></div></div>
+<div class="mob imsg theme-auto">
+  <div class="mob-body">
+    <p class="msg in photo text"><span class="hide"><em>Ilya:</em> </span>[A blurry photo of the same cat, now asleep on Ilya's hotel bed]</p>
+  </div>
+</div>
 
 <pre><code>&lt;p class="msg in photo text"&gt;&lt;span class="hide"&gt;&lt;em&gt;Ilya:&lt;/em&gt; &lt;/span&gt;[A blurry photo of the same cat, now asleep on Ilya's hotel bed]&lt;/p&gt;</code></pre>
 
@@ -467,7 +535,9 @@
 
 <p>Write the name straight into the header. That's all a one-off contact needs:</p>
 
-<div class="mob imsg theme-auto"><p class="mob-header">Ilya</p></div>
+<div class="mob imsg theme-auto">
+  <p class="mob-header">Ilya</p>
+</div>
 
 <pre><code>&lt;p class="mob-header"&gt;Ilya&lt;/p&gt;</code></pre>
 
@@ -476,7 +546,9 @@
 
 <p>Put a name span in its place, with the name typed inside it in a <code>hide</code> span for readers with the workskin off. The name then comes from the character's profile, so it's the same in every chat, and it changes to whatever your point-of-view character has them saved as (see <a href="core.html#heading">Their Phone</a>):</p>
 
-<div class="mob imsg theme-auto"><p class="mob-header"><span class="name pfp-ilya"><span class="hide">Ilya</span></span><span class="hide"> - </span><span>iMessage</span></p></div>
+<div class="mob imsg theme-auto">
+  <p class="mob-header"><span class="name pfp-ilya"><span class="hide">Ilya</span></span><span class="hide"> - </span><span>iMessage</span></p>
+</div>
 
 <pre><code>&lt;p class="mob-header"&gt;&lt;span class="name pfp-ilya"&gt;&lt;span class="hide"&gt;Ilya&lt;/span&gt;&lt;/span&gt;&lt;span class="hide"&gt; - &lt;/span&gt;&lt;span&gt;iMessage&lt;/span&gt;&lt;/p&gt;</code></pre>
 
@@ -486,11 +558,15 @@
 
 <p>In a group, put a <code>who</code> line above a message to show who sent it. Your own messages don't get one, the same as on a real phone, so they keep the hidden label instead:</p>
 
-<div class="mob imsg theme-auto"><div class="mob-body"><p class="who">Hayden<span class="hide">:</span></p>
-<p class="msg in">day two of camp. who's awake</p>
-<p class="who">Scott<span class="hide">:</span></p>
-<p class="msg in">unfortunately me</p>
-<p class="msg out"><span class="hide"><em>Shane:</em> </span>been up since 5. the cones are in my car</p></div></div>
+<div class="mob imsg theme-auto">
+  <div class="mob-body">
+    <p class="who">Hayden<span class="hide">:</span></p>
+    <p class="msg in">day two of camp. who's awake</p>
+    <p class="who">Scott<span class="hide">:</span></p>
+    <p class="msg in">unfortunately me</p>
+    <p class="msg out"><span class="hide"><em>Shane:</em> </span>been up since 5. the cones are in my car</p>
+  </div>
+</div>
 
 <pre><code>&lt;p class="who"&gt;Hayden&lt;span class="hide"&gt;:&lt;/span&gt;&lt;/p&gt;
 &lt;p class="msg in"&gt;day two of camp. who's awake&lt;/p&gt;
@@ -503,8 +579,12 @@
 
 <p>For someone who only turns up briefly, type their name in the <code>who</code> line, like Hayden and Scott above. For a character with a profile, put a name span in the <code>who</code> line instead, with their name typed inside it in a <code>hide</code> span, and the name comes from their profile:</p>
 
-<div class="mob imsg theme-auto"><div class="mob-body"><p class="who"><span class="name pfp-ilya"><span class="hide">Ilya</span></span><span class="hide">:</span></p>
-<p class="msg in">I am bringing extra cones. many extra cones</p></div></div>
+<div class="mob imsg theme-auto">
+  <div class="mob-body">
+    <p class="who"><span class="name pfp-ilya"><span class="hide">Ilya</span></span><span class="hide">:</span></p>
+    <p class="msg in">I am bringing extra cones. many extra cones</p>
+  </div>
+</div>
 
 <pre><code>&lt;p class="who"&gt;&lt;span class="name pfp-ilya"&gt;&lt;span class="hide"&gt;Ilya&lt;/span&gt;&lt;/span&gt;&lt;span class="hide"&gt;:&lt;/span&gt;&lt;/p&gt;
 &lt;p class="msg in"&gt;I am bringing extra cones. many extra cones&lt;/p&gt;</code></pre>
