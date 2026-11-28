@@ -155,21 +155,39 @@
   &lt;/p&gt;
 &lt;/div&gt;</code></pre>
 
-<p><strong>Inside the body, everything is a message or a post.</strong> A message is a <code>msg</code> in every chat app. A post is a container of its own (<code>tw</code>, <code>ig</code>, <code>tb</code>), with a top line for who posted it, then the words and pictures, then a row of buttons at the bottom.</p>
+<p><strong>Inside the body are messages or posts.</strong> A chat is a run of messages and a feed is a run of posts. Both are made of small parts, and each part is named for what it is, in plain English.</p>
 
-<p><strong>In a chat, the parts have plain names.</strong> Every chat app (<code>imsg</code>, <code>wa</code>, <code>igdm</code>, <code>twdm</code> and <code>dc</code>) uses the same word for the same part, and the app on the top line decides what it looks like:</p>
+<p><strong>A message</strong> is a <code>msg</code>, with <code>in</code> or <code>out</code> to say which side it sits on. The words go first, and the <code>time</code> it was sent goes underneath:</p>
 
-<ul>
-  <li><code>mob-header</code> and <code>footer</code>: the bars at the top and bottom. In the header, <code>back</code> is the back arrow, <code>chat-name</code> is who the chat is with, and <code>btns</code> is the group of buttons. In the footer, <code>msgbar</code> is the message bar, where a message is typed, with <code>plus</code> and <code>mic</code> beside it.</li>
-  <li><code>msg</code>: a message, with <code>who</code> for the sender's name in a group, <code>avatar</code> for their round picture, and <code>row</code> around one person's messages when their picture sits beside them.</li>
-  <li><code>time</code>, <code>status</code> and <code>edited</code>: when it was sent, whether it's been read, and whether it's been changed.</li>
-  <li><code>photos</code>: a set of photos, with each one a <code>photo</code>.</li>
-  <li><code>reply</code> and <code>quote</code>: the line that says what a message is replying to, and the message it quotes.</li>
-  <li><code>reacts</code>: the line of reactions on a message, and <code>count</code>: a number.</li>
-  <li><code>link-card</code>: the preview box for a link, with <code>link-img</code>, <code>link-title</code>, <code>link-desc</code> and <code>link-url</code> inside it. <code>fake-link</code> is a link written out in a message.</li>
-</ul>
+<div class="mob wa theme-auto">
+  <div class="mob-body">
+    <div class="msg in">
+      <p><span class="hide"><em>Jane:</em> </span>are you still up?</p>
+      <p class="time">23:41</p>
+    </div>
+    <div class="msg out">
+      <p><span class="hide"><em>Ilya:</em> </span>unfortunately</p>
+      <p class="time">23:42</p>
+    </div>
+  </div>
+</div>
 
-<p>That means you can turn a chat into a different app by changing one word. This is the chat above with <code>imsg</code> swapped for <code>wa</code> on the top line, and nothing else touched:</p>
+<pre><code>&lt;div class="mob wa theme-auto"&gt;
+  &lt;div class="mob-body"&gt;
+    &lt;div class="msg in"&gt;
+      &lt;p&gt;&lt;span class="hide"&gt;&lt;em&gt;Jane:&lt;/em&gt; &lt;/span&gt;are you still up?&lt;/p&gt;
+      &lt;p class="time"&gt;23:41&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class="msg out"&gt;
+      &lt;p&gt;&lt;span class="hide"&gt;&lt;em&gt;Ilya:&lt;/em&gt; &lt;/span&gt;unfortunately&lt;/p&gt;
+      &lt;p class="time"&gt;23:42&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+<p>Everything else in a chat is added the same way and named for what it is, like <code>who</code> for the sender's name in a group, <code>reply</code> for the message it answers, or <code>reacts</code> for the reactions under it. Each app's chapter goes through them all.</p>
+
+<p>Every chat app uses the same names, so you can turn a chat into a different app by changing one word. This is the chat from the top of this section with <code>imsg</code> swapped for <code>wa</code>, and nothing else touched:</p>
 
 <div class="mob wa theme-auto">
   <p class="mob-header">Jane<span class="hide"> - </span><span>iMessage</span></p>
@@ -184,7 +202,7 @@
   </p>
 </div>
 
-<p>The bubbles are only how an app looks, not how the chat is built. Discord draws no bubbles, just a picture, a name and lines of text, but it's made from the same parts, so the same chat with <code>dc</code> on the top line becomes a Discord channel:</p>
+<p>The bubbles are only how an app looks, not how the chat is built. Discord has no bubbles, but it's made from the same parts, so with <code>dc</code> the same chat becomes a Discord channel:</p>
 
 <div class="mob dc theme-auto">
   <p class="mob-header">Jane<span class="hide"> - </span><span>iMessage</span></p>
@@ -199,20 +217,45 @@
   </p>
 </div>
 
-<p>It won't always be a perfect copy of the other app, but everything still shows up and nothing breaks. For example, Discord shows who's typing in a line under the message bar, and the other apps show the dots as a bubble at the end of the chat. If you swap one for the other, the typing line stays where you wrote it, so it won't be quite where the new app would put it.</p>
+<p>It won't always be a perfect copy. For example, Discord shows who's typing in a line under the message bar, and the other apps show it as a bubble at the end of the chat, so if you swap one for the other the typing line stays where you wrote it. But everything still shows up, and nothing breaks.</p>
 
-<p><strong>In a feed, the parts have plain names too.</strong> Every feed app (<code>tw</code>, <code>twc12</code>, <code>twc16</code>, <code>ig</code> and <code>tb</code>) calls one post a <code>post</code>, so a tweet is <code>mob tw post</code> and an Instagram post is <code>mob ig post</code>. Inside it:</p>
+<p><strong>A post</strong> is a container of its own, with <code>post</code> next to the app's name. It reads top to bottom: the <code>top</code> line says who posted it and when, the <code>text</code> is what they wrote, and the <code>stats</code> are the row of buttons along the bottom:</p>
 
-<ul>
-  <li><code>top</code>: the top line, with <code>avatar</code> for the picture, <code>who</code> for the name, <code>time</code>, and <code>menu</code> for the three dots.</li>
-  <li><code>text</code>: the words, with <code>photos</code> and <code>photo</code>, <code>quote</code> and <code>poll</code> the same as in a chat. <code>fake-link</code> is a link or hashtag.</li>
-  <li><code>stats</code>: the row of buttons under it, with each button a <code>stat</code> and a word for what it counts: <code>comments</code>, <code>reposts</code>, <code>likes</code>, <code>shares</code>, <code>bookmarks</code> or <code>views</code>. Tumblr keeps its own word, <code>reblogs</code>. Not every app has every stat, so just leave out the ones it doesn't have. The icons inside are still each app's own, like <code>ic-tw-like</code> or <code>ic-heart</code>, so if you move a post to another app, change those too.</li>
-  <li>On an app screen, <code>header</code> is the bar at the top, with <code>logo</code> and <code>icon</code> buttons, and <code>tabs</code> and <code>nav</code> are the rows of tabs and buttons.</li>
-</ul>
+<div class="mob tw post theme-auto">
+  <p class="top">
+    <span class="avatar colour2">J</span><span class="hide"> </span>
+    <span class="who">Jane</span>
+    <span class="tw-handle">@jane</span>
+    <span class="time">· 2h</span>
+  </p>
+  <p class="text">the top line is me, and these are my words</p>
+  <div class="stats">
+    <p class="stat comments"><span class="ic ic-tw-reply">&#9993;</span> 2<span class="hide"> replies</span></p>
+    <p class="stat reposts"><span class="ic ic-tw-repost">&#8644;</span> 5<span class="hide"> reposts</span></p>
+    <p class="stat likes"><span class="ic ic-tw-like">&#9825;</span> 31<span class="hide"> likes</span></p>
+  </div>
+</div>
 
-<p><strong>Everything else is the app's name and one plain word.</strong> A part that only one app has keeps that app's name, like <code>wa-call</code> for a WhatsApp call or <code>tb-ask</code> for a Tumblr ask.</p>
+<pre><code>&lt;div class="mob tw post theme-auto"&gt;
+  &lt;p class="top"&gt;
+    &lt;span class="avatar colour2"&gt;J&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;
+    &lt;span class="who"&gt;Jane&lt;/span&gt;
+    &lt;span class="tw-handle"&gt;@jane&lt;/span&gt;
+    &lt;span class="time"&gt;· 2h&lt;/span&gt;
+  &lt;/p&gt;
+  &lt;p class="text"&gt;the top line is me, and these are my words&lt;/p&gt;
+  &lt;div class="stats"&gt;
+    &lt;p class="stat comments"&gt;&lt;span class="ic ic-tw-reply"&gt;&amp;#9993;&lt;/span&gt; 2&lt;span class="hide"&gt; replies&lt;/span&gt;&lt;/p&gt;
+    &lt;p class="stat reposts"&gt;&lt;span class="ic ic-tw-repost"&gt;&amp;#8644;&lt;/span&gt; 5&lt;span class="hide"&gt; reposts&lt;/span&gt;&lt;/p&gt;
+    &lt;p class="stat likes"&gt;&lt;span class="ic ic-tw-like"&gt;&amp;#9825;&lt;/span&gt; 31&lt;span class="hide"&gt; likes&lt;/span&gt;&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
 
-<p><strong>A plain word next to a class is a setting.</strong> The pieces every app shares have plain names too: <code>mob</code>, <code>hide</code>, <code>pfp</code>, <code>ic</code> (an icon), and <code>img-desc</code> and <code>video-desc</code> (a picture or video described in words). The settings are plain words you add next to a class to change it: <code>in</code> and <code>out</code> for whose message it is, <code>me</code> for something you did, <code>right</code> to push something to the right, <code>on</code> for the tab that's picked, <code>liked</code> for a red heart, <code>wide</code> and <code>no-scroll</code> for the container.</p>
+<p>Each button is a <code>stat</code>, with a word for what it counts, like <code>likes</code> or <code>reposts</code>. Those words are the same in every app (only Tumblr says <code>reblogs</code>), so a post can change app too. The icons belong to each app, so change those if you move a post.</p>
+
+<p><strong>A part only one app has starts with the app's name</strong>, like <code>wa-call</code> for a WhatsApp call or <code>tb-ask</code> for a Tumblr ask.</p>
+
+<p><strong>A plain word next to a class is a setting.</strong> It changes how that part looks, like <code>out</code> for your own message, <code>liked</code> for a red heart, or <code>wide</code> for a full-width container.</p>
 
 <p><strong>The code is written one part per line.</strong> Anything that holds words stays on one line, and anything that holds other parts gets a line for each part, pushed in a little further each time. So you can tell what sits inside what by how far in it is.</p>
 
