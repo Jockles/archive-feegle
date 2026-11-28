@@ -365,8 +365,8 @@
     });
     L = L.concat(ind(body, 2));
     L.push("  </div>");
-    if (b.bar === "empty") L.push('  <p class="imsg-footer"><span class="imsg-plus">+</span><span class="hide"> </span><span class="imsg-field">iMessage<span class="hide"> </span><span class="imsg-mic ic ic-mic">&#127908;</span></span></p>');
-    if (b.bar === "typed") L.push('  <p class="imsg-footer"><span class="imsg-plus">+</span><span class="hide"> </span><span class="imsg-field typed">' + fmt(b.barText) + (b.cursor ? CURSOR : "") + '<span class="hide"> </span><span class="imsg-send ic ic-imsg-send">&#8593;</span></span></p>');
+    if (b.bar === "empty") L.push('  <p class="imsg-footer"><span class="imsg-plus">+</span><span class="hide"> </span><span class="imsg-msgbar">iMessage<span class="hide"> </span><span class="imsg-mic ic ic-mic">&#127908;</span></span></p>');
+    if (b.bar === "typed") L.push('  <p class="imsg-footer"><span class="imsg-plus">+</span><span class="hide"> </span><span class="imsg-msgbar typed">' + fmt(b.barText) + (b.cursor ? CURSOR : "") + '<span class="hide"> </span><span class="imsg-send ic ic-imsg-send">&#8593;</span></span></p>');
     L.push("</div>");
     return L.join("\n");
   }
@@ -497,7 +497,7 @@
     L.push("  </div>");
     if (b.bar === "empty" || b.bar === "typed") {
       var typed = b.bar === "typed";
-      L = L.concat(ind(['<p class="wa-footer">', '  <span class="wa-field">', '    <span class="ic ic-emoji">&#9786;</span>',
+      L = L.concat(ind(['<p class="wa-footer">', '  <span class="wa-msgbar">', '    <span class="ic ic-emoji">&#9786;</span>',
         typed ? '    <span class="wa-placeholder typed">' + fmt(b.barText) + (b.cursor ? CURSOR : "") + "</span>" : '    <span class="wa-placeholder">Message</span>',
         '    <span class="ic ic-paperclip">&#128206;</span>'].concat(typed ? [] : ['    <span class="ic ic-camera">&#128247;</span>'])
         .concat(["  </span>", typed ? '  <span class="wa-mic ic ic-wa-send">&#10148;</span>' : '  <span class="wa-mic ic ic-wa-mic">&#127908;</span>', "</p>"]), 1));
@@ -562,8 +562,8 @@
     close();
     L = L.concat(ind(body, 2));
     L.push("  </div>");
-    if (b.bar === "empty") L.push('  <p class="twdm-footer"><span class="twdm-plus">+</span><span class="hide"> </span><span class="twdm-field">Message<span class="hide"> </span><span class="ic ic-mic">&#127908;</span></span></p>');
-    if (b.bar === "typed") L.push('  <p class="twdm-footer"><span class="twdm-plus">+</span><span class="hide"> </span><span class="twdm-field typed">' + fmt(b.barText) + (b.cursor ? CURSOR : "") + '<span class="hide"> </span><span class="ic ic-mic">&#127908;</span></span></p>');
+    if (b.bar === "empty") L.push('  <p class="twdm-footer"><span class="twdm-plus">+</span><span class="hide"> </span><span class="twdm-msgbar">Message<span class="hide"> </span><span class="ic ic-mic">&#127908;</span></span></p>');
+    if (b.bar === "typed") L.push('  <p class="twdm-footer"><span class="twdm-plus">+</span><span class="hide"> </span><span class="twdm-msgbar typed">' + fmt(b.barText) + (b.cursor ? CURSOR : "") + '<span class="hide"> </span><span class="ic ic-mic">&#127908;</span></span></p>');
     if (b.nav) L.push('  <p class="tw-nav"><span class="ic ic-tw-home">&#8962;</span> <span class="ic ic-tw-search">&#128269;</span> <span class="ic ic-x-grok">&#8856;</span> ' +
       '<span class="ic ic-tw-bell">&#128276;</span>' + (t(b.badge) ? '<span class="tw-badge"><span class="hide"> (</span>' + esc(t(b.badge)) + '<span class="hide">)</span></span>' : "") +
       ' <span class="on ic ic-x-chat">&#128172;</span></p>');
@@ -913,7 +913,7 @@
     close();
     L = L.concat(ind(body, 2));
     L.push("  </div>");
-    if (b.bar === "empty" || b.bar === "typed") L.push('  <p class="igdm-footer"><span class="igdm-cam ic ic-camera">&#128247;</span><span class="hide"> </span><span class="igdm-field' + (b.bar === "typed" ? " typed\">" + fmt(b.barText) + (b.cursor ? CURSOR : "") : '">Message...') +
+    if (b.bar === "empty" || b.bar === "typed") L.push('  <p class="igdm-footer"><span class="igdm-cam ic ic-camera">&#128247;</span><span class="hide"> </span><span class="igdm-msgbar' + (b.bar === "typed" ? " typed\">" + fmt(b.barText) + (b.cursor ? CURSOR : "") : '">Message...') +
       '<span class="hide"> </span><span class="ic ic-mic">&#127908;</span></span></p>');
     L.push("</div>");
     return L.join("\n");
@@ -2069,7 +2069,7 @@
     headBack(b, ks[k++]);
     var body = ks[k++]; if (!is(body, "div.mob-body")) no();
     b.bar = "none";
-    if (is(ks[k], "p.imsg-footer")) { var f = ks[k++].querySelector(".imsg-field"); if (!f) no(); barBack(b, f, 2); }
+    if (is(ks[k], "p.imsg-footer")) { var f = ks[k++].querySelector(".imsg-msgbar"); if (!f) no(); barBack(b, f, 2); }
     if (ks[k]) no();
     var who = null, m = null;
     kids(body).forEach(function (p) {
@@ -2283,7 +2283,7 @@
     b.title = hn.querySelector("span.name") ? "" : hn.textContent;
     var body = ks[k++]; if (!is(body, "div.mob-body")) no();
     b.bar = "none";
-    if (is(ks[k], "p.twdm-footer")) { var f = ks[k++].querySelector(".twdm-field"); if (!f) no(); barBack(b, f, 2); }
+    if (is(ks[k], "p.twdm-footer")) { var f = ks[k++].querySelector(".twdm-msgbar"); if (!f) no(); barBack(b, f, 2); }
     if (is(ks[k], "p.tw-nav")) {
       b.nav = true; var bd = ks[k++].querySelector(".tw-badge");
       if (bd) { var bc = bd.cloneNode(true); bc.querySelectorAll(".hide").forEach(function (x) { x.remove(); }); b.badge = bc.textContent; }
@@ -2422,7 +2422,7 @@
     var b = newBlock("igdm"); settings(b, el, "igdm");
     var ks = kids(el), head = ks[0], body = ks[1], k = 2;
     if (!is(head, "p.mob-header") || !is(body, "div.mob-body")) no();
-    if (is(ks[k], "p.igdm-footer")) { var f = ks[k++].querySelector(".igdm-field"); if (!f) no(); barBack(b, f, 2); }
+    if (is(ks[k], "p.igdm-footer")) { var f = ks[k++].querySelector(".igdm-msgbar"); if (!f) no(); barBack(b, f, 2); }
     if (ks[k]) no();
     // two pictures at the top, or rows with names: a group, even with no one else talking yet
     b.group = !!(head.querySelector("span.ig-collab") || body.querySelector("div.igdm-row"));
@@ -2830,7 +2830,7 @@
   // stays on one line; one with a block inside puts every child on its own line, two spaces in; one with only inline
   // children splits only if its kind is on the list below (tested to look the same split or not, on the site and on AO3)
   // and one of them has a class. A hidden span that isn't first stays on the end of the line before it.
-  var SPLIT_SAFE = ["div.igdm-row", "p.dc-photos", "p.dc-photos.one", "p.dc-photos.three", "p.dc-photos.two", "p.hide", "p.ig-carousel-info", "p.ig-header", "p.ig-person", "p.ig-photo.real", "p.ig-story", "p.ig-story.close", "p.ig-story.me", "p.ig-top", "p.igdm-footer", "p.igdm-link-img", "p.igdm-photos", "p.igdm-photos.one", "p.igdm-photos.three", "p.igdm-photos.two", "p.igdm-post-btns", "p.igdm-post-by", "p.igdm-post-img", "p.imsg-footer", "p.imsg-photos", "p.imsg-photos.one", "p.imsg-photos.three", "p.imsg-photos.two", "p.mob-header", "p.msg.in.tail.typing-indicator", "p.msg.in.typing-indicator", "p.msg.in.voice", "p.msg.out.tail.typing-indicator", "p.msg.out.typing-indicator", "p.msg.out.voice", "p.tb-blog", "p.tb-header", "p.tb-nav", "p.tb-row", "p.tb-row.two", "p.tb-tabs", "p.tb-top", "p.tw-header", "p.tw-nav", "p.tw-opt.results.p10", "p.tw-opt.results.p25", "p.tw-opt.results.p30", "p.tw-opt.results.p60", "p.tw-opt.results.win.p75", "p.tw-pfp", "p.tw-photos", "p.tw-photos.four", "p.tw-photos.three", "p.tw-photos.two", "p.tw-stat", "p.tw-stat.locked", "p.tw-stat.right", "p.tw-stat.right.saved", "p.tw-tabs", "p.tw-top", "p.twc-reply-bar", "p.twdm-footer", "p.twdm-photos", "p.twdm-photos.one", "p.twdm-photos.three", "p.twdm-photos.two", "p.wa-call", "p.wa-footer", "p.wa-link-img", "p.wa-pfp", "p.wa-photos.four", "p.wa-photos.one", "p.wa-photos.three", "p.wa-photos.two", "p.wa-wall", "p.who", "span.dc-embed-text", "span.dc-quote", "span.gm-pfp", "span.handle.acc-rpf", "span.hide", "span.ig-badge", "span.ig-collab", "span.ig-like-pfp", "span.ig-pfp", "span.ig-pfp.story", "span.ig-photo.real", "span.igdm-back", "span.pfp", "span.tb-ask-pfp", "span.tb-name", "span.tb-pfp", "span.tb-pfp.reblog", "span.tb-photo", "span.tb-voted", "span.tw-me", "span.tw-pfp", "span.tw-photo", "span.twdm-back", "span.wa-field", "span.wa-pfp", "span.wa-photo", "td.gm-btns", "td.gm-pfp-cell", "td.gm-star", "td.wa-back", "td.wa-btns", "td.wa-name"];
+  var SPLIT_SAFE = ["div.igdm-row", "p.dc-photos", "p.dc-photos.one", "p.dc-photos.three", "p.dc-photos.two", "p.hide", "p.ig-carousel-info", "p.ig-header", "p.ig-person", "p.ig-photo.real", "p.ig-story", "p.ig-story.close", "p.ig-story.me", "p.ig-top", "p.igdm-footer", "p.igdm-link-img", "p.igdm-photos", "p.igdm-photos.one", "p.igdm-photos.three", "p.igdm-photos.two", "p.igdm-post-btns", "p.igdm-post-by", "p.igdm-post-img", "p.imsg-footer", "p.imsg-photos", "p.imsg-photos.one", "p.imsg-photos.three", "p.imsg-photos.two", "p.mob-header", "p.msg.in.tail.typing-indicator", "p.msg.in.typing-indicator", "p.msg.in.voice", "p.msg.out.tail.typing-indicator", "p.msg.out.typing-indicator", "p.msg.out.voice", "p.tb-blog", "p.tb-header", "p.tb-nav", "p.tb-row", "p.tb-row.two", "p.tb-tabs", "p.tb-top", "p.tw-header", "p.tw-nav", "p.tw-opt.results.p10", "p.tw-opt.results.p25", "p.tw-opt.results.p30", "p.tw-opt.results.p60", "p.tw-opt.results.win.p75", "p.tw-pfp", "p.tw-photos", "p.tw-photos.four", "p.tw-photos.three", "p.tw-photos.two", "p.tw-stat", "p.tw-stat.locked", "p.tw-stat.right", "p.tw-stat.right.saved", "p.tw-tabs", "p.tw-top", "p.twc-reply-bar", "p.twdm-footer", "p.twdm-photos", "p.twdm-photos.one", "p.twdm-photos.three", "p.twdm-photos.two", "p.wa-call", "p.wa-footer", "p.wa-link-img", "p.wa-pfp", "p.wa-photos.four", "p.wa-photos.one", "p.wa-photos.three", "p.wa-photos.two", "p.wa-wall", "p.who", "span.dc-embed-text", "span.dc-quote", "span.gm-pfp", "span.handle.acc-rpf", "span.hide", "span.ig-badge", "span.ig-collab", "span.ig-like-pfp", "span.ig-pfp", "span.ig-pfp.story", "span.ig-photo.real", "span.igdm-back", "span.pfp", "span.tb-ask-pfp", "span.tb-name", "span.tb-pfp", "span.tb-pfp.reblog", "span.tb-photo", "span.tb-voted", "span.tw-me", "span.tw-pfp", "span.tw-photo", "span.twdm-back", "span.wa-msgbar", "span.wa-pfp", "span.wa-photo", "td.gm-btns", "td.gm-pfp-cell", "td.gm-star", "td.wa-back", "td.wa-btns", "td.wa-name"];
   var FMT_BOXES = "mob dc tw-feed ig-feed tb-feed twc12-feed twc16-feed tw tw-reply ig igdm tb gm mail twdm wa imsg twc12 twc16".split(" ");
   var FMT_BLOCK = "div p table thead tbody tr td th ul ol li details summary blockquote h1 h2 h3 h4 h5 h6 pre hr".split(" ");
   var FMT_VOID = ["img", "br", "hr", "input"];
