@@ -3,7 +3,7 @@
 <p>Everything in this chapter lives in the core CSS - the bit of the skin that every module needs - so you get all of it whichever modules you've picked.</p>
 
 <ul>
-  <li><a href="#anatomy">The chat container, and the anatomy of a module</a>: the container and its platform and theme classes</li>
+  <li><a href="#anatomy">The chat container, and the anatomy of a module</a>: the container, its platform and theme classes, and how every module is organised</li>
   <li><a href="#accessibility">Accessibility</a>: <code>hide</code>, alt text and video descriptions (<code>video-desc</code>), for screen readers and for readers with the workskin switched off</li>
   <li><a href="#container-settings">Container settings</a>
     <ul>
@@ -63,6 +63,58 @@
 </ul>
 
 <p>On a wide screen every chat is held to the width of a phone, and on a small screen it fills the width of the screen.</p>
+
+<h4 id="organised">How Every Module is Organised</h4>
+
+<p>Every module is built the same way, so once you can read the code for one app you can read them all.</p>
+
+<p><strong>A container has a header, a body and a footer.</strong> The header is the bar along the top of the app, the body holds the messages or posts, and the footer is the bar along the bottom. You can leave the header and footer out.</p>
+
+<div class="mob imsg theme-auto">
+  <p class="mob-header">Jane<span class="hide"> - </span><span>iMessage</span></p>
+  <div class="mob-body">
+    <p class="mob-sys">Today 9:41 AM</p>
+    <p class="msg in"><span class="hide"><em>Jane:</em> </span>the header is my name up there</p>
+    <p class="msg out"><span class="hide"><em>Ilya:</em> </span>and we are in the body</p>
+  </div>
+  <p class="imsg-footer">
+    <span class="imsg-plus">+</span><span class="hide"> </span>
+    <span class="imsg-field">iMessage<span class="hide"> </span><span class="imsg-mic ic ic-mic">&#127908;</span></span>
+  </p>
+</div>
+
+<pre><code>&lt;div class="mob imsg theme-auto"&gt;
+  &lt;p class="mob-header"&gt;Jane&lt;span class="hide"&gt; - &lt;/span&gt;&lt;span&gt;iMessage&lt;/span&gt;&lt;/p&gt;
+  &lt;div class="mob-body"&gt;
+    &lt;p class="mob-sys"&gt;Today 9:41 AM&lt;/p&gt;
+    &lt;p class="msg in"&gt;&lt;span class="hide"&gt;&lt;em&gt;Jane:&lt;/em&gt; &lt;/span&gt;the header is my name up there&lt;/p&gt;
+    &lt;p class="msg out"&gt;&lt;span class="hide"&gt;&lt;em&gt;Ilya:&lt;/em&gt; &lt;/span&gt;and we are in the body&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;p class="imsg-footer"&gt;
+    &lt;span class="imsg-plus"&gt;+&lt;/span&gt;&lt;span class="hide"&gt; &lt;/span&gt;
+    &lt;span class="imsg-field"&gt;iMessage&lt;span class="hide"&gt; &lt;/span&gt;&lt;span class="imsg-mic ic ic-mic"&gt;&amp;amp;#127908;&lt;/span&gt;&lt;/span&gt;
+  &lt;/p&gt;
+&lt;/div&gt;</code></pre>
+
+<p><strong>Inside the body, everything is a message or a post.</strong> A message is a <code>msg</code> in every chat app. A post is a container of its own (<code>tw</code>, <code>ig</code>, <code>tb</code>), with a top line for who posted it, then the words and pictures, then a row of buttons at the bottom.</p>
+
+<p><strong>Class names are the app's name and one plain word.</strong> <code>wa-photo</code> is a photo in WhatsApp and <code>tw-photo</code> is a photo on Twitter/X. The same word means the same thing in every app:</p>
+
+<ul>
+  <li><code>-header</code> and <code>-footer</code>: the bars at the top and bottom of a container.</li>
+  <li><code>-top</code>: the top line of a post, and <code>-stats</code>: the row of buttons under it, with each button a <code>-stat</code>.</li>
+  <li><code>-name</code> and <code>-time</code>: who it is and when.</li>
+  <li><code>-pfp</code>: a profile picture.</li>
+  <li><code>-text</code> and <code>-caption</code>: the words.</li>
+  <li><code>-photos</code>: a set of photos, with each one a <code>-photo</code>.</li>
+  <li><code>-reply</code> and <code>-quote</code>: the line that says what a message is replying to, and the message it quotes.</li>
+  <li><code>-reacts</code>: the line of reactions under a message, and <code>-count</code>: a number.</li>
+  <li><code>-btns</code>: a group of buttons in a header, and <code>-icon</code>: a button that's just an icon.</li>
+</ul>
+
+<p><strong>A word with no app name in front is shared or is a setting.</strong> The shared pieces work in every app: <code>mob</code>, <code>msg</code>, <code>hide</code>, <code>pfp</code> and <code>ic</code> (an icon). The settings are plain words you add next to a class to change it: <code>in</code> and <code>out</code> for whose message it is, <code>me</code> for something you did, <code>right</code> to push something to the right, <code>on</code> for the tab that's picked, <code>liked</code> for a red heart, <code>wide</code> and <code>no-scroll</code> for the container.</p>
+
+<p><strong>The code is written one part per line.</strong> Anything that holds words stays on one line, and anything that holds other parts gets a line for each part, pushed in a little further each time. So you can tell what sits inside what by how far in it is.</p>
 
 <h3 id="accessibility">Accessibility</h3>
 
